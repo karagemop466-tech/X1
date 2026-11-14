@@ -30,7 +30,7 @@ jobs:
               "https://www.nfl.com/games/$slug" -o "/tmp/gc_$slug.html"
             echo "--- $slug"
             tail -1 "/tmp/gc_$slug.html" >/dev/null
-            python3 - "$slug" <<'PY'
+            python3 - "$slug" >> data/nfl/_debug/game_center_probe.txt <<'PY'
 import re, sys
 slug = sys.argv[1]
 h = open(f"/tmp/gc_{slug}.html", encoding="utf-8", errors="replace").read()
