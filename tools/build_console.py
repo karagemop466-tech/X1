@@ -534,9 +534,11 @@ gates are working; the inputs are what is missing.</div>
     reqs = [
         ("Price-snapshot store recording opening and closing numbers for every market we originate",
          "Built", f"{ctx['price']['rows']:,} rows in data/console/price_snapshots.csv. Both ends are "
-         f"populated for {ctx['price']['with_both']:,} markets (2021 only). The 78 Week 10 2026 "
-         "markets originated today carry an opening snapshot and an empty close until kick-off. "
-         "Every other market has one published number and a blank where the other belongs.",
+         f"populated for {ctx['price']['with_both']:,} markets (2021 only). The "
+         f"{ctx['price']['originated_now']} price snapshots we originate now - every 2026 fixture "
+         "that carries a line and has not kicked off - hold an opening snapshot and an empty close "
+         "until the game settles. Every other market has one published number and a blank where "
+         "the other belongs.",
          "Partial - see X-01", "prices.html"),
         ("Verified results feed so backtests and ROI can be computed at all",
          "Built", f"{ctx['feed']['games_settled']:,} settled games 1999-2026, reconciled "
