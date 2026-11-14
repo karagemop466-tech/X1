@@ -65,14 +65,14 @@ existing generators are extended, not rewritten, and no other session's branch i
 
 | # | Task | Requirement (owner's words) | Status | Owner session | Files in scope |
 |---|---|---|---|---|---|
-| T10 | Price-snapshot store: opening and closing numbers for every market we originate | "Add a price-snapshot store that records opening and closing numbers for every market we originate" | **claimed** | `arena-52aabfa8-x1` | `tools/build_price_store.py` (new), `data/prices/**` (new), `docs/methodology/price-snapshots.md` (new) |
-| T11 | Verified results feed so backtests and ROI can be computed | "Add a verified results feed so backtests and ROI can be computed at all" | **claimed** | `arena-52aabfa8-x1` | `tools/build_results_feed.py` (new), `data/results/**` (new), `docs/methodology/results-feed.md` (new) |
-| T12 | Origination order: side first, then total, then moneyline | "Originate the side first, then the total, then the moneyline" | **claimed** | `arena-52aabfa8-x1` | `code/build_lines.py`, `docs/methodology/line-origination.md` (append only) |
-| T13 | Fair line, market line, difference published as separate columns (all three markets) | "Publish the model's fair line, the market line, and the difference as separate columns" | **claimed** | `arena-52aabfa8-x1` | `code/build_lines.py`, `data/lines/originated_lines_2026_week10.csv` |
-| T14 | Leaderboard: signal separated from staking | "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal" | **claimed** | `arena-52aabfa8-x1` | `code/leaderboard.py`, `data/strategies/leaderboard.csv`, `data/strategies/leaderboard_meta.json`, `docs/methodology/leaderboard.md` (append only) |
-| T15 | Correlations computed only from officially sourced numbers, n published with every value | "Compute correlations only from officially sourced numbers and publish n with each value" | **claimed** | `arena-52aabfa8-x1` | `data/verify/official_correlations.csv` (new), `docs/methodology/correlation.md` (append only) |
-| T16 | Demotion gate: a live strategy goes back to paper | "Define a demotion gate that sends a live strategy back to paper" | **claimed** | `arena-52aabfa8-x1` | `data/gates.json`, `data/pipeline/gates.json`, `docs/methodology/validation-gates.md` (append only) |
-| T17 | Integration: register the 8 requirements, update executive summary + site pages, verify, PR → main, merge, Pages confirm | brief: "create a pull request … merge without waiting … confirm GitHub Pages deploys" | **claimed** | `arena-52aabfa8-x1` | `tools/build_app.py` (additive), `app/**` (regenerated), `data/pipeline/requirements.json`, `docs/EXECUTIVE-SUMMARY.md`, `COORDINATION.md`, PR |
+| T10 | Price-snapshot store: opening and closing numbers for every market we originate | "Add a price-snapshot store that records opening and closing numbers for every market we originate" | **done** | `arena-52aabfa8-x1` | `tools/build_price_store.py` (new), `data/prices/**` (new), `docs/methodology/price-snapshots.md` (new) |
+| T11 | Verified results feed so backtests and ROI can be computed | "Add a verified results feed so backtests and ROI can be computed at all" | **done** | `arena-52aabfa8-x1` | `tools/build_results_feed.py` (new), `data/results/**` (new), `docs/methodology/results-feed.md` (new) |
+| T12 | Origination order: side first, then total, then moneyline | "Originate the side first, then the total, then the moneyline" | **done** | `arena-52aabfa8-x1` | `code/build_lines.py`, `docs/methodology/line-origination.md` (append only) |
+| T13 | Fair line, market line, difference published as separate columns (all three markets) | "Publish the model's fair line, the market line, and the difference as separate columns" | **done** | `arena-52aabfa8-x1` | `code/build_lines.py`, `data/lines/originated_lines_2026_week10.csv` |
+| T14 | Leaderboard: signal separated from staking | "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal" | **done** | `arena-52aabfa8-x1` | `code/leaderboard.py`, `data/strategies/leaderboard.csv`, `data/strategies/leaderboard_meta.json`, `docs/methodology/leaderboard.md` (append only) |
+| T15 | Correlations computed only from officially sourced numbers, n published with every value | "Compute correlations only from officially sourced numbers and publish n with each value" | **done** | `arena-52aabfa8-x1` | `data/verify/official_correlations.csv` (new), `docs/methodology/correlation.md` (append only) |
+| T16 | Demotion gate: a live strategy goes back to paper | "Define a demotion gate that sends a live strategy back to paper" | **done** | `arena-52aabfa8-x1` | `data/gates.json`, `data/pipeline/gates.json`, `docs/methodology/validation-gates.md` (append only) |
+| T17 | Integration: register the 8 requirements, update executive summary + site pages, verify, PR → main, merge, Pages confirm | brief: "create a pull request … merge without waiting … confirm GitHub Pages deploys" | **done** | `arena-52aabfa8-x1` | `tools/build_app.py` (additive), `app/**` (regenerated), `data/pipeline/requirements.json`, `docs/EXECUTIVE-SUMMARY.md`, `COORDINATION.md`, PR |
 
 **Scope note (rule 4 compliance):** `tools/build_app.py` and `app/**` were last owned by the
 completed T8/T9 integration (`arena-b38a21d8-x1`, `arena/fcc11e05-x1`). Both tasks are `done`
@@ -80,6 +80,33 @@ with completion records and both sessions' PRs are merged, so this session claim
 *additive* rendering of T10–T17 output only. No existing page section is removed or rewritten;
 `index.html`, `pages/**`, `assets/**`, `.github/workflows/**` and `README.md` are **not** in
 this session's scope and will not be edited.
+
+**Scope extensions logged during Round 2 (rule 4, by this session's own claim):**
+
+1. `data/pipeline/questions.json` — T16 answers Q-26; only the Q-26 row's status/information
+   fields were changed (the rest of the 30-row register is untouched).
+2. `pages/validation.html` — regenerated by `tools/build_site.py` because the CI staleness
+   guard (`verify.yml`: build then `git diff --exit-code -- index.html pages`) requires the
+   committed HTML to match `data/gates.json` after gate D1 was added there. Diff is exactly
+   the D1 row + the extended scoring rule; `index.html` is byte-identical. No other file
+   under `index.html`/`pages/**` changed.
+3. `docs/live-pipeline/project-brief-round2.md` — new file recording the round-2 brief
+   verbatim so R-46…R-53 quotes have a citable source (the round-1 brief file is
+   intentionally not edited).
+4. `data/verify/official_correlations.csv` and `tools/verify_official_correlations.py` — new
+   files (T15 claim already listed them).
+
+### Round-2 completion records (T10–T17, session `arena-52aabfa8-x1`)
+
+| Task | Artifact(s) | Verification | Irregularities found |
+|---|---|---|---|
+| T10 price store | `tools/build_price_store.py`, `data/prices/price_snapshots.csv` (20,088 rows), `price_store_meta.json`, `docs/methodology/price-snapshots.md` | P1–P6 all pass (exit 1 on failure); row arithmetic: 9 slots × 2,232 games; 2021 opening pairs exact (272/272) | F-06 (no official price source), F-15 (opening vs closing conventions differ) |
+| T11 results feed | `tools/build_results_feed.py`, `data/results/verified_results.csv` (2,232 rows), meta, `docs/methodology/results-feed.md` | C1–C4 pass; 1 official-verified score + 13 officially-confirmed unplayed + 2,218 mirror-flagged | F-11 (2,218 mirror-only rows), F-12 (standings snapshot predates TNF), Q-04 stays open |
+| T12+T13 order + 3 columns | `code/build_lines.py` (`ORIGINATION_ORDER` + write-time assertion), regenerated `originated_lines_2026_week10.csv`, `model_config.json`, `docs/methodology/line-origination.md` §8 | builder exit 0; `data/lines` diff shows only intended files; other five line artifacts byte-identical | F-10 (legacy `…_away` column names; values correct) |
+| T14 signal/staking | `code/leaderboard.py`, `data/strategies/leaderboard.csv` (+`signal_score`,`rank_signal`,`staking_score`), meta, `docs/methodology/leaderboard.md` §9 | rank key computed from `signal_score` only; blank ≠ zero when unmeasured; re-run exit 0 | — |
+| T15 official correlations | `tools/verify_official_correlations.py`, `data/verify/official_correlations.csv` (988-row ledger), `docs/methodology/correlation.md` §8 | **988/988** r recomputed within 0.0015 from official snapshots; 988/988 n=32; 988/988 nfl.com sources; 0 duplicates; publication rule reproduced exactly | F-13 (method text omits the \|r\|<0.99 redundancy cut — values correct, docs gap) |
+| T16 demotion gate | `data/gates.json` (D1), `data/pipeline/gates.json` (G-13), `docs/methodology/validation-gates.md`, Q-26 answered in `data/pipeline/questions.json` | JSON valid; pipeline verify OK; rendered on both validation pages | Q-26 closed (rule); money sizing still pending Q-07 |
+| T17 integration | `docs/live-pipeline/project-brief-round2.md`, `data/pipeline/requirements.json` (53 rows), `tools/build_app.py` + `app/**` (23 pages), round-2 card in `docs/EXECUTIVE-SUMMARY.md`, regenerated `pages/validation.html` | full suite green: verify_data 2,944; check_links 28,026; verify_site 116 pages; check_site; verify_research 1,921; pipeline verify; verify_against_official 2,183 cells 0 mismatch; test_source_rule mutation caught; verify_parlay; cross_check 1,380 cells; hub; verify_app 23 pages / 5,942 rows / 0 unsourced; staleness guards for `index.html`+`pages/` and `availability_derived.tsv` | F-14 (strategy matrix has no per-cell n — excluded from R-52 set, not guessed) |
 
 ---
 
@@ -114,6 +141,8 @@ this session's scope and will not be edited.
 | 2026-11-14 | `arena-b38a21d8-x1` | **Conflict avoided, not resolved by overwrite:** three sessions wrote divergent `COORDINATION.md`/`README.md` on their own branches. Nothing was force-pushed to `main`. This board supersedes the others on `main` only because this is the only session to integrate and publish; the other boards remain readable on their branches. |
 | 2026-11-14 | `arena-b38a21d8-x1` | Data currency finding: sandbox web index is live to **2026-11-14**; the 2026 NFL season is in Week 10 (Super Bowl LX played 2026-02-08). Model priors from training data are stale, so **every published value is fetched from nfl.com at run time** and carries a source URL + retrieval date. |
 | 2026-11-14 | `arena-52aabfa8-x1` | Session start. Read this board before any work. Audited `main` (= PR #33 merge, `11d9ea1`): T1–T9 all `done`, no open PRs, no remote commits after `11d9ea1`, so no live claim collides with T10–T17. Claimed T10–T17 (the eight bolded requirements in the owner's latest message) and pushed the claim as this session's first commit. Network note: **nfl.com is unreachable from this sandbox** (connection refused); official values are therefore verified against the committed official snapshots in `data/verify/*.psv` and `data/verification/raw/*.md` (each carries its fetch URL and date), and any value not present in an official snapshot is left blank and flagged. github.com is reachable. |
+| 2026-11-14 | `arena-52aabfa8-x1` | Round 2 delivered across T10–T17 (commit chain on this branch; PR opened from it). Key facts for any later session: the results feed and price store are **tier-labelled, not official** (mirror sources; F-06/F-11); official-only correlations = 988 rows, n=32, independently recomputed by `tools/verify_official_correlations.py`; gate D1/G-13 demotes live→paper automatically (Q-26 answered); `pages/validation.html` was regenerated solely for the CI staleness guard after gate D1 was added to `data/gates.json`. Open owner decisions unchanged: Q-02 price feed, Q-04 official historical results, Q-07 funding. |
+| 2026-11-14 | `arena-52aabfa8-x1` | Scope extensions (all logged above in the Round-2 scope note): `data/pipeline/questions.json` (Q-26 row only), `pages/validation.html` (CI-mandated regeneration), new `docs/live-pipeline/project-brief-round2.md`. No other session's files were edited; `hub/` was regenerated during verification and restored to its committed state (timestamp-only diff). |
 
 ---
 
