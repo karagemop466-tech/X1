@@ -27,7 +27,7 @@ Owner rules (verbatim intent):
 | `arena-6f377170-x1` | `arena/6f377170-x1` | Site skeleton + 5 pages (design spec, no data) | 2026-11-14 | active — branch preserved, content credited below |
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
-| `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **release pending** (T10–T17 done; PR from this branch) |
+| `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -182,6 +182,7 @@ already merged with nothing-discarded rules). This branch integrated `origin/mai
 | 2026-11-14 | `arena-52aabfa8-x1` | Session start. Read this board before any work. Audited `main` (= PR #33 merge, `11d9ea1`): T1–T9 all `done`, no open PRs, no remote commits after `11d9ea1`, so no live claim collides with T10–T17. Claimed T10–T17 (the eight bolded requirements in the owner's latest message) and pushed the claim as this session's first commit. Network note: **nfl.com is unreachable from this sandbox** (connection refused); official values are therefore verified against the committed official snapshots in `data/verify/*.psv` and `data/verification/raw/*.md` (each carries its fetch URL and date), and any value not present in an official snapshot is left blank and flagged. github.com is reachable. |
 | 2026-11-14 | `arena-52aabfa8-x1` | Round 2 delivered across T10–T17 (commit chain on this branch; PR opened from it). Key facts for any later session: the results feed and price store are **tier-labelled, not official** (mirror sources; F-06/F-11); official-only correlations = 988 rows, n=32, independently recomputed by `tools/verify_official_correlations.py`; gate D1/G-13 demotes live→paper automatically (Q-26 answered); `pages/validation.html` was regenerated solely for the CI staleness guard after gate D1 was added to `data/gates.json`. Open owner decisions unchanged: Q-02 price feed, Q-04 official historical results, Q-07 funding. |
 | 2026-11-14 | `arena-52aabfa8-x1` | Scope extensions (all logged above in the Round-2 scope note): `data/pipeline/questions.json` (Q-26 row only), `pages/validation.html` (CI-mandated regeneration), new `docs/live-pipeline/project-brief-round2.md`. No other session's files were edited; `hub/` was regenerated during verification and restored to its committed state (timestamp-only diff). |
+| 2026-11-14 | `arena-52aabfa8-x1` | **Release:** PR #45 merged into `main` as `54a59d8` (2026-11-14T20:52:54Z) after two nothing-discarded integration merges with the parallel rounds already on main (PRs #36–#44, five implementations total). Post-merge `verify-site` on main: **success**; `pages build and deployment` + `Publish static site to GitHub Pages`: **success**; Pages status `building` → https://karagemop466-tech.github.io/X1/ . All gates green at merge time: full pre-existing suite + main's `verify_new_data`, `verify_deployed_tree`, `verify_stores`, `verify_site_annex`, JSON-register parse, and every staleness guard (`index.html`+`pages/`, `app/`, `data/audit`, `data/nfl/availability_derived.tsv`, `lab/`, round-2 stores). Session `arena-52aabfa8-x1` complete; PR #40's owner already merged their own round (#44) — untouched by this session. |
 
 ---
 
@@ -224,6 +225,18 @@ Session ID: `arena/6f377170-x1` (current branch: `arena/6f377170-x1`). The repos
 | Task | Status | Owner | File scope |
 |---|---|---|---|
 | Baseline repository review and NFL decision-support site, sourced research framework, executive summary, and review queue | in progress | arena/6f377170-x1 | `COORDINATION.md`, `README.md`, `index.html`, `assets/` |
+
+### PR #45 — Round 2 (4th implementation, unioned) — session `arena-52aabfa8-x1`
+
+| Field | Value |
+|---|---|
+| Branch | `arena/52aabfa8-x1` |
+| PR | https://github.com/karagemop466-tech/X1/pull/45 |
+| Merge | merged, commit `54a59d8df9971d5e2c77768799c09d2e7aea34b8` (2026-11-14T20:52:54Z) |
+| Contents | T10–T17: price history store (20,088 rows, P1–P6), all-season results feed (2,232 rows, C1–C4), origination order asserted at write, fair/market/difference columns, `rank_signal`-only leaderboard ranking, official-correlation re-verification (988/988, ledger), demotion gate unified on G8 + G-13 (Q-26 answered), R-46…R-53 registered and assessed 53/53, `results-feed.html` + `price-history.html`, flags F-10…F-15, exec summary |
+| Verification | full suite green on the PR head (verify-site run 43639797833, success) **and** on post-merge main (43639825680, success), including main's gates added by the parallel rounds |
+| Pages | `pages build and deployment` (43639824532) and `Publish static site to GitHub Pages` (43639825813) both **success**; `gh api repos/…/pages` → building https://karagemop466-tech.github.io/X1/ |
+| Union note | six-implementation union documented in *Round-2 union merge* above; nothing discarded, canonical paths kept main's versions, this round's artifacts renamed to siblings |
 
 ## Log
 - 2026-11-14 — Inspected repository. Initial state: only a 4-byte `README.md`; no existing site, data, tests, or coordination board. Claimed the scope above. No other claims to coordinate with.
