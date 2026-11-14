@@ -1,6 +1,6 @@
 PROBE injuries http=200 bytes=412862 url=https://www.nfl.com/injuries/
 PROBE standings http=200 bytes=257820 url=https://www.nfl.com/standings/league/2026/REG
-PROBE schedule http=200 bytes=2403681 url=https://www.nfl.com/schedules/2026/by-week/week-10
+PROBE schedule http=200 bytes=2403682 url=https://www.nfl.com/schedules/2026/by-week/week-10
 PROBE player_stats http=200 bytes=268749 url=https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc
 PROBE gamebook http=200 bytes=337942 url=https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf
 --- markers ---
