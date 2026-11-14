@@ -641,6 +641,180 @@ def build_queue(join):
     }
 
 
+
+
+# --------------------------------------------------------------- 7. requirements
+REQ_STATE = {
+    "R-01": ("met", "This site's requirements page and live/requirements.html both render from "
+                    "data/pipeline/requirements.json; the register is generated, not hand-kept.",
+             "pages/requirements.html"),
+    "R-02": ("met", "Every requirement row carries a status and a pointer to the gap that limits it; "
+                    "the decision table turns those gaps into questions with a closing test.",
+             "pages/decisions-critical.html"),
+    "R-03": ("met", "Five suggestions pages exist, none of them auto-applied: the ranked board, the original "
+                    "register, and the per-tree lists.",
+             "pages/suggestions-board.html"),
+    "R-04": ("met", "Each board row carries a recommended path AND the alternative it was chosen over, plus "
+                    "reversibility, so a reviewer can pick a different path.",
+             "pages/suggestions-board.html"),
+    "R-05": ("met", "Seven decision-critical questions, each with what is known, what is missing and what "
+                    "would close it.",
+             "pages/decisions-critical.html"),
+    "R-06": ("met", "The 'evidence that would close it' column names a concrete artefact (a ruling, a vendor, "
+                    "a second price source), not just a wish.",
+             "pages/decisions-critical.html"),
+    "R-07": ("partly met", "A model that originates lines exists and is documented, but it is fitted on a "
+                           "third-party results feed and underperforms the market benchmark on spread error "
+                           "(10.42 vs 9.73), so it is published as a screen rather than a pricing model.",
+             "pages/line-origination.html"),
+    "R-08": ("partly met", "Sixteen strategies are registered and evaluated; one passes all eight gates. "
+                           "The signals are hypotheses until gated, and most are rejected.",
+             "pages/line-origination.html"),
+    "R-09": ("partly met", "The leaderboard mechanism and gate suite are built and published; the competition "
+                           "cannot rank anything because no strategy has cleared the economic gates, so the "
+                           "result columns are deliberately empty.",
+             "pages/leaderboard.html"),
+    "R-10": ("open", "Reward rules, funding and legality are not defined by anyone. The gate arithmetic is "
+                     "published; paying out is an owner decision (Q-20).",
+             "pages/leaderboard.html"),
+    "R-11": ("partly met", "Singles, cross-game parlays and same-game combinations have mathematics and break-even "
+                           "arithmetic. Player props have a model and a calibration but NO market price, so no prop "
+                           "combination can be priced (Q-21).",
+             "pages/correlation.html"),
+    "R-12": ("met", "Eight pre-registered gates; a strategy earns nothing without passing all of them. One of sixteen "
+                    "passes, which is the proof the gates bind.",
+             "pages/validation.html"),
+    "R-13": ("partly met", "Correlation values are computed for team-stat pairs and published with sample sizes. "
+                           "Player-prop and market correlations cannot be computed without a price feed.",
+             "pages/correlation.html"),
+    "R-14": ("met", "Luck removal is implemented: bootstrap intervals, a sign-flip randomisation test, removal of "
+                    "one-score games and blowouts, and a parameter-stability check.",
+             "pages/validation.html"),
+    "R-15": ("met", "The official Week 10 injury report is transcribed in full (345 rows) and re-verified cell by "
+                    "cell in this round; a scheduled workflow refreshes the pipeline data.",
+             "pages/availability.html"),
+    "R-16": ("met", "The defensive side of the join is published: club-listed first-string defenders ruled Out are "
+                    "counted, with depth 2-4 losses counted separately.",
+             "pages/availability.html"),
+    "R-17": ("met", "The offensive side is published the same way; the join is split by unit so a quarterback loss "
+                    "is never averaged with a linebacker loss.",
+             "pages/availability.html"),
+    "R-18": ("met", "An executive summary and a separate one-page brief exist; the brief is linkable from the "
+                    "landing page.",
+             "pages/executive-brief.html"),
+    "R-19": ("partly met", "A scheduled workflow refreshes the data with no manual step, but the schedule is "
+                           "disabled-by-default on a fork and the snapshot date is still fixed in the generator "
+                           "for the pages/ tree.",
+             "pages/changes.html"),
+    "R-20": ("met", "2,183 cells diffed against an independent transcription of the official pages in this round; "
+                    "a value that cannot be sourced is blank and flagged.",
+             "pages/changes.html"),
+    "R-21": ("met", "The repository has been reviewed file by file by three separate sessions, each publishing "
+                    "its review page.",
+             "pages/review.html"),
+    "R-22": ("met", "38 items in the consolidated queue, each with a source link.",
+             "pages/review-queue.html"),
+    "R-23": ("met", "GitHub Pages workflow builds, verifies and deploys on every push to main.",
+             "https://karagemop466-tech.github.io/X1/"),
+    "R-24": ("met", "One landing page and 19 categorised subpages in this tree, plus four parallel trees, all "
+                    "linked from the landing page.",
+             "index.html"),
+    "R-25": ("partly met", "The pages tree is a plain dashboard. Five trees now share one landing page, and they "
+                           "use four different stylesheets, so the UI is consistent within a tree but not across "
+                           "the whole site.",
+             "index.html"),
+    "R-26": ("met", "Every finding on the new pages is a table row; the narrative sections link to the table "
+                    "that carries the evidence.",
+             "pages/review-queue.html"),
+    "R-27": ("met", "Enforced by scripts/verify_site.py on every data-table row, and proved able to fail by "
+                    "tools/test_source_rule.py.",
+             "pages/sources.html"),
+    "R-28": ("met", "Blank cells render as an em dash with a title explaining why; 185 injury rows carry a blank "
+                    "injury description and a blank game status because the official page prints both empty.",
+             "pages/availability.html"),
+    "R-29": ("met", "The generator has no code path that fills a data cell from anything but the source file; "
+                    "the only fallback is to leave it blank.",
+             "pages/sources.html"),
+    "R-30": ("met", "COORDINATION.md carries the task board, the session registry and this session's claim.",
+             "COORDINATION.md"),
+    "R-31": ("met", "This session's claim was committed and pushed before any work started.",
+             "COORDINATION.md"),
+    "R-32": ("met", "No task claimed by another session was started; the audit re-reads their files read-only and "
+                    "changes only shared outputs in this integration.",
+             "COORDINATION.md"),
+    "R-33": ("open", "The platform pins a session to one branch, so the session-<id>/<task> convention cannot be "
+                     "used. Logged as an irregularity by every session that hit it.",
+             "pages/flagged.html"),
+    "R-34": ("met", "Change requests to other sessions' files are logged in COORDINATION.md rather than applied.",
+             "COORDINATION.md"),
+    "R-35": ("met", "This session commits in small blocks and rebases before each push.",
+             "COORDINATION.md"),
+    "R-36": ("met", "No conflict occurred in this session; the procedure is recorded and was followed by the "
+                    "sessions that did hit one.",
+             "COORDINATION.md"),
+    "R-37": ("met", "This round's sources, checks and irregularities are recorded in COORDINATION.md and on the "
+                    "changes page.",
+             "pages/changes.html"),
+    "R-38": ("met", "Nothing is marked verified without a link; the verification page states the exact cell count.",
+             "pages/sources.html"),
+    "R-39": ("met", "This session is the integration session for this round and is the only one changing the "
+                    "shared navigation and landing page.",
+             "COORDINATION.md"),
+    "R-40": ("met", "The takeover rule and the handoff log exist; this session took over no live claim.",
+             "COORDINATION.md"),
+    "R-41": ("in progress", "The pull request for this round is created and merged as part of this session.",
+             "COORDINATION.md"),
+    "R-42": ("in progress", "The merge and the Pages deploy are confirmed and recorded at the end of this session.",
+             "COORDINATION.md"),
+    "R-43": ("met", "Every flag and unverified item in this release is published and none of them blocks anything.",
+             "pages/review-queue.html"),
+    "R-44": ("met", "Four flagged pages exist, one per tree, all with source links; the consolidated queue "
+                    "supersedes them as the single list.",
+             "pages/flagged.html"),
+    "R-45": ("met", "The check suite was fixed rather than bypassed: check_links went from 111 failures to 0 "
+                    "before anything was merged.",
+             "pages/changes.html"),
+}
+
+
+def build_requirements():
+    src = load(os.path.join(D, "pipeline", "requirements.json"))
+    rows = []
+    for r in src["rows"]:
+        state, note, where = REQ_STATE.get(r["id"], ("unassessed", "", "COORDINATION.md"))
+        link = where if where.startswith("http") else "https://github.com/karagemop466-tech/X1/blob/main/" + where
+        rows.append({
+            "id": r["id"], "category": r["category"], "requirement": r["requirement"],
+            "brief_quote": r.get("source_quote", ""), "priority": r.get("priority", ""),
+            "previous_status": r.get("status", ""), "state": state, "assessment": note,
+            "evidence": where, "evidence_url": link,
+            "brief_source": r.get("_source_url", ""),
+        })
+    missing = sorted(set(REQ_STATE) - {r["id"] for r in rows})
+    return {
+        "generated_at": SNAP,
+        "title": "Requirements, assessed against the evidence in this repository",
+        "brief_source": "docs/live-pipeline/project-brief.md",
+        "rule": ("A requirement is 'met' only when something in this repository can be opened and checked against it. "
+                 "'partly met' names the missing piece. 'open' means nothing exists yet. The assessment is this "
+                 "session's; the previous column is what the live-pipeline tree recorded, kept so a disagreement "
+                 "is visible rather than overwritten."),
+        "counts": {
+            "total": len(rows),
+            "met": sum(1 for r in rows if r["state"] == "met"),
+            "partly_met": sum(1 for r in rows if r["state"] == "partly met"),
+            "open": sum(1 for r in rows if r["state"] == "open"),
+            "in_progress": sum(1 for r in rows if r["state"] == "in progress"),
+            "unassessed": sum(1 for r in rows if r["state"] == "unassessed"),
+            "disagreements": sum(1 for r in rows
+                                 if r["previous_status"].startswith("Implemented")
+                                 and r["state"] in ("partly met", "open")),
+            "ids_without_an_assessment": missing,
+        },
+        "rows": rows,
+    }
+
+
 # --------------------------------------------------------------- 6. changes
 def build_changes(join):
     v = VERIFY["totals"]
@@ -696,6 +870,7 @@ def build_changes(join):
 def main():
     join = build_full_join()
     written = [
+        write("requirements_assessed.json", build_requirements()),
         write("full_depth_join.json", join),
         write("findings.json", build_findings(join)),
         write("decision_questions.json", build_questions()),

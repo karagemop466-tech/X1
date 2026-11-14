@@ -47,6 +47,7 @@ NAV = [
     ("pages/suggestions-board.html", "Suggestions board"),
     ("pages/review-queue.html", "Review queue"),
     ("pages/changes.html", "What changed"),
+    ("pages/requirements.html", "Requirements &amp; status"),
     ("dashboard/lab-index.html", "Analytics lab"),
     ("pages/review.html", "Repo review"),
     ("research/index.html", "Research lab"),
@@ -215,6 +216,7 @@ DECISION = load_audit("decision_questions.json")
 BOARD = load_audit("suggestion_board.json")
 QUEUE = load_audit("review_queue.json")
 CHANGES = load_audit("what_changed.json")
+REQS = load_audit("requirements_assessed.json")
 
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
 SCHED_URL = "https://www.nfl.com/schedules/2026/REG/week/10/"
@@ -271,7 +273,8 @@ def page_index():
 <section class="cards">
   <a class="card" href="pages/decisions-critical.html"><span class="ico">?</span><small>DECIDE / 01</small><h3>The blocking questions</h3><p>Every question that has to be answered before a strategy can honestly be scored, with what is already known, what is missing, and the evidence that would close it.</p><span class="more">Open the decision table →</span></a>
   <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
-  <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 03</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
+  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
+  <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
@@ -1355,6 +1358,55 @@ def page_exec_brief():
     return shell("Executive brief", f"SNAPSHOT {RETRIEVED}", body, depth=1)
 
 
+# ---------------------------------------------------------------- requirements
+def page_requirements():
+    r = REQS
+    state_cls = {"met": "ok", "partly met": "warn", "open": "high",
+                 "in progress": "muted-pill", "unassessed": "muted-pill"}
+    rows = []
+    for x in r["rows"]:
+        rows.append([
+            f'<td><b>{esc(x["id"])}</b></td>',
+            cell(x["category"]),
+            f'<td><b>{esc(x["requirement"])}</b></td>',
+            f'<td><span class="pill {state_cls.get(x["state"], "muted-pill")}">{esc(x["state"])}</span></td>',
+            cell(x["assessment"]),
+            cell(x["previous_status"]),
+            f'<td>{link(x["evidence_url"], x["evidence"] + " ↗", "src-link")}</td>',
+            f'<td>{link(x["brief_source"], "brief ↗", "src-link")}</td>',
+        ])
+    c = r["counts"]
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">THE FULL LIST</div>
+  <h1>Requirements, assessed against the evidence</h1>
+  <p>All {c["total"]} requirements taken from the project brief, each one assessed against something you can open and
+  check. {c["met"]} are met, {c["partly_met"]} are partly met with the missing piece named, {c["open"]} are open and
+  {c["in_progress"]} are in progress.</p>
+</section>
+<section class="content">
+  <div class="note"><b>{esc(r["rule"])}</b> {c["disagreements"]} rows disagree with the previous assessment: where the
+  earlier column says "Implemented" and this one says "partly met", the reason is in the assessment cell — usually a
+  capability that exists as a method but cannot produce a number without a licensed feed.</div>
+  <div class="statrow">
+    {stat(c["met"], "met")}
+    {stat(c["partly_met"], "partly met")}
+    {stat(c["open"], "open")}
+    {stat(c["in_progress"], "in progress")}
+    {stat(c["disagreements"], "reassessed downward")}
+  </div>
+  {table(["ID", "Category", "Requirement", "State", "Assessment and missing piece",
+          "Previous assessment", "Evidence in this repository", "Brief"], rows,
+         "Every requirement in the brief, with its state and the evidence", "wide", True)}
+  <div class="note">The brief itself is preserved verbatim at
+  <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md">docs/live-pipeline/project-brief.md</a>,
+  and the live-pipeline tree published its own version of this register at
+  <a href="../live/requirements.html">live/requirements.html</a>. This page does not overwrite that one.</div>
+</section>
+"""
+    return shell("Requirements", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
 # ---------------------------------------------------------------- flagged
 def page_flagged():
     rows = []
@@ -1675,6 +1727,7 @@ def main():
     write("pages/suggestions-board.html", page_suggestions_board())
     write("pages/review-queue.html", page_review_queue())
     write("pages/changes.html", page_changes())
+    write("pages/requirements.html", page_requirements())
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
     print(f"wrote index.html + {n} pages")
 
