@@ -25,7 +25,30 @@ in `app/repo-review.html` (session `arena/fcc11e05-x1`) and `docs/review/repo-re
 | R-03 | `tools/check_links.py` bans the literal string `0.125` in any page whose path contains "correlation" to prevent a stale joint-probability claim | `tools/check_links.py` prose-consistency block | matched by publishing correlations to 2 dp; the rule itself is not changed |
 | R-04 | `assets/site.css` defines no `.tw`, `.kpi`, `.src` … — those live in `app/assets/site.css`. The root site and the app site use different stylesheets with overlapping class names | two CSS files, one per tree | not changed: it is a styling decision, and changing it would restyle 20 published pages |
 | R-05 | the site root is served by a `sed` rewrite of `app/index.html` in `pages.yml` | `pages.yml`, deploy step | left as-is; already recorded as an open item by `arena/fcc11e05-x1` |
+| R-07 | four pages are unreachable by link-following from the served root: `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html` | deployed-tree crawl (this round) | another session's trees; adding links means editing their generators, and none of the four blocks a requirement |
 | R-06 | Pages is `build_type: legacy` on `main:/`, so the artifact uploaded by `pages.yml` is not what is served at `/` | `gh api repos/.../pages` → `build_type: legacy` | recorded; the practical consequence is only that the root page comes from the legacy builder |
+
+## Deployed-tree crawl (the check no committed verifier performs)
+
+`scripts/verify_site.py` and `tools/check_links.py` both audit the **repository**, not the
+tree that `pages.yml` actually uploads. Those differ: `pages.yml` copies a subset of folders,
+then rewrites the root page with a `sed`. So the assembled tree was rebuilt locally exactly as
+the workflow does it and crawled.
+
+| Measure | Result |
+|---|---|
+| HTML pages in the assembled tree | 135 |
+| Local `href`/`src` targets checked | 2,884 |
+| Broken local links | **0** |
+| Pages reachable by following links from the served root | 130 of 135 |
+| Unreachable: `legacy-fourth-down.html` | intentional — a preserved copy, deliberately not in the nav |
+| Unreachable: `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html` | **pre-existing orphans** in other sessions' trees; flagged as R-07, not fixed here |
+
+One real defect was found this way and fixed: the root rewrite repointed `href="assets/…"` but
+not `src="assets/…"`, so the served landing page requested `/assets/app.js`, got a 404, and its
+table filter and column sort silently did nothing. The committed verifiers could not see it,
+because in the repository `app/index.html` resolves `assets/app.js` correctly — the breakage
+only exists after the copy-and-rewrite. Logged in `COORDINATION.md` before the fix.
 
 ## What this round added, and the checks on it
 
@@ -55,7 +78,10 @@ of those files.
 2. **No render test.** No headless browser could be installed (the binary download is blocked),
    so the substitute is a tag-balance and link check in `tools/lab/build_site.py`. It catches a
    truncated or mis-nested page; it cannot catch a layout defect.
-3. **The market benchmark is one unnamed composite.** Every comparison with "the market" in
+3. **No committed verifier audits the assembled tree.** The deployed-tree crawl above was
+   run by hand. It should be a CI step (crawl `_site/` after assembly, before upload); recorded
+   as a suggestion rather than added, because it changes another session's workflow semantics.
+4. **The market benchmark is one unnamed composite.** Every comparison with "the market" in
    this round is against that composite, and the site says so on every row that uses it.
 4. **`data/lab/upstream/` is a vendored 3.2 MB copy** of four nflverse files, pinned by hash.
    It is committed deliberately: without it the build needs network access, and the numbers
