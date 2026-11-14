@@ -27,7 +27,24 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP_DIRS = {"archive", ".git", "node_modules", "__pycache__"}
-OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "github.com")
+# Amended 2026-11-14 by session arena/9cc1eaac-x1: the previous list was NFL-family only,
+# plus github.com. That rejected a club's OWN website, which is the primary source for the
+# only depth chart that exists (the league publishes none — see data/flags.json F-01). The
+# set below is generated from data/pipeline/depth_charts.json, so a club host can only be
+# admitted by first appearing in collected data that already links the nfl.com team list.
+def _club_hosts() -> tuple[str, ...]:
+    import json
+    from pathlib import Path as _P
+    try:
+        data = json.loads((_P(ROOT) / "data" / "pipeline" / "depth_charts.json").read_text())
+    except (OSError, ValueError):
+        return ()
+    return tuple(sorted({urlparse(r["_source_url"]).hostname or ""
+                         for r in data.get("rows", []) if r.get("_source_url")}))
+
+
+CLUB_HOSTS = _club_hosts()
+OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "github.com") + CLUB_HOSTS
 errors: list[str] = []
 
 

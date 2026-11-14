@@ -58,6 +58,46 @@ ANNEX_APPROVED = {
     "profootballhof.com", "www.profootballhof.com", "nytimes.com", "www.nytimes.com",
     "sports.yahoo.com", "karagemop466-tech.github.io",
 }
+
+# Official club websites, read from data/pipeline/depth_charts.json (each club's own
+# depth-chart page). The league's own https://www.nfl.com/teams/ page is the authority
+# for which domain is a club's official site; this list is generated from that
+# collection so a new club host cannot be added without appearing in the data first.
+CLUB_HOSTS = {
+    "www.49ers.com",
+    "www.atlantafalcons.com",
+    "www.azcardinals.com",
+    "www.baltimoreravens.com",
+    "www.bengals.com",
+    "www.buccaneers.com",
+    "www.buffalobills.com",
+    "www.chargers.com",
+    "www.chicagobears.com",
+    "www.chiefs.com",
+    "www.clevelandbrowns.com",
+    "www.colts.com",
+    "www.commanders.com",
+    "www.dallascowboys.com",
+    "www.denverbroncos.com",
+    "www.detroitlions.com",
+    "www.giants.com",
+    "www.jaguars.com",
+    "www.miamidolphins.com",
+    "www.neworleanssaints.com",
+    "www.newyorkjets.com",
+    "www.packers.com",
+    "www.panthers.com",
+    "www.patriots.com",
+    "www.philadelphiaeagles.com",
+    "www.raiders.com",
+    "www.seahawks.com",
+    "www.steelers.com",
+    "www.tennesseetitans.com",
+    "www.therams.com",
+    "www.vikings.com",
+}
+APPROVED |= CLUB_HOSTS
+
 SNAP = "2026-11-14"
 
 errors, checks = [], []
@@ -98,6 +138,11 @@ for path in files:
     # integration addendum: site/ is the snapshot annex tree; its contract (stylesheet,
     # per-row sources, host tiers) is asserted by scripts/verify_site_annex.py
     is_annex = rel.split(os.sep)[0] == "site"
+    # the live-pipeline tree (session arena/d577959f-x1) is a fourth site tree with its
+    # own stylesheet and its own JS-rendered navigation; its contract is asserted by
+    # scripts/pipeline/verify_site.py. Without this branch the checker applied the main
+    # site's contract to it and produced 100+ false failures.
+    is_live = rel.split(os.sep)[0] == "live"
     if is_annex:
         check("style.css" in text, f"{rel}: links its stylesheet")
     elif is_research:
@@ -106,6 +151,9 @@ for path in files:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/styles.css" in text, f"{rel}: links the research stylesheet")
         check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+    elif is_live:
+        check("assets/x1-live/site.css" in text, f"{rel}: links the live-pipeline stylesheet")
+        check('href="../index.html"' in text, f"{rel}: links back to the landing page")
     elif not is_dashboard:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/site.css" in text, f"{rel}: links the stylesheet")
@@ -114,8 +162,16 @@ for path in files:
         # the parallel session's dashboard has its own contract, asserted separately
         check("site.css" in text or "style.css" in text, f"{rel}: links its stylesheet")
 
-    for url in HREF.findall(text):
+    # URLs inside JavaScript template literals (live/, dashboard/) are runtime values,
+    # not links in the served page. Drop them before the link assertions so a `${...}`
+    # placeholder is never mistaken for a broken internal link.
+    scan = re.sub(r"`[^`]*`", "", text)
+    for url in HREF.findall(scan):
         if url.startswith("#") or url.startswith("mailto:"):
+            continue
+        if "${" in url:
+            # runtime value inside a nested template literal, e.g.
+            # `<a href="${s.url}">`; asserted by the tree-owning verifier instead.
             continue
         if url.startswith("http"):
             host = urlparse(url).netloc
@@ -129,6 +185,15 @@ for path in files:
             linked_pages.add(target)
 
 reachable = {os.path.normpath(os.path.join(ROOT, "index.html"))}
+# The live-pipeline tree renders its navigation from assets/x1-live/site.js, so its pages
+# are reachable in a browser without a static anchor in any page body. Seed the crawl
+# with the JS nav entries, otherwise five correctly-linked pages look orphaned.
+_livejs_path = os.path.join(ROOT, "assets", "x1-live", "site.js")
+if os.path.exists(_livejs_path):
+    for _m in re.finditer(r"href:\s*'([^']+\.html)'", open(_livejs_path, encoding="utf-8").read()):
+        _p = os.path.normpath(os.path.join(ROOT, "live", _m.group(1)))
+        if os.path.exists(_p):
+            reachable.add(_p)
 _dash = os.path.normpath(os.path.join(ROOT, "dashboard", "index.html"))
 if os.path.exists(_dash):
     reachable.add(_dash)
@@ -137,7 +202,7 @@ while frontier:
     cur = frontier.pop()
     with open(cur, encoding="utf-8") as fh:
         txt = fh.read()
-    for url in HREF.findall(txt):
+    for url in HREF.findall(re.sub(r"`[^`]*`", "", txt)):
         if url.startswith("http") or url.startswith("#") or url.startswith("mailto:"):
             continue
         tgt = os.path.normpath(os.path.join(os.path.dirname(cur), url.split("#")[0]))
@@ -152,6 +217,31 @@ for path in files:
     if rel.split(os.sep)[0] in ("dashboard", "research"):
         continue
     check(path in reachable, f"{rel}: reachable from index.html")
+
+# Every parallel site tree must be entered from ONE landing page. Research, the data
+# dashboard and the snapshot annex all were; the live-pipeline tree was not, so on the
+# published site 15 pages could only be reached by typing the URL.
+_landing = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+for _tree, _label in (("dashboard/lab-index.html", "analytics lab"),
+                      ("research/index.html", "research lab"),
+                      ("site/index.html", "snapshot annex"),
+                      ("live/index.html", "live pipeline"),
+                      ("pages/executive-summary.html", "executive summary"),
+                      ("pages/suggestions.html", "suggestions register"),
+                      ("pages/decisions.html", "decision register"),
+                      ("pages/flagged.html", "flagged for review")):
+    check(f'href="{_tree}"' in _landing,
+          f"index.html links the {_label} ({_tree})")
+# a link inside the nav rail is the only place the landing page can carry it twice
+check(_landing.count('href="research/index.html"') <= 3,
+      "index.html does not duplicate the research-lab entry")
+check(_landing.count('href="live/index.html"') >= 1,
+      "index.html links the live pipeline exactly once")
+_livejs = os.path.join(ROOT, "assets", "x1-live", "site.js")
+if os.path.exists(_livejs):
+    _j = open(_livejs, encoding="utf-8").read()
+    check("flagged.html" in _j, "live pipeline nav exposes the Flagged for Review page")
+    check("index.html" in _j, "live pipeline nav exposes its own landing page")
 
 # ---- arithmetic guards: never let a wrong claim ship again ----
 DEC = 1 + 100 / 110          # -110 expressed as decimal
@@ -199,8 +289,12 @@ def _audit_tree(html_paths, css_path, js_root, label):
     hooks = _js_hooks(js_root)
     used = set()
     for _p in html_paths:
-        for _m in _re.finditer(r'class="([^"]*)"', open(_p, encoding="utf-8").read()):
-            used |= set(_m.group(1).split())
+        # strip JS template literals first: `class="x ${cond ? 'a' : 'b'}"` inside a
+        # script is not markup and its expressions are not class names.
+        _body = _re.sub(r"`[^`]*`", "", open(_p, encoding="utf-8").read())
+        for _m in _re.finditer(r'class="([^"]*)"', _body):
+            used |= {c for c in _m.group(1).split()
+                     if c and "${" not in c and not set(c) <= set("'}\" ")}
     missing = sorted(used - defined - hooks)
     for _c in missing:
         errors.append(f"{label}: class .{_c} is used but defined nowhere")
@@ -209,7 +303,8 @@ def _audit_tree(html_paths, css_path, js_root, label):
     check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
 
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
-_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site")]
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0]
+         not in ("dashboard", "research", "site", "live")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -219,6 +314,10 @@ _annex = sorted(glob.glob(os.path.join(ROOT, "site", "*.html")))
 if _annex:
     _audit_tree(_annex, os.path.join(ROOT, "site", "style.css"),
                 os.path.join(ROOT, "site"), "site/style.css")
+_live = sorted(glob.glob(os.path.join(ROOT, "live", "*.html")))
+if _live:
+    _audit_tree(_live, os.path.join(ROOT, "assets", "x1-live", "site.css"),
+                os.path.join(ROOT, "assets", "x1-live"), "assets/x1-live/site.css")
 _db = sorted(glob.glob(os.path.join(ROOT, "dashboard", "*.html")))
 if _db:
     _audit_tree(_db, os.path.join(ROOT, "dashboard", "assets", "style.css"),

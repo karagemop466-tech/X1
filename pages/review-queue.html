@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review queue — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="decisions-critical.html">Decisions to make</a>
+      <a href="suggestions-board.html">Suggestions board</a>
+      <a class="active" href="review-queue.html">Review queue</a>
+      <a href="changes.html">What changed</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+      <a href="../live/index.html">Live pipeline</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ REVIEW QUEUE</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">REVIEW QUEUE</div>
+  <h1>Everything still unproven</h1>
+  <p>Every flag, every open question, every unverified cell and every item this round found, in one table with one
+  source link per row. This replaces the four competing flag counts that used to appear in different documents.</p>
+</section>
+<section class="content">
+  <div class="note"><b>37 rows, merged from 4 registers.</b> flag: 13, flagged: 1, needs review: 3, open question: 17, unverified cell: 3.
+  A row here never asserts a value: it states what is known, what is unknown, and where the official source is. None of
+  these rows blocks publication; all of them are visible so that nothing is silently rounded up to "verified".</div>
+  <div class="statrow">
+    <div class="stat"><strong>37</strong><span>items in the queue</span></div>
+    <div class="stat"><strong>13</strong><span>flags</span></div>
+    <div class="stat"><strong>17</strong><span>open questions</span></div>
+    <div class="stat"><strong>3</strong><span>unverified cells</span></div>
+  </div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Consolidated review queue</caption><thead><tr><th>ID</th><th>Severity</th><th>Area</th><th>State</th><th>Item</th><th>What is unknown / what settles it</th><th>Register</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>F-01</b></td><td><span class="pill high">high</span></td><td>Data availability</td><td>flag</td><td><b>No league-wide official depth chart exists.</b></td><td>Whether a club chart is authoritative. Detroit&#x27;s page says &#x27;2026 Unofficial Depth Chart&#x27;; Green Bay&#x27;s says &#x27;Unofficial, Nov. 10, 2026&#x27;.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-02</b></td><td><span class="pill high">high</span></td><td>Coverage gap</td><td>flag</td><td><b>Depth charts collected for 5 of 32 clubs only.</b></td><td>The remaining 27 clubs. Their depth fields are deliberately blank, not inferred.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.buffalobills.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-03</b></td><td><span class="pill high">high</span></td><td>No market data</td><td>flag</td><td><b>No odds, prices or historical lines exist in this repository.</b></td><td>Every fair line, edge, expected value and closing-line value. All are therefore unpublished.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-04</b></td><td><span class="pill high">high</span></td><td>No results</td><td>flag</td><td><b>No strategy has been scored, and the leaderboard is empty by design.</b></td><td>Whether any candidate strategy has skill. Publishing a ranking now would be fabrication.</td><td>data/flags.json</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-05</b></td><td><span class="pill warn">medium</span></td><td>Correlation</td><td>flag</td><td><b>No correlation value is published, and none can be yet.</b></td><td>Every rho and every joint probability. Detecting rho = 0.10 needs roughly 780+ paired observations before conditioning.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-06</b></td><td><span class="pill warn">medium</span></td><td>Provenance</td><td>flag</td><td><b>Sportradar&#x27;s status as exclusive official NFL data distributor is reported, not read off an NFL.com page here.</b></td><td>The current contractual text in 2026. It may have changed since the sources describing it.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-07</b></td><td><span class="pill warn">medium</span></td><td>Parallel sessions</td><td>flag</td><td><b>Three other agent sessions worked this repo concurrently and produced divergent coordination boards.</b></td><td>Whether those sessions will push content later and overlap with this release.</td><td>data/flags.json</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/branches" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-08</b></td><td><span class="pill warn">medium</span></td><td>Transcription</td><td>flag</td><td><b>One transcription error was found and fixed during verification.</b></td><td>Whether any other row is mistyped but internally consistent. Mechanical checks cannot catch a plausible wrong number.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-09</b></td><td><span class="pill warn">medium</span></td><td>Template artefact</td><td>flag</td><td><b>The official standings page prints an unrendered template token in its heading.</b></td><td>Nothing material — the table itself is correct and complete. Recorded because it is an irregularity on an official page.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-10</b></td><td><span class="pill warn">medium</span></td><td>Anomalous listing</td><td>flag</td><td><b>Some officially listed players sit oddly on their club&#x27;s depth chart.</b></td><td>Whether these reflect trades, scheme changes or chart staleness. The cause is not stated by any source read.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-11</b></td><td><span class="pill warn">medium</span></td><td>Legal / eligibility</td><td>flag</td><td><b>Reward funding, eligibility and jurisdiction are unresolved.</b></td><td>The owner&#x27;s entity, jurisdiction, funding source and contest terms.</td><td>data/flags.json</td><td><a class="src-link" href="https://operations.nfl.com/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-13</b></td><td><span class="pill warn">medium</span></td><td>Method</td><td>flag</td><td><b>Two independent transcriptions agree, but agreement is not proof.</b></td><td>Whether both readers made the same systematic error (wrong column, mislabelled header). An agreement test cannot detect a shared blind spot.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-07</b></td><td><span class="pill muted-pill">low</span></td><td>Source honesty</td><td>needs review</td><td><b>The invented-line and strategy pages present computed numbers without labelling which of them are NOT league-published.</b></td><td>Owner decision pending on the badge (suggestions board B-07). Not implemented unilaterally because it changes how published numbers are labelled across four trees.</td><td>data/audit/findings.json</td><td><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-08</b></td><td><span class="pill muted-pill">low</span></td><td>Naming</td><td>flagged</td><td><b>The official standings table prints LA for the Rams; the repository&#x27;s standings.tsv prints LAR; the injury report prints LAR.</b></td><td>Alias handled in tools/verify_against_official.py; no data change made.</td><td>data/audit/findings.json</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-09</b></td><td><span class="pill muted-pill">low</span></td><td>Data completeness</td><td>needs review</td><td><b>The standings table prints LAST 5 for all 32 clubs; the published file carries the column header but no values.</b></td><td>Either publish the column or drop the header; owner&#x27;s choice, listed on the suggestions board.</td><td>data/audit/findings.json</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-10</b></td><td><span class="pill muted-pill">low</span></td><td>Benchmark</td><td>needs review</td><td><b>The four trees use different line benchmarks, so their ROIs are not comparable with each other.</b></td><td>Owner decision Q-02 picks one reference; until then results stay labelled per tree.</td><td>data/audit/findings.json</td><td><a class="src-link" href="https://github.com/nflverse/nfldata/blob/master/DATASETS.md" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>F-12</b></td><td><span class="pill muted-pill">low</span></td><td>Data decay</td><td>flag</td><td><b>Every published table is a snapshot and will go stale.</b></td><td>How quickly a reader will notice. Staleness is certain, not hypothetical.</td><td>data/flags.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>V-01</b></td><td><span class="pill muted-pill">low</span></td><td>Injuries</td><td>unverified cell</td><td><b>185 injury rows carry no injury description and no game status - the official page prints both cells empty</b></td><td>Whether a blank means no designation or a not-yet-updated report</td><td>data/nfl/injuries_week10.tsv</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>V-02</b></td><td><span class="pill muted-pill">low</span></td><td>Injuries</td><td>unverified cell</td><td><b>1 row prints Full Participation in Practice together with game status Out (JAX BJ Green II)</b></td><td>The report does not explain the combination; it is reproduced as printed</td><td>data/nfl/injuries_week10.tsv</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>V-03</b></td><td><span class="pill muted-pill">low</span></td><td>Injuries</td><td>unverified cell</td><td><b>4 rows are not injuries: the report prints a resting-player or personal-matter designation</b></td><td>These players should not be counted in an injury-exposure metric</td><td>data/nfl/injuries_week10.tsv</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-01</b></td><td><span class="pill muted-pill">—</span></td><td>Data licensing</td><td>open question</td><td><b>Do we have the legal right to ingest and republish NFL play-by-play, snap counts and historical odds?</b></td><td>A signed data agreement, or a documented decision to operate only on public official pages.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-02</b></td><td><span class="pill muted-pill">—</span></td><td>Historical odds</td><td>open question</td><td><b>Which licensed feed supplies historical closing lines, and at what granularity (book, time, limit)?</b></td><td>A named vendor, contract terms, and the retention rules for quotes.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-03</b></td><td><span class="pill muted-pill">—</span></td><td>Line settlement</td><td>open question</td><td><b>What exact settlement rules apply to each market we originate (push, void, overtime, stat corrections)?</b></td><td>A house rulebook adopted before any strategy is registered.</td><td>data/questions.json</td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-04</b></td><td><span class="pill muted-pill">—</span></td><td>Snap counts</td><td>open question</td><td><b>Can we obtain licensed snap counts per player per game?</b></td><td>Snap-count data under license plus a documented join to the official injury report.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-05</b></td><td><span class="pill muted-pill">—</span></td><td>Depth charts</td><td>open question</td><td><b>Is a club-published, self-labelled &#x27;unofficial&#x27; depth chart sufficient to call a player a starter?</b></td><td>An owner decision on the definition, recorded here with the chosen tier.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-06</b></td><td><span class="pill muted-pill">—</span></td><td>Report cadence</td><td>open question</td><td><b>How often is the official injury report captured, and what timestamp governs a forecast?</b></td><td>A scheduled capture with stored retrieval timestamps, and a declared cut-off per week.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-07</b></td><td><span class="pill muted-pill">—</span></td><td>Rewards &amp; legality</td><td>open question</td><td><b>What funds the leaderboard rewards, who is eligible, and in which jurisdictions?</b></td><td>A written contest structure plus jurisdiction-specific legal review.</td><td>data/questions.json</td><td><a class="src-link" href="https://operations.nfl.com/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-08</b></td><td><span class="pill muted-pill">—</span></td><td>Integrity / personnel</td><td>open question</td><td><b>Will any NFL personnel (player, coach, staff) be permitted to enter strategies?</b></td><td>An eligibility rule that explicitly excludes NFL Personnel, or a legal opinion that the structure is compliant.</td><td>data/questions.json</td><td><a class="src-link" href="https://operations.nfl.com/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-09</b></td><td><span class="pill muted-pill">—</span></td><td>Market scope</td><td>open question</td><td><b>Which markets are in scope for originating lines — spread, total, moneyline, team total, player props, alternates?</b></td><td>A declared Season 0 market list.</td><td>data/questions.json</td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-10</b></td><td><span class="pill muted-pill">—</span></td><td>Correlation data</td><td>open question</td><td><b>Do we have enough joint historical outcomes to publish a correlation value?</b></td><td>Multiple seasons of joint player-market outcomes under license.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-11</b></td><td><span class="pill muted-pill">—</span></td><td>Bankroll</td><td>open question</td><td><b>What is the bankroll, the staking rule, and the maximum acceptable drawdown?</b></td><td>A stated bankroll and a pre-registered staking rule.</td><td>data/questions.json</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener noreferrer">repo ↗</a></td></tr>
+<tr><td><b>Q-12</b></td><td><span class="pill muted-pill">—</span></td><td>Test window</td><td>open question</td><td><b>What is the first scored window, and when does it open and close?</b></td><td>A calendar decision recorded with a timestamp.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-13</b></td><td><span class="pill muted-pill">—</span></td><td>Grading source</td><td>open question</td><td><b>Which official source grades a settled bet, and how are stat corrections handled?</b></td><td>A named grading source plus a stat-correction policy with a revision window.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-14</b></td><td><span class="pill muted-pill">—</span></td><td>Breadth of coverage</td><td>open question</td><td><b>Do we collect depth charts for all 32 clubs, and at what cost in effort?</b></td><td>A capture schedule per club plus a storage format decision.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.buffalobills.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>Q-15</b></td><td><span class="pill muted-pill">—</span></td><td>Publishing policy</td><td>open question</td><td><b>May we publish originated lines publicly, and with what disclaimer?</b></td><td>A written publishing policy, reviewed for the jurisdictions served.</td><td>data/questions.json</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener noreferrer">repo ↗</a></td></tr>
+<tr><td><b>Q-16</b></td><td><span class="pill muted-pill">—</span></td><td>Success criteria</td><td>open question</td><td><b>What does success look like numerically in Season 0, and who decides a strategy is promoted?</b></td><td>A target (e.g. number of strategies clearing Gate 2 with n_eff &gt;= 400) and a named arbiter.</td><td>data/questions.json</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener noreferrer">repo ↗</a></td></tr>
+<tr><td><b>Q-17</b></td><td><span class="pill muted-pill">—</span></td><td>Update cadence</td><td>open question</td><td><b>How often may the published tables be refreshed, and how is staleness displayed?</b></td><td>A refresh schedule and a staleness banner rule.</td><td>data/questions.json</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+</tbody></table></div>
+  <div class="note">Registers merged: data/flags.json, data/questions.json, data/audit/findings.json, data/nfl/injuries_week10.tsv. The original per-tree pages
+  (<a href="flagged.html">flags</a>, <a href="decisions.html">questions</a>) remain published and unchanged.</div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>
