@@ -1,7 +1,7 @@
 correlations: 988 pairs
-repo_review: 313 files, 166 flagged
+repo_review: 636 files, 383 flagged
 {
- "generated_at": "2026-11-14T17:02:17+00:00",
+ "generated_at": "2026-11-14T22:57:27+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -10,11 +10,11 @@ repo_review: 313 files, 166 flagged
   },
   "injuries": {
    "status": "written",
-   "rows": 345
+   "rows": 347
   },
   "depth_charts": {
    "status": "written",
-   "rows": 1813
+   "rows": 1806
   },
   "team_stats": {
    "status": "written",
@@ -22,7 +22,7 @@ repo_review: 313 files, 166 flagged
   },
   "deficiency": {
    "status": "written",
-   "rows": 897
+   "rows": 896
   },
   "model_correlation": {
    "status": "written"
@@ -99,6 +99,6 @@ repo_review: 313 files, 166 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-14T17:02:34+00:00"
+ "finished_at": "2026-11-14T22:57:48+00:00"
 }
 exit=0
