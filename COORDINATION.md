@@ -470,3 +470,4 @@ Session ID: `arena-a78e0158-x1` · Branch: `arena/a78e0158-x1` (branched from `m
   `scripts/verify_site_annex.py` (10 pages), `scripts/check_site.py`, `tools/verify_data.py`
   (2,944 checks), `tools/check_links.py` (9,155 assertions, no orphans), `tools/cross_check.py`,
   `scripts/verify_parlay.py`, `tools/test_source_rule.py`, availability freshness check.
+- **2026-11-14** — Integration PR: **#14** (`arena/a78e0158-x1` → `main`).
