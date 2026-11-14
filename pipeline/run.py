@@ -445,8 +445,8 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
             flags.append(
                 f"starter out/doubtful — {replacement.get('depth')} string backup is next up"
             )
-        if starter_inj is None:
-            flags.append("starter does not appear on the current official injury report")
+        # A healthy starter is the normal case, not something to flag: it is
+        # recorded as a column instead of as an integrity flag.
 
         values = {
             "team_abbrev": abbrev,
@@ -455,6 +455,7 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
             "position": position,
             "slot": slot,
             "starter": starter.get("player"),
+            "starter_on_report": bool(starter_inj),
             "starter_game_status": starter_status,
             "starter_practice_status": starter_practice,
             "replacement": (replacement or {}).get("player"),
@@ -486,9 +487,9 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
         "deficiency",
         "Lineup deficiency watch: starters down, backup who has to replace them",
         rows,
-        ["team_name", "unit", "position", "slot", "starter", "starter_game_status",
-         "starter_practice_status", "replacement", "replacement_depth",
-         "replacement_game_status", "severity"],
+        ["team_name", "unit", "position", "slot", "starter", "starter_on_report",
+         "starter_game_status", "starter_practice_status", "replacement",
+         "replacement_depth", "replacement_game_status", "severity"],
         {
             "url": S.INJURIES_URL,
             "label": "Derived from official club depth charts + NFL.com injury report",
