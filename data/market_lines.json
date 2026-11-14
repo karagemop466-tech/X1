@@ -1,0 +1,29 @@
+{
+ "dataset": "market_lines",
+ "title": "Market lines (spreads, totals, moneylines, props)",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "",
+  "label": "No official source exists for betting prices",
+  "org": ""
+ },
+ "columns": [
+  "game",
+  "market",
+  "our_line",
+  "market_line",
+  "edge",
+  "source_url"
+ ],
+ "rows": [],
+ "verification": {
+  "rows": 0,
+  "rows_verified": 0,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "flagged_reasons": {}
+ },
+ "empty": true,
+ "note": "No official NFL or club source publishes betting lines, spreads, totals, moneylines or player-prop prices. Per the verification rule this table is published empty rather than filled in. It populates automatically once a price feed is recorded (see question Q-02 and suggestion S-01).",
+ "blocked_by": "Q-02"
+}

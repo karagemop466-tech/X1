@@ -1,0 +1,884 @@
+{
+ "dataset": "requirements",
+ "title": "Requirements inventory (collected, organised, analysed)",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief (verbatim)",
+  "org": "Project brief"
+ },
+ "columns": [
+  "id",
+  "category",
+  "requirement",
+  "source_quote",
+  "priority",
+  "status",
+  "acceptance"
+ ],
+ "rows": [
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-01",
+   "category": "Requirements",
+   "requirement": "Maintain one collected, organised, analysed list of requirements for the whole project",
+   "source_quote": "\"The goal of this project is to collect, organize, and analyze utilizing a full list of requirements.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-02",
+   "category": "Requirements",
+   "requirement": "Analyse the requirement list, not just store it (gap, conflict, dependency analysis)",
+   "source_quote": "\"collect, organize, and analyze utilizing a full list of requirements\"",
+   "priority": "P1",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-03",
+   "category": "Suggestions",
+   "requirement": "Ship a dedicated suggestions section that someone reviews before anything is built",
+   "source_quote": "\"create a section dedicated for suggestions so someone can review suggestions and choose the best path before implementing any changes\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-04",
+   "category": "Suggestions",
+   "requirement": "Every suggestion must present more than one path so a reviewer can choose, not just approve",
+   "source_quote": "\"choose the best path before implementing any changes\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-05",
+   "category": "Decision support",
+   "requirement": "Publish the questions, the information we have, and the information we do not have, before any decision is made",
+   "source_quote": "\"I want a clear list of questions, informations and answers that need to be addressed before any decision can be reasonably made bases upon the information that we already have and do not have.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-06",
+   "category": "Decision support",
+   "requirement": "Suggest concrete ways to discover the missing information, not just note that it is missing",
+   "source_quote": "\"Suggestions need to be made to discover missing information.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-07",
+   "category": "Model",
+   "requirement": "Originate our own NFL lines rather than reuse someone else's numbers",
+   "source_quote": "\"I want to originate my own NFL lines.\"",
+   "priority": "P0",
+   "status": "Partially implemented — needs a market price feed (see Q-02)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-08",
+   "category": "Model",
+   "requirement": "Research and develop strategies that generate useful signals",
+   "source_quote": "\"Research and develop strategies for generating useful signals.\"",
+   "priority": "P0",
+   "status": "Partially implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-09",
+   "category": "Model",
+   "requirement": "Run the strategy set as a leaderboard competition",
+   "source_quote": "\"Treat it as a leaderboard competition\"",
+   "priority": "P1",
+   "status": "Implemented (scaffold)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-10",
+   "category": "Model",
+   "requirement": "Provide rewards for the top performing strategies",
+   "source_quote": "\"that provides rewards for top performing strategies\"",
+   "priority": "P2",
+   "status": "Blocked — reward rules undefined (see Q-09)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-11",
+   "category": "Model",
+   "requirement": "Cover single bets, parlays and player-prop bet combinations",
+   "source_quote": "\"Look at single bet, parlays, player prop bet combos.\"",
+   "priority": "P0",
+   "status": "Partially implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-12",
+   "category": "Model",
+   "requirement": "Every strategy must pass validation gates before it is allowed to bet",
+   "source_quote": "\"Each strategy must pass validation gates.\"",
+   "priority": "P0",
+   "status": "Implemented (gates defined, no strategy has passed yet)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-13",
+   "category": "Model",
+   "requirement": "Determine correlation values between the signals and markets we use",
+   "source_quote": "\"Determine correlation values.\"",
+   "priority": "P0",
+   "status": "Implemented for team-stat pairs; player/market pairs blocked",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-14",
+   "category": "Model",
+   "requirement": "Remove luck from the equation; keep only selectively skill-based strategies",
+   "source_quote": "\"Remove luck from the equation and build strategies that are selectively skill based.\"",
+   "priority": "P0",
+   "status": "Implemented (gates + skill tests defined)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-15",
+   "category": "Injuries",
+   "requirement": "Track injuries continuously",
+   "source_quote": "\"The system should be tracking injuries\"",
+   "priority": "P0",
+   "status": "Implemented (official NFL injury report, scheduled refresh)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-16",
+   "category": "Injuries",
+   "requirement": "Identify defensive deficiencies caused by backups having to replace starters",
+   "source_quote": "\"know any deficiencies in defenses such as 2nd,3rd or 4th string backups having to replace starters due to lineups\"",
+   "priority": "P0",
+   "status": "Implemented for clubs whose official depth chart is reachable (see Flagged for Review)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-17",
+   "category": "Injuries",
+   "requirement": "Do the same for offense: know whether a starter or a backup is playing",
+   "source_quote": "\"Also same can be said for offenses using starters or backups.\"",
+   "priority": "P0",
+   "status": "Implemented (same mechanism)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-18",
+   "category": "Reporting",
+   "requirement": "Produce an executive summary of the important details",
+   "source_quote": "\"Create an executive summary outlining important details.\"",
+   "priority": "P0",
+   "status": "Implemented (site home page)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-19",
+   "category": "Operations",
+   "requirement": "Operate with no manual input from the owner",
+   "source_quote": "\"There should be no manual input on my part.\"",
+   "priority": "P0",
+   "status": "Implemented (scheduled GitHub Actions refresh)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-20",
+   "category": "Verification",
+   "requirement": "Work line by line from official, verified, trusted sources; no hallucinations",
+   "source_quote": "\"Work line by line, verify everything from official verified trusted sources, no hallucinations.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-21",
+   "category": "Repo work",
+   "requirement": "Review the repo line by line and provide links for manual review",
+   "source_quote": "\"Review the repo. Work line by line verifying from official verified trusted sources, and provide links for manual review.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-22",
+   "category": "Repo work",
+   "requirement": "Flag irregularities for review",
+   "source_quote": "\"Flag any irregularities for review.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-23",
+   "category": "Site",
+   "requirement": "Publish a GitHub Pages site for this repo",
+   "source_quote": "\"Create a github page live site for this repo\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-24",
+   "category": "Site",
+   "requirement": "Clean landing page plus subpages organised by category",
+   "source_quote": "\"with a clean landing page and subpages organized by category\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-25",
+   "category": "Site",
+   "requirement": "UI must be clean, user friendly, simple and dashboard-like",
+   "source_quote": "\"The UI should be clean, user friendly, simple, and easy to use, like a simple dashboard.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-26",
+   "category": "Site",
+   "requirement": "All entries and findings in simple, easy to read tables, including analysis",
+   "source_quote": "\"It should contain all entries and findings in a simple, easy to read table format, and include any analysis and findings.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-27",
+   "category": "Verification",
+   "requirement": "Every table row must carry a source link to an official site",
+   "source_quote": "\"Every table row must have a source link to an official site.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-28",
+   "category": "Verification",
+   "requirement": "Values that cannot be confirmed from an official source stay blank and are flagged",
+   "source_quote": "\"If a value can't be confirmed from an official source, leave it blank and flag it as unverified.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-29",
+   "category": "Verification",
+   "requirement": "Never infer or fill in a value",
+   "source_quote": "\"Never infer or fill in values.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-30",
+   "category": "Coordination",
+   "requirement": "Maintain COORDINATION.md as the shared task board with status and owning session",
+   "source_quote": "\"It is the shared task board, listing each task, its status ..., the owning session ID, and the files it touches.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-31",
+   "category": "Coordination",
+   "requirement": "Claim a task by writing session ID and file scope, then commit and push the claim immediately",
+   "source_quote": "\"Claim a task by writing your session ID and file scope there, then commit and push that claim immediately\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-32",
+   "category": "Coordination",
+   "requirement": "Never start a task another session has claimed; keep file scopes non-overlapping",
+   "source_quote": "\"never start a task another session has claimed. Keep scopes non-overlapping\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-33",
+   "category": "Coordination",
+   "requirement": "Each session works on its own branch named session-<id>/<task>",
+   "source_quote": "\"each session works on its own branch (or git worktree) named session-<id>/<task>\"",
+   "priority": "P1",
+   "status": "Not implemented — this session is pinned to one branch by the harness; logged for review (see F-01)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-34",
+   "category": "Coordination",
+   "requirement": "Request changes to another session's files through COORDINATION.md instead of editing them",
+   "source_quote": "\"If a task requires changing a file owned by another session, log the request in COORDINATION.md instead of editing it.\"",
+   "priority": "P1",
+   "status": "Implemented (change-request section exists, currently empty)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-35",
+   "category": "Coordination",
+   "requirement": "Small, frequent commits and git pull --rebase before every push",
+   "source_quote": "\"Make small, frequent commits, and run git pull --rebase before every push.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-36",
+   "category": "Coordination",
+   "requirement": "On conflict: stop, resolve without discarding the other session's work, and log it",
+   "source_quote": "\"If you hit a merge conflict, stop, resolve it without discarding the other session's work, and log what happened.\"",
+   "priority": "P0",
+   "status": "Implemented (no conflicts hit so far)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-37",
+   "category": "Coordination",
+   "requirement": "Record sources, verification performed and irregularities in COORDINATION.md and mark done",
+   "source_quote": "\"When a task is finished, record its sources, the verification performed, and any irregularities in COORDINATION.md and mark it done.\"",
+   "priority": "P0",
+   "status": "In progress",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-38",
+   "category": "Coordination",
+   "requirement": "Never mark anything verified without checking it against an official source and linking it",
+   "source_quote": "\"Never mark anything verified without checking it against an official source, and link that source.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-39",
+   "category": "Coordination",
+   "requirement": "Shared outputs (table data, site index and navigation) change only in a final integration session",
+   "source_quote": "\"Shared outputs, such as the table data and the site's index and navigation, are changed only by a final integration session once all other tasks are done.\"",
+   "priority": "P1",
+   "status": "Implemented — this session is the only session, so it also acts as the integration session",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-40",
+   "category": "Coordination",
+   "requirement": "A session may take over a task whose claim is over 60 minutes old with no commits, and must log the handoff",
+   "source_quote": "\"If a session crashes or its claim is more than 60 minutes old with no commits, any other session may take over the task and note the handoff in the log.\"",
+   "priority": "P2",
+   "status": "Implemented (handoff section exists)",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-41",
+   "category": "Delivery",
+   "requirement": "Create a pull request to main summarising changes, sources and flagged irregularities",
+   "source_quote": "\"create a pull request from the integration branch to main with a summary of the changes, the sources used, and any flagged irregularities\"",
+   "priority": "P0",
+   "status": "Pending",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-42",
+   "category": "Delivery",
+   "requirement": "Merge without waiting for approval, confirm GitHub Pages deploys, record the PR link and result",
+   "source_quote": "\"Then merge the pull request without waiting for approval, confirm GitHub Pages deploys successfully, and record the PR link and merge result in COORDINATION.md.\"",
+   "priority": "P0",
+   "status": "Pending",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-43",
+   "category": "Delivery",
+   "requirement": "Flagged and unverified items never block the merge",
+   "source_quote": "\"Flagged irregularities and unverified items do not block the merge.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-44",
+   "category": "Delivery",
+   "requirement": "Publish flagged items on a clearly labelled Flagged for Review page with source links",
+   "source_quote": "\"Publish them on a clearly labeled \"Flagged for Review\" page on the site, with the source links\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "R-45",
+   "category": "Delivery",
+   "requirement": "If the build, a check or the deploy fails, fix and retry until the site is live; never merge a broken site",
+   "source_quote": "\"If the build, a check, or the deploy fails, fix the problem and retry until the site is live. Do not merge a broken site.\"",
+   "priority": "P0",
+   "status": "Implemented",
+   "acceptance": "",
+   "_unverified": [],
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
+  }
+ ],
+ "verification": {
+  "rows": 45,
+  "rows_verified": 45,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "flagged_reasons": {}
+ },
+ "note": "Every row quotes the project brief verbatim; open the source link and search the quote to confirm."
+}

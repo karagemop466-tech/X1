@@ -1,0 +1,141 @@
+{
+ "generated_at": null,
+ "results": [
+  {
+   "dataset": "club_registry",
+   "rows": 32,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "correlations",
+   "rows": 988,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "deficiency",
+   "rows": 897,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 2847,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "depth_charts",
+   "rows": 1813,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 61,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "gates",
+   "rows": 14,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "injuries",
+   "rows": 345,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 370,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "leaderboard",
+   "rows": 10,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 70,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "market_lines",
+   "rows": 0,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "questions",
+   "rows": 30,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "repo_review",
+   "rows": 55,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "requirements",
+   "rows": 45,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 45,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "standings",
+   "rows": 32,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "strategies",
+   "rows": 10,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 40,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "suggestions",
+   "rows": 20,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 20,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "team_stats",
+   "rows": 288,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  }
+ ],
+ "hard_failures": 0
+}

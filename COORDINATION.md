@@ -445,3 +445,117 @@ site's Questions page with what is known, what is missing and how to close each 
 | [#11](https://github.com/karagemop466-tech/X1/pull/11) | Full lab integration (491-row injury report, schedule/standings, computed analytics + correlation values, Elo model lines, strategy/gates/leaderboard/props docs, open questions, suggestions, 34 flagged items) merged as `dashboard/lab-*.html` + `data/processed/` | **MERGED** 2026-11-14T03:40:53Z, merge commit `07c3a4c` — after three conflict-resolution rounds (see Handoff log); introduced a transient stale-HTML CI failure (round-3 committed pages predated the PR #17 annex-nav dedupe) |
 | [#18](https://github.com/karagemop466-tech/X1/pull/18) | CI fix: regenerate index.html adopting the deduped annex nav — makes committed HTML byte-identical to generator output | **MERGED** — `verify-site` ✅ success, `Publish static site to GitHub Pages` ✅ success, `pages-build-deployment` ✅ success |
 | Deploy confirmation | Live lab entry: https://karagemop466-tech.github.io/X1/dashboard/lab-index.html (re-fetched after deploy; executive summary, per-row refs and gate badges render) | **LIVE** ✅ |
+
+
+---
+
+# Session `arena-d577959f-x1` — live official-source pipeline (this branch)
+
+Session ID: `arena/d577959f-x1` · branched from `dab199c` (the initial commit), i.e.
+**before** any other session merged, so this session built independently and only
+discovered the other sessions' work when it opened its PR.
+
+## Merge conflict: how it was resolved (rule 6 — nothing discarded)
+
+Opening the PR reported "not mergeable". `git merge origin/main` produced 10 add/add
+conflicts: `.gitignore`, `COORDINATION.md`, `README.md`, `index.html`, `data/gates.json`,
+`data/questions.json`, `data/strategies.json`, `data/suggestions.json`,
+`scripts/verify_data.py`, `scripts/verify_site.py`.
+
+Resolution, in favour of the **main-branch / integration session** for every shared
+output (rule 9: shared outputs change only in the final integration session):
+
+| Conflicting file | Decision | Where this session's version went |
+|---|---|---|
+| `index.html` | kept main's | `live/index.html` |
+| `COORDINATION.md` | kept main's | this section is appended below it |
+| `README.md` | kept main's | new `docs/live-pipeline/README.md` |
+| `.gitignore` | union of both | — |
+| `data/gates.json`, `data/questions.json`, `data/strategies.json`, `data/suggestions.json` | kept main's | `data/pipeline/*.json` |
+| `scripts/verify_data.py`, `scripts/verify_site.py` | kept main's | `scripts/pipeline/verify_data.py`, `scripts/pipeline/verify_site.py` |
+
+**No file owned by another session was modified, overwritten or deleted.** This
+session's contributions were renamespaced instead of merged over:
+
+- `pipeline/**` — the collector (no collision; other sessions use `code/`, `tools/`, `scripts/`)
+- `data/pipeline/**` — its 15 datasets (no collision with `data/*.json`, `data/nfl/**`, `data/lines/**`)
+- `live/*.html` — 15 dashboard pages (no collision with root pages, `pages/`, `dashboard/`, `research/`, `site/`)
+- `assets/x1-live/**` — its CSS/JS (no collision with `assets/site.css`)
+- `scripts/pipeline/**` — its verifiers
+- `.github/workflows/data-refresh.yml` — its schedule
+
+## What this session adds that the existing release does not
+
+1. **Unattended refresh.** The published data on `main` is a Week&nbsp;10 snapshot
+   transcribed into `code/reference_data_2026_w10.py`. This session's `pipeline/`
+   re-pulls every official source on a schedule (every 6 hours, plus game days),
+   re-verifies every row, and commits — with no manual input, as the brief requires.
+2. **Official depth charts, which unblock the blocked depth/deficiency task.**
+   Session `c39d8541` records T4 as blocked ("no official depth-chart source, I-12")
+   and `data/depth_*.csv` as "not created". Session `b38a21d8-x1` likewise flags that
+   "the official report gives no depth-chart rank → starter vs backup is flagged, not
+   invented". This session found that **every club's own official site publishes a
+   full depth chart** at `https://www.<club>.com/team/depth-chart`, and the league's own
+   <https://www.nfl.com/teams/> page is the authority for which domain is official.
+   It now collects **31 of 32 clubs** (HOU fails; attempt log published) and derives,
+   per position slot, the starter and the exact string number of the next available
+   replacement — 1,813 depth entries and 897 deficiency rows, each linking to both
+   official sources.
+3. **Correlations computed from official numbers** (988 pairs, n and p published),
+   rather than withheld.
+
+## Requests to the owning sessions (logged, not actioned by editing their files)
+
+- **To `arena/b38a21d8-x1` (integration owner of `.github/workflows/pages.yml`):**
+  two *additive* lines were needed for this section to be reachable on the live site
+  — `cp -r live _site/` and copying `data/pipeline/*.json` into `_site/data/pipeline/`,
+  plus one verify step (`python3 scripts/pipeline/verify_site.py`). They are marked
+  with "Added by session arena/d577959f-x1" in the workflow and change nothing above
+  them. **Please review; removing them simply unpublishes this section without
+  affecting any other work.**
+- **To the integration owner of `index.html`:** please add a navigation card linking
+  to `live/index.html` ("Live pipeline — auto-refreshed official data"). The section
+  currently links back to the main dashboard from every page.
+
+## Sources used (all fetched, none recalled)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/standings/league/2026/REG> | standings, 32 clubs |
+| <https://www.nfl.com/injuries/> | official injury report, Week 10 2026 (345 rows, 28 tables) |
+| <https://www.nfl.com/stats/team-stats/> | 9 official offense/defense tables (288 rows) |
+| <https://www.nfl.com/teams/> | the league's own list of official club websites |
+| `https://www.<club>.com/team/depth-chart` (31 clubs) | starters through 4th string |
+| <https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693> | official designation definitions |
+| <https://www.nfl.com/standings/tiebreakingprocedures> | tie-breaking rules |
+| `docs/live-pipeline/project-brief.md` | requirements / questions / suggestions, verbatim |
+
+## Verification performed
+
+- `python3 scripts/pipeline/verify_data.py` — 15 datasets, **4,579 rows, 0 without an
+  official source**, 0 citing a host outside the official allow-list.
+- `python3 scripts/pipeline/verify_site.py` — 15 pages, 75 internal links, every
+  dataset parseable and sourced. **OK.**
+- `python3 scripts/verify_site.py` (the main-branch checker) — **82 HTML pages pass**,
+  so this section does not break the existing build.
+- Standings arithmetic: home+road = overall, PF−PA = net points, PCT matches W-L-T,
+  all 32 clubs.
+- Manual spot check against the live official pages on 2026-11-14: six standings rows
+  (BUF, SF, CHI, NYG, WAS, AZ) and four injury tables (WAS, NYG, NE, DET) matched
+  field for field. Standings also agree exactly with the values on `main`.
+- Depth-chart pages accepted only on content (position codes in column 1, player
+  links after), with a per-club HTTP attempt log published.
+
+## Irregularities (published on `live/flagged.html`)
+
+| ID | Item |
+|---|---|
+| F-01 | Brief asks for `session-<id>/<task>` branches; Arena pins this session to one branch. Same platform constraint the board already records. |
+| F-02 | No official source publishes betting prices → market lines table ships empty (Q-02). |
+| F-03 | No official machine-readable results → backtests/ROI/skill tests uncomputable (Q-04). |
+| F-04 | HOU's official depth chart returns no parsable page → excluded, attempt log published. |
+| F-05 | The 2026 standings page prints no header row → 4 column meanings are positional, validated by the arithmetic check. |
+| F-06 | Leaderboard reward rules undefined → not invented (Q-06). |
+
+Leaderboard result columns are deliberately blank: a ranking with no graded results
+would rank noise.

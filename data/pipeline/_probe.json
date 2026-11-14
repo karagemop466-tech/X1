@@ -1,0 +1,289 @@
+{
+ "generated_at": "2026-11-14T04:39:09+00:00",
+ "urls": [
+  {
+   "url": "https://www.nfl.com/standings/league/2025/REG",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "2025 NFL League Standings",
+   "table_count": 1,
+   "tables": [
+    {
+     "rows": 32,
+     "cols": 17,
+     "header": [
+      "NFL Team",
+      "W",
+      "L",
+      "T",
+      "PCT",
+      "PF",
+      "PA",
+      "Net Pts",
+      "Home",
+      "Road",
+      "Div",
+      "Pct",
+      "Conf",
+      "Pct",
+      "Non-Conf",
+      "Strk",
+      "Last 5"
+     ],
+     "first_row": [
+      "Arizona CardinalsCardinals",
+      "3",
+      "14",
+      "0",
+      "0.176",
+      "355",
+      "488",
+      "-133",
+      "1 - 7 - 0",
+      "2 - 7 - 0",
+      "0 - 6 - 0",
+      "0.000",
+      "3 - 9 - 0",
+      "0.250",
+      "0 - 5 - 0",
+      "9L",
+      "0 - 5 - 0"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://www.nfl.com/standings/division/2026/REG",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "2026 NFL Division Standings",
+   "table_count": 8,
+   "tables": [
+    {
+     "rows": 4,
+     "cols": 17,
+     "header": [
+      "AFC EAST",
+      "W",
+      "L",
+      "T",
+      "PCT",
+      "PF",
+      "PA",
+      "Net Pts",
+      "Home",
+      "Road",
+      "Div",
+      "Pct",
+      "Conf",
+      "Pct",
+      "Non-Conf",
+      "Strk",
+      "Last 5"
+     ],
+     "first_row": [
+      "Buffalo BillsBills",
+      "7",
+      "1",
+      "0",
+      "0.875",
+      "256",
+      "187",
+      "69",
+      "3 - 1 - 0",
+      "4 - 0 - 0",
+      "0 - 1 - 0",
+      "0.000",
+      "4 - 1 - 0",
+      "0.800",
+      "3 - 0 - 0",
+      "4W",
+      "4 - 1 - 0"
+     ]
+    },
+    {
+     "rows": 4,
+     "cols": 17,
+     "header": [
+      "AFC NORTH",
+      "W",
+      "L",
+      "T",
+      "PCT",
+      "PF",
+      "PA",
+      "Net Pts",
+      "Home",
+      "Road",
+      "Div",
+      "Pct",
+      "Conf",
+      "Pct",
+      "Non-Conf",
+      "Strk",
+      "Last 5"
+     ],
+     "first_row": [
+      "Pittsburgh SteelersSteelers",
+      "6",
+      "2",
+      "0",
+      "0.750",
+      "180",
+      "144",
+      "36",
+      "4 - 0 - 0",
+      "2 - 2 - 0",
+      "2 - 1 - 0",
+      "0.667",
+      "3 - 2 - 0",
+      "0.600",
+      "3 - 0 - 0",
+      "4W",
+      "4 - 1 - 0"
+     ]
+    },
+    {
+     "rows": 4,
+     "cols": 17,
+     "header": [
+      "AFC SOUTH",
+      "W",
+      "L",
+      "T",
+      "PCT",
+      "PF",
+      "PA",
+      "Net Pts",
+      "Home",
+      "Road",
+      "Div",
+      "Pct",
+      "Conf",
+      "Pct",
+      "Non-Conf",
+      "Strk",
+      "Last 5"
+     ],
+     "first_row": [
+      "Jacksonville JaguarsJaguars",
+      "6",
+      "2",
+      "0",
+      "0.750",
+      "229",
+      "121",
+      "108",
+      "4 - 1 - 0",
+      "2 - 1 - 0",
+      "1 - 1 - 0",
+      "0.500",
+      "5 - 2 - 0",
+      "0.714",
+      "1 - 0 - 0",
+      "2W",
+      "4 - 1 - 0"
+     ]
+    },
+    {
+     "rows": 4,
+     "cols": 17,
+     "header": [
+      "AFC WEST",
+      "W",
+      "L",
+      "T",
+      "PCT",
+      "PF",
+      "PA",
+      "Net Pts",
+      "Home",
+      "Road",
+      "Div",
+      "Pct",
+      "Conf",
+      "Pct",
+      "Non-Conf",
+      "Strk",
+      "Last 5"
+     ],
+     "first_row": [
+      "Denver BroncosBroncos",
+      "7",
+      "2",
+      "0",
+      "0.778",
+      "198",
+      "186",
+      "12",
+      "4 - 0 - 0",
+      "3 - 2 - 0",
+      "2 - 1 - 0",
+      "0.667",
+      "3 - 1 - 0",
+      "0.750",
+      "4 - 1 - 0",
+      "5W",
+      "5 - 0 - 0"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://www.nfl.com/schedules/2026/REG",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL Schedules: Games, Times, Matchups &amp; Tickets",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/schedules/2026/reg10",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL Schedules: Games, Times, Matchups &amp; Tickets",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/scores/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL Scores and Highlights: Live Updates, Results &amp; Recaps",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/scores/2026/REG10",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL 2026 Week 10 Scores and Highlights: Live Updates, Results &amp; Recaps",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all",
+   "ok": false,
+   "status": 404,
+   "error": "HTTP 404 Not Found"
+  },
+  {
+   "url": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all",
+   "ok": false,
+   "status": 404,
+   "error": "HTTP 404 Not Found"
+  },
+  {
+   "url": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all",
+   "ok": false,
+   "status": 404,
+   "error": "HTTP 404 Not Found"
+  }
+ ]
+}

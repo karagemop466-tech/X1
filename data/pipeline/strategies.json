@@ -1,0 +1,315 @@
+{
+ "dataset": "strategies",
+ "title": "Candidate strategies, inputs and validation gates",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief (verbatim)",
+  "org": "Project brief"
+ },
+ "columns": [
+  "id",
+  "name",
+  "market",
+  "hypothesis",
+  "inputs",
+  "gates",
+  "status",
+  "graded_bets",
+  "roi",
+  "clv",
+  "t_stat"
+ ],
+ "rows": [
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-01",
+   "name": "Official-scoring side model",
+   "market": "Single bet",
+   "hypothesis": "A fair spread built only from officially sourced scoring and standings numbers will differ from the market enough to beat the closing number.",
+   "inputs": "Points for, points against, net points, home/road splits, official team offensive and defensive stats",
+   "gates": "G-01, G-02, G-03, G-05",
+   "status": "Paper — inputs verified, outcomes not yet computable",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-02",
+   "name": "Official-stats total model",
+   "market": "Single bet",
+   "hypothesis": "A game total estimated from official offensive and defensive pace and efficiency stats will differ from the market total.",
+   "inputs": "Official offensive and defensive passing, rushing, receiving, scoring and downs stats",
+   "gates": "G-01, G-02, G-03, G-05",
+   "status": "Paper — inputs verified, outcomes not yet computable",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-03",
+   "name": "Injury-driven line adjustment",
+   "market": "Single bet",
+   "hypothesis": "A starter ruled Out who has to be replaced by a 3rd or 4th string player is a larger negative than the market prices.",
+   "inputs": "Official injury report game status, official club depth chart string number",
+   "gates": "G-01, G-02, G-04, G-06",
+   "status": "Paper — inputs verified, outcomes not yet computable",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-04",
+   "name": "Deficiency mismatch (offensive line vs pass rush)",
+   "market": "Single bet",
+   "hypothesis": "When a team's offensive line is starting backups against a top official pass-rush defence, the total and the side both move more than the market allows for.",
+   "inputs": "Official depth chart offensive-line slots, official injury statuses, official defensive passing stats",
+   "gates": "G-01, G-02, G-04, G-06",
+   "status": "Paper — inputs verified, outcomes not yet computable",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-05",
+   "name": "Low-correlation multi-game parlay",
+   "market": "Parlay",
+   "hypothesis": "Parlaying legs that are near-independent by construction has the same expected value as the legs but a much larger variance, which is only worth taking when each leg clears the edge gate on its own.",
+   "inputs": "Correlation matrix from official team stats, per-leg edge estimates",
+   "gates": "G-01, G-02, G-07, G-08",
+   "status": "Paper — correlation values computed, leg edges not yet computable",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-06",
+   "name": "Same-game correlation-aware parlay",
+   "market": "Parlay",
+   "hypothesis": "A same-game parlay is only rational when the two legs are positively correlated, because that raises the joint probability above the product of the legs.",
+   "inputs": "Game-level correlation estimates — NOT AVAILABLE from any verified official source",
+   "gates": "G-01, G-02, G-07, G-08",
+   "status": "Blocked — no game-level official data (see Q-10, Q-21)",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-07",
+   "name": "Player prop combination",
+   "market": "Player prop combo",
+   "hypothesis": "Player props for the same team in the same game are correlated through game script; pricing that correlation is the edge.",
+   "inputs": "No official source for player prop lines or results was verified",
+   "gates": "G-01, G-02, G-07, G-09",
+   "status": "Blocked — no official prop data (see Q-11)",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-08",
+   "name": "Fade the public on late injury news",
+   "market": "Single bet",
+   "hypothesis": "Officially reported downgrades that land after the market has settled create a short window where the price has not caught up.",
+   "inputs": "Timestamped official injury report snapshots from the refresh job",
+   "gates": "G-01, G-02, G-06, G-10",
+   "status": "Paper — snapshots verified, prices not yet available",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-09",
+   "name": "Rest-and-situational fade",
+   "market": "Single bet",
+   "hypothesis": "Short-week and long-travel spots are systematically mispriced.",
+   "inputs": "Official schedule data — NOT AVAILABLE in server-rendered form",
+   "gates": "G-01, G-02, G-05",
+   "status": "Blocked — no verified schedule table (see Q-20)",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "outcome metrics cannot be computed until a results feed exists (Q-04)"
+   ],
+   "id": "ST-10",
+   "name": "Closing line value only (no outcome betting)",
+   "market": "Single bet",
+   "hypothesis": "Beating the closing number is a cleaner measure of skill than realised ROI over a small sample.",
+   "inputs": "Our originated line, the market closing number — price feed NOT AVAILABLE",
+   "gates": "G-01, G-02, G-11",
+   "status": "Blocked — no price feed (see Q-02)",
+   "graded_bets": "",
+   "roi": "",
+   "clv": "",
+   "t_stat": "",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
+  }
+ ],
+ "verification": {
+  "rows": 10,
+  "rows_verified": 0,
+  "rows_flagged": 10,
+  "unverified_cells": 0,
+  "flagged_reasons": {
+   "outcome metrics cannot be computed until a results feed exists (Q-04)": 10
+  }
+ },
+ "note": "Result columns stay blank because no official source for game results or prices was verified. They are filled only from a verified feed, never by hand."
+}

@@ -12,3 +12,8 @@ venv/
 data/raw/*
 !data/raw/official_injuries_w10_2026.csv
 _site/
+
+# session arena/d577959f-x1: live-pipeline scratch output
+data/pipeline/_verify.log
+data/pipeline/_pipeline_stamp.log
+_ci/

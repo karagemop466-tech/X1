@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Originated Lines — X1</title>
+<link rel="stylesheet" href="../assets/x1-live/site.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+  <nav class="navlinks" id="nav"></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="note" style="margin:0 0 12px"><strong>Live pipeline section</strong> —
+  auto-refreshed from official sources every six hours.
+  <a href="index.html">Section summary</a> ·
+  <a href="../index.html">Main dashboard</a></div>
+<div class="page-head">
+    <div class="kicker">Model · Lines</div>
+    <h1>Originating our own lines</h1>
+    <p>The brief is to originate our own NFL lines rather than reuse someone else's
+       numbers. This page explains what that requires, which inputs are verified today,
+       and why the market comparison column is empty.</p>
+  </div>
+
+  <div class="note bad"><strong>Market lines table is intentionally empty.</strong>
+    No official NFL or club source publishes spreads, totals, moneylines or player-prop
+    prices. Under the verification rule a value that cannot be confirmed from an
+    official source stays blank and is flagged — so this table ships with no rows
+    rather than with numbers recalled from somewhere.
+    Source of that finding: the probe report on the
+    <a href="questions.html">questions page</a>, and
+    <a href="https://www.nfl.com/" target="_blank" rel="noopener">nfl.com &#8599;</a>,
+    which publishes no betting prices.</div>
+
+  <div class="card">
+    <div class="card-head"><h2>Market lines</h2></div>
+    <p class="count" data-meta-for="tbl-lines"></p>
+    <div class="table-wrap">
+      <table class="data" id="tbl-lines" data-src="../data/pipeline/market_lines.json"
+             data-columns="game,market,our_line,market_line,edge,source_url" data-page="30"></table>
+    </div>
+    <p style="margin-top:10px" id="lines-note" class="missing"></p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>What we can originate today</h2>
+    <p>Originating a line means producing a fair number from verified inputs. Three of
+       the four inputs are already official and machine-readable:</p>
+    <div class="grid two">
+      <div class="path chosen">
+        <strong>Verified and available</strong>
+        <ul class="tight">
+          <li>Team scoring and efficiency —
+            <a href="https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all" target="_blank" rel="noopener">official scoring stats &#8599;</a></li>
+          <li>Points for and against —
+            <a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">official standings &#8599;</a></li>
+          <li>Injury status and the depth of the replacement —
+            <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">official injury report &#8599;</a>
+            plus each
+            <a href="depth-charts.html">club's own depth chart</a></li>
+          <li>Home and road splits —
+            <a href="standings.html">official standings</a></li>
+        </ul>
+      </div>
+      <div class="path">
+        <strong>Missing, and blocking the comparison</strong>
+        <ul class="tight">
+          <li>Market prices: no official source. Blocks the edge column and closing line value (<a href="questions.html">Q-02</a>).</li>
+          <li>Game results: no official machine-readable source. Blocks calibration and backtesting (<a href="questions.html">Q-04</a>).</li>
+          <li>Play-by-play: no official source verified. Blocks pace and success-rate inputs (<a href="questions.html">Q-21</a>).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>The intended pipeline</h2>
+    <ol class="tight">
+      <li><strong>Estimate team strength</strong> from official scoring, net points and
+        home/road splits. All inputs verified.</li>
+      <li><strong>Adjust for lineup</strong> using the official injury report and the
+        club's own depth chart, weighted by how far down the chart the replacement
+        comes from — a 4th-string replacement is not the same event as a 2nd-string one.</li>
+      <li><strong>Convert to a fair number</strong> — a spread and a total for each game.</li>
+      <li><strong>Compare with the market</strong> and record the difference as the edge.
+        <em>Blocked on Q-02.</em></li>
+      <li><strong>Record the closing number</strong> so the signal can be scored on
+        closing line value without waiting for the result.
+        <em>Blocked on Q-02.</em></li>
+      <li><strong>Version every line</strong> with the timestamp of the inputs that
+        produced it, so any later claim about the edge can be checked. Proposed as
+        <a href="suggestions.html">S-19</a>.</li>
+    </ol>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>Parlays and player-prop combinations</h2>
+    <p>Correlation is what separates a rational parlay from a worse version of a single
+      bet. Two rules follow from the numbers already computed:</p>
+    <ul class="tight">
+      <li><strong>Every leg must clear the single-bet edge gate on its own</strong>
+        (gate G-08). Parlaying a negative-edge leg makes the bet worse, not better,
+        whatever the correlation is.</li>
+      <li><strong>Legs may be combined only when the correlation between them is
+        measured and either below the threshold or explicitly priced in</strong>
+        (gate G-07). At team level that can be done today — see
+        <a href="correlations.html">the correlation values</a>. Within a single game, or
+        between two player props, it cannot: no official source publishes the data
+        (<a href="questions.html">Q-10, Q-11</a>).</li>
+    </ul>
+    <div class="note warn">Player-prop combination strategy ST-07 is marked
+      <strong>Blocked</strong>, not because the idea is bad but because no official
+      source for prop-level data was verified. It stays blocked rather than being
+      approximated.</div>
+  </div>
+</main>
+
+<footer class="footer">
+  X1 — originated lines. Inputs verified; market comparison blocked until a price feed exists.
+</footer>
+<script src="../assets/x1-live/site.js"></script>
+<script>
+(async function () {
+  try {
+    const d = await (await fetch('../data/pipeline/market_lines.json', {cache: 'no-store'})).json();
+    const el = document.getElementById('lines-note');
+    if (el && d.note) { el.textContent = d.note; el.className = ''; }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
