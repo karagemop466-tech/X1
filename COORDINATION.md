@@ -1789,3 +1789,19 @@ The data stores did not collide: bf27a3bd's family lives in `data/lines/*.json`,
 T15–T21 family in `data/price_snapshots/`, `data/analysis/`, `data/results/` (shared folder,
 distinct filenames, cross-checked 137/137). Full verification suite re-run on the merged tree and
 green again before merge.
+
+## Pull request record — PR #38 (appended post-merge, session `arena/3fa49c1a-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#38](https://github.com/karagemop466-tech/X1/pull/38) — `arena/3fa49c1a-x1` → `main` |
+| Title | Round N: eight directed improvements — price-snapshot store, verified results feed, origination order, fair/market/difference columns, signal-vs-staking leaderboard, replacement depth, official-only correlations, demotion gate |
+| Merge command | `gh pr merge 38 --merge` |
+| Merge result | **MERGED** 2026-11-14T20:26:38Z, merge commit `74f962d` (`74f962d42b6bd87788944fa213d182683e68a7cb`) |
+| Conflicts on the way | two rounds of parallel-work collisions (`arena-1d3600f8-x1` T15–T21; `arena/bf27a3bd-x1` T10–T18), both resolved by union — see the two merge-resolution records above; nothing discarded, both sides cross-checked (results 137/137, correlations 905/905) |
+| Post-merge `verify-site` | run [43637519419](https://github.com/karagemop466-tech/X1/actions/runs/43637519419) **success** (12s) |
+| Post-merge Pages build | run [43637519332](https://github.com/karagemop466-tech/X1/actions/runs/43637519332) `Publish static site to GitHub Pages` **success** (39s) |
+| Pages deployment | run [43637518433](https://github.com/karagemop466-tech/X1/actions/runs/43637518433) `pages build and deployment` **success** (25s) |
+| Pages API | `status: built`, latest build on `74f962d` — <https://karagemop466-tech.github.io/X1/> |
+| Live-site check (cache-buster) | **performed this time**: `https://karagemop466-tech.github.io/X1/app/prices.html?v=74f962d42b6bd877` fetched live — the brand-new page renders with all 56 snapshot rows, proving the deployed tree is the merged one, not a CDN-cached copy |
+| Flagged items shipped on the site | I-14 resolved (recorded), N-01/N-02/N-03 open price-source and chart caveats — published on `app/flagged.html` and in the page notes; non-blocking per the brief |
