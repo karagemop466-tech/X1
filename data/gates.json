@@ -1,18 +1,130 @@
 {
   "meta": {
-    "title": "Validation Gates — machine-readable",
+    "title": "Validation Gates \u2014 machine-readable",
     "registered_at": "2026-11-14",
     "note": "Gates must be registered before a scored window opens. Changing a gate after results exist is a gate violation and is recorded as such."
   },
   "gates": [
-    { "id": "G0", "name": "Provenance", "blocking": true, "criteria": ["registered_before_window", "licensed_inputs_timestamped", "no_lookahead", "settlement_rule_recorded", "model_version_hashed"] },
-    { "id": "G1", "name": "Sample size", "blocking": true, "thresholds": { "singles_bets": 500, "two_leg_parlays_tickets": 300, "three_plus_leg_tickets": 400, "props_tickets": 500 }, "formula": "n_eff = n / (1 + (k-1)*rho_bar)", "rule": "hold the threshold against n_eff, not raw n" },
-    { "id": "G2", "name": "Skill above variance", "blocking": true, "criteria": ["z_skill >= 1.96 (two-sided 5%)", "bootstrap 95% interval on ROI excludes 0"], "formula": "z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n_eff)", "reference_break_even": { "-110": 0.5238, "-105": 0.5122, "+100": 0.5 } },
-    { "id": "G3", "name": "Calibration", "blocking": true, "criteria": ["brier better than market-implied", "log loss better than market-implied", "reliability slope in [0.85, 1.15]"] },
-    { "id": "G4", "name": "Robustness", "blocking": true, "criteria": ["edge sign stable across window halves", "leave-one-team-out survives >= 28/32 refits", "edge survives a second independent window", "placebo shuffles do not reproduce edge", "no 3-week block > 50% of profit"] },
-    { "id": "G5", "name": "Risk of ruin", "blocking": true, "criteria": ["median max drawdown <= 25% of bankroll", "staking rule pre-registered", "survives 50% stake reduction"], "auto_fail": "unbounded downside with no stated cap" },
-    { "id": "G6", "name": "Economic reality", "blocking": true, "criteria": ["edge survives using only release-time best quote", "stake executable at recorded limit", "all fees inside ROI", "no implausible stake to produce claimed ROI"] },
-    { "id": "G7", "name": "Correlation discipline", "blocking": true, "applies_to": ["cross_game_parlay", "same_game_parlay", "prop_combo"], "criteria": ["rho published with interval", "joint probability calibrated on holdout", "n_eff reported", ">6 legs requires separate joint model"] }
+    {
+      "id": "G0",
+      "name": "Provenance",
+      "blocking": true,
+      "criteria": [
+        "registered_before_window",
+        "licensed_inputs_timestamped",
+        "no_lookahead",
+        "settlement_rule_recorded",
+        "model_version_hashed"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "Sample size",
+      "blocking": true,
+      "thresholds": {
+        "singles_bets": 500,
+        "two_leg_parlays_tickets": 300,
+        "three_plus_leg_tickets": 400,
+        "props_tickets": 500
+      },
+      "formula": "n_eff = n / (1 + (k-1)*rho_bar)",
+      "rule": "hold the threshold against n_eff, not raw n"
+    },
+    {
+      "id": "G2",
+      "name": "Skill above variance",
+      "blocking": true,
+      "criteria": [
+        "z_skill >= 1.96 (two-sided 5%)",
+        "bootstrap 95% interval on ROI excludes 0"
+      ],
+      "formula": "z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n_eff)",
+      "reference_break_even": {
+        "-110": 0.5238,
+        "-105": 0.5122,
+        "+100": 0.5
+      }
+    },
+    {
+      "id": "G3",
+      "name": "Calibration",
+      "blocking": true,
+      "criteria": [
+        "brier better than market-implied",
+        "log loss better than market-implied",
+        "reliability slope in [0.85, 1.15]"
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "Robustness",
+      "blocking": true,
+      "criteria": [
+        "edge sign stable across window halves",
+        "leave-one-team-out survives >= 28/32 refits",
+        "edge survives a second independent window",
+        "placebo shuffles do not reproduce edge",
+        "no 3-week block > 50% of profit"
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "Risk of ruin",
+      "blocking": true,
+      "criteria": [
+        "median max drawdown <= 25% of bankroll",
+        "staking rule pre-registered",
+        "survives 50% stake reduction"
+      ],
+      "auto_fail": "unbounded downside with no stated cap"
+    },
+    {
+      "id": "G6",
+      "name": "Economic reality",
+      "blocking": true,
+      "criteria": [
+        "edge survives using only release-time best quote",
+        "stake executable at recorded limit",
+        "all fees inside ROI",
+        "no implausible stake to produce claimed ROI"
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Correlation discipline",
+      "blocking": true,
+      "applies_to": [
+        "cross_game_parlay",
+        "same_game_parlay",
+        "prop_combo"
+      ],
+      "criteria": [
+        "rho published with interval",
+        "joint probability calibrated on holdout",
+        "n_eff reported",
+        ">6 legs requires separate joint model"
+      ]
+    },
+    {
+      "id": "G8",
+      "name": "Demotion to paper (live \u2192 paper)",
+      "blocking": true,
+      "applies_to": [
+        "any strategy whose status is live"
+      ],
+      "criteria": [
+        "rolling z_skill < 1.0 over the most recent 100 graded bets",
+        "two consecutive scheduled gate re-runs fail any blocking gate G0-G7",
+        "median max drawdown > 25% of bankroll while live (G5 breach in production)",
+        "mean CLV <= 0 over a 50-bet window"
+      ],
+      "action": "status flips live \u2192 paper immediately, staking stops, and the strategy may re-enter only through a freshly registered window that passes G0-G7 again",
+      "evaluation_cadence": "every scheduled gate re-run (weekly during the season)",
+      "status": "defined, not active \u2014 no strategy is live yet",
+      "why": "Enforcement half of the signal/staking split: a strategy whose measured signal has decayed must stop trading on a past reputation, whatever its staking run still shows.",
+      "proposed_by": "arena-600e6009-x1 (round 3)",
+      "ratification": "thresholds are proposals until the owner ratifies them (question Q-21)"
+    }
   ],
   "scoring_rules": [
     "score only inside the registered window",
@@ -26,12 +138,27 @@
   ],
   "ranking_objective": {
     "formula": "score = z_skill - lambda*calibration_penalty - mu*drawdown_penalty",
-    "weights": { "lambda": 1.0, "mu": 0.5 },
-    "tie_breaks": ["higher n_eff", "lower calibration penalty", "smaller max drawdown", "earlier registration timestamp", "alphabetical"]
+    "weights": {
+      "lambda": 1.0,
+      "mu": 0.5
+    },
+    "tie_breaks": [
+      "higher n_eff",
+      "lower calibration penalty",
+      "smaller max drawdown",
+      "earlier registration timestamp",
+      "alphabetical"
+    ]
   },
   "rewards": {
     "season_0": "paper league - titles and badges only, no funded pool",
     "season_1_plus": "requires funded pool, eligibility rules and jurisdiction review (Q-07)",
-    "design_rules": ["reward calibration independently of profit", "no reward for a single hot window", "vacate and log titles later shown invalid", "no pay-to-enter", "fixed max entrants per window"]
+    "design_rules": [
+      "reward calibration independently of profit",
+      "no reward for a single hot window",
+      "vacate and log titles later shown invalid",
+      "no pay-to-enter",
+      "fixed max entrants per window"
+    ]
   }
 }

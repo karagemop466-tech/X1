@@ -8,8 +8,8 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 13,
-  "open question": 17,
+  "flag": 19,
+  "open question": 22,
   "needs review": 3,
   "flagged": 1,
   "unverified cell": 3
@@ -157,6 +157,72 @@
    "unknown": "Whether both readers made the same systematic error (wrong column, mislabelled header). An agreement test cannot detect a shared blind spot.",
    "source": "https://www.nfl.com/standings/division/2026/REG",
    "source_label": "NFL.com standings"
+  },
+  {
+   "id": "F-14",
+   "register": "data/flags.json",
+   "area": "Provenance",
+   "item": "Week 10 Thursday final predates the snapshot clock, so that game's price-snapshot captures are post-hoc.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether any true pre-kickoff capture for that game exists anywhere upstream. None is claimed.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "NFL.com Week 10 schedule \u2014 Thursday final and dates"
+  },
+  {
+   "id": "F-15",
+   "register": "data/flags.json",
+   "area": "Coverage gap",
+   "item": "16 starters appear on the official injury report with no replacement named on the club's own depth chart.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether the club chart simply stops listing players or the next man up is genuinely unavailable. The league publishes no depth chart to settle it.",
+   "source": "https://www.nfl.com/injuries/",
+   "source_label": "NFL.com official injury report"
+  },
+  {
+   "id": "F-16",
+   "register": "data/flags.json",
+   "area": "Method",
+   "item": "Three completed games carry a model line of exactly 0.0, so the signal grade excludes them as no-pick.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Nothing \u2014 the exclusion rule is stated on the published grade.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/results/signal_grade.json",
+   "source_label": "Signal grade with exclusion counts"
+  },
+  {
+   "id": "F-17",
+   "register": "data/flags.json",
+   "area": "Anomalous listing",
+   "item": "One tie sits in the results feed (Giants 27, Commanders 27, Week 5) and is excluded from the decided sample.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Nothing \u2014 a tie is a real outcome, handled as such.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-5",
+   "source_label": "NFL.com Week 5 schedule \u2014 the tie"
+  },
+  {
+   "id": "F-18",
+   "register": "data/flags.json",
+   "area": "Transcription",
+   "item": "Team-code aliases ARI/AZ and LAR/LA must be normalised to join official reads to the mirror and to the model file.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Nothing \u2014 both codes are published by their own sources; only the join is normalised, never a displayed value.",
+   "source": "https://www.nfl.com/standings/league/2026/REG",
+   "source_label": "NFL.com standings \u2014 league abbreviations"
+  },
+  {
+   "id": "F-19",
+   "register": "data/flags.json",
+   "area": "Method",
+   "item": "Two in-repo models publish different Week 10 lines and neither has been designated the origination of record.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Which number is 'the' fair line when they disagree \u2014 that is question Q-23.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination_order_2026_week10.json",
+   "source_label": "Origination-order table (model of record for this round)"
   },
   {
    "id": "Q-01",
@@ -344,6 +410,61 @@
    "unknown": "A refresh schedule and a staleness banner rule.",
    "source": "https://www.nfl.com/injuries/",
    "source_label": "The official report is week-specific and changes daily; staleness is therefore guaranteed without a cadence."
+  },
+  {
+   "id": "Q-19",
+   "register": "data/questions.json",
+   "area": "Price provenance",
+   "item": "Which source will be accepted as the official price feed for the market open/close columns of the snapshot store?",
+   "state": "open question",
+   "severity": "",
+   "unknown": "Owner picks a tier and supplies access; market_line and difference then fill from recorded captures only, never from memory.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/snapshots/price_snapshots.json",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
+  },
+  {
+   "id": "Q-20",
+   "register": "data/questions.json",
+   "area": "Update cadence",
+   "item": "What unattended job captures the close snapshot at kickoff for every originated market?",
+   "state": "open question",
+   "severity": "",
+   "unknown": "A kickoff-timestamped step in the scheduled workflow that re-runs tools/build_snapshots.py with a capture flag and commits the result.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_snapshots.py",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
+  },
+  {
+   "id": "Q-21",
+   "register": "data/questions.json",
+   "area": "Risk control",
+   "item": "What exact measured decay sends a live strategy back to paper under gate G8?",
+   "state": "open question",
+   "severity": "",
+   "unknown": "Owner accepts or edits the four thresholds in data/gates.json G8 and stamps the ratification date.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
+  },
+  {
+   "id": "Q-23",
+   "register": "data/questions.json",
+   "area": "Method",
+   "item": "Which model is the origination of record when the two in-repo models disagree?",
+   "state": "open question",
+   "severity": "",
+   "unknown": "Owner designates one model of record for origination; the other becomes a published cross-check with its own column.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_lines_2026_week10.csv",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
+  },
+  {
+   "id": "Q-24",
+   "register": "data/questions.json",
+   "area": "Report cadence",
+   "item": "How does the results feed stay current without a person re-reading the schedule pages?",
+   "state": "open question",
+   "severity": "",
+   "unknown": "Add a by-week results step to data-refresh.yml (GitHub Actions can reach nfl.com) that re-reads completed weeks and re-runs tools/build_results.py checks, failing loudly on any mismatch.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_results.py",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
   },
   {
    "id": "A-07",

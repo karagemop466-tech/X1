@@ -16,7 +16,7 @@
       "effort": "low",
       "depends_on": [],
       "first_step": "Add the badge column to the generated tables and a legend on the Sources page.",
-      "risk": "Badge inflation — someone marks a B as an A to close a flag. Mitigation: badge is set by the generator, not by hand.",
+      "risk": "Badge inflation \u2014 someone marks a B as an A to close a flag. Mitigation: badge is set by the generator, not by hand.",
       "status": "proposed"
     },
     {
@@ -29,7 +29,7 @@
       "effort": "low",
       "depends_on": [],
       "first_step": "Compute age in the build script from the retrieval timestamp already stored in each file header.",
-      "risk": "None material.",
+      "risk": "No material risk identified.",
       "status": "proposed"
     },
     {
@@ -40,7 +40,9 @@
       "why_it_helps_decision_making": "Turns a 5-club anecdote into a league-wide dataset, which is the minimum for the starter-at-risk signal to be testable.",
       "impact": "high",
       "effort": "medium",
-      "depends_on": ["Q-14"],
+      "depends_on": [
+        "Q-14"
+      ],
       "first_step": "Fill the capture list; record the four clubs that play Thursday first, since their reports lock earliest.",
       "risk": "Club pages change layout; a silent layout change could produce empty rows. Mitigation: the verifier fails when a chart yields zero players.",
       "status": "proposed"
@@ -66,7 +68,9 @@
       "why_it_helps_decision_making": "Makes 'we would have known' auditable.",
       "impact": "high",
       "effort": "medium",
-      "depends_on": ["Q-12"],
+      "depends_on": [
+        "Q-12"
+      ],
       "first_step": "Define the schema and commit one example pre-registration for a paper strategy.",
       "risk": "Overhead slows experimentation. Mitigation: template with sane defaults so a registration takes minutes.",
       "status": "proposed"
@@ -79,7 +83,9 @@
       "why_it_helps_decision_making": "Distinguishes a strategy from a lottery ticket that happened to hit.",
       "impact": "high",
       "effort": "low",
-      "depends_on": ["Q-02"],
+      "depends_on": [
+        "Q-02"
+      ],
       "first_step": "Add the trimmed metric to the leaderboard schema now, so it cannot be bolted on after results exist.",
       "risk": "Trimming hides genuine big-edge bets. Mitigation: always show both; never show trimmed alone.",
       "status": "proposed"
@@ -92,7 +98,10 @@
       "why_it_helps_decision_making": "A team can be healthy on offense and devastated on defense; the market treats those cases very differently.",
       "impact": "medium",
       "effort": "medium",
-      "depends_on": ["Q-04", "S-03"],
+      "depends_on": [
+        "Q-04",
+        "S-03"
+      ],
       "first_step": "Define the two feature sets; keep them in separate files so they cannot be accidentally merged.",
       "risk": "Doubling the feature count doubles the multiple-comparison problem. Mitigation: correction already required by correlation.md.",
       "status": "proposed"
@@ -105,7 +114,9 @@
       "why_it_helps_decision_making": "Makes the cost of assuming independence visible in one screen.",
       "impact": "medium",
       "effort": "medium",
-      "depends_on": ["Q-10"],
+      "depends_on": [
+        "Q-10"
+      ],
       "first_step": "Implement with synthetic parameters, clearly labelled as an illustration, not a market estimate.",
       "risk": "Synthetic output mistaken for a real edge. Mitigation: watermarked 'illustrative' and excluded from the leaderboard.",
       "status": "proposed"
@@ -144,7 +155,10 @@
       "why_it_helps_decision_making": "Stops a mid-season scope change from silently invalidating a comparison.",
       "impact": "medium",
       "effort": "low",
-      "depends_on": ["Q-03", "Q-09"],
+      "depends_on": [
+        "Q-03",
+        "Q-09"
+      ],
       "first_step": "Draft v0.1 with spreads and totals only, and mark props as pending.",
       "risk": "Premature commitment. Mitigation: v0 explicitly excludes props with a stated reason.",
       "status": "proposed"
@@ -157,9 +171,89 @@
       "why_it_helps_decision_making": "Makes disconfirmation cheap and public.",
       "impact": "medium",
       "effort": "low",
-      "depends_on": ["S-05"],
+      "depends_on": [
+        "S-05"
+      ],
       "first_step": "Add the field to the pre-registration schema.",
       "risk": "Boilerplate falsifiers that are trivially unmet. Mitigation: the falsifier must name a specific test from the gate list.",
+      "status": "proposed"
+    },
+    {
+      "id": "S-13",
+      "title": "Name the price feed before any market column fills",
+      "problem": "Market open/close, difference, CLV and ROI are all blank because no source is accepted as official (Q-19).",
+      "proposal": "Owner chooses one tier \u2014 single named book, consensus service, or own account statements \u2014 and records it in data/sources. The snapshot store then fills market_line only from recorded captures at that source.",
+      "why_it_helps_decision_making": "Turns four blocked columns into a decision with a single keystroke, and keeps the alternative tiers visible as options rather than silence.",
+      "impact": "high",
+      "effort": "medium",
+      "depends_on": "Q-19 / flag F-06",
+      "first_step": "Owner marks a tier on the suggestions board; wiring is one column in tools/build_snapshots.py.",
+      "risk": "Licence terms may restrict republication; account statements are official for your P&L but are not a market number.",
+      "status": "proposed"
+    },
+    {
+      "id": "S-14",
+      "title": "Rank the leaderboard on signal only, keep staking in its own columns",
+      "problem": "A single ROI column lets a lucky staking run mask a bad signal; the board cannot tell the two apart.",
+      "proposal": "Adopt the split already published in data/leaderboard_signal_staking.json: rank strictly on signal_n / signal_z / signal_p against the registered baseline; publish ROI, units and drawdown in a separate staking group that is structurally excluded from rank.",
+      "why_it_helps_decision_making": "Rewards are then paid for measured skill only. A +40% ROI on 30 lucky bets cannot outrank a smaller but significant signal.",
+      "impact": "high",
+      "effort": "low",
+      "depends_on": "nothing",
+      "first_step": "Point the leaderboard rank at the signal group; keep staking columns visible but unranked.",
+      "risk": "Headline ROIs on the public board get smaller \u2014 that is the honest number.",
+      "status": "proposed"
+    },
+    {
+      "id": "S-15",
+      "title": "Schedule the close capture at kickoff",
+      "problem": "39 close captures are pending and the one already-played game is flagged not_captured_before_kickoff, because nothing runs the store at kickoff (Q-20).",
+      "proposal": "Add a kickoff-timestamped step to the existing data-refresh workflow that re-runs tools/build_snapshots.py with a capture flag and commits the result with its timestamp.",
+      "why_it_helps_decision_making": "Opening and closing numbers become a real series instead of a single snapshot, which is what any future CLV or line-move analysis needs.",
+      "impact": "medium",
+      "effort": "low",
+      "depends_on": "Q-20",
+      "first_step": "One workflow step plus one flag in the builder.",
+      "risk": "A missed run leaves close blank \u2014 already handled: the store keeps the status rather than back-filling.",
+      "status": "proposed"
+    },
+    {
+      "id": "S-16",
+      "title": "Ratify the G8 demotion thresholds before anything goes live",
+      "problem": "The demotion gate exists with four proposed trigger numbers, but proposals ratified after results exist are worthless (Q-21).",
+      "proposal": "Owner accepts or edits the four numbers in data/gates.json G8 and records the ratification date; no strategy may be promoted to live until that date exists.",
+      "why_it_helps_decision_making": "Fixes the exit before entering, so demotion cannot be negotiated away by a strategy that is currently lucky.",
+      "impact": "high",
+      "effort": "low",
+      "depends_on": "Q-21",
+      "first_step": "Edit four thresholds, stamp the date, publish on the validation page.",
+      "risk": "Thresholds set too tight cause churn; too loose and decay persists. The rolling windows (100 / 50 bets) bound both errors.",
+      "status": "proposed"
+    },
+    {
+      "id": "S-17",
+      "title": "Automate the weekly results feed refresh",
+      "problem": "This round's 137 results were read page by page; without a scheduled step the feed silently goes stale and every backtest on it becomes wrong (Q-24).",
+      "proposal": "Add a by-week results step to data-refresh.yml: re-read completed weeks from nfl.com, re-run the three checks in tools/build_results.py, fail the build on any mismatch.",
+      "why_it_helps_decision_making": "Keeps the foundation of every ROI number fresh and self-checking; a layout change on nfl.com breaks the build loudly instead of corrupting data quietly.",
+      "impact": "high",
+      "effort": "medium",
+      "depends_on": "Q-24",
+      "first_step": "Port the parser in tools/build_results.py into the scheduled workflow and add the staleness check.",
+      "risk": "NFL.com layout changes will fail the workflow; the failure mode is a red build, not a wrong number.",
+      "status": "proposed"
+    },
+    {
+      "id": "S-18",
+      "title": "Grade ST-11 through the gates when the sample allows",
+      "problem": "The one computed signal (walk-forward model side pick, 84-49, z=3.04) sits below the G1 singles threshold of 500, so it cannot rank yet.",
+      "proposal": "Keep grading it weekly on the official results feed; when decided games reach the registered threshold, run G0-G7 plus G8 on it exactly like any other strategy \u2014 no shortcuts for the house model.",
+      "why_it_helps_decision_making": "Gives the leaderboard its first honest entrant on a schedule, and tests the whole gate chain end to end before real money is discussed.",
+      "impact": "medium",
+      "effort": "low",
+      "depends_on": "G1 sample; results feed refresh (S-17)",
+      "first_step": "Weekly grade appended by tools/build_results.py; promotion decision only after G1.",
+      "risk": "The signal may not survive the larger sample \u2014 which is what the gates are for.",
       "status": "proposed"
     }
   ]
