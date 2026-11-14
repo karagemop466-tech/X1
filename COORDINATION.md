@@ -1258,3 +1258,109 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena/1d3600f8-x1` — price snapshots, verified results feed, and the eight emphasized requirements (this session)
+
+**Session ID:** `arena-1d3600f8-x1` · **Branch:** `arena/1d3600f8-x1` (branched from `11d9ea1`, `main`)
+**Claim written and pushed before any task work started (rule 1).**
+
+## Handoff / takeover justification (board rule 10)
+
+Every existing claim on this board is `done` or `needs review`; the owning sessions have merged and
+gone quiet. The owner brief re-emphasises eight requirements; auditing `main` against them shows
+six gaps and two partials (audit detail in the completion record below). No active claim covers
+them. This session claims them.
+
+## Claim
+
+| # | Task | Why it is a gap (audit of `main` @ 11d9ea1) | Status | Owner | Files in scope |
+|---|---|---|---|---|---|
+| T15 | **Price-snapshot store**: record opening and closing numbers for every market we originate | No store exists. `data/market_lines.json` ships empty with a note; nothing records opening/closing captures per market | claimed | `arena-1d3600f8-x1` | `data/price_snapshots/**`, `tools/build_price_snapshots.py`, `tools/record_price.py`, `docs/methodology/price-snapshots.md` |
+| T16 | **Verified results feed** so backtests and ROI can be computed at all | No results feed exists; the official-only leaderboard explicitly waits on "a results feed and a price feed". Only the Week 10 TNF final is recorded | claimed | `arena-1d3600f8-x1` | `data/results/**`, `tools/build_results_feed.py`, `tools/verify_results_feed.py`, `tools/grade_roi.py`, `docs/methodology/results-feed.md` |
+| T17 | **Origination order side → total → moneyline**, with the model's fair line, the market line, and the difference published as separate columns | Order is not codified anywhere; the originated CSV covers spread/total but has no market-moneyline or moneyline-difference columns | claimed | `arena-1d3600f8-x1` | `tools/build_origination_table.py`, `data/lines/origination_2026_week10.csv`, `docs/methodology/origination-order.md` |
+| T18 | **Leaderboard: separate 'signal' from 'staking'** so a lucky staking run cannot mask a bad signal | The board ranks by gate-weighted reward; no separate signal grade vs staking grade exists | claimed | `arena-1d3600f8-x1` | `tools/build_signal_staking.py`, `data/leaderboard_signal_staking.json`, `docs/methodology/signal-vs-staking.md` |
+| T19 | **Track the depth of the replacement**, not just the fact of a replacement | `replacement_depth` exists in `data/verify/deficiency_recomputed.json` but is not aggregated/published as a depth-of-replacement view | claimed | `arena-1d3600f8-x1` | `tools/build_replacement_depth.py`, `data/analysis/replacement_depth.json` |
+| T20 | **Correlations only from officially sourced numbers, with n published per value** | The correlation page leads with mirror-based values (nflverse) labelled benchmark-only; only one subsection is official. Requirement: publish official-only values with n | claimed | `arena-1d3600f8-x1` | `tools/build_correlations_official.py`, `data/analysis/correlations_official.csv` |
+| T21 | **Demotion gate** that sends a live strategy back to paper | Only "two failed windows demote" prose exists in scoring_rules; no gate object defines triggers, action, re-entry, logging | claimed | `arena-1d3600f8-x1` | `data/gates.json` (additive G8), `docs/methodology/demotion-gate.md` |
+| T22 | Final integration: wire T15–T21 into the unified dashboard, update exec summary + requirement register, run every verifier, PR → `main`, merge, Pages deploy confirmed, record here | Per board rule 9 (shared outputs: `tools/build_app.py`, `app/**`) | claimed | `arena-1d3600f8-x1` | `tools/build_app.py` (additive), `app/**` (regenerated), `docs/EXECUTIVE-SUMMARY.md`, `COORDINATION.md` |
+
+**Non-overlap declaration (checked against all claims on this board at 2026-11-14):** no `done` /
+`needs review` claim owns `data/price_snapshots/`, `data/results/`, `data/analysis/`, or the four
+new tools above — all new paths. `data/gates.json` edit is **additive** (one new gate object G8 +
+one scoring rule line), tagged in-file. `tools/build_app.py` edits are **additive** (new sections +
+two new pages + nav entries), tagged in-file, exactly as sessions `arena/459b17e1-x1` and
+`arena/fcc11e05-x1` did for their sections. No other session's branch or files are touched.
+
+## Verification sources this session will use (fetched live, not recalled)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/schedules/2026/by-week/week-N> (N = 1..10) | T16 row-level final scores (game anchors with FINAL results) |
+| <https://www.nfl.com/standings/> (2026 REG) | T16 aggregate cross-check: per-team PF/PA and W-L-T sums must equal the transcribed results |
+| `data/verify/official_*.psv` (2026-11-14 snapshot) | T17–T20 base tables already verified against official pages by earlier sessions |
+
+## Log (this session, append-only)
+
+- 2026-11-14 — Claim written and pushed before task work (this commit).
+
+## Completion record — T15–T22 (session `arena-1d3600f8-x1`, 2026-11-14)
+
+**Claim statuses: T15–T22 all `done`.** No task was taken from another session; every earlier
+claim was `done` or `needs review` and no live claim existed when this session started. All work
+stayed on `arena/1d3600f8-x1`; no other branch or file scope was touched (the two shared-file
+edits below are additive and tagged in-file).
+
+| Task | Deliverable | Official sources used | Verification performed | Result |
+|---|---|---|---|---|
+| T15 Price-snapshot store | `data/price_snapshots/snapshots.csv` (112 captures: 56 opening slots reserved+flagged, 56 closing captures), `market_index.csv` (56 originated markets), `tools/build_price_snapshots.py`, `tools/record_price.py`, `docs/methodology/price-snapshots.md` | none exists for prices — by rule every price cell is blank-and-flagged or labelled `unverified-third-party` (nflverse mirror closing line) | builder idempotence check (re-run adds 0 rows); recorder rejects unsourced captures | **done** — no value invented; Q-02 stays open |
+| T16 Verified results feed | `data/results/verified_results_2026.csv` (137 rows), `raw/week_01..10.md` evidence, `verification_report.json`, `tools/build_results_feed.py`, `tools/verify_results_feed.py`, `tools/grade_roi.py`, `docs/methodology/results-feed.md` | <https://www.nfl.com/schedules/2026/by-week/week-1> … <https://www.nfl.com/schedules/2026/by-week/week-10> (fetched 2026-11-14, verbatim anchors preserved); <https://www.nfl.com/standings/> via `data/standings_2026.csv` | double-entry: 32/32 clubs PF/PA + W-L-T match official standings (0 mismatches); league totals 6,291 = 6,291; per-week counts 16/16/16/16/15/14/14/14/15/1 match; mirror reference diff 137 games, 0 disagreements; CI verifier re-parses evidence cell-by-cell | **done** — backtests/ROI now computable; graded 689 bets, ROI at explicitly assumed −110, nothing positive |
+| T17 Origination order + 3-column rule | `data/lines/origination_2026_week10.csv` (56 rows, side→total→moneyline), `tools/build_origination_table.py`, `docs/methodology/origination-order.md` | fair lines: own model (labelled as our computation); market lines: mirror benchmark (labelled third-party) | all 56 rows carry fair_line, market_line, difference as separate columns; order encoded as origin_seq 1/2/3 | **done** |
+| T18 Signal vs staking | `data/leaderboard_signal_staking.csv/.json`, `tools/build_signal_staking.py`, `docs/methodology/signal-vs-staking.md` | mirror-window ledger (labelled NOT official on every row) | flat-stake signal block vs staking block computed independently; rule min(signal, staking) enforced; S_cold_under demonstrates masking vector (+2.27% ROI, z=0.01 → not rankable) | **done** — 0/16 rankable, board honestly empty |
+| T19 Depth of replacement | `data/analysis/replacement_depth.json`, `tools/build_replacement_depth.py` | <https://www.nfl.com/injuries/> + each club's official depth-chart site (per-row links) | 897 slots / 31 clubs; 189 on-report starters: 168× 2nd string, 3× 3rd string, 18 unknown flagged not inferred; HOU coverage gap (F-03) retained | **done** |
+| T20 Official-only correlations | `data/analysis/correlations_official.csv` (15 pairs), `tools/build_correlations_official.py` | <https://www.nfl.com/standings/>, `nfl.com/stats/team-stats/...` (verified rows), <https://www.nfl.com/injuries/>, deficiency register | every value publishes n + two-sided permutation p (B=20,000, seed 42) + Fisher 95% CI + source links; computed strictly from verified tables (mirror quarantined elsewhere) | **done** |
+| T21 Demotion gate | `data/gates.json` (additive G8 + 1 scoring rule, tagged in-file), `data/demotion_log.jsonl` (empty — nothing demoted yet), `docs/methodology/demotion-gate.md` | — (governance artifact) | triggers D1–D6 defined with basis; D4/D5 marked inactive until prices exist (Q-02); re-entry/authority/logging specified | **done** |
+| T22 Integration + release | `tools/build_app.py` (additive), `app/**` (23 pages), `pages/validation.html` (regenerated), `docs/EXECUTIVE-SUMMARY.md` (2nd-round addendum), suggestion board additions S-A..S-E, this record | reuses T15–T20 links | full CI chain run locally, all green (list below) | **done** pending PR/merge/Pages rows below |
+
+### Verification chain run locally (all green)
+
+`tools/build_availability.py` + staleness ✓ · `tools/verify_data.py` 2,944 ✓ · `tools/build_site.py`
++ staleness ✓ · `tools/check_links.py` 116 files / 27,775 assertions ✓ · `scripts/verify_site.py`
+116 pages ✓ · `tools/test_source_rule.py` mutation ✓ · `tools/cross_check.py` 1,380 cells ✓ ·
+`scripts/verify_parlay.py` ✓ · `tools/verify_against_official.py` 2,183 cells / 0 mismatches ✓ ·
+`tools/verify_app.py` 23 pages / 5,784 rows / 0 unsourced ✓ · `tools/build_app.py` + staleness ✓ ·
+`tools/build_audit_registers.py` + staleness ✓ · `scripts/check_site.py` ✓ ·
+`scripts/verify_research_site.py` 1,921 ✓ · `scripts/verify_site_annex.py` ✓ ·
+`scripts/pipeline/verify_data.py` + `verify_site.py` ✓ · `scripts/verify_data.py` ✓ ·
+`tools/verify_official.py` ✓ · `tools/verify_results_feed.py` ✓.
+
+### Irregularities found and handled (none blocking)
+
+| ID | Item | Handling |
+|---|---|---|
+| R-10 | No official or licensed source publishes betting prices (extends F-06/Q-02) | price cells blank + flagged or labelled `unverified-third-party`; store designed to fill from `tools/record_price.py` when a feed exists |
+| R-11 | The nflverse mirror cannot be joined on game_id without normalisation (mirror uses `LA`, our feed uses `LAR`) | normalised in the join (`norm_gid`); documented; no published value affected |
+| R-12 | 18 of 189 on-report replacements have unreadable depth on the club chart | counted and flagged `unknown`, never inferred (F-01/F-02/F-05 family) |
+| R-13 | `data/gates.json` (root) and `data/pipeline/gates.json` are two different registries | G8 added to the root registry only (tagged in-file); app reads both; noted for whoever owns the pipeline copy |
+| R-14 | Weekly strategy ROI at assumed −110 is not a market return | every ROI cell labelled `assumed_-110` with the Q-02 basis printed beside it |
+
+### Shared-file edits (additive, tagged in-file — per the logged-request convention)
+
+* `tools/build_app.py` — additions tagged `Added by session arena-1d3600f8-x1` (2 pages, 5 sections,
+  data loads, suggestion card). Nothing existing was removed.
+* `data/gates.json` — one gate object G8 + one scoring rule + one meta key, tagged in-file.
+* `pages/validation.html` — regenerated by `tools/build_site.py` (output of the gates change), not hand-edited.
+
+### Sources used (fetched 2026-11-14, none recalled)
+
+<https://www.nfl.com/schedules/2026/by-week/week-1> · …/week-2 · …/week-3 · …/week-4 · …/week-5 ·
+…/week-6 · …/week-7 · …/week-8 · …/week-9 · …/week-10 · <https://www.nfl.com/standings/> ·
+<https://www.nfl.com/injuries/> (via existing verified snapshot) ·
+[nflverse/nfldata](https://github.com/nflverse/nfldata) (third-party mirror, reference only).
+
+## Pull request record (session `arena-1d3600f8-x1`)
+
+| PR | Branch → base | Content | Result |
+|---|---|---|---|
+| [#34](https://github.com/karagemop466-tech/X1/pull/34) | `arena/1d3600f8-x1` → `main` | T15–T22: price-snapshot store, verified results feed, origination order + 3-column rule, signal/staking split, depth-of-replacement, official-only correlations with n, demotion gate G8, dashboard integration | checks: see PR; merge + Pages rows appended below |

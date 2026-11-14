@@ -1,37 +1,205 @@
 {
-  "meta": {
-    "title": "Validation Gates — machine-readable",
-    "registered_at": "2026-11-14",
-    "note": "Gates must be registered before a scored window opens. Changing a gate after results exist is a gate violation and is recorded as such."
-  },
-  "gates": [
-    { "id": "G0", "name": "Provenance", "blocking": true, "criteria": ["registered_before_window", "licensed_inputs_timestamped", "no_lookahead", "settlement_rule_recorded", "model_version_hashed"] },
-    { "id": "G1", "name": "Sample size", "blocking": true, "thresholds": { "singles_bets": 500, "two_leg_parlays_tickets": 300, "three_plus_leg_tickets": 400, "props_tickets": 500 }, "formula": "n_eff = n / (1 + (k-1)*rho_bar)", "rule": "hold the threshold against n_eff, not raw n" },
-    { "id": "G2", "name": "Skill above variance", "blocking": true, "criteria": ["z_skill >= 1.96 (two-sided 5%)", "bootstrap 95% interval on ROI excludes 0"], "formula": "z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n_eff)", "reference_break_even": { "-110": 0.5238, "-105": 0.5122, "+100": 0.5 } },
-    { "id": "G3", "name": "Calibration", "blocking": true, "criteria": ["brier better than market-implied", "log loss better than market-implied", "reliability slope in [0.85, 1.15]"] },
-    { "id": "G4", "name": "Robustness", "blocking": true, "criteria": ["edge sign stable across window halves", "leave-one-team-out survives >= 28/32 refits", "edge survives a second independent window", "placebo shuffles do not reproduce edge", "no 3-week block > 50% of profit"] },
-    { "id": "G5", "name": "Risk of ruin", "blocking": true, "criteria": ["median max drawdown <= 25% of bankroll", "staking rule pre-registered", "survives 50% stake reduction"], "auto_fail": "unbounded downside with no stated cap" },
-    { "id": "G6", "name": "Economic reality", "blocking": true, "criteria": ["edge survives using only release-time best quote", "stake executable at recorded limit", "all fees inside ROI", "no implausible stake to produce claimed ROI"] },
-    { "id": "G7", "name": "Correlation discipline", "blocking": true, "applies_to": ["cross_game_parlay", "same_game_parlay", "prop_combo"], "criteria": ["rho published with interval", "joint probability calibrated on holdout", "n_eff reported", ">6 legs requires separate joint model"] }
-  ],
-  "scoring_rules": [
-    "score only inside the registered window",
-    "passes are logged (a strategy with no denominator is invalid)",
-    "arithmetic (non-compounded) market return",
-    "report raw and top-5%-trimmed ROI together",
-    "champion requires two consecutive qualifying windows",
-    "two failed windows demote; no sitting on old results",
-    "challenger runs a full shadow window before displacing a champion",
-    "all entrants evaluated on identical frozen inputs"
-  ],
-  "ranking_objective": {
-    "formula": "score = z_skill - lambda*calibration_penalty - mu*drawdown_penalty",
-    "weights": { "lambda": 1.0, "mu": 0.5 },
-    "tie_breaks": ["higher n_eff", "lower calibration penalty", "smaller max drawdown", "earlier registration timestamp", "alphabetical"]
-  },
-  "rewards": {
-    "season_0": "paper league - titles and badges only, no funded pool",
-    "season_1_plus": "requires funded pool, eligibility rules and jurisdiction review (Q-07)",
-    "design_rules": ["reward calibration independently of profit", "no reward for a single hot window", "vacate and log titles later shown invalid", "no pay-to-enter", "fixed max entrants per window"]
-  }
+    "meta": {
+        "title": "Validation Gates — machine-readable",
+        "registered_at": "2026-11-14",
+        "note": "Gates must be registered before a scored window opens. Changing a gate after results exist is a gate violation and is recorded as such.",
+        "g8_added_by": "session arena-1d3600f8-x1, 2026-11-14 (additive)"
+    },
+    "gates": [
+        {
+            "id": "G0",
+            "name": "Provenance",
+            "blocking": true,
+            "criteria": [
+                "registered_before_window",
+                "licensed_inputs_timestamped",
+                "no_lookahead",
+                "settlement_rule_recorded",
+                "model_version_hashed"
+            ]
+        },
+        {
+            "id": "G1",
+            "name": "Sample size",
+            "blocking": true,
+            "thresholds": {
+                "singles_bets": 500,
+                "two_leg_parlays_tickets": 300,
+                "three_plus_leg_tickets": 400,
+                "props_tickets": 500
+            },
+            "formula": "n_eff = n / (1 + (k-1)*rho_bar)",
+            "rule": "hold the threshold against n_eff, not raw n"
+        },
+        {
+            "id": "G2",
+            "name": "Skill above variance",
+            "blocking": true,
+            "criteria": [
+                "z_skill >= 1.96 (two-sided 5%)",
+                "bootstrap 95% interval on ROI excludes 0"
+            ],
+            "formula": "z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n_eff)",
+            "reference_break_even": {
+                "-110": 0.5238,
+                "-105": 0.5122,
+                "+100": 0.5
+            }
+        },
+        {
+            "id": "G3",
+            "name": "Calibration",
+            "blocking": true,
+            "criteria": [
+                "brier better than market-implied",
+                "log loss better than market-implied",
+                "reliability slope in [0.85, 1.15]"
+            ]
+        },
+        {
+            "id": "G4",
+            "name": "Robustness",
+            "blocking": true,
+            "criteria": [
+                "edge sign stable across window halves",
+                "leave-one-team-out survives >= 28/32 refits",
+                "edge survives a second independent window",
+                "placebo shuffles do not reproduce edge",
+                "no 3-week block > 50% of profit"
+            ]
+        },
+        {
+            "id": "G5",
+            "name": "Risk of ruin",
+            "blocking": true,
+            "criteria": [
+                "median max drawdown <= 25% of bankroll",
+                "staking rule pre-registered",
+                "survives 50% stake reduction"
+            ],
+            "auto_fail": "unbounded downside with no stated cap"
+        },
+        {
+            "id": "G6",
+            "name": "Economic reality",
+            "blocking": true,
+            "criteria": [
+                "edge survives using only release-time best quote",
+                "stake executable at recorded limit",
+                "all fees inside ROI",
+                "no implausible stake to produce claimed ROI"
+            ]
+        },
+        {
+            "id": "G7",
+            "name": "Correlation discipline",
+            "blocking": true,
+            "applies_to": [
+                "cross_game_parlay",
+                "same_game_parlay",
+                "prop_combo"
+            ],
+            "criteria": [
+                "rho published with interval",
+                "joint probability calibrated on holdout",
+                "n_eff reported",
+                ">6 legs requires separate joint model"
+            ]
+        },
+        {
+            "id": "G8",
+            "name": "Demotion gate (live -> paper)",
+            "blocking": true,
+            "added_by": "session arena-1d3600f8-x1 (additive; existing gates untouched)",
+            "scope": "any strategy whose status is live (funded or paper-promoted)",
+            "triggers": [
+                {
+                    "id": "D1",
+                    "rule": "two consecutive registered windows with negative flat-stake (signal-basis) ROI",
+                    "basis": "signal block of the leaderboard",
+                    "note": "operational form of the scoring rule 'two failed windows demote'"
+                },
+                {
+                    "id": "D2",
+                    "rule": "rolling 300 settled bets: hit rate below break-even with z <= -1.96",
+                    "basis": "signal block",
+                    "note": "skill-below-variance evidence"
+                },
+                {
+                    "id": "D3",
+                    "rule": "max drawdown > 25% of bankroll under the registered staking rule",
+                    "basis": "staking block",
+                    "note": "live breach of G5"
+                },
+                {
+                    "id": "D4",
+                    "rule": "mean CLV negative over the last 100 settled bets",
+                    "basis": "price-snapshot store",
+                    "note": "INACTIVE until a price feed exists (Q-02); recorded here so it cannot be forgotten"
+                },
+                {
+                    "id": "D5",
+                    "rule": "Brier skill score vs market-implied negative in two consecutive windows",
+                    "basis": "G3 calibration in live",
+                    "note": "requires price feed for market-implied benchmark (Q-02)"
+                },
+                {
+                    "id": "D6",
+                    "rule": "any G0 provenance violation (lookahead, unlicensed input, unlogged settlement rule)",
+                    "basis": "G0",
+                    "note": "fires immediately on discovery"
+                }
+            ],
+            "action": {
+                "status_change": "live -> paper, effective at the next settlement batch (immediately for D6)",
+                "positions": "open live positions settle normally; new positions at paper stakes only",
+                "bankroll": "frozen: no additions or removals while demoted",
+                "leaderboard": "status shows 'demoted' with the trigger id; the strategy cannot rank in live leaderboards",
+                "log": "every demotion appended to data/demotion_log.jsonl (strategy, trigger, evidence, window, timestamp)"
+            },
+            "reentry": [
+                "one full shadow window at paper stakes",
+                "pass gates G0-G7 again on the shadow window",
+                "one clean live-probation window before restored standing",
+                "never automatic; re-entry is recorded in the demotion log"
+            ],
+            "authority": "mechanical: triggers fire without discretion. Manual override requires an owner note in COORDINATION.md with reasons."
+        }
+    ],
+    "scoring_rules": [
+        "score only inside the registered window",
+        "passes are logged (a strategy with no denominator is invalid)",
+        "arithmetic (non-compounded) market return",
+        "report raw and top-5%-trimmed ROI together",
+        "champion requires two consecutive qualifying windows",
+        "two failed windows demote; no sitting on old results",
+        "challenger runs a full shadow window before displacing a champion",
+        "all entrants evaluated on identical frozen inputs",
+        "G8 demotion is mechanical: any trigger demotes live -> paper; re-entry only via shadow window + full gate pass (see docs/methodology/demotion-gate.md)"
+    ],
+    "ranking_objective": {
+        "formula": "score = z_skill - lambda*calibration_penalty - mu*drawdown_penalty",
+        "weights": {
+            "lambda": 1.0,
+            "mu": 0.5
+        },
+        "tie_breaks": [
+            "higher n_eff",
+            "lower calibration penalty",
+            "smaller max drawdown",
+            "earlier registration timestamp",
+            "alphabetical"
+        ]
+    },
+    "rewards": {
+        "season_0": "paper league - titles and badges only, no funded pool",
+        "season_1_plus": "requires funded pool, eligibility rules and jurisdiction review (Q-07)",
+        "design_rules": [
+            "reward calibration independently of profit",
+            "no reward for a single hot window",
+            "vacate and log titles later shown invalid",
+            "no pay-to-enter",
+            "fixed max entrants per window"
+        ]
+    }
 }
