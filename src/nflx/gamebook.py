@@ -118,6 +118,12 @@ class GameBook:
     did_not_play: Dict[str, List[PlayerEntry]] = field(default_factory=dict)
     #: ``{team: [PlayerEntry, ...]}`` inactive list.
     not_active: Dict[str, List[PlayerEntry]] = field(default_factory=dict)
+    #: The league's per-team aggregate statistics.
+    team_statistics: Dict[str, Any] = field(default_factory=dict)
+    #: The league's per-player playtime split.
+    playtime: Dict[str, Any] = field(default_factory=dict)
+    #: The published penalty log, grouped by club.
+    penalty_log: Dict[str, List[str]] = field(default_factory=dict)
     notes: List[str] = field(default_factory=list)
 
     def to_dict(self) -> Dict:
@@ -154,6 +160,9 @@ class GameBook:
             "substitutions": {team: dump(players) for team, players in self.substitutions.items()},
             "did_not_play": {team: dump(players) for team, players in self.did_not_play.items()},
             "not_active": {team: dump(players) for team, players in self.not_active.items()},
+            "team_statistics": self.team_statistics,
+            "playtime": self.playtime,
+            "penalty_log": self.penalty_log,
             "notes": self.notes,
         }
 
@@ -180,6 +189,45 @@ def _parse_player_list(text: str) -> List[PlayerEntry]:
                     name=match.group("name").strip(),
                 )
             )
+    return entries
+
+
+#: Positions run to three letters (OLB, ILB) and may be qualified (T/G, 3QB).
+_CELL_MARKER_RE = re.compile(
+    r"(?P<pos>\d?[A-Z]{1,3}(?:/[A-Z])?)\s+(?P<num>\d{1,2}[A-Z]?)\s+"
+)
+
+
+def _split_player_cells(text: str) -> List[PlayerEntry]:
+    """Split a run of player cells into individual entries.
+
+    The game-book text layer writes ``POS NUM Name`` cells back to back. A
+    name never contains a position marker, so the cell boundaries are found
+    by locating each ``POS NUM`` marker and taking the text up to the next.
+    """
+    text = text.strip()
+    if not text:
+        return []
+    markers = list(_CELL_MARKER_RE.finditer(text))
+    if not markers:
+        return []
+    entries: List[PlayerEntry] = []
+    for index, marker in enumerate(markers):
+        start = marker.end()
+        end = markers[index + 1].start() if index + 1 < len(markers) else len(text)
+        name = text[start:end].strip().rstrip(",")
+        # A cell name is a single token; anything after a wide gap belongs to
+        # the neighbouring column.
+        name = re.split(r"\s{2,}", name)[0].strip()
+        if not name:
+            continue
+        entries.append(
+            PlayerEntry(
+                position=marker.group("pos"),
+                number=marker.group("num"),
+                name=name,
+            )
+        )
     return entries
 
 
@@ -272,6 +320,13 @@ def parse_gamebook(text: str) -> GameBook:
     # --- roster blocks --------------------------------------------------
     _parse_roster_blocks(book, lines)
 
+    # --- statistical sections -------------------------------------------
+    from .gamebook_stats import parse_penalty_log, parse_playtime, parse_team_statistics
+
+    book.team_statistics = parse_team_statistics(text, book.visitor, book.home)
+    book.playtime = parse_playtime(text)
+    book.penalty_log = parse_penalty_log(text)
+
     return book
 
 
@@ -312,10 +367,14 @@ def _split_official(value: str) -> Tuple[Optional[str], Optional[str]]:
 def _parse_roster_blocks(book: GameBook, lines: List[str]) -> None:
     """Parse lineups, substitutions, did-not-play and not-active blocks.
 
-    The game book prints the visitor block first, then the home block, each
-    labelled with the club name above the section title.
+    The game book prints a four-column lineup grid:
+
+        visitor offence | visitor defence | home offence | home defence
+
+    and then three two-column roster blocks (substitutions, did-not-play,
+    not-active), each with the visitor on the left and the home team on the
+    right.
     """
-    # The grid: "Offense Defense Offense Defense" then one row per slot.
     grid_index = None
     for index, raw in enumerate(lines[:120]):
         if raw.strip().startswith("Offense Defense Offense Defense"):
@@ -326,26 +385,24 @@ def _parse_roster_blocks(book: GameBook, lines: List[str]) -> None:
         visitor_defense: List[PlayerEntry] = []
         home_offense: List[PlayerEntry] = []
         home_defense: List[PlayerEntry] = []
-        for raw in lines[grid_index + 1 : grid_index + 14]:
+        for raw in lines[grid_index + 1 : grid_index + 16]:
             line = raw.rstrip()
-            if not line.strip():
+            stripped = line.strip()
+            if not stripped:
                 continue
-            if line.strip().startswith("Substitutions"):
+            if stripped.startswith("Substitutions"):
                 break
-            left, right = _split_sides(line)
-            lo = _parse_player_list(left)
-            ld = _parse_player_list(left)
-            # The grid row is: visitorOffense | visitorDefense | homeOffense | homeDefense
-            parts = re.split(r"\s{2,}", line.strip())
-            if len(parts) >= 4:
-                visitor_offense += _parse_player_list(parts[0])
-                visitor_defense += _parse_player_list(parts[1])
-                home_offense += _parse_player_list(parts[2])
-                home_defense += _parse_player_list(parts[3])
-            elif len(parts) == 2:
-                visitor_offense += _parse_player_list(parts[0])
-                home_defense += _parse_player_list(parts[1])
-            del lo, ld
+            # The grid row holds four cells: visitor offence, visitor defence,
+            # home offence, home defence.
+            cells = _split_player_cells(stripped)
+            if len(cells) >= 4:
+                visitor_offense.append(cells[0])
+                visitor_defense.append(cells[1])
+                home_offense.append(cells[2])
+                home_defense.append(cells[3])
+            elif len(cells) == 2:
+                visitor_offense.append(cells[0])
+                home_defense.append(cells[1])
         if book.visitor and book.home:
             book.lineups[book.visitor] = {
                 "offense": visitor_offense,
@@ -360,11 +417,21 @@ def _parse_roster_blocks(book: GameBook, lines: List[str]) -> None:
 
 
 def _parse_paired_block(book: GameBook, lines: List[str], title: str, attribute: str) -> None:
-    """Parse a two-column roster block (visitor left, home right)."""
+    """Parse a two-column roster block (visitor left, home right).
+
+    The block header repeats the title on both sides, for example
+    ``Substitutions Substitutions``. The first line is therefore skipped and
+    the remaining text is split on the column boundary.
+    """
     index = 0
     while index < len(lines):
         if lines[index].strip() == title:
             index += 1
+            # The next non-empty line repeats the title for both columns.
+            while index < len(lines) and not lines[index].strip():
+                index += 1
+            if index < len(lines) and lines[index].strip().startswith(title):
+                index += 1
             left: List[str] = []
             right: List[str] = []
             while index < len(lines):
@@ -373,9 +440,17 @@ def _parse_paired_block(book: GameBook, lines: List[str], title: str, attribute:
                 stripped = line.strip()
                 if not stripped:
                     continue
-                if stripped in ("Did Not Play", "Not Active", "Substitutions", "Field Goals"):
+                if stripped in (
+                    "Did Not Play",
+                    "Not Active",
+                    "Substitutions",
+                    "Field Goals",
+                    "Scoring Plays",
+                ):
                     break
-                if stripped.startswith(("Play Description", "Scoring", "Total", "RUSHING", "PASSING")):
+                if stripped.startswith(
+                    ("Play Description", "Scoring", "Total", "RUSHING", "PASSING", "Field Goals")
+                ):
                     break
                 a, b = _split_sides(line)
                 if a:

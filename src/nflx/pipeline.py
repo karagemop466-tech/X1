@@ -112,33 +112,39 @@ def collect_standings(fetcher: Fetcher, out_dir: Path) -> Dict[str, Any]:
     return provenance.to_dict()
 
 
-def collect_schedule(fetcher: Fetcher, out_dir: Path, weeks: Optional[List[int]] = None) -> Dict[str, Any]:
-    """Collect the official schedule for the season.
+def collect_schedule(fetcher: Fetcher, out_dir: Path, weeks: Optional[List[int]] = None):
+    """Collect the official weekly schedule for the season.
 
-    The weekly pages render the scoreboard client-side, so the schedule data is
-    taken from the league's own embedded game array, which the pages carry for
-    the current season.
+    Each weekly page is read for its published game links and the league's
+    embedded game objects. The game-center URLs are kept because they are the
+    entry point to the official Game Book for each game.
     """
     weeks = weeks or list(range(1, REGULAR_SEASON_WEEKS + 1))
-    all_records: List[Dict[str, Any]] = []
+    by_week: Dict[int, List[Dict[str, Any]]] = {}
     notes: List[str] = []
     retrieved_at = _now()
 
     for week in weeks:
         url = f"https://www.nfl.com/schedules/{SEASON}/by-week/week-{week}"
         try:
-            result = fetcher.get(url, max_age=86400)
+            result = fetcher.get(url, max_age=3600)
         except Exception as exc:
             notes.append(f"week {week}: {exc}")
             continue
         records, _ = parse_schedule(result.text(), result.fetched_at, url, "schedule_week")
-        if not records:
-            # The embedded array is present on the standings page too; fall back
-            # to the league-wide schedule payload for the week.
-            records = _schedule_from_standings_payload(fetcher, week, url, result.fetched_at)
+        # Keep only the games the page attributes to the requested week.
+        selected = []
         for record in records:
+            record_week = str(record.get("week") or "")
+            if record_week and record_week != str(week):
+                continue
             record["week"] = str(week)
-        all_records.extend(records)
+            selected.append(record)
+        by_week[week] = selected
+
+    all_records: List[Dict[str, Any]] = []
+    for week in weeks:
+        all_records.extend(by_week.get(week, []))
 
     provenance = {
         "source_key": "schedule_week",
@@ -149,69 +155,6 @@ def collect_schedule(fetcher: Fetcher, out_dir: Path, weeks: Optional[List[int]]
     }
     _write(out_dir / "schedule.json", {"provenance": provenance, "records": all_records})
     return provenance
-
-
-def _schedule_from_standings_payload(
-    fetcher: Fetcher, week: int, url: str, retrieved_at: str
-) -> List[Dict[str, Any]]:
-    """Read the league's embedded ``nationalGames`` payload.
-
-    The NFL embeds a JSON array of game objects (title, kickoff, game id,
-    week, season) in several pages. It is the same payload the schedule page
-    itself consumes, so it is a primary league source.
-    """
-    import json as _json
-
-    source = SOURCES["standings"]
-    try:
-        result = fetcher.get(source.url, max_age=3600)
-    except Exception:
-        return []
-    html = result.text()
-    marker = "nationalGames=["
-    start = html.find(marker)
-    if start < 0:
-        return []
-    start = html.find("[", start)
-    depth = 0
-    end = -1
-    for index in range(start, len(html)):
-        char = html[index]
-        if char == "[":
-            depth += 1
-        elif char == "]":
-            depth -= 1
-            if depth == 0:
-                end = index + 1
-                break
-    if end < 0:
-        return []
-    try:
-        games = _json.loads(html[start:end])
-    except ValueError:
-        return []
-    records = []
-    for game in games:
-        if str(game.get("Week")) != str(week):
-            continue
-        title = game.get("Title", "")
-        away, _, home = title.partition(" at ")
-        records.append(
-            {
-                "game_id": game.get("GameId"),
-                "title": title,
-                "away_team": away.strip() or None,
-                "home_team": home.strip() or None,
-                "start_time_utc": game.get("StartTime"),
-                "game_territory": game.get("GameTerritory"),
-                "week": str(week),
-                "season": str(game.get("NflSeason")),
-                "source_url": source.url,
-                "source_label": source.title,
-                "retrieved_at": retrieved_at,
-            }
-        )
-    return records
 
 
 def collect_player_stats(fetcher: Fetcher, out_dir: Path) -> Dict[str, Any]:
@@ -277,52 +220,53 @@ def _next_page_url(html: str) -> Optional[str]:
 def collect_gamebooks(
     fetcher: Fetcher,
     out_dir: Path,
-    game_ids: List[str],
+    game_center_urls: List[str],
     source_url: str,
     max_games: int = 60,
 ) -> Dict[str, Any]:
-    """Download and parse official Game Book PDFs for the given game ids.
+    """Download and parse official Game Book PDFs for the given Game Center pages.
 
     The Game Book is the league's own record of the game: lineups, inactives,
-    officials, weather and the full box score.
+    officials, weather and the full box score. It is located from the Game
+    Center page, which publishes the PDF link directly.
     """
     records: List[Dict[str, Any]] = []
     notes: List[str] = []
     fetched = 0
 
-    for game_id in game_ids[:max_games]:
-        page_url = _game_center_url_for(fetcher, game_id)
-        if not page_url:
-            notes.append(f"{game_id}: no Game Center page located")
-            continue
+    for page_url in game_center_urls[:max_games]:
         try:
             page = fetcher.get(page_url, max_age=86400)
         except Exception as exc:
-            notes.append(f"{game_id}: Game Center fetch failed ({exc})")
+            notes.append(f"{page_url}: Game Center fetch failed ({exc})")
             continue
-        links = GAMEBOOK_LINK_RE.findall(page.text())
-        if not links:
-            notes.append(f"{game_id}: no Game Book PDF link on the Game Center page")
+        pdf_url = _gamebook_pdf_url(page.text())
+        if not pdf_url:
+            notes.append(f"{page_url}: no Game Book PDF link published on the page")
             continue
-        pdf_url = page_url.rsplit("/", 1)[0]
-        pdf_url = f"https://static.www.nfl.com/image/upload/v0/gamecenter/{links[0]}.pdf"
-        # The version segment is discovered from the page markup itself.
-        version_match = re.search(
-            r"https://static\.www\.nfl\.com/image/upload/(v[0-9]+)/gamecenter/", page.text()
-        )
-        if version_match:
-            pdf_url = f"https://static.www.nfl.com/image/upload/{version_match.group(1)}/gamecenter/{links[0]}.pdf"
         try:
             pdf = fetcher.get(pdf_url, max_age=86400)
         except Exception as exc:
-            notes.append(f"{game_id}: Game Book PDF fetch failed ({exc})")
+            notes.append(f"{page_url}: Game Book PDF fetch failed ({exc})")
             continue
         text = _extract_pdf_text(pdf.body)
         if not text:
-            notes.append(f"{game_id}: Game Book text layer unavailable")
+            notes.append(f"{page_url}: Game Book text layer unavailable")
+            continue
+        try:
+            book = parse_gamebook(text)
+        except Exception as exc:
+            notes.append(f"{page_url}: Game Book parse failed ({exc})")
             continue
         book = parse_gamebook(text)
         record = book.to_dict()
+        if fetched < 2:
+            # Keep the extracted text layer for a couple of games so the
+            # parser can be developed against the real layout.
+            debug_dir = out_dir / "_debug"
+            debug_dir.mkdir(parents=True, exist_ok=True)
+            (debug_dir / f"gamebook_{fetched}.layout.txt").write_text(text, encoding="utf-8")
+        game_id = _game_id_from_pdf_url(pdf_url)
         record.update(
             {
                 "game_id": game_id,
@@ -335,8 +279,8 @@ def collect_gamebooks(
         )
         records.append(record)
         fetched += 1
-        print(f"  game book {fetched}: {record.get('matchup')} ({record.get('visitor_points')}-"
-              f"{record.get('home_points')})")
+        print(f"  game book {fetched}: {record.get('matchup')} "
+              f"({record.get('visitor_points')}-{record.get('home_points')})")
 
     provenance = {
         "source_key": "game_book",
@@ -349,43 +293,15 @@ def collect_gamebooks(
     return provenance
 
 
-GAME_CENTER_RE = re.compile(
-    r'"GameId":"(?P<gid>[0-9a-f\-]+)".*?"Title":"(?P<title>[^"]+)"', re.IGNORECASE
-)
+def _gamebook_pdf_url(html_text: str) -> Optional[str]:
+    """The Game Center page publishes the Game Book PDF URL directly."""
+    match = GAMEBOOK_LINK_RE.search(html_text)
+    return match.group(0) if match else None
 
 
-def _game_center_url_for(fetcher: Fetcher, game_id: str) -> Optional[str]:
-    """Build a Game Center URL for a game id.
-
-    NFL game-center URLs are ``/games/<away>-at-<home>-<season>-<season-type>-<week>``.
-    The slug cannot be derived from the id alone, so the weekly schedule page is
-    used to map id -> slug. The mapping is cached for the life of the process.
-    """
-    slug = _slug_cache.get(game_id)
-    if slug:
-        return slug
-    for week in range(1, REGULAR_SEASON_WEEKS + 1):
-        url = f"https://www.nfl.com/schedules/{SEASON}/by-week/week-{week}"
-        try:
-            page = fetcher.get(url, max_age=86400)
-        except Exception:
-            continue
-        text = page.text()
-        index = text.find(game_id)
-        if index < 0:
-            continue
-        # The anchor immediately preceding the game id in the markup is the
-        # Game Center link for that game.
-        window = text[max(0, index - 6000) : index + 6000]
-        anchors = re.findall(r'href="(/games/[^"]+)"', window)
-        if anchors:
-            slug = "https://www.nfl.com" + anchors[-1]
-            _slug_cache[game_id] = slug
-            return slug
-    return None
-
-
-_slug_cache: Dict[str, str] = {}
+def _game_id_from_pdf_url(url: str) -> Optional[str]:
+    match = GAMEBOOK_LINK_RE.search(url)
+    return match.group("gid") if match else None
 
 
 # ---------------------------------------------------------------------------
@@ -422,20 +338,20 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not args.skip_gamebooks:
         print("[5/5] official game books")
         schedule_path = out_dir / "schedule.json"
-        game_ids: List[str] = []
+        game_center_urls: List[str] = []
         if schedule_path.exists():
             payload = json.loads(schedule_path.read_text(encoding="utf-8"))
             seen = set()
             for record in payload.get("records", []):
-                gid = record.get("game_id")
-                if gid and gid not in seen:
-                    seen.add(gid)
-                    game_ids.append(gid)
+                url = record.get("game_center_url")
+                if url and url not in seen:
+                    seen.add(url)
+                    game_center_urls.append(url)
         manifest["datasets"].append(
             collect_gamebooks(
                 fetcher,
                 out_dir,
-                game_ids,
+                game_center_urls,
                 SOURCES["game_book"].url,
                 max_games=args.max_gamebooks,
             )
