@@ -73,6 +73,26 @@ def build_depth(data_dir: Path, out_dir: Path) -> Dict[str, Any]:
         retrieved_at=(injuries_dataset or {}).get("provenance", {}).get("retrieved_at", ""),
     )
     summary = summarize_deficiency(records)
+
+    chart_records = []
+    for club, chart in sorted(charts.items()):
+        chart_records.append(
+            {
+                "club": club,
+                "games_sampled": chart.games_sampled,
+                "offense": {
+                    group: [player.to_dict() for player in players]
+                    for group, players in chart.offense.items()
+                },
+                "defense": {
+                    group: [player.to_dict() for player in players]
+                    for group, players in chart.defense.items()
+                },
+                "source_url": SOURCES["game_book"].url,
+                "source_label": SOURCES["game_book"].title,
+                "retrieved_at": (gamebooks_dataset or {}).get("provenance", {}).get("retrieved_at", ""),
+            }
+        )
     provenance = {
         "source_key": "injuries_current",
         "source_url": SOURCES["injuries_current"].url,
@@ -83,7 +103,12 @@ def build_depth(data_dir: Path, out_dir: Path) -> Dict[str, Any]:
             f"Summary: {json.dumps(summary)}",
         ],
     }
-    payload = {"provenance": provenance, "records": records, "summary": summary}
+    payload = {
+        "provenance": provenance,
+        "records": records,
+        "summary": summary,
+        "charts": chart_records,
+    }
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "depth.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return payload

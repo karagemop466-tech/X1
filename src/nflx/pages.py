@@ -775,6 +775,52 @@ def render_correlation(ctx: BuildContext) -> str:
 # ---------------------------------------------------------------------------
 # availability
 # ---------------------------------------------------------------------------
+def _depth_chart_table(ctx: BuildContext) -> str:
+    """Render each club's depth chart, ordered by the league's own snaps."""
+    charts = (ctx.depth or {}).get("charts") or []
+    if not charts:
+        return (
+            '<div class="note note--warn">No depth chart is published because no '
+            "official game book could be parsed for the current run.</div>"
+        )
+
+    rows = []
+    for chart in charts:
+        for side, table in (("Offence", chart.get("offense", {})), ("Defence", chart.get("defense", {}))):
+            for group in sorted(table):
+                for order, player in enumerate(table[group], start=1):
+                    rows.append(
+                        [
+                            esc(chart.get("club", "")),
+                            esc(side),
+                            esc(group),
+                            str(order),
+                            esc(player.get("name", "")),
+                            esc(player.get("position")),
+                            str(player.get("starts", 0)),
+                            str(player.get("snaps", 0)),
+                            str(player.get("appearances", 0)),
+                            source_link(chart.get("source_url"), "game book"),
+                        ]
+                    )
+    return Table(
+        caption=f"Depth charts - {len(charts)} clubs, ordered by the league's own playtime record",
+        headers=[
+            "Club",
+            "Side",
+            "Position group",
+            "Depth order",
+            "Player",
+            "Pos",
+            "Starts",
+            "Snaps",
+            "Games appeared",
+            "Source",
+        ],
+        rows=rows,
+    ).to_html()
+
+
 def render_availability(ctx: BuildContext) -> str:
     injuries = ctx.injury_records
     depth = ctx.depth_records
@@ -867,18 +913,19 @@ def render_availability(ctx: BuildContext) -> str:
             note(
                 "The injury report says <b>who</b> is unavailable. The official "
                 "game book says <b>who played</b>: it lists the starting eleven "
-                "for both teams, the substitution list, the did-not-play list and "
-                "the inactive list. Joining the two gives the replacement who "
-                "must take the slot, and therefore which string of the depth "
-                "chart absorbs the absence. A 1st string replaced by the 2nd "
-                "string is a depth deficit of 1; a 4th string absorbing it is a "
-                "deficit of 3. Nothing about how much production is lost is "
-                "claimed here - that is an estimate, and it is listed as an open "
-                "item."
+                "for both teams, the substitution list, the did-not-play list, "
+                "the inactive list and the league's own per-player playtime "
+                "percentages. Joining the two gives the replacement who must "
+                "take the slot, and therefore which string of the depth chart "
+                "absorbs the absence. A 1st string replaced by the 2nd string is "
+                "a depth deficit of 1; a 4th string absorbing it is a deficit "
+                "of 3. Nothing about how much production is lost is claimed "
+                "here - that is an estimate, and it is listed as an open item."
             ),
         ),
         section("Summary by club", summary),
         section("Starter absence and replacement", depth_table),
+        section("Depth charts by club", _depth_chart_table(ctx)),
         section("Full official injury report", full_table),
     ]
     return page(
