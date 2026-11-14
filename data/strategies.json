@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "Strategy register",
+    "retrieved_at": "2026-11-14",
+    "status": "NO STRATEGIES REGISTERED YET",
+    "reason": "A strategy cannot be registered without a scored window (Q-12), a settlement rule (Q-03) and licensed inputs (Q-01/Q-02). Registering one now would create a result that cannot be graded.",
+    "rule": "Every registered strategy appears here, including those with zero bets (no survivorship)."
+  },
+  "schema": [
+    "id",
+    "name",
+    "division",
+    "shape",
+    "hypothesis",
+    "falsifier",
+    "features",
+    "gates",
+    "test_window",
+    "registered_at",
+    "model_hash",
+    "n_tickets",
+    "n_eff",
+    "z_skill",
+    "calibration_penalty",
+    "max_drawdown",
+    "roi",
+    "roi_trimmed_top5pct",
+    "gate_results",
+    "status"
+  ],
+  "divisions": [
+    {
+      "id": "singles",
+      "entry_bar": 500
+    },
+    {
+      "id": "parlays_2_3",
+      "entry_bar": 300
+    },
+    {
+      "id": "prop_combos_samegame",
+      "entry_bar": 400
+    },
+    {
+      "id": "props_single",
+      "entry_bar": 500
+    }
+  ],
+  "strategies": []
+}

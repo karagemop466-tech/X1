@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leaderboard — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a class="active" href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="sources.html">Sources</a>
+      <a href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ LEADERBOARD</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">COMPETITION</div>
+  <h1>Strategy leaderboard</h1>
+  <p>A competition designed so the top of the board contains things that will keep working — and so the second-best
+  thing (variance) is visible instead of hidden.</p>
+</section>
+<section class="content">
+  <div class="alert small">
+    <b>Status: no strategies are registered, and the board is empty by design.</b>
+    <p>A strategy cannot be registered without a scored window (Q-12), a settlement rule (Q-03) and licensed inputs (Q-01/Q-02). Registering one now would create a result that cannot be graded.</p>
+  </div>
+
+  <h2>Divisions</h2>
+  <p>Split by bet shape because the statistics genuinely differ — not as a fairness gesture.</p>
+  <div class="tablewrap"><table class=""><thead><tr><th>Division</th><th>Entry bar</th></tr></thead><tbody>
+<tr><td>singles</td><td>500 tickets/bets minimum</td></tr>
+<tr><td>parlays_2_3</td><td>300 tickets/bets minimum</td></tr>
+<tr><td>prop_combos_samegame</td><td>400 tickets/bets minimum</td></tr>
+<tr><td>props_single</td><td>500 tickets/bets minimum</td></tr>
+</tbody></table></div>
+  <table class="kv">
+    <thead><tr><th>Shape</th><th>Why it is its own division</th></tr></thead>
+    <tbody>
+      <tr><td>Singles</td><td>Lowest variance per ticket; needs the biggest sample to say anything</td></tr>
+      <tr><td>Parlays (2–3 legs)</td><td>Variance rises and margin compounds</td></tr>
+      <tr><td>Prop combos (same game, ≥2 legs)</td><td>Dependence makes the raw ticket count misleading — n_eff rules</td></tr>
+      <tr><td>Single props</td><td>Distribution modelling differs from game markets</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How ranking works</h2>
+  <div class="formula"><code>score = z_skill - lambda*calibration_penalty - mu*drawdown_penalty</code>
+  <code>z_skill = (p̂ − p_break) / sqrt(p̂(1−p̂)/n_eff)</code></div>
+  <p>Rank by skill measured in units of its own uncertainty — never by raw ROI, which is a magnitude, not evidence.</p>
+
+  <h2>Rewards — structure now, money later</h2>
+  <table class="kv">
+    <thead><tr><th>Reward</th><th>Season 0 (paper league)</th><th>Season 1 onward</th></tr></thead>
+    <tbody>
+      <tr><td>Champion, per division</td><td>Title + badge only</td><td>Requires a funded pool</td></tr>
+      <tr><td>Runner-up</td><td>Badge</td><td>Requires a funded pool</td></tr>
+      <tr><td>Most improved</td><td>Badge</td><td>Requires a funded pool</td></tr>
+      <tr><td>Best calibration</td><td>Badge, awarded even without profit</td><td>Recommended to stay non-cash</td></tr>
+    </tbody>
+  </table>
+  <h3>Design rules that stop the board rewarding luck</h3>
+  <ul class="checks">
+    <li><b>Reward calibration independently of profit.</b> A well-calibrated strategy that loses to margin is doing the hard part right.</li>
+    <li><b>No reward for a single hot window.</b> Champion needs two consecutive qualifying windows.</li>
+    <li><b>Clawback.</b> A title later shown to rest on a data error or rule violation is vacated, publicly.</li>
+    <li><b>No pay-to-enter.</b> Charging entry while running the book side invites a regulatory classification nobody here can answer.</li>
+    <li><b>Fixed maximum entrants</b> per window, declared before it opens.</li>
+  </ul>
+
+  <h2>Anti-gaming rules</h2>
+  <table class="kv">
+    <thead><tr><th>Attack</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td>Cherry-picked start date</td><td>The window is fixed by the calendar, never by the entrant</td></tr>
+      <tr><td>Re-registering a failed strategy under a new name</td><td>Strategy hash covers inputs and features; duplicates are rejected</td></tr>
+      <tr><td>Playing only soft numbers</td><td>Gate 6 uses only release-time quotes</td></tr>
+      <tr><td>Undefined settlement</td><td>Ticket invalid without a recorded rule</td></tr>
+      <tr><td>Backfilled forecasts</td><td>Forecasts must be timestamped before kickoff; late writes are voided</td></tr>
+      <tr><td>Survivorship in reporting</td><td>Every registered strategy is listed, including ones with zero bets</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Registered strategies</h2>
+  <div class="empty">
+    <b>0 strategies.</b>
+    <p>An honest empty leaderboard is worth more than a populated fake one. When the first strategy is registered, its
+    pre-registration file, gate-by-gate results and both raw and trimmed ROI will appear here.</p>
+  </div>
+
+  <h2>Row schema (published in advance)</h2>
+  <p>Every future row must fill these fields. A blank field means the row cannot be marked <code>published</code>.</p>
+  <div class="chips"><span class="chip"><code>id</code></span><span class="chip"><code>name</code></span><span class="chip"><code>division</code></span><span class="chip"><code>shape</code></span><span class="chip"><code>hypothesis</code></span><span class="chip"><code>falsifier</code></span><span class="chip"><code>features</code></span><span class="chip"><code>gates</code></span><span class="chip"><code>test_window</code></span><span class="chip"><code>registered_at</code></span><span class="chip"><code>model_hash</code></span><span class="chip"><code>n_tickets</code></span><span class="chip"><code>n_eff</code></span><span class="chip"><code>z_skill</code></span><span class="chip"><code>calibration_penalty</code></span><span class="chip"><code>max_drawdown</code></span><span class="chip"><code>roi</code></span><span class="chip"><code>roi_trimmed_top5pct</code></span><span class="chip"><code>gate_results</code></span><span class="chip"><code>status</code></span></div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source
+  </footer>
+</main>
+</body>
+</html>

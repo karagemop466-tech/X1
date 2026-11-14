@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a class="active" href="sources.html">Sources</a>
+      <a href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ SOURCES</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">PROVENANCE</div>
+  <h1>Sources &amp; verification protocol</h1>
+  <p>Every published value points at one of these sources. If a source is not on this page, a value derived from it
+  does not belong in a table.</p>
+</section>
+<section class="content">
+  <h2>Verification tiers</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Tier</th><th>Meaning</th><th>May populate a data table?</th></tr></thead><tbody>
+<tr><td>&lt;b&gt;A&lt;/b&gt;</td><td>Official league page (nfl.com, operations.nfl.com, rulebook)</td><td>Yes</td></tr>
+<tr><td>&lt;b&gt;B&lt;/b&gt;</td><td>Official club page, where the club labels the content self-reported or unofficial</td><td>Yes — labelled B on the row</td></tr>
+<tr><td>&lt;b&gt;C&lt;/b&gt;</td><td>Derived by this repository&#x27;s own documented join of A/B inputs</td><td>Yes — labelled C and reproducible</td></tr>
+<tr><td>&lt;b&gt;D&lt;/b&gt;</td><td>Independent secondary (news outlet, aggregator)</td><td>&lt;b&gt;No&lt;/b&gt; — corroboration only</td></tr>
+</tbody></table></div>
+  <p>The build refuses a tier-D URL in a data row. That is how the rule survives contact with deadlines.</p>
+
+  <h2>Tier A — official league sources used</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Source</th><th>Used for</th><th>Link</th></tr></thead><tbody>
+<tr><td>NFL.com division standings</td><td>32-team records, division groups, PF/PA, splits, streaks</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com conference standings</td><td>conference grouping and rank order</td><td><a class="src-link" href="https://www.nfl.com/standings/conference/2026/REG" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com week-10 schedule</td><td>14 games, times, networks, byes, final score</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com injury report (week 10)</td><td>345 player rows</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com injury report (index)</td><td>practice-day structure; in-week mutation</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com teams index</td><td>16 NFC / 16 AFC split</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com team page — Bills</td><td>division name for a printed group</td><td><a class="src-link" href="https://www.nfl.com/teams/buffalo-bills/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com team page — Rams</td><td>NFC West membership</td><td><a class="src-link" href="https://www.nfl.com/teams/los-angeles-rams/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com playoff predictions</td><td>all eight divisions and member clubs</td><td><a class="src-link" href="https://www.nfl.com/news/2026-nfl-playoff-predictions-picking-every-division-winner-and-wild-card-team-at-midseason" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com game page</td><td>grading source for a final score</td><td><a class="src-link" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL Football Operations rulebook (2026)</td><td>game rules; shows the rulebook does not settle wagering</td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL Gambling Policy for Personnel (2022 PDF)</td><td>eligibility and integrity constraints</td><td><a class="src-link" href="https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com news — Drew Lock to start</td><td>corroborates SEA QB replacement</td><td><a class="src-link" href="https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com news roundup — Lamar Jackson to IR</td><td>corroborates BAL QB change</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>NFL.com news — gambling policy education</td><td>league integrity posture</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+</tbody></table></div>
+  <h2>Tier B — official club sources used</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Source</th><th>Used for</th><th>Link</th></tr></thead><tbody>
+<tr><td>Buffalo Bills depth chart</td><td>BUF depth order</td><td><a class="src-link" href="https://www.buffalobills.com/team/depth-chart" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>Seattle Seahawks depth chart</td><td>SEA depth order</td><td><a class="src-link" href="https://www.seahawks.com/team/depth-chart/" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>Detroit Lions depth chart</td><td>DET depth order — printed “Unofficial”</td><td><a class="src-link" href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>Green Bay Packers depth chart</td><td>GB depth order — printed “Unofficial, Nov. 10, 2026”</td><td><a class="src-link" href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>Baltimore Ravens depth chart</td><td>BAL depth order</td><td><a class="src-link" href="https://www.baltimoreravens.com/team/depth-chart" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+</tbody></table></div>
+  <h2>Tier D — corroboration only (never enters a data row)</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Source</th><th>Used for</th><th>Link</th></tr></thead><tbody>
+<tr><td>ESPN Cardinals team page</td><td>corroboration of the AZ 3-6 correction</td><td><a class="src-link" href="https://www.espn.com/nfl/team/_/name/ari/arizona-cardinals" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+<tr><td>FOX Sports Cardinals standings</td><td>corroboration of the AZ 3-6 correction</td><td><a class="src-link" href="https://www.foxsports.com/nfl/arizona-cardinals-team-standings" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Sources that do not exist, and the consequences</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Source we wanted</th><th>Reality</th><th>Consequence</th></tr></thead><tbody>
+<tr><td>League-wide official depth chart</td><td>Not published by the league</td><td>No 2nd/3rd-string claim can be tier A</td></tr>
+<tr><td>Official snap-count feed</td><td>Requires a licence</td><td>Snap-share fragility is uncomputable (Q-04)</td></tr>
+<tr><td>Official historical odds</td><td>Requires a licence</td><td>No edge, EV or CLV (Q-02)</td></tr>
+<tr><td>Official correlation dataset</td><td>Not a product that exists</td><td>ρ cannot be published (Q-10)</td></tr>
+</tbody></table></div>
+
+  <h2>Re-verification procedure</h2>
+  <ol class="route">
+    <li>Open the row's source link.</li>
+    <li>Confirm the entity, then the value.</li>
+    <li>If the official page prints nothing, the cell must be blank. A filled cell with no printed source is a defect — raise a flag.</li>
+    <li>If the official page disagrees with our row, the page wins and the row is corrected with a note.</li>
+    <li>For derived rows, re-run <code>python3 tools/build_availability.py</code> and confirm identical output.</li>
+    <li>For any table, run <code>python3 tools/verify_data.py</code>; it must print <code>all integrity checks passed</code>.</li>
+  </ol>
+
+  <h2>What verification does not prove</h2>
+  <div class="note">
+    <p>An integrity suite catches arithmetic and join errors. It cannot catch a plausible wrong number typed from the
+    wrong row. One such error <i>was</i> caught here only because the arithmetic happened to break (F-08). The remaining
+    defence is a second independent transcription pass, which is <a href="suggestions.html">suggestion S-10</a> and has
+    <b>not</b> been done.</p>
+  </div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source
+  </footer>
+</main>
+</body>
+</html>

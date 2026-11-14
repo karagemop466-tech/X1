@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a class="active" href="index.html">Overview</a>
+      <a href="pages/executive-summary.html">Executive summary</a>
+      <a href="pages/standings.html">Standings</a>
+      <a href="pages/schedule.html">Week 10</a>
+      <a href="pages/availability.html">Availability</a>
+      <a href="pages/line-origination.html">Line origination</a>
+      <a href="pages/validation.html">Validation gates</a>
+      <a href="pages/leaderboard.html">Leaderboard</a>
+      <a href="pages/correlation.html">Correlation</a>
+      <a href="pages/decisions.html">Decision register</a>
+      <a href="pages/suggestions.html">Suggestions</a>
+      <a href="pages/flagged.html">Flagged for review</a>
+      <a href="pages/sources.html">Sources</a>
+      <a href="pages/review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ OVERVIEW</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="hero">
+  <div class="herotext">
+    <div class="eyebrow">DECISION SUPPORT · SEASON 0</div>
+    <h1>Originate the number.<br><em>Then prove it.</em></h1>
+    <p class="lede">A working lab for building our own NFL lines: verified official data at the base,
+    a pre-registered validation gauntlet in the middle, and a leaderboard that rewards skill rather
+    than a hot streak — with every unproven claim left visibly empty.</p>
+    <div class="cta">
+      <a class="btn" href="pages/executive-summary.html">Read the executive summary <b>→</b></a>
+      <a class="btn ghost" href="pages/flagged.html">Review the 12 open flags</a>
+    </div>
+  </div>
+  <div class="herocard">
+    <div class="eyebrow">WHAT IS ACTUALLY VERIFIED</div>
+    <div class="stat"><strong>32</strong><span>teams transcribed</span><span class="statnote">nfl.com standings</span></div>
+    <div class="stat"><strong>14</strong><span>week 10 games</span><span class="statnote">nfl.com schedule</span></div>
+    <div class="stat"><strong>345</strong><span>official injury rows</span><span class="statnote">nfl.com injury report</span></div>
+    <div class="stat"><strong>8</strong><span>listed starters ruled Out</span><span class="statnote">derived, 5-club pilot</span></div>
+  </div>
+</section>
+
+<section class="alert">
+  <b>Evidence boundary.</b>
+  <p>This release publishes <strong>no prices, no correlations and no strategy results</strong>. Those require a
+  licensed odds feed, licensed snap counts and a scored window, none of which exist here yet.
+  What it does publish — standings, the week-10 slate, the official injury report and a five-club
+  depth-chart pilot — is transcribed row by row from official pages and re-checked by
+  2,944 automated assertions.</p>
+  <a href="pages/sources.html">How verification works →</a>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">AT A GLANCE</div><h2>Choose where to look</h2></div><span class="tag">SNAPSHOT 2026-11-14</span></section>
+<section class="cards">
+  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, plus every week-10 game with byes and a final score where one exists.</p><span class="more">Open tables →</span></a>
+  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>35 officially listed starters sit on the week-10 report. Who replaces them is only knowable from club charts — and those are self-labelled unofficial.</p><span class="more">See the join →</span></a>
+  <a class="card" href="pages/line-origination.html"><span class="ico">◎</span><small>METHOD / 03</small><h3>Line origination</h3><p>The pipeline from frozen inputs to a fair price, the seven signal families, and the prop model that must not assume independence.</p><span class="more">Read the method →</span></a>
+  <a class="card" href="pages/validation.html"><span class="ico">✓</span><small>METHOD / 04</small><h3>Validation gates</h3><p>Seven pre-registered gates. A 55% record over 500 bets scores z≈1.22 — inside coin-flip range. Here is the arithmetic that removes luck.</p><span class="more">See the gates →</span></a>
+  <a class="card" href="pages/leaderboard.html"><span class="ico">↗</span><small>COMPETITION / 05</small><h3>Strategy leaderboard</h3><p>Four divisions, rank by skill not ROI, effective sample size for correlated tickets, and rewards that do not crown luck.</p><span class="more">See the design →</span></a>
+  <a class="card" href="pages/decisions.html"><span class="ico">?</span><small>DECISIONS / 06</small><h3>18 questions to answer</h3><p>What we know, what we do not, and what has to be decided before any strategy can honestly be scored.</p><span class="more">Open the register →</span></a>
+</section>
+
+<section class="duo">
+  <div class="panel">
+    <div class="eyebrow">EXECUTIVE SUMMARY</div>
+    <h2>Five findings that change the plan</h2>
+    <ol class="findings">
+      <li><b>No league-wide official depth chart exists.</b> Clubs publish their own; Detroit and Green Bay literally print “unofficial”. So “2nd-string replacement” is a club self-report, not a league fact.</li>
+      <li><b>“Starter” is a definition, not a lookup.</b> We define it mechanically — printed in column 1 — so the definition can be re-run and audited.</li>
+      <li><b>55% is not skill.</b> At −110 the break-even is 52.38%; 55.1% over 500 bets is z≈1.22.</li>
+      <li><b>Parlay margin compounds.</b> At −110 one leg carries a 4.55% hold; five legs carry 20.75% (≈4.6×). And assuming independence across two dependent 50% legs with ρ=0.30 misprices a +264 ticket by +18.5% in the bettor's favour.</li>
+      <li><b>Verification caught our own error.</b> Arizona was typed 2–6; the official page prints 3–6. The gate rejected it and the correction is public (F-08).</li>
+    </ol>
+    <a class="more" href="pages/executive-summary.html">Full summary →</a>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">BEFORE ANY DECISION</div>
+    <h2>The three blockers</h2>
+    <div class="blocker"><span class="pill high">Q-01</span><div><b>Data licence</b><p>Without the right to ingest play-by-play, snaps and odds, only officially published aggregates can be shown.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-02</span><div><b>Odds feed</b><p>No market benchmark means no edge, no expected value and no closing-line value.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-05</span><div><b>Definition of “starter”</b><p>Everything about 2nd/3rd/4th string exposure rests on a definition the league does not supply.</p></div></div>
+    <p class="muted">The other 15 open questions are listed with the information already held and what would settle each one.</p>
+    <a class="more" href="pages/decisions.html">Decision register →</a>
+  </div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source
+  </footer>
+</main>
+</body>
+</html>

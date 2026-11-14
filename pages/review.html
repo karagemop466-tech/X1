@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repo review — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="sources.html">Sources</a>
+      <a class="active" href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ REPO REVIEW</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">REPOSITORY</div>
+  <h1>Repo review</h1>
+  <p>Line-by-line review of the repository as found, the state of the parallel sessions, and every defect this release
+  found and fixed — including its own.</p>
+</section>
+<section class="content">
+  <h2>State found at session start</h2>
+  <p>Base commit <code>dab199c</code> contained exactly one 4-byte file (<code>README.md</code> = “# X1”). No application,
+  no data, no tests, no workflow, no documents. Everything in this release is new.</p>
+  <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Finding</th><th>Severity</th><th>Note</th></tr></thead><tbody>
+<tr><td>R-01</td><td>README.md was 4 bytes (“# X1”); nothing else tracked</td><td>info</td><td>Confirmed with &lt;code&gt;git ls-tree -r dab199c&lt;/code&gt;</td></tr>
+<tr><td>R-02</td><td>No LICENSE file</td><td>medium</td><td>Redistribution terms for ingested NFL data undefined — relates to Q-01</td></tr>
+<tr><td>R-03</td><td>No .gitignore</td><td>low</td><td>Risk of committing generated artifacts; addressed in this release</td></tr>
+<tr><td>R-04</td><td>No CI</td><td>medium</td><td>Nothing prevented a broken page from deploying; addressed by a workflow</td></tr>
+</tbody></table></div>
+
+  <h2>Other sessions on the same repository</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Branch</th><th>Commits</th><th>Files pushed</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>arena/a78e0158-x1</td><td>2</td><td>COORDINATION.md, README.md only</td><td>Board marks T1–T9 &lt;b&gt;done&lt;/b&gt; and states all tasks completed, but no &lt;code&gt;docs/&lt;/code&gt;, &lt;code&gt;data/&lt;/code&gt;, &lt;code&gt;site/&lt;/code&gt;, &lt;code&gt;code/&lt;/code&gt; or workflow exists on the branch. No PR opened. Completion claim not supported by contents.</td></tr>
+<tr><td>arena/226be516-x1</td><td>2</td><td>COORDINATION.md, README.md only</td><td>Claim logged; no content pushed at review time</td></tr>
+<tr><td>arena/6f377170-x1</td><td>2</td><td>5 HTML pages, CSS, Pages workflow</td><td>Coherent design specification; states plainly that no NFL facts are presented</td></tr>
+</tbody></table></div>
+  <div class="note"><b>Why this matters:</b> a board that marks work “done” without artifacts is the most dangerous
+  state in a shared repository, because it invites a later session to skip verification. It is reclassified as
+  <code>needs review</code> in <code>COORDINATION.md</code> and recorded as flag F-07. No session's branch was
+  force-pushed over.</div>
+
+  <h2>What was verified, and how</h2>
+  <table class="kv">
+    <thead><tr><th>Table</th><th>Rows</th><th>How each row was checked</th></tr></thead>
+    <tbody>
+      <tr><td>Standings</td><td>32</td><td>Read from the official page, then <code>W+L+T≤10</code>, <code>PCT=(W+.5T)/G</code>, <code>NET=PF−PA</code>, 4 clubs per division, ranks 1–4 unique, league-wide home/road identities, conference symmetry</td></tr>
+      <tr><td>Week 10 schedule</td><td>14</td><td>Real clubs, no club twice, byes equal CHI/DEN/PHI/TB, unplayed games carry blank scores</td></tr>
+      <tr><td>Injury report</td><td>345</td><td>Game on the schedule, real team, practice status in the three official strings, game status in the four official strings, player link is an nfl.com player page, all 28 participating clubs present</td></tr>
+      <tr><td>Depth pilot</td><td>113</td><td>Depth order contiguous 1..n, source URL recorded, “unofficial” label captured verbatim</td></tr>
+    </tbody>
+  </table>
+  <p>Mechanical checks total <b>2,944</b> and must all pass before publication.</p>
+
+  <h2>Defects found and fixed during this review</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Defect</th><th>How it was caught</th><th>Resolution</th></tr></thead><tbody>
+<tr><td>D-01</td><td>Arizona transcribed as &lt;b&gt;2–6&lt;/b&gt;</td><td>&lt;code&gt;PCT=(W+0.5T)/G&lt;/code&gt; gate: 2-6 implies .250; page printed .333</td><td>Corrected to &lt;b&gt;3–6&lt;/b&gt;; corroborated by ESPN and FOX; published as F-08</td></tr>
+<tr><td>D-02</td><td>Verification asserted each division&#x27;s home records must balance</td><td>Failed on 7 of 8 divisions</td><td>The assertion was wrong, not the data. Removed and replaced with the correct league-wide identity</td></tr>
+<tr><td>D-03</td><td>Verification asserted &lt;code&gt;home W = road W&lt;/code&gt; league-wide</td><td>Failed 67 vs 69</td><td>Wrong identity; correct one is &lt;code&gt;home W = road L&lt;/code&gt; (67=67), verified numerically first</td></tr>
+</tbody></table></div>
+  <p class="muted">D-02 and D-03 are recorded because a verification suite quietly weakened to pass is worse than no
+  suite. Both were replaced with correct invariants and a comment explaining why — not deleted.</p>
+
+  <h2>Things a reviewer should not trust yet</h2>
+  <table class="kv">
+    <thead><tr><th>Item</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Depth rows outside the five pilot clubs</td><td>Not collected; blank by design</td></tr>
+      <tr><td>Any implication that a “listed starter” takes the first snap</td><td>Club charts are self-described unofficial and go stale; inactives are announced ~90 minutes before kickoff</td></tr>
+      <tr><td>Freshness</td><td>Snapshot dated 2026-11-14; the injury report changes daily</td></tr>
+      <tr><td>Anything numeric about edges, prices or correlations</td><td>Does not exist in this repository</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Recommended next review actions</h2>
+  <ol class="route">
+    <li>Re-read one table — start with standings — against the live official page as an independent pass (S-10).</li>
+    <li>Decide Q-01 and Q-02; almost every quantitative page is downstream of those two.</li>
+    <li>Add a <code>LICENSE</code>; its absence is a real risk for a project that ingests third-party data (R-02).</li>
+  </ol>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source
+  </footer>
+</main>
+</body>
+</html>

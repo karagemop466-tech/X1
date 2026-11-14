@@ -1,0 +1,45 @@
+name: verify-site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild derived availability table
+        run: python3 tools/build_availability.py
+
+      - name: Fail if the derived table is stale
+        run: git diff --exit-code -- data/nfl/availability_derived.tsv
+
+      - name: Line-by-line integrity checks
+        run: python3 tools/verify_data.py
+
+      - name: Rebuild the site
+        run: python3 tools/build_site.py
+
+      - name: Fail if committed HTML is stale
+        run: git diff --exit-code -- index.html pages
+
+      - name: Link and structure check
+        run: python3 tools/check_links.py
+
+      - name: Validate JSON registers
+        run: |
+          for f in data/*.json; do
+            python3 -c "import json,sys; json.load(open('$f')); print('ok $f')"
+          done

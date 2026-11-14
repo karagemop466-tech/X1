@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Flagged for Review",
+    "retrieved_at": "2026-11-14",
+    "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
+    "counts": { "total": 12, "blocks_release": 0 }
+  },
+  "flags": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "category": "Data availability",
+      "item": "No league-wide official depth chart exists.",
+      "verified": "nfl.com publishes team rosters and schedules, but no league-wide starter/backup chart. Individual clubs publish charts on their own sites.",
+      "unknown": "Whether a club chart is authoritative. Detroit's page says '2026 Unofficial Depth Chart'; Green Bay's says 'Unofficial, Nov. 10, 2026'.",
+      "settles_it": "Owner decision Q-05 on the acceptable verification tier; or a licensed depth feed.",
+      "source_url": "https://www.detroitlions.com/team/depth-chart",
+      "source_label": "Detroit Lions — 'Unofficial Depth Chart'"
+    },
+    {
+      "id": "F-02",
+      "severity": "high",
+      "category": "Coverage gap",
+      "item": "Depth charts collected for 5 of 32 clubs only.",
+      "verified": "BUF, SEA, DET, GB and BAL charts were read and transcribed row by row on 2026-11-14.",
+      "unknown": "The remaining 27 clubs. Their depth fields are deliberately blank, not inferred.",
+      "settles_it": "Q-14: extend capture to all 32 clubs under a stated cadence.",
+      "source_url": "https://www.buffalobills.com/team/depth-chart",
+      "source_label": "Buffalo Bills depth chart (one of five captured)"
+    },
+    {
+      "id": "F-03",
+      "severity": "high",
+      "category": "No market data",
+      "item": "No odds, prices or historical lines exist in this repository.",
+      "verified": "Nothing in the repo contains a price. NFL.com articles cite a commercial book with a timestamp, which is a third-party snapshot and not a licensed feed.",
+      "unknown": "Every fair line, edge, expected value and closing-line value. All are therefore unpublished.",
+      "settles_it": "Q-02: a licensed quote feed with timestamps and limits.",
+      "source_url": "https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season",
+      "source_label": "NFL.com picks page (odds attributed to a commercial sportsbook)"
+    },
+    {
+      "id": "F-04",
+      "severity": "high",
+      "category": "No results",
+      "item": "No strategy has been scored, and the leaderboard is empty by design.",
+      "verified": "Validation gates, ranking objective and reward structure are specified and machine-readable in data/gates.json.",
+      "unknown": "Whether any candidate strategy has skill. Publishing a ranking now would be fabrication.",
+      "settles_it": "A scored test window under Q-12 after Q-01 and Q-02 are resolved.",
+      "source_url": "https://github.com/karagemop466-tech/X1",
+      "source_label": "This repository"
+    },
+    {
+      "id": "F-05",
+      "severity": "medium",
+      "category": "Correlation",
+      "item": "No correlation value is published, and none can be yet.",
+      "verified": "The estimator, the power calculation and the multiple-comparison correction are documented in docs/methodology/correlation.md.",
+      "unknown": "Every rho and every joint probability. Detecting rho = 0.10 needs roughly 780+ paired observations before conditioning.",
+      "settles_it": "Q-10: multiple seasons of licensed joint player-market outcomes.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "source_label": "Current official snapshot — the only verified data held"
+    },
+    {
+      "id": "F-06",
+      "severity": "medium",
+      "category": "Provenance",
+      "item": "Sportradar's status as exclusive official NFL data distributor is reported, not read off an NFL.com page here.",
+      "verified": "Multiple independent outlets report the 2015 appointment and 2019 expansion to sportsbook operators.",
+      "unknown": "The current contractual text in 2026. It may have changed since the sources describing it.",
+      "settles_it": "A primary NFL or Sportradar release for the current term, or legal advice.",
+      "source_url": "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason",
+      "source_label": "NFL.com (integrity/education context)"
+    },
+    {
+      "id": "F-07",
+      "severity": "medium",
+      "category": "Parallel sessions",
+      "item": "Three other agent sessions worked this repo concurrently and produced divergent coordination boards.",
+      "verified": "Branches arena/a78e0158-x1, arena/226be516-x1 and arena/6f377170-x1 exist. a78e0158 marked all tasks done while pushing no artifacts.",
+      "unknown": "Whether those sessions will push content later and overlap with this release.",
+      "settles_it": "Review COORDINATION.md handoff log; merge or reject their PRs on their merits.",
+      "source_url": "https://github.com/karagemop466-tech/X1/branches",
+      "source_label": "Repository branches"
+    },
+    {
+      "id": "F-08",
+      "severity": "medium",
+      "category": "Transcription",
+      "item": "One transcription error was found and fixed during verification.",
+      "verified": "Arizona was first typed as 2-6; the official page prints 3-6 with PCT .333. ESPN and FOX both list Arizona at 3-6.",
+      "unknown": "Whether any other row is mistyped but internally consistent. Mechanical checks cannot catch a plausible wrong number.",
+      "settles_it": "A second independent human or agent pass over each table against the live official page.",
+      "source_url": "https://www.espn.com/nfl/team/_/name/ari/arizona-cardinals",
+      "source_label": "ESPN Cardinals team page (3-6, 4th NFC West)"
+    },
+    {
+      "id": "F-09",
+      "severity": "medium",
+      "category": "Template artefact",
+      "item": "The official standings page prints an unrendered template token in its heading.",
+      "verified": "The page heading literally reads '$year$ NFL $displayname$ Standings' at retrieval.",
+      "unknown": "Nothing material — the table itself is correct and complete. Recorded because it is an irregularity on an official page.",
+      "settles_it": "No action; noted so a future reviewer does not mistake it for a scraping error.",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "source_label": "NFL.com division standings"
+    },
+    {
+      "id": "F-10",
+      "severity": "medium",
+      "category": "Anomalous listing",
+      "item": "Some officially listed players sit oddly on their club's depth chart.",
+      "verified": "Arizona's Budda Baker is listed on the Week 10 report (full participation) while the Cardinals chart does not place him; Seattle lists Quenton Nelson at LG; Puka Nacua appears on the Rams' Week 10 report with no designation while NFL.com news reports a likely IR placement.",
+      "unknown": "Whether these reflect trades, scheme changes or chart staleness. The cause is not stated by any source read.",
+      "settles_it": "Per-player transaction lookup in the official transaction hub before any of these rows is used as a feature.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "source_label": "Official Week 10 injury report"
+    },
+    {
+      "id": "F-11",
+      "severity": "medium",
+      "category": "Legal / eligibility",
+      "item": "Reward funding, eligibility and jurisdiction are unresolved.",
+      "verified": "The NFL Gambling Policy caps prizes at $250 in related contests for NFL Personnel and bars personnel from sports-betting operations.",
+      "unknown": "The owner's entity, jurisdiction, funding source and contest terms.",
+      "settles_it": "Q-07 and Q-08, with jurisdiction-specific review.",
+      "source_url": "https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf",
+      "source_label": "NFL Gambling Policy for NFL Personnel (2022)"
+    },
+    {
+      "id": "F-12",
+      "severity": "low",
+      "category": "Data decay",
+      "item": "Every published table is a snapshot and will go stale.",
+      "verified": "All tables state a 2026-11-14 retrieval date; the injury report is week-specific and changes daily.",
+      "unknown": "How quickly a reader will notice. Staleness is certain, not hypothetical.",
+      "settles_it": "Q-17: a refresh cadence plus a visible staleness rule.",
+      "source_url": "https://www.nfl.com/injuries/",
+      "source_label": "NFL.com injury report"
+    }
+  ]
+}
