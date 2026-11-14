@@ -94,11 +94,18 @@ def depth_chart_url(abbrev: str) -> str:
 # them and records status/table shape in data/_probe.json. Nothing is published
 # from a probe.
 PROBE_URLS: List[str] = [
-    f"{NFL}/schedules/2026/REG",
-    f"{NFL}/schedules/2026/reg1",
-    f"{NFL}/scores/",
+    # Already validated: standings (2026 + 2025), injuries, team stats, club
+    # depth charts. Everything below is still unvalidated, so nothing is
+    # published from it until a probe shows real server-rendered tables.
     f"{NFL}/standings/league/2025/REG",
-    f"{NFL}/stats/team-stats/offense/passing/2025/reg/all",
+    f"{NFL}/standings/division/2026/REG",
+    f"{NFL}/schedules/2026/REG",
+    f"{NFL}/schedules/2026/reg10",
+    f"{NFL}/scores/",
+    f"{NFL}/scores/2026/REG10",
+    f"{NFL}/stats/player-stats/category/passing/2026/reg/all",
+    f"{NFL}/stats/player-stats/category/receiving/2026/reg/all",
+    f"{NFL}/stats/player-stats/category/rushing/2026/reg/all",
 ]
 
 # ---------------------------------------------------------- non-official notice
