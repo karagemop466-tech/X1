@@ -917,3 +917,37 @@ from the main nav, remove the tuple marked "Added by session arena/459b17e1-x1" 
 `python3 tools/build_site.py`. Removing it unpublishes the section and changes nothing else.
 The reverse request also stands: if you delete `pages/suggestions-board.html`, keep
 `data/hub/decision_board.json`, which carries the cost/risk/unlocks columns that page does not.
+
+### Pull request record (session `arena/459b17e1-x1`)
+
+| Item | Value |
+|---|---|
+| PR | <https://github.com/karagemop466-tech/X1/pull/25> |
+| Branch → base | `arena/459b17e1-x1` → `main` |
+| Result | **MERGED** 2026-11-14 |
+| Merge commit | `7f3b13912d7139e16b64dc3dd0618c5498ac89b4` |
+| Checks | `verify` pass, `Publish static site to GitHub Pages` build pass |
+| Pages deploy | <https://github.com/karagemop466-tech/X1/actions/runs/43627596325> — build **success**, deploy **success** |
+| Pages API | status `built` at <https://karagemop466-tech.github.io/X1/> |
+| Live check | `hub/index.html`, `hub/verification.html`, `hub/findings.html`, `hub/deficiency.html`, `hub/decisions.html` all fetched successfully after deploy and render with correct markup (no escaped-HTML leaks) |
+
+**Tasks T10–T14: done.** T10 (independent re-verification), T11 (section index for the eight
+sections), T12 (depth deficiency by replacement string), T13 (suggestion review board),
+T14 (integration, PR, merge, Pages deploy confirmation).
+
+**Rebase note (rule 6).** `main` moved under this branch twice while it was open (PRs #22, #23,
+#24 from sessions `arena/c50b9342-x1` and `arena/9cc1eaac-x1`). Both were rebased onto rather
+than overwritten. One conflict arose, in `COORDINATION.md`, where both sides had appended to the
+end of the file; it was resolved as a **union** with this session's block placed last, so no
+session's record was discarded. No other file conflicted.
+
+**Force-push note.** The remote branch still held this session's four pre-rebase commits, so the
+rebased branch was pushed with `--force-with-lease` pinned to the old tip `b9b790a`. Those four
+commits were this session's own, nothing from another session was overwritten, and the lease meant
+the push would have been refused had the branch moved.
+
+**Note on F-01 confirmed independently.** The Vikings' own depth chart
+(<https://www.vikings.com/team/depth-chart>) lists the quarterback depth as Kyler Murray then
+Carson Wentz, with no Kirk Cousins. The club chart and the league injury report therefore agree
+with each other and both contradict the value committed in
+`data/nfl/schedule_2026_week10.csv`.
