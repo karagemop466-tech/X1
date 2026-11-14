@@ -333,7 +333,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     manifest["datasets"].append(collect_schedule(fetcher, out_dir, weeks))
 
     print("[4/5] player statistics")
-    manifest["datasets"].append(collect_player_stats(fetcher, out_dir))
+    stats_manifest = collect_player_stats(fetcher, out_dir)
+    manifest["datasets"].extend(stats_manifest.get("categories", []))
 
     if not args.skip_gamebooks:
         print("[5/5] official game books")

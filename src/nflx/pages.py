@@ -312,12 +312,16 @@ def _deployment_table(ctx: BuildContext) -> str:
         ]
     )
     for dataset in (ctx.provenance or {}).get("datasets", []):
+        url = dataset.get("source_url")
+        if not url:
+            # A dataset without a source URL is not published as a row.
+            continue
         rows.append(
             [
                 esc(dataset.get("source_key", "")),
                 esc(str(dataset.get("record_count", 0))),
                 '<span class="muted">records ingested on the last collection run</span>',
-                source_link(dataset.get("source_url"), "open"),
+                source_link(url, "open"),
             ]
         )
     return Table(
