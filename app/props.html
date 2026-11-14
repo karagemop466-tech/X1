@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player props and combination maths — X1 NFL decision system</title>
+<meta name="description" content="X1: verified NFL data, originated lines, and a gated strategy leaderboard. Every row source-linked.">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>X1</b><span>NFL decision system</span></span></a>
+  <nav aria-label="Sections">
+<div class="grp">Overview</div>
+<a class="" href="index.html">Overview</a>
+<a class="" href="executive-summary.html">Executive summary</a>
+<div class="grp">Official data</div>
+<a class="" href="standings.html">Standings</a>
+<a class="" href="schedule.html">Week 10 slate</a>
+<a class="" href="injuries.html">Injury report</a>
+<a class="" href="depth.html">Depth charts</a>
+<a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="team-stats.html">Team stats</a>
+<div class="grp">Model</div>
+<a class="" href="lines.html">Originated lines</a>
+<a class="" href="correlation.html">Correlation</a>
+<div class="grp">Strategy</div>
+<a class="" href="strategies.html">Strategy library</a>
+<a class="" href="validation.html">Validation gates</a>
+<a class="" href="leaderboard.html">Leaderboard</a>
+<a class="active" href="props.html">Props &amp; parlays</a>
+<div class="grp">Decisions</div>
+<a class="" href="requirements.html">Requirements</a>
+<a class="" href="decisions.html">Decision register</a>
+<a class="" href="suggestions.html">Suggestion board</a>
+<div class="grp">Governance</div>
+<a class="" href="sources.html">Sources</a>
+<a class="" href="verification.html">Verification ledger</a>
+<a class="" href="flagged.html">Flagged for review</a>
+<a class="" href="repo-review.html">Repo review</a>
+</nav>
+  <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">Strategy</div>
+      <h1>Player props and parlays</h1>
+      <p class="lede">Calibration, combination correlation, and the break-even arithmetic that shows when a parlay cannot work.</p>
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+<section class="note warn"><b>No official prop prices exist.</b> The league
+publishes no player-prop market, so <b>no prop strategy can be priced or gated</b>. What follows is
+the distributional work that would feed a price: calibration on 2010–2020, evaluation on 2021+,
+against the <a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nflverse/nfldata</a> player-week mirror.
+Nothing here is a pick.</section>
+<div class="bar"><input type="search" placeholder="Filter rows…" data-filter-for="t-props" aria-label="Filter rows"><span class="count" data-count-for="t-props"></span></div><div class="tw"><table id="t-props" data-sortable><thead><tr><th>Family</th><th>Position</th><th>Seasons</th><th>Player-games</th><th>Eval games</th><th>Raw hit %</th><th>Calibrated hit %</th><th>Calibration offset</th><th>Mean actual</th><th>Mean line</th><th>Std error</th><th>Median error</th><th>Benchmark source</th></tr></thead><tbody><tr><td class="">QB passing yards</td><td class="">QB</td><td class="">2010-2024</td><td class="n">8527</td><td class="n">2505</td><td class="n">48.39%</td><td class="n">50.26%</td><td class="n">-2.04</td><td class="n">212.78</td><td class="n">214.27</td><td class="n">88.27</td><td class="n">-1.75</td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">RB rushing yards</td><td class="">RB</td><td class="">2010-2024</td><td class="n">19946</td><td class="n">5436</td><td class="n">39.24%</td><td class="n">48.07%</td><td class="n">-2.41</td><td class="n">34.91</td><td class="n">35.48</td><td class="n">30.18</td><td class="n">-2.60</td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">WR/TE receiving yards</td><td class="">TE/WR</td><td class="">2010-2024</td><td class="n">41875</td><td class="n">12194</td><td class="n">42.41%</td><td class="n">48.76%</td><td class="n">-3.92</td><td class="n">36.76</td><td class="n">36.97</td><td class="n">30.92</td><td class="n">-4.04</td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">WR/TE receptions</td><td class="">TE/WR</td><td class="">2010-2024</td><td class="n">41875</td><td class="n">12194</td><td class="n">39.60%</td><td class="n">42.82%</td><td class="n">-0.16</td><td class="n">2.97</td><td class="n">2.98</td><td class="n">2.03</td><td class="n">-0.17</td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr></tbody></table></div><div class="legend">Calibration should land near 50% if the projection is unbiased. The receptions family sits at 42.8% because half-point rounding distorts a low-count statistic — that is a modelling defect, published as one.</div>
+<section class="card"><h2>Combination maths — when a two-leg is arithmetically impossible</h2><div class="bar"><input type="search" placeholder="Filter rows…" data-filter-for="t-props-combo" aria-label="Filter rows"><span class="count" data-count-for="t-props-combo"></span></div><div class="tw"><table id="t-props-combo" data-sortable><thead><tr><th>Pair</th><th>r</th><th>n</th><th>Leg hit</th><th>Joint hit</th><th>Decimal odds</th><th>Break-even leg</th><th>Edge</th><th>Profitable?</th><th>Benchmark source</th></tr></thead><tbody><tr><td class="">QB passing yards vs WR/TE receiving yards</td><td class="n">0.927</td><td class="n">4729</td><td class="n">53.0%</td><td class="n">51.19%</td><td class="n">3.645</td><td class="n">52.38%</td><td class="n">23.76%</td><td class=""><span class="b ok">yes</span></td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">WR/TE receiving yards vs receptions</td><td class="n">0.773</td><td class="n">4734</td><td class="n">53.0%</td><td class="n">47.35%</td><td class="n">3.645</td><td class="n">52.38%</td><td class="n">19.92%</td><td class=""><span class="b ok">yes</span></td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">RB rushing yards vs WR/TE receiving yards</td><td class="n">-0.163</td><td class="n">4734</td><td class="n">53.0%</td><td class="n">24.02%</td><td class="n">3.645</td><td class="n">52.38%</td><td class="n">-3.41%</td><td class=""><span class="b bad">no</span></td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">QB passing yards vs RB rushing yards</td><td class="n">-0.177</td><td class="n">4729</td><td class="n">53.0%</td><td class="n">23.68%</td><td class="n">3.645</td><td class="n">52.38%</td><td class="n">-3.76%</td><td class=""><span class="b bad">no</span></td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr><tr><td class="">RB rushing yards vs WR/TE receptions</td><td class="n">-0.242</td><td class="n">4734</td><td class="n">53.0%</td><td class="n">22.06%</td><td class="n">3.645</td><td class="n">52.38%</td><td class="n">-5.38%</td><td class=""><span class="b bad">no</span></td><td class=""><a class="" href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener" title="https://github.com/nflverse/nfldata">nfldata player week stats</a></td></tr></tbody></table></div><div class="legend">Two −110 legs pay 3.645 decimal, so each leg must win 52.38% to break even even when the legs are independent. Negative correlation makes it worse, not better: correlated legs that move together lose together.</div></section>
+<section class="card"><h2>The arithmetic, stated plainly</h2>
+<ul class="tight">
+  <li>A single −110 bet breaks even at <b>52.38%</b>.</li>
+  <li>A two-leg −110 parlay pays about <b>3.645</b> decimal and breaks even at <b>72.11%</b> joint —
+  which needs each leg at <b>52.38%</b> only if the legs are independent.</li>
+  <li>Correlation moves the joint probability toward the Fréchet bounds. For QB passing yards and
+  WR/TE receiving yards (r = 0.927) the joint hit rate is 51.2%, still above the 47.6% the price
+  implies — but for RB rushing yards paired with a receiver prop (r = −0.163) the joint is 24.0%,
+  well below it, and the combination is unprofitable at any stake.</li>
+  <li>The lesson the gates encode: <b>a parlay is not a way to manufacture edge</b>. It multiplies
+  whatever edge or disadvantage each leg already has, plus the book's margin on every leg.</li>
+</ul></section>
+  <footer class="pagefoot">
+    X1 · generated by <code>tools/build_app.py</code> · every table row links to the official page the value was read from ·
+    a value the source does not print is shown as <span class="blank">&mdash;</span> and flagged, never filled in.<br>
+    <a href="/X1/">Overview</a> ·
+    <a href="/X1/app/flagged.html">Flagged for review</a> ·
+    <a href="/X1/app/sources.html">Sources</a> ·
+    <a href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener">Repository on GitHub</a> ·
+    other session sections: <a href="/X1/pages/executive-summary.html">pages</a>,
+    <a href="/X1/dashboard/lab-index.html">dashboard</a>,
+    <a href="/X1/research/index.html">research</a>,
+    <a href="/X1/site/index.html">annex</a>,
+    <a href="/X1/live/index.html">live</a>.
+  </footer>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>
