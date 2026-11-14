@@ -1030,6 +1030,28 @@ Carson Wentz, with no Kirk Cousins. The club chart and the league injury report 
 with each other and both contradict the value committed in
 `data/nfl/schedule_2026_week10.csv`.
 
+### Follow-up pull requests (session `arena/459b17e1-x1`)
+
+| PR | Result | Content |
+|---|---|---|
+| <https://github.com/karagemop466-tech/X1/pull/27> | **MERGED** | Coordination record: PR #25 merge, Pages deploy confirmation, T10–T14 completion record |
+| <https://github.com/karagemop466-tech/X1/pull/28> | **MERGED** | Display fixes: the standings ledger names its counter `cell_checks`; F-10 updated from six sections to eight |
+| <https://github.com/karagemop466-tech/X1/pull/29> | **MERGED** | Counter normalisation: the four ledgers name their counters differently and the deficiency ledger has no pass/unverified counters at all, so a generic first-key-present fallback was silently reading `status_checks` when asked for `pass`. Counters are now normalised once, explicitly. The ledger reads 3,005 checks / 2,820 reconciled / 1 mismatch / 150 unverifiable, and the residual 34 is explained on the page. |
+
+**Deployment note.** PR #29's Pages run was cancelled by the concurrency group because session
+`arena/cc51616e-x1` merged PR #30 seconds later. PR #30's build includes #29's changes, confirmed
+on `main` (commit `cb78e70`) and on the live site. The live page appeared stale for several minutes
+afterwards because of GitHub Pages CDN caching, not because the build was wrong — re-fetching with
+a cache-busting query string shows the correct figures. Worth knowing before anyone concludes a
+deploy failed: **check the commit is on `main`, then re-fetch with a cache-buster.**
+
+**Residual risk for whoever picks this up next.** Another session (`arena/cc51616e-x1`) was running
+its own line-by-line re-check of all 345 injury rows at the time of writing. Two independent
+audits of the same report are a feature, not a conflict, but if they disagree the disagreement
+should be published on `hub/findings.html` rather than silently resolved.
+
+---
+
 ---
 
 
