@@ -1,10 +1,32 @@
 {
- "generated_at": "2026-11-14T19:46:45Z",
+ "generated_at": "2026-11-14T19:53:49Z",
  "snapshot": "2026-11-14",
  "columns_note": "signal_* = picks only, independent of stake size; staking_* = money only, under a named stake plan; gates_* = the validation gates; demotion = the gate that sends a live strategy back to paper",
  "summary": {
-  "generated_at": "2026-11-14T19:46:45Z",
+  "generated_at": "2026-11-14T19:53:49Z",
   "snapshot": "2026-11-14",
+  "selection_mix": {
+   "S-01-side-1.0": {
+    "home": 1495,
+    "away": 1227,
+    "pct_away": 0.451
+   },
+   "S-01-side-0.5": {
+    "home": 1617,
+    "away": 1322,
+    "pct_away": 0.45
+   },
+   "S-01-side-2.0": {
+    "home": 1266,
+    "away": 1052,
+    "pct_away": 0.454
+   },
+   "S-03-moneyline": {
+    "home": 1392,
+    "away": 1359,
+    "pct_away": 0.494
+   }
+  },
   "upstream": {
    "repo": "https://github.com/nflverse/nfldata",
    "retrieved_at": "2026-11-14",
@@ -28,6 +50,16 @@
    "staking_positive": 1
   },
   "finding": "1 strategies show a positive ROI but none has a signal that clears the 1.96 z bar. On its own, that ROI would have topped a naive leaderboard. This is exactly the failure mode the split exists to catch: the money was a staking run, not a signal.",
+  "findings": [
+   {
+    "id": "F-01",
+    "finding": "The moneyline model systematically disagrees with the price on underdogs, and the disagreement is wrong in the direction it bets.",
+    "measure": "2,751 selections; their mean market-implied win probability is 36.1%, so the model is backing mostly underdogs at average prices that need 36.1% to break even, and it wins 34.7%. On competitive-margin games only (n = 1,036) it wins 29.6% against a bar that the bootstrap places at roughly the same level, z = -4.5.",
+    "reading": "Not a bug in the test: the per-ticket bar was recomputed from the prices actually taken. It is evidence that Phi(margin/sigma) is not a good map from a point spread to a win probability at the tails -- the model inherits the spread's accuracy, and the spread's accuracy is already worse than the market's.",
+    "consequence": "The moneyline should not be originated from the side until the spread-to-probability map is itself validated (Q-M3).",
+    "source": "data/lab/leaderboard.json S-03, data/lab/lines/model_report.json"
+   }
+  ],
   "defects_found_in_this_build": [
    {
     "id": "B-01",

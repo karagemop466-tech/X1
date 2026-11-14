@@ -133,6 +133,21 @@ def main() -> int:
             "source": "data/lab/deficiency.json (effect_status)",
         },
         {
+            "id": "Q-M3", "area": "Model", "priority": "P0",
+            "question": "Is Phi(margin / sigma) a valid map from our spread to a win probability?",
+            "have": "The moneyline derived from the side wins 34.7% of 2,743 decided tickets "
+                    "against a per-ticket bar of 36.1%, and 29.6% on competitive-margin games "
+                    "(z = -4.5). The selections are mostly underdogs, because that is where the "
+                    "model disagrees with the price.",
+            "missing": "a calibrated spread-to-probability map, fitted on realised outcomes "
+                       "rather than assumed normal",
+            "blocks": "publishing a moneyline at all, and any moneyline-based strategy",
+            "closing_test": "a reliability curve for the win probability whose slope is in "
+                            "[0.85, 1.15] and whose Brier beats the market-implied probability",
+            "owner_call": False,
+            "source": "data/lab/leaderboard.json (S-03), data/lab/lines/model_report.json",
+        },
+        {
             "id": "Q-S1", "area": "Strategy", "priority": "P0",
             "question": "Should a positive ROI with a weak signal ever be staked?",
             "have": f"{counts['staking_positive']} strategy shows a positive ROI "

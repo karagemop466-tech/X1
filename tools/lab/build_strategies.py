@@ -507,8 +507,23 @@ def main() -> int:
     for i, r in enumerate(board, 1):
         r["rank"] = i
 
+    # A reading that only becomes visible once the bar is per-ticket: which side of the price
+    # the disagreements fall on. If a strategy's selections are mostly underdogs, its hit rate
+    # and its bar are both low, and comparing them with a favourite-heavy strategy on raw hit
+    # rate is meaningless. Published because it explains why two rows with similar ROIs have
+    # very different hit rates.
+    side_mix = {}
+    for r in board:
+        bets = per_strategy.get(r["id"], [])
+        homes = sum(1 for b in bets if b.get("side") == "home")
+        away = sum(1 for b in bets if b.get("side") == "away")
+        if homes + away:
+            side_mix[r["id"]] = {"home": homes, "away": away,
+                                 "pct_away": round(away / (homes + away), 3)}
+
     summary = {
         "generated_at": utcnow(), "snapshot": SNAPSHOT,
+        "selection_mix": side_mix,
         "upstream": {k: UPSTREAM_PIN[k] for k in ("repo", "retrieved_at", "publisher")},
         "test_window": {"from": TEST_FROM, "to": TEST_TO},
         "rule": {
@@ -530,6 +545,24 @@ def main() -> int:
             "staking_positive": sum(1 for r in board if (r["staking_flat"].get("roi") or 0) > 0),
         },
         "finding": None,
+        "findings": [
+            {"id": "F-01",
+             "finding": "The moneyline model systematically disagrees with the price on "
+                        "underdogs, and the disagreement is wrong in the direction it bets.",
+             "measure": "2,751 selections; their mean market-implied win probability is 36.1%, "
+                        "so the model is backing mostly underdogs at average prices that need "
+                        "36.1% to break even, and it wins 34.7%. On competitive-margin games "
+                        "only (n = 1,036) it wins 29.6% against a bar that the bootstrap places "
+                        "at roughly the same level, z = -4.5.",
+             "reading": "Not a bug in the test: the per-ticket bar was recomputed from the "
+                        "prices actually taken. It is evidence that Phi(margin/sigma) is not a "
+                        "good map from a point spread to a win probability at the tails -- the "
+                        "model inherits the spread's accuracy, and the spread's accuracy is "
+                        "already worse than the market's.",
+             "consequence": "The moneyline should not be originated from the side until the "
+                            "spread-to-probability map is itself validated (Q-M3).",
+             "source": "data/lab/leaderboard.json S-03, data/lab/lines/model_report.json"},
+        ],
         "defects_found_in_this_build": [
             {"id": "B-01", "severity": "high",
              "was": "every strategy was tested against a flat 52.38% break-even",

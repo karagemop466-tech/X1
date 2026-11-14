@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-11-14T19:52:35Z",
+ "generated_at": "2026-11-14T19:53:50Z",
  "snapshot": "2026-11-14",
  "title": "Questions, what we have, what we do not have, and what it blocks",
  "rule": "A question is closed only when its closing test is met by published evidence. Until then the decision it blocks is not made.",
  "counts": {
-  "questions": 11,
-  "p0": 7,
+  "questions": 12,
+  "p0": 8,
   "owner_calls": 4
  },
  "questions": [
@@ -68,6 +68,18 @@
    "closing_test": "the coefficient's out-of-sample interval excludes zero and the line model's MAE improves when it is added",
    "owner_call": false,
    "source": "data/lab/deficiency.json (effect_status)"
+  },
+  {
+   "id": "Q-M3",
+   "area": "Model",
+   "priority": "P0",
+   "question": "Is Phi(margin / sigma) a valid map from our spread to a win probability?",
+   "have": "The moneyline derived from the side wins 34.7% of 2,743 decided tickets against a per-ticket bar of 36.1%, and 29.6% on competitive-margin games (z = -4.5). The selections are mostly underdogs, because that is where the model disagrees with the price.",
+   "missing": "a calibrated spread-to-probability map, fitted on realised outcomes rather than assumed normal",
+   "blocks": "publishing a moneyline at all, and any moneyline-based strategy",
+   "closing_test": "a reliability curve for the win probability whose slope is in [0.85, 1.15] and whose Brier beats the market-implied probability",
+   "owner_call": false,
+   "source": "data/lab/leaderboard.json (S-03), data/lab/lines/model_report.json"
   },
   {
    "id": "Q-S1",

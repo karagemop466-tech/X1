@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T19:52:35Z",
+ "generated_at": "2026-11-14T19:53:50Z",
  "snapshot": "2026-11-14",
  "title": "Suggestions, each with more than one path",
  "rule": "Nothing here is implemented. Each suggestion lists every path with its cost, what it unlocks and its risk, then this session's recommendation, labelled as an opinion, and the evidence that would change it.",

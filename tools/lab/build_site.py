@@ -23,6 +23,7 @@ links, and exits non-zero, so a broken page cannot be published.
 from __future__ import annotations
 
 import html
+import html.parser
 import json
 import os
 import re
@@ -626,6 +627,27 @@ def p_leaderboard() -> str:
 </div>
 
 <div class="card">
+  <h2>Findings the split made visible</h2>
+  {table(["ID", "Finding", "Measure", "What it means", "Source"],
+         [[esc(f["id"]), esc(f["finding"]), esc(f["measure"]), esc(f["reading"]),
+           src(f"{GITHUB}/data/lab/leaderboard.json", f["source"].split(",")[0])]
+          for f in b["summary"].get("findings", [])],
+         note="F-01 is the reason no moneyline is offered as a playable number: the derived win "
+              "probability is wrong at the tails, and the per-ticket bar is what exposed it.")}
+</div>
+
+<div class="card">
+  <h2>Which side of the price each strategy takes</h2>
+  {table(["Strategy", "Home", "Away", "% away", "Link"],
+         [[esc(k), str(v["home"]), str(v["away"]), pct(v["pct_away"]),
+           src(f"{GITHUB}/data/lab/leaderboard.json", "selection_mix")]
+          for k, v in b["summary"].get("selection_mix", {}).items()], numeric=(1, 2, 3),
+         note="A strategy that mostly backs underdogs has a low hit rate and a low bar; one "
+              "that mostly backs favourites has the opposite. Raw hit rates are not comparable "
+              "across the two, which is exactly why the bar is per ticket.")}
+</div>
+
+<div class="card">
   <h2>Why signal and staking are different columns</h2>
   <div class="grid2">
     <div>
@@ -1091,6 +1113,42 @@ are here so you can review them after the rest of the site is live. Every row ca
 
 
 # ------------------------------------------------------------------ check
+_VOID = {"br", "img", "meta", "link", "input", "hr", "area", "base", "col", "embed",
+         "source", "track", "wbr"}
+
+
+class _Structure(html.parser.HTMLParser):
+    """Minimal tag-balance checker: enough to catch a truncated or mis-nested page."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.stack: list[str] = []
+        self.broken: list[str] = []
+        self.ids: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if a.get("id"):
+            self.ids.append(a["id"])
+        if tag not in _VOID:
+            self.stack.append(tag)
+
+    def handle_endtag(self, tag):
+        if tag in _VOID:
+            return
+        if not self.stack:
+            self.broken.append(f"extra </{tag}>")
+        elif self.stack[-1] == tag:
+            self.stack.pop()
+        elif tag in self.stack:
+            while self.stack and self.stack[-1] != tag:
+                self.broken.append(f"unclosed <{self.stack.pop()}>")
+            if self.stack:
+                self.stack.pop()
+        else:
+            self.broken.append(f"stray </{tag}>")
+
+
 def check() -> int:
     """Verify the published tree: links resolve, every data row carries a source or an
     explicit 'no official source' marker, and no template artefact leaked into a page."""
@@ -1118,6 +1176,24 @@ def check() -> int:
                 break
         if "&lt;span" in text or "&lt;td" in text:
             errors.append(f"{f}: escaped markup renders as literal text")
+        # structural integrity: balanced tags, no duplicated id, tables closed, h1 present,
+        # template syntax never reaches the page. There is no headless browser in this CI,
+        # so this is the substitute for a render test.
+        parser = _Structure()
+        parser.feed(text)
+        if parser.stack:
+            errors.append(f"{f}: unclosed tags {parser.stack[-4:]}")
+        if parser.broken:
+            errors.append(f"{f}: tag problems {parser.broken[:3]}")
+        dup = sorted({i for i in parser.ids if parser.ids.count(i) > 1})
+        if dup:
+            errors.append(f"{f}: duplicate ids {dup}")
+        if "${" in text:
+            errors.append(f"{f}: template syntax leaked into the page")
+        if text.count("<table") != text.count("</table>"):
+            errors.append(f"{f}: unbalanced table tags")
+        if "<h1>" not in text:
+            errors.append(f"{f}: no h1")
         # every data-table row must have a source link or an explicit marker
         for i, row in enumerate(re.findall(r"<tr>(.*?)</tr>", text, flags=re.S)):
             if "<td" not in row:

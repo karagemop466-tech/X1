@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T19:52:36Z",
+ "generated_at": "2026-11-14T19:53:50Z",
  "snapshot": "2026-11-14",
  "title": "Executive summary: what this round actually established",
  "headline": "Six new mechanisms are built and running: a price-snapshot store, a verified results feed, an originated line (side, then total, then moneyline), a leaderboard that scores signal and staking separately, a replacement-depth model, and correlations that carry their own n. None of them produced a bettable edge, and the summary says why in numbers rather than adjectives.",
@@ -186,7 +186,7 @@
   "S-L2 path A: rewards as rank and scrip, so requirement R-10 is satisfied without a legal exposure this repository cannot assess."
  ],
  "counts": {
-  "questions": 11,
+  "questions": 12,
   "suggestions": 5,
   "paths": 14,
   "defects_found": 7,
