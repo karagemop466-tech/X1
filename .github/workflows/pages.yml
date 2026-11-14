@@ -1,5 +1,7 @@
 name: Publish static site to GitHub Pages
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
@@ -25,6 +27,7 @@ jobs:
         with:
           path: .
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
