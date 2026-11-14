@@ -38,17 +38,27 @@ the workflow does it and crawled.
 | Measure | Result |
 |---|---|
 | HTML pages in the assembled tree | 135 |
-| Local `href`/`src` targets checked | 2,884 |
+| Local `href`/`src` targets checked | 3,004 |
 | Broken local links | **0** |
-| Pages reachable by following links from the served root | 130 of 135 |
-| Unreachable: `legacy-fourth-down.html` | intentional — a preserved copy, deliberately not in the nav |
+| Pages reachable by following links from the served root | 133 of 137 |
+| Unreachable: `legacy-fourth-down.html` | intentional — a preserved copy, deliberately not in the nav, allow-listed in the checker |
 | Unreachable: `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html` | **pre-existing orphans** in other sessions' trees; flagged as R-07, not fixed here |
 
-One real defect was found this way and fixed: the root rewrite repointed `href="assets/…"` but
-not `src="assets/…"`, so the served landing page requested `/assets/app.js`, got a 404, and its
-table filter and column sort silently did nothing. The committed verifiers could not see it,
-because in the repository `app/index.html` resolves `assets/app.js` correctly — the breakage
-only exists after the copy-and-rewrite. Logged in `COORDINATION.md` before the fix.
+**Two real defects were found this way**, both invisible to every repository-level verifier:
+
+1. The root rewrite repointed `href="assets/…"` but not `src="assets/…"`, so the served landing
+   page requested `/assets/app.js`, got a 404, and its table filter and column sort silently did
+   nothing. In the repository `app/index.html` resolves `assets/app.js` correctly; the breakage
+   only exists after the copy-and-rewrite.
+2. `hub/index.html` links `../archive/previous-site/index.html` to a **committed 96 KB, nine-file**
+   archive folder that the workflow never copied. That link has been dead on the published site.
+   The path exists in the repository, which is why the repository audit passed.
+
+Both are fixed additively, and the crawl is now a committed check —
+`tools/verify_deployed_tree.py` — wired into `pages.yml` ahead of the upload. It replays the
+workflow's own `run:` block into a temp directory rather than duplicating the copy list, so it
+cannot drift from the workflow. A negative control was run: removing the `cp -r archive` line
+makes it exit 1 with the exact broken link named.
 
 ## What this round added, and the checks on it
 

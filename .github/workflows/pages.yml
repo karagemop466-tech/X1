@@ -48,6 +48,14 @@ jobs:
       # every data row is sourced or explicitly marked, no leaked template values.
       - name: Verify the line desk
         run: python3 tools/lab/build_site.py
+      # Added by session arena/56769365-x1 (additive only). The verifiers above audit the
+      # repository; this one audits the tree that is actually uploaded. It replays the copy
+      # and sed steps below into a temp dir and crawls the result. Found two real defects
+      # that no repository-level check could see (a missing src= rewrite and a folder that
+      # was linked but never copied).
+      - name: Crawl the assembled tree for broken links
+        run: python3 tools/verify_deployed_tree.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -82,6 +90,11 @@ jobs:
           # results, originated lines, signal-vs-staking leaderboard, demotion gate).
           # Additive; every tree above is still copied and still reachable.
           cp -r lab _site/
+          # Added by session arena/56769365-x1: hub/index.html links ../archive/previous-site/
+          # to a committed 96 KB archive that was never copied, so that link has been dead on
+          # the published site. Found by tools/verify_deployed_tree.py, which assembles the
+          # upload tree instead of auditing the repository. Additive: one copy line.
+          cp -r archive _site/
           cp index.html _site/legacy-fourth-down.html
           cp app/index.html _site/index.html
           # src="assets/ is rewritten too: the served root is app/index.html, which loads
