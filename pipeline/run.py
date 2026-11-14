@@ -249,8 +249,19 @@ def _fetch_team_depth_chart(
             {"url": url, "status": result.status, "title": title,
              "tables": len(doc.tables), "rows": len(parsed["rows"])}
         )
-        if "depth chart" in title.lower() and parsed["rows"]:
+        quality = parsed.get("quality") or {}
+        # Accept on content: a club may use a generic page title, but a real depth
+        # chart still prints position codes in column 1 and player links after.
+        content_ok = (
+            quality.get("rows", 0) >= 12
+            and quality.get("position_like", 0) >= 0.7
+            and quality.get("with_link", 0) >= 0.7
+        )
+        if parsed["rows"] and ("depth chart" in title.lower() or content_ok):
             return url, parsed["rows"], attempts
+        attempts[-1]["rejected"] = (
+            f"title={title!r} quality={quality}" if parsed["rows"] else "no rows parsed"
+        )
         time.sleep(0.3)
     return "", [], attempts
 

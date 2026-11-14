@@ -329,6 +329,23 @@ def parse_injuries(
 # ---------------------------------------------------------------- depth charts
 UNIT_ORDER = ["Offense", "Defense", "Special Teams"]
 
+# A real depth chart prints a short position code in the first column and player
+# links after it. A roster page prints jersey numbers and names instead, so this
+# is what tells the two apart when a club uses a generic page title.
+POSITION_RE = re.compile(r"^[A-Z]{1,3}$")
+
+
+def depth_chart_quality(rows: List[Dict[str, Any]]) -> Dict[str, float]:
+    if not rows:
+        return {"rows": 0, "position_like": 0.0, "with_link": 0.0}
+    position_like = sum(1 for r in rows if POSITION_RE.match(str(r.get("position") or "")))
+    with_link = sum(1 for r in rows if r.get("player_url"))
+    return {
+        "rows": len(rows),
+        "position_like": round(position_like / len(rows), 3),
+        "with_link": round(with_link / len(rows), 3),
+    }
+
 
 def parse_depth_chart(
     doc: H.DocParser, source_url: str, abbrev: str, team_name: str
@@ -395,7 +412,11 @@ def parse_depth_chart(
                         flags=flags,
                     )
                 )
-    return {"rows": rows, "tables_parsed": len([t for t in doc.tables if t["rows"]])}
+    return {
+        "rows": rows,
+        "tables_parsed": len([t for t in doc.tables if t["rows"]]),
+        "quality": depth_chart_quality(rows),
+    }
 
 
 # ------------------------------------------------------------------ team stats

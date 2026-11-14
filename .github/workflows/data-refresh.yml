@@ -98,16 +98,14 @@ jobs:
               [ "${pushed}" = "1" ] || echo "MARKER: PUSH FAILED after 5 attempts"
             fi
             echo "MARKER: done"
-          } 2>&1 | tee _ci/commit.log
-          # The job summary is readable through the Checks API even when the
-          # push fails, which is the only way to diagnose a rejected push.
-          {
-            echo "### data-refresh: commit step"
-            echo '```'
-            cat _ci/commit.log
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-          grep -q "MARKER: done" _ci/commit.log
+          } 2>&1 | tee /tmp/commit.log
+          # Copy the log into the repo only after git has finished with it:
+          # tee-ing straight into a tracked file leaves unstaged changes behind
+          # the commit, which then blocks the rebase with "unstaged changes".
+          cp /tmp/commit.log _ci/commit.log
+          git add _ci
+          git commit -m "ci: run log $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no log change"
+          grep -q "MARKER: done" /tmp/commit.log
 
       - name: Upload diagnostics via the API
         if: always()
