@@ -53,6 +53,9 @@ jobs:
       - name: Parallel session's dashboard checks
         run: python3 scripts/check_site.py
 
+      - name: Research lab checks (links, contracts, placeholders)
+        run: python3 scripts/verify_research_site.py
+
       - name: Snapshot annex checks (session arena/a78e0158-x1)
         run: python3 scripts/verify_site_annex.py
 
