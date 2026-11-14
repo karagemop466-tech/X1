@@ -195,7 +195,7 @@
   {
    "category": "MODEL-LIMIT",
    "detail": "Totals model not yet built: model_total_hint left blank for all Week 10 games. No values inferred.",
-   "source": "scripts/build_data.py",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py",
    "severity": "needs-review"
   },
   {

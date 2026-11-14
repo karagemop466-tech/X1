@@ -7,7 +7,7 @@
 | 1 | **nflverse/nfldata** — committed CSVs (`games.csv`, `teams.csv`, `standings.csv`, `closing_lines.csv`, `initial_lines.csv`, `win_totals.csv`) | All historical games 1999–2026 (scores, spreads, totals, rest, roof, wind, QBs), market lines, team metadata | [github.com/nflverse/nfldata](https://github.com/nflverse/nfldata) | 2026-11-14 (master tarball via codeload) |
 | 2 | **NFL.com official standings** — league view, 2026 regular season | Cross-check of computed standings | [nfl.com/standings/league/2026/REG](https://www.nfl.com/standings/league/2026/REG) | 2026-11-14 |
 | 3 | **ESPN NFL injuries page** — "NFL Injury Status - 2026 Season" | Week 10 injury report, all 32 teams (491 rows), each row link to ESPN player page quoting club reports | [espn.com/nfl/injuries](https://www.espn.com/nfl/injuries) | 2026-11-14 |
-| 4 | **ESPN scoreboard API** (site.api.espn.com) | Week 10 slate confirmation incl. Munich international game; team records spot-check | [scoreboard example](https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20261115) | 2026-11-14 |
+| 4 | **ESPN scoreboard** (site.api.espn.com — reachable via the agent's page-fetch tool) | Week 10 slate confirmation incl. Munich international game; team records spot-check | [espn.com/nfl/scoreboard](https://www.espn.com/nfl/scoreboard) | 2026-11-14 |
 | 5 | **nflverse/nfldata DATASETS.md** | Column conventions (spread_line sign convention) | [DATASETS.md](https://github.com/nflverse/nfldata/blob/master/DATASETS.md) | 2026-11-14 |
 
 ## Verification performed (line by line)

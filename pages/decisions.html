@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision register — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a class="active" href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ DECISION REGISTER</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">DECISIONS</div>
+  <h1>Decision register</h1>
+  <p>A clear list of the questions, the information we already hold, and the answers — where answers exist. What we
+  <strong>do not</strong> have is recorded too, because a question with no answer is a decision waiting to happen.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Rule:</b> A question may only be marked &#x27;answered&#x27; when the answer is verified against an official source and that source is linked. Anything else stays open.</div>
+  <div class="statrow">
+    <div class="stat"><strong>18</strong><span>questions</span></div>
+    <div class="stat"><strong>0</strong><span>answered from an official source</span></div>
+    <div class="stat"><strong>1</strong><span>partially answered</span></div>
+    <div class="stat"><strong>17</strong><span>still open</span></div>
+  </div>
+  <div class="tablewrap"><table class="wide"><thead><tr><th>ID</th><th>Question</th><th>Information we already hold</th><th>Answer</th><th>What would settle it</th><th>Status</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>Q-01</b></td><td><b>Data licensing</b><br><span class="muted">Do we have the legal right to ingest and republish NFL play-by-play, snap counts and historical odds?</span></td><td>The NFL&#x27;s exclusive data distribution partner for official league data to media and to licensed sportsbook operators is Sportradar (announced 2015; expanded 2019).</td><td>—</td><td>A signed data agreement, or a documented decision to operate only on public official pages.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-02</b></td><td><b>Historical odds</b><br><span class="muted">Which licensed feed supplies historical closing lines, and at what granularity (book, time, limit)?</span></td><td>No odds feed exists in this repository. No historical price is stored anywhere.</td><td>—</td><td>A named vendor, contract terms, and the retention rules for quotes.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-03</b></td><td><b>Line settlement</b><br><span class="muted">What exact settlement rules apply to each market we originate (push, void, overtime, stat corrections)?</span></td><td>No settlement specification exists in the repository.</td><td>—</td><td>A house rulebook adopted before any strategy is registered.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-04</b></td><td><b>Snap counts</b><br><span class="muted">Can we obtain licensed snap counts per player per game?</span></td><td>Official gamebooks publish participation, but no machine-readable licensed feed is in the repo.</td><td>—</td><td>Snap-count data under license plus a documented join to the official injury report.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-05</b></td><td><b>Depth charts</b><br><span class="muted">Is a club-published, self-labelled &#x27;unofficial&#x27; depth chart sufficient to call a player a starter?</span></td><td>The league publishes no league-wide depth chart. Clubs publish their own, and at least Detroit and Green Bay print &#x27;unofficial&#x27; on the page.</td><td>—</td><td>An owner decision on the definition, recorded here with the chosen tier.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-06</b></td><td><b>Report cadence</b><br><span class="muted">How often is the official injury report captured, and what timestamp governs a forecast?</span></td><td>The official report changes across the practice week (Wednesday/Thursday/Friday) and again at inactives.</td><td>—</td><td>A scheduled capture with stored retrieval timestamps, and a declared cut-off per week.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-07</b></td><td><b>Rewards & legality</b><br><span class="muted">What funds the leaderboard rewards, who is eligible, and in which jurisdictions?</span></td><td>The owner asked for rewards for top-performing strategies. No jurisdiction, entity, funding source or terms were supplied.</td><td>—</td><td>A written contest structure plus jurisdiction-specific legal review.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-08</b></td><td><b>Integrity / personnel</b><br><span class="muted">Will any NFL personnel (player, coach, staff) be permitted to enter strategies?</span></td><td>The NFL Gambling Policy prohibits NFL Personnel from placing, soliciting or facilitating any bet on any NFL game, and prohibits using inside information.</td><td>—</td><td>An eligibility rule that explicitly excludes NFL Personnel, or a legal opinion that the structure is compliant.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-09</b></td><td><b>Market scope</b><br><span class="muted">Which markets are in scope for originating lines — spread, total, moneyline, team total, player props, alternates?</span></td><td>The requirement names single bets, parlays and player-prop combinations.</td><td>—</td><td>A declared Season 0 market list.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-10</b></td><td><b>Correlation data</b><br><span class="muted">Do we have enough joint historical outcomes to publish a correlation value?</span></td><td>Detecting rho = 0.10 at 80% power needs roughly 780+ paired observations before conditioning; a season is 272 games.</td><td>—</td><td>Multiple seasons of joint player-market outcomes under license.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-11</b></td><td><b>Bankroll</b><br><span class="muted">What is the bankroll, the staking rule, and the maximum acceptable drawdown?</span></td><td>No bankroll or staking rule has been supplied.</td><td>—</td><td>A stated bankroll and a pre-registered staking rule.</td><td><span class="pill high">open</span></td><td><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-12</b></td><td><b>Test window</b><br><span class="muted">What is the first scored window, and when does it open and close?</span></td><td>The 2026 season is in Week 10; Weeks 11-18 remain in the regular season.</td><td>—</td><td>A calendar decision recorded with a timestamp.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-13</b></td><td><b>Grading source</b><br><span class="muted">Which official source grades a settled bet, and how are stat corrections handled?</span></td><td>Official box scores are the primary record of on-field results.</td><td>—</td><td>A named grading source plus a stat-correction policy with a revision window.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-14</b></td><td><b>Breadth of coverage</b><br><span class="muted">Do we collect depth charts for all 32 clubs, and at what cost in effort?</span></td><td>This release covers 5 clubs (BUF, SEA, DET, GB, BAL). 27 remain.</td><td>—</td><td>A capture schedule per club plus a storage format decision.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.buffalobills.com/team/depth-chart" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-15</b></td><td><b>Publishing policy</b><br><span class="muted">May we publish originated lines publicly, and with what disclaimer?</span></td><td>No publishing policy has been set. The site currently publishes no prices at all.</td><td>—</td><td>A written publishing policy, reviewed for the jurisdictions served.</td><td><span class="pill high">open</span></td><td><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-16</b></td><td><b>Success criteria</b><br><span class="muted">What does success look like numerically in Season 0, and who decides a strategy is promoted?</span></td><td>Gates define per-strategy thresholds; no portfolio-level target exists.</td><td>—</td><td>A target (e.g. number of strategies clearing Gate 2 with n_eff &gt;= 400) and a named arbiter.</td><td><span class="pill high">open</span></td><td><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-17</b></td><td><b>Update cadence</b><br><span class="muted">How often may the published tables be refreshed, and how is staleness displayed?</span></td><td>Every table in this release carries the 2026-11-14 retrieval date.</td><td>—</td><td>A refresh schedule and a staleness banner rule.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-18</b></td><td><b>Data verification</b><br><span class="muted">Is the official Week 10 injury report complete for all 14 games?</span></td><td>All 14 Week 10 games and all 28 participating clubs are present in the captured report; 345 player rows were transcribed.</td><td>Yes for the captured snapshot: every week-10 game and every participating club has rows, verified mechanically by tools/verify_data.py (2,944 checks).</td><td>A second independent capture compared row-for-row to confirm nothing was missed in transcription.</td><td><span class="pill warn">partially answered</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+  <h2>How to read the Answer column</h2>
+  <p>A blank answer means <b>no verified answer exists</b>. It does not mean nobody looked. Each row carries the
+  information already held, which is often the reason we can say with confidence that the answer is still unknown —
+  for example, knowing the league publishes no league-wide depth chart is what makes Q-05 a decision rather than a lookup.</p>
+  <h2>Suggested order of resolution</h2>
+  <p><b>Q-01 → Q-02 → Q-03 → Q-05 → Q-09 → Q-11 → Q-12</b>, then Q-04/Q-14 (scale) and Q-07/Q-08 (rewards) once
+  there is something to reward. This order is a dependency chain, not a preference: each item unblocks the next.</p>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
+  </footer>
+</main>
+</body>
+</html>

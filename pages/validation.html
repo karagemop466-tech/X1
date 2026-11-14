@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Validation gates — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a class="active" href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ VALIDATION GATES</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">METHOD / 02</div>
+  <h1>Validation gates</h1>
+  <p>Seven pre-registered gates a strategy must clear before it is scored, ranked or rewarded — in order, with no
+  “but the ROI looks good” exception.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Pre-registered</b> means written down <i>before</i> the test window opens. Moving a gate after seeing
+  results is how strategy shops manufacture skill from noise.</div>
+
+  <h2>The luck arithmetic, worked in the open</h2>
+  <div class="formula">
+    <code>SE(p̂) = sqrt(p̂(1−p̂)/n)</code>
+    <code>p_break(&minus;110) = 110/210 = 0.5238</code>
+    <code>z = (0.551 − 0.5238)/sqrt(0.551·0.449/500) = 0.0272/0.0222 ≈ 1.22</code>
+  </div>
+  <p><b>z ≈ 1.22 is not skill.</b> It is a coin landing 55 heads in 100. Gate 2 needs <code>z ≥ 1.96</code> <i>and</i> a
+  bootstrap 95% interval on ROI that excludes zero — both, not either. This single calculation is why a 55% record over
+  a season cannot be sold as an edge.</p>
+
+  <h2>Effective sample size for correlated tickets</h2>
+  <div class="formula"><code>n_eff = n / (1 + (k − 1)·ρ̄)</code></div>
+  <p>400 tickets averaging two shared legs with ρ̄ = 0.3 is effectively <b>308</b>. The gate is held against
+  <code>n_eff</code>, not the raw count, because correlated tickets are not independent draws.</p>
+
+  <h2>The gates</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Gate</th><th>Name</th><th>Pass condition</th><th>Status</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>G0</b></td><td>Provenance</td><td>registered_before_window<br>licensed_inputs_timestamped<br>no_lookahead<br>settlement_rule_recorded<br>model_version_hashed</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G1</b></td><td>Sample size</td><td>singles_bets: <b>500</b><br>two_leg_parlays_tickets: <b>300</b><br>three_plus_leg_tickets: <b>400</b><br>props_tickets: <b>500</b><br><code>n_eff = n / (1 + (k-1)*rho_bar)</code></td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G2</b></td><td>Skill above variance</td><td>z_skill &gt;= 1.96 (two-sided 5%)<br>bootstrap 95% interval on ROI excludes 0<br><code>z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n_eff)</code></td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G3</b></td><td>Calibration</td><td>brier better than market-implied<br>log loss better than market-implied<br>reliability slope in [0.85, 1.15]</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G4</b></td><td>Robustness</td><td>edge sign stable across window halves<br>leave-one-team-out survives &gt;= 28/32 refits<br>edge survives a second independent window<br>placebo shuffles do not reproduce edge<br>no 3-week block &gt; 50% of profit</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G5</b></td><td>Risk of ruin</td><td>median max drawdown &lt;= 25% of bankroll<br>staking rule pre-registered<br>survives 50% stake reduction<br><span class='pill high'>auto-fail</span> unbounded downside with no stated cap</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G6</b></td><td>Economic reality</td><td>edge survives using only release-time best quote<br>stake executable at recorded limit<br>all fees inside ROI<br>no implausible stake to produce claimed ROI</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G7</b></td><td>Correlation discipline</td><td>rho published with interval<br>joint probability calibrated on holdout<br>n_eff reported<br>&gt;6 legs requires separate joint model</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Scoring rules that keep luck off the board</h2>
+  <ul class="checks">
+    <li>score only inside the registered window</li><li>passes are logged (a strategy with no denominator is invalid)</li><li>arithmetic (non-compounded) market return</li><li>report raw and top-5%-trimmed ROI together</li><li>champion requires two consecutive qualifying windows</li><li>two failed windows demote; no sitting on old results</li><li>challenger runs a full shadow window before displacing a champion</li><li>all entrants evaluated on identical frozen inputs</li>
+  </ul>
+
+  <h2>Ranking objective</h2>
+  <div class="formula"><code>score = z_skill - lambda*calibration_penalty - mu*drawdown_penalty</code></div>
+  <p>Weights: λ = 1.0, μ = 0.5.
+  Report the components, never just the composite — a high score built on a large calibration penalty is a near-miss and
+  must look like one.</p>
+  <p>Tie-breaks, in order: higher n_eff, lower calibration penalty, smaller max drawdown, earlier registration timestamp, alphabetical.</p>
+
+  <h2>Implementation status</h2>
+  <table class="kv">
+    <thead><tr><th>Gate</th><th>Implemented in code?</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Gate definitions</td><td><span class="pill ok">Yes</span> — <code>data/gates.json</code> is the machine-readable contract</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Gate evaluation against real strategies</td><td><span class="pill high">No</span> — no strategy can be registered until Q-02, Q-03 and Q-12 are settled</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+      <tr><td>Gate-by-gate reporting on the site</td><td><span class="pill ok">Yes</span> — this page and the leaderboard render each gate</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
+  </footer>
+</main>
+</body>
+</html>

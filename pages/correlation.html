@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Correlation — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a class="active" href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ CORRELATION</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">METHOD / 03</div>
+  <h1>Correlation</h1>
+  <p>The estimator, the power calculation and the multiple-comparison correction — so that when a correlation
+  <strong>is</strong> published it is defensible. No value is published today, because the joint-outcome dataset does not exist.</p>
+</section>
+<section class="content">
+  <div class="alert small">
+    <b>No correlation value is published.</b>
+    <p>A number invented here would be indistinguishable from a guess. Everything below is the procedure that must be
+    followed before any value appears — including the estimator, the interval and the test.</p>
+  </div>
+
+  <h2>The estimator</h2>
+  <div class="formula">
+    <code>p_A = E[1{A}]&nbsp;&nbsp;p_B = E[1{B}]&nbsp;&nbsp;p_AB = E[1{A}·1{B}]</code>
+    <code>Cov(A,B) = p_AB − p_A·p_B</code>
+    <code>ρ = Cov(A,B) / (σ_A·σ_B)&nbsp;&nbsp;<i>defined only when σ_A, σ_B &gt; 0</i></code>
+  </div>
+  <p>If a leg has zero variance (always wins or always loses), ρ is <b>undefined — not zero</b>. Report it as undefined and
+  drop it from the pricing model.</p>
+
+  <h2>Why the sign is not enough</h2>
+  <p>Correlation gives the direction; the parlay's fair price needs the <b>joint probability</b>
+  <code>p_AB</code>, and <code>fair odds = 1/p_AB</code>. Two legs can share a ρ and still need different prices at
+  different base rates. Publish <code>p_AB</code> with an interval next to ρ, or publish nothing.</p>
+
+  <h2>The independence trap, in numbers</h2>
+  <p>Two legs at p = 0.5 each, both priced at −110. For binary legs the joint is exact once ρ is chosen: <code>p_AB = 0.25 + 0.25ρ</code> at p = 0.5.</p>
+  <div class="tablewrap"><table class=""><thead><tr><th>Assumption</th><th>Joint probability</th><th>Fair odds</th><th>Book at −110 pays</th><th>Book margin</th><th>Source</th></tr></thead><tbody>
+<tr><td>Independent (ρ = 0)</td><td>0.2500</td><td>4.000 (+300)</td><td>≈3.645 (+264)</td><td>+8.9% — book keeps the edge</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>ρ = 0.30</td><td>0.3250</td><td>3.077 (+208)</td><td>≈3.645 (+264)</td><td><b>−18.5% — edge flips to the bettor</b></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+</tbody></table></div>
+  <p>The second row is why books cap correlated legs — and why a parlay strategy that ignores dependence backtests
+  beautifully and loses in production.</p>
+
+  <h2>Estimation procedure (mandatory)</h2>
+  <ol class="route">
+    <li><b>Define the setting.</b> A correlation measured across different conditions is an average of things that do not pool.</li>
+    <li><b>Train on the past only.</b> Chronological split; a random split leaks the future into the past.</li>
+    <li><b>Bootstrap the interval.</b> Report 95% intervals on ρ and p_AB. With ~17 games per club per season, intervals are wide.</li>
+    <li><b>Test the independence null</b> with a likelihood-ratio or permutation test; publish the p-value and n.</li>
+    <li><b>Confirm out of sample.</b> A correlation that exists only in the fitting window is noise with a bibliography.</li>
+    <li><b>Correct for multiple comparisons.</b> Test 200 leg pairs and ~10 clear p &lt; 0.05 by chance; use a Benjamini–Hochberg style correction.</li>
+  </ol>
+
+  <h2>Sample-size reality check</h2>
+  <div class="formula"><code>n ≈ ((z_(1−α/2) + z_(1−β)) / z_ρ)² + 3&nbsp;&nbsp;→&nbsp;&nbsp;≈780 paired observations for ρ = 0.10 at 80% power</code></div>
+  <p>A season is 272 games, and conditioning on game state shrinks the usable n further. Any correlation published from a
+  single season of a single team's props should be treated as a hypothesis, not a finding.</p>
+
+  <h2>Which pairs to test first</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Priority</th><th>Pair</th><th>Why it matters</th><th>Source</th></tr></thead><tbody>
+<tr><td>1</td><td>QB passing yards × own WR/TE receiving yards</td><td>Mechanically coupled; largest, most stable dependence</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>2</td><td>Team total × own RB rushing yards</td><td>Game-script coupling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>3</td><td>Opposing QB passing yards × our pass-rush (sacks)</td><td>Negative dependence; often mispriced</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>4</td><td>WR1 receiving yards × WR2 receiving yards</td><td>Competes for targets — usually negative, sometimes positive</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>5</td><td>Game total × any single player&#x27;s over</td><td>Game-state coupling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>6</td><td>Spread cover × QB/rushing props</td><td>Game-script coupling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Storage contract</h2>
+  <p>Every published correlation row must carry: leg_a, leg_b, setting, n_observations, p_a, p_b, p_ab, rho,
+  rho_ci_low, rho_ci_high, p_value, test_correction, train_window, holdout_window, source_dataset, source_url,
+  retrieved_at, status. The generator refuses to emit a <code>published</code> row with any blank field.</p>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
+  </footer>
+</main>
+</body>
+</html>

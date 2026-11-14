@@ -530,7 +530,7 @@ flag("ODD-ROW", "SEA: Terrion Arnold listed 'Out' but comment reads 'Aug 29: Arn
 flag("NOT-INJURY", "WAS: Athan Kaliakmanis listed Out — comment says (coach's decision) inactive as emergency QB; not an injury.", "https://www.espn.com/nfl/player/_/id/4432722/athan-kaliakmanis")
 flag("UNVERIFIED-STAFF", "ESPN comments reference 'head coach Jesse Minter' (BAL) and 'head coach Mike LaFleur' (ARI). Staff titles not independently verified in this session.", ESPN_INJ_URL)
 flag("DATA-ENVIRONMENT", "nflverse weekly injury release (nflverse-data/releases/injuries/injuries_2026.csv) not downloadable in this sandbox (release-asset hosts blocked). ESPN league injury page used instead; NFL.com cross-check recommended.", "https://github.com/nflverse/nflverse-data/releases/tag/injuries")
-flag("MODEL-LIMIT", "Totals model not yet built: model_total_hint left blank for all Week 10 games. No values inferred.", "scripts/build_data.py")
+flag("MODEL-LIMIT", "Totals model not yet built: model_total_hint left blank for all Week 10 games. No values inferred.", "https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py")
 flag("DEPTH-CHARTS", "Named backups ('expected_backup_names') left blank for all teams: depth-chart data not verifiable from an official source in this environment. Position-group impact flags are provided instead.", ESPN_INJ_URL)
 flag("ESPN-STATUS-MISMATCH-COUNT", "Status/comment mismatches (ESPN status column says IR but comment gives a Week-10 designation) are flagged per-row in injuries_2026_w10.json build output; they are recorded verbatim, never corrected.", ESPN_INJ_URL)
 
