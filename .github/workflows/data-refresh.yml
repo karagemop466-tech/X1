@@ -109,6 +109,28 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           grep -q "MARKER: done" _ci/commit.log
 
+      - name: Upload diagnostics via the API
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for name in commit pipeline; do
+            file="_ci/${name}.log"
+            [ -f "$file" ] || echo "(no ${name} log)" > "$file"
+            b64=$(base64 -w0 "$file")
+            sha=$(gh api "repos/${{ github.repository }}/contents/${file}?ref=${GITHUB_REF_NAME}" --jq .sha 2>/dev/null || true)
+            if [ -n "$sha" ]; then
+              gh api -X PUT "repos/${{ github.repository }}/contents/${file}" \
+                -f message="ci: diagnostics ${name} $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+                -f content="$b64" -f branch="${GITHUB_REF_NAME}" -f sha="$sha" >/dev/null
+            else
+              gh api -X PUT "repos/${{ github.repository }}/contents/${file}" \
+                -f message="ci: diagnostics ${name} $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+                -f content="$b64" -f branch="${GITHUB_REF_NAME}" >/dev/null
+            fi
+          done
+
       - name: Assemble the site
         if: ${{ github.event.inputs.skip_pages != 'true' }}
         run: |
