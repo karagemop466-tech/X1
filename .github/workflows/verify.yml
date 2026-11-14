@@ -91,3 +91,16 @@ jobs:
           for f in data/*.json; do
             python3 -c "import json,sys; json.load(open('$f')); print('ok $f')"
           done
+
+      # Added by session arena/907c5baf-x1: round-2 store contract (results feed,
+      # price snapshots, signal/staking split, demotion gate). Additive.
+      - name: Verify round-2 store contract (Added by session arena/907c5baf-x1)
+        run: python3 tools/verify_stores.py
+
+      - name: Rebuild round-2 stores and fail if stale (Added by session arena/907c5baf-x1)
+        run: |
+          python3 tools/build_results_feed.py
+          python3 tools/build_price_store.py
+          python3 tools/build_leaderboard_split.py
+          python3 tools/build_app.py
+          git diff --exit-code -- data/results_feed.json data/price_snapshots.json data/leaderboard_split.json app
