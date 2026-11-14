@@ -116,6 +116,17 @@ jobs:
           cp data/raw_manifest.json _site/data/ 2>/dev/null || true
           mkdir -p _site/data/pipeline
           cp data/pipeline/*.json _site/data/pipeline/ 2>/dev/null || true
+          # Added by session arena/3fa49c1a-x1: round-N stores (verified results
+          # feed, price snapshots, replacement depth, official correlations,
+          # originated markets, decision registers). Additive only — nothing
+          # above is modified or removed.
+          cp -r data/results _site/data/results
+          cp -r data/prices _site/data/prices
+          cp -r data/depth _site/data/depth
+          cp -r data/correlations _site/data/correlations
+          cp -r data/origin _site/data/origin
+          mkdir -p _site/data/lines
+          cp data/lines/originated_markets_2026_week10.csv _site/data/lines/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site

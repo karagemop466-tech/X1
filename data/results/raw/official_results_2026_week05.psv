@@ -1,0 +1,16 @@
+week|game_id|game_date|away|away_score|home|home_score|status|game_url|schedule_url|retrieved
+5|2026_05_TB_DAL|2026-10-08|TB|24|DAL|16|FINAL|https://www.nfl.com/games/buccaneers-at-cowboys-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_PHI_JAX|2026-10-11|PHI|17|JAX|19|FINAL|https://www.nfl.com/games/eagles-at-jaguars-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_CIN_MIA|2026-10-11|CIN|31|MIA|24|FINAL|https://www.nfl.com/games/bengals-at-dolphins-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_LV_NE|2026-10-11|LV|17|NE|45|FINAL|https://www.nfl.com/games/raiders-at-patriots-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_MIN_NO|2026-10-11|MIN|23|NO|13|FINAL|https://www.nfl.com/games/vikings-at-saints-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_CLE_NYJ|2026-10-11|CLE|12|NYJ|17|FINAL|https://www.nfl.com/games/browns-at-jets-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_IND_PIT|2026-10-11|IND|22|PIT|34|FINAL|https://www.nfl.com/games/colts-at-steelers-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_HOU_TEN|2026-10-11|HOU|26|TEN|3|FINAL|https://www.nfl.com/games/texans-at-titans-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_NYG_WAS|2026-10-11|NYG|27|WAS|27|FINAL_TIE|https://www.nfl.com/games/giants-at-commanders-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_CHI_GB|2026-10-11|CHI|7|GB|31|FINAL|https://www.nfl.com/games/bears-at-packers-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_DEN_LAC|2026-10-11|DEN|23|LAC|17|FINAL|https://www.nfl.com/games/broncos-at-chargers-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_DET_ARI|2026-10-11|DET|45|ARI|21|FINAL|https://www.nfl.com/games/lions-at-cardinals-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_SF_SEA|2026-10-11|SF|32|SEA|29|FINAL|https://www.nfl.com/games/49ers-at-seahawks-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_BAL_ATL|2026-10-11|BAL|30|ATL|23|FINAL|https://www.nfl.com/games/ravens-at-falcons-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14
+5|2026_05_BUF_LA|2026-10-12|BUF|37|LA|34|FINAL|https://www.nfl.com/games/bills-at-rams-2026-reg-5|https://www.nfl.com/schedules/2026/by-week/week-5|2026-11-14

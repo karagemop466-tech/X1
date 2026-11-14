@@ -1261,6 +1261,106 @@ inherits the incorrect claim.
 
 ---
 
+# Session `arena/3fa49c1a-x1` — price/results infrastructure + the eight owner-directed improvements (this branch)
+
+**Session ID:** `arena/3fa49c1a-x1` · **Branch:** `arena/3fa49c1a-x1` (branched from `main` @ `11d9ea1`, merge of PR #33)
+**Role claimed:** implementation of the owner's eight directed improvements, plus this round's final
+integration (board rule 9: shared outputs change here only). No session holds an open claim at the
+time of writing — every board above is `done`/merged and the remote carries only `main` — so this
+claim follows rule 10's takeover pattern exactly as sessions `arena/cc51616e-x1` and
+`arena/459b17e1-x1` did.
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| N1 | **Price-snapshot store**: opening and closing numbers for every market we originate, with provenance and CLV-ready schema | in progress | `arena/3fa49c1a-x1` | `data/prices/**` (new), `tools/build_prices.py` (new) |
+| N2 | **Verified results feed**: final scores with official source URLs so backtests and ROI can be computed | in progress | `arena/3fa49c1a-x1` | `data/results/**` (new), `tools/build_results.py` (new) |
+| N3 | **Origination order**: side first, then total, then moneyline — enforced in the origination pipeline | in progress | `arena/3fa49c1a-x1` | `code/build_lines.py`, `data/lines/originated_lines_2026_week10.csv` (regenerated) |
+| N4 | **Fair line / market line / difference as separate columns** on every originated-market row | in progress | `arena/3fa49c1a-x1` | same files as N3 |
+| N5 | **Leaderboard: signal vs staking split** — separate ranks so a lucky staking run cannot mask a bad signal | in progress | `arena/3fa49c1a-x1` | `data/leaderboard_split.json` (new), `docs/methodology/leaderboard.md` (additive) |
+| N6 | **Depth of replacement tracked** (2nd/3rd/4th string), not just the fact of a replacement | in progress | `arena/3fa49c1a-x1` | `data/depth/**` (new), `tools/build_replacement_depth.py` (new) |
+| N7 | **Correlations from officially sourced numbers only, each value published with n** | in progress | `arena/3fa49c1a-x1` | `data/correlations/**` (new), `tools/build_correlations_official.py` (new) |
+| N8 | **Demotion gate defined**: live → paper thresholds (was G-13 "threshold not set") | in progress | `arena/3fa49c1a-x1` | `data/gates_v2.json` (new), `docs/methodology/validation-gates.md` (additive section) |
+| N9 | Registers: executive summary, questions/answers, suggestion board updated with decisions taken | in progress | `arena/3fa49c1a-x1` | `data/origin/**` (new registers), `app/*.html` (regenerated) |
+| N10 | Integration: extend the unified dashboard, re-verify line by line, run all checks, PR → `main`, merge, Pages deploy confirmation | in progress | `arena/3fa49c1a-x1` | `tools/build_app.py`, `tools/verify_app.py` (additive page entries), `.github/workflows/pages.yml` (additive only if needed), this file |
+
+## Non-overlap declaration
+
+- `hub/**`, `wiki/**`, `data/verification/**`, `data/depth/**`, `data/decision_board.json` — session `arena/459b17e1-x1`, **read-only inputs**. `data/depth/**` naming clash noted: this session's N6 store lives at `data/depth/replacement_depth.*` (new files only, no existing file edited).
+- `app/**`, `tools/build_app.py`, `tools/verify_app.py` — session `arena/fcc11e05-x1` (completed; rule 10 takeover for additive page entries, every edit tagged in the file and logged here).
+- `data/pipeline/**`, `pipeline/**`, `live/**` — session `arena/d577959f-x1` (completed; read-only inputs).
+- `data/lines/**`, `code/build_lines.py` — produced by earlier sessions; N3/N4 regenerate `originated_lines_2026_week10.csv` from its own inputs and keep the previous file's provenance columns.
+- No active session's file is edited. All work is on `arena/3fa49c1a-x1`; shared outputs change only in this round's integration (rule 9).
+
+## Log (append-only)
+
+- 2026-11-14 — Claim written and pushed before any other work (rule 1).
+
+## Completion record — N1–N10 (session `arena/3fa49c1a-x1`, 2026-11-14)
+
+**Claims N1–N10: all done.** No task was taken from a live session; every earlier claim on this
+board was `done`/merged and the remote held only `main` when this session started (rule 10).
+
+| # | Task | Status | What shipped | Verification |
+|---|---|---|---|---|
+| N1 | Price-snapshot store | **done** | `data/prices/price_snapshots.csv` + `price_feed.json` (56 rows: one per originated market selection; open + close columns, CLV-ready schema). Openings blank (nothing records 2026 openers), closings recorded from the fingerprinted mirror with `verified=no`. | every cell is either verified, or blank/flagged; nothing inferred; `tools/build_originated_markets.py` deterministic |
+| N2 | Verified results feed | **done** | `data/results/verified_results_2026.csv` + `results_feed.json` — 137 completed 2026 games (weeks 1–10), every score read from the official NFL.com weekly schedule pages | `tools/build_results.py`: 32 clubs x W/L/T/PF/PA re-derived from the feed **160/160 match the official standings**; league identity ΣPF = ΣPA = 6291; third-party mirror cross-check 137/137 (corroboration only) |
+| N3 | Origination order side → total → moneyline | **done** | enforced in `tools/build_originated_markets.py` (MARKET_ORDER + build-fails assertions); 14 sides → 14 totals → 28 moneylines | order assertion in the builder; row order index published per row |
+| N4 | Fair line / market line / difference as separate columns | **done** | `data/lines/originated_markets_2026_week10.csv`, 56 rows; difference = fair − market (points; moneylines in win-probability pp) | sign convention documented once; market column carries UNVERIFIED provenance on every row |
+| N5 | Signal vs staking split | **done** | `data/leaderboard_split.json` + the split table on `app/leaderboard.html`; promotion/demotion read the signal block only | policy text embedded; values blank until graded data exists (by rule) |
+| N6 | Depth of the replacement | **done** | `data/depth/replacement_depth.{csv,json}` — 78 starter slots with a game status: 68 replaced by 2nd string, 1 by 3rd, 9 with no name listed; offense/defense/special teams | every row re-verified before publishing against the club depth chart (starter is depth 1, replacement is the next listed name at its string) and the nfl.com injury report (status matches exactly); 78/78 pass; GB jersey-number printing (F-01) handled in the matcher |
+| N7 | Correlations from official numbers only, n published | **done** | `data/correlations/official_correlations.{csv,json}` — 3,570 pairs, 85 official metrics x 32 clubs, r + **n** + p per row with both source URLs | independent recomputation vs the published pipeline table: **905/905 agree, 0 disagree**; third-party-derived correlations excluded from the store |
+| N8 | Demotion gate defined | **done** | `data/gates_v2.json` (D1 CLV decay, D2 drawdown ≥25u or ≥35% peak, D3 hit-rate decay, D4 data-integrity trip, D5 re-promotion: 50 new graded bets, no reuse) + `app/validation.html` | closes Q-26, unblocks G-13; thresholds pre-registered in writing before any strategy is live |
+| N9 | Registers + executive summary | **done** | `data/origin/decisions_taken.json` (8 directives → artefacts), `data/origin/question_answers.json` (Q-03/Q-04/Q-22/Q-26 closed; Q-02 narrowed), `docs/origin/EXECUTIVE-SUMMARY.md`, surfaced on `app/suggestions.html` and `app/decisions.html` | each register row links its evidence |
+| N10 | Integration | **done** | 25-page unified dashboard (4 new pages), Pages workflow additive copy lines for the new stores, full check suite green, PR + merge + Pages deploy | see below |
+
+### Sources used (all fetched live 2026-11-14)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/schedules/2026/by-week/week-1> … <week-10> (all 10 weekly pages, every chunk) | N2: 137 final scores, game URLs |
+| <https://www.nfl.com/standings/league/2026/REG> | N2: the 160-value standings arithmetic check |
+| `data/pipeline/team_stats.json` rows citing <https://www.nfl.com/stats/team-stats/...> (9 official tables) + standings | N7: the 85-metric official matrix |
+| official club depth charts (31 clubs) + <https://www.nfl.com/injuries/> | N6: starter/replacement/status per row |
+| `data/raw/nflverse/games.csv` (community mirror, fingerprinted) | N1/N4: UNVERIFIED market close/benchmark values only, flagged on every row |
+
+### Verification performed (the whole suite, on the merged content)
+
+`tools/build_results.py` (160/160) · `tools/build_replacement_depth.py` (78/78 re-verified) ·
+`tools/build_correlations_official.py` (905/905) · `tools/build_originated_markets.py` (order
+assertions) · `tools/verify_app.py` (25 pages, 809 links, 5,860 rows **0 unsourced**) ·
+`tools/check_links.py` (118 files, **28,233 assertions, 0 failures**) · `tools/verify_data.py`
+(2,944) · `tools/verify_against_official.py` (every Week 10 cell) · `tools/cross_check.py`
+(1,380 cells) · `tools/test_source_rule.py` (rule mutation-tested) · `scripts/verify_site.py`
+(118 pages) · `scripts/check_site.py` (27) · `scripts/verify_parlay.py` ·
+`scripts/verify_research_site.py` (1,921) · `scripts/verify_site_annex.py` ·
+`scripts/pipeline/verify_data.py` · `scripts/pipeline/verify_site.py` · `tools/verify_official.py` ·
+stale-HTML guards (`build_availability`, `build_site`, `build_app`, `build_audit_registers` + git
+diff clean) · local Pages-tree assembly (17MB, 0 broken links on the new pages).
+
+### Irregularities found / resolved this round
+
+| ID | Item | State |
+|---|---|---|
+| I-14 (earlier sessions) | "Standings show pre-game records for WAS/NYG after TNF" | **RESOLVED — the claim was wrong.** The standings include the TNF result (WAS 3-5-1 / NYG 5-3-1 are post-game). The feed-vs-standings arithmetic passes only with the game included (WAS PF 172+24=196). No schedule/standings discrepancy exists; the old reading miscounted the games. |
+| N-01 | No source anywhere records 2026 opening prices; no official source records closing prices | **flagged, not filled** — the store's open column is blank by rule, close carries mirror values with `verified=no`; Q-02 remains the one open feed decision |
+| N-02 | Mirror prices in the originated-markets and price stores are third-party (F-03/I-10 lineage) | **flagged on every row** (UNVERIFIED badge), excluded from the leaderboard and from all correlation values |
+| N-03 | Club depth charts are self-published (GB "Unofficial, Nov. 10, 2026"); HOU unparsable (F-03) | caveat on every replacement-depth row; HOU absent, never guessed |
+
+### Additive-only edits to files owned by earlier sessions (logged per rule 4)
+
+| File | Owner | Change |
+|---|---|---|
+| `tools/build_app.py` | `arena/fcc11e05-x1` (completed; rule-10 takeover) | 4 new page builders + 5 additive sections, every edit tagged "Added by session arena/3fa49c1a-x1"; generator output committed and stale-checked |
+| `.github/workflows/pages.yml` | `arena-b38a21d8-x1` / later integrators | +6 copy lines for the new data stores, commented "Added by session arena/3fa49c1a-x1"; nothing above modified |
+
+**Full record of what was built and why:** `docs/origin/EXECUTIVE-SUMMARY.md`.
+
+---
+
+---
+
 # Session `arena/1d3600f8-x1` — price snapshots, verified results feed, and the eight emphasized requirements (this session)
 
 **Session ID:** `arena-1d3600f8-x1` · **Branch:** `arena/1d3600f8-x1` (branched from `11d9ea1`, `main`)
@@ -1544,6 +1644,41 @@ The two defects that verifier found in the already-published site were fixed in 
 
 ---
 
+---
+
+## Merge-resolution record (session `arena/3fa49c1a-x1`, 2026-11-14, PR #38)
+
+PR #38 (`arena/3fa49c1a-x1` → `main`) met a conflicting `main`: while this session ran its N1–N10
+round, session `arena-1d3600f8-x1` completed a parallel round (T15–T21) implementing the same
+eight owner-directed improvements, and `arena/56769365-x1` merged its line desk (PRs #36/#37).
+The merge was resolved with **nothing discarded from either side** (rule 7):
+
+| Collision | Resolution |
+|---|---|
+| `tools/build_replacement_depth.py`, `tools/build_correlations_official.py` (both sessions wrote tools at these names) | main's versions keep their names and outputs (`data/analysis/*`, T19/T20); this session's tools renamed `tools/build_replacement_depth_store.py`, `tools/build_correlations_official_store.py` and keep writing `data/depth/*`, `data/correlations/*`. Both implementations run and publish. |
+| `data/results/verified_results_2026.csv` (two transcriptions of the same official pages) | main's file keeps the path (T16 schema); this session's transcription is now `data/results/verified_results_2026_n2.csv`. `tools/build_results.py` cross-checks the two on every build: **137/137 games and scores agree** (team-code spellings LA/LAR, ARI aside). Both are published. |
+| `tools/build_app.py` (both sessions added pages and sections) | union: main's T15–T21 pages and sections kept intact; this session's additions re-applied on top, each tagged `Added by session arena/3fa49c1a-x1 (merge ...)`: two pages (`replacement-depth.html`, `prices.html`), seven page sections, and loads for the second store family. Regenerated `app/*.html` from the union; the stale-HTML guard is green. |
+| `app/*.html` | never hand-merged (rule 8) — regenerated from the merged generator and verified by `tools/verify_app.py`. |
+| `COORDINATION.md` | union of both appended records (this document), then this log. |
+
+**Two policy differences surfaced by the merge are recorded as owner decisions, not silently
+picked:** (a) the demotion-gate thresholds — G8's six mechanical triggers vs D1–D5's numeric
+thresholds (both shown on `app/validation.html`); (b) the reward formula's staking term —
+`min(signal, staking)` (T18) vs signal-only promotion with staking as reporting (N5 schema).
+Both designs are published side by side; both agree the signal block decides promotion first.
+
+**Cross-checks between the two implementations** (all pass): results feeds 137/137; correlation
+recomputation vs the published pipeline table 905/905; replacement-depth counts consistent with
+the aggregate view (78 game-status slots within the 189 on-report starters, cuts documented).
+
+Verification suite re-run on the merged tree before the PR merged: all verifiers green
+(check_links 28,233 assertions; verify_app 25 pages; verify_data 2,944; verify_site 118 pages;
+check_site; verify_parlay; verify_research_site 1,921; verify_site_annex; pipeline verifiers;
+verify_official; verify_against_official; cross_check; test_source_rule; stale-HTML guards for
+availability/site/app/audit all clean).
+
+---
+
 # Session `arena/bf27a3bd-x1` — claim, collision log and completion record
 
 **Session ID:** `arena/bf27a3bd-x1` · **Branch:** `arena/bf27a3bd-x1` (branched from `main` @ `11d9ea1`).
@@ -1636,3 +1771,21 @@ merge of `origin/main` into `arena/bf27a3bd-x1` and logged here in full:
   `git pull --rebase` attempted after creating the merge commit tried to linearize it and reported
   a phantom COORDINATION.md conflict; it was aborted (`git rebase --abort`) — the pushed history was
   already correct and untouched by the attempt.
+
+---
+
+## Merge-resolution record — second round (session `arena/3fa49c1a-x1`, 2026-11-14, PR #38)
+
+PR #38 met a second advance of `main` while it was open: session `arena/bf27a3bd-x1` completed
+its own T10–T18 round (PRs #39/#41) and merged. Resolved the same way — nothing discarded:
+
+| Collision | Resolution |
+|---|---|
+| `tools/build_app.py` | union again: bf27a3bd's `stores.html` page + entry kept verbatim; this session's `prices.html` and `replacement-depth.html` kept verbatim; all three sessions' PAGES entries and loaders coexist. `app/*.html` regenerated from the union (26 pages) and re-verified. |
+| `COORDINATION.md` | union of both appended records; each session's record appears exactly once. |
+
+The data stores did not collide: bf27a3bd's family lives in `data/lines/*.json`, this session's in
+`data/results/`, `data/prices/`, `data/depth/`, `data/correlations/`, `data/origin/`, and the
+T15–T21 family in `data/price_snapshots/`, `data/analysis/`, `data/results/` (shared folder,
+distinct filenames, cross-checked 137/137). Full verification suite re-run on the merged tree and
+green again before merge.

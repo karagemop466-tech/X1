@@ -43,10 +43,14 @@ PAGES: List[Tuple[str, str, str, str, str]] = [
     ("injuries.html", "Injury report", "Official data", "Official Week 10 injury report", "NFL.com injuries"),
     ("depth.html", "Depth charts", "Official data", "Club depth charts, 1st to 4th string", "Club sites"),
     ("deficiency.html", "Deficiency watch", "Official data", "Who is out and which backup replaces them", "Club chart x NFL injury report"),
+    # Added by session arena/3fa49c1a-x1 (N6 page, merged in from the parallel N1-N10 round)
+    ("replacement-depth.html", "Replacement depth", "Official data", "Depth of the replacement (per-slot store)", "Which string steps in"),
     ("team-stats.html", "Team stats", "Official data", "Official team offence and defence", "NFL.com stats"),
     ("lines.html", "Originated lines", "Model", "Our own number", "Walk-forward model"),
     # Added by session arena-1d3600f8-x1 (T15 + T17)
     ("origination.html", "Origination & prices", "Model", "Side, then total, then moneyline", "Fair vs market vs difference"),
+    # Added by session arena/3fa49c1a-x1 (N1 page, merged in from the parallel N1-N10 round)
+    ("prices.html", "Price snapshots", "Model", "Price-snapshot store (per-market rows)", "Open and close, blank where no source"),
     ("correlation.html", "Correlation", "Model", "Correlation and independence", "Measured, not assumed"),
     ("strategies.html", "Strategy library", "Strategy", "Candidate strategies", "Pre-registered"),
     ("validation.html", "Validation gates", "Strategy", "Eight gates a strategy must pass", "Pre-registered"),
@@ -295,6 +299,18 @@ def load() -> None:
         "byes": csvrows("data/verify/official_byes_2026_w10.psv"),
     }
     # --- Added by session arena-1d3600f8-x1 (T15-T21 integration) ---
+    # Merged from session arena/3fa49c1a-x1 (parallel N1-N10 round) — the second,
+    # independent implementation kept for cross-verification. Its stores sit beside
+    # the T15-T21 stores and both are published; the cross-checks are on the pages.
+    D["n2_results"] = jload("data/results/results_feed.json")
+    D["n2_ver"] = jload("data/results/results_verification.json")
+    D["prices"] = jload("data/prices/price_feed.json")
+    D["repl_depth"] = jload("data/depth/replacement_depth.json")
+    D["offcorr"] = jload("data/correlations/official_correlations.json")
+    D["lb_split"] = jload("data/leaderboard_split.json")
+    D["gates_v2"] = jload("data/gates_v2.json")
+    D["origin_decisions"] = jload("data/origin/decisions_taken.json")
+    D["origin_qa"] = jload("data/origin/question_answers.json")
     D["results_feed"] = csvrows("data/results/verified_results_2026.csv")
     D["results_report"] = jload("data/results/verification_report.json")
     D["roi_summary"] = csvrows("data/results/roi_summary.csv")
@@ -549,6 +565,20 @@ built. Nothing on that board has been implemented without a recorded choice.</p>
   <li><b>Demotion gate G8</b> — six mechanical triggers send a live strategy back to paper, with
   action, re-entry and logging defined (see <a href="{PFX}validation.html">Validation</a>).</li>
 </ul>"""))
+
+    # Added by session arena/3fa49c1a-x1 (merge): the parallel-round merge, honestly recorded
+    body.append(card("Two sessions, one brief — both preserved (merge record)", f"""
+<p>The same eight directed improvements were built twice on 2026-11-14 by two parallel sessions
+(<code>arena-1d3600f8-x1</code> T15–T21 and <code>arena/3fa49c1a-x1</code> N1–N10). Nothing was
+discarded in the merge: both result feeds, both price-snapshot stores, both replacement-depth
+stores and both correlation stores are published here and cross-checked against each other —
+the two independent result transcriptions agree on <b>137 of 137 scores</b>, and the independent
+correlation recomputation agrees <b>905 of 905</b> pairs. Where the two designs make different
+policy choices (demotion thresholds G8 vs D1–D5; reward staking term), both are shown side by
+side and the choice is recorded as an owner decision on the
+<a href="{PFX}decisions.html">decision register</a>. Finding I-14 is resolved by the results
+arithmetic: the standings do include the Thursday result; the earlier reading miscounted.
+Full merge log: <code>COORDINATION.md</code>.</p>"""))
 
     return page("executive-summary.html", "Executive summary", "Read this first", "\n".join(body),
                 lede="Five findings, what they change, and what is still blocked.")
@@ -1003,6 +1033,25 @@ interchangeable, and this page keeps them apart.</section>""")
                                 "deficiency register). p is a two-sided permutation p (B=20,000, fixed seed); "
                                 "the interval is Fisher 95%. The mirror-based tables below are reference-only "
                                 "and are labelled non-official wherever they appear.")))
+    # Added by session arena/3fa49c1a-x1 (merge, N7): the wide official-only matrix
+    oc = D["offcorr"]
+    top = oc["rows"][:25]
+    octrs = [[esc(r["pair"]), num(r["r"], 3), esc(r["n"]), num(r["p_value"], 4),
+              esc(r["strength"]), link(r["source_a"], "nfl.com table A"),
+              link(r["source_b"], "nfl.com table B")]
+             for r in top]
+    xchk = (oc.get("verification", {}) or {}).get("crosscheck_vs_pipeline_table", {})
+    body.append(card("The wide official-only matrix — 3,570 pairs, n published with every value", f"""
+<p>Complementing the 15 decision pairs above: a second session recomputed <b>every</b> metric pair
+from the official tables only — 85 metrics x 32 clubs, {len(oc['rows']):,} pairs, each publishing r,
+n and p — and independently re-checked the earlier published pipeline table:
+{xchk.get('agree', 0)} of {xchk.get('compared', 0)} overlapping pairs agree, 0 disagreements.
+Store: <code>data/correlations/official_correlations.csv</code>.</p>
+""" + table("t-corr-off", ["Pair", "r", "n", "p", "Strength", "Source A", "Source B"],
+            octrs, numeric=[1, 2, 3],
+            note=f"Top {len(top)} of {len(oc['rows']):,} by |r|. n = 32 club-seasons: a weak "
+                 f"estimate, which is exactly why n ships with each value.")))
+
     body.append('<section class="note warn"><b>Everything below this line is third-party mirror data '
                 '(nflverse/nfldata), not official.</b> It is published as a labelled benchmark only. The '
                 'official-source values are the table above.</section>')
@@ -1181,8 +1230,30 @@ eligible for nothing, however good its headline ROI looks.</section>""")
                          " ".join(f"{i + 1}. {esc(x)};" for i, x in enumerate(g8.get("reentry", []))) +
                          f' {esc(g8.get("authority", ""))}</div>'))
 
+    # Added by session arena/3fa49c1a-x1 (merge, N8): the concrete thresholds for the
+    # same gate, written as a second design (D1-D5) alongside G8's six triggers.
+    g2 = D["gates_v2"]
+    dtrs = [[esc(r["id"]), esc(r["trigger"]), esc(r["rule"]), esc(r["threshold"]),
+             esc(r["window"]), esc(r["why"]), esc(r["action"]),
+             src_cell(r["_source_url"])] for r in g2["rows"]]
+    body.append(card("D1–D5 — the same demotion gate with concrete thresholds (second design)", f"""
+<p>Two parallel sessions defined the demotion gate on the same day. G8 above is one design
+(six mechanical triggers). This is the other: five triggers with <b>explicit numeric
+thresholds</b> — CLV decay, drawdown, hit-rate decay, a data-integrity trip, and the
+re-promotion rule (50 new graded bets after the demotion date, pre-demotion data not reusable).
+The two agree on the principle — <b>any one trigger demotes automatically; re-entry is earned,
+never automatic</b> — and differ in exact thresholds. The owner's choice between the threshold
+sets is recorded as an open decision on the <a href="{PFX}decisions.html">decision register</a>;
+nothing is lost either way. Both read the <i>signal</i> block of the leaderboard, never the
+staking block.</p>
+""" + table("t-gates-d", ["ID", "Trigger", "Rule", "Threshold", "Window", "Why", "Action", "Source"],
+            dtrs,
+            note=f"Cadence: {g2.get('cadence', '')} Full record: data/gates_v2.json. "
+                 f"{g2.get('closes_question', '')}")))
+
     return page("validation.html", "Validation gates", "Strategy", "\n".join(body),
-                lede="Eight gates, pre-registered. Their whole job is to stop luck being paid as skill.")
+                lede="Eight gates, pre-registered, and the demotion gate that returns a live "
+                     "strategy to paper. Their whole job is to stop luck being paid as skill.")
 
 
 def p_leaderboard() -> str:
@@ -1295,9 +1366,38 @@ produced 300 out-of-sample bets is scaled down, and any strategy that fails a si
                                 "Ledger is the third-party mirror window — the official-only board above stays "
                                 "unranked until official graded results exist.")))
 
+    # Added by session arena/3fa49c1a-x1 (merge, N5): the signal/staking schema the
+    # official-only board fills from graded official data (still blank by rule).
+    sp = D["lb_split"]
+    split_rows = []
+    for r in sp["rows"]:
+        split_rows.append([
+            esc(r["strategy_id"]), esc(r["strategy"]), esc(r["market"]),
+            dash(r.get("signal_rank")), dash(r.get("signal_graded_bets")), dash(r.get("signal_hit_rate")),
+            dash(r.get("signal_mean_clv")), dash(r.get("signal_clv_t_stat")),
+            badge(r.get("signal_skill_gate", ""), "grey"),
+            dash(r.get("staking_rank")), dash(r.get("staking_roi_at_rule")),
+            dash(r.get("staking_max_drawdown")),
+            src_cell(r["_source_url"]),
+        ])
+    body.append(card("Signal vs staking, on the official-only board — schema locked before the data", f"""
+<p>The mirror-window grades above demonstrate the masking vector with real numbers. This is the
+schema the <b>official-only board</b> fills the day verified prices and graded results exist: a
+<b>signal block</b> (flat 1-unit grading: hit rate, mean CLV, CLV t-stat, edge at the close) and a
+<b>staking block</b> (ROI at rule, drawdown, growth) — and the promotion/demotion gates read the
+signal block first, so a lucky staking run cannot mask a bad signal. Values are blank on purpose:
+ranks before graded data would be ranks of noise. Record:
+<code>data/leaderboard_split.json</code>.</p>
+""" + table("t-lb-split", ["ID", "Strategy", "Market", "Signal rank", "Bets", "Hit rate",
+                           "Mean CLV", "CLV t", "Skill gate", "Staking rank", "ROI at rule",
+                           "Max drawdown", "Source"],
+            split_rows, center=[8],
+            note="Every value ships blank until the verified price feed (Q-02) lands; the split is "
+                 "structural and fills without schema changes.")))
+
     return page("leaderboard.html", "Leaderboard and rewards", "Strategy", "\n".join(body),
                 lede="Ranked by gate-weighted reward, not by headline ROI. Baselines, luck decomposition, "
-                     "and the unranked official-only board.")
+                     "the signal/staking split, and the unranked official-only board.")
 
 
 def p_props() -> str:
@@ -1417,6 +1517,17 @@ and ROI be computed at all &mdash; outcomes settle from official numbers only.</
                                 "labelled assumed_-110 everywhere and is not a market quote. Nothing is "
                                 "positive at this price; the model stays a screen, not a price.")))
 
+    # Added by session arena/3fa49c1a-x1 (merge): independent second transcription
+    body.append(card("Cross-verified by an independent second transcription (session arena/3fa49c1a-x1)", f"""
+<p>A second session transcribed the same official pages on the same day, blind to this one, into
+<code>data/results/verified_results_2026_n2.csv</code>. The two feeds agree on
+<b>137 of 137 games and every score</b> (team-code spellings aside: LA/LAR, ARI). This feed also
+re-derives all 32 clubs' W-L-T, PF and PA from its own rows against the official standings —
+<b>160/160 checks pass</b>, league identity &Sigma;PF = &Sigma;PA = 6,291 — and that same arithmetic
+<b>resolved finding I-14</b>: the league standings <i>do</i> include the Thursday Week 10 result
+(WAS 3-5-1 / NYG 5-3-1 are post-game records); the earlier "pre-game record" reading was a
+miscount. Machine-readable ledger: <code>data/results/results_verification.json</code>.</p>"""))
+
     return page("results.html", "Verified results feed and graded ROI", "Official data",
                 "\n".join(body),
                 lede="Every settled game from the official pages, double-entry verified, and the ROI it now makes possible.")
@@ -1479,6 +1590,15 @@ distribution and is therefore originated last. Each market publishes three separ
                                 "source we are entitled to use. Closing captures are the third-party mirror "
                                 "benchmark, labelled unverified on every row.")))
 
+    # Added by session arena/3fa49c1a-x1 (merge): the one graded game, shown honestly
+    body.append(card("One game has graded so far — the machinery, honestly shown", f"""
+<p>The verified feed contains one completed Week 10 game: WAS 24 at NYG 21. On the fair side
+(WAS &minus;0.5) the ticket wins; on the fair total (42.5) the game lands 45 and the under loses.
+Outcomes grade the moment the feed has them; prices remain the one missing input (Q-02), so ROI
+stays blank rather than computed against an unverified number. A second, independent price-snapshot
+store with the same rule (openings blank where nothing records them, closes flagged) is published at
+<a href="{PFX}prices.html">Price snapshots</a> for cross-checking.</p>"""))
+
     return page("origination.html", "Origination and the price-snapshot store", "Model",
                 "\n".join(body),
                 lede="Side, then total, then moneyline — with fair line, market line and difference as separate columns, and every price capture provenance-stamped.")
@@ -1535,6 +1655,22 @@ would change a number rather than unlock a subsystem.</section>""")
                       trs, center=[7, 8],
                       note="The 'information missing' column is the discovery list: each entry names a "
                            "concrete thing to go and get, not a vague gap."))
+    # Added by session arena/3fa49c1a-x1 (merge, N9): answers recorded in the parallel round
+    qa = D["origin_qa"]
+    qtrs = [[esc(r["question_id"]), esc(r["question"]), esc(r["information_had"]),
+             esc(r["information_added_this_round"]), esc(r["answer_now"]),
+             esc(r["still_missing"]), esc(r["blocks"]), src_cell(r["_source_url"])]
+            for r in qa["rows"]]
+    body.append(card("Answers recorded in the parallel N1–N8 round (session arena/3fa49c1a-x1)", """
+<p>The eight directed improvements closed parts of this register: Q-03, Q-04, Q-22 and Q-26 are
+answered; Q-02 is narrowed to a single owner decision (which licensed price feed); Q-07/Q-08/Q-09
+have named tests but owner-settable thresholds.</p>
+""" + table("t-qa", ["ID", "Question", "Information had", "Added this round", "Answer now",
+                     "Still missing", "Blocks", "Source"], qtrs,
+            note="Record: data/origin/question_answers.json. Two open design choices from the "
+                 "parallel merge are also owner decisions: the demotion-threshold set (G8's six "
+                 "triggers vs D1-D5's numeric thresholds) and the reward formula's staking term "
+                 "(min(signal, staking) vs signal-only promotion).")))
     return page("decisions.html", "Decision register", "Decisions", "\n".join(body),
                 lede="Question, information held, information missing, how to get it, and what it blocks.")
 
@@ -1608,6 +1744,20 @@ options can be compared <em>before</em> any of them is built.</section>""")
 </ul>
 <p>Nothing above is built ahead of a recorded decision. Review, pick a path, then implement.</p>"""))
 
+    # Added by session arena/3fa49c1a-x1 (merge, N9): the eight directed choices, marked as decided
+    dec = D["origin_decisions"]
+    dtrs2 = [[esc(r["id"]), esc(r["suggestion_id"]), esc(r["decision"]), esc(r["what_was_built"]),
+              esc(r["where"]), badge(r["status"], "ok"), src_cell(r["_source_url"])]
+             for r in dec["rows"]]
+    body.append(card("Chosen and built — the eight directed improvements (2026-11-14)", f"""
+<p>The owner directed eight suggestions implemented now. Two parallel sessions each built all
+eight; both implementations are preserved in this repository and cross-checked (results agree
+137/137 across independent transcriptions; correlations agree 905/905 against the published
+table). Each row links to the artefacts. {esc(dec.get('note', ''))}</p>
+""" + table("t-decided", ["#", "Suggestion", "Decision", "What was built", "Where", "Status", "Source"],
+            dtrs2, center=[5],
+            note="Everything else on this board remains proposed and untouched — chosen before "
+                 "built is the rule.")))
     return page("suggestions.html", "Suggestion board", "Decisions", "\n".join(body),
                 lede="Every improvement as a choice: three paths, cost, effort, risk, recommendation — "
                      "awaiting a decision before anything is built.")
@@ -1891,6 +2041,110 @@ owned by another session and has not been edited here.</p>"""))
                 lede="Every tracked file, hashed and read, with the structural findings of the audit.")
 
 
+# ------------------------------------------------ Added by session arena/3fa49c1a-x1
+# (merged from the parallel N1-N10 round: per-row stores kept for cross-verification)
+def p_replacement_depth() -> str:
+    d = D["repl_depth"]
+    rows = d["rows"]
+    summ = d.get("summary", {})
+    body = []
+    body.append(f"""<section class="note"><b>Per-slot store, re-verified row by row.</b> The
+deficiency watch shows the aggregate view of who is out and who steps in; this page publishes the
+slot-level store behind one cut of it: every starting slot whose starter carries a game status on
+the official report (Out / Doubtful / Questionable), with the replacement and that replacement's
+<b>exact string depth</b> from the club's own chart. Every row was re-verified against both
+sources before publishing — the starter is depth 1 at that slot on the chart, the replacement is
+the next listed name at its string, and the game status matches the report exactly. Club charts
+are self-published (league-wide official charts do not exist) and some label themselves
+unofficial; that caveat rides on every row.</section>""")
+
+    bs = summ.get("by_starter_status", {})
+    strings = summ.get("by_replacement_string", {})
+    body.append(kpis([
+        (str(summ.get("rows", 0)), "starter slots with a game status", "re-verified, both sources", "ok"),
+        (str(bs.get("out", 0)), "starters Out", f'{bs.get("doubtful", 0)} doubtful, {bs.get("questionable", 0)} questionable', "bad"),
+        (str(strings.get("2nd string", 0)), "replaced by 2nd string",
+         f'{strings.get("3rd string", 0)} by 3rd string', "warn"),
+        (str(summ.get("rows", 0) - sum(strings.values())), "no replacement listed", "club prints nobody deeper", "grey"),
+    ]))
+
+    trs = [[esc(r.get("team")), esc(r.get("side_of_ball")), esc(r.get("position")) or dash(),
+            esc(r.get("starter")), status_cell(r.get("starter_game_status")),
+            esc(r.get("replacement")) if r.get("replacement") else '<span class="blank" title="Club chart prints no deeper name">&mdash; none listed</span>',
+            esc(r.get("replacement_string")),
+            status_cell(r.get("replacement_game_status")) if r.get("replacement_game_status") else badge("not on report", "grey"),
+            link(r.get("club_depth_chart_url"), "club chart"), link(r.get("injury_report_url"), "nfl.com/injuries")]
+           for r in rows]
+    body.append(card("Every slot where a starter carries a game status",
+                     table("t-repl", ["Team", "Side", "Pos", "Starter", "Game status", "Replacement",
+                                      "String", "Replacement status", "Depth chart source",
+                                      "Injury source"],
+                           trs, center=[4, 6, 7],
+                           note="Green Bay prints jersey numbers in the name column (flag F-01); "
+                                "names are matched with the number stripped. Houston has no parsable "
+                                "chart (flag F-03) and is absent, never guessed. The aggregate view "
+                                "counts all 189 on-report starters (including practice-only) on the "
+                                "deficiency page; this store's cut is game-status rows only.")))
+    return page("replacement-depth.html", "Depth of the replacement", "Which string steps in",
+                "\n".join(body),
+                lede="When a starter is down, the store says whether the 2nd, 3rd or 4th string "
+                     "takes his place — per slot, re-verified against both sources.")
+
+
+def p_prices() -> str:
+    feed = D["prices"]
+    rows = feed["rows"]
+    body = []
+    body.append(f"""<section class="note"><b>Second price-snapshot store, same rule.</b> The
+origination page publishes one price-snapshot store; this is the other, from the parallel N1–N10
+round, kept so the two capture records can be compared. Rule on every cell: no official or
+licensed source publishes betting prices (Q-02), so opening numbers are <b>blank</b> where nothing
+records them, closing numbers carry the third-party mirror's value with
+<b>verified = no</b>, and CLV stays blank until a verified feed is attached. Nothing here is
+inferred. Schema requirements a feed must satisfy are below.</section>""")
+
+    v = feed.get("verification", {})
+    body.append(kpis([
+        (str(v.get("rows", 0)), "snapshot rows", "one per originated market selection", "ok"),
+        (str(sum(1 for r in rows if r.get("market_close"))), "closing numbers recorded",
+         "all flagged UNVERIFIED (third-party mirror)", "warn"),
+        (str(sum(1 for r in rows if not r.get("market_open"))), "opening numbers blank",
+         "no source records 2026 openers", "grey"),
+        ("0", "verified price cells", "blocked by Q-02 — the feed is an owner decision", "grey"),
+    ]))
+
+    trs = [[esc(r.get("game_id")), esc(r.get("market_type")), esc(r.get("selection")),
+            esc(r.get("our_line")) if r.get("our_line") else dash(),
+            esc(r.get("our_originated_at")),
+            '<span class="blank" title="No source records 2026 opening numbers">&mdash;</span>'
+            if not r.get("market_open") else esc(r.get("market_open")),
+            esc(r.get("market_close")) if r.get("market_close") else dash(),
+            badge("no", "bad") if r.get("market_close") else badge("—", "grey"),
+            dash(),  # CLV: blank by rule
+            link(r.get("market_close_source"), "mirror") if r.get("market_close_source")
+            else '<span class="blank">no official source</span>']
+           for r in rows]
+    body.append(card("The store — open and close for every market we originate",
+                     table("t-prices", ["Game", "Market", "Selection", "Our line", "Originated",
+                                        "Market open", "Market close", "Close verified?",
+                                        "CLV vs close", "Price source"],
+                           trs, center=[7, 8],
+                           note="Opening column deliberately blank (Q-02/Q-03); closing column "
+                                "carries mirror values with verified = no so the CLV machinery has "
+                                "a placeholder the day a real feed arrives.")))
+
+    body.append(card("The schema a price feed must satisfy", """
+<ol class="tight">
+  <li><b>Open and close, both.</b> CLV is measured against the close; origination value against the open.</li>
+  <li><b>Timestamps.</b> A price without a capture time cannot be audited after the fact (gate G-10).</li>
+  <li><b>Per-selection rows.</b> Sides and totals carry one number, moneylines two — keyed on (game, market, selection).</li>
+  <li><b>Provenance per cell.</b> Source URL, verification flag, and nothing filled from memory.</li>
+</ol>"""))
+    return page("prices.html", "Price-snapshot store", "Open and close, blank where no source",
+                "\n".join(body),
+                lede="The second capture record for every market we originate — open column, close "
+                     "column, and honest flags where no verified source exists.")
+
 def p_stores() -> str:
     """Additive page by session arena/bf27a3bd-x1: the data/lines stores built in
     this batch, each table row sourced or explicitly flagged. No page owned by
@@ -2069,11 +2323,13 @@ BUILDERS = {
     "injuries.html": p_injuries,
     "depth.html": p_depth,
     "deficiency.html": p_deficiency,
+    "replacement-depth.html": p_replacement_depth,
     "team-stats.html": p_team_stats,
     "lines.html": p_lines,
     # Added by session arena-1d3600f8-x1 (T15-T21 integration)
     "results.html": p_results,
     "origination.html": p_origination,
+    "prices.html": p_prices,
     "correlation.html": p_correlation,
     "strategies.html": p_strategies,
     "validation.html": p_validation,
