@@ -6,11 +6,14 @@ From https://github.com/karagemop466-tech/X1
 + git reset --mixed origin/arena/d577959f-x1
 Unstaged changes after reset:
 M	_ci/pipeline.log
+M	data/_pipeline_stamp.log
 M	data/_probe.json
 M	data/_run_report.json
 M	data/_verification.json
 M	data/club_registry.json
 M	data/correlations.json
+M	data/deficiency.json
+M	data/depth_charts.json
 M	data/injuries.json
 M	data/repo_review.json
 M	data/standings.json
@@ -18,22 +21,23 @@ M	data/team_stats.json
 + git add data _ci
 + git status --porcelain
 M  _ci/pipeline.log
-A  data/_pipeline_stamp.log
+M  data/_pipeline_stamp.log
 M  data/_probe.json
 M  data/_run_report.json
 M  data/_verification.json
 M  data/club_registry.json
 M  data/correlations.json
+M  data/deficiency.json
+M  data/depth_charts.json
 M  data/injuries.json
 M  data/repo_review.json
 M  data/standings.json
 M  data/team_stats.json
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-14T04:16:47Z'
-[arena/d577959f-x1 7db4750] data: refresh from official sources 2026-11-14T04:16:47Z
- 11 files changed, 2661 insertions(+), 2725 deletions(-)
- create mode 100644 data/_pipeline_stamp.log
++ git commit -m 'data: refresh from official sources 2026-11-14T04:22:00Z'
+[arena/d577959f-x1 9a1e01d] data: refresh from official sources 2026-11-14T04:22:00Z
+ 13 files changed, 44513 insertions(+), 14096 deletions(-)
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin arena/d577959f-x1
@@ -43,7 +47,7 @@ From https://github.com/karagemop466-tech/X1
 Current branch arena/d577959f-x1 is up to date.
 + git push origin HEAD:arena/d577959f-x1
 To https://github.com/karagemop466-tech/X1
-   6ef9724..7db4750  HEAD -> arena/d577959f-x1
+   6ee8610..9a1e01d  HEAD -> arena/d577959f-x1
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1
 + pushed=1
