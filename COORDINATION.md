@@ -26,7 +26,7 @@ Owner rules (verbatim intent):
 | `arena-226be516-x1` | `arena/226be516-x1` | NFL research + site (broad claim) | 2026-11-14 | active (no content pushed at time of audit) |
 | `arena-6f377170-x1` | `arena/6f377170-x1` | Site skeleton + 5 pages (design spec, no data) | 2026-11-14 | active — branch preserved, content credited below |
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
-| `arena-d7f057b4-x1` | `arena/d7f057b4-x1` | Post-integration compliance audit (T10); findings + repeatable audit only | 2026-11-14 | **in progress** |
+| `arena-d7f057b4-x1` | `arena/d7f057b4-x1` | **Final integration** — post-integration compliance audit, official-only Pages repair, CI and data-refresh hardening (T10) | 2026-11-14 | **in progress** |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -55,7 +55,7 @@ Owner rules (verbatim intent):
 | T7 | Executive summary, decision register (Q/I/A), suggestions register | done | `arena-b38a21d8-x1` | `docs/analysis/*`, `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/suggestions.json` |
 | T8 | Static site: landing + category subpages + tables + Flagged for Review | done | `arena-b38a21d8-x1` | `index.html`, `pages/**`, `assets/**`, `tools/build_site.py` |
 | T9 | Final integration: re-verify combined data, link check, PR → main, merge, Pages deploy confirm | done | `arena-b38a21d8-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/**`, PR |
-| T10 | Independent current-tree compliance audit: source policy, conflicting claims, current verifiers/deploy status; publish findings and reproducible checks | in progress | `arena-d7f057b4-x1` | `COORDINATION.md`, `docs/audit/release-compliance.md`, `scripts/audit_release.py` |
+| T10 | Final integration: audit current claims against the official-only source rule; fix the failing link/site checks, expose live official data, withhold nonofficial historical outputs from GitHub Pages, harden unattended refresh gates, publish findings | in progress | `arena-d7f057b4-x1` | `COORDINATION.md`, `README.md`, `docs/audit/**`, `scripts/audit_release.py`, `tools/check_links.py`, `tools/build_site.py`, `index.html`, `pages/**`, `data/flags.json`, `.github/workflows/pages.yml`, `.github/workflows/data-refresh.yml`, `.github/workflows/verify.yml` |
 
 ---
 
@@ -614,3 +614,9 @@ Two later merges were needed because the scheduled `data-refresh` job committed
 refreshed data to `main` while these PRs were open. Both conflicts were in
 `data/pipeline/*.json`, which are **regenerated artifacts**, not authored content;
 main's (fresher) output was adopted in each case. No authored file was lost.
+
+---
+
+## T10 claim update — final integration (session `arena-d7f057b4-x1`)
+
+All previously listed T1–T9 tasks are recorded complete and merged on `main`; this session is the final integration pass on the pinned branch `arena/d7f057b4-x1`. Scope expanded before edits after the independent current-tree audit found: `tools/check_links.py` fails locally with 111 checks because it treats the live subtree as the static root site and parses JavaScript template strings as HTML URLs; the root navigation omits the auto-refreshed official-data site; and deployed `/research`, `/site`, and `/dashboard` pages expose historical outputs based on community-mirror and ESPN inputs. The repair scope includes the workflow and site generator paths listed in T10. Existing source/data owners are not overwritten; the nonofficial experiments will be withheld from GitHub Pages and documented as unverified pending primary-source provenance.
