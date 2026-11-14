@@ -197,7 +197,8 @@ def row_texts(row: List[Dict[str, Any]]) -> List[str]:
 
 
 # --------------------------------------------------------------------- helpers
-TEAM_HREF_RE = re.compile(r"^https?://(?:www\.)?nfl\.com/teams/([a-z0-9\-]+)/?$")
+TEAM_HREF_RE = re.compile(r"nfl\.com/teams/([a-z0-9\-]+)", re.I)
+TEAM_PATH_RE = re.compile(r"^/teams/([a-z0-9\-]+)", re.I)
 LOGO_RE = re.compile(r"/(?:clubs/logos|league/api/clubs/logos)/([A-Z]{2,3})(?:[\./]|$)")
 
 
@@ -210,8 +211,17 @@ def abbrev_from_imgs(imgs: List[str]) -> Optional[str]:
 
 
 def slug_from_href(href: str) -> Optional[str]:
-    match = TEAM_HREF_RE.match(href or "")
-    return match.group(1) if match else None
+    """Extract the official team slug from an NFL.com team link.
+
+    Handles absolute ('https://www.nfl.com/teams/buffalo-bills/') and
+    relative ('/teams/buffalo-bills/') hrefs, with or without a trailing slash.
+    """
+    href = (href or "").strip()
+    match = TEAM_HREF_RE.search(href)
+    if match:
+        return match.group(1).lower()
+    match = TEAM_PATH_RE.match(href)
+    return match.group(1).lower() if match else None
 
 
 def titleize_slug(slug: str) -> str:

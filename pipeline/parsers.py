@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import re
 import urllib.parse
+from collections import deque
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -205,6 +206,7 @@ def parse_injuries(
     # a team and a game.
     current_date: Optional[str] = None
     block_texts: List[str] = []
+    recent_texts: deque = deque(maxlen=10)
     pending_teams: List[str] = []          # abbreviations, FIFO
     current_meta: List[str] = []
     last_text: Optional[str] = None
@@ -220,22 +222,23 @@ def parse_injuries(
             continue
         if event[0] == "text":
             block_texts.append(event[1])
+            recent_texts.append(event[1])
             last_text = event[1]
             continue
         if event[0] == "link":
             href, _text, imgs = event[1], event[2], event[3]
             slug = H.slug_from_href(href)
             if slug:
-                abbrev = H.abbrev_from_imgs(imgs)
+                # Resolve through the official standings index first (reliable),
+                # then fall back to the club logo referenced by the link.
+                for ab, meta in team_index.items():
+                    if meta.get("slug") == slug:
+                        abbrev = ab
+                        break
                 if abbrev is None:
-                    for ab, meta in team_index.items():
-                        if meta.get("slug") == slug:
-                            abbrev = ab
-                            break
-                if not block_texts:
-                    pass
+                    abbrev = H.abbrev_from_imgs(imgs)
                 if len(pending_teams) == 0:
-                    current_meta = list(block_texts)
+                    current_meta = list(recent_texts)
                 block_texts = []
                 pending_teams.append(abbrev)
                 link_queue.append((abbrev, slug))
