@@ -247,13 +247,25 @@ def collect_gamebooks(
             )
             break
         pages_read += 1
-        try:
-            page = fetcher.get(page_url, max_age=86400)
-        except Exception as exc:
-            notes.append(f"{page_url}: Game Center fetch failed ({exc})")
+        page = None
+        for candidate_url in (page_url, page_url + "?tab=stats"):
+            try:
+                page = fetcher.get(candidate_url, max_age=86400)
+            except Exception as exc:
+                notes.append(f"{candidate_url}: Game Center fetch failed ({exc})")
+                continue
+            game_id = _current_game_id(page.text())
+            pdf_url = _gamebook_pdf_url(page.text(), game_id)
+            if pdf_url:
+                break
+        if page is None:
             continue
-        game_id = _current_game_id(page.text())
-        pdf_url = _gamebook_pdf_url(page.text(), game_id)
+        if pages_read <= 2:
+            debug_dir = out_dir / "_debug"
+            debug_dir.mkdir(parents=True, exist_ok=True)
+            (debug_dir / f"gamecenter_{pages_read}.html").write_text(
+                page.text(), encoding="utf-8"
+            )
         if not pdf_url:
             # The game has not been played, so the league has not published a
             # game book for it. This is recorded, not worked around.
