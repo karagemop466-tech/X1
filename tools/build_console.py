@@ -409,7 +409,8 @@ numbers present for {ctx['price']['with_both']:,} of them, all in 2021. Every ot
 published number and a blank where the other should be. <a href="prices.html">Price store</a>.</li>
 <li><b>Originated lines with three columns</b> &mdash; model fair, market, difference, for
 {len([r for r in rows if r['mode'] == 'oos']):,} out-of-sample games plus the
-{len([r for r in rows if r['mode'] == 'live'])} fixtures originated for this week.
+{len([r for r in rows if r['mode'] == 'live'])} fixtures that had not kicked off when the
+site was built.
 <a href="lines.html">Originated lines</a>.</li>
 <li><b>Signal and staking scored separately</b> &mdash; two columns, two scores, promotion on the
 signal one. <a href="leaderboard.html">Leaderboard</a>.</li>
