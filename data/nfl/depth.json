@@ -2,10 +2,10 @@
   "provenance": {
     "source_key": "injuries_current",
     "source_url": "https://www.nfl.com/injuries/",
-    "retrieved_at": "2026-11-14T03:41:34Z",
+    "retrieved_at": "2026-11-14T03:47:30Z",
     "record_count": 0,
     "notes": [
-      "Depth charts built from 40 official game book(s).",
+      "Depth charts built from 90 official game book(s).",
       "Summary: {\"clubs_affected\": 0, \"absences\": 0, \"uncertain\": 0, \"no_verified_replacement\": 0, \"by_group\": {}, \"by_string\": {}}"
     ]
   },
@@ -21,55 +21,55 @@
   "charts": [
     {
       "club": "New York Giants",
-      "games_sampled": 40,
+      "games_sampled": 90,
       "offense": {
         "WR": [
           {
             "name": "M.Nabers",
             "position": "WR",
             "group": "WR",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2080,
-            "appearances": 40
+            "snaps": 4680,
+            "appearances": 90
           },
           {
             "name": "D.Mooney",
             "position": "WR",
             "group": "WR",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1840,
-            "appearances": 40
+            "snaps": 4140,
+            "appearances": 90
           },
           {
             "name": "M.Fields",
             "position": "WR",
             "group": "WR",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 22,
-            "snaps": 2320,
-            "appearances": 40
+            "snaps": 5220,
+            "appearances": 90
           },
           {
             "name": "J.Hyatt",
             "position": "WR",
             "group": "WR",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 20,
-            "snaps": 120,
-            "appearances": 40
+            "snaps": 270,
+            "appearances": 90
           },
           {
             "name": "C.Jones",
             "position": "WR",
             "group": "WR",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 23,
             "snaps": 0,
             "appearances": 0
@@ -80,31 +80,31 @@
             "name": "I.Likely",
             "position": "TE",
             "group": "TE",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2280,
-            "appearances": 40
+            "snaps": 5130,
+            "appearances": 90
           },
           {
             "name": "T.Johnson",
             "position": "TE",
             "group": "TE",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 720,
-            "appearances": 40
+            "snaps": 1620,
+            "appearances": 90
           },
           {
             "name": "C.Manhertz",
             "position": "TE",
             "group": "TE",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 21,
-            "snaps": 560,
-            "appearances": 40
+            "snaps": 1260,
+            "appearances": 90
           }
         ],
         "OL": [
@@ -112,28 +112,28 @@
             "name": "F.Mauigoa",
             "position": "RG",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2600,
-            "appearances": 40
+            "snaps": 5850,
+            "appearances": 90
           },
           {
             "name": "J.Eluemunor",
             "position": "RT",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2560,
-            "appearances": 40
+            "snaps": 5760,
+            "appearances": 90
           },
           {
             "name": "A.Thomas",
             "position": "LT",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -142,8 +142,8 @@
             "name": "B.Hudson",
             "position": "C",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -152,8 +152,8 @@
             "name": "J.Runyan",
             "position": "LG",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -163,20 +163,20 @@
             "position": "OL",
             "group": "OL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 18,
-            "snaps": 40,
-            "appearances": 40
+            "snaps": 90,
+            "appearances": 90
           },
           {
             "name": "M.Mbow",
             "position": "OL",
             "group": "OL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 19,
-            "snaps": 40,
-            "appearances": 40
+            "snaps": 90,
+            "appearances": 90
           }
         ],
         "QB": [
@@ -184,21 +184,21 @@
             "name": "J.McCarthy",
             "position": "QB",
             "group": "QB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2480,
-            "appearances": 40
+            "snaps": 5580,
+            "appearances": 90
           },
           {
             "name": "J.Winston",
             "position": "QB",
             "group": "QB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 3,
-            "snaps": 120,
-            "appearances": 40
+            "snaps": 270,
+            "appearances": 90
           }
         ],
         "RB": [
@@ -206,41 +206,41 @@
             "name": "C.Skattebo",
             "position": "RB",
             "group": "RB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2320,
-            "appearances": 40
+            "snaps": 5220,
+            "appearances": 90
           },
           {
             "name": "P.Ricard",
             "position": "FB",
             "group": "RB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 12,
-            "snaps": 520,
-            "appearances": 40
+            "snaps": 1170,
+            "appearances": 90
           },
           {
             "name": "G.Desrosiers",
             "position": "RB",
             "group": "RB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 9,
-            "snaps": 400,
-            "appearances": 40
+            "snaps": 900,
+            "appearances": 90
           },
           {
             "name": "D.Singletary",
             "position": "RB",
             "group": "RB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 6,
-            "snaps": 200,
-            "appearances": 40
+            "snaps": 450,
+            "appearances": 90
           }
         ],
         "ST": [
@@ -249,17 +249,17 @@
             "position": "P",
             "group": "ST",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 2,
-            "snaps": 360,
-            "appearances": 40
+            "snaps": 810,
+            "appearances": 90
           },
           {
             "name": "D.Zvada",
             "position": "K",
             "group": "ST",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 11,
             "snaps": 0,
             "appearances": 0
@@ -269,7 +269,7 @@
             "position": "LS",
             "group": "ST",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 17,
             "snaps": 0,
             "appearances": 0
@@ -282,91 +282,91 @@
             "name": "A.Reese",
             "position": "LB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2760,
-            "appearances": 40
+            "snaps": 6210,
+            "appearances": 90
           },
           {
             "name": "M.McFadden",
             "position": "LB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2760,
-            "appearances": 40
+            "snaps": 6210,
+            "appearances": 90
           },
           {
             "name": "A.Carter",
             "position": "OLB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2480,
-            "appearances": 40
+            "snaps": 5580,
+            "appearances": 90
           },
           {
             "name": "K.Thibodeaux",
             "position": "OLB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2080,
-            "appearances": 40
+            "snaps": 4680,
+            "appearances": 90
           },
           {
             "name": "D.Smoot",
             "position": "OLB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 25,
-            "snaps": 920,
-            "appearances": 40
+            "snaps": 2070,
+            "appearances": 90
           },
           {
             "name": "Z.Barnes",
             "position": "LB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 13,
-            "snaps": 880,
-            "appearances": 40
+            "snaps": 1980,
+            "appearances": 90
           },
           {
             "name": "J.Kelly",
             "position": "LB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 15,
-            "snaps": 880,
-            "appearances": 40
+            "snaps": 1980,
+            "appearances": 90
           },
           {
             "name": "C.Martin",
             "position": "LB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 16,
-            "snaps": 880,
-            "appearances": 40
+            "snaps": 1980,
+            "appearances": 90
           },
           {
             "name": "T.Ford",
             "position": "OLB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 14,
-            "snaps": 400,
-            "appearances": 40
+            "snaps": 900,
+            "appearances": 90
           }
         ],
         "DL": [
@@ -374,41 +374,41 @@
             "name": "D.Reader",
             "position": "DL",
             "group": "DL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1880,
-            "appearances": 40
+            "snaps": 4230,
+            "appearances": 90
           },
           {
             "name": "S.Harris",
             "position": "DL",
             "group": "DL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1800,
-            "appearances": 40
+            "snaps": 4050,
+            "appearances": 90
           },
           {
             "name": "B.Jamison-Travis",
             "position": "DL",
             "group": "DL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 920,
-            "appearances": 40
+            "snaps": 2070,
+            "appearances": 90
           },
           {
             "name": "D.Alexander",
             "position": "DL",
             "group": "DL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 24,
-            "snaps": 1080,
-            "appearances": 40
+            "snaps": 2430,
+            "appearances": 90
           }
         ],
         "DB": [
@@ -416,98 +416,98 @@
             "name": "D.Banks",
             "position": "CB",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2760,
-            "appearances": 40
+            "snaps": 6210,
+            "appearances": 90
           },
           {
             "name": "G.Newsome",
             "position": "CB",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2760,
-            "appearances": 40
+            "snaps": 6210,
+            "appearances": 90
           },
           {
             "name": "J.Holland",
             "position": "S",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2760,
-            "appearances": 40
+            "snaps": 6210,
+            "appearances": 90
           },
           {
             "name": "A.Washington",
             "position": "S",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2160,
-            "appearances": 40
+            "snaps": 4860,
+            "appearances": 90
           },
           {
             "name": "A.Phillips",
             "position": "CB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 4,
-            "snaps": 2200,
-            "appearances": 40
+            "snaps": 4950,
+            "appearances": 90
           },
           {
             "name": "E.Campbell",
             "position": "DB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 8,
-            "snaps": 880,
-            "appearances": 40
+            "snaps": 1980,
+            "appearances": 90
           },
           {
             "name": "N.Jones",
             "position": "CB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 10,
-            "snaps": 880,
-            "appearances": 40
+            "snaps": 1980,
+            "appearances": 90
           },
           {
             "name": "J.Pinnock",
             "position": "S",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 5,
-            "snaps": 600,
-            "appearances": 40
+            "snaps": 1350,
+            "appearances": 90
           },
           {
             "name": "T.Nubin",
             "position": "S",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 7,
-            "snaps": 40,
-            "appearances": 40
+            "snaps": 90,
+            "appearances": 90
           },
           {
             "name": "C.Hood",
             "position": "CB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 1,
             "snaps": 0,
             "appearances": 0
@@ -516,62 +516,62 @@
       },
       "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
       "source_label": "NFL Official Game Book (PDF)",
-      "retrieved_at": "2026-11-14T03:41:56Z"
+      "retrieved_at": "2026-11-14T03:48:33Z"
     },
     {
       "club": "Washington Commanders",
-      "games_sampled": 40,
+      "games_sampled": 90,
       "offense": {
         "WR": [
           {
             "name": "A.Williams",
             "position": "WR",
             "group": "WR",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2360,
-            "appearances": 40
+            "snaps": 5310,
+            "appearances": 90
           },
           {
             "name": "T.Burks",
             "position": "WR",
             "group": "WR",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1680,
-            "appearances": 40
+            "snaps": 3780,
+            "appearances": 90
           },
           {
             "name": "S.Diggs",
             "position": "WR",
             "group": "WR",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 2,
-            "snaps": 1760,
-            "appearances": 40
+            "snaps": 3960,
+            "appearances": 90
           },
           {
             "name": "V.Jefferson",
             "position": "WR",
             "group": "WR",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 5,
-            "snaps": 960,
-            "appearances": 40
+            "snaps": 2160,
+            "appearances": 90
           },
           {
             "name": "L.McCaffrey",
             "position": "WR",
             "group": "WR",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 4,
-            "snaps": 560,
-            "appearances": 40
+            "snaps": 1260,
+            "appearances": 90
           },
           {
             "name": "C.Jones",
@@ -580,8 +580,8 @@
             "starts": 0,
             "games_played": 0,
             "substitution_order": null,
-            "snaps": 160,
-            "appearances": 40
+            "snaps": 360,
+            "appearances": 90
           }
         ],
         "TE": [
@@ -589,31 +589,31 @@
             "name": "J.Bates",
             "position": "TE",
             "group": "TE",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1120,
-            "appearances": 40
+            "snaps": 2520,
+            "appearances": 90
           },
           {
             "name": "B.Sinnott",
             "position": "TE",
             "group": "TE",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 960,
-            "appearances": 40
+            "snaps": 2160,
+            "appearances": 90
           },
           {
             "name": "C.Okonkwo",
             "position": "TE",
             "group": "TE",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 19,
-            "snaps": 1640,
-            "appearances": 40
+            "snaps": 3690,
+            "appearances": 90
           }
         ],
         "OL": [
@@ -621,8 +621,8 @@
             "name": "B.Coleman",
             "position": "LT",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -631,8 +631,8 @@
             "name": "C.Paul",
             "position": "LG",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -641,8 +641,8 @@
             "name": "J.Conerly",
             "position": "RT",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -651,8 +651,8 @@
             "name": "N.Allegretti",
             "position": "C",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -661,8 +661,8 @@
             "name": "S.Cosmi",
             "position": "RG",
             "group": "OL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
             "snaps": 0,
             "appearances": 0
@@ -672,7 +672,7 @@
             "position": "T/G",
             "group": "OL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 18,
             "snaps": 0,
             "appearances": 0
@@ -683,11 +683,11 @@
             "name": "J.Daniels",
             "position": "QB",
             "group": "QB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2760,
-            "appearances": 40
+            "snaps": 6210,
+            "appearances": 90
           }
         ],
         "RB": [
@@ -695,31 +695,31 @@
             "name": "R.White",
             "position": "RB",
             "group": "RB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1440,
-            "appearances": 40
+            "snaps": 3240,
+            "appearances": 90
           },
           {
             "name": "A.Ekeler",
             "position": "RB",
             "group": "RB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 10,
-            "snaps": 1200,
-            "appearances": 40
+            "snaps": 2700,
+            "appearances": 90
           },
           {
             "name": "R.Henry",
             "position": "RB",
             "group": "RB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 11,
-            "snaps": 120,
-            "appearances": 40
+            "snaps": 270,
+            "appearances": 90
           }
         ],
         "ST": [
@@ -728,30 +728,30 @@
             "position": "K",
             "group": "ST",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 7,
-            "snaps": 360,
-            "appearances": 40
+            "snaps": 810,
+            "appearances": 90
           },
           {
             "name": "T.Way",
             "position": "P",
             "group": "ST",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 3,
-            "snaps": 320,
-            "appearances": 40
+            "snaps": 720,
+            "appearances": 90
           },
           {
             "name": "T.Ott",
             "position": "LS",
             "group": "ST",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 17,
-            "snaps": 320,
-            "appearances": 40
+            "snaps": 720,
+            "appearances": 90
           },
           {
             "name": "D.Zvada",
@@ -760,8 +760,8 @@
             "starts": 0,
             "games_played": 0,
             "substitution_order": null,
-            "snaps": 320,
-            "appearances": 40
+            "snaps": 720,
+            "appearances": 90
           }
         ]
       },
@@ -771,91 +771,91 @@
             "name": "F.Luvu",
             "position": "LB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2600,
-            "appearances": 40
+            "snaps": 5850,
+            "appearances": 90
           },
           {
             "name": "S.Styles",
             "position": "LB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2600,
-            "appearances": 40
+            "snaps": 5850,
+            "appearances": 90
           },
           {
             "name": "K.Chaisson",
             "position": "OLB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1920,
-            "appearances": 40
+            "snaps": 4320,
+            "appearances": 90
           },
           {
             "name": "O.Oweh",
             "position": "OLB",
             "group": "LB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1920,
-            "appearances": 40
+            "snaps": 4320,
+            "appearances": 90
           },
           {
             "name": "D.Armstrong",
             "position": "OLB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 22,
-            "snaps": 1000,
-            "appearances": 40
+            "snaps": 2250,
+            "appearances": 90
           },
           {
             "name": "J.Magee",
             "position": "LB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 16,
-            "snaps": 880,
-            "appearances": 40
+            "snaps": 1980,
+            "appearances": 90
           },
           {
             "name": "K.Medrano",
             "position": "LB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 15,
-            "snaps": 720,
-            "appearances": 40
+            "snaps": 1620,
+            "appearances": 90
           },
           {
             "name": "A.Kaho",
             "position": "LB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 14,
-            "snaps": 640,
-            "appearances": 40
+            "snaps": 1440,
+            "appearances": 90
           },
           {
             "name": "J.Josephs",
             "position": "OLB",
             "group": "LB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 13,
-            "snaps": 400,
-            "appearances": 40
+            "snaps": 900,
+            "appearances": 90
           }
         ],
         "DL": [
@@ -863,51 +863,51 @@
             "name": "S.Tuttle",
             "position": "DT",
             "group": "DL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1360,
-            "appearances": 40
+            "snaps": 3060,
+            "appearances": 90
           },
           {
             "name": "T.Settle",
             "position": "DT",
             "group": "DL",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1080,
-            "appearances": 40
+            "snaps": 2430,
+            "appearances": 90
           },
           {
             "name": "C.Omenihu",
             "position": "DE",
             "group": "DL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 20,
-            "snaps": 1520,
-            "appearances": 40
+            "snaps": 3420,
+            "appearances": 90
           },
           {
             "name": "D.Wise",
             "position": "DE",
             "group": "DL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 21,
-            "snaps": 840,
-            "appearances": 40
+            "snaps": 1890,
+            "appearances": 90
           },
           {
             "name": "J.Newton",
             "position": "DT",
             "group": "DL",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 23,
-            "snaps": 840,
-            "appearances": 40
+            "snaps": 1890,
+            "appearances": 90
           }
         ],
         "DB": [
@@ -915,101 +915,101 @@
             "name": "N.Cross",
             "position": "S",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2600,
-            "appearances": 40
+            "snaps": 5850,
+            "appearances": 90
           },
           {
             "name": "A.Robertson",
             "position": "CB",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2560,
-            "appearances": 40
+            "snaps": 5760,
+            "appearances": 90
           },
           {
             "name": "T.Amos",
             "position": "CB",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2480,
-            "appearances": 40
+            "snaps": 5580,
+            "appearances": 90
           },
           {
             "name": "J.Reaves",
             "position": "S",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 2160,
-            "appearances": 40
+            "snaps": 4860,
+            "appearances": 90
           },
           {
             "name": "Q.Martin",
             "position": "S",
             "group": "DB",
-            "starts": 40,
-            "games_played": 40,
+            "starts": 90,
+            "games_played": 90,
             "substitution_order": null,
-            "snaps": 1360,
-            "appearances": 40
+            "snaps": 3060,
+            "appearances": 90
           },
           {
             "name": "T.Owens",
             "position": "S",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 6,
-            "snaps": 840,
-            "appearances": 40
+            "snaps": 1890,
+            "appearances": 90
           },
           {
             "name": "R.Douglas",
             "position": "CB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 9,
-            "snaps": 720,
-            "appearances": 40
+            "snaps": 1620,
+            "appearances": 90
           },
           {
             "name": "P.Butler",
             "position": "S",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 12,
-            "snaps": 640,
-            "appearances": 40
+            "snaps": 1440,
+            "appearances": 90
           },
           {
             "name": "M.Sainristil",
             "position": "CB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 1,
-            "snaps": 560,
-            "appearances": 40
+            "snaps": 1260,
+            "appearances": 90
           },
           {
             "name": "F.Moreau",
             "position": "CB",
             "group": "DB",
             "starts": 0,
-            "games_played": 40,
+            "games_played": 90,
             "substitution_order": 8,
-            "snaps": 320,
-            "appearances": 40
+            "snaps": 720,
+            "appearances": 90
           },
           {
             "name": "C.Hood",
@@ -1018,14 +1018,14 @@
             "starts": 0,
             "games_played": 0,
             "substitution_order": null,
-            "snaps": 320,
-            "appearances": 40
+            "snaps": 720,
+            "appearances": 90
           }
         ]
       },
       "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
       "source_label": "NFL Official Game Book (PDF)",
-      "retrieved_at": "2026-11-14T03:41:56Z"
+      "retrieved_at": "2026-11-14T03:48:33Z"
     }
   ]
 }
