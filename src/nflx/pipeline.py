@@ -20,10 +20,10 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from .collect import (
-    collect_injuries,
-    collect_player_stats,
-    collect_schedule,
-    collect_standings,
+    collect_injuries as parse_injuries,
+    collect_player_stats as parse_player_stats,
+    collect_schedule as parse_schedule,
+    collect_standings as parse_standings,
 )
 from .gamebook import parse_gamebook
 from .http import Fetcher
@@ -95,7 +95,7 @@ GAMEBOOK_LINK_RE = re.compile(
 def collect_injury_report(fetcher: Fetcher, out_dir: Path) -> Dict[str, Any]:
     source = SOURCES["injuries_current"]
     result = fetcher.get(source.url, max_age=3600)
-    records, provenance = collect_injuries(
+    records, provenance = parse_injuries(
         result.text(), result.fetched_at, source.url, "injuries_current"
     )
     _write(out_dir / "injuries.json", {"provenance": provenance.to_dict(), "records": records})
@@ -105,7 +105,7 @@ def collect_injury_report(fetcher: Fetcher, out_dir: Path) -> Dict[str, Any]:
 def collect_standings(fetcher: Fetcher, out_dir: Path) -> Dict[str, Any]:
     source = SOURCES["standings"]
     result = fetcher.get(source.url, max_age=3600)
-    records, provenance = collect_standings(
+    records, provenance = parse_standings(
         result.text(), result.fetched_at, source.url, "standings"
     )
     _write(out_dir / "standings.json", {"provenance": provenance.to_dict(), "records": records})
@@ -131,7 +131,7 @@ def collect_schedule(fetcher: Fetcher, out_dir: Path, weeks: Optional[List[int]]
         except Exception as exc:
             notes.append(f"week {week}: {exc}")
             continue
-        records, _ = collect_schedule(result.text(), result.fetched_at, url, "schedule_week")
+        records, _ = parse_schedule(result.text(), result.fetched_at, url, "schedule_week")
         if not records:
             # The embedded array is present on the standings page too; fall back
             # to the league-wide schedule payload for the week.
@@ -235,7 +235,7 @@ def collect_player_stats(fetcher: Fetcher, out_dir: Path) -> Dict[str, Any]:
             except Exception as exc:
                 print(f"  ! {category} page {pages}: {exc}")
                 break
-            page_records, _ = collect_player_stats(
+            page_records, _ = parse_player_stats(
                 result.text(), result.fetched_at, url, source_key, category
             )
             new = [r for r in page_records if r["player"] not in seen]
