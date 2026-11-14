@@ -50,7 +50,7 @@ jobs:
           PYTHONPATH: src
         run: |
           set +e
-          python -m nflx.pipeline --out data/nfl --cache .cache/nflx --max-gamebooks 90 2>&1 | tee -a data-refresh.log
+          python -m nflx.pipeline --out data/nfl --cache .cache/nflx --max-gamebooks 60 --max-pages 260 2>&1 | tee -a data-refresh.log
           echo "collect_exit=${PIPESTATUS[0]}" | tee -a data-refresh.log
           exit 0
 

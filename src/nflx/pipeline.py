@@ -223,6 +223,7 @@ def collect_gamebooks(
     game_center_urls: List[str],
     source_url: str,
     max_games: int = 60,
+    max_pages: int = 260,
 ) -> Dict[str, Any]:
     """Download and parse official Game Book PDFs for the given Game Center pages.
 
@@ -233,8 +234,19 @@ def collect_gamebooks(
     records: List[Dict[str, Any]] = []
     notes: List[str] = []
     fetched = 0
+    pages_read = 0
+    without_book = 0
 
-    for page_url in game_center_urls[:max_games]:
+    for page_url in game_center_urls:
+        if fetched >= max_games:
+            break
+        if pages_read >= max_pages:
+            notes.append(
+                f"stopped after {pages_read} Game Center pages with {fetched} "
+                "game books collected"
+            )
+            break
+        pages_read += 1
         try:
             page = fetcher.get(page_url, max_age=86400)
         except Exception as exc:
@@ -243,7 +255,9 @@ def collect_gamebooks(
         game_id = _current_game_id(page.text())
         pdf_url = _gamebook_pdf_url(page.text(), game_id)
         if not pdf_url:
-            notes.append(f"{page_url}: no Game Book PDF link published on the page")
+            # The game has not been played, so the league has not published a
+            # game book for it. This is recorded, not worked around.
+            without_book += 1
             continue
         try:
             pdf = fetcher.get(pdf_url, max_age=86400)
@@ -288,7 +302,11 @@ def collect_gamebooks(
         "source_url": source_url,
         "retrieved_at": _now(),
         "record_count": len(records),
-        "notes": notes[:50],
+        "notes": notes[:50]
+        + [
+            f"Read {pages_read} Game Center pages; {without_book} of them had no "
+            "published game book because the game had not been played."
+        ],
     }
     _write(out_dir / "gamebooks.json", {"provenance": provenance, "records": records})
     return provenance
@@ -384,8 +402,9 @@ def _gamebook_pdf_url(html_text: str, game_id: Optional[str] = None) -> Optional
                 return url
     if candidates:
         return candidates[0]
-    match = GAMEBOOK_LINK_RE.search(html_text)
-    return match.group(0) if match else None
+    # A Game Center page for a game that has not been played has no game
+    # book. Nothing is guessed in its place.
+    return None
 
 
 def _game_id_from_pdf_url(url: str) -> Optional[str]:
@@ -401,7 +420,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--out", default="data/nfl", help="output directory")
     parser.add_argument("--cache", default=".cache/nflx", help="HTTP cache directory")
     parser.add_argument("--skip-gamebooks", action="store_true")
-    parser.add_argument("--max-gamebooks", type=int, default=40)
+    parser.add_argument("--max-gamebooks", type=int, default=60)
+    parser.add_argument("--max-pages", type=int, default=260)
     parser.add_argument("--weeks", default="", help="comma separated week numbers")
     args = parser.parse_args(argv)
 
@@ -422,7 +442,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     manifest["datasets"].append(collect_schedule(fetcher, out_dir, weeks))
 
     # The game books are collected newest first: the depth chart has to
-    # reflect who is starting now, not who started in September.
+    # reflect who is starting now, not who started in September. Games that
+    # have not been played have no game book, so they are skipped and noted.
     schedule_path = out_dir / "schedule.json"
     game_center_urls: List[str] = []
     if schedule_path.exists():
@@ -449,6 +470,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 game_center_urls,
                 SOURCES["game_book"].url,
                 max_games=args.max_gamebooks,
+                max_pages=args.max_pages,
             )
         )
         enrich_schedule_with_gamebooks(out_dir)
