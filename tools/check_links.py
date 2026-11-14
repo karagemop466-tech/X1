@@ -163,7 +163,8 @@ for path in files:
         # (scripts/pipeline/verify_site.py). The snapshot date and every table row
         # are loaded at runtime from data/pipeline/*.json, which that checker
         # validates row by row, so they are not asserted here.
-        # Both sessions that touched this branch kept both assertions; kept together.
+        # Both assertions kept: the stylesheet belongs to this branch's contract, the
+        # back-link assertion was added here and does not conflict with anything on main.
         check("assets/x1-live/site.css" in text, f"{rel}: links its stylesheet")
         check('href="../index.html"' in text, f"{rel}: links back to the landing page")
     elif not is_dashboard:
@@ -309,7 +310,8 @@ def _audit_tree(html_paths, css_path, js_root, label):
     for _p in html_paths:
         # strip <script> blocks (removes JS template literals wholesale) and then filter
         # any residual `${...}` token, so neither a script block nor a stray expression can
-        # register a class name that no stylesheet is expected to define.
+        # register a class name that no stylesheet is expected to define. Both the main and
+        # this branch's fix are applied here; they catch different cases.
         _txt = _re.sub(r"<script\b.*?</script\s*>", " ", open(_p, encoding="utf-8").read(), flags=_re.S | _re.I)
         for _m in _re.finditer(r'class="([^"]*)"', _txt):
             used |= {c for c in _m.group(1).split()

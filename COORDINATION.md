@@ -615,6 +615,7 @@ main's (fresher) output was adopted in each case. No authored file was lost.
 
 ---
 
+<<<<<<< HEAD
 # Session `arena/9cc1eaac-x1` — independent verification, decision gating and integration
 
 **Session ID:** `arena/9cc1eaac-x1` · **Branch:** `arena/9cc1eaac-x1` (branched from `main` @ `0699aff`)
@@ -727,6 +728,8 @@ depth join published on `pages/availability.html`.
 
 ---
 
+=======
+>>>>>>> origin/main
 # Session `arena/c50b9342-x1` — audit & repair (2026-11-14, this session)
 
 **Role claimed:** repository audit + repair of the broken `verify-site` check on `main`
