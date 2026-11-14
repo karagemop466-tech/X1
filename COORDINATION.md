@@ -1376,3 +1376,96 @@ edits below are additive and tagged in-file).
 | Pages deploy | `Publish static site to GitHub Pages` run [43634224444](https://github.com/karagemop466-tech/X1/actions/runs/43634224444) **success** (26s); `pages build and deployment` [43634224061](https://github.com/karagemop466-tech/X1/actions/runs/43634224061) **success** |
 | Pages API | status `built` — <https://karagemop466-tech.github.io/X1/> |
 | Live-site check | <https://karagemop466-tech.github.io/X1/app/results.html> and <https://karagemop466-tech.github.io/X1/app/origination.html> fetched live: both render the new tables (137-row feed with per-row official game links; 56-row origination table side→total→moneyline with fair/market/difference columns). Root landing serves the new nav entries. |
+
+---
+
+## Reconciliation: two independent builds of the same eight requirements
+
+**Written by `arena/56769365-x1` after rebasing onto `main`, 2026-11-14.**
+
+This is an honest record of a real collision, not a merge artefact to be tidied away. Session
+`arena/1d3600f8-x1` and session `arena/56769365-x1` were both given the owner's eight new
+requirements and both claimed them, because both branched from the same commit (`11d9ea1`) and
+neither could see the other's claim. `arena/1d3600f8-x1` merged first (PR #34). The two builds
+are **independent implementations that share no file paths**, so both are published rather than
+one being discarded.
+
+| Requirement | `arena/1d3600f8-x1` (merged, PR #34) | `arena/56769365-x1` (this branch, `lab/`) |
+|---|---|---|
+| Opening + closing price store | `data/price_snapshots/` — 112 capture slots, 56 markets | `data/lab/prices/` — 20,336 market rows, coverage measured per field |
+| Verified results feed | `data/results/` — 137 rows, nfl.com week pages | `data/lab/results/` — 7,413 games, nflverse, arithmetic re-checked |
+| Side → total → moneyline | `data/lines/origination_2026_week10.csv`, 56 rows | `data/lab/lines/`, walk-forward 2015–2026, 3,165 out-of-sample sides |
+| Fair / market / difference columns | 3 separate columns, market from a mirror benchmark | 3 separate columns, market from a pinned composite, plus the model report |
+| Signal vs staking | `data/leaderboard_signal_staking.*`, `min(signal, staking)` rule | `data/lab/leaderboard.json`, per-ticket break-even + Poisson-binomial z |
+| Depth of replacement | `data/analysis/replacement_depth.json`, 897 slots | `data/lab/deficiency.json`, 37 replacements by tier, 15 depth losses |
+| Correlations with n | `data/analysis/correlations_official.csv`, 15 pairs, permutation p | `data/lab/correlations.json`, 49 values, 3 refused as unsourced |
+| Demotion gate | `data/gates.json` (G8), triggers D1–D6 | `lab/validation.html` + D-01…D-04 evaluated against a demoted row |
+
+### What the duplication means for a reviewer
+
+* **Scope was respected.** The two sessions touched overlapping *ideas* but not overlapping
+  *files*. Neither edited the other's data or generators. This is why the merge is mechanical and
+  why both can ship.
+* **The two results agree where they can be compared, and disagree where the inputs differ.**
+  Both find **no live strategy**. Both find the price data structurally incomplete. They differ on
+  the results feed because they used different upstreams — `arena/1d3600f8-x1` read nfl.com week
+  pages from a snapshot that was already in the repository, while this session could not reach
+  nfl.com at all and built from the nflverse archive. Neither feed is wrong; they are different
+  slices, and each is labelled with its own source on its own page.
+* **The owner now has two ways to read the same eight answers**, which is what a redundancy is
+  for. If they diverge in a later round, the divergence is itself a finding.
+* **The board rule that would have prevented it** is "check the board immediately before claiming,
+  not only when starting", which both sessions did — the claims were simply made in the same
+  minutes on different branches. A claim cannot be seen before it is pushed, and a push cannot be
+  seen by a session that has already branched. The only durable fix is to claim against `main`
+  with a short-lived branch, which is recorded as S-L5 on `lab/suggestions.html`.
+
+### Status of this session's tasks
+
+T11–T18 are **done** and published under `lab/`, verified by 13 CI checks. They are *not* a
+replacement for T15–T22 and nothing in the merged tree was reverted to make room for them.
+
+---
+
+# Session `arena/56769365-x1` — price snapshots, verified results, fair/market split, signal-vs-staking, demotion gate
+
+**Branch:** `arena/56769365-x1` (from `main` @ `11d9ea1`). **Started (UTC):** 2026-11-14.
+**Read first:** this whole file. Nothing below re-opens a task another session owns; every
+existing tree (`pages/`, `dashboard/`, `research/`, `site/`, `live/`, `hub/`, `app/`) is left
+intact and only *linked* to, per rule 9 (shared outputs change only in a final integration
+session, which this session is, for its own outputs).
+
+## Claim (committed and pushed before any work, per rule 1)
+
+The owner's request for this round is eight new requirements that the repo does **not** yet
+satisfy. They are tracked here as **T11–T18**, with the new file scope this session owns:
+
+| # | Task (owner's words, abbreviated) | Status | Owner | Files in scope (new, this session) |
+|---|---|---|---|---|
+| T11 | Price-snapshot store: opening **and** closing numbers for every market we originate | in progress | `arena/56769365-x1` | `data/lab/prices/*`, `docs/lab/price-store.md`, `tools/lab/build_prices.py` |
+| T12 | Verified results feed so backtests and ROI can be computed at all | in progress | `arena/56769365-x1` | `data/lab/results/*`, `docs/lab/results-feed.md`, `tools/lab/build_results.py` |
+| T13 | Originate the side first, then the total, then the moneyline | in progress | `arena/56769365-x1` | `data/lab/lines/*`, `tools/lab/build_lines.py` |
+| T14 | Fair line, market line and the difference as **separate columns** | in progress | `arena/56769365-x1` | `app/lab-*.html` (new pages only), `data/lab/*` |
+| T15 | Leaderboard: split **signal** from **staking** | in progress | `arena/56769365-x1` | `data/lab/leaderboard.json`, `app/lab-leaderboard.html` |
+| T16 | Depth of the replacement, not just the fact of it | in progress | `arena/56769365-x1` | `data/lab/deficiency.json`, `app/lab-deficiency.html` |
+| T17 | Correlations only from officially sourced numbers, **n with every value** | in progress | `arena/56769365-x1` | `data/lab/correlations.json`, `app/lab-correlation.html` |
+| T18 | A demotion gate that sends a live strategy back to paper | in progress | `arena/56769365-x1` | `data/lab/gates.json`, `app/lab-validation.html` |
+
+**Files this session will edit that other sessions own — requested, not taken:**
+`COORDINATION.md` (this append-only block), `README.md` (one new section, append-only),
+`tools/build_app.py` (additive: new `app/lab-*.html` pages registered in the same `PAGES`
+list), `.github/workflows/pages.yml` + `.github/workflows/verify.yml` (additive: one new
+verification step in each). Every edit is additive and is recorded in the log below with the
+diff intent before it is made. If the owner of `app/` objects, the pages move to their own
+tree without changing the content.
+
+## Environment facts this session verified itself (not inherited)
+
+| Fact | How it was checked | Result |
+|---|---|---|
+| `nfl.com` is **not reachable** from this session's sandbox | `curl -s -o /dev/null -w %{http_code} https://www.nfl.com/standings/` | `000` (no connection). Existing pages cite nfl.com from earlier sessions' fetches; this session **cannot** re-fetch them. |
+| `github.com`, `codeload.github.com`, `api.github.com` are reachable | `curl` against each | `200` |
+| nflverse **release assets** (`objects.githubusercontent.com` / `release-assets.githubusercontent.com`) are **not** reachable | `curl -L .../player_stats.csv` → `302` to `release-assets.githubusercontent.com`, `0` bytes | blocked — so no nflverse *release* data can be pulled here |
+| nflverse `nfldata` **repository archive** *is* reachable | `curl -L codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master` | `2,682,304` bytes, extracted, 9.5 MB of CSVs |
+| Pages is configured `build_type: legacy`, source `main:/` | `gh api repos/karagemop466-tech/X1/pages` | `status: built`, `build_type: legacy` — **the legacy Jekyll builder publishes the repo root and bypasses the `pages.yml` artifact**, which is why the root `index.html` is the Fourth Down page and `app/` is only reachable at `/app/` |
+| Existing verifiers pass before this session touches anything | ran all 12 | all `rc=0` |
