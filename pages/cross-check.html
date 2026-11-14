@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-check — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a class="active" href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="review.html">Repo review</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ CROSS-CHECK</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">VERIFICATION</div>
+  <h1>Independent cross-check</h1>
+  <p>Two sessions transcribed the same official NFL pages without coordinating. Where they agree, a typo
+  is far less likely. This page reports the comparison — including the fact that it found nothing.</p>
+</section>
+<section class="content">
+  <div class="alert small">
+    <b>Why this page exists.</b>
+    <p>An arithmetic suite cannot catch a plausible but wrong number: this project's own Arizona error
+    (2–6 instead of 3–6) was only caught because the win percentage happened to stop adding up. The real
+    defence is a <strong>second independent transcription</strong>. One became available when another session
+    merged its own read of the same official pages into <code>main</code>, so the comparison below is a
+    genuine independent pass — not a self-review.</p>
+  </div>
+
+  <h2>Result</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Dataset</th><th>Scope</th><th>Values compared</th><th>Outcome</th><th>Source</th></tr></thead><tbody>
+<tr><td>Standings</td><td>32 clubs</td><td>224 fields (W, L, T, PF, PA, NET, PCT)</td><td><span class="pill ok">0 disagreements</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/cross_check.py" target="_blank" rel="noopener noreferrer">the check ↗</a></td></tr>
+<tr><td>Injury report</td><td>345 players</td><td>1,380 cells (position, injury, practice, game status)</td><td><span class="pill ok">0 disagreements</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/cross_check.py" target="_blank" rel="noopener noreferrer">the check ↗</a></td></tr>
+</tbody></table></div>
+
+  <p>Two independent reads of the same pages agreeing on <b>1,604</b> values is meaningful evidence that
+  the transcription is clean. It is <b>not</b> proof: two readers can make the same systematic error —
+  reading the wrong column, or both trusting the same mislabelled header. That residual risk is recorded
+  as flag F-13 and cannot be removed without a third source or the raw league data feed.</p>
+
+  <h2>What was actually compared</h2>
+  <div class="formula">
+    <code>standings : 32 clubs × (W, L, T, PF, PA, NET, PCT) = 224 comparisons</code>
+    <code>injuries  : 345 players × (position, injury, practice, game status) = 1,380 comparisons</code>
+    <code>join key  : (team, player) after normalising punctuation — e.g. “D.J.” vs “DJ”</code>
+  </div>
+
+  <h2>One real difference, and what it teaches</h2>
+  <p>The club key for the Rams differs between the two transcriptions: one writes <code>LAR</code>, the other
+  <code>LA</code>. Both are used in the wild; neither is wrong. The comparison therefore normalises the alias
+  explicitly rather than fuzzy-matching, because a fuzzy match on team codes is exactly the kind of shortcut
+  that silently pairs the wrong rows. The alias is declared in <code>tools/cross_check.py</code> so a reviewer
+  can see it and disagree with it.</p>
+
+  <h2>Reproduce it</h2>
+  <pre class="flow">python3 tools/cross_check.py
+→ standings clubs compared : 32  fields: 224
+→ injury rows compared     : 345  cells: 1380
+→ two independent transcriptions agree on every compared value</pre>
+
+  <h2>What this does not cover</h2>
+  <table class="kv">
+    <thead><tr><th>Gap</th><th>Why it is not covered</th><th>Reference</th></tr></thead>
+    <tbody>
+      <tr><td>Depth charts</td><td>Only this session transcribed them; there is no independent read to compare against</td>
+        <td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
+      <tr><td>The final score of WAS@NYG</td><td>Agreed on the schedule row, but the score itself was read once</td>
+        <td><a class="src-link" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener noreferrer">game page ↗</a></td></tr>
+      <tr><td>Any price, correlation or leaderboard value</td><td>Not produced by this session at all</td>
+        <td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
+  </footer>
+</main>
+</body>
+</html>
