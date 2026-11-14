@@ -615,6 +615,7 @@ main's (fresher) output was adopted in each case. No authored file was lost.
 
 ---
 
+
 # Session `arena/9cc1eaac-x1` — independent verification, decision gating and integration
 
 **Session ID:** `arena/9cc1eaac-x1` · **Branch:** `arena/9cc1eaac-x1` (branched from `main` @ `0699aff`)
@@ -794,3 +795,44 @@ live").
 check and the missing nav link. The standing open items (odds feed, data licence, reward
 funding, HOU depth chart) remain published on the Flagged for Review and Decision pages for
 owner review — they are owner decisions, not implementation gaps.
+
+
+# Session `arena/459b17e1-x1` — 2026-11-14 (this session)
+
+Branch: `arena/459b17e1-x1`, branched from `0699aff` (`main`, "ci: diagnostics pipeline
+2026-11-14T17:02:38Z").
+
+## Handoff / takeover justification (board rule 10)
+
+Every task on the board above is marked `done` and every owning session has merged its PR
+(#1–#21) and gone quiet; **the board records no open claim and no in-progress work at the
+time this session started**. Rule 10 therefore lets a new session pick up unfinished or
+unverified work. Nothing in this session edits another session's branch; all work happens on
+`arena/459b17e1-x1` and reaches `main` through a reviewed PR.
+
+## What the brief still asks for that no completed task covers
+
+Reading the owner's brief against the board, five gaps remain. This session claims them.
+
+| # | Task | Why it is a gap | Status | Owner | Files in scope |
+|---|---|---|---|---|---|
+| T10 | **Independent line-by-line re-verification** of every published table row against the official source, re-fetched today, with a row-level pass/fail ledger | The board's T3/T9 say "re-verified", but the re-verification was *self-performed by the same session that authored the row*. No session has published an independent ledger of row → official page → value → result. This is the brief's "VERIFICATION" section read literally. | **in progress** | `arena-459b17e1-x1` | `wiki/verification/*.md`, `data/verification/*.json` |
+| T11 | **Unified site**: one clean landing page with category-organised subpages covering the six fragmented sections | The published tree currently ships **six parallel site sections** (`index.html`+`pages/`, `dashboard/` (19 pages), `research/` (14), `site/` (10), `live/` (14), `archive/previous-site/`). That is the single largest irregularity in the repo and it is not on any flag list. The brief asks for "a clean landing page and subpages organised by category". | **in progress** | `arena-459b17e1-x1` | `hub/index.html`, `hub/*.html`, `hub/assets/*` |
+| T12 | **Depth-chart deficiency register**: starter vs 2nd/3rd/4th string, for both offense and defense, tied to the official injury report | `live/depth-charts.html` has 1,813 rows but the board's own T4 completion note says starter-vs-backup is "flagged, not invented". The brief explicitly asks the system to "know any deficiencies in defenses such as 2nd, 3rd or 4th string backups having to replace starters". | **in progress** | `arena-459b17e1-x1` | `wiki/depth/*.md`, `data/depth/*.json` |
+| T13 | **Suggestion review board** — a dedicated section where suggestions are listed, costed, sequenced and *chosen between* before implementation | `pages/suggestions.html` and `live/suggestions.html` both *list* suggestions. The brief asks for a section "so someone can review suggestions and choose the best path **before implementing any changes**" — i.e. a decision workflow with a recommended path and an explicit do-now / do-next / do-not list. No section does that. | **in progress** | `arena-459b17e1-x1` | `hub/decisions.html`, `data/decision_board.json` |
+| T14 | Integration: re-verify combined data, link check, PR → `main`, merge, Pages deploy confirmation, record in this board | Per board rule 9. | **in progress** | `arena-459b17e1-x1` | `.github/workflows/pages.yml` (additive only), this file, `README.md` |
+
+**Nothing in scope above is owned by an active session.** Where a file is owned by a
+completed session (e.g. `.github/workflows/pages.yml`, owned by `arena-b38a21d8-x1`), this
+session proposes its change here as a logged request and applies it **additively only**,
+exactly as session `arena/d577959f-x1` did for its own section.
+
+## Requests to owning sessions (logged, not actioned by editing their files)
+
+- To the owner of `.github/workflows/pages.yml` (`arena-b38a21d8-x1`): this session needs
+  **two additive copy lines** (`cp -r hub _site/`, plus one verify step) so the `hub/` section
+  is reachable on the live site. Marked "Added by session arena/459b17e1-x1". Removing them
+  unpublishes this section and changes nothing else.
+- To the owner of `index.html` (`arena-b38a21d8-x1`): the landing page should gain one
+  navigation card pointing at `hub/index.html`. Logged, not applied.
+ 314bd65 (coord: session arena/459b17e1-x1 claims T10-T14 (independent re-verification, unified site, depth deficiency, suggestion board, integration))
