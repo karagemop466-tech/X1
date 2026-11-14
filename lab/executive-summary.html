@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary — X1 Line Desk</title>
+<meta name="description" content="X1 line desk: price snapshots, verified results, originated NFL lines and a signal-first strategy leaderboard. Every value carries its source and its n.">
+<link rel="stylesheet" href="../app/assets/site.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>LINE DESK</b><span>this round's lab</span></span></a>
+  <nav aria-label="Line desk sections">
+<a class="" href="index.html">Desk overview</a>
+<a class="active" href="executive-summary.html">Executive summary</a>
+<a class="" href="prices.html">Price snapshots</a>
+<a class="" href="results.html">Results feed</a>
+<a class="" href="lines.html">Originated lines</a>
+<a class="" href="leaderboard.html">Leaderboard</a>
+<a class="" href="deficiency.html">Replacement depth</a>
+<a class="" href="correlation.html">Correlation</a>
+<a class="" href="validation.html">Demotion gate</a>
+<a class="" href="questions.html">Questions</a>
+<a class="" href="suggestions.html">Suggestions</a>
+<a class="" href="sources.html">Sources &amp; limits</a>
+<a class="" href="flagged.html">Flagged for review</a>
+  </nav>
+  <div class="foot">Snapshot 2026-11-14<br>Season 2026, Week 10<br>
+  Every value sourced. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">Read first</div>
+      <h1>Executive summary</h1>
+      
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+
+<div class="card">
+  <h2>Executive summary</h2>
+  <p class="lede">Six new mechanisms are built and running: a price-snapshot store, a verified results feed, an originated line (side, then total, then moneyline), a leaderboard that scores signal and staking separately, a replacement-depth model, and correlations that carry their own n. None of them produced a bettable edge, and the summary says why in numbers rather than adjectives.</p>
+  <p>The results feed is complete and internally consistent (7,413 scored games, 0 arithmetic mismatches). The price store is structurally incomplete: 20,336 market rows, 0 of which have both an opening and a closing number, because the two files that evidence them cover different seasons and neither names a book or a timestamp. The model originates every market but loses to the market on every metric (side MAE 10.741 vs 9.792, Brier 0.241 vs 0.212). The leaderboard has 0 live strategies. One strategy shows a positive ROI and it is the one with the weakest signal -- the exact case the signal/staking split exists to catch -- and the demotion gate sends it back to paper on drawdown and on price loss.</p>
+</div>
+
+<div class="card">
+  <h2>What is new, and what it honestly is</h2>
+  <div class="tw"><table data-table><thead><tr><th>#</th><th>Item</th><th>Result</th><th>Honest state</th><th>Artefact</th></tr></thead><tbody><tr><td>T11</td><td>Price-snapshot store</td><td>20,336 market rows across side, total and moneyline, each labelled with the file, column and hash it came from</td><td>0 markets have both an opening and a closing number; 5 defects recorded (P-01..P-05)</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T12</td><td>Verified results feed</td><td>7,413 scored games, arithmetic re-checked against the publisher&#x27;s own columns, push-aware settlement rule written down once</td><td>complete for every game the publisher scored; 135 unplayed games carried as SCHEDULED, never zero-filled</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T13</td><td>Side -&gt; total -&gt; moneyline origination</td><td>7,548 originated sides, 7,439 originated totals, 7,548 moneylines, all walk-forward</td><td>loses to the market; published as a screen, not an edge</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T14</td><td>Fair line / market line / difference as separate columns</td><td>every market row carries the three values side by side, plus the provenance of each</td><td>the market column is one unnamed composite (no book is named by the source)</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T15</td><td>Signal separated from staking</td><td>8 strategies scored on signal (z, interval, luck-trimmed hit rate) and on money (flat and 5%-compounding), ranked signal-first</td><td>0 live; the only positive ROI has z = 1.00</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T16</td><td>Replacement depth</td><td>37 certain starter replacements, 3 slots where the club lists nobody, plus 15 depth losses among backups</td><td>no third-string starter anywhere on this snapshot; no line effect claimed</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T17</td><td>Correlation with n</td><td>49 values, each with n, a bootstrap interval and a permutation p</td><td>3 required pairs published as NOT SOURCED rather than estimated</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T18</td><td>Demotion gate</td><td>four triggers (decay, staking break, price loss, drift) evaluated on every build; the parlay is demoted on two of them</td><td>the gate fires on real data, including against a profitable row</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr></tbody></table></div><p class="legend">Every figure here is generated from the artefact in the last column; none is hand-typed into this page.</p>
+</div>
+
+<div class="card">
+  <h2>Defects found in this round's own work, and fixed</h2>
+  <div class="tw"><table data-table><thead><tr><th>ID</th><th>Where</th><th>What was wrong</th><th>Fix</th><th>Code</th></tr></thead><tbody><tr><td>L-01</td><td>line model</td><td>sample weight applied to the target only; total MAE 28.4 published</td><td>weighted ridge on both X&#x27;X and X&#x27;y</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_lines.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_lines.py">generator</a></span></td></tr><tr><td>L-02</td><td>line model</td><td>&#x27;this week&#x27; board published week 18</td><td>earliest week with unplayed games</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_lines.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_lines.py">generator</a></span></td></tr><tr><td>L-03</td><td>line model</td><td>home and away ratings entered with the same sign, so the difference cancelled; the line was a constant (corr with market 0.024)</td><td>signed design matrix; corr rose to 0.470 and MAE improved to 10.741</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_lines.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_lines.py">generator</a></span></td></tr><tr><td>B-01</td><td>leaderboard</td><td>a flat 52.38% break-even was applied to moneyline and parlay tickets</td><td>per-ticket Poisson-binomial test</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">generator</a></span></td></tr><tr><td>B-02</td><td>leaderboard</td><td>parlay wins paid at single-leg odds (-40.7% ROI instead of +10.5%)</td><td>compounded payout</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">generator</a></span></td></tr><tr><td>B-03</td><td>leaderboard</td><td>ranking on ROI alone put the weakest signal first</td><td>signal-first rank</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">generator</a></span></td></tr><tr><td>B-04</td><td>leaderboard</td><td>luck decomposition bucketed parlay legs the wrong way round</td><td>variance-dominated if ANY leg is</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">generator</a></span></td></tr></tbody></table></div><p class="legend">These are recorded because a build that reports only its successes is not auditable. Each one changed a published number.</p>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>If you read one thing</h2>
+    <p>The model does not beat the market. It beats a naive constant, which means it carries
+    real information, and it loses to the market on MAE and on calibration, which means that
+    information is not an edge. No stake is being placed, and no strategy is live. The value
+    delivered this round is that the system can now <b>tell the difference</b> — it caught a
+    parlay showing +10.5% ROI and demoted it because its signal was indistinguishable from
+    chance.</p>
+  </div>
+  <div class="card">
+    <h2>What would change the answer</h2>
+    <ul class="tight">
+      <li>S-L1 path B: capture one named book with a timestamp, twice, and publish the check.</li><li>S-L3 path A: build the two-season injury-to-line coefficient, and let it fail loudly if it fails.</li><li>S-L4 path B: a named price tier with two-source agreement, so T14&#x27;s market column becomes a market someone can bet into.</li><li>S-L2 path A: rewards as rank and scrip, so requirement R-10 is satisfied without a legal exposure this repository cannot assess.</li>
+    </ul>
+  </div>
+</div>
+
+  <footer class="pagefoot">
+    X1 Line desk · generated by <code>tools/lab/build_site.py</code> from
+    <code>data/lab/*</code> · every table row links the page the value came from, or says why
+    there is none · a value the source does not print is an
+    <span class="blank">&mdash;</span>, never a guess.<br>
+    <a href="../index.html">Main dashboard</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources &amp; limits</a> ·
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/data/lab" target="_blank" rel="noopener">Artefacts on GitHub</a>
+  </footer>
+</main>
+<script src="../app/assets/app.js"></script>
+</body>
+</html>

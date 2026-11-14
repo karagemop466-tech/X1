@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line desk — X1 Line Desk</title>
+<meta name="description" content="X1 line desk: price snapshots, verified results, originated NFL lines and a signal-first strategy leaderboard. Every value carries its source and its n.">
+<link rel="stylesheet" href="../app/assets/site.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>LINE DESK</b><span>this round's lab</span></span></a>
+  <nav aria-label="Line desk sections">
+<a class="active" href="index.html">Desk overview</a>
+<a class="" href="executive-summary.html">Executive summary</a>
+<a class="" href="prices.html">Price snapshots</a>
+<a class="" href="results.html">Results feed</a>
+<a class="" href="lines.html">Originated lines</a>
+<a class="" href="leaderboard.html">Leaderboard</a>
+<a class="" href="deficiency.html">Replacement depth</a>
+<a class="" href="correlation.html">Correlation</a>
+<a class="" href="validation.html">Demotion gate</a>
+<a class="" href="questions.html">Questions</a>
+<a class="" href="suggestions.html">Suggestions</a>
+<a class="" href="sources.html">Sources &amp; limits</a>
+<a class="" href="flagged.html">Flagged for review</a>
+  </nav>
+  <div class="foot">Snapshot 2026-11-14<br>Season 2026, Week 10<br>
+  Every value sourced. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">This round</div>
+      <h1>Line desk</h1>
+      <p class="lede">Price snapshots, a verified results feed, an originated line, and a leaderboard that refuses to rank on luck.</p>
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+
+<section class="kpis"><div class="kpi warn"><div class="v">20,336</div><div class="l">market rows in the price store</div><div class="s">0 with open + close</div></div><div class="kpi ok"><div class="v">7,413</div><div class="l">scored games in the results feed</div><div class="s">0 arithmetic mismatches</div></div><div class="kpi warn"><div class="v">3,165</div><div class="l">out-of-sample originated sides</div><div class="s">MAE 10.741 vs market 9.792</div></div><div class="kpi"><div class="v">0</div><div class="l">strategies allowed to bet</div><div class="s">8 scored, all on paper</div></div><div class="kpi ok"><div class="v">49</div><div class="l">correlation values</div><div class="s">3 refused as unsourced</div></div><div class="kpi ok"><div class="v">37</div><div class="l">certain starter replacements</div><div class="s">15 depth losses behind them</div></div></section>
+
+<div class="note bad"><b>The headline, in one sentence.</b> Six new mechanisms are built and running: a price-snapshot store, a verified results feed, an originated line (side, then total, then moneyline), a leaderboard that scores signal and staking separately, a replacement-depth model, and correlations that carry their own n. None of them produced a bettable edge, and the summary says why in numbers rather than adjectives.</div>
+
+<div class="card">
+  <h2>What this round added</h2>
+  <p>The results feed is complete and internally consistent (7,413 scored games, 0 arithmetic mismatches). The price store is structurally incomplete: 20,336 market rows, 0 of which have both an opening and a closing number, because the two files that evidence them cover different seasons and neither names a book or a timestamp. The model originates every market but loses to the market on every metric (side MAE 10.741 vs 9.792, Brier 0.241 vs 0.212). The leaderboard has 0 live strategies. One strategy shows a positive ROI and it is the one with the weakest signal -- the exact case the signal/staking split exists to catch -- and the demotion gate sends it back to paper on drawdown and on price loss.</p>
+  <div class="tw"><table data-table><thead><tr><th>#</th><th>Deliverable</th><th>What it produces</th><th>Honest state</th><th>Artefact</th></tr></thead><tbody><tr><td>T11</td><td>Price-snapshot store</td><td>20,336 market rows across side, total and moneyline, each labelled with the file, column and hash it came from</td><td>0 markets have both an opening and a closing number; 5 defects recorded (P-01..P-05)</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T12</td><td>Verified results feed</td><td>7,413 scored games, arithmetic re-checked against the publisher&#x27;s own columns, push-aware settlement rule written down once</td><td>complete for every game the publisher scored; 135 unplayed games carried as SCHEDULED, never zero-filled</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T13</td><td>Side -&gt; total -&gt; moneyline origination</td><td>7,548 originated sides, 7,439 originated totals, 7,548 moneylines, all walk-forward</td><td>loses to the market; published as a screen, not an edge</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T14</td><td>Fair line / market line / difference as separate columns</td><td>every market row carries the three values side by side, plus the provenance of each</td><td>the market column is one unnamed composite (no book is named by the source)</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T15</td><td>Signal separated from staking</td><td>8 strategies scored on signal (z, interval, luck-trimmed hit rate) and on money (flat and 5%-compounding), ranked signal-first</td><td>0 live; the only positive ROI has z = 1.00</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T16</td><td>Replacement depth</td><td>37 certain starter replacements, 3 slots where the club lists nobody, plus 15 depth losses among backups</td><td>no third-string starter anywhere on this snapshot; no line effect claimed</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T17</td><td>Correlation with n</td><td>49 values, each with n, a bootstrap interval and a permutation p</td><td>3 required pairs published as NOT SOURCED rather than estimated</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>T18</td><td>Demotion gate</td><td>four triggers (decay, staking break, price loss, drift) evaluated on every build; the parlay is demoted on two of them</td><td>the gate fires on real data, including against a profitable row</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr></tbody></table></div><p class="legend">Every row above is generated from the artefact named on its own page; the honest-state column is the part that would normally be left out.</p>
+</div>
+
+<div class="card">
+  <h2>Numbers that decide something</h2>
+  <div class="tw"><table data-table><thead><tr><th>Measure</th><th>Value</th><th>How to read it</th><th>Artefact</th></tr></thead><tbody><tr><td>Originated sides vs market (MAE, out of sample)</td><td>10.741 vs 9.792</td><td>the market is better; the model still beats a 2.5-point constant (10.959), so it is not noise either</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>Calibration (Brier, lower is better)</td><td>0.241 vs 0.212</td><td>the market&#x27;s probabilities are better calibrated by a clear margin</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>Correlation between our side and the market&#x27;s</td><td>r = 0.4699 (n = 3,165)</td><td>we are measuring the same quantity, partially -- a model that did not correlate would not be measuring the spread at all</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>Proportion of market rows with an opening and a closing number</td><td>0 of 20,336</td><td>the single biggest structural gap; it blocks CLV, the demotion trigger D-03 in its proper form, and gate G0</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>Strategies that are live</td><td>0 of 8</td><td>the correct output of a validation system on its first run</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr><tr><td>The parlay that looks good</td><td>+10.5% ROI, z = 1.00, demoted</td><td>a positive ROI sitting on a signal that is indistinguishable from chance, killed by the drawdown and price-loss triggers</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/summary.json">summary.json</a></span></td></tr></tbody></table></div>
+</div>
+
+<div class="card">
+  <h2>Sections</h2>
+  <div class="cards"><a class="navcard" href="prices.html"><div class="k">T1</div><div class="t">Price snapshots</div><div class="d">Opening and closing numbers, per market, with the four fields a price store needs and which of them are missing</div></a><a class="navcard" href="results.html"><div class="k">T2</div><div class="t">Results feed</div><div class="d">Every scored game, the settlement rule, and the arithmetic re-check</div></a><a class="navcard" href="lines.html"><div class="k">T3/T4</div><div class="t">Originated lines</div><div class="d">Our side, then the total, then the moneyline — fair line, market line and difference as separate columns</div></a><a class="navcard" href="leaderboard.html"><div class="k">T5</div><div class="t">Signal vs staking</div><div class="d">Eight strategies scored twice, ranked on signal and never on ROI</div></a><a class="navcard" href="deficiency.html"><div class="k">T6</div><div class="t">Replacement depth</div><div class="d">Who steps in and at what rung of the chart, plus the depth lost behind the starter</div></a><a class="navcard" href="correlation.html"><div class="k">T7</div><div class="t">Correlation with n</div><div class="d">Every value with its n, interval and permutation p</div></a><a class="navcard" href="validation.html"><div class="k">T8</div><div class="t">Demotion gate</div><div class="d">The four triggers that send a live strategy back to paper, evaluated on real data</div></a><a class="navcard" href="questions.html"><div class="k">—</div><div class="t">Questions</div><div class="d">What we know, what we do not, and the test that closes each one</div></a><a class="navcard" href="suggestions.html"><div class="k">—</div><div class="t">Suggestions</div><div class="d">Every path with its cost, what it unlocks and its risk — pick one</div></a><a class="navcard" href="sources.html"><div class="k">—</div><div class="t">Sources &amp; limits</div><div class="d">Every URL used, and every limit of this round's environment</div></a><a class="navcard" href="flagged.html"><div class="k">—</div><div class="t">Flagged for review</div><div class="d">Defects, unsourced values and coverage gaps, non-blocking</div></a></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>What is blocked, and by what</h2>
+    <div class="tw"><table data-table><thead><tr><th>Blocked</th><th>By</th><th>Question</th><th>Register</th></tr></thead><tbody><tr><td>true closing-line value</td><td>no timestamp and no book on any price row</td><td>Q-P1, Q-P2</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json">questions.json</a></span></td></tr><tr><td>any live strategy</td><td>no executable price, so gate G0 cannot pass</td><td>Q-V1</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json">questions.json</a></span></td></tr><tr><td>prop markets</td><td>no reachable prop price or prop outcome</td><td>Q-D1</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json">questions.json</a></span></td></tr><tr><td>injury effect on the line</td><td>one week of injury data</td><td>Q-M2, Q-D2</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json">questions.json</a></span></td></tr><tr><td>rewards</td><td>no reward definition and no legal review</td><td>Q-S2</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/questions.json">questions.json</a></span></td></tr></tbody></table></div>
+  </div>
+  <div class="card">
+    <h2>Waiting on your decision</h2>
+    <div class="tw"><table data-table><thead><tr><th>ID</th><th>Decision</th><th>Read</th><th>Register</th></tr></thead><tbody><tr><td>Q-S1</td><td>may a positive ROI with a weak signal be surfaced at all</td><td>S-L2, S-L5</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json">suggestions.json</a></span></td></tr><tr><td>Q-S2</td><td>what a reward is, and whether money is involved</td><td>S-L2</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json">suggestions.json</a></span></td></tr><tr><td>Q-D1</td><td>fund a licensed feed, or keep the limited GitHub path</td><td>S-L1</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json">suggestions.json</a></span></td></tr><tr><td>Q-V1</td><td>what counts as an acceptable price source</td><td>S-L4</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/suggestions.json">suggestions.json</a></span></td></tr></tbody></table></div><p class="legend">Nothing in this list is implemented. Each one is a choice between published paths on the Suggestions page.</p>
+  </div>
+</div>
+
+<div class="note"><b>How to read this section.</b> The pages here are a lab, not a betting
+service. They publish what is measured, refuse to publish what is not sourced, and put the
+limitation next to the number rather than in a footnote. Where a result is unflattering to
+the model, it is on the page: that is the point of the exercise.</div>
+
+  <footer class="pagefoot">
+    X1 Line desk · generated by <code>tools/lab/build_site.py</code> from
+    <code>data/lab/*</code> · every table row links the page the value came from, or says why
+    there is none · a value the source does not print is an
+    <span class="blank">&mdash;</span>, never a guess.<br>
+    <a href="../index.html">Main dashboard</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources &amp; limits</a> ·
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/data/lab" target="_blank" rel="noopener">Artefacts on GitHub</a>
+  </footer>
+</main>
+<script src="../app/assets/app.js"></script>
+</body>
+</html>

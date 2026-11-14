@@ -1469,3 +1469,35 @@ tree without changing the content.
 | nflverse `nfldata` **repository archive** *is* reachable | `curl -L codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master` | `2,682,304` bytes, extracted, 9.5 MB of CSVs |
 | Pages is configured `build_type: legacy`, source `main:/` | `gh api repos/karagemop466-tech/X1/pages` | `status: built`, `build_type: legacy` — **the legacy Jekyll builder publishes the repo root and bypasses the `pages.yml` artifact**, which is why the root `index.html` is the Fourth Down page and `app/` is only reachable at `/app/` |
 | Existing verifiers pass before this session touches anything | ran all 12 | all `rc=0` |
+
+## Session `arena/56769365-x1` — additive integration edits (logged before they are made)
+
+Three files owned by earlier sessions need one line each so that the new `lab/` section is
+reachable on the published site. All three edits are additive; nothing is removed or
+rewritten. Logged here first, per rule 4.
+
+| File | Owner | Edit | Why it is safe |
+|---|---|---|---|
+| `tools/build_site.py` | `arena-b38a21d8-x1` (integration) | one entry appended to `NAV`: `("lab/index.html", "Line desk")` | `NAV` is a list of (href, label) pairs rendered into every page's rail; one more entry adds one link to all pages and cannot change any existing page's content. `tools/build_site.py` regenerates `index.html` + `pages/`, so this edit *requires* a regeneration in the same commit — done in the same commit. |
+| `.github/workflows/pages.yml` | integration | one `cp -r lab _site/` and one verify step | the served tree gains a directory; no existing copy line changes |
+| `.github/workflows/verify.yml` | integration | one verify step for the lab section | additive CI step |
+
+The alternative was to leave `lab/` unreachable from the landing page, which fails the site
+requirement ("subpages organised by category"). Flagged on `lab/flagged.html` in case the
+integrator wants the nav entry moved.
+
+### Builder order (reproducing this round)
+
+```bash
+python3 tools/lab/fetch_upstream.py     # vendors + hashes the nflverse archive (skipped if present)
+python3 tools/lab/build_prices.py
+python3 tools/lab/build_results.py
+python3 tools/lab/build_lines.py        # ~3 min: tunes on 1999-2014, scores 2015-2026
+python3 tools/lab/build_strategies.py
+python3 tools/lab/build_correlation.py
+python3 tools/lab/build_deficiency.py
+python3 tools/lab/build_questions.py
+python3 tools/lab/build_summary.py
+python3 tools/lab/build_site.py         # writes lab/ and verifies its own contract
+# or: python3 tools/lab/build_all.py
+```

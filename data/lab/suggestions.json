@@ -1,0 +1,183 @@
+{
+ "generated_at": "2026-11-14T19:52:35Z",
+ "snapshot": "2026-11-14",
+ "title": "Suggestions, each with more than one path",
+ "rule": "Nothing here is implemented. Each suggestion lists every path with its cost, what it unlocks and its risk, then this session's recommendation, labelled as an opinion, and the evidence that would change it.",
+ "counts": {
+  "suggestions": 5,
+  "paths": 14
+ },
+ "suggestions": [
+  {
+   "id": "S-L1",
+   "title": "How to fill the missing price fields (Q-P1, Q-P2, Q-P3)",
+   "recommended": "B",
+   "paths": [
+    {
+     "id": "A",
+     "name": "Licensed feed",
+     "what": "Buy a documented odds feed (one book, opening and closing, timestamped).",
+     "cost": "money and a vendor review; licence may restrict redistribution",
+     "unlocks": "true CLV, gate G0, ROI at an executable price, and every gate that currently reports blocked",
+     "risk": "redistribution terms may forbid publishing the numbers on a public site",
+     "effort": "high"
+    },
+    {
+     "id": "B",
+     "name": "Documented manual capture of one book",
+     "what": "Capture one named book at a fixed time each week, record the time and the book, publish the capture script and the raw page hash.",
+     "cost": "a weekly manual step, or a scheduled job that runs where the book's site is reachable",
+     "unlocks": "a named book and a real timestamp, which is enough for CLV; n grows slowly (one capture a week)",
+     "risk": "terms of use; a single book is a thin market",
+     "effort": "medium"
+    },
+    {
+     "id": "C",
+     "name": "Keep nflverse and publish the limitation",
+     "what": "Do nothing; keep the sourced-but-anonymous benchmark and the P-03/P-04/P-05 labels.",
+     "cost": "zero",
+     "unlocks": "nothing new",
+     "risk": "every gate that needs a market stays blocked forever, and no strategy can ever be promoted past paper",
+     "effort": "none"
+    }
+   ],
+   "why": "B is the only path that produces a named book and a timestamp without committing to a licence this repository cannot review. A is better if the licence permits publication; C is a permanent ceiling on the project.",
+   "would_change": "if the licence terms of a feed allow public display, A dominates."
+  },
+  {
+   "id": "S-L2",
+   "title": "What a reward is (Q-S1, Q-S2)",
+   "recommended": "A",
+   "paths": [
+    {
+     "id": "A",
+     "name": "Scrip and ranking only",
+     "what": "Rewards are rank and a non-transferable score; no money changes hands.",
+     "cost": "zero",
+     "unlocks": "the competition the owner asked for, with no gambling-law exposure",
+     "risk": "less motivating than cash; 'rewards' means something smaller",
+     "effort": "low"
+    },
+    {
+     "id": "B",
+     "name": "Funded prize pool",
+     "what": "Real payouts for top strategies.",
+     "cost": "money, plus legal review of pool and payout rules",
+     "unlocks": "a real incentive",
+     "risk": "prize pools tied to wagering are regulated in the US, and this repository is not qualified to assess that",
+     "effort": "high"
+    },
+    {
+     "id": "C",
+     "name": "No reward, publish the board as research",
+     "what": "Drop the reward requirement and publish the leaderboard as a methodology demonstration.",
+     "cost": "zero",
+     "unlocks": "nothing beyond what exists",
+     "risk": "the owner's requirement R-10 stays unmet",
+     "effort": "none"
+    }
+   ],
+   "why": "A satisfies the letter of the requirement without creating a legal exposure that cannot be evaluated here. It can be upgraded to B later.",
+   "would_change": "a legal opinion on prize pools would make B viable."
+  },
+  {
+   "id": "S-L3",
+   "title": "How to get information the market does not have (Q-M1)",
+   "recommended": "A",
+   "paths": [
+    {
+     "id": "A",
+     "name": "Availability-first modelling",
+     "what": "Build the injury-to-line coefficient from two seasons of weekly injury reports joined to club charts and final scores; test whether the market under-adjusts on the first report of a starter's absence.",
+     "cost": "the injury history that Q-D2 says is missing",
+     "unlocks": "a testable, falsifiable edge candidate that uses data the market arguably sees later than the model can",
+     "risk": "the market is fast; the effect may vanish once the closing price is used",
+     "effort": "high"
+    },
+    {
+     "id": "B",
+     "name": "Speed on official releases",
+     "what": "React to the official injury report within minutes of release and bet before the market moves.",
+     "cost": "an always-on collector and a reachable league endpoint",
+     "unlocks": "a genuine timing edge if one exists",
+     "risk": "requires betting access this project has no licence for, and the edge is fragile",
+     "effort": "high"
+    },
+    {
+     "id": "C",
+     "name": "Accept the model is a screen",
+     "what": "Stop hunting for an edge; publish the model as an explanation tool.",
+     "cost": "zero",
+     "unlocks": "clarity",
+     "risk": "the project's core purpose (originating lines that beat a market) is abandoned",
+     "effort": "none"
+    }
+   ],
+   "why": "A is the only path that uses assets the repository already collects (club charts + league injury status) and produces a testable coefficient.",
+   "would_change": "if the two-season join shows no coefficient, A collapses and the honest answer becomes C."
+  },
+  {
+   "id": "S-L4",
+   "title": "How to verify prices given no official source (Q-V1)",
+   "recommended": "B",
+   "paths": [
+    {
+     "id": "A",
+     "name": "Relax the rule for prices",
+     "what": "Allow any price row with a publisher URL, no official requirement.",
+     "cost": "the site's central promise is weakened",
+     "unlocks": "fast publishing",
+     "risk": "a second-hand price can be wrong, and the site would no longer be able to say every value is official",
+     "effort": "low"
+    },
+    {
+     "id": "B",
+     "name": "A named price tier with two-source agreement",
+     "what": "Prices are published only when two independent captures of the same book agree, and the row says so.",
+     "cost": "a second capture per number",
+     "unlocks": "prices on the site without breaking the rule, because the check is published",
+     "risk": "two captures can share a common upstream and still be wrong together",
+     "effort": "medium"
+    },
+    {
+     "id": "C",
+     "name": "Keep prices off the site",
+     "what": "Prices stay in `data/lab/` and never render.",
+     "cost": "zero",
+     "unlocks": "nothing",
+     "risk": "the site cannot show the fair-vs-market column that the owner asked for",
+     "effort": "none"
+    }
+   ],
+   "why": "B preserves the rule (nothing is published without a check) while making the price column real; C is what exists now and it fails requirement T14.",
+   "would_change": "a licensed feed makes the whole question moot."
+  },
+  {
+   "id": "S-L5",
+   "title": "What to do with the demoted parlay (Q-S1)",
+   "recommended": "A",
+   "paths": [
+    {
+     "id": "A",
+     "name": "Keep it on paper and publish the demotion",
+     "what": "Leave the row visible with its demotion triggered, and let the record of the demotion count as the demonstration.",
+     "cost": "zero",
+     "unlocks": "proof that the gate works on a real case",
+     "risk": "a reader who only looks at ROI still sees +10.5%",
+     "effort": "none"
+    },
+    {
+     "id": "B",
+     "name": "Hide any strategy that fails a gate",
+     "what": "Remove failed strategies from the board entirely.",
+     "cost": "survivorship bias, which the owner's rules forbid",
+     "unlocks": "a cleaner-looking page",
+     "risk": "the leaderboard becomes a lie of omission",
+     "effort": "low"
+    }
+   ],
+   "why": "A is the only option consistent with the no-survivorship rule already written into data/strategies.json.",
+   "would_change": "nothing this session can find."
+  }
+ ]
+}

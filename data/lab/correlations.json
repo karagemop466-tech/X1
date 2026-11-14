@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T19:41:16Z",
+ "generated_at": "2026-11-14T19:52:35Z",
  "snapshot": "2026-11-14",
  "title": "Correlation values, each with the n it was computed on",
  "rule": {
@@ -16,7 +16,7 @@
     {
      "name": "Home margin vs game total",
      "n": 7413,
-     "r": 0.0216,
+     "r": 0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -24,8 +24,8 @@
      "note": "The correlation a same-game side+total parlay is exposed to. A positive value means games that go over also tend to be won by more. NFL margin and total are close to independent, and this row is how close.",
      "status": "MEASURED",
      "ci95": [
-      0.0006,
-      0.0422
+      0.0,
+      0.04
      ],
      "p_value": 0.0715,
      "excludes_zero": true
@@ -33,7 +33,7 @@
     {
      "name": "Home margin vs market spread",
      "n": 7413,
-     "r": -0.4262,
+     "r": -0.43,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -41,8 +41,8 @@
      "note": "A validity check on the upstream: the market spread must correlate strongly with the actual margin or the price store's sign convention is wrong. The sign is negative because both columns use the home-team convention (negative = home favoured): a market of -7 goes with a positive home margin.",
      "status": "MEASURED",
      "ci95": [
-      -0.4451,
-      -0.4085
+      -0.45,
+      -0.41
      ],
      "p_value": 0.0005,
      "excludes_zero": true
@@ -50,7 +50,7 @@
     {
      "name": "Game total vs market total",
      "n": 7413,
-     "r": 0.3224,
+     "r": 0.32,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -58,8 +58,8 @@
      "note": "Same validity check for the total. r = 0.32 is low in absolute terms because a book's total is a fair price, not a forecast of the realised score: the residual is the variance the market cannot remove, and that residual is the only thing a total model can win.",
      "status": "MEASURED",
      "ci95": [
-      0.3007,
-      0.3435
+      0.3,
+      0.34
      ],
      "p_value": 0.0005,
      "excludes_zero": true
@@ -74,7 +74,7 @@
     {
      "name": "Originated side vs market side",
      "n": 7439,
-     "r": 0.4699,
+     "r": 0.47,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
      ],
@@ -82,8 +82,8 @@
      "note": "Agreement with the market is not skill -- it is the minimum bar a model has to clear before its disagreements can mean anything.",
      "status": "MEASURED",
      "ci95": [
-      0.4521,
-      0.4874
+      0.45,
+      0.49
      ],
      "p_value": 0.0005,
      "excludes_zero": true
@@ -91,7 +91,7 @@
     {
      "name": "Originated total vs market total",
      "n": 7439,
-     "r": 0.5681,
+     "r": 0.57,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
      ],
@@ -99,8 +99,8 @@
      "note": "Agreement with the market is not skill -- it is the minimum bar a model has to clear before its disagreements can mean anything.",
      "status": "MEASURED",
      "ci95": [
-      0.5524,
-      0.5832
+      0.55,
+      0.58
      ],
      "p_value": 0.0005,
      "excludes_zero": true
@@ -108,7 +108,7 @@
     {
      "name": "Originated home win probability vs market-implied",
      "n": 5458,
-     "r": 0.4186,
+     "r": 0.42,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
      ],
@@ -116,8 +116,8 @@
      "note": "The market probability still contains the vig, so the market column is systematically above 0.5 for favourites; the correlation is still meaningful.",
      "status": "MEASURED",
      "ci95": [
-      0.3963,
-      0.4394
+      0.4,
+      0.44
      ],
      "p_value": 0.0005,
      "excludes_zero": true
@@ -132,7 +132,7 @@
     {
      "name": "Margin vs total, 1999",
      "n": 259,
-     "r": 0.0151,
+     "r": 0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -140,8 +140,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.101,
-      0.1298
+      -0.1,
+      0.13
      ],
      "p_value": 0.8056,
      "excludes_zero": false
@@ -149,7 +149,7 @@
     {
      "name": "Margin vs total, 2000",
      "n": 259,
-     "r": 0.0401,
+     "r": 0.04,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -157,8 +157,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0766,
-      0.1423
+      -0.08,
+      0.14
      ],
      "p_value": 0.5302,
      "excludes_zero": false
@@ -166,7 +166,7 @@
     {
      "name": "Margin vs total, 2001",
      "n": 259,
-     "r": 0.0954,
+     "r": 0.1,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -174,7 +174,7 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0167,
+      -0.02,
       0.2
      ],
      "p_value": 0.1194,
@@ -183,7 +183,7 @@
     {
      "name": "Margin vs total, 2002",
      "n": 267,
-     "r": 0.0241,
+     "r": 0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -191,8 +191,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0827,
-      0.1248
+      -0.08,
+      0.12
      ],
      "p_value": 0.7011,
      "excludes_zero": false
@@ -200,7 +200,7 @@
     {
      "name": "Margin vs total, 2003",
      "n": 267,
-     "r": -0.0083,
+     "r": -0.01,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -208,8 +208,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1205,
-      0.102
+      -0.12,
+      0.1
      ],
      "p_value": 0.8881,
      "excludes_zero": false
@@ -217,7 +217,7 @@
     {
      "name": "Margin vs total, 2004",
      "n": 267,
-     "r": 0.0269,
+     "r": 0.03,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -225,8 +225,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0949,
-      0.1474
+      -0.09,
+      0.15
      ],
      "p_value": 0.6682,
      "excludes_zero": false
@@ -234,7 +234,7 @@
     {
      "name": "Margin vs total, 2005",
      "n": 267,
-     "r": -0.0157,
+     "r": -0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -242,8 +242,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.128,
-      0.0953
+      -0.13,
+      0.1
      ],
      "p_value": 0.7996,
      "excludes_zero": false
@@ -251,7 +251,7 @@
     {
      "name": "Margin vs total, 2006",
      "n": 267,
-     "r": -0.039,
+     "r": -0.04,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -259,8 +259,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1521,
-      0.0719
+      -0.15,
+      0.07
      ],
      "p_value": 0.5347,
      "excludes_zero": false
@@ -268,7 +268,7 @@
     {
      "name": "Margin vs total, 2007",
      "n": 267,
-     "r": -0.0068,
+     "r": -0.01,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -276,8 +276,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1232,
-      0.102
+      -0.12,
+      0.1
      ],
      "p_value": 0.9215,
      "excludes_zero": false
@@ -285,7 +285,7 @@
     {
      "name": "Margin vs total, 2008",
      "n": 267,
-     "r": 0.013,
+     "r": 0.01,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -293,8 +293,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1049,
-      0.1212
+      -0.1,
+      0.12
      ],
      "p_value": 0.8241,
      "excludes_zero": false
@@ -302,7 +302,7 @@
     {
      "name": "Margin vs total, 2009",
      "n": 267,
-     "r": 0.0042,
+     "r": 0.0,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -310,8 +310,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1006,
-      0.105
+      -0.1,
+      0.1
      ],
      "p_value": 0.929,
      "excludes_zero": false
@@ -319,7 +319,7 @@
     {
      "name": "Margin vs total, 2010",
      "n": 267,
-     "r": -0.0048,
+     "r": -0.0,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -327,8 +327,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1207,
-      0.1178
+      -0.12,
+      0.12
      ],
      "p_value": 0.941,
      "excludes_zero": false
@@ -336,7 +336,7 @@
     {
      "name": "Margin vs total, 2011",
      "n": 267,
-     "r": 0.0878,
+     "r": 0.09,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -344,8 +344,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0195,
-      0.1992
+      -0.02,
+      0.2
      ],
      "p_value": 0.1379,
      "excludes_zero": false
@@ -353,7 +353,7 @@
     {
      "name": "Margin vs total, 2012",
      "n": 267,
-     "r": 0.0165,
+     "r": 0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -361,8 +361,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1021,
-      0.1278
+      -0.1,
+      0.13
      ],
      "p_value": 0.7851,
      "excludes_zero": false
@@ -370,7 +370,7 @@
     {
      "name": "Margin vs total, 2013",
      "n": 267,
-     "r": 0.0889,
+     "r": 0.09,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -378,8 +378,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.024,
-      0.216
+      -0.02,
+      0.22
      ],
      "p_value": 0.1444,
      "excludes_zero": false
@@ -387,7 +387,7 @@
     {
      "name": "Margin vs total, 2014",
      "n": 267,
-     "r": 0.1053,
+     "r": 0.11,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -395,8 +395,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0142,
-      0.218
+      -0.01,
+      0.22
      ],
      "p_value": 0.086,
      "excludes_zero": false
@@ -404,7 +404,7 @@
     {
      "name": "Margin vs total, 2015",
      "n": 267,
-     "r": 0.0758,
+     "r": 0.08,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -412,8 +412,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0378,
-      0.1782
+      -0.04,
+      0.18
      ],
      "p_value": 0.2249,
      "excludes_zero": false
@@ -421,7 +421,7 @@
     {
      "name": "Margin vs total, 2016",
      "n": 267,
-     "r": -0.0072,
+     "r": -0.01,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -429,8 +429,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1163,
-      0.0985
+      -0.12,
+      0.1
      ],
      "p_value": 0.901,
      "excludes_zero": false
@@ -438,7 +438,7 @@
     {
      "name": "Margin vs total, 2017",
      "n": 267,
-     "r": 0.0876,
+     "r": 0.09,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -446,8 +446,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.028,
-      0.1956
+      -0.03,
+      0.2
      ],
      "p_value": 0.1599,
      "excludes_zero": false
@@ -455,7 +455,7 @@
     {
      "name": "Margin vs total, 2018",
      "n": 267,
-     "r": 0.0809,
+     "r": 0.08,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -463,8 +463,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0218,
-      0.191
+      -0.02,
+      0.19
      ],
      "p_value": 0.1724,
      "excludes_zero": false
@@ -472,7 +472,7 @@
     {
      "name": "Margin vs total, 2019",
      "n": 267,
-     "r": -0.0235,
+     "r": -0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -480,8 +480,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1389,
-      0.0922
+      -0.14,
+      0.09
      ],
      "p_value": 0.7126,
      "excludes_zero": false
@@ -489,7 +489,7 @@
     {
      "name": "Margin vs total, 2020",
      "n": 269,
-     "r": -0.0759,
+     "r": -0.08,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -497,8 +497,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1845,
-      0.0344
+      -0.18,
+      0.03
      ],
      "p_value": 0.2109,
      "excludes_zero": false
@@ -506,7 +506,7 @@
     {
      "name": "Margin vs total, 2021",
      "n": 285,
-     "r": 0.0679,
+     "r": 0.07,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -514,8 +514,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0377,
-      0.1657
+      -0.04,
+      0.17
      ],
      "p_value": 0.2614,
      "excludes_zero": false
@@ -523,7 +523,7 @@
     {
      "name": "Margin vs total, 2022",
      "n": 284,
-     "r": -0.014,
+     "r": -0.01,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -531,8 +531,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1257,
-      0.0953
+      -0.13,
+      0.1
      ],
      "p_value": 0.8176,
      "excludes_zero": false
@@ -540,7 +540,7 @@
     {
      "name": "Margin vs total, 2023",
      "n": 285,
-     "r": 0.0847,
+     "r": 0.08,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -548,8 +548,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.0484,
-      0.2057
+      -0.05,
+      0.21
      ],
      "p_value": 0.1554,
      "excludes_zero": false
@@ -557,7 +557,7 @@
     {
      "name": "Margin vs total, 2024",
      "n": 285,
-     "r": 0.0813,
+     "r": 0.08,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -565,8 +565,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.027,
-      0.1831
+      -0.03,
+      0.18
      ],
      "p_value": 0.1674,
      "excludes_zero": false
@@ -574,7 +574,7 @@
     {
      "name": "Margin vs total, 2025",
      "n": 285,
-     "r": -0.015,
+     "r": -0.02,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -582,8 +582,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.1232,
-      0.0897
+      -0.12,
+      0.09
      ],
      "p_value": 0.8196,
      "excludes_zero": false
@@ -591,7 +591,7 @@
     {
      "name": "Margin vs total, 2026",
      "n": 137,
-     "r": -0.1607,
+     "r": -0.16,
      "sources": [
       "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
      ],
@@ -599,8 +599,8 @@
      "note": "per-season stability check on C1's headline value",
      "status": "MEASURED",
      "ci95": [
-      -0.3149,
-      -0.0036
+      -0.31,
+      -0.0
      ],
      "p_value": 0.0655,
      "excludes_zero": true
@@ -617,8 +617,10 @@
      "n": 0,
      "r": null,
      "status": "NOT SOURCED",
-     "sources": [],
      "window": "-",
+     "sources": [
+      "data/lab/upstream/_pin.json"
+     ],
      "why": "No prop price and no prop outcome is reachable from this environment. The nflverse release assets that carry player stats are hosted on a domain this sandbox cannot reach (recorded in data/lab/upstream/_pin.json).",
      "what_would_close_it": "A licensed prop feed, or a league-published gamebook, for two seasons, so the same-player legs can be paired."
     },
@@ -627,7 +629,9 @@
      "n": 0,
      "r": null,
      "status": "NOT SOURCED",
-     "sources": [],
+     "sources": [
+      "data/lab/deficiency.json"
+     ],
      "window": "-",
      "why": "The injury report on this snapshot covers one week; a per-game injury count for two seasons is the minimum for this pair, and the league report is not reachable in bulk from this sandbox.",
      "what_would_close_it": "Weekly injury reports archived for 2+ seasons (Q-L4)."
@@ -637,7 +641,9 @@
      "n": 0,
      "r": null,
      "status": "NOT SOURCED",
-     "sources": [],
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
      "window": "-",
      "why": "Requires a settled ticket list per strategy; the leaderboard's strategies are on paper and have no settled live tickets.",
      "what_would_close_it": "Two seasons of paper tickets logged per strategy."

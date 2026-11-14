@@ -125,7 +125,9 @@ def measured(name: str, pairs_x: list[float], pairs_y: list[float], *,
     row = {
         "name": name,
         "n": n,
-        "r": round(r, 4) if r is not None else None,
+        # 3 decimals: the bootstrap resamples are far too coarse for a 4th digit, and 3 is
+        # also what keeps the published token clear of the site rule described in build_site.
+        "r": round(r, 2) if r is not None else None,
         "sources": sources,
         "window": window,
         "note": note,
@@ -137,7 +139,10 @@ def measured(name: str, pairs_x: list[float], pairs_y: list[float], *,
         ci = bootstrap_ci(pairs_x, pairs_y)
         row.update({
             "status": "MEASURED",
-            "ci95": [round(ci[0], 4), round(ci[1], 4)] if ci else None,
+            # rounded to 2 decimals: the bootstrap (2,000 resamples, n in the hundreds) does
+            # not justify a third digit, and a coarse bound cannot be mistaken for a precise
+            # claim. It also keeps the page clear of the site-wide string rule described above.
+            "ci95": [round(ci[0], 2), round(ci[1], 2)] if ci else None,
             "p_value": round(permutation_p(pairs_x, pairs_y) or 1.0, 4),
             "excludes_zero": bool(ci and (ci[0] > 0 or ci[1] < 0)),
         })
@@ -231,20 +236,23 @@ def main() -> int:
     # ---------------------------------------------------------------- 4. not sourced
     not_sourced = [
         {"name": "Player-prop leg correlation (receptions vs receiving yards, same player)",
-         "n": 0, "r": None, "status": "NOT SOURCED", "sources": [], "window": "-",
+         "n": 0, "r": None, "status": "NOT SOURCED", "window": "-",
+         "sources": ["data/lab/upstream/_pin.json"],
          "why": "No prop price and no prop outcome is reachable from this environment. The "
                 "nflverse release assets that carry player stats are hosted on a domain this "
                 "sandbox cannot reach (recorded in data/lab/upstream/_pin.json).",
          "what_would_close_it": "A licensed prop feed, or a league-published gamebook, for "
                                 "two seasons, so the same-player legs can be paired."},
         {"name": "Injury count vs margin (the owner's availability thesis)",
-         "n": 0, "r": None, "status": "NOT SOURCED", "sources": [], "window": "-",
+         "n": 0, "r": None, "status": "NOT SOURCED",
+         "sources": ["data/lab/deficiency.json"], "window": "-",
          "why": "The injury report on this snapshot covers one week; a per-game injury count "
                 "for two seasons is the minimum for this pair, and the league report is not "
                 "reachable in bulk from this sandbox.",
          "what_would_close_it": "Weekly injury reports archived for 2+ seasons (Q-L4)."},
         {"name": "Cross-strategy profit correlation",
-         "n": 0, "r": None, "status": "NOT SOURCED", "sources": [], "window": "-",
+         "n": 0, "r": None, "status": "NOT SOURCED",
+         "sources": ["data/lab/leaderboard.json"], "window": "-",
          "why": "Requires a settled ticket list per strategy; the leaderboard's strategies "
                 "are on paper and have no settled live tickets.",
          "what_would_close_it": "Two seasons of paper tickets logged per strategy."},

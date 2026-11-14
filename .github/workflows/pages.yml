@@ -44,6 +44,10 @@ jobs:
       # source link or an explicit "no official source" marker.
       - name: Verify the unified dashboard
         run: python3 tools/verify_app.py
+      # Added by session arena/56769365-x1 (additive only). The line desk: links resolve,
+      # every data row is sourced or explicitly marked, no leaked template values.
+      - name: Verify the line desk
+        run: python3 tools/lab/build_site.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -74,6 +78,10 @@ jobs:
           # cannot drift apart and there is no redirect. The previous root landing
           # page is preserved at /legacy-fourth-down.html rather than deleted.
           cp -r app _site/
+          # Added by session arena/56769365-x1: the line desk (price snapshots, verified
+          # results, originated lines, signal-vs-staking leaderboard, demotion gate).
+          # Additive; every tree above is still copied and still reachable.
+          cp -r lab _site/
           cp index.html _site/legacy-fourth-down.html
           cp app/index.html _site/index.html
           sed -i -E 's#href="assets/#href="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html

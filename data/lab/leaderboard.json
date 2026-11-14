@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-11-14T19:36:40Z",
+ "generated_at": "2026-11-14T19:46:45Z",
  "snapshot": "2026-11-14",
  "columns_note": "signal_* = picks only, independent of stake size; staking_* = money only, under a named stake plan; gates_* = the validation gates; demotion = the gate that sends a live strategy back to paper",
  "summary": {
-  "generated_at": "2026-11-14T19:36:40Z",
+  "generated_at": "2026-11-14T19:46:45Z",
   "snapshot": "2026-11-14",
   "upstream": {
    "repo": "https://github.com/nflverse/nfldata",
@@ -96,16 +96,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": 24.479,
+    "return_on_starting_bankroll": null,
     "roi": 0.1046,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": 59.169,
+    "return_on_starting_bankroll": 0.5917,
     "roi": 0.5917,
     "max_drawdown": 0.5266,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [
@@ -473,16 +477,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": -28.0,
+    "return_on_starting_bankroll": null,
     "roi": -0.0103,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": -98.811,
+    "return_on_starting_bankroll": -0.9881,
     "roi": -0.9881,
     "max_drawdown": 0.9934,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [
@@ -3336,16 +3344,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": -37.636,
+    "return_on_starting_bankroll": null,
     "roi": -0.0128,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": -99.424,
+    "return_on_starting_bankroll": -0.9942,
     "roi": -0.9942,
     "max_drawdown": 0.9966,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [
@@ -6416,16 +6428,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": -36.727,
+    "return_on_starting_bankroll": null,
     "roi": -0.0158,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": -98.794,
+    "return_on_starting_bankroll": -0.9879,
     "roi": -0.9879,
     "max_drawdown": 0.9904,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [
@@ -8875,16 +8891,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": -141.694,
+    "return_on_starting_bankroll": null,
     "roi": -0.0515,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": -100.0,
+    "return_on_starting_bankroll": -1.0,
     "roi": -1.0,
     "max_drawdown": 1.0,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [
@@ -11767,16 +11787,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": -99.182,
+    "return_on_starting_bankroll": null,
     "roi": -0.046,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": -99.94,
+    "return_on_starting_bankroll": -0.9994,
     "roi": -0.9994,
     "max_drawdown": 0.9996,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [
@@ -14065,16 +14089,20 @@
    "staking_flat": {
     "plan": "flat",
     "profit_units": -135.818,
+    "return_on_starting_bankroll": null,
     "roi": -0.0516,
     "max_drawdown": null,
-    "within_drawdown_cap": null
+    "within_drawdown_cap": null,
+    "note": "flat: ROI = profit / units staked, comparable across strategies"
    },
    "staking_pct": {
     "plan": "pct",
     "profit_units": -99.994,
+    "return_on_starting_bankroll": -0.9999,
     "roi": -0.9999,
     "max_drawdown": 1.0,
-    "within_drawdown_cap": false
+    "within_drawdown_cap": false,
+    "note": "compounding: profit / starting bankroll, not a per-unit ROI"
    },
    "staking_independent": "holds",
    "gates": [

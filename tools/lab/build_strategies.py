@@ -220,9 +220,17 @@ def staking_metrics(bets: list[dict], stake_plan: str = "flat") -> dict:
     return {
         "plan": stake_plan,
         "profit_units": round(profit, 3),
+        # For the compounding plan this is profit / the STARTING 100-unit bankroll. It is NOT
+        # ROI per unit staked and it is NOT annualised: over 234 tickets at 5% a bankroll can
+        # grow by a large multiple, and quoting that as a percentage "return" would overstate
+        # the strategy. The honest comparisons under this plan are profit_units and drawdown.
+        "return_on_starting_bankroll": round(profit / 100.0, 4) if stake_plan != "flat" else None,
         "roi": round(roi, 4) if roi is not None else None,
         "max_drawdown": round(max_dd, 4) if stake_plan != "flat" else None,
         "within_drawdown_cap": (max_dd <= DRAWDOWN_CAP) if stake_plan != "flat" else None,
+        "note": ("flat: ROI = profit / units staked, comparable across strategies"
+                 if stake_plan == "flat" else
+                 "compounding: profit / starting bankroll, not a per-unit ROI"),
     }
 
 
