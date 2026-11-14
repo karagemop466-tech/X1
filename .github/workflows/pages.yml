@@ -29,6 +29,16 @@ jobs:
       # copied, so a broken section fails the build rather than shipping.
       - name: Verify the live-pipeline section
         run: python3 scripts/pipeline/verify_site.py
+      # Added by session arena/459b17e1-x1 (additive only). Verifies the
+      # second-opinion section (hub/*.html) before it is copied, so a broken
+      # section fails the build rather than shipping.
+      - name: Verify the second-opinion section
+        run: python3 tools/hub/build_hub.py
+      # Added by session arena/9cc1eaac-x1 (additive only): every published Week 10 cell is
+      # diffed against an independent transcription of the official pages before the tree
+      # is assembled, so a contradictory value fails the build rather than shipping.
+      - name: Verify published data against the official pages
+        run: python3 tools/verify_against_official.py
       # Added by session arena/fcc11e05-x1 (additive only). Verifies the unified
       # dashboard (app/**): links must resolve and every data row must carry a
       # source link or an explicit "no official source" marker.
@@ -53,16 +63,18 @@ jobs:
           # section (auto-refreshed standings, injuries, depth charts, deficiency,
           # correlations). Additive; nothing above is modified or removed.
           cp -r live _site/
+          # Added by session arena/459b17e1-x1: the second-opinion section
+          # (section index, verification ledger, findings, deficiency board,
+          # suggestion review board). Additive; nothing above is modified.
+          cp -r hub _site/
           # Added by session arena/fcc11e05-x1: the unified dashboard. Additive —
-          # every tree above is still copied and still reachable. `app/index.html`
-          # is also copied to `_site/index.html` so the site root is the unified
-          # landing page, and the previous root landing page is preserved at
-          # `/legacy-fourth-down.html` rather than being deleted.
+          # every tree above is still copied and still reachable. The site root
+          # serves the unified landing page: it is the same file as
+          # app/index.html with same-folder links repointed into app/, so the two
+          # cannot drift apart and there is no redirect. The previous root landing
+          # page is preserved at /legacy-fourth-down.html rather than deleted.
           cp -r app _site/
           cp index.html _site/legacy-fourth-down.html
-          # The site root serves the unified landing page. It is the same file as
-          # app/index.html with same-folder links repointed into app/, so the two
-          # cannot drift apart and there is no redirect.
           cp app/index.html _site/index.html
           sed -i -E 's#href="assets/#href="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html
           mkdir -p _site/data

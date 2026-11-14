@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive brief — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="decisions-critical.html">Decisions to make</a>
+      <a href="suggestions-board.html">Suggestions board</a>
+      <a href="review-queue.html">Review queue</a>
+      <a href="changes.html">What changed</a>
+      <a href="requirements.html">Requirements &amp;amp; status</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+      <a href="../live/index.html">Live pipeline</a>
+      <a href="../hub/index.html">Section index</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ EXECUTIVE BRIEF</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">EXECUTIVE BRIEF</div>
+  <h1>What this round found, and what it needs from you</h1>
+  <p>One page. Ten findings, four decisions that unblock the rest, and the verification behind both — with a link to
+  the official page for every row.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Headline.</b> Every published Week&nbsp;10 value is correct:
+  2,183 cells diffed against a fresh independent transcription of the official pages,
+  0 mismatches, 4 of 4 tables clean. The problems this round found are not
+  wrong numbers — they are <b>incomplete coverage presented as complete</b>, an <b>unreachable site tree</b>, and a
+  <b>red CI job on main</b>. All three are fixed or flagged below.</div>
+  <div class="statrow">
+    <div class="stat"><strong>2,183</strong><span>cells verified</span></div>
+    <div class="stat"><strong>0</strong><span>value mismatches</span></div>
+    <div class="stat"><strong>10</strong><span>findings</span></div>
+    <div class="stat"><strong>6</strong><span>already fixed</span></div>
+  </div>
+  <h2>Verification result, table by table</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>Independent re-transcription diff</caption><thead><tr><th>Table</th><th>Rows published</th><th>Cells compared</th><th>Mismatches</th><th>Official source</th></tr></thead><tbody>
+<tr><td>standings</td><td>32</td><td>384</td><td><span class="pill">0</span></td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>schedule</td><td>14</td><td>70</td><td><span class="pill">0</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>week10_byes</td><td>4</td><td>4</td><td><span class="pill">0</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>injuries</td><td>345</td><td>1,725</td><td><span class="pill">0</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+</tbody></table></div>
+  <h2>Findings</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>Audit findings</caption><thead><tr><th>ID</th><th>Severity</th><th>Area</th><th>Finding</th><th>Evidence / measurement</th><th>Fix</th><th>Status</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>A-01</b></td><td><span class="pill high">high</span></td><td>Coverage</td><td><b>The site&#x27;s injury join uses a five-club depth pilot while a 31-club depth collection already sits in the repository.</b></td><td>The site reports 6 &quot;listed starters ruled Out&quot;. The same join run across the 31 clubs already collected returns 31. No published value is wrong; the published number is a floor presented as if it were the population.</td><td>Published on pages/availability.html: the full join is the main table, the pilot is kept below it as a labelled subset, and the coverage is stated on the page. The remaining decision for the owner is whether that becomes the permanent presentation (Q-19).</td><td>fixed</td><td><a class="src-link" href="https://www.atlantafalcons.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-02</b></td><td><span class="pill high">high</span></td><td>Navigation</td><td><b>The live-pipeline tree (15 pages) was not linked from the landing page and appeared in no navigation.</b></td><td>tools/check_links.py asserted reachability for every page tree except live/, so 15 pages could only be reached by typing the URL. The nav list in tools/build_site.py had no entry for it either. Reproduced with `python3 tools/check_links.py` before the fix.</td><td>Add live/ to the landing page and the nav, and make check_links.py assert reachability for it.</td><td>fixed</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/live/index.html" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-03</b></td><td><span class="pill high">high</span></td><td>CI</td><td><b>The verify-site workflow was red on main: tools/check_links.py failed with 111 errors.</b></td><td>Two causes. (a) It scanned raw HTML and treated JavaScript template strings such as href=&quot;${s.url}&quot; as internal links. (b) It applied the main site&#x27;s stylesheet contract to the live/ tree, which uses its own stylesheet and JS-rendered navigation. Neither was a defect in the published pages.</td><td>Strip JS template literals before link assertions, and give live/ its own contract check.</td><td>fixed</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/actions" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-04</b></td><td><span class="pill warn">medium</span></td><td>Verification</td><td><b>301 of 345 injury rows had never been re-checked by a second reader (flag I-17).</b></td><td>This round transcribed all 345 rows from the official page independently and diffed every cell: 2,183 cells across the four tables, 0 mismatches. I-17 can be closed.</td><td>Done — tools/verify_against_official.py now runs this diff on every build.</td><td>fixed</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-05</b></td><td><span class="pill warn">medium</span></td><td>Data freshness</td><td><b>The landing page&#x27;s flag count is hardcoded in prose and can drift from data/flags.json.</b></td><td>The hero button and the &quot;13 open flags&quot; wording are generated from a computed length, but a human reading of the count elsewhere (README, coordination log) already disagrees: the research session counted 34 flagged items, the live session 6, the lab session 12, the dashboard 17. Four registers, four counts, no single queue.</td><td>One consolidated review queue generated from all registers (pages/review-queue.html).</td><td>fixed</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-06</b></td><td><span class="pill warn">medium</span></td><td>Statement accuracy</td><td><b>The landing page said the dashboard publishes &quot;no prices, correlations or strategy results&quot;, but four other trees in the same repository publish exactly those.</b></td><td>research/, dashboard/lab-*, site/ and live/ all publish computed lines, correlations or strategy results. The sentence was true of pages/ only. A reader arriving at the landing page would reasonably conclude the repository contains none.</td><td>Reworded to distinguish league-published tables from computed values, and link every tree.</td><td>fixed</td><td><a class="src-link" href="https://github.com/nflverse/nfldata/blob/master/DATASETS.md" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-07</b></td><td><span class="pill muted-pill">low</span></td><td>Source honesty</td><td><b>The invented-line and strategy pages present computed numbers without labelling which of them are NOT league-published.</b></td><td>data/lines/*.csv and data/strategies/* hold computed values derived from a third-party benchmark. The research tree states this on every page; the pages/ tree does not carry the same label, so the same number appears with two different levels of caveat.</td><td>Owner decision pending on the badge (suggestions board B-07). Not implemented unilaterally because it changes how published numbers are labelled across four trees.</td><td>needs review</td><td><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-08</b></td><td><span class="pill muted-pill">low</span></td><td>Naming</td><td><b>The official standings table prints LA for the Rams; the repository&#x27;s standings.tsv prints LAR; the injury report prints LAR.</b></td><td>Both are the same club and both spellings are printed by an official page, so no value is wrong. It is recorded because a join on the team code silently drops the Rams if the alias is not applied.</td><td>Alias handled in tools/verify_against_official.py; no data change made.</td><td>flagged</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-09</b></td><td><span class="pill muted-pill">low</span></td><td>Data completeness</td><td><b>The standings table prints LAST 5 for all 32 clubs; the published file carries the column header but no values.</b></td><td>Available-but-unpublished, not wrong. Reported by tools/verify_against_official.py under available_but_unpublished_columns rather than as a mismatch, so it stays visible without overstating it as an error.</td><td>Either publish the column or drop the header; owner&#x27;s choice, listed on the suggestions board.</td><td>needs review</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-10</b></td><td><span class="pill muted-pill">low</span></td><td>Benchmark</td><td><b>The four trees use different line benchmarks, so their ROIs are not comparable with each other.</b></td><td>The research lab names a third-party closing line carried in nflverse/nfldata; the analytics lab marks every strategy NOT ELIGIBLE for undocumented provenance; the annex uses nfldata lines; the live tree publishes no prices at all.</td><td>Owner decision Q-02 picks one reference; until then results stay labelled per tree.</td><td>needs review</td><td><a class="src-link" href="https://github.com/nflverse/nfldata/blob/master/DATASETS.md" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+</tbody></table></div>
+  <h2>The decision this round needs</h2>
+  <div class="note"><b>Publish the 31-club depth join, or state that five clubs are all the evidence you want?</b>
+  The site currently reports 6 starters ruled out on the strength of a
+  five-club pilot. The same join across the 31 clubs already collected returns
+  <b>31</b>. Nothing about the published number is false; it is a floor that reads like a
+  total. Recommendation, cost and reversal are on the
+  <a href="suggestions-board.html">suggestions board (B-01)</a>; the question is
+  <a href="decisions-critical.html">Q-19</a>.</div>
+  <h2>The four steps recommended before anything else</h2>
+  <ol class="findings">
+  <li><b>Publish the 31-club depth join instead of the five-club pilot</b> — Turns a floor into a real count (5 clubs -&gt; 31 clubs), which is the difference between &#x27;at least 8 starters out&#x27; and the actual number.</li><li><b>Make the independent re-transcription a required CI gate</b> — The existing checks compare two transcriptions by our own sessions; this one catches a bad read even when both agree.</li><li><b>One review queue, generated from every register</b> — Four different counts of &#x27;flagged items&#x27; is the single biggest obstacle to deciding what to fix first.</li><li><b>Pick one line benchmark and stamp it on every result</b> — Without it, the leaderboard ranks strategies measured against different rulers.</li>
+  </ol>
+  <h2>What is still not known</h2>
+  <div class="note">37 items remain in the <a href="review-queue.html">review queue</a>. The largest
+  are the missing line benchmark (Q-02), the missing starter definition (Q-05), the absent licensed odds feed, and the
+  fact that the only strategy passing all eight gates is measured against a third-party mirror rather than a league feed.
+  None of them blocks publishing; all of them block acting on a result.</div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

@@ -177,7 +177,7 @@ def page(fn: str, title: str, kicker: str, body: str, lede: str = "") -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(navtitle)} — X1 NFL decision system</title>
 <meta name="description" content="X1: verified NFL data, originated lines, and a gated strategy leaderboard. Every row source-linked.">
-<link rel="stylesheet" href="{PFX}assets/app.css">
+<link rel="stylesheet" href="{PFX}assets/site.css">
 </head>
 <body>
 <aside class="rail">
@@ -1452,7 +1452,7 @@ W + L + T &le; 10; every club accounted for exactly once</td><td>per-club assert
                                 "chart and the league report name the same player differently, and the "
                                 "original join compared raw strings.")))
 
-    body.append(card("What was <em>not</em> verified, stated honestly", """
+    body.append(card("What was NOT verified, stated honestly", """
 <ul class="tight">
   <li><b>Depth charts.</b> Four of 32 clubs (Atlanta, Baltimore, Chicago, Green Bay) were re-fetched
   and read row by row. The other 27 are carried on the pipeline's own fetch from the same day and are

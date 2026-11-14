@@ -1,0 +1,112 @@
+{
+ "generated_at": "2026-11-14",
+ "title": "Decision-critical questions",
+ "rule": "A question is answered only when an official source settles it and that source is linked. The P0/P1/P2 priority is about what unblocks the most work per unit of effort, not urgency.",
+ "counts": {
+  "total_in_full_register": 18,
+  "open_in_full_register": 17,
+  "critical_here": 7,
+  "p0": 3,
+  "p1": 3,
+  "new_this_round": [
+   "Q-19",
+   "Q-20",
+   "Q-21",
+   "Q-22",
+   "Q-23"
+  ]
+ },
+ "questions": [
+  {
+   "id": "Q-19",
+   "priority": "P0",
+   "blocks": "The entire injury/depth feature",
+   "question": "Is a five-club depth pilot an acceptable evidence base, or should the site publish the 31-club join that already exists?",
+   "known": "31 of 32 clubs already have a club-depth-chart collection in the repository (1813 entries, every row linked to its club page).",
+   "missing": "A decision on whether a club self-report counts as evidence, and what to do about the one club (HOU) with no parsable chart.",
+   "closes_with": "A one-line owner ruling recorded in COORDINATION.md.",
+   "recommend": "Publish the full join and label every row 'club self-report', keeping the pilot visible as a subset.",
+   "there_after": "The injury page can state a real count of exposed starters instead of a floor.",
+   "source": "https://www.packers.com/team/depth-chart",
+   "source_note": "illustrates the problem: the page footer prints 'Unofficial, Nov. 10, 2026'"
+  },
+  {
+   "id": "Q-02",
+   "priority": "P0",
+   "blocks": "Every ROI, edge and leaderboard figure",
+   "question": "Which line is the benchmark: one book's closing line, a consensus, or a market-weighted average?",
+   "known": "Three different references are in use across the four trees; the research lab names and fingerprints its source.",
+   "missing": "A named provider with terms, and a rule for which snapshot of the line counts.",
+   "closes_with": "A written benchmark definition, or a licensed feed.",
+   "recommend": "Pick one and make it a field on every result row; the repository already fingerprints its current source.",
+   "there_after": "Results from the four trees become comparable, and the leaderboard becomes meaningful.",
+   "source": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+   "source_note": "documents the mirror; it does not name the original book"
+  },
+  {
+   "id": "Q-05",
+   "priority": "P0",
+   "blocks": "Every 2nd/3rd/4th-string claim",
+   "question": "What counts as a starter when no league-published depth chart exists?",
+   "known": "The league publishes no depth chart; clubs publish their own and label them unofficial.",
+   "missing": "A reproducible rule that survives a club changing its chart mid-week.",
+   "closes_with": "A definition written down before the next chart is collected.",
+   "recommend": "Use 'first listed at his position slot on his own club's chart on the retrieval date' \u2014 it is mechanical and auditable, which is what the join already does.",
+   "there_after": "Depth claims become re-runnable and citable.",
+   "source": "https://www.detroitlions.com/team/depth-chart",
+   "source_note": "prints '2026 Unofficial Depth Chart'"
+  },
+  {
+   "id": "Q-20",
+   "priority": "P1",
+   "blocks": "Any reward being paid",
+   "question": "What are the actual reward rules, and is paying them lawful where the owner lives?",
+   "known": "The gates define who is eligible; the reward formula is specified.",
+   "missing": "Funding, payout mechanics, and the legal position in the owner's jurisdiction.",
+   "closes_with": "A written rule set plus local legal advice.",
+   "recommend": "Run the competition with a paper ledger first; no money changes hands until the rules are legal and written.",
+   "there_after": "The leaderboard can reward skill without creating a liability.",
+   "source": "https://operations.nfl.com/",
+   "source_note": "the league operates the game, not the contest; reward rules are an owner decision"
+  },
+  {
+   "id": "Q-21",
+   "priority": "P1",
+   "blocks": "Player-prop strategies",
+   "question": "Where do prop prices and player participation data come from, given no market prop feed is reachable?",
+   "known": "A prop model and its calibration exist; no prop price exists anywhere in the repository.",
+   "missing": "A licensed prop feed and snap counts.",
+   "closes_with": "A vendor, or an explicit decision to keep props off the leaderboard.",
+   "recommend": "Keep props as published mathematics only \u2014 the model, the calibration and the break-even arithmetic \u2014 and say so.",
+   "there_after": "Prop work stops looking like an unrun strategy and starts being a documented method.",
+   "source": "https://www.nfl.com/stats/player-stats/",
+   "source_note": "league player stats are published; prop prices are not"
+  },
+  {
+   "id": "Q-22",
+   "priority": "P1",
+   "blocks": "Judging whether any strategy is real",
+   "question": "How do we know a strategy's edge is not simply a shared blind spot between our two transcriptions?",
+   "known": "Two independent transcriptions agree on every compared value; one strategy passes all eight gates out of sample.",
+   "missing": "A third independent source for the line values themselves, or the raw league feed.",
+   "closes_with": "A second price source, or a documented decision that the mirror is acceptable.",
+   "recommend": "Treat agreement as evidence of correct transcription, not of a correct benchmark \u2014 flag F-13 already says this; keep it visible next to the result.",
+   "there_after": "The passing strategy is understood as conditional on the benchmark, not established as profitable.",
+   "source": "https://github.com/nflverse/nfldata",
+   "source_note": "community mirror, not a league feed"
+  },
+  {
+   "id": "Q-23",
+   "priority": "P2",
+   "blocks": "Any automated refresh beyond Week 10",
+   "question": "What should the site do when the official page changes after publication?",
+   "known": "The injury report changes daily; the published tables are dated snapshots.",
+   "missing": "A rule for superseding a published row, and whether the old value is kept.",
+   "closes_with": "A written freshness policy.",
+   "recommend": "Keep every snapshot, publish the retrieval timestamp per row, and never overwrite a published value in place.",
+   "there_after": "A decision made in Week 12 can still cite what was true in Week 10.",
+   "source": "https://www.nfl.com/injuries/",
+   "source_note": "the league's own page changes and publishes no archive of prior states"
+  }
+ ]
+}

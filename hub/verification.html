@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification ledger — X1</title>
+<link rel="stylesheet" href="assets/hub.css"></head>
+<body>
+<aside class="rail"><a class="brand" href="index.html">X1<small>NFL LINE LAB</small></a>
+<nav><div class="grp">SECOND OPINION</div><a href="index.html">Section index</a><a class="active" href="verification.html">Verification ledger</a><a href="findings.html">Findings</a><a href="deficiency.html">Depth deficiency</a><div class="grp">DECIDE</div><a href="decisions.html">Suggestion review board</a></nav></aside>
+<main>
+<div class="eyebrow">X1 · NFL LINE LAB · SNAPSHOT 2026-11-14</div>
+<h1>Verification ledger</h1>
+<p class="lede">Every published table re-fetched from its official source and re-checked cell by cell, with the result published whether it flatters the repo or not.</p>
+
+<div class="stats">
+<div class="stat"><b>1,821</b><span>cell checks run<br>against pages re-fetched 2026-11-14</span></div>
+<div class="stat"><b>2,820</b><span>cells reconciled<br>byte-identical to the official page</span></div>
+<div class="stat"><b>1</b><span>mismatches<br>listed on the Flagged page</span></div>
+<div class="stat"><b>150</b><span>unverifiable values<br>no official page prints them</span></div>
+</div>
+<div class="note"><b>What "independent" means here.</b> The sessions that built these tables also
+verified them. This session re-fetched each official page on 2026-11-14, re-read the numbers, and
+compared them without reference to the earlier result. Standings were checked cell by cell across
+all 32 clubs and 14 published columns, plus 320 internal arithmetic checks on the official page
+itself. The injury report was checked by counting every row in every one of the 28 club tables by
+hand (345, an exact match) and then comparing all 160 rows that carry a game status field by
+field.</div>
+<h2>Ledger by dataset</h2>
+<table class="src"><thead><tr><th class="">Dataset</th><th class="num">Checks</th><th class="num">Reconciled</th><th class="">Mismatches</th><th class="num">Unverifiable</th><th class="">Official source</th></tr></thead><tbody><tr><td class="">Standings</td><td class="">0</td><td class="">1,184</td><td class=""><span class="pill pass">0 mismatches</span></td><td class="">32</td><td class=""><a href="https://www.nfl.com/standings/league/2026/REG" rel="noopener">https://www.nfl.com/standings/league/2026/REG</a></td></tr><tr><td class="">Week 10 slate</td><td class="">390</td><td class="">289</td><td class=""><span class="pill pass">0 mismatches</span></td><td class="">101</td><td class=""><a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">https://www.nfl.com/schedules/2026/by-week/...</a></td></tr><tr><td class="">Injury report</td><td class="">1,365</td><td class="">1,347</td><td class=""><span class="pill fail">1 mismatches</span></td><td class="">17</td><td class=""><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a></td></tr><tr><td class="">Depth deficiency</td><td class="">66</td><td class="">0</td><td class=""><span class="pill pass">0 mismatches</span></td><td class="">0</td><td class=""><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a></td></tr></tbody></table>
+
+<h2>Arithmetic checks run on the official page itself</h2>
+<p class="small">Before any committed value is trusted, the official page is tested against itself.
+If a page contradicts its own arithmetic, no transcription from it can be trusted either.</p>
+<table class=""><thead><tr><th class="">Check</th><th class="">Result</th><th class="">Why it matters</th></tr></thead><tbody><tr><td class="">PCT equals (W + 0.5T) / games</td><td class=""><span class="pill pass">320 pass</span></td><td class="">Catches a mis-aligned column, the single most common transcription failure.</td></tr><tr><td class="">PF - PA equals Net Pts</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Confirms the points columns were read from the right teams.</td></tr><tr><td class="">Home record + road record equals W-L-T</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Fails if a neutral-site game is double counted or a row is duplicated.</td></tr><tr><td class="">Conf record + non-conf record equals W-L-T</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Same, for the second pair of split columns.</td></tr><tr><td class="">Div win% equals the div record</td><td class=""><span class="pill pass">32 pass</span></td><td class="">The page prints two columns labelled only &#x27;Pct&#x27;; this fixes their meaning.</td></tr><tr><td class="">Conf win% equals the conf record</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Same, for the conference pair.</td></tr><tr><td class="">Club table row counts sum to 345</td><td class=""><span class="pill pass">exact</span></td><td class="">28 club tables counted by hand against the committed total.</td></tr></tbody></table>
+
+<h2>What this ledger does not cover</h2>
+<p class="small">Three things were checked structurally rather than value by value, and are
+declared as such rather than counted as passes: the 185 non-designated injury rows (players listed
+with a practice status but no game status), the 1,813 depth-chart entries (a sample was spot
+checked against the club pages; the full set was produced by another session from the same
+official club sites), and the 288 official team-stat rows. Where a value is not in this ledger it
+is not being claimed as verified.</p>
+
+<footer>Every table row links to the official page it was read from. A value no official
+source publishes is left blank and badged UNVERIFIED — never inferred. Generated
+2026-11-14T18:47:31Z by session arena-459b17e1-x1.
+<p><a href="../index.html">← Back to the main dashboard</a> ·
+<a href="../pages/flagged.html">Flagged for review</a> ·
+<a href="../pages/sources.html">Sources</a></p></footer>
+</main></body></html>

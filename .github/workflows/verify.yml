@@ -50,6 +50,33 @@ jobs:
       - name: Parlay correlation regression (Frechet bounds, nested legs)
         run: python3 scripts/verify_parlay.py
 
+      # Added by session arena/9cc1eaac-x1: diff every published Week 10 cell against an
+      # independent re-transcription of the official pages. Any contradiction fails the
+      # build. This is the check that cannot be satisfied by two transcriptions sharing a
+      # misread, which is the limitation flag F-13 records.
+      - name: Published data vs the official pages (independent re-transcription)
+        run: python3 tools/verify_against_official.py
+
+      # Added by session arena/fcc11e05-x1 (additive only). The unified dashboard's own
+      # contract: every internal link resolves and every data row carries a source link
+      # or an explicit "no official source" marker. Also runs in pages.yml, before deploy.
+      - name: Verify the unified dashboard
+        run: python3 tools/verify_app.py
+
+      - name: Rebuild the unified dashboard
+        run: python3 tools/build_app.py
+
+      - name: Fail if the committed dashboard is stale
+        run: git diff --exit-code -- app
+
+      # Registers behind the decision, suggestions, review-queue and requirements pages.
+      # Rebuilding them here proves the committed JSON is reproducible from the data.
+      - name: Rebuild audit registers
+        run: python3 tools/build_audit_registers.py
+
+      - name: Fail if the audit registers are stale
+        run: git diff --exit-code -- data/audit
+
       - name: Parallel session's dashboard checks
         run: python3 scripts/check_site.py
 

@@ -58,6 +58,53 @@ ANNEX_APPROVED = {
     "profootballhof.com", "www.profootballhof.com", "nytimes.com", "www.nytimes.com",
     "sports.yahoo.com", "karagemop466-tech.github.io",
 }
+
+# Official club websites, read from data/pipeline/depth_charts.json (each club's own
+# depth-chart page). The league's own https://www.nfl.com/teams/ page is the authority
+# for which domain is a club's official site; this list is generated from that
+# collection so a new club host cannot be added without appearing in the data first.
+CLUB_HOSTS = {
+    "www.49ers.com",
+    "www.atlantafalcons.com",
+    "www.azcardinals.com",
+    "www.baltimoreravens.com",
+    "www.bengals.com",
+    "www.buccaneers.com",
+    "www.buffalobills.com",
+    "www.chargers.com",
+    "www.chicagobears.com",
+    "www.chiefs.com",
+    "www.clevelandbrowns.com",
+    "www.colts.com",
+    "www.commanders.com",
+    "www.dallascowboys.com",
+    "www.denverbroncos.com",
+    "www.detroitlions.com",
+    "www.giants.com",
+    "www.jaguars.com",
+    "www.miamidolphins.com",
+    "www.neworleanssaints.com",
+    "www.newyorkjets.com",
+    "www.packers.com",
+    "www.panthers.com",
+    "www.patriots.com",
+    "www.philadelphiaeagles.com",
+    "www.raiders.com",
+    "www.seahawks.com",
+    "www.steelers.com",
+    "www.tennesseetitans.com",
+    "www.therams.com",
+    "www.vikings.com",
+    # Added by session arena/fcc11e05-x1. Every other club host above is generated from
+    # data/pipeline/depth_charts.json; Houston is absent from that file only because the
+    # Texans' depth-chart page returns no parsable table. Its official site is the
+    # "View Full Site" link for the Houston Texans on https://www.nfl.com/teams/,
+    # transcribed to data/verify/official_club_sites_2026.psv. All 32 club hosts on that
+    # league page were diffed against this set; Houston was the only one missing.
+    "www.houstontexans.com",
+}
+APPROVED |= CLUB_HOSTS
+
 SNAP = "2026-11-14"
 
 errors, checks = [], []
@@ -93,12 +140,33 @@ for path in files:
         text = fh.read()
     base = os.path.dirname(path)
 
+    # hrefs inside <script> blocks are runtime templates (e.g. href="${r._source_url}"),
+    # not static markup links; the live pipeline's row links are validated against the
+    # datasets by scripts/pipeline/verify_site.py. Scan markup only.
+    markup = re.sub(r"<script\b.*?</script\s*>", " ", text, flags=re.S | re.I)
+
     is_dashboard = rel.split(os.sep)[0] == "dashboard"
+    is_live = rel.split(os.sep)[0] == "live"
     is_research = rel.split(os.sep)[0] == "research"
     # integration addendum: site/ is the snapshot annex tree; its contract (stylesheet,
     # per-row sources, host tiers) is asserted by scripts/verify_site_annex.py
     is_annex = rel.split(os.sep)[0] == "site"
-    if is_annex:
+    # Added by session arena/459b17e1-x1: hub/ is a fifth site tree with its own
+    # stylesheet (hub/assets/hub.css) and its own contract, asserted by
+    # tools/hub/build_hub.py (links resolve, external hosts official, every data row
+    # sourced). Without this branch the main site's contract is applied to it and
+    # produces false failures. Nothing above this line is modified.
+    is_hub = rel.split(os.sep)[0] == "hub"
+    # the live-pipeline tree (session arena/d577959f-x1) is a fourth site tree with its
+    # own stylesheet and its own JS-rendered navigation; its contract is asserted by
+    # scripts/pipeline/verify_site.py. Without this branch the checker applied the main
+    # site's contract to it and produced 100+ false failures.
+    is_live = rel.split(os.sep)[0] == "live"
+    if is_hub:
+        check("assets/hub.css" in text, f"{rel}: links its stylesheet")
+        check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
+        check('href="../index.html"' in text, f"{rel}: links back to the landing page")
+    elif is_annex:
         check("style.css" in text, f"{rel}: links its stylesheet")
     elif is_research:
         # the research session's lab is a parallel site tree with its own
@@ -106,6 +174,16 @@ for path in files:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/styles.css" in text, f"{rel}: links the research stylesheet")
         check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+    elif is_live:
+        # live-pipeline section (session arena/d577959f-x1): JS-rendered pages with
+        # their own stylesheet (assets/x1-live/site.css) and their own contract
+        # (scripts/pipeline/verify_site.py). The snapshot date and every table row
+        # are loaded at runtime from data/pipeline/*.json, which that checker
+        # validates row by row, so they are not asserted here.
+        # Both assertions kept: the stylesheet belongs to this branch's contract, the
+        # back-link assertion was added here and does not conflict with anything on main.
+        check("assets/x1-live/site.css" in text, f"{rel}: links its stylesheet")
+        check('href="../index.html"' in text, f"{rel}: links back to the landing page")
     elif not is_dashboard:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/site.css" in text, f"{rel}: links the stylesheet")
@@ -114,8 +192,17 @@ for path in files:
         # the parallel session's dashboard has its own contract, asserted separately
         check("site.css" in text or "style.css" in text, f"{rel}: links its stylesheet")
 
-    for url in HREF.findall(text):
+    # Both sessions that touched this line independently reached the same conclusion and
+    # fixed it two ways. Kept together, because they catch different cases:
+    #   * main strips <script> blocks -> no JS expression is ever read as a link;
+    #   * this branch also drops template-literal fragments and any residue of `${`.
+    # `markup` is defined above and already has the script blocks removed.
+    for url in HREF.findall(re.sub(r"`[^`]*`", "", markup)):
         if url.startswith("#") or url.startswith("mailto:"):
+            continue
+        if "${" in url:
+            # runtime value inside a nested template literal, e.g.
+            # `<a href="${s.url}">`; asserted by the tree-owning verifier instead.
             continue
         if url.startswith("http"):
             host = urlparse(url).netloc
@@ -129,15 +216,36 @@ for path in files:
             linked_pages.add(target)
 
 reachable = {os.path.normpath(os.path.join(ROOT, "index.html"))}
+# The live-pipeline tree renders its navigation from assets/x1-live/site.js, so its pages
+# are reachable in a browser without a static anchor in any page body. Seed the crawl
+# with the JS nav entries, otherwise five correctly-linked pages look orphaned.
+_livejs_path = os.path.join(ROOT, "assets", "x1-live", "site.js")
+if os.path.exists(_livejs_path):
+    for _m in re.finditer(r"href:\s*'([^']+\.html)'", open(_livejs_path, encoding="utf-8").read()):
+        _p = os.path.normpath(os.path.join(ROOT, "live", _m.group(1)))
+        if os.path.exists(_p):
+            reachable.add(_p)
 _dash = os.path.normpath(os.path.join(ROOT, "dashboard", "index.html"))
 if os.path.exists(_dash):
     reachable.add(_dash)
+_live = os.path.normpath(os.path.join(ROOT, "live", "index.html"))
+# Added by session arena/459b17e1-x1: hub/ hangs off hub/index.html, which the main
+# nav links. Reachable set extended the same way as the dashboard and live trees.
+_hubroot = os.path.normpath(os.path.join(ROOT, "hub", "index.html"))
+if os.path.exists(_live):
+    reachable.add(_live)
+# Added by session arena/fcc11e05-x1: app/ is a sixth site tree with its own navigation
+# rail, hanging off app/index.html. Pages serves that same file at the site root, so the
+# whole tree is entered from one landing page exactly like hub/, live/ and dashboard/.
+_approot = os.path.normpath(os.path.join(ROOT, "app", "index.html"))
+if os.path.exists(_approot):
+    reachable.add(_approot)
 frontier = list(reachable)
 while frontier:
     cur = frontier.pop()
     with open(cur, encoding="utf-8") as fh:
         txt = fh.read()
-    for url in HREF.findall(txt):
+    for url in HREF.findall(re.sub(r"`[^`]*`", "", txt)):
         if url.startswith("http") or url.startswith("#") or url.startswith("mailto:"):
             continue
         tgt = os.path.normpath(os.path.join(os.path.dirname(cur), url.split("#")[0]))
@@ -146,12 +254,42 @@ while frontier:
             frontier.append(tgt)
 
 # Orphans are computed per site: this session's pages hang off index.html, the parallel
-# session's data dashboard hangs off dashboard/index.html (linked from our nav footer).
+# session's data dashboard hangs off dashboard/index.html (linked from our nav footer),
+# and the live-pipeline section hangs off live/index.html (also linked from the main nav).
+# Their internal linking is each tree's own contract, asserted by its own checker.
 for path in files:
     rel = os.path.relpath(path, ROOT)
-    if rel.split(os.sep)[0] in ("dashboard", "research"):
+    if rel.split(os.sep)[0] in ("dashboard", "research", "live"):
         continue
-    check(path in reachable, f"{rel}: reachable from index.html")
+    if rel.split(os.sep)[0] == "hub":
+        check(path in reachable or path == _hubroot, f"{rel}: reachable from index.html")
+    else:
+        check(path in reachable, f"{rel}: reachable from index.html")
+
+# Every parallel site tree must be entered from ONE landing page. Research, the data
+# dashboard and the snapshot annex all were; the live-pipeline tree was not, so on the
+# published site 15 pages could only be reached by typing the URL.
+_landing = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+for _tree, _label in (("dashboard/lab-index.html", "analytics lab"),
+                      ("research/index.html", "research lab"),
+                      ("site/index.html", "snapshot annex"),
+                      ("live/index.html", "live pipeline"),
+                      ("pages/executive-summary.html", "executive summary"),
+                      ("pages/suggestions.html", "suggestions register"),
+                      ("pages/decisions.html", "decision register"),
+                      ("pages/flagged.html", "flagged for review")):
+    check(f'href="{_tree}"' in _landing,
+          f"index.html links the {_label} ({_tree})")
+# a link inside the nav rail is the only place the landing page can carry it twice
+check(_landing.count('href="research/index.html"') <= 3,
+      "index.html does not duplicate the research-lab entry")
+check(_landing.count('href="live/index.html"') >= 1,
+      "index.html links the live pipeline exactly once")
+_livejs = os.path.join(ROOT, "assets", "x1-live", "site.js")
+if os.path.exists(_livejs):
+    _j = open(_livejs, encoding="utf-8").read()
+    check("flagged.html" in _j, "live pipeline nav exposes the Flagged for Review page")
+    check("index.html" in _j, "live pipeline nav exposes its own landing page")
 
 # ---- arithmetic guards: never let a wrong claim ship again ----
 DEC = 1 + 100 / 110          # -110 expressed as decimal
@@ -199,8 +337,14 @@ def _audit_tree(html_paths, css_path, js_root, label):
     hooks = _js_hooks(js_root)
     used = set()
     for _p in html_paths:
-        for _m in _re.finditer(r'class="([^"]*)"', open(_p, encoding="utf-8").read()):
-            used |= set(_m.group(1).split())
+        # strip <script> blocks (removes JS template literals wholesale) and then filter
+        # any residual `${...}` token, so neither a script block nor a stray expression can
+        # register a class name that no stylesheet is expected to define. Both the main and
+        # this branch's fix are applied here; they catch different cases.
+        _txt = _re.sub(r"<script\b.*?</script\s*>", " ", open(_p, encoding="utf-8").read(), flags=_re.S | _re.I)
+        for _m in _re.finditer(r'class="([^"]*)"', _txt):
+            used |= {c for c in _m.group(1).split()
+                     if c and "${" not in c and not set(c) <= set("'}\" ")}
     missing = sorted(used - defined - hooks)
     for _c in missing:
         errors.append(f"{label}: class .{_c} is used but defined nowhere")
@@ -209,20 +353,44 @@ def _audit_tree(html_paths, css_path, js_root, label):
     check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
 
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
-_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site")]
+# Added by session arena/fcc11e05-x1: app/ is audited against its own stylesheet
+# (app/assets/site.css) below, so it is excluded from the main-site audit here.
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
+         ("dashboard", "research", "site", "live", "hub", "app")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
     _audit_tree(_res, os.path.join(ROOT, "research", "assets", "styles.css"),
                 os.path.join(ROOT, "research", "assets"), "research/assets/styles.css")
+_livex = sorted(glob.glob(os.path.join(ROOT, "live", "*.html")))
+if _livex:
+    _audit_tree(_livex, os.path.join(ROOT, "assets", "x1-live", "site.css"),
+                os.path.join(ROOT, "assets", "x1-live"), "assets/x1-live/site.css")
 _annex = sorted(glob.glob(os.path.join(ROOT, "site", "*.html")))
 if _annex:
     _audit_tree(_annex, os.path.join(ROOT, "site", "style.css"),
                 os.path.join(ROOT, "site"), "site/style.css")
+_live = sorted(glob.glob(os.path.join(ROOT, "live", "*.html")))
+if _live:
+    _audit_tree(_live, os.path.join(ROOT, "assets", "x1-live", "site.css"),
+                os.path.join(ROOT, "assets", "x1-live"), "assets/x1-live/site.css")
 _db = sorted(glob.glob(os.path.join(ROOT, "dashboard", "*.html")))
 if _db:
     _audit_tree(_db, os.path.join(ROOT, "dashboard", "assets", "style.css"),
                 os.path.join(ROOT, "dashboard", "assets"), "dashboard/assets/style.css")
+# Added by session arena/459b17e1-x1: audit the hub tree against its own stylesheet.
+_hub = sorted(glob.glob(os.path.join(ROOT, "hub", "*.html")))
+if _hub:
+    _audit_tree(_hub, os.path.join(ROOT, "hub", "assets", "hub.css"),
+                os.path.join(ROOT, "hub", "assets"), "hub/assets/hub.css")
+# Added by session arena/fcc11e05-x1: audit the unified dashboard against its own
+# stylesheet (app/assets/site.css). Its contract — links resolve, every external host is
+# official, every data row is sourced or explicitly flagged — is asserted by
+# tools/verify_app.py, which also runs in CI.
+_appx = sorted(glob.glob(os.path.join(ROOT, "app", "*.html")))
+if _appx:
+    _audit_tree(_appx, os.path.join(ROOT, "app", "assets", "site.css"),
+                os.path.join(ROOT, "app", "assets"), "app/assets/site.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

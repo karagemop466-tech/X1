@@ -1,0 +1,1936 @@
+{
+ "dataset": "standings",
+ "official_source": "https://www.nfl.com/standings/league/2026/REG",
+ "retrieved": "2026-11-14",
+ "verified_by": "arena-459b17e1-x1",
+ "official_rows": 32,
+ "cell_checks": 1184,
+ "pass": 1184,
+ "fail": 0,
+ "unverified": 32,
+ "arithmetic_checks": 320,
+ "arithmetic_fail": 0,
+ "failures": [],
+ "arithmetic_detail": [
+  {
+   "team": "Los Angeles Chargers",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "0-8-0 PCT=0.000 PF=121 PA=219 Home=0 - 4 - 0 Road=0 - 4 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=126 PA=200 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "1-7-0 PCT=0.125 PF=144 PA=199 Home=0 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=184 PA=249 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=182 PA=223 Home=1 - 3 - 0 Road=1 - 4 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "2-7-0 PCT=0.222 PF=148 PA=221 Home=1 - 4 - 0 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=178 PA=255 Home=0 - 3 - 0 Road=3 - 3 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=188 PA=223 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=199 PA=219 Home=1 - 3 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=209 PA=192 Home=0 - 4 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-5-0 PCT=0.375 PF=185 PA=216 Home=1 - 4 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-6-0 PCT=0.333 PF=202 PA=178 Home=1 - 4 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "3-5-1 PCT=0.389 PF=196 PA=223 Home=2 - 2 - 1 Road=1 - 3 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=189 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=246 PA=236 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "4-5-0 PCT=0.444 PF=238 PA=268 Home=1 - 3 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=161 PA=196 Home=3 - 0 - 0 Road=2 - 4 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=214 PA=181 Home=2 - 3 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=211 PA=207 Home=3 - 1 - 0 Road=2 - 3 - 0"
+  },
+  {
+   "team": "New York Giants",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "New York Giants",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "5-3-1 PCT=0.611 PF=203 PA=196 Home=3 - 2 - 0 Road=2 - 1 - 1"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "5-4-0 PCT=0.556 PF=202 PA=162 Home=4 - 2 - 0 Road=1 - 2 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=240 PA=175 Home=2 - 1 - 0 Road=4 - 1 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=222 PA=189 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-3-0 PCT=0.667 PF=216 PA=191 Home=3 - 1 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=229 PA=121 Home=4 - 1 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=202 PA=143 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=146 PA=116 Home=3 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "6-2-0 PCT=0.750 PF=180 PA=144 Home=4 - 0 - 0 Road=2 - 2 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=256 PA=187 Home=3 - 1 - 0 Road=4 - 0 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=241 PA=184 Home=4 - 1 - 0 Road=3 - 1 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "7-2-0 PCT=0.778 PF=198 PA=186 Home=4 - 0 - 0 Road=3 - 2 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "W+L+T<=10",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "PCT matches W-L-T",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "PF-PA = Net Pts",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "Home+Road games = total games (no neutral-site games yet)",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "Home+Road wins+losses+ties = W-L-T",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "Div record <= total games",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "Conf record <= total games",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "DIV_PCT = div win%",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "CONF_PCT = conf win%",
+   "result": "PASS",
+   "detail": "7-1-0 PCT=0.875 PF=235 PA=156 Home=5 - 0 - 0 Road=2 - 1 - 0"
+  },
+  {
+   "team": "Los Angeles Chargers",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "0 - 5 - 0 + 0 - 3 - 0 vs 0-8-0"
+  },
+  {
+   "team": "Miami Dolphins",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "1 - 4 - 0 + 0 - 3 - 0 vs 1-7-0"
+  },
+  {
+   "team": "Tennessee Titans",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "1 - 5 - 0 + 0 - 2 - 0 vs 1-7-0"
+  },
+  {
+   "team": "Indianapolis Colts",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "1 - 5 - 0 + 1 - 2 - 0 vs 2-7-0"
+  },
+  {
+   "team": "New York Jets",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "2 - 4 - 0 + 0 - 3 - 0 vs 2-7-0"
+  },
+  {
+   "team": "Philadelphia Eagles",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "1 - 6 - 0 + 1 - 1 - 0 vs 2-7-0"
+  },
+  {
+   "team": "Arizona Cardinals",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "2 - 5 - 0 + 1 - 1 - 0 vs 3-6-0"
+  },
+  {
+   "team": "Atlanta Falcons",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 0 + 0 - 3 - 0 vs 3-6-0"
+  },
+  {
+   "team": "Carolina Panthers",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 0 + 0 - 2 - 0 vs 3-5-0"
+  },
+  {
+   "team": "Houston Texans",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 0 + 0 - 2 - 0 vs 3-5-0"
+  },
+  {
+   "team": "New Orleans Saints",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "1 - 3 - 0 + 2 - 2 - 0 vs 3-5-0"
+  },
+  {
+   "team": "Tampa Bay Buccaneers",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 0 + 0 - 3 - 0 vs 3-6-0"
+  },
+  {
+   "team": "Washington Commanders",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 4 - 1 + 0 - 1 - 0 vs 3-5-1"
+  },
+  {
+   "team": "Baltimore Ravens",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "2 - 4 - 0 + 2 - 1 - 0 vs 4-5-0"
+  },
+  {
+   "team": "Dallas Cowboys",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "2 - 4 - 0 + 2 - 1 - 0 vs 4-5-0"
+  },
+  {
+   "team": "Las Vegas Raiders",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 0 + 1 - 2 - 0 vs 4-5-0"
+  },
+  {
+   "team": "Cleveland Browns",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 0 + 2 - 1 - 0 vs 5-4-0"
+  },
+  {
+   "team": "Los Angeles Rams",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 2 - 0 + 2 - 2 - 0 vs 5-4-0"
+  },
+  {
+   "team": "New England Patriots",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "5 - 1 - 0 + 0 - 3 - 0 vs 5-4-0"
+  },
+  {
+   "team": "New York Giants",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 3 - 1 + 2 - 0 - 0 vs 5-3-1"
+  },
+  {
+   "team": "Seattle Seahawks",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "2 - 3 - 0 + 3 - 1 - 0 vs 5-4-0"
+  },
+  {
+   "team": "Cincinnati Bengals",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "4 - 2 - 0 + 2 - 0 - 0 vs 6-2-0"
+  },
+  {
+   "team": "Detroit Lions",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "4 - 1 - 0 + 2 - 1 - 0 vs 6-2-0"
+  },
+  {
+   "team": "Green Bay Packers",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "4 - 3 - 0 + 2 - 0 - 0 vs 6-3-0"
+  },
+  {
+   "team": "Jacksonville Jaguars",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "5 - 2 - 0 + 1 - 0 - 0 vs 6-2-0"
+  },
+  {
+   "team": "Kansas City Chiefs",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "6 - 1 - 0 + 0 - 1 - 0 vs 6-2-0"
+  },
+  {
+   "team": "Minnesota Vikings",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "4 - 1 - 0 + 2 - 1 - 0 vs 6-2-0"
+  },
+  {
+   "team": "Pittsburgh Steelers",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 2 - 0 + 3 - 0 - 0 vs 6-2-0"
+  },
+  {
+   "team": "Buffalo Bills",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "4 - 1 - 0 + 3 - 0 - 0 vs 7-1-0"
+  },
+  {
+   "team": "Chicago Bears",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "5 - 2 - 0 + 2 - 0 - 0 vs 7-2-0"
+  },
+  {
+   "team": "Denver Broncos",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "3 - 1 - 0 + 4 - 1 - 0 vs 7-2-0"
+  },
+  {
+   "team": "San Francisco 49ers",
+   "check": "Conf + Non-Conf = W-L-T",
+   "result": "PASS",
+   "detail": "4 - 1 - 0 + 3 - 0 - 0 vs 7-1-0"
+  }
+ ]
+}
