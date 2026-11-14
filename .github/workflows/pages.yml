@@ -44,6 +44,17 @@ jobs:
       # source link or an explicit "no official source" marker.
       - name: Verify the unified dashboard
         run: python3 tools/verify_app.py
+      # Added by session arena/600e6009-x1 (round 3, additive only): the deploy gate
+      # rebuilds the results feed, snapshot store, origination order and round-3
+      # registers and fails if any invariant or freshness check breaks — a broken
+      # feed never ships.
+      - name: Verify round-3 feeds before deploy
+        run: |
+          python3 tools/build_results.py --check
+          python3 tools/build_snapshots.py --check
+          python3 tools/build_origination.py --check
+          python3 tools/build_round3.py --check
+          python3 tools/verify_app.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)

@@ -69,6 +69,19 @@ jobs:
       - name: Fail if the committed dashboard is stale
         run: git diff --exit-code -- app
 
+      # Added by session arena/600e6009-x1 (round 3, additive only): rebuild the
+      # results feed, the price-snapshot store, the origination-order table and the
+      # signal/staking + depth + correlation registers. Each builder aborts if an
+      # invariant breaks (row diff vs the publishing mirror, standings arithmetic,
+      # official hosts only, origination order 1-2-3, market columns blank while no
+      # official price source exists); --check then fails if the commit is stale.
+      - name: Rebuild round-3 feeds (results, snapshots, origination, registers)
+        run: |
+          python3 tools/build_results.py --check
+          python3 tools/build_snapshots.py --check
+          python3 tools/build_origination.py --check
+          python3 tools/build_round3.py --check
+
       # Registers behind the decision, suggestions, review-queue and requirements pages.
       # Rebuilding them here proves the committed JSON is reproducible from the data.
       - name: Rebuild audit registers

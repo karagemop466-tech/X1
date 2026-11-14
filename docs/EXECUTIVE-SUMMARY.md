@@ -1,6 +1,7 @@
 # Executive Summary
 
-**Prepared:** 2026-11-14 · **Data as of:** 2026 NFL season, Week 10 · **Status:** first evidence-bearing release
+**Prepared:** 2026-11-14 · **Data as of:** 2026 NFL season, Week 10 · **Status:** third round —
+verified results feed, price-snapshot store, signal/staking split and the demotion gate published
 
 ---
 
@@ -25,6 +26,11 @@ numbered decisions.
 | Official injury-report rows | 345 players across all 28 participating clubs | `nfl.com/injuries/league/2026/reg10` |
 | Club depth-chart rows (pilot) | 5 clubs: BUF, SEA, DET, GB, BAL | each club's own `/team/depth-chart` |
 | Derived starter-at-risk rows | 35 listed starters on the report; 8 of them ruled **Out** | join of the two rows above |
+| Verified results feed | 137 completed 2026 finals, weeks 1–10; row diff 0 mismatches; standings arithmetic 32/32 | `nfl.com/schedules/2026/by-week/week-N` per row |
+| Signal grade (outcome-only) | 84–49 (63.16%), z = 3.04, p = 0.0024 on 133 decided games | results feed × walk-forward model line |
+| Price-snapshot store | 84 records (14 games × side/total/moneyline × open/close); market side blank by rule | `nfl.com/schedules/2026/by-week/week-10` + repo model |
+| Replacement-depth distribution | 680 slots on the 2nd string, 8 on the 3rd, 0 on the 4th; 16 gaps flagged | club depth charts × league injury report |
+| Correlations (official-only) | 988 pairs, every one with n = 32, sources on `www.nfl.com` only | `nfl.com/standings` + `nfl.com/stats/team-stats` |
 
 Every row carries a working link. Where the official page prints nothing, the cell is blank and the
 row says so. Nothing was inferred to fill a gap.
@@ -33,12 +39,12 @@ row says so. Nothing was inferred to fill a gap.
 
 | Not published | Blocking reason |
 |---|---|
-| Fair lines / our own prices | No licensed historical odds feed to benchmark against (Q-02) |
-| Edge / expected value | Same, plus no settlement rule adopted (Q-03) |
-| Correlation values | No joint-outcome dataset; a 0.10 correlation needs ~780+ paired obs (Q-10) |
-| Leaderboard rankings | No logged forecasts, no scored window (Q-12) |
+| Market lines / market open-close | No licensed or league-published odds feed to source them from (Q-02, new Q-19); snapshot store ships blank and flagged |
+| Edge / expected value / ROI | Same, plus no settlement rule adopted (Q-03); difference column is blank while the market cell is blank |
+| Close snapshots for played games | The store went live after the Week 10 Thursday kickoff; recorded as post-hoc, never back-dated (F-14) |
+| Leaderboard ROI / staking columns | No official price source, so no return can be settled; staking group is blank by rule |
 | Points-per-injury impact weights | No licensed snap counts (Q-04) |
-| Depth data for 27 clubs | Not yet captured (Q-14) |
+| Depth data for 1 club | Not yet captured (Q-14); 31 of 32 published |
 
 A project that shows a plausible number in these cells is showing an invented number. The absence is
 the feature.
@@ -92,23 +98,66 @@ the feature.
 | 6 | **Q-14** 32-club depth coverage, **Q-17** refresh cadence | Scale and staleness |
 
 The remaining questions (Q-04, Q-06, Q-10, Q-13, Q-15, Q-16, Q-18) are recorded in full on the
-Decision Register page with what would settle each one.
+Decision Register page with what would settle each one. Round 3 added six more, all with the same
+discipline — **Q-19** which price feed may fill the market columns, **Q-20** what job captures the
+close snapshot at kickoff, **Q-21** which thresholds ratify the demotion gate, **Q-22** whether the
+signal is graded against 50% or against price break-even, **Q-23** which of the two in-repo models
+is the origination of record, **Q-24** how the results feed refreshes without a person reading
+pages.
 
 ## 7. Reviewer's route through this release
 
-1. **Flagged for Review** — 12 items, each with what is verified, what is unknown and what settles it.
-2. **Decision Register** — 18 questions with known information and the blocking consequence.
-3. **Suggestions** — 12 proposals with impact, effort, dependency and a reversible first step.
+1. **Flagged for Review** — 19 items, each with what is verified, what is unknown and what settles it.
+2. **Decision Register** — 24 questions with known information and the blocking consequence.
+3. **Suggestions** — 18 proposals with impact, effort, dependency and a reversible first step.
 4. **Sources** — the verification tiers and every URL used, so any row can be re-checked by hand.
-5. **Data tables** — the evidence itself, one link per row.
+5. **Results feed** — 137 finals with per-row game links, then the signal grade computed from them.
+6. **Snapshots & order** — open/close captures and the side → total → moneyline publication order.
+7. **Data tables** — the evidence itself, one link per row.
 
 ## 8. Honest limitations of this release
 
 - The injury report and schedule are a **single-week snapshot** and will be stale within days.
-- Depth coverage is **5 of 32 clubs**; the other 27 columns are blank on purpose.
-- One transcription error was found by our own gate. A second independent pass (suggestion S-10) is
-  the cheapest remaining trust improvement, and it has not been done.
-- Three other agent sessions touched this repository concurrently; their divergent boards are
-  preserved on their branches and the audit is on the Flagged page (F-07).
-- No model has been fit, so no claimed signal in the methodology section has been empirically
-  supported. They are hypotheses with named tests, which is what a hypothesis is supposed to be.
+- Depth coverage is **31 of 32 clubs**; the last club's column is blank on purpose (F-03).
+- The results feed for weeks 1–10 was read page by page this round; the scheduled refresh does not
+  re-read it yet (Q-24, suggestion S-17) — a layout change on nfl.com would fail the new build
+  checks loudly rather than corrupt the feed quietly.
+- The market side of every line is blank. No official source publishes prices (Q-02/Q-19), so no
+  ROI, CLV or difference exists anywhere on this site — by rule, not by omission.
+- The signal grade (63.16% hit rate, z = 3.04) is measured on 133 decided games, well below the
+  500-bet G1 threshold; it is published as a measurement, not as a promotion.
+- Two in-repo models publish different Week 10 lines and neither has been designated the
+  origination of record (Q-23, F-19).
+
+## 9. What round 3 added
+
+- **Verified results feed (requirement: verified results for backtests).** 137 completed 2026
+  games read line by line from the NFL's own by-week pages, each row carrying its game-page and
+  schedule-page links. Three checks run on every build: row diff against the league publishing
+  mirror (137/137, 0 mismatches), league-standing arithmetic (32/32 clubs), and a source-URL audit
+  that fails on any non-`nfl.com` link.
+- **Signal metric.** The walk-forward model's side pick graded against those results:
+  **84–49 (63.16%), z = 3.04, p = 0.0024** on 133 decided games (1 tie and 3 zero-line games
+  excluded and named). Outcome-only — no price, no stake, no return — because no official price
+  source exists.
+- **Price-snapshot store (requirement: opening and closing numbers).** 84 records covering every
+  market we originate × two stages. Our line is always recorded; the market line is blank and
+  flagged until Q-19 resolves; a stage not captured in time keeps its status rather than being
+  back-filled. The Week 10 Thursday game is marked post-hoc because the store went live after its
+  kickoff (F-14).
+- **Origination order + three columns (requirements: side → total → moneyline; fair / market /
+  difference as separate columns).** 42 rows, sequences asserted to be exactly 1, 2, 3 per game.
+  Difference = fair − market and stays blank while the market cell does.
+- **Signal/staking split (requirement: lucky staking cannot mask bad signal).** The leaderboard now
+  publishes two column groups; rank uses the signal group only, structurally. ST-11 (the model side
+  pick) carries a populated signal row and blank staking columns, below G1 threshold on purpose.
+- **Replacement depth (requirement: track depth, not just the fact).** The deficiency page now
+  shows how deep each replacement runs — 680 second-string, 8 third-string, none fourth-string —
+  plus the 16 starters on the report whose club chart names no next man (F-15, left unfilled).
+- **Correlations from official numbers only (requirement: official sources + publish n).** All 988
+  pairs audited on every build: integer n on every value (n = 32), p-value present, hosts limited
+  to `www.nfl.com`, violations = 0. Third-party mirror correlations are excluded and labelled.
+- **Demotion gate (requirement: live → paper).** Root gate **G8** with four pre-registered
+  triggers, an immediate paper-flip action, and re-entry only through a fresh window — thresholds
+  proposed, awaiting owner ratification (Q-21), inactive while nothing is live. Methodology:
+  `docs/methodology/demotion-gate.md`.

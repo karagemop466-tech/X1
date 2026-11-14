@@ -165,7 +165,7 @@
    "item": "Week 10 Thursday final predates the snapshot clock, so that game's price-snapshot captures are post-hoc.",
    "state": "flag",
    "severity": "medium",
-   "unknown": "Whether any true pre-kickoff capture for that game exists anywhere upstream. None is claimed.",
+   "unknown": "Whether any true pre-kickoff capture for that game exists anywhere upstream. No such capture is claimed.",
    "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "source_label": "NFL.com Week 10 schedule \u2014 Thursday final and dates"
   },

@@ -4,8 +4,9 @@
     "retrieved_at": "2026-11-14",
     "rule": "A question may only be marked 'answered' when the answer is verified against an official source and that source is linked. Anything else stays open.",
     "counts": {
-      "open": 22,
+      "answered": 0,
       "partially_answered": 2,
+      "open": 22,
       "total": 24
     }
   },
