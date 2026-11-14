@@ -1,0 +1,18 @@
+raw bytes 2384175
+game objects with week: 0
+nearby keys: ['requirements', 'language', 'countryCode', 'gameCategory', 'gameId', 'gameTerritory', 'hmaCodes', 'homeTeamId', 'hostNetwork', 'intendedAudience', 'mcpObjectId', 'originalNetwork', 'mcpPlaybackId', 'networks', 'identityProviderGroupIds', 'objectOwner', 'name', 'teamId', 'nflSeason', 'nflSeasonType', 'originalAirDate', 'preferredImage', 'sponsorInfo', 'startTime', 'streamType', 'title', 'week', 'blackoutDmaCodes', 'blackoutNetworks', 'blackoutFormFactors', 'provider', 'authorizations', 'awayTeamId', 'broadcastAiringType', 'callSign', 'contentType', 'countryCodes', 'deliveryMethod', 'description', 'dmaCodes']
+
+=== SCORES PAGE: completed game text ===
+date-ish tokens on schedule page:
+   "date"\s*:: 0
+   "gameDate": 0
+   "gameDateTime": 0
+   "shortDate": 0
+    date = 2026-09-25
+    date = 2026-09-27
+    date = 2026-09-27
+    date = 2026-09-27
+    date = 2026-09-27
+    date = 2026-09-27
+    date = 2026-09-27
+    date = 2026-09-27
