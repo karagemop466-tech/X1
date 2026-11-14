@@ -1,7 +1,7 @@
 {
  "dataset": "demotion_gate",
  "title": "Demotion gate \u2014 a live strategy goes back to paper when any trigger fires",
- "generated_at": "2026-11-14T20:04:04Z",
+ "generated_at": "2026-11-14T21:13:59Z",
  "gate_id": "G-13",
  "scope": "every strategy with live (real-stake) status",
  "status": "pre-registered and armed; no strategy is live yet",

@@ -788,6 +788,37 @@ REQ_STATE = {
     "R-45": ("met", "The check suite was fixed rather than bypassed: check_links went from 111 failures to 0 "
                     "before anything was merged.",
              "pages/changes.html"),
+    # Round-2 requirements R-46..R-53 (brief: docs/live-pipeline/project-brief-round2.md;
+    # assessed by session arena-52aabfa8-x1 with the artifacts each one shipped)
+    "R-46": ("met", "All-season price-history store: 20,088 rows (2,232 games x spread/total/moneyline "
+                    "x both snapshots), checks P1-P6 pass, every gap blank with a flag code; the "
+                    "per-market 2026 store coexists alongside it.",
+             "data/prices/price_history.csv"),
+    "R-47": ("met", "All-season results feed: 2,232 rows, per-row verification tier "
+                    "(official-verified / officially-confirmed-unplayed / mirror-only), cross-checks "
+                    "C1-C4 pass; settlement joins on game_id and only status=final settles.",
+             "data/results/verified_results.csv"),
+    "R-48": ("met", "ORIGINATION_ORDER = (side, total, moneyline) pre-registered in code/build_lines.py "
+                    "and asserted against the emitted column order at write time.",
+             "code/build_lines.py"),
+    "R-49": ("met", "originated_lines_2026_week10.csv carries fair (x1_*), market (market_*) and "
+                    "difference (edge_*) as separate column groups for spread, total and moneyline "
+                    "(moneyline difference in probability points with the vig named).",
+             "data/lines/originated_lines_2026_week10.csv"),
+    "R-50": ("met", "signal_score/rank_signal are the only rank key in code/leaderboard.py; "
+                    "staking_score, equity and drawdown are informational columns structurally "
+                    "absent from the ranking; blanks mean unmeasured, never zero.",
+             "code/leaderboard.py"),
+    "R-51": ("met", "Every deficiency row carries the replacement's depth (2nd/3rd/4th string) from "
+                    "the club depth charts, plus a published per-slot replacement-depth store.",
+             "data/analysis/replacement_depth.json"),
+    "R-52": ("met", "Official-only correlation set: 988 rows, n=32 on every row, all nfl.com sources, "
+                    "independently recomputed 988/988 within 0.0015 with the publication rule "
+                    "reproduced exactly; line-by-row ledger published.",
+             "data/verify/official_correlations.csv"),
+    "R-53": ("met", "Demotion gate on the root register (G8, six mechanical triggers, action, "
+                    "re-entry, logging) and in the pipeline register (G-13); closes Q-26.",
+             "data/gates.json"),
 }
 
 

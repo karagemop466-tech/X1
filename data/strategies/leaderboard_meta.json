@@ -1,10 +1,18 @@
 {
-  "generated": "2026-11-14T03:09:53.528528Z",
+  "generated": "2026-11-14T19:57:22.076123Z",
   "scoring": {
     "single_win": 10,
     "single_loss": -11,
     "clv_bonus_per_pt": 2.0,
     "breakeven_win_rate_at_-110": 0.524
+  },
+  "signal_vs_staking": {
+    "rule": "signal and staking are separate columns and separate scores; rank_signal is computed from signal_score only. A lucky staking run cannot mask a bad signal because equity, drawdown and staking_score are structurally absent from the ranking key.",
+    "signal_score": "z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n) over decided bets; stake-independent; blank when n = 0 (unmeasured is not zero)",
+    "rank_signal": "the leaderboard rank; ties break on larger n, then id",
+    "staking_score": "realized units per decided bet; informational only, never a rank input",
+    "equity_units": "flat-stake P&L path; informational only",
+    "max_drawdown_units": "worst peak-to-trough of that path; informational only"
   },
   "gates": {
     "official_min_bets": 100,

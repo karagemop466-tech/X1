@@ -59,16 +59,24 @@ KNOWN_ORPHANS = {
 
 
 def _commands() -> list[list[str]]:
-    """Pull the assembly commands out of pages.yml, in order."""
+    """Pull the assembly commands out of pages.yml, in order.
+
+    The assembly step is the one that mentions `rm -rf _site`.  (A previous
+    version matched the first multi-line `run: |` block; step-level comment
+    lines between steps broke that pattern and sent the replay to the wrong
+    block — found during the arena/907c5baf-x1 integration, fixed here by
+    selecting the block by its content marker as this docstring already said.)
+    """
     if not os.path.exists(WORKFLOW):
         raise SystemExit(f"cannot read {WORKFLOW}")
     text = open(WORKFLOW, encoding="utf-8").read()
-    # the assembly step is the one that mentions `rm -rf _site`
-    m = re.search(r"run: \|\n((?:[ ]{10,}.*\n|\n)+?)(?=\n\s*- name:|\Z)", text)
-    if not m:
+    candidates = re.findall(
+        r"run: \|\n((?:[ ]{10,}.*\n|\n)+?)(?=\n\s*- name:|\Z)", text)
+    block = next((b for b in candidates if "rm -rf _site" in b), None)
+    if block is None:
         raise SystemExit("could not find the assembly `run:` block in pages.yml")
     out = []
-    for raw in m.group(1).split("\n"):
+    for raw in block.split("\n"):
         line = raw.strip()
         if not line or line.startswith("#"):
             continue

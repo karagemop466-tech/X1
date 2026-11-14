@@ -187,6 +187,14 @@ for path in files:
         # back-link assertion was added here and does not conflict with anything on main.
         check("assets/x1-live/site.css" in text, f"{rel}: links its stylesheet")
         check('href="../index.html"' in text, f"{rel}: links back to the landing page")
+    elif rel.split(os.sep)[0] == "console":
+        # Added by session arena/5f1c014c-x1: console/ is a further page tree with its
+        # own stylesheet (console/assets/console.css) and its own contract, asserted by
+        # tools/verify_console.py (links resolve, external hosts allow-listed, every
+        # table row sourced or explicitly marked). Without this branch the main site's
+        # contract is applied to it and produces false failures. Nothing above is modified.
+        check("assets/console.css" in text, f"{rel}: links its stylesheet")
+        check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
     elif not is_dashboard:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/site.css" in text, f"{rel}: links the stylesheet")
@@ -262,7 +270,7 @@ while frontier:
 # Their internal linking is each tree's own contract, asserted by its own checker.
 for path in files:
     rel = os.path.relpath(path, ROOT)
-    if rel.split(os.sep)[0] in ("dashboard", "research", "live"):
+    if rel.split(os.sep)[0] in ("dashboard", "research", "live", "console"):
         continue
     if rel.split(os.sep)[0] == "hub":
         check(path in reachable or path == _hubroot, f"{rel}: reachable from index.html")
@@ -314,6 +322,12 @@ check(abs(n_eff - 307.7) < 0.5, "n_eff for 400 tickets, k=2, rho=0.3 is about 30
 # prose consistency: banned wrong multiples
 for path in files:
     rel = os.path.relpath(path, ROOT)
+    # Added by session arena/5f1c014c-x1 (additive): these are prose rules about the
+    # main site's own pages. console/correlations.html legitimately prints a confidence
+    # bound of -0.1253, which the substring test below would read as the banned 3-leg
+    # product. The console has its own contract checker, so it is scoped out here.
+    if rel.split(os.sep)[0] == "console":
+        continue
     with open(path, encoding="utf-8") as fh:
         txt = fh.read()
     check("2.5× the" not in txt, f"{rel}: no stale '2.5x the house edge' claim")
@@ -363,8 +377,10 @@ def _audit_tree(html_paths, css_path, js_root, label):
 # (app/assets/site.css) below, so it is excluded from the main-site audit here.
 # Added by session arena/56769365-x1 (additive): lab/ is a seventh page tree that links
 # ../app/assets/site.css, so it is audited against that stylesheet below, exactly as app/ is.
+# Added by session arena/5f1c014c-x1: console/ is audited against its own stylesheet
+# (console/assets/console.css) below, so it is excluded from the main-site audit here.
 _mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
-         ("dashboard", "research", "site", "live", "hub", "app", "lab")]
+         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -395,6 +411,11 @@ if _hub:
 # stylesheet (app/assets/site.css). Its contract — links resolve, every external host is
 # official, every data row is sourced or explicitly flagged — is asserted by
 # tools/verify_app.py, which also runs in CI.
+# Added by session arena/5f1c014c-x1: audit the line console against its own stylesheet.
+_con = sorted(glob.glob(os.path.join(ROOT, "console", "*.html")))
+if _con:
+    _audit_tree(_con, os.path.join(ROOT, "console", "assets", "console.css"),
+                os.path.join(ROOT, "console", "assets"), "console/assets/console.css")
 _appx = sorted(glob.glob(os.path.join(ROOT, "app", "*.html")))
 if _appx:
     _audit_tree(_appx, os.path.join(ROOT, "app", "assets", "site.css"),

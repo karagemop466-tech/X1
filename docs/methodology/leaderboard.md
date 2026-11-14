@@ -112,3 +112,38 @@ idea that produces evidence. Rewards attach after Gate 1–6 infrastructure exis
 - Explicit "no strategies scored yet" state rather than an empty table pretending to be a ranking.
 
 An honest empty leaderboard is worth more than a populated fake one.
+
+## 9. Signal and staking are separate columns (T14)
+
+**Requirement:** "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run
+cannot mask a bad signal."
+
+The board publishes two scores with different jobs, and the ranking key only ever sees the
+first one:
+
+| Column | What it measures | Enters `rank_signal`? |
+|---|---|---|
+| `signal_score` | z of the observed win rate against break-even: `(p̂ − p_break) / sqrt(p̂(1−p̂)/n)` over decided bets. Stake-independent by construction — no equity, no drawdown, no compounding can reach it. | **yes — it is the rank** |
+| `rank_signal` | 1..N by `signal_score` desc; ties break on larger `n`, then strategy id. Blank when `n = 0`. | — |
+| `staking_score` | Realized units per decided bet (the P&L path's rate). | **no** |
+| `equity_units`, `max_drawdown_units` | The flat-stake P&L path and its worst peak-to-trough. | **no** |
+
+Rules that make the separation real rather than cosmetic:
+
+1. **Unmeasured is blank, not zero.** A strategy with no decided bets has blank
+   `signal_score`, `staking_score` and `rank_signal`. Publishing `0.0` would imply a
+   measured signal of exactly nothing, which is a different — and false — claim.
+2. **The rank key is computed in code from `signal_score` only** (`code/leaderboard.py`,
+   sort block). There is no code path that lets `equity_units` or `staking_score` affect
+   position. A strategy on a hot staking run with a win rate at break-even ranks *below*
+   every strategy with a significantly positive win rate, whatever its units say.
+3. **The mirror-image protection is stated too:** a good signal with an unlucky P&L path
+   keeps its signal rank; the staking columns show the path without demoting it. Staking
+   risk still *gates* (G5 drawdown cap) — gating is not ranking, and the gate's job is to
+   bound ruin, not to measure skill.
+4. **Status still requires both:** `official` needs the significance test (signal) **and**
+   positive equity (economic reality). That conjunction can only ever *withhold* a title,
+   never grant one — so it cannot mask a bad signal either way.
+
+With Season 0 at zero logged bets every strategy is honestly blank/unproven today; the
+columns exist so the first logged window is already scored under the separation rule.

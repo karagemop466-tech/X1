@@ -6,7 +6,7 @@ Session `arena/600e6009-x1`.
 What this produces
 ------------------
   data/results/verified_results.json   137 completed 2026 regular-season games
-  data/results/verified_results.csv    same rows, flat
+  data/results/verified_results_2026_r3.csv    same rows, flat
   data/results/signal_grade.json       price-independent signal metric (S4/S5 input)
 
 Where the numbers come from (three independent checks, none of them inferred)
@@ -369,7 +369,7 @@ def main() -> int:
     cols = ["game_id", "week", "gameday", "away_team", "home_team", "away_score",
             "home_score", "winner", "margin", "total_points", "is_tie",
             "source_url", "game_url"]
-    with open(os.path.join(OUT, "verified_results.csv"), "w", encoding="utf-8", newline="") as fh:
+    with open(os.path.join(OUT, "verified_results_2026_r3.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore")
         w.writeheader()
         for r in feed["rows"]:
@@ -393,7 +393,7 @@ def main() -> int:
     if "--check" in sys.argv:
         rel = [
             "data/results/verified_results.json",
-            "data/results/verified_results.csv",
+            "data/results/verified_results_2026_r3.csv",
             "data/results/signal_grade.json",
         ]
         out = subprocess.run(

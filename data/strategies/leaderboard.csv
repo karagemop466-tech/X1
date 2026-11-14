@@ -1,7 +1,7 @@
-strategy,status,bets,wins,losses,pushes,win_rate,avg_clv_pts,equity_units,max_drawdown_units,binom_p_leq_breakeven,points
-S1,unproven,0,0,0,0,0.0,0.0,0.0,0.0,1.0,0.0
-S2,unproven,0,0,0,0,0.0,0.0,0.0,0.0,1.0,0.0
-S3,unproven,0,0,0,0,0.0,0.0,0.0,0.0,1.0,0.0
-S4,unproven,0,0,0,0,0.0,0.0,0.0,0.0,1.0,0.0
-S5,unproven,0,0,0,0,0.0,0.0,0.0,0.0,1.0,0.0
-S6,unproven,0,0,0,0,0.0,0.0,0.0,0.0,1.0,0.0
+strategy,status,bets,wins,losses,pushes,win_rate,avg_clv_pts,binom_p_leq_breakeven,signal_score,rank_signal,equity_units,max_drawdown_units,staking_score,points
+S1,unproven,0,0,0,0,0.0,0.0,1.0,,,0.0,0.0,,0.0
+S2,unproven,0,0,0,0,0.0,0.0,1.0,,,0.0,0.0,,0.0
+S3,unproven,0,0,0,0,0.0,0.0,1.0,,,0.0,0.0,,0.0
+S4,unproven,0,0,0,0,0.0,0.0,1.0,,,0.0,0.0,,0.0
+S5,unproven,0,0,0,0,0.0,0.0,1.0,,,0.0,0.0,,0.0
+S6,unproven,0,0,0,0,0.0,0.0,1.0,,,0.0,0.0,,0.0

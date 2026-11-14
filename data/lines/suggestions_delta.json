@@ -1,7 +1,7 @@
 {
  "dataset": "suggestions_delta",
  "title": "Suggestions register \u2014 site and decision-making improvements, best path chosen before building",
- "generated_at": "2026-11-14T20:04:04Z",
+ "generated_at": "2026-11-14T21:13:59Z",
  "delta_of": "data/pipeline/suggestions.json (T05)",
  "suggestions": [
   {

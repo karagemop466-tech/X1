@@ -1,12 +1,12 @@
 {
  "dataset": "replacement_depth",
  "title": "Replacement depth \u2014 2nd/3rd/4th-string replacements tracked by position",
- "generated_at": "2026-11-14T20:04:04Z",
+ "generated_at": "2026-11-14T21:13:59Z",
  "source": {
   "url": "https://www.nfl.com/teams/",
   "label": "Official club depth charts + official injury reports (Week 10, 2026-11-14)",
   "organization": "NFL clubs (depth charts) + NFL (injury reports)",
-  "retrieved_at": "2026-11-14T20:04:04Z",
+  "retrieved_at": "2026-11-14T21:13:59Z",
   "official": true,
   "note": "Depth order is read left to right exactly as each club prints its chart."
  },

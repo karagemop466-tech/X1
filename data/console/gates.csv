@@ -1,0 +1,15 @@
+SCOPE,ID,NAME,CRITERION,WINDOW
+promotion,G1,Sample sufficiency,at least 200 settled out-of-sample bets,at promotion review
+promotion,G2,Out-of-sample integrity,"every signal produced by a model fitted only on earlier seasons; no duplicated (game, market, side) bet",at promotion review
+promotion,G3,Statistical significance,bootstrap 95% CI lower bound on flat-stake ROI above zero AND two-sided exact binomial p <= 0.05,at promotion review
+promotion,G4,Economic significance,ROI under the strategy's own staking plan at least 2%,at promotion review
+promotion,G5,Beats naive baselines,flat-stake ROI above all three always-on baselines on the same window,at promotion review
+promotion,G6,Luck robustness,flat-stake ROI still positive after dropping one-score games (margin <= 3) and blowouts (margin >= 21),at promotion review
+promotion,G7,Parameter stability,at least 60% of neighbouring parameter values stay positive,at promotion review
+promotion,G8,Non-redundancy,absolute correlation with any already-accepted strategy at most 0.85,at promotion review
+demotion,D1,Trailing performance,trailing 200 settled bets at flat stakes show negative ROI,any 200-bet window
+demotion,D2,Signal decay,trailing 100 bets have a mean signed edge at or below zero,measured weekly
+demotion,D3,Drawdown,"peak-to-trough drawdown exceeds 25 units, which is 25% of the starting 100-unit bankroll",continuous
+demotion,D4,Signal score floor,signal_score falls below 50 on the trailing window,measured weekly
+demotion,D5,Confidence loss,two consecutive 100-bet windows with a bootstrap 95% CI lower bound at or below zero,measured at each 100-bet boundary
+demotion,D6,Price integrity,more than 20% of signals could not be executed at the recorded price,measured per capture

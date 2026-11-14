@@ -474,16 +474,18 @@
    "_source_label": "X1 project brief (verbatim, this repo)",
    "_source_org": "Project brief",
    "_retrieved_at": "2026-11-14",
-   "_flags": [],
+   "_flags": [
+    "answered by gate D1/G-13 (T16)"
+   ],
    "id": "Q-26",
    "area": "Governance",
    "question": "What happens to a strategy that passes gates on paper but loses live?",
    "why_it_matters": "Paper validation never fully protects against live slippage.",
-   "information_we_have": "Nothing.",
-   "information_missing": "A demotion rule (drawdown or CLV threshold that sends a strategy back to paper).",
-   "how_to_get_it": "Define in the gate set; needs Q-07 first.",
+   "information_we_have": "Demotion rule defined and pre-registered: gate D1 in data/gates.json and gate G-13 in data/pipeline/gates.json (two failed windows, one drawdown breach over the 25% cap, CLV<=0 window when priced, or any provenance breach -> live to paper; re-promotion only via a full shadow window). Full text: docs/methodology/validation-gates.md.",
+   "information_missing": "Nothing for the rule itself. Any monetary stake sizing still depends on the reward/funding decision in Q-07.",
+   "how_to_get_it": "Done 2026-11-14 by session arena-52aabfa8-x1 (T16). Revisit only if the owner funds a pool (Q-07), which changes nothing in the triggers.",
    "blocks_decision": "Demotion gate",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "_unverified": [],
    "_verified": true
   },

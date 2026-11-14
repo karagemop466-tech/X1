@@ -73,6 +73,14 @@ jobs:
       # transcriptions, difference = model - market recomputed.
       - name: Verify the new data stores
         run: python3 tools/verify_new_data.py
+      # Added by session arena/5f1c014c-x1 (additive only). Rebuilds the line
+      # console from source and verifies it before the tree is assembled: a
+      # broken or unsourced page fails the build rather than shipping.
+      - name: Rebuild and verify the line console
+        run: |
+          set -euo pipefail
+          python3 tools/build_console.py
+          python3 tools/verify_console.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -113,11 +121,20 @@ jobs:
           # upload tree instead of auditing the repository. Additive: one copy line.
           cp -r archive _site/
           cp index.html _site/legacy-fourth-down.html
-          cp app/index.html _site/index.html
-          # src="assets/ is rewritten too: the served root is app/index.html, which loads
-          # <script src="assets/app.js">. Without this the script 404s at /assets/app.js
-          # and the root page’s table filter and column sort silently do nothing.
-          sed -i -E 's#href="assets/#href="app/assets/#g; s#src="assets/#src="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html
+          # Added by session arena/5f1c014c-x1: the line console (line origination,
+          # price store, strategy competition, decision register). Additive.
+          cp -r console _site/
+          mkdir -p _site/data/console
+          cp data/console/*.csv data/console/*.json _site/data/console/ 2>/dev/null || true
+          # Landing page, resolved once. Two sessions claimed the root; the console
+          # is served because it covers every requirement and links out to every
+          # tree. app/ stays reachable at /app/ and is one click away.
+          # Both href= and src= are rewritten: the root page loads
+          # <script src="assets/console.js">, which 404s as /assets/console.js
+          # unless the src is repointed too. The same defect on the app/ root was
+          # found by tools/verify_deployed_tree.py in session arena/56769365-x1.
+          cp console/index.html _site/index.html
+          sed -i -E 's#href="assets/#href="console/assets/#g; s#src="assets/#src="console/assets/#g; s#href="([a-z0-9_-]+\.html)#href="console/\1#g; s#href="\.\./#href="./#g' _site/index.html
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
@@ -140,6 +157,16 @@ jobs:
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site
+
+      - name: Verify round-2 stores are published (Added by session arena/907c5baf-x1)
+        run: |
+          test -f _site/data/results_feed.json
+          test -f _site/data/price_snapshots.json
+          test -f _site/data/leaderboard_split.json
+          test -f _site/data/demotion_gate.json
+          test -f _site/app/results.html
+          test -f _site/app/prices.html
+          python3 tools/verify_stores.py
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3

@@ -1,7 +1,7 @@
 {
  "dataset": "decisions_delta",
  "title": "Questions, information and answers \u2014 delta for the decision register",
- "generated_at": "2026-11-14T20:04:04Z",
+ "generated_at": "2026-11-14T21:13:59Z",
  "delta_of": "data/pipeline/questions.json (T05)",
  "updates": [
   {
