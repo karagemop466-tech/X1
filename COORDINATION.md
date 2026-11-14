@@ -330,3 +330,18 @@ Session ID: `19071a33-x1` · Branch: `arena/19071a33-x1` (branched from `main` @
   irregularities (I-10 line source, I-12 depth charts, I-13 prop sources, I-17 pending injury rows,
   I-14 WAS/NYG discrepancy) do not block the merge and remain on the Flagged-for-Review pages.
 - **2026-11-14** — Pages deploy after merge confirmed live at https://karagemop466-tech.github.io/X1/.
+
+### Deploy record (session 19071a33-x1)
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/9 (`arena/19071a33-x1` → `main`), title
+  "X1: integration merge — preserve integrated main-branch site, re-verify, publish".
+- **Merge result:** merged 2026-11-14 at 03:02:50 UTC, merge commit `776bbcd1c4a1e44f76c37e114f61d277b2c1ee9b`
+  on `main` (`gh pr merge 9 --merge`, not waited for approval).
+- **Pre-merge checks on the PR:** `build` SUCCESS, `verify` SUCCESS (`deploy` SKIPPED on PR — expected;
+  deploy only runs on push to `main`).
+- **Post-merge Pages deploy:** Actions run 43549546210 "Publish static site to GitHub Pages" → `success`;
+  run 43549545406 "pages build and deployment" → `success`; `verify-site` run 43549546174 → `success`.
+- **Pages API:** `status: built`, source `branch: main, path: /`, at https://karagemop466-tech.github.io/X1/.
+- **Live check (2026-11-14):** the landing page and its linked subpages load and render the integrated
+  site (research / validation / availability / dashboard). Flagged irregularities and unverified items
+  remain published on the Flagged-for-Review pages and do not block the merge.
