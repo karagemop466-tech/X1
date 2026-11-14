@@ -207,7 +207,7 @@ def parse_injuries(
     current_date: Optional[str] = None
     block_texts: List[str] = []
     recent_texts: deque = deque(maxlen=10)
-    pending_teams: List[str] = []          # abbreviations, FIFO
+    recent_team_links: deque = deque(maxlen=6)   # abbreviations, most recent last
     current_meta: List[str] = []
     last_text: Optional[str] = None
     rows: List[Dict[str, Any]] = []
@@ -237,11 +237,11 @@ def parse_injuries(
                         break
                 if abbrev is None:
                     abbrev = H.abbrev_from_imgs(imgs)
-                if len(pending_teams) == 0:
+                if not recent_team_links or recent_team_links[-1] != abbrev:
+                    recent_team_links.append(abbrev)
+                if len(recent_team_links) <= 1 or recent_team_links[-2] != abbrev:
                     current_meta = list(recent_texts)
                 block_texts = []
-                pending_teams.append(abbrev)
-                link_queue.append((abbrev, slug))
             continue
         if event[0] != "table":
             continue
@@ -252,21 +252,25 @@ def parse_injuries(
             continue
         tables_seen += 1
 
-        # Team identity: (a) the label printed immediately above the table,
-        # (b) the official team links that precede it. Both must agree.
+        # Team identity: the club name printed immediately above the table is
+        # the primary key; the official team links just above it are the check.
         text_abbrev = nick_to_abbrev.get((last_text or "").strip().lower())
-        link_abbrev = None
-        if pending_teams:
-            link_abbrev = pending_teams.pop(0)
-
-        abbrev = text_abbrev or link_abbrev
+        abbrev = text_abbrev
         flags: List[str] = []
-        if text_abbrev and link_abbrev and text_abbrev != link_abbrev:
+        if text_abbrev is None:
+            if recent_team_links:
+                abbrev = recent_team_links[0]
+                flags.append(
+                    "club label was not printed above this table; team taken from the "
+                    "official team link that precedes it"
+                )
+            else:
+                flags.append("team could not be resolved for this injury table")
+        elif text_abbrev not in recent_team_links:
             flags.append(
-                f"table label ({last_text}) does not match the preceding official team link"
+                f"club label '{last_text}' is not among the official team links "
+                "immediately above this table"
             )
-        if abbrev is None:
-            flags.append("team could not be resolved for this injury table")
 
         meta = dict(current_meta and {"game_meta": current_meta} or {})
         kickoff = None
@@ -345,6 +349,7 @@ def parse_depth_chart(
             unit_by_table[event[1]] = last_heading or ""
 
     rows: List[Dict[str, Any]] = []
+    slot_counters: Dict[Tuple[str, str], int] = {}
     for index, table in enumerate(doc.tables):
         if not table["rows"]:
             continue
@@ -355,6 +360,11 @@ def parse_depth_chart(
             if not cells:
                 continue
             position = H.cell_text(cells[0]) or None
+            # Clubs print several rows with the same label (WR, CB, DL, S ...).
+            # Each is its own slot, so "2nd string" means second in that slot.
+            slot_key = (unit, position or "?")
+            slot_counters[slot_key] = slot_counters.get(slot_key, 0) + 1
+            slot = slot_counters[slot_key]
             for depth, cell in enumerate(cells[1:], start=1):
                 player = H.cell_text(cell)
                 if not player:
@@ -374,6 +384,7 @@ def parse_depth_chart(
                             "team_name": team_name,
                             "unit": unit,
                             "position": position,
+                            "slot": slot,
                             "depth": depth,
                             "player": player,
                             "player_url": href,

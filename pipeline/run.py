@@ -11,6 +11,7 @@ import json
 import os
 import re
 import sys
+import time
 import traceback
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
@@ -202,29 +203,42 @@ def build_depth_charts(report, team_index) -> Optional[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     sources_seen: List[Dict[str, Any]] = []
     for abbrev, meta in sorted(team_index.items()):
-        url = S.depth_chart_url(abbrev)
-        if not url:
-            report["errors"].append({"dataset": "depth_charts", "team": abbrev, "error": "no club domain configured"})
-            continue
-        result = fetch(url, retries=2)
-        if not result.ok:
-            report["errors"].append({"dataset": "depth_charts", "team": abbrev, "url": url, "error": result.error})
-            continue
-        title = page_title(result.body)
-        if "depth chart" not in title.lower():
+        attempts: List[Dict[str, Any]] = []
+        best = None
+        for path in S.DEPTH_CHART_PATHS:
+            url = S.depth_chart_url(abbrev, path)
+            if not url:
+                attempts.append({"url": None, "error": "no club domain configured"})
+                break
+            result = fetch(url, retries=3, backoff=3.0, sleep=1.2)
+            if not result.ok:
+                attempts.append({"url": url, "error": result.error})
+                continue
+            title = page_title(result.body)
+            doc = H.parse(result.body)
+            parsed = P.parse_depth_chart(doc, url, abbrev, meta.get("name") or abbrev)
+            attempts.append(
+                {"url": url, "status": result.status, "title": title,
+                 "tables": len(doc.tables), "rows": len(parsed["rows"])}
+            )
+            if "depth chart" in title.lower() and parsed["rows"]:
+                best = (url, title, parsed)
+                break
+            time.sleep(1.0)
+        if best is None:
             report["errors"].append(
-                {"dataset": "depth_charts", "team": abbrev, "url": url,
-                 "error": f"page title does not look like a depth chart: {title!r}"}
+                {"dataset": "depth_charts", "team": abbrev, "attempts": attempts}
+            )
+            sources_seen.append(
+                {"team_abbrev": abbrev, "url": "", "rows": 0, "page_title": "",
+                 "attempts": attempts, "status": "unavailable"}
             )
             continue
-        doc = H.parse(result.body)
-        parsed = P.parse_depth_chart(doc, url, abbrev, meta.get("name") or abbrev)
-        if not parsed["rows"]:
-            report["errors"].append({"dataset": "depth_charts", "team": abbrev, "url": url, "error": "0 rows parsed"})
-            continue
+        url, title, parsed = best
         rows.extend(parsed["rows"])
         sources_seen.append(
-            {"team_abbrev": abbrev, "url": url, "rows": len(parsed["rows"]), "page_title": title}
+            {"team_abbrev": abbrev, "url": url, "rows": len(parsed["rows"]),
+             "page_title": title, "attempts": attempts, "status": "ok"}
         )
     payload = dataset(
         "depth_charts",
@@ -319,12 +333,13 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
     by_slot: Dict[Any, List[Dict[str, Any]]] = {}
     for row in depth_payload.get("rows", []):
         by_slot.setdefault(
-            (row.get("team_abbrev"), row.get("unit"), row.get("position")), []
+            (row.get("team_abbrev"), row.get("unit"), row.get("position"), row.get("slot")), []
         ).append(row)
 
     rows: List[Dict[str, Any]] = []
-    for (abbrev, unit, position), entries in sorted(
-        by_slot.items(), key=lambda kv: (str(kv[0][0]), str(kv[0][1]), str(kv[0][2]))
+    for (abbrev, unit, position, slot), entries in sorted(
+        by_slot.items(),
+        key=lambda kv: (str(kv[0][0]), str(kv[0][1]), str(kv[0][2]), kv[0][3] or 0),
     ):
         entries = sorted(entries, key=lambda r: r.get("depth") or 99)
         starter = entries[0] if entries else None
@@ -370,6 +385,7 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
             "team_name": team_index.get(abbrev, {}).get("name"),
             "unit": unit,
             "position": position,
+            "slot": slot,
             "starter": starter.get("player"),
             "starter_game_status": starter_status,
             "starter_practice_status": starter_practice,
@@ -394,7 +410,7 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
                          "replacement_depth", "replacement_game_status"},
         )
         row["_source_urls"] = [u for u in dict.fromkeys(source_urls) if u]
-        row["_verified"] = bool(row["_verified"]) and severity == 0
+        row["_flagged_for_attention"] = severity > 0
         rows.append(row)
 
     rows.sort(key=lambda r: (-(r.get("severity") or 0), str(r.get("team_abbrev")), str(r.get("position"))))
@@ -402,8 +418,9 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
         "deficiency",
         "Lineup deficiency watch: starters down, backup who has to replace them",
         rows,
-        ["team_name", "unit", "position", "starter", "starter_game_status", "replacement",
-         "replacement_depth", "replacement_game_status", "severity"],
+        ["team_name", "unit", "position", "slot", "starter", "starter_game_status",
+         "starter_practice_status", "replacement", "replacement_depth",
+         "replacement_game_status", "severity"],
         {
             "url": S.INJURIES_URL,
             "label": "Derived from official club depth charts + NFL.com injury report",

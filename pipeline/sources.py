@@ -56,7 +56,16 @@ CLUB_DOMAINS: Dict[str, str] = {
     "WAS": "commanders.com",
 }
 
-DEPTH_CHART_PATH = "/team/depth-chart"
+# NFL.com logo assets use AZ where the club domain list uses ARI.
+ABBREV_ALIASES: Dict[str, str] = {"AZ": "ARI"}
+
+# Candidate paths; the first one that yields a page whose title contains
+# "depth chart" and that parses to rows wins.
+DEPTH_CHART_PATHS: List[str] = [
+    "/team/depth-chart",
+    "/team/depth-chart/",
+    "/depth-chart",
+]
 
 # ------------------------------------------------------------- league datasets
 STANDINGS_URL = f"{NFL}/standings/league/2026/REG"
@@ -84,9 +93,13 @@ def team_stat_url(side: str, category: str, season: int = 2026) -> str:
     return f"{NFL}/stats/team-stats/{side}/{category}/{season}/reg/all"
 
 
-def depth_chart_url(abbrev: str) -> str:
-    domain = CLUB_DOMAINS.get(abbrev)
-    return f"https://www.{domain}{DEPTH_CHART_PATH}" if domain else ""
+def club_domain(abbrev: str) -> str:
+    return CLUB_DOMAINS.get(ABBREV_ALIASES.get(abbrev, abbrev), "")
+
+
+def depth_chart_url(abbrev: str, path: str = "/team/depth-chart") -> str:
+    domain = club_domain(abbrev)
+    return f"https://www.{domain}{path}" if domain else ""
 
 
 # ------------------------------------------------------- extra probe candidates
