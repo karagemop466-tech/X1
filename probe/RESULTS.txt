@@ -1,0 +1,31 @@
+PROBE injuries http=200 bytes=412874 url=https://www.nfl.com/injuries/
+PROBE standings http=200 bytes=257832 url=https://www.nfl.com/standings/league/2026/REG
+PROBE schedule http=200 bytes=2403664 url=https://www.nfl.com/schedules/2026/by-week/week-10
+PROBE player_stats http=200 bytes=268761 url=https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc
+PROBE gamebook http=200 bytes=337942 url=https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf
+--- markers ---
+== probe/gamebook.raw
+  game_status_hits=0
+  dnp_hits=0
+  table_tags=0
+  framework_markers=0
+== probe/injuries.raw
+  game_status_hits=1
+  dnp_hits=1
+  table_tags=1
+  framework_markers=0
+== probe/player_stats.raw
+  game_status_hits=0
+  dnp_hits=0
+  table_tags=1
+  framework_markers=0
+== probe/schedule.raw
+  game_status_hits=0
+  dnp_hits=0
+  table_tags=0
+  framework_markers=0
+== probe/standings.raw
+  game_status_hits=0
+  dnp_hits=0
+  table_tags=1
+  framework_markers=0
