@@ -5,7 +5,7 @@ Collecting numpy
   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
 Downloading pypdf-7.1.0-py3-none-any.whl (418 kB)
 Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 221.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 104.5 MB/s  0:00:00
 Installing collected packages: pypdf, numpy
 
 Successfully installed numpy-2.4.6 pypdf-7.1.0
@@ -61,18 +61,20 @@ Successfully installed numpy-2.4.6 pypdf-7.1.0
   game book 39: Washington Commanders at New York Giants (24-21)
   game book 40: Washington Commanders at New York Giants (24-21)
   wrote data/nfl/gamebooks.json (1735177 bytes)
+  enriched schedule with official game book results
   wrote data/nfl/provenance.json (1869 bytes)
 collect_exit=0
-  wrote _site/index.html (18300 bytes)
-  wrote _site/pages/requirements.html (12150 bytes)
-  wrote _site/pages/questions.html (10943 bytes)
-  wrote _site/pages/strategies.html (24351 bytes)
-  wrote _site/pages/validation.html (12413 bytes)
-  wrote _site/pages/correlation.html (15748 bytes)
-  wrote _site/pages/availability.html (123199 bytes)
-  wrote _site/pages/suggestions.html (9219 bytes)
-  wrote _site/pages/review.html (7675 bytes)
-  wrote _site/pages/sources.html (13853 bytes)
+  wrote _site/index.html (18554 bytes)
+  wrote _site/pages/requirements.html (12203 bytes)
+  wrote _site/pages/questions.html (10996 bytes)
+  wrote _site/pages/strategies.html (24404 bytes)
+  wrote _site/pages/validation.html (12466 bytes)
+  wrote _site/pages/correlation.html (15801 bytes)
+  wrote _site/pages/schedule.html (83118 bytes)
+  wrote _site/pages/availability.html (123252 bytes)
+  wrote _site/pages/suggestions.html (9272 bytes)
+  wrote _site/pages/review.html (7728 bytes)
+  wrote _site/pages/sources.html (13906 bytes)
   copied /home/runner/work/X1/X1/assets/site.css -> _site/assets/site.css
   copied data/nfl/correlation.json -> _site/data/correlation.json
   copied data/nfl/depth.json -> _site/data/depth.json
@@ -84,11 +86,11 @@ collect_exit=0
   copied data/nfl/provenance.json -> _site/data/provenance.json
   copied data/nfl/schedule.json -> _site/data/schedule.json
   copied data/nfl/standings.json -> _site/data/standings.json
-built 10 pages into _site
+built 11 pages into _site
 build_exit=0
 Verifying _site
 ========================================================================
-[PASS] site has pages - 10 page(s) found
+[PASS] site has pages - 11 page(s) found
 [PASS] every populated table row links to an official source - 0 row(s) without an official source link
 [PASS] every external link uses an allowed official host - 0 link(s) to a non-official host
 [PASS] every internal link resolves - 0 broken internal link(s)
