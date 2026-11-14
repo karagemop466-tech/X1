@@ -81,6 +81,11 @@ def ref(path, label):
     return f'<a class="src-link" href="{REPO_BLOB}{path}" target="_blank" rel="noopener noreferrer">{label} ↗</a>'
 
 
+def raw(html_fragment):
+    """A table cell whose content is trusted, pre-formed markup (never escapes)."""
+    return f"<td>{html_fragment}</td>"
+
+
 def src_cell(url, label="source ↗"):
     """Every table row must carry a traceable source. Never emits an empty cell."""
     if not url:
@@ -590,9 +595,9 @@ def page_line():
         [cell("Same-game parlay / prop combo"), cell("Legs are dependent; a naive product is badly wrong"), cell("Assuming independence; correlated legs are priced punitively"), src_cell(DOC + "docs/methodology/correlation.md", "correlation ↗")],
     ]
     triple = [
-        [cell("<b>Fair line</b>"), cell("Our probability converted with zero margin, <code>1/p</code>"), cell("Our model"), src_cell(DOC + "docs/methodology/line-origination.md", "method ↗")],
-        [cell("<b>Market line</b>"), cell("A book's price, which contains margin"), cell("A licensed, timestamped quote"), src_cell(DOC + "data/questions.json", "Q-02 ↗")],
-        [cell("<b>Executable line</b>"), cell("What we could actually get, at a stated book, limit and time"), cell("Same quote plus limits and rules"), src_cell(DOC + "docs/methodology/line-origination.md", "method ↗")],
+        [raw("<b>Fair line</b>"), raw("Our probability converted with zero margin, <code>1/p</code>"), cell("Our model"), src_cell(DOC + "docs/methodology/line-origination.md", "method ↗")],
+        [raw("<b>Market line</b>"), cell("A book's price, which contains margin"), cell("A licensed, timestamped quote"), src_cell(DOC + "data/questions.json", "Q-02 ↗")],
+        [raw("<b>Executable line</b>"), cell("What we could actually get, at a stated book, limit and time"), cell("Same quote plus limits and rules"), src_cell(DOC + "docs/methodology/line-origination.md", "method ↗")],
     ]
     body = f"""
 <section class="pagetitle">
@@ -687,7 +692,9 @@ def page_validation():
             detail += f"<br><code>{esc(g['formula'])}</code>"
         if g.get("auto_fail"):
             detail += f"<br><span class='pill high'>auto-fail</span> {esc(g['auto_fail'])}"
-        grow.append([cell(f"<b>{g['id']}</b>"), cell(g["name"]), cell(detail), cell("blocking" if g.get("blocking") else "advisory"), src_cell(DOC + "data/gates.json", "gates.json ↗")])
+        grow.append([raw(f"<b>{esc(g['id'])}</b>"), cell(g["name"]), raw(detail),
+                     cell("blocking" if g.get("blocking") else "advisory"),
+                     src_cell(DOC + "data/gates.json", "gates.json ↗")])
     body = f"""
 <section class="pagetitle">
   <div class="eyebrow">METHOD / 02</div>
@@ -839,7 +846,7 @@ def page_correlation():
     ]
     indep = [
         [cell("Independent (ρ = 0)"), cell("0.2500"), cell("4.000 (+300)"), cell("≈3.645 (+264)"), cell("+8.9% — book keeps the edge"), f'<td>{ref(CORR,"method")}</td>'],
-        [cell("ρ = 0.30"), cell("0.3250"), cell("3.077 (+208)"), cell("≈3.645 (+264)"), cell("<b>−18.5% — edge flips to the bettor</b>"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("ρ = 0.30"), cell("0.3250"), cell("3.077 (+208)"), cell("≈3.645 (+264)"), raw("<b>−18.5% — edge flips to the bettor</b>"), f'<td>{ref(CORR,"method")}</td>'],
     ]
     body = f"""
 <section class="pagetitle">
@@ -911,12 +918,12 @@ def page_decisions():
         pill = {"open": "high", "answered": "ok", "partially answered": "warn"}.get(status, "muted-pill")
         ans = q["answer"] or "—"
         rows.append([
-            cell(f'<b>{q["id"]}</b>'),
-            cell(f'<b>{q["topic"]}</b><br><span class="muted">{esc(q["question"])}</span>'),
+            raw(f'<b>{q["id"]}</b>'),
+            raw(f'<b>{q["topic"]}</b><br><span class="muted">{esc(q["question"])}</span>'),
             cell(q["known_information"]),
             cell(ans, "no verified answer yet"),
             cell(q["what_would_answer_it"]),
-            cell(f'<span class="pill {pill}">{esc(status)}</span>'),
+            raw(f'<span class="pill {pill}">{esc(status)}</span>'),
             f'<td>{link(q["source_url"], "official source ↗", "src-link") if q["source_url"] else ""}<br>{link(NFL_ANCHOR, "nfl.com ↗", "src-link")}</td>'
         ])
     counts = QUESTIONS["meta"]["counts"]
@@ -1044,10 +1051,10 @@ def page_flagged():
 # ---------------------------------------------------------------- sources
 def page_sources():
     tiers = [
-        [cell("<b>A</b>"), cell("Official league page (nfl.com, operations.nfl.com, rulebook)"), cell("Yes"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
-        [cell("<b>B</b>"), cell("Official club page, where the club labels the content self-reported or unofficial"), cell("Yes — labelled B on the row"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
-        [cell("<b>C</b>"), cell("Derived by this repository's own documented join of A/B inputs"), cell("Yes — labelled C and reproducible"), f'<td>{ref("tools/build_availability.py","script")}</td>'],
-        [cell("<b>D</b>"), cell("Independent secondary (news outlet, aggregator)"), cell("<b>No</b> — corroboration only"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
+        [raw("<b>A</b>"), cell("Official league page (nfl.com, operations.nfl.com, rulebook)"), cell("Yes"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
+        [raw("<b>B</b>"), cell("Official club page, where the club labels the content self-reported or unofficial"), cell("Yes — labelled B on the row"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
+        [raw("<b>C</b>"), cell("Derived by this repository's own documented join of A/B inputs"), cell("Yes — labelled C and reproducible"), f'<td>{ref("tools/build_availability.py","script")}</td>'],
+        [raw("<b>D</b>"), cell("Independent secondary (news outlet, aggregator)"), raw("<b>No</b> — corroboration only"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
     ]
     A = [
         ("NFL.com division standings", "32-team records, division groups, PF/PA, splits, streaks", "https://www.nfl.com/standings/division/2026/REG"),
@@ -1152,20 +1159,20 @@ def page_sources():
 # ---------------------------------------------------------------- repo review
 def page_review():
     found = [
-        [cell("R-01"), cell("README.md was 4 bytes (“# X1”); nothing else tracked"), cell("info"), cell("Confirmed with <code>git ls-tree -r dab199c</code>"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
+        [cell("R-01"), cell("README.md was 4 bytes (“# X1”); nothing else tracked"), cell("info"), raw("Confirmed with <code>git ls-tree -r dab199c</code>"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
         [cell("R-02"), cell("No LICENSE file"), cell("medium"), cell("Redistribution terms for ingested NFL data undefined — relates to Q-01"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
         [cell("R-03"), cell("No .gitignore"), cell("low"), cell("Risk of committing generated artifacts; addressed in this release"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
         [cell("R-04"), cell("No CI"), cell("medium"), cell("Nothing prevented a broken page from deploying; addressed by a workflow"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
     ]
     others = [
-        [cell("arena/a78e0158-x1"), cell("2"), cell("COORDINATION.md, README.md only"), cell("Board marks T1–T9 <b>done</b> and states all tasks completed, but no <code>docs/</code>, <code>data/</code>, <code>site/</code>, <code>code/</code> or workflow exists on the branch. No PR opened. Completion claim not supported by contents."), f'<td>{ref("COORDINATION.md","board")}</td>'],
+        [cell("arena/a78e0158-x1"), cell("2"), cell("COORDINATION.md, README.md only"), raw("Board marks T1–T9 <b>done</b> and states all tasks completed, but no <code>docs/</code>, <code>data/</code>, <code>site/</code>, <code>code/</code> or workflow exists on the branch. No PR opened. Completion claim not supported by contents."), f'<td>{ref("COORDINATION.md","board")}</td>'],
         [cell("arena/226be516-x1"), cell("2"), cell("COORDINATION.md, README.md only"), cell("Claim logged; no content pushed at review time"), f'<td>{ref("COORDINATION.md","board")}</td>'],
         [cell("arena/6f377170-x1"), cell("2"), cell("5 HTML pages, CSS, Pages workflow"), cell("Coherent design specification; states plainly that no NFL facts are presented"), f'<td>{ref("COORDINATION.md","board")}</td>'],
     ]
     defects = [
-        [cell("D-01"), cell("Arizona transcribed as <b>2–6</b>"), cell("<code>PCT=(W+0.5T)/G</code> gate: 2-6 implies .250; page printed .333"), cell("Corrected to <b>3–6</b>; corroborated by ESPN and FOX; published as F-08"), f'<td>{ref("data/flags.json","F-08")}</td>'],
+        [cell("D-01"), raw("Arizona transcribed as <b>2–6</b>"), raw("<code>PCT=(W+0.5T)/G</code> gate: 2-6 implies .250; page printed .333"), raw("Corrected to <b>3–6</b>; corroborated by ESPN and FOX; published as F-08"), f'<td>{ref("data/flags.json","F-08")}</td>'],
         [cell("D-02"), cell("Verification asserted each division's home records must balance"), cell("Failed on 7 of 8 divisions"), cell("The assertion was wrong, not the data. Removed and replaced with the correct league-wide identity"), f'<td>{ref("data/flags.json","F-08")}</td>'],
-        [cell("D-03"), cell("Verification asserted <code>home W = road W</code> league-wide"), cell("Failed 67 vs 69"), cell("Wrong identity; correct one is <code>home W = road L</code> (67=67), verified numerically first"), f'<td>{ref("data/flags.json","F-08")}</td>'],
+        [cell("D-03"), raw("Verification asserted <code>home W = road W</code> league-wide"), cell("Failed 67 vs 69"), raw("Wrong identity; correct one is <code>home W = road L</code> (67=67), verified numerically first"), f'<td>{ref("data/flags.json","F-08")}</td>'],
     ]
     body = f"""
 <section class="pagetitle">
@@ -1230,9 +1237,9 @@ def page_review():
 # ---------------------------------------------------------------- cross-check
 def page_crosscheck():
     st_rows = [
-        [cell("Standings"), cell("32 clubs"), cell("224 fields (W, L, T, PF, PA, NET, PCT)"), cell('<span class="pill ok">0 disagreements</span>'),
+        [cell("Standings"), cell("32 clubs"), cell("224 fields (W, L, T, PF, PA, NET, PCT)"), '<td><span class="pill ok">0 disagreements</span></td>',
          src_cell(DOC + "tools/cross_check.py", "the check ↗")],
-        [cell("Injury report"), cell("345 players"), cell("1,380 cells (position, injury, practice, game status)"), cell('<span class="pill ok">0 disagreements</span>'),
+        [cell("Injury report"), cell("345 players"), cell("1,380 cells (position, injury, practice, game status)"), '<td><span class="pill ok">0 disagreements</span></td>',
          src_cell(DOC + "tools/cross_check.py", "the check ↗")],
     ]
     body = f"""

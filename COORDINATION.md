@@ -272,3 +272,70 @@ These items are published on `dashboard/flagged.html` with source links. They do
 - **Live check (2026-11-14, after deploy):** `https://karagemop466-tech.github.io/X1/dashboard/index.html` and `…/dashboard/strategies.html` loaded and show the expected content (0 of 10 strategies eligible, withheld values). Root landing page links to the dashboard.
 - **Follow-up (this record):** the record above was added in a docs-only follow-up PR, because the merged PR cannot contain its own merge result.
 - **Platform notice (non-blocking):** Actions warns that `actions/deploy-pages@v4` runs on Node.js 24 (forced) and that `ubuntu-latest` migrates on 2026-10-19. Track as routine maintenance.
+
+## Integration log — `arena/b38a21d8-x1` (this session)
+
+- **2026-11-14** — Claimed verified-data + integration scope. Built the official-data layer
+  (32-team standings, 14-game Week 10 slate, 345-row injury report, 5-club depth-chart pilot),
+  the derived availability join, and a 2,944-assertion integrity suite.
+- **2026-11-14** — Published 18 questions, 13 flags, 12 suggestions, 7 validation gates,
+  7 candidate signals, an empty strategy register, and six methodology documents.
+- **2026-11-14** — Built a 14-page dashboard generator (`tools/build_site.py`) plus
+  `tools/check_links.py`. Two of my own numeric claims were wrong before publishing (a parlay
+  hold multiple and a correlation illustration); both were corrected and are now pinned by
+  arithmetic guards in the checker.
+- **2026-11-14** — **Merge conflict with `main`, resolved without discarding anyone's work.**
+  `main` had advanced twice under other sessions while this branch was in flight. Both times,
+  stopped and merged rather than force-pushing. Kept, verbatim: their 7-page site (archived to
+  `archive/previous-site/` with provenance), their `dashboard/`, their `COORDINATION.md` and
+  `README.md` (preserved as appendices), and their `scripts/verify_site.py`.
+- **2026-11-14** — Hardened the shared `scripts/verify_site.py` in four mutation-tested steps.
+  It had only walked the repo root (never checking `pages/`), and "any link in the row" was too
+  weak. `tools/test_source_rule.py` now proves the rule can fail; CI runs it.
+- **2026-11-14** — **Adopted `arena/c39d8541-x1`'s work rather than replacing it.** Its
+  `dashboard/` (2006–2026 nfldata backtests, 2026 Week 10 CSVs) is kept and ships in the Pages
+  artifact; both sites now link to each other. `analysis/strategy_backtest.py` correctly fails
+  gate G0 on undocumented line provenance, and every one of its 10 strategies is honestly marked
+  NOT ELIGIBLE — verified independently here: no strategy's z exceeds 1.96.
+- **2026-11-14** — **Second independent transcription.** Their CSVs are an independent read of
+  the same official pages, so the comparison became `tools/cross_check.py`: **1,604 values
+  compared, 0 disagreements** (224 standings fields, 1,380 injury cells). This is the second pass
+  S-10 asked for. It is published on a Cross-check page, together with the limitation that
+  agreement cannot rule out a shared blind spot (flag F-13).
+- **2026-11-14** — **Defect found in merged data:** 14 of 45 rows in `data/parlay_results.csv`
+  pair a strategy with its own mirror or subset. Their phi values (+/−1.00) are tautologies, not
+  measurements, and the derived ROIs read like results (one advertises +83.6%). The file flags
+  the rows, but no verifier checked them. `scripts/verify_parlay.py` now enforces the Fréchet
+  bounds and the nested flag; CI runs it. My first version of that test produced three false
+  failures on correct data (near-nested pairs land at 0.99) — the test was wrong, not the data,
+  and the assumption is documented in the file so nobody "fixes" the data to satisfy it.
+- **2026-11-14** — Display defect found and fixed: six pages rendered escaped HTML as literal
+  text (54 leaked tags on the decisions page). Root cause was a cell helper escaping strings that
+  intentionally contained markup. Added an explicit `raw()` for trusted markup, converted 21 call
+  sites, and added a permanent regression check to `tools/check_links.py` (proven by injection).
+- **PR #6** — https://github.com/karagemop466-tech/X1/pull/6 — merged 2026-11-14, merge commit
+  `4ff8dc9aae4df935f79dc6c346b27bc6614e1a7a`.
+- **Deploy** — `Publish static site to GitHub Pages` run 43548884593: **success**;
+  `pages-build-deployment`: success; `verify-site`: success. Live site re-fetched after merge and
+  confirmed serving the new pages (note: the Pages CDN can serve a stale homepage for a few
+  minutes after a successful deploy — verified with a cache-busting query).
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Verified official data + derived availability + integrity suite | done | `arena/b38a21d8-x1` | `data/`, `tools/` |
+| Methodology, decision/suggestion/flag/gate registers | done | `arena/b38a21d8-x1` | `docs/`, `data/*.json` |
+| Integrated dashboard + cross-check + verification hardening | done | `arena/b38a21d8-x1` | `index.html`, `pages/`, `tools/`, `scripts/`, `.github/` |
+| Parallel-session audit and reconciliation | done | `arena/b38a21d8-x1` | `archive/`, `COORDINATION.md`, `README.md` |
+
+### Cross-file requests left for a future session
+
+- `data/model_lines_2026_week10.csv` (from `arena/c39d8541-x1`) contains model margins and
+  market spreads whose provenance is explicitly `UNVERIFIED`. They are **not** surfaced on this
+  session's pages, and must not be until Q-02 is settled. Anyone who surfaces them should also
+  surface their `UNVERIFIED` label.
+- `analysis/strategy_backtest.py` needs `numpy`, `pandas`, `scipy` and a local `/tmp/nfldata`
+  checkout; it is not run in CI. If it becomes a release step, its inputs need pinning by hash.
+- The repo has **no LICENSE file** (finding R-02). That is a real risk for a project ingesting
+  third-party data and is a decision for the owner, not an agent.
+
+
