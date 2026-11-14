@@ -26,6 +26,7 @@ Owner rules (verbatim intent):
 | `arena-226be516-x1` | `arena/226be516-x1` | NFL research + site (broad claim) | 2026-11-14 | active (no content pushed at time of audit) |
 | `arena-6f377170-x1` | `arena/6f377170-x1` | Site skeleton + 5 pages (design spec, no data) | 2026-11-14 | active — branch preserved, content credited below |
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
+| `arena-d7f057b4-x1` | `arena/d7f057b4-x1` | Post-integration compliance audit (T10); findings + repeatable audit only | 2026-11-14 | **in progress** |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -54,6 +55,7 @@ Owner rules (verbatim intent):
 | T7 | Executive summary, decision register (Q/I/A), suggestions register | done | `arena-b38a21d8-x1` | `docs/analysis/*`, `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/suggestions.json` |
 | T8 | Static site: landing + category subpages + tables + Flagged for Review | done | `arena-b38a21d8-x1` | `index.html`, `pages/**`, `assets/**`, `tools/build_site.py` |
 | T9 | Final integration: re-verify combined data, link check, PR → main, merge, Pages deploy confirm | done | `arena-b38a21d8-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/**`, PR |
+| T10 | Independent current-tree compliance audit: source policy, conflicting claims, current verifiers/deploy status; publish findings and reproducible checks | in progress | `arena-d7f057b4-x1` | `COORDINATION.md`, `docs/audit/release-compliance.md`, `scripts/audit_release.py` |
 
 ---
 
