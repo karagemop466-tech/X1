@@ -9,13 +9,13 @@ name: Refresh official NFL data
 # aborted and the site is not published.
 
 on:
+  push:
+    branches:
+      - "arena/0c2fcfa1-x1"
+      - "main"
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
-    inputs:
-      max_gamebooks:
-        description: "Maximum official game books to parse"
-        default: "60"
 
 permissions:
   contents: write
@@ -44,10 +44,7 @@ jobs:
 
       - name: Collect official NFL data
         run: |
-          python -m nflx.pipeline \
-            --out data/nfl \
-            --cache .cache/nflx \
-            --max-gamebooks "${{ github.event.inputs.max_gamebooks || 60 }}"
+          python -m nflx.pipeline --out data/nfl --cache .cache/nflx --max-gamebooks 40
 
       - name: Build the site
         run: |
