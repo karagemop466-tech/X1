@@ -20,7 +20,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 
-from .htmlparse import find_tables, table_to_dicts, text_index
+from .htmlparse import find_tables, find_tables_with_links, table_to_dicts, text_index
 from .sources import SOURCES
 
 #: ``/games/<away>-at-<home>-<season>-<season-type>-<week>``
@@ -69,7 +69,7 @@ def collect_injuries(
     player with position, injury body part, practice-participation status and
     game-status designation.
     """
-    tables = find_tables(html_text)
+    tables, row_links = find_tables_with_links(html_text)
     records: List[Dict[str, Any]] = []
     notes: List[str] = []
 
@@ -81,7 +81,7 @@ def collect_injuries(
 
     table_positions = [m.start() for m in re.finditer(r"<table\b", html_text)]
 
-    for table, start in zip(tables, table_positions):
+    for table, start, links in zip(tables, table_positions, row_links):
         if not table:
             continue
         header = [c.strip() for c in table[0]]
@@ -96,14 +96,21 @@ def collect_injuries(
         if club is None:
             notes.append("injury table without a resolvable club heading skipped")
             continue
-        for row in table_to_dicts(table):
+        for row in table_to_dicts(table, links=links):
             player = row.get("Player", "")
             if not player:
                 continue
+            profile = next(
+                (href for href in row.get("_links", []) if href and "/players/" in href),
+                None,
+            )
             records.append(
                 {
                     "club": club,
                     "player": player,
+                    # The league links each player to their official profile
+                    # page, whose slug identifies them unambiguously.
+                    "player_url": "https://www.nfl.com" + profile if profile else None,
                     "position": row.get("Position") or None,
                     "injuries": row.get("Injuries") or None,
                     "practice_status": row.get("Practice Status") or None,
@@ -241,41 +248,47 @@ def collect_schedule(
 
     Two official structures are read from the same page:
 
-    * the rendered ``/games/`` links, which give the week's matchups, and
-    * the league's embedded game objects, which give kickoff times, the
-      league game id and the broadcast territory.
-    """
-    records: List[Dict[str, Any]] = []
-    notes: List[str] = []
-    seen: Dict[str, Dict[str, Any]] = {}
+    * the league's embedded game objects, which give the kickoff time, the
+      league game id and the broadcast territory, and
+    * the rendered ``/games/`` links, which give the Game Center URL for each
+      matchup.
 
-    # --- embedded game objects (kickoff, game id) ----------------------
+    The two are merged on the matchup so each record carries both.
+    """
+    records: Dict[str, Dict[str, Any]] = {}
+    notes: List[str] = []
+
+    def _key(away: Optional[str], home: Optional[str]) -> str:
+        return f"{(away or '').strip().lower()}|{(home or '').strip().lower()}"
+
+    # --- embedded game objects ------------------------------------------
     for match in GAME_OBJECT_RE.finditer(html_text):
         if match.group("dma") != '"000"':
             continue
-        gid = match.group("gid")
         title = match.group("title")
         if " at " not in title:
             # Some payload entries are broadcast listings, not games.
             continue
-        if gid in seen:
-            continue
         away, _, home = title.partition(" at ")
-        seen[gid] = {
-            "game_id": gid,
-            "title": title,
+        key = _key(away, home)
+        if key in records:
+            continue
+        records[key] = {
+            "game_id": match.group("gid"),
+            "title": title.strip(),
             "away_team": away.strip() or None,
             "home_team": home.strip() or None,
             "start_time_utc": match.group("start"),
             "game_territory": match.group("territory") or None,
             "week": match.group("week"),
             "season": match.group("season"),
+            "game_center_url": None,
             "source_url": url,
             "source_label": SOURCES[source_key].title,
             "retrieved_at": retrieved_at,
         }
 
-    # --- rendered game links (the week's matchups) ---------------------
+    # --- rendered game links -------------------------------------------
     for match in re.finditer(r'href="(/games/[^"?#]+)"', html_text):
         path = match.group(1)
         parsed = GAME_URL_RE.match(path)
@@ -283,26 +296,28 @@ def collect_schedule(
             continue
         slug = parsed.group("slug")
         away_slug, _, home_slug = slug.partition("-at-")
-        key = f"{away_slug}-at-{home_slug}"
-        if key in seen:
+        away_name = _slug_to_name(away_slug)
+        home_name = _slug_to_name(home_slug)
+        key = _key(away_name, home_name)
+        center_url = "https://www.nfl.com" + path
+        if key in records:
+            if not records[key].get("game_center_url"):
+                records[key]["game_center_url"] = center_url
             continue
-        seen[key] = {
+        records[key] = {
             "game_id": None,
-            "title": f"{_slug_to_name(away_slug)} at {_slug_to_name(home_slug)}",
-            "away_team": _slug_to_name(away_slug),
-            "home_team": _slug_to_name(home_slug),
+            "title": f"{away_name} at {home_name}",
+            "away_team": away_name,
+            "home_team": home_name,
             "start_time_utc": None,
             "game_territory": None,
             "week": parsed.group("week"),
             "season": parsed.group("season"),
-            "game_center_url": "https://www.nfl.com" + path,
+            "game_center_url": center_url,
             "source_url": url,
             "source_label": SOURCES[source_key].title,
             "retrieved_at": retrieved_at,
         }
-
-    for record in seen.values():
-        records.append(record)
 
     if not records:
         notes.append("no schedule entries matched the expected page structure")
@@ -314,7 +329,7 @@ def collect_schedule(
         record_count=len(records),
         notes=notes,
     )
-    return records, provenance
+    return list(records.values()), provenance
 
 
 _SLUG_EXCEPTIONS = {

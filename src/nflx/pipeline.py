@@ -332,22 +332,27 @@ def main(argv: Optional[List[str]] = None) -> int:
     weeks = [int(w) for w in args.weeks.split(",") if w.strip()] or None
     manifest["datasets"].append(collect_schedule(fetcher, out_dir, weeks))
 
+    # The game books are collected newest first: the depth chart has to
+    # reflect who is starting now, not who started in September.
+    schedule_path = out_dir / "schedule.json"
+    game_center_urls: List[str] = []
+    if schedule_path.exists():
+        payload = json.loads(schedule_path.read_text(encoding="utf-8"))
+        seen = set()
+        records = list(payload.get("records", []))
+        records.sort(key=lambda r: (-int(r.get("week") or 0), r.get("title") or ""))
+        for record in records:
+            url = record.get("game_center_url")
+            if url and url not in seen:
+                seen.add(url)
+                game_center_urls.append(url)
+
     print("[4/5] player statistics")
     stats_manifest = collect_player_stats(fetcher, out_dir)
     manifest["datasets"].extend(stats_manifest.get("categories", []))
 
     if not args.skip_gamebooks:
         print("[5/5] official game books")
-        schedule_path = out_dir / "schedule.json"
-        game_center_urls: List[str] = []
-        if schedule_path.exists():
-            payload = json.loads(schedule_path.read_text(encoding="utf-8"))
-            seen = set()
-            for record in payload.get("records", []):
-                url = record.get("game_center_url")
-                if url and url not in seen:
-                    seen.add(url)
-                    game_center_urls.append(url)
         manifest["datasets"].append(
             collect_gamebooks(
                 fetcher,

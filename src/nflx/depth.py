@@ -36,6 +36,8 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
+from .aliases import AliasIndex
+
 #: Position groups used for depth analysis. Backup quality is only meaningful
 #: inside a position group, because a backup safety cannot cover for a tackle.
 POSITION_GROUPS: Dict[str, List[str]] = {
@@ -288,6 +290,12 @@ def analyse_deficiency(
         if chart is None or chart.games_sampled < min_games_sampled:
             continue
 
+        # The injury report and the game book use different forms of a
+        # player's name, so a club-scoped alias index resolves them.
+        index = AliasIndex()
+        for group_players in list(chart.offense.values()) + list(chart.defense.values()):
+            index.add_gamebook_names(player.name for player in group_players)
+
         # Index the starters by position group so we can find who is missing.
         starters_by_group: Dict[str, List[DepthPlayer]] = {}
         for side in ("offense", "defense"):
@@ -305,17 +313,26 @@ def analyse_deficiency(
             if not name or not group:
                 continue
 
-            # Find the starter entry for this player.
+            # Find the starter entry for this player. The injury report uses
+            # the full name and the game book the abbreviated form, so the
+            # two are reconciled through the league's own profile slug.
             starters = starters_by_group.get(group, [])
             starter_entry = None
             for player in starters:
                 if player.name == name:
                     starter_entry = player
                     break
+            if starter_entry is None:
+                resolved = index.resolve(name, row.get("player_url"))
+                if resolved:
+                    for player in starters:
+                        if player.name == resolved:
+                            starter_entry = player
+                            break
 
             if starter_entry is None:
-                # The player is on the report but never started in the sampled
-                # games - not a starter absence.
+                # The player is on the report but did not start in the sampled
+                # games, so no depth consequence is asserted.
                 continue
 
             side = "offense" if group in OFFENSE_GROUPS else "defense"
