@@ -1,32 +1,32 @@
 {
-  "generated_at": "2026-11-14T04:18:34Z",
+  "generated_at": "2026-11-14T04:24:15Z",
   "season": 2026,
   "datasets": [
     {
       "source_key": "injuries_current",
       "source_url": "https://www.nfl.com/injuries/",
-      "retrieved_at": "2026-11-14T04:18:34Z",
+      "retrieved_at": "2026-11-14T04:24:15Z",
       "record_count": 345,
       "notes": []
     },
     {
       "source_key": "standings",
       "source_url": "https://www.nfl.com/standings/league/2026/REG",
-      "retrieved_at": "2026-11-14T04:18:34Z",
+      "retrieved_at": "2026-11-14T04:24:15Z",
       "record_count": 32,
       "notes": []
     },
     {
       "source_key": "schedule_week",
       "source_url": "https://www.nfl.com/schedules/2026/by-week/week-1",
-      "retrieved_at": "2026-11-14T04:18:34Z",
+      "retrieved_at": "2026-11-14T04:24:15Z",
       "record_count": 272,
       "notes": []
     },
     {
       "source_key": "player_stats_passing",
       "source_url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
-      "retrieved_at": "2026-11-14T04:18:36Z",
+      "retrieved_at": "2026-11-14T04:24:17Z",
       "record_count": 50,
       "notes": [
         "paginated over 3 page(s)"
@@ -35,16 +35,16 @@
     {
       "source_key": "player_stats_rushing",
       "source_url": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc",
-      "retrieved_at": "2026-11-14T04:18:36Z",
-      "record_count": 75,
+      "retrieved_at": "2026-11-14T04:24:17Z",
+      "record_count": 50,
       "notes": [
-        "paginated over 4 page(s)"
+        "paginated over 3 page(s)"
       ]
     },
     {
       "source_key": "player_stats_receiving",
       "source_url": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc",
-      "retrieved_at": "2026-11-14T04:18:36Z",
+      "retrieved_at": "2026-11-14T04:24:17Z",
       "record_count": 75,
       "notes": [
         "paginated over 4 page(s)"
@@ -53,11 +53,10 @@
     {
       "source_key": "game_book",
       "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
-      "retrieved_at": "2026-11-14T04:19:03Z",
-      "record_count": 0,
+      "retrieved_at": "2026-11-14T04:25:17Z",
+      "record_count": 60,
       "notes": [
-        "stopped after 260 Game Center pages with 0 game books collected",
-        "Read 260 Game Center pages; 260 of them had no published game book because the game had not been played."
+        "Read 195 Game Center pages; 135 of them had no published game book because the game had not been played; 0 were rejected because the published document did not match the requested matchup."
       ]
     }
   ]
