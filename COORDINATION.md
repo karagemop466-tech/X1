@@ -1303,3 +1303,25 @@ touched** except where regenerated output requires it (logged per file below).
 | `.github/workflows/verify.yml` | `arena/9cc1eaac-x1` etc. | +3 additive steps marked "Added by session arena/907c5baf-x1" (rebuild stores, staleness, store invariants) |
 | `.github/workflows/pages.yml` | `arena-b38a21d8-x1` etc. | +1 verify step marked with this session ID (`tools/verify_stores.py`); store JSONs ship via the existing `cp data/*.json` line |
 | `COORDINATION.md`, `README.md` | shared | append-only |
+
+
+## 2026-11-14 — round-2 completion record — session `arena/907c5baf-x1` — PR #40
+
+**Status**: complete; claims N1–N8 all delivered and verified locally before merge. PR: [#40](https://github.com/karagemop466-tech/X1/pull/40).
+
+| Claim | Delivered | Verification |
+|---|---|---|
+| N1 results feed | `data/results_feed.json` + `data/verify/raw/nfl_scores_2026_official.psv` + `app/results.html` | 150 games from official NFL.com week pages; **32/32 standings identities** (W-L-T + PF/PA) recomputed from the feed match the official table; mirror cross-check 137/137 agree (labelled corroboration) |
+| N2 price store | `data/price_snapshots.json` + `app/prices.html` | 56 rows (14 games × 4), order side(1)→total(2)→moneyline(3) per game; market cells blank + flagged "no official source" (F-06/Q-02) |
+| N3 signal/staking split | `data/leaderboard_split.json` + leaderboard sections | `staking_scorecard.ranked=false`; ranking rule reads signal columns only; enforced by `tools/verify_stores.py` |
+| N4 demotion gate | `data/demotion_gate.json` + `docs/methodology/demotion-gate.md` + validation section | 5 triggers, signal-only inputs; T2–T4 thresholds labelled PROPOSED DEFAULTS pending **Q-26** |
+| N5 app extension | `tools/build_app.py` takeover (fcc11e05-x1 inactive, rule 10) + 2 new pages + 7 sections | `tools/verify_app.py`: 5,812 sourced rows, 2 flagged, 0 unsourced |
+| N6 CI | `tools/verify_stores.py` + additive steps in `verify.yml`/`pages.yml` (all marked "Added by session arena/907c5baf-x1") | full 12-checker suite green locally |
+| N7 verification | suite run: verify_data, check_links, verify_site, check_site, cross_check, verify_parlay, verify_research_site, verify_site_annex, pipeline/verify_site, verify_against_official, verify_app, verify_stores, test_source_rule, build_audit_registers | all pass |
+| N8 integration | PR #40 → main, merged without waiting; Pages deploy confirmed | see merge note below |
+
+**Settlement published** (n = 1): WAS 24 @ NYG 21 ([official](https://www.nfl.com/games/commanders-at-giants-2026-reg-10)) — 6 legs 3W-3L; moneyline ROI −3.27% at n = 1 with no-skill-claim note; spread/total legs carry no ROI (price authority open).
+
+**New open items created** (register + site): **Q-31** price-source authority for market open/close; **Q-32** staking plan; **Q-33** settlement authority + grading window; **Q-34** reward funding/payout legality. Suggestions **SS-01..SS-06** (unified nav, automated price capture, automated settlement, CLV column, decision-first KPI strip, strategy-registry crosswalk) published for review-before-implement.
+
+**Corrections logged** (rule 10 / no-manual-input duty): two Week-10 rows written from memory rather than an observed official page were caught in self-review against `data/nfl/schedule_2026_week10.csv` and the official Week-10 page chunks and replaced with the 7 real remaining games before any settlement used them; the `american_profit(abs(...))` sign bug was found and fixed before publishing ROI. No other session's work was modified: `tools/build_app.py` changes are additive page builders + section insertions (takeover justified by rule 10; see the claim block above).
