@@ -6,8 +6,11 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
+D	_ci/commit.log
+D	_ci/pipeline.log
 M	data/pipeline/_probe.json
 M	data/pipeline/_run_report.json
+M	data/pipeline/_verification.json
 M	data/pipeline/club_registry.json
 M	data/pipeline/correlations.json
 M	data/pipeline/deficiency.json
@@ -18,8 +21,11 @@ M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
 + git add data/pipeline
 + git status --porcelain
+ D _ci/commit.log
+ D _ci/pipeline.log
 M  data/pipeline/_probe.json
 M  data/pipeline/_run_report.json
+M  data/pipeline/_verification.json
 M  data/pipeline/club_registry.json
 M  data/pipeline/correlations.json
 M  data/pipeline/deficiency.json
@@ -30,23 +36,67 @@ M  data/pipeline/standings.json
 M  data/pipeline/team_stats.json
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-14T17:02:35Z'
-[main 95181ad] data: refresh from official sources 2026-11-14T17:02:35Z
- 10 files changed, 5033 insertions(+), 5033 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-14T22:57:49Z'
+[main b83b20a] data: refresh from official sources 2026-11-14T22:57:49Z
+ 11 files changed, 10976 insertions(+), 7400 deletions(-)
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin main
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git rebase origin/main
-Current branch main is up to date.
-+ git push origin HEAD:main
-To https://github.com/karagemop466-tech/X1
-   595cddd..95181ad  HEAD -> main
-+ echo 'MARKER: pushed on attempt 1'
-MARKER: pushed on attempt 1
-+ pushed=1
-+ break
-+ '[' 1 = 1 ']'
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 5
++ for attempt in 1 2 3 4 5
++ git fetch origin main
+From https://github.com/karagemop466-tech/X1
+ * branch            main       -> FETCH_HEAD
++ git rebase origin/main
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 10
++ for attempt in 1 2 3 4 5
++ git fetch origin main
+From https://github.com/karagemop466-tech/X1
+ * branch            main       -> FETCH_HEAD
++ git rebase origin/main
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 15
++ for attempt in 1 2 3 4 5
++ git fetch origin main
+From https://github.com/karagemop466-tech/X1
+ * branch            main       -> FETCH_HEAD
++ git rebase origin/main
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 20
++ for attempt in 1 2 3 4 5
++ git fetch origin main
+From https://github.com/karagemop466-tech/X1
+ * branch            main       -> FETCH_HEAD
++ git rebase origin/main
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 25
++ '[' 0 = 1 ']'
++ echo 'MARKER: PUSH FAILED after 5 attempts'
+MARKER: PUSH FAILED after 5 attempts
 + echo 'MARKER: done'
 MARKER: done
