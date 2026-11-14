@@ -135,8 +135,6 @@ const FILES = ['standings', 'injuries', 'depth_charts', 'team_stats', 'deficienc
   const table = document.getElementById('tbl-flags');
   const payload = {rows, columns: ['dataset', 'summary', 'why']};
   // Register the synthetic dataset with the shared renderer.
-  const evt = new Event('noop');
-  table.dataset.src = '';
   const state = {query: '', flaggedOnly: false, page: 1, status: 'all', team: 'all', payload};
   window.__x1FlagState = state;
   // Reuse the renderer through a lightweight local draw.

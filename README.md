@@ -10,12 +10,14 @@ dashboard on GitHub Pages.
 
 | Path | What it is |
 |---|---|
-| `site/` | The published dashboard. Plain HTML, CSS and vanilla JS; every table is rendered from JSON in `data/`. |
+| `/` (repo root) | The published dashboard. Plain HTML, CSS and vanilla JS; every table is rendered from JSON in `data/`. GitHub Pages serves the branch root. |
 | `data/` | Every dataset, one file per table. Every row carries the official URL it was read from. |
 | `pipeline/` | The collectors. Standard library only — no API keys, no dependencies. |
 | `scripts/` | Verifiers: `verify_data.py` (row-level source coverage) and `verify_site.py` (links, data files, page integrity). |
 | `docs/` | The project brief (verbatim) and methodology. |
+| `assets/` | Dashboard CSS and the shared table renderer. |
 | `COORDINATION.md` | Shared task board for parallel sessions. |
+| `docs/` | `project-brief.md` (verbatim brief) and `methodology.md`. |
 
 ## How it runs without manual input
 
@@ -25,7 +27,10 @@ pass on game days) and on every push that touches the pipeline:
 1. pull every dataset from its official source;
 2. verify every row has an official source and no undeclared blank values;
 3. commit the data, refusing to overwrite good data with an empty pull;
-4. copy the data into the site, run the site verifier, and publish to GitHub Pages.
+4. run the site verifier over the branch root, which is what Pages serves.
+
+Pages is configured with the legacy branch builder on `/`, so every commit to
+`main` rebuilds the live site automatically.
 
 Run it by hand from the Actions tab, or locally with:
 
