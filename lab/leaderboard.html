@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal versus staking — X1 Line Desk</title>
+<meta name="description" content="X1 line desk: price snapshots, verified results, originated NFL lines and a signal-first strategy leaderboard. Every value carries its source and its n.">
+<link rel="stylesheet" href="../app/assets/site.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>LINE DESK</b><span>this round's lab</span></span></a>
+  <nav aria-label="Line desk sections">
+<a class="" href="index.html">Desk overview</a>
+<a class="" href="executive-summary.html">Executive summary</a>
+<a class="" href="prices.html">Price snapshots</a>
+<a class="" href="results.html">Results feed</a>
+<a class="" href="lines.html">Originated lines</a>
+<a class="active" href="leaderboard.html">Leaderboard</a>
+<a class="" href="deficiency.html">Replacement depth</a>
+<a class="" href="correlation.html">Correlation</a>
+<a class="" href="validation.html">Demotion gate</a>
+<a class="" href="questions.html">Questions</a>
+<a class="" href="suggestions.html">Suggestions</a>
+<a class="" href="sources.html">Sources &amp; limits</a>
+<a class="" href="flagged.html">Flagged for review</a>
+  </nav>
+  <div class="foot">Snapshot 2026-11-14<br>Season 2026, Week 10<br>
+  Every value sourced. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">T5 · competition</div>
+      <h1>Signal versus staking</h1>
+      <p class="lede">Two scores per strategy, so a lucky staking run cannot hide a bad signal.</p>
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+
+<div class="note bad"><b>The case this design exists to catch.</b> 1 strategies show a positive ROI but none has a signal that clears the 1.96 z bar. On its own, that ROI would have topped a naive leaderboard. This is exactly the failure mode the split exists to catch: the money was a staking run, not a signal.</div>
+
+<div class="card">
+  <h2>The board</h2>
+  <div class="tw"><table data-table><thead><tr><th>#</th><th>Strategy</th><th>Market</th><th>n</th><th>Hit</th><th>Break-even bar</th><th>z</th><th>95% interval</th><th>ROI (flat)</th><th>Profit (5% compounding)</th><th>Max DD</th><th>Gates</th><th>Status</th><th>Demoted by</th><th>Tickets</th></tr></thead><tbody><tr><td class="n">1</td><td>Two-leg side parlay</td><td>PARLAY_2</td><td class="n">234</td><td class="n">30.4%</td><td class="n">27.4%</td><td class="n"><b>1.00</b></td><td>24.7%&ndash;36.1%</td><td class="n">10.5%</td><td class="n">59.2u</td><td class="n">52.7%</td><td>0 pass / 3 fail / 5 blocked</td><td><span class="b grey">PAPER</span></td><td>D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">2</td><td>Side model, 1-pt threshold</td><td>SIDE</td><td class="n">2722</td><td class="n">51.8%</td><td class="n">52.4%</td><td class="n"><b>-0.57</b></td><td>49.9%&ndash;53.8%</td><td class="n">-1.0%</td><td class="n">-98.8u</td><td class="n">99.3%</td><td>2 pass / 2 fail / 4 blocked</td><td><span class="b grey">PAPER</span></td><td>D-01, D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">3</td><td>Side model, 0.5-pt threshold</td><td>SIDE</td><td class="n">2939</td><td class="n">51.7%</td><td class="n">52.4%</td><td class="n"><b>-0.74</b></td><td>49.9%&ndash;53.6%</td><td class="n">-1.3%</td><td class="n">-99.4u</td><td class="n">99.7%</td><td>2 pass / 2 fail / 4 blocked</td><td><span class="b grey">PAPER</span></td><td>D-01, D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">4</td><td>Side model, 2-pt threshold</td><td>SIDE</td><td class="n">2318</td><td class="n">51.5%</td><td class="n">52.4%</td><td class="n"><b>-0.81</b></td><td>49.5%&ndash;53.6%</td><td class="n">-1.6%</td><td class="n">-98.8u</td><td class="n">99.0%</td><td>2 pass / 2 fail / 4 blocked</td><td><span class="b grey">PAPER</span></td><td>D-01, D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">5</td><td>Moneyline value</td><td>MONEYLINE</td><td class="n">2751</td><td class="n">34.7%</td><td class="n">36.1%</td><td class="n"><b>-1.56</b></td><td>32.9%&ndash;36.5%</td><td class="n">-5.1%</td><td class="n">-100.0u</td><td class="n">100.0%</td><td>2 pass / 2 fail / 4 blocked</td><td><span class="b grey">PAPER</span></td><td>D-01, D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">6</td><td>Total model, 2-pt threshold</td><td>TOTAL</td><td class="n">2157</td><td class="n">50.0%</td><td class="n">52.4%</td><td class="n"><b>-2.25</b></td><td>47.8%&ndash;52.1%</td><td class="n">-4.6%</td><td class="n">-99.9u</td><td class="n">100.0%</td><td>2 pass / 2 fail / 4 blocked</td><td><span class="b grey">PAPER</span></td><td>D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">7</td><td>Total model, 1-pt threshold</td><td>TOTAL</td><td class="n">2633</td><td class="n">49.7%</td><td class="n">52.4%</td><td class="n"><b>-2.79</b></td><td>47.8%&ndash;51.6%</td><td class="n">-5.2%</td><td class="n">-100.0u</td><td class="n">100.0%</td><td>2 pass / 2 fail / 4 blocked</td><td><span class="b grey">PAPER</span></td><td>D-02, D-03</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr><tr><td class="n">8</td><td>Player-prop combo</td><td>PROP</td><td class="n">0</td><td class="n"><span class="blank" title="not published by the source">&mdash;</span></td><td class="n"><span class="blank" title="not published by the source">&mdash;</span></td><td class="n"><span class="blank" title="not published by the source">&mdash;</span></td><td><span class="blank" title="not published by the source">&mdash;</span></td><td class="n"><span class="blank" title="not published by the source">&mdash;</span></td><td class="n"><span class="blank" title="not published by the source">&mdash;</span></td><td class="n"><span class="blank" title="not published by the source">&mdash;</span></td><td>0 pass / 2 fail / 6 blocked</td><td><span class="b grey">UNTESTED</span></td><td>—</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">leaderboard.json</a></span></td></tr></tbody></table></div><p class="legend">Rank is by signal z, then ROI. ROI is displayed but never ranks, because a hot staking run on a chance signal is exactly what the owner asked to exclude. The compounding column is profit in units on a 100-unit bankroll, not a per-unit ROI: compounding a stake on a handful of winning parlays produces a large multiple that is not comparable with a flat-stake ROI, so it is labelled as what it is.</p>
+</div>
+
+<div class="card">
+  <h2>Findings the split made visible</h2>
+  <div class="tw"><table data-table><thead><tr><th>ID</th><th>Finding</th><th>Measure</th><th>What it means</th><th>Source</th></tr></thead><tbody><tr><td>F-01</td><td>The moneyline model systematically disagrees with the price on underdogs, and the disagreement is wrong in the direction it bets.</td><td>2,751 selections; their mean market-implied win probability is 36.1%, so the model is backing mostly underdogs at average prices that need 36.1% to break even, and it wins 34.7%. On competitive-margin games only (n = 1,036) it wins 29.6% against a bar that the bootstrap places at roughly the same level, z = -4.5.</td><td>Not a bug in the test: the per-ticket bar was recomputed from the prices actually taken. It is evidence that Phi(margin/sigma) is not a good map from a point spread to a win probability at the tails -- the model inherits the spread&#x27;s accuracy, and the spread&#x27;s accuracy is already worse than the market&#x27;s.</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">data/lab/leaderboard.json S-03</a></span></td></tr></tbody></table></div><p class="legend">F-01 is the reason no moneyline is offered as a playable number: the derived win probability is wrong at the tails, and the per-ticket bar is what exposed it.</p>
+</div>
+
+<div class="card">
+  <h2>Which side of the price each strategy takes</h2>
+  <div class="tw"><table data-table><thead><tr><th>Strategy</th><th>Home</th><th>Away</th><th>% away</th><th>Link</th></tr></thead><tbody><tr><td>S-01-side-1.0</td><td class="n">1495</td><td class="n">1227</td><td class="n">45.1%</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">selection_mix</a></span></td></tr><tr><td>S-01-side-0.5</td><td class="n">1617</td><td class="n">1322</td><td class="n">45.0%</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">selection_mix</a></span></td></tr><tr><td>S-01-side-2.0</td><td class="n">1266</td><td class="n">1052</td><td class="n">45.4%</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">selection_mix</a></span></td></tr><tr><td>S-03-moneyline</td><td class="n">1392</td><td class="n">1359</td><td class="n">49.4%</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">selection_mix</a></span></td></tr></tbody></table></div><p class="legend">A strategy that mostly backs underdogs has a low hit rate and a low bar; one that mostly backs favourites has the opposite. Raw hit rates are not comparable across the two, which is exactly why the bar is per ticket.</p>
+</div>
+
+<div class="card">
+  <h2>Why signal and staking are different columns</h2>
+  <div class="grid2">
+    <div>
+      <h3>Signal: the picks only</h3>
+      <ul class="tight">
+        <li><b>n</b> and hit rate on decided tickets; pushes excluded from the denominator.</li>
+        <li><b>The break-even bar is per ticket.</b> A -110 single breaks even at 52.38%; a
+        +250 moneyline at 28.6%; a two-leg -110 parlay at 27.44%. Testing everything against
+        52.38% scored the parlay at z = -7.2 when it was actually 3 points above its own bar.</li>
+        <li><b>z</b> is a Poisson-binomial test, because each ticket has its own bar.</li>
+        <li><b>Interval</b>: 2,000 bootstrap resamples, fixed seed.</li>
+        <li><b>Luck trim</b>: one-score games and blowouts removed, because a single bounce
+        decides those.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Staking: the money only</h3>
+      <ul class="tight">
+        <li><b>ROI at a flat unit</b>, and again under a 5%-of-bankroll compounding plan.</li>
+        <li><b>Max drawdown</b> under the compounding plan, against a 25% pre-registered cap.</li>
+        <li><b>Independence</b>: a profit that exists under one stake plan and not the other is
+        labelled as an artefact rather than a result.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Defects found in the leaderboard's own arithmetic</h2>
+  <div class="tw"><table data-table><thead><tr><th>ID</th><th>What was wrong</th><th>Effect</th><th>Fix</th><th>How it was caught</th><th>Code</th></tr></thead><tbody><tr><td>B-01</td><td>every strategy was tested against a flat 52.38% break-even</td><td>the two-leg parlay&#x27;s 30.4% hit rate was scored z = -7.2 although it is 3 points ABOVE its own 27.44% bar; the moneyline&#x27;s 34.7% was scored z = -19.4 against a bar that applies to no moneyline ticket</td><td>Poisson-binomial test: each ticket carries its own break-even, the sum of those bars is the expectation, and the z is computed against the sum of the per-ticket variances</td><td>reading the row: a z of -7 with a hit rate near break-even is not a losing strategy, it is a wrong test</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">build_strategies.py</a></span></td></tr><tr><td>B-02</td><td>parlay wins were paid at single-leg -110 odds</td><td>published ROI -40.7% for a strategy that is actually +10.5%</td><td>payout_decimal() compounds the legs&#x27; prices (1.909^2 = 3.645)</td><td>the same row, after B-01 was fixed: a hit rate above its own bar cannot produce a -40% ROI</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">build_strategies.py</a></span></td></tr><tr><td>B-03</td><td>the leaderboard ranked on ROI alone in an early draft</td><td>the parlay, with the weakest signal on the board (z = 1.00), ranked first</td><td>rank = (signal z desc, ROI desc); the ROI is shown but never ranks</td><td>applying the owner&#x27;s requirement literally</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">build_strategies.py</a></span></td></tr><tr><td>B-04</td><td>a parlay was bucketed &#x27;competitive&#x27; only if EVERY leg was a competitive margin, and other strategies were bucketed on their single game&#x27;s margin</td><td>one bounce in one leg decides the ticket, so 195 of 234 parlay tickets landed in &#x27;other&#x27; and the luck decomposition had n = 39, too small to decompose anything</td><td>a parlay is variance-dominated if ANY leg is; a decomposition with fewer than 10 tickets is published as &#x27;too few&#x27; rather than computed</td><td>—</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/tools/lab/build_strategies.py">build_strategies.py</a></span></td></tr></tbody></table></div><p class="legend">B-01 and B-02 were caught by reading a row that could not be true: a -7 z next to a hit rate above break-even, and a -40% ROI next to a hit rate above bar.</p>
+</div>
+
+  <footer class="pagefoot">
+    X1 Line desk · generated by <code>tools/lab/build_site.py</code> from
+    <code>data/lab/*</code> · every table row links the page the value came from, or says why
+    there is none · a value the source does not print is an
+    <span class="blank">&mdash;</span>, never a guess.<br>
+    <a href="../index.html">Main dashboard</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources &amp; limits</a> ·
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/data/lab" target="_blank" rel="noopener">Artefacts on GitHub</a>
+  </footer>
+</main>
+<script src="../app/assets/app.js"></script>
+</body>
+</html>
