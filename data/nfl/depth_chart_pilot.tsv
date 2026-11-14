@@ -1,0 +1,122 @@
+# PILOT SCOPE — 5 of 32 clubs. The other 27 are NOT recorded here (flagged as coverage gap, never inferred).
+# Source per row is the CLUB's own website depth chart (an official NFL club property).
+# IMPORTANT: these charts are printed as "unofficial" by at least two clubs (DET: "2026 Unofficial Depth Chart
+# Compiled by Lions Football Communications"; GB: "Unofficial, Nov. 10, 2026"). A club chart is therefore a
+# CLUB-PUBLISHED, NON-BINDING self-report — not a league-verdict on who starts. Verification tier = "club-published".
+# depth_order is transcribed verbatim in printed column order: "1. <player> | 2. <player> | 3. <player>".
+# Multiple players inside one column (an "OR" listing) are recorded as separate orders in printed left-to-right order.
+# position strings are exactly as printed by that club (clubs use different position vocabularies).
+team	side	position	depth_order	source_url	chart_note
+BUF	Offense	WR	1. DJ Moore | 2. Skyler Bell	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	LT	1. Dion Dawkins | 2. Jude Bowry	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	LG	1. Alec Anderson | 2. Austin Corbett	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	C	1. Connor McGovern | 2. Lloyd Cushenberry	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	RG	1. O'Cyrus Torrence | 2. Ar'maj Reed-Adams	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	RT	1. Spencer Brown | 2. Tylan Grable	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	TE	1. Dalton Kincaid | 2. Dawson Knox | 3. Jackson Hawes | 4. Keleki Latu	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	QB	1. Josh Allen | 2. Kyle Allen	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	RB	1. James Cook III | 2. Ray Davis | 3. Ty Johnson	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	WR	1. Khalil Shakir | 2. Greg Dortch	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Offense	WR	1. Keon Coleman	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	DL	1. Ed Oliver | 2. DeWayne Carter	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	DL	1. Deone Walker | 2. Greg Gaines	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	DL	1. T.J. Sanders | 2. Landon Jackson	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	OLB	1. Greg Rousseau | 2. Michael Hoecht | 3. Mike Danna	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	OLB	1. Bradley Chubb | 2. TJ Parker | 3. Javon Solomon	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	ILB	1. Dorian Williams | 2. Kaleb Elarms-Orr	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	ILB	1. Terrel Bernard | 2. Joe Andreessen	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	CB	1. Christian Benford | 2. Dee Alford	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	CB	1. Davison Igbinosun | 2. Maxwell Hairston	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	NCB	1. Dee Alford | 2. Te'Cory Couch	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	S	1. Damar Hamlin | 2. Sam Franklin Jr.	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+BUF	Defense	S	1. Cole Bishop | 2. Jalon Kilgore	https://www.buffalobills.com/team/depth-chart	no unofficial label printed
+SEA	Offense	WR	1. Cooper Kupp | 2. Rashid Shaheed | 3. Irvin Charles	https://www.seahawks.com/team/depth-chart/	two players printed in the 1st column (Kupp, Shaheed)
+SEA	Offense	LT	1. Charles Cross | 2. Josh Jones	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	LG	1. Quenton Nelson | 2. Anthony Bradford	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	C	1. Jalen Sundell | 2. Olu Oluwatimi	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	RG	1. Grey Zabel | 2. Anthony Bradford | 3. Beau Stephens	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	RT	1. Abraham Lucas | 2. Josh Jones	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	TE	1. AJ Barner | 2. Eric Saubert | 3. Nick Kallerup	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	WR	1. Jaxon Smith-Njigba | 2. Tory Horton	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	QB	1. Sam Darnold | 2. Drew Lock | 3. Jalen Milroe	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	FB	1. Brady Russell	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Offense	RB	1. Zach Charbonnet | 2. Jadarian Price | 3. Emanuel Wilson | 4. George Holani	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	DT	1. Leonard Williams | 2. Rylie Mills	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	NT	1. Byron Murphy II | 2. Brandon Pili | 3. Deven Eastern	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	DE	1. Jarran Reed | 2. Mike Morris	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	RUSH	1. DeMarcus Lawrence | 2. Derick Hall	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	MLB	1. Ernest Jones IV | 2. Patrick O'Connell	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	WLB	1. Drake Thomas | 2. Tyrice Knight | 3. Chazz Surratt	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	SLB	1. Uchenna Nwosu | 2. Dante Fowler Jr. | 3. Connor O'Toole	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	CB	1. Devon Witherspoon | 2. Nehemiah Pritchett	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	CB	1. Josh Jobe | 2. Avery Smith	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	S	1. Ty Okada | 2. Rodney Thomas II	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	S	1. Julian Love	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+SEA	Defense	S	1. Nick Emmanwori	https://www.seahawks.com/team/depth-chart/	no unofficial label printed
+DET	Offense	WR	1. Jameson Williams	https://www.detroitlions.com/team/depth-chart	page titled "2026 Unofficial Depth Chart Compiled by Lions Football Communications"
+DET	Offense	WR	1. Amon-Ra St. Brown | 2. DeAndre Carter	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	LT	1. Penei Sewell	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	LG	1. Christian Mahogany | 2. Miles Frazier	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	C	1. Cade Mays | 2. Juice Scruggs	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	RG	1. Tate Ratledge | 2. Seth McLaughlin	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	RT	1. Blake Miller | 2. Larry Borom	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	TE	1. Sam LaPorta | 2. Brock Wright | 3. Tyler Conklin | 4. Jackson Meeks	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	WR	1. Isaac TeSlaa | 2. Tay Martin	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	QB	1. Jared Goff | 2. Joshua Dobbs	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Offense	RB	1. Jahmyr Gibbs | 2. Sione Vaki | 3. Jacob Saylors	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	EDGE	1. Aidan Hutchinson | 2. Derrick Moore | 3. Eric O'Neill	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	DL	1. Alim McNeill | 2. Skyler Gill-Howard | 3. Mekhi Wingo	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	DL	1. Tyleik Williams | 2. Levi Onwuzurike	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	EDGE	1. DJ Wonnum | 2. Tyler Lacy | 3. Ahmed Hassanein	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	LB	1. Derrick Barnes | 2. Joe Bachie	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	LB	1. Malcolm Rodriguez | 2. K.J. Britt	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	LB	1. Trevor Nowaske | 2. Amen Ogbongbemiga	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	CB	1. D.J. Reed | 2. Rock Ya-Sin | 3. Khalil Dorsey | 4. Nick Whiteside	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	CB	1. Roger McCreary | 2. Ennis Rakestraw Jr. | 3. Keith Abney II	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	S	1. Chuck Clark	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+DET	Defense	S	1. Brian Branch | 2. Christian Izien	https://www.detroitlions.com/team/depth-chart	unofficial label printed
+GB	Offense	WR	1. Christian Watson | 2. Bo Melton	https://www.packers.com/team/depth-chart	page footer: "Unofficial, Nov. 10, 2026"
+GB	Offense	WR	1. Matthew Golden | 2. J. Michael Sturdivant	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	LT	1. Jordan Morgan | 2. John Williams	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	LG	1. Aaron Banks | 2. Travis Glover | 3. Donovan Jennings	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	C	1. Sean Rhyan | 2. Jager Burton	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	RG	1. Laken Tomlinson | 2. Kevin Zeitler	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	RT	1. Anthony Belton | 2. Mekhi Becton Sr.	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	TE	1. Tucker Kraft | 2. Jonnu Smith | 3. Mark Redman | 4. Josh Whyle	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	WR	1. Savion Williams | 2. Coleman Owen	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	QB	1. Jordan Love | 2. Tyrod Taylor	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Offense	RB	1. Josh Jacobs | 2. MarShawn Lloyd | 3. Pierre Strong Jr. | 4. Kaleb Johnson	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	DT	1. Karl Brooks | 2. Jordon Riley | 3. Anthony Campbell	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	DT	1. Devonte Wyatt | 2. Chris McClellan	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	EDGE	1. Lukas Van Ness | 2. Brenton Cox Jr	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	LB	1. Zaire Franklin | 2. Ty’Ron Hopper | 3. Kristian Welch	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	LB	1. Isaiah McDuffie | 2. Nick Niemann	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	EDGE	1. Barryn Sorrell | 2. Dani Dennis-Sutton	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	CB	1. Keisean Nixon | 2. Carrington Valentine	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	CB	1. Brandon Cisse | 2. Benjamin St-Juste	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	S	1. Xavier McKinney | 2. Kitan Oladapo	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	S	1. Evan Williams | 2. Kitan Oladapo	https://www.packers.com/team/depth-chart	unofficial, dated
+GB	Defense	NB	1. Javon Bullard | 2. Kamal Hadden	https://www.packers.com/team/depth-chart	unofficial, dated
+BAL	Offense	WR	1. Zay Flowers | 2. Devontez Walker | 3. Elijah Sarratt	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	WR	1. Rashod Bateman | 2. Ja'Kobi Lane | 3. LaJohntay Wester	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	LT	1. Ronnie Stanley | 2. Carson Vinson	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	LG	1. John Simpson | 2. Ryan Neuzil	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	C	1. Cam Jurgens | 2. Ryan Neuzil	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	RG	1. Vega Ioane | 2. Emery Jones Jr.	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	RT	1. Roger Rosengarten | 2. Carson Vinson	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	TE	1. Mark Andrews | 2. Josh Cuevas	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	TE	1. Matt Hibner	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Offense	QB	1. Jacoby Brissett | 2. Joe Fagnano | 3. Kedon Slovis	https://www.baltimoreravens.com/team/depth-chart	chart was fetched 2026-11-14, after Lamar Jackson was placed on IR on 2026-11-05
+BAL	Offense	RB	1. Derrick Henry | 2. Justice Hill | 3. Rasheen Ali	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	DT	1. Nnamdi Madubuike | 2. Broderick Washington Jr.	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	NT	1. Travis Jones | 2. John Jenkins	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	DE	1. Calais Campbell | 2. Aeneas Peebles	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	RUSH	1. Trey Hendrickson | 2. Mike Green	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	MLB	1. Roquan Smith | 2. Jay Higgins IV	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	WLB	1. Trenton Simpson | 2. Teddye Buchanan	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	SAM	1. Mike Green | 2. Zion Young | 3. Ethan Burke	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	CB	1. Marlon Humphrey | 2. Chidobe Awuzie	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	DB	1. Kyle Hamilton | 2. Keyon Martin | 3. Chandler Rivers	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	SS	1. Jaylinn Hawkins | 2. Keondre Jackson	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	FS	1. Malaki Starks | 2. K'Von Wallace	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed
+BAL	Defense	CB	1. Nate Wiggins | 2. T.J. Tampa Jr.	https://www.baltimoreravens.com/team/depth-chart	no unofficial label printed

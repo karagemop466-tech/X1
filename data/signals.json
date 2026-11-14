@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Candidate signal register",
+    "note": "Hypotheses with named falsifiers. None has been tested; no result is claimed."
+  },
+  "signals": [
+    {
+      "id": "SIG-01",
+      "family": "Opponent-adjusted efficiency",
+      "hypothesis": "Opponent-adjusted, sequentially-updated efficiency predicts spread/total outcomes better than raw yards.",
+      "falsifier": "No out-of-sample log-loss improvement over a neutral baseline.",
+      "data": "Licensed play-by-play",
+      "status": "hypothesis",
+      "source": "https://operations.nfl.com/gameday/technology/nfl-next-gen-stats/"
+    },
+    {
+      "id": "SIG-02",
+      "family": "Availability shock",
+      "hypothesis": "Officially listed starters being ruled Out moves the fair line by more than the market adjusts, net of margin.",
+      "falsifier": "Effect disappears once the closing quote is used, or fails leave-one-team-out.",
+      "data": "Official injury report (held) + closing quotes (Q-02)",
+      "status": "partially computable - description side held, price side blocked",
+      "source": "https://www.nfl.com/injuries/league/2026/reg10"
+    },
+    {
+      "id": "SIG-03",
+      "family": "Depth fragility",
+      "hypothesis": "Clubs already running high snap-share concentration on non-starters degrade faster when another starter is lost.",
+      "falsifier": "Snap-share concentration adds no predictive power conditional on availability.",
+      "data": "Licensed snap counts (Q-04)",
+      "status": "blocked",
+      "source": "https://www.buffalobills.com/team/depth-chart"
+    },
+    {
+      "id": "SIG-04",
+      "family": "Rest and travel",
+      "hypothesis": "Short-week and cross-country travel have a small but persistent effect on totals and second-half scoring.",
+      "falsifier": "Effect vanishes under venue fixed effects.",
+      "data": "Official schedule + venues",
+      "status": "hypothesis",
+      "source": "https://www.nfl.com/schedules/2026/REG/week/10/"
+    },
+    {
+      "id": "SIG-05",
+      "family": "Officiating crew tendency",
+      "hypothesis": "Penalty rate and total-spot discipline persist per crew year over year.",
+      "falsifier": "No year-to-year persistence above chance.",
+      "data": "Official game books",
+      "status": "hypothesis",
+      "source": "https://operations.nfl.com/the-rules/nfl-rulebook/"
+    },
+    {
+      "id": "SIG-06",
+      "family": "Weather",
+      "hypothesis": "Sustained wind suppresses totals more than precipitation does.",
+      "falsifier": "No conditional effect after controlling for team tendencies.",
+      "data": "Venue + archived weather",
+      "status": "hypothesis",
+      "source": "https://www.nfl.com/schedules/2026/REG/week/10/"
+    },
+    {
+      "id": "SIG-07",
+      "family": "Market movement",
+      "hypothesis": "Price movement encodes information about availability before it is official.",
+      "falsifier": "n/a - benchmark discipline: this is a comparison series, never a model input.",
+      "data": "Licensed quote history (Q-02)",
+      "status": "benchmark only",
+      "source": "https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season"
+    }
+  ]
+}
