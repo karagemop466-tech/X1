@@ -1,6 +1,6 @@
 PATH,TOP,BYTES
 .github/workflows/data-refresh.yml,.github,5119
-.github/workflows/pages.yml,.github,5666
+.github/workflows/pages.yml,.github,6003
 .github/workflows/pipeline.yml,.github,1792
 .github/workflows/verify.yml,.github,3185
 .gitignore,.gitignore,481
@@ -69,7 +69,7 @@ console/prices.html,console,145592
 console/props.html,console,4822
 console/questions.html,console,16596
 console/repo-review.html,console,12501
-console/requirements.html,console,6912
+console/requirements.html,console,6981
 console/results.html,console,248092
 console/schedule.html,console,12066
 console/sources.html,console,8413
@@ -426,7 +426,7 @@ src/x1/strategies.py,src,25831
 tools/build_app.py,tools,98344
 tools/build_audit_registers.py,tools,57316
 tools/build_availability.py,tools,5505
-tools/build_console.py,tools,101391
+tools/build_console.py,tools,101537
 tools/build_deficiency.py,tools,7464
 tools/build_site.py,tools,114786
 tools/check_links.py,tools,20747
