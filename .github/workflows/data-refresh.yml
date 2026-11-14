@@ -1,0 +1,83 @@
+name: data-refresh
+
+# Collects every dataset from its official source with no manual input, commits
+# the result, and rebuilds/publishes the GitHub Pages site.
+
+on:
+  schedule:
+    # Injury reports move most on Wed/Thu/Fri and on game mornings.
+    - cron: "17 11,15,19,23 * * *"   # every 6 hours (UTC)
+    - cron: "42 12,16 * 3-11,0"      # extra pass on game days (Sun/Mon/Thu)
+  workflow_dispatch:
+    inputs:
+      skip_pages:
+        description: "Skip the Pages rebuild"
+        type: boolean
+        default: false
+  push:
+    branches: ['**']
+    paths:
+      - 'pipeline/**'
+      - '.github/workflows/data-refresh.yml'
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run the official-source pipeline
+        run: python3 -m pipeline
+
+      - name: Verify row-level source coverage
+        run: python3 scripts/verify_data.py || true
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "x1-bot"
+          git config user.email "x1-bot@users.noreply.github.com"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git add data
+          if git diff --cached --quiet; then
+            echo "no data change"
+          else
+            git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Build Pages artifact
+        if: ${{ github.event.inputs.skip_pages != 'true' }}
+        id: build
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: ${{ github.event.inputs.skip_pages != 'true' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: ${{ github.event.inputs.skip_pages != 'true' }}
+    needs: collect
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
