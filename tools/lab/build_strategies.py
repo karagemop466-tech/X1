@@ -481,6 +481,7 @@ def main() -> int:
             "gates": gates,
             "gates_passed": passed, "gates_failed": failed, "gates_blocked": blocked,
             "demotion": dem,
+            "ticket_games": sorted({b["game_id"].split("+")[0] for b in bets}),
             "status": "live" if live else ("paper" if sm.get("n", 0) else "untested"),
             "status_reason": (
                 "passes every gate that can be evaluated" if live else
