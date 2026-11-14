@@ -59,6 +59,27 @@ NT = 32
 # relocation aliases in historical data
 ALIAS = {"OAK": "LV"}
 
+# T12 (owner's brief): "Originate the side first, then the total, then the
+# moneyline." The origination order is a pre-registered contract: the side
+# (spread) is computed before the total, and the moneyline — derived from the
+# side's win probability — is computed last. The emitted column order must
+# match this order (asserted at write time).
+ORIGINATION_ORDER = ("side", "total", "moneyline")
+
+
+def implied_prob_american(odds: float) -> float:
+    """American odds -> raw implied probability (vig included).
+
+    Used only to express the moneyline difference as probability points:
+    edge = model probability - raw market-implied probability. The vig the
+    book embeds is inside the market side of the difference and is named as
+    such wherever the value is published.
+    """
+    o = float(odds)
+    if o >= 0:
+        return 100.0 / (o + 100.0)
+    return -o / (-o + 100.0)
+
 
 def load_games():
     with open(GAMES, newline="", encoding="utf-8") as fh:
@@ -297,30 +318,63 @@ def main():
     hfa = mfin["HOFF"]
 
     # ---------------- originate Week 10 lines -------------------------------
+    # T12 contract: SIDE first, then TOTAL, then MONEYLINE (ORIGINATION_ORDER).
     wk10 = [g for g in all_games if g["season"] == "2026" and g["week"] == 10]
     lines = []
     for g in sorted(wk10, key=lambda x: x["gameday"]):
         neutral = g["location"] == "Neutral"
         hp, ap = predict(mfin, g["home"], g["away"], neutral=neutral)
         margin_hat = hp - ap; total_hat = hp + ap
-        # away-team spread (convention verified vs market: spread = predicted home margin)
+
+        # -- 1) SIDE (spread): the signed game line, home-margin convention
+        #    (positive = home favored, numerically identical to the away-team
+        #    handicap; verified against the moneyline favorite below).
         away_spread = margin_hat
         away_spread_r = round(away_spread * 2) / 2
-        total_r = round(total_hat * 2) / 2
+        # side win probability — belongs to the side, computed here, reused by
+        # the moneyline phase (the moneyline is DERIVED from the side, never
+        # the other way round).
         p_home = 0.5 * (1 + math.erf((margin_hat) / (sd_spread * math.sqrt(2))))
+
+        # -- 2) TOTAL
+        total_r = round(total_hat * 2) / 2
         p_over = 0.5 * (1 + math.erf((total_r - total_hat) / (sd_total * math.sqrt(2))))
+
+        # -- 3) MONEYLINE (fair price from the side probability, then the
+        #    market benchmark, then the difference as its own column).
         ml_home = american_ml(p_home); ml_away = american_ml(1 - p_home)
         mkt = None
         if g["spread_line"]:
             mkt = (float(g["spread_line"]), float(g["total_line"]))
+        mkt_ml_away = float(g["away_ml"]) if g["away_ml"] else None
+        mkt_ml_home = float(g["home_ml"]) if g["home_ml"] else None
+        # difference = model probability - raw market-implied probability
+        # (percentage points, vig included on the market side).
+        edge_ml_away = (round(((1 - p_home) - implied_prob_american(mkt_ml_away)) * 100, 1)
+                        if mkt_ml_away is not None else "")
+        edge_ml_home = (round((p_home - implied_prob_american(mkt_ml_home)) * 100, 1)
+                        if mkt_ml_home is not None else "")
+
         lines.append({
             "game_id": g["game_id"], "date": g["gameday"], "away": g["away"], "home": g["home"],
             "neutral": "Y" if neutral else "",
+            # fair line (model)
             "x1_spread_away": away_spread_r, "x1_total": total_r,
             "x1_ml_away": ml_away, "x1_ml_home": ml_home,
+            # market line (third-party benchmark, never official — F-06)
             "market_spread_away": mkt[0] if mkt else "", "market_total": mkt[1] if mkt else "",
+            "market_ml_away": (int(mkt_ml_away) if mkt_ml_away is not None
+                               and mkt_ml_away == int(mkt_ml_away)
+                               else (mkt_ml_away if mkt_ml_away is not None else "")),
+            "market_ml_home": (int(mkt_ml_home) if mkt_ml_home is not None
+                               and mkt_ml_home == int(mkt_ml_home)
+                               else (mkt_ml_home if mkt_ml_home is not None else "")),
+            # difference (market - model for spread/total in pts; model - market
+            # implied for moneyline in probability points)
             "edge_spread_away": round(mkt[0] - away_spread_r, 1) if mkt else "",
             "edge_total": round(total_r - mkt[1], 1) if mkt else "",
+            "edge_ml_prob_away": edge_ml_away,
+            "edge_ml_prob_home": edge_ml_home,
             "played": "Y" if g["home_pts"] != "" else "",
             "result": f"{g['away_pts']}-{g['home_pts']}" if g["home_pts"] != "" else "",
             "model_input": f"ratings fitted on {len(final_rows)} game-results rows "
@@ -424,7 +478,13 @@ def main():
         "hfa_points_final_fit": round(hfa, 2),
         "residual_sd_spread": round(sd_spread, 2),
         "residual_sd_total": round(sd_total, 2),
-        "spread_line_convention": "away-team spread; negative = away favorite (verified vs ML on %d games)" % checked,
+        "spread_line_convention": "signed game line; positive = home favored, "
+                                  "negative = away favored (numerically identical to the "
+                                  "away-team handicap; verified vs ML favorite on %d games)"
+                                  % checked,
+        "origination_order": list(ORIGINATION_ORDER),
+        "moneyline_difference": "edge_ml_prob_* = model probability - raw market-implied "
+                                "probability, percentage points, vig included on the market side",
         "bet_thresholds": {"spread_pts": 1.0, "total_pts": 2.0},
         "price_assumption": "flat -110 (win +0.909 units, loss -1)",
         "data_source": "nflverse/nfldata games.csv (https://github.com/nflverse/nfldata)",
@@ -469,12 +529,25 @@ def main():
         for b in betlog:
             w_.writerow(b)
 
+    # T12 write-time contract: within each of the fair / market / difference
+    # column groups, the side columns precede the total columns, which precede
+    # the moneyline columns — side first, then total, then moneyline.
+    LINE_FIELDS = ["game_id", "date", "away", "home", "neutral",
+                   "x1_spread_away", "x1_total", "x1_ml_away", "x1_ml_home",
+                   "market_spread_away", "market_total",
+                   "market_ml_away", "market_ml_home",
+                   "edge_spread_away", "edge_total",
+                   "edge_ml_prob_away", "edge_ml_prob_home",
+                   "played", "result", "model_input"]
+    for group in (("x1_spread_away", "x1_total", "x1_ml_away"),
+                  ("market_spread_away", "market_total", "market_ml_away"),
+                  ("edge_spread_away", "edge_total", "edge_ml_prob_away")):
+        idx = [LINE_FIELDS.index(c) for c in group]
+        assert idx == sorted(idx), f"origination order violated in {group}"
+    assert ORIGINATION_ORDER == ("side", "total", "moneyline")
+
     with open(os.path.join(OUT, "originated_lines_2026_week10.csv"), "w", newline="") as fh:
-        w_ = csv.DictWriter(fh, fieldnames=["game_id", "date", "away", "home", "neutral",
-                                            "x1_spread_away", "x1_total", "x1_ml_away",
-                                            "x1_ml_home", "market_spread_away", "market_total",
-                                            "edge_spread_away", "edge_total", "played", "result",
-                                            "model_input"])
+        w_ = csv.DictWriter(fh, fieldnames=LINE_FIELDS)
         w_.writeheader()
         for row in lines:
             w_.writerow(row)
@@ -520,6 +593,9 @@ def main():
               f"{' [N]' if row['neutral'] else ''}: X1 {row['x1_spread_away']:+.1f} | total {row['x1_total']:.1f}"
               f" | mkt {row['market_spread_away']} / {row['market_total']}"
               f" | edge_away {row['edge_spread_away']}/total {row['edge_total']}"
+              f" | ML fair {row['x1_ml_away']}/{row['x1_ml_home']}"
+              f" mkt {row['market_ml_away']}/{row['market_ml_home']}"
+              f" diff {row['edge_ml_prob_away']}/{row['edge_ml_prob_home']}pp"
               + (f" | FINAL {row['result']}" if row['played'] else ""))
     print("\nBacktest MAE spread %.2f / total %.2f | HFA %.2f | sd_spread %.2f sd_total %.2f"
           % (sum(abs(x) for x in residuals_spread) / len(residuals_spread),

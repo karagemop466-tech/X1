@@ -131,3 +131,36 @@ strategies must clear a materially higher skill bar to be worth anything.
 
 Those "No" rows are the real work queue, and they are listed as open decisions in the
 Decision Register rather than papered over.
+
+## 8. Origination order and the three-column publish rule (T12/T13)
+
+**Order (pre-registered):** the **side first, then the total, then the moneyline**
+(`ORIGINATION_ORDER` in `code/build_lines.py`, asserted against the emitted column order at
+write time). The order is not cosmetic: the moneyline is *derived* from the side's win
+probability `p_home`, so originating it before the side would mean pricing it from something
+other than our own line. The total is computed between the two because it depends on neither.
+
+**Publish rule:** for every market we originate, three values ship as three separate columns —
+never merged, never only-difference:
+
+| Market | Fair line (model) | Market line (benchmark) | Difference |
+|---|---|---|---|
+| Side / spread | `x1_spread_away` | `market_spread_away` | `edge_spread_away` (pts, market − model) |
+| Total | `x1_total` | `market_total` | `edge_total` (pts, model − market) |
+| Moneyline | `x1_ml_away`, `x1_ml_home` | `market_ml_away`, `market_ml_home` | `edge_ml_prob_away`, `edge_ml_prob_home` (percentage points, model probability − raw market-implied probability, vig included on the market side) |
+
+Conventions and caveats a reader must know:
+
+- The spread columns carry the **signed game line**: positive = home favoured, negative =
+  away favoured (nflverse `DATASETS.md`). This number is numerically identical to the
+  away-team handicap, which is why the legacy `…_away` column names survived; the name is a
+  cosmetic misnomer, recorded as a grey note for reviewers, not a data error.
+- Moneyline differences are in **probability points**, because a difference between two
+  American-odds numbers is not a measurable quantity. The market side of the difference is
+  the *raw implied* probability, vig included — it is not a de-vigged fair price, and no page
+  presents it as one.
+- Market lines are a **third-party benchmark** (nflverse mirror), never official: no NFL or
+  club source publishes betting prices (flag F-06, question Q-02). Blank market cells mean
+  the source published no line for that game; they are never filled.
+- Opening versus closing prices for these markets live in the price-snapshot store
+  (`docs/methodology/price-snapshots.md`), which is a separate file with its own tier rules.

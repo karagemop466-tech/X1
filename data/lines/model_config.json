@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T03:08:07.346999Z",
+  "generated": "2026-11-14T19:53:25.066230Z",
   "fit_seasons_backtest": [
     "2019",
     "2020",
@@ -15,7 +15,13 @@
   "hfa_points_final_fit": 0.69,
   "residual_sd_spread": 13.89,
   "residual_sd_total": 13.84,
-  "spread_line_convention": "away-team spread; negative = away favorite (verified vs ML on 5228 games)",
+  "spread_line_convention": "signed game line; positive = home favored, negative = away favored (numerically identical to the away-team handicap; verified vs ML favorite on 5228 games)",
+  "origination_order": [
+    "side",
+    "total",
+    "moneyline"
+  ],
+  "moneyline_difference": "edge_ml_prob_* = model probability - raw market-implied probability, percentage points, vig included on the market side",
   "bet_thresholds": {
     "spread_pts": 1.0,
     "total_pts": 2.0
