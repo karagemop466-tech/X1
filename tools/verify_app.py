@@ -76,7 +76,8 @@ def main() -> int:
                 if rel and not os.path.exists(full):
                     failures.append(f"{name}: internal link does not resolve -> {href}")
                 continue
-            full = os.path.normpath(os.path.join(APP, target))
+            base = ROOT if name == "root.html" else APP
+            full = os.path.normpath(os.path.join(base, target))
             if not os.path.exists(full):
                 failures.append(f"{name}: internal link does not resolve -> {href}")
 

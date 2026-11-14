@@ -60,7 +60,11 @@ jobs:
           # `/legacy-fourth-down.html` rather than being deleted.
           cp -r app _site/
           cp index.html _site/legacy-fourth-down.html
+          # The site root serves the unified landing page. It is the same file as
+          # app/index.html with same-folder links repointed into app/, so the two
+          # cannot drift apart and there is no redirect.
           cp app/index.html _site/index.html
+          sed -i -E 's#href="assets/#href="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
