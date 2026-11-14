@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T04:16:33+00:00",
+ "generated_at": "2026-11-14T04:21:45+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -10,9 +10,17 @@
    "status": "written",
    "rows": 345
   },
+  "depth_charts": {
+   "status": "written",
+   "rows": 1813
+  },
   "team_stats": {
    "status": "written",
    "rows": 288
+  },
+  "deficiency": {
+   "status": "written",
+   "rows": 897
   },
   "model_correlation": {
    "status": "written"
@@ -47,10 +55,6 @@
      "error": "HTTP 404 Not Found"
     }
    ]
-  },
-  {
-   "dataset": "deficiency",
-   "error": "missing depth chart or injury input"
   }
  ],
  "teams_resolved": [
@@ -93,5 +97,5 @@
    "count": 32
   }
  ],
- "finished_at": "2026-11-14T04:16:46+00:00"
+ "finished_at": "2026-11-14T04:21:59+00:00"
 }

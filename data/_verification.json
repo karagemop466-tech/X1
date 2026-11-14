@@ -21,10 +21,10 @@
   },
   {
    "dataset": "deficiency",
-   "rows": 391,
+   "rows": 897,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 1268,
+   "null_cells": 2847,
    "problems": [
     "deficiency[0] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[1] null field 'replacement_game_status' not declared in _unverified",
@@ -32,11 +32,11 @@
     "deficiency[3] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[4] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[5] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[6] null field 'replacement' not declared in _unverified",
+    "deficiency[6] null field 'replacement_depth' not declared in _unverified",
     "deficiency[6] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[7] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[8] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[9] null field 'replacement' not declared in _unverified",
-    "deficiency[9] null field 'replacement_depth' not declared in _unverified",
     "deficiency[9] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[10] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[11] null field 'replacement_game_status' not declared in _unverified",
@@ -44,17 +44,17 @@
     "deficiency[13] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[14] null field 'replacement_game_status' not declared in _unverified",
     "deficiency[15] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[17] null field 'replacement' not declared in _unverified",
-    "deficiency[17] null field 'replacement_depth' not declared in _unverified"
+    "deficiency[16] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[17] null field 'replacement_game_status' not declared in _unverified"
    ],
    "ok": false
   },
   {
    "dataset": "depth_charts",
-   "rows": 997,
+   "rows": 1813,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 0,
+   "null_cells": 61,
    "problems": [],
    "ok": true
   },
@@ -155,14 +155,14 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 55,
+   "rows": 56,
    "rows_missing_source": 0,
-   "rows_non_official_source": 55,
+   "rows_non_official_source": 56,
    "null_cells": 0,
    "problems": [
     "repo_review[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/_ci/pipeline.log",
-    "repo_review[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/_run_report.json",
-    "repo_review[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/club_registry.json"
+    "repo_review[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/club_registry.json",
+    "repo_review[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/correlations.json"
    ],
    "ok": false
   },
