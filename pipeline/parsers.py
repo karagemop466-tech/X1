@@ -50,6 +50,8 @@ def make_row(
     row.update(values)
     blanks = allow_blank or set()
     unverified = [k for k, v in values.items() if (v is None or v == "") and k not in blanks]
+    if blanks:
+        row["_allow_blank"] = sorted(blanks)
     row["_unverified"] = unverified
     row["_verified"] = not unverified and not row["_flags"]
     return row

@@ -41,7 +41,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -63,7 +69,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -85,7 +97,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -107,7 +125,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -129,7 +153,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -151,7 +181,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -173,7 +209,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -195,7 +237,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -217,7 +265,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -239,7 +293,13 @@
    "clv": "",
    "t_stat": "",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "clv",
+    "graded_bets",
+    "roi",
+    "t_stat"
+   ]
   }
  ],
  "verification": {

@@ -31,7 +31,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -47,7 +50,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -63,7 +69,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -79,7 +88,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -95,7 +107,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -111,7 +126,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -127,7 +145,10 @@
    "status": "Partially implemented — needs a market price feed (see Q-02)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -143,7 +164,10 @@
    "status": "Partially implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -159,7 +183,10 @@
    "status": "Implemented (scaffold)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -175,7 +202,10 @@
    "status": "Blocked — reward rules undefined (see Q-09)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -191,7 +221,10 @@
    "status": "Partially implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -207,7 +240,10 @@
    "status": "Implemented (gates defined, no strategy has passed yet)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -223,7 +259,10 @@
    "status": "Implemented for team-stat pairs; player/market pairs blocked",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -239,7 +278,10 @@
    "status": "Implemented (gates + skill tests defined)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -255,7 +297,10 @@
    "status": "Implemented (official NFL injury report, scheduled refresh)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -271,7 +316,10 @@
    "status": "Implemented for clubs whose official depth chart is reachable (see Flagged for Review)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -287,7 +335,10 @@
    "status": "Implemented (same mechanism)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -303,7 +354,10 @@
    "status": "Implemented (site home page)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -319,7 +373,10 @@
    "status": "Implemented (scheduled GitHub Actions refresh)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -335,7 +392,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -351,7 +411,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -367,7 +430,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -383,7 +449,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -399,7 +468,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -415,7 +487,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -431,7 +506,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -447,7 +525,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -463,7 +544,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -479,7 +563,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -495,7 +582,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -511,7 +601,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -527,7 +620,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -543,7 +639,10 @@
    "status": "Not implemented — this session is pinned to one branch by the harness; logged for review (see F-01)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -559,7 +658,10 @@
    "status": "Implemented (change-request section exists, currently empty)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -575,7 +677,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -591,7 +696,10 @@
    "status": "Implemented (no conflicts hit so far)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -607,7 +715,10 @@
    "status": "In progress",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -623,7 +734,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -639,7 +753,10 @@
    "status": "Implemented — this session is the only session, so it also acts as the integration session",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -655,7 +772,10 @@
    "status": "Implemented (handoff section exists)",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -671,7 +791,10 @@
    "status": "Pending",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -687,7 +810,10 @@
    "status": "Pending",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -703,7 +829,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -719,7 +848,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -735,7 +867,10 @@
    "status": "Implemented",
    "acceptance": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "acceptance"
+   ]
   }
  ],
  "verification": {

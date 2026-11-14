@@ -43,7 +43,10 @@
    "decision_status": "Proposed — awaiting decision (blocked by Q-02)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -65,7 +68,10 @@
    "decision_status": "Proposed — awaiting decision (blocked by Q-04)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -87,7 +93,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -109,7 +118,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -131,7 +143,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -153,7 +168,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -175,7 +193,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -197,7 +218,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -219,7 +243,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -241,7 +268,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -263,7 +293,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -285,7 +318,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -307,7 +343,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -329,7 +368,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -351,7 +393,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -373,7 +418,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -395,7 +443,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -417,7 +468,10 @@
    "decision_status": "Implemented (no decision needed)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -439,7 +493,10 @@
    "decision_status": "Proposed — awaiting decision",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -461,7 +518,10 @@
    "decision_status": "Proposed — awaiting decision (blocked by Q-26)",
    "owner": "",
    "_unverified": [],
-   "_verified": true
+   "_verified": true,
+   "_allow_blank": [
+    "owner"
+   ]
   }
  ],
  "verification": {

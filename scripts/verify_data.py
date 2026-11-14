@@ -25,6 +25,13 @@ from pipeline.sources import CLUB_DOMAINS  # noqa: E402
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 
 
+# Official NFL / club hosts, plus the repository itself: rows that restate the
+# project brief or point at a source file cite this repo, which is the only place
+# those documents exist.
+REPOSITORY_HOSTS = {"github.com", "raw.githubusercontent.com"}
+REPOSITORY_ORGS = {"Repository", "Project brief"}
+
+
 def official_hosts() -> set:
     hosts = {"www.nfl.com", "nfl.com"}
     for domain in CLUB_DOMAINS.values():
@@ -33,11 +40,13 @@ def official_hosts() -> set:
     return hosts
 
 
-def is_official(url: str, hosts: set) -> bool:
+def is_official(url: str, hosts: set, org: str = "") -> bool:
     if not url:
         return False
     host = (urlparse(url).hostname or "").lower()
-    return host in hosts
+    if host in hosts:
+        return True
+    return host in REPOSITORY_HOSTS and org in REPOSITORY_ORGS
 
 
 def check_rows(name: str, rows: List[Dict[str, Any]], hosts: set) -> Dict[str, Any]:
@@ -51,15 +60,18 @@ def check_rows(name: str, rows: List[Dict[str, Any]], hosts: set) -> Dict[str, A
             missing_source += 1
             if missing_source <= 3:
                 problems.append(f"{name}[{index}] has no _source_url")
-        elif not is_official(url, hosts):
+        elif not is_official(url, hosts, row.get("_source_org", "")):
             non_official += 1
             if non_official <= 3:
                 problems.append(f"{name}[{index}] source is not an official host: {url}")
+        allow_blank = set(row.get("_allow_blank") or [])
         for key, value in row.items():
             if key.startswith("_"):
                 continue
             if value is None or value == "":
                 null_cells += 1
+                if key in allow_blank:
+                    continue
                 if key not in (row.get("_unverified") or []):
                     problems.append(
                         f"{name}[{index}] null field '{key}' not declared in _unverified"

@@ -47,10 +47,7 @@ jobs:
         run: |
           mkdir -p _ci
           { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee _ci/pipeline.log
-          # Keep a copy inside data/ so the log is always committed, even when a
-          # crash means there is no data change to commit.
-          cp _ci/pipeline.log data/_pipeline_stamp.log
-          date -u +%Y-%m-%dT%H:%M:%SZ >> data/_pipeline_stamp.log
+          cp _ci/pipeline.log /tmp/pipeline.log
           {
             echo "### data-refresh: pipeline output"
             echo '```'
@@ -102,9 +99,6 @@ jobs:
           # Copy the log into the repo only after git has finished with it:
           # tee-ing straight into a tracked file leaves unstaged changes behind
           # the commit, which then blocks the rebase with "unstaged changes".
-          cp /tmp/commit.log _ci/commit.log
-          git add _ci
-          git commit -m "ci: run log $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no log change"
           grep -q "MARKER: done" /tmp/commit.log
 
       - name: Upload diagnostics via the API

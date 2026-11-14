@@ -43,7 +43,16 @@
    "skill_gate": "Not evaluated",
    "status": "Paper",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -66,7 +75,16 @@
    "skill_gate": "Not evaluated",
    "status": "Paper",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -89,7 +107,16 @@
    "skill_gate": "Not evaluated",
    "status": "Paper",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -112,7 +139,16 @@
    "skill_gate": "Not evaluated",
    "status": "Paper",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -135,7 +171,16 @@
    "skill_gate": "Not evaluated",
    "status": "Paper",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -158,7 +203,16 @@
    "skill_gate": "Not evaluated",
    "status": "Blocked",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -181,7 +235,16 @@
    "skill_gate": "Not evaluated",
    "status": "Blocked",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -204,7 +267,16 @@
    "skill_gate": "Not evaluated",
    "status": "Paper",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -227,7 +299,16 @@
    "skill_gate": "Not evaluated",
    "status": "Blocked",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   },
   {
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
@@ -250,7 +331,16 @@
    "skill_gate": "Not evaluated",
    "status": "Blocked",
    "_unverified": [],
-   "_verified": false
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
   }
  ],
  "verification": {

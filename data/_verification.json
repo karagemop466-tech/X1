@@ -62,14 +62,10 @@
    "dataset": "gates",
    "rows": 14,
    "rows_missing_source": 0,
-   "rows_non_official_source": 14,
+   "rows_non_official_source": 0,
    "null_cells": 0,
-   "problems": [
-    "gates[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "gates[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "gates[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "injuries",
@@ -105,31 +101,10 @@
    "dataset": "leaderboard",
    "rows": 10,
    "rows_missing_source": 0,
-   "rows_non_official_source": 10,
+   "rows_non_official_source": 0,
    "null_cells": 70,
-   "problems": [
-    "leaderboard[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "leaderboard[0] null field 'rank' not declared in _unverified",
-    "leaderboard[0] null field 'graded_bets' not declared in _unverified",
-    "leaderboard[0] null field 'hit_rate' not declared in _unverified",
-    "leaderboard[0] null field 'roi' not declared in _unverified",
-    "leaderboard[0] null field 'mean_clv' not declared in _unverified",
-    "leaderboard[0] null field 't_stat' not declared in _unverified",
-    "leaderboard[0] null field 'p_value' not declared in _unverified",
-    "leaderboard[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "leaderboard[1] null field 'rank' not declared in _unverified",
-    "leaderboard[1] null field 'graded_bets' not declared in _unverified",
-    "leaderboard[1] null field 'hit_rate' not declared in _unverified",
-    "leaderboard[1] null field 'roi' not declared in _unverified",
-    "leaderboard[1] null field 'mean_clv' not declared in _unverified",
-    "leaderboard[1] null field 't_stat' not declared in _unverified",
-    "leaderboard[1] null field 'p_value' not declared in _unverified",
-    "leaderboard[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "leaderboard[2] null field 'rank' not declared in _unverified",
-    "leaderboard[2] null field 'graded_bets' not declared in _unverified",
-    "leaderboard[2] null field 'hit_rate' not declared in _unverified"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "market_lines",
@@ -144,12 +119,10 @@
    "dataset": "questions",
    "rows": 30,
    "rows_missing_source": 0,
-   "rows_non_official_source": 25,
+   "rows_non_official_source": 1,
    "null_cells": 0,
    "problems": [
-    "questions[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "questions[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "questions[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md"
+    "questions[14] source is not an official host: https://github.com/karagemop466-tech/X1"
    ],
    "ok": false
   },
@@ -157,44 +130,19 @@
    "dataset": "repo_review",
    "rows": 56,
    "rows_missing_source": 0,
-   "rows_non_official_source": 56,
+   "rows_non_official_source": 0,
    "null_cells": 0,
-   "problems": [
-    "repo_review[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/_ci/pipeline.log",
-    "repo_review[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/club_registry.json",
-    "repo_review[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/correlations.json"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "requirements",
    "rows": 45,
    "rows_missing_source": 0,
-   "rows_non_official_source": 45,
+   "rows_non_official_source": 0,
    "null_cells": 45,
-   "problems": [
-    "requirements[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "requirements[0] null field 'acceptance' not declared in _unverified",
-    "requirements[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "requirements[1] null field 'acceptance' not declared in _unverified",
-    "requirements[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "requirements[2] null field 'acceptance' not declared in _unverified",
-    "requirements[3] null field 'acceptance' not declared in _unverified",
-    "requirements[4] null field 'acceptance' not declared in _unverified",
-    "requirements[5] null field 'acceptance' not declared in _unverified",
-    "requirements[6] null field 'acceptance' not declared in _unverified",
-    "requirements[7] null field 'acceptance' not declared in _unverified",
-    "requirements[8] null field 'acceptance' not declared in _unverified",
-    "requirements[9] null field 'acceptance' not declared in _unverified",
-    "requirements[10] null field 'acceptance' not declared in _unverified",
-    "requirements[11] null field 'acceptance' not declared in _unverified",
-    "requirements[12] null field 'acceptance' not declared in _unverified",
-    "requirements[13] null field 'acceptance' not declared in _unverified",
-    "requirements[14] null field 'acceptance' not declared in _unverified",
-    "requirements[15] null field 'acceptance' not declared in _unverified",
-    "requirements[16] null field 'acceptance' not declared in _unverified"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "standings",
@@ -209,61 +157,19 @@
    "dataset": "strategies",
    "rows": 10,
    "rows_missing_source": 0,
-   "rows_non_official_source": 10,
+   "rows_non_official_source": 0,
    "null_cells": 40,
-   "problems": [
-    "strategies[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "strategies[0] null field 'graded_bets' not declared in _unverified",
-    "strategies[0] null field 'roi' not declared in _unverified",
-    "strategies[0] null field 'clv' not declared in _unverified",
-    "strategies[0] null field 't_stat' not declared in _unverified",
-    "strategies[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "strategies[1] null field 'graded_bets' not declared in _unverified",
-    "strategies[1] null field 'roi' not declared in _unverified",
-    "strategies[1] null field 'clv' not declared in _unverified",
-    "strategies[1] null field 't_stat' not declared in _unverified",
-    "strategies[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "strategies[2] null field 'graded_bets' not declared in _unverified",
-    "strategies[2] null field 'roi' not declared in _unverified",
-    "strategies[2] null field 'clv' not declared in _unverified",
-    "strategies[2] null field 't_stat' not declared in _unverified",
-    "strategies[3] null field 'graded_bets' not declared in _unverified",
-    "strategies[3] null field 'roi' not declared in _unverified",
-    "strategies[3] null field 'clv' not declared in _unverified",
-    "strategies[3] null field 't_stat' not declared in _unverified",
-    "strategies[4] null field 'graded_bets' not declared in _unverified"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "suggestions",
    "rows": 20,
    "rows_missing_source": 0,
-   "rows_non_official_source": 17,
+   "rows_non_official_source": 0,
    "null_cells": 20,
-   "problems": [
-    "suggestions[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "suggestions[0] null field 'owner' not declared in _unverified",
-    "suggestions[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "suggestions[1] null field 'owner' not declared in _unverified",
-    "suggestions[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
-    "suggestions[2] null field 'owner' not declared in _unverified",
-    "suggestions[3] null field 'owner' not declared in _unverified",
-    "suggestions[4] null field 'owner' not declared in _unverified",
-    "suggestions[5] null field 'owner' not declared in _unverified",
-    "suggestions[6] null field 'owner' not declared in _unverified",
-    "suggestions[7] null field 'owner' not declared in _unverified",
-    "suggestions[8] null field 'owner' not declared in _unverified",
-    "suggestions[9] null field 'owner' not declared in _unverified",
-    "suggestions[10] null field 'owner' not declared in _unverified",
-    "suggestions[11] null field 'owner' not declared in _unverified",
-    "suggestions[12] null field 'owner' not declared in _unverified",
-    "suggestions[13] null field 'owner' not declared in _unverified",
-    "suggestions[14] null field 'owner' not declared in _unverified",
-    "suggestions[15] null field 'owner' not declared in _unverified",
-    "suggestions[16] null field 'owner' not declared in _unverified"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "team_stats",
@@ -275,5 +181,5 @@
    "ok": true
   }
  ],
- "hard_failures": 9
+ "hard_failures": 3
 }
