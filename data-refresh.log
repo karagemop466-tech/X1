@@ -1,0 +1,60 @@
+Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages (26.3)
+Collecting pypdf
+  Downloading pypdf-7.1.0-py3-none-any.whl.metadata (7.6 kB)
+Collecting numpy
+  Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Downloading pypdf-7.1.0-py3-none-any.whl (418 kB)
+Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 171.9 MB/s  0:00:00
+Installing collected packages: pypdf, numpy
+
+Successfully installed numpy-2.4.6 pypdf-7.1.0
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/X1/X1/src/nflx/pipeline.py", line 449, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/X1/X1/src/nflx/pipeline.py", line 413, in main
+    manifest["datasets"].append(collect_standings(fetcher, out_dir))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/X1/X1/src/nflx/pipeline.py", line 108, in collect_standings
+    records, provenance = collect_standings(
+                          ^^^^^^^^^^^^^^^^^^
+TypeError: collect_standings() takes 2 positional arguments but 4 were given
+[1/5] injury report
+  wrote data/nfl/injuries.json (129895 bytes)
+[2/5] standings
+collect_exit=1
+  wrote _site/index.html (15979 bytes)
+  wrote _site/pages/requirements.html (12134 bytes)
+  wrote _site/pages/questions.html (10927 bytes)
+  wrote _site/pages/strategies.html (24335 bytes)
+  wrote _site/pages/validation.html (12397 bytes)
+  wrote _site/pages/correlation.html (7292 bytes)
+  wrote _site/pages/availability.html (92133 bytes)
+  wrote _site/pages/suggestions.html (9203 bytes)
+  wrote _site/pages/review.html (7659 bytes)
+  wrote _site/pages/sources.html (13837 bytes)
+  copied /home/runner/work/X1/X1/assets/site.css -> _site/assets/site.css
+  copied data/nfl/correlation.json -> _site/data/correlation.json
+  copied data/nfl/depth.json -> _site/data/depth.json
+  copied data/nfl/injuries.json -> _site/data/injuries.json
+  copied data/nfl/player_stats_passing.json -> _site/data/player_stats_passing.json
+  copied data/nfl/player_stats_receiving.json -> _site/data/player_stats_receiving.json
+  copied data/nfl/player_stats_rushing.json -> _site/data/player_stats_rushing.json
+  copied data/nfl/standings.json -> _site/data/standings.json
+built 10 pages into _site
+build_exit=0
+Verifying _site
+========================================================================
+[PASS] site has pages - 10 page(s) found
+[PASS] every populated table row links to an official source - 0 row(s) without an official source link
+[PASS] every external link uses an allowed official host - 0 link(s) to a non-official host
+[PASS] every internal link resolves - 0 broken internal link(s)
+[PASS] no placeholder content - 0 placeholder marker(s)
+[PASS] every page is reachable from the landing page - 0 unreachable page(s)
+[PASS] no orphaned pages - 0 orphaned page(s)
+========================================================================
+7/7 checks passed
+verify_exit=0

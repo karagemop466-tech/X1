@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Correlations and joint probability — FOURTH DOWN</title>
+<meta name="description" content="Dependence between candidate legs, measured from official game data with sample sizes and confidence intervals - and, equally important, an explicit account of what cannot be measured.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">4D</span>
+    <span>FOURTH DOWN<small>NFL DECISION SUPPORT</small></span>
+  </a>
+  <nav>
+    <label>WORKSPACE</label>
+    <a href="../index.html">◈ &nbsp;Overview</a><a href="../pages/requirements.html">☰ &nbsp;Requirements</a><a href="../pages/questions.html">? &nbsp;Questions &amp; gaps</a><a href="../pages/strategies.html">◬ &nbsp;Strategies</a><a href="../pages/validation.html">✓ &nbsp;Validation gates</a><a class="active" href="../pages/correlation.html">∿ &nbsp;Correlations</a><a href="../pages/availability.html">＋ &nbsp;Injuries &amp; depth</a><a href="../pages/suggestions.html">✦ &nbsp;Suggestions</a><a href="../pages/review.html">⚑ &nbsp;Flagged for review</a><a href="../pages/sources.html">⛁ &nbsp;Sources</a>
+    
+  </nav>
+  <div class="rail-note">
+    <span class="dot"></span>
+    <p>Every published row links to the official source it came from. Unverified values are left blank and listed on the Flagged for review page.</p>
+  </div>
+  <footer>Evidence first. No invented inputs.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ CORRELATIONS</i></span>
+    <span class="asof">DATA AS OF unknown</span>
+  </header>
+  <section class="page-title">
+    <div class="eyebrow">CORRELATIONS</div>
+    <h1>Correlations and joint probability</h1>
+    <p>Dependence between candidate legs, measured from official game data with sample sizes and confidence intervals - and, equally important, an explicit account of what cannot be measured.</p>
+  </section>
+  <section class="content">
+<section class="block"><h2>Why correlations decide whether a parlay is a strategy</h2><div class="note note--info">Two legs that each look like 60% plays are a 36% parlay only if the legs are independent. If they move together the true probability is higher; if one suppresses the other it is lower. Pricing a parlay as a product of marginals is the most common way a multi-leg system silently loses money, which is why gate <b>G7</b> forbids a combination whose legs have not been measured.</div></section>
+<section class="block"><h2>Measured relationships</h2><div class="table-wrap"><table class="tbl"><caption class="tbl__cap">Measured correlations - 0 relationships computed from official game books</caption><thead><tr><th>ID</th><th>Relationship</th><th>Scope</th><th>r</th><th>CI low</th><th>CI high</th><th>n</th><th>Note</th><th>Source</th></tr></thead><tbody></tbody></table></div></section>
+<section class="block"><h2>Joint probability</h2><div class="table-wrap"><table class="tbl"><caption class="tbl__cap">Joint probability for two-leg combinations</caption><thead><tr><th>Leg pair</th><th>P(A)</th><th>P(B)</th><th>rho</th><th>P(A and B)</th><th>Independent P(A)P(B)</th><th>n</th><th>Note</th><th>Source</th></tr></thead><tbody><tr><td>Total points vs home point margin</td><td></td><td></td><td></td><td></td><td></td><td>0</td><td>Only 0 usable observation(s); the relationship cannot be measured from the current official sample.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">game book &#8599;</a></td></tr><tr><td>Visitor points vs home point margin</td><td></td><td></td><td></td><td></td><td></td><td>0</td><td>Only 0 usable observation(s); the relationship cannot be measured from the current official sample.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">game book &#8599;</a></td></tr><tr><td>Attendance vs total points</td><td></td><td></td><td></td><td></td><td></td><td>0</td><td>Only 0 usable observation(s); the relationship cannot be measured from the current official sample.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">game book &#8599;</a></td></tr></tbody></table></div></section>
+<section class="block"><h2>Relationships that cannot be measured yet</h2><div class="table-wrap"><table class="tbl"><caption class="tbl__cap">Unmeasured correlations - 4 relationships that cannot be computed from official data</caption><thead><tr><th>ID</th><th>Relationship</th><th>Scope</th><th>Value</th><th>Why it is unmeasured</th><th>Reference</th></tr></thead><tbody><tr><td><span class="id">strategy_vs_closing_line</span></td><td>Strategy result vs closing-line value</td><td>strategy</td><td><span class="muted">not measurable</span></td><td>Requires a licensed, timestamped opening-to-closing price history. The league publishes no such series, so no value is asserted and gate G5 cannot be evaluated.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">see note &#8599;</a></td></tr><tr><td><span class="id">strategy_vs_market_price</span></td><td>Strategy edge vs market-implied probability</td><td>strategy</td><td><span class="muted">not measurable</span></td><td>Requires a timestamped market-implied probability series matched to each decision. Not available from an official source, so no correlation is claimed.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">see note &#8599;</a></td></tr><tr><td><span class="id">player_prop_vs_team_total</span></td><td>Player prop outcome vs team total</td><td>prop</td><td><span class="muted">not measurable</span></td><td>The pairing is well defined, but a per-decision price is needed to turn the historical relationship into an edge. The historical relationship itself is measurable once the full game-book set is collected.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">see note &#8599;</a></td></tr><tr><td><span class="id">practice_status_vs_game_status</span></td><td>Practice participation vs game designation</td><td>availability</td><td><span class="muted">not measurable</span></td><td>The official report publishes both designations but no conversion table, and the league&#x27;s historical archive is not machine-readable in a citable form. No percentage conversion is asserted.</td><td><a class="src" href="https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener">see note &#8599;</a></td></tr></tbody></table></div></section>
+  </section>
+</main>
+</body>
+</html>

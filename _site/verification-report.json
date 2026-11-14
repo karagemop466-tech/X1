@@ -1,0 +1,51 @@
+[
+  {
+    "name": "site has pages",
+    "passed": true,
+    "detail": "10 page(s) found",
+    "failures": [],
+    "failure_count": 0
+  },
+  {
+    "name": "every populated table row links to an official source",
+    "passed": true,
+    "detail": "0 row(s) without an official source link",
+    "failures": [],
+    "failure_count": 0
+  },
+  {
+    "name": "every external link uses an allowed official host",
+    "passed": true,
+    "detail": "0 link(s) to a non-official host",
+    "failures": [],
+    "failure_count": 0
+  },
+  {
+    "name": "every internal link resolves",
+    "passed": true,
+    "detail": "0 broken internal link(s)",
+    "failures": [],
+    "failure_count": 0
+  },
+  {
+    "name": "no placeholder content",
+    "passed": true,
+    "detail": "0 placeholder marker(s)",
+    "failures": [],
+    "failure_count": 0
+  },
+  {
+    "name": "every page is reachable from the landing page",
+    "passed": true,
+    "detail": "0 unreachable page(s)",
+    "failures": [],
+    "failure_count": 0
+  },
+  {
+    "name": "no orphaned pages",
+    "passed": true,
+    "detail": "0 orphaned page(s)",
+    "failures": [],
+    "failure_count": 0
+  }
+]
