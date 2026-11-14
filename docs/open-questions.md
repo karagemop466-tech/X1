@@ -42,7 +42,7 @@ Purpose: a single, reviewable list of the questions, information, and answers th
 | Field | Content |
 |---|---|
 | Status | PARTIAL |
-| What we have | Game-level data only (scores, spreads, totals, weather). Player prop fair-line generation and **player-level correlation values are not computable yet** — flagged, not faked — [props-and-parlays.html](props-and-parlays.html) |
+| What we have | Game-level data only (scores, spreads, totals, weather). Player prop fair-line generation and **player-level correlation values are not computable yet** — flagged, not faked — [props-parlays.html](props-parlays.html) |
 | What's missing | Weekly play-by-play and/or official player stats (targets, carries, air yards, usage) for 2026 |
 | How to discover | nflverse weekly pbp release via GitHub Actions (nflverse-data releases), nflverse/ngs-data release, or NFL.com "Game Book" official PDFs per game; pick a source, verify one week against NFL.com box scores before use |
 | Blocks | Player-prop combos, same-game parlay correlation measurement, EPA-based ratings upgrade |

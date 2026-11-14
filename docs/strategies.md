@@ -39,7 +39,7 @@ Full table on [lines-model.html](lines-model.html). Largest disagreements: BUF@N
 ## 5. Bet-type handling
 
 - **Single bets**: the default. Every pick logged pre-kickoff with line, book, and strategy ID ([ledger spec](leaderboard.html)).
-- **Parlays**: allowed only between games; cross-game legs treated as independent per measured variance ratio (0.99). Correlation caps in [props-and-parlays.html](props-and-parlays.html). No same-game parlays until player-level correlations are measured.
+- **Parlays**: allowed only between games; cross-game legs treated as independent per measured variance ratio (0.99). Correlation caps in [props-parlays.html](props-parlays.html). No same-game parlays until player-level correlations are measured.
 - **Player props / prop combos**: blocked until play-by-play data exists (OQ-4). Fair lines need usage rates; guessing is prohibited.
 
 ## 6. What would make the model bettable (the runway)
