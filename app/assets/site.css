@@ -91,6 +91,8 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td.c{text-align:center;white-space:nowrap}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
 .blank{color:#b6c0cc}
+.n-tag{font-size:10px;color:#6b7684;font-style:italic}
+.n-tag.blank{color:#b6c0cc}
 .src{font-size:11px;white-space:nowrap}
 .src a{text-decoration:none}
 .src a:hover{text-decoration:underline}

@@ -118,46 +118,72 @@ pages.
 ## 8. Honest limitations of this release
 
 - The injury report and schedule are a **single-week snapshot** and will be stale within days.
-- Depth coverage is **31 of 32 clubs**; the last club's column is blank on purpose (F-03).
-- The results feed for weeks 1–10 was read page by page this round; the scheduled refresh does not
-  re-read it yet (Q-24, suggestion S-17) — a layout change on nfl.com would fail the new build
-  checks loudly rather than corrupt the feed quietly.
-- The market side of every line is blank. No official source publishes prices (Q-02/Q-19), so no
-  ROI, CLV or difference exists anywhere on this site — by rule, not by omission.
-- The signal grade (63.16% hit rate, z = 3.04) is measured on 133 decided games, well below the
-  500-bet G1 threshold; it is published as a measurement, not as a promotion.
-- Two in-repo models publish different Week 10 lines and neither has been designated the
-  origination of record (Q-23, F-19).
+- Depth coverage is **5 of 32 clubs**; the other 27 columns are blank on purpose.
+- One transcription error was found by our own gate. A second independent pass (suggestion S-10) is
+  the cheapest remaining trust improvement, and it has not been done.
+- Three other agent sessions touched this repository concurrently; their divergent boards are
+  preserved on their branches and the audit is on the Flagged page (F-07).
+- No model has been fit, so no claimed signal in the methodology section has been empirically
+  supported. They are hypotheses with named tests, which is what a hypothesis is supposed to be.
 
-## 9. What round 3 added
+---
 
-- **Verified results feed (requirement: verified results for backtests).** 137 completed 2026
-  games read line by line from the NFL's own by-week pages, each row carrying its game-page and
-  schedule-page links. Three checks run on every build: row diff against the league publishing
-  mirror (137/137, 0 mismatches), league-standing arithmetic (32/32 clubs), and a source-URL audit
-  that fails on any non-`nfl.com` link.
-- **Signal metric.** The walk-forward model's side pick graded against those results:
-  **84–49 (63.16%), z = 3.04, p = 0.0024** on 133 decided games (1 tie and 3 zero-line games
-  excluded and named). Outcome-only — no price, no stake, no return — because no official price
-  source exists.
-- **Price-snapshot store (requirement: opening and closing numbers).** 84 records covering every
-  market we originate × two stages. Our line is always recorded; the market line is blank and
-  flagged until Q-19 resolves; a stage not captured in time keeps its status rather than being
-  back-filled. The Week 10 Thursday game is marked post-hoc because the store went live after its
-  kickoff (F-14).
-- **Origination order + three columns (requirements: side → total → moneyline; fair / market /
-  difference as separate columns).** 42 rows, sequences asserted to be exactly 1, 2, 3 per game.
-  Difference = fair − market and stays blank while the market cell does.
-- **Signal/staking split (requirement: lucky staking cannot mask bad signal).** The leaderboard now
-  publishes two column groups; rank uses the signal group only, structurally. ST-11 (the model side
-  pick) carries a populated signal row and blank staking columns, below G1 threshold on purpose.
-- **Replacement depth (requirement: track depth, not just the fact).** The deficiency page now
-  shows how deep each replacement runs — 680 second-string, 8 third-string, none fourth-string —
-  plus the 16 starters on the report whose club chart names no next man (F-15, left unfilled).
-- **Correlations from official numbers only (requirement: official sources + publish n).** All 988
-  pairs audited on every build: integer n on every value (n = 32), p-value present, hosts limited
-  to `www.nfl.com`, violations = 0. Third-party mirror correlations are excluded and labelled.
-- **Demotion gate (requirement: live → paper).** Root gate **G8** with four pre-registered
-  triggers, an immediate paper-flip action, and re-entry only through a fresh window — thresholds
-  proposed, awaiting owner ratification (Q-21), inactive while nothing is live. Methodology:
-  `docs/methodology/demotion-gate.md`.
+# Executive Summary — second round addendum (2026-11-14, session `arena-1d3600f8-x1`)
+
+The first-round summary above is preserved verbatim. Several of its "deliberately not published"
+rows changed state this round — because the missing piece was built, not because the rule was
+relaxed.
+
+## What changed
+
+| First round said | Second round state |
+|---|---|
+| No results feed; ROI not computable | **Verified results feed now exists**: 137 settled 2026 games (Weeks 1–10 through TNF), every row sourced to its official nfl.com game page, double-entry checked against the official standings — 32/32 clubs match on PF/PA and W-L-T, league totals 6,291 = 6,291, zero mirror disagreements. ROI is now computed from official outcomes (`data/results/roi_summary.csv`): **nothing is positive at the assumed −110**; model spread MAE 10.05 pts on verified results. |
+| No price snapshots | **Price-snapshot store exists** (`data/price_snapshots/`): opening + closing capture slots for all 56 originated markets (14 games × side/total/moneyline), an append-only capture log, and a recorder tool. Opening quotes do not exist in any permitted source — blank and flagged (Q-02). Closing captures are the third-party mirror benchmark, labelled unverified on every row. |
+| Correlation values not published | **15 official-only correlations published** with n, r, permutation p, Fisher CI and row-level official sources (`data/analysis/correlations_official.csv`). Mirror-based values remain visible but quarantined as non-official reference. |
+| Leaderboard rankings withheld | The official-only board is still unranked (correct — no official prices yet), but the leaderboard now separates **signal from staking** (`data/leaderboard_signal_staking.csv`): final grade = min(signal, staking); 0 of 16 mirror-window strategies are rankable; a lucky staking run cannot mask a bad signal. |
+| Depth tracking = starter vs backup | **Depth of the replacement is now tracked and published**: of 189 on-report starters, replacements sit at 2nd string (168), 3rd string (3), or unreadable (18, flagged, never inferred). Per-team, per-unit, per-status aggregates with sources (`data/analysis/replacement_depth.json`). |
+| Demotion = one sentence | **Demotion gate G8 defined** (six mechanical triggers, action, re-entry, logging, authority; `data/gates.json`, `docs/methodology/demotion-gate.md`). D4/D5 switch on automatically when the price store gains captures. |
+
+## The standing honest position
+
+1. **The model is a screen, not a price.** On verified 2026 results nothing beats break-even at
+   −110. This is published, not hidden.
+2. **No official source publishes betting prices.** Every price cell is blank-and-flagged or
+   labelled third-party. Q-02 (a licensed price feed) remains the single highest-leverage decision
+   (suggestion S-A on the suggestion board).
+3. **Nothing is ranked on luck.** The min(signal, staking) rule and the G8 demotion gate are wired;
+   the board is honestly empty of promotable strategies.
+4. **Verification is double-entry.** Every new feed is cross-checked against an independent official
+   table; every table row on the site links to the page it came from (`tools/verify_app.py`: 5,784
+   rows, 0 unsourced).
+
+
+---
+
+# Executive Summary — third round addendum (2026-11-14, session `arena-600e6009-x1`)
+
+The second-round addendum above is preserved as written. This round adds what it uniquely
+produced; where the same requirement was built by a parallel round, both artefacts are kept and
+labelled rather than one being dropped.
+
+## What this round added
+
+| Requirement | This round's artefact | Relationship to the second round's |
+|---|---|---|
+| Verified results feed | Third independent transcription of all 137 finals (`data/results/_raw/reads.tsv` → `tools/build_results_r3.py`), three checks per build: row diff vs the publishing mirror (137/137, 0 mismatches), standings arithmetic (32/32), source-URL audit | Cross-checks the T16/N2 feeds rather than replacing them |
+| Signal metric (price-independent) | Model side pick vs official result: **84–49 (63.16%), z = 3.035, p = 0.0024, n = 133** (1 tie, 3 zero-line games excluded and named), baseline 0.50 stated because no price exists | Complementary: the round-2 ROI table grades against an assumed −110; this grade needs no price at all |
+| Price-snapshot store | 84 records (14 games × side/total/moneyline × open/close) with a capture-status vocabulary (`recorded`, `pending_kickoff`, `captured_post_final`, `not_captured_before_kickoff`) — a stage missed in time keeps its status, never a borrowed value | Same requirement, stricter rule: every market cell blank (no mirror close), statuses published on `app/snapshots.html` |
+| Origination order + three columns | 42 rows, sequences asserted to be exactly 1, 2, 3 per game (side → total → moneyline); fair / market / difference as separate columns, difference blank while market is | Coexists with `app/origination.html`; the assertion lives in `tools/build_origination.py --check` |
+| Signal / staking split | Official-basis board (`data/leaderboard_signal_staking_official.json`): ST-11 populated on signal only (n = 133), staking columns blank by rule, `rank_basis = signal_only` | Complements the mirror-basis T18 board; both are on `app/leaderboard.html` |
+| Replacement depth | Distribution view: 680 slots on the 2nd string, 8 on the 3rd, 0 on the 4th, plus 16 starters on the report whose club chart names no next man (F-15, left unfilled) | Complements the per-slot store on `app/replacement-depth.html` |
+| Official-only correlations | Audit of all 988 published pairs: integer n on every value (n = 32), p present, hosts limited to `www.nfl.com`, violations = 0, re-run on every build (`tools/build_round3.py --check`) | Independent check over the same discipline the round-2 15-pair table applies |
+| Demotion gate | Adopted round-2's G8 (six triggers, `docs/methodology/demotion-gate.md`) as the register of record — this round's proposed duplicate G8 was dropped in favour of the richer, active one | Nothing discarded: the stronger definition wins the path |
+| Decision registers | **Q-19…Q-24** (price feed for the snapshot store, close capture job, G8 ratification, signal baseline, origination of record, results refresh), **S-13…S-18** (six reviewable proposals), **F-14…F-19** (post-hoc Thursday captures, 16 unnamed replacements, 3 zero-line games, the tie, ARI/AZ alias, two-model disagreement) | Root registers were untouched by the earlier rounds; these are additive |
+
+## Still open after this round
+
+- **Q-19 / Q-02** — no official price source: market lines, differences, CLV and ROI stay blank everywhere, by rule.
+- **Q-21** — this round asked for explicit ratification of demotion thresholds; the register of record is round-2's G8 (D1–D6, `data/gates.json`), whose D4/D5 stay inactive until a price feed exists.
+- **Q-23** — two in-repo models publish different Week 10 lines; neither is designated the origination of record yet (F-19).
+- **Q-24 / S-17** — the results feed is verified but not yet re-read by the scheduled refresh.

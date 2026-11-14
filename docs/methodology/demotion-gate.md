@@ -1,82 +1,62 @@
-# Demotion gate — how a live strategy is sent back to paper
+# Demotion gate G8 — live back to paper (T21)
 
-**Register:** `data/gates.json` → gate **G8** · **Status:** defined, thresholds proposed,
-awaiting owner ratification (question **Q-21**) · **Proposed by:** session
-`arena-600e6009-x1`, round 3.
+**Session `arena-1d3600f8-x1` · 2026-11-14**
 
-Every other gate decides whether a strategy may *enter* the leaderboard. G8 is the only gate
-that decides when a strategy must **leave**. It exists because the leaderboard's whole premise
-is that only selectively skilled strategies get rewarded — and a strategy can be selectively
-skilled once and not later. Without an exit rule, a past result keeps earning on reputation.
+## What the owner asked for
 
----
+> Define a demotion gate that sends a live strategy back to paper.
 
-## Why an exit rule has to be pre-registered
+Before this gate existed, demotion was one sentence in the scoring rules ("two failed windows
+demote; no sitting on old results"). G8 makes it operational, mechanical, and logged.
 
-A demotion rule written *after* a strategy has gone live is not a rule, it is a negotiation.
-The thresholds below are therefore proposed in full, in public, before any strategy is live.
-They may be edited now, while nothing depends on them; after ratification they may only be
-changed with the change recorded and dated, never applied backwards to rescue a position.
+## Gate definition (machine-readable in `data/gates.json`, gate G8)
 
-## The triggers (any one, evaluated on every scheduled gate re-run)
+**Scope:** any strategy whose status is `live` (funded or paper-promoted).
 
-| # | Trigger | Rationale |
-|---|---|---|
-| 1 | Rolling **z < 1.0** over the most recent 100 graded bets | The signal has stopped being distinguishable from a coin flip on recent form. |
-| 2 | **Two consecutive** scheduled gate re-runs fail any blocking gate G0–G7 | The strategy no longer clears the bar it cleared to get in. |
-| 3 | **Median max drawdown > 25%** of bankroll while live (G5 breach in production) | Risk control that exists only in backtest is not risk control. |
-| 4 | **Mean CLV ≤ 0** over a 50-bet window | If our price is systematically worse than the closing number, we are the noise. |
+**Triggers — any ONE demotes:**
 
-Rolling windows (100 bets / 50 bets) are deliberate: they make the gate respond to *current*
-skill rather than to the lifetime average that got the strategy promoted, while still being
-wide enough that a single bad weekend cannot trigger a demotion on its own.
+| ID | Rule | Basis | Status |
+|---|---|---|---|
+| D1 | Two consecutive registered windows with negative flat-stake (signal-basis) ROI | signal block | active |
+| D2 | Rolling 300 settled bets: hit rate below break-even with z ≤ −1.96 | signal block | active |
+| D3 | Max drawdown > 25% of bankroll under the registered staking rule | staking block (live breach of G5) | active |
+| D4 | Mean CLV negative over the last 100 settled bets | price-snapshot store | **inactive until a price feed exists (Q-02)** — recorded now so it cannot be forgotten |
+| D5 | Brier skill score vs market-implied negative in two consecutive windows | G3 calibration in live | requires price feed (Q-02) |
+| D6 | Any G0 provenance violation (lookahead, unlicensed input, unlogged settlement rule) | G0 | active, fires immediately |
 
-## The action
+**Action (what demotion does):**
 
-On any trigger:
+* status `live → paper`, effective at the next settlement batch (immediately for D6);
+* open live positions settle normally; new positions at paper stakes only;
+* bankroll frozen: no additions or removals while demoted;
+* leaderboard shows `demoted` with the trigger id; the strategy cannot rank in live leaderboards;
+* every demotion is appended to `data/demotion_log.jsonl` (strategy, trigger, evidence, window,
+  timestamp). The log is currently **empty — no strategy is live** (all 16 graded strategies are
+  paper-only; see the signal/staking board).
 
-1. The strategy's status flips **live → paper** immediately.
-2. Staking stops — no further exposure while it is under review.
-3. The demotion is published on the leaderboard and the flagged page with the trigger that
-   fired, the window, and the numbers at demotion time.
-4. Re-entry requires a **fresh registered window** that passes G0–G7 again. The old sample
-   does not count toward the new window. A strategy may cycle live → paper more than once;
-   each cycle is recorded.
+**Re-entry (never automatic):**
 
-## What the gate does *not* do
+1. one full shadow window at paper stakes;
+2. pass gates G0–G7 again on the shadow window;
+3. one clean live-probation window before restored standing;
+4. the re-entry itself is recorded in the demotion log.
 
-- It does not touch the signal columns. Demotion is a **status** change; the measured signal
-  history stays published, because a demoted strategy's record is evidence about the gate as
-  much as about the strategy.
-- It does not react to ROI alone. ROI is signal × staking × price; a staking pattern can move
-  ROI without the signal changing, which is exactly why the leaderboard ranks on the signal
-  group only. Trigger 4 (CLV) and triggers 1–2 (signal z, gate re-run) are the signal-side
-  checks; trigger 3 (drawdown) is the risk-side check.
-- It does not fire today. No strategy is live, and the thresholds above are proposals until
-  Q-21 is answered. The gate is installed so that promotion has a defined exit before it has
-  a defined entry.
+**Authority:** mechanical — triggers fire without discretion. A manual override requires an owner
+note in `COORDINATION.md` with reasons.
 
-## Where it is enforced
+## Why these triggers and not others
 
-| Artefact | Role |
-|---|---|
-| `data/gates.json` → G8 | The register entry: triggers, action, cadence, ratification status |
-| `app/validation.html` | Published gate card (root register G8, labelled separately from the research-lab numbering) |
-| `app/leaderboard.html` | Signal/staking split the gate protects; demotions appear here |
-| `tools/build_round3.py` | Asserts no staking value can enter the signal ranking |
-| Question **Q-21** | Owner ratification of the four thresholds |
+* D1/D2 catch **bad signal** (the quantity that matters) on the flat-stake basis, so a lucky
+  staking run cannot postpone demotion — consistent with the signal/staking separation rule
+  (final grade = min(signal, staking)).
+* D3 catches **risk** even when the signal is fine.
+* D4/D5 catch **market-decay** — the ways a strategy can keep winning bets while losing value.
+  They are defined now and switch on the moment the price-snapshot store has real captures.
+* D6 is the integrity tripwire: a provenance violation invalidates everything downstream, so it
+  demotes immediately rather than at a window boundary.
 
-## Relationship to the other registers
+## Relationship to the other gates
 
-Three gate registers live in this repository and they are numbered independently:
-
-- **`data/gates.json` (root)** — G0–G8, the owner's register; G8 is this demotion gate.
-- **Research-lab gates** (G1–G8 in the methodology note `validation-gates.md`) — pre-registered
-  entry conditions for scoring: sample, leakage, significance, economics, baselines, luck
-  robustness, parameter stability, non-redundancy.
-- **Pipeline gates** (`data/pipeline/gates.json`, G-01…G-14) — the live-pipeline's own
-  machine-checked set.
-
-Same letters, different registers — each page that shows them says which register it is
-reading. G8-in-the-root-register is the demotion gate; the research lab's G8 is
-non-redundancy.
+G8 is the only gate that **moves a strategy between states**; G0–G7 decide whether it may enter.
+A demotion does not delete history: past windows stay on the board with their grades, and the
+demotion entry is part of the strategy's permanent record.

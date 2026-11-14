@@ -1,0 +1,20 @@
+# Official 2026 NFL regular-season results, Week 1 — transcribed line by line from
+# https://www.nfl.com/scores/2026/week-1 (the league's official scores page) on 2026-11-14.
+# First-listed club on the official page is the away club; "Winner Indicator" marks the winner.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL
+patriots-at-seahawks-2026-reg-1|1|NE|10|SEA|13|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1
+49ers-at-rams-2026-reg-1|1|SF|27|LAR|7|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/49ers-at-rams-2026-reg-1
+bears-at-panthers-2026-reg-1|1|CHI|59|CAR|37|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/bears-at-panthers-2026-reg-1
+buccaneers-at-bengals-2026-reg-1|1|TB|27|CIN|33|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/buccaneers-at-bengals-2026-reg-1
+saints-at-lions-2026-reg-1|1|NO|30|DET|31|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/saints-at-lions-2026-reg-1
+bills-at-texans-2026-reg-1|1|BUF|36|HOU|31|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/bills-at-texans-2026-reg-1
+ravens-at-colts-2026-reg-1|1|BAL|41|IND|23|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/ravens-at-colts-2026-reg-1
+browns-at-jaguars-2026-reg-1|1|CLE|10|JAX|34|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/browns-at-jaguars-2026-reg-1
+falcons-at-steelers-2026-reg-1|1|ATL|13|PIT|20|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/falcons-at-steelers-2026-reg-1
+jets-at-titans-2026-reg-1|1|NYJ|23|TEN|10|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/jets-at-titans-2026-reg-1
+cardinals-at-chargers-2026-reg-1|1|AZ|26|LAC|14|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/cardinals-at-chargers-2026-reg-1
+dolphins-at-raiders-2026-reg-1|1|MIA|13|LV|27|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/dolphins-at-raiders-2026-reg-1
+packers-at-vikings-2026-reg-1|1|GB|22|MIN|39|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/packers-at-vikings-2026-reg-1
+commanders-at-eagles-2026-reg-1|1|WAS|22|PHI|24|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/commanders-at-eagles-2026-reg-1
+cowboys-at-giants-2026-reg-1|1|DAL|20|NYG|28|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/cowboys-at-giants-2026-reg-1
+broncos-at-chiefs-2026-reg-1|1|DEN|10|KC|31|final|https://www.nfl.com/scores/2026/week-1|https://www.nfl.com/games/broncos-at-chiefs-2026-reg-1

@@ -55,6 +55,9 @@ NAV = [
     ("live/index.html", "Live pipeline"),
     # Added by session arena/459b17e1-x1: one entry for the second-opinion section.
     ("hub/index.html", "Section index"),
+    # Added by session arena/56769365-x1 (additive): the line desk — price snapshots,
+    # verified results, originated lines, signal-vs-staking leaderboard, demotion gate.
+    ("lab/index.html", "Line desk"),
 ]
 
 

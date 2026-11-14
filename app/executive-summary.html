@@ -17,13 +17,16 @@
 <div class="grp">Official data</div>
 <a class="" href="standings.html">Standings</a>
 <a class="" href="schedule.html">Week 10 slate</a>
-<a class="" href="results.html">Results feed</a>
+<a class="" href="results.html">Results &amp; ROI</a>
 <a class="" href="injuries.html">Injury report</a>
 <a class="" href="depth.html">Depth charts</a>
 <a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="replacement-depth.html">Replacement depth</a>
 <a class="" href="team-stats.html">Team stats</a>
 <div class="grp">Model</div>
 <a class="" href="lines.html">Originated lines</a>
+<a class="" href="origination.html">Origination &amp; prices</a>
+<a class="" href="prices.html">Price snapshots</a>
 <a class="" href="snapshots.html">Snapshots &amp; order</a>
 <a class="" href="correlation.html">Correlation</a>
 <div class="grp">Strategy</div>
@@ -40,6 +43,7 @@
 <a class="" href="verification.html">Verification ledger</a>
 <a class="" href="flagged.html">Flagged for review</a>
 <a class="" href="repo-review.html">Repo review</a>
+<a class="" href="stores.html">Verified stores</a>
 </nav>
   <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
 </aside>
@@ -54,7 +58,6 @@
   </div>
 <div class="kpis">
 <div class="kpi ok"><div class="v">2929</div><div class="l">value checks passed</div><div class="s">0 mismatches</div></div>
-<div class="kpi ok"><div class="v">137</div><div class="l">verified results</div><div class="s">three checks, 0 mismatches</div></div>
 <div class="kpi bad"><div class="v">39</div><div class="l">starters ruled Out</div><div class="s">corrected join</div></div>
 <div class="kpi warn"><div class="v">1/16</div><div class="l">strategies pass all gates</div><div class="s">out of sample</div></div>
 <div class="kpi warn"><div class="v">0</div><div class="l">blocking questions</div><div class="s">owner decisions needed</div></div>
@@ -102,30 +105,42 @@ stop specific parts of the system from working: <b>Q-01</b> bankroll, <b>Q-02</b
 <b>Q-04</b> results feed, <b>Q-05</b> paper or real money, <b>Q-06</b> how rewards are defined,
 <b>Q-11</b> player-prop source.</p>
 
-<h3>6. Round three closed the loop between the model and the results.</h3>
-<p>Every completed 2026 game is now read line by line from the NFL's own schedule pages:
-<b>137 finals, two-source diff 0 mismatches, standings arithmetic
-reconciled 32/32</b> (<a href="results.html">results feed</a>). Grading the model's side pick against
-those results gives <b>– (0.6316),
-z = 3.035, p = 0.0024 on 133
-decided games</b> — outcome-only, no price, no stake, published below the G1 promotion threshold on
-purpose. The <a href="snapshots.html">snapshot store</a> now records open and close captures for all
-84 market-stage combinations in origination order (side → total → moneyline),
-with fair, market and difference kept as separate columns — market and difference blank by rule while
-no official price source exists. The <a href="leaderboard.html">leaderboard</a> splits signal from
-staking so a lucky staking run cannot mask a bad signal, the <a href="deficiency.html">deficiency
-page</a> shows how deep each replacement goes, and <a href="validation.html">gate G8</a> demotes a
-decaying live strategy back to paper. Every one of these is a registered, sourced, flagged row —
-nothing was inferred.</p>
-
 <h3>What to do next</h3>
 <p>The <a href="suggestions.html">suggestion board</a> lists twenty options, each with three paths, a
 cost, an effort, a risk and a recommendation, and each waiting for a decision rather than being
-built. Nothing on that board has been implemented without a recorded choice. The round-three
-additions are the ones that unlock the remaining columns: name the price feed (S-13), adopt the
-signal-only ranking (S-14), schedule the kickoff close capture (S-15), ratify the G8 thresholds
-(S-16), automate the weekly results refresh (S-17), and grade ST-11 through the gates when the
-sample allows (S-18).</p></section>
+built. Nothing on that board has been implemented without a recorded choice.</p></section>
+<section class="card"><h2>What the 2026-11-14 second round added (session arena-1d3600f8-x1)</h2>
+<ul class="tight">
+  <li><b>Verified results feed</b> — 137 settled games from the official pages, double-entry checked
+  against the standings (0 mismatches; league totals 6,291 = 6,291). ROI is now computable at all;
+  see <a href="results.html">Results &amp; ROI</a>.</li>
+  <li><b>Price-snapshot store</b> — opening and closing slots for all 56 originated markets, with a
+  capture log and an append-only recorder. Opening quotes do not exist in any permitted source and
+  stay blank and flagged (Q-02); see <a href="origination.html">Origination &amp; prices</a>.</li>
+  <li><b>Origination order codified</b> — side, then total, then moneyline; fair line, market line and
+  the difference published as three separate columns.</li>
+  <li><b>Signal vs staking separated</b> on the leaderboard — final grade = min(signal, staking);
+  a lucky staking run cannot mask a bad signal (currently 0 of 16 mirror-window strategies are
+  rankable; see <a href="leaderboard.html">Leaderboard</a>).</li>
+  <li><b>Depth of replacement tracked</b> — 189 on-report starters: 168 replacements at 2nd string,
+  3 at 3rd string, 18 unreadable and flagged (see <a href="deficiency.html">Deficiency</a>).</li>
+  <li><b>Official-only correlations</b> — 15 pairs computed strictly from verified tables, every value
+  publishing n, p and CI (see <a href="correlation.html">Correlation</a>).</li>
+  <li><b>Demotion gate G8</b> — six mechanical triggers send a live strategy back to paper, with
+  action, re-entry and logging defined (see <a href="validation.html">Validation</a>).</li>
+</ul></section>
+<section class="card"><h2>Two sessions, one brief — both preserved (merge record)</h2>
+<p>The same eight directed improvements were built twice on 2026-11-14 by two parallel sessions
+(<code>arena-1d3600f8-x1</code> T15–T21 and <code>arena/3fa49c1a-x1</code> N1–N10). Nothing was
+discarded in the merge: both result feeds, both price-snapshot stores, both replacement-depth
+stores and both correlation stores are published here and cross-checked against each other —
+the two independent result transcriptions agree on <b>137 of 137 scores</b>, and the independent
+correlation recomputation agrees <b>905 of 905</b> pairs. Where the two designs make different
+policy choices (demotion thresholds G8 vs D1–D5; reward staking term), both are shown side by
+side and the choice is recorded as an owner decision on the
+<a href="decisions.html">decision register</a>. Finding I-14 is resolved by the results
+arithmetic: the standings do include the Thursday result; the earlier reading miscounted.
+Full merge log: <code>COORDINATION.md</code>.</p></section>
   <footer class="pagefoot">
     X1 · generated by <code>tools/build_app.py</code> · every table row links to the official page the value was read from ·
     a value the source does not print is shown as <span class="blank">&mdash;</span> and flagged, never filled in.<br>

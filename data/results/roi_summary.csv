@@ -1,0 +1,10 @@
+strategy,bets,wins,losses,pushes,hit_rate_pct,hit_ci95_lo_pct,hit_ci95_hi_pct,roi_at_assumed_minus110_pct,units,z_vs_breakeven,breakeven_hit_pct,price_basis,outcome_basis
+BASE_HOME_ATS,137,56,75,6,40.88,33.00,49.25,-17.58,-24.090,-2.70,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+BASE_OVER,137,71,66,0,51.82,43.52,60.03,-1.06,-1.454,-0.13,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_SIDE_1,111,48,58,5,43.24,34.41,52.53,-12.94,-14.363,-1.93,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_SIDE_3,61,26,32,3,42.62,31.02,55.10,-13.71,-8.363,-1.53,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_SIDE_5,27,13,12,2,48.15,30.74,66.01,-0.67,-0.182,-0.44,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_TOTAL_1,119,55,64,0,46.22,37.52,55.15,-11.76,-14.000,-1.35,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_TOTAL_3,63,28,35,0,44.44,32.85,56.68,-15.15,-9.545,-1.26,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_TOTAL_5,34,10,24,0,29.41,16.83,46.17,-43.85,-14.909,-2.68,52.38,assumed -110 flat — no official price source exists (Q-02),official verified results feed (nfl.com)
+MODEL_ACCURACY_VS_VERIFIED (no price involved),137,,,,,,,,,,,"n/a — accuracy statistic, not a bet","official verified results feed; spread MAE 10.05 pts, total MAE 11.31 pts over 137 games"
