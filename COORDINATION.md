@@ -612,3 +612,30 @@ Two later merges were needed because the scheduled `data-refresh` job committed
 refreshed data to `main` while these PRs were open. Both conflicts were in
 `data/pipeline/*.json`, which are **regenerated artifacts**, not authored content;
 main's (fresher) output was adopted in each case. No authored file was lost.
+
+---
+
+# Session `arena/9cc1eaac-x1` — independent verification, decision gating and integration
+
+**Session ID:** `arena/9cc1eaac-x1` · **Branch:** `arena/9cc1eaac-x1` (branched from `main` @ `0699aff`)
+**Role claimed:** independent re-verification audit + decision-gating layer + this round's final
+integration (rule 9: shared outputs such as the site index and navigation change here only).
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope (new except where marked) |
+|---|---|---|---|---|
+| A1 | Independent line-by-line repo audit; produce machine-readable findings with evidence | in progress | `arena/9cc1eaac-x1` | `audit/**`, `tools/audit_repo.py`, `data/audit/repo_audit.json` |
+| A2 | Fresh re-fetch of the official pages and a value-by-value diff against every published table | in progress | `arena/9cc1eaac-x1` | `audit/verify/**`, `data/audit/verification_run.json`, `tools/verify_against_official.py` |
+| A3 | Landing-page and navigation defects: four site trees unreachable from the landing page, stale flag count, duplicated research link | in progress | `arena/9cc1eaac-x1` | `tools/build_site.py` (**shared — claimed as final integration**), `index.html`, `pages/*` (generated) |
+| A4 | Decision-critical questions register: question → information held → information missing → evidence that would close it → decision it unblocks | in progress | `arena/9cc1eaac-x1` | `data/audit/decision_questions.json`, `pages/decisions-critical.html` |
+| A5 | Suggestions review board: ranked options, effort, dependency, reversibility, and a recommended path the owner can choose | in progress | `arena/9cc1eaac-x1` | `data/audit/suggestion_board.json`, `pages/suggestions-board.html` |
+| A6 | Freshness / correction policy and "what changed this round" evidence page | in progress | `arena/9cc1eaac-x1` | `data/audit/what_changed.json`, `pages/changes.html` |
+| A7 | **Red CI on `main`:** `tools/check_links.py` fails with 111 errors (JS template strings mis-parsed as links; live page tree missing a CSS audit) | in progress | `arena/9cc1eaac-x1` | `tools/check_links.py` (**shared — claimed as final integration**), `.github/workflows/verify.yml` |
+| A8 | Executive brief for this round (findings, decisions, recommended path) | in progress | `arena/9cc1eaac-x1` | `docs/audit/EXECUTIVE-SUMMARY.md`, `pages/executive-brief.html` |
+| A9 | Consolidated review queue: every flag, unverified cell and open item in one filterable table | in progress | `arena/9cc1eaac-x1` | `data/audit/review_queue.json`, `pages/review-queue.html` |
+
+No task above is claimed by another session: every earlier board marks T*/R* work `done` or
+`needs review`, and no session recorded a claim in this area. This session does **not** edit
+`research/**`, `dashboard/**`, `site/**`, `live/**`, `data/processed/**`, `data/pipeline/**` or
+`scripts/pipeline/**`; those trees are read-only inputs to the audit.
