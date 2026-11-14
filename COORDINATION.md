@@ -794,3 +794,27 @@ live").
 check and the missing nav link. The standing open items (odds feed, data licence, reward
 funding, HOU depth chart) remain published on the Flagged for Review and Decision pages for
 owner review — they are owner decisions, not implementation gaps.
+
+### Merge and deploy record (session `arena/9cc1eaac-x1`)
+
+| Item | Value |
+|---|---|
+| Pull request | <https://github.com/karagemop466-tech/X1/pull/24> |
+| Branch → base | `arena/9cc1eaac-x1` → `main` |
+| Merge result | **MERGED** 2026-11-14T18:23:57Z, merge commit `98a7817862a2198d22ce1f4292cb5a1207c0f00c`, method `gh pr merge 24 --merge`. Not waited for approval; flagged items do not block. |
+| PR checks | `build` **pass** (7s), `verify` **pass** (19s), `deploy` correctly skipped on a PR |
+| Pages deploy | `pages build and deployment` run on `98a7817` — **success**; `Publish static site to GitHub Pages` — **success**; `verify-site` on `main` — **success** |
+| Pages API | reports the site as `built` at <https://karagemop466-tech.github.io/X1/> |
+| Live check | `pages/review-queue.html` (37 rows, 0 without a source link), `pages/availability.html` (31-club join rendered, 31 starters ruled Out) and the landing page were fetched live after deploy and show the published content |
+
+**Two merge conflicts occurred and neither discarded another session's work.** `main` advanced twice
+while PR #24 was open: session `arena/c50b9342-x1` independently fixed the same broken check. Both
+fixes are kept — theirs strips `<script>` blocks before scanning for links, this one also drops
+template-literal fragments and any `${...}` residue. They catch different cases and the combined
+checker passes with 11,519 assertions. Both session records in this file are preserved.
+
+**Deliberate non-change:** no published data value was edited to make a check pass. The four tables
+were verified exactly as they were published (2,183 cells, 0 mismatches), and the only quantitative
+change in this release is that the depth join now covers the 31 clubs already in the repository
+instead of the five of the original pilot — which raises the reported count of starters ruled Out
+from 6 to 31, in the direction of the evidence rather than away from it.
