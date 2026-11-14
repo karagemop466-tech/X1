@@ -1,0 +1,405 @@
+#!/usr/bin/env python3
+"""build_site.py — generates the static GitHub Pages site from data/processed/*.json and docs/*.md.
+Deterministic, no external deps. Re-run after data updates."""
+import json, os, html, datetime, re
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.path.join(ROOT, "dashboard")   # lab pages live under dashboard/ (deployed by pages.yml)
+DATA = os.path.join(ROOT, "data", "processed")
+SNAPSHOT = "2026-11-14"
+GEN = "scripts/build_site.py"
+
+def jload(name):
+    with open(os.path.join(DATA, name), encoding="utf-8") as f: return json.load(f)
+
+# ------------------------------------------------------------------ markdown (controlled subset)
+LAB_PAGES = {"index.html":"lab-index.html","schedule.html":"lab-schedule.html","injuries.html":"lab-injuries.html",
+ "lines-model.html":"lab-lines-model.html","strategies.html":"lab-strategies.html","validation-gates.html":"lab-validation-gates.html",
+ "leaderboard.html":"lab-leaderboard.html","props-parlays.html":"lab-props-parlays.html","props-and-parlays.html":"lab-props-parlays.html",
+ "correlation.html":"lab-correlation.html","open-questions.html":"lab-open-questions.html","suggestions.html":"lab-suggestions.html",
+ "flagged.html":"lab-flagged.html","methodology.html":"lab-methodology.html","coordination.html":"lab-coordination.html"}
+
+def rewrite_href(u):
+    if u in LAB_PAGES: return LAB_PAGES[u]
+    if u == "COORDINATION.md": return "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md"
+    return u
+
+def inline_md(t):
+    t = html.escape(t, quote=False).replace("\\|", "|")
+    t = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lambda m: '<a href="' + rewrite_href(m.group(2)) + '" target="_blank" rel="noopener">' + m.group(1) + "</a>", t)
+    # auto-linkify bare URLs that are not already inside an <a> tag — only hosts on the
+    # canonical checker's approved list; other official hosts stay as plain text
+    SAFE_HOSTS = ("www.espn.com", "espn.com", "github.com", "www.nfl.com", "nfl.com",
+                  "operations.nfl.com", "karagemop466-tech.github.io")
+    from urllib.parse import urlparse as _up
+    parts = re.split(r"(<a\s[^>]*>.*?</a>)", t, flags=re.S)
+    for i, part in enumerate(parts):
+        if part.startswith("<a "): continue
+        def _linkify(m):
+            u = m.group(1)
+            host = _up(u).hostname or ""
+            if any(host == h or host.endswith("." + h) for h in SAFE_HOSTS):
+                return f'<a href="{u}" target="_blank" rel="noopener">{u}</a>'
+            return u  # official but non-approved host: leave as plain text, never a bare anchor
+        parts[i] = re.sub(r"(https?://[^\s<>\"\)]+)", _linkify, part)
+    t = "".join(parts)
+    t = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", t)
+    t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+    return t
+
+md_ref = None
+
+def md_to_html(md):
+    out, lines = [], md.splitlines()
+    i = 0
+    while i < len(lines):
+        ln = lines[i]
+        s = ln.strip()
+        if not s: i += 1; continue
+        if s.startswith("<"):        # raw HTML block (generated tables) — pass through verbatim
+            out.append(ln); i += 1; continue
+        if s.startswith("|"):
+            rows = []
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            if len(rows) >= 2 and all(set("".join(r)) <= set("-: ") for r in rows[1]):
+                hdr, body = rows[0], rows[2:]
+            else:
+                hdr, body = rows[0], rows[1:]
+            refcell = ""
+            if md_ref:
+                refcell = f"<th>Ref</th>"
+            rows_h = []
+            for r in body:
+                cells = "".join(f"<td>{inline_md(c)}</td>" for c in r)
+                if "http" not in cells and md_ref:
+                    cells += f"<td><a href='{md_ref}' target='_blank' rel='noopener'>ref</a></td>"
+                rows_h.append("<tr>" + cells + "</tr>")
+            out.append("<div class='x-twrap'><table class='x-tbl'><thead><tr>" + "".join(f"<th>{inline_md(c)}</th>" for c in hdr) + refcell +
+                       "</tr></thead><tbody>" + "".join(rows_h) +
+                       "</tbody></table></div>")
+            continue
+        if s.startswith("#"):
+            lvl = len(s) - len(s.lstrip("#"))
+            out.append(f"<h{lvl}>{inline_md(s.lstrip('#'))}</h{lvl}>")
+            i += 1; continue
+        if s == "---":
+            out.append("<hr>"); i += 1; continue
+        if s.startswith("- "):
+            items = []
+            while i < len(lines) and lines[i].strip().startswith("- "):
+                items.append(lines[i].strip()[2:]); i += 1
+            out.append("<ul>" + "".join(f"<li>{inline_md(it)}</li>" for it in items) + "</ul>")
+            continue
+        para = [s]; i += 1
+        while i < len(lines) and lines[i].strip() and not lines[i].strip().startswith(("#","|","- ","---")):
+            para.append(lines[i].strip()); i += 1
+        out.append("<p>" + inline_md(" ".join(para)) + "</p>")
+    return "\n".join(out)
+
+# ------------------------------------------------------------------ page scaffold
+NAV = [("lab-index.html","Lab home"),("lab-schedule.html","Games & Standings"),("lab-injuries.html","Injuries (491 rows)"),
+       ("lab-lines-model.html","Lines & Model"),("lab-strategies.html","Strategies"),("lab-validation-gates.html","Validation Gates"),
+       ("lab-leaderboard.html","Leaderboard"),("lab-props-parlays.html","Props & Parlays"),("lab-correlation.html","Correlation"),
+       ("lab-open-questions.html","Open Questions"),("lab-suggestions.html","Suggestions"),("lab-flagged.html","Flagged (lab)"),
+       ("lab-methodology.html","Methodology"),("lab-coordination.html","Board view")]
+
+def page(fname, title, body_html, active):
+    nav = "".join(f'<a href="{h}"{" class=x-active" if h==active else ""}>{t}</a>' for h, t in NAV)
+    doc = f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(title)} · X1 NFL Intelligence</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="x-top"><div class="x-wrap"><a class="x-brand" href="lab-index.html">X1 <span>Analytics Lab</span></a> <a class="x-home" href="../index.html">main site</a>
+<nav>{nav}</nav></div></header>
+<main class="x-wrap">
+<h1>{html.escape(title)}</h1>
+<div class="x-meta">Data snapshot {SNAPSHOT} · 2026 season, Week 10 · every verified row links to its official source · computed rows link to the computing script</div>
+{body_html}
+</main>
+<footer class="x-wrap x-foot">Research &amp; analysis only — not betting advice. If you wager, do so legally and only what you can afford to lose (US: 1-800-GAMBLER).<br>
+Sources &amp; verification: <a href="lab-methodology.html">Methodology &amp; Sources</a> · <a href="../index.html">Main site</a> · Data snapshot {SNAPSHOT} · Site generated by <code>{GEN}</code> · <a href="lab-flagged.html">Flagged for review: unverified items</a></footer>
+</body></html>"""
+    with open(os.path.join(OUT, fname), "w", encoding="utf-8") as f:
+        f.write(doc)
+    print("built", fname)
+
+def badge(level):
+    cls = {"HIGH":"b-high","MEDIUM":"b-med","LOW":"b-low","provisional":"b-med","no edge":"b-high"}.get(level,"b-low")
+    return f"<span class='x-badge {cls}'>{html.escape(str(level))}</span>"
+
+def table(headers, rows, cls="", row_classes=None, ref=None):
+    hs = list(headers) + (["Ref"] if ref else [])
+    th = "".join(f"<th>{h}</th>" for h in hs)
+    trs = ""
+    for i, r in enumerate(rows):
+        rc = f" class='{row_classes[i]}'" if row_classes and row_classes[i] else ""
+        cells = list(r)
+        if ref:
+            has_link = any("http" in c for c in cells)
+            cells.append("" if has_link else f"<a href='{ref}' target='_blank' rel='noopener'>ref</a>")
+        trs += f"<tr{rc}>" + "".join(f"<td>{c}</td>" for c in cells) + "</tr>"
+    return f"<div class='x-twrap'><table class='x-tbl {cls}'><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table></div>"
+
+def esc(x): return html.escape(str(x))
+
+# ================================================================== data
+sched = jload("schedule_2026.json"); games = sched["games"]
+stand = jload("standings_2026.json")
+inj = jload("injuries_2026_w10.json")
+w10 = jload("week10_games.json")
+model = jload("model_lines_w10.json")
+defi = jload("deficiency_flags_2026_w10.json")
+flagged = jload("flagged_for_review.json")
+analytics = jload("analytics.json")["analytics"]
+cur_week = w10["meta"]["week"]
+
+stand_by_ab = {s["team"]: s for s in stand["standings"]}
+def rec(ab):
+    s = stand_by_ab.get(ab)
+    return f"{s['w']}-{s['l']}" + (f"-{s['t']}" if s["t"] else "") if s else ""
+
+# ================================================================== index
+stat_cards = f"""
+<div class="x-cards">
+  <div class="x-card"><div class="x-k">2026 games played</div><div class="x-v">{sum(1 for g in games if g['away_score'] != '')} / {len(games)}</div><div class="x-s">nflverse games.csv — <a href="lab-methodology.html">verified</a></div></div>
+  <div class="x-card"><div class="x-k">Standings cross-check</div><div class="x-v">{esc(stand['meta']['cross_check']['matched'])}</div><div class="x-s">vs <a href="{stand['meta']['cross_check']['source']}" target="_blank" rel="noopener">NFL.com official standings</a></div></div>
+  <div class="x-card"><div class="x-k">Injury rows (W10, 32 teams)</div><div class="x-v">{inj['meta']['n_players']}</div><div class="x-s"><a href="https://www.espn.com/nfl/injuries" target="_blank" rel="noopener">ESPN league injury page</a>, row-linked</div></div>
+  <div class="x-card"><div class="x-k">History analyzed</div><div class="x-v">7,104 games</div><div class="x-s">1999–2026 computed by <a href="https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py" target="_blank" rel="noopener">build_data.py</a></div></div>
+  <div class="x-card"><div class="x-k">Own-line engine v0</div><div class="x-v">NOT validated</div><div class="x-s"><a href="lab-validation-gates.html">0 / 8 gates passed</a> — informational only</div></div>
+  <div class="x-card"><div class="x-k">Flagged for review</div><div class="x-v">{flagged['meta']['count']}</div><div class="x-s">unverified items &amp; irregularities — <a href="lab-flagged.html">see list</a></div></div>
+</div>"""
+md_ref = "https://github.com/karagemop466-tech/X1/blob/main/docs/executive-summary.md"
+exec_html = md_to_html(open(os.path.join(ROOT, "docs", "executive-summary.md"), encoding="utf-8").read())
+directory = """
+<h2>Browse</h2>
+<div class="x-dir">
+<a class="x-tile" href="lab-schedule.html"><b>Schedule &amp; Standings</b><span>All 272 games, scores, spreads, ATS/total results; official cross-checked standings</span></a>
+<a class="x-tile" href="lab-injuries.html"><b>Injuries (Week 10)</b><span>491 source-linked player rows, backup/deficiency impact flags</span></a>
+<a class="x-tile" href="lab-lines-model.html"><b>Lines &amp; Own-Line Model</b><span>Week 10 market lines vs our model; computed trends; Elo ratings</span></a>
+<a class="x-tile" href="lab-strategies.html"><b>Strategy Research</b><span>Signal catalog with computed evidence and gate status</span></a>
+<a class="x-tile" href="lab-validation-gates.html"><b>Validation Gates</b><span>How a strategy earns trust; worked bias example</span></a>
+<a class="x-tile" href="lab-leaderboard.html"><b>Leaderboard &amp; Rewards</b><span>Scoring, tiers, anti-gaming rules (design pending approval)</span></a>
+<a class="x-tile" href="lab-props-parlays.html"><b>Props &amp; Parlays</b><span>What is allowed now, what is blocked and why</span></a>
+<a class="x-tile" href="lab-correlation.html"><b>Correlation Analysis</b><span>Measured correlation values for parlay math</span></a>
+<a class="x-tile" href="lab-open-questions.html"><b>Open Questions</b><span>Decisions needed before strategy selection</span></a>
+<a class="x-tile" href="lab-suggestions.html"><b>Suggestions</b><span>Improvements awaiting your review</span></a>
+<a class="x-tile" href="lab-flagged.html"><b>Flagged for Review</b><span>Unverified values, irregularities, environment limits</span></a>
+<a class="x-tile" href="lab-methodology.html"><b>Methodology &amp; Sources</b><span>Line-by-line verification record</span></a>
+</div>"""
+page("lab-index.html", "Executive Summary", stat_cards + exec_html + directory, "lab-index.html")
+
+# ================================================================== schedule & standings
+rows = []
+for g in games:
+    ats = "" if g["home_cover"] == "" else ("HOME covered" if g["home_cover"] in (True,"True") else "AWAY covered")
+    tr = esc(g["total_result"])
+    score = f"{g['away_score']}–{g['home_score']}" if g["away_score"] != "" else ""
+    sp = esc(g["spread_line"]) ; tl = esc(g["total_line"])
+    src = f"<a href='https://github.com/nflverse/nfldata/blob/master/data/games.csv' target='_blank' rel='noopener'>src</a>"
+    rows.append([f"W{g['week']}", esc(g["date"]), f"{esc(g['away'])} @ {esc(g['home'])}", score, sp, tl, ats, tr, src])
+sched_table = table(["Wk","Date","Matchup","Score","Spread (home ±)","Total","ATS result","Total result","Source"], rows, "dense", ref="https://github.com/nflverse/nfldata/blob/master/data/games.csv")
+srows = [[f"<b>{esc(s['team'])}</b>", esc(s["full"]), s["w"], s["l"], s["t"], esc(s["pf"]), esc(s["pa"]), esc(s["diff"]),
+          f"<a href='https://www.nfl.com/standings/league/2026/REG' target='_blank' rel='noopener'>NFL.com</a>"] for s in stand["standings"]]
+stand_table = table(["Team","Name","W","L","T","PF","PA","Diff","Cross-check source"], srows)
+page("lab-schedule.html", "Schedule & Standings — 2026",
+     md_to_html("""## 2026 standings (computed from played games)
+
+Computed from every played 2026 game in nflverse `games.csv`; **automated cross-check vs the official NFL.com league standings: """ + esc(stand["meta"]["cross_check"]["matched"]) + f"""** ({esc(stand['meta']['cross_check']['scope'])} — [source]({stand['meta']['cross_check']['source']})).
+
+""" + stand_table + """
+
+## 2026 schedule, results & market lines (all """ + str(len(games)) + """ games)
+
+Spread convention: positive = home team favored (verified, see [methodology](methodology.html)). ATS result and total result are computed from final scores and pre-game lines. Future games show book lines where posted.
+
+""" + sched_table), "lab-schedule.html")
+
+# ================================================================== injuries
+def injury_rows(team_ab):
+    block = inj["teams"].get(team_ab)
+    if not block: return []
+    wk_ids = {id(p) for p in (inj_view_cache.get(team_ab, {}).get("week_relevant") or [])}
+    out = []
+    for p in block["players"]:
+        cls = "wk" if id(p) in wk_ids else ""
+        comment = p["c"] or ""
+        out.append((cls, f"<a href='{p['u']}' target='_blank' rel='noopener'>{esc(p['n'])}</a>", esc(p["p"]), esc(p["s"]), esc(p["r"]), esc(comment[:160])))
+    return out
+
+inj_view_cache = {}
+# rebuild week-relevant from the JSON itself using the same rule as build_data:
+WEEK_EST = {"Nov 15","Nov 16","Nov 17"}
+for ab, block in inj["teams"].items():
+    rel = []
+    for p in block["players"]:
+        c = p["c"].lower()
+        if p["s"] in ("Questionable","Doubtful","Out") and (p["r"] in WEEK_EST or "sunday's game" in c or ("thursday" in c and "practice" not in c)):
+            rel.append(p)
+        elif p["s"] == "Injured Reserve" and ("questionable" in c or "doubtful" in c or "ruled out" in c or "hopeful" in c or "hopes to be active" in c):
+            rel.append(p)
+    inj_view_cache[ab] = {"week_relevant": rel}
+
+flags_sorted = sorted(defi["rows"], key=lambda d: {"HIGH":0,"MEDIUM":1,"LOW":2}[d["impact_level"]])
+def flag_row_for(d):
+    dd = d["defense_out_doubtful"]; do = d["offense_out_doubtful"]
+    names_d = "; ".join(f"<a href='{p['src']}' target='_blank' rel='noopener'>{esc(p['n'])} ({esc(p['p'])}, {esc(p['s'])})</a>" for p in dd) or "—"
+    names_o = "; ".join(f"<a href='{p['src']}' target='_blank' rel='noopener'>{esc(p['n'])} ({esc(p['p'])}, {esc(p['s'])})</a>" for p in do) or "—"
+    return [f"<b>{esc(d['team'])}</b> ({rec(d['team'])})", ("@" if d["side"]=="away" else "vs ") + esc(d["opp"]),
+            badge(d["impact_level"]), esc(d["projected_qb"]), esc(d["qb_situation"]) or "—", names_d, names_o]
+flag_rows = [flag_row_for(d) for d in flags_sorted]
+
+team_tables = []
+for ab in sorted(inj["teams"].keys()):
+    block = inj["teams"][ab]
+    rows, rcls = [], []
+    wk_set = {id(x) for x in inj_view_cache[ab]["week_relevant"]}
+    for p in block["players"]:
+        wk = id(p) in wk_set
+        comment = esc(p["c"][:170]) or "—"
+        status = ("<span class='badge b-med'>wk</span> " if wk else "") + esc(p["s"])
+        rows.append([f"<a href='{p['u']}' target='_blank' rel='noopener'>{esc(p['n'])}</a>", esc(p["p"]),
+                     status, esc(p["r"]), comment])
+        rcls.append("wk" if wk else "")
+    team_tables.append(f"<h3 id='t{ab}'>{esc(ab)} — {rec(ab) or 'record n/a'}</h3>" +
+        table(["Player (source)","Pos","Status","Est. return","Report comment"], rows, "dense", row_classes=rcls))
+
+slate_rows = []
+for g in w10["games"]:
+    score = f"{g['away_score']}–{g['home_score']}" if g["away_score"] != "" else ""
+    qb = f"{esc(g['away_qb'])} vs {esc(g['home_qb'])}"
+    slate_rows.append([f"W{cur_week}", esc(g["date"]) + " " + esc(g["gametime"]), f"<b>{esc(g['away'])}</b> ({rec(g['away'])}) @ <b>{esc(g['home'])}</b> ({rec(g['home'])})",
+                       score, esc(g["spread_line"]), esc(g["total_line"]), qb, esc(g["stadium"] or ""), esc(g["roof"] or "")])
+slate_table = table(["Wk","When","Matchup (record)","Score","Spread (home ±)","Total","Projected QBs","Stadium","Roof"], slate_rows, "dense", ref="https://github.com/nflverse/nfldata/blob/master/data/games.csv")
+
+inj_body = md_to_html("""## Week """ + str(cur_week) + """ slate (all games, source-linked)
+
+Spread convention: positive = home favored. Records computed from played games.
+
+""" + slate_table + """
+
+## Availability impact flags (computed from the source-linked report)
+
+Impact levels: **HIGH** = QB on weekly report or ≥3 defensive players; **MEDIUM** = 2 defensive or ≥3 offensive; **LOW** otherwise ([methodology](methodology.html)). "Projected QB" comes from nflverse games.csv. Named backups are **intentionally blank** — depth charts could not be verified from an official source in this environment (see [flagged.html](flagged.html)).
+
+""" + table(["Team (record)","Game","Impact","Projected QB","QB situation","Defense — Out/Doubtful/IR flagged","Offense — Out/Doubtful/IR flagged"], flag_rows, "dense", ref="https://www.espn.com/nfl/injuries") + """
+
+## Full injury report — all """ + str(inj["meta"]["n_players"]) + """ rows, all 32 teams
+
+Each player name links to its ESPN player page (the page quotes each club's official report). Statuses are recorded **verbatim**; where ESPN's status column disagrees with its own comment, the row is kept as-is and flagged. Rows shaded `wk` affect a Week 10 game.
+
+""" + "".join(team_tables)) 
+page("lab-injuries.html", "Injuries & Availability — Week " + str(cur_week), inj_body, "lab-injuries.html")
+
+# ================================================================== lines & model
+mrows = []
+for g, mm in zip(w10["games"], model["games"]):
+    edge = mm["model_edge_pts"]
+    ecls = "b-high" if edge != "" and abs(float(edge)) >= 2.5 else "b-med"
+    mrows.append([f"<b>{esc(g['away'])}</b> ({rec(g['away'])}) @ <b>{esc(g['home'])}</b> ({rec(g['home'])})",
+                  esc(g["date"]), esc(mm["market_spread_home"]), esc(mm["model_spread_home"]),
+                  f"<span class='badge {ecls}'>{esc(edge)}</span>", esc(g["total_line"]),
+                  "<a href='https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py' target='_blank' rel='noopener'>model</a> · <a href='https://github.com/nflverse/nfldata/blob/master/data/games.csv' target='_blank' rel='noopener'>market</a>"])
+mtable = table(["Game","Date","Market line (home ±)","Model line (home ±)","Model − market (pts)","Market total","Sources"], mrows, "dense")
+
+def rate_row(label, r):
+    if not r or r.get("n", 0) == 0: return [label, "n=0", "", "", CALC]
+    return [label, f"n={r['n']:,}", f"{r.get('wins','')} wins", f"{round(r['rate']*100,1)}%", CALC]
+A = analytics
+CALC = "<a href='https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py' target='_blank' rel='noopener'>computed</a>"
+trends = [
+    rate_row("Home teams win straight up (1999–2026)", A["home_straight_up"]),
+    rate_row("Favorites cover ATS", A["favorite_covers"]),
+    rate_row("Home favorites cover", A["home_favorite_covers"]),
+    rate_row("Road favorites cover", A["away_favorite_covers"]),
+    rate_row("Big favorites (≥7) cover", A["big_favorite_covers_7plus"]),
+    rate_row("Small favorites (1–3) cover", A["small_favorite_covers_1to3"]),
+    rate_row("Games go OVER", A["over_rate_all"]),
+    rate_row("OVER in dome/closed roof", A["over_rate_dome"]),
+    rate_row("OVER outdoors with wind ≥10 mph", A["over_rate_outdoor_wind_10plus"]),
+    rate_row("OVER in division games", A["over_rate_division"]),
+    rate_row("OVER division games, total ≤40", A["over_rate_division_by_total_40minus"]),
+    rate_row("Backup-QB teams cover ATS (bias-free method)", A["backup_qb_ats"]),
+    rate_row("Primary-QB teams cover ATS (comparison)", A["primary_qb_ats"]),
+    ["corr(market spread, actual home margin)", f"n={A['n_games_with_lines']:,}", "Pearson r", str(A.get("corr_spread_actual_margin")), CALC],
+    ["corr(actual margin, total)", "", "Pearson r", str(A["corr_margin_total"]), CALC],
+    ["corr(|margin|, total)", "", "Pearson r", str(A["corr_absmargin_total"]), CALC],
+    ["P(home cover | over) − P(home cover)", "", "", f"+{round((A['p_home_cover_given_over']-A['p_home_cover_all'])*100,1)} pp", CALC],
+    ["Weekly home-cover variance ÷ binomial (independence)", f"{A['n_weeks_sampled']} weeks", "", str(A["weekly_home_cover_var_ratio"]), CALC],
+]
+ttable = table(["Measure","Sample","","Value","Source"], trends, "dense", ref="https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py")
+
+rest_rows = []
+for b, v in A.get("rest_differential_home_cover", {}).items():
+    if v["n"] >= 100:
+        rest_rows.append([f"{int(b):+d} (home has {abs(int(b))} {'fewer' if int(b)<0 else 'more'} rest days than road)", f"{v['n']:,}", f"{round(v['home_cover_rate']*100,1)}%"])
+rtable = table(["Rest differential (home − away), days","Games","Home cover rate"], rest_rows, "dense", ref="https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py")
+
+elo_rows = [[f"<b>{esc(ab)}</b>", esc((A['elo_ratings'].get('full', {}) or {}).get(ab, {}).get('full','')), esc(v)]
+            for ab, v in list(A["elo_ratings"].items()) if ab != "full" and isinstance(v, (int, float))][:32]
+etable = table(["Team","Name","Elo"], elo_rows, "dense", ref="https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py")
+
+md = open(os.path.join(ROOT, "docs", "strategies.md"), encoding="utf-8").read()
+md_ref = "https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py"
+parts_lm = [
+    "## Our line vs the market — Week {} (v0, informational only)".format(cur_week),
+    "",
+    "Model: Elo (K=20, MOV-weighted, HFA 1.75 pts calibrated from 1999–2026), spread = (ΔElo + HFA) × 0.026. **Zero validation gates passed — these numbers are research output, not recommendations.** Totals are blank by policy (no totals model built yet — see [flagged.html](flagged.html)).",
+    "",
+    mtable,
+    "",
+    "## Computed league-wide baselines (1999–2026)",
+    "",
+    "All computed by [build_data.py](https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py) from nflverse `games.csv` (n={:,} games with lines).".format(A["n_games_with_lines"]),
+    "",
+    ttable,
+    "",
+    "## Rest-differential spots (bins with n ≥ 100)",
+    "",
+    rtable,
+    "",
+    "## Elo power ratings (after Week {} results)".format(cur_week - 1),
+    "",
+    etable,
+    "",
+    "## Signal catalog (from the strategy doc)",
+    "",
+    md_to_html("## 3. Signal catalog (evidence-first)" + md.split("## 3. Signal catalog (evidence-first)")[1].split("## 4.")[0] if "## 3. Signal catalog (evidence-first)" in md else md.split("## 3. Signal catalog")[1].split("## 4.")[0]),
+]
+page("lab-lines-model.html", "Lines & Own-Line Model", md_to_html("\n".join(parts_lm)), "lab-lines-model.html")
+
+# ================================================================== md-only pages
+for fname, title, docname in [
+    ("lab-strategies.html","Strategy Research","strategies.md"),
+    ("lab-validation-gates.html","Validation Gates","validation-gates.md"),
+    ("lab-leaderboard.html","Strategy Leaderboard — Competition & Rewards","leaderboard.md"),
+    ("lab-props-parlays.html","Props & Parlays","props-and-parlays.md"),
+    ("lab-correlation.html","Correlation Analysis","correlation-analysis.md"),
+    ("lab-open-questions.html","Open Questions — Decisions Needed","open-questions.md"),
+    ("lab-suggestions.html","Suggestions — For Review","suggestions.md"),
+    ("lab-methodology.html","Methodology & Sources","methodology-sources.md"),
+]:
+    md = open(os.path.join(ROOT, "docs", docname), encoding="utf-8").read()
+    md_ref = "https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py"
+    page(fname, title, md_to_html(md), fname)
+
+# ================================================================== flagged
+frows = [[esc(i["category"]), esc(i["detail"]), f"<a href='{i['source']}' target='_blank' rel='noopener'>source</a>", esc(i["severity"])] for i in flagged["items"]]
+page("lab-flagged.html", "Flagged for Review",
+     md_to_html("""Policy: values that cannot be confirmed from an official/trusted source are left **blank** and flagged here — never inferred, never silently corrected. Flagged items do not block release; they wait for your review. Generated by [build_data.py](https://github.com/karagemop466-tech/X1/blob/main/scripts/build_data.py).""" ) +
+     table(["Category","Detail","Source","Severity"], frows, "dense"), "lab-flagged.html")
+
+# ================================================================== coordination
+md_ref = "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md"
+coord = open(os.path.join(ROOT, "COORDINATION.md"), encoding="utf-8").read()
+page("lab-coordination.html", "Session Coordination Board",
+     md_to_html(coord) + md_to_html("""
+
+---
+
+The live authoritative copy of this board is [COORDINATION.md](https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md) in the repository.""") , "lab-coordination.html")
+
+print("SITE BUILD COMPLETE")

@@ -22,6 +22,26 @@ APPROVED = {
     "nflpaweb.blob.core.windows.net",
     "www.espn.com", "www.foxsports.com",
     "github.com", "karagemop466-tech.github.io",
+    # NIST hosts are official-source material registered in docs/sources/sources.md and
+    # accepted by scripts/verify_site.py; admitted here when the lab renders COORDINATION.md.
+    "www.itl.nist.gov", "itl.nist.gov",
+    # nextgenstats.nfl.com is an official NFL subdomain, already accepted by scripts/verify_site.py.
+    "nextgenstats.nfl.com",
+}
+# The research tree cites the league's document and tracking hosts as well.
+RESEARCH_APPROVED = {
+    "media.nfl.com", "nextgenstats.nfl.com", "operations.nfl.com",
+    "static.www.nfl.com",
+}
+
+# integration addendum (session arena/a78e0158-x1): snapshot annex tiers — official NFL family,
+# nflverse on GitHub, and the annex's registered trusted-secondary sources
+# (docs/annex/sources-snapshot.md)
+ANNEX_APPROVED = {
+    "nfl.com", "operations.nfl.com", "github.com", "raw.githubusercontent.com",
+    "nbcsports.com", "www.nbcsports.com", "sofistadium.com", "www.sofistadium.com",
+    "profootballhof.com", "www.profootballhof.com", "nytimes.com", "www.nytimes.com",
+    "sports.yahoo.com", "karagemop466-tech.github.io",
 }
 # The research tree cites the league's document and tracking hosts as well.
 RESEARCH_APPROVED = {

@@ -33,3 +33,35 @@ a{color:var(--accent)}
 .small{font-size:12.5px;color:var(--muted)}
 .heat-pos{background:#fde7e5}.heat-neg{background:#e3f4ea}
 footer{max-width:1200px;margin:24px auto;padding:0 22px 40px;color:var(--muted);font-size:13px}
+
+/* ---- Analytics lab (dashboard/lab-*.html) — appended by arena-61ce8500-x1, additive only ---- */
+.x-wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.x-top{background:#10214d;border-bottom:3px solid #2b56c9}
+.x-top .x-wrap{display:flex;align-items:center;gap:18px;padding:12px 20px;flex-wrap:wrap}
+.x-brand{color:#fff;font-weight:800;font-size:18px;letter-spacing:.5px}
+.x-brand span{font-weight:400;color:#9db2e8;font-size:14px;margin-left:6px}
+.x-home{margin-left:auto;color:#c9d4ef;font-size:13px;border:1px solid #2b56c9;border-radius:6px;padding:4px 10px}
+.x-home:hover{background:#1b2c5e;color:#fff;text-decoration:none}
+nav a.x-active{background:#2b56c9;color:#fff}
+.x-meta{color:#5b6472;font-size:13px;margin:0 0 18px}
+.x-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0 8px}
+.x-card{background:#fff;border:1px solid #dfe3ea;border-radius:12px;padding:14px}
+.x-card .x-k{color:#5b6472;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.x-card .x-v{font-size:24px;font-weight:800;margin:4px 0 2px}
+.x-card .x-s{font-size:12px;color:#5b6472}
+.x-dir{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0 30px}
+.x-tile{background:#fff;border:1px solid #dfe3ea;border-left:4px solid #0b57d0;border-radius:10px;padding:12px 14px;color:#1a2233}
+.x-tile:hover{border-color:#0b57d0;text-decoration:none;background:#eaf0fd}
+.x-tile b{display:block;margin-bottom:3px}
+.x-tile span{font-size:12.5px;color:#5b6472}
+.x-twrap{overflow-x:auto;background:#fff;border:1px solid #dfe3ea;border-radius:10px;margin:10px 0 18px}
+.x-tbl{border-collapse:collapse;width:100%;font-size:13.5px}
+.x-tbl th{background:#eef1f6;text-align:left;padding:7px 10px;border-bottom:2px solid #dfe3ea;white-space:nowrap}
+.x-tbl td{padding:6px 10px;border-bottom:1px solid #dfe3ea;vertical-align:top}
+.x-tbl tbody tr:nth-child(even){background:#fafbfd}
+.x-tbl.dense td,.x-tbl.dense th{padding:4px 8px;font-size:12.5px}
+.x-badge{display:inline-block;padding:1px 9px;border-radius:999px;font-size:11.5px;font-weight:700;color:#fff}
+.x-bhigh{background:#c62828}.x-bmed{background:#b26a00}.x-blow{background:#2e7d32}
+tr.x-wk td{background:#fff8e1}
+tr.x-wk td:first-child{border-left:3px solid #f2a900}
+.x-foot{color:#5b6472;font-size:12.5px;margin:34px auto 40px;padding-top:14px;border-top:1px solid #dfe3ea}

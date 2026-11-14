@@ -1,0 +1,401 @@
+{
+ "meta": {
+  "generated": "2026-11-14",
+  "script": "scripts/build_data.py",
+  "raw_source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+  "note": "All values COMPUTED from nflverse games.csv (1999-2026). No external values used."
+ },
+ "analytics": {
+  "home_straight_up": {
+   "n": 7104,
+   "wins": 3972,
+   "rate": 0.5591
+  },
+  "home_su_by_season": {
+   "2019": {
+    "n": 256,
+    "wins": 132,
+    "rate": 0.5156
+   },
+   "2020": {
+    "n": 256,
+    "wins": 127,
+    "rate": 0.4961
+   },
+   "2021": {
+    "n": 272,
+    "wins": 140,
+    "rate": 0.5147
+   },
+   "2022": {
+    "n": 271,
+    "wins": 151,
+    "rate": 0.5572
+   },
+   "2023": {
+    "n": 272,
+    "wins": 151,
+    "rate": 0.5551
+   },
+   "2024": {
+    "n": 272,
+    "wins": 145,
+    "rate": 0.5331
+   },
+   "2025": {
+    "n": 272,
+    "wins": 146,
+    "rate": 0.5368
+   },
+   "2026": {
+    "n": 137,
+    "wins": 67,
+    "rate": 0.4891
+   }
+  },
+  "favorite_covers": {
+   "n": 7074,
+   "wins": 3433,
+   "rate": 0.4853
+  },
+  "home_favorite_covers": {
+   "n": 4564,
+   "wins": 2141,
+   "rate": 0.4691
+  },
+  "away_favorite_covers": {
+   "n": 2510,
+   "wins": 1292,
+   "rate": 0.5147
+  },
+  "big_favorite_covers_7plus": {
+   "n": 2131,
+   "wins": 1010,
+   "rate": 0.474
+  },
+  "small_favorite_covers_1to3": {
+   "n": 2564,
+   "wins": 1259,
+   "rate": 0.491
+  },
+  "over_rate_all": {
+   "n": 7104,
+   "wins": 3470,
+   "rate": 0.4885
+  },
+  "over_rate_outdoor_wind_10plus": {
+   "n": 1805,
+   "wins": 807,
+   "rate": 0.4471
+  },
+  "over_rate_dome": {
+   "n": 1774,
+   "wins": 897,
+   "rate": 0.5056
+  },
+  "over_rate_division": {
+   "n": 2737,
+   "wins": 1302,
+   "rate": 0.4757
+  },
+  "over_rate_division_by_total_40minus": {
+   "n": 773,
+   "wins": 381,
+   "rate": 0.4929
+  },
+  "rest_differential_home_cover": {
+   "-14": {
+    "n": 3,
+    "home_cover_rate": 0.6667
+   },
+   "-8": {
+    "n": 32,
+    "home_cover_rate": 0.5625
+   },
+   "-7": {
+    "n": 287,
+    "home_cover_rate": 0.4321
+   },
+   "-6": {
+    "n": 28,
+    "home_cover_rate": 0.4643
+   },
+   "-4": {
+    "n": 41,
+    "home_cover_rate": 0.4878
+   },
+   "-3": {
+    "n": 323,
+    "home_cover_rate": 0.4706
+   },
+   "-2": {
+    "n": 30,
+    "home_cover_rate": 0.6
+   },
+   "-1": {
+    "n": 497,
+    "home_cover_rate": 0.4708
+   },
+   "0": {
+    "n": 4815,
+    "home_cover_rate": 0.475
+   },
+   "1": {
+    "n": 393,
+    "home_cover_rate": 0.4835
+   },
+   "2": {
+    "n": 17,
+    "home_cover_rate": 0.5294
+   },
+   "3": {
+    "n": 237,
+    "home_cover_rate": 0.4895
+   },
+   "4": {
+    "n": 32,
+    "home_cover_rate": 0.5625
+   },
+   "6": {
+    "n": 30,
+    "home_cover_rate": 0.4667
+   },
+   "7": {
+    "n": 319,
+    "home_cover_rate": 0.4859
+   },
+   "8": {
+    "n": 20,
+    "home_cover_rate": 0.25
+   }
+  },
+  "backup_qb_ats": {
+   "n": 2156,
+   "wins": 1073,
+   "rate": 0.4977
+  },
+  "primary_qb_ats": {
+   "n": 4948,
+   "wins": 2356,
+   "rate": 0.4762
+  },
+  "backup_qb_method": "non-primary starter = QB with most starts in the team's prior games of the season (week 1: prior season's most-started QB). No look-ahead; single-side games only (games where both teams start non-primary QBs are excluded).",
+  "n_games_with_lines": 7104,
+  "corr_margin_total": 0.0165,
+  "corr_absmargin_total": 0.0751,
+  "corr_spread_actual_margin": 0.4309,
+  "p_home_cover_all": 0.4751,
+  "p_home_cover_given_over": 0.4781,
+  "weekly_home_cover_var_ratio": 0.989,
+  "n_weeks_sampled": 473,
+  "elo_meta": {
+   "method": "Elo, K=20, margin-of-victory multiplier ln(mov+1)*2.2/(1+|elo diff|/2200), HFA 1.75 pts (67.3 elo), spread = (elo diff + HFA)*0.026 pts/elo",
+   "home_su_rate_history": {
+    "n": 7104,
+    "wins": 3972,
+    "rate": 0.5591
+   },
+   "empirical_mean_home_margin_pts": 2.2,
+   "n_games_trained": 7104,
+   "script": "scripts/build_data.py",
+   "raw_source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+  },
+  "elo_ratings": {
+   "BUF": 1866.6,
+   "DEN": 1820.0,
+   "JAX": 1785.7,
+   "SF": 1745.9,
+   "CHI": 1738.4,
+   "SEA": 1736.6,
+   "MIN": 1704.9,
+   "LA": 1675.9,
+   "PIT": 1655.6,
+   "GB": 1645.8,
+   "DET": 1639.0,
+   "CIN": 1625.9,
+   "KC": 1592.3,
+   "HOU": 1581.0,
+   "NE": 1576.4,
+   "TB": 1487.6,
+   "BAL": 1450.9,
+   "NYG": 1424.5,
+   "DAL": 1391.9,
+   "WAS": 1388.8,
+   "ATL": 1372.9,
+   "NO": 1363.4,
+   "CLE": 1345.2,
+   "CAR": 1338.5,
+   "LAC": 1334.6,
+   "LV": 1318.8,
+   "PHI": 1289.0,
+   "ARI": 1280.9,
+   "IND": 1280.0,
+   "MIA": 1247.2,
+   "NYJ": 1174.7,
+   "TEN": 1121.0,
+   "full": {
+    "ARI": {
+     "full": "Arizona Cardinals",
+     "location": "Arizona",
+     "nickname": "Cardinals"
+    },
+    "ATL": {
+     "full": "Atlanta Falcons",
+     "location": "Atlanta",
+     "nickname": "Falcons"
+    },
+    "BAL": {
+     "full": "Baltimore Ravens",
+     "location": "Baltimore",
+     "nickname": "Ravens"
+    },
+    "BUF": {
+     "full": "Buffalo Bills",
+     "location": "Buffalo",
+     "nickname": "Bills"
+    },
+    "CAR": {
+     "full": "Carolina Panthers",
+     "location": "Carolina",
+     "nickname": "Panthers"
+    },
+    "CHI": {
+     "full": "Chicago Bears",
+     "location": "Chicago",
+     "nickname": "Bears"
+    },
+    "CIN": {
+     "full": "Cincinnati Bengals",
+     "location": "Cincinnati",
+     "nickname": "Bengals"
+    },
+    "CLE": {
+     "full": "Cleveland Browns",
+     "location": "Cleveland",
+     "nickname": "Browns"
+    },
+    "DAL": {
+     "full": "Dallas Cowboys",
+     "location": "Dallas",
+     "nickname": "Cowboys"
+    },
+    "DEN": {
+     "full": "Denver Broncos",
+     "location": "Denver",
+     "nickname": "Broncos"
+    },
+    "DET": {
+     "full": "Detroit Lions",
+     "location": "Detroit",
+     "nickname": "Lions"
+    },
+    "GB": {
+     "full": "Green Bay Packers",
+     "location": "Green Bay",
+     "nickname": "Packers"
+    },
+    "HOU": {
+     "full": "Houston Texans",
+     "location": "Houston",
+     "nickname": "Texans"
+    },
+    "IND": {
+     "full": "Indianapolis Colts",
+     "location": "Indianapolis",
+     "nickname": "Colts"
+    },
+    "JAX": {
+     "full": "Jacksonville Jaguars",
+     "location": "Jacksonville",
+     "nickname": "Jaguars"
+    },
+    "KC": {
+     "full": "Kansas City Chiefs",
+     "location": "Kansas City",
+     "nickname": "Chiefs"
+    },
+    "LAC": {
+     "full": "Los Angeles Chargers",
+     "location": "Los Angeles Chargers",
+     "nickname": "Chargers"
+    },
+    "LA": {
+     "full": "Los Angeles Rams",
+     "location": "Los Angeles Rams",
+     "nickname": "Rams"
+    },
+    "LV": {
+     "full": "Las Vegas Raiders",
+     "location": "Las Vegas",
+     "nickname": "Raiders"
+    },
+    "MIA": {
+     "full": "Miami Dolphins",
+     "location": "Miami",
+     "nickname": "Dolphins"
+    },
+    "MIN": {
+     "full": "Minnesota Vikings",
+     "location": "Minnesota",
+     "nickname": "Vikings"
+    },
+    "NE": {
+     "full": "New England Patriots",
+     "location": "New England",
+     "nickname": "Patriots"
+    },
+    "NO": {
+     "full": "New Orleans Saints",
+     "location": "New Orleans",
+     "nickname": "Saints"
+    },
+    "NYG": {
+     "full": "New York Giants",
+     "location": "New York Giants",
+     "nickname": "Giants"
+    },
+    "NYJ": {
+     "full": "New York Jets",
+     "location": "New York Jets",
+     "nickname": "Jets"
+    },
+    "PHI": {
+     "full": "Philadelphia Eagles",
+     "location": "Philadelphia",
+     "nickname": "Eagles"
+    },
+    "PIT": {
+     "full": "Pittsburgh Steelers",
+     "location": "Pittsburgh",
+     "nickname": "Steelers"
+    },
+    "SEA": {
+     "full": "Seattle Seahawks",
+     "location": "Seattle",
+     "nickname": "Seahawks"
+    },
+    "SF": {
+     "full": "San Francisco 49ers",
+     "location": "San Francisco",
+     "nickname": "49ers"
+    },
+    "TB": {
+     "full": "Tampa Bay Buccaneers",
+     "location": "Tampa Bay",
+     "nickname": "Buccaneers"
+    },
+    "TEN": {
+     "full": "Tennessee Titans",
+     "location": "Tennessee",
+     "nickname": "Titans"
+    },
+    "WAS": {
+     "full": "Washington Commanders",
+     "location": "Washington",
+     "nickname": "Commanders"
+    }
+   }
+  },
+  "hfa_pts": 1.75
+ }
+}

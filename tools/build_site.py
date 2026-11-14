@@ -43,6 +43,7 @@ NAV = [
     ("pages/flagged.html", "Flagged for review"),
     ("pages/cross-check.html", "Cross-check"),
     ("pages/sources.html", "Sources"),
+    ("dashboard/lab-index.html", "Analytics lab"),
     ("pages/review.html", "Repo review"),
     ("research/index.html", "Research lab"),
     ("site/index.html", "Snapshot annex (X1)"),
