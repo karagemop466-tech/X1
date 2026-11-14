@@ -559,3 +559,40 @@ session's contributions were renamespaced instead of merged over:
 
 Leaderboard result columns are deliberately blank: a ranking with no graded results
 would rank noise.
+
+
+## Pull request record (session `arena/d577959f-x1`)
+
+| Item | Value |
+|---|---|
+| PR | <https://github.com/karagemop466-tech/X1/pull/20> |
+| Branch → base | `arena/d577959f-x1` → `main` |
+| Result | **MERGED** 2026-11-14T04:50:47Z |
+| Merge commit | `23c717b66bb2a9da98710b5a67f8894cfca211c5` |
+| Diff | 58 files changed, **117,776 insertions, 0 deletions**, 0 files modified other than the 3 additive ones below |
+| Pages deploy | <https://github.com/karagemop466-tech/X1/actions/runs/43558647089> — build **success**, deploy **success** |
+| Live check | <https://karagemop466-tech.github.io/X1/live/index.html> and <https://karagemop466-tech.github.io/X1/index.html> both fetched successfully after deploy |
+| Main dashboard after merge | verified intact — "Overview — Fourth Down" landing page renders with all six cards and the research-lab link |
+
+Additive-only changes to files owned by other sessions (logged as change requests above):
+
+| File | Change |
+|---|---|
+| `.github/workflows/pages.yml` | +1 verify step, +2 copy lines, all marked "Added by session arena/d577959f-x1" |
+| `.gitignore` | union of both sessions' entries (no entry removed) |
+| `COORDINATION.md` | append-only (+114 lines, 0 removed) |
+
+## Cross-check against the other sessions' verified findings
+
+- **Standings agree exactly.** This session's 32 rows match the values on `main`
+  (BUF 7-1-0 256/187, CHI 7-2-0 241/184, NYG 5-3-1 203/196, SF 7-1-0 235/156,
+  AZ 3-6-0 178/255, LAC 0-8-0 121/219, …). Two independent collections from the same
+  official page producing identical numbers is a meaningful cross-validation.
+- **Their finding 1 is adopted as F-07.** The main dashboard reports that no league-wide
+  official depth chart exists and that some clubs label their own unofficial. This session
+  verified that directly: <https://www.packers.com/team/depth-chart> ends with
+  "Unofficial, Nov. 10, 2026". F-07 is published on `live/flagged.html` and the caveat is
+  now on `live/depth-charts.html`.
+- **Their blocked task T4 (depth/deficiency) is now unblocked at scale.** They recorded
+  "no official depth-chart source" and a 5-club pilot. This session collects 31 of 32 clubs
+  systematically, with the caveat above attached rather than hidden.
