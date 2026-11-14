@@ -33,7 +33,11 @@ flags_auto = rcsv("flags_auto.csv")
 sources = rcsv("sources.csv")
 checks = json.loads((D / "data_checks.json").read_text())
 
-CHECKED_GAMES = {"WAS at NYG", "NE at DET"}   # rows re-checked line by line against NFL.com chunk 0 on 2026-11-14
+# All 14 games re-checked line by line against all 8 page chunks of the official report on
+# 2026-11-14 (task T9, session arena/cc51616e-x1; ledger: docs/recheck/injuries-week10.md).
+CHECKED_GAMES = {"WAS at NYG", "NE at DET", "KC at ATL", "MIN at GB", "JAX at TEN",
+                 "BUF at NYJ", "MIA at IND", "CAR at NO", "HOU at CLE", "LA at AZ",
+                 "SEA at LV", "SF at DAL", "PIT at CIN", "LAC at BAL"}
 NFLDATA_URL = "https://github.com/nflverse/nfldata"
 REPO = "https://github.com/karagemop466-tech/X1/blob/arena/c39d8541-x1"
 n_checked = sum(1 for r in injuries if r["game"] in CHECKED_GAMES)
@@ -55,7 +59,7 @@ MANUAL_FLAGS = [
  ("I-14","Schedule / standings","NFL.com standings (checked 2026-11-14) still show WAS 3-5-1 and NYG 5-3-1, the pre-game records, while the schedule marks the Thursday game Final (Commanders 24, Giants 21). nflverse agrees on the final score. The standings appear not to reflect the result. NFL.com does not state why.","https://www.nfl.com/standings/ · https://www.nfl.com/schedules/2026/by-week/week-10","flagged"),
  ("I-15","Injuries / standings","Rams code: the injury report prints LAR; the schedule and standings print LA. Mapped for joins only; displayed as printed.","https://www.nfl.com/injuries/ · https://www.nfl.com/standings/","flagged (mapped)"),
  ("I-16","Data","nflverse uses ARI for Arizona; NFL.com uses AZ. Mapped for joins only.","https://github.com/nflverse/nfldata/blob/master/data/games.csv","flagged (mapped)"),
- ("I-17","Injuries", f"Row-level re-check against the official page is complete for {n_checked} of {len(injuries)} rows (WAS at NYG, NE at DET; page chunk 0). The other {len(injuries)-n_checked} rows were transcribed from the official text and are pending a line-by-line re-check against chunks 1–7. Pending rows are marked on the Injury report page.","https://www.nfl.com/injuries/","needs review"),
+ ("I-17","Injuries", f"Row-level re-check against the official page: {n_checked} of {len(injuries)} rows verified line by line across all 8 page chunks on 2026-11-14 (T9, session arena/cc51616e-x1). One transcription mismatch was found and corrected (Jaylon Moore, KC — player URL slug jaylon-moore → jaylon-moore-2). Ledger: docs/recheck/injuries-week10.md.","https://www.nfl.com/injuries/","resolved 2026-11-14"),
 ]
 
 def f1(x, nd=1):
@@ -147,7 +151,7 @@ index_body = f"""<h1>NFL research dashboard</h1>
 <div class="card"><a class="big" href="summary.html">Executive summary</a><div class="small">Key facts, verdicts, and what we still need.</div></div>
 <div class="card"><a class="big" href="standings.html">Standings</a><div class="small">32 teams, NFL.com 2026 standings.</div></div>
 <div class="card"><a class="big" href="schedule.html">Week 10 schedule</a><div class="small">14 games, byes, and the Thursday final.</div></div>
-<div class="card"><a class="big" href="injuries.html">Injury report</a><div class="small">{n_inj} rows from the official report; {n_checked} re-checked line by line (I-17).</div></div>
+<div class="card"><a class="big" href="injuries.html">Injury report</a><div class="small">{n_inj} rows from the official report; all {n_checked} re-checked line by line (I-17 resolved).</div></div>
 <div class="card"><a class="big" href="strategies.html">Strategy registry</a><div class="small">Registry and validation gates. Results withheld.</div></div>
 <div class="card"><a class="big" href="model-lines.html">Model lines</a><div class="small">Week 10 game list. Model and market values withheld.</div></div>
 <div class="card"><a class="big" href="questions.html">Questions & gaps</a><div class="small">What we know, what we don't, and how to find out.</div></div>
@@ -169,7 +173,7 @@ summary_body = f"""<h1>Executive summary</h1>
 <ul>
 <li><b>Standings:</b> all {len(standings)} rows re-checked against the NFL.com standings page on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak). Every value matched.</li>
 <li><b>Week 10 schedule:</b> all {len(schedule)} games and {len(byes)} bye teams re-checked against NFL.com. The Thursday game is listed Final: Commanders {tnf['away_score']}, Giants {tnf['home_score']}.</li>
-<li><b>Injury report:</b> {n_inj} rows across {inj_games} games transcribed from NFL.com. {n_checked} rows are re-checked line by line (WAS at NYG, NE at DET); the other {n_inj-n_checked} are pending (I-17). Transcribed status counts: Out {n_out}, Doubtful {n_doubt}, Questionable {n_quest}.</li>
+<li><b>Injury report:</b> {n_inj} rows across {inj_games} games transcribed from NFL.com. All {n_checked} rows are re-checked line by line against all 8 page chunks of the official report on 2026-11-14 (T9); 1 transcription mismatch was found and corrected (Jaylon Moore player URL). Transcribed status counts: Out {n_out}, Doubtful {n_doubt}, Questionable {n_quest}.</li>
 <li><b>Spot-check:</b> Mike Evans's NFL.com player page lists the 49ers, consistent with the injury report.</li>
 </ul>
 <h2>2. Strategy research</h2>
@@ -257,7 +261,7 @@ for t in sorted(team_sum, key=lambda x: st_names.get(x, x)):
                  f"<td>{src_link('https://www.nfl.com/injuries/','report')}</td></tr>")
 irows = ""
 for r in injuries:
-    rc = "<span class='chip ok'>re-checked (chunk 0)</span>" if r["game"] in CHECKED_GAMES else "<span class='chip warn'>pending (I-17)</span>"
+    rc = "<span class='chip ok'>re-checked (chunks 0–7)</span>" if r["game"] in CHECKED_GAMES else "<span class='chip warn'>pending (I-17)</span>"
     codes = r["flag_codes"]
     flag = " ".join(f"<span class='chip warn'>{H(c)}</span>" for c in codes.split(";") if c)
     gs = r["game_status"]
@@ -267,7 +271,7 @@ for r in injuries:
               f"<td><span class='chip {cls}'>{H(gs) if gs else '(blank)'}</span></td><td>{flag}</td><td>{rc}</td>"
               f"<td>{src_link(r['player_url'],'player')} · {src_link(r['source_url'],'report')}</td></tr>")
 inj_body = f"""<h1>Injury report — Week 10 (2026)</h1>
-<p class="lead">Source: NFL.com official injury report, retrieved {DATA_DATE}. <span class="chip ok">official</span> {n_inj} rows, {inj_games} games. Every row links to the player page and the report. Row check: {n_checked} of {n_inj} rows re-checked line by line (WAS at NYG, NE at DET); the rest are pending (I-17). Flags (I-05 to I-08) are explained on the <a href="flagged.html">Flagged for review</a> page.</p>
+<p class="lead">Source: NFL.com official injury report, retrieved {DATA_DATE}. <span class="chip ok">official</span> {n_inj} rows, {inj_games} games. Every row links to the player page and the report. Row check: all {n_checked} of {n_inj} rows re-checked line by line against all 8 page chunks on {DATA_DATE} (I-17 resolved; 1 URL-slug mismatch corrected — ledger <code>docs/recheck/injuries-week10.md</code>). Flags (I-05 to I-08) are explained on the <a href="flagged.html">Flagged for review</a> page.</p>
 <div class="note info"><b>Starter vs backup: not yet tracked.</b> The report does not say who starts. We have no official depth charts, so we cannot yet say whether a backup is replacing a starter (task T4, blocked). The unit columns below only count players by position group. They do not show who is a starter.</div>
 <h2>Team summary (counts from the official rows)</h2>
 <p class="small">Unit grouping is our classification from the NFL position codes shown on the report: Offense = QB, RB, FB, WR, TE, T, G, C. Defense = DE, DT, LB, CB, S. Special teams = K, P, LS. "Out or Doubtful" counts players with those game statuses.</p>
@@ -327,7 +331,7 @@ meth_body = f"""<h1>Method and data checks</h1>
 <table><thead><tr><th>Dataset</th><th>Tier</th><th>Use</th><th>Check performed</th></tr></thead><tbody>
 <tr><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com standings 2026 ↗</a></td><td><span class="chip ok">official</span></td><td>Standings table</td><td>All {len(standings)} rows re-checked on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak).</td></tr>
 <tr><td><a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener">NFL.com Week 10 schedule ↗</a></td><td><span class="chip ok">official</span></td><td>Schedule, byes</td><td>All {len(schedule)} games and {len(byes)} byes re-checked on 2026-11-14 (teams, records, kickoff, network, Thursday final).</td></tr>
-<tr><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report, Week 10 ↗</a></td><td><span class="chip ok">official</span></td><td>Injury table, flags</td><td>Line-by-line re-check: {n_checked} of {n_inj} rows (WAS at NYG, NE at DET; page chunk 0). Pending rows: I-17. Game list reconciled to the schedule.</td></tr>
+<tr><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report, Week 10 ↗</a></td><td><span class="chip ok">official</span></td><td>Injury table, flags</td><td>Line-by-line re-check: all {n_checked} of {n_inj} rows verified against page chunks 0–7 on 2026-11-14 (T9); 1 URL-slug mismatch corrected. Game list reconciled to the schedule.</td></tr>
 <tr><td><a href="https://github.com/nflverse/nfldata/tree/{checks['source']['pinned_commit']}" target="_blank" rel="noopener">nflverse nfldata (commit {checks['source']['pinned_commit'][:8]}) ↗</a></td><td><span class="chip warn">secondary</span></td><td>Strategy inputs (not published)</td><td>Sign-convention and score-match checks were run. Results withheld until the line provider is verified (I-10, I-11).</td></tr>
 </tbody></table>
 <h2>Backtest set-up</h2>

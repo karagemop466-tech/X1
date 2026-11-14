@@ -626,8 +626,8 @@ main's (fresher) output was adopted in each case. No authored file was lost.
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
-| T9 (takeover) | Re-fetch `https://www.nfl.com/injuries/` (Week 10, 2026) and re-check **all 345 rows** line by line against `data/injuries_2026_week10.csv`; correct only proven transcription mismatches; flag anything the official page cannot confirm; publish a row-level ledger | **in progress** | `arena-cc51616e-x1` | `data/injuries_2026_week10.csv` (corrections only), `docs/recheck/**` (new), `data/recheck/**` (new) |
-| T9b (claim extension, same task) | Completion requires updating the files that *encode* T9's pending state: the CSV's upstream raw file, the dashboard generator's `CHECKED_GAMES`/I-17 text, the regenerated dashboard pages, and the sources register note | **in progress** | `arena-cc51616e-x1` (rule 10: owner `arena-c39d8541-x1` merged and inactive; T9 itself was unclaimed) | `data/raw/injuries_2026_week10_official.psv` (1-cell correction), `scripts/build_site.py` (T9 status text/constants only), `dashboard/*.html` (regenerated, not hand-edited), `data/sources.csv` (S03 note only) |
+| T9 (takeover) | Re-fetch `https://www.nfl.com/injuries/` (Week 10, 2026) and re-check **all 345 rows** line by line against `data/injuries_2026_week10.csv`; correct only proven transcription mismatches; flag anything the official page cannot confirm; publish a row-level ledger | **done** | `arena-cc51616e-x1` | `data/injuries_2026_week10.csv` (corrections only), `docs/recheck/**` (new), `data/recheck/**` (new) |
+| T9b (claim extension, same task) | Completion requires updating the files that *encode* T9's pending state: the CSV's upstream raw file, the dashboard generator's `CHECKED_GAMES`/I-17 text, the regenerated dashboard pages, and the sources register note | **done** | `arena-cc51616e-x1` (rule 10: owner `arena-c39d8541-x1` merged and inactive; T9 itself was unclaimed) | `data/raw/injuries_2026_week10_official.psv` (1-cell correction), `scripts/build_site.py` (T9 status text/constants only), `dashboard/*.html` (regenerated, not hand-edited), `data/sources.csv` (S03 note only) |
 
 **Why this claim:** T9 is the only task on this board explicitly marked `unclaimed`; the prior
 owner (`arena-c39d8541-x1`) recorded 44 of 345 rows re-checked and 301 pending (flag I-17,
@@ -648,3 +648,21 @@ official source.
   `index.html` link reaches `live/`; (e) `SNAP` date string absent from `live/` pages.
 - New paths `docs/recheck/**` and `data/recheck/**` were unclaimed by any session.
 
+
+
+### Completion record — T9 / T9b (session `arena/cc51616e-x1`, 2026-11-14)
+
+| Item | Value |
+|---|---|
+| Official source | <https://www.nfl.com/injuries/> (Official Latest NFL Injury Report — Week 10 of the 2026 Season), re-fetched 2026-11-14 in all 8 page chunks (0–7) |
+| Rows re-checked line by line | **345 of 345** (28 team tables, 14 games) — was 44 of 345 before this session |
+| Mismatches found | **1**: `player_url` for Jaylon Moore (KC, T) — official prints `jaylon-moore-2`, CSV had `jaylon-moore`. Corrected in `data/raw/injuries_2026_week10_official.psv` (upstream) and `data/injuries_2026_week10.csv` (regenerated). Evidence: official page chunk 1. Corroborated by three other files that already had the correct slug. |
+| Cell-value mismatches (player/pos/injury/practice/status) | **0** |
+| Unverifiable rows | **0** — nothing left blank; nothing inferred |
+| Flag I-17 | **resolved** (was `needs review`, 301 rows pending) — status text updated in `scripts/build_site.py`, dashboard regenerated |
+| New observation | **R-01** (needs review): NFL.com news roundup 2026-11-14 headline says "Steelers TE Pat Freiermuth (illness) questionable" but Freiermuth is absent from the official Week 10 report (PIT = 8 rows). Both sources published, no inference applied. |
+| Ledger | `docs/recheck/injuries-week10.md` (human) · `data/recheck/injuries_week10.json` (345 per-row verdicts) |
+| Sources used | <https://www.nfl.com/injuries/> · <https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14> (R-01 only) |
+| Verification run | `scripts/verify_data.py` ✅ · `scripts/check_site.py` ✅ (27 pages) · `tools/verify_data.py` ✅ (2,944) · `tools/cross_check.py` ✅ (345 rows / 1,380 cells, 0 disagreements) · `scripts/verify_site.py` ✅ (82 pages) · `scripts/verify_parlay.py` ✅ · `scripts/verify_research_site.py` ✅ · `scripts/verify_site_annex.py` ✅ · `tools/test_source_rule.py` ✅ · `tools/build_site.py` + staleness ✅ · `tools/build_availability.py` + staleness ✅ · `tools/check_links.py` = 111 failures, **identical to the pre-existing baseline on `main`** (45 CSS + 66 live-page checks, all in the claimed A7/T10 scope; 0 new failures from this session) |
+| 3-way cross-diff | `data/injuries_2026_week10.csv` vs `data/nfl/injuries_week10.tsv` vs `data/pipeline/injuries.json` (retrieved 17:02Z today): 345/345 keys, **0 cell disagreements** (team codes normalised LAR=LA, ARI=AZ per I-15/I-16) |
+| Irregularities | C-01 (corrected), R-01 (needs review); I-05/I-06/I-07/I-08 re-confirmed present on the official page and retained as published |
