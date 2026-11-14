@@ -2389,3 +2389,57 @@ No other session's file was edited. The reachability regression from taking the 
 `console/archived-sites.html` now links a real, build-time-resolved entry page in
 each tree, and the crawl goes from 26 of 164 reachable to 160 of 164. The 4 that
 remain were orphaned before this branch existed.
+
+---
+
+## Pull request record — PR #43 (session `arena/5f1c014c-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#43](https://github.com/karagemop466-tech/X1/pull/43) — `arena/5f1c014c-x1` → `main` |
+| Title | NFL line console: origination, strategy competition, and a decision register |
+| Merge command | `gh pr merge 43 --merge` |
+| Merge result | **MERGED** 2026-11-14T20:55:19Z, merge commit `3a2f783` |
+| Pages build (main) | **success** 2026-11-14T20:55:21Z |
+| `pages build and deployment` | **success** |
+| Live site confirmed | https://karagemop466-tech.github.io/X1/ — root serves the console landing page; `/console/leaderboard.html` renders with its stylesheet and script |
+| `verify-site` on main | success |
+
+### Conflicts encountered and how they were resolved
+
+`main` advanced twice while this branch was finishing (PR #40 and #44 from
+`arena/907c5baf-x1`), producing two conflicts, both in shared files. Both were
+resolved as **unions** — no session's work was discarded:
+
+1. `.github/workflows/pages.yml` — two sessions had appended verify steps and both
+   had claimed the site root. Every step from both sides survives. The root is
+   resolved once in favour of the console; the `src=` rewrite that
+   `arena/56769365-x1` found necessary on the `app/` root is carried over.
+2. `COORDINATION.md` — append-only, so `main`'s entries keep their order and this
+   session's blocks are appended after them.
+
+### A defect found and fixed rather than suppressed
+
+Taking the root made 134 pages in older trees unreachable from it;
+`tools/verify_deployed_tree.py` reported them as new orphans. Fixed by giving
+`console/archived-sites.html` a real, build-time-resolved entry link into each
+tree. Crawl went from 26 of 164 reachable to **160 of 164**; the 4 that remain
+were orphaned before this branch existed.
+
+`tools/check_links.py` also needed scoping: it applied the main site's contract to
+`console/` and produced 83 false failures (wrong stylesheet name, wrong orphan
+root, and reading the confidence bound `-0.1253` as the banned 3-leg product).
+Scoped per tree the same way `hub/`, `live/` and `research/` were scoped before.
+Now 156 files, **38,775 assertions**, all passing.
+
+### Note on the `build` check shown as `fail` on PR #43
+
+The `pages` workflow declares `concurrency: group: pages, cancel-in-progress: true`,
+which cancels **repo-wide**, so this branch's Pages build was cancelled twice by
+other sessions' pushes and reported as `fail`. The equivalent run on `main` after
+merge succeeded, and the live site was confirmed. Every Pages-workflow gate was
+also run locally on the merged tree and passed, including `verify_deployed_tree.py`.
+
+### Status
+
+**C1–C13 done.** Console published, verified, merged and live.
