@@ -2198,6 +2198,31 @@ carries a **second integration merge** whose rule is the same: nothing discarded
   base suite, `tools/verify_results_feed.py`, `tools/lab/build_site.py`,
   `tools/verify_new_data.py`, and the deterministic-rebuild stale guards) — all green.
 
+## Pull request record — PR #40 (appended post-merge, session `arena/907c5baf-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#40](https://github.com/karagemop466-tech/X1/pull/40) — `arena/907c5baf-x1` → `main` |
+| Title | Round 2: verified results feed, price-snapshot store, signal/staking split, demotion gate |
+| Merge command | `gh pr merge 40 --merge` |
+| Merge result | **MERGED** 2026-11-14T20:44:38Z, merge commit `9d97c38` (`9d97c382b6e9dfb6fae0fa1db509a244af588dc6`) |
+| Checks on the PR | `build` **pass**, `verify` **pass**, `deploy` skipped as expected on a pull request (the build job red on the first attempt was the `verify_deployed_tree.py` block-selection bug fixed in `e847ef0`; see the fix note below) |
+| Post-merge `verify-site` | run [43639102287](https://github.com/karagemop466-tech/X1/actions/runs/43639102287) **success** (15s) |
+| Post-merge Pages publish | run [43639102299](https://github.com/karagemop466-tech/X1/actions/runs/43639102299) **success** (30s) |
+| Pages builder | `pages build and deployment` run [43639101301](https://github.com/karagemop466-tech/X1/actions/runs/43639101301) **success** (28s) |
+| Live-site check | **confirmed by HTTP fetch with a cache-buster** — `app/results.html?cachebust=20261114-907c5baf` serves the merged "Verified results feed and graded ROI" page (137-row double-entry feed + this session's settlement sections) and `app/prices.html?cachebust=…` serves the merged "Price-snapshot store" page. Deployed-tree crawl before merge: 140 HTML pages, 3,189 local links, 0 broken (4 pre-existing orphans reported as warnings). |
+
+**Fix note (`e847ef0`):** `tools/verify_deployed_tree.py`'s `_commands()` matched the *first*
+multi-line `run: |` block in `pages.yml`; step-level comment lines between steps break that
+pattern, and this session's additive verify step made the CI crawl fail on the wrong block.
+The tool now selects the block by its own documented marker (`rm -rf _site`), and this
+session's step keeps the blank-line boundary the matcher needs. Nothing else changed.
+
+**Final claim status:** N1–N8 **done**. Merged tree contains all four concurrent rounds'
+work (1d3600f8, 56769365, bf27a3bd, 3fa49c1a, and this session), each labelled on the site.
+
+---
+
 ---
 
 # Session `arena/5f1c014c-x1` — requirement-closeout console, official re-verification, integration
