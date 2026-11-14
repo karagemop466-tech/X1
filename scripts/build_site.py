@@ -147,7 +147,7 @@ index_body = f"""<h1>NFL research dashboard</h1>
 <div class="card"><a class="big" href="summary.html">Executive summary</a><div class="small">Key facts, verdicts, and what we still need.</div></div>
 <div class="card"><a class="big" href="standings.html">Standings</a><div class="small">32 teams, NFL.com 2026 standings.</div></div>
 <div class="card"><a class="big" href="schedule.html">Week 10 schedule</a><div class="small">14 games, byes, and the Thursday final.</div></div>
-<div class="card"><a class="big" href="injuries.html">Injury report</a><div class="small">{n_inj} official rows with player links and team summaries.</div></div>
+<div class="card"><a class="big" href="injuries.html">Injury report</a><div class="small">{n_inj} rows from the official report; {n_checked} re-checked line by line (I-17).</div></div>
 <div class="card"><a class="big" href="strategies.html">Strategy registry</a><div class="small">Registry and validation gates. Results withheld.</div></div>
 <div class="card"><a class="big" href="model-lines.html">Model lines</a><div class="small">Week 10 game list. Model and market values withheld.</div></div>
 <div class="card"><a class="big" href="questions.html">Questions & gaps</a><div class="small">What we know, what we don't, and how to find out.</div></div>
