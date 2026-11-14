@@ -1,0 +1,40 @@
+name: probe-nfl-egress
+on:
+  push:
+    branches: ["arena/0c2fcfa1-x1"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe NFL endpoints
+        run: |
+          mkdir -p probe
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+          for pair in \
+            "injuries|https://www.nfl.com/injuries/" \
+            "standings|https://www.nfl.com/standings/league/2026/REG" \
+            "schedule|https://www.nfl.com/schedules/2026/by-week/week-10" \
+            "gamebook|https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" \
+            ; do
+            name="${pair%%|*}"; url="${pair#*|}"
+            code=$(curl -sS -A "$UA" -o "probe/$name.raw" -w "%{http_code}" --max-time 60 -L "$url" || echo "ERR")
+            size=$(wc -c < "probe/$name.raw" 2>/dev/null || echo 0)
+            echo "PROBE $name http=$code bytes=$size url=$url"
+          done
+          ls -la probe/
+          echo "--- injuries head ---"
+          head -c 600 probe/injuries.raw || true
+          echo ""
+          echo "--- grep table markers ---"
+          grep -o -i "Game Status" probe/injuries.raw | head -3 || echo "no game status marker"
+      - name: Upload probe artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-probe
+          path: probe/
+          retention-days: 3
