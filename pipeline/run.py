@@ -12,6 +12,7 @@ import os
 import re
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import traceback
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
@@ -219,39 +220,64 @@ def build_club_registry(report, team_index) -> Dict[str, str]:
     return by_abbrev
 
 
+def _fetch_team_depth_chart(
+    abbrev: str,
+    meta: Dict[str, str],
+    domains: Dict[str, str],
+) -> Tuple[str, List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """Try each candidate path for one club. Returns (best_url, rows, attempts)."""
+    domain = domains.get(abbrev) or S.club_domain(abbrev, None, meta.get("slug", ""))
+    attempts: List[Dict[str, Any]] = []
+    if not domain:
+        attempts.append({"url": None, "error": "no official club domain for this team"})
+        return "", [], attempts
+
+    name = meta.get("name") or abbrev
+    for index, path in enumerate(S.DEPTH_CHART_PATHS):
+        url = f"https://www.{domain}{path}"
+        # Only the first candidate gets retries; fallbacks get one shot so a
+        # dead club cannot hold the whole refresh open.
+        result = fetch(url, retries=2 if index == 0 else 1, backoff=2.0, sleep=0.4, timeout=20.0)
+        if not result.ok:
+            attempts.append({"url": url, "error": result.error})
+            continue
+        title = page_title(result.body)
+        doc = H.parse(result.body)
+        parsed = P.parse_depth_chart(doc, url, abbrev, name)
+        attempts.append(
+            {"url": url, "status": result.status, "title": title,
+             "tables": len(doc.tables), "rows": len(parsed["rows"])}
+        )
+        if "depth chart" in title.lower() and parsed["rows"]:
+            return url, parsed["rows"], attempts
+        time.sleep(0.3)
+    return "", [], attempts
+
+
 def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     sources_seen: List[Dict[str, Any]] = []
-    for abbrev, meta in sorted(team_index.items()):
-        attempts: List[Dict[str, Any]] = []
-        best = None
-        for path in S.DEPTH_CHART_PATHS:
-            domain = (club_domains or {}).get(abbrev) or S.club_domain(
-                abbrev, None, meta.get("slug", "")
-            )
-            if not domain:
-                attempts.append({"url": None, "error": "no official club domain for this team"})
-                break
-            url = f"https://www.{domain}{path}"
-            if not url:
-                attempts.append({"url": None, "error": "no club domain configured"})
-                break
-            result = fetch(url, retries=2, backoff=2.0, sleep=0.7, timeout=25.0)
-            if not result.ok:
-                attempts.append({"url": url, "error": result.error})
-                continue
-            title = page_title(result.body)
-            doc = H.parse(result.body)
-            parsed = P.parse_depth_chart(doc, url, abbrev, meta.get("name") or abbrev)
-            attempts.append(
-                {"url": url, "status": result.status, "title": title,
-                 "tables": len(doc.tables), "rows": len(parsed["rows"])}
-            )
-            if "depth chart" in title.lower() and parsed["rows"]:
-                best = (url, title, parsed)
-                break
-            time.sleep(0.5)
-        if best is None:
+    domains = club_domains or {}
+
+    # Club sites are fetched concurrently: serially, a handful of slow or dead
+    # hosts pushes the whole refresh past ten minutes.
+    teams = sorted(team_index.items())
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futures = {
+            pool.submit(_fetch_team_depth_chart, abbrev, meta, domains): abbrev
+            for abbrev, meta in teams
+        }
+        results = {}
+        for future in as_completed(futures):
+            abbrev = futures[future]
+            try:
+                results[abbrev] = future.result()
+            except Exception as exc:  # noqa: BLE001
+                results[abbrev] = ("", [], [{"url": None, "error": f"{type(exc).__name__}: {exc}"}])
+
+    for abbrev, _meta in teams:
+        url, team_rows, attempts = results.get(abbrev, ("", [], []))
+        if not team_rows:
             report["errors"].append(
                 {"dataset": "depth_charts", "team": abbrev, "attempts": attempts}
             )
@@ -260,33 +286,15 @@ def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[s
                  "attempts": attempts, "status": "unavailable"}
             )
             continue
-        url, title, parsed = best
-        rows.extend(parsed["rows"])
+        rows.extend(team_rows)
+        title = ""
+        for attempt in attempts:
+            if attempt.get("url") == url:
+                title = attempt.get("title", "")
         sources_seen.append(
-            {"team_abbrev": abbrev, "url": url, "rows": len(parsed["rows"]),
+            {"team_abbrev": abbrev, "url": url, "rows": len(team_rows),
              "page_title": title, "attempts": attempts, "status": "ok"}
         )
-    payload = dataset(
-        "depth_charts",
-        "Official Club Depth Charts (starters through 4th string)",
-        rows,
-        ["team_name", "unit", "position", "depth", "player"],
-        {
-            "url": "https://www.nfl.com/teams/",
-            "label": "Official club sites (one depth chart per team)",
-            "org": "Club",
-        },
-        season=2026,
-        per_team_sources=sources_seen,
-        note=(
-            "Depth order is read left to right exactly as each club prints it: column 1 is "
-            "the starter, column 2 the 2nd string, and so on. Where a club leaves a column "
-            "empty the position simply has no listed player at that depth."
-        ),
-    )
-    guard_write(os.path.join(DATA_DIR, "depth_charts.json"), payload, report, "depth_charts")
-    return payload
-
 
 def build_team_stats(report, team_index) -> Optional[Dict[str, Any]]:
     tables: List[Dict[str, Any]] = []
