@@ -31,3 +31,4 @@ Nothing is implemented while `proposed` unless it is pure documentation of verif
 
 Owner: mark decisions by editing the Decision column (or adding a note in the repo); the site's
 Suggestions page mirrors this table verbatim with sources.
+| SG-13 | 2026-11-14 | Switch GitHub Pages to workflow-based deploys from `/site` (template ready at `docs/templates/deploy-pages.workflow.yml`) | Root currently serves a redirect because Pages settings can't be changed from the sandbox (API 403) | S | Cleaner URL, atomic deploys with status checks | Owner grants Pages admin or flips Pages → GitHub Actions in Settings | **proposed** |

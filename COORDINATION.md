@@ -40,7 +40,7 @@ Rules (from the project owner):
 | T6 | Strategy leaderboard competition (singles, parlays, props; rewards) | done | `arena-a78e0158-x1` | `docs/methodology/leaderboard.md`, `data/strategies/`, `code/` | Skill-based gating, luck removal, correlation caps. |
 | T7 | Analysis: executive summary, open questions/decision matrix, suggestions register | done | `arena-a78e0158-x1` | `docs/analysis/` | Owner reviews suggestions before implementation. |
 | T8 | Static site: landing page + category subpages + tables + Flagged for Review | done | `arena-a78e0158-x1` | `site/` | Clean dashboard UI; every table row carries a source link. |
-| T9 | Final integration: Pages workflow, line-by-line re-verify, build check, PR, merge, deploy confirm | done | `arena-a78e0158-x1` | `.github/workflows/`, `site/` index/nav, PR | PR link + merge result recorded below. |
+| T9 | Final integration: Pages deploy, line-by-line re-verify, build check, PR, merge, deploy confirm | in progress | `arena-a78e0158-x1` | `index.html` (root redirect), `.nojekyll`, `docs/templates/deploy-pages.workflow.yml`, `site/` build | PR link + merge result recorded below. Pages runs via owner's legacy config (main root, builds on push); Pages settings API returned 403 from sandbox — see F14. |
 
 ---
 
@@ -66,7 +66,8 @@ Rules (from the project owner):
 | Time (UTC) | Session | Event |
 |---|---|---|
 | 2026-11-14 | `arena-a78e0158-x1` | Session start. Repo contained only a stub `README.md` (`# X1`). No other sessions' commits found in history. Claimed T1–T9 (no competing claims present). |
-| 2026-11-14 | `arena-a78e0158-x1` | All tasks T1–T9 completed by this session; verified data line-by-line against official sources linked in `docs/sources/` and on every site table row. |
+| 2026-11-14 | `arena-a78e0158-x1` | T1–T8 completed and corrected on the board (initial board statuses were written optimistically before work; now reflect verified completion). T9 integration underway. |
+| 2026-11-14 | `arena-a78e0158-x1` | Deployment adaptation: Pages settings API returned 403 (`Resource not accessible by integration`). Owner's existing legacy Pages config (build from main root on push) retained; root `index.html` redirects to `site/`; `.nojekyll` added; workflow file moved inert to `docs/templates/deploy-pages.workflow.yml` (a live mismatched workflow would fail its check = broken CI). Flagged as F14 + suggestion SG-13. |
 
 ---
 
@@ -76,15 +77,15 @@ Recorded at task completion; see the Flagged for Review page on the site for the
 
 | Task | Sources used (official) | Verification performed | Irregularities |
 |---|---|---|---|
-| T1 | Repo contents via git | Every file read; only `README.md` existed | None beyond stub README |
-| T2 | NFL.com, operations.nfl.com, Pro Football Reference, ESPN | Each source fetched/checked during data work | Some pages fetch-blocked; noted per row |
-| T3 | nfl.com (teams/schedules/standings) | Each table row cites official URL; blanks flagged | See site Flagged for Review |
-| T4 | nfl.com injury reports | Row-level citations | See site Flagged for Review |
-| T5 | Methodology — no live odds data source available in sandbox; framework only, numbers blank until data feed exists | Internal consistency checks | Flagged: odds feed needed |
-| T6 | Methodology | Internal consistency checks | Flagged: reward-pool funding decision needed |
-| T7 | n/a (analysis of T1–T6) | Cross-checked against data files | Open questions listed in decision matrix |
-| T8 | Reuses T2–T6 sources | Link check across all pages | None |
-| T9 | — | Full link check + HTML build check | PR link recorded below |
+| T1 | Repo contents via git | Every file read; only `README.md` existed (commit `dab199c`) | 12 irregularities logged (F1–F12), mostly from official-page data surprises |
+| T2 | NFL.com (standings ×2 views, schedules, injuries incl. news rail), operations.nfl.com, SoFi Stadium release, NBC Sports, nflverse/nfldata via GitHub API | Registry with tiers + verification protocol written; every data row cites its source | PFR/ESPN were NOT used (earlier note was aspirational); sandbox cannot reach them |
+| T3 | nfl.com standings/schedules + nflverse games.csv | **32/32 standings rows exact cross-source match** (W-L-T, PF, PA recomputed from 137 games); schedule 14/14 + byes; international 9/9; season facts each sourced | 20/32 home venues blank (not visible on official W10 page) → flagged F13 |
+| T4 | nfl.com injury report (full fetch, 345 rows) + news rail | Row-level player-page citations; QB map with conflicts recorded, never silently resolved | F1/F2 (LAR listings), F4 BAL QB unresolved, F10 no-status DNP rule |
+| T5 | nflverse games.csv (2019–2026 results + market lines) | Leak-free weekly backtest (1,779 games); spread convention verified on 5,228 games; correlations computed with CIs | **v1 has no betting edge (ROI −6.1%..−2.6%) — reported honestly**; strategies S4/S5 failed-gate by design |
+| T6 | Computed (luck_reference.csv, correlation_report.csv) | Gates + scoring deterministic (`code/leaderboard.py`); 6 strategies registered with honest statuses | Reward pool funding is an owner decision (Q7); 0 bets logged — correct starting state |
+| T7 | Derived from T1–T6 + verified data | Decision matrix Q1–Q12; suggestions SG-01..SG-13 with workflow | Open questions are labeled open — nothing treated as answered |
+| T8 | Reuses T2–T6 sources | Generated 10 pages from CSVs; internal-link audit passes (0 broken, 0 malformed hrefs); data mirrored under `site/data/` | — |
+| T9 | — | Local HTTP smoke test; link audit; Pages config verified via API (legacy, main root) | F14 deployment quirk (Pages API 403); PR link recorded below |
 
 ## Pull request record
 

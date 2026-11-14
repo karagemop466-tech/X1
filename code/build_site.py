@@ -474,6 +474,7 @@ FLAGGED = [
     ("F11", "Player name display inconsistency", "NFL.com shows 'Jacob Hummel' with player URL slug jake-hummel — recorded as displayed; trivial.", "https://www.nfl.com/players/jake-hummel/", "NFL.com"),
     ("F12", "Unusual schedule facts (verified, for awareness)", "Season opened Wednesday Sept 9, 2026 (second-ever Wednesday Kickoff Game; NE@SEA, NBC); Melbourne game (SF@LA, Week 1) streamed on Netflix per media reports.", "https://www.nbcsports.com/nfl/news/how-to-watch-new-england-patriots-seattle-seahawks-nfl-opener-live-stream-preview-nbc-peacock-wednesday", "NBC Sports"),
     ("F13", "20 of 32 home venues unverified", "Only venues visible on the official Week 10 schedule page are recorded; the rest are blank by rule — verify from each club's official site.", "https://www.nfl.com/schedules/2026/REG10/", "NFL.com schedule"),
+    ("F14", "GitHub Pages deployment quirk", "This repo's Pages is configured (by the owner) in legacy mode: build from the root of main on every push. The sandbox token cannot change Pages settings (API 403), so the dashboard lives under /site/ with a redirect at the root URL. A workflow-based deploy template is stored inert at docs/templates/deploy-pages.workflow.yml for when Pages admin is available (suggestion SG-13).", "https://karagemop466-tech.github.io/X1/", "live site"),
 ]
 
 
