@@ -1,0 +1,54 @@
++ git config user.name x1-bot
++ git config user.email x1-bot@users.noreply.github.com
++ rm -rf _ci
++ git fetch origin arena/d577959f-x1
+From https://github.com/karagemop466-tech/X1
+ * branch            arena/d577959f-x1 -> FETCH_HEAD
++ git reset --mixed origin/arena/d577959f-x1
+Unstaged changes after reset:
+M	data/pipeline/_probe.json
+M	data/pipeline/_run_report.json
+M	data/pipeline/_verification.json
+M	data/pipeline/club_registry.json
+M	data/pipeline/correlations.json
+M	data/pipeline/deficiency.json
+M	data/pipeline/depth_charts.json
+M	data/pipeline/injuries.json
+M	data/pipeline/repo_review.json
+M	data/pipeline/standings.json
+M	data/pipeline/team_stats.json
++ git add data/pipeline
++ git status --porcelain
+M  data/pipeline/_probe.json
+M  data/pipeline/_run_report.json
+M  data/pipeline/_verification.json
+M  data/pipeline/club_registry.json
+M  data/pipeline/correlations.json
+M  data/pipeline/deficiency.json
+M  data/pipeline/depth_charts.json
+M  data/pipeline/injuries.json
+M  data/pipeline/repo_review.json
+M  data/pipeline/standings.json
+M  data/pipeline/team_stats.json
++ git diff --cached --quiet
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ git commit -m 'data: refresh from official sources 2026-11-14T04:51:11Z'
+[arena/d577959f-x1 98d2400] data: refresh from official sources 2026-11-14T04:51:11Z
+ 11 files changed, 9226 insertions(+), 5064 deletions(-)
++ pushed=0
++ for attempt in 1 2 3 4 5
++ git fetch origin arena/d577959f-x1
+From https://github.com/karagemop466-tech/X1
+ * branch            arena/d577959f-x1 -> FETCH_HEAD
++ git rebase origin/arena/d577959f-x1
+Current branch arena/d577959f-x1 is up to date.
++ git push origin HEAD:arena/d577959f-x1
+To https://github.com/karagemop466-tech/X1
+   677adaa..98d2400  HEAD -> arena/d577959f-x1
++ echo 'MARKER: pushed on attempt 1'
+MARKER: pushed on attempt 1
++ pushed=1
++ break
++ '[' 1 = 1 ']'
++ echo 'MARKER: done'
+MARKER: done
