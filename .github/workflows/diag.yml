@@ -5,6 +5,8 @@ name: diag
 # Safe to delete once the data pipeline is validated.
 
 on:
+  push:
+    branches: ['**']
   workflow_dispatch:
 
 permissions:
