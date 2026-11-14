@@ -17,7 +17,6 @@ import csv
 import json
 import os
 import sys
-from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "audit"))
@@ -187,7 +186,11 @@ def check_injuries():
 
 # ------------------------------------------------------------------ main
 def main(argv):
-    started = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    # Deterministic, not wall-clock: CI asserts that the committed register is reproducible
+    # from the data, so a timestamp that changes on every run would fail that check for no
+    # reason. The retrieval date is what a reader needs; the moment of the run is not a fact
+    # about the data.
+    started = OFF.RETRIEVED
     results = [check_standings(), check_schedule(), check_byes(), check_injuries()]
     total_cells = sum(r["cells_compared"] for r in results)
     total_bad = sum(len(r["mismatches"]) for r in results)

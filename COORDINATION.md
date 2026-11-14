@@ -718,3 +718,79 @@ depth join published on `pages/availability.html`.
 |---|---|
 | Branch → base | `arena/9cc1eaac-x1` → `main` |
 | Content | independent re-verification of every Week 10 cell, the 31-club depth join, the decision/suggestions/queue/requirements pages, the red-CI fix |
+
+> **Merge note (this session, `arena/9cc1eaac-x1`).** `main` advanced while this PR was open:
+> session `arena/c50b9342-x1` independently fixed the same broken check (PR #22, #23). Both fixes are
+> kept — theirs strips `<script>` blocks before scanning for links, mine drops template-literal
+> fragments and `${...}` residue. They catch different cases and the combined checker passes with
+> 11,519 assertions. Their record follows, unedited.
+
+---
+
+# Session `arena/c50b9342-x1` — audit & repair (2026-11-14, this session)
+
+**Role claimed:** repository audit + repair of the broken `verify-site` check on `main`
+(takeover justified by owner rule 10: the failure stood for ~13 h with no session on it, and
+the owner instruction requires "if a check fails, fix the problem and retry until the site is
+live").
+**File scope:** `tools/check_links.py`, `tools/build_site.py`, regenerated `index.html` +
+`pages/*.html` (nav only), new `docs/audit/session-c50b9342-audit.md`, this section.
+**No published NFL value changed; no other session's file touched.**
+
+## Task board (this session)
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| A1 | Reproduce and fix the failing `verify-site` step on `main` (broken since PR #20) | **done** | root cause + fix in `docs/audit/session-c50b9342-audit.md` §F-A1 |
+| A2 | Add the missing "Live pipeline" nav entry requested by PR #20 and regenerate the site | **done** | NAV list + regenerated HTML; nothing else changed |
+| A3 | Independent line-by-line re-verification of published data vs official sources | **done** | results in §Completion record; every value matched |
+| A4 | Full CI chain dry-run (14 verify.yml steps + 2 pipeline checkers) | **done** | all pass locally before pushing |
+
+## Sources fetched by this session (all live, 2026-11-14)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/standings/league/2026/REG> | 32-club standings re-verification (64 rows across both datasets) |
+| <https://www.nfl.com/injuries/> | Week 10 injury report re-verification (44 rows: WAS, NYG, NE, DET) |
+| <https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all> | team-stats scoring spot check (SF, BUF) |
+| GitHub Actions runs listed in the audit report | evidence for the F-A1 failure window |
+
+## Verification performed
+
+- `tools/check_links.py` — **9,879 assertions pass, 0 failures** (was failing since PR #20).
+- All 14 `verify.yml` steps executed locally in CI order — **all pass**, including the
+  "stale HTML" guards after regenerating with the new nav entry.
+- `scripts/pipeline/verify_data.py` (4,579 rows, 0 without an official source) and
+  `scripts/pipeline/verify_site.py` — **both pass**.
+- Standings: 32/32 pipeline rows and 32/32 annex rows equal the official page, value for
+  value; league ΣPF = ΣPA = 6291 on the official numbers themselves.
+- Injuries: 44/44 rows for WAS/NYG/NE/DET equal the official page (two apparent diffs were
+  this auditor's own transcription artifacts — "Chig Okonkwo", "Carlton Davis III" — the repo
+  matches the page exactly, a nice demonstration that the row-level rule holds).
+- Scheduled collector healthy: `_ci/pipeline.log` exit=0, club registry 32/32; `_ci/commit.log`
+  shows a clean push.
+
+## Irregularities (published on `docs/audit/session-c50b9342-audit.md`; nothing blocking)
+
+| ID | Item |
+|---|---|
+| F-A1 | `verify.yml` "Link and structure check" failing on `main` since PR #20 — fixed this session (checker scope, not data) |
+| F-A2 | `live/` section unreachable from the main nav (PR #20 request never actioned) — fixed this session |
+| F-A3 | duplicated `RESEARCH_APPROVED`/`ANNEX_APPROVED` definitions in `tools/check_links.py` (pre-existing, harmless) — left for the owning session |
+
+## Pull request record (session `arena/c50b9342-x1`)
+
+| Item | Value |
+|---|---|
+| PR | <https://github.com/karagemop466-tech/X1/pull/22> |
+| Branch → base | `arena/c50b9342-x1` → `main` |
+| Result | **MERGED** 2026-11-14T18:14:36Z, merge commit `1541817123e02c71f71f8f7fc2d41a9052635793` |
+| Checks | `verify` **pass** (the previously-failing check), `build` **pass** — run [43625449394](https://github.com/karagemop466-tech/X1/actions/runs/43625449394) / [43625449486](https://github.com/karagemop466-tech/X1/actions/runs/43625449486) |
+| Pages deploy | [43625490588](https://github.com/karagemop466-tech/X1/actions/runs/43625490588) — build **success**, deploy **success**; legacy `pages-build-deployment` [43625490611](https://github.com/karagemop466-tech/X1/actions/runs/43625490611) **success** |
+| Pages API | `status: built`, `source: main /` — <https://karagemop466-tech.github.io/X1/> |
+| Post-deploy check | landing page fetched live and renders; deployed tree contains the new "Live pipeline" nav entry on `index.html` and every `pages/*.html` |
+
+**Session complete.** Data unchanged and re-verified; the only fixes were to the broken CI
+check and the missing nav link. The standing open items (odds feed, data licence, reward
+funding, HOU depth chart) remain published on the Flagged for Review and Decision pages for
+owner review — they are owner decisions, not implementation gaps.

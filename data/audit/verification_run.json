@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T18:13:46+00:00",
+ "generated_at": "2026-11-14",
  "retrieved_at": "2026-11-14",
  "method": "published data/nfl/*.tsv diffed against an independent transcription of the official pages in audit/official_snapshot_2026_w10.py",
  "sources": {
