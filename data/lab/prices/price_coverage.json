@@ -1,0 +1,320 @@
+{
+ "generated_at": "2026-11-14T19:21:23Z",
+ "snapshot": "2026-11-14",
+ "title": "Price-snapshot store coverage and provenance defects",
+ "rule": "A snapshot is published only where the publisher prints a number. Missing fields are null and counted here; none is derived.",
+ "totals": {
+  "market_rows": 20336,
+  "rows_per_market": {
+   "SIDE": 7439,
+   "TOTAL": 7439,
+   "MONEYLINE": 5458
+  },
+  "complete_opening_and_closing": {},
+  "rows_with_an_opening_price": 0,
+  "rows_with_a_closing_price": 473,
+  "rows_naming_a_book_on_the_opening_snapshot": 544,
+  "rows_naming_a_book_on_the_closing_snapshot": 0,
+  "rows_with_a_timestamp": 0,
+  "rows_where_opening_and_closing_both_exist": 0,
+  "pct_complete": 0.0
+ },
+ "temporal_coverage": {
+  "initial_lines_seasons": [
+   2021
+  ],
+  "closing_lines_seasons": [
+   2006,
+   2007,
+   2008,
+   2009,
+   2010,
+   2011,
+   2012,
+   2013,
+   2014,
+   2015,
+   2016,
+   2017,
+   2018
+  ],
+  "seasons_in_both": [],
+  "finding": "The only file that evidences an opening number covers 2021-2021; the only file that evidences a closing number covers 2006-2018. They never overlap, so 0 markets have both an opening and a closing number from a single publisher. No opening-to-closing move can be measured from this upstream."
+ },
+ "games": {
+  "total_rows": 7548,
+  "seasons": [
+   1999,
+   2026
+  ],
+  "with_a_spread": 7439,
+  "with_a_total": 7439,
+  "with_a_moneyline": 5458,
+  "with_a_spread_price": 5458
+ },
+ "defects": [
+  {
+   "id": "P-01",
+   "severity": "high",
+   "claim": "Two nflverse files disagree about the closing spread for the same game.",
+   "measure": "1101 of 3368 games (32.7%) where closing_lines.csv (home side) and games.csv spread_line differ, after normalising the documented sign convention.",
+   "examples": [
+    {
+     "game": "2006_01_CIN_KC",
+     "games_spread_line": -1.5,
+     "closing_home_line": -1.0
+    },
+    {
+     "game": "2006_01_BUF_NE",
+     "games_spread_line": 10.0,
+     "closing_home_line": -9.5
+    },
+    {
+     "game": "2006_01_NYJ_TEN",
+     "games_spread_line": 2.5,
+     "closing_home_line": -3.0
+    },
+    {
+     "game": "2006_01_DAL_JAX",
+     "games_spread_line": -2.5,
+     "closing_home_line": 2.0
+    },
+    {
+     "game": "2006_02_DET_CHI",
+     "games_spread_line": 7.0,
+     "closing_home_line": -7.5
+    }
+   ],
+   "source": [
+    "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv",
+    "https://github.com/nflverse/nfldata/blob/master/DATASETS.md#L109"
+   ],
+   "consequence": "Only one of them can be the closing number. Until the publisher says which, neither is used as the model's benchmark for CLV; both are stored and labelled.",
+   "how_to_close": "Ask nflverse which source backfills games.csv lines, or price a licensed feed and drop the nflverse lines from the benchmark."
+  },
+  {
+   "id": "P-02",
+   "severity": "high",
+   "claim": "initial_lines.csv is not the opening line for the games it lists.",
+   "measure": "510 of 544 2021 spreads (93.8%) are inconsistent with games.csv spread_line for the same game.",
+   "examples": [
+    {
+     "game": "2021_01_DAL_TB",
+     "side": "TB",
+     "initial_line": -6.5,
+     "games_spread_line": 10.0
+    },
+    {
+     "game": "2021_01_DAL_TB",
+     "side": "DAL",
+     "initial_line": 6.5,
+     "games_spread_line": 10.0
+    },
+    {
+     "game": "2021_01_PIT_BUF",
+     "side": "BUF",
+     "initial_line": -6.0,
+     "games_spread_line": 6.5
+    },
+    {
+     "game": "2021_01_PIT_BUF",
+     "side": "PIT",
+     "initial_line": 6.0,
+     "games_spread_line": 6.5
+    },
+    {
+     "game": "2021_01_NYJ_CAR",
+     "side": "CAR",
+     "initial_line": -4.5,
+     "games_spread_line": 3.5
+    }
+   ],
+   "source": [
+    "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv"
+   ],
+   "consequence": "Treating this file as 'the opening line' would mislabel a number by more than a touchdown on some games. It is stored as `initial_lines` evidence only, not as an opening price.",
+   "how_to_close": "A feed that timestamps every snapshot (see Q-P2)."
+  },
+  {
+   "id": "P-03",
+   "severity": "medium",
+   "claim": "closing_lines.csv prints a price on fewer than half of its rows.",
+   "measure": "8850 of 20490 rows carry an American price (43.2%), and only 505 games have a closing SPREAD price (2017-2018 only).",
+   "examples": [
+    {
+     "row": {
+      "game_id": "2017090700",
+      "alt_game_id": "2017_01_KC_NE",
+      "type": "SPREAD",
+      "side": "KC",
+      "line": "8",
+      "odds": "103",
+      "outcome": "1"
+     }
+    }
+   ],
+   "source": [
+    "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv"
+   ],
+   "consequence": "EV and ROI can only be computed on the priced subset; every backtest states its priced n, not its total n.",
+   "how_to_close": "Licensed price feed, or a documented capture of one book's closing numbers."
+  },
+  {
+   "id": "P-04",
+   "severity": "high",
+   "claim": "No closing line row in the usable upstream names a book.",
+   "measure": "The closing snapshot names a book on 0 of 20336 store rows. The only rows that name a book at all are 544, and those name a three-letter vendor code (WSGT) rather than a market or a full book name.",
+   "examples": [
+    {
+     "game": "2021_01_ARI_TEN",
+     "market": "SIDE",
+     "book": "WSGT"
+    },
+    {
+     "game": "2021_01_ARI_TEN",
+     "market": "TOTAL",
+     "book": "WSGT"
+    },
+    {
+     "game": "2021_01_BAL_LV",
+     "market": "SIDE",
+     "book": "WSGT"
+    }
+   ],
+   "source": [
+    "https://github.com/nflverse/nfldata/blob/master/DATASETS.md#L109"
+   ],
+   "consequence": "A model price can be compared with a market price only if both refer to the same market. Without a book, 'the market line' is an unnamed composite, so beat-the-close numbers are not published from it.",
+   "how_to_close": "Record the book with every snapshot (Q-P1)."
+  },
+  {
+   "id": "P-05",
+   "severity": "high",
+   "claim": "No line row in the usable upstream carries a timestamp.",
+   "measure": "0 of 20336 store rows have a timestamp on either snapshot. The publisher's own files have no time column at all.",
+   "examples": [],
+   "source": [
+    "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv"
+   ],
+   "consequence": "'Opening' and 'closing' are inferences from a file name and row order, not recordings. Any CLV built on them is a proxy, and is labelled as such.",
+   "how_to_close": "Timestamp every capture (Q-P2)."
+  }
+ ],
+ "self_checks": {
+  "american_odds_arithmetic_ok": true,
+  "american_minus_110_as_decimal": 1.909090909,
+  "every_row_has_a_line_or_is_counted_missing": true,
+  "no_derived_price_published": true
+ },
+ "ready_for": {
+  "fair_vs_market_column": false,
+  "clv": false,
+  "roi_at_the_price": true,
+  "explanation": "The store can support a fair-line vs market-line column for the markets that are complete. It cannot support true CLV (no timestamp, no book) and can support ROI only on the priced subset."
+ },
+ "_provenance": {
+  "games.spread_line": {
+   "file": "data/games.csv",
+   "column": "spread_line",
+   "publisher": "nflverse nfldata",
+   "definition": "The spread line for the game. A positive number means the home team was favored by that many points, a negative number means the away team was favored by that many points. (DATASETS.md, line 109.)",
+   "definition_url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md#L109",
+   "publisher_names_the_book": false,
+   "publisher_says_opening_or_closing": "neither"
+  },
+  "games.total_line": {
+   "file": "data/games.csv",
+   "column": "total_line",
+   "publisher": "nflverse nfldata",
+   "definition": "The total line for the game. (DATASETS.md, line 110.)",
+   "definition_url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md#L110",
+   "publisher_names_the_book": false,
+   "publisher_says_opening_or_closing": "neither"
+  },
+  "games.home_moneyline": {
+   "file": "data/games.csv",
+   "column": "home_moneyline",
+   "publisher": "nflverse nfldata",
+   "definition": "American odds on the home team's moneyline. No definition is printed in DATASETS.md; the column is used on the strength of its name only, which is why every row built from it is flagged.",
+   "definition_url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+   "publisher_names_the_book": false,
+   "publisher_says_opening_or_closing": "neither"
+  },
+  "games.away_moneyline": {
+   "file": "data/games.csv",
+   "column": "away_moneyline",
+   "publisher": "nflverse nfldata",
+   "definition": "American odds on the away team's moneyline. No definition is printed in DATASETS.md; used on the strength of its name only.",
+   "definition_url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+   "publisher_names_the_book": false,
+   "publisher_says_opening_or_closing": "neither"
+  },
+  "initial_lines.line": {
+   "file": "data/initial_lines.csv",
+   "column": "line",
+   "publisher": "nflverse nfldata",
+   "definition": "A spread or total on game `about` at sportsbook code `sportsbook`. The file name says 'initial'; the publisher prints no definition and no timestamp.",
+   "definition_url": "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv",
+   "publisher_names_the_book": "code only (WSGT)",
+   "publisher_says_opening_or_closing": "file name only"
+  },
+  "closing_lines.line": {
+   "file": "data/closing_lines.csv",
+   "column": "line",
+   "publisher": "nflverse nfldata",
+   "definition": "A line on game `alt_game_id` for `type` in {SPREAD, TOTAL, MONEYLINE}. The file name says 'closing'; no book, no retrieval timestamp and no definition are printed.",
+   "definition_url": "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv",
+   "publisher_names_the_book": false,
+   "publisher_says_opening_or_closing": "file name only"
+  }
+ },
+ "_files": {
+  "games.csv": {
+   "path": "data/lab/upstream/games.csv",
+   "sha256": "7d791bb4776e81a3e7687d38da0a89563233bb2e419b2bd44261b36ba70c39e1",
+   "bytes": 2190038,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "initial_lines.csv": {
+   "path": "data/lab/upstream/initial_lines.csv",
+   "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+   "bytes": 45068,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/initial_lines.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "closing_lines.csv": {
+   "path": "data/lab/upstream/closing_lines.csv",
+   "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+   "bytes": 942229,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/closing_lines.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "sc_lines.csv": {
+   "path": "data/lab/upstream/sc_lines.csv",
+   "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+   "bytes": 140765,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/sc_lines.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/sc_lines.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  }
+ },
+ "_upstream": {
+  "repo": "https://github.com/nflverse/nfldata",
+  "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+  "retrieved_at": "2026-11-14",
+  "publisher": "nflverse (Lee Sharpe), repository `nfldata`, branch `master`"
+ },
+ "_how_to_close": {
+  "book": "Record the book on every price row. nflverse does not print one for games.csv or closing_lines.csv; a licensed feed (or a documented manual capture) does. Until then no row can say which market it is.",
+  "timestamp": "Capture a timestamp with every snapshot. An opening number without a time is only an opening number because a file is named 'initial'.",
+  "prices": "Every price the model needs must be a published price. Today only 505 games have a closing spread price, and no game has an opening price."
+ }
+}
