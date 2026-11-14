@@ -1696,7 +1696,7 @@
           "key": "G7",
           "name": "Parameter stability",
           "passed": false,
-          "value": "nan% of neighbouring parameters positive",
+          "value": "not measured",
           "threshold": ">= 60%",
           "detail": "Single-parameter strategy - no neighbouring variants to test."
         },
@@ -1896,7 +1896,7 @@
           "key": "G6",
           "name": "Luck robustness",
           "passed": false,
-          "value": "clean ROI +nan%",
+          "value": "no luck-filtered sample",
           "threshold": "clean ROI > 0 and >= 40% of full-sample ROI",
           "detail": "No luck-filtered sample available."
         },
@@ -2588,7 +2588,7 @@
           "key": "G7",
           "name": "Parameter stability",
           "passed": false,
-          "value": "nan% of neighbouring parameters positive",
+          "value": "not measured",
           "threshold": ">= 60%",
           "detail": "Single-parameter strategy - no neighbouring variants to test."
         },
@@ -4191,7 +4191,7 @@
           "key": "G6",
           "name": "Luck robustness",
           "passed": false,
-          "value": "clean ROI +nan%",
+          "value": "no luck-filtered sample",
           "threshold": "clean ROI > 0 and >= 40% of full-sample ROI",
           "detail": "No luck-filtered sample available."
         },

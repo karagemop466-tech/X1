@@ -5,5 +5,9 @@ data/cache/
 .venv/
 venv/
 .DS_Store
+
+# Raw research inputs are re-downloaded by scripts/run_pipeline.py and are
+# fingerprinted in data/raw_manifest.json. The one file that cannot be
+# re-downloaded (a hand transcription of an official injury report) is kept.
 data/raw/*
 !data/raw/official_injuries_w10_2026.csv

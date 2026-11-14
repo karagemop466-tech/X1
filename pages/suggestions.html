@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a class="active" href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ SUGGESTIONS</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">SUGGESTIONS</div>
+  <h1>Suggestions register</h1>
+  <p>12 reviewable proposals for improving the site and the decision process. Each carries its
+  impact, its cost, what it depends on and a reversible first step — so the owner can pick the best path before any
+  change is implemented.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Nothing on this page is implemented automatically.</b> The suggestions are ranked by impact and
+  effort only as a reading aid; the Decision column is the owner's to set. Two of them (S-01, S-02) are already visible
+  in this release as patterns — the tier badges and the snapshot date in every header — and remain listed so the
+  reviewer can accept or reject them explicitly.</div>
+  <div class="statrow">
+    <div class="stat"><strong>12</strong><span>proposals</span></div>
+    <div class="stat"><strong>7</strong><span>high impact</span></div>
+    <div class="stat"><strong>8</strong><span>low effort</span></div>
+    <div class="stat"><strong>5</strong><span>no dependency — can start now</span></div>
+  </div>
+  
+    <article class="sugg">
+      <header>
+        <span class="pid">S-01</span>
+        <h3>Publish an evidence grade on every table row</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: none</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>A reader cannot tell a league-verdict value from a club self-report at a glance.</dd>
+        <dt>Proposal</dt><dd>Add a per-row badge: A = league-published fact, B = club-published, C = derived by our own documented join, U = unverified. Filter and sort by badge.</dd>
+        <dt>Why it improves decisions</dt><dd>Lets a reviewer apply a different trust threshold to A than to B without reading the methodology each time.</dd>
+        <dt>Reversible first step</dt><dd>Add the badge column to the generated tables and a legend on the Sources page.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Badge inflation — someone marks a B as an A to close a flag. Mitigation: badge is set by the generator, not by hand.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-02</span>
+        <h3>Add a &#x27;staleness clock&#x27; to every page</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: none</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Injury and schedule data decay within days, but a static page looks equally authoritative on day 1 and day 30.</dd>
+        <dt>Proposal</dt><dd>Render hours since retrieval next to each table; past 72 hours, show an amber banner; past 168 hours, show a red one saying the table must not be used for decisions.</dd>
+        <dt>Why it improves decisions</dt><dd>Prevents a decision being made on a snapshot the reader believes is live.</dd>
+        <dt>Reversible first step</dt><dd>Compute age in the build script from the retrieval timestamp already stored in each file header.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>None material.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-03</span>
+        <h3>Extend depth-chart capture from 5 to all 32 clubs</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: medium</span>
+          <span class="pill muted-pill">depends on: Q-14</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Availability features cannot be compared across teams while 27 clubs are blank.</dd>
+        <dt>Proposal</dt><dd>Add one row per club to a capture list, with the club URL, a weekly timestamp, and the printed &#x27;unofficial&#x27; label captured verbatim. Automate the fetch, diff against last week, and flag changes.</dd>
+        <dt>Why it improves decisions</dt><dd>Turns a 5-club anecdote into a league-wide dataset, which is the minimum for the starter-at-risk signal to be testable.</dd>
+        <dt>Reversible first step</dt><dd>Fill the capture list; record the four clubs that play Thursday first, since their reports lock earliest.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Club pages change layout; a silent layout change could produce empty rows. Mitigation: the verifier fails when a chart yields zero players.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-04</span>
+        <h3>Adopt a three-tier verification protocol in writing</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: none</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Verification is currently a habit, not a contract.</dd>
+        <dt>Proposal</dt><dd>Tier 1: official league page (nfl.com / operations.nfl.com). Tier 2: official club page, explicitly labelled self-reported. Tier 3: independent secondary, for corroboration only. No Tier 3 value may populate a table; it may only appear in a flag&#x27;s &#x27;verified&#x27; column.</dd>
+        <dt>Why it improves decisions</dt><dd>Makes an argument about a number decidable by pointing at its tier.</dd>
+        <dt>Reversible first step</dt><dd>Publish the protocol on the Sources page and stamp every row with its tier.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Tier 2 being treated as Tier 1 under deadline pressure. Mitigation: generator rejects a Tier 3 source URL in a data row.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-05</span>
+        <h3>Build a pre-registration file per strategy before any test</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: medium</span>
+          <span class="pill muted-pill">depends on: Q-12</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Gates mean nothing if they are chosen after the results.</dd>
+        <dt>Proposal</dt><dd>One hash-sealed JSON per strategy: hypothesis, features, window, gates, staking, written before the window opens. Registering late is impossible because the hash is committed to git with a timestamp.</dd>
+        <dt>Why it improves decisions</dt><dd>Makes &#x27;we would have known&#x27; auditable.</dd>
+        <dt>Reversible first step</dt><dd>Define the schema and commit one example pre-registration for a paper strategy.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Overhead slows experimentation. Mitigation: template with sane defaults so a registration takes minutes.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-06</span>
+        <h3>Report ROI with and without the top 5% of tickets</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: Q-02</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>A handful of long-odds winners can make a losing strategy look like a winning one.</dd>
+        <dt>Proposal</dt><dd>Show trimmed ROI beside raw ROI on every strategy row. Report the gap. Flag any strategy whose gap exceeds the margin.</dd>
+        <dt>Why it improves decisions</dt><dd>Distinguishes a strategy from a lottery ticket that happened to hit.</dd>
+        <dt>Reversible first step</dt><dd>Add the trimmed metric to the leaderboard schema now, so it cannot be bolted on after results exist.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Trimming hides genuine big-edge bets. Mitigation: always show both; never show trimmed alone.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-07</span>
+        <h3>Separate offense and defense availability indices</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: medium</span>
+          <span class="pill muted-pill">depends on: Q-04, S-03</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>A single &#x27;team health&#x27; number averages unrelated things.</dd>
+        <dt>Proposal</dt><dd>Two indices per team, each with its own weights and its own gate. Never sum them into one score for ranking.</dd>
+        <dt>Why it improves decisions</dt><dd>A team can be healthy on offense and devastated on defense; the market treats those cases very differently.</dd>
+        <dt>Reversible first step</dt><dd>Define the two feature sets; keep them in separate files so they cannot be accidentally merged.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Doubling the feature count doubles the multiple-comparison problem. Mitigation: correction already required by correlation.md.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-08</span>
+        <h3>Add a scenario simulator for parlay pricing</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: medium</span>
+          <span class="pill muted-pill">depends on: Q-10</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Parlay and combo pricing is where the arithmetic errors concentrate.</dd>
+        <dt>Proposal</dt><dd>A small simulator that takes per-leg probabilities and a correlation matrix, samples joint outcomes, and returns the fair parlay price with an interval. Show the naive independent product next to it.</dd>
+        <dt>Why it improves decisions</dt><dd>Makes the cost of assuming independence visible in one screen.</dd>
+        <dt>Reversible first step</dt><dd>Implement with synthetic parameters, clearly labelled as an illustration, not a market estimate.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Synthetic output mistaken for a real edge. Mitigation: watermarked &#x27;illustrative&#x27; and excluded from the leaderboard.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-09</span>
+        <h3>Dedicate the Flagged page to a numbered, sortable review queue</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: none</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>A long flag list with no ordering does not help anyone choose what to fix first.</dd>
+        <dt>Proposal</dt><dd>Every flag gets an id, a severity, a decision owner and a &#x27;settles it&#x27; action. Sort by severity x blocking-ness. Show which open questions each flag unblocks.</dd>
+        <dt>Why it improves decisions</dt><dd>Converts a complaint list into a work queue with a defensible order.</dd>
+        <dt>Reversible first step</dt><dd>Cross-link each flag to the question ids it blocks (already recorded in the JSON).</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Queue grows faster than it is drained. Mitigation: show age per flag and a throughput number.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-10</span>
+        <h3>Run a second independent transcription pass on the current tables</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: none</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Mechanical checks caught one error; the rest are only as good as one careful read.</dd>
+        <dt>Proposal</dt><dd>Have a second session or human re-read the standings and injury tables against the live official pages, row by row, and diff against the stored TSV. Any mismatch is a flag.</dd>
+        <dt>Why it improves decisions</dt><dd>The single highest-value action for trustworthiness, and it is cheap.</dd>
+        <dt>Reversible first step</dt><dd>Generate a blank transcription sheet from the TSV with the value column empty, for an independent filler.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Both passes make the same systematic error (e.g. reading the wrong row). Mitigation: the second pass starts from the source page, not from our file.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-11</span>
+        <h3>Publish the market scope as a versioned contract</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: Q-03, Q-09</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>&#x27;We do spreads and props&#x27; is not testable; the settlement of each market differs.</dd>
+        <dt>Proposal</dt><dd>A versioned file listing each in-scope market, its settlement rule, its data source and its gate profile. Changing the scope requires a new version number.</dd>
+        <dt>Why it improves decisions</dt><dd>Stops a mid-season scope change from silently invalidating a comparison.</dd>
+        <dt>Reversible first step</dt><dd>Draft v0.1 with spreads and totals only, and mark props as pending.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Premature commitment. Mitigation: v0 explicitly excludes props with a stated reason.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-12</span>
+        <h3>Add a &#x27;what would change our mind&#x27; block to each strategy</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: S-05</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Strategies get defended rather than tested.</dd>
+        <dt>Proposal</dt><dd>Each strategy states, in advance, the observation that would falsify it (e.g. &#x27;if the effect disappears when conditioning on rest, we drop it&#x27;).</dd>
+        <dt>Why it improves decisions</dt><dd>Makes disconfirmation cheap and public.</dd>
+        <dt>Reversible first step</dt><dd>Add the field to the pre-registration schema.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Boilerplate falsifiers that are trivially unmet. Mitigation: the falsifier must name a specific test from the gate list.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

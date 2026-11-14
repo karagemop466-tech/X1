@@ -189,7 +189,7 @@ def evaluate(
     )
 
     # G6 - luck robustness ---------------------------------------------------
-    if clean_bets is not None and len(clean_bets):
+    if clean_bets is not None and len(clean_bets) and np.isfinite(r):
         r_clean = roi(clean_bets)
         share = (r_clean / r) if (np.isfinite(r) and abs(r) > 1e-9) else float("nan")
         g6_pass = bool(np.isfinite(r_clean)) and r_clean > 0 and (not np.isfinite(share) or share >= 0.4)
@@ -206,7 +206,7 @@ def evaluate(
             key="G6",
             name="Luck robustness",
             passed=g6_pass,
-            value=f"clean ROI {r_clean * 100:+.2f}%",
+            value=(f"clean ROI {r_clean * 100:+.2f}%" if np.isfinite(r_clean) else "no luck-filtered sample"),
             threshold="clean ROI > 0 and >= 40% of full-sample ROI",
             detail=detail,
         )
@@ -220,12 +220,16 @@ def evaluate(
     else:
         share_pos, g7_pass = float("nan"), False
         detail = "Not evaluated."
+    share_text = (
+        f"{share_pos * 100:.0f}% of neighbouring parameters positive"
+        if np.isfinite(share_pos) else "not measured"
+    )
     report.gates.append(
         Gate(
             key="G7",
             name="Parameter stability",
             passed=g7_pass,
-            value=f"{share_pos * 100:.0f}% of neighbouring parameters positive",
+            value=share_text,
             threshold=f">= {config.GATE_PARAM_STABILITY * 100:.0f}%",
             detail=detail,
         )

@@ -17,7 +17,9 @@ DATA_DIR = REPO_ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 SITE_DATA_DIR = DATA_DIR / "site"
-DOCS_DIR = REPO_ROOT / "docs"
+# The research site is published under /research/ so it cannot collide with the
+# integration session's docs/*.md methodology documents.
+RESEARCH_DIR = REPO_ROOT / "research"
 
 # --------------------------------------------------------------------------
 # Data acquisition

@@ -1,0 +1,101 @@
+strategy_a,strategy_b,phi,n_common_games
+S01 Home team ATS (every game),S01 Home team ATS (every game),1.0,1326
+S01 Home team ATS (every game),S02 Away team ATS (every game),-1.0,1326
+S01 Home team ATS (every game),S03 Favorite ATS (every game),0.1975,1326
+S01 Home team ATS (every game),S04 Underdog ATS (every game),-0.1975,1326
+S01 Home team ATS (every game),S05 Home underdog ATS,1.0,532
+S01 Home team ATS (every game),S06 Favorite of 7+ points ATS,0.4018,370
+S01 Home team ATS (every game),S07 Over total (every game),0.031,1315
+S01 Home team ATS (every game),S08 Under total (every game),-0.031,1315
+S01 Home team ATS (every game),S09 Rest edge >= 2 days ATS,-0.0257,302
+S01 Home team ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),0.3594,627
+S02 Away team ATS (every game),S01 Home team ATS (every game),-1.0,1326
+S02 Away team ATS (every game),S02 Away team ATS (every game),1.0,1326
+S02 Away team ATS (every game),S03 Favorite ATS (every game),-0.1975,1326
+S02 Away team ATS (every game),S04 Underdog ATS (every game),0.1975,1326
+S02 Away team ATS (every game),S05 Home underdog ATS,-1.0,532
+S02 Away team ATS (every game),S06 Favorite of 7+ points ATS,-0.4018,370
+S02 Away team ATS (every game),S07 Over total (every game),-0.031,1315
+S02 Away team ATS (every game),S08 Under total (every game),0.031,1315
+S02 Away team ATS (every game),S09 Rest edge >= 2 days ATS,0.0257,302
+S02 Away team ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),-0.3594,627
+S03 Favorite ATS (every game),S01 Home team ATS (every game),0.1975,1326
+S03 Favorite ATS (every game),S02 Away team ATS (every game),-0.1975,1326
+S03 Favorite ATS (every game),S03 Favorite ATS (every game),1.0,1326
+S03 Favorite ATS (every game),S04 Underdog ATS (every game),-1.0,1326
+S03 Favorite ATS (every game),S05 Home underdog ATS,-1.0,532
+S03 Favorite ATS (every game),S06 Favorite of 7+ points ATS,1.0,370
+S03 Favorite ATS (every game),S07 Over total (every game),-0.0147,1315
+S03 Favorite ATS (every game),S08 Under total (every game),0.0147,1315
+S03 Favorite ATS (every game),S09 Rest edge >= 2 days ATS,0.1657,302
+S03 Favorite ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),-0.8979,627
+S04 Underdog ATS (every game),S01 Home team ATS (every game),-0.1975,1326
+S04 Underdog ATS (every game),S02 Away team ATS (every game),0.1975,1326
+S04 Underdog ATS (every game),S03 Favorite ATS (every game),-1.0,1326
+S04 Underdog ATS (every game),S04 Underdog ATS (every game),1.0,1326
+S04 Underdog ATS (every game),S05 Home underdog ATS,1.0,532
+S04 Underdog ATS (every game),S06 Favorite of 7+ points ATS,-1.0,370
+S04 Underdog ATS (every game),S07 Over total (every game),0.0147,1315
+S04 Underdog ATS (every game),S08 Under total (every game),-0.0147,1315
+S04 Underdog ATS (every game),S09 Rest edge >= 2 days ATS,-0.1657,302
+S04 Underdog ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),0.8979,627
+S05 Home underdog ATS,S01 Home team ATS (every game),1.0,532
+S05 Home underdog ATS,S02 Away team ATS (every game),-1.0,532
+S05 Home underdog ATS,S03 Favorite ATS (every game),-1.0,532
+S05 Home underdog ATS,S04 Underdog ATS (every game),1.0,532
+S05 Home underdog ATS,S05 Home underdog ATS,1.0,532
+S05 Home underdog ATS,S06 Favorite of 7+ points ATS,-1.0,112
+S05 Home underdog ATS,S07 Over total (every game),0.0575,526
+S05 Home underdog ATS,S08 Under total (every game),-0.0575,526
+S05 Home underdog ATS,S09 Rest edge >= 2 days ATS,-0.2494,115
+S05 Home underdog ATS,S10 Own Elo model vs line (edge >= 3 pts),0.99,398
+S06 Favorite of 7+ points ATS,S01 Home team ATS (every game),0.4018,370
+S06 Favorite of 7+ points ATS,S02 Away team ATS (every game),-0.4018,370
+S06 Favorite of 7+ points ATS,S03 Favorite ATS (every game),1.0,370
+S06 Favorite of 7+ points ATS,S04 Underdog ATS (every game),-1.0,370
+S06 Favorite of 7+ points ATS,S05 Home underdog ATS,-1.0,112
+S06 Favorite of 7+ points ATS,S06 Favorite of 7+ points ATS,1.0,370
+S06 Favorite of 7+ points ATS,S07 Over total (every game),0.0245,368
+S06 Favorite of 7+ points ATS,S08 Under total (every game),-0.0245,368
+S06 Favorite of 7+ points ATS,S09 Rest edge >= 2 days ATS,0.2533,91
+S06 Favorite of 7+ points ATS,S10 Own Elo model vs line (edge >= 3 pts),-1.0,266
+S07 Over total (every game),S01 Home team ATS (every game),0.031,1315
+S07 Over total (every game),S02 Away team ATS (every game),-0.031,1315
+S07 Over total (every game),S03 Favorite ATS (every game),-0.0147,1315
+S07 Over total (every game),S04 Underdog ATS (every game),0.0147,1315
+S07 Over total (every game),S05 Home underdog ATS,0.0575,526
+S07 Over total (every game),S06 Favorite of 7+ points ATS,0.0245,368
+S07 Over total (every game),S07 Over total (every game),1.0,1348
+S07 Over total (every game),S08 Under total (every game),-1.0,1348
+S07 Over total (every game),S09 Rest edge >= 2 days ATS,-0.0266,296
+S07 Over total (every game),S10 Own Elo model vs line (edge >= 3 pts),-0.0001,620
+S08 Under total (every game),S01 Home team ATS (every game),-0.031,1315
+S08 Under total (every game),S02 Away team ATS (every game),0.031,1315
+S08 Under total (every game),S03 Favorite ATS (every game),0.0147,1315
+S08 Under total (every game),S04 Underdog ATS (every game),-0.0147,1315
+S08 Under total (every game),S05 Home underdog ATS,-0.0575,526
+S08 Under total (every game),S06 Favorite of 7+ points ATS,-0.0245,368
+S08 Under total (every game),S07 Over total (every game),-1.0,1348
+S08 Under total (every game),S08 Under total (every game),1.0,1348
+S08 Under total (every game),S09 Rest edge >= 2 days ATS,0.0266,296
+S08 Under total (every game),S10 Own Elo model vs line (edge >= 3 pts),0.0001,620
+S09 Rest edge >= 2 days ATS,S01 Home team ATS (every game),-0.0257,302
+S09 Rest edge >= 2 days ATS,S02 Away team ATS (every game),0.0257,302
+S09 Rest edge >= 2 days ATS,S03 Favorite ATS (every game),0.1657,302
+S09 Rest edge >= 2 days ATS,S04 Underdog ATS (every game),-0.1657,302
+S09 Rest edge >= 2 days ATS,S05 Home underdog ATS,-0.2494,115
+S09 Rest edge >= 2 days ATS,S06 Favorite of 7+ points ATS,0.2533,91
+S09 Rest edge >= 2 days ATS,S07 Over total (every game),-0.0266,296
+S09 Rest edge >= 2 days ATS,S08 Under total (every game),0.0266,296
+S09 Rest edge >= 2 days ATS,S09 Rest edge >= 2 days ATS,1.0,302
+S09 Rest edge >= 2 days ATS,S10 Own Elo model vs line (edge >= 3 pts),-0.2966,159
+S10 Own Elo model vs line (edge >= 3 pts),S01 Home team ATS (every game),0.3594,627
+S10 Own Elo model vs line (edge >= 3 pts),S02 Away team ATS (every game),-0.3594,627
+S10 Own Elo model vs line (edge >= 3 pts),S03 Favorite ATS (every game),-0.8979,627
+S10 Own Elo model vs line (edge >= 3 pts),S04 Underdog ATS (every game),0.8979,627
+S10 Own Elo model vs line (edge >= 3 pts),S05 Home underdog ATS,0.99,398
+S10 Own Elo model vs line (edge >= 3 pts),S06 Favorite of 7+ points ATS,-1.0,266
+S10 Own Elo model vs line (edge >= 3 pts),S07 Over total (every game),-0.0001,620
+S10 Own Elo model vs line (edge >= 3 pts),S08 Under total (every game),0.0001,620
+S10 Own Elo model vs line (edge >= 3 pts),S09 Rest edge >= 2 days ATS,-0.2966,159
+S10 Own Elo model vs line (edge >= 3 pts),S10 Own Elo model vs line (edge >= 3 pts),1.0,627

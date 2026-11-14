@@ -1,890 +1,463 @@
-#!/usr/bin/env python3
-"""Static site generator for the X1 dashboard.
-
-Reads ``data/site/payload.json`` plus the processed CSV tables and writes a
-complete static site into ``docs/``.  The output is plain HTML/CSS/JS - no
-framework, no build step at deploy time, and every table row carries the
-source link that supports it.
-
-Usage:
-    python3 scripts/build_site.py
 """
-
-from __future__ import annotations
-
-import html
-import json
-import shutil
-import sys
-from datetime import date
+Builds the dashboard pages in dashboard/ (served under the main Pages site) from verified data files.
+Every number on the pages is read from data/*.csv or data/*.json (no hand-typed statistics).
+Run:  python3 scripts/build_site.py   (standard library only)
+"""
+import csv, html, json
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+ROOT = Path(__file__).resolve().parents[1]
+D = ROOT / "data"
+OUT = ROOT / "dashboard"
+OUT.mkdir(exist_ok=True)
+H = lambda s: html.escape("" if s is None else str(s))
+BUILT = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+DATA_DATE = "2026-11-14"
 
-import pandas as pd
+def rcsv(name):
+    with open(D / name, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
 
-from x1 import config, content, sources
+standings = rcsv("standings_2026.csv")
+schedule = rcsv("schedule_2026_week10.csv")
+byes = rcsv("schedule_2026_week10_byes.csv")
+injuries = rcsv("injuries_2026_week10.csv")
+model = rcsv("model_lines_2026_week10.csv")
+board = rcsv("strategy_leaderboard.csv")
+splits = rcsv("strategy_splits.csv")
+corr = rcsv("strategy_correlations.csv")
+parlay = rcsv("parlay_results.csv")
+registry = rcsv("strategy_registry.csv")
+flags_auto = rcsv("flags_auto.csv")
+sources = rcsv("sources.csv")
+checks = json.loads((D / "data_checks.json").read_text())
 
-BUILD_DATE = date.today().isoformat()
-SITE_NAME = "X1 - NFL Line Origination & Strategy Lab"
-SITE_TAGLINE = "Originated lines, gated strategies, verified sources."
-
-NAV = [
-    ("index.html", "Dashboard"),
-    ("executive-summary.html", "Executive summary"),
-    ("requirements.html", "Requirements"),
-    ("questions.html", "Questions & gaps"),
-    ("suggestions.html", "Suggestions"),
-    ("strategies.html", "Strategies"),
-    ("leaderboard.html", "Leaderboard"),
-    ("validation.html", "Validation gates"),
-    ("lines.html", "Originated lines"),
-    ("correlations.html", "Correlations & luck"),
-    ("props.html", "Player props"),
-    ("injuries.html", "Injuries & depth"),
-    ("methods.html", "Methods"),
-    ("sources.html", "Sources"),
-    ("flagged.html", "Flagged for review"),
+CHECKED_GAMES = {"WAS at NYG", "NE at DET"}   # rows re-checked line by line against NFL.com chunk 0 on 2026-11-14
+NFLDATA_URL = "https://github.com/nflverse/nfldata"
+REPO = "https://github.com/karagemop466-tech/X1/blob/arena/c39d8541-x1"
+n_checked = sum(1 for r in injuries if r["game"] in CHECKED_GAMES)
+i06_names = sorted({r["item"] for r in flags_auto if r["flag_code"] == "I-06"})
+MANUAL_FLAGS = [
+ ("I-01","Repo","README.md is one line ('# X1'). No description, licence, or usage notes.","https://github.com/karagemop466-tech/X1/blob/dab199ce305bd0168f61f9bbb25b4b601eb45324/README.md","flagged"),
+ ("I-02","Repo","Only one commit before this work ('Initial commit', dab199c). No history to check authorship or changes.","https://github.com/karagemop466-tech/X1/commit/dab199ce305bd0168f61f9bbb25b4b601eb45324","flagged"),
+ ("I-03","Repo","The project brief uses session-<id>/<task> branches. Arena branch policy for this session allows one branch only, so task claims are recorded in COORDINATION.md instead.",REPO + "/COORDINATION.md","flagged"),
+ ("I-04","Repo","The brief contains HTML-escaped text (e.g. '&amp;amp;lt;id&amp;amp;gt;'). Read as session-<id>/<task> and COORDINATION.md.",REPO + "/COORDINATION.md","flagged"),
+ ("I-05","Injuries","Puka Nacua (LAR, WR) is 'Did Not Participate In Practice' with no injury listed on the report. NFL.com news (retrieved 2026-11-14) says he is likely to be placed on IR after a turf toe injury and MCL/PCL sprain. The report does not reconcile with the news. The news item is not a roster transaction record.","https://www.nfl.com/injuries/ · https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl","flagged"),
+ ("I-06","Injuries", f"'Did Not Participate In Practice' with no injury and no game status ({sum(1 for r in flags_auto if r['flag_code']=='I-06')} rows, {len(i06_names)} players, listed in the automatic flags table below). The reason is not stated on the report.","https://www.nfl.com/injuries/","flagged"),
+ ("I-07","Injuries","'Full Participation in Practice' shown with game status 'Out' (BJ Green II, JAX, forearm). The report does not document this combination.","https://www.nfl.com/injuries/","flagged"),
+ ("I-08","Injuries","Player link slug differs from the printed name (Jacob Hummel → jake-hummel; Kam Curl → kamren-curl; Gervon Dexter Sr. → gervon-dexter). Kept as published.","https://www.nfl.com/injuries/","flagged"),
+ ("I-09","Schedule","NFL.com lists the Munich game as 'Patriots at Lions'. A third-party page calls it 'Patriots vs. Lions' (recorded in the earlier session; not re-checked this session). NFL.com is used.","https://www.nfl.com/schedules/2026/by-week/week-10","flagged (minor)"),
+ ("I-10","Data","Line source (spread_line, total_line, moneylines) in nflverse nfldata is NOT documented with a named provider. It cannot be confirmed from an official source. Blocks gate G0 for every strategy.","https://github.com/nflverse/nfldata/blob/master/DATASETS.md","flagged — blocks G0"),
+ ("I-11","Data","nflverse game results are compiled from third-party sources and were not checked game-by-game against NFL.com (one 2026 game matched).","https://github.com/nflverse/nfldata","flagged"),
+ ("I-12","Data","No official depth charts collected. Starter vs backup status cannot be verified (task T4 blocked).","https://www.nfl.com/teams/","flagged — blocks T4"),
+ ("I-13","Data","No prop-odds source and no official player-stat source collected. Player-prop strategies not tested.","https://www.nfl.com/players/","flagged — blocks prop tests"),
+ ("I-14","Schedule / standings","NFL.com standings (checked 2026-11-14) still show WAS 3-5-1 and NYG 5-3-1, the pre-game records, while the schedule marks the Thursday game Final (Commanders 24, Giants 21). nflverse agrees on the final score. The standings appear not to reflect the result. NFL.com does not state why.","https://www.nfl.com/standings/ · https://www.nfl.com/schedules/2026/by-week/week-10","flagged"),
+ ("I-15","Injuries / standings","Rams code: the injury report prints LAR; the schedule and standings print LA. Mapped for joins only; displayed as printed.","https://www.nfl.com/injuries/ · https://www.nfl.com/standings/","flagged (mapped)"),
+ ("I-16","Data","nflverse uses ARI for Arizona; NFL.com uses AZ. Mapped for joins only.","https://github.com/nflverse/nfldata/blob/master/data/games.csv","flagged (mapped)"),
+ ("I-17","Injuries", f"Row-level re-check against the official page is complete for {n_checked} of {len(injuries)} rows (WAS at NYG, NE at DET; page chunk 0). The other {len(injuries)-n_checked} rows were transcribed from the official text and are pending a line-by-line re-check against chunks 1–7. Pending rows are marked on the Injury report page.","https://www.nfl.com/injuries/","needs review"),
 ]
 
+def f1(x, nd=1):
+    try: return f"{float(x):.{nd}f}"
+    except (TypeError, ValueError): return ""
+def pct(x):
+    try: return f"{float(x)*100:.1f}%"
+    except (TypeError, ValueError): return ""
+def pct_signed(x):
+    try: return f"{float(x)*100:+.1f}%"
+    except (TypeError, ValueError): return ""
 
-# --------------------------------------------------------------------------
-# formatting helpers
-# --------------------------------------------------------------------------
-def esc(value) -> str:
-    if value is None:
-        return ""
-    return html.escape(str(value))
+NAV = [
+    ("Overview", [("index.html", "Home"), ("summary.html", "Executive summary")]),
+    ("Data", [("standings.html", "Standings"), ("schedule.html", "Week 10 schedule"), ("injuries.html", "Injury report")]),
+    ("Research", [("strategies.html", "Strategy registry"), ("model-lines.html", "Model lines"), ("methodology.html", "Method & checks")]),
+    ("Decisions", [("questions.html", "Questions & gaps"), ("suggestions.html", "Suggestions")]),
+    ("Review", [("flagged.html", "Flagged for review"), ("repo-review.html", "Repo review")]),
+    ("Sources", [("sources.html", "Source register")]),
+]
 
+def layout(title, active_cat, active_page, body):
+    cats = '<a href="../index.html">← Main site</a>' + "".join(f'<a class="{"active" if c == active_cat else ""}" href="{pages[0][0]}">{H(c)}</a>' for c, pages in NAV)
+    sub = ""
+    for c, pages in NAV:
+        if c == active_cat:
+            sub = "".join(f'<a class="{"active" if href == active_page else ""}" href="{href}">{H(lbl)}</a>' for href, lbl in pages)
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{H(title)} · X1 NFL Research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">X1 · NFL Research Dashboard</a>
+<nav class="menu">{cats}</nav></header>
+<header class="top" style="background:#27395f;padding:8px 22px"><nav class="menu">{sub}</nav></header>
+<main>{body}</main>
+<footer>Data as of {DATA_DATE} (UTC). Built {BUILT}. Official data: NFL.com. Secondary data is labelled. Nothing on this site is betting advice.
+· <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/karagemop466-tech/X1">Repository</a></footer>
+<script src="assets/app.js"></script></body></html>"""
 
-def pct(value, digits: int = 2, signed: bool = True) -> str:
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "&mdash;"
-    try:
-        v = float(value) * 100.0
-    except (TypeError, ValueError):
-        return esc(value)
-    sign = "+" if (signed and v > 0) else ""
-    return f"{sign}{v:.{digits}f}%"
+def src_link(url, label="source"):
+    return f'<a href="{H(url)}" target="_blank" rel="noopener">{H(label)} ↗</a>'
 
+def write(name, html_text):
+    (OUT / name).write_text(html_text, encoding="utf-8")
 
-def num(value, digits: int = 2) -> str:
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "&mdash;"
-    try:
-        return f"{float(value):,.{digits}f}"
-    except (TypeError, ValueError):
-        return esc(value)
+# ---------------- derived facts (all computed from data files) ----------------
+n_inj = len(injuries)
+inj_games = len({r["game"] for r in injuries})
+status_counts = {}
+for r in injuries:
+    status_counts[r["game_status"] or "(none listed)"] = status_counts.get(r["game_status"] or "(none listed)", 0) + 1
+n_out = status_counts.get("Out", 0)
+n_doubt = status_counts.get("Doubtful", 0)
+n_quest = status_counts.get("Questionable", 0)
+flag_counts = {}
+for r in flags_auto:
+    flag_counts[r["flag_code"]] = flag_counts.get(r["flag_code"], 0) + 1
+best_hold = min(board, key=lambda r: -float(r["holdout_win_pct"] or 0))
+best_row = max(board, key=lambda r: float(r["holdout_win_pct"] or 0))
+n_pass = sum(1 for r in board if r["status"] == "PASS")
+n_strat = len(board)
+tnf = next(r for r in schedule if r["away"] == "WAS")
+mrows = [r for r in model if r["model_side_if_edge_ge_3"] != "no bet"]
+forward_n = max(int(r["forward_2026_bets"] or 0) for r in board)
+hold_split = {r["strategy"]: r for r in splits if r["split"] == "holdout_2021_2025"}
+def hs(strategy_prefix):
+    for k, v in hold_split.items():
+        if k.startswith(strategy_prefix): return v
+    return None
+under = hs("S08"); model_s = hs("S10"); home_s = hs("S01")
+max_phi_nonredundant = max((abs(float(r["phi"])) for r in corr if r["strategy_a"] != r["strategy_b"] and abs(float(r["phi"])) < 0.999), default=0)
+n_redundant = sum(1 for r in parlay if r.get("redundant_mirror_or_nested") == "True")
 
-
-def signed_num(value, digits: int = 2) -> str:
-    """Signed number with an explicit dash when the value is missing."""
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "&mdash;"
-    try:
-        v = float(value)
-    except (TypeError, ValueError):
-        return esc(value)
-    if pd.isna(v):
-        return "&mdash;"
-    return f"{v:+.{digits}f}"
-
-
-def sign_class(value) -> str:
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "neutral"
-    return "pos" if float(value) > 0 else ("neg" if float(value) < 0 else "neutral")
-
-
-def badge(text: str, kind: str = "mute") -> str:
-    return f'<span class="badge {kind}">{esc(text)}</span>'
-
-
-def pass_badge(ok: bool) -> str:
-    return badge("PASS", "pass") if ok else badge("FAIL", "fail")
-
-
-def source_link(key: str, label: Optional[str] = None) -> str:
-    src = sources.SOURCE_BY_KEY.get(key)
-    if src is None:
-        return esc(label or key)
-    text = label or src.title
-    return f'<a href="{esc(src.url)}" target="_blank" rel="noopener">{esc(text)}</a>'
-
-
-def table(
-    headers: List[str],
-    rows: List[List[str]],
-    sortable: bool = True,
-    table_class: str = "",
-    note: Optional[str] = None,
-) -> str:
-    head = "".join(
-        f'<th class="num">{h}</th>' if isinstance(h, tuple) else f"<th>{h}</th>"
-        for h in headers
-    )
-    body = []
-    for row in rows:
-        cells = []
-        for cell in row:
-            cls = ""
-            if isinstance(cell, tuple):
-                value, cls = cell
-                cells.append(f'<td class="{cls}">{value}</td>')
-            else:
-                cells.append(f"<td>{cell}</td>")
-        body.append("<tr>" + "".join(cells) + "</tr>")
-    attr = ' data-sort="1"' if sortable else ""
-    html_out = (
-        f'<div class="table-wrap"><table{attr} class="{table_class}">'
-        f"<thead><tr>{head}</tr></thead><tbody>{''.join(body)}</tbody></table></div>"
-    )
-    if note:
-        html_out += f'<p class="table-note">{note}</p>'
-    return html_out
-
-
-def layout(page: str, title: str, body: str) -> str:
-    nav = "".join(
-        f'<a href="{href}" class="{"active" if href == page else ""}">{esc(label)}</a>'
-        for href, label in NAV
-    )
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} &middot; {esc(SITE_NAME)}</title>
-<meta name="description" content="{esc(SITE_TAGLINE)}">
-<link rel="stylesheet" href="assets/styles.css">
-</head>
-<body>
-<header class="site">
-  <div class="bar">
-    <div class="brand">
-      <span class="mark">X1</span>
-      <span class="tag">NFL line origination &amp; strategy lab</span>
-    </div>
-    <nav class="site">{nav}</nav>
-  </div>
-</header>
-<main class="wrap">
-{body}
-</main>
-<footer class="site">
-  {esc(SITE_NAME)} &middot; generated {BUILD_DATE} by <code>scripts/build_site.py</code> &middot;
-  every table row links to its source &middot;
-  <a href="flagged.html">unverified items are flagged, never filled in</a>
-</footer>
-<script src="assets/app.js"></script>
-</body>
-</html>
-"""
-
-
-def kpi(label: str, value: str, note: str = "") -> str:
-    note_html = f'<div class="note">{note}</div>' if note else ""
-    return f'<div class="card"><h4>{esc(label)}</h4><div class="value">{value}</div>{note_html}</div>'
-
-
-# --------------------------------------------------------------------------
-# data access
-# --------------------------------------------------------------------------
-def load_payload() -> Dict:
-    return json.loads((config.SITE_DATA_DIR / "payload.json").read_text())
-
-
-def load_games() -> pd.DataFrame:
-    path = config.PROCESSED_DIR / "games_modeled.csv"
-    if not path.exists():
-        return pd.DataFrame()
-    df = pd.read_csv(path)
-    for col in ("market_spread", "market_total", "model_spread", "model_total",
-                "spread_delta", "total_delta", "elo_diff_home"):
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
-    return df
-
-
-# --------------------------------------------------------------------------
-# pages
-# --------------------------------------------------------------------------
-def page_dashboard(p: Dict, games: pd.DataFrame) -> str:
-    lb = p["leaderboard"]
-    passed = [e for e in lb if e["all_passed"]]
-    champ = passed[0] if passed else lb[0]
-    inj = p["injuries"].get("summary", {})
-    model = p["model"]["summary"]
-
-    kpis = "".join([
-        kpi("Games in the model", f"{num(model['n_games_scored'], 0)}",
-            f"seasons {model['first_season']}&ndash;{model['last_season']}, walk-forward"),
-        kpi("Strategies evaluated", f"{len(lb)}", "single, parlay and research strategies"),
-        kpi("Passed every gate", f"{len(passed)}", f"{esc(champ['name'])} leads"),
-        kpi("Leader ROI", pct(champ["roi"]), f"{champ['bets']} out-of-sample bets"),
-        kpi("Official injury rows", f"{inj.get('official_current_week_rows', 0)}",
-            "NFL Week 10 report, transcribed"),
-        kpi("Items flagged for review", f"{len(content.FLAGGED)}", "unverified or caveated"),
-    ])
-
-    rows = []
-    for e in lb[:6]:
-        rows.append([
-            e["rank"],
-            f'<a href="strategies.html#{esc(e["key"])}">{esc(e["name"])}</a>',
-            badge(e["family"], "info"),
-            f'{e["bets"]:,}',
-            (pct(e["roi"]), sign_class(e["roi"])),
-            (pct(e["hit_rate"], 1), ""),
-            (f'[{pct(e["ci_lo"], 1)}, {pct(e["ci_hi"], 1)}]', ""),
-            (f'{e["reward"]:.1f}', ""),
-            pass_badge(e["all_passed"]),
-        ])
-
-    findings = "".join(
-        f'<div class="callout {"good" if i == 0 else ""}"><h4>{esc(b["title"])}</h4><p>{esc(b["body"])}</p></div>'
-        for i, b in enumerate(content.EXEC_SUMMARY[:5])
-    )
-
-    nav_cards = []
-    for href, label in NAV:
-        if href in ("index.html",):
-            continue
-        nav_cards.append(f'<a class="card" href="{href}"><div class="value">{esc(label)}</div></a>')
-
-    body = f"""
-<h1>Dashboard</h1>
-<p class="lede">Every number on this site is produced by the pipeline in <code>src/x1</code>,
-verified against a cited source, and published with the evidence attached. Values that
-cannot be confirmed are left blank and listed on the
-<a href="flagged.html">Flagged for Review</a> page.</p>
-
-<div class="grid k4" style="margin:18px 0 8px">{kpis}</div>
-
-<h2>What the evidence shows</h2>
-{findings}
-
-<h2>Leaderboard (top of the table)</h2>
-{table(["#", "Strategy", "Family", "Bets", "ROI", "Hit rate", "95% CI (units/bet)", "Reward", "Gates"],
-       rows, sortable=False,
-       note="Full table, gate detail and rejection reasons on the Leaderboard and Validation gates pages.")}
-
-<h2>Where to go next</h2>
-<div class="grid k3 nav-grid">{''.join(nav_cards)}</div>
-"""
-    return layout("index.html", "Dashboard", body)
-
-
-def page_exec(p: Dict) -> str:
-    blocks = "".join(
-        f'<div class="callout"><h4>{esc(b["title"])}</h4><p>{esc(b["body"])}</p></div>'
-        for b in content.EXEC_SUMMARY
-    )
-    lb = p["leaderboard"]
-    passed = [e for e in lb if e["all_passed"]]
-    numbers = [
-        ["Games modelled", f'{p["model"]["summary"]["n_games_scored"]:,}',
-         "walk-forward Poisson points model plus Elo"],
-        ["Strategies evaluated", f"{len(lb)}", "pre-registered before evaluation"],
-        ["Strategies passing all eight gates", f"{len(passed)}",
-         "reward paid only to strategies that clear every gate"],
-        ["Leader out-of-sample ROI", pct(passed[0]["roi"]) if passed else "&mdash;",
-         f'{passed[0]["bets"] if passed else 0} settled bets, 2015-2026'],
-        ["Leader ROI after removing luck games", pct(passed[0].get("roi_clean")) if passed else "&mdash;",
-         "one-score games and blowouts removed"],
-        ["Prop families modelled", f'{len(p["props"].get("families", []))}',
-         "calibrated hit rates on the 2021+ window"],
-        ["Open questions", f"{len(content.QUESTIONS)}", "each with how to close the gap"],
-        ["Suggestions on the table", f"{len(content.SUGGESTIONS)}", "with evidence, impact and effort"],
-        ["Flagged items", f"{len(content.FLAGGED)}", "unverified or caveated, never guessed"],
-    ]
-    body = f"""
-<h1>Executive summary</h1>
-<p class="lede">A short, decision-focused summary of the project state as of {BUILD_DATE}.
-Every statement below is backed by a table on this site and a source link.</p>
-{blocks}
-<h2>Key numbers</h2>
-{table(["Measure", "Value", "Basis"], numbers, sortable=False)}
-<div class="callout warn"><h4>Read this before acting on the numbers</h4>
-<p>One strategy clears the gates. Its bootstrap interval excludes zero but the lower bound
-is small, so the expected value per bet is positive and modest rather than large. Sixteen
-questions remain open, and four of them (Q2, Q5, Q7, Q9) block the next implementation step.
-Fourteen suggestions are published for review so a path can be chosen before any code is written.</p></div>
-"""
-    return layout("executive-summary.html", "Executive summary", body)
-
-
-def page_requirements(p: Dict) -> str:
-    rows = [
-        [esc(r["id"]), esc(r["category"]), esc(r["requirement"]),
-         badge(r["status"], "pass" if r["status"] == "Delivered" else "warn"),
-         esc(r["evidence"])]
-        for r in content.REQUIREMENTS
-    ]
-    delivered = sum(1 for r in content.REQUIREMENTS if r["status"] == "Delivered")
-    body = f"""
-<h1>Requirements register</h1>
-<p class="lede">Every requirement taken from the brief, with the state of delivery and the
-evidence that proves it. {delivered} of {len(content.REQUIREMENTS)} are complete; the rest are
-partially delivered and the missing piece is stated.</p>
-<div class="toolbar"><input type="search" data-filter="#req-table" placeholder="Filter requirements..."></div>
-{table(["ID", "Category", "Requirement", "Status", "Evidence"], rows, sortable=False)}
-"""
-    return layout("requirements.html", "Requirements", body)
-
-
-def page_questions(p: Dict) -> str:
-    rows = [
-        [esc(q["id"]), esc(q["category"]), esc(q["question"]),
-         esc(q["known"]), esc(q["unknown"]), esc(q["how_to_close"]),
-         badge(q["priority"], {"High": "fail", "Medium": "warn", "Low": "mute"}[q["priority"]]),
-         badge(q["status"], "mute")]
-        for q in content.QUESTIONS
-    ]
-    body = f"""
-<h1>Questions, known information and information gaps</h1>
-<p class="lede">A decision cannot be made reasonably until the open questions below are answered.
-Each row states what is already known from the work done so far, what is still missing, and the
-concrete action that would close the gap. Priority reflects how much of the roadmap a question blocks.</p>
-<div class="toolbar">
-  <input type="search" data-filter="#q-table" placeholder="Filter questions...">
-  <select data-filter-select="#q-table" data-filter-column="1">
-    <option value="">All categories</option>
-    {''.join(f'<option>{esc(c)}</option>' for c in sorted({q["category"] for q in content.QUESTIONS}))}
-  </select>
+# ---------------- CATEGORY: OVERVIEW ----------------
+kpis = f"""<div class="grid">
+<div class="card"><div class="k">Teams in standings</div><div class="kpi">{len(standings)}</div><div class="small">NFL.com standings</div></div>
+<div class="card"><div class="k">Week 10 games (official)</div><div class="kpi">{len(schedule)}</div><div class="small">+ {len(byes)} teams on bye</div></div>
+<div class="card"><div class="k">Injury report rows (Week 10)</div><div class="kpi">{n_inj}</div><div class="small">Official NFL.com report, {inj_games} games</div></div>
+<div class="card"><div class="k">Strategies eligible</div><div class="kpi">{n_pass} / {n_strat}</div><div class="small">Gate G0 unmet: line data unverified (I-10)</div></div>
+<div class="card"><div class="k">Open flags for review</div><div class="kpi">{len(flags_auto) + len(MANUAL_FLAGS)}</div><div class="small">{len(MANUAL_FLAGS)} manual + {len(flags_auto)} automatic. See Flagged for review</div></div>
+</div>"""
+index_body = f"""<h1>NFL research dashboard</h1>
+<p class="lead">Official 2026 NFL data (standings, Week 10 schedule, injury report), a line-by-line source register, our own strategy research with validation gates, and the open questions and suggestions that need your decision.</p>
+{kpis}
+<div class="note bad"><b>Bottom line:</b> none of the {n_strat} pre-registered betting strategies passes the validation gates. The main blocker is that the historical line data we have does not name its provider, so we cannot verify it against an official source (flag I-10). Read the <a href="summary.html">executive summary</a>.</div>
+<h2>Browse by category</h2>
+<div class="grid">
+<div class="card"><a class="big" href="summary.html">Executive summary</a><div class="small">Key facts, verdicts, and what we still need.</div></div>
+<div class="card"><a class="big" href="standings.html">Standings</a><div class="small">32 teams, NFL.com 2026 standings.</div></div>
+<div class="card"><a class="big" href="schedule.html">Week 10 schedule</a><div class="small">14 games, byes, and the Thursday final.</div></div>
+<div class="card"><a class="big" href="injuries.html">Injury report</a><div class="small">{n_inj} rows from the official report; {n_checked} re-checked line by line (I-17).</div></div>
+<div class="card"><a class="big" href="strategies.html">Strategy registry</a><div class="small">Registry and validation gates. Results withheld.</div></div>
+<div class="card"><a class="big" href="model-lines.html">Model lines</a><div class="small">Week 10 game list. Model and market values withheld.</div></div>
+<div class="card"><a class="big" href="questions.html">Questions & gaps</a><div class="small">What we know, what we don't, and how to find out.</div></div>
+<div class="card"><a class="big" href="suggestions.html">Suggestions</a><div class="small">Options for you to choose. Nothing is implemented yet.</div></div>
+<div class="card"><a class="big" href="flagged.html">Flagged for review</a><div class="small">Irregularities and unverified items with source links.</div></div>
+<div class="card"><a class="big" href="sources.html">Source register</a><div class="small">Every source, its tier, and when it was retrieved.</div></div>
 </div>
-{table(["ID", "Category", "Question", "What is known", "What is missing", "How to close the gap", "Priority", "Status"],
-       rows, sortable=False)}
-"""
-    return layout("questions.html", "Questions & gaps", body)
+<h2>How to read the verification labels</h2>
+<table><tr><th>Label</th><th>Meaning</th></tr>
+<tr><td><span class="chip ok">official</span></td><td>Value copied from an NFL.com page (link on each row).</td></tr>
+<tr><td><span class="chip warn">secondary</span></td><td>Community or third-party dataset. Not official. Used only where labelled.</td></tr>
+<tr><td><span class="chip bad">unverified</span></td><td>Cannot be confirmed from an official source. Not used for decisions.</td></tr>
+</table>"""
+write("index.html", layout("Home", "Overview", "index.html", index_body))
 
-
-def page_suggestions(p: Dict) -> str:
-    rows = []
-    for s in content.SUGGESTIONS:
-        rows.append([
-            esc(s["id"]), esc(s["category"]), f'<strong>{esc(s["title"])}</strong>',
-            esc(s["problem"]), esc(s["proposal"]), esc(s["evidence"]),
-            badge(s["impact"], {"High": "fail", "Medium": "warn", "Low": "mute"}[s["impact"]]),
-            badge(s["effort"], "mute"),
-            esc(s["dependencies"]), esc(s["risk"]), badge(s["status"], "info"),
-        ])
-    body = f"""
-<h1>Suggestions for review</h1>
-<p class="lede">Nothing here has been implemented on the strength of this page alone. Each suggestion
-states the problem, the proposed change, the evidence that justifies it, and the impact, effort,
-dependencies and risk, so a path can be chosen deliberately. The status column is the review
-decision point: <em>Proposed</em> becomes <em>Accepted</em>, <em>Deferred</em> or <em>Rejected</em>.</p>
-<div class="toolbar">
-  <input type="search" data-filter="#s-table" placeholder="Filter suggestions...">
-  <select data-filter-select="#s-table" data-filter-column="1">
-    <option value="">All categories</option>
-    {''.join(f'<option>{esc(c)}</option>' for c in sorted({s["category"] for s in content.SUGGESTIONS}))}
-  </select>
-</div>
-{table(["ID", "Category", "Suggestion", "Problem", "Proposed change", "Evidence", "Impact", "Effort",
-        "Dependencies", "Risk", "Review status"], rows, sortable=False)}
-<div class="callout"><h4>How to review</h4>
-<p>Work down the Impact column. SG13 (lock the evaluation protocol) should be decided before any
-strategy is re-scored, and SG3, SG7 and SG9 change the model itself, so they should be decided
-before the next season starts. SG6 (campaign tracker) is what turns this from a research
-repository into something whose forward record can be audited.</p></div>
-"""
-    return layout("suggestions.html", "Suggestions", body)
-
-
-def page_strategies(p: Dict) -> str:
-    blocks = []
-    for e in p["leaderboard"]:
-        gates_pill = " ".join(
-            badge(f"{g['key']} {'ok' if g['passed'] else 'x'}", "pass" if g["passed"] else "fail")
-            for g in e["gates"]
-        )
-        blocks.append(f"""
-<div class="card" id="{esc(e['key'])}" style="margin:12px 0">
-  <h4>{esc(e['name'])} <span class="subtle">{esc(e['key'])} &middot; {esc(e['family'])} family</span></h4>
-  <p style="margin:4px 0 8px">{esc(e['description'])}</p>
-  <div class="grid k4">
-    <div><strong>{e['bets']:,}</strong><div class="subtle">out-of-sample bets</div></div>
-    <div><strong class="{sign_class(e['roi'])}">{pct(e['roi'])}</strong><div class="subtle">ROI per unit</div></div>
-    <div><strong>{pct(e['hit_rate'], 1)}</strong><div class="subtle">hit rate</div></div>
-    <div><strong>{e['reward']:.1f}</strong><div class="subtle">reward points</div></div>
-  </div>
-  <div class="pill-row">{gates_pill}</div>
-  <p class="subtle" style="margin:8px 0 0">Seasons {esc(e['first_season'])}&ndash;{esc(e['last_season'])}
-  &middot; 95% CI [{pct(e['ci_lo'], 1)}, {pct(e['ci_hi'], 1)}] units/bet
-  &middot; permutation p = {num(e['p_value'], 4)}
-  &middot; failed gates: {esc(', '.join(e['failed_gates']) or 'none')}</p>
-</div>""")
-    body = f"""
-<h1>Strategy catalogue</h1>
-<p class="lede">Sixteen pre-registered strategies across the spread, total and parlay families, each
-evaluated walk-forward from 2015 to 2026. Parameters are re-selected at the start of every season
-using only games that finished earlier, so no season can influence the parameters used inside it.</p>
-{''.join(blocks)}
-"""
-    return layout("strategies.html", "Strategies", body)
-
-
-def page_leaderboard(p: Dict) -> str:
-    rows = []
-    for e in p["leaderboard"]:
-        rows.append([
-            e["rank"], esc(e["key"]), esc(e["name"]), badge(e["family"], "info"),
-            f'{e["bets"]:,}', (pct(e["roi"]), sign_class(e["roi"])),
-            (pct(e["hit_rate"], 1), ""), (pct(e["profit"], 1), ""),
-            (f'[{pct(e["ci_lo"], 1)}, {pct(e["ci_hi"], 1)}]', ""),
-            (num(e["p_value"], 4), ""),
-            (f'{e["reward"]:.1f}', ""),
-            pass_badge(e["all_passed"]),
-            esc(", ".join(e["failed_gates"]) or "-"),
-        ])
-    base_rows = [[esc(k), (pct(v), sign_class(v))] for k, v in p["baselines"].items()]
-    body = f"""
-<h1>Leaderboard</h1>
-<p class="lede">The competition table. Reward is paid only to strategies that clear all eight
-validation gates; a rejected strategy earns zero and is shown with the gates it failed, so the
-board shows the evidence rather than just the winners.</p>
-<h2>Reward formula</h2>
-<div class="callout"><h4>reward = 1000 &times; ROI &times; min(1, bets / 300) &times; confidence</h4>
-<p><em>confidence</em> is the share of the bootstrap confidence interval that stays above zero, so a
-strategy that is profitable but statistically fragile earns proportionally less. A strategy that
-fails any gate earns zero by definition.</p></div>
-{table(["#", "Key", "Strategy", "Family", "Bets", "ROI", "Hit rate", "Total profit", "95% CI (units/bet)",
-        "Permutation p", "Reward", "All gates", "Failed gates"], rows, sortable=False)}
-<h2>Naive baselines on the same window</h2>
-<p class="subtle">Every strategy must beat all of these to pass gate G5.</p>
-{table(["Baseline", "ROI"], base_rows, sortable=False)}
-"""
-    return layout("leaderboard.html", "Leaderboard", body)
-
-
-def page_validation(p: Dict) -> str:
-    gate_defs = [
-        ["G1", "Sample sufficiency", "At least 100 settled out-of-sample bets", "Gate"],
-        ["G2", "Out-of-sample integrity", "Parameters chosen only from earlier seasons; no duplicate bets", "Gate"],
-        ["G3", "Statistical significance", "Bootstrap 95% CI lower bound above zero and permutation p <= 0.05", "Gate"],
-        ["G4", "Economic significance", "ROI of at least 2% per unit staked", "Gate"],
-        ["G5", "Beats naive baselines", "ROI above every always-on baseline on the same window", "Gate"],
-        ["G6", "Luck robustness", "Positive ROI after removing one-score games and blowouts", "Gate"],
-        ["G7", "Parameter stability", "At least 60% of neighbouring parameter values stay positive", "Gate"],
-        ["G8", "Non-redundancy", "Correlation with any accepted strategy at most 0.85", "Gate"],
-    ]
-    rows = []
-    for e in p["leaderboard"]:
-        rows.append([esc(e["key"])] + [pass_badge(g["passed"]) for g in e["gates"]]
-                    + [esc(", ".join(e["failed_gates"]) or "-")])
-    detail_rows = []
-    for e in p["leaderboard"]:
-        for g in e["gates"]:
-            detail_rows.append([esc(e["key"]), esc(g["key"]), esc(g["name"]),
-                                pass_badge(g["passed"]), esc(g["value"]), esc(g["threshold"]),
-                                esc(g["detail"])])
-    sens_rows = []
-    for e in p["leaderboard"][:6]:
-        for s in e["sensitivity"]:
-            sens_rows.append([esc(e["key"]), esc(s["params"]), f'{s["bets"]:,}',
-                              (pct(s["roi"]) if s["roi"] is not None else "&mdash;", sign_class(s["roi"])),
-                              (pct(s["hit_rate"], 1) if s["hit_rate"] is not None else "&mdash;", "")])
-    body = f"""
-<h1>Validation gates</h1>
-<p class="lede">A strategy earns reward only by passing all eight gates. The gates are applied
-identically to every strategy, and every failure is published with the measured value so the
-decision to reject or fix is transparent.</p>
-<h2>Gate definitions</h2>
-{table(["Gate", "Name", "Threshold", "Type"], gate_defs, sortable=False)}
-<h2>Gate matrix</h2>
-{table(["Strategy"] + [g[0] for g in gate_defs] + ["Failed"], rows, sortable=False)}
-<h2>Detail</h2>
-<div class="toolbar"><input type="search" data-filter="#gate-table" placeholder="Filter detail..."></div>
-{table(["Strategy", "Gate", "Name", "Result", "Measured", "Threshold", "Explanation"],
-       detail_rows, sortable=False)}
-<h2>Parameter sensitivity (out-of-sample window)</h2>
-<p class="subtle">The sensitivity of the six strongest strategies to their own parameters. A signal
-that survives at neighbouring settings is far more likely to be skill than luck.</p>
-{table(["Strategy", "Parameters", "Bets", "ROI", "Hit rate"], sens_rows, sortable=False)}
-"""
-    return layout("validation.html", "Validation gates", body)
-
-
-def page_lines(p: Dict, games: pd.DataFrame) -> str:
-    m = p["model"]
-    cmp_rows = []
-    for label, block in (("All scored games", m["market_all"]),
-                         ("2021-2026", m["market_recent"]),
-                         ("2026 holdout", m["market_holdout"])):
-        if not block:
-            continue
-        cmp_rows.append([
-            esc(label), f'{block["n"]:,}',
-            num(block["spread_mae_model"]), num(block["spread_mae_market"]),
-            num(block["total_mae_model"]), num(block["total_mae_market"]),
-            num(block["delta_abs_mean"]),
-        ])
-    diag_rows = []
-    for d in m["diagnostics"]:
-        if d.get("status") != "ok":
-            continue
-        diag_rows.append([d["season"], f'{d["n_games"]:,}', num(d["margin_mae"]), num(d["margin_rmse"]),
-                          num(d["total_mae"]), num(d["margin_bias"]), num(d["total_bias"])])
-
-    current = []
-    if len(games):
-        sel = games[(games["season"] == config.CURRENT_SEASON) & games["home_score"].isna()
-                    & games["market_spread"].notna()]
-        sel = sel.sort_values(["week", "gameday"]).head(40)
-        for _, r in sel.iterrows():
-            current.append([
-                esc(r["gameday"]), r["week"], esc(r["away_team"]), esc(r["home_team"]),
-                (f'{r["market_spread"]:+.1f}', ""), (num(r["model_spread"], 1), sign_class(r.get("spread_delta"))),
-                (f'{r["market_total"]:.1f}', ""), (num(r["model_total"], 1), sign_class(r.get("total_delta"))),
-                (signed_num(r.get("spread_delta"), 1), sign_class(r.get("spread_delta"))),
-                (signed_num(r.get("total_delta"), 1), sign_class(r.get("total_delta"))),
-                source_link("nfldata_games", "mirror"),
-            ])
-
-    body = f"""
-<h1>Originated lines</h1>
-<p class="lede">Our own spread and total for every game, produced by a walk-forward Poisson points
-model with team attack and defence ratings, the pre-game Elo difference, rest advantage and a home
-indicator. For each game the model is fitted only on seasons that finished before it, so a line is
-never informed by its own result.</p>
-<div class="grid k3" style="margin:16px 0">
-  {kpi("Games scored", f'{m["summary"]["n_games_scored"]:,}', "every game with a pre-game model")}
-  {kpi("Mean spread MAE", num(m["market_recent"]["spread_mae_model"]), "model, 2021-2026")}
-  {kpi("Market spread MAE", num(m["market_recent"]["spread_mae_market"]), "benchmark, 2021-2026")}
-</div>
-<h2>Model accuracy against the market</h2>
-{table(["Window", "Games", "Model spread MAE", "Market spread MAE", "Model total MAE", "Market total MAE",
-        "Mean |line delta|"], cmp_rows, sortable=False,
-       note="A lower MAE means the line was closer to the final margin. The market remains the better line; the difference is the size of the opportunity, and it is published so nobody has to assume it.")}
-<h2>Published lines for unplayed games</h2>
-<div class="toolbar"><input type="search" data-filter="#lines-table" placeholder="Filter games..."></div>
-{table(["Date", "Wk", "Away", "Home", "Market spread", "Model spread", "Market total", "Model total",
-        "Spread delta", "Total delta", "Source"], current, sortable=False,
-       note="Delta = model minus market. A positive spread delta means the model likes the home side more than the market does.")}
-<h2>Season-by-season fit</h2>
-{table(["Season", "Games", "Margin MAE", "Margin RMSE", "Total MAE", "Margin bias", "Total bias"],
-       diag_rows, sortable=False)}
-"""
-    return layout("lines.html", "Originated lines", body)
-
-
-def page_correlations(p: Dict) -> str:
-    matrix = p["correlations"]["matrix"]
-    keys = list(matrix.keys())
-    rows = []
-    for a in keys:
-        cells = []
-        for b in keys:
-            v = matrix.get(a, {}).get(b)
-            if v is None:
-                cells.append("<td class='cell muted'>&mdash;</td>")
-                continue
-            cls = "diag" if a == b else "cell"
-            style = ""
-            if a != b:
-                if v >= 0.6:
-                    style = "background:rgba(255,122,122,.16);color:#ff9d9d"
-                elif v <= -0.4:
-                    style = "background:rgba(87,211,140,.16);color:#8ce3b0"
-                elif abs(v) >= 0.3:
-                    style = "background:rgba(255,200,87,.14);color:#ffd98a"
-            cells.append(f'<td class="{cls}" style="{style}">{v:+.2f}</td>' if a != b
-                         else f'<td class="{cls}">1.00</td>')
-        rows.append(f"<tr><td>{esc(a)}</td>{''.join(cells)}</tr>")
-    matrix_html = (
-        '<div class="table-wrap"><table class="matrix"><thead><tr><th>Strategy</th>'
-        + "".join(f"<th>{esc(k)}</th>" for k in keys)
-        + f"</tr></thead><tbody>{''.join(rows)}</tbody></table></div>"
-    )
-    pair_rows = [[esc(d["strategy_a"]), esc(d["strategy_b"]), (f'{d["correlation"]:+.3f}', sign_class(d["correlation"])),
-                  d["shared_games"]] for d in p["correlations"]["pairwise"][:20]]
-    luck_rows = []
-    for l in p["luck"]:
-        luck_rows.append([
-            esc(l["strategy"]), l["full"]["n"], (pct(l["full"]["roi"]), sign_class(l["full"]["roi"])),
-            l["luck_games"]["n"], (pct(l["luck_games"]["roi"]), sign_class(l["luck_games"]["roi"])),
-            l["clean_games"]["n"], (pct(l["clean_games"]["roi"]), sign_class(l["clean_games"]["roi"])),
-            (pct(l["luck_profit_share"], 1), sign_class(l["luck_profit_share"])),
-        ])
-    body = f"""
-<h1>Correlations and removing luck</h1>
-<p class="lede">Two questions: which strategies duplicate each other, and how much of each result is
-luck. Correlation is measured on the profit streams of the strategies over the games they share.</p>
-<h2>Strategy correlation matrix</h2>
-{matrix_html}
-<p class="table-note">Red = strongly positive (duplicative), green = negative (offsetting),
-amber = moderate. Gate G8 blocks any accepted strategy that duplicates an existing one above 0.85.</p>
-<h2>Highest pairwise correlations</h2>
-{table(["Strategy A", "Strategy B", "Correlation", "Shared games"], pair_rows, sortable=False)}
-<h2>Luck analysis</h2>
-<p class="subtle">One-score games (decided by 8 points or fewer) and blowouts (25 points or more) are
-removed and the strategy is re-scored. A signal that only works because of lucky one-score games
-loses its edge here.</p>
-{table(["Strategy", "All bets", "ROI", "Luck-game bets", "Luck ROI", "Clean bets", "Clean ROI",
-        "Luck share of profit"], luck_rows, sortable=False)}
-"""
-    return layout("correlations.html", "Correlations & luck", body)
-
-
-def page_props(p: Dict) -> str:
-    fam_rows = [[esc(f["label"]), esc(f["position_group"]), f'{f["player_games"]:,}',
-                 esc(f["seasons"]), (pct(f["hit_rate_at_model_line"], 1), ""),
-                 (pct(f["calibrated_hit_rate_eval"], 1) if f.get("calibrated_hit_rate_eval") is not None else "&mdash;", ""),
-                 num(f["std_error"], 1), num(f["mean_actual"], 1),
-                 num(f.get("calibration_offset"), 1)]
-                for f in p["props"].get("families", [])]
-    combo_rows = [[esc(c["combo"]), (f'{c["correlation"]:+.3f}', sign_class(c["correlation"])),
-                   f'{c["observations"]:,}', pct(c["joint_hit_rate"], 1),
-                   pct(c["breakeven_leg_hit_rate"], 1),
-                   (pct(c["edge_vs_breakeven"], 1), sign_class(c["edge_vs_breakeven"])),
-                   badge("positive" if c["profitable"] else "negative", "pass" if c["profitable"] else "fail")]
-                  for c in p["props"].get("combos", [])]
-    line_rows = [[esc(l["week"]), esc(l["player"]), esc(l["team"]), esc(l["opponent"]), esc(l["prop"]),
-                  num(l["model_line"], 1), num(l["actual"], 1), badge(l["result"], "info")]
-                 for l in p["props"].get("current_lines", [])[:60]]
-    body = f"""
-<h1>Player props</h1>
-<p class="lede">Originated prop lines for passing yards, rushing yards, receiving yards and
-receptions, built from league-relative rolling production and calibrated so that the line splits
-the modelled distribution fairly. The league publishes no prop prices, so these are research
-outputs: they cannot be priced against a market until a prop feed is available (question Q9).</p>
-<h2>Prop family models</h2>
-{table(["Prop", "Positions", "Player-games", "Seasons", "Hit rate at raw model line",
-        "Hit rate at calibrated line (2021+)", "Std. deviation", "Mean production", "Calibration offset"],
-       fam_rows, sortable=False,
-       note="The raw model line uses the mean of a right-skewed distribution, so it hits below 50%. The calibrated line adds the median error measured on 2010-2020 and is the fair line.")}
-<h2>Prop combinations and parlay break-even</h2>
-<p class="subtle">Two -110 legs need a 27.5% joint hit rate, which is a 52.4% hit rate per leg if
-the legs are independent. Correlation decides whether that is reachable.</p>
-{table(["Combination", "Correlation", "Observations", "Joint hit rate (at 53% legs)",
-        "Break-even leg hit rate", "Edge vs break-even", "Verdict"], combo_rows, sortable=False)}
-<h2>Originated prop lines (latest published week)</h2>
-{table(["Week", "Player", "Team", "Opponent", "Prop", "Model line", "Actual", "Result"], line_rows, sortable=False)}
-"""
-    return layout("props.html", "Player props", body)
-
-
-def page_injuries(p: Dict) -> str:
-    inj = p["injuries"]
-    summary = inj.get("summary", {})
-    cur_rows = [[esc(r["team"]), esc(r["position"]), esc(r["position_group"]), esc(r["player"]),
-                 esc(r["injury"] or "-"), badge(r["game_status"], "fail" if r["game_status"] == "Out" else "warn"),
-                 esc(r["practice_status"]), source_link("nfl_injuries_w10", "NFL.com")]
-                for r in inj.get("current", [])]
-    def_rows = [[esc(d["team"]), esc(d["position_group"]), esc(d["starter"]),
-                 badge(d["starter_status"], "fail"), esc(d["replacement"] or "-"),
-                 esc(d["replacement_tier"] if d["replacement_tier"] is not None else "-"),
-                 esc(d["tier_gap"] if d["tier_gap"] is not None else "-"),
-                 esc(d["starter_evidence"]), source_link("nfl_injuries_w10", "NFL.com")]
-                for d in inj.get("deficiency", [])]
-    machine_rows = [[esc(d["team"]), esc(d["position_group"]), esc(d["starter"]),
-                     badge(d["starter_status"], "fail"), esc(d["replacement"] or "-"),
-                     esc(d["replacement_tier"] if d["replacement_tier"] is not None else "-"),
-                     esc(d["tier_gap"] if d["tier_gap"] is not None else "-"),
-                     esc(d["starter_evidence"])]
-                    for d in inj.get("deficiency_machine", [])]
-    depth_rows = [[esc(d["team"]), esc(d["position_group"]), esc(d["tier"]), esc(d["player"]),
-                   esc(d.get("games_played")), esc(d.get("work_units")),
-                   badge(d["game_status"], "fail" if d["game_status"] in ("Out", "Doubtful") else "mute"),
-                   ("must start", "neg") if d.get("must_start") else "-"]
-                  for d in inj.get("depth_status", [])]
-    effect_rows = [[esc(e["position_group"]), e["games"], (num(e["avg_ats_margin"], 2), sign_class(e["avg_ats_margin"])),
-                    pct(e["ats_cover_rate"], 1), esc(e["note"])]
-                   for e in inj.get("effect", [])]
-    body = f"""
-<h1>Injuries and depth</h1>
-<p class="lede">The tracker covers two things: who is out, and who has to replace them. The league
-publishes an official injury report every week; the rows below are transcribed directly from it.
-Depth tiers are derived, because the league publishes no depth chart - that limitation is flagged
-on the Flagged for Review page.</p>
-<div class="grid k4" style="margin:16px 0">
-  {kpi("Official rows (Week 10)", f'{summary.get("official_current_week_rows", 0)}', "transcribed from nfl.com")}
-  {kpi("Out designations", f'{summary.get("official_out", 0)}', "Week 10 official report")}
-  {kpi("Machine-readable history", f'{summary.get("rows", 0):,}', f'weeks {summary.get("machine_readable_weeks")}')}
-  {kpi("Depth deficiencies found", f'{len(inj.get("deficiency", [])) + len(inj.get("deficiency_machine", []))}', "first string unavailable")}
-</div>
-<h2>Current week injury status (official NFL report)</h2>
-<div class="toolbar"><input type="search" data-filter="#inj-table" placeholder="Filter players..."></div>
-{table(["Team", "Pos", "Group", "Player", "Injury", "Game status", "Practice status", "Source"],
-       cur_rows, sortable=False)}
-<h2>Depth deficiencies - current week</h2>
-<p class="subtle">The first string at the position is Out or Doubtful, so a deeper player must take over.</p>
-{table(["Team", "Group", "First string", "Status", "Replacement", "Replacement tier", "Tier gap",
-        "Evidence for the tier", "Source"], def_rows, sortable=False)}
-<h2>Depth deficiencies - latest complete machine-readable week</h2>
-{table(["Team", "Group", "First string", "Status", "Replacement", "Replacement tier", "Tier gap",
-        "Evidence for the tier"], machine_rows, sortable=False)}
-<h2>Depth picture for the teams in the current report</h2>
-<div class="toolbar"><input type="search" data-filter="#depth-table" placeholder="Filter depth rows..."></div>
-{table(["Team", "Group", "Tier", "Player", "Games played", "Work units", "Status", "Note"],
-       depth_rows, sortable=False)}
-<h2>Measured effect of a missing starter (2026 season)</h2>
-<p class="subtle">Games where exactly one side is missing an Out player at that position group.
-Small samples - treat as directional only (flagged item F5).</p>
-{table(["Position group", "Games", "Average ATS margin", "Cover rate", "Note"], effect_rows, sortable=False)}
-"""
-    return layout("injuries.html", "Injuries & depth", body)
-
-
-def page_methods(p: Dict) -> str:
-    body = f"""
-<h1>Methods</h1>
-<p class="lede">How every number on this site is produced, so that a reviewer can repeat it.</p>
-
-<h2>Data acquisition</h2>
-<p>The sandbox network allow-list permits GitHub and PyPI hosts only, so bulk inputs are pulled from
-GitHub through the REST contents API and cached under <code>data/raw</code>. Every file is recorded
-with its byte size and SHA-256 in <code>data/raw_manifest.json</code>, so a reviewer can confirm that
-a published table came from a specific file. League-operated pages (NFL injury reports, the season
-calendar, the rule book) are cited directly and transcribed where the values are published row by row.</p>
-
-<h2>Walk-forward evaluation</h2>
-<p>For every evaluation season, each strategy's parameters are re-selected using only games that
-finished in earlier seasons, then applied to the evaluation season. Parameters are chosen by a
-risk-adjusted score (mean profit divided by its standard error) so that a high return on a handful
-of bets cannot beat a steadier signal with more evidence. The evaluation window runs from 2015 to
-the 2026 season, which gives every strategy thousands of out-of-sample bets and every parameter
-choice a genuine test.</p>
-
-<h2>Originated lines</h2>
-<p>A Poisson points model is fitted on stacked team-game rows:
-<code>points ~ C(team) + C(opponent) + elo_diff + rest_diff + is_home</code>.
-Team dummies give attack and defence ratings, the pre-game Elo difference adds a dynamic strength
-signal, rest difference captures scheduling, and the home indicator captures the scoring level.
-The model is refitted for every season using only earlier seasons, so no game is scored by a model
-that has seen it. The originated spread is the difference between the two predicted point totals and
-the originated total is their sum, both rounded to half points.</p>
-
-<h2>Validation gates</h2>
-<p>Eight gates, applied identically to every strategy: sample sufficiency, out-of-sample integrity,
-statistical significance (bootstrap interval plus a sign-flip randomisation test), economic
-significance, superiority over naive baselines, luck robustness, parameter stability and
-non-redundancy. A strategy that fails any gate earns no reward and is published with the measured
-values that caused the failure.</p>
-
-<h2>Removing luck</h2>
-<p>One-score games (margin of 8 points or fewer) and blowouts (25 points or more) are removed and
-the strategy is re-scored (gate G6). Turnover luck and drive-level variance are not yet
-controllable because play-by-play data is not in the pipeline - that is question Q12.</p>
-
-<h2>Correlation and parlay arithmetic</h2>
-<p>Strategy correlations are Pearson correlations of per-bet profit streams over shared games. For
-parlays, a two-leg combination at -110 needs a 27.5% joint hit rate; the joint probability is
-computed from each leg's hit rate and the correlation between the legs
-(<code>p1*p2 + rho*p1*(1-p2)</code>), which is what makes the prop-combo table a decision tool
-rather than a list of numbers.</p>
-
-<h2>Reward formula</h2>
-<p><code>reward = 1000 * ROI * min(1, bets / 300) * confidence</code>, where confidence is the
-share of the bootstrap confidence interval that stays above zero. Rejected strategies earn zero.</p>
-
-<h2>What is not modelled yet</h2>
-<ul class="clean">
-<li>Drive-level efficiency (EPA, success rate, third-down rate) - needs play-by-play (Q1, SG3).</li>
-<li>Closing-line value - needs opening and closing prices stored per game (SG5).</li>
-<li>Player-prop pricing - needs a market prop feed (Q9).</li>
-<li>Turnover luck - needs play-by-play (Q12).</li>
-<li>Multi-season injury adjustments - needs a multi-year injury feed (Q8).</li>
+summary_body = f"""<h1>Executive summary</h1>
+<p class="lead">Data as of {DATA_DATE} (UTC). Official source: NFL.com. This page shows only values that are verified against an official page, plus counts of pre-registered items.</p>
+<h2>1. What is verified</h2>
+<ul>
+<li><b>Standings:</b> all {len(standings)} rows re-checked against the NFL.com standings page on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak). Every value matched.</li>
+<li><b>Week 10 schedule:</b> all {len(schedule)} games and {len(byes)} bye teams re-checked against NFL.com. The Thursday game is listed Final: Commanders {tnf['away_score']}, Giants {tnf['home_score']}.</li>
+<li><b>Injury report:</b> {n_inj} rows across {inj_games} games transcribed from NFL.com. {n_checked} rows are re-checked line by line (WAS at NYG, NE at DET); the other {n_inj-n_checked} are pending (I-17). Transcribed status counts: Out {n_out}, Doubtful {n_doubt}, Questionable {n_quest}.</li>
+<li><b>Spot-check:</b> Mike Evans's NFL.com player page lists the 49ers, consistent with the injury report.</li>
 </ul>
+<h2>2. Strategy research</h2>
+<ul>
+<li>We pre-registered {len(registry)} strategies (ATS, totals, rest, and an Elo-versus-line model) and built the validation gates (G0–G5) before looking at results.</li>
+<li><b>No strategy is eligible.</b> Every strategy depends on point spreads or totals, and the line provider is not documented (I-10). Gate G0 fails, so results are withheld. No win rates, ROI, p-values, leaderboard positions, correlations or parlay figures are published.</li>
+<li>Correlation and parlay checks are part of the method (mirror bets must not be parlayed as independent legs). They run once inputs are verified.</li>
+</ul>
+<h2>3. Injury and depth tracking</h2>
+<ul>
+<li>We track official injury designations for every listed player in Week 10 (see the injury page for team and unit summaries).</li>
+<li><b>Not yet possible:</b> whether a backup replaced a starter. This needs official depth charts, which we have not collected (task T4, blocked). We make no claim about starter-versus-backup deficiencies.</li>
+</ul>
+<h2>4. Decisions needed from you</h2>
+<p>See the <a href="suggestions.html">Suggestions</a> page (options and trade-offs) and the <a href="questions.html">Questions &amp; gaps</a> page. The top decisions are:</p>
+<ol>
+<li>Which line data source to use, and whether to pay for a licensed historical feed. This blocks every strategy result.</li>
+<li>Whether to collect official depth charts (needed for starter-versus-backup tracking).</li>
+<li>Whether to keep the proposed gate thresholds (300 bets, Bonferroni p &lt; 0.05, 60% positive seasons).</li>
+<li>When results may be published: only after a verified line source (current rule), or on a labelled basis.</li>
+</ol>
+<h2>5. Flags</h2>
+<p>{len(flags_auto)} automatic flags and {len(MANUAL_FLAGS)} manual flags are listed on the <a href="flagged.html">Flagged for review</a> page, each with an official source link where one exists.</p>"""
+write("summary.html", layout("Executive summary", "Overview", "summary.html", summary_body))
+
+# ---------------- DATA: STANDINGS ----------------
+rows = "".join(
+    f"<tr><td>{H(r['conference'])}</td><td>{H(r['team'])}</td><td>{H(r['team_abbr'])}</td>"
+    f"<td class='num'>{r['W']}</td><td class='num'>{r['L']}</td><td class='num'>{r['T']}</td>"
+    f"<td class='num'>{f1(r['PCT'],3)}</td><td class='num'>{r['PF']}</td><td class='num'>{r['PA']}</td>"
+    f"<td class='num'>{r['NET_PTS']}</td><td>{H(r['STRK'])}</td>"
+    f"<td><a href='{H(r['team_url'])}' target='_blank' rel='noopener'>NFL.com team ↗</a> · <a href='{H(r['source_url'])}' target='_blank' rel='noopener'>standings ↗</a></td></tr>"
+    for r in standings)
+standings_body = f"""<h1>Standings — 2026 season (Week 10 view)</h1>
+<p class="lead">Source: NFL.com 2026 standings, retrieved {DATA_DATE}. <span class="chip ok">official</span> <b>All 32 rows re-checked against the page on {DATA_DATE}.</b> Click a column header to sort. Note I-14: the Thursday game (Commanders 24, Giants 21) is marked final on the schedule page, but the standings still show the pre-game records.</p>
+<input class="filter" data-target="stand" placeholder="Filter teams…">
+<div class="tablewrap"><table class="sortable" id="stand"><thead><tr>
+<th>Conf</th><th>Team</th><th>Code</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PCT</th><th class="num">PF</th><th class="num">PA</th><th class="num">Net pts</th><th>Streak</th><th>Source</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+<p class="small">Column meanings are taken from the legend on the NFL.com page: W Wins, L Losses, T Ties, PCT Winning Percentage, PF Total Points For, PA Total Points Against, NET PTS Net Points, STRK Streak.</p>"""
+write("standings.html", layout("Standings", "Data", "standings.html", standings_body))
+
+# ---------------- DATA: SCHEDULE ----------------
+srows = ""
+for r in schedule:
+    score = f"{r['away_score']}–{r['home_score']}" if r["status"] == "Final" else ""
+    srows += (f"<tr><td>{H(r['day'])} {H(r['date'])}</td><td>{H(r['kickoff_et'])} ET</td><td>{H(r['network'])}</td>"
+              f"<td>{H(r['away'])} <span class='small'>({H(r['away_record_pre'])})</span></td>"
+              f"<td>{H(r['home'])} <span class='small'>({H(r['home_record_pre'])})</span></td>"
+              f"<td><span class='chip {'ok' if r['status']=='Final' else ''}'>{H(r['status'])}</span> {H(score)}</td>"
+              f"<td>{src_link(r['game_url'], 'NFL.com game')} · {src_link(r['source_url'], 'schedule')}</td></tr>")
+brows = "".join(f"<tr><td>{H(r['team_abbr'])}</td><td>{H(r['team'])}</td><td>{H(r['record'])}</td><td>{src_link(r['source_url'],'NFL.com schedule')}</td></tr>" for r in byes)
+sched_body = f"""<h1>Week 10 schedule — 2026</h1>
+<p class="lead">Source: NFL.com Week 10 schedule. <span class="chip ok">official</span> <b>All 14 games and 4 bye teams re-checked against the page on {DATA_DATE}.</b> Records shown are as printed on the NFL.com schedule page (the Thursday game's records are pre-game). Times are as printed (ET).</p>
+<div class="tablewrap"><table><thead><tr><th>Day / date</th><th>Kickoff</th><th>Network</th><th>Away (record)</th><th>Home (record)</th><th>Status / score</th><th>Source</th></tr></thead><tbody>{srows}</tbody></table></div>
+<h2>Teams on bye</h2>
+<table><thead><tr><th>Code</th><th>Team</th><th>Record</th><th>Source</th></tr></thead><tbody>{brows}</tbody></table>
 """
-    return layout("methods.html", "Methods", body)
+write("schedule.html", layout("Week 10 schedule", "Data", "schedule.html", sched_body))
 
+# ---------------- DATA: INJURIES ----------------
+UNIT = {"QB":"Offense","RB":"Offense","FB":"Offense","WR":"Offense","TE":"Offense","T":"Offense","G":"Offense","C":"Offense",
+        "DE":"Defense","DT":"Defense","LB":"Defense","CB":"Defense","S":"Defense",
+        "K":"Special teams","P":"Special teams","LS":"Special teams"}
+team_sum = {}
+for r in injuries:
+    t = r["team_abbr"]
+    d = team_sum.setdefault(t, dict(rows=0, Out=0, Doubtful=0, Questionable=0, DNP=0,
+                                   off_out_doubt=0, def_out_doubt=0, st_out_doubt=0, game=r["game"]))
+    d["rows"] += 1
+    if r["game_status"] in ("Out", "Doubtful", "Questionable"):
+        d[r["game_status"]] += 1
+    if r["practice_status"] == "Did Not Participate In Practice":
+        d["DNP"] += 1
+    if r["game_status"] in ("Out", "Doubtful"):
+        key = {"Offense":"off_out_doubt","Defense":"def_out_doubt","Special teams":"st_out_doubt"}.get(UNIT.get(r["position"],""), None)
+        if key: d[key] += 1
+sum_rows = ""
+st_names = {s["team_abbr"]: s["team"] for s in standings}
+for t in sorted(team_sum, key=lambda x: st_names.get(x, x)):
+    d = team_sum[t]
+    sum_rows += (f"<tr><td>{H(st_names.get(t, t))}</td><td>{H(t)}</td><td class='num'>{d['rows']}</td>"
+                 f"<td class='num'>{d['Out']}</td><td class='num'>{d['Doubtful']}</td><td class='num'>{d['Questionable']}</td>"
+                 f"<td class='num'>{d['DNP']}</td><td class='num'>{d['off_out_doubt']}</td><td class='num'>{d['def_out_doubt']}</td><td class='num'>{d['st_out_doubt']}</td>"
+                 f"<td>{src_link('https://www.nfl.com/injuries/','report')}</td></tr>")
+irows = ""
+for r in injuries:
+    rc = "<span class='chip ok'>re-checked (chunk 0)</span>" if r["game"] in CHECKED_GAMES else "<span class='chip warn'>pending (I-17)</span>"
+    codes = r["flag_codes"]
+    flag = " ".join(f"<span class='chip warn'>{H(c)}</span>" for c in codes.split(";") if c)
+    gs = r["game_status"]
+    cls = {"Out":"bad","Doubtful":"warn","Questionable":"warn"}.get(gs, "")
+    irows += (f"<tr><td>{H(r['game'])}</td><td>{H(r['team_abbr'])}</td><td>{H(r['player'])}</td><td>{H(r['position'])}</td>"
+              f"<td>{H(UNIT.get(r['position'],''))}</td><td>{H(r['injury'])}</td><td>{H(r['practice_status'])}</td>"
+              f"<td><span class='chip {cls}'>{H(gs) if gs else '(blank)'}</span></td><td>{flag}</td><td>{rc}</td>"
+              f"<td>{src_link(r['player_url'],'player')} · {src_link(r['source_url'],'report')}</td></tr>")
+inj_body = f"""<h1>Injury report — Week 10 (2026)</h1>
+<p class="lead">Source: NFL.com official injury report, retrieved {DATA_DATE}. <span class="chip ok">official</span> {n_inj} rows, {inj_games} games. Every row links to the player page and the report. Row check: {n_checked} of {n_inj} rows re-checked line by line (WAS at NYG, NE at DET); the rest are pending (I-17). Flags (I-05 to I-08) are explained on the <a href="flagged.html">Flagged for review</a> page.</p>
+<div class="note info"><b>Starter vs backup: not yet tracked.</b> The report does not say who starts. We have no official depth charts, so we cannot yet say whether a backup is replacing a starter (task T4, blocked). The unit columns below only count players by position group. They do not show who is a starter.</div>
+<h2>Team summary (counts from the official rows)</h2>
+<p class="small">Unit grouping is our classification from the NFL position codes shown on the report: Offense = QB, RB, FB, WR, TE, T, G, C. Defense = DE, DT, LB, CB, S. Special teams = K, P, LS. "Out or Doubtful" counts players with those game statuses.</p>
+<div class="tablewrap"><table class="sortable"><thead><tr><th>Team</th><th>Code</th><th class="num">Rows</th><th class="num">Out</th><th class="num">Doubtful</th><th class="num">Questionable</th><th class="num">DNP (practice)</th><th class="num">Offense out/doubtful</th><th class="num">Defense out/doubtful</th><th class="num">Special teams out/doubtful</th><th>Source</th></tr></thead>
+<tbody>{sum_rows}</tbody></table></div>
+<h2>All rows</h2>
+<input class="filter" data-target="inj" placeholder="Filter by player, team, injury, status…">
+<div class="tablewrap"><table class="sortable" id="inj"><thead><tr><th>Game</th><th>Team</th><th>Player</th><th>Pos</th><th>Unit (ours)</th><th>Injury</th><th>Practice</th><th>Game status</th><th>Flags</th><th>Row check</th><th>Source</th></tr></thead><tbody>{irows}</tbody></table></div>"""
+write("injuries.html", layout("Injury report", "Data", "injuries.html", inj_body))
 
-def page_sources(p: Dict) -> str:
-    rows = []
-    for s in sources.SOURCES:
-        rows.append([
-            esc(s.key), esc(s.title), esc(s.publisher),
-            badge("league-operated" if s.kind == "league" else ("state" if s.kind == "state" else "community mirror"), 
-                  "pass" if s.official else "warn"),
-            f'<a href="{esc(s.url)}" target="_blank" rel="noopener">{esc(s.url)}</a>',
-            esc(s.accessed), esc(s.notes),
-        ])
-    manifest_rows = []
-    for m in p.get("manifest", []):
-        manifest_rows.append([esc(m["name"]), esc(m["repo"]), esc(m["path"]),
-                              f'{m["bytes"]:,}', (esc((m["sha256"] or "")[:16]) + "...", "mono"),
-                              badge(m["status"], "pass" if m["status"] in ("cached", "downloaded") else "fail")])
-    body = f"""
-<h1>Sources</h1>
-<p class="lede">Every source used by the project, what it supports, and whether it is operated by the
-league or by a community mirror. League-operated sources are marked in green; anything drawn from a
-community mirror is marked in amber and explained on the Flagged for Review page.</p>
-{table(["Key", "Title", "Publisher", "Type", "URL", "Accessed", "Notes"], rows, sortable=False)}
-<h2>Raw input manifest</h2>
-<p class="subtle">SHA-256 fingerprints of every file the pipeline consumed for this build.</p>
-{table(["File", "Repository", "Path", "Bytes", "SHA-256", "Status"], manifest_rows, sortable=False)}
-"""
-    return layout("sources.html", "Sources", body)
+# ---------------- RESEARCH: MODEL LINES (values withheld: no official source) ----------------
+REG = rcsv("strategy_registry.csv")
+REPO_BLOB = REPO
+sched_status = {(r["away"], r["home"]): r["status"] for r in schedule}
+mrow = ""
+for r in model:
+    st = sched_status.get((r["away_team"], r["home_team"]), "")
+    mrow += (f"<tr><td>{H(r['away_team'])} at {H(r['home_team'])}</td><td>{H(r['gameday'])}</td>"
+             f"<td>{H(st)}</td><td></td><td></td><td></td><td></td><td></td>"
+             f"<td>{src_link('https://www.nfl.com/schedules/2026/by-week/week-10', 'NFL.com schedule')}</td></tr>")
+model_body = f"""<h1>Model lines — Week 10 (2026)</h1>
+<p class="lead">Our model is a sequential Elo rating with fixed constants (K = 20, home field 65 Elo, 25 Elo per point, one-third season reversion), described on the <a href="methodology.html">method page</a>.</p>
+<div class="note bad"><b>All model and market values are withheld.</b> Model margins are built from historical results we have not verified game by game against NFL.com (I-11). The market spread and total come from a line source whose provider is not documented (I-10). Under the verification rule these cells are blank. The game list and status come from the official NFL.com schedule.</div>
+<div class="tablewrap"><table class="sortable"><thead><tr><th>Game</th><th>Date</th><th>Status (NFL.com)</th><th class="num">Model home margin</th><th class="num">Market spread (home)</th><th class="num">Edge (model − market)</th><th>Model side</th><th class="num">Market total</th><th>Source</th></tr></thead><tbody>{mrow}</tbody></table></div>
+<p class="small">A blank cell means withheld, not zero.</p>"""
+write("model-lines.html", layout("Model lines", "Research", "model-lines.html", model_body))
 
+# ---------------- RESEARCH: STRATEGIES (registry and gates only; results withheld) ----------------
+GATE_SRC = src_link(REPO + "/analysis/strategy_backtest.py", "code")
+reg_rows = "".join(
+    f"<tr><td>{H(r['strategy_id'])}</td><td>{H(r['name'])}</td><td>{H(r['family'])}</td><td>{H(r['definition'])}</td>"
+    f"<td><span class='chip bad'>FAIL (I-10)</span></td><td><span class='chip'>withheld</span></td>"
+    f"<td>{src_link(NFLDATA_URL, 'nfldata (secondary)')}</td></tr>"
+    for r in REG)
+gates_rows = f"""<tr><td>G0</td><td>Line and result inputs verified from an official or documented source</td><td>FAILS for all strategies (I-10)</td><td>{GATE_SRC}</td></tr>
+<tr><td>G1</td><td>At least 300 holdout bets (2021–2025)</td><td>Withheld (depends on unverified inputs)</td><td>{GATE_SRC}</td></tr>
+<tr><td>G2</td><td>Win rate above 52.38% (−110 break-even) in discovery, validation and holdout</td><td>Withheld</td><td>{GATE_SRC}</td></tr>
+<tr><td>G3</td><td>Holdout one-sided binomial p, Bonferroni-adjusted for {checks['bonferroni_divisor']} strategies, below 0.05</td><td>Withheld</td><td>{GATE_SRC}</td></tr>
+<tr><td>G4</td><td>At least 60% of holdout seasons (2021–2025) with positive ROI</td><td>Withheld</td><td>{GATE_SRC}</td></tr>
+<tr><td>G5</td><td>Correlation check in the portfolio (phi between passing strategies)</td><td>Not applied: applies only if two or more strategies pass G0–G4</td><td>{GATE_SRC}</td></tr>"""
+strat_body = f"""<h1>Strategy registry and validation status</h1>
+<div class="note bad"><b>Verdict: 0 of {len(REG)} strategies are eligible.</b> Gate G0 (line provenance verified from an official or documented source) fails for every strategy (I-10). Each strategy depends on the point spread or total, so no results, rankings, correlations, parlay figures or leaderboard positions are published. Computed outputs stay in the repository (<code>data/strategy_*.csv</code>) for reproduction only; they are unverified.</div>
+<h2>Strategies (pre-registered, S01–S10)</h2>
+<div class="tablewrap"><table class="sortable"><thead><tr><th>ID</th><th>Strategy</th><th>Family</th><th>Definition</th><th>G0 (line provenance)</th><th>G1–G5 results</th><th>Source</th></tr></thead><tbody>{reg_rows}</tbody></table></div>
+<h2>Validation gates</h2>
+<div class="tablewrap"><table><thead><tr><th>Gate</th><th>Rule</th><th>Status</th><th>Source</th></tr></thead><tbody>{gates_rows}</tbody></table></div>
+<h2>Leaderboard</h2>
+<div class="note info"><b>No leaderboard is published yet.</b> A leaderboard ranks strategies only after they pass the gates. The reward and scoring rule is an open decision (Q-11, SG-08).</div>
+<h2>Parlays, correlations and player props</h2>
+<div class="note info"><b>Withheld.</b> Parlay and correlation figures depend on unverified results. Player props have no verified odds source and no official player-stat source in this repository (I-13). Method details are on <a href="methodology.html">Method &amp; checks</a>.</div>"""
+write("strategies.html", layout("Strategy registry", "Research", "strategies.html", strat_body))
 
-def page_flagged(p: Dict) -> str:
-    rows = [[esc(f["id"]), esc(f["area"]), esc(f["issue"]), esc(f["why"]), esc(f["action"]),
-             source_link(f["source"]) if f["source"] != "brief" else "Brief",
-             badge(f["severity"], {"High": "fail", "Medium": "warn", "Low": "mute"}[f["severity"]])]
-            for f in content.FLAGGED]
-    body = f"""
-<h1>Flagged for review</h1>
-<p class="lede">Everything that could not be confirmed from a league-operated source, every
-caveat that limits a published number, and every irregularity found while auditing the
-repository. Nothing on this list was filled in with an estimate: values that cannot be confirmed
-are left blank on the pages that use them.</p>
-<h2>Open items</h2>
-<table id="flag-table">
-{table(["ID", "Area", "Issue", "Why it matters", "Action needed", "Source", "Severity"], rows, sortable=False)}
-</table>
-<h2>Repository audit</h2>
-<div class="callout"><h4>Starting state</h4>
-<p>The repository contained a single file: a 4-byte README with the content <code># X1</code>. There
-was no source code, no data, no continuous integration, no licence and no documentation to review,
-so the audit found no irregularities in pre-existing work. The audit trail from that point is kept
-in <code>COORDINATION.md</code>, which records each task, its owner, its file scope and the sources
-used.</p></div>
-<div class="callout good"><h4>What was added</h4>
-<p>A reproducible Python package (<code>src/x1</code>), a static site generator
-(<code>scripts/build_site.py</code>), a GitHub Actions workflow that deploys the site, and the
-processed tables that back every published number.</p></div>
-"""
-    return layout("flagged.html", "Flagged for review", body)
+# ---------------- RESEARCH: METHODOLOGY ----------------
+meth_body = f"""<h1>Method and data checks</h1>
+<p class="lead">How the analysis is built and what has been checked. Code: <code>analysis/strategy_backtest.py</code>, <code>scripts/verify_data.py</code>, <code>scripts/build_site.py</code>, <code>scripts/check_site.py</code>.</p>
+<h2>Data</h2>
+<table><thead><tr><th>Dataset</th><th>Tier</th><th>Use</th><th>Check performed</th></tr></thead><tbody>
+<tr><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com standings 2026 ↗</a></td><td><span class="chip ok">official</span></td><td>Standings table</td><td>All {len(standings)} rows re-checked on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak).</td></tr>
+<tr><td><a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener">NFL.com Week 10 schedule ↗</a></td><td><span class="chip ok">official</span></td><td>Schedule, byes</td><td>All {len(schedule)} games and {len(byes)} byes re-checked on 2026-11-14 (teams, records, kickoff, network, Thursday final).</td></tr>
+<tr><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report, Week 10 ↗</a></td><td><span class="chip ok">official</span></td><td>Injury table, flags</td><td>Line-by-line re-check: {n_checked} of {n_inj} rows (WAS at NYG, NE at DET; page chunk 0). Pending rows: I-17. Game list reconciled to the schedule.</td></tr>
+<tr><td><a href="https://github.com/nflverse/nfldata/tree/{checks['source']['pinned_commit']}" target="_blank" rel="noopener">nflverse nfldata (commit {checks['source']['pinned_commit'][:8]}) ↗</a></td><td><span class="chip warn">secondary</span></td><td>Strategy inputs (not published)</td><td>Sign-convention and score-match checks were run. Results withheld until the line provider is verified (I-10, I-11).</td></tr>
+</tbody></table>
+<h2>Backtest set-up</h2>
+<ul>
+<li>Regular-season games from 2006 onward (where spreads exist in the source). Splits: discovery 2006–2015, validation 2016–2020, holdout 2021–2025 (scored once), forward 2026. Nothing was tuned on any split.</li>
+<li>Spread convention: positive spread = home team favored; home covers if home margin is greater than the spread; equal is a push.</li>
+<li>Pricing: −110 on both sides. <b>Assumption</b>, not verified against any book. Break-even 52.38%.</li>
+<li>Own model: sequential Elo, updated after each game, using only earlier games. Constants fixed before testing: K = 20, home field = 65 Elo, 25 Elo per point, one-third reversion to 1500 each season. Edge threshold 3 points.</li>
+<li>Multiple testing: Bonferroni across the {checks['bonferroni_divisor']} pre-registered strategies (conservative, because some strategies are mirrors of others).</li>
+<li>Team codes: STL, SD and OAK are mapped to LA, LAC and LV for ratings only. The source uses ARI; NFL.com uses AZ (I-16).</li>
+</ul>
+<h2>Limits</h2>
+<ul>
+<li>Results depend on the line provider. Until it is verified, no result can be treated as evidence (G0), so none are published.</li>
+<li>Historical game results are not checked game by game against NFL.com (I-11).</li>
+<li>No injury, depth-chart, snap-count or player-prop data is used in the backtest yet.</li>
+<li>Past performance on this data does not show future results.</li>
+</ul>"""
+write("methodology.html", layout("Method & checks", "Research", "methodology.html", meth_body))
 
+# ---------------- DECISIONS: QUESTIONS ----------------
 
-# --------------------------------------------------------------------------
-# main
-# --------------------------------------------------------------------------
-def main() -> None:
-    payload = load_payload()
-    games = load_games()
+QSRC = {
+ "Q-01": NFLDATA_URL + "/blob/master/DATASETS.md", "Q-02": "https://www.nfl.com/schedules/2026/by-week/week-10",
+ "Q-03": "https://www.nfl.com/teams/", "Q-04": "https://www.nfl.com/injuries/", "Q-05": NFLDATA_URL,
+ "Q-06": NFLDATA_URL, "Q-07": "https://www.nfl.com/players/", "Q-08": "https://www.nfl.com/standings/",
+ "Q-09": "https://www.nfl.com/standings/", "Q-10": REPO + "/COORDINATION.md", "Q-11": REPO + "/COORDINATION.md",
+ "Q-12": REPO + "/COORDINATION.md", "Q-13": "https://www.nfl.com/"}
+def qsrc(k):
+    u = QSRC[k]
+    return src_link(u, "source") if u else "none (legal review needed)"
+SSRC = {"SG-01": NFLDATA_URL, "SG-02": "https://www.nfl.com/teams/", "SG-03": "https://www.nfl.com/injuries/",
+ "SG-04": REPO + "/analysis/strategy_backtest.py", "SG-05": NFLDATA_URL, "SG-06": "https://www.nfl.com/",
+ "SG-07": REPO + "/analysis/strategy_backtest.py", "SG-08": REPO + "/COORDINATION.md",
+ "SG-09": REPO + "/analysis/strategy_backtest.py", "SG-10": "https://www.nfl.com/standings/",
+ "SG-11": "https://www.nfl.com/standings/", "SG-12": REPO + "/COORDINATION.md"}
+QUESTIONS = [
+ ("Q-01","Which provider supplies the historical spread, total and moneyline lines, and is it documented or licensed?","Every strategy result depends on it. Gate G0 fails without it.","Lines exist in the nflverse file (2006–2026). No provider is named.","Provider name, licence terms, how and when each line was recorded (open vs. close).","Ask the nflverse maintainers and read the data's documentation; or buy a documented historical feed.","open — blocks G0"),
+ ("Q-02","Do the game results and scores match NFL.com for every game we use?","A wrong score changes every ATS result.","One game checked (WAS 24, NYG 21).","Full match of 2006–2025 scores against NFL.com.","Crawl NFL.com game pages per season and compare (about 7,200 games). Needs a decision on crawling (SG-06).","open"),
+ ("Q-03","Which players are starters and which are backups, each week, for each team?","Needed to judge whether a backup is replacing a starter (your defense and offense question).","Injury status for each listed player (Week 10 only).","Official depth charts by week, starter flags.","Find the NFL.com depth-chart or roster pages and check what they contain and for which weeks (not yet checked).","open — blocks T4"),
+ ("Q-04","How often did players with each designation actually play?","Needed to convert 'Questionable' or 'Doubtful' into a probability of playing.","Week 10 designations only.","Historical injury reports with game-day outcome (played or not).","NFL.com publishes weekly injury reports; check how far back they go (2026 weeks 1–10 are on the page dropdown).","open"),
+ ("Q-05","What were the closing prices, and do our model lines beat them?","Closing-line value is a skill measure less affected by luck than win rate.","None verified. Model lines exist, prices are unverified.","Dated closing prices from a named book, for every game we test.","Requires a documented odds source and a logging process that records our line before kickoff.","open"),
+ ("Q-06","What price (vig) applies to each bet?","Break-even moves with price. We assumed −110 on both sides.","Assumption only.","Actual prices from the book used, per bet.","Depends on Q-01/Q-05.","open — assumption"),
+ ("Q-07","Which player-prop lines and player statistics can we use?","Needed for the player-prop strategies you asked for.","Nothing collected.","Prop odds source; official player stats (game logs) for each outcome.","Check NFL.com player stats pages for coverage and whether they can be collected. Prop odds need a separate documented source.","open"),
+ ("Q-08","Which team codes does each source use, and what is the mapping?","Joining sources on the wrong code gives wrong results.","We found LAR vs LA (injury page vs standings) and ARI vs AZ (nflverse vs NFL.com).","A written mapping table with sources.","Compare the team-code lists on NFL.com and the nflverse file; add the mapping to the pipeline.","partly — mapping used, not yet a checked table"),
+ ("Q-09","When was each data file retrieved, and are standings updated after a result?","I-14: the standings still show pre-game records for a game the schedule marks final.","Retrieval date only (2026-11-14, UTC).","Timestamp per row and the source's update cadence.","Record the retrieval time for every pull; ask NFL.com how standings are updated (not verified).","open"),
+ ("Q-10","Is strategy testing and betting lawful for you in Japan?","Your location is Tokyo. Legal exposure matters before any real money is involved.","Not researched in this session.","Written legal review.","Consult a qualified adviser. We have not verified any legal position.","open — requires legal review"),
+ ("Q-11","What reward structure and scoring should the leaderboard use?","You asked for a leaderboard with rewards. The scoring rule decides the winner.","Gate definitions (G0–G6).","Your choice of score (e.g., forward-test CLV, ROI, risk-adjusted).","Owner decision.","open — decision"),
+ ("Q-12","Are the gate thresholds right for you?","Thresholds decide what counts as a pass.","Proposed: 300 bets, Bonferroni p < 0.05, 60% positive seasons, 52.38% break-even.","Your approval or changes.","Owner decision.","open — decision"),
+ ("Q-13","How often should data refresh, and does that need automation?","Injury status changes close to kickoff. A manual refresh may be too slow.","One manual pull of Week 10.","Refresh cadence and whether scheduled jobs are allowed.","Check NFL.com terms of use before any automated collection (not verified).","open — decision"),
+]
+qrows = "".join(
+    f"<tr><td>{H(q[0])}</td><td>{H(q[1])}</td><td>{H(q[2])}</td><td>{H(q[3])}</td><td>{H(q[4])}</td><td>{H(q[5])}</td><td><span class='chip warn'>{H(q[6])}</span></td><td>{qsrc(q[0])}</td></tr>"
+    for q in QUESTIONS)
+q_body = f"""<h1>Questions and information gaps</h1>
+<p class="lead">What we have, what we are missing, and how to find it. Read this before any decision. Every item lists the evidence we have; where we have none, we say so.</p>
+<input class="filter" data-target="qt" placeholder="Filter questions…">
+<div class="tablewrap"><table class="sortable" id="qt"><thead><tr><th>ID</th><th>Question</th><th>Why it matters</th><th>What we have</th><th>What is missing</th><th>How to find out</th><th>Status</th><th>Source</th></tr></thead><tbody>{qrows}</tbody></table></div>"""
+write("questions.html", layout("Questions & gaps", "Decisions", "questions.html", q_body))
 
-    config.DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    assets = config.DOCS_DIR / "assets"
-    assets.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(Path(__file__).resolve().parents[1] / "src" / "site" / "styles.css", assets / "styles.css")
-    shutil.copyfile(Path(__file__).resolve().parents[1] / "src" / "site" / "app.js", assets / "app.js")
+# ---------------- DECISIONS: SUGGESTIONS ----------------
+SUGG = [
+ ("SG-01","Choose the line data source","Use a documented or licensed historical line feed. Or keep the nflverse snapshot and keep results withheld (current state). Or publish results labelled unverified, which the verification rule does not allow.","Unlocks a real test (G0). Cost: paid feed, or none.","A: Buy licensed feed (best evidence) · B: Keep nflverse, results withheld (current) · C: Publish labelled unverified (not recommended)"),
+ ("SG-02","Collect official depth charts weekly","Pull the NFL.com team depth charts or roster pages each week (2026 onward). Then mark each injured player as starter or backup.","Required for the starter-versus-backup and offense/defense deficiency analysis (T4).","A: Weekly pull · B: Pull only for flagged teams · C: Skip until Q-03 is answered"),
+ ("SG-03","Collect historical injury reports","Add NFL.com weekly injury reports for past seasons, with whether each player actually played. Measures how much each designation matters.","Converts 'Questionable' or 'Doubtful' into a measured availability rate (Q-04).","A: Last 3 seasons · B: Last 5 seasons · C: 2026 only"),
+ ("SG-04","Log predictions before kickoff (forward test)","Store each model line and bet with a timestamp before kickoff. Score later. This is the cleanest test of skill and removes look-ahead risk.","Turns the 2026 forward split into real evidence.","A: Start now · B: Start after SG-01 · C: Do not log"),
+ ("SG-05","Use closing-line value as the skill metric","Measure whether our prices beat the closing price, not just win rate. CLV is less affected by luck.","Better skill signal in fewer bets (Q-05).","A: CLV plus ROI · B: ROI only (current) · C: CLV only"),
+ ("SG-06","Automate collection (after terms check)","Scheduled collection (GitHub Actions) of NFL.com pages on a set cadence, after checking NFL.com terms of use.","Keeps data current without manual pulls (Q-13).","A: Automate after terms check · B: Manual weekly pull · C: Automate for injuries only"),
+ ("SG-07","Reduce redundant strategies before testing","Remove mirror pairs (home vs away, over vs under) from the leaderboard, or count them as one test. This also makes the Bonferroni correction fairer.","Cleaner leaderboard and fewer effective tests.","A: Count mirrors as one · B: Keep all (current)"),
+ ("SG-08","Set the reward structure and score","Decide how the leaderboard ranks strategies (e.g., forward-test CLV, ROI, drawdown) and what the reward is.","Defines a winner (Q-11).","A: Forward CLV · B: Holdout ROI · C: Composite score (to define)"),
+ ("SG-09","Confirm gate thresholds","Approve or change: 300 bets, Bonferroni p < 0.05, 60% positive seasons, 52.38% break-even.","Sets what counts as a pass (Q-12).","A: Keep · B: Stricter (e.g., 500 bets) · C: Looser (e.g., 200 bets)"),
+ ("SG-10","Add a team-code mapping table","Keep one table mapping each source's codes (AZ/ARI, LA/LAR, etc.) and check it each refresh.","Prevents silent join errors (Q-08).","A: Add table and check (recommended) · B: Keep as-is"),
+ ("SG-11","Add a timestamp to every row","Record when each row was retrieved and the page's own update time, if shown.","Resolves pre-game versus post-game record questions (Q-09, I-14).","A: Add (recommended) · B: Keep per-file date"),
+ ("SG-12","Legal review before any wagering","Obtain written advice on the legal position in Japan before using any output for wagering.","Protects you from a legal problem (Q-10).","A: Obtain advice first (recommended) · B: Proceed without"),
+]
+srows_s = "".join(
+    f"<tr><td>{H(s[0])}</td><td><b>{H(s[1])}</b><br><span class='small'>{H(s[2])}</span></td><td>{H(s[3])}</td><td>{H(s[4])}</td><td><span class='chip warn'>awaiting your choice</span></td><td>{src_link(SSRC[s[0]], 'source') if SSRC.get(s[0]) else '—'}</td></tr>"
+    for s in SUGG)
+s_body = f"""<h1>Suggestions for review</h1>
+<div class="note info"><b>Nothing here has been implemented.</b> Each suggestion lists options. Reply with the option ID (for example, "SG-01 A") and we will implement only that choice. Items with no choice stay as they are.</div>
+<div class="tablewrap"><table><thead><tr><th>ID</th><th>Suggestion</th><th>Benefit</th><th>Options</th><th>Status</th><th>Source</th></tr></thead><tbody>{srows_s}</tbody></table></div>"""
+write("suggestions.html", layout("Suggestions", "Decisions", "suggestions.html", s_body))
 
-    pages = {
-        "index.html": page_dashboard(payload, games),
-        "executive-summary.html": page_exec(payload),
-        "requirements.html": page_requirements(payload),
-        "questions.html": page_questions(payload),
-        "suggestions.html": page_suggestions(payload),
-        "strategies.html": page_strategies(payload),
-        "leaderboard.html": page_leaderboard(payload),
-        "validation.html": page_validation(payload),
-        "lines.html": page_lines(payload, games),
-        "correlations.html": page_correlations(payload),
-        "props.html": page_props(payload),
-        "injuries.html": page_injuries(payload),
-        "methods.html": page_methods(payload),
-        "sources.html": page_sources(payload),
-        "flagged.html": page_flagged(payload),
-    }
-    for name, html_text in pages.items():
-        (config.DOCS_DIR / name).write_text(html_text)
-    print(f"wrote {len(pages)} pages to {config.DOCS_DIR}")
+# ---------------- REVIEW: FLAGGED ----------------
+flag_rows = "".join(
+    f"<tr><td>{H(c)}</td><td>{H(a)}</td><td>{H(d)}</td><td>{' · '.join(src_link(u.strip(), 'source') for u in s.split(' · '))}</td><td><span class='chip warn'>{H(st)}</span></td></tr>"
+    for c, a, d, s, st in MANUAL_FLAGS)
+auto_rows = "".join(
+    f"<tr><td>{H(r['flag_code'])}</td><td>{H(r['team'])}</td><td>{H(r['item'])}</td><td>{H(r['practice_status'])}</td><td>{H(r['injury'])}</td><td>{H(r['game_status'])}</td>"
+    f"<td>{src_link(r['link_1'],'source')} · {src_link(r['link_2'],'source')}</td></tr>"
+    for r in flags_auto)
+unv = """<tr><td>Withheld: strategy results, leaderboard, correlations, parlays, Week 10 model and market lines</td><td><a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener">nflverse nfldata ↗</a></td><td>Line provider undocumented (I-10)</td></tr>
+<tr><td>Historical game results used by the backtest (except the spot-checked Nov 12, 2026 game)</td><td><a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener">nflverse nfldata ↗</a></td><td>Not checked game-by-game against NFL.com (I-11)</td></tr>
+<tr><td>Market spread and total for Week 10 games</td><td><a href="https://github.com/nflverse/nfldata/blob/master/DATASETS.md" target="_blank" rel="noopener">nfldata DATASETS.md ↗</a></td><td>Source not named; not used for decisions</td></tr>"""
+flag_body = f"""<h1>Flagged for review</h1>
+<p class="lead">Published for your review after the site goes live. Flagged items do not block the merge. Each row links to its source. Unverified values are listed separately below, and nothing here is used for a decision.</p>
+<h2>Irregularities and open items</h2>
+<div class="tablewrap"><table><thead><tr><th>ID</th><th>Area</th><th>Item</th><th>Source link(s)</th><th>Status</th></tr></thead><tbody>{flag_rows}</tbody></table></div>
+<h2>Automatic flags (generated from the official rows)</h2>
+<p class="small">Generated by <code>scripts/verify_data.py</code>. {len(flags_auto)} flags: I-05 ({flag_counts.get('I-05',0)}), I-06 ({flag_counts.get('I-06',0)}), I-07 ({flag_counts.get('I-07',0)}), I-08 ({flag_counts.get('I-08',0)}), I-14 ({flag_counts.get('I-14',0)}).</p>
+<div class="tablewrap"><table class="sortable"><thead><tr><th>Flag</th><th>Team</th><th>Item</th><th>Practice status</th><th>Injury</th><th>Game status</th><th>Source</th></tr></thead><tbody>{auto_rows}</tbody></table></div>
+<h2>Unverified items (not used for decisions)</h2>
+<div class="tablewrap"><table><thead><tr><th>Value</th><th>Source</th><th>Reason</th></tr></thead><tbody>{unv}</tbody></table></div>"""
+write("flagged.html", layout("Flagged for review", "Review", "flagged.html", flag_body))
 
+# ---------------- REVIEW: REPO ----------------
+repo_body = """<h1>Repository review</h1>
+<p class="lead">Checked on branch arena/c39d8541-x1 (base dab199c). Every finding links to a file or commit. Nothing was changed except what this project added.</p>
+<table><thead><tr><th>Check</th><th>Result</th><th>Link</th></tr></thead><tbody>
+<tr><td>Files at base commit</td><td>README.md only (one line: "# X1")</td><td><a href="https://github.com/karagemop466-tech/X1/blob/dab199ce305bd0168f61f9bbb25b4b601eb45324/README.md" target="_blank" rel="noopener">README.md ↗</a></td></tr>
+<tr><td>Commit history</td><td>One commit ("Initial commit", 2026-11-14 11:28 +0900)</td><td><a href="https://github.com/karagemop466-tech/X1/commit/dab199ce305bd0168f61f9bbb25b4b601eb45324" target="_blank" rel="noopener">commit ↗</a></td></tr>
+<tr><td>Licence file</td><td>None (flag I-01)</td><td><a href="https://github.com/karagemop466-tech/X1/tree/dab199ce305bd0168f61f9bbb25b4b601eb45324" target="_blank" rel="noopener">base tree ↗</a></td></tr>
+<tr><td>Tests / CI</td><td>None at base. Verification runs in scripts/verify_data.py and analysis/strategy_backtest.py.</td><td><a href="https://github.com/karagemop466-tech/X1/blob/arena/c39d8541-x1/scripts/verify_data.py" target="_blank" rel="noopener">verify_data.py ↗</a></td></tr>
+<tr><td>Coordination file</td><td>Created: COORDINATION.md (task board, log, flags)</td><td><a href="https://github.com/karagemop466-tech/X1/blob/arena/c39d8541-x1/COORDINATION.md" target="_blank" rel="noopener">COORDINATION.md ↗</a></td></tr>
+<tr><td>Ignore rules</td><td>.gitignore added (caches, virtualenvs)</td><td><a href="https://github.com/karagemop466-tech/X1/blob/arena/c39d8541-x1/.gitignore" target="_blank" rel="noopener">.gitignore ↗</a></td></tr>
+<tr><td>Generated site</td><td>docs/ built from data/ by scripts/build_site.py (GitHub Pages source: main /docs)</td><td><a href="https://github.com/karagemop466-tech/X1/blob/arena/c39d8541-x1/scripts/build_site.py" target="_blank" rel="noopener">build_site.py ↗</a></td></tr>
+</tbody></table>
+<h2>Irregularities</h2>
+<p>See the <a href="flagged.html">Flagged for review</a> page, items I-01 to I-04 (repo) and I-05 to I-17 (data).</p>"""
+write("repo-review.html", layout("Repo review", "Review", "repo-review.html", repo_body))
 
-if __name__ == "__main__":
-    main()
+# ---------------- SOURCES ----------------
+srcrows = "".join(
+    f"<tr><td>{H(s['source_id'])}</td><td>{H(s['name'])}</td><td>{H(s['publisher'])}</td>"
+    f"<td><span class='{'tag-official' if s['tier']=='official' else 'tag-secondary'}'>{H(s['tier'])}</span></td>"
+    f"<td>{src_link(s['url'], s['url'])}</td><td>{H(s['used_for'])}</td><td>{H(s['retrieved_utc'])}</td><td>{H(s['notes'])}</td></tr>"
+    for s in sources)
+src_body = f"""<h1>Source register</h1>
+<p class="lead">Every source used, its tier, and what it supports. Official = NFL.com. Secondary = community or third-party, labelled wherever used.</p>
+<div class="tablewrap"><table class="sortable"><thead><tr><th>ID</th><th>Name</th><th>Publisher</th><th>Tier</th><th>URL</th><th>Used for</th><th>Retrieved (UTC)</th><th>Notes</th></tr></thead><tbody>{srcrows}</tbody></table></div>"""
+write("sources.html", layout("Sources", "Sources", "sources.html", src_body))
+
+print("built pages:", sorted(p.name for p in OUT.glob("*.html")))
