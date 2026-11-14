@@ -168,6 +168,13 @@ if _db:
     _audit_tree(_db, os.path.join(ROOT, "dashboard", "assets", "style.css"),
                 os.path.join(ROOT, "dashboard", "assets"), "dashboard/assets/style.css")
 
+# ---- escaped markup: HTML that was meant to render must not appear as literal text ----
+for _p in files:
+    _txt = open(_p, encoding="utf-8").read()
+    _leak = re.findall(r"&lt;(b|span|a|code|i|br|em|table|tr|td)&gt;", _txt)
+    if _leak:
+        errors.append(f"{os.path.relpath(_p, ROOT)}: {len(_leak)} escaped tags render as literal text")
+
 print(f"files checked : {len(files)}")
 print(f"assertions    : {len(checks)}")
 if errors:
