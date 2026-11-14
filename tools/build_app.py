@@ -430,6 +430,7 @@ Nothing has been deleted — the sections below are still published and still re
   <li><a href="{UP}research/index.html">Research lab</a> — the model, strategy, prop and injury lab (<code>research/</code>).</li>
   <li><a href="{UP}site/index.html">Snapshot annex</a> — originated lines, backtests and correlations (<code>site/</code>).</li>
   <li><a href="{UP}live/index.html">Live pipeline</a> — the auto-refreshing official-source collector (<code>live/</code>).</li>
+  <li><a href="{UP}lab/index.html">Line desk</a> — price snapshots, verified results, originated lines and a signal-vs-staking leaderboard (<code>lab/</code>). Added by session <code>arena/56769365-x1</code>.</li>
 </ul>"""))
 
     body.append(card("How the verification rule is enforced", """
