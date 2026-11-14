@@ -261,7 +261,7 @@ def page_dashboard(p: Dict, games: pd.DataFrame) -> str:
             badge(e["family"], "info"),
             f'{e["bets"]:,}',
             (pct(e["roi"]), sign_class(e["roi"])),
-            (pct(e["hit_rate"], 1), ""),
+            (pct(e["hit_rate"], 1, signed=False), ""),
             (f'[{pct(e["ci_lo"], 1)}, {pct(e["ci_hi"], 1)}]', ""),
             (f'{e["reward"]:.1f}', ""),
             pass_badge(e["all_passed"]),
@@ -433,7 +433,7 @@ def page_strategies(p: Dict) -> str:
   <div class="grid k4">
     <div><strong>{e['bets']:,}</strong><div class="subtle">out-of-sample bets</div></div>
     <div><strong class="{sign_class(e['roi'])}">{pct(e['roi'])}</strong><div class="subtle">ROI per unit</div></div>
-    <div><strong>{pct(e['hit_rate'], 1)}</strong><div class="subtle">hit rate</div></div>
+    <div><strong>{pct(e['hit_rate'], 1, signed=False)}</strong><div class="subtle">hit rate</div></div>
     <div><strong>{e['reward']:.1f}</strong><div class="subtle">reward points</div></div>
   </div>
   <div class="pill-row">{gates_pill}</div>
@@ -458,9 +458,11 @@ def page_leaderboard(p: Dict) -> str:
         rows.append([
             e["rank"], esc(e["key"]), esc(e["name"]), badge(e["family"], "info"),
             f'{e["bets"]:,}', (pct(e["roi"]), sign_class(e["roi"])),
-            (pct(e["hit_rate"], 1), ""), (pct(e["profit"], 1), ""),
+            (pct(e["hit_rate"], 1, signed=False), ""),
+            (f'{e["profit"]:+.1f} units', ""),
             (f'[{pct(e["ci_lo"], 1)}, {pct(e["ci_hi"], 1)}]', ""),
             (num(e["p_value"], 4), ""),
+            (pct(e.get("confidence"), 0, signed=False), ""),
             (f'{e["reward"]:.1f}', ""),
             pass_badge(e["all_passed"]),
             esc(", ".join(e["failed_gates"]) or "-"),
@@ -477,7 +479,8 @@ board shows the evidence rather than just the winners.</p>
 strategy that is profitable but statistically fragile earns proportionally less. A strategy that
 fails any gate earns zero by definition.</p></div>
 {table(["#", "Key", "Strategy", "Family", "Bets", "ROI", "Hit rate", "Total profit", "95% CI (units/bet)",
-        "Permutation p", "Reward", "All gates", "Failed gates"], rows, sortable=False)}
+        "Permutation p", "Confidence", "Reward", "All gates", "Failed gates"], rows, sortable=False,
+       note="Profit is expressed in units of stake. Confidence is the share of the bootstrap interval that stays above zero, and it scales the reward; a rejected strategy scores zero.")}
 <h2>Naive baselines on the same window</h2>
 <p class="subtle">Every strategy must beat all of these to pass gate G5.</p>
 {table(["Baseline", "ROI"], base_rows, sortable=False)}

@@ -357,7 +357,7 @@ site. The board above (owned by `arena/b38a21d8-x1`) remains the shared board of
 | R9 | Requirement / question / suggestion / flagged registers | done | `a302a132` | `src/x1/content.py` |
 | R10 | Research site generator and pages | done | `a302a132` | `scripts/build_research_site.py`, `src/site/styles.css`, `src/site/app.js`, `research/**` |
 | R11 | Pipeline runner and refresh workflow | done | `a302a132` | `scripts/run_pipeline.py`, `.github/workflows/pipeline.yml`, `requirements.txt` |
-| R12 | Final integration: merge `main`, re-verify combined data, link check, PR, merge, Pages deploy | in progress | `a302a132` | `README.md`, `COORDINATION.md`, `.github/workflows/pages.yml`, `research/**` |
+| R12 | Final integration: merge `main`, re-verify combined data, link check, PR, merge, Pages deploy | done | `a302a132` | `README.md`, `COORDINATION.md`, `.github/workflows/pages.yml`, `research/**` |
 
 No task above is claimed by another session. No file owned by another session was edited.
 
@@ -421,53 +421,16 @@ site's Questions page with what is known, what is missing and how to close each 
 
 ## Pull request and deployment record (this session)
 
-To be completed after the integration checks pass. Nothing is claimed here until the pull request
-exists, the merge has happened and the Pages deployment has been confirmed.
-
----
-
-## Session a78e0158-x1 — integration addendum record (snapshot annex + quantitative layer)
-
-Session ID: `arena-a78e0158-x1` · Branch: `arena/a78e0158-x1` (branched from `main` @ `dab199c`).
-
-- **2026-11-14** — Session began in parallel from the base commit. The audit above marked this
-  session stale when its branch held only a task board; the branch then accumulated a full,
-  independently verified build (commits `1a4c079`…`abfc608`): 32/32 standings cross-verified
-  NFL.com ↔ nflverse (exact match on W-L-T, PF, PA), a 345-row official Week 10 injury
-  transcription, Week 10 schedule + 9 international games, an OLS line-origination engine with a
-  leak-free weekly backtest (1,779 games), computed correlation values with CIs, a strategy
-  leaderboard with validation gates and luck arithmetic, and a generated 10-page `site/` dashboard.
-- **2026-11-14** — Integrated with `main` twice (merge, not rebase — the convention earlier
-  sessions used): first on top of PR #9's release, then re-merged after PR #12 (research lab)
-  landed. **Nothing from main was discarded in either round.** This session's release is appended
-  as a *snapshot annex*:
-  - `site/` — X1 snapshot dashboard (10 pages, every row source-linked, data mirrored under
-    `site/data/`), linked from the main site nav ("Snapshot annex (X1)").
-  - `data/nfl/`, `data/injuries/`, `data/lines/`, `data/strategies/`, `data/raw/nflverse/` —
-    verified snapshot data, originated lines, backtest economics, correlation report, strategy
-    registry. Filenames are distinct from main's registers; no value was overwritten.
-  - `docs/annex/*-snapshot.md`, `docs/analysis/` — annex docs; canonical main docs untouched.
-  - `code/` — deterministic stdlib builders (`build_reference_data.py`, `build_lines.py`,
-    `leaderboard.py`, `build_site.py`).
-- **2026-11-14** — Cross-check between independent transcriptions: standings agree exactly
-  (32/32 teams: W-L-T, PF, PA, streaks) between `data/standings_2026.csv` and
-  `data/nfl/teams_standings_2026_w10.csv`. No value conflict found.
-- **2026-11-14** — Files owned by other sessions touched by this addendum (minimal, logged per
-  rules 4/6): `index.html` (+1 nav link to the annex), `.github/workflows/pages.yml` (+1 `cp -r
-  site _site/`), `.github/workflows/verify.yml` (+1 annex checker step),
-  `tools/check_links.py` (annex tree scoped to `site/style.css` + `ANNEX_APPROVED` host tiers,
-  mirroring the research-tree pattern exactly), `README.md` (annex section appended; round 1 also
-  fixed committed conflict markers). `scripts/verify_site.py` needed **no** change — the annex
-  passes it as built.
-- **2026-11-14** — Quantitative headline from the annex (differs intentionally from the canonical
-  "no numbers" stance — the annex publishes computed values with inputs and code): the v1
-  results-only model has **no betting edge** (ROI −6.1%…−2.6% across thresholds; strategies S4/S5
-  registered `failed-gate` as the honest baseline); same-game spread/total correlation
-  φ = −0.023 (n=1,496, CI −0.073..0.028); cross-game independence r = 0.001 (n=12,585); luck
-  arithmetic: a true 55% capper needs 991 bets for 95% confidence — the gates encode this so luck
-  cannot be rewarded.
-- **2026-11-14** — Verification before merge (all PASS): `scripts/verify_site.py` (53 pages),
-  `scripts/verify_site_annex.py` (10 pages), `scripts/check_site.py`, `tools/verify_data.py`
-  (2,944 checks), `tools/check_links.py` (9,155 assertions, no orphans), `tools/cross_check.py`,
-  `scripts/verify_parlay.py`, `tools/test_source_rule.py`, availability freshness check.
+| Item | Value |
+|---|---|
+| Pull request | https://github.com/karagemop466-tech/X1/pull/12 (`arena/a302a132-x1` → `main`) |
+| Merge result | **Merged** 2026-11-14 03:29:47 UTC, merge commit `36b24e852346d2fd21384d60d2d39bedc1cf8b9d` on `main`, method `gh pr merge 12 --merge`. Not waited for approval; flagged items do not block the merge. |
+| PR checks | `build` (Publish static site to GitHub Pages) **passed**, `verify` (verify-site) **passed**, `deploy` correctly skipped on a pull request. |
+| Pages deploy | `pages build and deployment` run https://github.com/karagemop466-tech/X1/actions/runs/43551918305 on `main` completed with conclusion **success**. The Pages API reports the site as `built` at https://karagemop466-tech.github.io/X1/. |
+| Live check | `https://karagemop466-tech.github.io/X1/research/index.html` and `…/research/leaderboard.html` were fetched after the deploy and render the published numbers (398 out-of-sample bets, +11.53% ROI, reward 21.6, 15 of 16 strategies rejected). The research pages are linked from the dashboard landing page and from the research navigation. |
+| Verification before merge | `tools/verify_data.py` 2,944 assertions; `tools/check_links.py` 7,646 assertions over 43 pages; `scripts/verify_site.py` 43 pages; `scripts/check_site.py` 13 pages; `scripts/verify_parlay.py`; `tools/cross_check.py` 1,604 values, 0 disagreements; `scripts/verify_research_site.py` 1,921 assertions. The assembled Pages tree was reproduced locally: 43 pages, 0 broken internal links, no orphan pages. |
+- **2026-11-14** — (round-3 update) main advanced again (PR #13) while PR #14 was open; re-merged
+  and re-resolved. Addendum above unchanged; annex integrations re-verified after every round:
+  all 9 verifiers PASS (verify_site 53 pages, annex 10 pages, check_links, verify_data 2,944
+  checks, cross_check, verify_parlay, test_source_rule, availability freshness).
 - **2026-11-14** — Integration PR: **#14** (`arena/a78e0158-x1` → `main`).

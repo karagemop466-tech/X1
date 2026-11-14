@@ -193,7 +193,7 @@
       "topic": "Publishing policy",
       "question": "May we publish originated lines publicly, and with what disclaimer?",
       "why_it_blocks": "Publishing prices invites reliance. The wording of the disclaimer and any jurisdiction gating is a legal question.",
-      "known_information": "No publishing policy has been set. The site currently publishes no prices at all.",
+      "known_information": "No publishing policy has been set. The dashboard publishes no prices; the research lab prices strategies against a named third-party closing line and says so on every row.",
       "answer": "",
       "status": "open",
       "what_would_answer_it": "A written publishing policy, reviewed for the jurisdictions served.",
