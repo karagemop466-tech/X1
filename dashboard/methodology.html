@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method &amp; checks · X1 NFL Research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">X1 · NFL Research Dashboard</a>
+<nav class="menu"><a href="../index.html">← Main site</a><a class="" href="index.html">Overview</a><a class="" href="standings.html">Data</a><a class="active" href="strategies.html">Research</a><a class="" href="questions.html">Decisions</a><a class="" href="flagged.html">Review</a><a class="" href="sources.html">Sources</a></nav></header>
+<header class="top" style="background:#27395f;padding:8px 22px"><nav class="menu"><a class="" href="strategies.html">Strategy registry</a><a class="" href="model-lines.html">Model lines</a><a class="active" href="methodology.html">Method &amp; checks</a></nav></header>
+<main><h1>Method and data checks</h1>
+<p class="lead">How the analysis is built and what has been checked. Code: <code>analysis/strategy_backtest.py</code>, <code>scripts/verify_data.py</code>, <code>scripts/build_site.py</code>, <code>scripts/check_site.py</code>.</p>
+<h2>Data</h2>
+<table><thead><tr><th>Dataset</th><th>Tier</th><th>Use</th><th>Check performed</th></tr></thead><tbody>
+<tr><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com standings 2026 ↗</a></td><td><span class="chip ok">official</span></td><td>Standings table</td><td>All 32 rows re-checked on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak).</td></tr>
+<tr><td><a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener">NFL.com Week 10 schedule ↗</a></td><td><span class="chip ok">official</span></td><td>Schedule, byes</td><td>All 14 games and 4 byes re-checked on 2026-11-14 (teams, records, kickoff, network, Thursday final).</td></tr>
+<tr><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report, Week 10 ↗</a></td><td><span class="chip ok">official</span></td><td>Injury table, flags</td><td>Line-by-line re-check: 44 of 345 rows (WAS at NYG, NE at DET; page chunk 0). Pending rows: I-17. Game list reconciled to the schedule.</td></tr>
+<tr><td><a href="https://github.com/nflverse/nfldata/tree/a04d58c0268645ce5081a210bd33650ab222547a" target="_blank" rel="noopener">nflverse nfldata (commit a04d58c0) ↗</a></td><td><span class="chip warn">secondary</span></td><td>Strategy inputs (not published)</td><td>Sign-convention and score-match checks were run. Results withheld until the line provider is verified (I-10, I-11).</td></tr>
+</tbody></table>
+<h2>Backtest set-up</h2>
+<ul>
+<li>Regular-season games from 2006 onward (where spreads exist in the source). Splits: discovery 2006–2015, validation 2016–2020, holdout 2021–2025 (scored once), forward 2026. Nothing was tuned on any split.</li>
+<li>Spread convention: positive spread = home team favored; home covers if home margin is greater than the spread; equal is a push.</li>
+<li>Pricing: −110 on both sides. <b>Assumption</b>, not verified against any book. Break-even 52.38%.</li>
+<li>Own model: sequential Elo, updated after each game, using only earlier games. Constants fixed before testing: K = 20, home field = 65 Elo, 25 Elo per point, one-third reversion to 1500 each season. Edge threshold 3 points.</li>
+<li>Multiple testing: Bonferroni across the 10 pre-registered strategies (conservative, because some strategies are mirrors of others).</li>
+<li>Team codes: STL, SD and OAK are mapped to LA, LAC and LV for ratings only. The source uses ARI; NFL.com uses AZ (I-16).</li>
+</ul>
+<h2>Limits</h2>
+<ul>
+<li>Results depend on the line provider. Until it is verified, no result can be treated as evidence (G0), so none are published.</li>
+<li>Historical game results are not checked game by game against NFL.com (I-11).</li>
+<li>No injury, depth-chart, snap-count or player-prop data is used in the backtest yet.</li>
+<li>Past performance on this data does not show future results.</li>
+</ul></main>
+<footer>Data as of 2026-11-14 (UTC). Built 2026-11-14 02:49 UTC. Official data: NFL.com. Secondary data is labelled. Nothing on this site is betting advice.
+· <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/karagemop466-tech/X1">Repository</a></footer>
+<script src="assets/app.js"></script></body></html>

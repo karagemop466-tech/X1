@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home · X1 NFL Research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">X1 · NFL Research Dashboard</a>
+<nav class="menu"><a href="../index.html">← Main site</a><a class="active" href="index.html">Overview</a><a class="" href="standings.html">Data</a><a class="" href="strategies.html">Research</a><a class="" href="questions.html">Decisions</a><a class="" href="flagged.html">Review</a><a class="" href="sources.html">Sources</a></nav></header>
+<header class="top" style="background:#27395f;padding:8px 22px"><nav class="menu"><a class="active" href="index.html">Home</a><a class="" href="summary.html">Executive summary</a></nav></header>
+<main><h1>NFL research dashboard</h1>
+<p class="lead">Official 2026 NFL data (standings, Week 10 schedule, injury report), a line-by-line source register, our own strategy research with validation gates, and the open questions and suggestions that need your decision.</p>
+<div class="grid">
+<div class="card"><div class="k">Teams in standings</div><div class="kpi">32</div><div class="small">NFL.com standings</div></div>
+<div class="card"><div class="k">Week 10 games (official)</div><div class="kpi">14</div><div class="small">+ 4 teams on bye</div></div>
+<div class="card"><div class="k">Injury report rows (Week 10)</div><div class="kpi">345</div><div class="small">Official NFL.com report, 14 games</div></div>
+<div class="card"><div class="k">Strategies eligible</div><div class="kpi">0 / 10</div><div class="small">Gate G0 unmet: line data unverified (I-10)</div></div>
+<div class="card"><div class="k">Open flags for review</div><div class="kpi">44</div><div class="small">17 manual + 27 automatic. See Flagged for review</div></div>
+</div>
+<div class="note bad"><b>Bottom line:</b> none of the 10 pre-registered betting strategies passes the validation gates. The main blocker is that the historical line data we have does not name its provider, so we cannot verify it against an official source (flag I-10). Read the <a href="summary.html">executive summary</a>.</div>
+<h2>Browse by category</h2>
+<div class="grid">
+<div class="card"><a class="big" href="summary.html">Executive summary</a><div class="small">Key facts, verdicts, and what we still need.</div></div>
+<div class="card"><a class="big" href="standings.html">Standings</a><div class="small">32 teams, NFL.com 2026 standings.</div></div>
+<div class="card"><a class="big" href="schedule.html">Week 10 schedule</a><div class="small">14 games, byes, and the Thursday final.</div></div>
+<div class="card"><a class="big" href="injuries.html">Injury report</a><div class="small">345 official rows with player links and team summaries.</div></div>
+<div class="card"><a class="big" href="strategies.html">Strategy registry</a><div class="small">Registry and validation gates. Results withheld.</div></div>
+<div class="card"><a class="big" href="model-lines.html">Model lines</a><div class="small">Week 10 game list. Model and market values withheld.</div></div>
+<div class="card"><a class="big" href="questions.html">Questions & gaps</a><div class="small">What we know, what we don't, and how to find out.</div></div>
+<div class="card"><a class="big" href="suggestions.html">Suggestions</a><div class="small">Options for you to choose. Nothing is implemented yet.</div></div>
+<div class="card"><a class="big" href="flagged.html">Flagged for review</a><div class="small">Irregularities and unverified items with source links.</div></div>
+<div class="card"><a class="big" href="sources.html">Source register</a><div class="small">Every source, its tier, and when it was retrieved.</div></div>
+</div>
+<h2>How to read the verification labels</h2>
+<table><tr><th>Label</th><th>Meaning</th></tr>
+<tr><td><span class="chip ok">official</span></td><td>Value copied from an NFL.com page (link on each row).</td></tr>
+<tr><td><span class="chip warn">secondary</span></td><td>Community or third-party dataset. Not official. Used only where labelled.</td></tr>
+<tr><td><span class="chip bad">unverified</span></td><td>Cannot be confirmed from an official source. Not used for decisions.</td></tr>
+</table></main>
+<footer>Data as of 2026-11-14 (UTC). Built 2026-11-14 02:49 UTC. Official data: NFL.com. Secondary data is labelled. Nothing on this site is betting advice.
+· <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/karagemop466-tech/X1">Repository</a></footer>
+<script src="assets/app.js"></script></body></html>
