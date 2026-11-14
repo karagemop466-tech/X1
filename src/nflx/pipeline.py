@@ -293,6 +293,48 @@ def collect_gamebooks(
     return provenance
 
 
+def enrich_schedule_with_gamebooks(out_dir: Path) -> None:
+    """Fold the official Game Book results back into the schedule.
+
+    The Game Book is the league's own record of a game, so the date and the
+    final score it publishes are the authoritative values for that matchup.
+    A game that has not been played keeps a blank date and score rather than
+    a projected one.
+    """
+    schedule_path = out_dir / "schedule.json"
+    gamebooks_path = out_dir / "gamebooks.json"
+    if not schedule_path.exists() or not gamebooks_path.exists():
+        return
+
+    schedule = json.loads(schedule_path.read_text(encoding="utf-8"))
+    gamebooks = json.loads(gamebooks_path.read_text(encoding="utf-8"))
+
+    by_center: Dict[str, Dict[str, Any]] = {}
+    for record in gamebooks.get("records", []):
+        url = record.get("game_center_url")
+        if url:
+            by_center[url] = record
+
+    for record in schedule.get("records", []):
+        book = by_center.get(record.get("game_center_url") or "")
+        if not book:
+            continue
+        record["date"] = book.get("date")
+        record["visitor_points"] = book.get("visitor_points")
+        record["home_points"] = book.get("home_points")
+        record["venue"] = book.get("venue")
+        record["game_book_url"] = book.get("game_book_url")
+        record["result"] = (
+            f"{book.get('away_team') or record.get('away_team')} "
+            f"{book.get('visitor_points')}-"
+            f"{book.get('home_points')} "
+            f"{book.get('home_team') or record.get('home_team')}"
+        )
+
+    schedule_path.write_text(json.dumps(schedule, indent=2), encoding="utf-8")
+    print("  enriched schedule with official game book results")
+
+
 def _gamebook_pdf_url(html_text: str) -> Optional[str]:
     """The Game Center page publishes the Game Book PDF URL directly."""
     match = GAMEBOOK_LINK_RE.search(html_text)
@@ -362,6 +404,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 max_games=args.max_gamebooks,
             )
         )
+        enrich_schedule_with_gamebooks(out_dir)
 
     _write(out_dir / "provenance.json", manifest)
     return 0

@@ -258,8 +258,11 @@ def collect_schedule(
     records: Dict[str, Dict[str, Any]] = {}
     notes: List[str] = []
 
-    def _key(away: Optional[str], home: Optional[str]) -> str:
-        return f"{(away or '').strip().lower()}|{(home or '').strip().lower()}"
+    def _key(week: Optional[str], away: Optional[str], home: Optional[str]) -> str:
+        # A game belongs to exactly one week, so the week is part of the key.
+        return (
+            f"w{week}|{(away or '').strip().lower()}|{(home or '').strip().lower()}"
+        )
 
     # --- embedded game objects ------------------------------------------
     for match in GAME_OBJECT_RE.finditer(html_text):
@@ -270,7 +273,7 @@ def collect_schedule(
             # Some payload entries are broadcast listings, not games.
             continue
         away, _, home = title.partition(" at ")
-        key = _key(away, home)
+        key = _key(match.group("week"), away, home)
         if key in records:
             continue
         records[key] = {
@@ -298,7 +301,7 @@ def collect_schedule(
         away_slug, _, home_slug = slug.partition("-at-")
         away_name = _slug_to_name(away_slug)
         home_name = _slug_to_name(home_slug)
-        key = _key(away_name, home_name)
+        key = _key(parsed.group("week"), away_name, home_name)
         center_url = "https://www.nfl.com" + path
         if key in records:
             if not records[key].get("game_center_url"):

@@ -96,6 +96,7 @@ NAV: List[Dict[str, str]] = [
     {"id": "strategies", "href": "pages/strategies.html", "label": "Strategies", "icon": "◬"},
     {"id": "validation", "href": "pages/validation.html", "label": "Validation gates", "icon": "✓"},
     {"id": "correlation", "href": "pages/correlation.html", "label": "Correlations", "icon": "∿"},
+    {"id": "schedule", "href": "pages/schedule.html", "label": "Schedule", "icon": "▦"},
     {"id": "availability", "href": "pages/availability.html", "label": "Injuries & depth", "icon": "＋"},
     {"id": "suggestions", "href": "pages/suggestions.html", "label": "Suggestions", "icon": "✦"},
     {"id": "review", "href": "pages/review.html", "label": "Flagged for review", "icon": "⚑"},

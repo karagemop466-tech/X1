@@ -169,6 +169,7 @@ def _nav_cards() -> str:
         ("Strategies", "pages/strategies.html", "Thirteen strategies across single bets, parlays and player-prop combinations, with the leaderboard."),
         ("Validation gates", "pages/validation.html", "The ten pre-registered criteria every strategy must clear to be ranked."),
         ("Correlations", "pages/correlation.html", "Measured dependence with sample sizes and confidence intervals, and what remains unmeasured."),
+        ("Schedule", "pages/schedule.html", "The official weekly schedule with the date, result and venue for every published game book."),
         ("Injuries & depth", "pages/availability.html", "Injury designations joined to the replacement who takes the slot."),
         ("Suggestions", "pages/suggestions.html", "Proposals for review and selection before any of them are implemented."),
         ("Flagged for review", "pages/review.html", "Everything that could not be verified from an official source."),
@@ -779,6 +780,101 @@ def render_correlation(ctx: BuildContext) -> str:
 # ---------------------------------------------------------------------------
 # availability
 # ---------------------------------------------------------------------------
+def render_schedule(ctx: BuildContext) -> str:
+    """The official weekly schedule for the season."""
+    schedule = ctx.records(ctx.schedule)
+    if not schedule:
+        return page(
+            slug="schedule",
+            eyebrow="SCHEDULE",
+            title="Official schedule",
+            intro="The official weekly schedule published by the league.",
+            body=section(
+                "Schedule unavailable",
+                note(
+                    "The schedule could not be retrieved on the last collection "
+                    "run. Nothing is shown rather than a reconstructed or "
+                    "inferred schedule."
+                ),
+            ),
+            asof=ctx.asof,
+        )
+
+    rows = []
+    for record in sorted(
+        schedule,
+        key=lambda r: (
+            str(r.get("week") or "").zfill(2),
+            r.get("start_time_utc") or "",
+            r.get("title") or "",
+        ),
+    ):
+        week = record.get("week")
+        result = record.get("result")
+        rows.append(
+            [
+                f'<span class="id">W{esc(week)}</span>',
+                esc(record.get("date")),
+                esc(record.get("away_team")),
+                esc(record.get("home_team")),
+                esc(record.get("start_time_utc")),
+                esc(result),
+                esc(record.get("venue")),
+                source_link(
+                    record.get("game_book_url") or record.get("game_center_url"),
+                    "game book" if record.get("game_book_url") else "game center",
+                ),
+            ]
+        )
+    table = Table(
+        caption=f"Official schedule - {len(schedule)} games across the season",
+        headers=[
+            "Week",
+            "Date",
+            "Away",
+            "Home",
+            "Kickoff (UTC)",
+            "Result",
+            "Venue",
+            "Source",
+        ],
+        rows=rows,
+    ).to_html()
+
+    played = sum(1 for r in schedule if r.get("result"))
+    stats = [
+        {"value": len(schedule), "label": "games in the official schedule"},
+        {"value": played, "label": "games with an official result"},
+        {"value": len(schedule) - played, "label": "games not yet played"},
+    ]
+
+    body = [
+        section(
+            "About this table",
+            note(
+                "Every matchup comes from the league's own weekly schedule "
+                "pages. The date, the final score and the venue come from the "
+                "official Game Book for that game. A game that has not been "
+                "played keeps a blank date and score - nothing is projected."
+            ),
+        ),
+        section("Season at a glance", stat_grid(stats)),
+        section("Schedule", table),
+    ]
+    return page(
+        slug="schedule",
+        eyebrow="SCHEDULE",
+        title="Official schedule and results",
+        intro=(
+            "The league's official schedule for the season, with the date, the "
+            "final score and the venue for every game whose official Game Book "
+            "has been published."
+        ),
+        body="\n".join(body),
+        asof=ctx.asof,
+    )
+
+
 def _depth_chart_table(ctx: BuildContext) -> str:
     """Render each club's depth chart, ordered by the league's own snaps."""
     charts = (ctx.depth or {}).get("charts") or []
@@ -1246,6 +1342,7 @@ PAGES = {
     "pages/strategies.html": render_strategies,
     "pages/validation.html": render_validation,
     "pages/correlation.html": render_correlation,
+    "pages/schedule.html": render_schedule,
     "pages/availability.html": render_availability,
     "pages/suggestions.html": render_suggestions,
     "pages/review.html": render_review,
