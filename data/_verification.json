@@ -25,29 +25,8 @@
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 2847,
-   "problems": [
-    "deficiency[0] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[1] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[2] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[3] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[4] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[5] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[6] null field 'replacement' not declared in _unverified",
-    "deficiency[6] null field 'replacement_depth' not declared in _unverified",
-    "deficiency[6] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[7] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[8] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[9] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[10] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[11] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[12] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[13] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[14] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[15] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[16] null field 'replacement_game_status' not declared in _unverified",
-    "deficiency[17] null field 'replacement_game_status' not declared in _unverified"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "depth_charts",
@@ -73,29 +52,8 @@
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 370,
-   "problems": [
-    "injuries[0] null field 'injuries' not declared in _unverified",
-    "injuries[0] null field 'game_status' not declared in _unverified",
-    "injuries[1] null field 'injuries' not declared in _unverified",
-    "injuries[1] null field 'game_status' not declared in _unverified",
-    "injuries[2] null field 'injuries' not declared in _unverified",
-    "injuries[2] null field 'game_status' not declared in _unverified",
-    "injuries[3] null field 'injuries' not declared in _unverified",
-    "injuries[3] null field 'game_status' not declared in _unverified",
-    "injuries[4] null field 'injuries' not declared in _unverified",
-    "injuries[4] null field 'game_status' not declared in _unverified",
-    "injuries[6] null field 'injuries' not declared in _unverified",
-    "injuries[6] null field 'game_status' not declared in _unverified",
-    "injuries[7] null field 'injuries' not declared in _unverified",
-    "injuries[7] null field 'game_status' not declared in _unverified",
-    "injuries[9] null field 'injuries' not declared in _unverified",
-    "injuries[9] null field 'game_status' not declared in _unverified",
-    "injuries[10] null field 'injuries' not declared in _unverified",
-    "injuries[10] null field 'game_status' not declared in _unverified",
-    "injuries[12] null field 'injuries' not declared in _unverified",
-    "injuries[12] null field 'game_status' not declared in _unverified"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "leaderboard",
@@ -119,16 +77,14 @@
    "dataset": "questions",
    "rows": 30,
    "rows_missing_source": 0,
-   "rows_non_official_source": 1,
+   "rows_non_official_source": 0,
    "null_cells": 0,
-   "problems": [
-    "questions[14] source is not an official host: https://github.com/karagemop466-tech/X1"
-   ],
-   "ok": false
+   "problems": [],
+   "ok": true
   },
   {
    "dataset": "repo_review",
-   "rows": 56,
+   "rows": 55,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,
@@ -181,5 +137,5 @@
    "ok": true
   }
  ],
- "hard_failures": 3
+ "hard_failures": 0
 }
