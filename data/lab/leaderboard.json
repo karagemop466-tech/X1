@@ -1,0 +1,1132 @@
+{
+ "generated_at": "2026-11-14T19:35:33Z",
+ "snapshot": "2026-11-14",
+ "columns_note": "signal_* = picks only, independent of stake size; staking_* = money only, under a named stake plan; gates_* = the validation gates; demotion = the gate that sends a live strategy back to paper",
+ "summary": {
+  "generated_at": "2026-11-14T19:35:33Z",
+  "snapshot": "2026-11-14",
+  "upstream": {
+   "repo": "https://github.com/nflverse/nfldata",
+   "retrieved_at": "2026-11-14",
+   "publisher": "nflverse (Lee Sharpe), repository `nfldata`, branch `master`"
+  },
+  "test_window": {
+   "from": 2015,
+   "to": 2026
+  },
+  "rule": {
+   "ranking": "signal z first, ROI second. A strategy with a positive ROI and a negative z is ranked below a strategy with a better z and a worse ROI, because the ROI of a losing signal is a staking artefact.",
+   "staking_independence": "every strategy is re-priced under a 5%-of-bankroll compounding plan; a profit that survives only the flat plan is labelled as such",
+   "demotion": "D-01..D-04, evaluated on every build; any one firing sends the strategy to paper"
+  },
+  "counts": {
+   "strategies": 8,
+   "live": 0,
+   "paper": 7,
+   "untested": 1,
+   "signal_positive": 0,
+   "staking_positive": 1
+  },
+  "finding": "1 strategies show a positive ROI but none has a signal that clears the 1.96 z bar. On its own, that ROI would have topped a naive leaderboard. This is exactly the failure mode the split exists to catch: the money was a staking run, not a signal.",
+  "defects_found_in_this_build": [
+   {
+    "id": "B-01",
+    "severity": "high",
+    "was": "every strategy was tested against a flat 52.38% break-even",
+    "effect": "the two-leg parlay's 30.4% hit rate was scored z = -7.2 although it is 3 points ABOVE its own 27.44% bar; the moneyline's 34.7% was scored z = -19.4 against a bar that applies to no moneyline ticket",
+    "fixed_in": "Poisson-binomial test: each ticket carries its own break-even, the sum of those bars is the expectation, and the z is computed against the sum of the per-ticket variances",
+    "caught_by": "reading the row: a z of -7 with a hit rate near break-even is not a losing strategy, it is a wrong test"
+   },
+   {
+    "id": "B-02",
+    "severity": "high",
+    "was": "parlay wins were paid at single-leg -110 odds",
+    "effect": "published ROI -40.7% for a strategy that is actually +10.5%",
+    "fixed_in": "payout_decimal() compounds the legs' prices (1.909^2 = 3.645)",
+    "caught_by": "the same row, after B-01 was fixed: a hit rate above its own bar cannot produce a -40% ROI"
+   },
+   {
+    "id": "B-03",
+    "severity": "medium",
+    "was": "the leaderboard ranked on ROI alone in an early draft",
+    "effect": "the parlay, with the weakest signal on the board (z = 1.00), ranked first",
+    "fixed_in": "rank = (signal z desc, ROI desc); the ROI is shown but never ranks",
+    "caught_by": "applying the owner's requirement literally"
+   },
+   {
+    "id": "B-04",
+    "severity": "medium",
+    "was": "a parlay was bucketed 'competitive' only if EVERY leg was a competitive margin, and other strategies were bucketed on their single game's margin",
+    "effect": "one bounce in one leg decides the ticket, so 195 of 234 parlay tickets landed in 'other' and the luck decomposition had n = 39, too small to decompose anything",
+    "fixed_in": "a parlay is variance-dominated if ANY leg is; a decomposition with fewer than 10 tickets is published as 'too few' rather than computed"
+   }
+  ]
+ },
+ "rows": [
+  {
+   "id": "S-04-parlay-2",
+   "name": "Two-leg side parlay",
+   "division": "parlays_2_3",
+   "shape": "parlay",
+   "market": "PARLAY_2",
+   "hypothesis": "The two biggest disagreements on a card are independent enough that the parlay's true probability beats the product the book charges for.",
+   "falsifier": "Realised parlay hit rate is not above the compounded break-even (52.38%^2 = 27.44%) after correlation adjustment.",
+   "signal": {
+    "n": 234,
+    "wins": 69,
+    "losses": 158,
+    "pushes": 7,
+    "decided": 227,
+    "hit_rate": 0.304,
+    "break_even_hit_rate": 0.2744,
+    "expected_wins_at_the_bar": 62.28,
+    "actual_minus_expected_wins": 6.72,
+    "z_vs_break_even": 0.999,
+    "hit_rate_ci95": [
+     0.2467,
+     0.3612
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 39,
+    "trimmed_hit_rate": 0.0256,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -9.827,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": 24.479,
+    "roi": 0.1046,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": 59.169,
+    "roi": 0.5917,
+    "max_drawdown": 0.5266,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": false,
+     "why": "n=234 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=0.999 against 1.96; bootstrap 95% interval [0.2467, 0.3612]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 0.5266 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": null,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 0,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6",
+    "G7"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": false,
+      "detail": "1 consecutive rolling 30-ticket windows with z < 0 (63 of 198 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 0.5266 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -9.075 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.29 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6, G7; failed G1, G2, G5",
+   "rank": 1
+  },
+  {
+   "id": "S-01-side-1.0",
+   "name": "Side model, 1-pt threshold",
+   "division": "singles",
+   "shape": "single",
+   "market": "SIDE",
+   "hypothesis": "A full-point disagreement is large enough to survive the vig.",
+   "falsifier": "Hit rate at -110 is not above the break-even over the test window.",
+   "signal": {
+    "n": 2722,
+    "wins": 1375,
+    "losses": 1278,
+    "pushes": 69,
+    "decided": 2653,
+    "hit_rate": 0.5183,
+    "break_even_hit_rate": 0.5238,
+    "expected_wins_at_the_bar": 1389.67,
+    "actual_minus_expected_wins": -14.67,
+    "z_vs_break_even": -0.57,
+    "hit_rate_ci95": [
+     0.4991,
+     0.5375
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 1016,
+    "trimmed_hit_rate": 0.3419,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -12.16,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": -28.0,
+    "roi": -0.0103,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": -98.811,
+    "roi": -0.9881,
+    "max_drawdown": 0.9934,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": true,
+     "why": "n=2722 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=-0.57 against 1.96; bootstrap 95% interval [0.4991, 0.5375]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 0.9934 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": true,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": true,
+      "detail": "39 consecutive rolling 30-ticket windows with z < 0 (1240 of 2624 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 0.9934 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -5.218 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.47 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6; failed G2, G5",
+   "rank": 2
+  },
+  {
+   "id": "S-01-side-0.5",
+   "name": "Side model, 0.5-pt threshold",
+   "division": "singles",
+   "shape": "single",
+   "market": "SIDE",
+   "hypothesis": "When our originated spread differs from the market by at least half a point, we hold an advantage the price does not reflect.",
+   "falsifier": "Hit rate at -110 is not above the 52.38% break-even over the test window.",
+   "signal": {
+    "n": 2939,
+    "wins": 1481,
+    "losses": 1384,
+    "pushes": 74,
+    "decided": 2865,
+    "hit_rate": 0.5169,
+    "break_even_hit_rate": 0.5238,
+    "expected_wins_at_the_bar": 1500.71,
+    "actual_minus_expected_wins": -19.71,
+    "z_vs_break_even": -0.737,
+    "hit_rate_ci95": [
+     0.4988,
+     0.5358
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 1101,
+    "trimmed_hit_rate": 0.3584,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -11.394,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": -37.636,
+    "roi": -0.0128,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": -99.424,
+    "roi": -0.9942,
+    "max_drawdown": 0.9966,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": true,
+     "why": "n=2939 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=-0.737 against 1.96; bootstrap 95% interval [0.4988, 0.5358]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 0.9966 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": true,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": true,
+      "detail": "42 consecutive rolling 30-ticket windows with z < 0 (1400 of 2836 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 0.9966 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -5.066 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.45 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6; failed G2, G5",
+   "rank": 3
+  },
+  {
+   "id": "S-01-side-2.0",
+   "name": "Side model, 2-pt threshold",
+   "division": "singles",
+   "shape": "single",
+   "market": "SIDE",
+   "hypothesis": "Selecting only large disagreements raises the hit rate enough to pay the vig.",
+   "falsifier": "Larger threshold does not raise the hit rate above break-even.",
+   "signal": {
+    "n": 2318,
+    "wins": 1163,
+    "losses": 1094,
+    "pushes": 61,
+    "decided": 2257,
+    "hit_rate": 0.5153,
+    "break_even_hit_rate": 0.5238,
+    "expected_wins_at_the_bar": 1182.24,
+    "actual_minus_expected_wins": -19.24,
+    "z_vs_break_even": -0.811,
+    "hit_rate_ci95": [
+     0.4953,
+     0.5357
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 878,
+    "trimmed_hit_rate": 0.3226,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -12.682,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": -36.727,
+    "roi": -0.0158,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": -98.794,
+    "roi": -0.9879,
+    "max_drawdown": 0.9904,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": true,
+     "why": "n=2318 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=-0.811 against 1.96; bootstrap 95% interval [0.4953, 0.5357]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 0.9904 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": true,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": true,
+      "detail": "24 consecutive rolling 30-ticket windows with z < 0 (1133 of 2228 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 0.9904 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -5.799 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.46 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6; failed G2, G5",
+   "rank": 4
+  },
+  {
+   "id": "S-03-moneyline",
+   "name": "Moneyline value",
+   "division": "singles",
+   "shape": "single",
+   "market": "MONEYLINE",
+   "hypothesis": "Where our win probability beats the published price by 3 points, the price is wrong.",
+   "falsifier": "ROI at the published price does not exceed zero with a CI excluding it.",
+   "signal": {
+    "n": 2751,
+    "wins": 952,
+    "losses": 1791,
+    "pushes": 8,
+    "decided": 2743,
+    "hit_rate": 0.3471,
+    "break_even_hit_rate": 0.3608,
+    "expected_wins_at_the_bar": 989.71,
+    "actual_minus_expected_wins": -37.71,
+    "z_vs_break_even": -1.559,
+    "hit_rate_ci95": [
+     0.3285,
+     0.3649
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 1036,
+    "trimmed_hit_rate": 0.2963,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -4.545,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": -141.694,
+    "roi": -0.0515,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": -100.0,
+    "roi": -1.0,
+    "max_drawdown": 1.0,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": true,
+     "why": "n=2751 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=-1.559 against 1.96; bootstrap 95% interval [0.3285, 0.3649]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 1.0 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": true,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": true,
+      "detail": "24 consecutive rolling 30-ticket windows with z < 0 (1552 of 2714 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 1.0 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -1.67 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.31 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6; failed G2, G5",
+   "rank": 5
+  },
+  {
+   "id": "S-02-total-2.0",
+   "name": "Total model, 2-pt threshold",
+   "division": "singles",
+   "shape": "single",
+   "market": "TOTAL",
+   "hypothesis": "Only large total disagreements carry information.",
+   "falsifier": "Hit rate at -110 is not above break-even over the test window.",
+   "signal": {
+    "n": 2157,
+    "wins": 1069,
+    "losses": 1071,
+    "pushes": 17,
+    "decided": 2140,
+    "hit_rate": 0.4995,
+    "break_even_hit_rate": 0.5238,
+    "expected_wins_at_the_bar": 1120.95,
+    "actual_minus_expected_wins": -51.95,
+    "z_vs_break_even": -2.249,
+    "hit_rate_ci95": [
+     0.478,
+     0.5215
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 2157,
+    "trimmed_hit_rate": 0.4995,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -2.246,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": -99.182,
+    "roi": -0.046,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": -99.94,
+    "roi": -0.9994,
+    "max_drawdown": 0.9996,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": true,
+     "why": "n=2157 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=-2.249 against 1.96; bootstrap 95% interval [0.478, 0.5215]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 0.9996 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": true,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": false,
+      "detail": "0 consecutive rolling 30-ticket windows with z < 0 (1257 of 2111 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 0.9996 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -4.936 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.47 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6; failed G2, G5",
+   "rank": 6
+  },
+  {
+   "id": "S-02-total-1.0",
+   "name": "Total model, 1-pt threshold",
+   "division": "singles",
+   "shape": "single",
+   "market": "TOTAL",
+   "hypothesis": "The total model's disagreements with the market total are informative.",
+   "falsifier": "Hit rate at -110 is not above break-even over the test window.",
+   "signal": {
+    "n": 2633,
+    "wins": 1296,
+    "losses": 1314,
+    "pushes": 23,
+    "decided": 2610,
+    "hit_rate": 0.4966,
+    "break_even_hit_rate": 0.5238,
+    "expected_wins_at_the_bar": 1367.14,
+    "actual_minus_expected_wins": -71.14,
+    "z_vs_break_even": -2.788,
+    "hit_rate_ci95": [
+     0.4778,
+     0.5161
+    ],
+    "ci_excludes_break_even": false,
+    "trimmed_n": 2633,
+    "trimmed_hit_rate": 0.4966,
+    "trimmed_note": "one-score and blowout games removed",
+    "trimmed_z": -2.785,
+    "signal_positive": false
+   },
+   "staking_flat": {
+    "plan": "flat",
+    "profit_units": -135.818,
+    "roi": -0.0516,
+    "max_drawdown": null,
+    "within_drawdown_cap": null
+   },
+   "staking_pct": {
+    "plan": "pct",
+    "profit_units": -99.994,
+    "roi": -0.9999,
+    "max_drawdown": 1.0,
+    "within_drawdown_cap": false
+   },
+   "staking_independent": "holds",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": true,
+     "why": "n=2633 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=-2.788 against 1.96; bootstrap 95% interval [0.4778, 0.5161]"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": false,
+     "why": "max drawdown 1.0 vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": true,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2",
+    "G5"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G6"
+   ],
+   "demotion": {
+    "checks": [
+     {
+      "id": "D-01",
+      "name": "signal decay",
+      "fires": false,
+      "detail": "0 consecutive rolling 30-ticket windows with z < 0 (1547 of 2581 windows negative)"
+     },
+     {
+      "id": "D-02",
+      "name": "staking break",
+      "fires": true,
+      "detail": "max drawdown 1.0 vs cap 0.25"
+     },
+     {
+      "id": "D-03",
+      "name": "price loss",
+      "fires": true,
+      "detail": "mean CLV proxy over the last 30 tickets -3.911 points"
+     },
+     {
+      "id": "D-04",
+      "name": "drift",
+      "fires": false,
+      "detail": "last 100 decided tickets at 0.45 vs the promotion bar for those same tickets"
+     }
+    ],
+    "demote": true
+   },
+   "status": "paper",
+   "status_reason": "blocked on G0, G3, G4, G6; failed G2, G5",
+   "rank": 7
+  },
+  {
+   "id": "S-05-prop-combo",
+   "name": "Player-prop combo",
+   "division": "prop_combos_samegame",
+   "shape": "prop_combo",
+   "market": "PROP",
+   "hypothesis": "NOT TESTED: no prop price and no prop outcome is reachable from this environment, so no claim is made in either direction.",
+   "falsifier": "n/a until a prop feed exists -- publishing a result here would be a simulation presented as evidence.",
+   "signal": {
+    "n": 0
+   },
+   "staking_flat": {
+    "n": 0
+   },
+   "staking_pct": {
+    "n": 0
+   },
+   "staking_independent": "no evidence",
+   "gates": [
+    {
+     "id": "G0",
+     "name": "Provenance",
+     "passed": null,
+     "why": "the market benchmark is a publisher composite with no named book or timestamp (price-store defects P-04, P-05); the inputs are sourced but the benchmark is not a market anyone can bet into"
+    },
+    {
+     "id": "G1",
+     "name": "Sample size",
+     "passed": false,
+     "why": "n=0 against the 500-ticket bar for singles"
+    },
+    {
+     "id": "G2",
+     "name": "Skill above variance",
+     "passed": false,
+     "why": "z=None against 1.96; bootstrap 95% interval None"
+    },
+    {
+     "id": "G3",
+     "name": "Calibration",
+     "passed": null,
+     "why": "calibration is measured at the model level (model_report.json: Brier 0.241 vs market 0.212), not yet per strategy"
+    },
+    {
+     "id": "G4",
+     "name": "Robustness",
+     "passed": null,
+     "why": "leave-one-team-out and window-halves are not run per strategy in this build"
+    },
+    {
+     "id": "G5",
+     "name": "Risk of ruin",
+     "passed": null,
+     "why": "max drawdown None vs cap 0.25"
+    },
+    {
+     "id": "G6",
+     "name": "Economic reality",
+     "passed": null,
+     "why": "ROI is computed at a flat -110 because no priced market exists for these selections; no executable price is recorded"
+    },
+    {
+     "id": "G7",
+     "name": "Correlation discipline",
+     "passed": null,
+     "why": "singles do not compound correlation; the two-leg parlay is blocked until a correlation interval is measured on officially sourced numbers"
+    }
+   ],
+   "gates_passed": 0,
+   "gates_failed": [
+    "G1",
+    "G2"
+   ],
+   "gates_blocked": [
+    "G0",
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+   ],
+   "demotion": {
+    "checks": [],
+    "demote": true,
+    "why": "no tickets: a strategy with no evidence cannot be live"
+   },
+   "status": "untested",
+   "status_reason": "blocked on G0, G3, G4, G5, G6, G7; failed G1, G2",
+   "rank": 8
+  }
+ ]
+}
