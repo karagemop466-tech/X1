@@ -1,0 +1,3524 @@
+{
+ "dataset": "schedule_week10",
+ "official_source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+ "retrieved": "2026-11-14",
+ "verified_by": "arena-459b17e1-x1",
+ "official_games": 14,
+ "official_byes": 4,
+ "checks": 390,
+ "pass": 289,
+ "fail": 0,
+ "unverified": 101,
+ "rows": [
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "date",
+   "committed": "2026-11-12",
+   "official": "2026-11-12",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "time",
+   "committed": "8:15 PM",
+   "official": "8:15 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "away",
+   "committed": "WAS",
+   "official": "WAS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "home",
+   "committed": "NYG",
+   "official": "NYG",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "network",
+   "committed": "Prime Video",
+   "official": "(not printed by the page)",
+   "result": "UNVERIFIED",
+   "note": "network is not printed for this game; value cannot be confirmed official"
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "status",
+   "committed": "final",
+   "official": "FINAL",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "away_score",
+   "committed": "24",
+   "official": "24",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "WAS@NYG",
+   "field": "home_score",
+   "committed": "21",
+   "official": "21",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "time",
+   "committed": "9:30 AM",
+   "official": "9:30 AM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "away",
+   "committed": "NE",
+   "official": "NE",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "home",
+   "committed": "DET",
+   "official": "DET",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "NE@DET",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "away",
+   "committed": "KC",
+   "official": "KC",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "home",
+   "committed": "ATL",
+   "official": "ATL",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "KC@ATL",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "away",
+   "committed": "HOU",
+   "official": "HOU",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "home",
+   "committed": "CLE",
+   "official": "CLE",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "HOU@CLE",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "away",
+   "committed": "MIN",
+   "official": "MIN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "home",
+   "committed": "GB",
+   "official": "GB",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIN@GB",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "away",
+   "committed": "MIA",
+   "official": "MIA",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "home",
+   "committed": "IND",
+   "official": "IND",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "MIA@IND",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "away",
+   "committed": "CAR",
+   "official": "CAR",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "home",
+   "committed": "NO",
+   "official": "NO",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "CAR@NO",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "away",
+   "committed": "BUF",
+   "official": "BUF",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "home",
+   "committed": "NYJ",
+   "official": "NYJ",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "BUF@NYJ",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "time",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "away",
+   "committed": "JAX",
+   "official": "JAX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "home",
+   "committed": "TEN",
+   "official": "TEN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "JAX@TEN",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "time",
+   "committed": "4:05 PM",
+   "official": "4:05 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "away",
+   "committed": "LAR",
+   "official": "LA",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "home",
+   "committed": "AZ",
+   "official": "AZ",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LA@AZ",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "time",
+   "committed": "4:05 PM",
+   "official": "4:05 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "away",
+   "committed": "SEA",
+   "official": "SEA",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "home",
+   "committed": "LV",
+   "official": "LV",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SEA@LV",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "time",
+   "committed": "4:25 PM",
+   "official": "4:25 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "away",
+   "committed": "SF",
+   "official": "SF",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "home",
+   "committed": "DAL",
+   "official": "DAL",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "SF@DAL",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "time",
+   "committed": "8:20 PM",
+   "official": "8:20 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "away",
+   "committed": "PIT",
+   "official": "PIT",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "home",
+   "committed": "CIN",
+   "official": "CIN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "network",
+   "committed": "NBC",
+   "official": "NBC",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "PIT@CIN",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "date",
+   "committed": "2026-11-16",
+   "official": "2026-11-16",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "time",
+   "committed": "8:15 PM",
+   "official": "8:15 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "away",
+   "committed": "LAC",
+   "official": "LAC",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "home",
+   "committed": "BAL",
+   "official": "BAL",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "network",
+   "committed": "ESPN",
+   "official": "ESPN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "status",
+   "committed": "scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_week10.tsv",
+   "key": "LAC@BAL",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "date",
+   "committed": "2026-11-12",
+   "official": "2026-11-12",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "et_time",
+   "committed": "8:15 PM ET",
+   "official": "8:15 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "weekday",
+   "committed": "Thursday",
+   "official": "Thursday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "tv",
+   "committed": "Prime Video",
+   "official": "(not printed by the page)",
+   "result": "UNVERIFIED",
+   "note": "network not printed for this game on the official page"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "result",
+   "committed": "24-21",
+   "official": "24-21",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "market_spread_away",
+   "committed": "1.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "market_total",
+   "committed": "40.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "market_ml_away",
+   "committed": "102",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "market_ml_home",
+   "committed": "-122",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "expected_qb_away",
+   "committed": "Jayden Daniels",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "expected_qb_home",
+   "committed": "J.J. McCarthy",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "et_time",
+   "committed": "9:30 AM ET",
+   "official": "9:30 AM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "tv",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "market_spread_away",
+   "committed": "2.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "market_total",
+   "committed": "49.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "market_ml_away",
+   "committed": "124",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "market_ml_home",
+   "committed": "-148",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "expected_qb_away",
+   "committed": "Drake Maye",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "expected_qb_home",
+   "committed": "Jared Goff",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "tv",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "market_spread_away",
+   "committed": "-3.0",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "market_total",
+   "committed": "47.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "market_ml_away",
+   "committed": "-175",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "market_ml_home",
+   "committed": "145",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "expected_qb_away",
+   "committed": "Patrick Mahomes",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "expected_qb_home",
+   "committed": "Michael Penix Jr.",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "tv",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "market_spread_away",
+   "committed": "-4.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "market_total",
+   "committed": "40.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "market_ml_away",
+   "committed": "-238",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "market_ml_home",
+   "committed": "195",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "expected_qb_away",
+   "committed": "C.J. Stroud",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "expected_qb_home",
+   "committed": "Deshaun Watson",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "tv",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "market_spread_away",
+   "committed": "2.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "market_total",
+   "committed": "42.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "market_ml_away",
+   "committed": "124",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "market_ml_home",
+   "committed": "-148",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "expected_qb_away",
+   "committed": "Kirk Cousins",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "expected_qb_home",
+   "committed": "Jordan Love",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "tv",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "market_spread_away",
+   "committed": "3.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "market_total",
+   "committed": "38.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "market_ml_away",
+   "committed": "180",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "market_ml_home",
+   "committed": "-218",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "expected_qb_away",
+   "committed": "Kyle McCord",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "expected_qb_home",
+   "committed": "Daniel Jones",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "tv",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "market_spread_away",
+   "committed": "2.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "market_total",
+   "committed": "48.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "market_ml_away",
+   "committed": "114",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "market_ml_home",
+   "committed": "-135",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "expected_qb_away",
+   "committed": "Bryce Young",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "expected_qb_home",
+   "committed": "Tyler Shough",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "tv",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "market_spread_away",
+   "committed": "-8.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "market_total",
+   "committed": "50.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "market_ml_away",
+   "committed": "-425",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "market_ml_home",
+   "committed": "330",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "expected_qb_away",
+   "committed": "Josh Allen",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "expected_qb_home",
+   "committed": "Geno Smith",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "et_time",
+   "committed": "1:00 PM ET",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "tv",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "market_spread_away",
+   "committed": "-10.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "market_total",
+   "committed": "46.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "market_ml_away",
+   "committed": "-700",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "market_ml_home",
+   "committed": "500",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "expected_qb_away",
+   "committed": "Trevor Lawrence",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "expected_qb_home",
+   "committed": "Cam Ward",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "et_time",
+   "committed": "4:05 PM ET",
+   "official": "4:05 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "tv",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "market_spread_away",
+   "committed": "-9.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "market_total",
+   "committed": "39.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "market_ml_away",
+   "committed": "-500",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "market_ml_home",
+   "committed": "380",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "expected_qb_away",
+   "committed": "Matthew Stafford",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "expected_qb_home",
+   "committed": "Carson Beck",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "et_time",
+   "committed": "4:05 PM ET",
+   "official": "4:05 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "tv",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "market_spread_away",
+   "committed": "-6.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "market_total",
+   "committed": "40.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "market_ml_away",
+   "committed": "-305",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "market_ml_home",
+   "committed": "245",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "expected_qb_away",
+   "committed": "Drew Lock",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "expected_qb_home",
+   "committed": "Fernando Mendoza",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "et_time",
+   "committed": "4:25 PM ET",
+   "official": "4:25 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "tv",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "market_spread_away",
+   "committed": "-4.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "market_total",
+   "committed": "55.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "market_ml_away",
+   "committed": "-218",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "market_ml_home",
+   "committed": "180",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "expected_qb_away",
+   "committed": "Brock Purdy",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "expected_qb_home",
+   "committed": "Dak Prescott",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "et_time",
+   "committed": "8:20 PM ET",
+   "official": "8:20 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "weekday",
+   "committed": "Sunday",
+   "official": "Sunday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "tv",
+   "committed": "NBC",
+   "official": "NBC",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "market_spread_away",
+   "committed": "3.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "market_total",
+   "committed": "49.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "market_ml_away",
+   "committed": "154",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "market_ml_home",
+   "committed": "-185",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "expected_qb_away",
+   "committed": "Aaron Rodgers",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "expected_qb_home",
+   "committed": "Joe Burrow",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "date",
+   "committed": "2026-11-16",
+   "official": "2026-11-16",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "et_time",
+   "committed": "8:15 PM ET",
+   "official": "8:15 PM",
+   "result": "PASS",
+   "note": "official page renders kickoff in the viewer's local time; the page's own flexible-scheduling note states the league windows in ET"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "weekday",
+   "committed": "Monday",
+   "official": "Monday",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "tv",
+   "committed": "ESPN/ABC",
+   "official": "ESPN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "result",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "market_spread_away",
+   "committed": "4.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "market_total",
+   "committed": "38.5",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "market_ml_away",
+   "committed": "185",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "market_ml_home",
+   "committed": "-225",
+   "official": "(no official source)",
+   "result": "UNVERIFIED",
+   "note": "market price; NFL.com publishes no betting prices. Sourced in this dataset to the nflverse community mirror, not the league."
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "expected_qb_away",
+   "committed": "Justin Herbert",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "expected_qb_home",
+   "committed": "Tyler Huntley",
+   "official": "(no official starting-QB designation)",
+   "result": "UNVERIFIED",
+   "note": "the NFL does not publish an official expected starting quarterback"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "date",
+   "committed": "2026-11-12",
+   "official": "2026-11-12",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "kickoff_et",
+   "committed": "8:15 PM",
+   "official": "8:15 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "network",
+   "committed": "Prime Video",
+   "official": "(not printed by the page)",
+   "result": "UNVERIFIED",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "status",
+   "committed": "Final",
+   "official": "FINAL",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "away_score",
+   "committed": "24",
+   "official": "24",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "home_score",
+   "committed": "21",
+   "official": "21",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+   "official": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "WAS@NYG",
+   "field": "away_record_pre",
+   "committed": "3-5-1",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "kickoff_et",
+   "committed": "9:30 AM",
+   "official": "9:30 AM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+   "official": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "NE@DET",
+   "field": "away_record_pre",
+   "committed": "5-4",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+   "official": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "KC@ATL",
+   "field": "away_record_pre",
+   "committed": "6-2",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
+   "official": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "HOU@CLE",
+   "field": "away_record_pre",
+   "committed": "3-5",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
+   "official": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIN@GB",
+   "field": "away_record_pre",
+   "committed": "6-2",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
+   "official": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "MIA@IND",
+   "field": "away_record_pre",
+   "committed": "1-7",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
+   "official": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "CAR@NO",
+   "field": "away_record_pre",
+   "committed": "3-5",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
+   "official": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "BUF@NYJ",
+   "field": "away_record_pre",
+   "committed": "7-1",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "kickoff_et",
+   "committed": "1:00 PM",
+   "official": "1:00 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
+   "official": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "JAX@TEN",
+   "field": "away_record_pre",
+   "committed": "6-2",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "kickoff_et",
+   "committed": "4:05 PM",
+   "official": "4:05 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
+   "official": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LA@AZ",
+   "field": "away_record_pre",
+   "committed": "5-4",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "kickoff_et",
+   "committed": "4:05 PM",
+   "official": "4:05 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "network",
+   "committed": "CBS",
+   "official": "CBS",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
+   "official": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SEA@LV",
+   "field": "away_record_pre",
+   "committed": "5-4",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "kickoff_et",
+   "committed": "4:25 PM",
+   "official": "4:25 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "network",
+   "committed": "FOX",
+   "official": "FOX",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
+   "official": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "SF@DAL",
+   "field": "away_record_pre",
+   "committed": "7-1",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "date",
+   "committed": "2026-11-15",
+   "official": "2026-11-15",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "kickoff_et",
+   "committed": "8:20 PM",
+   "official": "8:20 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "network",
+   "committed": "NBC",
+   "official": "NBC",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
+   "official": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "PIT@CIN",
+   "field": "away_record_pre",
+   "committed": "6-2",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "date",
+   "committed": "2026-11-16",
+   "official": "2026-11-16",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "kickoff_et",
+   "committed": "8:15 PM",
+   "official": "8:15 PM",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "network",
+   "committed": "ESPN",
+   "official": "ESPN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "status",
+   "committed": "Scheduled",
+   "official": "Scheduled",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "away_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "home_score",
+   "committed": "",
+   "official": "",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "game_url",
+   "committed": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "official": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10.csv",
+   "key": "LAC@BAL",
+   "field": "away_record_pre",
+   "committed": "0-8",
+   "official": "(printed on the page)",
+   "result": "UNVERIFIED",
+   "note": "pre-game record is printed by the page but not captured in this raw fetch"
+  },
+  {
+   "dataset": "week10_byes.csv",
+   "key": "BYE CHI",
+   "field": "team",
+   "committed": "CHI",
+   "official": "CHI",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "week10_byes.csv",
+   "key": "BYE DEN",
+   "field": "team",
+   "committed": "DEN",
+   "official": "DEN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "week10_byes.csv",
+   "key": "BYE PHI",
+   "field": "team",
+   "committed": "PHI",
+   "official": "PHI",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "week10_byes.csv",
+   "key": "BYE TB",
+   "field": "team",
+   "committed": "TB",
+   "official": "TB",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE CHI",
+   "field": "team",
+   "committed": "CHI",
+   "official": "CHI",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE CHI",
+   "field": "record",
+   "committed": "7-2",
+   "official": "7-2",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE DEN",
+   "field": "team",
+   "committed": "DEN",
+   "official": "DEN",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE DEN",
+   "field": "record",
+   "committed": "7-2",
+   "official": "7-2",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE PHI",
+   "field": "team",
+   "committed": "PHI",
+   "official": "PHI",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE PHI",
+   "field": "record",
+   "committed": "2-7",
+   "official": "2-7",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE TB",
+   "field": "team",
+   "committed": "TB",
+   "official": "TB",
+   "result": "PASS",
+   "note": ""
+  },
+  {
+   "dataset": "schedule_2026_week10_byes.csv",
+   "key": "BYE TB",
+   "field": "record",
+   "committed": "3-6",
+   "official": "3-6",
+   "result": "PASS",
+   "note": ""
+  }
+ ]
+}

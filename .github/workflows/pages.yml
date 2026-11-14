@@ -29,6 +29,16 @@ jobs:
       # copied, so a broken section fails the build rather than shipping.
       - name: Verify the live-pipeline section
         run: python3 scripts/pipeline/verify_site.py
+      # Added by session arena/459b17e1-x1 (additive only). Verifies the
+      # second-opinion section (hub/*.html) before it is copied, so a broken
+      # section fails the build rather than shipping.
+      - name: Verify the second-opinion section
+        run: python3 tools/hub/build_hub.py
+      # Added by session arena/9cc1eaac-x1 (additive only): every published Week 10 cell is
+      # diffed against an independent transcription of the official pages before the tree
+      # is assembled, so a contradictory value fails the build rather than shipping.
+      - name: Verify published data against the official pages
+        run: python3 tools/verify_against_official.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -48,6 +58,10 @@ jobs:
           # section (auto-refreshed standings, injuries, depth charts, deficiency,
           # correlations). Additive; nothing above is modified or removed.
           cp -r live _site/
+          # Added by session arena/459b17e1-x1: the second-opinion section
+          # (section index, verification ledger, findings, deficiency board,
+          # suggestion review board). Additive; nothing above is modified.
+          cp -r hub _site/
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions board — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a class="active" href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="decisions-critical.html">Decisions to make</a>
+      <a class="active" href="suggestions-board.html">Suggestions board</a>
+      <a href="review-queue.html">Review queue</a>
+      <a href="changes.html">What changed</a>
+      <a href="requirements.html">Requirements &amp;amp; status</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+      <a href="../live/index.html">Live pipeline</a>
+      <a href="../hub/index.html">Section index</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ SUGGESTIONS BOARD</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">CHOOSE, THEN BUILD</div>
+  <h1>Suggestions board</h1>
+  <p>10 options for improving the site and the decision process, ordered by what changes a number
+  fastest rather than by what is most interesting to build. Nothing here is implemented automatically — the status
+  column is yours to set.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Recommended path: <b>B-01</b> → <b>B-02</b> → <b>B-03</b> → <b>B-04</b>.</b> These four are the cheapest steps that change a number rather than a label: B-01 replaces a floor with a real count, B-02 stops a bad read from ever shipping, B-03 collapses four competing flag counts into one queue, and B-04 is the only one that needs a decision from the owner before the leaderboard can mean anything.</div>
+  <div class="statrow">
+    <div class="stat"><strong>10</strong><span>options</span></div>
+    <div class="stat"><strong>4</strong><span>high impact</span></div>
+    <div class="stat"><strong>5</strong><span>low effort</span></div>
+    <div class="stat"><strong>7</strong><span>no dependency — can start today</span></div>
+  </div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Ranked options; rank is a reading aid, the choice is the owner&#x27;s</caption><thead><tr><th>ID</th><th>Rank</th><th>Proposal</th><th>Answers</th><th>Impact</th><th>Effort</th><th>Risk</th><th>Dependency</th><th>Reversible first step</th><th>Reversible</th><th>Why it improves decisions</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>B-01</b></td><td>1<br><span class="pill">recommended</span></td><td><b>Publish the 31-club depth join instead of the five-club pilot</b></td><td>Q-19</td><td><span class="pill high">high</span></td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">low</span></td><td>none — the data is already in the repository</td><td>Run tools/build_audit_registers.py and read data/audit/full_depth_join.json.</td><td><b>yes — one generator flag switches back to the pilot</b></td><td>Turns a floor into a real count (5 clubs -&gt; 31 clubs), which is the difference between &#x27;at least 8 starters out&#x27; and the actual number.</td><td><a class="src-link" href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-02</b></td><td>2<br><span class="pill">recommended</span></td><td><b>Make the independent re-transcription a required CI gate</b></td><td>Q-22</td><td><span class="pill high">high</span></td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">low</span></td><td>none — tools/verify_against_official.py exists</td><td>Add one step to the verify workflow.</td><td><b>yes — remove the step</b></td><td>The existing checks compare two transcriptions by our own sessions; this one catches a bad read even when both agree.</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-03</b></td><td>3<br><span class="pill">recommended</span></td><td><b>One review queue, generated from every register</b></td><td>A-05</td><td><span class="pill high">high</span></td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">low</span></td><td>none</td><td>Read pages/review-queue.html — this round already generates it.</td><td><b>yes</b></td><td>Four different counts of &#x27;flagged items&#x27; is the single biggest obstacle to deciding what to fix first.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-04</b></td><td>4<br><span class="pill">recommended</span></td><td><b>Pick one line benchmark and stamp it on every result</b></td><td>Q-02</td><td><span class="pill high">high</span></td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">medium</span></td><td>owner decision</td><td>Choose: one book&#x27;s close, a consensus, or a weighted average.</td><td><b>yes — the field is additive</b></td><td>Without it, the leaderboard ranks strategies measured against different rulers.</td><td><a class="src-link" href="https://github.com/nflverse/nfldata/blob/master/DATASETS.md" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-05</b></td><td>5</td><td><b>Adopt a written freshness policy with per-row timestamps</b></td><td>Q-23</td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">low</span></td><td>B-01</td><td>Add the timestamp column to the two live tables (standings, injuries).</td><td><b>yes</b></td><td>An injury snapshot is evidence with a shelf life; the site currently shows the date once per page.</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-06</b></td><td>6</td><td><b>Publish LAST 5 or drop the column header</b></td><td>A-09</td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">low</span></td><td>none</td><td>Transcribe 32 cells, or delete the header.</td><td><b>yes</b></td><td>A header with no values looks like a rendering bug and undermines trust in the columns that are filled.</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-07</b></td><td>7</td><td><b>Separate &#x27;computed&#x27; from &#x27;league-published&#x27; with a visible badge on every value</b></td><td>A-07</td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">low</span></td><td>none</td><td>Add the badge to the four pages that mix both kinds of value.</td><td><b>yes</b></td><td>The same number currently appears with a different level of caveat depending on which tree you open.</td><td><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-08</b></td><td>8</td><td><b>Resolve the Houston depth-chart gap or state it on the page</b></td><td>Q-19</td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">low</span></td><td>none</td><td>Read data/pipeline/_run_report.json for the three attempted URLs.</td><td><b>yes</b></td><td>A silent exclusion looks like an oversight; a documented one is a limitation.</td><td><a class="src-link" href="https://www.nfl.com/teams/houston-texans/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-09</b></td><td>9</td><td><b>Declare the reward rules before anything is rewarded</b></td><td>Q-20</td><td><span class="pill muted-pill">medium</span></td><td><span class="pill warn">high</span></td><td><span class="pill high">high</span></td><td>owner decision + local legal advice</td><td>Write the rules down; the gates already define eligibility.</td><td><b>yes if no money moves</b></td><td>A competition that pays before its rules are legal and written is the one failure mode that cannot be undone.</td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td><b>B-10</b></td><td>10</td><td><b>Keep only one navigation per tree, generated from one list</b></td><td>A-02</td><td><span class="pill muted-pill">medium</span></td><td><span class="pill muted-pill">low</span></td><td><span class="pill muted-pill">low</span></td><td>none</td><td>Read tools/check_links.py — the reachability assertion is already there; extend it to every tree.</td><td><b>yes</b></td><td>The live tree went unreachable for an entire release because nothing asserted it.</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+</tbody></table></div>
+  <div class="note">The original 12 proposals are preserved unchanged on the
+  <a href="suggestions.html">suggestions register</a>. This board adds dependency, risk and reversibility to the
+  same question: what can be done now, cheaply, without committing to anything hard to undo.</div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

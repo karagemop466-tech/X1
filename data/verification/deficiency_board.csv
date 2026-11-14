@@ -1,0 +1,67 @@
+team,unit,position,slot,starter,starter_game_status,starter_practice_status,injuries,replacement,replacement_depth,replacement_game_status,severity,depth_chart_url,injury_report_url
+ATL,Special Teams,PR,1,Zachariah Branch,Out,Did Not Participate In Practice,Hamstring,Olamide Zaccheaus,2,,3,https://www.atlantafalcons.com/team/depth-chart,https://www.nfl.com/injuries/
+AZ,Offense,C,1,Hjalte Froholdt,Out,Did Not Participate In Practice,Concussion,Kingsley Eguakun,2,,3,https://www.azcardinals.com/team/depth-chart,https://www.nfl.com/injuries/
+CAR,Defense,LB,2,Bobby Okereke,Out,Did Not Participate In Practice,Foot,Tyrel Dodson,2,,3,https://www.panthers.com/team/depth-chart,https://www.nfl.com/injuries/
+DAL,Defense,OLB,1,Donovan Ezeiruaku,Out,Did Not Participate In Practice,Ankle,James Houston,2,,3,https://www.dallascowboys.com/team/depth-chart,https://www.nfl.com/injuries/
+DET,Offense,C,1,Cade Mays,Out,Did Not Participate In Practice,Ankle,Juice Scruggs,2,,3,https://www.detroitlions.com/team/depth-chart,https://www.nfl.com/injuries/
+DET,Defense,CB,1,D.J. Reed,Out,Did Not Participate In Practice,Hip,Rock Ya-Sin,2,,3,https://www.detroitlions.com/team/depth-chart,https://www.nfl.com/injuries/
+IND,Special Teams,LS,1,Luke Rhodes,Out,Did Not Participate In Practice,Hamstring,,,,3,https://www.colts.com/team/depth-chart,https://www.nfl.com/injuries/
+IND,Defense,MLB,1,Akeem Davis-Gaither,Out,Did Not Participate In Practice,Knee,CJ Allen,2,,3,https://www.colts.com/team/depth-chart,https://www.nfl.com/injuries/
+IND,Offense,RT,1,Jalen Travis,Out,Did Not Participate In Practice,Knee,Luke Tenuta,2,,3,https://www.colts.com/team/depth-chart,https://www.nfl.com/injuries/
+IND,Defense,WLB,1,Jaylon Carlies,Out,Did Not Participate In Practice,Neck,Bryce Boettcher,2,,3,https://www.colts.com/team/depth-chart,https://www.nfl.com/injuries/
+JAX,Defense,NT,1,Jordan Davis,Out,Limited Participation in Practice,Not injury related - resting player,Davon Godchaux,2,,3,https://www.jaguars.com/team/depth-chart,https://www.nfl.com/injuries/
+KC,Offense,RT,1,Jaylon Moore,Out,Did Not Participate In Practice,Ankle,Joshua Ezeudu,2,,3,https://www.chiefs.com/team/depth-chart,https://www.nfl.com/injuries/
+LA,Offense,LG,1,Steve Avila,Out,Did Not Participate In Practice,Hamstring,Bill Murray,2,,3,https://www.therams.com/team/depth-chart,https://www.nfl.com/injuries/
+MIA,Offense,C,1,Aaron Brewer,Out,Did Not Participate In Practice,Concussion,Andrew Meyer,2,,3,https://www.miamidolphins.com/team/depth-chart,https://www.nfl.com/injuries/
+MIN,Defense,DL,3,Tyrion Ingram-Dawkins,Out,Did Not Participate In Practice,Ankle,Elijah Williams,2,,3,https://www.vikings.com/team/depth-chart,https://www.nfl.com/injuries/
+MIN,Defense,LB,1,Blake Cashman,Out,Limited Participation in Practice,Concussion,Ivan Pace Jr.,2,,3,https://www.vikings.com/team/depth-chart,https://www.nfl.com/injuries/
+MIN,Offense,QB,1,Kyler Murray,Out,Did Not Participate In Practice,Hamstring,Carson Wentz,2,,3,https://www.vikings.com/team/depth-chart,https://www.nfl.com/injuries/
+MIN,Offense,TE,1,T.J. Hockenson,Out,Did Not Participate In Practice,"Wrist, Chest",Gavin Bartholomew,2,,3,https://www.vikings.com/team/depth-chart,https://www.nfl.com/injuries/
+MIN,Offense,WR,3,Jauan Jennings,Out,Did Not Participate In Practice,Calf,Myles Price,2,,3,https://www.vikings.com/team/depth-chart,https://www.nfl.com/injuries/
+NE,Defense,CB,1,Carlton Davis III,Out,Did Not Participate In Practice,Knee,Channing Canada,2,,3,https://www.patriots.com/team/depth-chart,https://www.nfl.com/injuries/
+NE,Offense,LG,1,Ben Brown,Out,Did Not Participate In Practice,Knee,Walter Rouse,2,Questionable,3,https://www.patriots.com/team/depth-chart,https://www.nfl.com/injuries/
+NO,Offense,C,1,Erik McCoy,Out,Did Not Participate In Practice,Biceps,William Sherman,2,,3,https://www.neworleanssaints.com/team/depth-chart,https://www.nfl.com/injuries/
+NO,Offense,RT,1,Taliese Fuaga,Out,Did Not Participate In Practice,Knee,Mason Murphy,2,,3,https://www.neworleanssaints.com/team/depth-chart,https://www.nfl.com/injuries/
+SEA,Defense,DT,1,Leonard Williams,Out,Did Not Participate In Practice,Stinger,Rylie Mills,2,,3,https://www.seahawks.com/team/depth-chart,https://www.nfl.com/injuries/
+SEA,Offense,LG,1,Quenton Nelson,Out,Did Not Participate In Practice,Knee,Anthony Bradford,2,,3,https://www.seahawks.com/team/depth-chart,https://www.nfl.com/injuries/
+SEA,Offense,LT,1,Charles Cross,Out,Did Not Participate In Practice,Ankle,Josh Jones,2,,3,https://www.seahawks.com/team/depth-chart,https://www.nfl.com/injuries/
+SEA,Offense,QB,1,Sam Darnold,Out,Did Not Participate In Practice,"Ribs, Quadricep",Drew Lock,2,,3,https://www.seahawks.com/team/depth-chart,https://www.nfl.com/injuries/
+SF,Offense,WR,1,Mike Evans,Out,Did Not Participate In Practice,Achilles,Jordan Watkins,2,,3,https://www.49ers.com/team/depth-chart,https://www.nfl.com/injuries/
+TEN,Special Teams,H,1,Tommy Townsend,Out,Did Not Participate In Practice,"Knee, Achilles",Mitchell Trubisky,2,,3,https://www.tennesseetitans.com/team/depth-chart,https://www.nfl.com/injuries/
+TEN,Defense,LB,1,Cody Barton,Out,Did Not Participate In Practice,Concussion,,,,3,https://www.tennesseetitans.com/team/depth-chart,https://www.nfl.com/injuries/
+TEN,Defense,LB,3,Anthony Hill Jr.,Out,Did Not Participate In Practice,Neck,Dorian Mausi,2,,3,https://www.tennesseetitans.com/team/depth-chart,https://www.nfl.com/injuries/
+TEN,Offense,LG,1,Peter Skoronski,Out,Did Not Participate In Practice,Hamstring,,,,3,https://www.tennesseetitans.com/team/depth-chart,https://www.nfl.com/injuries/
+TEN,Special Teams,P,1,Tommy Townsend,Out,Did Not Participate In Practice,"Knee, Achilles",Joey Slye,2,,3,https://www.tennesseetitans.com/team/depth-chart,https://www.nfl.com/injuries/
+TEN,Offense,WR,3,Carnell Tate,Out,Did Not Participate In Practice,Shoulder,Elic Ayomanor,2,,3,https://www.tennesseetitans.com/team/depth-chart,https://www.nfl.com/injuries/
+ATL,Defense,ILB,1,Divine Deablo,Doubtful,Did Not Participate In Practice,Forearm,Christian Harris,2,,2,https://www.atlantafalcons.com/team/depth-chart,https://www.nfl.com/injuries/
+BUF,Offense,RT,1,Spencer Brown,Doubtful,Did Not Participate In Practice,Ankle,Tylan Grable,2,,2,https://www.buffalobills.com/team/depth-chart,https://www.nfl.com/injuries/
+MIA,Offense,WR,3,Chris Bell,Doubtful,Did Not Participate In Practice,Knee,Jalen Tolbert,2,,2,https://www.miamidolphins.com/team/depth-chart,https://www.nfl.com/injuries/
+AZ,Defense,CB,2,Max Melton,Questionable,Limited Participation in Practice,"Knee, Hand",Kei'Trel Clark,2,,1,https://www.azcardinals.com/team/depth-chart,https://www.nfl.com/injuries/
+AZ,Offense,LT,1,Jayden Williams,Questionable,Limited Participation in Practice,Knee,Jedrick Wills,2,,1,https://www.azcardinals.com/team/depth-chart,https://www.nfl.com/injuries/
+AZ,Defense,NT,1,Roy Lopez,Questionable,Limited Participation in Practice,"Toe, Ankle",Andrew Billings,2,,1,https://www.azcardinals.com/team/depth-chart,https://www.nfl.com/injuries/
+AZ,Defense,S,1,Andrew Wingard,Questionable,Did Not Participate In Practice,Groin,Kitan Crawford,2,,1,https://www.azcardinals.com/team/depth-chart,https://www.nfl.com/injuries/
+BUF,Defense,CB,1,Christian Benford,Questionable,Full Participation in Practice,Wrist,Dee Alford,2,,1,https://www.buffalobills.com/team/depth-chart,https://www.nfl.com/injuries/
+CAR,Defense,CB,2,Will Lee III,Questionable,Limited Participation in Practice,Hamstring,,,,1,https://www.panthers.com/team/depth-chart,https://www.nfl.com/injuries/
+CAR,Defense,OLB,2,Jaelan Phillips,Questionable,Full Participation in Practice,Hamstring,Princely Umanmielen,2,,1,https://www.panthers.com/team/depth-chart,https://www.nfl.com/injuries/
+CLE,Offense,WR,2,Denzel Boston,Questionable,Limited Participation in Practice,Toe,Malachi Corley,2,,1,https://www.clevelandbrowns.com/team/depth-chart,https://www.nfl.com/injuries/
+DAL,Defense,CB,1,Joey Porter Jr.,Questionable,Limited Participation in Practice,"Ankle, Foot",Shavon Revel Jr.,2,,1,https://www.dallascowboys.com/team/depth-chart,https://www.nfl.com/injuries/
+DAL,Defense,CB,2,DaRon Bland,Questionable,Limited Participation in Practice,Ankle,Cobie Durant,2,,1,https://www.dallascowboys.com/team/depth-chart,https://www.nfl.com/injuries/
+DET,Offense,WR,2,Amon-Ra St. Brown,Questionable,Limited Participation in Practice,Rib,DeAndre Carter,2,,1,https://www.detroitlions.com/team/depth-chart,https://www.nfl.com/injuries/
+JAX,Offense,C,1,Robert Hainsey,Questionable,Limited Participation in Practice,Concussion,Jonah Monheim,2,,1,https://www.jaguars.com/team/depth-chart,https://www.nfl.com/injuries/
+KC,Defense,CB,2,Mansoor Delane,Questionable,Full Participation in Practice,Shoulder,Kristian Fulton,2,,1,https://www.chiefs.com/team/depth-chart,https://www.nfl.com/injuries/
+LA,Defense,CB,1,Trent McDuffie,Questionable,Limited Participation in Practice,Back,Cam Lampkin,2,,1,https://www.therams.com/team/depth-chart,https://www.nfl.com/injuries/
+LA,Special Teams,LS,1,Joe Cardona,Questionable,Limited Participation in Practice,Ankle,,,,1,https://www.therams.com/team/depth-chart,https://www.nfl.com/injuries/
+LA,Defense,OLB,2,Myles Garrett,Questionable,Did Not Participate In Practice,"Knee, Not injury related - resting player",Josaiah Stewart,2,,1,https://www.therams.com/team/depth-chart,https://www.nfl.com/injuries/
+LA,Defense,S,2,Kam Curl,Questionable,Limited Participation in Practice,Toe,Jaylen McCollough,2,,1,https://www.therams.com/team/depth-chart,https://www.nfl.com/injuries/
+MIN,Offense,WR,2,Jordan Addison,Questionable,Limited Participation in Practice,Thumb,,,,1,https://www.vikings.com/team/depth-chart,https://www.nfl.com/injuries/
+NE,Offense,RB,1,Rhamondre Stevenson,Questionable,Limited Participation in Practice,Knee,Corey Kiner,3,,1,https://www.patriots.com/team/depth-chart,https://www.nfl.com/injuries/
+NE,Offense,WR,1,A.J. Brown,Questionable,Limited Participation in Practice,"Ankle, Knee",Efton Chism III,2,,1,https://www.patriots.com/team/depth-chart,https://www.nfl.com/injuries/
+NYJ,Defense,DL,1,Harrison Phillips,Questionable,Full Participation in Practice,Ankle,Jack Heflin,2,,1,https://www.newyorkjets.com/team/depth-chart,https://www.nfl.com/injuries/
+NYJ,Defense,NB,1,Jarvis Brownlee Jr.,Questionable,Limited Participation in Practice,Illness,D'Angelo Ponds,2,,1,https://www.newyorkjets.com/team/depth-chart,https://www.nfl.com/injuries/
+NYJ,Offense,WR,1,Garrett Wilson,Questionable,Full Participation in Practice,Concussion,Omar Cooper Jr.,2,Questionable,1,https://www.newyorkjets.com/team/depth-chart,https://www.nfl.com/injuries/
+NYJ,Offense,WR,2,Adonai Mitchell,Questionable,Full Participation in Practice,Knee,Tim Patrick,2,,1,https://www.newyorkjets.com/team/depth-chart,https://www.nfl.com/injuries/
+SF,Defense,LCB,1,Renardo Green,Questionable,Limited Participation in Practice,Back,,,,1,https://www.49ers.com/team/depth-chart,https://www.nfl.com/injuries/
+SF,Offense,LT,1,Trent Williams,Questionable,Did Not Participate In Practice,Shoulder,Vederian Lowe,2,,1,https://www.49ers.com/team/depth-chart,https://www.nfl.com/injuries/
+SF,Defense,NB,1,Upton Stout,Questionable,Limited Participation in Practice,"Shoulder, Neck",,,,1,https://www.49ers.com/team/depth-chart,https://www.nfl.com/injuries/
+SF,Defense,RCB,1,Deommodore Lenoir,Questionable,Limited Participation in Practice,Foot,Ephesians Prysock,2,,1,https://www.49ers.com/team/depth-chart,https://www.nfl.com/injuries/
+SF,Defense,WILL,1,Dre Greenlaw,Questionable,Limited Participation in Practice,Knee,Garret Wallow,2,,1,https://www.49ers.com/team/depth-chart,https://www.nfl.com/injuries/

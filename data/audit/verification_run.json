@@ -1,0 +1,70 @@
+{
+ "generated_at": "2026-11-14",
+ "retrieved_at": "2026-11-14",
+ "method": "published data/nfl/*.tsv diffed against an independent transcription of the official pages in audit/official_snapshot_2026_w10.py",
+ "sources": {
+  "standings": "https://www.nfl.com/standings/division/2026/REG",
+  "standings_league": "https://www.nfl.com/standings/league/2026/REG",
+  "schedule": "https://www.nfl.com/schedules/2026/REG/week/10/",
+  "injuries": "https://www.nfl.com/injuries/league/2026/reg10"
+ },
+ "results": [
+  {
+   "table": "standings",
+   "source": "https://www.nfl.com/standings/division/2026/REG",
+   "rows_published": 32,
+   "rows_official": 32,
+   "cells_compared": 384,
+   "mismatches": [],
+   "rows_unmatched": [],
+   "teams_missing_from_published": [],
+   "available_but_unpublished_columns": [
+    "last5"
+   ],
+   "ok": true
+  },
+  {
+   "table": "schedule",
+   "source": "https://www.nfl.com/schedules/2026/REG/week/10/",
+   "rows_published": 14,
+   "rows_official": 14,
+   "cells_compared": 70,
+   "mismatches": [],
+   "rows_unmatched": [],
+   "teams_missing_from_published": [],
+   "ok": true
+  },
+  {
+   "table": "week10_byes",
+   "source": "https://www.nfl.com/schedules/2026/REG/week/10/",
+   "rows_published": 4,
+   "rows_official": 4,
+   "cells_compared": 4,
+   "mismatches": [],
+   "rows_unmatched": [],
+   "teams_missing_from_published": [],
+   "ok": true
+  },
+  {
+   "table": "injuries",
+   "source": "https://www.nfl.com/injuries/league/2026/reg10",
+   "rows_published": 345,
+   "rows_official": 345,
+   "cells_compared": 1725,
+   "mismatches": [],
+   "rows_unmatched": [],
+   "teams_missing_from_published": [],
+   "published_rows_not_in_this_read": [],
+   "note": "The official page prints 28 club tables: the four clubs on bye (CHI, DEN, PHI, TB) have no table in Week 10. rows_official is therefore lower than rows_published whenever the published file also carries bye-week rows from elsewhere; see published_rows_not_in_this_read.",
+   "ok": true
+  }
+ ],
+ "totals": {
+  "cells_compared": 2183,
+  "mismatches": 0,
+  "rows_unmatched": 0,
+  "tables_ok": 4,
+  "tables": 4
+ },
+ "ok": true
+}

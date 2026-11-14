@@ -1,0 +1,61 @@
+{
+ "generated_at": "2026-11-14",
+ "title": "What changed in this round",
+ "session": "arena/9cc1eaac-x1",
+ "items": [
+  {
+   "what": "Every published Week 10 table re-read from the official pages and diffed cell by cell",
+   "before": "301 of 345 injury rows never re-checked (flag I-17)",
+   "after": "2,183 cells compared, 0 mismatches",
+   "evidence": "data/audit/verification_run.json",
+   "source": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "what": "The five-club depth pilot quantified against the 31-club collection already in the repo",
+   "before": "6 starters reported as ruled Out, presented as the count",
+   "after": "31 across 31 clubs; the pilot is now labelled a subset",
+   "evidence": "data/audit/full_depth_join.json",
+   "source": "https://www.packers.com/team/depth-chart"
+  },
+  {
+   "what": "The live-pipeline tree made reachable from the landing page and the nav",
+   "before": "15 pages with no inbound link; the reachability check skipped the tree",
+   "after": "linked from index.html and the nav; the check now asserts every tree",
+   "evidence": "tools/check_links.py",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/live/index.html"
+  },
+  {
+   "what": "The verify-site workflow made green again",
+   "before": "tools/check_links.py failed with 111 errors on main",
+   "after": "0 errors; the two causes were a JS-template parse bug and a missing per-tree contract",
+   "evidence": "tools/check_links.py",
+   "source": "https://github.com/karagemop466-tech/X1/actions"
+  },
+  {
+   "what": "A single review queue generated from four registers",
+   "before": "four separate flag counts (6, 12, 17, 34) in four documents",
+   "after": "one table, one count, one source link per row",
+   "evidence": "data/audit/review_queue.json",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/flags.json"
+  },
+  {
+   "what": "A decision table with what is known, what is missing and what would close each gap",
+   "before": "18 questions listed, none showing the evidence that would settle it",
+   "after": "7 decision-critical questions with a recommended path and the decision each unblocks",
+   "evidence": "data/audit/decision_questions.json",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json"
+  },
+  {
+   "what": "A suggestions board ranked by what changes a number fastest",
+   "before": "12 proposals with impact/effort only",
+   "after": "10 options with dependency, reversibility and a first step, plus a recommended four-step path",
+   "evidence": "data/audit/suggestion_board.json",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/suggestions.json"
+  }
+ ],
+ "unchanged": [
+  "No published value was edited to make a check pass. All four tables verified as published.",
+  "The four parallel site trees keep their own content, stylesheet and navigation.",
+  "The existing gate thresholds, reward formula and strategy registers are untouched."
+ ]
+}
