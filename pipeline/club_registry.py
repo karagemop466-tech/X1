@@ -14,7 +14,8 @@ from __future__ import annotations
 
 import json
 import os
-from typing import Dict, List, Optional, Tuple
+from datetime import datetime, timezone
+from typing import Dict, List, Tuple
 from urllib.parse import urlparse
 
 from . import htmlutil as H
@@ -66,16 +67,46 @@ def load_previous() -> Dict[str, str]:
 
 def save(mapping: Dict[str, str], source_url: str) -> None:
     os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
+    rows = [
+        {
+            "team_slug": slug,
+            "club_domain": domain,
+            "official_site": f"https://www.{domain}",
+            "_source_url": source_url,
+            "_source_label": "NFL.com — Official Sites of all 32 NFL Teams",
+            "_source_org": "NFL",
+            "_retrieved_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "_flags": [],
+            "_unverified": [],
+            "_verified": True,
+        }
+        for slug, domain in sorted(mapping.items())
+    ]
     with open(DATA_PATH, "w", encoding="utf-8") as handle:
         json.dump(
             {
                 "dataset": "club_registry",
                 "title": "Official club sites, as listed by the league",
+                "source": {
+                    "url": source_url,
+                    "label": "NFL.com — Official Sites of all 32 NFL Teams",
+                    "org": "NFL",
+                },
+                "columns": ["team_slug", "club_domain", "official_site"],
                 "source_url": source_url,
                 "source_label": "NFL.com — Official Sites of all 32 NFL Teams",
                 "source_org": "NFL",
                 "count": len(mapping),
                 "by_slug": mapping,
+                "rows": rows,
+                "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+                "verification": {
+                    "rows": len(rows),
+                    "rows_verified": len(rows),
+                    "rows_flagged": 0,
+                    "unverified_cells": 0,
+                    "flagged_reasons": {},
+                },
             },
             handle,
             indent=1,
