@@ -93,7 +93,13 @@ for path in files:
         text = fh.read()
     base = os.path.dirname(path)
 
+    # hrefs inside <script> blocks are runtime templates (e.g. href="${r._source_url}"),
+    # not static markup links; the live pipeline's row links are validated against the
+    # datasets by scripts/pipeline/verify_site.py. Scan markup only.
+    markup = re.sub(r"<script\b.*?</script\s*>", " ", text, flags=re.S | re.I)
+
     is_dashboard = rel.split(os.sep)[0] == "dashboard"
+    is_live = rel.split(os.sep)[0] == "live"
     is_research = rel.split(os.sep)[0] == "research"
     # integration addendum: site/ is the snapshot annex tree; its contract (stylesheet,
     # per-row sources, host tiers) is asserted by scripts/verify_site_annex.py
@@ -106,6 +112,13 @@ for path in files:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/styles.css" in text, f"{rel}: links the research stylesheet")
         check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+    elif is_live:
+        # live-pipeline section (session arena/d577959f-x1): JS-rendered pages with
+        # their own stylesheet (assets/x1-live/site.css) and their own contract
+        # (scripts/pipeline/verify_site.py). The snapshot date and every table row
+        # are loaded at runtime from data/pipeline/*.json, which that checker
+        # validates row by row, so they are not asserted here.
+        check("assets/x1-live/site.css" in text, f"{rel}: links its stylesheet")
     elif not is_dashboard:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/site.css" in text, f"{rel}: links the stylesheet")
@@ -114,7 +127,7 @@ for path in files:
         # the parallel session's dashboard has its own contract, asserted separately
         check("site.css" in text or "style.css" in text, f"{rel}: links its stylesheet")
 
-    for url in HREF.findall(text):
+    for url in HREF.findall(markup):
         if url.startswith("#") or url.startswith("mailto:"):
             continue
         if url.startswith("http"):
@@ -132,6 +145,9 @@ reachable = {os.path.normpath(os.path.join(ROOT, "index.html"))}
 _dash = os.path.normpath(os.path.join(ROOT, "dashboard", "index.html"))
 if os.path.exists(_dash):
     reachable.add(_dash)
+_live = os.path.normpath(os.path.join(ROOT, "live", "index.html"))
+if os.path.exists(_live):
+    reachable.add(_live)
 frontier = list(reachable)
 while frontier:
     cur = frontier.pop()
@@ -146,10 +162,12 @@ while frontier:
             frontier.append(tgt)
 
 # Orphans are computed per site: this session's pages hang off index.html, the parallel
-# session's data dashboard hangs off dashboard/index.html (linked from our nav footer).
+# session's data dashboard hangs off dashboard/index.html (linked from our nav footer),
+# and the live-pipeline section hangs off live/index.html (also linked from the main nav).
+# Their internal linking is each tree's own contract, asserted by its own checker.
 for path in files:
     rel = os.path.relpath(path, ROOT)
-    if rel.split(os.sep)[0] in ("dashboard", "research"):
+    if rel.split(os.sep)[0] in ("dashboard", "research", "live"):
         continue
     check(path in reachable, f"{rel}: reachable from index.html")
 
@@ -199,7 +217,10 @@ def _audit_tree(html_paths, css_path, js_root, label):
     hooks = _js_hooks(js_root)
     used = set()
     for _p in html_paths:
-        for _m in _re.finditer(r'class="([^"]*)"', open(_p, encoding="utf-8").read()):
+        # strip <script> blocks: class names inside JS template literals
+        # (class="${cls}") are runtime values, not stylesheet consumers.
+        _txt = _re.sub(r"<script\b.*?</script\s*>", " ", open(_p, encoding="utf-8").read(), flags=_re.S | _re.I)
+        for _m in _re.finditer(r'class="([^"]*)"', _txt):
             used |= set(_m.group(1).split())
     missing = sorted(used - defined - hooks)
     for _c in missing:
@@ -209,12 +230,16 @@ def _audit_tree(html_paths, css_path, js_root, label):
     check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
 
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
-_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site")]
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site", "live")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
     _audit_tree(_res, os.path.join(ROOT, "research", "assets", "styles.css"),
                 os.path.join(ROOT, "research", "assets"), "research/assets/styles.css")
+_livex = sorted(glob.glob(os.path.join(ROOT, "live", "*.html")))
+if _livex:
+    _audit_tree(_livex, os.path.join(ROOT, "assets", "x1-live", "site.css"),
+                os.path.join(ROOT, "assets", "x1-live"), "assets/x1-live/site.css")
 _annex = sorted(glob.glob(os.path.join(ROOT, "site", "*.html")))
 if _annex:
     _audit_tree(_annex, os.path.join(ROOT, "site", "style.css"),
