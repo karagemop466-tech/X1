@@ -236,6 +236,7 @@ def collect_gamebooks(
     fetched = 0
     pages_read = 0
     without_book = 0
+    mismatched = 0
 
     for page_url in game_center_urls:
         if fetched >= max_games:
@@ -285,6 +286,13 @@ def collect_gamebooks(
         except Exception as exc:
             notes.append(f"{page_url}: Game Book parse failed ({exc})")
             continue
+
+        # The game book names both clubs, so the document is checked against
+        # the matchup that was asked for. A document that does not belong is
+        # rejected rather than recorded against the wrong game.
+        if not _book_matches_slug(book, page_url):
+            mismatched += 1
+            continue
         book = parse_gamebook(text)
         record = book.to_dict()
         if fetched < 2:
@@ -317,7 +325,9 @@ def collect_gamebooks(
         "notes": notes[:50]
         + [
             f"Read {pages_read} Game Center pages; {without_book} of them had no "
-            "published game book because the game had not been played."
+            "published game book because the game had not been played; "
+            f"{mismatched} were rejected because the published document did not "
+            "match the requested matchup."
         ],
     }
     _write(out_dir / "gamebooks.json", {"provenance": provenance, "records": records})
@@ -374,23 +384,43 @@ CURRENT_GAME_RE = re.compile(
 )
 
 
+def _book_matches_slug(book: Any, page_url: str) -> bool:
+    """Check a parsed game book against the matchup that was requested.
+
+    The game book names both clubs, and the Game Center URL names them as
+    well, so the two can be compared. A document that belongs to a different
+    matchup is rejected.
+    """
+    match = re.search(r"/games/(?P<slug>.+?)-(?:\d{4}-[a-z]{3}-\d+)(?:\?|$)", page_url)
+    if not match:
+        return True
+    slug = match.group("slug")
+    tokens = [t for t in slug.split("-at-") if t]
+    if len(tokens) != 2:
+        return True
+    matchup = (book.matchup or "").lower()
+    if not matchup:
+        return False
+    for token in tokens:
+        # A slug token is the club's short name, which is the last word of the
+        # club's full name in the game book.
+        if token.lower() not in matchup:
+            return False
+    return True
+
+
 def _current_game_id(html_text: str) -> Optional[str]:
     """The league game id of the game the Game Center page is showing."""
     match = CURRENT_GAME_RE.search(html_text)
     return match.group("gid") if match else None
 
 
-#: The Game Center page labels the link to the game's own game book.
+#: The Game Center page labels the link to the game's own game book. The link
+#: appears both as rendered HTML and inside the page's serialized payload,
+#: where the quotes are backslash-escaped; the pattern accepts either form.
 GAMEBOOK_LABELLED_RE = re.compile(
-    r"Download Game Book \(PDF\).{0,600}?href="
-    r"(?P<url>https://static\.www\.nfl\.com/[^\"]*?/gamecenter/[0-9a-f\-]+\.pdf)",
-    re.S,
-)
-
-#: The same link inside the page's serialized payload.
-GAMEBOOK_PAYLOAD_RE = re.compile(
-    r'"linkName":"Download Game Book \(PDF\)".{0,600}?"href":'
-    r'"(?P<url>https://static\.www\.nfl\.com/[^\"]*?/gamecenter/[0-9a-f\-]+\.pdf)"',
+    r"Download Game Book \(PDF\).{0,900}?"
+    r"(?P<url>https://static\.www\.nfl\.com/[^\\\"']*?/gamecenter/[0-9a-f\-]+\.pdf)",
     re.S,
 )
 
@@ -404,10 +434,9 @@ def _gamebook_pdf_url(html_text: str, game_id: Optional[str] = None) -> Optional
     own game id when one can be read.
     """
     candidates: List[str] = []
-    for pattern in (GAMEBOOK_LABELLED_RE, GAMEBOOK_PAYLOAD_RE):
-        match = pattern.search(html_text)
-        if match:
-            candidates.append(match.group("url"))
+    match = GAMEBOOK_LABELLED_RE.search(html_text)
+    if match:
+        candidates.append(match.group("url"))
     if game_id:
         for url in candidates:
             if game_id in url:
