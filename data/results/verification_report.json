@@ -1,0 +1,92 @@
+{
+ "generated_at": "2026-11-14",
+ "weeks": {
+  "1": {
+   "rows": 16,
+   "expected": 16,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_01.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-1"
+  },
+  "2": {
+   "rows": 16,
+   "expected": 16,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_02.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-2"
+  },
+  "3": {
+   "rows": 16,
+   "expected": 16,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_03.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-3"
+  },
+  "4": {
+   "rows": 16,
+   "expected": 16,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_04.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-4"
+  },
+  "5": {
+   "rows": 15,
+   "expected": 15,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_05.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-5"
+  },
+  "6": {
+   "rows": 14,
+   "expected": 14,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_06.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-6"
+  },
+  "7": {
+   "rows": 14,
+   "expected": 14,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_07.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7"
+  },
+  "8": {
+   "rows": 14,
+   "expected": 14,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_08.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8"
+  },
+  "9": {
+   "rows": 15,
+   "expected": 15,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_09.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9"
+  },
+  "10": {
+   "rows": 1,
+   "expected": 1,
+   "count_ok": true,
+   "evidence": "data/results/raw/week_10.md",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  }
+ },
+ "checks": {
+  "week_counts_ok": true,
+  "rows_total": 137,
+  "pf_pa_mismatches": [],
+  "wlt_mismatches": [],
+  "total_points_feed": 6291,
+  "total_points_standings": 6291,
+  "total_points_ok": true,
+  "standings_source": "https://www.nfl.com/standings/ (via data/standings_2026.csv)",
+  "all_green": true
+ },
+ "mirror_reference": {
+  "source": "https://github.com/nflverse/nfldata (third-party mirror, NOT official)",
+  "games_compared": 137,
+  "disagreements": [],
+  "note": "Reference only. The mirror never changes a published value."
+ }
+}

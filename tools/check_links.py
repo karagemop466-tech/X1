@@ -266,6 +266,9 @@ for path in files:
         continue
     if rel.split(os.sep)[0] == "hub":
         check(path in reachable or path == _hubroot, f"{rel}: reachable from index.html")
+    elif rel.split(os.sep)[0] == "lab":
+        check(path in reachable or path == os.path.normpath(os.path.join(ROOT, "lab", "index.html")),
+              f"{rel}: reachable from index.html")
     else:
         check(path in reachable, f"{rel}: reachable from index.html")
 
@@ -358,8 +361,10 @@ def _audit_tree(html_paths, css_path, js_root, label):
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
 # Added by session arena/fcc11e05-x1: app/ is audited against its own stylesheet
 # (app/assets/site.css) below, so it is excluded from the main-site audit here.
+# Added by session arena/56769365-x1 (additive): lab/ is a seventh page tree that links
+# ../app/assets/site.css, so it is audited against that stylesheet below, exactly as app/ is.
 _mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
-         ("dashboard", "research", "site", "live", "hub", "app")]
+         ("dashboard", "research", "site", "live", "hub", "app", "lab")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -394,6 +399,12 @@ _appx = sorted(glob.glob(os.path.join(ROOT, "app", "*.html")))
 if _appx:
     _audit_tree(_appx, os.path.join(ROOT, "app", "assets", "site.css"),
                 os.path.join(ROOT, "app", "assets"), "app/assets/site.css")
+# Added by session arena/56769365-x1 (additive only): the line desk reuses the app stylesheet,
+# so it is audited against the same file rather than against assets/site.css.
+_labx = sorted(glob.glob(os.path.join(ROOT, "lab", "*.html")))
+if _labx:
+    _audit_tree(_labx, os.path.join(ROOT, "app", "assets", "site.css"),
+                os.path.join(ROOT, "app", "assets"), "lab -> app/assets/site.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

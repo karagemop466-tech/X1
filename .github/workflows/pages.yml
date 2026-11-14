@@ -44,6 +44,17 @@ jobs:
       # source link or an explicit "no official source" marker.
       - name: Verify the unified dashboard
         run: python3 tools/verify_app.py
+      # Added by session arena/56769365-x1 (additive only). The line desk: links resolve,
+      # every data row is sourced or explicitly marked, no leaked template values.
+      - name: Verify the line desk
+        run: python3 tools/lab/build_site.py
+      # Added by session arena/56769365-x1 (additive only). The verifiers above audit the
+      # repository; this one audits the tree that is actually uploaded. It replays the copy
+      # and sed steps below into a temp dir and crawls the result. Found two real defects
+      # that no repository-level check could see (a missing src= rewrite and a folder that
+      # was linked but never copied).
+      - name: Crawl the assembled tree for broken links
+        run: python3 tools/verify_deployed_tree.py
       # Added by session arena/bf27a3bd-x1 (additive only). Verifies the new
       # data stores (price snapshots, origination ledger, verified results feed,
       # leaderboard split, replacement depth, official correlations, demotion
@@ -82,9 +93,21 @@ jobs:
           # cannot drift apart and there is no redirect. The previous root landing
           # page is preserved at /legacy-fourth-down.html rather than deleted.
           cp -r app _site/
+          # Added by session arena/56769365-x1: the line desk (price snapshots, verified
+          # results, originated lines, signal-vs-staking leaderboard, demotion gate).
+          # Additive; every tree above is still copied and still reachable.
+          cp -r lab _site/
+          # Added by session arena/56769365-x1: hub/index.html links ../archive/previous-site/
+          # to a committed 96 KB archive that was never copied, so that link has been dead on
+          # the published site. Found by tools/verify_deployed_tree.py, which assembles the
+          # upload tree instead of auditing the repository. Additive: one copy line.
+          cp -r archive _site/
           cp index.html _site/legacy-fourth-down.html
           cp app/index.html _site/index.html
-          sed -i -E 's#href="assets/#href="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html
+          # src="assets/ is rewritten too: the served root is app/index.html, which loads
+          # <script src="assets/app.js">. Without this the script 404s at /assets/app.js
+          # and the root page’s table filter and column sort silently do nothing.
+          sed -i -E 's#href="assets/#href="app/assets/#g; s#src="assets/#src="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true

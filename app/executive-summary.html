@@ -16,22 +16,20 @@
 <a class="active" href="executive-summary.html">Executive summary</a>
 <div class="grp">Official data</div>
 <a class="" href="standings.html">Standings</a>
-<a class="" href="results.html">Results feed</a>
 <a class="" href="schedule.html">Week 10 slate</a>
+<a class="" href="results.html">Results &amp; ROI</a>
 <a class="" href="injuries.html">Injury report</a>
 <a class="" href="depth.html">Depth charts</a>
 <a class="" href="deficiency.html">Deficiency watch</a>
 <a class="" href="team-stats.html">Team stats</a>
 <div class="grp">Model</div>
 <a class="" href="lines.html">Originated lines</a>
-<a class="" href="origination.html">Origination</a>
-<a class="" href="prices.html">Price snapshots</a>
+<a class="" href="origination.html">Origination &amp; prices</a>
 <a class="" href="correlation.html">Correlation</a>
 <div class="grp">Strategy</div>
 <a class="" href="strategies.html">Strategy library</a>
 <a class="" href="validation.html">Validation gates</a>
 <a class="" href="leaderboard.html">Leaderboard</a>
-<a class="" href="demotion.html">Demotion gate</a>
 <a class="" href="props.html">Props &amp; parlays</a>
 <div class="grp">Decisions</div>
 <a class="" href="requirements.html">Requirements</a>
@@ -42,6 +40,7 @@
 <a class="" href="verification.html">Verification ledger</a>
 <a class="" href="flagged.html">Flagged for review</a>
 <a class="" href="repo-review.html">Repo review</a>
+<a class="" href="stores.html">Verified stores</a>
 </nav>
   <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
 </aside>
@@ -54,29 +53,6 @@
     </div>
     <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
   </div>
-<section class="card"><h2>What changed in this batch</h2>
-<p>Three stores and one gate now exist because the brief asked for them, and every number in them is
-sourced or blank:</p>
-<ul class="tight">
-  <li><b>Price-snapshot store</b> (<a href="prices.html">Price snapshots</a>): opening and closing
-  numbers recorded separately for every market originated. No source records 2026 opening numbers, so
-  those cells are blank and flagged &mdash; never inferred.</li>
-  <li><b>Verified results feed</b> (<a href="results.html">Results feed</a>): all 137 played 2026
-  games transcribed line by line from official NFL pages and Game Book PDFs, double-entry checked
-  against the mirror (137/137, zero mismatches), so backtests and ROI are computable at row level.</li>
-  <li><b>Origination order</b> (<a href="origination.html">Origination</a>): side first, then total,
-  then moneyline, with model fair line, market line and difference as three separate columns.</li>
-  <li><b>Leaderboard split</b> (<a href="leaderboard.html">Leaderboard</a>): signal (flat stake, luck
-  removed) and staking scored in separate blocks, so a lucky staking run cannot mask a bad signal.</li>
-  <li><b>Replacement depth</b> (<a href="deficiency.html">Deficiency watch</a>): the depth of every
-  replacement (2nd/3rd/4th string) is tracked, not just that a replacement happened.</li>
-  <li><b>Correlations</b> (<a href="correlation.html">Correlation</a>): the decision set is computed
-  from official numbers only, with n published beside every value; mirror-derived numbers are flagged
-  research and suppressed from decisions.</li>
-  <li><b>Demotion gate G-13</b> (<a href="demotion.html">Demotion gate</a>): pre-registered triggers
-  send a live strategy back to paper; thresholds await owner confirmation on the
-  <a href="suggestions.html">suggestion board</a>.</li>
-</ul></section>
 <div class="kpis">
 <div class="kpi ok"><div class="v">2929</div><div class="l">value checks passed</div><div class="s">0 mismatches</div></div>
 <div class="kpi bad"><div class="v">39</div><div class="l">starters ruled Out</div><div class="s">corrected join</div></div>
@@ -130,6 +106,26 @@ stop specific parts of the system from working: <b>Q-01</b> bankroll, <b>Q-02</b
 <p>The <a href="suggestions.html">suggestion board</a> lists twenty options, each with three paths, a
 cost, an effort, a risk and a recommendation, and each waiting for a decision rather than being
 built. Nothing on that board has been implemented without a recorded choice.</p></section>
+<section class="card"><h2>What the 2026-11-14 second round added (session arena-1d3600f8-x1)</h2>
+<ul class="tight">
+  <li><b>Verified results feed</b> — 137 settled games from the official pages, double-entry checked
+  against the standings (0 mismatches; league totals 6,291 = 6,291). ROI is now computable at all;
+  see <a href="results.html">Results &amp; ROI</a>.</li>
+  <li><b>Price-snapshot store</b> — opening and closing slots for all 56 originated markets, with a
+  capture log and an append-only recorder. Opening quotes do not exist in any permitted source and
+  stay blank and flagged (Q-02); see <a href="origination.html">Origination &amp; prices</a>.</li>
+  <li><b>Origination order codified</b> — side, then total, then moneyline; fair line, market line and
+  the difference published as three separate columns.</li>
+  <li><b>Signal vs staking separated</b> on the leaderboard — final grade = min(signal, staking);
+  a lucky staking run cannot mask a bad signal (currently 0 of 16 mirror-window strategies are
+  rankable; see <a href="leaderboard.html">Leaderboard</a>).</li>
+  <li><b>Depth of replacement tracked</b> — 189 on-report starters: 168 replacements at 2nd string,
+  3 at 3rd string, 18 unreadable and flagged (see <a href="deficiency.html">Deficiency</a>).</li>
+  <li><b>Official-only correlations</b> — 15 pairs computed strictly from verified tables, every value
+  publishing n, p and CI (see <a href="correlation.html">Correlation</a>).</li>
+  <li><b>Demotion gate G8</b> — six mechanical triggers send a live strategy back to paper, with
+  action, re-entry and logging defined (see <a href="validation.html">Validation</a>).</li>
+</ul></section>
   <footer class="pagefoot">
     X1 · generated by <code>tools/build_app.py</code> · every table row links to the official page the value was read from ·
     a value the source does not print is shown as <span class="blank">&mdash;</span> and flagged, never filled in.<br>
