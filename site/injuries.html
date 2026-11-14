@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Injuries &amp; Deficiency — X1</title>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+  <nav class="navlinks" id="nav"></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="kicker">Data · Injuries</div>
+    <h1>Injury tracking and lineup deficiency</h1>
+    <p>The league's official injury report, cross-referenced with each club's own depth
+       chart to answer the question the brief asks: when a starter cannot play, which
+       string of backup has to replace them — 2nd, 3rd or 4th?</p>
+  </div>
+
+  <div class="grid kpi">
+    <div class="card kpi"><div class="value" id="k-entries">—</div><div class="label">Official injury entries</div></div>
+    <div class="card kpi bad"><div class="value" id="k-out">—</div><div class="label">Players ruled Out</div></div>
+    <div class="card kpi warn"><div class="value" id="k-doubt">—</div><div class="label">Doubtful</div></div>
+    <div class="card kpi"><div class="value" id="k-quest">—</div><div class="label">Questionable</div></div>
+    <div class="card kpi"><div class="value" id="k-slots">—</div><div class="label">Depth-chart slots watched</div></div>
+    <div class="card kpi bad"><div class="value" id="k-deep">—</div><div class="label">Starters out, 3rd string or worse next up</div></div>
+  </div>
+
+  <h2 style="margin:18px 0 8px" id="deficiency">Deficiency watch</h2>
+  <div class="note">Derived, not scraped. For every position slot on every club's own
+    depth chart: the starter is column 1, and the replacement is the next column whose
+    player is not ruled Out on the official injury report. <strong>replacement_depth</strong>
+    is the string number of that player — 2 means the 2nd string, 4 means the 4th. Each
+    row links to both official sources: the club's depth chart and the league's injury
+    report.</div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>Starters down and the backup who has to replace them</h2>
+      <span data-badge-for="tbl-def"></span>
+    </div>
+    <p class="count" data-meta-for="tbl-def"></p>
+    <div class="toolbar">
+      <select data-team-for="tbl-def"><option value="all">All teams</option></select>
+      <input type="search" data-filter-for="tbl-def" placeholder="Filter by team, position or player…">
+      <label><input type="checkbox" data-flagged-for="tbl-def"> Flagged only</label>
+      <span class="spacer"></span>
+      <span class="count" data-count-for="tbl-def"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="data" id="tbl-def" data-src="data/deficiency.json" data-autofill="team"
+             data-columns="team_name,unit,position,slot,starter,starter_game_status,starter_practice_status,replacement,replacement_depth,replacement_game_status,severity"
+             data-page="50"></table>
+    </div>
+    <div class="pager" data-pager-for="tbl-def"></div>
+    <p style="margin-top:10px;font-size:13px;color:var(--muted)">Severity scale:
+      Out = 3, Doubtful = 2, Questionable = 1, not listed = 0. Sort is by severity, so
+      the most damaged slots are on the first page.</p>
+  </div>
+
+  <h2 style="margin:18px 0 8px">Official injury report</h2>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>Every entry on the current official report</h2>
+      <span data-badge-for="tbl-inj"></span>
+    </div>
+    <p class="count" data-meta-for="tbl-inj"></p>
+    <div class="toolbar">
+      <select data-team-for="tbl-inj"><option value="all">All teams</option></select>
+      <select data-status-for="tbl-inj">
+        <option value="all">Any game status</option>
+        <option value="out">Out</option>
+        <option value="doubtful">Doubtful</option>
+        <option value="questionable">Questionable</option>
+        <option value="not listed">Not listed</option>
+      </select>
+      <input type="search" data-filter-for="tbl-inj" placeholder="Filter by player, position or injury…">
+      <label><input type="checkbox" data-flagged-for="tbl-inj"> Flagged only</label>
+      <span class="spacer"></span>
+      <span class="count" data-count-for="tbl-inj"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="data" id="tbl-inj" data-src="data/injuries.json" data-autofill="team"
+             data-columns="team_name,player,position,injuries,practice_status,game_status,game_date,kickoff_et,broadcast"
+             data-page="50"></table>
+    </div>
+    <div class="pager" data-pager-for="tbl-inj"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>What the designations mean, according to the league</h2>
+    <p>These are the league's own definitions, not ours:</p>
+    <ul class="tight">
+      <li><strong>Practice status</strong> — Did Not Participate; Limited Participation
+        (less than 100% of a player's normal repetitions); Full Participation (100%).</li>
+      <li><strong>Game status</strong> — Out (will not play); Doubtful (unlikely to
+        participate); Questionable (uncertain). The former <em>Probable</em> category was
+        removed because roughly 95% of players listed as Probable did in fact play.</li>
+      <li>A player certain to play is removed from the game status report entirely, even
+        if he appeared in the practice report that week. A blank game status on this
+        table therefore means the club did not flag him, not that the data is missing.</li>
+    </ul>
+    <p>Source:
+      <a href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener">NFL.com — Competition Committee injury report revisions &#8599;</a>
+      and the current report at
+      <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">nfl.com/injuries &#8599;</a>.</p>
+    <div class="note warn">We deliberately do not convert a designation into a probability
+      of playing. Doing so requires historical play rates by designation, which needs a
+      results feed no official source provides (<a href="questions.html">Q-12, Q-13</a>).
+      An invented number here would look like evidence and would not be.</div>
+  </div>
+</main>
+
+<footer class="footer">
+  X1 — official injury report cross-referenced with official club depth charts.
+</footer>
+<script src="assets/js/site.js"></script>
+<script>
+(async function () {
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  try {
+    const inj = await (await fetch('data/injuries.json', {cache: 'no-store'})).json();
+    const rows = inj.rows || [];
+    const count = (s) => rows.filter(r => (r.game_status || '').toLowerCase() === s).length;
+    set('k-entries', rows.length);
+    set('k-out', count('out'));
+    set('k-doubt', count('doubtful'));
+    set('k-quest', count('questionable'));
+  } catch (e) {}
+  try {
+    const def = await (await fetch('data/deficiency.json', {cache: 'no-store'})).json();
+    const rows = def.rows || [];
+    set('k-slots', rows.length);
+    set('k-deep', rows.filter(r => (r.severity || 0) >= 3 && (r.replacement_depth || 2) >= 3).length);
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

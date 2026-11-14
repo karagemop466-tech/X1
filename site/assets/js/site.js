@@ -260,4 +260,16 @@ function fillTeamFilter(id, rows) {
     sorted.map(([ab, name]) => `<option value="${ab}">${name}</option>`).join('');
 }
 
+// Exposed so a page can switch which table inside a dataset it is showing
+// (team-stats has nine) and re-render without reloading the page.
+window.__x1Reload = function (id) {
+  const table = document.getElementById(id);
+  if (table && state[id] && state[id].payload) render(table, state[id].payload);
+};
+window.__x1Rows = function (id) {
+  const table = document.getElementById(id);
+  if (!table || !state[id] || !state[id].payload) return [];
+  return getRows(state[id].payload, table.dataset.table);
+};
+
 document.addEventListener('DOMContentLoaded', boot);

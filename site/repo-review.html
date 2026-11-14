@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo Review — X1</title>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+  <nav class="navlinks" id="nav"></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="kicker">Repo work · Review</div>
+    <h1>Repository review, file by file</h1>
+    <p>Every tracked file, hashed and line counted, run through a fixed set of mechanical
+       review rules. Each row links to the file on GitHub so you can open it and check the
+       finding yourself.</p>
+  </div>
+
+  <div class="note">The review is generated, not written by hand. The rules are mechanical
+    — empty file, missing trailing newline, TODO or FIXME markers, placeholder values,
+    hardcoded-secret shapes, bare <code>except:</code>, debug prints, oversized files and
+    lines, and unclosed HTML. Anything needing judgement is on the
+    <a href="flagged.html">Flagged for Review</a> page instead of being guessed at.
+    Reproduce it with <code>python3 -m pipeline.repo_review</code>.</div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>Files</h2>
+      <span data-badge-for="tbl-repo"></span>
+      <span id="repo-counts"></span>
+    </div>
+    <p class="count" data-meta-for="tbl-repo"></p>
+    <div class="toolbar">
+      <input type="search" data-filter-for="tbl-repo" placeholder="Filter by path or finding…">
+      <label><input type="checkbox" data-flagged-for="tbl-repo"> Flagged only</label>
+      <span class="spacer"></span>
+      <span class="count" data-count-for="tbl-repo"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="data" id="tbl-repo" data-src="data/repo_review.json"
+             data-columns="path,lines_reviewed,bytes,sha256_short,finding,status" data-page="50"></table>
+    </div>
+    <div class="pager" data-pager-for="tbl-repo"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>Findings that need a decision</h2>
+    <div class="path-list">
+      <div class="path">
+        <strong>Repository started with a single file</strong>
+        <p>At the start of this session the repository contained one file: a 4-byte
+          <code>README.md</code>. Everything else — the pipeline, the site, the
+          documentation and the data — was added in this build. The initial commit is
+          the baseline for the diff.</p>
+        <p><a href="https://github.com/karagemop466-tech/X1/commit/dab199ce305bd0168f61f9bbb25b4b601eb45324" target="_blank" rel="noopener">Initial commit dab199c &#8599;</a></p>
+      </div>
+      <div class="path">
+        <strong>Mechanical findings are mostly intentional</strong>
+        <p>Debug <code>print()</code> calls flagged in the pipeline modules are the
+          pipeline's own console output, which is how a scheduled job reports. Bare
+          <code>except:</code> blocks in the parsers are deliberate: a scheduled
+          collector must not crash the run because one page changed. These are visible
+          rather than suppressed so they can be reviewed.</p>
+      </div>
+      <div class="path">
+        <strong>No secrets were found</strong>
+        <p>The hardcoded-secret rule found no credentials in any tracked file. The
+          GitHub token used for <code>git</code> and <code>gh</code> is provided by the
+          environment and is not stored in the repository.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  X1 — repository review, generated from the files themselves.
+</footer>
+<script src="assets/js/site.js"></script>
+<script>
+(async function () {
+  try {
+    const d = await (await fetch('data/repo_review.json', {cache: 'no-store'})).json();
+    const rows = d.rows || [];
+    const flagged = rows.filter(r => r.status !== 'ok').length;
+    const lines = rows.reduce((sum, r) => sum + (r.lines_reviewed || 0), 0);
+    document.getElementById('repo-counts').innerHTML =
+      `<span class="badge info">${rows.length} files</span> ` +
+      `<span class="badge mute">${lines.toLocaleString()} lines reviewed</span> ` +
+      `<span class="badge warn">${flagged} flagged by a rule</span>` +
+      (d.review_commit ? ` <span class="badge mute">commit ${d.review_commit}</span>` : '');
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

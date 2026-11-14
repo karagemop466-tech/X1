@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — X1</title>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+  <nav class="navlinks" id="nav"></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="kicker">Governance · Sources</div>
+    <h1>Source register</h1>
+    <p>Every page this project reads, what it is used for, and what the last run got back
+       from it. "Official" here means published by the league or by a club on its own
+       official site.</p>
+  </div>
+
+  <div class="note">Nothing is published from a source that is not on this list. The
+    allow-list is enforced in code, not by convention:
+    <code>scripts/verify_data.py</code> fails if any row cites a host that is not
+    nfl.com or a club domain the league itself lists.</div>
+
+  <div class="card">
+    <div class="card-head"><h2>Official league sources</h2></div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Source</th><th>Used for</th><th>Official page</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>NFL.com league standings</td>
+            <td>W-L-T, points for and against, home/road/divisional splits</td>
+            <td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">nfl.com/standings &#8599;</a></td>
+            <td><span class="badge ok">verified, 32 rows</span></td>
+          </tr>
+          <tr>
+            <td>NFL.com official injury report</td>
+            <td>Practice status and game status for every listed player</td>
+            <td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">nfl.com/injuries &#8599;</a></td>
+            <td><span class="badge ok">verified, full report</span></td>
+          </tr>
+          <tr>
+            <td>NFL.com team stats (offense and defense)</td>
+            <td>Passing, rushing, receiving, scoring and downs, nine tables</td>
+            <td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">nfl.com/stats &#8599;</a></td>
+            <td><span class="badge ok">verified, 9 tables</span></td>
+          </tr>
+          <tr>
+            <td>NFL.com teams index</td>
+            <td>The authoritative list of official club websites</td>
+            <td><a href="https://www.nfl.com/teams/" target="_blank" rel="noopener">nfl.com/teams &#8599;</a></td>
+            <td><span class="badge ok">verified, 32 clubs</span></td>
+          </tr>
+          <tr>
+            <td>NFL.com injury designation policy</td>
+            <td>The league's own definitions of Out / Doubtful / Questionable and of the practice levels</td>
+            <td><a href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener">competition committee release &#8599;</a></td>
+            <td><span class="badge ok">verified</span></td>
+          </tr>
+          <tr>
+            <td>NFL.com tie-breaking procedures</td>
+            <td>How tied standings are resolved</td>
+            <td><a href="https://www.nfl.com/standings/tiebreakingprocedures" target="_blank" rel="noopener">tie-breaking procedures &#8599;</a></td>
+            <td><span class="badge ok">verified</span></td>
+          </tr>
+          <tr class="flagged">
+            <td>NFL.com schedules</td>
+            <td>Candidate source for game times and results</td>
+            <td><a href="https://www.nfl.com/schedules/2026/REG" target="_blank" rel="noopener">nfl.com/schedules &#8599;</a></td>
+            <td><span class="badge bad">no server-rendered table</span></td>
+          </tr>
+          <tr class="flagged">
+            <td>NFL.com scores</td>
+            <td>Candidate source for results</td>
+            <td><a href="https://www.nfl.com/scores/" target="_blank" rel="noopener">nfl.com/scores &#8599;</a></td>
+            <td><span class="badge bad">no server-rendered table</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-head"><h2>Official club sources</h2>
+      <span id="club-count" class="badge info">loading…</span></div>
+    <p>Depth charts come from each club's own website. The league's teams page is the
+      authority for which domain is official; the pipeline reads it on every run rather
+      than trusting a fixed list. Coverage from the last run:</p>
+    <div id="clubs" class="missing">Loading…</div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-head"><h2>Sources deliberately not used</h2></div>
+    <ul class="tight">
+      <li><strong>Betting prices of any kind.</strong> No official source publishes them,
+        and an unofficial price would be unverifiable by definition.</li>
+      <li><strong>Third-party analytics sites.</strong> Convenient, but not official, and
+        their numbers cannot be checked against a league page.</li>
+      <li><strong>Anything recalled rather than read.</strong> If the value was not on the
+        page at fetch time, it is not in the dataset.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="footer">
+  X1 — sources. Official league and club pages only.
+</footer>
+<script src="assets/js/site.js"></script>
+<script>
+(async function () {
+  try {
+    const reg = await (await fetch('data/club_registry.json', {cache: 'no-store'})).json();
+    const dc = await (await fetch('data/depth_charts.json', {cache: 'no-store'})).json();
+    const bySlug = reg.by_slug || {};
+    const status = {};
+    for (const s of (dc.per_team_sources || [])) status[s.team_abbrev] = s;
+    let html = '<div class="table-wrap"><table class="data"><thead><tr>' +
+      '<th>Club</th><th>Official club domain (as listed by the league)</th>' +
+      '<th>Depth chart</th><th>Page</th></tr></thead><tbody>';
+    const entries = Object.entries(bySlug).sort((a, b) => a[0].localeCompare(b[0]));
+    for (const [slug, domain] of entries) {
+      const info = Object.values(status).find(s => (s.url || '').includes(domain)) || {};
+      const ok = info.status === 'ok';
+      html += `<tr class="${ok ? '' : 'flagged'}"><td>${slug}</td>` +
+        `<td><code>${domain}</code></td>` +
+        `<td>${ok ? '<span class="badge ok">covered</span>' : '<span class="badge bad">unreachable on last run</span>'}</td>` +
+        `<td>${info.url ? `<a class="src" href="${info.url}" target="_blank" rel="noopener">official site &#8599;</a>` : '<span class="missing">—</span>'}</td></tr>`;
+    }
+    html += '</tbody></table></div>';
+    document.getElementById('clubs').outerHTML = html;
+    document.getElementById('club-count').textContent = entries.length + ' clubs';
+    document.getElementById('club-count').className = 'badge ok';
+  } catch (e) {
+    document.getElementById('clubs').textContent = 'Club registry not available yet.';
+  }
+})();
+</script>
+</body>
+</html>
