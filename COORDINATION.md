@@ -596,3 +596,19 @@ Additive-only changes to files owned by other sessions (logged as change request
 - **Their blocked task T4 (depth/deficiency) is now unblocked at scale.** They recorded
   "no official depth-chart source" and a 5-club pilot. This session collects 31 of 32 clubs
   systematically, with the caveat above attached rather than hidden.
+
+### PR #21 (follow-up)
+
+| Item | Value |
+|---|---|
+| PR | <https://github.com/karagemop466-tech/X1/pull/21> |
+| Result | **MERGED** 2026-11-14T04:55:11Z, merge commit `f2cb6e0ae5aa0a59ce945d02df9d27240f23a394` |
+| Content | F-07 (club depth charts are self-reported; packers.com prints "Unofficial, Nov. 10, 2026") + this PR record |
+| Pages deploy | <https://github.com/karagemop466-tech/X1/actions/runs/43558987961> — build success, deploy success |
+| Deployment status | `success` 2026-11-14T04:55:43Z; Pages API reports `built` |
+| Live check | `live/depth-charts.html` renders 1,813 rows, 31 clubs covered, 1,754 verified / 59 flagged, every row linking to its club page |
+
+Two later merges were needed because the scheduled `data-refresh` job committed
+refreshed data to `main` while these PRs were open. Both conflicts were in
+`data/pipeline/*.json`, which are **regenerated artifacts**, not authored content;
+main's (fresher) output was adopted in each case. No authored file was lost.
