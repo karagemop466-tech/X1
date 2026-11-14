@@ -131,8 +131,6 @@ jobs:
           touch _site/.nojekyll
           du -sh _site
 
-      # Added by session arena/907c5baf-x1: the round-2 stores must be published
-      # alongside the site data and satisfy the store contract. Additive.
       - name: Verify round-2 stores are published (Added by session arena/907c5baf-x1)
         run: |
           test -f _site/data/results_feed.json
