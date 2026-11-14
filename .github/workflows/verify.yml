@@ -109,8 +109,8 @@ jobs:
 
       - name: Rebuild round-2 stores and fail if stale (Added by session arena/907c5baf-x1)
         run: |
-          python3 tools/build_results_feed_official.py
-          python3 tools/build_price_store.py
+          python3 tools/build_results_feed_907c.py
+          python3 tools/build_price_store_907c.py
           python3 tools/build_leaderboard_split.py
           python3 tools/build_app.py
-          git diff --exit-code -- data/results_feed.json data/price_snapshots.json data/leaderboard_split.json app
+          git diff --exit-code -- data/results_feed.json data/price_snapshots.json data/leaderboard_split_907c.json app

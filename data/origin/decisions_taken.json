@@ -1,0 +1,133 @@
+{
+ "dataset": "decisions_taken",
+ "title": "Owner decisions taken \u2014 the eight directed improvements (2026-11-14)",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief \u2014 owner's directed improvements (bolded)",
+  "org": "Project brief"
+ },
+ "columns": [
+  "id",
+  "suggestion_id",
+  "decision",
+  "what_was_built",
+  "where",
+  "status"
+ ],
+ "rows": [
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N1",
+   "suggestion_id": "S-01",
+   "decision": "Implement now \u2014 build the price-snapshot store",
+   "what_was_built": "Opening/closing store for every originated market (56 rows), CLV-ready schema, provenance and verification columns per cell. Openings blank (no source records them), closings recorded from the fingerprinted mirror flagged UNVERIFIED until a licensed feed is attached (Q-02).",
+   "where": "data/prices/price_snapshots.csv \u00b7 data/prices/price_feed.json \u00b7 tools/build_originated_markets.py \u00b7 app/prices.html",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N2",
+   "suggestion_id": "S-02",
+   "decision": "Implement now \u2014 build the verified results feed",
+   "what_was_built": "137 completed 2026 games (weeks 1-10) with final scores read from nfl.com and re-verified by standings arithmetic (32 clubs x W/L/T/PF/PA = 160 checks, all pass) plus a 137/137 third-party cross-match. Backtest and ROI grading now has a verified results source.",
+   "where": "data/results/verified_results_2026.csv \u00b7 data/results/results_feed.json \u00b7 tools/build_results.py \u00b7 app/results.html",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N3",
+   "suggestion_id": "S-04",
+   "decision": "Implement now \u2014 originate the side first, then the total, then the moneyline",
+   "what_was_built": "Origination order is enforced in the builder: sides for all 14 games, then totals, then moneylines; the build fails if a later market class is emitted before an earlier one is complete.",
+   "where": "tools/build_originated_markets.py (MARKET_ORDER + assertions) \u00b7 data/lines/originated_markets_2026_week10.csv",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N4",
+   "suggestion_id": "S-05",
+   "decision": "Implement now \u2014 fair line / market line / difference as separate columns",
+   "what_was_built": "Every originated-market row publishes model_fair_line, market_line and difference as three columns with one defined sign convention (difference = fair - market; moneylines in win-probability points).",
+   "where": "data/lines/originated_markets_2026_week10.csv \u00b7 app/origination.html",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N5",
+   "suggestion_id": "S-06",
+   "decision": "Implement now \u2014 separate signal from staking in the leaderboard",
+   "what_was_built": "Leaderboard split into a SIGNAL block (flat-stake grading: hit rate, mean CLV, CLV t-stat, edge at close \u2014 promotion/demotion read this only) and a STAKING block (ROI at rule, drawdown, growth \u2014 reporting only). A lucky staking run cannot mask a bad signal.",
+   "where": "data/leaderboard_split.json \u00b7 app/leaderboard.html",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N6",
+   "suggestion_id": "S-09",
+   "decision": "Implement now \u2014 track the depth of the replacement",
+   "what_was_built": "Replacement-depth store: 78 starter slots with a game status, each recording which string replaces the starter (68 x 2nd string, 1 x 3rd string, 9 with no replacement listed) on offense, defense and special teams; every row re-verified against the club chart and the injury report.",
+   "where": "data/depth/replacement_depth.csv \u00b7 data/depth/replacement_depth.json \u00b7 tools/build_replacement_depth.py \u00b7 app/replacement-depth.html",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N7",
+   "suggestion_id": "S-14",
+   "decision": "Implement now \u2014 correlations from official numbers only, n published",
+   "what_was_built": "Official-only correlation store: 3,570 pairs over 85 NFL.com metrics x 32 clubs, every value carrying n and p; independent recomputation agrees with the published pipeline table 905/905. No third-party-derived value is published as a correlation.",
+   "where": "data/correlations/official_correlations.csv \u00b7 data/correlations/official_correlations.json \u00b7 tools/build_correlations_official.py \u00b7 app/correlation.html",
+   "status": "implemented"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner directive (brief)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "N8",
+   "suggestion_id": "S-20",
+   "decision": "Implement now \u2014 define the demotion gate",
+   "what_was_built": "Demotion gate D1-D5 defined with concrete thresholds: CLV decay, drawdown, hit-rate decay, data-integrity trips, and the re-promotion rule (50 new graded bets, no reuse of pre-demotion data). Closes question Q-26 and unblocks gate G-13.",
+   "where": "data/gates_v2.json \u00b7 app/validation.html",
+   "status": "implemented"
+  }
+ ],
+ "note": "The other suggestions on the board (S-03, S-07, S-08, S-10 to S-13, S-15 to S-19) remain proposed and untouched: the suggestion board exists so each is chosen before it is built. Nothing outside this list was implemented.",
+ "verification": {
+  "rows": 8,
+  "rows_verified": 8,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "note": "Each row links to the artefact that implements it."
+ },
+ "empty": false
+}

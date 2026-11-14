@@ -10,7 +10,7 @@ moneyline** — with the model's fair line, the market line and the difference p
 three separate columns.
 
 - Data: [`data/price_snapshots.json`](../data/price_snapshots.json)
-- Generator: [`tools/build_price_store.py`](../tools/build_price_store.py)
+- Generator: [`tools/build_price_store_907c.py`](../tools/build_price_store_907c.py)
 - Published page: `app/prices.html`
 - Methodology of the fair line: [line origination](methodology/line-origination.md)
 

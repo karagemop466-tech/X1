@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the signal/staking-split leaderboard — data/leaderboard_split.json.
+"""Build the signal/staking-split leaderboard — data/leaderboard_split_907c.json.
 
 Session arena/907c5baf-x1 (task N3). Requirement: separate 'signal' from
 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal.
@@ -18,7 +18,7 @@ Session arena/907c5baf-x1 (task N3). Requirement: separate 'signal' from
 
 Inputs (read-only): data/site/payload.json, data/processed/strategy_bets.csv,
 data/results_feed.json.
-Output: data/leaderboard_split.json
+Output: data/leaderboard_split_907c.json
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ GEN = "2026-11-14"
 PAYLOAD = os.path.join(ROOT, "data", "site", "payload.json")
 BETS = os.path.join(ROOT, "data", "processed", "strategy_bets.csv")
 FEED = os.path.join(ROOT, "data", "results_feed.json")
-OUT = os.path.join(ROOT, "data", "leaderboard_split.json")
+OUT = os.path.join(ROOT, "data", "leaderboard_split_907c.json")
 
 MIRROR_URL = "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
 MIRROR_LABEL = "nflverse/nfldata games.csv (community mirror — not an official source)"

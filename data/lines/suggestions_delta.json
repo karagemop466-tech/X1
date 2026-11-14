@@ -1,0 +1,197 @@
+{
+ "dataset": "suggestions_delta",
+ "title": "Suggestions register \u2014 site and decision-making improvements, best path chosen before building",
+ "generated_at": "2026-11-14T20:04:04Z",
+ "delta_of": "data/pipeline/suggestions.json (T05)",
+ "suggestions": [
+  {
+   "id": "S-10",
+   "topic": "price_provenance",
+   "title": "Show price tier and opening/closing status on every market row",
+   "problem": "Readers cannot tell official numbers from bookmaker numbers at row level.",
+   "options": [
+    {
+     "path": "A",
+     "label": "Row-level tier chips + snapshot columns",
+     "tradeoff": "moderate build, permanent clarity"
+    },
+    {
+     "path": "B",
+     "label": "Section footers only (status quo)",
+     "tradeoff": "cheap, keeps the ambiguity that the user flagged"
+    },
+    {
+     "path": "C",
+     "label": "Drop market numbers entirely",
+     "tradeoff": "max honesty, kills the benchmark"
+    }
+   ],
+   "recommended": "A",
+   "why": "The brief demands per-row sources and flags; a footer is not a source link.",
+   "status": "accepted (implemented T18)",
+   "owner_decision_needed": false
+  },
+  {
+   "id": "S-11",
+   "topic": "leaderboard",
+   "title": "Publish signal and staking as two scored blocks with luck-removed ROI",
+   "problem": "A lucky staking run can mask a bad signal when ROI is one number.",
+   "options": [
+    {
+     "path": "A",
+     "label": "Two blocks: flat-stake signal metrics + staking metrics, luck rule applied to signal",
+     "tradeoff": "more columns, no deception"
+    },
+    {
+     "path": "B",
+     "label": "Single ROI column with footnoted luck note",
+     "tradeoff": "compact, deceptive under variance"
+    },
+    {
+     "path": "C",
+     "label": "Hide ROI until n > 200",
+     "tradeoff": "honest but empty board"
+    }
+   ],
+   "recommended": "A",
+   "why": "Directly what the user asked for; luck rule already defined (28-0 etc.) and now applied to the signal block.",
+   "status": "accepted (implemented T18)",
+   "owner_decision_needed": false
+  },
+  {
+   "id": "S-12",
+   "topic": "correlations",
+   "title": "Decision-usable correlation set = official numbers only, n on every value",
+   "problem": "Mirror-derived correlations were mixed into the same page as official ones.",
+   "options": [
+    {
+     "path": "A",
+     "label": "Official block first with n; research blocks flagged and suppressed from decisions",
+     "tradeoff": "clear rule, some numbers demoted"
+    },
+    {
+     "path": "B",
+     "label": "Merge all, flag inline",
+     "tradeoff": "easy to misread in a hurry"
+    },
+    {
+     "path": "C",
+     "label": "Publish official only, delete research",
+     "tradeoff": "loses steering value"
+    }
+   ],
+   "recommended": "A",
+   "why": "Requirement is explicit: compute from official numbers, publish n; research stays useful but never decides.",
+   "status": "accepted (implemented T18)",
+   "owner_decision_needed": false
+  },
+  {
+   "id": "S-13",
+   "topic": "depth",
+   "title": "Track replacement depth (2nd/3rd/4th string) on every deficiency row and in rollups",
+   "problem": "The register said a replacement exists but not how deep the drop was.",
+   "options": [
+    {
+     "path": "A",
+     "label": "depth column + depth_label + per-unit rollups",
+     "tradeoff": "small build, answers the question asked"
+    },
+    {
+     "path": "B",
+     "label": "Narrative paragraph",
+     "tradeoff": "unverifiable prose"
+    }
+   ],
+   "recommended": "A",
+   "why": "The user asked for the depth itself, tracked, not prose.",
+   "status": "accepted (implemented T18)",
+   "owner_decision_needed": false
+  },
+  {
+   "id": "S-14",
+   "topic": "origination",
+   "title": "Fix origination order side -> total -> moneyline and publish fair/market/difference as three columns",
+   "problem": "Edges were mixed with model lines in single wide columns.",
+   "options": [
+    {
+     "path": "A",
+     "label": "Origination ledger with explicit order + three columns",
+     "tradeoff": "new small dataset"
+    },
+    {
+     "path": "B",
+     "label": "Widen the originated_lines CSV",
+     "tradeoff": "history breaks"
+    }
+   ],
+   "recommended": "A",
+   "why": "Keeps the existing CSV stable and gives the brief exactly the requested shape.",
+   "status": "accepted (implemented T18)",
+   "owner_decision_needed": false
+  },
+  {
+   "id": "S-20",
+   "topic": "demotion_gate",
+   "title": "Confirm or amend the pre-registered demotion thresholds (G-13)",
+   "problem": "Thresholds were pre-registered as defaults; the owner should confirm before any strategy goes live.",
+   "options": [
+    {
+     "path": "A",
+     "label": "Confirm defaults (D-1..D-4 as registered)",
+     "tradeoff": "fast"
+    },
+    {
+     "path": "B",
+     "label": "Tighten (e.g. D-1 n_min 50, D-3 drawdown 15%)",
+     "tradeoff": "more churn, safer"
+    },
+    {
+     "path": "C",
+     "label": "Owner supplies custom thresholds",
+     "tradeoff": "waits on owner"
+    }
+   ],
+   "recommended": "A",
+   "why": "Defaults are conservative and pre-registered before any live result exists.",
+   "status": "proposed",
+   "owner_decision_needed": true
+  },
+  {
+   "id": "S-21",
+   "topic": "price_feed",
+   "title": "Decide on a licensed odds feed vs free snapshots (Q-31)",
+   "problem": "No official price source exists; CLV and trigger D-2 need opening numbers.",
+   "options": [
+    {
+     "path": "A",
+     "label": "Stay on free fingerprinted snapshots, keep F-06 flags",
+     "tradeoff": "free, permanently tiered as third-party"
+    },
+    {
+     "path": "B",
+     "label": "Budget a licensed feed",
+     "tradeoff": "cost + redistribution rules"
+    },
+    {
+     "path": "C",
+     "label": "Collect own snapshots going forward (weekly opening/close capture)",
+     "tradeoff": "labor, builds the snapshot store honestly over time"
+    }
+   ],
+   "recommended": "C with A as fallback",
+   "why": "Self-collected weekly snapshots fill the opening/closing store without licensing questions.",
+   "status": "proposed",
+   "owner_decision_needed": true
+  }
+ ],
+ "verification": {
+  "rows": 7,
+  "rows_verified": 5,
+  "rows_flagged": 2,
+  "unverified_cells": 0,
+  "flagged_reasons": [
+   "S-20 and S-21 await owner decision"
+  ]
+ },
+ "note": "Each suggestion lists 2-3 paths with tradeoffs and one recommended path before anything is implemented; implemented ones record status. The review board is the GitHub repository Issues + Pull requests."
+}

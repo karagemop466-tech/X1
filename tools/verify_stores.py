@@ -13,7 +13,7 @@ Contract checks, all of them enforcing decisions the site already publishes:
      flag (never a silent blank).
   4. data/pipeline/correlations.json: every correlation row publishes n beside
      its r and cites an official host.
-  5. leaderboard_split.json: the staking scorecard is unranked by rule and the
+  5. leaderboard_split_907c.json: the staking scorecard is unranked by rule and the
      ranking rule reads from signal columns only.
   6. demotion_gate.json: defined, with labelled thresholds and a paper-return
      action.
@@ -52,7 +52,7 @@ def load(name: str) -> dict:
 def main() -> int:
     feed = load("results_feed.json")
     prices = load("price_snapshots.json")
-    split = load("leaderboard_split.json")
+    split = load("leaderboard_split_907c.json")
     demotion = load("demotion_gate.json")
     r2d = load("round2_decisions.json")
     r2s = load("round2_suggestions.json")

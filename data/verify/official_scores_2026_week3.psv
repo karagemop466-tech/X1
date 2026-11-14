@@ -1,0 +1,20 @@
+# Official 2026 NFL regular-season results, Week 3 — transcribed line by line from
+# https://www.nfl.com/scores/2026/week-3 (the league's official scores page) on 2026-11-14.
+# First-listed club on the official page is the away club; "Winner Indicator" marks the winner.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL
+falcons-at-packers-2026-reg-3|3|ATL|35|GB|14|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/falcons-at-packers-2026-reg-3
+chargers-at-bills-2026-reg-3|3|LAC|16|BUF|24|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/chargers-at-bills-2026-reg-3
+panthers-at-browns-2026-reg-3|3|CAR|18|CLE|21|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/panthers-at-browns-2026-reg-3
+jets-at-lions-2026-reg-3|3|NYJ|24|DET|31|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/jets-at-lions-2026-reg-3
+texans-at-colts-2026-reg-3|3|HOU|17|IND|19|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/texans-at-colts-2026-reg-3
+patriots-at-jaguars-2026-reg-3|3|NE|6|JAX|35|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/patriots-at-jaguars-2026-reg-3
+chiefs-at-dolphins-2026-reg-3|3|KC|24|MIA|10|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/chiefs-at-dolphins-2026-reg-3
+titans-at-giants-2026-reg-3|3|TEN|7|NYG|12|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/titans-at-giants-2026-reg-3
+bengals-at-steelers-2026-reg-3|3|CIN|27|PIT|30|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/bengals-at-steelers-2026-reg-3
+seahawks-at-commanders-2026-reg-3|3|SEA|31|WAS|33|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/seahawks-at-commanders-2026-reg-3
+cardinals-at-49ers-2026-reg-3|3|AZ|30|SF|36|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/cardinals-at-49ers-2026-reg-3
+vikings-at-buccaneers-2026-reg-3|3|MIN|23|TB|16|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/vikings-at-buccaneers-2026-reg-3
+raiders-at-saints-2026-reg-3|3|LV|35|NO|27|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/raiders-at-saints-2026-reg-3
+ravens-at-cowboys-2026-reg-3|3|BAL|34|DAL|31|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/ravens-at-cowboys-2026-reg-3
+rams-at-broncos-2026-reg-3|3|LAR|26|DEN|30|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/rams-at-broncos-2026-reg-3
+eagles-at-bears-2026-reg-3|3|PHI|7|CHI|27|final|https://www.nfl.com/scores/2026/week-3|https://www.nfl.com/games/eagles-at-bears-2026-reg-3

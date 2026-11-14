@@ -11,11 +11,11 @@ we originate is graded only against a score the league itself printed.
 
 - Data: [`data/results_feed.json`](../data/results_feed.json)
 - Raw transcription: [`data/verify/raw/nfl_scores_2026_official.psv`](../data/verify/raw/nfl_scores_2026_official.psv)
-- Generator (reproducible): [`tools/build_results_feed_official.py`](../tools/build_results_feed_official.py)
-  — renamed from `tools/build_results_feed.py` during the PR #40 integration merge, because
-  session `arena-1d3600f8-x1` concurrently landed a different verified feed at that name
-  (`data/results/`, double-entry checked). Both feeds are published side by side on
-  `app/results.html`; neither discards the other.
+- Generator (reproducible): [`tools/build_results_feed_907c.py`](../tools/build_results_feed_907c.py)
+  — renamed twice during PR #40 integration merges as concurrent sessions landed their own
+  generators at the obvious names (session `arena-1d3600f8-x1`'s at `tools/build_results_feed.py`,
+  session `arena/bf27a3bd-x1`'s at `tools/build_results_feed_official.py`). All feeds are published
+  side by side on `app/results.html`; none discards another.
 - Published page: `app/results.html`
 
 ## Verification performed (all reproducible)

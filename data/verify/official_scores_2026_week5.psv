@@ -1,0 +1,20 @@
+# Official 2026 NFL regular-season results, Week 5 — transcribed line by line from
+# https://www.nfl.com/scores/2026/week-5 (the league's official scores page) on 2026-11-14.
+# First-listed club on the official page is the away club; "Winner Indicator" marks the winner.
+# NYG-WAS finished 27-27 with no Winner Indicator on the official page: recorded as a tie, not resolved.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL
+buccaneers-at-cowboys-2026-reg-5|5|TB|24|DAL|16|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/buccaneers-at-cowboys-2026-reg-5
+eagles-at-jaguars-2026-reg-5|5|PHI|17|JAX|19|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/eagles-at-jaguars-2026-reg-5
+bengals-at-dolphins-2026-reg-5|5|CIN|31|MIA|24|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/bengals-at-dolphins-2026-reg-5
+raiders-at-patriots-2026-reg-5|5|LV|17|NE|45|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/raiders-at-patriots-2026-reg-5
+vikings-at-saints-2026-reg-5|5|MIN|23|NO|13|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/vikings-at-saints-2026-reg-5
+browns-at-jets-2026-reg-5|5|CLE|12|NYJ|17|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/browns-at-jets-2026-reg-5
+colts-at-steelers-2026-reg-5|5|IND|22|PIT|34|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/colts-at-steelers-2026-reg-5
+texans-at-titans-2026-reg-5|5|HOU|26|TEN|3|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/texans-at-titans-2026-reg-5
+giants-at-commanders-2026-reg-5|5|NYG|27|WAS|27|final (tie)|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/giants-at-commanders-2026-reg-5
+bears-at-packers-2026-reg-5|5|CHI|7|GB|31|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/bears-at-packers-2026-reg-5
+broncos-at-chargers-2026-reg-5|5|DEN|23|LAC|17|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/broncos-at-chargers-2026-reg-5
+lions-at-cardinals-2026-reg-5|5|DET|45|AZ|21|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/lions-at-cardinals-2026-reg-5
+49ers-at-seahawks-2026-reg-5|5|SF|32|SEA|29|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/49ers-at-seahawks-2026-reg-5
+ravens-at-falcons-2026-reg-5|5|BAL|30|ATL|23|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/ravens-at-falcons-2026-reg-5
+bills-at-rams-2026-reg-5|5|BUF|37|LAR|34|final|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/games/bills-at-rams-2026-reg-5

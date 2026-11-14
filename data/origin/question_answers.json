@@ -1,0 +1,113 @@
+{
+ "dataset": "question_answers",
+ "title": "Question / information / answer register \u2014 updates from this round",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief + question register (data/pipeline/questions.json)",
+  "org": "Project brief"
+ },
+ "columns": [
+  "question_id",
+  "question",
+  "information_had",
+  "information_added_this_round",
+  "answer_now",
+  "still_missing",
+  "blocks"
+ ],
+ "rows": [
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Question register + this round's evidence",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "question_id": "Q-02",
+   "question": "Which price feed will supply market prices?",
+   "information_had": "Nothing. No official source publishes betting prices.",
+   "information_added_this_round": "The price-snapshot store now exists and defines exactly what a feed must supply (open, close, timestamp, source, per market selection).",
+   "answer_now": "STILL OPEN \u2014 the feed choice is an owner decision (suggestion S-01, path A recommended).",
+   "still_missing": "A licensed/account price feed. Until then every price cell stays blank or flagged UNVERIFIED.",
+   "blocks": "CLV gate G-11, live staking, verified ROI."
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Question register + this round's evidence",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "question_id": "Q-03",
+   "question": "Do we record the price at origination, at close, or both?",
+   "information_had": "Nothing.",
+   "information_added_this_round": "The store records both: our_line at our_originated_at, plus market_open and market_close cells.",
+   "answer_now": "ANSWERED \u2014 both, per the store schema (data/prices/price_snapshots.csv).",
+   "still_missing": "Nothing structural; timestamps fill when the feed does.",
+   "blocks": "\u2014 (closed)"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Question register + this round's evidence",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "question_id": "Q-04",
+   "question": "What is the official source for final scores?",
+   "information_had": "A probe found no server-rendered results table on nfl.com/scores.",
+   "information_added_this_round": "The weekly schedule pages DO print every final score (nfl.com/schedules/2026/by-week/week-N). 137 games transcribed and verified against standings arithmetic.",
+   "answer_now": "ANSWERED \u2014 the NFL.com weekly schedule pages; the verified results feed is built on them.",
+   "still_missing": "Box scores (not needed for side/total/ML grading).",
+   "blocks": "\u2014 (closed for grading)"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Question register + this round's evidence",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "question_id": "Q-22",
+   "question": "Which markets do we originate first: side, total, or moneyline?",
+   "information_had": "Nothing.",
+   "information_added_this_round": "Owner directive: side first, then total, then moneyline \u2014 enforced by the builder.",
+   "answer_now": "ANSWERED \u2014 side -> total -> moneyline (N3).",
+   "still_missing": "\u2014",
+   "blocks": "\u2014 (closed)"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Question register + this round's evidence",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "question_id": "Q-26",
+   "question": "What happens to a strategy that passes gates on paper but loses live?",
+   "information_had": "Nothing \u2014 the demotion threshold was undefined (blocked G-13).",
+   "information_added_this_round": "Demotion gate D1-D5 defined with concrete thresholds (data/gates_v2.json).",
+   "answer_now": "ANSWERED \u2014 automatic demotion to paper on D1-D4; re-promotion only via D5.",
+   "still_missing": "Nothing structural; thresholds can be re-tuned by recorded decision.",
+   "blocks": "\u2014 (closed; G-13 unblocked)"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Question register + this round's evidence",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "question_id": "Q-07/Q-08/Q-09",
+   "question": "Minimum sample, skill test, multiple-testing correction?",
+   "information_had": "Nothing decided.",
+   "information_added_this_round": "The signal block names the tests (CLV t-test, binomial vs break-even) and the demotion windows (50-bet trailing, 30-bet minimum).",
+   "answer_now": "PARTLY \u2014 the tests are named in the signal block and gates_v2; the promotion minimums are still owner-settable.",
+   "still_missing": "The owner's chosen minimum-bet count and correction method for promotion (Q-07/Q-09).",
+   "blocks": "Promotion decisions (not the infrastructure)."
+  }
+ ],
+ "verification": {
+  "rows": 7,
+  "rows_verified": 7,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "note": "Answers cite the artefact that settles them; open items say so."
+ },
+ "empty": false
+}

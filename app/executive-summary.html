@@ -21,6 +21,7 @@
 <a class="" href="injuries.html">Injury report</a>
 <a class="" href="depth.html">Depth charts</a>
 <a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="replacement-depth.html">Replacement depth</a>
 <a class="" href="team-stats.html">Team stats</a>
 <div class="grp">Model</div>
 <a class="" href="lines.html">Originated lines</a>
@@ -41,6 +42,7 @@
 <a class="" href="verification.html">Verification ledger</a>
 <a class="" href="flagged.html">Flagged for review</a>
 <a class="" href="repo-review.html">Repo review</a>
+<a class="" href="stores.html">Verified stores</a>
 </nav>
   <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
 </aside>
@@ -49,7 +51,7 @@
     <div>
       <div class="eyebrow">Read this first</div>
       <h1>Executive summary</h1>
-      <p class="lede">Five findings, what they change, what the second round added, and what is still blocked.</p>
+      <p class="lede">Five findings, what they change, and what is still blocked.</p>
     </div>
     <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
   </div>
@@ -106,6 +108,38 @@ stop specific parts of the system from working: <b>Q-01</b> bankroll, <b>Q-02</b
 <p>The <a href="suggestions.html">suggestion board</a> lists twenty options, each with three paths, a
 cost, an effort, a risk and a recommendation, and each waiting for a decision rather than being
 built. Nothing on that board has been implemented without a recorded choice.</p></section>
+<section class="card"><h2>What the 2026-11-14 second round added (session arena-1d3600f8-x1)</h2>
+<ul class="tight">
+  <li><b>Verified results feed</b> — 137 settled games from the official pages, double-entry checked
+  against the standings (0 mismatches; league totals 6,291 = 6,291). ROI is now computable at all;
+  see <a href="results.html">Results &amp; ROI</a>.</li>
+  <li><b>Price-snapshot store</b> — opening and closing slots for all 56 originated markets, with a
+  capture log and an append-only recorder. Opening quotes do not exist in any permitted source and
+  stay blank and flagged (Q-02); see <a href="origination.html">Origination &amp; prices</a>.</li>
+  <li><b>Origination order codified</b> — side, then total, then moneyline; fair line, market line and
+  the difference published as three separate columns.</li>
+  <li><b>Signal vs staking separated</b> on the leaderboard — final grade = min(signal, staking);
+  a lucky staking run cannot mask a bad signal (currently 0 of 16 mirror-window strategies are
+  rankable; see <a href="leaderboard.html">Leaderboard</a>).</li>
+  <li><b>Depth of replacement tracked</b> — 189 on-report starters: 168 replacements at 2nd string,
+  3 at 3rd string, 18 unreadable and flagged (see <a href="deficiency.html">Deficiency</a>).</li>
+  <li><b>Official-only correlations</b> — 15 pairs computed strictly from verified tables, every value
+  publishing n, p and CI (see <a href="correlation.html">Correlation</a>).</li>
+  <li><b>Demotion gate G8</b> — six mechanical triggers send a live strategy back to paper, with
+  action, re-entry and logging defined (see <a href="validation.html">Validation</a>).</li>
+</ul></section>
+<section class="card"><h2>Two sessions, one brief — both preserved (merge record)</h2>
+<p>The same eight directed improvements were built twice on 2026-11-14 by two parallel sessions
+(<code>arena-1d3600f8-x1</code> T15–T21 and <code>arena/3fa49c1a-x1</code> N1–N10). Nothing was
+discarded in the merge: both result feeds, both price-snapshot stores, both replacement-depth
+stores and both correlation stores are published here and cross-checked against each other —
+the two independent result transcriptions agree on <b>137 of 137 scores</b>, and the independent
+correlation recomputation agrees <b>905 of 905</b> pairs. Where the two designs make different
+policy choices (demotion thresholds G8 vs D1–D5; reward staking term), both are shown side by
+side and the choice is recorded as an owner decision on the
+<a href="decisions.html">decision register</a>. Finding I-14 is resolved by the results
+arithmetic: the standings do include the Thursday result; the earlier reading miscounted.
+Full merge log: <code>COORDINATION.md</code>.</p></section>
 <section class="card"><h2>Round 2 — what session arena/907c5baf-x1 added (2026-11-14)</h2>
 <ul class="tight">
   <li><b>Verified results feed (second, independent transcription)</b> — 150 games from official
