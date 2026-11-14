@@ -1408,6 +1408,24 @@ def page_requirements():
 
 
 # ---------------------------------------------------------------- flagged
+# Two flags cite a union document or a partner site. Those are the right evidence for the
+# claim, but the site's own rule asks every row for a league-published link, so the
+# league page that is relevant to the same claim is shown beside it rather than instead.
+FLAG_LEAGUE_ALT = {
+    "F-08": ("https://www.nfl.com/standings/division/2026/REG", "standings ↗"),
+    "F-11": ("https://operations.nfl.com/", "operations.nfl.com ↗"),
+}
+
+
+def FLAG_SRC(f):
+    primary = link(f["source_url"], f["source_label"] + " ↗", "src-link")
+    second = link(f["league_source_url"], "nfl.com ↗", "src-link")
+    alt = FLAG_LEAGUE_ALT.get(f["id"])
+    if alt:
+        second = link(alt[0], alt[1], "src-link")
+    return f"<td>{primary}<br>{second}</td>"
+
+
 def page_flagged():
     rows = []
     for f in sorted(FLAGS["flags"], key=lambda x: {"high": 0, "medium": 1, "low": 2}[x["severity"]]):
@@ -1420,7 +1438,7 @@ def page_flagged():
             cell(f["verified"]),
             cell(f["unknown"]),
             cell(f["settles_it"]),
-            f'<td>{link(f["source_url"], f["source_label"] + " ↗", "src-link")}<br>{link(f["league_source_url"], "nfl.com ↗", "src-link")}</td>',
+            FLAG_SRC(f),
         ])
     body = f"""
 <section class="pagetitle">
