@@ -1,23 +1,27 @@
-# NFL Decision Lab
+# Fourth Down — NFL Strategy Lab
 
-A source-first research dashboard and proposed validation framework for NFL forecasting and odds-making. The repository starts with no historical data, market odds, model code, or injury feed; therefore it publishes **no picks, original lines, performance claims, current player records, or numerical correlations**. Unknown values are deliberately left blank until they can be verified from suitable sources.
+A static, evidence-first research dashboard and requirements register for NFL line origination and strategy evaluation. This is a research specification—not a betting product, live data service, or source of picks.
 
-## Browse the site
+## Pages
 
-- [Executive summary](index.html)
-- [Requirements & decision questions](pages/requirements.html)
-- [Strategy proposals & validation gates](pages/strategies.html)
-- [Data source register](pages/sources.html)
-- [Flagged for review](pages/review.html)
+- `index.html` — executive summary and navigation
+- `research.html` — candidate signal families, line workflow, and correlation methodology
+- `validation.html` — staged gates and leaderboard competition design
+- `availability.html` — injury/depth tracking schema for offense and defense
+- `sources.html` — official NFL and NIST source register, verification scope, and limitations
+- `questions.html` — decision questions, knowns, gaps, and discovery suggestions
+- `review.html` — irregularities, unverified values, and review queue
+
+## Evidence policy
+
+The repository began without an application, NFL data, odds history, tests, or deployment workflow. No NFL live values, injury statuses, odds, correlations, picks, or measured strategy performance are invented. Each proposed method is labeled as untested; empty values are left blank. Primary NFL links are provided beside relevant methodology, and limitations are explicit. A source page link does not mean its changing contents have been captured or independently verified for a specific event.
+
+Sources linked in the site include NFL.com injury reports, statistics, schedules, and team pages; NFL Football Operations and Next Gen Stats material; and NIST reference material for statistical definitions and uncertainty. Review `sources.html` for the source register and `review.html` for all limitations. See `COORDINATION.md` for scope and verification history.
 
 ## Local preview
 
-Open `index.html` in a browser, or run `python3 -m http.server 8000` from the repository root.
+Open `index.html` in a browser or serve this directory with any static HTTP server. All pages are plain HTML/CSS and need no build step.
 
-## Publishing
+## GitHub Pages
 
-The site is a static GitHub Pages site. A GitHub Actions workflow under `.github/workflows/pages.yml` publishes the repository root when the workflow is enabled for Pages in repository settings.
-
-## Verification boundary
-
-Research was checked against the linked primary NFL / NFL Football Operations / Next Gen Stats pages and NIST reference material on 2026-11-14. NFL pages are live and may change; links are provided so each item can be reviewed at the source. The strategy designs are **proposals, not empirically validated findings**. See [Flagged for review](pages/review.html) for missing inputs and irregularities. No betting advice or guarantee is made.
+GitHub Pages is deployed at [karagemop466-tech.github.io/X1](https://karagemop466-tech.github.io/X1/). The deployment was recorded in the coordination log; a workflow runs on pushes to `main`. A lightweight static checker now verifies local links and that each research-table row links to an official source host before deployment.

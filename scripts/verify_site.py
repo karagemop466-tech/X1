@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Lightweight static-site integrity checks; no network calls or dependencies."""
+"""Check local HTML links and require a publisher-owned source link per data-table row."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov")
+# NFL / NIST sources support research. GitHub is allowed for repository-state
+# rows only (the validator checks the host, not semantic relevance).
+OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "github.com")
 errors: list[str] = []
 
 
@@ -15,20 +17,24 @@ class SiteParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.file = file
         self.in_row = False
-        self.cells: list[list[str]] = []
         self.in_cell = False
+        self.row_has_td = False
         self.row_number = 0
+        self.cells: list[list[str]] = []
         self.links: list[str] = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == "tr":
             self.in_row = True
+            self.row_has_td = False
             self.cells = []
             self.row_number += 1
         elif self.in_row and tag in ("td", "th"):
             self.in_cell = True
             self.cells.append([])
+            if tag == "td":
+                self.row_has_td = True
         elif self.in_cell and tag == "a" and attrs.get("href"):
             self.cells[-1].append(attrs["href"])
         if tag == "a" and attrs.get("href"):
@@ -38,8 +44,8 @@ class SiteParser(HTMLParser):
         if tag in ("td", "th") and self.in_cell:
             self.in_cell = False
         elif tag == "tr" and self.in_row:
-            if self.cells and self.cells[0] and all(cell for cell in self.cells):
-                hrefs = self.cells[-1]
+            if self.row_has_td and self.cells:
+                hrefs = [href for cell in self.cells for href in cell]
                 valid = []
                 for href in hrefs:
                     parsed = urlparse(href)
@@ -47,13 +53,14 @@ class SiteParser(HTMLParser):
                     if parsed.scheme == "https" and any(host == h or host.endswith("." + h) for h in OFFICIAL_HOSTS):
                         valid.append(href)
                 if not valid:
-                    errors.append(f"{self.file.relative_to(ROOT)}: table row {self.row_number} has no official https source link in its last cell")
+                    errors.append(f"{self.file.relative_to(ROOT)}: table row {self.row_number} has no official https source link")
             self.in_row = False
             self.in_cell = False
+            self.row_has_td = False
 
 
 def main() -> int:
-    html_files = sorted(ROOT.rglob("*.html"))
+    html_files = sorted(ROOT.glob("*.html"))
     for file in html_files:
         parser = SiteParser(file)
         parser.feed(file.read_text(encoding="utf-8"))
