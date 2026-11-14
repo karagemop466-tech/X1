@@ -665,3 +665,20 @@ live").
 | F-A1 | `verify.yml` "Link and structure check" failing on `main` since PR #20 — fixed this session (checker scope, not data) |
 | F-A2 | `live/` section unreachable from the main nav (PR #20 request never actioned) — fixed this session |
 | F-A3 | duplicated `RESEARCH_APPROVED`/`ANNEX_APPROVED` definitions in `tools/check_links.py` (pre-existing, harmless) — left for the owning session |
+
+## Pull request record (session `arena/c50b9342-x1`)
+
+| Item | Value |
+|---|---|
+| PR | <https://github.com/karagemop466-tech/X1/pull/22> |
+| Branch → base | `arena/c50b9342-x1` → `main` |
+| Result | **MERGED** 2026-11-14T18:14:36Z, merge commit `1541817123e02c71f71f8f7fc2d41a9052635793` |
+| Checks | `verify` **pass** (the previously-failing check), `build` **pass** — run [43625449394](https://github.com/karagemop466-tech/X1/actions/runs/43625449394) / [43625449486](https://github.com/karagemop466-tech/X1/actions/runs/43625449486) |
+| Pages deploy | [43625490588](https://github.com/karagemop466-tech/X1/actions/runs/43625490588) — build **success**, deploy **success**; legacy `pages-build-deployment` [43625490611](https://github.com/karagemop466-tech/X1/actions/runs/43625490611) **success** |
+| Pages API | `status: built`, `source: main /` — <https://karagemop466-tech.github.io/X1/> |
+| Post-deploy check | landing page fetched live and renders; deployed tree contains the new "Live pipeline" nav entry on `index.html` and every `pages/*.html` |
+
+**Session complete.** Data unchanged and re-verified; the only fixes were to the broken CI
+check and the missing nav link. The standing open items (odds feed, data licence, reward
+funding, HOU depth chart) remain published on the Flagged for Review and Decision pages for
+owner review — they are owner decisions, not implementation gaps.
