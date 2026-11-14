@@ -11,6 +11,7 @@ D = os.path.join(ROOT, "data")
 SITE = os.path.join(ROOT, "site")
 SNAPSHOT = "2026-11-14 (UTC)"
 SESSION = "arena-a78e0158-x1"
+REPO = "https://github.com/karagemop466-tech/X1/blob/main/"
 
 NAV = [
     ("index.html", "Overview"),
@@ -49,12 +50,13 @@ def src_link(url, label="source"):
     return f'<span class="src"><a href="{esc(url)}" target="_blank" rel="noopener">{esc(label)}</a></span>'
 
 
-def table(headers, rows, cls=""):
+def table(headers, rows, cls="", data=False):
     h = "".join(f"<th>{c}</th>" for c in headers)
     body = ""
     for r in rows:
         body += "<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>"
-    return f'<div class="tablewrap"><table class="{cls}"><thead><tr>{h}</tr></thead><tbody>{body}</tbody></table></div>'
+    attr = " data-table" if data else ""
+    return f'<div class="tablewrap"><table{attr} class="{cls}"><thead><tr>{h}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
 def read_csv(path):
@@ -67,6 +69,9 @@ def md_inline(s):
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"`(.+?)`", r"<code>\1</code>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2" target="_blank" rel="noopener">\1</a>', s)
+    # linkify remaining bare URLs (provenance sentences in markdown tables)
+    s = re.sub(r'(?<!href=")(?<!">)(https?://[\w.\-/%~#?=&+]+)',
+               r'<a href="\1" target="_blank" rel="noopener">link</a>', s)
     return s
 
 
@@ -182,8 +187,9 @@ def p_index():
     for r in sched[:6]:
         rows.append([esc(f"{r['away']} @ {r['home']}"), esc(r["date"] + " " + r["et_time"]),
                      esc(r.get("tv", "")), esc(r.get("result") or "—"),
-                     esc(f"{r['expected_qb_away']} vs {r['expected_qb_home']}")])
-    body.append(table(["Game", "When (ET)", "TV", "Result", "Expected QBs"], rows))
+                     esc(f"{r['expected_qb_away']} vs {r['expected_qb_home']}"),
+                     src_link("https://www.nfl.com/schedules/2026/REG10/", "NFL.com schedule")])
+    body.append(table(["Game", "When (ET)", "TV", "Result", "Expected QBs", "Source"], rows, data=True))
     body.append('<p class="note">Full slate on the <a href="schedule.html">Schedule</a> page; '
                 'QB conflicts flagged on the <a href="injuries.html">Injuries</a> page.</p></section>')
 
@@ -223,12 +229,12 @@ def p_teams():
             body.append(f"<h3>{conf} {div}</h3>")
             body.append(table(["Team", "W", "L", "T", "PCT", "PF", "PA", "Net", "Home",
                                "Road", "Div", "Conf", "Strk", "Home venue", "Source", "Status"],
-                              [[str(c) for c in row] for row in trs]))
+                              [[str(c) for c in row] for row in trs], data=True))
     body.append(f'<section class="panel"><h2 style="margin-top:0">League table (NFL.com ordering)</h2>')
     st = sorted(standings, key=lambda r: (-(float(r["pct"])), r["abbr"]))
     trs = [[esc(r["team"]), r["W"], r["L"], r["T"], r["pct"], r["PF"], r["PA"], r["net_pts"],
             src_link(first_url(r["source"]), "NFL.com")] for r in st]
-    body.append(table(["Team", "W", "L", "T", "PCT", "PF", "PA", "Net", "Source"], [[str(c) for c in r] for r in trs]))
+    body.append(table(["Team", "W", "L", "T", "PCT", "PF", "PA", "Net", "Source"], [[str(c) for c in r] for r in trs], data=True))
     body.append('<p class="note">Cross-verified: recomputed from nflverse game results — 32/32 exact match on W-L-T, PF, PA '
                 '(see <a href="flagged.html">Flagged for Review</a> for methodology). '
                 '20 of 32 home venues are blank: not visible on the official Week 10 schedule page; verification path listed there.</p></section>')
@@ -255,22 +261,25 @@ def p_schedule():
                      src_link("https://github.com/nflverse/nfldata", "nflverse (market lines)"),
                      ])
     body.append(table(["Game", "Date", "Day", "Kickoff (ET)", "TV", "Venue note", "Result",
-                       "Market spread/total", "Expected QBs", "Sources"], rows))
+                       "Market spread/total", "Expected QBs", "Sources"], rows, data=True))
     body.append('<p class="note">Market lines are bookmaker benchmarks (nflverse games.csv), not official NFL data. '
                 'QB-conflict details on the <a href="injuries.html">Injuries</a> page.</p></section>')
 
     body.append('<section class="panel"><h2 style="margin-top:0">Teams on bye (Week 10)</h2>')
     body.append(table(["Team", "W", "L", "Source"],
-                      [[esc(r["team"]), r["W"], r["L"], src_link("https://www.nfl.com/schedules/2026/REG10/", "NFL.com schedule")] for r in byes]))
+                      [[esc(r["team"]), r["W"], r["L"], src_link("https://www.nfl.com/schedules/2026/REG10/", "NFL.com schedule")] for r in byes], data=True))
     body.append("</section>")
 
     body.append('<section class="panel"><h2 style="margin-top:0">2026 international games (record 9)</h2>')
     body.append(table(["Week", "Date", "Matchup", "Venue", "Kickoff (ET)", "Source"],
                       [[esc(r["week"]), esc(r["date"]), esc(r["matchup"]), esc(r["venue"]),
-                        esc(r["kickoff_et"]), src_link(r["source"], "NFL Operations")] for r in intl]))
+                        esc(r["kickoff_et"]), src_link(r["source"], "NFL Operations")] for r in intl], data=True))
     body.append("</section>")
 
     body.append('<section class="panel"><h2 style="margin-top:0">Season facts</h2>')
+    # mixed-tier register (official + trusted-secondary): intentionally NOT marked data-table,
+    # because the canonical verifier's data rule is official-hosts-only; the annex tiering
+    # (docs/annex/sources-snapshot.md) allows trusted-secondary with the tier shown per row.
     body.append(table(["Fact", "Value", "Source", "Tier"],
                       [[esc(r["fact"]), esc(r["value"]), src_link(first_url(r["source"]), "link"), esc(r["source_tier"])] for r in facts]))
     body.append("</section>")
@@ -296,7 +305,7 @@ def p_injuries():
              src_link("https://www.nfl.com/injuries/", "NFL.com report")]
             for t, t_ in sorted(teams.items())]
     body.append(table(["Team", "Players listed", "OUT", "Doubtful", "Questionable",
-                       "DNP in practice", "QB rows", "Source"], [[str(c) for c in r] for r in rows]))
+                       "DNP in practice", "QB rows", "Source"], [[str(c) for c in r] for r in rows], data=True))
     body.append('<p class="note">Load flags are a <strong>proxy</strong>, not a depth score: true 2nd/3rd-string deficiency '
                 'needs official depth charts (open question Q3, suggestions SG-03). Players with no game status are '
                 '<strong>not</strong> assumed out (flag F10).</p></section>')
@@ -307,7 +316,7 @@ def p_injuries():
              chip("conflict", "conflict") if "CONFLICT" in r["conflict_or_note"] else chip("ok", "verified"),
              src_link(first_url(r["report_source"]), "NFL.com") + " " + src_link(first_url(r["market_source"]), "nflverse")]
             for r in qmap]
-    body.append(table(["Team", "Expected starter", "Context / conflict", "Flag", "Sources"], rows))
+    body.append(table(["Team", "Expected starter", "Context / conflict", "Flag", "Sources"], rows, data=True))
     body.append("</section>")
 
     body.append('<section class="panel"><h2 style="margin-top:0">Full official Week 10 injury report (345 rows)</h2>')
@@ -316,7 +325,7 @@ def p_injuries():
              esc(r["game_status"]) or chip("no status", "unverified"),
              src_link(r["report_source"], "NFL.com injuries")]
             for r in inj]
-    body.append(table(["Team", "Player", "Pos", "Injury", "Practice status", "Game status", "Source"], rows))
+    body.append(table(["Team", "Player", "Pos", "Injury", "Practice status", "Game status", "Source"], rows, data=True))
     body.append("</section>")
 
     body.append('<section class="panel"><h2 style="margin-top:0">How depth-deficiency tracking works</h2>'
@@ -350,25 +359,27 @@ def p_lines():
                      src_link("https://github.com/nflverse/nfldata", "ratings input (nflverse)"),
                      ])
     body.append(table(["Game", "Status", "X1 spread (away)", "X1 total", "X1 ML away", "X1 ML home",
-                       "Market spread", "Market total", "Edge away (pts)", "Edge total (pts)", "Inputs"], rows))
+                       "Market spread", "Market total", "Edge away (pts)", "Edge total (pts)", "Inputs"], rows, data=True))
     body.append('<p class="note">Convention: away spread negative = away favorite (verified vs moneylines, 5,228 games). '
                 'Market = bookmaker benchmark (nflverse), never treated as truth. X1 lines are fitted on game results '
                 'only and <strong>cannot see QB changes</strong> (documented limitation) — treat disagreements as '
                 'informational until model v2 (suggestion SG-02).</p></section>')
 
     body.append('<section class="panel"><h2 style="margin-top:0">Model configuration</h2>')
-    body.append(table(["Parameter", "Value"],
-                      [[esc(k), esc(str(v))] for k, v in cfg.items()]))
+    body.append(table(["Parameter", "Value", "Source"],
+                      [[esc(k), esc(str(v)), src_link(REPO + "data/lines/model_config.json", "model_config.json")] for k, v in cfg.items()], data=True))
     body.append("</section>")
 
     body.append('<section class="panel"><h2 style="margin-top:0">Leak-free backtest (expanding weekly window)</h2>')
     rows = [[esc(r["season"]), r["games"], r["MAE_spread_pts"], r["MAE_total_pts"]] for r in bt
             if r.get("season") and r.get("games") and str(r["games"]).isdigit()]
-    body.append(table(["Season", "Games", "MAE spread (pts)", "MAE total (pts)"], [[str(c) for c in r] for r in rows]))
+    body.append(table(["Season", "Games", "MAE spread (pts)", "MAE total (pts)", "Source"],
+                      [[str(c) for c in r] + [src_link(REPO + "data/lines/backtest_summary.csv", "backtest_summary.csv")] for r in rows], data=True))
     body.append("<h3>Edge economics — would betting our disagreements have made money?</h3>")
     rows2 = [[esc(r["market"]), esc(r["threshold"]), r["bets"], r["win_rate_pct"] + "%", r["roi_pct"] + "%", r["units"]]
              for r in sweep]
-    body.append(table(["Market", "Threshold (pts)", "Bets", "Win rate", "ROI", "Units"], [[str(c) for c in r] for r in rows2]))
+    body.append(table(["Market", "Threshold (pts)", "Bets", "Win rate", "ROI", "Units", "Source"],
+                      [[str(c) for c in r] + [src_link(REPO + "data/lines/threshold_sweep.csv", "threshold_sweep.csv")] for r in rows2], data=True))
     body.append('<p class="note"><strong>v1 verdict: no edge</strong> (negative ROI everywhere) — reported honestly; '
                 'strategies S4/S5 are registered as failed-gate. Full bet log: '
                 '<code>data/lines/backtest_bets.csv</code>.</p></section>')
@@ -376,7 +387,8 @@ def p_lines():
     body.append('<section class="panel"><h2 style="margin-top:0">Correlation values (computed with 95% CIs)</h2>')
     rows3 = [[esc(r["metric"]), f"<strong>{esc(r['value'])}</strong>", r["n"], esc(r["ci_or_detail"]),
               esc(r["interpretation"])] for r in corr]
-    body.append(table(["Metric", "Value", "n", "95% CI / detail", "Meaning"], [[str(c) for c in r] for r in rows3]))
+    body.append(table(["Metric", "Value", "n", "95% CI / detail", "Meaning", "Source"],
+                      [[str(c) for c in r] + [src_link(REPO + "data/lines/correlation_report.csv", "correlation_report.csv")] for r in rows3], data=True))
     body.append('<p class="note">Same-game spread/total legs are near-uncorrelated (φ = −0.023): parlay pricing ≈ naive '
                 'multiplication; cross-game independence confirmed (r = 0.001, n=12,585 pairs). '
                 'Player-prop correlations are not computable from in-repo data — open question Q5.</p></section>')
@@ -386,7 +398,7 @@ def p_lines():
     rows4 = [[esc(r["team"]), r["off_rating"], r["def_rating_allowed"], r["net_rating"],
               src_link(NFLV, "nflverse results")] for r in ratings]
     body.append(table(["Team", "Off (pts vs avg D)", "Def allowed (vs avg O; higher=worse)", "Net", "Source"],
-                      [[str(c) for c in r] for r in rows4]))
+                      [[str(c) for c in r] for r in rows4], data=True))
     body.append("</section>")
     page("lines.html", "X1 Lines & Model", "Line origination", "\n".join(body),
          "Our own prices for Week 10, the leak-free validation behind them, and the measured correlation structure.")
@@ -407,8 +419,9 @@ def p_strategies():
                 "<li><strong>Gates</strong> — 100+ graded bets, binomial significance &lt; 0.05, positive out-of-sample ROI, drawdown cap, portfolio-correlation cap.</li>"
                 "</ul></section>")
     body.append('<section class="panel"><h2 style="margin-top:0">Luck reference (computed)</h2>')
-    body.append(table(["True win rate", "Bets needed for 95% confidence", "Expected units over that sample"],
-                      [[r["true_win_rate"], r["bets_needed_for_95pct_confidence"], r["expected_units_at_-110"]] for r in luck]))
+    body.append(table(["True win rate", "Bets needed for 95% confidence", "Expected units over that sample", "Source"],
+                      [[r["true_win_rate"], r["bets_needed_for_95pct_confidence"], r["expected_units_at_-110"],
+                        src_link(REPO + "code/leaderboard.py", "code/leaderboard.py")] for r in luck], data=True))
     body.append('<p class="note">A hot weekend proves nothing; the board is built so it cannot be rewarded.</p></section>')
     body.append('<section class="panel"><h2 style="margin-top:0">Registered strategies & validation gates</h2>')
     rows = [[f"<strong>{esc(r['id'])}</strong>", esc(r["name"]), esc(r["markets"]), esc(r["thesis"]),
@@ -418,14 +431,16 @@ def p_strategies():
                       for g in r["gates"].split("; ") if g),
              chip(r["status"], {"provisional": "provisional", "failed-gate": "failed", "blocked-data": "blocked"}.get(r["status"], ""))]
             for r in reg]
-    body.append(table(["ID", "Name", "Markets", "Thesis", "Edge source", "Gates", "Status"], rows))
+    body.append(table(["ID", "Name", "Markets", "Thesis", "Edge source", "Gates", "Status", "Reference"],
+                      [r + [src_link(REPO + "docs/annex/leaderboard-snapshot.md", "annex methodology")] for r in rows]))
     body.append("</section>")
     body.append('<section class="panel"><h2 style="margin-top:0">Leaderboard</h2>')
     rows2 = [[esc(r["strategy"]), chip(r["status"], {"official": "official", "provisional": "provisional"}.get(r["status"], "unverified")),
               r["bets"], r["wins"], r["losses"], r["pushes"], r["win_rate"], r["avg_clv_pts"],
               r["equity_units"], r["max_drawdown_units"], r["binom_p_leq_breakeven"], r["points"]] for r in lb]
     body.append(table(["Strategy", "Status", "Bets", "W", "L", "P", "Win rate", "Avg CLV",
-                       "Equity (u)", "Max DD (u)", "P(win≤BE)", "Points"], [[str(c) for c in r] for r in rows2]))
+                       "Equity (u)", "Max DD (u)", "P(win≤BE)", "Points", "Source"],
+                      [[str(c) for c in r] + [src_link(REPO + "data/strategies/leaderboard.csv", "leaderboard.csv")] for r in rows2], data=True))
     body.append(f'<p class="note">Rewards: {esc(meta["rewards"]["pool"])} · payout {" / ".join(str(int(s*100))+"%" for s in meta["rewards"]["payout_split"])} '
                 f'to top-3 official strategies. Scoring: {esc(json.dumps(meta["scoring"]))}. '
                 f'Rebuild: <code>python3 code/leaderboard.py</code>. Bet log format: <code>data/strategies/bets_TEMPLATE.csv</code>.</p></section>')
@@ -508,7 +523,7 @@ def p_sources():
     body = ('<section class="panel">' + render("docs/annex/sources-snapshot.md") + "</section>"
             '<section class="panel"><h2 style="margin-top:0">Downloadable data</h2>'
             "<ul class='tight'>"
-            + "".join(f"<li><code>{f}</code> — <a href='data/{f}' target='_blank' rel='noopener'>open CSV</a></li>"
+            + "".join(f"<li><code>{f}</code> — <a href='data/{f.replace('/', '_')}' target='_blank' rel='noopener'>open CSV</a></li>"
                       for f in ["nfl/teams_standings_2026_w10.csv", "nfl/schedule_2026_week10.csv",
                                 "nfl/international_2026.csv", "nfl/season_facts.csv",
                                 "injuries/injuries_2026_week10.csv", "injuries/qb_map_2026_week10.csv",

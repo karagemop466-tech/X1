@@ -1,0 +1,59 @@
+name: Publish static site to GitHub Pages
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verify internal links and source citations
+        run: python3 scripts/verify_site.py
+      - name: Verify dashboard links and sources
+        run: python3 scripts/check_site.py
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Assemble the served tree (site only, no sources or archive)
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          cp index.html _site/
+          cp -r pages assets _site/
+          # the parallel session's data dashboard (real backtests + 2026 CSVs)
+          cp -r dashboard _site/
+          # snapshot annex from session arena/a78e0158-x1 (originated lines, backtests, correlations)
+          cp -r site _site/
+          mkdir -p _site/data
+          cp data/*.json _site/data/ 2>/dev/null || true
+          cp data/*.csv _site/data/ 2>/dev/null || true
+          # .nojekyll keeps files starting with _ and avoids any Jekyll processing
+          touch _site/.nojekyll
+          du -sh _site
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

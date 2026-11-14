@@ -1,0 +1,12 @@
+# Generated GitHub Pages artifact (if a build step ever emits one)
+_site/
+
+# local scratch
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+.arena/
+
+# large local inputs used by analysis/strategy_backtest.py
+/tmp/nfldata/

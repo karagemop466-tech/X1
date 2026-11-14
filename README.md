@@ -1,56 +1,87 @@
-# X1 — NFL Data, Verification & Decision System
+# X1 — Fourth Down: NFL Line Lab
 
-Verified NFL data · original line origination · a skill-gated strategy leaderboard ·
-decision-support analysis. Every table row on the site links its official source; values that
-cannot be confirmed are **left blank and flagged — never inferred**.
+Verified NFL data, a line-origination methodology, and a skill-based strategy leaderboard —
+built so that **nothing is published without an official source**, and anything unprovable is
+left visibly blank and flagged.
 
-**Live site:** https://karagemop466-tech.github.io/X1/ (GitHub Pages, deployed from `main`)
+**Live site:** https://karagemop466-tech.github.io/X1/
 
-## What's in here
+## What is in here
 
 | Path | Contents |
 |---|---|
-| `site/` | The static dashboard (10 pages): overview, teams, schedule, injuries & depth, X1 lines, strategies & leaderboard, executive summary & open questions, suggestions, flagged-for-review, sources |
-| `data/nfl/` | Verified reference data (standings, Week 10 schedule, international slate, season facts) — per-row source links |
-| `data/injuries/` | Official Week 10 injury report (345 rows) + QB starter map with conflicts flagged |
-| `data/lines/` | X1 originated lines, model config, leak-free backtest, threshold sweep, computed correlation report |
-| `data/strategies/` | Strategy registry, validation gates, leaderboard, luck-reference arithmetic, bet-log template |
-| `data/raw/nflverse/` | Source copies (nflverse/nfldata via GitHub API) + provenance README |
-| `docs/` | Repo review, source registry & verification protocol, methodologies, executive summary, open-questions matrix, suggestions register |
-| `code/` | Deterministic, stdlib-only builders: reference data → lines → leaderboard → site |
+| `index.html`, `pages/` | The published dashboard (generated — do not hand-edit) |
+| `assets/site.css` | Styling (hand-edited) |
+| `data/nfl/*.tsv` | Transcribed official tables, one source link per row |
+| `data/*.json` | Machine-readable registers: questions, flags, suggestions, gates, signals, strategies |
+| `docs/EXECUTIVE-SUMMARY.md` | The summary in plain markdown |
+| `docs/methodology/` | Line origination, correlation, validation gates, leaderboard, availability |
+| `docs/sources/sources.md` | Source registry and the verification tiers |
+| `docs/review/repo-review.md` | Line-by-line review of the repository and its own defects |
+| `tools/` | Data build, integrity checks, site generator, link checker |
+| `COORDINATION.md` | Shared task board for parallel agent sessions |
 
-## Rebuild everything
+## The rule this repository is built around
+
+> If a value cannot be confirmed from an official source, the cell stays blank and the item is flagged.
+> Nothing is inferred, and no number is invented to fill a table.
+
+Consequences you will see on the site: **no prices, no correlation values, no strategy results**.
+Those require a licensed odds feed, licensed snap counts and a scored window, none of which exist here yet.
+
+## Reproduce every check
 
 ```bash
-python3 code/build_reference_data.py   # emits verified CSVs from transcribed official data
-python3 code/build_lines.py            # fits ratings, backtests leak-free, originates Week 10 lines
-python3 code/leaderboard.py            # grades bets, scores strategies, checks gates
-python3 code/build_site.py             # regenerates the site from the CSVs
+python3 tools/build_availability.py   # rebuild the derived availability table
+python3 tools/verify_data.py          # 2,944 integrity assertions over every published table
+python3 tools/build_site.py           # regenerate index.html and pages/
+python3 tools/check_links.py          # resolve internal links, allow-list external hosts
 ```
 
-## Key verified facts (snapshot 2026-11-14)
+All four must pass before anything is published; CI (`.github/workflows/verify.yml`) enforces it.
 
-- 2026 season, Week 10: 137/272 games played; byes CHI/DEN/PHI/TB; Munich game NE@DET;
-  MNF LAC@BAL. Standings 32/32 cross-verified NFL.com ↔ nflverse (exact match).
-- Record nine 2026 international games (operations.nfl.com): Melbourne, Rio, 3× London, Paris,
-  Madrid, Munich, Mexico City.
-- X1 v1 model: MAE ≈ 10.9 pts; **no betting edge vs market** (ROI −6.1%..−2.6%) — reported
-  honestly; model v2 (QB-adjusted) is suggestion SG-02.
-- Correlations (computed): same-game spread/total φ = −0.023 (n=1,496); margin-total r = 0.020;
-  cross-game r = 0.001 (n=12,585). Prop correlations blocked on data (open question Q5).
-- Luck arithmetic: a true 55% win-rate capper needs **991 bets** for 95% confidence — the
-  leaderboard gates encode this so luck cannot be rewarded.
+## Data snapshot
 
-## Coordination
+Everything is a snapshot dated **2026-11-14** — 2026 NFL season, Week 10.
+The injury report changes daily, so treat the tables as dated evidence, not a live feed.
 
-Parallel sessions read `COORDINATION.md` before any work: claim tasks, commit claims immediately,
-keep scopes non-overlapping, rebase before push, and record sources/verification/irregularities
-at completion. Shared outputs change only in the final integration session.
+## Corrections
 
-## House rules
+Corrections are published, not silently applied. The current list is on the site's
+**Flagged for review** page and in `docs/review/repo-review.md` (defects D-01 to D-03).
 
-1. Official sources only for verified values (see `docs/sources/sources.md` for tiers).
-2. Unverifiable → blank + `Flagged for Review` (site page) — never filled in.
-3. Conflicting sources are recorded, not silently resolved (see the QB map).
-4. Market lines are benchmarks, not truth.
-5. No betting recommendation anywhere on the site; strategies must pass gates first.
+---
+
+## Snapshot annex (session `arena-a78e0158-x1`)
+
+A parallel, independently built **quantitative annex** is integrated alongside the canonical
+site above. Where the canonical site deliberately publishes no numbers, the annex publishes
+**computed** values with full inputs, code and audit trail:
+
+| Path | Contents |
+|---|---|
+| `site/` | The X1 snapshot dashboard (10 pages; every row source-linked; CSVs mirrored under `site/data/`) |
+| `data/nfl/`, `data/injuries/` | Verified snapshot: standings (cross-verified NFL.com ↔ nflverse, 32/32 exact), Week 10 schedule + byes, 9 international games, official 345-row injury report, QB map with conflicts flagged |
+| `data/lines/` | Originated X1 lines, leak-free backtest (1,779 games), threshold sweep, computed correlation report with 95% CIs, team ratings |
+| `data/strategies/` | Strategy registry with validation gates, leaderboard, luck-reference arithmetic, bet-log template |
+| `data/raw/nflverse/` | nflverse/nfldata source copies + provenance README |
+| `docs/annex/`, `docs/analysis/` | Annex review/sources/methodology docs; executive summary; decision matrix (Q1–Q12); suggestions register (SG-01..SG-13) |
+| `code/` | Deterministic stdlib builders: `build_reference_data.py`, `build_lines.py`, `leaderboard.py`, `build_site.py` |
+
+Headline (computed, not assumed): the v1 results-only model has **no betting edge** (ROI −6.1%…−2.6%
+across thresholds) — registered `failed-gate` on the annex leaderboard; same-game spread/total
+correlation φ = −0.023 (n=1,496); cross-game independence r = 0.001 (n=12,585); a true 55% capper
+needs 991 bets for 95% confidence — the gates encode this so luck cannot be rewarded.
+
+Rebuild the annex:
+
+```bash
+python3 code/build_reference_data.py   # verified CSVs from transcribed official data
+python3 code/build_lines.py            # ratings, leak-free backtest, Week 10 lines, correlations
+python3 code/leaderboard.py            # grades bets, scores strategies, checks gates
+python3 code/build_site.py             # regenerates site/ (annex)
+python3 scripts/verify_site_annex.py   # annex link + source-row check
+```
+
+Cross-check note: both independent transcriptions agree — standings 32/32 identical
+(`data/standings_2026.csv` ↔ `data/nfl/teams_standings_2026_w10.csv`).
