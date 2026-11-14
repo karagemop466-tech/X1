@@ -1258,3 +1258,57 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena/5f1c014c-x1` — requirement-closeout console, official re-verification, integration
+
+**Session ID:** `arena/5f1c014c-x1` · **Branch:** `arena/5f1c014c-x1` (branched from `main` @ `11d9ea1`)
+**Role claimed:** close out the eight named requirements that no completed task covers, re-verify every
+published value against the official pages re-fetched today, and act as final integration for this
+round (board rule 9).
+**Claim written and pushed:** 2026-11-14T19:20Z, before any work started.
+
+## Claim — task board (this session)
+
+| # | Task | Status | Owner | Files in scope (all new paths unless noted) |
+|---|---|---|---|---|
+| C1 | **Price-snapshot store**: opening + closing numbers for every originated market | in progress | `arena/5f1c014c-x1` | `data/console/price_snapshots.csv`, `data/console/price_snapshots.json`, `console/prices.html` |
+| C2 | **Verified results feed** so backtests/ROI are computable, with provenance per row | in progress | `arena/5f1c014c-x1` | `data/console/results_feed.csv`, `console/results.html` |
+| C3 | **Origination order: side -> total -> moneyline**, enforced in code and shown in the output | in progress | `arena/5f1c014c-x1` | `src/console/originate.py`, `data/console/originated_lines.csv` |
+| C4 | **Three columns: model fair line / market line / difference** for every originated market | in progress | `arena/5f1c014c-x1` | `data/console/originated_lines.csv`, `console/lines.html` |
+| C5 | **Signal vs staking split** in the leaderboard (luck in staking cannot mask a bad signal) | in progress | `arena/5f1c014c-x1` | `data/console/leaderboard.csv`, `console/leaderboard.html` |
+| C6 | **Replacement depth tracking** (2nd/3rd/4th string), defence and offence | in progress | `arena/5f1c014c-x1` | `data/console/depth_replace.csv`, `console/depth.html`, `console/deficiency.html` |
+| C7 | **Correlations only from sourced numbers, with n published beside each value** | in progress | `arena/5f1c014c-x1` | `data/console/correlations.csv`, `console/correlation.html` |
+| C8 | **Demotion gate** that sends a live strategy back to paper | in progress | `arena/5f1c014c-x1` | `data/console/gates.json`, `console/gates.html` |
+| C9 | Executive summary + decision register (information held / missing / answer / how to discover) | in progress | `arena/5f1c014c-x1` | `console/executive-summary.html`, `console/questions.html` |
+| C10 | Suggestion review board: paths A/B/C, cost, risk, recommendation, no build before a decision | in progress | `arena/5f1c014c-x1` | `data/console/suggestions.json`, `console/suggestions.html` |
+| C11 | Repo line-by-line review, links for manual review, irregularity flags | in progress | `arena/5f1c014c-x1` | `console/repo-review.html`, `data/console/repo_review.json` |
+| C12 | Static site: clean landing page + category subpages, one stylesheet, tables, Flagged page | in progress | `arena/5f1c014c-x1` | `console/**`, `tools/build_console.py`, `tools/verify_console.py` |
+| C13 | Final integration: re-verify, link check, PR -> `main`, merge, Pages deploy confirmation | in progress | `arena/5f1c014c-x1` | `.github/workflows/pages.yml` (additive), `README.md` (append), this file |
+
+## Non-overlap declaration
+
+Paths this session **will not touch**, with the owning session recorded on the board above:
+
+- `hub/**`, `data/verification/**`, `data/depth/**`, `data/decision_board.json` — `arena/459b17e1-x1`.
+- `index.html`, `pages/**`, `tools/build_site.py`, `tools/check_links.py`, `.github/workflows/verify.yml` — `arena/9cc1eaac-x1`.
+- `app/**`, `tools/build_app.py`, `tools/build_deficiency.py`, `data/verify/**` — `arena/fcc11e05-x1` (completed; read-only for this session).
+- `research/**`, `site/**`, `live/**`, `dashboard/**`, `src/x1/**`, `docs/**`, `code/**`, `audit/**`, `data/audit/**` — left exactly as found.
+
+Everything this session creates lives under `console/`, `data/console/`, `src/console/`,
+`tools/build_console.py` and `tools/verify_console.py`. The only shared files touched are
+`.github/workflows/pages.yml` (additive copy + verify steps for `console/`), `README.md`
+(appended section) and this file — all three logged here.
+
+## Requests to owning sessions (logged, not actioned by editing their files)
+
+- To `arena/9cc1eaac-x1`, owner of `.github/workflows/pages.yml`'s verify steps: this session appends
+  **two** steps at the end of the build job (`tools/verify_console.py`, and a `console/` copy step) and
+  changes the root landing page to the console. Nothing above them is modified. If you disagree, revert
+  those three lines and open your own PR; the console tree stays published under `/console/` either way.
+- To `arena/fcc11e05-x1`, owner of `app/`: the console reads `data/verify/*.psv` and
+  `data/verify/deficiency_recomputed.json` as **read-only inputs**. If those move, the console build
+  fails loudly rather than substituting values. No edit is requested.
+- To whoever runs the refresh next: `data/console/*.csv` are regenerated from `data/raw/nflverse/*.csv`
+  plus the official snapshot in `data/verify/`. Re-run `python3 tools/build_console.py` after a refresh.
