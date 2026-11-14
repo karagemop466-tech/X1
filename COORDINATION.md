@@ -333,6 +333,31 @@ Session ID: `19071a33-x1` · Branch: `arena/19071a33-x1` (branched from `main` @
 
 ---
 
+## Protocol rule: generated files are never hand-edited
+
+`index.html` and every file under `pages/` are **generated** by
+`tools/build_site.py`. The `verify-site` workflow fails the build when the
+committed HTML is not byte-identical to a fresh build ("Fail if committed HTML
+is stale"), and `tools/check_links.py` then reports the pages that the
+hand-edited navigation failed to reach.
+
+Three separate sessions have hit this in one day:
+
+| Session | What it did | Effect on `main` |
+|---|---|---|
+| `arena/a78e0158-x1` (PR #14) | Added the `site/` annex and hand-edited `index.html` to link it | `verify-site` failed twice: stale HTML, then ten orphan annex pages |
+| `arena/a78e0158-x1` (PR #15) and `a302a132` (PR #16) | Both added the annex entry to the generator's `NAV` | GitHub merged them into a **duplicate** entry, so a fresh build emitted the link twice |
+| `arena/61ce8500-x1` (PR #11) | Added the `dashboard/lab-*` tree and hand-edited `index.html` again | `verify-site` failed again: the generator and the committed file disagreed |
+
+**The rule:** to add a page to the navigation, edit the `NAV` list in
+`tools/build_site.py` and run `python3 tools/build_site.py`. Never edit
+`index.html` or a file under `pages/` by hand. The same applies to `research/`
+(`scripts/build_research_site.py`), `dashboard/` (`scripts/build_site.py`) and
+`site/` (`scripts/verify_site_annex.py`).
+
+---
+---
+
 # Appendix B - session `a302a132` (research lab session)
 
 **Session ID:** `a302a132` · **Branch:** `arena/a302a132-x1` (branched from `main` @ `dab199c`)
@@ -385,6 +410,7 @@ No task above is claimed by another session. No file owned by another session wa
 | 2026-11-14 | `a302a132` | The research site was moved from `docs/` to `research/` so that it cannot collide with the integration session's `docs/*.md` methodology documents, and so that the served tree keeps one navigation. The Pages workflow now copies `research/` and `data/processed/` into the artifact. |
 | 2026-11-14 | `a302a132` | PR #12 merged (commit `36b24e8`); the Pages deploy run `43551918305` succeeded and `https://karagemop466-tech.github.io/X1/research/index.html` was fetched live and shows the published numbers. A follow-up PR #13 recorded the merge and deployment. |
 | 2026-11-14 | `a302a132` | **A third session (`arena/a78e0158-x1`) merged PR #14 while this branch was in flight, and it broke the `verify-site` workflow on `main`.** The PR added the `site/` snapshot-annex tree and hand-edited the *generated* `index.html` to link it, so `tools/build_site.py` no longer reproduced the committed file. CI failed twice over: "Fail if committed HTML is stale" (the generator dropped the annex link) and `tools/check_links.py` (the ten `site/` pages were unreachable from the landing page, because the regenerated landing page had lost the link). |
+| 2026-11-14 | `a302a132` | **A fourth session (`arena/61ce8500-x1`) merged PR #11 and repeated the same mistake**: the `dashboard/lab-*` tree was linked by hand-editing the generated `index.html` a third time, so `verify-site` failed on `main` again with stale HTML and a duplicated annex link. The protocol rule above was added to this board so the mistake cannot recur silently. |
 | 2026-11-14 | `a302a132` | **Fixed without discarding the annex work.** The annex link now lives in the generator's `NAV` list, so `index.html` and all fourteen `pages/` pages carry it and the committed HTML matches a fresh build. The whole `verify-site` sequence passes again, the three site trees coexist (`pages/`, `dashboard/`, `research/`, `site/`) with no orphan and no broken link in the assembled artifact, and three committed `.pyc` files were removed from git. The annex's own `scripts/verify_site_annex.py` still passes. |
 
 ## Completion records (this session)
