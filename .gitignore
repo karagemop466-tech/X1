@@ -5,5 +5,4 @@ __pycache__/
 data/_pipeline.log
 data/_verify.log
 data/_pipeline_stamp.log
-site/data/
 _ci/

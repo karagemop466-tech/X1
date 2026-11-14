@@ -1,23 +1,23 @@
 name: data-refresh
 
 # Collects every dataset from its official source with no manual input, commits
-# the result, and rebuilds/publishes the GitHub Pages site.
+# the result, and verifies the published site.
+#
+# GitHub Pages is configured with the legacy branch builder on /, so the
+# published site is the repository root and Pages rebuilds itself whenever this
+# job commits new data to the branch.
 
 on:
   schedule:
     # Injury reports move most on Wed/Thu/Fri and on game mornings.
     - cron: "17 11,15,19,23 * * *"   # every 6 hours (UTC)
-    - cron: "42 12,16 * * 0,1,4"   # extra pass on game days (Sun/Mon/Thu)
+    - cron: "42 12,16 * * 0,1,4"     # extra pass on game days (Sun/Mon/Thu)
   workflow_dispatch:
-    inputs:
-      skip_pages:
-        description: "Skip the Pages rebuild"
-        type: boolean
-        default: false
   push:
     branches: ['**']
     paths:
       - 'pipeline/**'
+      - 'scripts/**'
       - '.github/workflows/data-refresh.yml'
 
 concurrency:
@@ -26,8 +26,6 @@ concurrency:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   collect:
@@ -48,16 +46,14 @@ jobs:
           mkdir -p _ci
           { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee _ci/pipeline.log
           cp _ci/pipeline.log /tmp/pipeline.log
-          {
-            echo "### data-refresh: pipeline output"
-            echo '```'
-            tail -60 _ci/pipeline.log
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Verify row-level source coverage
         continue-on-error: true
         run: python3 scripts/verify_data.py 2>&1 | tee data/_verify.log
+
+      - name: Verify the published site
+        continue-on-error: true
+        run: python3 scripts/verify_site.py
 
       - name: Commit refreshed data
         if: always()
@@ -67,12 +63,12 @@ jobs:
             git config user.name "x1-bot"
             git config user.email "x1-bot@users.noreply.github.com"
             # Adopt whatever the branch has moved on to (another session may have
-            # pushed) without touching the working tree, then stage data/ and the
-            # run logs. --mixed avoids the rebase conflicts a pull produces when
-            # the pipeline has left the tree dirty.
+            # pushed) without touching the working tree, then stage data/.
+            # --mixed avoids the rebase conflicts a pull produces when the
+            # pipeline has left the tree dirty.
             git fetch origin "${GITHUB_REF_NAME}"
             git reset --mixed "origin/${GITHUB_REF_NAME}"
-            git add data _ci
+            git add data
             git status --porcelain
             if git diff --cached --quiet; then
               echo "MARKER: nothing to commit"
@@ -99,56 +95,30 @@ jobs:
           # Copy the log into the repo only after git has finished with it:
           # tee-ing straight into a tracked file leaves unstaged changes behind
           # the commit, which then blocks the rebase with "unstaged changes".
+          mkdir -p _ci
+          cp /tmp/commit.log _ci/commit.log
           grep -q "MARKER: done" /tmp/commit.log
 
-      - name: Upload diagnostics via the API
+      - name: Upload run logs through the API
         if: always()
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # A rejected push must never hide the reason for it, so the logs are
+          # also written with the contents API.
           for name in commit pipeline; do
-            file="_ci/${name}.log"
-            [ -f "$file" ] || echo "(no ${name} log)" > "$file"
-            b64=$(base64 -w0 "$file")
-            sha=$(gh api "repos/${{ github.repository }}/contents/${file}?ref=${GITHUB_REF_NAME}" --jq .sha 2>/dev/null || true)
+            src="_ci/${name}.log"
+            [ -f "$src" ] || echo "(no ${name} log)" > "$src"
+            b64=$(base64 -w0 "$src")
+            sha=$(gh api "repos/${{ github.repository }}/contents/${src}?ref=${GITHUB_REF_NAME}" --jq .sha 2>/dev/null || true)
             if [ -n "$sha" ]; then
-              gh api -X PUT "repos/${{ github.repository }}/contents/${file}" \
+              gh api -X PUT "repos/${{ github.repository }}/contents/${src}" \
                 -f message="ci: diagnostics ${name} $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
                 -f content="$b64" -f branch="${GITHUB_REF_NAME}" -f sha="$sha" >/dev/null
             else
-              gh api -X PUT "repos/${{ github.repository }}/contents/${file}" \
+              gh api -X PUT "repos/${{ github.repository }}/contents/${src}" \
                 -f message="ci: diagnostics ${name} $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
                 -f content="$b64" -f branch="${GITHUB_REF_NAME}" >/dev/null
             fi
           done
-
-      - name: Assemble the site
-        if: ${{ github.event.inputs.skip_pages != 'true' }}
-        run: |
-          rm -rf site/data
-          mkdir -p site/data
-          cp data/*.json site/data/
-          python3 scripts/verify_site.py
-
-      - name: Build Pages artifact
-        if: ${{ github.event.inputs.skip_pages != 'true' }}
-        id: build
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        if: ${{ github.event.inputs.skip_pages != 'true' }}
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-  deploy:
-    if: ${{ github.event.inputs.skip_pages != 'true' }}
-    needs: collect
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4

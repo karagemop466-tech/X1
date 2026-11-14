@@ -23,8 +23,10 @@ from typing import Dict, List, Set, Tuple
 from urllib.parse import urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
-DATA = os.path.join(SITE, "data")
+# GitHub Pages is configured with the legacy branch builder on /, so the
+# published site is the repository root itself.
+SITE = ROOT
+DATA = os.path.join(ROOT, "data")
 
 # Datasets that are published empty on purpose because no official source exists.
 EMPTY_BY_DESIGN = {"market_lines"}
@@ -63,7 +65,10 @@ def main() -> int:
     checked_links = 0
     referenced_data: Set[str] = set()
 
-    pages = sorted(f for f in os.listdir(SITE) if f.endswith(".html"))
+    pages = sorted(
+        f for f in os.listdir(SITE)
+        if f.endswith(".html") and os.path.isfile(os.path.join(SITE, f))
+    )
     if not pages:
         problems.append("no HTML pages found in site/")
 
