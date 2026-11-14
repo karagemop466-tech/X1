@@ -85,6 +85,10 @@ class DepthPlayer:
     starts: int = 0
     games_played: int = 0
     substitution_order: Optional[int] = None
+    #: Total snaps recorded by the league across the sampled games.
+    snaps: int = 0
+    #: Games in which the player appeared at all.
+    appearances: int = 0
 
     @property
     def is_starter(self) -> bool:
@@ -98,6 +102,8 @@ class DepthPlayer:
             "starts": self.starts,
             "games_played": self.games_played,
             "substitution_order": self.substitution_order,
+            "snaps": self.snaps,
+            "appearances": self.appearances,
         }
 
 
@@ -175,6 +181,26 @@ def build_depth_charts(gamebooks: List[Dict[str, Any]]) -> Dict[str, DepthChart]
                 if player.substitution_order is None:
                     player.substitution_order = order
 
+            # The league's own playtime table orders the depth chart.
+            playtime = (book.get("playtime") or {}).get("visitor" if club == visitor else "home")
+            for name, entry in (playtime or {}).items():
+                group = position_group(entry.get("position"))
+                if not group:
+                    continue
+                side = "offense" if group in OFFENSE_GROUPS else "defense"
+                table = chart.offense if side == "offense" else chart.defense
+                bucket = table.setdefault(group, [])
+                player = _find(bucket, name)
+                if player is None:
+                    player = DepthPlayer(
+                        name=name,
+                        position=entry.get("position"),
+                        group=group,
+                    )
+                    bucket.append(player)
+                player.snaps += int(entry.get("snaps") or 0)
+                player.appearances += 1
+
             chart.games_sampled += 1
 
     # Order each bucket: starters first (by starts, then name), then backups by
@@ -186,6 +212,7 @@ def build_depth_charts(gamebooks: List[Dict[str, Any]]) -> Dict[str, DepthChart]
                     key=lambda p: (
                         0 if p.is_starter else 1,
                         -p.starts,
+                        -p.snaps,
                         p.substitution_order if p.substitution_order is not None else 10_000,
                         p.name or "",
                     )

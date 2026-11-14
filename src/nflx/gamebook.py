@@ -4,64 +4,40 @@ The Game Book is the most complete primary source the league publishes for a
 single game. It contains:
 
 * officials by position (referee, umpire, line judge, …)
-* game-day weather (temperature, humidity, wind, wind chill, roof/surface)
+* game-day weather (temperature, humidity, wind, roof status, surface)
 * the official starting lineups for both teams (offence *and* defence)
 * the substitution list, the "did not play" list and the "not active" list
 * the complete individual box score for both teams
-* playtime percentages
+* per-team aggregate statistics and per-player playtime percentages
 
 That is enough to derive, for each club, who actually starts at each position
-and who is available behind them - the raw material for a depth-chart
+group and who is available behind them - the raw material for a depth-chart
 deficiency model.
 
-The PDF text layer is parsed with :mod:`pypdf`, which is installed in CI. The
-parsing itself is pure Python and line-oriented.
+The PDF text layer is read in *layout* mode, which preserves the horizontal
+column boundaries the league uses to print the two clubs side by side. The
+column boundaries are recovered from the printed headers rather than guessed.
 """
 
 from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
-# Positions that appear in the official lineup grid.
-OFFENSE_POSITIONS = ("WR", "TE", "LT", "LG", "C", "RG", "RT", "QB", "RB", "FB", "OL")
-DEFENSE_POSITIONS = ("OLB", "DL", "DT", "DE", "LB", "CB", "S", "DB", "NT")
-
-POSITION_LABELS = set(OFFENSE_POSITIONS) | set(DEFENSE_POSITIONS) | {"OLB", "DL"}
-
-#: ``<POS> <num> <Name>`` as it appears in lineup / substitution blocks.
-PLAYER_RE = re.compile(
-    r"(?P<pos>[A-Z]{1,2}(?:/[A-Z])?)\s+"
-    r"(?P<num>\d{1,2}[A-Z]?)\s+"
-    r"(?P<name>[A-Z][A-Za-z'\.\-]*(?:\s+[A-Z][A-Za-z'\.\-]*)*?)"
-    r"(?=(?:,\s|\s{2,}|\s*$))"
-)
-
-WEATHER_RE = re.compile(
-    r"Temp:\s*(?P<temp>[-\d.]+)\s*°?\s*F.*?Humidity:\s*(?P<humidity>\d+)%.*?"
-    r"Wind:\s*(?P<wind>[A-Z]{1,3}\s+\d+)\s*mph",
-    re.IGNORECASE,
-)
-WIND_CHILL_RE = re.compile(r"Wind Chill:\s*(?P<chill>[-\d.]+)", re.IGNORECASE)
-SURFACE_RE = re.compile(
-    r"(Closed Stadium|Open Stadium|.*?)\s+on\s+(Field Turf|Field|Dome|Artificial Turf|Turf)",
-    re.IGNORECASE,
-)
-ATTENDANCE_RE = re.compile(r"Paid Attendance:\s*(?P<attendance>[\d,]+)")
-GAME_TIME_RE = re.compile(r"Time:\s*(?P<length>\d+:\d+)")
-DATE_RE = re.compile(r"Date:\s*(?P<date>[A-Za-z]+,\s*\d{1,2}/\d{1,2}/\d{4})")
-SCORE_ROW_RE = re.compile(
-    r"^(?P<side>VISITOR|HOME):\s*(?P<club>.+?)\s+"
-    r"(?P<q1>\d+)\s+(?P<q2>\d+)\s+(?P<q3>\d+)\s+(?P<q4>\d+)\s+"
-    r"(?P<ot>\d+)\s+(?P<total>\d+)\s*$"
-)
-SCORE_RE = re.compile(
-    r"VISITOR:\s*(?P<visitor>.+?)\s+(?P<v1>\d+)\s+(?P<v2>\d+)\s+(?P<v3>\d+)\s+"
-    r"(?P<v4>\d+)\s+(?P<vo>\d+)\s+(?P<vtotal>\d+)\s+"
-    r"HOME:\s*(?P<home>.+?)\s+(?P<h1>\d+)\s+(?P<h2>\d+)\s+(?P<h3>\d+)\s+"
-    r"(?P<h4>\d+)\s+(?P<ho>\d+)\s+(?P<htotal>\d+)"
-)
+#: Position groups used for depth analysis. Backup quality is only meaningful
+#: inside a position group, because a backup safety cannot cover for a tackle.
+POSITION_GROUPS: Dict[str, List[str]] = {
+    "QB": ["QB"],
+    "RB": ["RB", "FB"],
+    "WR": ["WR"],
+    "TE": ["TE"],
+    "OL": ["LT", "LG", "C", "RG", "RT", "OL", "T/G", "C/G", "G/T", "T", "G"],
+    "DL": ["DL", "DT", "DE", "NT"],
+    "LB": ["LB", "OLB", "ILB", "MLB"],
+    "DB": ["CB", "DB", "S", "FS", "SS", "SAF"],
+    "ST": ["K", "P", "LS"],
+}
 
 OFFICIAL_ROLES = (
     "Referee",
@@ -69,10 +45,41 @@ OFFICIAL_ROLES = (
     "Line Judge",
     "Field Judge",
     "Side Judge",
-    "Back Judge",
     "Down Judge",
+    "Back Judge",
     "Replay Official",
 )
+
+OFFICIAL_RE = re.compile(
+    r"(?P<role>" + "|".join(re.escape(r) for r in OFFICIAL_ROLES) + r")\s*:\s*"
+    r"(?P<name>[^(]+?)\s*\((?P<num>\d+)\)"
+)
+
+SCORE_ROW_RE = re.compile(
+    r"^(?P<side>VISITOR|HOME)\s*:\s*(?P<club>\S.*?)\s+"
+    r"(?P<q1>\d+)\s+(?P<q2>\d+)\s+(?P<q3>\d+)\s+(?P<q4>\d+)\s+"
+    r"(?P<ot>\d+)\s+(?P<total>\d+)\s*$"
+)
+
+#: A player cell: position, jersey number and the player's name.
+CELL_RE = re.compile(
+    r"^\s*(?P<pos>\d?[A-Z]{1,3}(?:/[A-Z])?)\s+(?P<num>\d{1,2}[A-Z]?)\s+"
+    r"(?P<name>[A-Z][A-Za-z'\.\-]*(?:\s[A-Z][A-Za-z'\.\-]*)?)"
+)
+
+WEATHER_RE = re.compile(
+    r"Temp:\s*(?P<temp>-?\d+(?:\.\d+)?)\D{0,4}F.*?Humidity:\s*(?P<humidity>\d+)%.*?"
+    r"Wind:\s*(?P<wind>[A-Z]{1,3}\s+\d+)\s*mph",
+    re.IGNORECASE,
+)
+WIND_CHILL_RE = re.compile(r"Wind Chill:\s*(?P<chill>-?\d+(?:\.\d+)?)", re.IGNORECASE)
+ATTENDANCE_RE = re.compile(r"Paid Attendance:\s*(?P<attendance>[\d,]+)")
+GAME_TIME_RE = re.compile(r"Time:\s*(?P<length>\d+:\d+)")
+DATE_RE = re.compile(r"Date:\s*(?P<date>[A-Za-z]+,\s*\d{1,2}/\d{1,2}/\d{4})")
+MATCHUP_RE = re.compile(
+    r"^(?P<away>.+?)\s+at\s+(?P<home>.+?)\s{2,}Start Time:\s*(?P<time>.+?)\s*$"
+)
+VENUE_RE = re.compile(r"^\s*at\s+(?P<venue>.+?)\s*$")
 
 
 @dataclass
@@ -87,6 +94,9 @@ class PlayerEntry:
     position: str
     number: Optional[str]
     name: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {"position": self.position, "number": self.number, "name": self.name}
 
 
 @dataclass
@@ -126,12 +136,9 @@ class GameBook:
     penalty_log: Dict[str, List[str]] = field(default_factory=dict)
     notes: List[str] = field(default_factory=list)
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> Dict[str, Any]:
         def dump(entries: List[PlayerEntry]):
-            return [
-                {"position": p.position, "number": p.number, "name": p.name}
-                for p in entries
-            ]
+            return [p.to_dict() for p in entries]
 
         return {
             "matchup": self.matchup,
@@ -167,304 +174,283 @@ class GameBook:
         }
 
 
-def _parse_player_list(text: str) -> List[PlayerEntry]:
-    """Parse a comma-separated ``POS number Name`` list."""
+# ---------------------------------------------------------------------------
+# column geometry
+# ---------------------------------------------------------------------------
+def _find_token_offsets(line: str, token: str) -> List[int]:
+    """Offsets of every occurrence of ``token`` in ``line``."""
+    offsets: List[int] = []
+    start = 0
+    while True:
+        index = line.find(token, start)
+        if index < 0:
+            break
+        offsets.append(index)
+        start = index + len(token)
+    return offsets
+
+
+def _column_boundaries(line: str, tokens: List[str]) -> Optional[List[int]]:
+    """Character offsets at which each printed column begins.
+
+    ``tokens`` is the sequence of labels the league prints, for example
+    ``["Offense", "Defense", "Offense", "Defense"]``. The offsets are the
+    positions of those labels in the header line, which is how the league
+    itself aligns the columns.
+    """
+    offsets: List[int] = []
+    cursor = 0
+    for token in tokens:
+        index = line.find(token, cursor)
+        if index < 0:
+            return None
+        offsets.append(index)
+        cursor = index + len(token)
+    return offsets
+
+
+def _slice_columns(line: str, offsets: List[int]) -> List[str]:
+    """Cut a line into the given columns."""
+    parts: List[str] = []
+    for index, offset in enumerate(offsets):
+        end = offsets[index + 1] if index + 1 < len(offsets) else len(line)
+        parts.append(line[offset:end])
+    return parts
+
+
+def _parse_cell(text: str) -> Optional[PlayerEntry]:
+    """Parse one ``POS NUM Name`` cell."""
+    match = CELL_RE.match(text.strip())
+    if not match:
+        return None
+    name = match.group("name").strip()
+    if not name:
+        return None
+    return PlayerEntry(
+        position=match.group("pos"),
+        number=match.group("num"),
+        name=name,
+    )
+
+
+def _parse_cell_list(text: str) -> List[PlayerEntry]:
+    """Parse a run of ``POS NUM Name`` cells written back to back."""
     entries: List[PlayerEntry] = []
-    if not text:
-        return entries
-    # Split on commas that separate player records (not on name commas).
-    for chunk in re.split(r",\s*(?=[A-Z]{1,2}(?:/[A-Z])?\s+\d)", text):
+    for chunk in re.split(r",\s*(?=\d?[A-Z]{1,3}(?:/[A-Z])?\s+\d)", text):
         chunk = chunk.strip()
         if not chunk:
             continue
-        match = re.match(
-            r"^(?P<pos>[A-Z]{1,2}(?:/[A-Z])?)\s+(?P<num>\d{1,2}[A-Z]?)\s+(?P<name>.+)$",
-            chunk.strip(),
-        )
-        if match:
-            entries.append(
-                PlayerEntry(
-                    position=match.group("pos"),
-                    number=match.group("num"),
-                    name=match.group("name").strip(),
-                )
-            )
+        cell = _parse_cell(chunk)
+        if cell is not None:
+            entries.append(cell)
     return entries
 
 
-#: Positions run to three letters (OLB, ILB) and may be qualified (T/G, 3QB).
-_CELL_MARKER_RE = re.compile(
-    r"(?P<pos>\d?[A-Z]{1,3}(?:/[A-Z])?)\s+(?P<num>\d{1,2}[A-Z]?)\s+"
-)
-
-
-def _split_player_cells(text: str) -> List[PlayerEntry]:
-    """Split a run of player cells into individual entries.
-
-    The game-book text layer writes ``POS NUM Name`` cells back to back. A
-    name never contains a position marker, so the cell boundaries are found
-    by locating each ``POS NUM`` marker and taking the text up to the next.
-    """
-    text = text.strip()
-    if not text:
-        return []
-    markers = list(_CELL_MARKER_RE.finditer(text))
-    if not markers:
-        return []
-    entries: List[PlayerEntry] = []
-    for index, marker in enumerate(markers):
-        start = marker.end()
-        end = markers[index + 1].start() if index + 1 < len(markers) else len(text)
-        name = text[start:end].strip().rstrip(",")
-        # A cell name is a single token; anything after a wide gap belongs to
-        # the neighbouring column.
-        name = re.split(r"\s{2,}", name)[0].strip()
-        if not name:
-            continue
-        entries.append(
-            PlayerEntry(
-                position=marker.group("pos"),
-                number=marker.group("num"),
-                name=name,
-            )
-        )
-    return entries
-
-
-def _split_sides(line: str) -> Tuple[str, str]:
-    """Split a two-sided game-book line into its left and right halves.
-
-    Game-book lines such as the lineup grid interleave the visitor's offence
-    and defence with the home team's offence and defence. The two halves are
-    separated by a run of two or more spaces in the extracted text layer.
-    """
-    parts = re.split(r"\s{2,}", line.strip())
-    if len(parts) >= 2:
-        return parts[0], " ".join(parts[1:])
-    return line.strip(), ""
-
-
+# ---------------------------------------------------------------------------
+# main entry point
+# ---------------------------------------------------------------------------
 def parse_gamebook(text: str) -> GameBook:
     """Parse the extracted text layer of an official NFL Game Book PDF."""
     book = GameBook()
     lines = text.splitlines()
 
-    # --- header ---------------------------------------------------------
-    for raw in lines[:60]:
-        line = raw.strip()
-        if not line:
+    _parse_header(book, lines)
+    _parse_officials(book, lines)
+    _parse_score(book, lines)
+    _parse_lineup_grid(book, lines)
+    _parse_paired_block(book, lines, "Substitutions", "substitutions")
+    _parse_paired_block(book, lines, "Did Not Play", "did_not_play")
+    _parse_paired_block(book, lines, "Not Active", "not_active")
+
+    from .gamebook_stats import parse_penalty_log, parse_playtime, parse_team_statistics
+
+    book.team_statistics = parse_team_statistics(text, book.visitor, book.home)
+    book.playtime = parse_playtime(text)
+    book.penalty_log = parse_penalty_log(text)
+    return book
+
+
+def _parse_header(book: GameBook, lines: List[str]) -> None:
+    """Matchup, venue, date, kickoff, weather, attendance and game length."""
+    for raw in lines[:80]:
+        line = raw.rstrip()
+        stripped = line.strip()
+        if not stripped:
             continue
-        match = re.match(
-            r"^(?P<away>.+?) at (?P<home>.+?)\s+Start Time:\s*(?P<time>.+)$", line
-        )
-        if match and not book.matchup:
-            book.matchup = f"{match.group('away')} at {match.group('home')}"
-            book.start_time = match.group("time").strip()
-            continue
-        if line.startswith("at ") and not book.venue:
-            book.venue = line[3:].strip()
-            continue
-        date_match = DATE_RE.search(line)
+
+        date_match = DATE_RE.search(stripped)
         if date_match and not book.date:
             book.date = date_match.group("date")
-        attendance_match = ATTENDANCE_RE.search(line)
+
+        match = MATCHUP_RE.match(stripped)
+        if match and not book.matchup:
+            away = match.group("away").strip()
+            # The league prints the date on the same line as the matchup.
+            away = DATE_RE.sub("", away).strip()
+            home = match.group("home").strip()
+            if away and home:
+                book.matchup = f"{away} at {home}"
+                book.start_time = match.group("time").strip()
+            continue
+
+        venue_match = VENUE_RE.match(line)
+        if venue_match and not book.venue:
+            book.venue = venue_match.group("venue").strip()
+            continue
+
+        attendance_match = ATTENDANCE_RE.search(stripped)
         if attendance_match:
             book.attendance = int(attendance_match.group("attendance").replace(",", ""))
-        length_match = GAME_TIME_RE.search(line)
+
+        length_match = GAME_TIME_RE.search(stripped)
         if length_match and not book.game_length:
             book.game_length = length_match.group("length")
 
-    # --- weather --------------------------------------------------------
-    for raw in lines[:60]:
-        line = raw.strip()
-        if line.startswith("Game Weather:") or line.startswith("Game Day Weather"):
-            weather = WEATHER_RE.search(line)
-            if weather:
-                book.temperature_f = float(weather.group("temp"))
-                book.humidity_pct = int(weather.group("humidity"))
-                book.wind = weather.group("wind").strip()
-            chill = WIND_CHILL_RE.search(line)
-            if chill:
-                book.wind_chill = float(chill.group("chill"))
-            if "Closed Stadium" in line:
+        if "Stadium" in stripped:
+            if "Closed Stadium" in stripped:
                 book.roof = "Closed Stadium"
-            elif "Open Stadium" in line:
+            elif "Open Stadium" in stripped:
                 book.roof = "Open Stadium"
-            surface = SURFACE_RE.search(line)
+            surface = re.search(r"on\s+(Field Turf|Field|Dome|Artificial Turf|Turf)", stripped)
             if surface:
-                book.surface = surface.group(2)
-            break
+                book.surface = surface.group(1)
 
-    # --- officials ------------------------------------------------------
-    book.officials = _parse_officials(lines)
+        weather = WEATHER_RE.search(stripped)
+        if weather and book.temperature_f is None:
+            book.temperature_f = float(weather.group("temp"))
+            book.humidity_pct = int(weather.group("humidity"))
+            book.wind = weather.group("wind").strip()
+        chill = WIND_CHILL_RE.search(stripped)
+        if chill and book.wind_chill is None:
+            book.wind_chill = float(chill.group("chill"))
 
-    # --- score line -----------------------------------------------------
-    # The game book prints the scoring line as two rows:
-    #   VISITOR: <club> <Q1> <Q2> <Q3> <Q4> <OT> <total>
-    #   HOME:    <club> <Q1> <Q2> <Q3> <Q4> <OT> <total>
+
+def _parse_officials(book: GameBook, lines: List[str]) -> None:
+    """Officials are printed as ``Role: Name (number)``."""
+    seen = set()
     for raw in lines[:80]:
-        stripped = raw.strip()
-        match = SCORE_ROW_RE.match(stripped)
+        for match in OFFICIAL_RE.finditer(raw):
+            role = match.group("role")
+            if role in seen:
+                continue
+            seen.add(role)
+            book.officials.append(
+                Official(
+                    role=role,
+                    name=match.group("name").strip(),
+                    number=match.group("num"),
+                )
+            )
+
+
+def _parse_score(book: GameBook, lines: List[str]) -> None:
+    """The scoring line gives each club's quarter-by-quarter points."""
+    for raw in lines[:120]:
+        match = SCORE_ROW_RE.match(raw.strip())
         if not match:
             continue
-        side = match.group("side")
         club = match.group("club").strip()
         total = int(match.group("total"))
-        if side == "VISITOR":
+        if match.group("side") == "VISITOR":
             book.visitor = club
             book.visitor_points = total
         else:
             book.home = club
             book.home_points = total
 
-    # --- roster blocks --------------------------------------------------
-    _parse_roster_blocks(book, lines)
 
-    # --- statistical sections -------------------------------------------
-    from .gamebook_stats import parse_penalty_log, parse_playtime, parse_team_statistics
+def _parse_lineup_grid(book: GameBook, lines: List[str]) -> None:
+    """Parse the four-column starting-lineup grid.
 
-    book.team_statistics = parse_team_statistics(text, book.visitor, book.home)
-    book.playtime = parse_playtime(text)
-    book.penalty_log = parse_penalty_log(text)
-
-    return book
-
-
-def _parse_officials(lines: List[str]) -> List[Official]:
-    """Officials are listed as role labels followed by the names."""
-    officials: List[Official] = []
-    index = 0
-    while index < len(lines):
-        line = lines[index].strip()
-        if line == "Officials":
-            index += 1
-            roles: List[str] = []
-            values: List[str] = []
-            while index < len(lines) and len(roles) < len(OFFICIAL_ROLES):
-                candidate = lines[index].strip()
-                index += 1
-                if not candidate:
-                    continue
-                if candidate.rstrip(":") in OFFICIAL_ROLES:
-                    roles.append(candidate.rstrip(":"))
-                    continue
-                values.append(candidate)
-            for role, value in zip(roles, values):
-                name, number = _split_official(value)
-                officials.append(Official(role=role, name=name, number=number))
-            break
-        index += 1
-    return officials
-
-
-def _split_official(value: str) -> Tuple[Optional[str], Optional[str]]:
-    match = re.match(r"^(?P<name>[^(]+?)\s*\((?P<num>\d+)\)\s*$", value.strip())
-    if match:
-        return match.group("name").strip(), match.group("num")
-    return value.strip() or None, None
-
-
-def _parse_roster_blocks(book: GameBook, lines: List[str]) -> None:
-    """Parse lineups, substitutions, did-not-play and not-active blocks.
-
-    The game book prints a four-column lineup grid:
-
-        visitor offence | visitor defence | home offence | home defence
-
-    and then three two-column roster blocks (substitutions, did-not-play,
-    not-active), each with the visitor on the left and the home team on the
-    right.
+    The league prints the club names, then an ``Offense / Defense / Offense /
+    Defense`` header, then one row per starting slot. The column boundaries
+    are taken from that header.
     """
-    grid_index = None
+    header_index = None
+    offsets: Optional[List[int]] = None
     for index, raw in enumerate(lines[:120]):
-        if raw.strip().startswith("Offense Defense Offense Defense"):
-            grid_index = index
-            break
-    if grid_index is not None:
-        visitor_offense: List[PlayerEntry] = []
-        visitor_defense: List[PlayerEntry] = []
-        home_offense: List[PlayerEntry] = []
-        home_defense: List[PlayerEntry] = []
-        for raw in lines[grid_index + 1 : grid_index + 16]:
-            line = raw.rstrip()
-            stripped = line.strip()
-            if not stripped:
-                continue
-            if stripped.startswith("Substitutions"):
+        stripped = raw.strip()
+        if stripped.startswith("Offense") and stripped.count("Offense") == 2:
+            found = _column_boundaries(stripped, ["Offense", "Defense", "Offense", "Defense"])
+            if found:
+                header_index = index
+                offsets = found
                 break
-            # The grid row holds four cells: visitor offence, visitor defence,
-            # home offence, home defence.
-            cells = _split_player_cells(stripped)
-            if len(cells) >= 4:
-                visitor_offense.append(cells[0])
-                visitor_defense.append(cells[1])
-                home_offense.append(cells[2])
-                home_defense.append(cells[3])
-            elif len(cells) == 2:
-                visitor_offense.append(cells[0])
-                home_defense.append(cells[1])
-        if book.visitor and book.home:
-            book.lineups[book.visitor] = {
-                "offense": visitor_offense,
-                "defense": visitor_defense,
-            }
-            book.lineups[book.home] = {"offense": home_offense, "defense": home_defense}
+    if header_index is None or offsets is None:
+        return
 
-    # Substitutions / did-not-play / not-active come as paired columns.
-    _parse_paired_block(book, lines, "Substitutions", "substitutions")
-    _parse_paired_block(book, lines, "Did Not Play", "did_not_play")
-    _parse_paired_block(book, lines, "Not Active", "not_active")
+    visitor_offense: List[PlayerEntry] = []
+    visitor_defense: List[PlayerEntry] = []
+    home_offense: List[PlayerEntry] = []
+    home_defense: List[PlayerEntry] = []
+
+    for raw in lines[header_index + 1 : header_index + 20]:
+        stripped = raw.strip()
+        if not stripped:
+            continue
+        if stripped.startswith(("Substitutions", "Field Goals", "Did Not Play")):
+            break
+        cells = _slice_columns(raw, offsets)
+        parsed = [_parse_cell(cell) for cell in cells]
+        if len(parsed) < 4 or any(cell is None for cell in parsed[:4]):
+            continue
+        visitor_offense.append(parsed[0])
+        visitor_defense.append(parsed[1])
+        home_offense.append(parsed[2])
+        home_defense.append(parsed[3])
+
+    if book.visitor and book.home:
+        book.lineups[book.visitor] = {
+            "offense": visitor_offense,
+            "defense": visitor_defense,
+        }
+        book.lineups[book.home] = {"offense": home_offense, "defense": home_defense}
 
 
-def _parse_paired_block(book: GameBook, lines: List[str], title: str, attribute: str) -> None:
+def _parse_paired_block(
+    book: GameBook, lines: List[str], title: str, attribute: str
+) -> None:
     """Parse a two-column roster block (visitor left, home right).
 
-    The block header repeats the title on both sides, for example
-    ``Substitutions Substitutions``. The first line is therefore skipped and
-    the remaining text is split on the column boundary.
+    The league prints the block title twice, once above each club's column.
+    Those two titles give the column boundaries.
     """
-    index = 0
-    while index < len(lines):
-        if lines[index].strip() == title:
-            index += 1
-            # The next non-empty line repeats the title for both columns.
-            while index < len(lines) and not lines[index].strip():
-                index += 1
-            if index < len(lines) and lines[index].strip().startswith(title):
-                index += 1
-            left: List[str] = []
-            right: List[str] = []
-            while index < len(lines):
-                line = lines[index].rstrip()
-                index += 1
-                stripped = line.strip()
-                if not stripped:
-                    continue
-                if stripped in (
-                    "Did Not Play",
-                    "Not Active",
-                    "Substitutions",
-                    "Field Goals",
-                    "Scoring Plays",
-                ):
-                    break
-                if stripped.startswith(
-                    ("Play Description", "Scoring", "Total", "RUSHING", "PASSING", "Field Goals")
-                ):
-                    break
-                a, b = _split_sides(line)
-                if a:
-                    left.append(a)
-                if b:
-                    right.append(b)
-            if book.visitor and book.home:
-                setattr(
-                    book,
-                    attribute,
-                    {
-                        book.visitor: _parse_player_list(" ".join(left)),
-                        book.home: _parse_player_list(" ".join(right)),
-                    },
-                )
-            return
-        index += 1
+    header_index = None
+    offsets: Optional[List[int]] = None
+    for index, raw in enumerate(lines[:140]):
+        stripped = raw.strip()
+        if not stripped.startswith(title):
+            continue
+        positions = _find_token_offsets(stripped, title)
+        if len(positions) >= 2:
+            header_index = index
+            offsets = positions[:2]
+            break
+    if header_index is None or offsets is None:
+        return
+
+    left: List[str] = []
+    right: List[str] = []
+    for raw in lines[header_index + 1 : header_index + 30]:
+        stripped = raw.strip()
+        if not stripped:
+            continue
+        if stripped.startswith(
+            ("Substitutions", "Did Not Play", "Not Active", "Field Goals", "Scoring Plays")
+        ):
+            break
+        cells = _slice_columns(raw, offsets)
+        if cells[0].strip():
+            left.append(cells[0].strip())
+        if len(cells) > 1 and cells[1].strip():
+            right.append(cells[1].strip())
+
+    if book.visitor and book.home:
+        setattr(
+            book,
+            attribute,
+            {
+                book.visitor: _parse_cell_list(" ".join(left)),
+                book.home: _parse_cell_list(" ".join(right)),
+            },
+        )

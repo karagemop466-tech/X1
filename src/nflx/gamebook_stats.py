@@ -130,20 +130,38 @@ def _split_label_values(line: str) -> Tuple[Optional[str], List[str]]:
     return None, []
 
 
-#: ``B.Coleman 100%69 4 15%T/G`` - name, then three percentage columns.
-PLAYTIME_RE = re.compile(
-    r"^(?P<name>[A-Z][A-Za-z'\.\-]*)\s+(?P<rest>.+)$"
+#: A playtime cell: name, position and the numeric columns.
+#:
+#: ``A.Vera-Tucker            G       71 100%                       2      9%``
+#:
+#: The first number is the player's total snaps. The second is the share of
+#: the snaps he played on his primary unit - offence for an offensive
+#: position, defence for a defensive one, special teams for a specialist. When
+#: two further numbers follow they are the special-teams snaps and the share
+#: of the special-teams snaps.
+PLAYTIME_CELL_RE = re.compile(
+    r"(?P<name>[A-Z][A-Za-z'\.\-]*(?:\s[A-Z][a-z]+)?)\s+"
+    r"(?P<pos>\d?[A-Z]{1,3}(?:/[A-Z])?)\s+"
+    r"(?P<numbers>[\d\s%]+?)(?=\s{2,}[A-Z]|\s*$)"
 )
+
+OFFENSE_POSITIONS = {
+    "QB", "RB", "FB", "WR", "TE", "OL", "T", "G", "C", "LG", "RG", "LT", "RT",
+}
+DEFENSE_POSITIONS = {
+    "DL", "DT", "DE", "NT", "LB", "OLB", "ILB", "MLB", "CB", "DB", "S", "FS", "SS",
+}
+SPECIALISTS = {"K", "P", "LS"}
 
 
 def parse_playtime(text: str) -> Dict[str, Any]:
     """Parse the league's ``Playtime Percentage`` block.
 
-    The block prints, for each player, the share of snaps on offence, defence
-    and special teams. A column that shows no percentage (for example a
-    player who was only on the field for one unit) is left ``None``.
+    The league prints two tables side by side: the visitor's players on the
+    left and the home team's on the right. Each row therefore holds at most
+    two cells, and the first cell always belongs to the visitor.
     """
-    result: Dict[str, Any] = {"visitor": {}, "home": {}}
+    result: Dict[str, Any] = {"visitor": {}, "home": {}, "units": {}}
     lines = text.splitlines()
 
     start = None
@@ -154,78 +172,105 @@ def parse_playtime(text: str) -> Dict[str, Any]:
     if start is None:
         return result
 
+    # The club names identify which column belongs to whom.
+    visitor_name = ""
+    home_name = ""
+    for index in range(start, min(start + 8, len(lines))):
+        candidate = lines[index].strip()
+        if candidate and candidate != "Playtime Percentage" and not candidate.startswith(
+            ("Percent of playtime", "Offense")
+        ):
+            parts = re.split(r"\s{4,}", candidate)
+            if len(parts) >= 2:
+                visitor_name = parts[0].strip()
+                home_name = parts[1].strip()
+                break
+
     visitor: Dict[str, Any] = {}
     home: Dict[str, Any] = {}
-    # The header names the two clubs.
-    club_line = ""
-    for index in range(start, min(start + 6, len(lines))):
-        candidate = lines[index].strip()
-        if candidate and candidate != "Playtime Percentage":
-            club_line = candidate
-            break
 
     for raw in lines[start + 1 :]:
-        line = raw.strip()
-        if not line:
+        line = raw.rstrip()
+        if not line.strip():
             continue
-        if line.startswith("Percent of playtime"):
+        if line.strip().startswith("Percent of playtime"):
             continue
-        match = PLAYTIME_RE.match(line)
-        if not match:
-            break
-        name = match.group("name")
-        rest = match.group("rest")
-        columns = _parse_playtime_columns(rest)
-        if not columns:
+        if not re.search(r"\d", line):
+            # Header and blank lines carry no figures.
             continue
-        visitor[name] = columns
+        cells = list(PLAYTIME_CELL_RE.finditer(line))
+        if not cells:
+            continue
+        parsed = []
+        for cell in cells:
+            values = _parse_playtime_numbers(
+                cell.group("numbers"), cell.group("pos")
+            )
+            if values is None:
+                parsed = []
+                break
+            parsed.append(
+                {
+                    "name": cell.group("name").strip(),
+                    "position": cell.group("pos"),
+                    **values,
+                }
+            )
+        if not parsed:
+            continue
+        if len(parsed) >= 1:
+            visitor[parsed[0]["name"]] = parsed[0]
+        if len(parsed) >= 2:
+            home[parsed[1]["name"]] = parsed[1]
 
     result["visitor"] = visitor
-    result["header"] = club_line
+    result["home"] = home
+    result["units"] = {"visitor": visitor_name, "home": home_name}
     return result
 
 
-def _parse_playtime_columns(rest: str) -> Optional[Dict[str, Any]]:
-    """Split the three percentage columns of a playtime row."""
-    values: Dict[str, Optional[float]] = {
+def _parse_playtime_numbers(text: str, position: str) -> Optional[Dict[str, Any]]:
+    """Read the numeric columns of a playtime row.
+
+    The primary unit is determined by the position the league prints: an
+    offensive position means the share is of offensive snaps, a defensive
+    position means defensive snaps, and a specialist means special teams.
+    A row that cannot be read unambiguously is rejected rather than guessed.
+    """
+    tokens = re.findall(r"(\d+(?:\.\d+)?)(%?)", text)
+    numbers = [(float(v), bool(pct)) for v, pct in tokens]
+    if len(numbers) not in (2, 4):
+        return None
+
+    snaps = int(numbers[0][0])
+    if not numbers[1][1]:
+        # The share column is always printed as a percentage.
+        return None
+    share = numbers[1][0] / 100.0
+
+    values: Dict[str, Any] = {
+        "snaps": snaps,
         "offense": None,
         "defense": None,
         "special_teams": None,
     }
-    # The league prints the three columns with no separator, so the numbers are
-    # read left to right: an explicit percentage, or a bare integer followed
-    # by the unit position.
-    tokens = re.findall(r"(\d+)(%?)", rest)
-    if not tokens:
-        return None
-    numbers = [(int(v), bool(pct)) for v, pct in tokens if v != ""]
-    if not numbers:
-        return None
 
-    # The final token is the unit position for the last player column, so the
-    # trailing letters are stripped before parsing.
-    stripped = re.sub(r"[A-Z]{1,2}(?:/[A-Z])?$", "", rest).strip()
-    tokens = re.findall(r"(\d+)(%?)", stripped)
-    numbers = [(int(v), bool(pct)) for v, pct in tokens]
-    if not numbers:
-        return None
-
-    # Only rows whose three columns are unambiguous are read. A row that does
-    # not resolve cleanly is left blank rather than guessed.
-    percent_values = [n / 100.0 for n, is_pct in numbers if is_pct]
-    bare_values = [n for n, is_pct in numbers if not is_pct]
-    if len(percent_values) == 3 and not bare_values:
-        values["offense"] = percent_values[0]
-        values["defense"] = percent_values[1]
-        values["special_teams"] = percent_values[2]
-    elif len(percent_values) == 2 and len(bare_values) == 1:
-        values["offense"] = percent_values[0]
-        values["defense"] = percent_values[1]
-        values["special_teams"] = bare_values[0]
-    elif len(percent_values) == 1 and not bare_values:
-        values["offense"] = percent_values[0]
+    pos = position.upper()
+    if pos in SPECIALISTS:
+        values["special_teams"] = share
+    elif pos in OFFENSE_POSITIONS:
+        values["offense"] = share
+    elif pos in DEFENSE_POSITIONS:
+        values["defense"] = share
     else:
+        # An unknown position is not guessed at.
         return None
+
+    if len(numbers) == 4:
+        if not numbers[3][1]:
+            return None
+        values["special_teams"] = numbers[3][0] / 100.0
+        values["special_teams_snaps"] = int(numbers[2][0])
     return values
 
 
