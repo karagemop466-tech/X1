@@ -1258,3 +1258,41 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena/3fa49c1a-x1` — price/results infrastructure + the eight owner-directed improvements (this branch)
+
+**Session ID:** `arena/3fa49c1a-x1` · **Branch:** `arena/3fa49c1a-x1` (branched from `main` @ `11d9ea1`, merge of PR #33)
+**Role claimed:** implementation of the owner's eight directed improvements, plus this round's final
+integration (board rule 9: shared outputs change here only). No session holds an open claim at the
+time of writing — every board above is `done`/merged and the remote carries only `main` — so this
+claim follows rule 10's takeover pattern exactly as sessions `arena/cc51616e-x1` and
+`arena/459b17e1-x1` did.
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| N1 | **Price-snapshot store**: opening and closing numbers for every market we originate, with provenance and CLV-ready schema | in progress | `arena/3fa49c1a-x1` | `data/prices/**` (new), `tools/build_prices.py` (new) |
+| N2 | **Verified results feed**: final scores with official source URLs so backtests and ROI can be computed | in progress | `arena/3fa49c1a-x1` | `data/results/**` (new), `tools/build_results.py` (new) |
+| N3 | **Origination order**: side first, then total, then moneyline — enforced in the origination pipeline | in progress | `arena/3fa49c1a-x1` | `code/build_lines.py`, `data/lines/originated_lines_2026_week10.csv` (regenerated) |
+| N4 | **Fair line / market line / difference as separate columns** on every originated-market row | in progress | `arena/3fa49c1a-x1` | same files as N3 |
+| N5 | **Leaderboard: signal vs staking split** — separate ranks so a lucky staking run cannot mask a bad signal | in progress | `arena/3fa49c1a-x1` | `data/leaderboard_split.json` (new), `docs/methodology/leaderboard.md` (additive) |
+| N6 | **Depth of replacement tracked** (2nd/3rd/4th string), not just the fact of a replacement | in progress | `arena/3fa49c1a-x1` | `data/depth/**` (new), `tools/build_replacement_depth.py` (new) |
+| N7 | **Correlations from officially sourced numbers only, each value published with n** | in progress | `arena/3fa49c1a-x1` | `data/correlations/**` (new), `tools/build_correlations_official.py` (new) |
+| N8 | **Demotion gate defined**: live → paper thresholds (was G-13 "threshold not set") | in progress | `arena/3fa49c1a-x1` | `data/gates_v2.json` (new), `docs/methodology/validation-gates.md` (additive section) |
+| N9 | Registers: executive summary, questions/answers, suggestion board updated with decisions taken | in progress | `arena/3fa49c1a-x1` | `data/origin/**` (new registers), `app/*.html` (regenerated) |
+| N10 | Integration: extend the unified dashboard, re-verify line by line, run all checks, PR → `main`, merge, Pages deploy confirmation | in progress | `arena/3fa49c1a-x1` | `tools/build_app.py`, `tools/verify_app.py` (additive page entries), `.github/workflows/pages.yml` (additive only if needed), this file |
+
+## Non-overlap declaration
+
+- `hub/**`, `wiki/**`, `data/verification/**`, `data/depth/**`, `data/decision_board.json` — session `arena/459b17e1-x1`, **read-only inputs**. `data/depth/**` naming clash noted: this session's N6 store lives at `data/depth/replacement_depth.*` (new files only, no existing file edited).
+- `app/**`, `tools/build_app.py`, `tools/verify_app.py` — session `arena/fcc11e05-x1` (completed; rule 10 takeover for additive page entries, every edit tagged in the file and logged here).
+- `data/pipeline/**`, `pipeline/**`, `live/**` — session `arena/d577959f-x1` (completed; read-only inputs).
+- `data/lines/**`, `code/build_lines.py` — produced by earlier sessions; N3/N4 regenerate `originated_lines_2026_week10.csv` from its own inputs and keep the previous file's provenance columns.
+- No active session's file is edited. All work is on `arena/3fa49c1a-x1`; shared outputs change only in this round's integration (rule 9).
+
+## Log (append-only)
+
+- 2026-11-14 — Claim written and pushed before any other work (rule 1).
