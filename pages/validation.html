@@ -37,6 +37,7 @@
       <a href="../site/index.html">Snapshot annex (X1)</a>
       <a href="../live/index.html">Live pipeline</a>
       <a href="../hub/index.html">Section index</a>
+      <a href="../lab/index.html">Line desk</a>
   </nav>
   <div class="railnote">
     <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
@@ -87,12 +88,12 @@
 <tr><td><b>G5</b></td><td>Risk of ruin</td><td>median max drawdown &lt;= 25% of bankroll<br>staking rule pre-registered<br>survives 50% stake reduction<br><span class='pill high'>auto-fail</span> unbounded downside with no stated cap</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
 <tr><td><b>G6</b></td><td>Economic reality</td><td>edge survives using only release-time best quote<br>stake executable at recorded limit<br>all fees inside ROI<br>no implausible stake to produce claimed ROI</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
 <tr><td><b>G7</b></td><td>Correlation discipline</td><td>rho published with interval<br>joint probability calibrated on holdout<br>n_eff reported<br>&gt;6 legs requires separate joint model</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
-<tr><td><b>D1</b></td><td>Demotion to paper</td><td>two consecutive scored windows fail G2 (skill) or G3 (calibration)<br>realised max drawdown exceeds the G5 cap (25% of bankroll) at any window close - one breach is enough<br>median closing-line value over a full window &lt;= 0 (armed once the Q-02 price feed exists)<br>any G0 provenance or timestamp breach while live - immediate, no window required<br>action: status live -&gt; paper at the next window close; recorded with the trigger that fired<br>re-promotion: one full shadow window on paper passing every gate; past live results never re-promote</td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+<tr><td><b>G8</b></td><td>Demotion gate (live -&gt; paper)</td><td></td><td>blocking</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>Scoring rules that keep luck off the board</h2>
   <ul class="checks">
-    <li>score only inside the registered window</li><li>passes are logged (a strategy with no denominator is invalid)</li><li>arithmetic (non-compounded) market return</li><li>report raw and top-5%-trimmed ROI together</li><li>champion requires two consecutive qualifying windows</li><li>two failed windows demote back to paper (gate D1); no sitting on old results; one drawdown breach over the G5 cap demotes immediately</li><li>challenger runs a full shadow window before displacing a champion</li><li>all entrants evaluated on identical frozen inputs</li>
+    <li>score only inside the registered window</li><li>passes are logged (a strategy with no denominator is invalid)</li><li>arithmetic (non-compounded) market return</li><li>report raw and top-5%-trimmed ROI together</li><li>champion requires two consecutive qualifying windows</li><li>two failed windows demote; no sitting on old results</li><li>challenger runs a full shadow window before displacing a champion</li><li>all entrants evaluated on identical frozen inputs</li><li>G8 demotion is mechanical: any trigger demotes live -&gt; paper; re-entry only via shadow window + full gate pass (see docs/methodology/demotion-gate.md)</li>
   </ul>
 
   <h2>Ranking objective</h2>

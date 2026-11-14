@@ -1,8 +1,8 @@
 {
- "dataset": "price_snapshots",
+ "dataset": "price_history",
  "title": "Opening and closing price snapshots for every market we originate",
- "generated_at": "2026-11-14T19:46:27.907447Z",
- "generated_by": "tools/build_price_store.py (session arena-52aabfa8-x1, T10)",
+ "generated_at": "2026-11-14T20:38:31.963592Z",
+ "generated_by": "tools/build_price_history.py (session arena-52aabfa8-x1, T10)",
  "snapshot_date": "2026-11-14",
  "columns": [
   "game_id",

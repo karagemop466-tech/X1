@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When a strategy goes back to paper — X1 Line Desk</title>
+<meta name="description" content="X1 line desk: price snapshots, verified results, originated NFL lines and a signal-first strategy leaderboard. Every value carries its source and its n.">
+<link rel="stylesheet" href="../app/assets/site.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>LINE DESK</b><span>this round's lab</span></span></a>
+  <nav aria-label="Line desk sections">
+<a class="" href="index.html">Desk overview</a>
+<a class="" href="executive-summary.html">Executive summary</a>
+<a class="" href="prices.html">Price snapshots</a>
+<a class="" href="results.html">Results feed</a>
+<a class="" href="lines.html">Originated lines</a>
+<a class="" href="leaderboard.html">Leaderboard</a>
+<a class="" href="deficiency.html">Replacement depth</a>
+<a class="" href="correlation.html">Correlation</a>
+<a class="active" href="validation.html">Demotion gate</a>
+<a class="" href="questions.html">Questions</a>
+<a class="" href="suggestions.html">Suggestions</a>
+<a class="" href="sources.html">Sources &amp; limits</a>
+<a class="" href="flagged.html">Flagged for review</a>
+  </nav>
+  <div class="foot">Snapshot 2026-11-14<br>Season 2026, Week 10<br>
+  Every value sourced. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">T8 · gate</div>
+      <h1>When a strategy goes back to paper</h1>
+      <p class="lede">Four automatic triggers, evaluated every build, that demote a live strategy.</p>
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+
+<div class="note ok"><b>A gate that cannot fire is not a gate.</b> All four triggers are
+evaluated on every build, and the verdict is published here even when it demotes a row with a
+positive ROI. On this snapshot it does exactly that.</div>
+
+<div class="card">
+  <h2>The demotion gate</h2>
+  <div class="tw"><table data-table><thead><tr><th>ID</th><th>Trigger</th><th>Fires when</th><th>Why it is the right test</th><th>Artefact</th></tr></thead><tbody><tr><td>D-01</td><td>Signal decay</td><td>the rolling 30-ticket z falls below 0 for two consecutive windows</td><td>a signal that has stopped working is a signal that has stopped working</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">D-01 evaluation</a></span></td></tr><tr><td>D-02</td><td>Staking break</td><td>realised drawdown exceeds the 25% pre-registered cap</td><td>the stake plan is now the risk, not the edge</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">D-02 evaluation</a></span></td></tr><tr><td>D-03</td><td>Price loss</td><td>mean CLV proxy turns negative over a full window</td><td>you are taking worse numbers than the close; the edge is gone even if the record is not</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">D-03 evaluation</a></span></td></tr><tr><td>D-04</td><td>Drift</td><td>live hit rate falls more than 2 standard errors below the promotion bar</td><td>the live population differs from the one the strategy was promoted on</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">D-04 evaluation</a></span></td></tr></tbody></table></div>
+</div>
+
+<div class="card">
+  <h2>Evaluation on this snapshot, every strategy</h2>
+  <div class="tw"><table data-table><thead><tr><th>Strategy</th><th>Status</th><th>D-01 decay</th><th>D-02 staking</th><th>D-03 CLV</th><th>D-04 drift</th><th>Verdict</th><th>Detail</th><th>Artefact</th></tr></thead><tbody><tr><td>Two-leg side parlay</td><td><span class="b grey">PAPER</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-02: max drawdown 0.5266 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -9.075 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Side model, 1-pt threshold</td><td><span class="b grey">PAPER</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-01: 39 consecutive rolling 30-ticket windows with z &lt; 0 (1240 of 2624 windows negative); D-02: max drawdown 0.9934 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -5.218 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Side model, 0.5-pt threshold</td><td><span class="b grey">PAPER</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-01: 42 consecutive rolling 30-ticket windows with z &lt; 0 (1400 of 2836 windows negative); D-02: max drawdown 0.9966 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -5.066 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Side model, 2-pt threshold</td><td><span class="b grey">PAPER</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-01: 24 consecutive rolling 30-ticket windows with z &lt; 0 (1133 of 2228 windows negative); D-02: max drawdown 0.9904 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -5.799 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Moneyline value</td><td><span class="b grey">PAPER</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-01: 24 consecutive rolling 30-ticket windows with z &lt; 0 (1552 of 2714 windows negative); D-02: max drawdown 1.0 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -1.67 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Total model, 2-pt threshold</td><td><span class="b grey">PAPER</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-02: max drawdown 0.9996 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -4.936 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Total model, 1-pt threshold</td><td><span class="b grey">PAPER</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">FIRES</span></td><td><span class="b bad">FIRES</span></td><td><span class="b ok">quiet</span></td><td><span class="b bad">DEMOTE</span></td><td>D-02: max drawdown 1.0 vs cap 0.25; D-03: mean CLV proxy over the last 30 tickets -3.911 points</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr><tr><td>Player-prop combo</td><td><span class="b grey">UNTESTED</span></td><td><span class="b bad">DEMOTE</span></td><td>no trigger fired</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">demotion</a></span></td></tr></tbody></table></div>
+</div>
+
+<div class="card">
+  <h2>Why the parlay is demoted even though it made money</h2>
+  <p>It shows a +10.5% ROI at a flat stake, which on a naive board would rank it first. Its
+  signal z is 1.00 against a 1.96 bar — indistinguishable from chance — and under a
+  5%-of-bankroll compounding plan its drawdown reaches 52.7%, more than twice the 25% cap.
+  D-03 also fires: the mean CLV proxy over its last 30 tickets is negative. A strategy that
+  cannot survive a change of stake plan and is taking worse numbers than the close is a
+  staking result, not a signal, and it goes back to paper.</p>
+</div>
+
+<div class="card">
+  <h2>The validation gates, and how many strategies pass</h2>
+  <div class="tw"><table data-table><thead><tr><th>Gate</th><th>Name</th><th>Pass</th><th>Fail</th><th>Blocked</th><th>Artefact</th></tr></thead><tbody><tr><td>G0</td><td>Provenance</td><td class="n">0</td><td class="n">0</td><td class="n">8</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G0</a></span></td></tr><tr><td>G1</td><td>Sample size</td><td class="n">6</td><td class="n">2</td><td class="n">0</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G1</a></span></td></tr><tr><td>G2</td><td>Skill above variance</td><td class="n">0</td><td class="n">8</td><td class="n">0</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G2</a></span></td></tr><tr><td>G3</td><td>Calibration</td><td class="n">0</td><td class="n">0</td><td class="n">8</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G3</a></span></td></tr><tr><td>G4</td><td>Robustness</td><td class="n">0</td><td class="n">0</td><td class="n">8</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G4</a></span></td></tr><tr><td>G5</td><td>Risk of ruin</td><td class="n">0</td><td class="n">7</td><td class="n">1</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G5</a></span></td></tr><tr><td>G6</td><td>Economic reality</td><td class="n">0</td><td class="n">0</td><td class="n">8</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G6</a></span></td></tr><tr><td>G7</td><td>Correlation discipline</td><td class="n">6</td><td class="n">0</td><td class="n">2</td><td><span class="src"><a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json">G7</a></span></td></tr></tbody></table></div><p class="legend">'Blocked' means the gate cannot be evaluated with the evidence available. It is never counted as a pass — a strategy with a blocked gate stays on paper.</p>
+</div>
+
+  <footer class="pagefoot">
+    X1 Line desk · generated by <code>tools/lab/build_site.py</code> from
+    <code>data/lab/*</code> · every table row links the page the value came from, or says why
+    there is none · a value the source does not print is an
+    <span class="blank">&mdash;</span>, never a guess.<br>
+    <a href="../index.html">Main dashboard</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources &amp; limits</a> ·
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/data/lab" target="_blank" rel="noopener">Artefacts on GitHub</a>
+  </footer>
+</main>
+<script src="../app/assets/app.js"></script>
+</body>
+</html>

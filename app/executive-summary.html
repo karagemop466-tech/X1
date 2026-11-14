@@ -17,14 +17,18 @@
 <div class="grp">Official data</div>
 <a class="" href="standings.html">Standings</a>
 <a class="" href="schedule.html">Week 10 slate</a>
+<a class="" href="results.html">Results &amp; ROI</a>
 <a class="" href="injuries.html">Injury report</a>
 <a class="" href="depth.html">Depth charts</a>
 <a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="replacement-depth.html">Replacement depth</a>
 <a class="" href="team-stats.html">Team stats</a>
 <div class="grp">Model</div>
 <a class="" href="lines.html">Originated lines</a>
-<a class="" href="results.html">Results feed</a>
+<a class="" href="origination.html">Origination &amp; prices</a>
 <a class="" href="prices.html">Price snapshots</a>
+<a class="" href="results-feed.html">Results feed (all seasons)</a>
+<a class="" href="price-history.html">Price history</a>
 <a class="" href="correlation.html">Correlation</a>
 <div class="grp">Strategy</div>
 <a class="" href="strategies.html">Strategy library</a>
@@ -40,6 +44,7 @@
 <a class="" href="verification.html">Verification ledger</a>
 <a class="" href="flagged.html">Flagged for review</a>
 <a class="" href="repo-review.html">Repo review</a>
+<a class="" href="stores.html">Verified stores</a>
 </nav>
   <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
 </aside>
@@ -105,37 +110,74 @@ stop specific parts of the system from working: <b>Q-01</b> bankroll, <b>Q-02</b
 <p>The <a href="suggestions.html">suggestion board</a> lists twenty options, each with three paths, a
 cost, an effort, a risk and a recommendation, and each waiting for a decision rather than being
 built. Nothing on that board has been implemented without a recorded choice.</p></section>
-<section class="card"><h2>Round 2 (2026-11-14): the eight new requirements, shipped and verified</h2>
-<p>The owner's second brief added eight requirements (R-46 … R-53, quoted verbatim in
-<code>docs/live-pipeline/project-brief-round2.md</code>). All eight now have an artifact, a
-check and a page:</p>
+<section class="card"><h2>What the 2026-11-14 second round added (session arena-1d3600f8-x1)</h2>
+<ul class="tight">
+  <li><b>Verified results feed</b> — 137 settled games from the official pages, double-entry checked
+  against the standings (0 mismatches; league totals 6,291 = 6,291). ROI is now computable at all;
+  see <a href="results.html">Results &amp; ROI</a>.</li>
+  <li><b>Price-snapshot store</b> — opening and closing slots for all 56 originated markets, with a
+  capture log and an append-only recorder. Opening quotes do not exist in any permitted source and
+  stay blank and flagged (Q-02); see <a href="origination.html">Origination &amp; prices</a>.</li>
+  <li><b>Origination order codified</b> — side, then total, then moneyline; fair line, market line and
+  the difference published as three separate columns.</li>
+  <li><b>Signal vs staking separated</b> on the leaderboard — final grade = min(signal, staking);
+  a lucky staking run cannot mask a bad signal (currently 0 of 16 mirror-window strategies are
+  rankable; see <a href="leaderboard.html">Leaderboard</a>).</li>
+  <li><b>Depth of replacement tracked</b> — 189 on-report starters: 168 replacements at 2nd string,
+  3 at 3rd string, 18 unreadable and flagged (see <a href="deficiency.html">Deficiency</a>).</li>
+  <li><b>Official-only correlations</b> — 15 pairs computed strictly from verified tables, every value
+  publishing n, p and CI (see <a href="correlation.html">Correlation</a>).</li>
+  <li><b>Demotion gate G8</b> — six mechanical triggers send a live strategy back to paper, with
+  action, re-entry and logging defined (see <a href="validation.html">Validation</a>).</li>
+</ul></section>
+<section class="card"><h2>Two sessions, one brief — both preserved (merge record)</h2>
+<p>The same eight directed improvements were built twice on 2026-11-14 by two parallel sessions
+(<code>arena-1d3600f8-x1</code> T15–T21 and <code>arena/3fa49c1a-x1</code> N1–N10). Nothing was
+discarded in the merge: both result feeds, both price-snapshot stores, both replacement-depth
+stores and both correlation stores are published here and cross-checked against each other —
+the two independent result transcriptions agree on <b>137 of 137 scores</b>, and the independent
+correlation recomputation agrees <b>905 of 905</b> pairs. Where the two designs make different
+policy choices (demotion thresholds G8 vs D1–D5; reward staking term), both are shown side by
+side and the choice is recorded as an owner decision on the
+<a href="decisions.html">decision register</a>. Finding I-14 is resolved by the results
+arithmetic: the standings do include the Thursday result; the earlier reading miscounted.
+Full merge log: <code>COORDINATION.md</code>.</p>
+<p><b>Third implementation, same rule.</b> Session <code>arena-52aabfa8-x1</code> (tasks T10–T17)
+built the same eight requirements independently and merged next under the same nothing-discarded
+rule: its all-season results feed and price-history store publish beside the others, its
+correlation work is an <i>independent recomputation of the pipeline's 988-row official set</i>
+(988/988 within tolerance — a check on top of the existing stores, not a replacement), and its
+requirement rows R-46…R-53 are in the <a href="requirements.html">register</a>.</p></section>
+<section class="card"><h2>Where each round-2 requirement landed (R-46 … R-53) — and what verified it</h2>
 <div class="grid2"><div><ul class="tight">
-<li><b>R-46 price snapshots</b> — <a href="prices.html">the store</a> records opening and
-closing numbers for spread, total and moneyline on all 2,232 backtest-window games; gaps are
-blanks with flag codes (P1–P6 pass).</li>
-<li><b>R-47 results feed</b> — <a href="results.html">the feed</a> settles every backtest row
-with a per-row verification tier; cross-checks C1–C4 pass, including the standings-lag
-finding (F-12).</li>
-<li><b>R-48 order</b> — side first, then total, then moneyline, pre-registered and asserted
-against the emitted column order.</li>
-<li><b>R-49 three columns</b> — fair line, market line and difference published separately
-for all three markets (<a href="lines.html">lines page</a>).</li>
+<li><b>R-46 price snapshots</b> — three coexisting stores: <a href="prices.html">per-market
+captures</a>, <a href="price-history.html">all-season history</a> (20,088 rows, P1–P6 pass),
+and the origination price index.</li>
+<li><b>R-47 results feed</b> — <a href="results.html">official 2026 feed</a> (double-entry
+checked) plus the <a href="results-feed.html">all-season feed</a> (2,232 rows, per-row tier,
+C1–C4 pass).</li>
+<li><b>R-48 order</b> — pre-registered in <code>code/build_lines.py</code> and asserted against
+the emitted column order; published on <a href="origination.html">origination</a>.</li>
+<li><b>R-49 three columns</b> — fair / market / difference as separate columns for all three
+markets.</li>
 </ul></div><div><ul class="tight">
-<li><b>R-50 signal vs staking</b> — <code>rank_signal</code> is the only rank key; staking
-columns are informational and structurally cannot enter it
+<li><b>R-50 signal vs staking</b> — three implementations: the official-only schema, the
+mirror-window grades, and <code>rank_signal</code> computed from <code>signal_score</code> alone
 (<a href="leaderboard.html">leaderboard</a>).</li>
-<li><b>R-51 replacement depth</b> — already live: every deficiency row carries the 2nd/3rd/4th
-string of the replacement, sourced to the club's own chart
-(<a href="deficiency.html">deficiency watch</a>).</li>
-<li><b>R-52 official-only correlations</b> — 988 rows, n = 32 on every row, all nfl.com
-sources, independently recomputed 988/988 (<a href="correlation.html">correlation</a>).</li>
-<li><b>R-53 demotion gate</b> — D1/G-13 defined with four triggers; closes Q-26
-(<a href="validation.html">validation gates</a>).</li>
+<li><b>R-51 replacement depth</b> — per-slot store plus the deficiency register's 2nd/3rd/4th
+string column.</li>
+<li><b>R-52 official-only correlations with n</b> — the wide 3,570-pair matrix, the 988-row
+pipeline set independently recomputed <b>988/988</b> (ledger
+<code>data/verify/official_correlations.csv</code>), n on every value everywhere.</li>
+<li><b>R-53 demotion gate</b> — <a href="validation.html">G8 with six triggers</a> on the
+root register, G-13 in the pipeline register; Q-26 answered.</li>
 </ul></div></div>
-<p><b>What did not change:</b> no value was filled from memory. New blanks carry flag codes,
-new flags F-10 … F-15 are on the <a href="flagged.html">Flagged for review</a> page, and the
-two owner decisions that still gate everything — the price feed (Q-02) and full official
-results (Q-04) — remain open on the <a href="decisions.html">decision register</a>.</p></section>
+<p><b>Verification of the third implementation:</b> verify_data (2,944 checks), check_links
+(28,026), verify_site (116 pages), check_site, verify_research (1,921), pipeline verify,
+verify_against_official (2,183 cells, 0 mismatches), test_source_rule (mutation caught),
+verify_parlay, cross_check (1,380 cells), verify_app (23 pages, 5,942 rows, 0 unsourced),
+verify_new_data, and the staleness guards. New flags <b>F-10 … F-15</b> are on
+<a href="flagged.html">Flagged for review</a>; none block.</p></section>
   <footer class="pagefoot">
     X1 · generated by <code>tools/build_app.py</code> · every table row links to the official page the value was read from ·
     a value the source does not print is shown as <span class="blank">&mdash;</span> and flagged, never filled in.<br>

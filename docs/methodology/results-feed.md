@@ -1,76 +1,61 @@
-# Verified results feed
+# Verified results feed (T16)
 
-**Requirement:** "Add a verified results feed so backtests and ROI can be computed at all."
-*(Owner's brief, T11, session `arena-52aabfa8-x1`.)*
+**Session `arena-1d3600f8-x1` · 2026-11-14**
 
-**Machine-readable outputs:** `data/results/verified_results.csv` (2,232 rows, seasons
-2019–2026) and `data/results/results_feed_meta.json` (sources, checks, limitations).
-**Builder:** `python3 tools/build_results_feed.py` — deterministic, offline, exits non-zero
-if any cross-check fails.
+## What the owner asked for
 
----
+> Add a verified results feed so backtests and ROI can be computed at all.
 
-## 1. Why this exists
+## What exists
 
-Every ROI figure, backtest and skill test settles against a final score. Before this feed the
-scores lived implicitly inside a third-party mirror file (`games.csv`) with no verification
-tier attached, so nothing could say which results were confirmed against an official page.
-The feed makes the tier explicit **on every row**.
+| Artifact | Purpose |
+|---|---|
+| `data/results/raw/week_01.md` … `week_10.md` | Evidence snapshots: the verbatim result anchor texts fetched from the official `https://www.nfl.com/schedules/2026/by-week/week-N` pages on 2026-11-14, one file per week, with the fetch method recorded. |
+| `data/results/verified_results_2026.csv` | **The feed.** 137 settled games (Weeks 1–9 complete, Week 10 through TNF). Every row: teams, final score, status `Final`, ISO date + verbatim date label, `game_url`, `source_url` = the official nfl.com game page, `verification=verified-official`. |
+| `data/results/verification_report.json` | Machine-readable double-entry verification record. |
+| `tools/build_results_feed.py` | Parses the evidence into the feed and runs the cross-checks. |
+| `tools/verify_results_feed.py` | Offline CI checker: re-parses evidence, compares every cell to the committed feed, re-runs the standings checks, enforces the provenance contract. |
+| `tools/grade_roi.py` | Grades bets against the feed and computes ROI: `data/results/graded_bets.csv` (689 bets, each carrying the official game URL) + `data/results/roi_summary.csv`. |
 
-## 2. Verification tiers (per row)
+## Verification performed (double entry)
 
-| `verification` | Meaning | Count |
-|---|---|---|
-| `official_verified` | The score was printed by the committed transcription of <https://www.nfl.com/schedules/2026/by-week/week-10> (fetched 2026-11-14) **and** the mirror carries the same score. | 1 |
-| `scheduled_official` | The same official snapshot confirms the game had not been played at fetch time. Score cells are blank because no score exists — never because it was unreadable. | 13 |
-| `mirror_only` | The value exists only in the fingerprinted third-party mirror (`nflverse/nfldata`, sha256 in `data/raw_manifest.json`). Flagged; never labelled official. | 2,218 |
+1. **Row-level transcription** from the official by-week schedule pages (22 anchor texts pages,
+   both chunks each). Verbatim anchors preserved in `data/results/raw/`.
+2. **Per-week game counts** against the expected slate: 16, 16, 16, 16, 15, 14, 14, 14, 15, 1 — all match.
+3. **Per-team points for / points against** recomputed from the feed vs the official standings
+   table (`data/standings_2026.csv`, itself verified against nfl.com/standings earlier on
+   2026-11-14): **32 of 32 teams match, 0 mismatches.**
+4. **Per-team W-L-T** recomputed from the feed vs the same standings: **32 of 32 match, 0
+   mismatches** (including the Week 5 NYG–WAS tie).
+5. **League totals**: Σ points in the feed = Σ PF in the standings = **6,291** exactly.
+6. **Reference-only diff** against the third-party mirror (`data/processed/schedule_2026.json`):
+   137 compared, **0 disagreements**. The mirror never changes a published value.
 
-A row with `official_source_url` set is a row you can click through to the page the value was
-read from. Historical finals carry no committed official page in this repository, so they are
-`mirror_only` — usable for backtests, labelled not official (flag **F-11**).
+Any single transcription slip would break at least one of checks 3–5; all are green.
 
-## 3. Cross-checks (all must pass or the builder exits 1)
+## How ROI is now computed (`tools/grade_roi.py`)
 
-| ID | Check | Result |
-|---|---|---|
-| C1 | Official Week 10 FINAL score == mirror score (WAS 24, NYG 21) | pass |
-| C2 | Official "Scheduled" status == mirror status for the other 13 Week 10 games | pass |
-| C3 | Mirror internal arithmetic: `away+home == total` and `home-away == result` on every final row (2,097 rows) | pass |
-| C4 | 2026 W/L/T recomputed from this feed vs the official standings snapshot | pass, with one known difference class |
+* **Outcomes** — settled from the verified feed only. Each graded bet row carries the game's
+  official nfl.com URL.
+* **Prices** — conventional **−110 flat stake**, an explicit assumption (`assumed_-110`), because
+  no official or licensed price source exists (Q-02). When the price-snapshot store gains real
+  captures, the grader can switch to recorded prices.
+* **Lines** — the model's fair lines are our own computation; the market benchmark is the
+  nflverse mirror and is labelled third-party, not official.
 
-**C4's known difference (flag F-12).** The official standings snapshot as fetched on
-2026-11-14 still reads WAS 3-5-1 and NYG 5-3-1 — the records **before** the Thursday Night
-game — while the same site's schedule page already prints "Commanders 24, Giants 21, FINAL".
-The feed (and the mirror standings) carry the post-game record. Both standings sources agree
-with each other and both predate the result; the difference is freshness, not contradiction,
-and it is recorded rather than smoothed over. This is also the concrete example of why two
-sources agreeing is not the same as both being current.
+Published 2026-11-14 (137 verified games, 689 graded bets): no strategy is positive at assumed
+−110; best is `MODEL_SIDE_5` at −0.67% (n=27). Model accuracy vs verified results: spread MAE
+**10.05 pts**, total MAE **11.31 pts**. These agree with the earlier mirror-window finding
+(F-07) and are published as the honest state: **the model is a screen, not a price.**
 
-## 4. Joining to a bet (how ROI is computed)
+## Coverage note
 
-Settlement is a join on `game_id`:
+Weeks 1–9 + the Week 10 Thursday game are settled and in the feed. Remaining Week 10 games
+(Sun/Mon 2026-11-15/16) were unplayed at fetch time and are excluded — only settled games are
+recorded. Weeks 11–18 will join the feed the same way as they settle.
 
-```
-result for a bet on side S with recorded line L =
-    W if (S covers L)   — using away_score / home_score from the feed row
-    P if exactly L
-    L otherwise
-```
+## Sources used (all fetched 2026-11-14, none recalled)
 
-Only rows with `status=final` settle. Scheduled rows contribute nothing. No row is invented:
-a game that has not been played has blank score cells by construction.
-
-## 5. Team-code note
-
-The official pages print **AZ**; the nflverse mirror prints **ARI**. Every other club code is
-identical across the three committed snapshots (diffed). The join maps only these two
-spellings (`TEAM_CODE_MAP` in the builder); each source keeps its own spelling in its own
-file.
-
-## 6. What this feed does *not* close
-
-- **Q-04 (official box scores for every game)** stays open. This feed verifies what a
-  committed official page printed; for 2,218 rows no such page is committed yet. The per-row
-  `verification` column is exactly the map of that gap.
-- The feed carries no betting prices — that is the price-snapshot store's job
-  (`docs/methodology/price-snapshots.md`), and no official source publishes prices (F-06).
+* <https://www.nfl.com/schedules/2026/by-week/week-1> … <https://www.nfl.com/schedules/2026/by-week/week-10> (official)
+* <https://www.nfl.com/standings/> via `data/standings_2026.csv` (official, previously verified)
+* [nflverse/nfldata](https://github.com/nflverse/nfldata) (third-party mirror — reference diff only)
