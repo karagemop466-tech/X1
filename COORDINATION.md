@@ -27,6 +27,7 @@ Owner rules (verbatim intent):
 | `arena-6f377170-x1` | `arena/6f377170-x1` | Site skeleton + 5 pages (design spec, no data) | 2026-11-14 | active — branch preserved, content credited below |
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
+| `arena-bf27a3bd-x1` | `arena/bf27a3bd-x1` | **T10–T18: price-snapshot store, verified results feed, origination order, fair/market/difference columns, signal-vs-staking leaderboard, replacement depth, official-only correlations with n, demotion gate, decision/suggestion registers + integration** | 2026-11-14 | active (this board's owner) |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -1258,3 +1259,37 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena/bf27a3bd-x1` — claim (written and pushed before any work started)
+
+**Session ID:** `arena/bf27a3bd-x1` · **Branch:** `arena/bf27a3bd-x1` (branched from `main` @ `11d9ea1`)
+**Role:** owner of the delta requirements named in the current brief that no completed task covers,
+plus final integration for them (PR → main → Pages).
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| T10 | Price-snapshot store: opening + closing numbers for every market we originate | in progress | `arena-bf27a3bd-x1` | `data/lines/price_snapshots.json`, `data/lines/price_snapshots.csv`, `tools/build_price_store.py`, `data/raw/nflverse/DATASETS.md` (read-only) |
+| T11 | Verified results feed so backtests and ROI can be computed at all | in progress | `arena-bf27a3bd-x1` | `data/lines/results_feed.json`, `data/lines/results_feed.csv`, `data/lines/roi_summary.json`, `tools/build_results_feed.py`, `data/verify/official_scores_2026_week*.psv` |
+| T12 | Origination order side → total → moneyline, published as separate `model_fair_line` / `market_line` / `difference` columns | in progress | `arena-bf27a3bd-x1` | `data/lines/origination.json`, `data/lines/origination.csv` |
+| T13 | Leaderboard: signal block separated from staking block; rank on signal only | in progress | `arena-bf27a3bd-x1` | `data/lines/leaderboard_split.json` |
+| T14 | Track the depth of the replacement (2nd/3rd/4th string), not just the fact of a replacement | in progress | `arena-bf27a3bd-x1` | `data/lines/replacement_depth.json` |
+| T15 | Correlations only from officially sourced numbers, `n` published with every value | in progress | `arena-bf27a3bd-x1` | `data/lines/correlation_official.json` |
+| T16 | Demotion gate defined: a live strategy goes back to paper on named conditions | in progress | `arena-bf27a3bd-x1` | `data/lines/demotion_gate.json`, additive edit to `data/pipeline/gates.json` (G-13 row) |
+| T17 | Decision register (questions / information held / missing / answers) + suggestion review board updates | in progress | `arena-bf27a3bd-x1` | `data/lines/decisions_delta.json`, `data/lines/suggestions_delta.json` |
+| T18 | Integration: build the new pages into `app/`, re-verify everything, PR → main, merge, Pages deploy | in progress | `arena-bf27a3bd-x1` | `tools/build_app.py` (additive edits, logged below), `app/**` (regenerated), `tools/verify_new_data.py`, `.github/workflows/pages.yml` (one additive step), `COORDINATION.md`, `README.md` |
+
+## Non-overlap declaration
+
+- Every artefact above is a **new file** except the explicitly named additive edits:
+  `data/pipeline/gates.json` (G-13 threshold cell only), `tools/build_app.py` (new pages + the
+  four sections the brief names), `app/**` (regenerated output of that generator), one verify step
+  in `.github/workflows/pages.yml`, and this file / `README.md`.
+- No other session is active on this board at the time of claim. Older claims are `done` or stale;
+  their branches and trees are not modified. Additive edits to shared files are listed here as
+  requests, following the pattern the previous integration sessions used.
+- Sources for every published value will be recorded in the completion record below. Nothing is
+  marked verified without a fetched official-source URL.
