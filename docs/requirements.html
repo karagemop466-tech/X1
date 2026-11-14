@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requirements &middot; X1 - NFL Line Origination &amp; Strategy Lab</title>
+<meta name="description" content="Originated lines, gated strategies, verified sources.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <span class="mark">X1</span>
+      <span class="tag">NFL line origination &amp; strategy lab</span>
+    </div>
+    <nav class="site"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Executive summary</a><a href="requirements.html" class="active">Requirements</a><a href="questions.html" class="">Questions &amp; gaps</a><a href="suggestions.html" class="">Suggestions</a><a href="strategies.html" class="">Strategies</a><a href="leaderboard.html" class="">Leaderboard</a><a href="validation.html" class="">Validation gates</a><a href="lines.html" class="">Originated lines</a><a href="correlations.html" class="">Correlations &amp; luck</a><a href="props.html" class="">Player props</a><a href="injuries.html" class="">Injuries &amp; depth</a><a href="methods.html" class="">Methods</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a></nav>
+  </div>
+</header>
+<main class="wrap">
+
+<h1>Requirements register</h1>
+<p class="lede">Every requirement taken from the brief, with the state of delivery and the
+evidence that proves it. 15 of 18 are complete; the rest are
+partially delivered and the missing piece is stated.</p>
+<div class="toolbar"><input type="search" data-filter="#req-table" placeholder="Filter requirements..."></div>
+<div class="table-wrap"><table class=""><thead><tr><th>ID</th><th>Category</th><th>Requirement</th><th>Status</th><th>Evidence</th></tr></thead><tbody><tr><td>R1</td><td>Governance</td><td>Collect, organise and analyse a full list of requirements for the project.</td><td><span class="badge pass">Delivered</span></td><td>This register plus the Questions and Suggestions pages.</td></tr><tr><td>R2</td><td>Decision support</td><td>Improve the site so it supports better decision making.</td><td><span class="badge pass">Delivered</span></td><td>Every strategy, gate result, correlation and flagged item is published with the numbers behind it and a source link.</td></tr><tr><td>R3</td><td>Decision support</td><td>Add a section where suggestions can be reviewed and a path chosen before anything is implemented.</td><td><span class="badge pass">Delivered</span></td><td>Suggestions page: 14 suggestions, each with evidence, impact, effort, dependencies and a review status.</td></tr><tr><td>R4</td><td>Decision support</td><td>Publish a clear list of questions, known information and open information gaps that must be closed before a decision can be made.</td><td><span class="badge pass">Delivered</span></td><td>Questions page: 16 questions with what is known, what is missing, how to close the gap and a priority.</td></tr><tr><td>R5</td><td>Line origination</td><td>Originate our own NFL lines rather than only consuming the market&#x27;s.</td><td><span class="badge pass">Delivered</span></td><td>Walk-forward Poisson points model plus Elo; 7,154 games scored with a model spread and total for each.</td></tr><tr><td>R6</td><td>Line origination</td><td>Research and develop strategies that generate useful signals.</td><td><span class="badge pass">Delivered</span></td><td>16 pre-registered strategies across spread, total and parlay families, all scored out of sample.</td></tr><tr><td>R7</td><td>Validation</td><td>Treat strategy selection as a leaderboard competition that pays rewards for top performers.</td><td><span class="badge pass">Delivered</span></td><td>Leaderboard page ranks every strategy and pays a reward only to strategies that clear all eight validation gates.</td></tr><tr><td>R8</td><td>Validation</td><td>Cover single bets, parlays and player-prop combinations.</td><td><span class="badge warn">Partial</span></td><td>Single bets: 13 strategies. Parlays: 3 strategies. Player props: model, correlation and break-even maths built, but no market prop lines are available to price them (see Q11).</td></tr><tr><td>R9</td><td>Validation</td><td>Every strategy must pass validation gates before it can be used.</td><td><span class="badge pass">Delivered</span></td><td>Eight gates, applied to all 16 strategies; one strategy passes every gate.</td></tr><tr><td>R10</td><td>Validation</td><td>Determine correlation values between strategies and prop families.</td><td><span class="badge pass">Delivered</span></td><td>Pairwise strategy correlations (16 strategies) and prop-family correlations with parlay break-even maths.</td></tr><tr><td>R11</td><td>Validation</td><td>Remove luck from the equation so that surviving strategies are selectively skill based.</td><td><span class="badge pass">Delivered</span></td><td>Luck gate re-scores each strategy after removing one-score games and blowouts; the surviving strategy improves to +13.0% ROI.</td></tr><tr><td>R12</td><td>Injuries</td><td>Track injuries, including starters replaced by 2nd / 3rd / 4th string backups.</td><td><span class="badge warn">Partial</span></td><td>Official Week 10 injury report transcribed (107 rows) and depth tiers derived from 2026 usage; no league-operated depth-chart publication exists (see Q7).</td></tr><tr><td>R13</td><td>Injuries</td><td>Track the same deficiency for both offence and defence.</td><td><span class="badge warn">Partial</span></td><td>Defensive tiers can only be derived where one player leads on games played; 27 of 72 team/position-group combinations in the current report could not be ranked and are left blank rather than guessed.</td></tr><tr><td>R14</td><td>Reporting</td><td>Produce an executive summary of the important details.</td><td><span class="badge pass">Delivered</span></td><td>Executive summary page.</td></tr><tr><td>R15</td><td>Governance</td><td>No manual input; work autonomously and verify every line from official, trusted sources.</td><td><span class="badge pass">Delivered</span></td><td>Fully automated pipeline; every table row carries a source link and unconfirmed values are left blank and flagged.</td></tr><tr><td>R16</td><td>Governance</td><td>Review the repository line by line and flag irregularities.</td><td><span class="badge pass">Delivered</span></td><td>Repository audit section of the Flagged for Review page; the repository started as a 4-byte README.</td></tr><tr><td>R17</td><td>Site</td><td>Publish a GitHub Pages site with a landing page and category sub-pages.</td><td><span class="badge pass">Delivered</span></td><td>16 static pages generated by scripts/build_site.py and deployed through GitHub Actions.</td></tr><tr><td>R18</td><td>Verification</td><td>Every table row must link to a source; anything unconfirmable is left blank and flagged.</td><td><span class="badge pass">Delivered</span></td><td>Source link column on every published table; 12 items listed on the Flagged for Review page.</td></tr></tbody></table></div>
+
+</main>
+<footer class="site">
+  X1 - NFL Line Origination &amp; Strategy Lab &middot; generated 2026-11-14 by <code>scripts/build_site.py</code> &middot;
+  every table row links to its source &middot;
+  <a href="flagged.html">unverified items are flagged, never filled in</a>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

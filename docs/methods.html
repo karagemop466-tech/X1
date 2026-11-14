@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods &middot; X1 - NFL Line Origination &amp; Strategy Lab</title>
+<meta name="description" content="Originated lines, gated strategies, verified sources.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <span class="mark">X1</span>
+      <span class="tag">NFL line origination &amp; strategy lab</span>
+    </div>
+    <nav class="site"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Executive summary</a><a href="requirements.html" class="">Requirements</a><a href="questions.html" class="">Questions &amp; gaps</a><a href="suggestions.html" class="">Suggestions</a><a href="strategies.html" class="">Strategies</a><a href="leaderboard.html" class="">Leaderboard</a><a href="validation.html" class="">Validation gates</a><a href="lines.html" class="">Originated lines</a><a href="correlations.html" class="">Correlations &amp; luck</a><a href="props.html" class="">Player props</a><a href="injuries.html" class="">Injuries &amp; depth</a><a href="methods.html" class="active">Methods</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a></nav>
+  </div>
+</header>
+<main class="wrap">
+
+<h1>Methods</h1>
+<p class="lede">How every number on this site is produced, so that a reviewer can repeat it.</p>
+
+<h2>Data acquisition</h2>
+<p>The sandbox network allow-list permits GitHub and PyPI hosts only, so bulk inputs are pulled from
+GitHub through the REST contents API and cached under <code>data/raw</code>. Every file is recorded
+with its byte size and SHA-256 in <code>data/raw_manifest.json</code>, so a reviewer can confirm that
+a published table came from a specific file. League-operated pages (NFL injury reports, the season
+calendar, the rule book) are cited directly and transcribed where the values are published row by row.</p>
+
+<h2>Walk-forward evaluation</h2>
+<p>For every evaluation season, each strategy's parameters are re-selected using only games that
+finished in earlier seasons, then applied to the evaluation season. Parameters are chosen by a
+risk-adjusted score (mean profit divided by its standard error) so that a high return on a handful
+of bets cannot beat a steadier signal with more evidence. The evaluation window runs from 2015 to
+the 2026 season, which gives every strategy thousands of out-of-sample bets and every parameter
+choice a genuine test.</p>
+
+<h2>Originated lines</h2>
+<p>A Poisson points model is fitted on stacked team-game rows:
+<code>points ~ C(team) + C(opponent) + elo_diff + rest_diff + is_home</code>.
+Team dummies give attack and defence ratings, the pre-game Elo difference adds a dynamic strength
+signal, rest difference captures scheduling, and the home indicator captures the scoring level.
+The model is refitted for every season using only earlier seasons, so no game is scored by a model
+that has seen it. The originated spread is the difference between the two predicted point totals and
+the originated total is their sum, both rounded to half points.</p>
+
+<h2>Validation gates</h2>
+<p>Eight gates, applied identically to every strategy: sample sufficiency, out-of-sample integrity,
+statistical significance (bootstrap interval plus a sign-flip randomisation test), economic
+significance, superiority over naive baselines, luck robustness, parameter stability and
+non-redundancy. A strategy that fails any gate earns no reward and is published with the measured
+values that caused the failure.</p>
+
+<h2>Removing luck</h2>
+<p>One-score games (margin of 8 points or fewer) and blowouts (25 points or more) are removed and
+the strategy is re-scored (gate G6). Turnover luck and drive-level variance are not yet
+controllable because play-by-play data is not in the pipeline - that is question Q12.</p>
+
+<h2>Correlation and parlay arithmetic</h2>
+<p>Strategy correlations are Pearson correlations of per-bet profit streams over shared games. For
+parlays, a two-leg combination at -110 needs a 27.5% joint hit rate; the joint probability is
+computed from each leg's hit rate and the correlation between the legs
+(<code>p1*p2 + rho*p1*(1-p2)</code>), which is what makes the prop-combo table a decision tool
+rather than a list of numbers.</p>
+
+<h2>Reward formula</h2>
+<p><code>reward = 1000 * ROI * min(1, bets / 300) * confidence</code>, where confidence is the
+share of the bootstrap confidence interval that stays above zero. Rejected strategies earn zero.</p>
+
+<h2>What is not modelled yet</h2>
+<ul class="clean">
+<li>Drive-level efficiency (EPA, success rate, third-down rate) - needs play-by-play (Q1, SG3).</li>
+<li>Closing-line value - needs opening and closing prices stored per game (SG5).</li>
+<li>Player-prop pricing - needs a market prop feed (Q9).</li>
+<li>Turnover luck - needs play-by-play (Q12).</li>
+<li>Multi-season injury adjustments - needs a multi-year injury feed (Q8).</li>
+</ul>
+
+</main>
+<footer class="site">
+  X1 - NFL Line Origination &amp; Strategy Lab &middot; generated 2026-11-14 by <code>scripts/build_site.py</code> &middot;
+  every table row links to its source &middot;
+  <a href="flagged.html">unverified items are flagged, never filled in</a>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

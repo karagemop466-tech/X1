@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard &middot; X1 - NFL Line Origination &amp; Strategy Lab</title>
+<meta name="description" content="Originated lines, gated strategies, verified sources.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <span class="mark">X1</span>
+      <span class="tag">NFL line origination &amp; strategy lab</span>
+    </div>
+    <nav class="site"><a href="index.html" class="active">Dashboard</a><a href="executive-summary.html" class="">Executive summary</a><a href="requirements.html" class="">Requirements</a><a href="questions.html" class="">Questions &amp; gaps</a><a href="suggestions.html" class="">Suggestions</a><a href="strategies.html" class="">Strategies</a><a href="leaderboard.html" class="">Leaderboard</a><a href="validation.html" class="">Validation gates</a><a href="lines.html" class="">Originated lines</a><a href="correlations.html" class="">Correlations &amp; luck</a><a href="props.html" class="">Player props</a><a href="injuries.html" class="">Injuries &amp; depth</a><a href="methods.html" class="">Methods</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a></nav>
+  </div>
+</header>
+<main class="wrap">
+
+<h1>Dashboard</h1>
+<p class="lede">Every number on this site is produced by the pipeline in <code>src/x1</code>,
+verified against a cited source, and published with the evidence attached. Values that
+cannot be confirmed are left blank and listed on the
+<a href="flagged.html">Flagged for Review</a> page.</p>
+
+<div class="grid k4" style="margin:18px 0 8px"><div class="card"><h4>Games in the model</h4><div class="value">7,154</div><div class="note">seasons 2000&ndash;2026, walk-forward</div></div><div class="card"><h4>Strategies evaluated</h4><div class="value">16</div><div class="note">single, parlay and research strategies</div></div><div class="card"><h4>Passed every gate</h4><div class="value">1</div><div class="note">Wind - under leads</div></div><div class="card"><h4>Leader ROI</h4><div class="value">+11.53%</div><div class="note">398 out-of-sample bets</div></div><div class="card"><h4>Official injury rows</h4><div class="value">107</div><div class="note">NFL Week 10 report, transcribed</div></div><div class="card"><h4>Items flagged for review</h4><div class="value">12</div><div class="note">unverified or caveated</div></div></div>
+
+<h2>What the evidence shows</h2>
+<div class="callout good"><h4>What was asked</h4><p>Build a system that originates its own NFL lines, tests strategies against validation gates, ranks them like a competition, removes luck from the results, tracks injuries and depth shortages, and publishes everything with a source link for every number.</p></div><div class="callout "><h4>What the data says</h4><p>The market is efficient. Of sixteen pre-registered strategies, fifteen fail the gate suite; the spread model, the totals model, the fade-the-favourite family, the rest-day signal and the backup-quarterback signal all lose to the vig. One signal survives every gate: in outdoor games with sustained wind, the total goes under far more often than the market prices.</p></div><div class="callout "><h4>The surviving strategy</h4><p>Bet the under in outdoor games with wind of 12 mph or more. 398 settled out-of-sample bets, +11.53% ROI, 95% bootstrap interval +0.022 to +0.207 units per bet, permutation p = 0.008, and +13.04% ROI after one-score games and blowouts are removed. The effect is present in all four five-year eras, which is the strongest evidence that it is skill rather than luck.</p></div><div class="callout "><h4>Why the rest failed</h4><p>Nothing beats the vig after costs. Fading large favourites, betting the home underdog, and the classic cold-weather under thesis all look reasonable and all lose money once the price is applied. The cold-weather thesis is the clearest example: it has no consistent direction across eras, while wind - measured the same way, in the same games - does.</p></div><div class="callout "><h4>Player props and parlays</h4><p>Originated prop lines are built and calibrated for passing yards, rushing yards, receiving yards and receptions, with hit rates between 42.8% and 50.3% at the model line. Correlations are measured so that combos can be built intelligently: quarterback passing yards and receiver receiving yards correlate at +0.93 and are effectively the same bet, while running-back rushing and receiving yards correlate at -0.16 and are additive. Parlays fail on arithmetic: two -110 legs need a 27.5% joint hit rate, and the parlay strategies produced 21.4% to 25.8%.</p></div>
+
+<h2>Leaderboard (top of the table)</h2>
+<div class="table-wrap"><table class=""><thead><tr><th>#</th><th>Strategy</th><th>Family</th><th>Bets</th><th>ROI</th><th>Hit rate</th><th>95% CI (units/bet)</th><th>Reward</th><th>Gates</th></tr></thead><tbody><tr><td>1</td><td><a href="strategies.html#S_wind_under">Wind - under</a></td><td><span class="badge info">total</span></td><td>398</td><td class="pos">+11.53%</td><td class="">+57.0%</td><td class="">[+2.2%, +20.7%]</td><td class="">21.6</td><td><span class="badge pass">PASS</span></td></tr><tr><td>2</td><td><a href="strategies.html#S_cold_under">Cold weather - under</a></td><td><span class="badge info">total</span></td><td>187</td><td class="pos">+2.27%</td><td class="">+52.4%</td><td class="">[-11.6%, +16.3%]</td><td class="">0.0</td><td><span class="badge fail">FAIL</span></td></tr><tr><td>3</td><td><a href="strategies.html#S_fade_favourite">Fade the favourite (any line &gt;= threshold)</a></td><td><span class="badge info">spread</span></td><td>199</td><td class="pos">+0.49%</td><td class="">+51.8%</td><td class="">[-12.7%, +13.8%]</td><td class="">0.0</td><td><span class="badge fail">FAIL</span></td></tr><tr><td>4</td><td><a href="strategies.html#S_elo_momentum">Elo momentum vs market spread</a></td><td><span class="badge info">spread</span></td><td>1,867</td><td class="neg">-0.82%</td><td class="">+50.2%</td><td class="">[-5.1%, +3.5%]</td><td class="">0.0</td><td><span class="badge fail">FAIL</span></td></tr><tr><td>5</td><td><a href="strategies.html#S_qb_change">Backup starting quarterback (bet against the team)</a></td><td><span class="badge info">spread</span></td><td>891</td><td class="neg">-1.02%</td><td class="">+49.6%</td><td class="">[-7.4%, +5.3%]</td><td class="">0.0</td><td><span class="badge fail">FAIL</span></td></tr><tr><td>6</td><td><a href="strategies.html#P_fade_under">Parlay: underdog + under mid total</a></td><td><span class="badge info">parlay</span></td><td>225</td><td class="neg">-1.14%</td><td class="">+25.8%</td><td class="">[-21.7%, +19.8%]</td><td class="">0.0</td><td><span class="badge fail">FAIL</span></td></tr></tbody></table></div><p class="table-note">Full table, gate detail and rejection reasons on the Leaderboard and Validation gates pages.</p>
+
+<h2>Where to go next</h2>
+<div class="grid k3 nav-grid"><a class="card" href="executive-summary.html"><div class="value">Executive summary</div></a><a class="card" href="requirements.html"><div class="value">Requirements</div></a><a class="card" href="questions.html"><div class="value">Questions &amp; gaps</div></a><a class="card" href="suggestions.html"><div class="value">Suggestions</div></a><a class="card" href="strategies.html"><div class="value">Strategies</div></a><a class="card" href="leaderboard.html"><div class="value">Leaderboard</div></a><a class="card" href="validation.html"><div class="value">Validation gates</div></a><a class="card" href="lines.html"><div class="value">Originated lines</div></a><a class="card" href="correlations.html"><div class="value">Correlations &amp; luck</div></a><a class="card" href="props.html"><div class="value">Player props</div></a><a class="card" href="injuries.html"><div class="value">Injuries &amp; depth</div></a><a class="card" href="methods.html"><div class="value">Methods</div></a><a class="card" href="sources.html"><div class="value">Sources</div></a><a class="card" href="flagged.html"><div class="value">Flagged for review</div></a></div>
+
+</main>
+<footer class="site">
+  X1 - NFL Line Origination &amp; Strategy Lab &middot; generated 2026-11-14 by <code>scripts/build_site.py</code> &middot;
+  every table row links to its source &middot;
+  <a href="flagged.html">unverified items are flagged, never filled in</a>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
