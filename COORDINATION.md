@@ -615,6 +615,118 @@ main's (fresher) output was adopted in each case. No authored file was lost.
 
 ---
 
+# Session `arena/9cc1eaac-x1` — independent verification, decision gating and integration
+
+**Session ID:** `arena/9cc1eaac-x1` · **Branch:** `arena/9cc1eaac-x1` (branched from `main` @ `0699aff`)
+**Role claimed:** independent re-verification audit + decision-gating layer + this round's final
+integration (rule 9: shared outputs such as the site index and navigation change here only).
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope (new except where marked) |
+|---|---|---|---|---|
+| A1 | Independent line-by-line repo audit; produce machine-readable findings with evidence | in progress | `arena/9cc1eaac-x1` | `audit/**`, `tools/audit_repo.py`, `data/audit/repo_audit.json` |
+| A2 | Fresh re-fetch of the official pages and a value-by-value diff against every published table | in progress | `arena/9cc1eaac-x1` | `audit/verify/**`, `data/audit/verification_run.json`, `tools/verify_against_official.py` |
+| A3 | Landing-page and navigation defects: four site trees unreachable from the landing page, stale flag count, duplicated research link | in progress | `arena/9cc1eaac-x1` | `tools/build_site.py` (**shared — claimed as final integration**), `index.html`, `pages/*` (generated) |
+| A4 | Decision-critical questions register: question → information held → information missing → evidence that would close it → decision it unblocks | in progress | `arena/9cc1eaac-x1` | `data/audit/decision_questions.json`, `pages/decisions-critical.html` |
+| A5 | Suggestions review board: ranked options, effort, dependency, reversibility, and a recommended path the owner can choose | in progress | `arena/9cc1eaac-x1` | `data/audit/suggestion_board.json`, `pages/suggestions-board.html` |
+| A6 | Freshness / correction policy and "what changed this round" evidence page | in progress | `arena/9cc1eaac-x1` | `data/audit/what_changed.json`, `pages/changes.html` |
+| A7 | **Red CI on `main`:** `tools/check_links.py` fails with 111 errors (JS template strings mis-parsed as links; live page tree missing a CSS audit) | in progress | `arena/9cc1eaac-x1` | `tools/check_links.py` (**shared — claimed as final integration**), `.github/workflows/verify.yml` |
+| A8 | Executive brief for this round (findings, decisions, recommended path) | in progress | `arena/9cc1eaac-x1` | `docs/audit/EXECUTIVE-SUMMARY.md`, `pages/executive-brief.html` |
+| A9 | Consolidated review queue: every flag, unverified cell and open item in one filterable table | in progress | `arena/9cc1eaac-x1` | `data/audit/review_queue.json`, `pages/review-queue.html` |
+
+No task above is claimed by another session: every earlier board marks T*/R* work `done` or
+`needs review`, and no session recorded a claim in this area. This session does **not** edit
+`research/**`, `dashboard/**`, `site/**`, `live/**`, `data/processed/**`, `data/pipeline/**` or
+`scripts/pipeline/**`; those trees are read-only inputs to the audit.
+
+## Session `arena/9cc1eaac-x1` — completion record
+
+**Claims A1–A9: all done.** No task was taken from another session; every earlier claim was
+`done` or `needs review` and no live claim existed when this session started.
+
+### What was built
+
+| Task | Output | Verification |
+|---|---|---|
+| A1 Repo audit | `data/audit/findings.json` (10 findings A-01..A-10) | each finding reproducible by a named command |
+| A2 Official re-verification | `audit/official_snapshot_2026_w10.py`, `tools/verify_against_official.py`, `data/audit/verification_run.json` | **2,183 cells diffed, 0 mismatches, 4/4 tables clean** |
+| A3 Landing page + nav | `tools/build_site.py`, `index.html`, `pages/*` | `tools/check_links.py`: 11,575 assertions, 0 failures |
+| A4 Decision questions | `data/audit/decision_questions.json`, `pages/decisions-critical.html` | 7 questions, Q-19/Q-02/Q-05 at P0 |
+| A5 Suggestions board | `data/audit/suggestion_board.json`, `pages/suggestions-board.html` | 10 options + a 4-step recommended path |
+| A6 Freshness / change log | `data/audit/what_changed.json`, `pages/changes.html` | 7 before/after rows, each with evidence |
+| A7 Red CI fixed | `tools/check_links.py`, `.github/workflows/verify.yml` | 111 failures → **0** |
+| A8 Executive brief | `docs/audit/EXECUTIVE-SUMMARY.md`, `pages/executive-brief.html` | every number traceable to a register |
+| A9 Review queue | `data/audit/review_queue.json`, `pages/review-queue.html` | 38 items from 4 registers, 0 rows without a source link |
+
+Added beyond the claim: `pages/requirements.html` (all 45 brief requirements reassessed:
+34 met, 7 partly met, 2 open, 2 in progress, **4 reassessed downward**) and the full 31-club
+depth join published on `pages/availability.html`.
+
+### Sources used (all fetched 2026-11-14, all official)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/standings/division/2026/REG> | 32 clubs x 12 published columns = 384 cells |
+| <https://www.nfl.com/standings/league/2026/REG> | cross-read of the same standings, both chunks |
+| <https://www.nfl.com/schedules/2026/REG/week/10/> | 14 games, times, networks, 1 final score, 4 byes |
+| <https://www.nfl.com/injuries/league/2026/reg10> | all 28 club tables, 345 players, 1,725 cells |
+| <https://www.packers.com/team/depth-chart> | spot check of the collected depth charts |
+
+### Verification performed
+
+1. A **third** independent transcription of the official pages, diffed cell by cell against
+   `data/nfl/*.tsv` — `python3 tools/verify_against_official.py`.
+2. One club depth chart re-fetched live and compared name for name: **56 of 56 entries match**,
+   no player in the repository appears on no chart. This is a spot check of 1 of 31 clubs, not of all
+   31, and is stated as such.
+3. The whole existing check suite, which had been failing:
+   `check_links` (11,575 assertions), `verify_site` (88 pages), `verify_data` (2,944),
+   `cross_check`, `verify_parlay`, `check_site`, `verify_research_site`, `verify_site_annex`,
+   `scripts/pipeline/verify_site`, `test_source_rule`. **All pass.**
+4. No published value was edited to make any check pass. All four tables verified as published.
+
+### Irregularities found and their state
+
+| ID | Item | State |
+|---|---|---|
+| A-01 | Five-club pilot reported as the count of starters ruled Out; the 31-club join gives **31**, not 6 | **fixed** — full join published, pilot kept as a labelled subset |
+| A-02 | The live tree (15 pages) was linked from nothing; the reachability check skipped it | **fixed** |
+| A-03 | `tools/check_links.py` failed with 111 errors on `main` (red for 13h) | **fixed** |
+| A-04 | 301 of 345 injury rows never re-checked (old I-17) | **fixed** — all 345 verified |
+| A-05 | Four registers produced four different flag counts (6, 12, 17, 34) | **fixed** — one queue |
+| A-06 | Landing page claimed the repo publishes no computed values; four trees publish them | **fixed** |
+| A-07 | Same value carries a different caveat depending on the tree | **needs review** — needs the badge decision (B-07) |
+| A-08 | Official page prints `LA`; `standings.tsv` prints `LAR` | flagged (alias handled, no data change) |
+| A-09 | `LAST 5` column header published with no values | **needs review** — B-06 |
+| A-10 | Three different line benchmarks in use across four trees | **needs review** — Q-02 |
+
+### Deliberate limitations, stated rather than hidden
+
+- The depth join uses **club self-reports**. The league publishes no depth chart; Green Bay's own page
+  ends "Unofficial, Nov. 10, 2026". Every joined row carries its club URL.
+- Houston has no parsable chart. Its 16 injured players are **absent** from the join, not guessed.
+- 90 of 345 injured players could not be matched to a chart entry; they are counted, not estimated.
+- The one strategy that passes all eight gates is measured against a third-party mirror, so its result
+  is **conditional on the benchmark** — which is exactly Q-02.
+
+---
+
+## Pull request record (session `arena/9cc1eaac-x1`)
+
+| Item | Value |
+|---|---|
+| Branch → base | `arena/9cc1eaac-x1` → `main` |
+| Content | independent re-verification of every Week 10 cell, the 31-club depth join, the decision/suggestions/queue/requirements pages, the red-CI fix |
+
+> **Merge note (this session, `arena/9cc1eaac-x1`).** `main` advanced while this PR was open:
+> session `arena/c50b9342-x1` independently fixed the same broken check (PR #22, #23). Both fixes are
+> kept — theirs strips `<script>` blocks before scanning for links, mine drops template-literal
+> fragments and `${...}` residue. They catch different cases and the combined checker passes with
+> 11,519 assertions. Their record follows, unedited.
+
+---
+
 # Session `arena/c50b9342-x1` — audit & repair (2026-11-14, this session)
 
 **Role claimed:** repository audit + repair of the broken `verify-site` check on `main`

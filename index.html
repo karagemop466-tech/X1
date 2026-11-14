@@ -26,6 +26,11 @@
       <a href="pages/flagged.html">Flagged for review</a>
       <a href="pages/cross-check.html">Cross-check</a>
       <a href="pages/sources.html">Sources</a>
+      <a href="pages/decisions-critical.html">Decisions to make</a>
+      <a href="pages/suggestions-board.html">Suggestions board</a>
+      <a href="pages/review-queue.html">Review queue</a>
+      <a href="pages/changes.html">What changed</a>
+      <a href="pages/requirements.html">Requirements &amp;amp; status</a>
       <a href="dashboard/lab-index.html">Analytics lab</a>
       <a href="pages/review.html">Repo review</a>
       <a href="research/index.html">Research lab</a>
@@ -54,41 +59,77 @@
     a pre-registered validation gauntlet in the middle, and a leaderboard that rewards skill rather
     than a hot streak — with every unproven claim left visibly empty.</p>
     <div class="cta">
-      <a class="btn" href="pages/executive-summary.html">Read the executive summary <b>→</b></a>
-      <a class="btn ghost" href="pages/flagged.html">Review the 13 open flags</a>
+      <a class="btn" href="pages/executive-brief.html">This round's executive brief <b>→</b></a>
+      <a class="btn ghost" href="pages/review-queue.html">Open the review queue</a>
     </div>
   </div>
   <div class="herocard">
-    <div class="eyebrow">WHAT IS ACTUALLY VERIFIED</div>
-    <div class="stat"><strong>32</strong><span>teams transcribed</span><span class="statnote">nfl.com standings</span></div>
-    <div class="stat"><strong>14</strong><span>week 10 games</span><span class="statnote">nfl.com schedule</span></div>
-    <div class="stat"><strong>345</strong><span>official injury rows</span><span class="statnote">nfl.com injury report</span></div>
-    <div class="stat"><strong>8</strong><span>listed starters ruled Out</span><span class="statnote">derived, 5-club pilot</span></div>
+    <div class="eyebrow">RE-VERIFIED AGAINST THE OFFICIAL PAGES</div>
+    <div class="stat"><strong>2,183</strong><span>cells diffed, cell by cell</span><span class="statnote">independent re-transcription</span></div>
+    <div class="stat"><strong>32</strong><span>teams verified</span><span class="statnote">nfl.com standings</span></div>
+    <div class="stat"><strong>14</strong><span>week-10 games verified</span><span class="statnote">nfl.com schedule</span></div>
+    <div class="stat"><strong>345</strong><span>injury rows verified</span><span class="statnote">nfl.com injury report</span></div>
+    <div class="stat"><strong>0</strong><span>mismatches found</span>
+      <span class="statnote">every published cell agrees with its official source</span></div>
   </div>
 </section>
 
 <section class="alert">
-  <b>Evidence boundary.</b>
-  <p>This dashboard publishes <strong>only league-verified tables</strong> — standings, the week-10
-  slate, the official injury report and a five-club depth-chart pilot — transcribed row by row from
-  official pages and re-checked by 2,944 automated assertions. It publishes no prices,
-  correlations or strategy results of its own, because those need a licensed odds feed.
-  The priced research — originated lines, walk-forward gates, correlation values, luck removal and
-  player-prop mathematics — is published separately in the
-  <a href="research/index.html">research lab</a>, where the third-party line benchmark is named and
-  fingerprinted on every row.</p>
-  <a href="pages/sources.html">How verification works →</a> &nbsp;·&nbsp;
-  <a href="research/index.html">Open the research lab →</a>
+  <b>What changed in this round.</b>
+  <p>Every published Week&nbsp;10 table was re-read from the official pages and diffed cell by cell:
+  <strong>2,183 cells, 0 mismatches</strong>. That closes the gap recorded as
+  flag I-17, where 301 of 345 injury rows had never been re-checked by a second reader. Two limits are
+  now stated plainly instead of being left implicit: the evidence window is a
+  <strong>five-club</strong> depth pilot, while the club charts for <strong>31 clubs</strong> that already sat in the
+  repository are now joined and published beside it, and the originated lines and strategy results in this dashboard's own pages are
+  <strong>computed</strong> from a third-party benchmark, not league-published.</p>
+  <a href="pages/changes.html">What changed, line by line →</a> &nbsp;·&nbsp;
+  <a href="pages/cross-check.html">Independent cross-check →</a>
 </section>
 
-<section class="sectionhead"><div><div class="eyebrow">AT A GLANCE</div><h2>Choose where to look</h2></div><span class="tag">SNAPSHOT 2026-11-14</span></section>
+<section class="sectionhead"><div><div class="eyebrow">START HERE</div><h2>The decisions waiting on you</h2></div><span class="tag">SNAPSHOT 2026-11-14</span></section>
 <section class="cards">
-  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, plus every week-10 game with byes and a final score where one exists.</p><span class="more">Open tables →</span></a>
-  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>35 officially listed starters sit on the week-10 report. Who replaces them is only knowable from club charts — and those are self-labelled unofficial.</p><span class="more">See the join →</span></a>
+  <a class="card" href="pages/decisions-critical.html"><span class="ico">?</span><small>DECIDE / 01</small><h3>The blocking questions</h3><p>Every question that has to be answered before a strategy can honestly be scored, with what is already known, what is missing, and the evidence that would close it.</p><span class="more">Open the decision table →</span></a>
+  <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
+  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>45 requirements, assessed</h3><p>34 met, 7 partly met, 2 open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
+  <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
+<section class="cards">
+  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. 2,183 cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
+  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across 31 clubs finds <b>31 starters ruled Out</b> plus 17 second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
   <a class="card" href="pages/line-origination.html"><span class="ico">◎</span><small>METHOD / 03</small><h3>Line origination</h3><p>The pipeline from frozen inputs to a fair price, the seven signal families, and the prop model that must not assume independence.</p><span class="more">Read the method →</span></a>
   <a class="card" href="pages/validation.html"><span class="ico">✓</span><small>METHOD / 04</small><h3>Validation gates</h3><p>Seven pre-registered gates. A 55% record over 500 bets scores z≈1.22 — inside coin-flip range. Here is the arithmetic that removes luck.</p><span class="more">See the gates →</span></a>
   <a class="card" href="pages/leaderboard.html"><span class="ico">↗</span><small>COMPETITION / 05</small><h3>Strategy leaderboard</h3><p>Four divisions, rank by skill not ROI, effective sample size for correlated tickets, and rewards that do not crown luck.</p><span class="more">See the design →</span></a>
-  <a class="card" href="pages/decisions.html"><span class="ico">?</span><small>DECISIONS / 06</small><h3>18 questions to answer</h3><p>What we know, what we do not, and what has to be decided before any strategy can honestly be scored.</p><span class="more">Open the register →</span></a>
+  <a class="card" href="pages/decisions.html"><span class="ico">✎</span><small>REGISTER / 06</small><h3>18 questions on the record</h3><p>The full register, with what we know, what we do not, and what would settle each one.</p><span class="more">Open the register →</span></a>
+</section>
+
+<section class="duo">
+  <div class="panel">
+    <div class="eyebrow">PARALLEL SITE TREES</div>
+    <h2>The same question, four independent attempts</h2>
+    <p class="muted">Four earlier sessions built in parallel and merged into this repository. They disagree
+    about how much to publish, and the disagreement is useful: it shows where the evidence line actually sits.</p>
+    <div class="blocker"><span class="pill">LAB</span><div><b><a href="research/index.html">Research lab</a></b><p>Originated lines from a walk-forward points model, sixteen pre-registered strategies, the eight-gate
+    evaluation, correlation values, luck removal and the player-prop maths. Names its third-party line benchmark on every page.</p></div></div>
+    <div class="blocker"><span class="pill">DASH</span><div><b><a href="dashboard/lab-index.html">Analytics lab</a></b><p>2006–2026 backtests on nfldata, a 491-row injury report and computed correlation values.
+    Every strategy is marked NOT ELIGIBLE for undocumented line provenance.</p></div></div>
+    <div class="blocker"><span class="pill">ANNEX</span><div><b><a href="site/index.html">Snapshot annex</a></b><p>A leak-free 1,779-game backtest, a threshold sweep and correlation values with 95% intervals.
+    Its own headline finding is negative: the results-only model has no betting edge (ROI −6.1%…−2.6%).</p></div></div>
+    <div class="blocker"><span class="pill">LIVE</span><div><b><a href="live/index.html">Live pipeline</a></b><p>The only tree that collects <em>club</em> depth charts at scale — 1,813 entries across 31 of 32 clubs —
+    with the caveat that clubs label their own charts unofficial. Refreshed on a schedule.</p></div></div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">BEFORE ANY DECISION</div>
+    <h2>The four blockers</h2>
+    <div class="blocker"><span class="pill high">Q-01</span><div><b>Data licence</b><p>Without the right to ingest play-by-play, snaps and odds, only officially published aggregates can be shown.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-02</span><div><b>Odds feed and which benchmark counts</b><p>No market benchmark means no edge, no expected value and no closing-line value — and the four trees currently use different benchmarks.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-05</span><div><b>Definition of “starter”</b><p>Everything about 2nd/3rd/4th string exposure rests on a definition the league does not supply.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-19</span><div><b>Evidence window</b><p>Is a five-club depth pilot an acceptable base, or should the site publish the 31-club join that already exists in the repository?</p></div></div>
+    <p class="muted">The other 14 open questions are listed with the information already held and what would settle each one.</p>
+    <a class="more" href="pages/decisions-critical.html">Decision table →</a>
+  </div>
 </section>
 
 <section class="duo">
@@ -97,7 +138,7 @@
     <h2>Five findings that change the plan</h2>
     <ol class="findings">
       <li><b>No league-wide official depth chart exists.</b> Clubs publish their own; Detroit and Green Bay literally print “unofficial”. So “2nd-string replacement” is a club self-report, not a league fact.</li>
-      <li><b>“Starter” is a definition, not a lookup.</b> We define it mechanically — printed in column 1 — so the definition can be re-run and audited.</li>
+      <li><b>The depth evidence is thinner than the repository allows.</b> A 31-club depth collection already exists; the site's injury join uses five clubs. The published starter count is therefore a floor, not a total.</li>
       <li><b>55% is not skill.</b> At −110 the break-even is 52.38%; 55.1% over 500 bets is z≈1.22.</li>
       <li><b>Parlay margin compounds.</b> At −110 one leg carries a 4.55% hold; five legs carry 20.75% (≈4.6×). And assuming independence across two dependent 50% legs with ρ=0.30 misprices a +264 ticket by +18.5% in the bettor's favour.</li>
       <li><b>Verification caught our own error.</b> Arizona was typed 2–6; the official page prints 3–6. The gate rejected it and the correction is public (F-08).</li>
@@ -105,13 +146,13 @@
     <a class="more" href="pages/executive-summary.html">Full summary →</a>
   </div>
   <div class="panel">
-    <div class="eyebrow">BEFORE ANY DECISION</div>
-    <h2>The three blockers</h2>
-    <div class="blocker"><span class="pill high">Q-01</span><div><b>Data licence</b><p>Without the right to ingest play-by-play, snaps and odds, only officially published aggregates can be shown.</p></div></div>
-    <div class="blocker"><span class="pill high">Q-02</span><div><b>Odds feed</b><p>No market benchmark means no edge, no expected value and no closing-line value.</p></div></div>
-    <div class="blocker"><span class="pill high">Q-05</span><div><b>Definition of “starter”</b><p>Everything about 2nd/3rd/4th string exposure rests on a definition the league does not supply.</p></div></div>
-    <p class="muted">The other 15 open questions are listed with the information already held and what would settle each one.</p>
-    <a class="more" href="pages/decisions.html">Decision register →</a>
+    <div class="eyebrow">HOW THIS STAYS HONEST</div>
+    <h2>Four checks that run before every publish</h2>
+    <div class="blocker"><span class="pill">1</span><div><b>Independent re-transcription</b><p>2,183 cells diffed against a separately transcribed copy of the official pages. Any contradiction fails the build.</p></div></div>
+    <div class="blocker"><span class="pill">2</span><div><b>Source on every row</b><p>A row without an official link does not render. A mutation test proves the rule can fail.</p></div></div>
+    <div class="blocker"><span class="pill">3</span><div><b>Blank beats inferred</b><p>A cell the official page does not print stays empty and carries a title explaining why.</p></div></div>
+    <div class="blocker"><span class="pill">4</span><div><b>Freshness is visible</b><p>The snapshot date is on every page because an injury table decays within days.</p></div></div>
+    <a class="more" href="pages/sources.html">Source register →</a>
   </div>
 </section>
 

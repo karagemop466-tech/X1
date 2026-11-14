@@ -43,6 +43,11 @@ NAV = [
     ("pages/flagged.html", "Flagged for review"),
     ("pages/cross-check.html", "Cross-check"),
     ("pages/sources.html", "Sources"),
+    ("pages/decisions-critical.html", "Decisions to make"),
+    ("pages/suggestions-board.html", "Suggestions board"),
+    ("pages/review-queue.html", "Review queue"),
+    ("pages/changes.html", "What changed"),
+    ("pages/requirements.html", "Requirements &amp; status"),
     ("dashboard/lab-index.html", "Analytics lab"),
     ("pages/review.html", "Repo review"),
     ("research/index.html", "Research lab"),
@@ -198,6 +203,21 @@ GATES = load_json("gates.json")
 STRAT = load_json("strategies.json")
 SIGNALS = load_json("signals.json")
 
+
+def load_audit(name):
+    with open(os.path.join(D, "audit", name), encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+AUDIT = load_audit("findings.json")
+JOIN = load_audit("full_depth_join.json")
+FULL_JOIN = JOIN["coverage"]
+DECISION = load_audit("decision_questions.json")
+BOARD = load_audit("suggestion_board.json")
+QUEUE = load_audit("review_queue.json")
+CHANGES = load_audit("what_changed.json")
+REQS = load_audit("requirements_assessed.json")
+
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
 SCHED_URL = "https://www.nfl.com/schedules/2026/REG/week/10/"
 INJ_URL = "https://www.nfl.com/injuries/league/2026/reg10"
@@ -211,6 +231,7 @@ final_games = [g for g in SCHED if g["status"] == "final"]
 
 # ---------------------------------------------------------------- overview
 def page_index():
+    v = AUDIT["verification"]
     body = f"""
 <section class="hero">
   <div class="herotext">
@@ -220,41 +241,77 @@ def page_index():
     a pre-registered validation gauntlet in the middle, and a leaderboard that rewards skill rather
     than a hot streak — with every unproven claim left visibly empty.</p>
     <div class="cta">
-      <a class="btn" href="pages/executive-summary.html">Read the executive summary <b>→</b></a>
-      <a class="btn ghost" href="pages/flagged.html">Review the {len(FLAGS['flags'])} open flags</a>
+      <a class="btn" href="pages/executive-brief.html">This round's executive brief <b>→</b></a>
+      <a class="btn ghost" href="pages/review-queue.html">Open the review queue</a>
     </div>
   </div>
   <div class="herocard">
-    <div class="eyebrow">WHAT IS ACTUALLY VERIFIED</div>
-    {stat(len(STANDINGS), 'teams transcribed', 'nfl.com standings')}
-    {stat(len(SCHED), 'week 10 games', 'nfl.com schedule')}
-    {stat(len(INJ), 'official injury rows', 'nfl.com injury report')}
-    {stat(len(starters_out), 'listed starters ruled Out', 'derived, 5-club pilot')}
+    <div class="eyebrow">RE-VERIFIED AGAINST THE OFFICIAL PAGES</div>
+    {stat(f"{v['cells_compared']:,}", 'cells diffed, cell by cell', 'independent re-transcription')}
+    {stat(len(STANDINGS), 'teams verified', 'nfl.com standings')}
+    {stat(len(SCHED), 'week-10 games verified', 'nfl.com schedule')}
+    {stat(len(INJ), 'injury rows verified', 'nfl.com injury report')}
+    <div class="stat"><strong>{v['mismatches']}</strong><span>mismatches found</span>
+      <span class="statnote">every published cell agrees with its official source</span></div>
   </div>
 </section>
 
 <section class="alert">
-  <b>Evidence boundary.</b>
-  <p>This dashboard publishes <strong>only league-verified tables</strong> — standings, the week-10
-  slate, the official injury report and a five-club depth-chart pilot — transcribed row by row from
-  official pages and re-checked by {esc('2,944')} automated assertions. It publishes no prices,
-  correlations or strategy results of its own, because those need a licensed odds feed.
-  The priced research — originated lines, walk-forward gates, correlation values, luck removal and
-  player-prop mathematics — is published separately in the
-  <a href="research/index.html">research lab</a>, where the third-party line benchmark is named and
-  fingerprinted on every row.</p>
-  <a href="pages/sources.html">How verification works →</a> &nbsp;·&nbsp;
-  <a href="research/index.html">Open the research lab →</a>
+  <b>What changed in this round.</b>
+  <p>Every published Week&nbsp;10 table was re-read from the official pages and diffed cell by cell:
+  <strong>{v['cells_compared']:,} cells, {v['mismatches']} mismatches</strong>. That closes the gap recorded as
+  flag I-17, where 301 of 345 injury rows had never been re-checked by a second reader. Two limits are
+  now stated plainly instead of being left implicit: the evidence window is a
+  <strong>five-club</strong> depth pilot, while the club charts for <strong>31 clubs</strong> that already sat in the
+  repository are now joined and published beside it, and the originated lines and strategy results in this dashboard's own pages are
+  <strong>computed</strong> from a third-party benchmark, not league-published.</p>
+  <a href="pages/changes.html">What changed, line by line →</a> &nbsp;·&nbsp;
+  <a href="pages/cross-check.html">Independent cross-check →</a>
 </section>
 
-<section class="sectionhead"><div><div class="eyebrow">AT A GLANCE</div><h2>Choose where to look</h2></div><span class="tag">SNAPSHOT {RETRIEVED}</span></section>
+<section class="sectionhead"><div><div class="eyebrow">START HERE</div><h2>The decisions waiting on you</h2></div><span class="tag">SNAPSHOT {RETRIEVED}</span></section>
 <section class="cards">
-  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, plus every week-10 game with byes and a final score where one exists.</p><span class="more">Open tables →</span></a>
-  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>{len(starters_at_risk)} officially listed starters sit on the week-10 report. Who replaces them is only knowable from club charts — and those are self-labelled unofficial.</p><span class="more">See the join →</span></a>
+  <a class="card" href="pages/decisions-critical.html"><span class="ico">?</span><small>DECIDE / 01</small><h3>The blocking questions</h3><p>Every question that has to be answered before a strategy can honestly be scored, with what is already known, what is missing, and the evidence that would close it.</p><span class="more">Open the decision table →</span></a>
+  <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
+  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
+  <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
+<section class="cards">
+  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. {v['cells_compared']:,} cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
+  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across {FULL_JOIN['clubs_with_a_chart']} clubs finds <b>{FULL_JOIN['starters_ruled_out']} starters ruled Out</b> plus {FULL_JOIN['backups_depth_2_to_4_out_or_doubtful']} second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
   <a class="card" href="pages/line-origination.html"><span class="ico">◎</span><small>METHOD / 03</small><h3>Line origination</h3><p>The pipeline from frozen inputs to a fair price, the seven signal families, and the prop model that must not assume independence.</p><span class="more">Read the method →</span></a>
   <a class="card" href="pages/validation.html"><span class="ico">✓</span><small>METHOD / 04</small><h3>Validation gates</h3><p>Seven pre-registered gates. A 55% record over 500 bets scores z≈1.22 — inside coin-flip range. Here is the arithmetic that removes luck.</p><span class="more">See the gates →</span></a>
   <a class="card" href="pages/leaderboard.html"><span class="ico">↗</span><small>COMPETITION / 05</small><h3>Strategy leaderboard</h3><p>Four divisions, rank by skill not ROI, effective sample size for correlated tickets, and rewards that do not crown luck.</p><span class="more">See the design →</span></a>
-  <a class="card" href="pages/decisions.html"><span class="ico">?</span><small>DECISIONS / 06</small><h3>{len(QUESTIONS['questions'])} questions to answer</h3><p>What we know, what we do not, and what has to be decided before any strategy can honestly be scored.</p><span class="more">Open the register →</span></a>
+  <a class="card" href="pages/decisions.html"><span class="ico">✎</span><small>REGISTER / 06</small><h3>{len(QUESTIONS['questions'])} questions on the record</h3><p>The full register, with what we know, what we do not, and what would settle each one.</p><span class="more">Open the register →</span></a>
+</section>
+
+<section class="duo">
+  <div class="panel">
+    <div class="eyebrow">PARALLEL SITE TREES</div>
+    <h2>The same question, four independent attempts</h2>
+    <p class="muted">Four earlier sessions built in parallel and merged into this repository. They disagree
+    about how much to publish, and the disagreement is useful: it shows where the evidence line actually sits.</p>
+    <div class="blocker"><span class="pill">LAB</span><div><b><a href="research/index.html">Research lab</a></b><p>Originated lines from a walk-forward points model, sixteen pre-registered strategies, the eight-gate
+    evaluation, correlation values, luck removal and the player-prop maths. Names its third-party line benchmark on every page.</p></div></div>
+    <div class="blocker"><span class="pill">DASH</span><div><b><a href="dashboard/lab-index.html">Analytics lab</a></b><p>2006–2026 backtests on nfldata, a 491-row injury report and computed correlation values.
+    Every strategy is marked NOT ELIGIBLE for undocumented line provenance.</p></div></div>
+    <div class="blocker"><span class="pill">ANNEX</span><div><b><a href="site/index.html">Snapshot annex</a></b><p>A leak-free 1,779-game backtest, a threshold sweep and correlation values with 95% intervals.
+    Its own headline finding is negative: the results-only model has no betting edge (ROI −6.1%…−2.6%).</p></div></div>
+    <div class="blocker"><span class="pill">LIVE</span><div><b><a href="live/index.html">Live pipeline</a></b><p>The only tree that collects <em>club</em> depth charts at scale — 1,813 entries across 31 of 32 clubs —
+    with the caveat that clubs label their own charts unofficial. Refreshed on a schedule.</p></div></div>
+  </div>
+  <div class="panel">
+    <div class="eyebrow">BEFORE ANY DECISION</div>
+    <h2>The four blockers</h2>
+    <div class="blocker"><span class="pill high">Q-01</span><div><b>Data licence</b><p>Without the right to ingest play-by-play, snaps and odds, only officially published aggregates can be shown.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-02</span><div><b>Odds feed and which benchmark counts</b><p>No market benchmark means no edge, no expected value and no closing-line value — and the four trees currently use different benchmarks.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-05</span><div><b>Definition of “starter”</b><p>Everything about 2nd/3rd/4th string exposure rests on a definition the league does not supply.</p></div></div>
+    <div class="blocker"><span class="pill high">Q-19</span><div><b>Evidence window</b><p>Is a five-club depth pilot an acceptable base, or should the site publish the 31-club join that already exists in the repository?</p></div></div>
+    <p class="muted">The other {len(open_q)-3} open questions are listed with the information already held and what would settle each one.</p>
+    <a class="more" href="pages/decisions-critical.html">Decision table →</a>
+  </div>
 </section>
 
 <section class="duo">
@@ -263,7 +320,7 @@ def page_index():
     <h2>Five findings that change the plan</h2>
     <ol class="findings">
       <li><b>No league-wide official depth chart exists.</b> Clubs publish their own; Detroit and Green Bay literally print “unofficial”. So “2nd-string replacement” is a club self-report, not a league fact.</li>
-      <li><b>“Starter” is a definition, not a lookup.</b> We define it mechanically — printed in column 1 — so the definition can be re-run and audited.</li>
+      <li><b>The depth evidence is thinner than the repository allows.</b> A 31-club depth collection already exists; the site's injury join uses five clubs. The published starter count is therefore a floor, not a total.</li>
       <li><b>55% is not skill.</b> At −110 the break-even is 52.38%; 55.1% over 500 bets is z≈1.22.</li>
       <li><b>Parlay margin compounds.</b> At −110 one leg carries a 4.55% hold; five legs carry 20.75% (≈4.6×). And assuming independence across two dependent 50% legs with ρ=0.30 misprices a +264 ticket by +18.5% in the bettor's favour.</li>
       <li><b>Verification caught our own error.</b> Arizona was typed 2–6; the official page prints 3–6. The gate rejected it and the correction is public (F-08).</li>
@@ -271,13 +328,13 @@ def page_index():
     <a class="more" href="pages/executive-summary.html">Full summary →</a>
   </div>
   <div class="panel">
-    <div class="eyebrow">BEFORE ANY DECISION</div>
-    <h2>The three blockers</h2>
-    <div class="blocker"><span class="pill high">Q-01</span><div><b>Data licence</b><p>Without the right to ingest play-by-play, snaps and odds, only officially published aggregates can be shown.</p></div></div>
-    <div class="blocker"><span class="pill high">Q-02</span><div><b>Odds feed</b><p>No market benchmark means no edge, no expected value and no closing-line value.</p></div></div>
-    <div class="blocker"><span class="pill high">Q-05</span><div><b>Definition of “starter”</b><p>Everything about 2nd/3rd/4th string exposure rests on a definition the league does not supply.</p></div></div>
-    <p class="muted">The other {len(open_q)-2} open questions are listed with the information already held and what would settle each one.</p>
-    <a class="more" href="pages/decisions.html">Decision register →</a>
+    <div class="eyebrow">HOW THIS STAYS HONEST</div>
+    <h2>Four checks that run before every publish</h2>
+    <div class="blocker"><span class="pill">1</span><div><b>Independent re-transcription</b><p>{v['cells_compared']:,} cells diffed against a separately transcribed copy of the official pages. Any contradiction fails the build.</p></div></div>
+    <div class="blocker"><span class="pill">2</span><div><b>Source on every row</b><p>A row without an official link does not render. A mutation test proves the rule can fail.</p></div></div>
+    <div class="blocker"><span class="pill">3</span><div><b>Blank beats inferred</b><p>A cell the official page does not print stays empty and carries a title explaining why.</p></div></div>
+    <div class="blocker"><span class="pill">4</span><div><b>Freshness is visible</b><p>The snapshot date is on every page because an injury table decays within days.</p></div></div>
+    <a class="more" href="pages/sources.html">Source register →</a>
   </div>
 </section>
 """
@@ -285,7 +342,7 @@ def page_index():
 
 
 # ---------------------------------------------------------------- exec summary
-def page_exec():
+def page_exec_summary():
     md_sections = [
         ("The one-paragraph version", """<p>This release does the two things a betting-strategy project usually skips: it
         <strong>establishes a verified factual base</strong>, and it <strong>refuses to publish a number it cannot source</strong>.
@@ -526,6 +583,25 @@ def page_availability():
             cell(r["depth_position_club"]),
             f'<td>{link(r["player_url"], "report ↗", "src-link")} · {link(r["depth_chart_url"], "club chart ↗", "src-link")}</td>',
         ])
+    fj_rows = []
+    for r in sorted(JOIN["rows"], key=lambda x: (x["team"], x["depth"], x["player"])):
+        if r["depth"] == "1" and r["game_status"] == "Out":
+            gs = '<span class="pill high">Out</span>'
+        elif r["game_status"]:
+            gs = esc(r["game_status"])
+        else:
+            gs = "—"
+        fj_rows.append([
+            cell(r["team"]),
+            f'<td>{esc(r["player"])}</td>',
+            cell(r["position_printed"]),
+            f'<td><b>{esc(r["depth"])}</b></td>',
+            cell(r["unit"]),
+            cell(r["injury"], "no injury description printed"),
+            cell(r["practice_status"]),
+            f"<td>{gs}</td>",
+            f'<td>{link(r["club_chart_url"], "club chart ↗", "src-link")} · {link(r["official_injury_url"], "report ↗", "src-link")}</td>',
+        ])
     drows = []
     for d in DEPTH:
         drows.append([cell(d["team"]), cell(d["side"]), cell(d["position"]), cell(d["depth_order"]),
@@ -562,7 +638,9 @@ def page_availability():
     {stat(len(INJ), 'official injury rows')}
     {stat(len(starters_at_risk), 'listed starters on the report')}
     {stat(len(starters_out), 'of those, ruled Out')}
-    {stat(f'{len(pilot_teams)}/32', 'clubs with a captured chart', 'pilot scope')}
+    {stat(f'{len(pilot_teams)}/32', 'clubs in the original pilot', 'shown below as a subset')}
+    {stat(f'{FULL_JOIN["clubs_with_a_chart"]}/32', 'clubs covered by the full join', 'club charts, joined here')}
+    {stat(FULL_JOIN["starters_ruled_out"], 'starters ruled Out, full join', 'was 8 in the pilot')}
   </div>
 
   <h2>Listed starters with a week-10 designation (pilot clubs)</h2>
@@ -571,11 +649,29 @@ def page_availability():
   {table(["Team", "Player", "Pos", "Injury", "Practice", "Game status", "Depth", "Club pos", "Club chart"], srows,
          caption="Derived tier C: official injury report joined to club depth charts", cls="compact", data_table=True)}
 
-  <h2>Why the other 27 clubs are blank</h2>
+  <h2>Full-coverage join: every injured player whose club publishes a chart ({len(JOIN["rows"])} rows)</h2>
+  <p>This is the join the pilot above is a subset of. It uses the club depth charts already collected for
+  <strong>{FULL_JOIN["clubs_with_a_chart"]} of 32 clubs</strong> — the missing one is Houston, whose chart returns a page with no
+  parsable table (attempt log in <code>data/pipeline/_run_report.json</code>). <strong>Depth 1</strong> means the player is
+  the first name printed at his position on his own club's chart; it is a club self-report, not a league fact, and every
+  row carries the club URL so you can check it.</p>
+  <div class="alert small">
+    <b>What the extra coverage changes.</b>
+    <p>The pilot reports <b>{FULL_JOIN["starters_ruled_out_in_the_pilot"]}</b> starters ruled Out. The same rule across the
+    {FULL_JOIN["clubs_with_a_chart"]} clubs already collected returns <b>{FULL_JOIN["starters_ruled_out"]}</b>, plus
+    <b>{FULL_JOIN["backups_depth_2_to_4_out_or_doubtful"]}</b> second-to-fourth-string players listed Out or Doubtful.
+    {FULL_JOIN["unmatched_rows"]} injured players could not be matched: {len(JOIN["unmatched"])} are from Houston (no chart) or
+    are not printed on their club's chart — those rows are <b>absent</b> here rather than guessed.</p>
+    <p><a href="decisions-critical.html">Q-19</a> asks whether this join should replace the pilot on the site permanently.
+    This release publishes it and keeps both, so the decision can be made on the evidence rather than on a description.</p>
+  </div>
+  {table(["Team", "Player", "Pos", "Depth", "Unit", "Injury", "Practice", "Game status", "Sources"], fj_rows,
+         caption="Derived tier C: official injury report joined to club-published depth charts", cls="compact", data_table=True)}
+
+  <h2>The original five-club pilot, kept as a labelled subset</h2>
   <div class="note">
-    <p>Depth information was captured for five clubs only. For the other 27, the depth fields are deliberately
-    <strong>empty</strong> and marked “not in pilot scope” — they are not guessed, and a player absent from a club's published
-    chart is never silently treated as a backup. This is recorded as <a href="flagged.html">flag F-02</a>.</p>
+    <p>Depth information in the pilot was captured for five clubs only. This subset is preserved unchanged so the
+    earlier release can still be reproduced and compared. It is <b>not</b> the full picture: see the join above.</p>
   </div>
 
   <h2>Full official injury report — week 10 ({len(INJ)} rows)</h2>
@@ -1018,7 +1114,318 @@ def page_suggestions():
     return shell("Suggestions", f"SNAPSHOT {RETRIEVED}", body, depth=1)
 
 
+# ---------------------------------------------------------------- decisions critical
+def page_decisions_critical():
+    d = DECISION
+    cards, rows = [], []
+    for q in d["questions"]:
+        cls = {"P0": "high", "P1": "warn", "P2": "muted-pill"}[q["priority"]]
+        rows.append([
+            f'<td><b>{esc(q["id"])}</b></td>',
+            f'<td><span class="pill {cls}">{esc(q["priority"])}</span></td>',
+            f'<td>{esc(q["question"])}</td>',
+            cell(q["known"]),
+            cell(q["missing"]),
+            cell(q["closes_with"]),
+            f'<td><b>{esc(q["recommend"])}</b></td>',
+            cell(q["there_after"]),
+            src_cell(q["source"], "official ↗"),
+        ])
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">DECIDE FIRST</div>
+  <h1>The questions that block a decision</h1>
+  <p>{d["counts"]["critical_here"]} questions decide whether any strategy in this repository can honestly be scored.
+  Each row states what is already known, what is missing, the evidence that would close the gap, and what becomes
+  possible once it is closed. {d["counts"]["p0"]} are P0: nothing downstream is trustworthy until they are answered.</p>
+</section>
+<section class="content">
+  <div class="note"><b>{d["rule"]}</b></div>
+  <div class="statrow">
+    {stat(d["counts"]["critical_here"], "decision-critical questions")}
+    {stat(d["counts"]["p0"], "P0 blockers")}
+    {stat(d["counts"]["open_in_full_register"], "open in the full register")}
+    {stat(len(d["counts"]["new_this_round"]), "new this round", ", ".join(d["counts"]["new_this_round"]))}
+  </div>
+  {table(["ID", "Priority", "Question", "What we already know", "What is missing",
+          "Evidence that would close it", "Recommended path", "What it unblocks", "Source"],
+         rows, "Every question that has to be answered before a strategy is scored", "wide", True)}
+  <div class="note">The full register, including the questions that are already answered, is on the
+  <a href="decisions.html">decision register</a>. The new questions in this table came from this round's audit:
+  each one was already implicit in the repository but had never been written down as a decision.</div>
+</section>
+"""
+    return shell("Decisions to make", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
+# ---------------------------------------------------------------- suggestions board
+def RANK_CELL(rank, recommended):
+    tag = '<br><span class="pill">recommended</span>' if recommended else ""
+    return f'<td>{esc(str(rank))}{tag}</td>'
+
+
+def page_suggestions_board():
+    b = BOARD
+    rows = []
+    for o in sorted(b["options"], key=lambda x: x["rank"]):
+        rec = o["id"] in b["recommended_path"]
+        rows.append([
+            f'<td><b>{esc(o["id"])}</b></td>',
+            RANK_CELL(o["rank"], bool(rec)),
+            f'<td><b>{esc(o["title"])}</b></td>',
+            f'<td>{esc(o["answers"])}</td>',
+            f'<td><span class="pill {"high" if o["impact"]=="high" else "muted-pill"}">{esc(o["impact"])}</span></td>',
+            f'<td><span class="pill {"warn" if o["effort"]=="high" else "muted-pill"}">{esc(o["effort"])}</span></td>',
+            f'<td><span class="pill {"high" if o["risk"]=="high" else "muted-pill"}">{esc(o["risk"])}</span></td>',
+            cell(o["dependency"]),
+            cell(o["first_step"]),
+            f'<td><b>{esc(o["reversible"])}</b></td>',
+            cell(o["why"]),
+            src_cell(o.get("source", ""), "official ↗"),
+        ])
+    path = " → ".join(f'<b>{esc(i)}</b>' for i in b["recommended_path"])
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">CHOOSE, THEN BUILD</div>
+  <h1>Suggestions board</h1>
+  <p>{b["counts"]["options"]} options for improving the site and the decision process, ordered by what changes a number
+  fastest rather than by what is most interesting to build. Nothing here is implemented automatically — the status
+  column is yours to set.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Recommended path: {path}.</b> {b["recommended_reason"]}</div>
+  <div class="statrow">
+    {stat(b["counts"]["options"], "options")}
+    {stat(b["counts"]["high_impact"], "high impact")}
+    {stat(b["counts"]["low_effort"], "low effort")}
+    {stat(b["counts"]["no_dependency"], "no dependency — can start today")}
+  </div>
+  {table(["ID", "Rank", "Proposal", "Answers", "Impact", "Effort", "Risk", "Dependency",
+          "Reversible first step", "Reversible", "Why it improves decisions", "Source"],
+         rows, "Ranked options; rank is a reading aid, the choice is the owner's", "wide", True)}
+  <div class="note">The original 12 proposals are preserved unchanged on the
+  <a href="suggestions.html">suggestions register</a>. This board adds dependency, risk and reversibility to the
+  same question: what can be done now, cheaply, without committing to anything hard to undo.</div>
+</section>
+"""
+    return shell("Suggestions board", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
+# ---------------------------------------------------------------- review queue
+def page_review_queue():
+    q = QUEUE
+    sev_rank = {"high": 0, "medium": 1, "low": 2, "": 3}
+    rows = []
+    for r in sorted(q["rows"], key=lambda x: (sev_rank.get(x["severity"], 3), x["id"])):
+        cls = {"high": "high", "medium": "warn", "low": "muted-pill", "": "muted-pill"}[r["severity"]]
+        rows.append([
+            f'<td><b>{esc(r["id"])}</b></td>',
+            f'<td><span class="pill {cls}">{esc(r["severity"] or "—")}</span></td>',
+            cell(r["area"]),
+            f'<td>{esc(r["state"])}</td>',
+            f'<td><b>{esc(r["item"])}</b></td>',
+            cell(r["unknown"]),
+            cell(r["register"]),
+            src_cell(r["source"], "source ↗"),
+        ])
+    counts = ", ".join(f"{k}: {v}" for k, v in sorted(q["counts"].items()))
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">REVIEW QUEUE</div>
+  <h1>Everything still unproven</h1>
+  <p>Every flag, every open question, every unverified cell and every item this round found, in one table with one
+  source link per row. This replaces the four competing flag counts that used to appear in different documents.</p>
+</section>
+<section class="content">
+  <div class="note"><b>{len(q["rows"])} rows, merged from {len(q["registers_merged"])} registers.</b> {esc(counts)}.
+  A row here never asserts a value: it states what is known, what is unknown, and where the official source is. None of
+  these rows blocks publication; all of them are visible so that nothing is silently rounded up to "verified".</div>
+  <div class="statrow">
+    {stat(len(q["rows"]), "items in the queue")}
+    {stat(q["counts"].get("flag", 0), "flags")}
+    {stat(q["counts"].get("open question", 0), "open questions")}
+    {stat(q["counts"].get("unverified cell", 0), "unverified cells")}
+  </div>
+  {table(["ID", "Severity", "Area", "State", "Item", "What is unknown / what settles it",
+          "Register", "Source"], rows, "Consolidated review queue", "wide", True)}
+  <div class="note">Registers merged: {esc(", ".join(q["registers_merged"]))}. The original per-tree pages
+  (<a href="flagged.html">flags</a>, <a href="decisions.html">questions</a>) remain published and unchanged.</div>
+</section>
+"""
+    return shell("Review queue", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
+# ---------------------------------------------------------------- changes
+def page_changes():
+    c = CHANGES
+    rows = [[
+        f'<td><b>{esc(i["what"])}</b></td>',
+        cell(i["before"]),
+        f'<td><b>{esc(i["after"])}</b></td>',
+        cell(i["evidence"]),
+        src_cell(i["source"], "source ↗"),
+    ] for i in c["items"]]
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">CHANGE LOG</div>
+  <h1>What changed this round</h1>
+  <p>Session <code>{esc(c["session"])}</code> re-read every official page the site depends on, diffed the result
+  against the published tables, and fixed what the diff exposed. Every change below is a claim with its evidence
+  next to it.</p>
+</section>
+<section class="content">
+  <div class="statrow">
+    {stat(len(c["items"]), "changes with evidence")}
+    {stat(FULL_JOIN["clubs_with_a_chart"], "clubs now covered by the depth join", "was 5")}
+    {stat(f"{AUDIT['verification']['cells_compared']:,}", "cells re-verified", f"{AUDIT['verification']['mismatches']} mismatches")}
+    {stat(len(QUEUE["rows"]), "items in the single review queue", "was four separate counts")}
+  </div>
+  {table(["What changed", "Before", "After", "Evidence file", "Source"], rows,
+         "Changes made this round, before and after", "wide", True)}
+  <div class="note"><b>What deliberately did not change.</b><ul>
+  {''.join(f"<li>{esc(u)}</li>" for u in c["unchanged"])}
+  </ul></div>
+</section>
+"""
+    return shell("What changed", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
+# ---------------------------------------------------------------- executive brief
+def page_exec_brief():
+    v = AUDIT["verification"]
+    findings = AUDIT["findings"]
+    rows = [[
+        f'<td><b>{esc(f["id"])}</b></td>',
+        f'<td><span class="pill {"high" if f["severity"]=="high" else ("warn" if f["severity"]=="medium" else "muted-pill")}">{esc(f["severity"])}</span></td>',
+        cell(f["category"]),
+        f'<td><b>{esc(f["finding"])}</b></td>',
+        cell(f["evidence"]),
+        cell(f["fix"]),
+        f'<td>{esc(f["status"])}</td>',
+        src_cell(f["source"], "source ↗"),
+    ] for f in findings]
+    per = AUDIT["verification"]["per_table"]
+    trows = []
+    for t in per:
+        tag = '<span class="pill">0</span>' if t["mismatches"] == 0 else '<b>' + str(t["mismatches"]) + '</b>'
+        trows.append([cell(t["table"]), cell(str(t["rows_published"])),
+                      cell(f'{t["cells"]:,}'), '<td>' + tag + '</td>',
+                      src_cell(t["source"], "official ↗")])
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">EXECUTIVE BRIEF</div>
+  <h1>What this round found, and what it needs from you</h1>
+  <p>One page. Ten findings, four decisions that unblock the rest, and the verification behind both — with a link to
+  the official page for every row.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Headline.</b> Every published Week&nbsp;10 value is correct:
+  {v["cells_compared"]:,} cells diffed against a fresh independent transcription of the official pages,
+  {v["mismatches"]} mismatches, {v["tables_ok"]} of {v["tables"]} tables clean. The problems this round found are not
+  wrong numbers — they are <b>incomplete coverage presented as complete</b>, an <b>unreachable site tree</b>, and a
+  <b>red CI job on main</b>. All three are fixed or flagged below.</div>
+  <div class="statrow">
+    {stat(f"{v['cells_compared']:,}", "cells verified")}
+    {stat(v["mismatches"], "value mismatches")}
+    {stat(len(findings), "findings")}
+    {stat(len([f for f in findings if f["status"] == "fixed"]), "already fixed")}
+  </div>
+  <h2>Verification result, table by table</h2>
+  {table(["Table", "Rows published", "Cells compared", "Mismatches", "Official source"], trows,
+         "Independent re-transcription diff", "wide", True)}
+  <h2>Findings</h2>
+  {table(["ID", "Severity", "Area", "Finding", "Evidence / measurement", "Fix", "Status", "Source"], rows,
+         "Audit findings", "wide", True)}
+  <h2>The decision this round needs</h2>
+  <div class="note"><b>Publish the 31-club depth join, or state that five clubs are all the evidence you want?</b>
+  The site currently reports {FULL_JOIN["starters_ruled_out_in_the_pilot"]} starters ruled out on the strength of a
+  five-club pilot. The same join across the {FULL_JOIN["clubs_with_a_chart"]} clubs already collected returns
+  <b>{FULL_JOIN["starters_ruled_out"]}</b>. Nothing about the published number is false; it is a floor that reads like a
+  total. Recommendation, cost and reversal are on the
+  <a href="suggestions-board.html">suggestions board (B-01)</a>; the question is
+  <a href="decisions-critical.html">Q-19</a>.</div>
+  <h2>The four steps recommended before anything else</h2>
+  <ol class="findings">
+  {''.join(f'<li><b>{esc(o["title"])}</b> — {esc(o["why"])}</li>' for o in BOARD["options"] if o["id"] in BOARD["recommended_path"])}
+  </ol>
+  <h2>What is still not known</h2>
+  <div class="note">{len(QUEUE["rows"])} items remain in the <a href="review-queue.html">review queue</a>. The largest
+  are the missing line benchmark (Q-02), the missing starter definition (Q-05), the absent licensed odds feed, and the
+  fact that the only strategy passing all eight gates is measured against a third-party mirror rather than a league feed.
+  None of them blocks publishing; all of them block acting on a result.</div>
+</section>
+"""
+    return shell("Executive brief", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
+# ---------------------------------------------------------------- requirements
+def page_requirements():
+    r = REQS
+    state_cls = {"met": "ok", "partly met": "warn", "open": "high",
+                 "in progress": "muted-pill", "unassessed": "muted-pill"}
+    rows = []
+    for x in r["rows"]:
+        rows.append([
+            f'<td><b>{esc(x["id"])}</b></td>',
+            cell(x["category"]),
+            f'<td><b>{esc(x["requirement"])}</b></td>',
+            f'<td><span class="pill {state_cls.get(x["state"], "muted-pill")}">{esc(x["state"])}</span></td>',
+            cell(x["assessment"]),
+            cell(x["previous_status"]),
+            f'<td>{link(x["evidence_url"], x["evidence"] + " ↗", "src-link")}</td>',
+            f'<td>{link(x["brief_source"], "brief ↗", "src-link")}</td>',
+        ])
+    c = r["counts"]
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">THE FULL LIST</div>
+  <h1>Requirements, assessed against the evidence</h1>
+  <p>All {c["total"]} requirements taken from the project brief, each one assessed against something you can open and
+  check. {c["met"]} are met, {c["partly_met"]} are partly met with the missing piece named, {c["open"]} are open and
+  {c["in_progress"]} are in progress.</p>
+</section>
+<section class="content">
+  <div class="note"><b>{esc(r["rule"])}</b> {c["disagreements"]} rows disagree with the previous assessment: where the
+  earlier column says "Implemented" and this one says "partly met", the reason is in the assessment cell — usually a
+  capability that exists as a method but cannot produce a number without a licensed feed.</div>
+  <div class="statrow">
+    {stat(c["met"], "met")}
+    {stat(c["partly_met"], "partly met")}
+    {stat(c["open"], "open")}
+    {stat(c["in_progress"], "in progress")}
+    {stat(c["disagreements"], "reassessed downward")}
+  </div>
+  {table(["ID", "Category", "Requirement", "State", "Assessment and missing piece",
+          "Previous assessment", "Evidence in this repository", "Brief"], rows,
+         "Every requirement in the brief, with its state and the evidence", "wide", True)}
+  <div class="note">The brief itself is preserved verbatim at
+  <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md">docs/live-pipeline/project-brief.md</a>,
+  and the live-pipeline tree published its own version of this register at
+  <a href="../live/requirements.html">live/requirements.html</a>. This page does not overwrite that one.</div>
+</section>
+"""
+    return shell("Requirements", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
 # ---------------------------------------------------------------- flagged
+# Two flags cite a union document or a partner site. Those are the right evidence for the
+# claim, but the site's own rule asks every row for a league-published link, so the
+# league page that is relevant to the same claim is shown beside it rather than instead.
+FLAG_LEAGUE_ALT = {
+    "F-08": ("https://www.nfl.com/standings/division/2026/REG", "standings ↗"),
+    "F-11": ("https://operations.nfl.com/", "operations.nfl.com ↗"),
+}
+
+
+def FLAG_SRC(f):
+    primary = link(f["source_url"], f["source_label"] + " ↗", "src-link")
+    second = link(f["league_source_url"], "nfl.com ↗", "src-link")
+    alt = FLAG_LEAGUE_ALT.get(f["id"])
+    if alt:
+        second = link(alt[0], alt[1], "src-link")
+    return f"<td>{primary}<br>{second}</td>"
+
+
 def page_flagged():
     rows = []
     for f in sorted(FLAGS["flags"], key=lambda x: {"high": 0, "medium": 1, "low": 2}[x["severity"]]):
@@ -1031,7 +1438,7 @@ def page_flagged():
             cell(f["verified"]),
             cell(f["unknown"]),
             cell(f["settles_it"]),
-            f'<td>{link(f["source_url"], f["source_label"] + " ↗", "src-link")}<br>{link(f["league_source_url"], "nfl.com ↗", "src-link")}</td>',
+            FLAG_SRC(f),
         ])
     body = f"""
 <section class="pagetitle">
@@ -1319,7 +1726,7 @@ def page_crosscheck():
 
 def main():
     write("index.html", page_index())
-    write("pages/executive-summary.html", page_exec())
+    write("pages/executive-summary.html", page_exec_summary())
     write("pages/standings.html", page_standings())
     write("pages/schedule.html", page_schedule())
     write("pages/availability.html", page_availability())
@@ -1333,7 +1740,14 @@ def main():
     write("pages/cross-check.html", page_crosscheck())
     write("pages/sources.html", page_sources())
     write("pages/review.html", page_review())
-    print("wrote index.html + 14 pages")
+    write("pages/executive-brief.html", page_exec_brief())
+    write("pages/decisions-critical.html", page_decisions_critical())
+    write("pages/suggestions-board.html", page_suggestions_board())
+    write("pages/review-queue.html", page_review_queue())
+    write("pages/changes.html", page_changes())
+    write("pages/requirements.html", page_requirements())
+    n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
+    print(f"wrote index.html + {n} pages")
 
 
 if __name__ == "__main__":

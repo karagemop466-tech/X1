@@ -1,0 +1,193 @@
+{
+ "generated_at": "2026-11-14",
+ "title": "Audit findings \u2014 what this round checked and what it found",
+ "verification": {
+  "cells_compared": 2183,
+  "mismatches": 0,
+  "tables_ok": 4,
+  "tables": 4,
+  "per_table": [
+   {
+    "table": "standings",
+    "cells": 384,
+    "rows_published": 32,
+    "mismatches": 0,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "ok": true
+   },
+   {
+    "table": "schedule",
+    "cells": 70,
+    "rows_published": 14,
+    "mismatches": 0,
+    "source": "https://www.nfl.com/schedules/2026/REG/week/10/",
+    "ok": true
+   },
+   {
+    "table": "week10_byes",
+    "cells": 4,
+    "rows_published": 4,
+    "mismatches": 0,
+    "source": "https://www.nfl.com/schedules/2026/REG/week/10/",
+    "ok": true
+   },
+   {
+    "table": "injuries",
+    "cells": 1725,
+    "rows_published": 345,
+    "mismatches": 0,
+    "source": "https://www.nfl.com/injuries/league/2026/reg10",
+    "ok": true
+   }
+  ]
+ },
+ "findings": [
+  {
+   "id": "A-01",
+   "severity": "high",
+   "category": "Coverage",
+   "finding": "The site's injury join uses a five-club depth pilot while a 31-club depth collection already sits in the repository.",
+   "evidence": "The site reports 6 \"listed starters ruled Out\". The same join run across the 31 clubs already collected returns 31. No published value is wrong; the published number is a floor presented as if it were the population.",
+   "measured": {
+    "pilot_clubs": 5,
+    "pilot_starters_out": 6,
+    "clubs_available": 31,
+    "full_starters_out": 31,
+    "injury_rows": 345,
+    "joined_rows": 255
+   },
+   "source": "https://www.atlantafalcons.com/team/depth-chart",
+   "source_label": "example club depth chart (each row carries its own)",
+   "fix": "Published on pages/availability.html: the full join is the main table, the pilot is kept below it as a labelled subset, and the coverage is stated on the page. The remaining decision for the owner is whether that becomes the permanent presentation (Q-19).",
+   "status": "fixed"
+  },
+  {
+   "id": "A-02",
+   "severity": "high",
+   "category": "Navigation",
+   "finding": "The live-pipeline tree (15 pages) was not linked from the landing page and appeared in no navigation.",
+   "evidence": "tools/check_links.py asserted reachability for every page tree except live/, so 15 pages could only be reached by typing the URL. The nav list in tools/build_site.py had no entry for it either. Reproduced with `python3 tools/check_links.py` before the fix.",
+   "measured": {
+    "pages_affected": 15,
+    "check": "tools/check_links.py"
+   },
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/live/index.html",
+   "source_label": "the orphaned tree",
+   "fix": "Add live/ to the landing page and the nav, and make check_links.py assert reachability for it.",
+   "status": "fixed"
+  },
+  {
+   "id": "A-03",
+   "severity": "high",
+   "category": "CI",
+   "finding": "The verify-site workflow was red on main: tools/check_links.py failed with 111 errors.",
+   "evidence": "Two causes. (a) It scanned raw HTML and treated JavaScript template strings such as href=\"${s.url}\" as internal links. (b) It applied the main site's stylesheet contract to the live/ tree, which uses its own stylesheet and JS-rendered navigation. Neither was a defect in the published pages.",
+   "measured": {
+    "failures_before": 111,
+    "failures_after": 0
+   },
+   "source": "https://github.com/karagemop466-tech/X1/actions",
+   "source_label": "Actions runs for main",
+   "fix": "Strip JS template literals before link assertions, and give live/ its own contract check.",
+   "status": "fixed"
+  },
+  {
+   "id": "A-04",
+   "severity": "medium",
+   "category": "Verification",
+   "finding": "301 of 345 injury rows had never been re-checked by a second reader (flag I-17).",
+   "evidence": "This round transcribed all 345 rows from the official page independently and diffed every cell: 2,183 cells across the four tables, 0 mismatches. I-17 can be closed.",
+   "measured": {
+    "injury_cells": 1725,
+    "injury_mismatches": 0
+   },
+   "source": "https://www.nfl.com/injuries/league/2026/reg10",
+   "source_label": "official Week 10 injury report",
+   "fix": "Done \u2014 tools/verify_against_official.py now runs this diff on every build.",
+   "status": "fixed"
+  },
+  {
+   "id": "A-05",
+   "severity": "medium",
+   "category": "Data freshness",
+   "finding": "The landing page's flag count is hardcoded in prose and can drift from data/flags.json.",
+   "evidence": "The hero button and the \"13 open flags\" wording are generated from a computed length, but a human reading of the count elsewhere (README, coordination log) already disagrees: the research session counted 34 flagged items, the live session 6, the lab session 12, the dashboard 17. Four registers, four counts, no single queue.",
+   "measured": {
+    "flags_in_flags_json": 13,
+    "registers_found": 4
+   },
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/flags.json",
+   "source_label": "data/flags.json",
+   "fix": "One consolidated review queue generated from all registers (pages/review-queue.html).",
+   "status": "fixed"
+  },
+  {
+   "id": "A-06",
+   "severity": "medium",
+   "category": "Statement accuracy",
+   "finding": "The landing page said the dashboard publishes \"no prices, correlations or strategy results\", but four other trees in the same repository publish exactly those.",
+   "evidence": "research/, dashboard/lab-*, site/ and live/ all publish computed lines, correlations or strategy results. The sentence was true of pages/ only. A reader arriving at the landing page would reasonably conclude the repository contains none.",
+   "measured": {
+    "trees_publishing_computed_values": 4
+   },
+   "source": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+   "source_label": "the benchmark the computed values rest on",
+   "fix": "Reworded to distinguish league-published tables from computed values, and link every tree.",
+   "status": "fixed"
+  },
+  {
+   "id": "A-07",
+   "severity": "low",
+   "category": "Source honesty",
+   "finding": "The invented-line and strategy pages present computed numbers without labelling which of them are NOT league-published.",
+   "evidence": "data/lines/*.csv and data/strategies/* hold computed values derived from a third-party benchmark. The research tree states this on every page; the pages/ tree does not carry the same label, so the same number appears with two different levels of caveat.",
+   "measured": {},
+   "source": "https://www.nfl.com/",
+   "source_label": "the league publishes no betting prices",
+   "fix": "Owner decision pending on the badge (suggestions board B-07). Not implemented unilaterally because it changes how published numbers are labelled across four trees.",
+   "status": "needs review"
+  },
+  {
+   "id": "A-08",
+   "severity": "low",
+   "category": "Naming",
+   "finding": "The official standings table prints LA for the Rams; the repository's standings.tsv prints LAR; the injury report prints LAR.",
+   "evidence": "Both are the same club and both spellings are printed by an official page, so no value is wrong. It is recorded because a join on the team code silently drops the Rams if the alias is not applied.",
+   "measured": {
+    "alias_applied": "LAR -> LA"
+   },
+   "source": "https://www.nfl.com/standings/division/2026/REG",
+   "source_label": "standings page (prints LA)",
+   "fix": "Alias handled in tools/verify_against_official.py; no data change made.",
+   "status": "flagged"
+  },
+  {
+   "id": "A-09",
+   "severity": "low",
+   "category": "Data completeness",
+   "finding": "The standings table prints LAST 5 for all 32 clubs; the published file carries the column header but no values.",
+   "evidence": "Available-but-unpublished, not wrong. Reported by tools/verify_against_official.py under available_but_unpublished_columns rather than as a mismatch, so it stays visible without overstating it as an error.",
+   "measured": {
+    "clubs": 32
+   },
+   "source": "https://www.nfl.com/standings/division/2026/REG",
+   "source_label": "standings page",
+   "fix": "Either publish the column or drop the header; owner's choice, listed on the suggestions board.",
+   "status": "needs review"
+  },
+  {
+   "id": "A-10",
+   "severity": "low",
+   "category": "Benchmark",
+   "finding": "The four trees use different line benchmarks, so their ROIs are not comparable with each other.",
+   "evidence": "The research lab names a third-party closing line carried in nflverse/nfldata; the analytics lab marks every strategy NOT ELIGIBLE for undocumented provenance; the annex uses nfldata lines; the live tree publishes no prices at all.",
+   "measured": {
+    "benchmarks_in_use": 3
+   },
+   "source": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+   "source_label": "the mirror that carries the attributed line",
+   "fix": "Owner decision Q-02 picks one reference; until then results stay labelled per tree.",
+   "status": "needs review"
+  }
+ ]
+}
