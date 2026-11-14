@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correlations — X1 NFL Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="logo">X1</span><span>NFL Decision &amp; Signal Dashboard <span class="tag">· verified</span></span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="questions.html">Open Questions</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="validation-gates.html">Validation Gates</a>
+      <a href="correlations.html">Correlations</a>
+      <a href="injuries.html">Injuries &amp; Depth</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="data-standings.html">Standings</a>
+      <a href="data-lines.html">Market Lines</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+    <a class="nav-flag" href="flagged-for-review.html">Flagged for review</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Correlations</div>
+  <div class="page-head">
+    <h1>Correlation: Methodology &amp; Values</h1>
+    <p class="sub">How bet-leg correlation is measured, why it changes parlay and prop-combo math, and the
+      interpretation framework. <strong>Actual correlation coefficients are computed from historical data
+      and are not yet available — they are shown blank and flagged rather than guessed.</strong></p>
+  </div>
+
+  <div class="card mb">
+    <h3>Why correlation matters</h3>
+    <p class="muted">A parlay or prop combo assumes each leg is independent, then multiplies probabilities.
+      But legs drawn from the same game (or same passing attack) are <strong>correlated</strong> — when a QB
+      has a big passing day, his WRs and the over both tend to hit together. Ignoring that correlation
+      overstates or understates the true probability of the combo, which corrupts the edge and the
+      <a href="validation-gates.html">G5 correlation gate</a>. Correlation is therefore a required input to
+      honest multi-leg pricing.</p>
+  </div>
+
+  <h2 class="mt-lg">How correlation is measured</h2>
+  <div class="card">
+    <ol class="clean">
+      <li><strong>Define leg outcomes</strong> — settle each leg (win/loss, or the stat vs. its line) over a historical window.</li>
+      <li><strong>Pair them</strong> — for every combo type (e.g., QB passing yards + WR receiving yards), collect matched historical outcomes.</li>
+      <li><strong>Compute the coefficient</strong> — Pearson (linear, continuous stats) or Spearman (rank-based, robust to outliers) correlation between the legs.</li>
+      <li><strong>Roll forward</strong> — recompute over rolling windows so correlation is refreshed and point-in-time, not stale.</li>
+      <li><strong>Apply it</strong> — use the measured coefficient to adjust the combo's true probability instead of the independence product.</li>
+    </ol>
+    <p class="muted small">This is methodology only. The coefficients below require historical data that has
+      not yet been compiled for this site (see <a href="questions.html">Q3</a>).</p>
+  </div>
+
+  <h2 class="mt-lg">Interpretation framework (conventional guide)</h2>
+  <p class="muted small">Conventional interpretation of a correlation coefficient <em>r</em>. This is a
+    general statistical guide, not an NFL-specific measured value.</p>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th>Range of |r|</th><th>Interpretation</th><th>Implication for a multi-leg bet</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">0.00 – 0.10</td><td>Negligible</td><td>Independence assumption is reasonable.</td></tr>
+        <tr><td class="mono">0.10 – 0.29</td><td>Weak</td><td>Small effect; independence is a mild approximation.</td></tr>
+        <tr><td class="mono">0.30 – 0.49</td><td>Moderate</td><td>Independence materially misprices the combo; apply correlation.</td></tr>
+        <tr><td class="mono">0.50 – 0.74</td><td>Strong</td><td>Legs move together; correlation must be modeled explicitly.</td></tr>
+        <tr><td class="mono">0.75 – 1.00</td><td>Very strong</td><td>Legs are nearly redundant; combo offers little diversification.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="mt-lg">Measured correlation values</h2>
+  <div class="callout bad">
+    <strong>Not yet computed.</strong> Pairwise correlation coefficients between bet legs must be estimated
+    from historical data. No historical dataset has been compiled and computed yet, so all values are left
+    <strong>blank</strong> and flagged on the <a href="flagged-for-review.html">Flagged for Review</a> page.
+    None are inferred.
+  </div>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th>Combo type</th><th class="num">Correlation (r)</th><th>Window used</th><th>Source / method</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="team">QB passing yards + WR receiving yards (same game)</td><td class="num blank">—</td><td class="blank">—</td><td class="src"><span class="src-name">Pending</span>compute from historical data</td><td><span class="badge b-bad">Unverified · blank</span></td></tr>
+        <tr><td class="team">Spread leg + Total leg (same game)</td><td class="num blank">—</td><td class="blank">—</td><td class="src"><span class="src-name">Pending</span>compute from historical data</td><td><span class="badge b-bad">Unverified · blank</span></td></tr>
+        <tr><td class="team">QB passing yards + game Over/Under</td><td class="num blank">—</td><td class="blank">—</td><td class="src"><span class="src-name">Pending</span>compute from historical data</td><td><span class="badge b-bad">Unverified · blank</span></td></tr>
+        <tr><td class="team">Cross-game legs (different games)</td><td class="num blank">—</td><td class="blank">—</td><td class="src"><span class="src-name">Pending</span>compute from historical data</td><td><span class="badge b-bad">Unverified · blank</span></td></tr>
+        <tr><td class="team">Team ATS + Team ATS (different games)</td><td class="num blank">—</td><td class="blank">—</td><td class="src"><span class="src-name">Pending</span>compute from historical data</td><td><span class="badge b-bad">Unverified · blank</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout good mt-lg">
+    <strong>Link to the rest of the system.</strong> Measured correlations feed the
+    <a href="validation-gates.html">G5 correlation gate</a> and the parlay/prop strategies on the
+    <a href="strategies.html">Strategies</a> page. They cannot be produced until the historical data feed
+    selected in <a href="questions.html">Q1</a> is in place.
+  </div>
+
+</main>
+
+<footer>
+  X1 — NFL Decision &amp; Signal Dashboard · <a href="https://github.com/karagemop466-tech/X1">Repository</a> · <a href="COORDINATION.md">Coordination log</a>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

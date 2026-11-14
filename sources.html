@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — X1 NFL Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="logo">X1</span><span>NFL Decision &amp; Signal Dashboard <span class="tag">· verified</span></span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="questions.html">Open Questions</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="validation-gates.html">Validation Gates</a>
+      <a href="correlations.html">Correlations</a>
+      <a href="injuries.html">Injuries &amp; Depth</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="data-standings.html">Standings</a>
+      <a href="data-lines.html">Market Lines</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+    <a class="nav-flag" href="flagged-for-review.html">Flagged for review</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Sources</div>
+  <div class="page-head">
+    <h1>Sources Index</h1>
+    <p class="sub">Every official/authoritative source used on this site, what it verifies, and its URL.
+      Reviewers can audit provenance here at a glance. Official league sources are marked
+      <span class="badge b-good">Official</span>; authoritative market sources are marked
+      <span class="badge b-warn">Market</span>.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th>Source</th><th>Type</th><th>What it verifies</th><th>URL</th></tr></thead>
+      <tbody>
+        <tr><td class="team">NFL.com Standings</td><td><span class="badge b-good">Official</span></td><td>2026 regular-season standings: W/L/T, PCT, PF/PA, Net Pts, Home/Road/Div/Conf/Non-Conf, streak for all 32 teams</td><td class="src"><a href="https://www.nfl.com/standings/league/2026/reg">nfl.com/standings/league/2026/reg</a></td></tr>
+        <tr><td class="team">NFL.com Standings — division view</td><td><span class="badge b-good">Official</span></td><td>Per-division standings (cross-check)</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">nfl.com/standings/division/2026/reg</a></td></tr>
+        <tr><td class="team">NFL.com Injury Report</td><td><span class="badge b-good">Official</span></td><td>Week 10 injury report: player, position, injury, practice status, game status</td><td class="src"><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td></tr>
+        <tr><td class="team">NFL.com Injury Report — league</td><td><span class="badge b-good">Official</span></td><td>League-wide Week 10 injury report (per-player rows)</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/reg10">nfl.com/injuries/league/2026/reg10</a></td></tr>
+        <tr><td class="team">NFL.com Team pages</td><td><span class="badge b-good">Official</span></td><td>Per-team official pages (source for each standings row)</td><td class="src"><a href="https://www.nfl.com/teams/">nfl.com/teams</a></td></tr>
+        <tr><td class="team">NFL.com Player pages</td><td><span class="badge b-good">Official</span></td><td>Per-player official pages (source for each injury row)</td><td class="src"><a href="https://www.nfl.com/players/">nfl.com/players</a></td></tr>
+        <tr><td class="team">Vegas Insider — Week 10 odds</td><td><span class="badge b-warn">Market</span></td><td>Week 10 opening point spread, moneyline, and total for the slate</td><td class="src"><a href="https://vegasinsider.com/nfl/nfl-week-10-odds-2026">vegasinsider.com/nfl/nfl-week-10-odds-2026</a></td></tr>
+        <tr><td class="team">ESPN — Week 10 odds</td><td><span class="badge b-warn">Market</span></td><td>Week 10 lines and totals (secondary reference)</td><td class="src"><a href="https://www.espn.com/espn/betting/story/_/id/50358691">espn.com betting — week 10</a></td></tr>
+        <tr><td class="team">USA TODAY Sports — NFL odds</td><td><span class="badge b-warn">Market</span></td><td>Additional Week 10 spread/moneyline/total rows</td><td class="src"><a href="https://sportsdata.usatoday.com/football/nfl/odds">sportsdata.usatoday.com/football/nfl/odds</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout mt-lg">
+    <strong>Provenance rule.</strong> League data (standings, injuries, rosters/depth) comes only from
+    <strong>NFL.com</strong>, the official league source. Market lines come from authoritative
+    sportsbook/aggregator sources and are flagged as a market (not league-official) source type. No value
+    is published without one of these sources behind it.
+  </div>
+
+</main>
+
+<footer>
+  X1 — NFL Decision &amp; Signal Dashboard · <a href="https://github.com/karagemop466-tech/X1">Repository</a> · <a href="COORDINATION.md">Coordination log</a>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validation Gates — X1 NFL Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="logo">X1</span><span>NFL Decision &amp; Signal Dashboard <span class="tag">· verified</span></span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="questions.html">Open Questions</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="validation-gates.html">Validation Gates</a>
+      <a href="correlations.html">Correlations</a>
+      <a href="injuries.html">Injuries &amp; Depth</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="data-standings.html">Standings</a>
+      <a href="data-lines.html">Market Lines</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+    <a class="nav-flag" href="flagged-for-review.html">Flagged for review</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Validation Gates</div>
+  <div class="page-head">
+    <h1>Validation Gates</h1>
+    <p class="sub">The pipeline every strategy must pass before it is admitted to the leaderboard or
+      receives rewards. Each gate has explicit pass/fail criteria and is designed to remove a specific
+      source of noise or bias — so that only skill, not luck, survives.</p>
+  </div>
+
+  <div class="callout">
+    <strong>The rule.</strong> A strategy is not ranked, rewarded, or published until it passes
+    <strong>all</strong> gates. A strategy that fails any gate is held out and reported on the
+    <a href="flagged-for-review.html">Flagged for Review</a> page. Thresholds are parameters to be set
+    (see <a href="questions.html">Open Question Q2</a>); the structure is fixed.
+  </div>
+
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr><th>Gate</th><th>Name</th><th>What it checks</th><th>Pass criteria</th><th>What it removes</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono">G0</td><td class="team">Data integrity</td><td>Every input is from an official source, timestamped, with no silently imputed values.</td><td>100% of inputs carry a verified source link; unverified values are blank &amp; flagged.</td><td>Data errors, fabricated inputs, silent gaps</td><td><span class="badge b-good">Defined</span></td></tr>
+        <tr><td class="mono">G1</td><td class="team">Minimum sample size</td><td>The strategy has enough bets/seasons to estimate edge reliably.</td><td>≥ chosen minimum bets and ≥ chosen number of seasons (threshold set per <a href="questions.html">Q2</a>).</td><td>Small-sample noise, early false positives</td><td><span class="badge b-good">Defined</span></td></tr>
+        <tr><td class="mono">G2</td><td class="team">Walk-forward / out-of-sample</td><td>No look-ahead: each bet uses only information available at bet time.</td><td>Time-aligned features; training period strictly precedes test period; no leakage in audit.</td><td>Look-ahead bias, data leakage, hindsight</td><td><span class="badge b-good">Defined</span></td></tr>
+        <tr><td class="mono">G3</td><td class="team">Statistical significance</td><td>The observed edge is distinguishable from random variance.</td><td>Confidence interval on ROI excludes zero (significance test at the chosen level).</td><td>Luck that looks like edge</td><td><span class="badge b-good">Defined</span></td></tr>
+        <tr><td class="mono">G4</td><td class="team">Closing-line value (CLV)</td><td>Bets were made at better prices than the market's eventual closing line.</td><td>Average CLV consistent with skill; sustained positive CLV out-of-sample.</td><td>Line-shopping luck, market-timing artifacts</td><td><span class="badge b-good">Defined</span></td></tr>
+        <tr><td class="mono">G5</td><td class="team">Correlation &amp; variance sanity</td><td>Multi-leg bets are priced with measured correlation, not independence.</td><td>Leg correlations measured and applied; combo probability reflects true dependence.</td><td>False parlay/prop edge from ignored correlation</td><td><span class="badge b-good">Defined</span></td></tr>
+        <tr><td class="mono">G6</td><td class="team">Risk controls &amp; reproducibility</td><td>Sizing is bounded and the result can be reproduced.</td><td>Max sizing / drawdown limits respected; no martingale; data + code versions pinned.</td><td>Ruckisky risk, over-betting, non-reproducible results</td><td><span class="badge b-good">Defined</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="mt-lg">Gate detail</h2>
+  <div class="card">
+    <h3>G0 — Data integrity</h3>
+    <p class="muted small">Guards the inputs. A strategy built on unverified data cannot be trusted, so the
+      first gate confirms provenance before anything else is evaluated. Unverified values must be blank and
+      flagged, never inferred.</p>
+  </div>
+  <div class="card mt">
+    <h3>G1 — Minimum sample size</h3>
+    <p class="muted small">Guards against variance. A strategy with too few bets can look skilled purely by
+      chance. The threshold is chosen so the confidence interval on edge is narrow enough to be meaningful
+      (set per <a href="questions.html">Q2</a>).</p>
+  </div>
+  <div class="card mt">
+    <h3>G2 — Walk-forward / out-of-sample</h3>
+    <p class="muted small">Guards against look-ahead bias — the most common way simulated skill fails live.
+      Training data must strictly precede test data, and every feature must be available at bet time
+      (answers <a href="questions.html">Q7</a>).</p>
+  </div>
+  <div class="card mt">
+    <h3>G3 — Statistical significance</h3>
+    <p class="muted small">Guards against luck. Even a correctly specified strategy will have winning and
+      losing streaks; this gate requires the edge to be statistically significant, not merely positive.</p>
+  </div>
+  <div class="card mt">
+    <h3>G4 — Closing-line value (CLV)</h3>
+    <p class="muted small">Guards against market-timing luck. Beating the closing line consistently is the
+      accepted signal of genuine predictive skill; this gate requires sustained out-of-sample CLV.</p>
+  </div>
+  <div class="card mt">
+    <h3>G5 — Correlation &amp; variance sanity</h3>
+    <p class="muted small">Guards multi-leg bets. Parlays and prop combos are only valid if leg correlation
+      is measured and applied; assuming independence misprices risk (see <a href="correlations.html">Correlations</a>).</p>
+  </div>
+  <div class="card mt">
+    <h3>G6 — Risk controls &amp; reproducibility</h3>
+    <p class="muted small">Guards execution risk. Bounded sizing and drawdown limits prevent ruin; pinned
+      data/code versions ensure any result can be reproduced and audited.</p>
+  </div>
+
+  <div class="callout good mt-lg">
+    <strong>Effect.</strong> Together these gates separate a strategy that is genuinely skill-based from one
+    that merely got lucky. Only strategies clearing all seven are ranked and rewarded on the
+    <a href="leaderboard.html">leaderboard</a>.
+  </div>
+
+</main>
+
+<footer>
+  X1 — NFL Decision &amp; Signal Dashboard · <a href="https://github.com/karagemop466-tech/X1">Repository</a> · <a href="COORDINATION.md">Coordination log</a>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

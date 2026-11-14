@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Questions — X1 NFL Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><span class="logo">X1</span><span>NFL Decision &amp; Signal Dashboard <span class="tag">· verified</span></span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="questions.html">Open Questions</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="validation-gates.html">Validation Gates</a>
+      <a href="correlations.html">Correlations</a>
+      <a href="injuries.html">Injuries &amp; Depth</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="data-standings.html">Standings</a>
+      <a href="data-lines.html">Market Lines</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+    <a class="nav-flag" href="flagged-for-review.html">Flagged for review</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Home</a> / Open Questions</div>
+  <div class="page-head">
+    <h1>Open Questions &amp; Information Gaps</h1>
+    <p class="sub">The questions that must be answered — and the information we have vs. lack — before
+      any decision can reasonably be made. Each gap includes a suggested path to discover the missing
+      information. These gate the recommendations on the <a href="suggestions.html">Suggestions</a> board.</p>
+  </div>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--good)"></span>Have — verified</span>
+    <span><span class="dot" style="background:var(--bad)"></span>Lack — to discover</span>
+    <span><span class="dot" style="background:var(--warn)"></span>Decision blocked until answered</span>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q1. Which data feeds do we standardize on for play-by-play, EPA, and betting lines?</div>
+    <div class="row"><span class="k">What we have</span><span>Verified standings, Week-10 injury report, and Week-10 market lines from official/authoritative sources (see <a href="sources.html">Sources</a>).</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A selected, end-to-end historical feed covering multiple seasons of play-by-play, EPA, depth charts, and closing lines in one normalized schema.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>Every model, correlation estimate, and validation test depends on consistent historical data. Choosing the wrong feed risks look-ahead bias and irreproducible results.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Compare candidate official/authoritative feeds for coverage, granularity, and update frequency; document the selection and its limitations on the <a href="sources.html">Sources</a> page.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q2. What is the minimum sample size before a strategy is considered for the leaderboard?</div>
+    <div class="row"><span class="k">What we have</span><span>A defined validation-gate framework (see <a href="validation-gates.html">Validation Gates</a>) — but no numeric thresholds set yet.</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A chosen minimum number of bets/seasons required to distinguish skill from variance.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>Too small a sample lets luck through; too large a sample delays useful feedback. This directly controls the "remove luck" requirement.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Set the threshold from the required confidence interval width and expected edge size; run a sensitivity analysis on historical data once a feed is chosen.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q3. How do we measure and apply bet-leg correlation for parlays and prop combos?</div>
+    <div class="row"><span class="k">What we have</span><span>A correlation methodology and interpretation framework (see <a href="correlations.html">Correlations</a>).</span></div>
+    <div class="row"><span class="k">What we lack</span><span>Actual pairwise correlation coefficients computed from historical data.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>Parlay and prop-combo true probability depends on leg correlation; assuming independence when legs are correlated misprices risk and inflates apparent edge.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Compute pairwise correlations over rolling historical windows once historical play/prop data is available; store and refresh them as snapshots.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q4. What is the primary leaderboard ranking metric, and how are rewards tiered?</div>
+    <div class="row"><span class="k">What we have</span><span>A leaderboard design with validation-gated qualification (see <a href="leaderboard.html">Leaderboard</a>).</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A final decision on the ranking metric (ROI vs. CLV vs. units vs. a blend) and the reward tiers.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>The metric defines what "top performing" means and must be luck-adjusted and comparable across single bets, parlays, and props.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Evaluate candidate metrics on historical data for robustness; pick one that is invariant to bet type and resistant to survivorship bias.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q5. How do we quantify the impact of a starter being replaced by a 2nd/3rd/4th-string backup?</div>
+    <div class="row"><span class="k">What we have</span><span>Verified player-level injury data with game status (see <a href="injuries.html">Injuries &amp; Depth</a>) and official depth-chart order.</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A calibrated numeric impact (in points/EPA) per substitution, by position and string depth.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>This is a core edge signal; without a quantified impact we cannot convert injury/depth data into a line adjustment.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Regress expected point outcomes on depth-chart substitution events over history; separate by position group and string depth to estimate per-event impact.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q6. What model approach do we use to originate our own lines?</div>
+    <div class="row"><span class="k">What we have</span><span>Requirement to originate independent lines (see <a href="requirements.html">Requirements D-01</a>) and the market lines as a benchmark.</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A selected model family (e.g., EPA-based point-differential model) and its feature set.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>The line-generation model is the foundation of every strategy; its design determines signal quality and CLV.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Benchmark candidate models out-of-sample against the closing market line (CLV) before committing; document feature provenance to avoid leakage.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q7. How do we guard against look-ahead and data leakage in validation?</div>
+    <div class="row"><span class="k">What we have</span><span>Walk-forward / out-of-sample gate requirement (see <a href="validation-gates.html">Validation Gates</a>).</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A concrete leakage audit checklist (e.g., confirming injury/line info is used only as available at bet time).</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>Look-ahead bias produces artificially strong results that fail in live use; it is the main way "luck" masquerades as skill.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Build a time-aligned data model and an explicit audit of each feature's availability date relative to bet placement.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q8. Where do player-prop lines and historical prop results come from?</div>
+    <div class="row"><span class="k">What we have</span><span>Requirement to support prop-combo strategies (see <a href="requirements.html">Requirements E-03</a>).</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A captured, verified prop-line feed and historical prop settlement data.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>Player-prop strategies cannot be validated or scored without prop lines and settled results.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Select an authoritative prop feed, capture current lines with source links, and backfill settled historical props for validation.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q9. How do we handle line movement between open and close?</div>
+    <div class="row"><span class="k">What we have</span><span>Week-10 opening and current lines from market sources (see <a href="data-lines.html">Market Lines</a>).</span></div>
+    <div class="row"><span class="k">What we lack</span><span>A defined rule for which line (open or close) is the benchmark for CLV and how movement is interpreted as information.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>CLV is measured against the closing line; movement itself can be a signal, but mis-specifying the benchmark corrupts the skill measure.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Standardize on the closing line for CLV and separately model open→close movement as an information signal, validated out-of-sample.</span></div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">Q10. What are the compliance and risk constraints on the system?</div>
+    <div class="row"><span class="k">What we have</span><span>Risk-control gate requirement (max sizing, drawdown limits, no martingale) in the validation framework.</span></div>
+    <div class="row"><span class="k">What we lack</span><span>Explicit numeric risk limits and confirmation of the applicable jurisdiction/compliance constraints.</span></div>
+    <div class="row"><span class="k">Why it matters</span><span>Strategy sizing and reward design must respect risk limits and any applicable rules; this is a prerequisite to any live use.</span></div>
+    <div class="row"><span class="k">How to discover</span><span>Set explicit risk limits as validation-gate parameters and confirm jurisdictional requirements before enabling live scoring.</span></div>
+  </div>
+
+  <div class="callout warn mt-lg">
+    <strong>Decision rule.</strong> Until Q1–Q3 are answered, the correlation-dependent strategies
+    (parlays, prop combos) cannot be reliably built, and until Q2 and Q7 are answered, no strategy can
+    be admitted to the leaderboard. These are the blocking gaps; the rest are sequencing decisions.
+  </div>
+
+</main>
+
+<footer>
+  X1 — NFL Decision &amp; Signal Dashboard · <a href="https://github.com/karagemop466-tech/X1">Repository</a> · <a href="COORDINATION.md">Coordination log</a>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

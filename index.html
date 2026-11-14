@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X1 — NFL Decision &amp; Signal Dashboard</title>
+<meta name="description" content="Autonomous NFL data, line-generation, validation, and strategy leaderboard. Verified against official sources.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="logo">X1</span>
+      <span>NFL Decision &amp; Signal Dashboard <span class="tag">· verified</span></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="questions.html">Open Questions</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="validation-gates.html">Validation Gates</a>
+      <a href="correlations.html">Correlations</a>
+      <a href="injuries.html">Injuries &amp; Depth</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="data-standings.html">Standings</a>
+      <a href="data-lines.html">Market Lines</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+    <a class="nav-flag" href="flagged-for-review.html">Flagged for review</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>NFL Decision &amp; Signal Dashboard</h1>
+    <p>An autonomous system that collects, organizes, and analyzes NFL data to originate
+       our own betting lines. Strategies compete on a leaderboard and must clear strict
+       validation gates before they earn a place. Every published value is traced to an
+       official source — anything that cannot be confirmed is left blank and flagged.</p>
+    <div class="pillrow">
+      <span class="pill">2026 regular season</span>
+      <span class="pill">Verified vs. official sources</span>
+      <span class="pill">No manual input required</span>
+      <span class="pill">Skill-based, luck-adjusted</span>
+    </div>
+  </section>
+
+  <div class="grid grid-4 mb">
+    <div class="stat">
+      <div class="label">Teams tracked</div>
+      <div class="value">32</div>
+      <div class="hint">Full 2026 standings, official</div>
+    </div>
+    <div class="stat">
+      <div class="label">Injury rows verified</div>
+      <div class="value">50+</div>
+      <div class="hint">Week 10, official NFL.com report</div>
+    </div>
+    <div class="stat">
+      <div class="label">Market lines tracked</div>
+      <div class="value">14</div>
+      <div class="hint">Week 10 slate, benchmark</div>
+    </div>
+    <div class="stat">
+      <div class="label">Flagged items</div>
+      <div class="value" id="flagged-count">—</div>
+      <div class="hint">Unverified / needs review</div>
+    </div>
+  </div>
+
+  <div class="between mb">
+    <h2 class="mb0" style="margin:0">Navigate by category</h2>
+  </div>
+
+  <div class="grid grid-3">
+    <a class="card" href="executive-summary.html" style="text-decoration:none;color:inherit">
+      <h3>Executive Summary</h3>
+      <p class="muted small">The one-page overview: what is live, what is pending, key risks and next steps.</p>
+      <span class="badge b-info">Overview</span>
+    </a>
+    <a class="card" href="requirements.html" style="text-decoration:none;color:inherit">
+      <h3>Requirements</h3>
+      <p class="muted small">The full, organized list of requirements the system must satisfy.</p>
+      <span class="badge b-info">Spec</span>
+    </a>
+    <a class="card" href="questions.html" style="text-decoration:none;color:inherit">
+      <h3>Open Questions</h3>
+      <p class="muted small">The questions and information gaps that must be answered before decisions.</p>
+      <span class="badge b-warn">Decision gate</span>
+    </a>
+    <a class="card" href="suggestions.html" style="text-decoration:none;color:inherit">
+      <h3>Suggestions</h3>
+      <p class="muted small">Proposed improvements, ranked for review before any change is implemented.</p>
+      <span class="badge b-warn">Review board</span>
+    </a>
+    <a class="card" href="strategies.html" style="text-decoration:none;color:inherit">
+      <h3>Strategies</h3>
+      <p class="muted small">Single bet, parlay, and player-prop strategies for originating our own lines.</p>
+      <span class="badge b-good">Signals</span>
+    </a>
+    <a class="card" href="validation-gates.html" style="text-decoration:none;color:inherit">
+      <h3>Validation Gates</h3>
+      <p class="muted small">The gates every strategy must pass to prove skill and remove luck.</p>
+      <span class="badge b-good">Quality control</span>
+    </a>
+    <a class="card" href="correlations.html" style="text-decoration:none;color:inherit">
+      <h3>Correlations</h3>
+      <p class="muted small">How bet-leg correlation is measured and why it changes parlay math.</p>
+      <span class="badge b-info">Methodology</span>
+    </a>
+    <a class="card" href="injuries.html" style="text-decoration:none;color:inherit">
+      <h3>Injuries &amp; Depth</h3>
+      <p class="muted small">Injury tracking and starter/backup (2nd–4th string) deficiency analysis.</p>
+      <span class="badge b-info">Edge data</span>
+    </a>
+    <a class="card" href="leaderboard.html" style="text-decoration:none;color:inherit">
+      <h3>Leaderboard</h3>
+      <p class="muted small">The competition: ranked, rewarded, and gated strategy performance.</p>
+      <span class="badge b-good">Competition</span>
+    </a>
+  </div>
+
+  <hr class="sep">
+
+  <div class="between mb">
+    <h2 style="margin:0">Standings snapshot — 2026 regular season</h2>
+    <a class="small" href="data-standings.html">Full table &amp; sources →</a>
+  </div>
+  <p class="muted small">Source: <a href="https://www.nfl.com/standings/league/2026/reg">NFL.com Standings</a>.
+    Each team links to its official NFL.com team page. Full 32-team table on the Standings page.</p>
+
+  <div class="table-wrap mt">
+    <table class="data">
+      <thead>
+        <tr><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">PCT</th><th class="num">PF</th><th class="num">PA</th><th class="num">Net</th><th class="num">Strk</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="team">Buffalo Bills</td><td class="num">7</td><td class="num">1</td><td class="num">0</td><td class="num">0.875</td><td class="num">256</td><td class="num">187</td><td class="num">69</td><td class="num">4W</td><td class="src"><span class="src-name">NFL.com</span><a href="https://www.nfl.com/teams/buffalo-bills/">team page</a></td></tr>
+        <tr><td class="team">San Francisco 49ers</td><td class="num">7</td><td class="num">1</td><td class="num">0</td><td class="num">0.875</td><td class="num">235</td><td class="num">156</td><td class="num">79</td><td class="num">1W</td><td class="src"><span class="src-name">NFL.com</span><a href="https://www.nfl.com/teams/san-francisco-49ers/">team page</a></td></tr>
+        <tr><td class="team">Chicago Bears</td><td class="num">7</td><td class="num">2</td><td class="num">0</td><td class="num">0.778</td><td class="num">241</td><td class="num">184</td><td class="num">57</td><td class="num">4W</td><td class="src"><span class="src-name">NFL.com</span><a href="https://www.nfl.com/teams/chicago-bears/">team page</a></td></tr>
+        <tr><td class="team">Denver Broncos</td><td class="num">7</td><td class="num">2</td><td class="num">0</td><td class="num">0.778</td><td class="num">198</td><td class="num">186</td><td class="num">12</td><td class="num">5W</td><td class="src"><span class="src-name">NFL.com</span><a href="https://www.nfl.com/teams/denver-broncos/">team page</a></td></tr>
+        <tr><td class="team">Kansas City Chiefs</td><td class="num">6</td><td class="num">2</td><td class="num">0</td><td class="num">0.750</td><td class="num">202</td><td class="num">143</td><td class="num">59</td><td class="num">1W</td><td class="src"><span class="src-name">NFL.com</span><a href="https://www.nfl.com/teams/kansas-city-chiefs/">team page</a></td></tr>
+        <tr><td class="team">Los Angeles Chargers</td><td class="num">0</td><td class="num">8</td><td class="num">0</td><td class="num">0.000</td><td class="num">121</td><td class="num">219</td><td class="num">-98</td><td class="num">8L</td><td class="src"><span class="src-name">NFL.com</span><a href="https://www.nfl.com/teams/los-angeles-chargers/">team page</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout mt-lg">
+    <strong>How this site stays honest.</strong> Every numeric row carries a link to an official
+    source. Where a value could not be confirmed from an official source, the cell is left
+    <em>blank</em> and the item is listed on the
+    <a href="flagged-for-review.html">Flagged for Review</a> page. Nothing is inferred or filled in.
+    See the <a href="sources.html">Sources</a> index for the full list of official references.
+  </div>
+
+</main>
+
+<footer>
+  X1 — NFL Decision &amp; Signal Dashboard · autonomous, source-verified ·
+  Published via GitHub Pages · <a href="https://github.com/karagemop466-tech/X1">Repository</a> ·
+  <a href="COORDINATION.md">Coordination log</a>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+  // mirror the flagged count into the home stat card
+  (function () {
+    fetch("data/flagged-count.json")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && typeof d.count === "number") document.getElementById("flagged-count").textContent = d.count; })
+      .catch(function () {});
+  })();
+</script>
+</body>
+</html>
