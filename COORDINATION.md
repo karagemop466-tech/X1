@@ -437,3 +437,11 @@ site's Questions page with what is known, what is missing and how to close each 
   all 9 verifiers PASS (verify_site 53 pages, annex 10 pages, check_links, verify_data 2,944
   checks, cross_check, verify_parlay, test_source_rule, availability freshness).
 - **2026-11-14** — Integration PR: **#14** (`arena/a78e0158-x1` → `main`).
+
+## Lab PR & deployment record (session `arena-61ce8500-x1`)
+
+| PR | Content | Result |
+|---|---|---|
+| [#11](https://github.com/karagemop466-tech/X1/pull/11) | Full lab integration (491-row injury report, schedule/standings, computed analytics + correlation values, Elo model lines, strategy/gates/leaderboard/props docs, open questions, suggestions, 34 flagged items) merged as `dashboard/lab-*.html` + `data/processed/` | **MERGED** 2026-11-14T03:40:53Z, merge commit `07c3a4c` — after three conflict-resolution rounds (see Handoff log); introduced a transient stale-HTML CI failure (round-3 committed pages predated the PR #17 annex-nav dedupe) |
+| [#18](https://github.com/karagemop466-tech/X1/pull/18) | CI fix: regenerate index.html adopting the deduped annex nav — makes committed HTML byte-identical to generator output | **MERGED** — `verify-site` ✅ success, `Publish static site to GitHub Pages` ✅ success, `pages-build-deployment` ✅ success |
+| Deploy confirmation | Live lab entry: https://karagemop466-tech.github.io/X1/dashboard/lab-index.html (re-fetched after deploy; executive summary, per-row refs and gate badges render) | **LIVE** ✅ |
