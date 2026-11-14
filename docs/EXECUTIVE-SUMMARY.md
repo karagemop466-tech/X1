@@ -112,3 +112,43 @@ Decision Register page with what would settle each one.
   preserved on their branches and the audit is on the Flagged page (F-07).
 - No model has been fit, so no claimed signal in the methodology section has been empirically
   supported. They are hypotheses with named tests, which is what a hypothesis is supposed to be.
+
+## 9. Round 2 — the eight new requirements (2026-11-14, session `arena-52aabfa8-x1`)
+
+The owner's second brief added eight requirements (R-46 … R-53, quoted verbatim in
+`docs/live-pipeline/project-brief-round2.md`). All eight shipped with an artifact, a
+machine check and a page:
+
+| # | Requirement | Artifact | Check |
+|---|---|---|---|
+| R-46 | Price-snapshot store (opening + closing, every market we originate) | `data/prices/price_snapshots.csv` — 20,088 rows, 2,232 games × spread/total/moneyline × both snapshots; blanks carry flag codes | P1–P6 in `tools/build_price_store.py` |
+| R-47 | Verified results feed for backtests/ROI | `data/results/verified_results.csv` — 2,232 rows, per-row verification tier (1 official-verified score, 13 officially-confirmed unplayed, 2,218 mirror-flagged) | C1–C4 in `tools/build_results_feed.py` |
+| R-48 | Originate side → total → moneyline | `ORIGINATION_ORDER` pre-registered and asserted against the emitted column order in `code/build_lines.py` | write-time assertion |
+| R-49 | Fair line / market line / difference as separate columns | `data/lines/originated_lines_2026_week10.csv` now carries all three for all three markets (moneyline difference in probability points, vig named) | column-order assertion; published on `app/lines.html` |
+| R-50 | Signal separated from staking on the leaderboard | `signal_score` / `rank_signal` are the only rank key; `staking_score`, equity and drawdown are informational and structurally cannot enter it | `code/leaderboard.py` sort block; `app/leaderboard.html` |
+| R-51 | Depth of the replacement tracked | already live: every deficiency row carries the 2nd/3rd/4th string of the replacement, sourced to the club chart | existing join verification |
+| R-52 | Correlations only from official numbers, n with every value | 988-row official-only set, n = 32 on every row, all nfl.com sources, independently recomputed | `tools/verify_official_correlations.py` → 988/988, ledger `data/verify/official_correlations.csv` |
+| R-53 | Demotion gate: live → paper | gate D1 (`data/gates.json`) / G-13 (`data/pipeline/gates.json`): four triggers, automatic action, shadow-window re-promotion; closes Q-26 | rendered on both validation pages |
+
+**Verification of this round:** every existing check still passes — `tools/verify_data.py`
+(2,944 checks), `tools/check_links.py` (28,026 assertions), `scripts/verify_site.py`
+(116 pages), `scripts/check_site.py`, `scripts/verify_research_site.py` (1,921 assertions),
+`scripts/pipeline/verify_site.py`, `tools/verify_against_official.py` (2,183 cells,
+0 mismatches), `tools/test_source_rule.py` (mutation caught), `scripts/verify_parlay.py`,
+`tools/cross_check.py`, `tools/hub/build_hub.py`, `tools/verify_app.py` (23 pages,
+5,942 rows, 0 unsourced), and the staleness guards for `index.html`/`pages/` and
+`data/nfl/availability_derived.tsv`.
+
+**New flags this round (all on the Flagged for Review page, none blocking):**
+F-10 legacy `…_away` spread column names (values verified correct under both readings);
+F-11 2,218 of 2,232 result rows are mirror-only (Q-04 stays open); F-12 the official
+standings snapshot predates the Thursday Night game while the schedule page prints its
+FINAL score (freshness, recorded as check C4); F-13 the correlations `method` text omits the
+| r | < 0.99 redundancy cut (values verified, documentation gap); F-14 the strategy matrix
+publishes no per-cell n (excluded from the R-52 set rather than guessed); F-15 opening and
+closing prices use different published conventions (no CLV computed until normalisation is
+a recorded decision).
+
+**What still blocks real money numbers:** Q-02 (an owner-supplied price feed — no official
+source publishes prices) and Q-04 (official box scores for every historical game). This
+round mapped both gaps per row instead of hiding them; neither is closed by this round.
