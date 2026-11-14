@@ -27,6 +27,7 @@ Owner rules (verbatim intent):
 | `arena-6f377170-x1` | `arena/6f377170-x1` | Site skeleton + 5 pages (design spec, no data) | 2026-11-14 | active — branch preserved, content credited below |
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
+| `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **active (this claim)** |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -55,6 +56,30 @@ Owner rules (verbatim intent):
 | T7 | Executive summary, decision register (Q/I/A), suggestions register | done | `arena-b38a21d8-x1` | `docs/analysis/*`, `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/suggestions.json` |
 | T8 | Static site: landing + category subpages + tables + Flagged for Review | done | `arena-b38a21d8-x1` | `index.html`, `pages/**`, `assets/**`, `tools/build_site.py` |
 | T9 | Final integration: re-verify combined data, link check, PR → main, merge, Pages deploy confirm | done | `arena-b38a21d8-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/**`, PR |
+
+### Round 2 — eight new owner requirements (claimed 2026-11-14 by `arena-52aabfa8-x1`)
+
+T1–T9 above are complete and merged; nothing in them is reopened. The rows below are **new**
+requirements stated in the owner's latest brief. Claimed per rules 1–3; scopes are additive —
+existing generators are extended, not rewritten, and no other session's branch is touched.
+
+| # | Task | Requirement (owner's words) | Status | Owner session | Files in scope |
+|---|---|---|---|---|---|
+| T10 | Price-snapshot store: opening and closing numbers for every market we originate | "Add a price-snapshot store that records opening and closing numbers for every market we originate" | **claimed** | `arena-52aabfa8-x1` | `tools/build_price_store.py` (new), `data/prices/**` (new), `docs/methodology/price-snapshots.md` (new) |
+| T11 | Verified results feed so backtests and ROI can be computed | "Add a verified results feed so backtests and ROI can be computed at all" | **claimed** | `arena-52aabfa8-x1` | `tools/build_results_feed.py` (new), `data/results/**` (new), `docs/methodology/results-feed.md` (new) |
+| T12 | Origination order: side first, then total, then moneyline | "Originate the side first, then the total, then the moneyline" | **claimed** | `arena-52aabfa8-x1` | `code/build_lines.py`, `docs/methodology/line-origination.md` (append only) |
+| T13 | Fair line, market line, difference published as separate columns (all three markets) | "Publish the model's fair line, the market line, and the difference as separate columns" | **claimed** | `arena-52aabfa8-x1` | `code/build_lines.py`, `data/lines/originated_lines_2026_week10.csv` |
+| T14 | Leaderboard: signal separated from staking | "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal" | **claimed** | `arena-52aabfa8-x1` | `code/leaderboard.py`, `data/strategies/leaderboard.csv`, `data/strategies/leaderboard_meta.json`, `docs/methodology/leaderboard.md` (append only) |
+| T15 | Correlations computed only from officially sourced numbers, n published with every value | "Compute correlations only from officially sourced numbers and publish n with each value" | **claimed** | `arena-52aabfa8-x1` | `data/verify/official_correlations.csv` (new), `docs/methodology/correlation.md` (append only) |
+| T16 | Demotion gate: a live strategy goes back to paper | "Define a demotion gate that sends a live strategy back to paper" | **claimed** | `arena-52aabfa8-x1` | `data/gates.json`, `data/pipeline/gates.json`, `docs/methodology/validation-gates.md` (append only) |
+| T17 | Integration: register the 8 requirements, update executive summary + site pages, verify, PR → main, merge, Pages confirm | brief: "create a pull request … merge without waiting … confirm GitHub Pages deploys" | **claimed** | `arena-52aabfa8-x1` | `tools/build_app.py` (additive), `app/**` (regenerated), `data/pipeline/requirements.json`, `docs/EXECUTIVE-SUMMARY.md`, `COORDINATION.md`, PR |
+
+**Scope note (rule 4 compliance):** `tools/build_app.py` and `app/**` were last owned by the
+completed T8/T9 integration (`arena-b38a21d8-x1`, `arena/fcc11e05-x1`). Both tasks are `done`
+with completion records and both sessions' PRs are merged, so this session claims them for the
+*additive* rendering of T10–T17 output only. No existing page section is removed or rewritten;
+`index.html`, `pages/**`, `assets/**`, `.github/workflows/**` and `README.md` are **not** in
+this session's scope and will not be edited.
 
 ---
 
@@ -88,6 +113,7 @@ Owner rules (verbatim intent):
 | 2026-11-14 | `arena-b38a21d8-x1` | Session start. Audited all existing branches (table above). Claims logged with no artifacts and no PR are **stale** under rule 10 → T1–T9 taken over by this session and recorded here. No files owned by other sessions were edited; their branches are untouched. |
 | 2026-11-14 | `arena-b38a21d8-x1` | **Conflict avoided, not resolved by overwrite:** three sessions wrote divergent `COORDINATION.md`/`README.md` on their own branches. Nothing was force-pushed to `main`. This board supersedes the others on `main` only because this is the only session to integrate and publish; the other boards remain readable on their branches. |
 | 2026-11-14 | `arena-b38a21d8-x1` | Data currency finding: sandbox web index is live to **2026-11-14**; the 2026 NFL season is in Week 10 (Super Bowl LX played 2026-02-08). Model priors from training data are stale, so **every published value is fetched from nfl.com at run time** and carries a source URL + retrieval date. |
+| 2026-11-14 | `arena-52aabfa8-x1` | Session start. Read this board before any work. Audited `main` (= PR #33 merge, `11d9ea1`): T1–T9 all `done`, no open PRs, no remote commits after `11d9ea1`, so no live claim collides with T10–T17. Claimed T10–T17 (the eight bolded requirements in the owner's latest message) and pushed the claim as this session's first commit. Network note: **nfl.com is unreachable from this sandbox** (connection refused); official values are therefore verified against the committed official snapshots in `data/verify/*.psv` and `data/verification/raw/*.md` (each carries its fetch URL and date), and any value not present in an official snapshot is left blank and flagged. github.com is reachable. |
 
 ---
 
