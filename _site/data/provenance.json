@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-11-14T03:15:06Z",
+  "generated_at": "2026-11-14T03:21:39Z",
   "season": 2026,
   "datasets": [
     {
       "source_key": "injuries_current",
       "source_url": "https://www.nfl.com/injuries/",
-      "retrieved_at": "2026-11-14T03:15:06Z",
+      "retrieved_at": "2026-11-14T03:21:40Z",
       "record_count": 345,
       "notes": []
     },
     {
       "source_key": "standings",
       "source_url": "https://www.nfl.com/standings/league/2026/REG",
-      "retrieved_at": "2026-11-14T03:15:06Z",
-      "record_count": 33,
+      "retrieved_at": "2026-11-14T03:21:40Z",
+      "record_count": 32,
       "notes": []
     },
     {
       "source_key": "schedule_week",
       "source_url": "https://www.nfl.com/schedules/2026/by-week/week-1",
-      "retrieved_at": "2026-11-14T03:15:06Z",
-      "record_count": 32,
+      "retrieved_at": "2026-11-14T03:21:40Z",
+      "record_count": 272,
       "notes": []
     },
     {
@@ -28,16 +28,16 @@
         {
           "source_key": "player_stats_passing",
           "source_url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
-          "retrieved_at": "2026-11-14T03:15:08Z",
-          "record_count": 50,
+          "retrieved_at": "2026-11-14T03:21:42Z",
+          "record_count": 73,
           "notes": [
-            "paginated over 3 page(s)"
+            "paginated over 4 page(s)"
           ]
         },
         {
           "source_key": "player_stats_rushing",
           "source_url": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc",
-          "retrieved_at": "2026-11-14T03:15:09Z",
+          "retrieved_at": "2026-11-14T03:21:43Z",
           "record_count": 50,
           "notes": [
             "paginated over 3 page(s)"
@@ -46,7 +46,7 @@
         {
           "source_key": "player_stats_receiving",
           "source_url": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc",
-          "retrieved_at": "2026-11-14T03:15:09Z",
+          "retrieved_at": "2026-11-14T03:21:43Z",
           "record_count": 50,
           "notes": [
             "paginated over 3 page(s)"
@@ -57,8 +57,8 @@
     {
       "source_key": "game_book",
       "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
-      "retrieved_at": "2026-11-14T03:15:11Z",
-      "record_count": 4,
+      "retrieved_at": "2026-11-14T03:22:26Z",
+      "record_count": 40,
       "notes": []
     }
   ]
