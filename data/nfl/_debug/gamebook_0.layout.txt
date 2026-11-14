@@ -2,694 +2,752 @@
 NFL Copyright © 2026 by The National Football League. All rights reserved. This summary and play-by-play is for the express purpose of assisting media in their
 coverage of the game; any other use of this material is prohibited without the written permission of the National Football League.
 
-Date: Wednesday, 9/9/2026                                 New England Patriots at Seattle Seahawks                                                       Start Time: 5:23 PM PDT
-                                                                            at Lumen Field, Seattle, WA
+Date: Thursday, 11/12/2026                              Washington Commanders at New York Giants                                                         Start Time: 8:15 PM EST
+                                                                     at MetLife Stadium, East Rutherford, NJ
                                                                              Game Day Weather
-Game Weather: Sunny                                                                                                   Temp: 74° F (23.3° C) Humidity: 56%, Wind: NW 6 mph
-Open Stadium on Field Turf                                                                                                                                Outdoor Weather: Sunny
+Game Weather: Light Rain Fog/Mist                                                                                       Temp: 48° F (8.9° C) Humidity: 89%, Wind: NE 9 mph
+Open Stadium on Field Turf                                                                                                                                            Wind Chill: 44
 
                                                                                       Officials
-           Referee:    Hill, Adrian (29)                                  Umpire:    Ellison, Roy (81)                            Down Judge:      Short, Danny (113)
-        Line Judge:    Mapp, Julian (10)                              Field Judge:   Boger, Trawick (23)                            Side Judge:    Fucik, Glen (15)
-       Back Judge:     Steed, Greg (12)                           Replay Official:   Hubbell, Bob (0)
+           Referee:    Rogers, Brad (126)                                 Umpire:    Neale, Bryan (92)                            Down Judge:      Turner, Patrick (13)
+        Line Judge:    Codey, Kevin (16)                              Field Judge:   Blubaugh, Joe (57)                             Side Judge:    Meslow, David (118)
+       Back Judge:     Yette, Greg (38)                           Replay Official:   Crudup, Denise (0)
 
-                                                                                      Lineups
+                                                                                       Lineups
 
-                               New England Patriots                                                                           Seattle Seahawks
+                            Washington Commanders                                                                              New York Giants
                   Offense                                       Defense                                           Offense                                     Defense
-        LT   66  W.Campbell                         OLB     5  D.Jones                                 TE    88   A.Barner                          DT    99  L.Williams
-       LG    75  A.Vera-Tucker                       DT    94  C.Durden                                LT    67   C.Cross                           DE    91  B.Murphy
-         C   55  J.Wilson                            DT    97  M.Williams                              LG    76   G.Zabel                           DE    90  J.Reed
-       RG    71  M.Onwenu                           OLB    91  E.Ponder                                 C    61   J.Sundell                         LB     0  D.Lawrence
-       RT    76  M.Moses                              LB   14  R.Spillane                             RG     75   A.Bradford                        LB    13  E.Jones
-       TE    85  H.Henry                              LB   53  C.Elliss                                RT    72   A.Lucas                           LB    32  D.Thomas
-       QB    10  D.Maye                              CB     0  C.Gonzalez                             WR     11   J.Smith-Njigba                    LB    48  T.Knight
-       RB    38  R.Stevenson                         CB     7  C.Davis                                WR     10   C.Kupp                            CB    21  D.Witherspoon
-        FB   44  R.Gilliam                             S    4  C.Woodson                              QB     14   S.Darnold                         CB    29  J.Jobe
-       WR      1 A.Brown                               S   31  K.Byard                                 FB    38   B.Russell                          S    20  J.Love
-       WR    13  M.Hollins                             S   24  D.Pettus                                RB     8   J.Price                            S    24  R.Thomas
+       WR    14  A.Williams                         OLB    98  O.Oweh                                 WR     17   D.Mooney                        OLB      5  K.Thibodeaux
+       TE    87  J.Bates                             DT    97  T.Settle                                TE    84   T.Johnson                         DL    93  S.Harris
+        LT   74  B.Coleman                           DT    96  S.Tuttle                                LT    78   A.Thomas                          DL    97  B.Jamison-Travis
+       LG    75  C.Paul                             OLB    45  K.Chaisson                              LG    76   J.Runyan                          DL    98  D.Reader
+         C   67  N.Allegretti                         LB   52  S.Styles                                 C    60   B.Hudson                        OLB      3  A.Carter
+       RG    76  S.Cosmi                              LB    4  F.Luvu                                 RG     65   F.Mauigoa                         LB    41  M.McFadden
+       RT    72  J.Conerly                           CB    23  T.Amos                                  RT    72   J.Eluemunor                       LB    52  A.Reese
+       TE    82  B.Sinnott                           CB     2  A.Robertson                            WR      1   M.Nabers                          CB    20  G.Newsome
+       WR    13  T.Burks                               S   39  J.Reaves                                TE     9   I.Likely                          CB     2  D.Banks
+       QB      5 J.Daniels                             S   25  N.Cross                                QB     18   J.McCarthy                          S    8  J.Holland
+       RB      1 R.White                               S   20  Q.Martin                                RB    44   C.Skattebo                          S   24  A.Washington
 
 
                                      Substitutions                                                                                Substitutions
-WR 3 D.Douglas, K 8 A.Borregales, RB 9 C.Kiner, WR 18 K.Williams, P 19                       CB 1 J.Neal, QB 2 D.Lock, P 4 M.Dickson, K 5 J.Myers, LB 7 U.Nwosu, TE 18
-M.Wishnowsky, CB 22 C.Woods, S 23 J.Reed, CB 25 M.Jones, CB 29 C.Canada,                     E.Arroyo, WR 22 R.Shaheed, RB 23 E.Wilson, CB 27 A.Smith, CB 28
-RB 34 L.Larison, TE 36 C.Latu, LB 45 Q.Hutchins, LS 47 J.Ashby, LB 48                        N.Pritchett, RB 33 V.Jones, RB 36 G.Holani, LS 41 C.Stoll, LB 44 C.Surratt, LB
-N.Obiazor, LB 50 G.Jacas, LB 54 D.Muasau, T 68 D.Crownover, OL 70 G.Van                      52 P.O'Connell, LB 56 D.Fowler, LB 57 C.O'Toole, LB 58 D.Hall, G 64 C.Haynes,
-Roten, T 74 C.Lomu, TE 82 E.Raridon, TE 84 T.Arkin, WR 87 R.Doubs, DT 90                     G/T 74 J.Jones, TE 81 E.Saubert, WR 87 M.Foster, NT 95 B.Pili, DT 98 R.Mills
-C.Barmore, DT 92 J.Farmer, DL 93 L.Taylor
+CB 0 M.Sainristil, WR 3 S.Diggs, P 10 T.Way, WR 11 L.McCaffrey, WR 12                        CB 12 C.Hood, P 15 J.Stout, QB 19 J.Winston, CB 22 A.Phillips, S 25 J.Pinnock,
+V.Jefferson, S 18 T.Owens, K 19 D.Stevens, CB 24 F.Moreau, CB 29 R.Douglas,                  RB 26 D.Singletary, S 27 T.Nubin, DB 28 E.Campbell, RB 30 G.Desrosiers, CB
+RB 30 A.Ekeler, RB 34 R.Henry, S 35 P.Butler, OLB 48 J.Josephs, LB 51                        31 N.Jones, K 34 D.Zvada, FB 45 P.Ricard, LB 46 Z.Barnes, OLB 48 T.Ford, LB
+A.Kaho, LB 56 K.Medrano, LB 58 J.Magee, LS 69 T.Ott, T/G 71 A.Wylie, TE 85                   51 J.Kelly, LB 55 C.Martin, LS 58 B.Mann, OL 64 A.Stinnie, OL 71 M.Mbow, WR
+C.Okonkwo, DE 90 C.Omenihu, DE 91 D.Wise, OLB 92 D.Armstrong, DT 95                          81 J.Hyatt, TE 85 C.Manhertz, WR 88 M.Fields, WR 89 C.Jones, DL 91
+J.Newton                                                                                     D.Alexander, OLB 96 D.Smoot
 
                                       Did Not Play                                                                                Did Not Play
-QB 16 T.DeVito                                                                               S 30 A.Finley, C 55 O.Oluwatimi
+QB 8 M.Mariota, C/G 61 J.Good-Jones, C 66 M.Gulbin                                           C 61 J.Schmitz
 
                                        Not Active                                                                                   Not Active
-3QB 15 B.Morton, CB 21 K.Prunty, RB 32 T.Henderson, LB 49 E.Hunter, OL 72                    S 3 N.Emmanwori, 3QB 6 J.Milroe, WR 15 T.Horton, S 39 T.Okada, G 70
-W.Rouse, C 77 B.Brown, WR 86 E.Chism                                                         B.Stephens, TE 89 N.Kallerup, DE 94 M.Morris
+3QB 16 A.Kaliakmanis, CB 37 I.Yiadom, DT 50 R.Barber, G 62 T.Togiai, G 63                    CB 21 P.Adebo, CB 35 N.Reed, LB 54 M.Harrison, OL 67 J.Sills, OL 74 J.Davis,
+L.Patrick, TE 80 C.Yankoff                                                                   TE 86 T.Fidone, DL 99 B.Okoye
                                                                         Field Goals (made ( )  & missed)
 
-A.Borregales                                    (50)                                         J.Myers                                        (30) (26)
+D.Stevens                                       (46)                                         D.Zvada                                        33WL
 
                                                                                                      1              2              3               4              OT           Total
-VISITOR:               New England Patriots                                                          0              7               3              0                0              10
-HOME:                  Seattle Seahawks                                                              0              0               3             10                0              13
+VISITOR:               Washington Commanders                                                         0             10               7              7                 0             24
+HOME:                  New York Giants                                                               0              7               7              7                 0             21
 
                                                                                    Scoring Plays
 
 Team              Qtr        Time    Play Description (Extra Point) (Drive Info)                                                                                   Visitor     Home
-Patriots             2        9:11   E.Raridon 2 yd. pass from D.Maye (A.Borregales kick) (10-77, 5:37)                                                                   7          0
-Patriots             3       11:49   A.Borregales 50 yd. Field Goal (8-39, 3:11)                                                                                         10          0
-Seahawks             3        3:13   J.Myers 30 yd. Field Goal (7-31, 3:40)                                                                                              10          3
-Seahawks             4       11:28   J.Smith-Njigba 45 yd. pass from D.Lock (J.Myers kick) (5-67, 2:44)                                                                  10         10
-Seahawks             4        5:50   J.Myers 26 yd. Field Goal (8-39, 3:30)                                                                                              10         13
-Paid Attendance: 68,744                                                                                                                                                   Time: 3:02
-                                                       New England Patriots vs Seattle Seahawks
-                                                                 9/9/2026 at Lumen Field
+Commanders           2       14:07   D.Stevens 46 yd. Field Goal (11-49, 4:57)                                                                                            3          0
+Giants               2        2:35   C.Skattebo 1 yd. run (D.Zvada kick) (16-72, 7:48)                                                                                    3          7
+Commanders           2        0:05   B.Sinnott 1 yd. pass from J.Daniels (D.Stevens kick) (9-67, 2:30)                                                                   10          7
+Giants               3       10:22   C.Skattebo 13 yd. run (D.Zvada kick) (5-55, 2:02)                                                                                   10         14
+Commanders           3        6:56   A.Williams 31 yd. pass from J.Daniels (D.Stevens kick) (6-77, 3:26)                                                                 17         14
+Giants               4        8:13   I.Likely 66 yd. pass from J.McCarthy (D.Zvada kick) (3-69, 0:51)                                                                    17         21
+Commanders           4        0:57   S.Diggs 32 yd. pass from J.Daniels (D.Stevens kick) (3-71, 0:49)                                                                    24         21
+Paid Attendance: 80,450                                                                                                                                                   Time: 3:04
+                                                      Washington Commanders vs New York Giants
+                                                             11/12/2026 at MetLife Stadium
                                                    Final Individual Statistics
-                       New England Patriots                                                                Seattle Seahawks
-RUSHING                                 ATT     YDS     AVG       LG     TD     RUSHING                                 ATT      YDS    AVG        LG    TD
-R.Stevenson                               18       51     2.8      12      0    J.Price                                   10       52     5.2      13      0
-D.Maye                                     7       47     6.7      16      0    G.Holani                                   8       29     3.6       9      0
-C.Kiner                                    6       11     1.8       7      0    D.Lock                                     2       13     6.5      14      0
-                                                                                E.Wilson                                   2        3     1.5       3      0
-Total                                     31     109      3.5      16      0    Total                                     22       97     4.4      14      0
+                    Washington Commanders                                                                   New York Giants
+RUSHING                                 ATT      YDS    AVG        LG     TD    RUSHING                                  ATT     YDS     AVG       LG     TD
+R.White                                   11       47     4.3      18       0   C.Skattebo                                 18       78     4.3      14      2
+J.Daniels                                 11       28     2.5       8       0   J.McCarthy                                  6       34     5.7      12      0
+A.Ekeler                                   9       26     2.9       7       0   D.Singletary                                1        3     3.0       3      0
+R.Henry                                    2        4     2.0       4       0   J.Winston                                   2        1     0.5       1      0
+Total                                     33      105     3.2      18       0   Total                                      27     116      4.3      14      2
 
-PASSING                  ATT    CMP     YDS    SK/YD   TD    LG   IN     RT     PASSING                   ATT   CMP     YDS    SK/YD    TD   LG   IN      RT
-D.Maye                     33      23    178     3/10    1    19    3   54.9    D.Lock                     22      16    187       1/7    1  45     0  113.3
-                                                                                S.Darnold                    2      1     13       1/5    0   13    0   70.8
-Total                      33      23    178     3/10    1    19    3   54.9    Total                      24      17    200      2/12    1   45    0  109.7
+PASSING                  ATT    CMP     YDS    SK/YD    TD   LG   IN      RT    PASSING                   ATT    CMP     YDS    SK/YD    TD   LG   IN      RT
+J.Daniels                  33      23    249     1/14    3    32    2   96.7    J.McCarthy                  36      23    293     1/10    1   66     1   86.9
+Total                      33      23    249     1/14    3    32    2   96.7    Total                       36      23    293     1/10    1    66    1   86.9
 
-PASS RECEIVING                   TAR    REC     YDS     AVG       LG     TD     PASS RECEIVING                   TAR    REC      YDS    AVG       LG      TD
-R.Stevenson                         6      5       44     8.8      17      0    J.Smith-Njigba                     11      8      122    15.3     45       1
-D.Douglas                           7      5       20     4.0       8      0    C.Kupp                              3      2       35    17.5      24      0
-M.Hollins                           5      4       51   12.8       19      0    B.Russell                           2      2       20    10.0      13      0
-A.Brown                             4      3       26     8.7      14      0    A.Barner                            2      2       13     6.5       9      0
-H.Henry                             3      3       26     8.7      13      0    J.Price                             2      2        6     3.0       4      0
-L.Larison                           2      2        9     4.5      11      0    R.Shaheed                           3      1        4     4.0       4      0
-E.Raridon                           1      1        2     2.0       2      1    G.Holani                            1      0        0     0.0       0      0
-R.Doubs                             3      0        0     0.0       0      0
-Total                              31     23     178      7.7      19      1    Total                              24     17      200    11.8      45      1
+PASS RECEIVING                   TAR    REC      YDS    AVG        LG     TD    PASS RECEIVING                    TAR    REC     YDS     AVG       LG     TD
+S.Diggs                            10      6       83    13.8      32       1   I.Likely                            11      9     127     14.1     66       1
+B.Sinnott                           4      4       42    10.5      24       1   M.Nabers                             7      5       44     8.8      37      0
+A.Ekeler                            4      4       26     6.5       8       0   M.Fields                             4      3       62    20.7      25      0
+C.Okonkwo                           8      4       24     6.0      11       0   C.Skattebo                           4      3       44    14.7      34      0
+A.Williams                          2      2       42    21.0      31       1   D.Mooney                             5      2        8     4.0       6      0
+T.Burks                             3      2       27    13.5      20       0   T.Johnson                            3      1        8     8.0       8      0
+R.White                             2      1        5     5.0       5       0
+Total                              33     23      249    10.8      32       3   Total                               34     23     293     12.7      66      1
 
-INTERCEPTIONS                            NO     YDS     AVG       LG      TD    INTERCEPTIONS                            NO      YDS    AVG       LG      TD
-                                                                                N.Pritchett                                1       30    30.0      30       0
-                                                                                J.Love                                     1        0     0.0       0       0
-                                                                                J.Jobe                                     1        0     0.0       0       0
-Total                                      0        0       0       0      0    Total                                      3       30    10.0      30       0
+INTERCEPTIONS                            NO      YDS    AVG        LG     TD    INTERCEPTIONS                             NO     YDS     AVG       LG      TD
+R.Douglas                                  1        0     0.0       0       0   J.Holland                                   1        0     0.0       0       0
+                                                                                A.Washington                                1        0     0.0       0       0
+Total                                      1        0     0.0       0       0   Total                                       2        0     0.0       0       0
 
-PUNTING                    NO   YDS     AVG      NET      TB   IN20       LG    PUNTING                    NO   YDS     AVG      NET      TB    IN20      LG
-M.Wishnowsky                 4   177     44.3    42.0       0       3     46    M.Dickson                    5   227     45.4    45.4       0       3      50
-Total                        4   177     44.3    42.0       0       3     46    Total                        5   227     45.4    45.4       0       3      50
+PUNTING                    NO   YDS     AVG      NET      TB    IN20      LG    PUNTING                    NO    YDS     AVG      NET      TB    IN20      LG
+T.Way                        4   198     49.5    49.0       0       0      55   J.Stout                       5   224     44.8    38.2       1       2      68
+Total                        4   198     49.5    49.0       0       0      55   Total                         5   224     44.8    38.2       1       2      68
 
-PUNT RETURNS                     NO     YDS     AVG       FC      LG      TD    PUNT RETURNS                     NO     YDS      AVG      FC      LG      TD
-M.Jones                            0       0      0.0       2       0      0    R.Shaheed                          1       9      9.0       3       9       0
-[DOWNED]                           1       0      0.0       0       0      0
-[OUT OF BOUNDS]                    2       0      0.0       0       0      0
-Total                              0       0      0.0       2       0      0    Total                              1       9      9.0       3       9       0
+PUNT RETURNS                     NO     YDS      AVG      FC       LG     TD    PUNT RETURNS                      NO     YDS     AVG       FC      LG      TD
+L.McCaffrey                        2      13      6.5       0      12       0   C.Jones                             1       2      2.0       2       2       0
+[DOWNED]                           1       0      0.0       0       0       0   [DOWNED]                            1       0      0.0       0       0       0
+[OUT OF BOUNDS]                    1       0      0.0       0       0       0
+[TOUCHBACK]                        1       0      0.0       0       0       0
+Total                              2      13      6.5       0      12       0   Total                               1       2      2.0       2       2       0
 
-KICKOFF RETURNS                  NO     YDS     AVG       FC      LG      TD    KICKOFF RETURNS                  NO     YDS      AVG      FC      LG      TD
-K.Williams                         2      58     29.0       0      29      0    R.Shaheed                          3      80     26.7       0      30       0
-L.Larison                          2      49     24.5       0      27      0
-Total                              4     107     26.8       0      29      0    Total                              3      80     26.7       0      30       0
+KICKOFF RETURNS                  NO     YDS      AVG      FC       LG     TD    KICKOFF RETURNS                   NO     YDS     AVG       FC      LG      TD
+L.McCaffrey                        3      58     19.3       0      25       0   G.Desrosiers                        3      74     24.7       0      26       0
+[OUT OF BOUNDS]                    1       0      0.0       0       0       0   D.Singletary                        1      22     22.0       0      22       0
+                                                                                [TOUCHBACK]                         1       0      0.0       0       0       0
+Total                              3      58     19.3       0      25       0   Total                               4      96     24.0       0      26       0
 
-         New England Patriots
-         FUMBLES                                  FUM    LOST      OWN-REC      YDS    TD     FORCED       OPP-REC      YDS      TD     OUT-BDS
-         Total                                        0       0              0      0     0           0            0       0       0              0
+         Washington Commanders
+         FUMBLES                                  FUM    LOST       OWN-REC      YDS    TD    FORCED       OPP-REC       YDS      TD     OUT-BDS
+         P.Butler                                     0       0               0     0     0           1            0        0       0             0
+         F.Luvu                                       0       0               0     0     0           1            0        0       0             0
+         K.Medrano                                    0       0               0     0     0           1            0        0       0             0
+         J.Reaves                                     0       0               0     0     0           0            1        0       0             0
+         Total                                        0       0               0     0     0           3            1        0       0             0
 
-         Seattle Seahawks
-         FUMBLES                                  FUM    LOST      OWN-REC      YDS    TD     FORCED       OPP-REC      YDS      TD     OUT-BDS
-         Total                                        0       0              0      0     0           0            0       0       0              0
-                                                           New England Patriots vs Seattle Seahawks
-                                                                     9/9/2026 at Lumen Field
+         New York Giants
+         FUMBLES                                  FUM    LOST       OWN-REC      YDS    TD    FORCED       OPP-REC       YDS      TD     OUT-BDS
+         I.Likely                                     1       0               1     0     0           0            0        0       0             0
+         G.Desrosiers                                 1       0               0     0     0           0            0        0       0             0
+         M.Nabers                                     1       1               0     0     0           0            0        0       0             0
+         C.Martin                                     0       0               1     0     0           0            0        0       0             0
+         Total                                        3       1               2     0     0           0            0        0       0             0
+                                                         Washington Commanders vs New York Giants
+                                                                 11/12/2026 at MetLife Stadium
                                                           Final Team Statistics
-                                                                                                                           Visitor                             Home
-                                                                                                                         Patriots                         Seahawks
- TOTAL FIRST DOWNS                                                                                                              19                                 13
-      By Rushing                                                                                                                 7                                  4
-      By Passing                                                                                                                 9                                  9
-      By Penalty                                                                                                                 3                                  0
- THIRD DOWN EFFICIENCY                                                                                                5-16-31.3%                          2-11-18.2%
- FOURTH DOWN EFFICIENCY                                                                                               2-2-100.0%                         1-1-100.0%
- TOTAL NET YARDS                                                                                                              277                                 285
-      Total Offensive Plays (inc. times thrown passing)                                                                         67                                 48
-      Average gain per offensive play                                                                                          4.1                                5.9
- NET YARDS RUSHING                                                                                                            109                                  97
-      Total Rushing Plays                                                                                                       31                                 22
-      Average gain per rushing play                                                                                            3.5                                4.4
-      Tackles for a loss-number and yards                                                                                     5-11                                1-3
- NET YARDS PASSING                                                                                                            168                                 188
-      Times thrown - yards lost attempting to pass                                                                            3-10                               2-12
-      Gross yards passing                                                                                                     178                                 200
- PASS ATTEMPTS-COMPLETIONS-HAD INTERCEPTED                                                                                33-23-3                             24-17-0
-      Avg gain per pass play (inc.# thrown passing)                                                                            4.7                                7.2
- KICKOFFS Number-In End Zone-Touchbacks                                                                                      3-1-0                              4-2-0
- PUNTS Number and Average                                                                                                   4-44.3                             5-45.4
-      Had Blocked                                                                                                                0                                  0
- FGs - PATs Had Blocked                                                                                                        0-0                                0-0
- Net Punting Average                                                                                                          42.0                               45.4
- TOTAL RETURN YARDAGE (Not Including Kickoffs)                                                                                   0                                 39
-      No. and Yards Punt Returns                                                                                               0-0                                1-9
-      No. and Yards Kickoff Returns                                                                                         4-107                                3-80
-      No. and Yards Interception Returns                                                                                       0-0                               3-30
- PENALTIES Number and Yards                                                                                                   7-50                              10-98
- FUMBLES Number and Lost                                                                                                       0-0                                0-0
- TOUCHDOWNS                                                                                                                      1                                  1
-      Rushing                                                                                                                    0                                  0
-      Passing                                                                                                                    1                                  1
- EXTRA POINTS Made-Attempts                                                                                                    1-1                                1-1
-      Kicking Made-Attempts                                                                                                    1-1                                1-1
- FIELD GOALS Made-Attempts                                                                                                     1-1                                2-2
- RED ZONE EFFICIENCY                                                                                                     1-2-50%                              0-2-0%
- GOAL TO GO EFFICIENCY                                                                                                  1-1-100%                              0-0-0%
- SAFETIES                                                                                                                        0                                  0
- FINAL SCORE                                                                                                                    10                                 13
- TIME OF POSSESSION                                                                                                         34:17                               25:43
-                                                         New England Patriots vs Seattle Seahawks
-                                                                   9/9/2026 at Lumen Field
-                                                Ball Possession And Drive Chart
+                                                                                                                          Visitor                             Home
+                                                                                                                  Commanders                                  Giants
+ TOTAL FIRST DOWNS                                                                                                             20                                  21
+      By Rushing                                                                                                                9                                   9
+      By Passing                                                                                                                9                                  11
+      By Penalty                                                                                                                2                                   1
+ THIRD DOWN EFFICIENCY                                                                                                7-14-50.0%                         4-12-33.3%
+ FOURTH DOWN EFFICIENCY                                                                                                 0-2-0.0%                         1-1-100.0%
+ TOTAL NET YARDS                                                                                                              340                                399
+      Total Offensive Plays (inc. times thrown passing)                                                                        67                                  64
+      Average gain per offensive play                                                                                          5.1                                6.2
+ NET YARDS RUSHING                                                                                                            105                                116
+      Total Rushing Plays                                                                                                      33                                  27
+      Average gain per rushing play                                                                                            3.2                                4.3
+      Tackles for a loss-number and yards                                                                                     3-3                                 2-4
+ NET YARDS PASSING                                                                                                            235                                283
+      Times thrown - yards lost attempting to pass                                                                           1-14                               1-10
+      Gross yards passing                                                                                                     249                                293
+ PASS ATTEMPTS-COMPLETIONS-HAD INTERCEPTED                                                                                33-23-2                            36-23-1
+      Avg gain per pass play (inc.# thrown passing)                                                                            6.9                                7.6
+ KICKOFFS Number-In End Zone-Touchbacks                                                                                     5-2-1                               4-0-0
+ PUNTS Number and Average                                                                                                  4-49.5                             5-44.8
+      Had Blocked                                                                                                               0                                   0
+ FGs - PATs Had Blocked                                                                                                       0-0                                 0-0
+ Net Punting Average                                                                                                         49.0                                38.2
+ TOTAL RETURN YARDAGE (Not Including Kickoffs)                                                                                 13                                   2
+      No. and Yards Punt Returns                                                                                             2-13                                 1-2
+      No. and Yards Kickoff Returns                                                                                          3-58                               4-96
+      No. and Yards Interception Returns                                                                                      1-0                                 2-0
+ PENALTIES Number and Yards                                                                                                  4-17                               6-62
+ FUMBLES Number and Lost                                                                                                      0-0                                 3-1
+ TOUCHDOWNS                                                                                                                     3                                   3
+      Rushing                                                                                                                   0                                   2
+      Passing                                                                                                                   3                                   1
+ EXTRA POINTS Made-Attempts                                                                                                   3-3                                 3-3
+      Kicking Made-Attempts                                                                                                   3-3                                 3-3
+ FIELD GOALS Made-Attempts                                                                                                    1-1                                 0-1
+ RED ZONE EFFICIENCY                                                                                                    1-1-100%                            2-4-50%
+ GOAL TO GO EFFICIENCY                                                                                                  1-1-100%                           1-1-100%
+ SAFETIES                                                                                                                       0                                   0
+ FINAL SCORE                                                                                                                   24                                  21
+ TIME OF POSSESSION                                                                                                         30:22                              29:38
+                                                      Washington Commanders vs New York Giants
+                                                              11/12/2026 at MetLife Stadium
+                                               Ball Possession And Drive Chart
 
-   New England Patriots
+   Washington Commanders
 
- #     Time      Time     Time   How Ball               Drive              #       Yds       Yds       Net         1st       Last       How Given
-       Recd       Lost    Poss   Obtained               Began           Play      Gain       Pen       Yds      Down         Scrm       Up
+ #     Time     Time     Time   How Ball               Drive             #       Yds       Yds       Net         1st      Last        How Given
+       Recd      Lost     Poss  Obtained               Began          Play      Gain       Pen       Yds      Down        Scrm        Up
 
-  1    11:42      7:29     4:13  Punt                   NE 8                8        22        15       37            2      NE 45      Punt
-  2     4:35      1:22     3:13  Punt                   NE 20               5        20         0       20            1      NE 40      Punt
+  1    11:18      7:33     3:45 Punt                   WAS 8              6        17        -5       12            1     WAS 20      Punt
 
-  3    14:48      9:11     5:37  Punt                   NE 23             10         43        34       77            5    * SEA 2      Touchdown
-  4     4:39      0:50     3:49  Punt                   NE 8                8        45         0       45            2      SEA 47     Punt
+  2     4:04    14:07      4:57 Missed FG              WAS 23            11        54        -5       49            3     NYG 28      Field Goal
+  3    11:53    10:23      1:30 Punt                   WAS 12             3         5         0         5           0     WAS 17      Punt
+  4     2:35      0:05     2:30 Kickoff                WAS 33             9        67         0       67            4    *NYG 1       Touchdown
 
-  5    15:00     11:49     3:11  Kickoff                NE 29               8        24        15       39            2      SEA 32     Field Goal
-  6     9:29      6:53     2:36  Punt                   NE 6                3         5        -5         0           0      NE 6       Punt
+  5    15:00    12:24      2:36 Kickoff                WAS 21             3       -12        -3       -15           0     WAS 6       Punt
+  6    10:22      6:56     3:26 Kickoff                WAS 23             6        77         0       77            3     NYG 31      Touchdown
+  7     4:06      2:32     1:34 Fumble                 WAS 20             3         3         0         3           0     WAS 23      Punt
 
-  7     3:13     14:12     4:01  Kickoff                NE 32               6        38       -15       23            2      SEA 45     Interception
-  8    11:28      9:20     2:08  Kickoff                NE 14               5         8         0         8           1      NE 22      Interception
-  9     5:50      0:21     5:29  Kickoff                NE 27             15         72       -15       57            4    * SEA 16     Interception
+  8    14:07      9:04     5:03 Punt                   WAS 20            10        49         0       49            3     NYG 31      Downs
+  9     8:13      5:27     2:46 Kickoff                WAS 40             7        36         0       36            3     NYG 24      Interception
+ 10     3:16      2:15     1:01 Punt                   WAS 37             4         8         0         8           0     WAS 45      Interception
+ 11     1:46      0:57     0:49 Punt                   WAS 29             3        38        33       71            2     NYG 32      Touchdown
+ 12     0:25      0:00     0:25 Interception           WAS 11             3        -2        15       13            1     WAS 25      End of Game
 
 
-                                        (167) Average NE 19
+                                       (277) Average WAS 23
 
-   Seattle Seahawks
+   New York Giants
 
- #     Time      Time     Time   How Ball               Drive              #       Yds       Yds       Net         1st       Last       How Given
-       Recd       Lost    Poss   Obtained               Began           Play      Gain       Pen       Yds      Down         Scrm       Up
+ #     Time     Time     Time   How Ball               Drive             #       Yds       Yds       Net         1st      Last        How Given
+       Recd      Lost     Poss  Obtained               Began          Play      Gain       Pen       Yds      Down        Scrm        Up
 
-  1    15:00     11:42     3:18  Kickoff                SEA 24              5        30        -5       25            2      SEA 49     Punt
-  2     7:29      4:35     2:54  Punt                   SEA 10              5        20         0       20            1      SEA 30     Punt
+  1    15:00    11:18      3:42 Kickoff                NYG 25             7        38        -5       33            2     WAS 42      Punt
+  2     7:33      4:04     3:29 Punt                   NYG 42             7        43         0       43            1    *WAS 15      Missed FG
 
-  3     1:22     14:48     1:34  Punt                   SEA 14              4        17         0       17            1      SEA 31     Punt
-  4     9:11      4:39     4:32  Kickoff                SEA 30              5        34       -14       20            1      50         Punt
-  5     0:50      0:00     0:50  Punt                   SEA 7               6        19         0       19            1      SEA 22     End of Half
+  3    14:07    11:53      2:14 Kickoff                NYG 22             4         3         0         3           1     NYG 25      Punt
+  4    10:23      2:35     7:48 Punt                   NYG 28            16        68         4       72            8    *WAS 1       Touchdown
+  5     0:05      0:00     0:05 Kickoff                NYG 35             1        -1         0        -1           0     NYG 35      End of Half
 
-  6    11:49      9:29     2:20  Kickoff                SEA 29              4        14         5       19            1      SEA 48     Punt
-  7     6:53      3:13     3:40  Punt                   NE 43               7        36        -5       31            1    * NE 12      Field Goal
+  6    12:24    10:22      2:02 Punt                   NYG 45             5        55         0       55            3    *WAS 13      Touchdown
+  7     6:56      4:06     2:50 Kickoff                NYG 27             5        53         0       53            2    *WAS 19      Fumble
 
-  8    14:12     11:28     2:44  Interception           SEA 33              5        67         0       67            2      NE 45      Touchdown
-  9     9:20      5:50     3:30  Interception           NE 47               8        49       -10       39            3    * NE 8       Field Goal
- 10     0:21      0:00     0:21  Interception           SEA 20              1        -1         0        -1           0      SEA 20     End of Game
+  8     2:32    14:07      3:25 Punt                   NYG 23             7        36        -5       31            2     WAS 46      Punt
+  9     9:04      8:13     0:51 Downs                  NYG 31             3        69         0       69            1     NYG 34      Touchdown
+ 10     5:27      3:16     2:11 Interception           NYG 2              3         9        -4         5           0     NYG 7       Punt
+ 11     2:15      1:46     0:29 Interception           WAS 46             3         5         0         5           0     WAS 41      Punt
+ 12     0:57      0:25     0:32 Kickoff                NYG 31             4        21         0       21            1     WAS 48      Interception
 
-                                        (277) Average SEA 28
+                                       (365) Average NYG 30
 
 *  inside opponent's 20
 
-Time of Possession by Quarter                                                                     1st        2nd          3rd         4th        OT         Total
-Visitor    New England Patriots                                                                  7:26        9:26         9:00        8:25                   34:17
-Home       Seattle Seahawks                                                                      7:34        5:34         6:00        6:35                   25:43
+Time of Possession by Quarter                                                                   1st        2nd          3rd        4th        OT         Total
+Visitor    Washington Commanders                                                               7:49        4:53         7:36     10:04                    30:22
+Home       New York Giants                                                                     7:11      10:07          7:24       4:56                   29:38
 
-Kickoff Drive No.-Start Average                                                               Patriots: 4 - NE 26             Seahawks: 3 - SEA 28
-                                                        New England Patriots vs Seattle Seahawks
-                                                                  9/9/2026 at Lumen Field
+Kickoff Drive No.-Start Average                                                      Commanders: 4 - WAS 29                    Giants: 5 - NYG 28
+                                                       Washington Commanders vs New York Giants
+                                                               11/12/2026 at MetLife Stadium
                                                     Final Defensive Statistics
-New England Patriots                               Regular Defensive Plays                                   Special Teams                       Misc
+Washington Commanders                              Regular Defensive Plays                                   Special Teams                       Misc
 
-                              TKL    AST    COMB        SK    / YDS   TFL   Q    IN   PD    FF   FR     TKL     AST     FF   FR    BL    TKL     AST    FF   FR
-R.Spillane                       7       1        8       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-C.Woodson                        5       0        5       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-K.Byard                          2       3        5       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-M.Jones                          3       1        4       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-C.Elliss                         3       1        4       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-G.Jacas                          3       0        3       1        7      2   1    0     0    0    0        0       0     0     0     0      0       0   0     0
-C.Davis                          2       1        3       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-M.Williams                       2       1        3       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-C.Gonzalez                       2       0        2       0        0      0   0    0     2    0    0        0       0     0     0     0      0       0   0     0
-D.Pettus                         2       0        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-D.Jones                          1       1        2       1        5      1   4    0     0    0    0        0       0     0     0     0      0       0   0     0
-C.Durden                         0       2        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0   0     0
-C.Barmore                        1       0        1       0        0      0   1    0     0    0    0        0       0     0     0     0      0       0   0     0
-E.Ponder                         0       1        1       0        0      0   0    0     0    0    0        0       1     0     0     0      0       0   0     0
-N.Obiazor                        0       0        0       0        0      0   0    0     0    0    0        2       1     0     0     0      0       0   0     0
-C.Woods                          0       0        0       0        0      0   0    0     0    0    0        1       0     0     0     0      0       0   0     0
-J.Wilson                         0       0        0       0        0      0   0    0     0    0    0        0       0     0     0     0      1       0   0     0
-D.Douglas                        0       0        0       0        0      0   0    0     0    0    0        0       0     0     0     0      1       0   0     0
-Total                           33     12       45        2      12      3   6     0     2   0     0        3       2     0    0     0       2      0    0     0
+                              TKL    AST    COMB        SK    / YDS   TFL   Q    IN   PD    FF   FR     TKL     AST     FF   FR    BL     TKL    AST    FF   FR
+S.Styles                         5       8       13       0        0      1   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+J.Reaves                         7       2        9       0        0      0   1    0     1    0    1        0       0     0     0     0      0       0    0    0
+F.Luvu                           2       4        6       0        0      0   0    0     0    1    0        0       0     0     0     0      0       0    0    0
+N.Cross                          1       5        6       0        0      0   1    0     0    0    0        0       0     0     0     0      0       0    0    0
+A.Robertson                      4       1        5       0        0      2   0    0     1    0    0        0       0     0     0     0      0       0    0    0
+Q.Martin                         1       4        5       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+O.Oweh                           3       1        4       1       10      1   1    0     0    0    0        0       0     0     0     0      0       0    0    0
+T.Amos                           2       2        4       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+P.Butler                         1       3        4       0        0      0   0    0     1    1    0        1       0     0     0     0      0       0    0    0
+S.Tuttle                         1       2        3       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+K.Chaisson                       1       1        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+T.Settle                         0       2        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+D.Wise                           0       2        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+C.Omenihu                        0       1        1       0        0      0   2    0     0    0    0        0       0     0     0     0      0       0    0    0
+J.Newton                         0       1        1       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+D.Armstrong                      0       0        0       0        0      0   1    0     0    0    0        0       0     0     0     0      0       0    0    0
+R.Douglas                        0       0        0       0        0      0   0    1     1    0    0        0       0     0     0     0      0       0    0    0
+K.Medrano                        0       0        0       0        0      0   0    0     0    0    0        1       1     1     0     0      0       0    0    0
+T.Owens                          0       0        0       0        0      0   0    0     0    0    0        1       1     0     0     0      0       0    0    0
+A.Kaho                           0       0        0       0        0      0   0    0     0    0    0        0       1     0     0     0      0       0    0    0
+J.Josephs                        0       0        0       0        0      0   0    0     0    0    0        0       1     0     0     0      0       0    0    0
+C.Okonkwo                        0       0        0       0        0      0   0    0     0    0    0        0       0     0     0     0      1       0    0    0
+Total                           28     39       67        1       10     4   6     1     4   2     1        3       4     1    0     0       1      0    0     0
 
 
 TKL = Tackle AST = Assist COMB = Combined QH=QB Hit IN = Interception PD = Pass Defense FF = Forced Fumble FR = Fumble Recovery
 
-Seattle Seahawks                                   Regular Defensive Plays                                   Special Teams                       Misc
+New York Giants                                    Regular Defensive Plays                                   Special Teams                       Misc
                               TKL    AST    COMB        SK    / YDS   TFL   QH   IN   PD    FF   FR     TKL     AST     FF    FR    BL    TKL    AST    FF   FR
- E.Jones                          8      5       13        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- D.Thomas                         3      6        9        1       2      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
- N.Pritchett                      5      1        6        0       0      0   0    1     2    0     0       0       0     0     0     0      0       0    0    0
- J.Jobe                           5      1        6        0       0      1   0    1     1    0     0       0       0     0     0     0      0       0    0    0
- J.Love                           4      2        6        0       0      2   0    1     1    0     0       0       0     0     0     0      0       0    0    0
- U.Nwosu                          4      1        5        0       0      1   0    0     1    0     0       0       0     0     0     0      0       0    0    0
- D.Witherspoon                    0      5        5        0       0      0   1    0     0    0     0       0       0     0     0     0      0       0    0    0
- L.Williams                       3      1        4        1       1      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
- R.Thomas                         3      1        4        0       0      0   0    0     1    0     0       0       0     0     0     0      0       0    0    0
- D.Lawrence                       1      2        3        0       0      0   1    0     0    0     0       0       0     0     0     0      0       0    0    0
- B.Murphy                         2      0        2        0       0      1   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- R.Mills                          2      0        2        0       0      1   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- D.Hall                           1      1        2        1       7      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
- J.Reed                           1      0        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- C.Surratt                        0      0        0        0       0      0   0    0     0    0     0       1       1     0     0     0      0       0    0    0
- M.Foster                         0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
- P.O'Connell                      0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
- C.O'Toole                        0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
- B.Russell                        0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
-Total                           42     26        68       3       10      9   5    3     6    0    0        2       4     0     0     0      0       0   0     0
-                                                            New England Patriots vs Seattle Seahawks
-                                                                      9/9/2026 at Lumen Field
-                                                            First Half Summary
+ A.Reese                          4      9       13        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ M.McFadden                       5      5       10        0       0      1   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ K.Thibodeaux                     5      3        8        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ A.Washington                     4      2        6        0       0      0   0    1     2    0     0       1       0     0     0     0      0       0    0    0
+ A.Phillips                       4      2        6        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ S.Harris                         3      1        4        1      14      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
+ G.Newsome                        3      1        4        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Banks                          2      1        3        0       0      1   0    0     1    0     0       0       0     0     0     0      0       0    0    0
+ A.Carter                         1      2        3        0       0      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
+ J.Holland                        1      2        3        0       0      0   0    1     1    0     0       0       0     0     0     0      0       0    0    0
+ B.Jamison-Travis                 1      1        2        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ J.Pinnock                        1      0        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Reader                         1      0        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Smoot                          0      1        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Alexander                      0      1        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ E.Campbell                       0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
+ T.Ford                           0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
+ Z.Barnes                         0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
+ T.Nubin                          0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
+ T.Johnson                        0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
+ C.Martin                         0      0        0        0       0      0   0    0     0    0     0       0       0     0     1     0      0       0    0    0
+ M.Nabers                         0      0        0        0       0      0   0    0     0    0     0       0       0     0     0     0      1       0    0    0
+ I.Likely                         0      0        0        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    1
+Total                           35     31        66       1       14      4   2    2     4    0    0        4       2     0     1     0      1       0    0    1
+                                                          Washington Commanders vs New York Giants
+                                                                  11/12/2026 at MetLife Stadium
+                                                           First Half Summary
                                PERIOD SCORES                                                         TIME OF POSSESSION
- Patriots                              0  7 = 7                             Patriots                        16:52
- Seahawks                              0  0 = 0                             Seahawks                        13:08
+ Commanders                            0  10 = 10                          Commanders                       12:42
+ Giants                                0  7 = 7                            Giants                           17:18
                                                                              Scoring Plays
-Team            Qtr       Time    Play Description (Extra Point) (Drive Info)                                                                         Visitor   Home
-Patriots           2       9:11   E.Raridon 2 yd. pass from D.Maye (A.Borregales kick) (10-77, 5:37)                                                        7         0
+Team            Qtr       Time    Play Description (Extra Point) (Drive Info)                                                                        Visitor    Home
+Commanders         2      14:07   D.Stevens 46 yd. Field Goal (11-49, 4:57)                                                                                 3        0
+Giants             2       2:35   C.Skattebo 1 yd. run (D.Zvada kick) (16-72, 7:48)                                                                         3        7
+Commanders         2       0:05   B.Sinnott 1 yd. pass from J.Daniels (D.Stevens kick) (9-67, 2:30)                                                       10         7
 
-                                                                                                           New England Patriots                   Seattle Seahawks
- TOTAL FIRST DOWNS                                                                                                             10                                  6
-      First Downs Rushing-Passing-by Penalty                                                                             3 - 5 - 2                          4 - 2 - 0
- THIRD DOWN EFFICIENCY                                                                                                3-7-42.9%                          1-6-16.7%
- TOTAL NET YARDS                                                                                                             130                                120
-      Total Offensive Plays                                                                                                    31                                 25
- NET YARDS RUSHING                                                                                                             64                                 68
- NET YARDS PASSING                                                                                                             66                                 52
-      Gross Yards Passing                                                                                                      66                                 64
-      Times thrown-yards lost attempting to pass                                                                              0-0                               2-12
- Pass Attempts-Completions-Had Intercepted                                                                            12 - 10 - 0                          10 - 7 - 0
- Punts-Number and Average                                                                                                3 - 43.7                           4 - 45.3
- Penalties-Number and Yards                                                                                                 0 - 0                             6 - 68
- Fumbles-Number and Lost                                                                                                    0 - 0                               0 - 0
- Red Zone Efficiency                                                                                                   1-1-100%                              0-0-0%
- Average Drive Start                                                                                                       NE 15                            SEA 17
+                                                                                                      Washington Commanders                        New York Giants
+ TOTAL FIRST DOWNS                                                                                                              8                                12
+      First Downs Rushing-Passing-by Penalty                                                                             4 - 4 - 0                          8 - 3 - 1
+ THIRD DOWN EFFICIENCY                                                                                                3-6-50.0%                          3-7-42.9%
+ TOTAL NET YARDS                                                                                                             143                                151
+      Total Offensive Plays                                                                                                   28                                 34
+ NET YARDS RUSHING                                                                                                            31                                 69
+ NET YARDS PASSING                                                                                                           112                                 82
+      Gross Yards Passing                                                                                                    112                                 92
+      Times thrown-yards lost attempting to pass                                                                             0-0                               1-10
+ Pass Attempts-Completions-Had Intercepted                                                                            15 - 11 - 0                        19 - 12 - 0
+ Punts-Number and Average                                                                                                2 - 47.5                           2 - 49.0
+ Penalties-Number and Yards                                                                                                3 - 14                              1 - 5
+ Fumbles-Number and Lost                                                                                                    0 - 0                              0 - 0
+ Red Zone Efficiency                                                                                                   1-1-100%                            1-2-50%
+ Average Drive Start                                                                                                    WAS 19                              NYG 30
 
-                             New England Patriots                                                                   Seattle Seahawks
+                          Washington Commanders                                                                     New York Giants
 
-RUSHING                                     ATT      YDS     AVG        LG     TD     RUSHING                                     ATT     YDS      AVG        LG     TD
-D.Maye                                         5       36      7.2      16       0    J.Price                                        6       42      7.0      13       0
-R.Stevenson                                    9       18      2.0        6      0    G.Holani                                       6       23     3.8         9      0
-C.Kiner                                        5       10      2.0        7      0    E.Wilson                                       1        3     3.0         3      0
-Total                                         19       64      3.4      16       0    Total                                         13       68     5.2       13       0
+RUSHING                                     ATT      YDS     AVG        LG     TD     RUSHING                                    ATT      YDS      AVG       LG      TD
+R.White                                        6       20      3.3        7      0    C.Skattebo                                     8       35     4.4       14       1
+A.Ekeler                                       5        8      1.6        3      0    J.McCarthy                                     4       30     7.5       12       0
+J.Daniels                                      2        3      1.5        3      0    D.Singletary                                   1        3     3.0        3       0
+                                                                                      J.Winston                                      1        1     1.0        1       0
+Total                                         13       31      2.4        7      0    Total                                        14        69     4.9       14       1
 
-PASSING                     ATT    CMP      YDS    SK/YD    TD    LG   IN      RT     PASSING                     ATT    CMP     YDS     SK/YD    TD    LG   IN      RT
-D.Maye                        12      10      66      0/0     1    14    0  117.4     D.Lock                         8       6      51       1/7    0    21    0    91.1
-                                                                                      S.Darnold                      2       1      13       1/5    0    13    0    70.8
-Total                         12      10      66      0/0     1    14    0  117.4     Total                         10       7      64      2/12    0    21    0    87.1
+PASSING                     ATT    CMP      YDS    SK/YD    TD    LG   IN      RT     PASSING                     ATT    CMP     YDS    SK/YD     TD    LG   IN      RT
+J.Daniels                     15      11    112       0/0     1    30    0  116.5     J.McCarthy                    19      12     92      1/10     0   34     0   74.9
+Total                         15      11    112       0/0     1    30    0  116.5     Total                         19      12     92      1/10     0   34     0   74.9
 
-PASS RECEIVING                      TAR     REC      YDS     AVG        LG     TD     PASS RECEIVING                      TAR    REC       YDS     AVG       LG      TD
-A.Brown                                3       3       26      8.7      14       0    J.Smith-Njigba                         5       5       53    10.6       21       0
-D.Douglas                              3       2       10      5.0        5      0    B.Russell                              1       1        7      7.0       7       0
-L.Larison                              1       1       11    11.0       11       0    A.Barner                               1       1        4      4.0       4       0
-M.Hollins                              1       1        9      9.0        9      0    G.Holani                               1       0        0     0.0        0       0
-R.Stevenson                            1       1        5      5.0        5      0    C.Kupp                                 1       0        0     0.0        0       0
-H.Henry                                1       1        3      3.0        3      0    R.Shaheed                              1       0        0     0.0        0       0
-E.Raridon                              1       1        2      2.0       2       1
-Total                                 11      10       66      6.6      14       1    Total                                 10       7       64     9.1       21       0
+PASS RECEIVING                      TAR     REC      YDS     AVG        LG     TD     PASS RECEIVING                      TAR    REC      YDS      AVG       LG      TD
+B.Sinnott                              3       3       18      6.0      12       1    I.Likely                               7       5       39     7.8       11       0
+S.Diggs                                5       2       34    17.0       30       0    M.Nabers                               3       3        8     2.7        6       0
+T.Burks                                2       2       27    13.5       20       0    C.Skattebo                             3       2       37    18.5       34       0
+C.Okonkwo                              2       2       17      8.5      11       0    D.Mooney                               4       2        8     4.0        6       0
+A.Ekeler                               2       2       16      8.0        8      0
+R.White                                1       0        0      0.0        0      0
+Total                                 15      11      112    10.2       30       1    Total                                 17     12        92     7.7       34       0
 
-New England Patriots                                 Regular Defensive Plays                                  Special Teams                           Misc
+Washington Commanders                                Regular Defensive Plays                                  Special Teams                          Misc
 
-                               TKL    AST    COMB         SK    / YDS   TFL    Q    IN   PD    FF    FR     TKL     AST     FF    FR    BL    TKL     AST    FF    FR
-R.Spillane                         4      1         5       0         0     0   0     0     0    0     0        0       0     0     0     0       0       0    0     0
-C.Woodson                          3      0         3       0         0     0   0     0     0    0     0        0       0     0     0     0       0       0    0     0
-K.Byard                            1      2         3       0         0     0   0     0     0    0     0        0       0     0     0     0       0       0    0     0
-C.Gonzalez                         2      0         2       0         0     0   0     0     1    0     0        0       0     0     0     0       0       0    0     0
-Total                            10       3       13        0        0      0   0    0      1    0     0       0        0     0     0     0       0       0    0     0
-                                                      New England Patriots vs Seattle Seahawks
-                                                               9/9/2026 at Lumen Field
-                                                      First Half Summary
-Seattle Seahawks                                Regular Defensive Plays                               Special Teams                    Misc
-                            TKL   AST    COMB       SK   / YDS   TFL  QH   IN   PD    FF   FR    TKL     AST    FF   FR    BL   TKL    AST    FF   FR
-E.Jones                        3      4        7      0        0     0  0    0     0   0     0       0      0     0    0     0      0      0   0     0
-N.Pritchett                    4      1        5      0        0     0  0    0     0   0     0       0      0     0    0     0      0      0   0     0
-U.Nwosu                        4      0        4      0        0     1  0    0     0   0     0       0      0     0    0     0      0      0   0     0
-J.Jobe                         2      1        3      0        0     0  0    0     0   0     0       0      0     0    0     0      0      0   0     0
-Total                         13      6      19       0       0     1   0    0     0   0     0      0       0    0     0    0      0      0    0    0
-                                                                     New England Patriots vs Seattle Seahawks at Lumen Field
+                               TKL    AST    COMB         SK    / YDS   TFL    Q    IN   PD    FF   FR      TKL     AST     FF    FR    BL    TKL    AST     FF   FR
+J.Reaves                          4       1         5       0        0      0   0    0      0    0     0       0        0     0     0     0       0      0     0     0
+N.Cross                           1       4         5       0        0      0   1    0      0    0     0       0        0     0     0     0       0      0     0     0
+S.Styles                          1       4         5       0        0      0   0    0      0    0     0       0        0     0     0     0       0      0     0     0
+O.Oweh                            3       0         3       1       10      1   1    0      0    0     0       0        0     0     0     0       0      0     0     0
+Total                             9       9       18        1       10      1   2    0     0     0    0        0        0     0     0     0       0      0    0     0
+                                                    Washington Commanders vs New York Giants
+                                                           11/12/2026 at MetLife Stadium
+                                                     First Half Summary
+New York Giants                                Regular Defensive Plays                               Special Teams                    Misc
+                           TKL    AST   COMB        SK   / YDS   TFL  QH   IN   PD   FF   FR    TKL     AST    FF   FR    BL   TKL    AST   FF   FR
+A.Reese                        2      4       6       0       0     0   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+M.McFadden                     3      2       5       0       0     1   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+K.Thibodeaux                   3      2       5       0       0     0   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+S.Harris                       2      0       2       0       0     0   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+Total                        10      8       18       0       0     1   0   0     0   0     0      0       0     0    0    0      0      0    0    0
+                                                               Washington Commanders vs New York Giants at MetLife Stadium
 
-Play By Play                                                                        First Quarter                                                                                                     9/9/2026
-NE wins the coin toss and elects to defer. SEA elects to Receive, and NE elects to defend the south goal.
-A.Borregales kicks 63 yards from NE 35 to SEA 2. R.Shaheed to SEA 24 for 22 yards (N.Obiazor).
-Seattle Seahawks at 15:00, (1st play from scrimmage 14:55)
-    1-10-SEA 24            (14:55) J.Price right tackle to SEA 37 for 13 yards (K.Byard; E.Ponder).                                                                                                          R1
-    1-10-SEA 37            (14:17) S.Darnold pass short middle to J.Smith-Njigba to 50 for 13 yards (R.Spillane).                                                                                            P2
-    1-10-50                (13:32) PENALTY on SEA-E.Saubert, False Start, 5 yards, enforced at 50 - No Play.
-    1-15-SEA 45            (13:09) (Shotgun) G.Holani up the middle to NE 46 for 9 yards (C.Durden; R.Spillane).
-    2-6-NE 46              (12:30) (Shotgun) S.Darnold pass incomplete short right to R.Shaheed.
-    3-6-NE 46              (12:27) (Shotgun) S.Darnold sacked at SEA 49 for -5 yards (D.Jones). SEA-S.Darnold was injured during the play.
-    4-11-SEA 49            (11:49) M.Dickson punts 43 yards to NE 8, Center-C.Stoll, fair catch by M.Jones.
-Timeout at 11:42.
-New England Patriots at 11:42
-    1-10-NE 8              (11:42) R.Stevenson up the middle to NE 11 for 3 yards (D.Lawrence; D.Thomas).
-    2-7-NE 11              (11:07) D.Maye scrambles up the middle to NE 21 for 10 yards (E.Jones; D.Witherspoon).                                                                                            R1
-    1-10-NE 21             (10:26) (Shotgun) R.Stevenson left end pushed ob at NE 23 for 2 yards (J.Love).
-    2-8-NE 23              (9:53) R.Stevenson up the middle to NE 26 for 3 yards (N.Pritchett).
-    3-5-NE 26              (9:14) (Shotgun) D.Maye scrambles right end pushed ob at NE 27 for 1 yard (B.Murphy).
-                           PENALTY on SEA-D.Hall, Unnecessary Roughness, 15 yards, enforced at NE 27.                                                                                                       X2
-    1-10-NE 42             (8:58) R.Stevenson left end pushed ob at NE 48 for 6 yards (E.Jones).
-    2-4-NE 48              (8:25) (Shotgun) R.Stevenson left guard to NE 45 for -3 yards (U.Nwosu).
-    3-7-NE 45              (7:41) (Shotgun) D.Maye pass incomplete short right [D.Witherspoon].
-    4-7-NE 45              (7:35) M.Wishnowsky punts 45 yards to SEA 10, Center-J.Ashby, fair catch by R.Shaheed.
-Timeout at 07:29.
-Seattle Seahawks at 7:29
-    1-10-SEA 10            (7:29) (Shotgun) G.Holani left guard to SEA 14 for 4 yards (M.Jones).
-    2-6-SEA 14             (6:54) J.Price left tackle to SEA 21 for 7 yards (C.Woodson).                                                                                                                     R3
-    1-10-SEA 21            (6:22) D.Lock pass short right to J.Smith-Njigba pushed ob at SEA 29 for 8 yards (R.Spillane).
-    2-2-SEA 29             (6:02) (No Huddle) J.Price right end to SEA 29 for no gain (C.Davis; K.Byard). NE-C.Davis was injured during the play.
-                           ** Injury Update: SEA-S.Darnold return is Questionable.
-    3-2-SEA 29             (5:19) (Shotgun) G.Holani right guard to SEA 30 for 1 yard (R.Spillane).
-    4-1-SEA 30             (4:42) M.Dickson punts 50 yards to NE 20, Center-C.Stoll, out of bounds.
-Timeout at 04:35.
-New England Patriots at 4:35
-    1-10-NE 20             (4:35) (Shotgun) D.Maye pass short right to M.Hollins to NE 29 for 9 yards (E.Jones).
-    2-1-NE 29              (4:00) D.Maye up the middle to NE 32 for 3 yards (L.Williams).                                                                                                                    R3
-    1-10-NE 32             (3:24) (Shotgun) D.Maye pass short left to A.Brown ran ob at NE 39 for 7 yards (N.Pritchett).
-    2-3-NE 39              (2:48) R.Stevenson right tackle to NE 41 for 2 yards (L.Williams).
-    3-1-NE 41              (2:12) R.Stevenson right guard to NE 40 for -1 yards (J.Love).
-    4-2-NE 40              (1:28) M.Wishnowsky punts 46 yards to SEA 14, Center-J.Ashby, fair catch by R.Shaheed.
-Timeout at 01:22.
-Seattle Seahawks at 1:22
-    1-10-SEA 14            (1:22) J.Price right end pushed ob at SEA 26 for 12 yards (C.Gonzalez). ** Injury Update: NE-C.Davis has returned to the game.                                                    R4
-    1-10-SEA 26            (:49) J.Price right end to SEA 28 for 2 yards (C.Elliss; M.Williams).
-    2-8-SEA 28             (:08) E.Wilson left guard to SEA 31 for 3 yards (R.Spillane).
-END OF QUARTER                                                   Time            First Downs                       Efficiencies
-                                                    Score        Poss         R      P      X       T        3 Down          4 Down
-New England Patriots                                      0        7:26       2       0      1      3           0/3             0/0
-Seattle Seahawks                                          0        7:34       3       1      0      4           0/2             0/0
-                                                                     New England Patriots vs Seattle Seahawks at Lumen Field
+Play By Play                                                                      First Quarter                                                                                                11/12/2026
+NYG wins toss, elects to Receive, and WAS elects to defend the North goal.
+D.Stevens kicks 64 yards from WAS 35 to NYG 1. G.Desrosiers to NYG 25 for 24 yards (K.Medrano; A.Kaho).
+New York Giants at 15:00, (1st play from scrimmage 14:52)
+    1-10-NYG 25            (14:52) (Shotgun) J.McCarthy pass short left to C.Skattebo to NYG 28 for 3 yards (A.Robertson).
+    2-7-NYG 28             (14:13) (Shotgun) C.Skattebo right guard to NYG 37 for 9 yards (S.Styles; F.Luvu).                                                                                            R1
+    1-10-NYG 37            (13:34) (Shotgun) J.McCarthy pass short middle to I.Likely to NYG 46 for 9 yards (S.Styles; J.Reaves).
+    2-1-NYG 46             (12:55) (Shotgun) C.Skattebo left guard to WAS 40 for 14 yards (N.Cross).                                                                                                     R2
+    1-10-WAS 40            (12:15) (Shotgun) D.Singletary left tackle to WAS 37 for 3 yards (K.Chaisson; C.Omenihu).
+    2-7-WAS 37             (11:38) (Shotgun) J.McCarthy pass incomplete short left [C.Omenihu].
+    3-7-WAS 37             (11:33) (Shotgun) J.McCarthy pass incomplete short right to I.Likely.
+    4-7-WAS 37             (11:28) (Shotgun) PENALTY on NYG, Delay of Game, 5 yards, enforced at WAS 37 - No Play.
+    4-12-WAS 42            (11:28) J.Stout punts 34 yards to WAS 8, Center-B.Mann, downed by NYG-E.Campbell.
+Timeout at 11:18.
+Washington Commanders at 11:18
+    1-10-WAS 8             (11:18) (Shotgun) R.White left tackle to WAS 10 for 2 yards (A.Reese).
+    2-8-WAS 10             (10:36) (Shotgun) J.Daniels pass short left to T.Burks ran ob at WAS 17 for 7 yards (D.Banks).
+    3-1-WAS 17             (10:07) (Shotgun) R.White left tackle to WAS 18 for 1 yard (B.Jamison-Travis).                                                                                                R1
+    1-10-WAS 18            (9:33) R.White right tackle to WAS 21 for 3 yards (S.Harris).
+    2-7-WAS 21             (8:50) (Shotgun) PENALTY on WAS-B.Coleman, False Start, 5 yards, enforced at WAS 21 - No Play.
+    2-12-WAS 16            (8:28) (Shotgun) J.Daniels pass short right to S.Diggs to WAS 20 for 4 yards (A.Washington).
+    3-8-WAS 20             (7:45) (Shotgun) J.Daniels pass incomplete short left to R.White.
+    4-8-WAS 20             (7:41) T.Way punts 40 yards to NYG 40, Center-T.Ott. C.Jones to NYG 42 for 2 yards (T.Owens).
+Timeout at 07:33.
+New York Giants at 7:33
+    1-10-NYG 42            (7:33) (Shotgun) J.McCarthy pass short left to M.Nabers to NYG 39 for -3 yards (A.Robertson).
+    2-13-NYG 39            (6:53) (Shotgun) J.McCarthy pass short left to I.Likely to NYG 45 for 6 yards (S.Styles; T.Amos).
+    3-7-NYG 45             (6:15) (Shotgun) J.McCarthy pass short left to C.Skattebo pushed ob at WAS 21 for 34 yards (Q.Martin) [D.Armstrong].                                                           P3
+    1-10-WAS 21            (5:34) (Shotgun) J.McCarthy pass short right to M.Nabers to WAS 15 for 6 yards (N.Cross; S.Styles).
+    2-4-WAS 15             (4:54) C.Skattebo up the middle to WAS 15 for no gain (N.Cross; S.Tuttle).
+    3-4-WAS 15             (4:12) (Shotgun) J.McCarthy pass incomplete short right to C.Skattebo.
+    4-4-WAS 15             (4:08) D.Zvada 33 yard field goal is No Good, Wide Left, Center-B.Mann, Holder-J.Stout.
+Timeout at 04:04.
+Washington Commanders at 4:04
+    1-10-WAS 23            (4:04) (Shotgun) J.Daniels pass short middle to A.Ekeler to WAS 31 for 8 yards (M.McFadden).
+    2-2-WAS 31             (3:28) (Shotgun) A.Ekeler left tackle to WAS 34 for 3 yards (S.Harris).                                                                                                       R2
+    1-10-WAS 34            (3:09) (No Huddle, Shotgun) J.Daniels pass short right to C.Okonkwo to WAS 40 for 6 yards (J.Holland).
+    2-4-WAS 40             (2:43) (No Huddle, Shotgun) J.Daniels scrambles right end to WAS 43 for 3 yards (K.Thibodeaux; A.Reese).
+    3-1-WAS 43             (2:14) (No Huddle, Shotgun) A.Ekeler right guard to WAS 45 for 2 yards (G.Newsome; A.Reese).                                                                                  R3
+    1-10-WAS 45            (1:50) (No Huddle, Shotgun) A.Ekeler left tackle to WAS 47 for 2 yards (A.Reese; A.Phillips).
+    2-8-WAS 47             (1:25) (No Huddle, Shotgun) J.Daniels pass deep right to T.Burks ran ob at NYG 33 for 20 yards.                                                                                P4
+    1-10-NYG 33            (:44) PENALTY on WAS-J.Bates, False Start, 5 yards, enforced at NYG 33 - No Play.
+    1-15-NYG 38            (:22) (Shotgun) J.Daniels pass short right to C.Okonkwo pushed ob at NYG 27 for 11 yards (G.Newsome).
+END OF QUARTER                                                  Time           First Downs                       Efficiencies
+                                                    Score       Poss         R      P      X      T         3 Down         4 Down
+Washington Commanders                                    0        7:49       3      1       0      4          2/3             0/0
+New York Giants                                          0        7:11       2      1       0      3          1/3             0/0
+                                                               Washington Commanders vs New York Giants at MetLife Stadium
 
-Play By Play                                                                     Second Quarter                                                                                                       9/9/2026
-Seattle Seahawks continued.
-    3-5-SEA 31             (15:00) (Shotgun) D.Lock pass incomplete deep left to C.Kupp (C.Gonzalez).
-    4-5-SEA 31             (14:55) M.Dickson punts 46 yards to NE 23, Center-C.Stoll, fair catch by M.Jones.
-New England Patriots at 14:48
-    1-10-NE 23             (14:48) C.Kiner right guard to NE 30 for 7 yards (R.Mills).
-    2-3-NE 30              (14:09) C.Kiner right guard to NE 29 for -1 yards (R.Mills).
-    3-4-NE 29              (13:28) (Shotgun) D.Maye pass short left to D.Douglas ran ob at NE 34 for 5 yards.                                                                                                P4
-    1-10-NE 34             (13:00) D.Maye pass short left to L.Larison to NE 45 for 11 yards (J.Jobe).                                                                                                       P5
-    1-10-NE 45             (12:21) C.Kiner up the middle to NE 45 for no gain (U.Nwosu).
-    2-10-NE 45             (11:47) (Shotgun) D.Maye scrambles right end ran ob at SEA 49 for 6 yards (N.Pritchett).
-    3-4-SEA 49             (11:08) (Shotgun) D.Maye pass short right to A.Brown to SEA 44 for 5 yards (J.Jobe).                                                                                              P6
-    1-10-SEA 44            (10:31) C.Kiner right tackle to SEA 41 for 3 yards (D.Lawrence; J.Love).
-    2-7-SEA 41             (9:54) (Shotgun) D.Maye pass short left to D.Douglas pushed ob at SEA 36 for 5 yards (E.Jones; N.Pritchett).
-    3-2-SEA 36             (9:22) D.Maye pass incomplete deep left to A.Brown (J.Jobe).
-                           PENALTY on SEA-J.Jobe, Defensive Pass Interference, 34 yards, enforced at SEA 36 - No Play.                                                                                      X7
-    1-2-SEA 2              (9:14) G.Van Roten reported in as eligible.  D.Maye pass short left to E.Raridon for 2 yards, TOUCHDOWN.                                                                          P8
-                           A.Borregales extra point is GOOD, Center-J.Ashby, Holder-M.Wishnowsky.
-Timeout at 09:11.
-                                                          NE 7 SEA 0,  10 plays, 77 yards, 1 penalty,  5:37 drive,  5:49 elapsed
-A.Borregales kicks 63 yards from NE 35 to SEA 2. R.Shaheed to SEA 30 for 28 yards (C.Woods).
-Seattle Seahawks at 9:11, (1st play from scrimmage 9:06)
-    1-10-SEA 30            (9:06) D.Lock pass short left to B.Russell to SEA 37 for 7 yards (D.Pettus).
-    2-3-SEA 37             (8:25) J.Price right end to SEA 45 for 8 yards (K.Byard).                                                                                                                         R5
-    1-10-SEA 45            (7:42) D.Lock sacked at SEA 38 for -7 yards (G.Jacas).
-    2-17-SEA 38            (6:54) (Shotgun) PENALTY on SEA-A.Lucas, False Start, 5 yards, enforced at SEA 38 - No Play.
-    2-22-SEA 33            (6:45) (Shotgun) D.Lock pass short right to J.Smith-Njigba to SEA 38 for 5 yards (C.Durden; M.Jones).
-    3-17-SEA 38            (6:02) (Shotgun) PENALTY on SEA-A.Barner, False Start, 5 yards, enforced at SEA 38 - No Play.
-    3-22-SEA 33            (5:39) (Shotgun) D.Lock pass deep middle to J.Smith-Njigba to NE 46 for 21 yards (C.Woodson).
-    4-1-NE 46              (4:54) Direct snap to A.Barner.  A.Barner up the middle to NE 45 for 1 yard (D.Jones; E.Ponder).
-                           PENALTY on SEA-A.Bradford, Offensive Offside, 4 yards, enforced at NE 46 - No Play.
-    4-5-50                 (4:45) M.Dickson punts 42 yards to NE 8, Center-C.Stoll, out of bounds.
-Timeout at 04:39.
-New England Patriots at 4:39
-    1-10-NE 8              (4:39) R.Stevenson left tackle to NE 12 for 4 yards (U.Nwosu).
-    2-6-NE 12              (4:02) (Shotgun) D.Maye pass short middle to H.Henry to NE 15 for 3 yards (U.Nwosu).
-    3-3-NE 15              (3:18) (Shotgun) D.Maye pass short left to A.Brown to NE 29 for 14 yards (N.Pritchett).                                                                                           P9
-    1-10-NE 29             (2:45) C.Kiner left tackle to NE 30 for 1 yard (E.Jones; D.Thomas).
+Play By Play                                                                   Second Quarter                                                                                                  11/12/2026
+Washington Commanders continued.
+                           ** Injury Update: NYG-K.Thibodeaux return is Questionable.
+    2-4-NYG 27             (15:00) A.Ekeler right end to NYG 28 for -1 yards (M.McFadden).
+    3-5-NYG 28             (14:18) (Shotgun) J.Daniels pass short left to T.Burks to NYG 14 for 14 yards (D.Smoot).
+                           New York Giants challenged the pass completion ruling, and the play was REVERSED.
+                           (Shotgun) J.Daniels pass incomplete short left to S.Diggs (D.Banks). ** Injury Update: NYG-K.Thibodeaux has returned to the game.
+    4-5-NYG 28             (14:12) D.Stevens 46 yard field goal is GOOD, Center-T.Ott, Holder-T.Way.
+Timeout at 14:07.
+                                                              WAS 3 NYG 0,  11 plays, 49 yards,  4:57 drive,  0:53 elapsed
+D.Stevens kicks 65 yards from WAS 35 to NYG 0. D.Singletary to NYG 22 for 22 yards (P.Butler).
+New York Giants at 14:07, (1st play from scrimmage 14:02)
+    1-10-NYG 22            (14:02) (Shotgun) J.McCarthy scrambles up the middle to NYG 34 for 12 yards (J.Reaves).                                                                                       R4
+    1-10-NYG 34            (13:22) (Shotgun) C.Skattebo up the middle to NYG 35 for 1 yard (O.Oweh).
+    2-9-NYG 35             (12:44) (Shotgun) J.McCarthy pass incomplete short left to D.Mooney (A.Robertson).
+    3-9-NYG 35             (12:39) (Shotgun) J.McCarthy sacked at NYG 25 for -10 yards (O.Oweh).
+    4-19-NYG 25            (12:04) J.Stout punts 64 yards to WAS 11, Center-B.Mann. L.McCaffrey to WAS 12 for 1 yard (E.Campbell).
+Washington Commanders at 11:53
+    1-10-WAS 12            (11:53) (Shotgun) J.Daniels pass short right to B.Sinnott pushed ob at WAS 17 for 5 yards (J.Pinnock).
+    2-5-WAS 17             (11:22) R.White left tackle to WAS 17 for no gain (M.McFadden; D.Smoot).
+    3-5-WAS 17             (10:40) (Shotgun) J.Daniels pass incomplete short right to S.Diggs.
+    4-5-WAS 17             (10:36) T.Way punts 55 yards to NYG 28, Center-T.Ott, downed by WAS-A.Kaho.
+Timeout at 10:23.
+                           ** Injury Update: WAS-C.Okonkwo return is Questionable.
+New York Giants at 10:23
+    1-10-NYG 28            (10:23) J.McCarthy pass incomplete short right [N.Cross].
+    2-10-NYG 28            (10:17) (Shotgun) J.McCarthy pass short middle to I.Likely to NYG 33 for 5 yards (J.Reaves).
+    3-5-NYG 33             (9:38) (Shotgun) J.McCarthy pass short middle to D.Mooney to NYG 39 for 6 yards (N.Cross; A.Robertson) [C.Omenihu].                                                           P5
+    1-10-NYG 39            (8:51) J.McCarthy pass short middle to I.Likely to 50 for 11 yards (F.Luvu; Q.Martin).                                                                                        P6
+    1-10-50                (8:13) (Shotgun) J.McCarthy pass incomplete short left to I.Likely.
+    2-10-50                (8:10) (Shotgun) J.McCarthy scrambles left end pushed ob at WAS 39 for 11 yards (S.Tuttle).                                                                                   R7
+    1-10-WAS 39            (7:43) (No Huddle, Shotgun) C.Skattebo up the middle to WAS 37 for 2 yards (S.Styles).
+    2-8-WAS 37             (7:18) (No Huddle, Shotgun) J.McCarthy pass short left to D.Mooney pushed ob at WAS 35 for 2 yards (T.Amos).
+    3-6-WAS 35             (6:43) (Shotgun) J.McCarthy pass short middle to M.Nabers to WAS 30 for 5 yards (J.Reaves).
+    4-1-WAS 30             (5:57) J.Winston left guard to WAS 29 for 1 yard (K.Chaisson).                                                                                                                R8
+    1-10-WAS 29            (5:18) (Shotgun) J.McCarthy left end to WAS 21 for 8 yards (J.Reaves).
+    2-2-WAS 21             (4:47) (No Huddle, Shotgun) J.McCarthy pass incomplete short right to D.Mooney.
+    3-2-WAS 21             (4:43) (Shotgun) C.Skattebo right tackle to WAS 18 for 3 yards (O.Oweh).                                                                                                      R9
+    1-10-WAS 18            (4:00) (Shotgun) J.McCarthy pass short middle to I.Likely to WAS 10 for 8 yards (Q.Martin; F.Luvu).
+    2-2-WAS 10             (3:20) C.Skattebo up the middle to WAS 5 for 5 yards (T.Amos; N.Cross).                                                                                                     R10
+                           Timeout #1 by NYG at 02:44.
+    1-5-WAS 5              (2:44) J.McCarthy pass incomplete short left to I.Likely (J.Reaves).
+                           PENALTY on WAS-J.Reaves, Defensive Pass Interference, 4 yards, enforced at WAS 5 - No Play.                                                                                 X11
+    1-1-WAS 1              (2:40) A.Stinnie reported in as eligible.  C.Skattebo right guard for 1 yard, TOUCHDOWN.                                                                                    R12
+                           D.Zvada extra point is GOOD, Center-B.Mann, Holder-J.Stout.
+Timeout at 02:35.
+                                                       WAS 3 NYG 7,  16 plays, 72 yards, 1 penalty,  7:48 drive, 12:25 elapsed
+D.Zvada kicks 57 yards from NYG 35 to WAS 8. L.McCaffrey to WAS 33 for 25 yards (A.Washington).
+Washington Commanders at 2:35, (1st play from scrimmage 2:28)
+    1-10-WAS 33            (2:28) J.Daniels pass short left to A.Ekeler to WAS 41 for 8 yards (A.Reese; M.McFadden).
 Two-Minute Warning
-    2-9-NE 30              (2:00) (Shotgun) D.Maye scrambles left tackle ran ob at NE 46 for 16 yards (E.Jones).                                                                                           R10
-    1-10-NE 46             (1:52) (Shotgun) D.Maye pass incomplete deep right to D.Douglas [D.Thomas].
-    2-10-NE 46             (1:46) (Shotgun) D.Maye pass short left to R.Stevenson to SEA 49 for 5 yards (D.Thomas; J.Jobe).
-    3-5-SEA 49             (1:03) (Shotgun) R.Stevenson left guard to SEA 47 for 2 yards (E.Jones; L.Williams).
-                           Timeout #1 by SEA at 00:57.
-    4-3-SEA 47             (:57) M.Wishnowsky punts 40 yards to SEA 7, Center-J.Ashby, fair catch by R.Shaheed.
-Timeout at 00:50.
-Seattle Seahawks at 0:50
-    1-10-SEA 7             (:50) (Shotgun) G.Holani right tackle to SEA 11 for 4 yards (C.Woodson).
-                           Timeout #1 by NE at 00:45.
-                           ** Injury Update: SEA-S.Darnold is Out of the game.
-    2-6-SEA 11             (:45) G.Holani right end to SEA 12 for 1 yard (C.Davis).
-                                                                   New England Patriots vs Seattle Seahawks at Lumen Field
-                          Timeout #2 by NE at 00:39.
-    3-5-SEA 12            (:39) (Shotgun) D.Lock pass short right to J.Smith-Njigba to SEA 18 for 6 yards (C.Elliss).                                                                                   P6
-                          Timeout #2 by SEA at 00:33.
-    1-10-SEA 18           (:33) (Shotgun) D.Lock pass short left to A.Barner to SEA 22 for 4 yards (C.Gonzalez).
-                          Timeout #3 by SEA at 00:24.
-    2-6-SEA 22            (:24) (Shotgun) D.Lock pass incomplete short right to G.Holani.  The penalty was assisted by replay.
-    3-6-SEA 22            (:17) (Shotgun) G.Holani left guard to SEA 26 for 4 yards (C.Barmore).
-END OF QUARTER                                                 Time            First Downs                      Efficiencies
-                                                   Score        Poss        R       P     X       T        3 Down         4 Down
-New England Patriots                                     7        9:26       1      5      1      7           3/4            0/0
-Seattle Seahawks                                         0        5:34       1      1      0      2           1/4            0/0
-                                                                     New England Patriots vs Seattle Seahawks at Lumen Field
+    2-2-WAS 41             (2:00) (Shotgun) J.Daniels pass deep right to S.Diggs pushed ob at NYG 29 for 30 yards (K.Thibodeaux).                                                                        P5
+                                                              Washington Commanders vs New York Giants at MetLife Stadium
+   1-10-NYG 29            (1:49) (Shotgun) A.Ekeler left tackle to NYG 27 for 2 yards (K.Thibodeaux).
+   2-8-NYG 27             (1:16) (Shotgun) J.Daniels pass short middle to B.Sinnott pushed ob at NYG 15 for 12 yards (M.McFadden).                                                                    P6
+                          The Replay Official reviewed the runner was out of bounds ruling, and the play was REVERSED.
+                          (Shotgun) J.Daniels pass short middle to B.Sinnott to NYG 15 for 12 yards (M.McFadden).
+                          Timeout #2 by NYG at 01:11.  10-second runoff avoided.
+   1-10-NYG 15            (1:11) R.White left guard to NYG 8 for 7 yards (A.Reese).
+                          Timeout #3 by NYG at 01:06.
+   2-3-NYG 8              (1:06) R.White right tackle to NYG 1 for 7 yards (K.Thibodeaux).                                                                                                            R7
+                          Timeout #1 by WAS at 00:19.
+   1-1-NYG 1              (:19) (Shotgun) J.Daniels right end to NYG 1 for no gain (D.Reader, K.Thibodeaux).
+                          Timeout #2 by WAS at 00:12.
+   2-1-NYG 1              (:12) (Shotgun) J.Daniels pass incomplete short left to S.Diggs.
+   3-1-NYG 1              (:09) (Shotgun) J.Daniels pass short middle to B.Sinnott for 1 yard, TOUCHDOWN [A.Carter].                                                                                  P8
+                          D.Stevens extra point is GOOD, Center-T.Ott, Holder-T.Way.
+                                                            WAS 10 NYG 7,  9 plays, 67 yards,  2:30 drive, 14:55 elapsed
+D.Stevens kicks 65 yards from WAS 35 to end zone, Touchback to the NYG 35.
+New York Giants at 0:05
+   1-10-NYG 35            (:05) J.McCarthy kneels to NYG 34 for -1 yards.
+END OF QUARTER                                                 Time           First Downs                      Efficiencies
+                                                   Score       Poss        R       P     X       T        3 Down         4 Down
+Washington Commanders                                  10        4:53       1      3      0      4          1/3             0/0
+New York Giants                                         7      10:07        6      2      1      9          2/4             1/1
+                                                               Washington Commanders vs New York Giants at MetLife Stadium
 
-Play By Play                                                                      Third Quarter                                                                                                      9/9/2026
-NE elects to Receive, and SEA elects to defend the South goal.
-J.Myers kicks 65 yards from SEA 35 to NE 0. K.Williams ran ob at NE 29 for 29 yards (M.Foster).
-New England Patriots at 15:00, (1st play from scrimmage 14:53)
-    1-10-NE 29             (14:53) D.Maye pass short right to H.Henry to NE 42 for 13 yards (J.Love).                                                                                                      P11
-    1-10-NE 42             (14:18) (Shotgun) D.Maye pass incomplete short right.
-    2-10-NE 42             (14:11) (Shotgun) R.Stevenson up the middle to NE 48 for 6 yards (D.Witherspoon; D.Thomas).
-    3-4-NE 48              (13:30) (Shotgun) D.Maye pass incomplete short left to A.Brown (N.Pritchett). NE-A.Brown was injured during the play.
-Timeout at 13:26.
-    4-4-NE 48              (13:26) M.Wishnowsky punts 38 yards to SEA 14, Center-J.Ashby, fair catch by R.Shaheed.
-                           PENALTY on SEA-C.Surratt, Roughing the Kicker, 15 yards, enforced at NE 48 - No Play.                                                                                          X12
-    1-10-SEA 37            (13:20) R.Stevenson left end to SEA 37 for no gain (E.Jones).
-    2-10-SEA 37            (12:41) (Shotgun) D.Maye pass incomplete short left to R.Stevenson (U.Nwosu).  The incomplete pass was assisted by replay.
-                           ** Injury Update: NE-A.Brown return is Questionable.
-    3-10-SEA 37            (12:38) (Shotgun) D.Maye pass short right to R.Stevenson to SEA 32 for 5 yards (J.Love; D.Witherspoon).
-    4-5-SEA 32             (11:53) A.Borregales 50 yard field goal is GOOD, Center-J.Ashby, Holder-M.Wishnowsky.
-Timeout at 11:49.
-                                                          NE 10 SEA 0,  8 plays, 39 yards, 1 penalty,  3:11 drive,  3:11 elapsed
-A.Borregales kicks 66 yards from NE 35 to SEA -1. R.Shaheed to SEA 29 for 30 yards (N.Obiazor).
-Seattle Seahawks at 11:49, (1st play from scrimmage 11:44)
-    1-10-SEA 29            (11:44) D.Lock pass short middle to B.Russell to SEA 42 for 13 yards (R.Spillane).                                                                                               P7
-    1-10-SEA 42            (11:02) J.Price left end to SEA 39 for -3 yards (G.Jacas).
-    2-13-SEA 39            (10:21) (Shotgun) D.Lock pass incomplete short middle to R.Shaheed.
-    3-13-SEA 39            (10:18) (Shotgun) PENALTY on NE-M.Williams, Encroachment, 5 yards, enforced at SEA 39 - No Play.
-    3-8-SEA 44             (10:18) (Shotgun) D.Lock pass short middle to R.Shaheed to SEA 48 for 4 yards (R.Spillane) [D.Jones].
-    4-4-SEA 48             (9:37) M.Dickson punts 46 yards to NE 6, Center-C.Stoll, downed by SEA-V.Jones.
-Timeout at 09:29.
-New England Patriots at 9:29
-    1-10-NE 6              (9:29) R.Stevenson up the middle to NE 4 for -2 yards (J.Love).
-    2-12-NE 4              (8:54) (Shotgun) D.Maye pass short right to D.Douglas to NE 5 for 1 yard (R.Thomas).
-    3-11-NE 5              (8:11) (Shotgun) D.Maye pass short middle to R.Stevenson to NE 11 for 6 yards (E.Jones).
-    4-5-NE 11              (7:23) (Punt formation) PENALTY on NE, Delay of Game, 5 yards, enforced at NE 11 - No Play.
-    4-10-NE 6              (7:05) M.Wishnowsky punts 46 yards to SEA 48, Center-J.Ashby. R.Shaheed to NE 43 for 9 yards (N.Obiazor; E.Ponder).
-Timeout at 06:53.
-Seattle Seahawks at 6:53
-    1-10-NE 43             (6:53) (Shotgun) D.Lock pass short right to J.Price to NE 39 for 4 yards (C.Elliss).
-                           Timeout #1 by SEA at 06:12.
-    2-6-NE 39              (6:12) (Shotgun) D.Lock pass short left to J.Price pushed ob at NE 37 for 2 yards (R.Spillane).
-    3-4-NE 37              (5:36) (Shotgun) D.Lock pass deep right to C.Kupp to NE 13 for 24 yards (M.Jones) [C.Barmore].                                                                                   P8
-    1-10-NE 13             (4:50) (Shotgun) G.Holani up the middle to NE 11 for 2 yards (M.Williams).
-    2-8-NE 11              (4:12) (Shotgun) G.Holani right end to NE 7 for 4 yards (G.Jacas).
-    3-4-NE 7               (3:25) (Shotgun) D.Lock pass short left to C.Kupp for 7 yards, TOUCHDOWN NULLIFIED by Penalty.
-                           PENALTY on SEA, Illegal Shift, 5 yards, enforced at NE 7 - No Play.
-    3-9-NE 12              (3:21) (Shotgun) D.Lock pass incomplete short left to J.Smith-Njigba [D.Jones].
-    4-9-NE 12              (3:16) J.Myers 30 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.
-Timeout at 03:13.
-                                                                NE 10 SEA 3,  7 plays, 31 yards,  3:40 drive, 11:47 elapsed
-J.Myers kicks 62 yards from SEA 35 to NE 3. K.Williams to NE 32 for 29 yards (P.O'Connell; C.Surratt).
-New England Patriots at 3:13, (1st play from scrimmage 3:06)
-    1-10-NE 32             (3:06) PENALTY on NE-M.Moses, False Start, 5 yards, enforced at NE 32 - No Play.
-    1-15-NE 27             (3:06) D.Maye pass short left to R.Stevenson ran ob at NE 44 for 17 yards (E.Jones).                                                                                            P13
-                                                                  New England Patriots vs Seattle Seahawks at Lumen Field
-   1-10-NE 44             (2:29) R.Stevenson right guard to NE 45 for 1 yard (D.Thomas; U.Nwosu).
-   2-9-NE 45              (1:48) (Shotgun) R.Stevenson left end to NE 49 for 4 yards (D.Hall; R.Thomas).
-                          PENALTY on NE-W.Campbell, Illegal Block Above the Waist, 10 yards, enforced at NE 45 - No Play.
-   2-19-NE 35             (1:26) D.Maye pass short left to R.Stevenson to NE 46 for 11 yards (D.Thomas; E.Jones).
-   3-8-NE 46              (:43) (Shotgun) D.Maye pass short right to D.Douglas to SEA 46 for 8 yards (R.Thomas).                                                                                    P14
+Play By Play                                                                     Third Quarter                                                                                                 11/12/2026
+WAS elects to Receive, and NYG elects to defend the South goal.
+D.Zvada kicks 63 yards from NYG 35 to WAS 2. L.McCaffrey to WAS 21 for 19 yards (T.Ford).
+Washington Commanders at 15:00, (1st play from scrimmage 14:54)
+    1-10-WAS 21            (14:54) R.White right tackle to WAS 20 for -1 yards (A.Carter, A.Reese).
+    2-11-WAS 20            (14:14) (Shotgun) J.Daniels sacked at WAS 6 for -14 yards (S.Harris). ** Injury Update: WAS-C.Okonkwo has returned to the game.
+    3-25-WAS 6             (13:24) (Shotgun) PENALTY on WAS, Delay of Game, 3 yards, enforced at WAS 6 - No Play.
+    3-28-WAS 3             (13:10) (Shotgun) A.Ekeler right guard to WAS 6 for 3 yards (D.Alexander; A.Reese).
+    4-25-WAS 6             (12:32) T.Way punts 49 yards to NYG 45, Center-T.Ott, fair catch by C.Jones.
+Timeout at 12:24.
+New York Giants at 12:24
+    1-10-NYG 45            (12:24) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 30 for 25 yards (P.Butler).                                                                         P13
+    1-10-WAS 30            (11:52) (Shotgun) J.McCarthy pass incomplete short right to T.Johnson.
+    2-10-WAS 30            (11:48) (Shotgun) J.McCarthy pass short middle to I.Likely to WAS 20 for 10 yards (Q.Martin; P.Butler).                                                                      P14
+    1-10-WAS 20            (11:05) (Shotgun) C.Skattebo right tackle to WAS 13 for 7 yards (S.Styles; P.Butler).
+    2-3-WAS 13             (10:28) (Shotgun) C.Skattebo right end for 13 yards, TOUCHDOWN.                                                                                                             R15
+                           D.Zvada extra point is GOOD, Center-B.Mann, Holder-J.Stout.
+Timeout at 10:22.
+                           ** Injury Update: NYG-J.Pinnock return is Questionable.
+                                                             WAS 10 NYG 14,  5 plays, 55 yards,  2:02 drive,  4:38 elapsed
+D.Zvada kicks 56 yards from NYG 35 to WAS 9. L.McCaffrey to WAS 23 for 14 yards (T.Nubin; T.Johnson).
+Washington Commanders at 10:22, (1st play from scrimmage 10:17)
+    1-10-WAS 23            (10:17) (Shotgun) J.Daniels pass deep right to B.Sinnott to WAS 47 for 24 yards (A.Phillips).                                                                                 P9
+    1-10-WAS 47            (9:37) J.Daniels scrambles right end ran ob at NYG 45 for 8 yards (K.Thibodeaux).
+    2-2-NYG 45             (9:02) J.Daniels pass short middle to A.Ekeler to NYG 40 for 5 yards (A.Washington; A.Reese).                                                                                P10
+    1-10-NYG 40            (8:23) R.Henry up the middle to NYG 36 for 4 yards (M.McFadden).
+    2-6-NYG 36             (7:46) (Shotgun) J.Daniels pass short right to S.Diggs to NYG 31 for 5 yards (A.Washington).
+    3-1-NYG 31             (7:05) J.Daniels pass short right to A.Williams for 31 yards, TOUCHDOWN.                                                                                                     P11
+                           D.Stevens extra point is GOOD, Center-T.Ott, Holder-T.Way.
+Timeout at 06:56.
+                                                             WAS 17 NYG 14,  6 plays, 77 yards,  3:26 drive,  8:04 elapsed
+D.Stevens kicks 62 yards from WAS 35 to NYG 3. G.Desrosiers to NYG 27 for 24 yards (T.Owens; J.Josephs).
+New York Giants at 6:56, (1st play from scrimmage 6:49)
+    1-10-NYG 27            (6:49) (Shotgun) J.McCarthy pass deep left to M.Nabers pushed ob at WAS 36 for 37 yards (A.Robertson).                                                                       P16
+    1-10-WAS 36            (6:12) (Shotgun) C.Skattebo left guard to WAS 33 for 3 yards (T.Settle; D.Wise).
+    2-7-WAS 33             (5:35) (Shotgun) J.McCarthy pass short middle to M.Fields to WAS 17 for 16 yards (Q.Martin; N.Cross).                                                                        P17
+    1-10-WAS 17            (4:53) (Shotgun) C.Skattebo right end to WAS 19 for -2 yards (A.Robertson).
+    2-12-WAS 19            (4:14) (Shotgun) J.McCarthy pass short right to M.Nabers to WAS 16 for 3 yards (F.Luvu). FUMBLES (F.Luvu), RECOVERED by WAS-
+                           J.Reaves at WAS 20.
+Timeout at 04:06.
+                           ** Injury Update: NYG-B.Hudson return is Questionable.
+Washington Commanders at 4:06
+    1-10-WAS 20            (4:06) R.Henry right end to WAS 20 for no gain (A.Phillips).
+    2-10-WAS 20            (3:26) (Shotgun) J.Daniels pass incomplete deep middle to T.Burks.
+    3-10-WAS 20            (3:22) (Shotgun) J.Daniels pass short left to S.Diggs to WAS 23 for 3 yards (A.Reese).
+    4-7-WAS 23             (2:39) T.Way punts 54 yards to NYG 23, Center-T.Ott, fair catch by C.Jones.
+New York Giants at 2:32
+    1-10-NYG 23            (2:32) (Shotgun) J.McCarthy pass short middle to I.Likely to NYG 29 for 6 yards (J.Reaves, P.Butler). FUMBLES (P.Butler), and recovers at
+                           NYG 29. ** Injury Update: NYG-B.Hudson has returned to the game.
+    2-4-NYG 29             (2:13) (No Huddle, Shotgun) J.McCarthy pass short middle to C.Skattebo to NYG 36 for 7 yards (S.Styles).                                                                     P18
+    1-10-NYG 36            (1:37) (Shotgun) C.Skattebo up the middle to NYG 39 for 3 yards (S.Styles; J.Newton).
+    2-7-NYG 39             (:59) (Shotgun) J.McCarthy pass short middle to T.Johnson to NYG 47 for 8 yards (F.Luvu).                                                                                    P19
+                                                          Washington Commanders vs New York Giants at MetLife Stadium
+   1-10-NYG 47           (:26) (Shotgun) J.McCarthy pass short right to I.Likely to WAS 47 for 6 yards (S.Styles).
+END OF QUARTER                                             Time          First Downs                    Efficiencies
+                                                Score      Poss        R     P      X      T       3 Down         4 Down
+Washington Commanders                              17        7:36      0      3     0      3          1/3           0/0
+New York Giants                                    14        7:24      1      6     0      7          0/0           0/0
+                                                              Washington Commanders vs New York Giants at MetLife Stadium
+
+Play By Play                                                                   Fourth Quarter                                                                                                  11/12/2026
+New York Giants continued.
+    2-4-WAS 47             (15:00) (Shotgun) PENALTY on NYG-C.Manhertz, False Start, 5 yards, enforced at WAS 47 - No Play.
+    2-9-NYG 48             (15:00) (Shotgun) J.McCarthy scrambles right end pushed ob at WAS 46 for 6 yards (S.Styles).
+    3-3-WAS 46             (14:23) (Shotgun) J.McCarthy pass incomplete short left to T.Johnson (P.Butler).
+    4-3-WAS 46             (14:15) J.Stout punts 46 yards to end zone, Center-B.Mann, Touchback.
+Washington Commanders at 14:07
+    1-10-WAS 20            (14:07) (Shotgun) J.Daniels scrambles right end to WAS 25 for 5 yards (S.Harris; A.Reese).
+    2-5-WAS 25             (13:39) (No Huddle, Shotgun) A.Ekeler right guard to WAS 32 for 7 yards (A.Phillips).                                                                                       R12
+    1-10-WAS 32            (12:55) J.Daniels scrambles right end to WAS 37 for 5 yards (A.Reese).
+    2-5-WAS 37             (12:13) A.Ekeler left guard to WAS 41 for 4 yards (M.McFadden; A.Reese).
+    3-1-WAS 41             (11:33) (Shotgun) J.Daniels left tackle to WAS 43 for 2 yards (K.Thibodeaux; B.Jamison-Travis).                                                                             R13
+    1-10-WAS 43            (10:56) R.White right end pushed ob at NYG 39 for 18 yards (G.Newsome).                                                                                                     R14
+    1-10-NYG 39            (10:25) R.White up the middle to NYG 33 for 6 yards (M.McFadden; J.Holland).
+    2-4-NYG 33             (9:50) (Shotgun) J.Daniels pass incomplete short left to C.Okonkwo.
+    3-4-NYG 33             (9:46) (Shotgun) J.Daniels pass short right to C.Okonkwo to NYG 31 for 2 yards (A.Washington).
+    4-2-NYG 31             (9:09) (Shotgun) J.Daniels pass incomplete short middle to S.Diggs (A.Washington).
+Timeout at 09:04.
+New York Giants at 9:04
+    1-10-NYG 31            (9:04) C.Skattebo up the middle to NYG 34 for 3 yards (J.Reaves).
+    2-7-NYG 34             (8:28) (Shotgun) J.McCarthy pass incomplete short right to M.Nabers.
+    3-7-NYG 34             (8:24) (Shotgun) J.McCarthy pass deep middle to I.Likely for 66 yards, TOUCHDOWN.                                                                                           P20
+                           D.Zvada extra point is GOOD, Center-B.Mann, Holder-J.Stout.
+Timeout at 08:13.
+                                                             WAS 17 NYG 21,  3 plays, 69 yards,  0:51 drive,  6:47 elapsed
+D.Zvada kicks 62 yards from NYG 35 to WAS 3, out of bounds.
+PENALTY on NYG-D.Zvada, Kickoff Out of Bounds, placed at WAS 40.
+Washington Commanders at 8:13
+    1-10-WAS 40            (8:13) (Shotgun) J.Daniels pass short right to A.Williams to NYG 49 for 11 yards (G.Newsome).                                                                               P15
+    1-10-NYG 49            (7:51) (No Huddle, Shotgun) J.Daniels pass short right to C.Okonkwo ran ob at NYG 44 for 5 yards.
+    2-5-NYG 44             (7:23) A.Ekeler up the middle to NYG 40 for 4 yards (A.Carter; A.Phillips).
+    3-1-NYG 40             (7:04) (No Huddle, Shotgun) J.Daniels scrambles left end ran ob at NYG 28 for 12 yards (M.McFadden).
+                           Penalty on WAS-B.Coleman, Offensive Holding, offsetting, enforced at NYG 40 - No Play.
+                           Penalty on NYG-M.McFadden, Defensive Holding, offsetting.
+    3-1-NYG 40             (6:45) R.White right guard to NYG 35 for 5 yards (J.Holland; A.Washington).                                                                                                 R16
+    1-10-NYG 35            (6:21) (No Huddle, Shotgun) J.Daniels pass short middle to R.White to NYG 30 for 5 yards (K.Thibodeaux). NYG-K.Thibodeaux was injured
+                           during the play. WAS-R.White was injured during the play.
+Timeout at 06:10.
+    2-5-NYG 30             (6:01) (Shotgun) J.Daniels right end pushed ob at NYG 24 for 6 yards (M.McFadden).                                                                                          R17
+    1-10-NYG 24            (5:31) (Shotgun) J.Daniels pass deep left intended for C.Okonkwo INTERCEPTED by J.Holland at NYG 0. Touchback.
+                           The Replay Official reviewed the touchback ruling, and the play was REVERSED.
+                           (Shotgun) J.Daniels pass deep left intended for C.Okonkwo INTERCEPTED by J.Holland at NYG 2. J.Holland to NYG 2 for no gain
+                           (C.Okonkwo). ** Injury Update: NYG-K.Thibodeaux has returned to the game. ** Injury Update: WAS-R.White has returned to the game.
+New York Giants at 5:27
+    1-10-NYG 2             (5:27) C.Skattebo left guard to NYG 7 for 5 yards (S.Tuttle; T.Settle).
+    2-5-NYG 7              (4:40) (Shotgun) C.Skattebo right tackle to NYG 11 for 4 yards (S.Styles; O.Oweh).
+    3-1-NYG 11             (3:56) J.Winston up the middle to NYG 12 for 1 yard (S.Styles; D.Wise).
+                           Washington challenged the first down ruling, and the play was REVERSED.
+                           J.Winston up the middle to NYG 11 for no gain (S.Styles; D.Wise).
+    4-1-NYG 11             (3:27) (Run formation) PENALTY on NYG, Delay of Game, 4 yards, enforced at NYG 11 - No Play.
+    4-5-NYG 7              (3:27) J.Stout punts 68 yards to WAS 25, Center-B.Mann. L.McCaffrey pushed ob at WAS 37 for 12 yards (Z.Barnes).
+Washington Commanders at 3:16
+    1-10-WAS 37            (3:16) (Shotgun) J.Daniels pass incomplete short left to C.Okonkwo.
+    2-10-WAS 37            (3:12) (Shotgun) J.Daniels pass short left to S.Diggs to WAS 46 for 9 yards (A.Washington).
+    3-1-WAS 46             (2:48) (No Huddle, Shotgun) R.White up the middle to WAS 45 for -1 yards (D.Banks, A.Carter).
+                                                             Washington Commanders vs New York Giants at MetLife Stadium
+   4-2-WAS 45             (2:19) (No Huddle, Shotgun) J.Daniels pass short left intended for C.Okonkwo INTERCEPTED by A.Washington at WAS 46. A.Washington to
+                          WAS 46 for no gain.
+New York Giants at 2:15
+   1-10-WAS 46            (2:15) (Shotgun) C.Skattebo up the middle to WAS 41 for 5 yards (J.Reaves).
+                          Timeout #1 by WAS at 02:10.
+   2-5-WAS 41             (2:10) C.Skattebo left guard to WAS 39 for 2 yards (F.Luvu; J.Reaves).
+Two-Minute Warning
+   3-3-WAS 39             (2:00) (Shotgun) J.McCarthy left end to WAS 41 for -2 yards (S.Styles).
+                          Timeout #2 by WAS at 01:54.
+   4-5-WAS 41             (1:54) J.Stout punts 12 yards to WAS 29, Center-B.Mann, out of bounds.
+Washington Commanders at 1:46
+   1-10-WAS 29            (1:46) (Shotgun) J.Daniels pass incomplete deep left to T.Burks (D.Banks).
+                          PENALTY on NYG-D.Banks, Defensive Pass Interference, 33 yards, enforced at WAS 29 - No Play.                                                                              X18
+   1-10-NYG 38            (1:40) (Shotgun) J.Daniels scrambles right end pushed ob at NYG 37 for 1 yard (A.Phillips).
+   2-9-NYG 37             (1:33) (Shotgun) J.Daniels pass short left to A.Ekeler to NYG 32 for 5 yards (M.McFadden; D.Banks).
+   3-4-NYG 32             (1:05) (No Huddle, Shotgun) J.Daniels pass short middle to S.Diggs for 32 yards, TOUCHDOWN.                                                                               P19
+                          D.Stevens extra point is GOOD, Center-T.Ott, Holder-T.Way.
+                                                      WAS 24 NYG 21,  3 plays, 71 yards, 1 penalty,  0:49 drive, 14:03 elapsed
+D.Stevens kicks 64 yards from WAS 35 to NYG 1. G.Desrosiers to NYG 27 for 26 yards (K.Medrano). FUMBLES (K.Medrano), recovered by NYG-C.Martin at NYG
+31.
+New York Giants at 0:57, (1st play from scrimmage 0:48)
+   1-10-NYG 31            (:48) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 48 for 21 yards (T.Amos).                                                                          P21
+                          Timeout #1 by NYG at 00:42.
+   1-10-WAS 48            (:42) (Shotgun) J.McCarthy pass incomplete short left to M.Fields.
+   2-10-WAS 48            (:39) (Shotgun) J.McCarthy pass incomplete deep right to D.Mooney (J.Reaves) [J.Reaves].
+   3-10-WAS 48            (:34) (Shotgun) J.McCarthy pass deep right intended for M.Nabers INTERCEPTED by R.Douglas at WAS 11. R.Douglas to WAS 11 for no gain
+                          (M.Nabers).
+Washington Commanders at 0:25
+   1-10-WAS 11            (:25) J.Daniels kneels to WAS 10 for -1 yards.
+                          Timeout #2 by NYG at 00:23.
+   2-11-WAS 10            (:23) J.Daniels kneels to WAS 10 for no gain.
+                          PENALTY on NYG-D.Alexander, Unnecessary Roughness, 15 yards, enforced at WAS 10.                                                                                          X20
+   1-10-WAS 25            (:21) J.Daniels kneels to WAS 24 for -1 yards.
 END OF QUARTER                                                 Time           First Downs                      Efficiencies
                                                    Score       Poss        R      P      X      T         3 Down         4 Down
-New England Patriots                                   10        9:00       0      3      1      4          1/4             0/0
-Seattle Seahawks                                        3        6:00       0      2      0      2          1/3             0/0
-                                                                     New England Patriots vs Seattle Seahawks at Lumen Field
+Washington Commanders                                  24      10:04        5      2      2      9          3/5             0/2
+New York Giants                                        21        4:56       0      2      0      2          1/5             0/0
+                                                        Miscellaneous Statistics Report
 
-Play By Play                                                                    Fourth Quarter                                                                                                       9/9/2026
-New England Patriots continued.
-                           ** Injury Update: NE-A.Brown is Out of the game.
-    1-10-SEA 46            (15:00) C.Kiner right end pushed ob at SEA 45 for 1 yard (D.Lawrence).
-    2-9-SEA 45             (14:27) D.Maye pass deep left intended for R.Doubs INTERCEPTED by N.Pritchett (R.Thomas) at SEA 3. N.Pritchett to SEA 33 for 30 yards
-                           (J.Wilson).
-Seattle Seahawks at 14:12
-    1-10-SEA 33            (14:12) D.Lock pass short right to J.Smith-Njigba pushed ob at SEA 46 for 13 yards (K.Byard) [D.Jones].                                                                          P9
-    1-10-SEA 46            (13:41) J.Price left end to NE 49 for 5 yards (C.Woodson).
-    2-5-NE 49              (13:04) J.Price left tackle to NE 45 for 4 yards (D.Jones; K.Byard).
-    3-1-NE 45              (12:20) J.Jones reported in as eligible.  E.Wilson right guard to NE 45 for no gain (M.Williams).
-    4-1-NE 45              (11:38) D.Lock pass short left to J.Smith-Njigba for 45 yards, TOUCHDOWN.                                                                                                       P10
-                           J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.
-Timeout at 11:28.
-                                                                NE 10 SEA 10,  5 plays, 67 yards,  2:44 drive,  3:32 elapsed
-J.Myers kicks 63 yards from SEA 35 to NE 2. L.Larison to NE 25 for 23 yards (C.Surratt).
-PENALTY on NE-G.Jacas, Illegal Block Above the Waist, 10 yards, enforced at NE 24.
-New England Patriots at 11:28, (1st play from scrimmage 11:23)
-    1-10-NE 14             (11:23) R.Stevenson up the middle to NE 21 for 7 yards (J.Reed).
-    2-3-NE 21              (10:49) R.Stevenson left tackle to NE 26 for 5 yards (D.Thomas).                                                                                                               R15
-    1-10-NE 26             (10:11) R.Stevenson up the middle to NE 22 for -4 yards (B.Murphy).
-    2-14-NE 22             (9:32) (Shotgun) D.Maye pass incomplete deep right to R.Doubs.
-    3-14-NE 22             (9:25) (Shotgun) D.Maye pass deep middle intended for D.Douglas INTERCEPTED by J.Love at NE 47. J.Love to NE 47 for no gain
-                           (D.Douglas).
-Seattle Seahawks at 9:20
-    1-10-NE 47             (9:20) J.Price right end to NE 43 for 4 yards (C.Woodson).
-    2-6-NE 43              (8:37) D.Lock pass short right to A.Barner pushed ob at NE 34 for 9 yards (C.Elliss).                                                                                           P11
-    1-10-NE 34             (8:11) D.Lock pass short left to J.Smith-Njigba pushed ob at NE 23 for 11 yards (D.Pettus).                                                                                     P12
-    1-10-NE 23             (7:31) (Shotgun) D.Lock pass short right to C.Kupp to NE 12 for 11 yards (C.Davis).                                                                                             P13
-    1-10-NE 12             (6:42) PENALTY on SEA-A.Bradford, False Start, 5 yards, enforced at NE 12 - No Play.
-    1-15-NE 17             (6:42) D.Lock scrambles left tackle pushed ob at NE 3 for 14 yards (M.Jones).
-    2-1-NE 3               (5:59) PENALTY on SEA, Delay of Game, 5 yards, enforced at NE 3 - No Play.
-    2-6-NE 8               (5:59) (Shotgun) D.Lock pass incomplete short right to J.Smith-Njigba (C.Gonzalez).
-    3-6-NE 8               (5:56) (Shotgun) D.Lock pass incomplete short left to J.Smith-Njigba.
-    4-6-NE 8               (5:53) J.Myers 26 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.
-Timeout at 05:50.
-                                                                NE 10 SEA 13,  8 plays, 39 yards,  3:30 drive,  9:10 elapsed
-J.Myers kicks 65 yards from SEA 35 to NE 0. L.Larison to NE 27 for 27 yards (C.O'Toole; B.Russell).
-New England Patriots at 5:50, (1st play from scrimmage 5:45)
-    1-10-NE 27             (5:45) R.Stevenson left tackle to NE 33 for 6 yards (J.Love).
-                           PENALTY on NE-W.Campbell, Offensive Holding, 10 yards, enforced at NE 27 - No Play.
-    1-20-NE 17             (5:22) (Shotgun) D.Maye sacked at NE 16 for -1 yards (L.Williams).
-    2-21-NE 16             (4:41) (Shotgun) D.Maye pass deep middle to M.Hollins to NE 35 for 19 yards (R.Thomas).
-    3-2-NE 35              (3:55) (Shotgun) D.Maye pass incomplete short left to R.Doubs.
-    4-2-NE 35              (3:49) (Shotgun) D.Maye scrambles right end pushed ob at NE 40 for 5 yards (D.Thomas).                                                                                         R16
-    1-10-NE 40             (3:42) R.Stevenson right guard to SEA 48 for 12 yards (D.Witherspoon; R.Thomas).                                                                                               R17
-    1-10-SEA 48            (3:03) (Shotgun) D.Maye pass incomplete short right.
-                           PENALTY on NE-A.Vera-Tucker, Ineligible Downfield Pass, 5 yards, enforced at SEA 48 - No Play.
-    1-15-NE 47             (2:59) (Shotgun) D.Maye pass short right to L.Larison to NE 45 for -2 yards (J.Jobe).
-    2-17-NE 45             (2:16) (Shotgun) D.Maye sacked ob at NE 43 for -2 yards (D.Thomas).
-    3-19-NE 43             (2:10) (Shotgun) D.Maye pass short left to H.Henry to SEA 47 for 10 yards (E.Jones).
-Two-Minute Warning
-                                                                    New England Patriots vs Seattle Seahawks at Lumen Field
-                           Timeout #2 by SEA at 02:00.
-    4-9-SEA 47             (2:00) (Shotgun) D.Maye pass short right to M.Hollins to SEA 36 for 11 yards (E.Jones).                                                                                      P18
-    1-10-SEA 36            (1:30) R.Stevenson up the middle to SEA 28 for 8 yards (D.Hall; D.Witherspoon).
-                           Timeout #3 by SEA at 01:22.
-    2-2-SEA 28             (1:22) D.Maye pass short left to D.Douglas to SEA 27 for 1 yard (N.Pritchett).
-                           Timeout #1 by NE at 00:44.
-    3-1-SEA 27             (:44) G.Van Roten reported in as eligible.  D.Maye scrambles left end ran ob at SEA 21 for 6 yards (J.Jobe).                                                                R19
-    1-10-SEA 21            (:38) (Shotgun) D.Maye sacked at SEA 28 for -7 yards (D.Hall).
-                           Timeout #2 by NE at 00:32.
-    2-17-SEA 28            (:32) (Shotgun) D.Maye pass short right to M.Hollins pushed ob at SEA 16 for 12 yards (J.Jobe).
-    3-5-SEA 16             (:26) (Shotgun) D.Maye pass deep right intended for M.Hollins INTERCEPTED by J.Jobe [D.Lawrence] at SEA -3. Touchback.
-Seattle Seahawks at 0:21
-    1-10-SEA 20            (:21) D.Lock kneels to SEA 19 for -1 yards.
-END OF QUARTER                                                  Time           First Downs                       Efficiencies
-                                                    Score       Poss        R       P      X      T        3 Down          4 Down
-New England Patriots                                   10         8:25       4      1      0       5          1/5             2/2
-Seattle Seahawks                                       13         6:35       0      5      0       5          0/2             1/1
-                                                         Miscellaneous Statistics Report
-
-                                                                New England Patriots vs Seattle Seahawks
-                                                                            9/9/2026 at Lumen Field
-Ten Longest Plays for New England Patriots
-Yards     Qtr    Play Start           Play Description
-    19       4   2-21-NE 16           (4:41) (Shotgun) D.Maye pass deep middle to M.Hollins to NE 35 for 19 yards (R.Thomas).
-    17       3   1-15-NE 27           (3:06) D.Maye pass short left to R.Stevenson ran ob at NE 44 for 17 yards (E.Jones).
-    16       1   3-5-NE 26            (9:14) (Shotgun) D.Maye scrambles right end pushed ob at NE 27 for 1 yard (B.Murphy).
-                                      PENALTY on SEA-D.Hall, Unnecessary Roughness, 15 yards, enforced at NE 27.
-    16       2   2-9-NE 30            (2:00) (Shotgun) D.Maye scrambles left tackle ran ob at NE 46 for 16 yards (E.Jones).
-    14       2   3-3-NE 15            (3:18) (Shotgun) D.Maye pass short left to A.Brown to NE 29 for 14 yards (N.Pritchett).
-    13       3   1-10-NE 29           (14:53) D.Maye pass short right to H.Henry to NE 42 for 13 yards (J.Love).
-    12       4   1-10-NE 40           (3:42) R.Stevenson right guard to SEA 48 for 12 yards (D.Witherspoon; R.Thomas).
-    12       4   2-17-SEA 28          (:32) (Shotgun) D.Maye pass short right to M.Hollins pushed ob at SEA 16 for 12 yards (J.Jobe).
-    11       2   1-10-NE 34           (13:00) D.Maye pass short left to L.Larison to NE 45 for 11 yards (J.Jobe).
-    11       3   2-19-NE 35           (1:26) D.Maye pass short left to R.Stevenson to NE 46 for 11 yards (D.Thomas; E.Jones).
-Ten Longest Plays for Seattle Seahawks
-Yards     Qtr    Play Start           Play Description
-    45       4   4-1-NE 45            (11:38) D.Lock pass short left to J.Smith-Njigba for 45 yards, TOUCHDOWN.
-    24       3   3-4-NE 37            (5:36) (Shotgun) D.Lock pass deep right to C.Kupp to NE 13 for 24 yards (M.Jones) [C.Barmore].
-    21       2   3-22-SEA 33          (5:39) (Shotgun) D.Lock pass deep middle to J.Smith-Njigba to NE 46 for 21 yards (C.Woodson).
-    14       4   1-15-NE 17           (6:42) D.Lock scrambles left tackle pushed ob at NE 3 for 14 yards (M.Jones).
-    13       1   1-10-SEA 24          (14:55) J.Price right tackle to SEA 37 for 13 yards (K.Byard; E.Ponder).
-    13       1   1-10-SEA 37          (14:17) S.Darnold pass short middle to J.Smith-Njigba to 50 for 13 yards (R.Spillane).
-    13       3   1-10-SEA 29          (11:44) D.Lock pass short middle to B.Russell to SEA 42 for 13 yards (R.Spillane).
-    13       4   1-10-SEA 33          (14:12) D.Lock pass short right to J.Smith-Njigba pushed ob at SEA 46 for 13 yards (K.Byard) [D.Jones].
-    12       1   1-10-SEA 14          (1:22) J.Price right end pushed ob at SEA 26 for 12 yards (C.Gonzalez). ** Injury Update: NE-C.Davis has returned to the
-                                      game.
-    11       4   1-10-NE 34           (8:11) D.Lock pass short left to J.Smith-Njigba pushed ob at NE 23 for 11 yards (D.Pettus).
+                                                              Washington Commanders vs New York Giants
+                                                                       11/12/2026 at MetLife Stadium
+Ten Longest Plays for Washington Commanders
+Yards     Qtr    Play Start          Play Description
+    32       4   3-4-NYG 32          (1:05) (No Huddle, Shotgun) J.Daniels pass short middle to S.Diggs for 32 yards, TOUCHDOWN.
+    31       3   3-1-NYG 31          (7:05) J.Daniels pass short right to A.Williams for 31 yards, TOUCHDOWN.
+    30       2   2-2-WAS 41          (2:00) (Shotgun) J.Daniels pass deep right to S.Diggs pushed ob at NYG 29 for 30 yards (K.Thibodeaux).
+    24       3   1-10-WAS 23         (10:17) (Shotgun) J.Daniels pass deep right to B.Sinnott to WAS 47 for 24 yards (A.Phillips).
+    20       1   2-8-WAS 47          (1:25) (No Huddle, Shotgun) J.Daniels pass deep right to T.Burks ran ob at NYG 33 for 20 yards.
+    18       4   1-10-WAS 43         (10:56) R.White right end pushed ob at NYG 39 for 18 yards (G.Newsome).
+    15       4   2-11-WAS 10         (:23) J.Daniels kneels to WAS 10 for no gain.
+                                     PENALTY on NYG-D.Alexander, Unnecessary Roughness, 15 yards, enforced at WAS 10.
+    12       2   2-8-NYG 27          (1:16) (Shotgun) J.Daniels pass short middle to B.Sinnott pushed ob at NYG 15 for 12 yards (M.McFadden).
+                                     The Replay Official reviewed the runner was out of bounds ruling, and the play was REVERSED.
+                                     (Shotgun) J.Daniels pass short middle to B.Sinnott to NYG 15 for 12 yards (M.McFadden).
+    11       1   1-15-NYG 38         (:22) (Shotgun) J.Daniels pass short right to C.Okonkwo pushed ob at NYG 27 for 11 yards (G.Newsome).
+    11       4   1-10-WAS 40         (8:13) (Shotgun) J.Daniels pass short right to A.Williams to NYG 49 for 11 yards (G.Newsome).
+Ten Longest Plays for New York Giants
+Yards     Qtr    Play Start          Play Description
+    66       4   3-7-NYG 34          (8:24) (Shotgun) J.McCarthy pass deep middle to I.Likely for 66 yards, TOUCHDOWN.
+    37       3   1-10-NYG 27         (6:49) (Shotgun) J.McCarthy pass deep left to M.Nabers pushed ob at WAS 36 for 37 yards (A.Robertson).
+    34       1   3-7-NYG 45          (6:15) (Shotgun) J.McCarthy pass short left to C.Skattebo pushed ob at WAS 21 for 34 yards (Q.Martin) [D.Armstrong].
+    25       3   1-10-NYG 45         (12:24) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 30 for 25 yards (P.Butler).
+    21       4   1-10-NYG 31         (:48) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 48 for 21 yards (T.Amos).
+    16       3   2-7-WAS 33          (5:35) (Shotgun) J.McCarthy pass short middle to M.Fields to WAS 17 for 16 yards (Q.Martin; N.Cross).
+    14       1   2-1-NYG 46          (12:55) (Shotgun) C.Skattebo left guard to WAS 40 for 14 yards (N.Cross).
+    13       3   2-3-WAS 13          (10:28) (Shotgun) C.Skattebo right end for 13 yards, TOUCHDOWN.
+    12       2   1-10-NYG 22         (14:02) (Shotgun) J.McCarthy scrambles up the middle to NYG 34 for 12 yards (J.Reaves).
+    11       2   1-10-NYG 39         (8:51) J.McCarthy pass short middle to I.Likely to 50 for 11 yards (F.Luvu; Q.Martin).
 
 
 
 
-Touchdown Scoring Information                                                               Offense         Defense      Special Teams
-VISITOR               New England Patriots                                                           1               0              0
-HOME                  Seattle Seahawks                                                               1               0              0
+Touchdown Scoring Information                                                              Offense        Defense       Special Teams
+VISITOR               Washington Commanders                                                         3              0              0
+HOME                  New York Giants                                                               3              0              0
 
 Player Scoring Information
-Club    Player                                                TD    Rush       Rec   KO TD      Punt   Int TD     Fum      Misc       FG       XP      2Pt      2Pt     Sfty    Points
-                                                                       TD       TD                TD                TD       TD                      Rush       Rec
-NE      E.Raridon                                                0        0        1        0        0        0        0        0        0        0        0        0       0          6
-NE      A.Borregales                                             0        0        0        0        0        0        0        0        1        1        0        0       0          4
-SEA     J.Myers                                                  0        0        0        0        0        0        0        0        2        1        0        0       0          7
-SEA     J.Smith-Njigba                                           0        0        1        0        0        0        0        0        0        0        0        0       0          6
+Club    Player                                                TD    Rush      Rec   KO TD      Punt  Int TD      Fum      Misc       FG       XP      2Pt     2Pt     Sfty    Points
+                                                                      TD       TD                TD                TD       TD                     Rush       Rec
+WAS     S.Diggs                                                 0        0       1        0        0        0        0        0        0        0        0       0        0         6
+WAS     B.Sinnott                                               0        0       1        0        0        0        0        0        0        0        0       0        0         6
+WAS     A.Williams                                              0        0       1        0        0        0        0        0        0        0        0       0        0         6
+WAS     D.Stevens                                               0        0       0        0        0        0        0        0        1        3        0       0        0         6
+NYG     C.Skattebo                                              0        2       0        0        0        0        0        0        0        0        0       0        0        12
+NYG     I.Likely                                                0        0       1        0        0        0        0        0        0        0        0       0        0         6
+NYG     D.Zvada                                                 0        0       0        0        0        0        0        0        0        3        0       0        0         3
 
-Possession Detail                                            First Half                             Second Half                                         Game
-                                                          Visitor         Home                     Visitor         Home                            Visitor        Home
-Largest Lead                                                     7              0                        10              3                              10              3
-Drives Leading                                                   1              0                         3              1                                4             1
-Time of Possession Leading                                    3:49          0:00                       9:48          0:21                           13:37            0:21
-Largest Deficit                                                  0             -7                        -3            -10                               -3           -10
-Drives Trailing                                                  0              2                         1              3                                1             5
-Time of Possession Trailing                                   0:00          5:22                       5:29          8:44                             5:29         14:06
-Times Score Tied Up                                                             0                                        1                                              1
-Lead Changes                                                                    1                                        1                                              2
+Possession Detail                                           First Half                             Second Half                                        Game
+                                                         Visitor         Home                     Visitor        Home                            Visitor        Home
+Largest Lead                                                    3              4                         3             4                                3             4
+Drives Leading                                                  1              0                         4             2                                5             2
+Time of Possession Leading                                   1:30          0:00                      9:38           2:40                           11:08           2:40
+Largest Deficit                                                 -4            -3                        -4            -3                               -4            -3
+Drives Trailing                                                 1              3                         4             5                                5             8
+Time of Possession Trailing                                  2:30         10:07                      8:02           9:40                           10:32         19:47
+Times Score Tied Up                                                            0                                       0                                              0
+Lead Changes                                                                   3                                       4                                              7
                                                       Playtime Percentage
                                  Percent of playtime per player on offense, defense and special teams (Unofficial)
-                         New England Patriots                                                          Seattle Seahawks
+                       Washington Commanders                                                            New York Giants
 
                                 Offense       Defense     Special Teams                                     Offense       Defense     Special Teams
 
-A.Vera-Tucker            G       71 100%                       2      9%   A.Bradford                G      50  100%                       3      14%
-M.Onwenu                 OL      71 100%                       2      9%   A.Lucas                   T      50  100%                       3      14%
-W.Campbell               T       71 100%                       2      9%   C.Cross                   T      50  100%                       3      14%
-M.Moses                  T       71 100%                                   G.Zabel                   G      50  100%                       3      14%
-D.Maye                   QB      71 100%                                   J.Sundell                 C      50  100%                       3      14%
-J.Wilson                 OL      71 100%                                   D.Lock                    QB     45   90%
-R.Stevenson              RB      60  85%                                   J.Smith-Njigba            WR     45   90%
-H.Henry                  TE      54  76%                                   A.Barner                  TE     44   88%
-M.Hollins                WR      50  70%                       8     36%   C.Kupp                    WR     39   78%
-D.Douglas                WR      44  62%                                   R.Shaheed                 WR     33   66%                       8      36%
-R.Doubs                  WR      40  56%                                   J.Price                   RB     24   48%
-E.Raridon                TE      38  54%                       4     18%   G.Holani                  RB     23   46%                       9      41%
-A.Brown                  WR      31  44%                                   B.Russell                 FB     17   34%                      20      91%
-R.Gilliam                FB      13  18%                      12     55%   E.Arroyo                  TE     11   22%                       5      23%
-K.Williams               WR      12  17%                       4     18%   E.Saubert                 TE     10   20%                      18      82%
-C.Kiner                  RB       8  11%                                   S.Darnold                 QB       5  10%
-L.Larison                RB       3    4%                      6     27%   E.Wilson                  RB       3   6%
-G.Van Roten              OL       2    3%                      2      9%   J.Jones                   G/T      1   2%
-C.Woodson                S                     50 100%         3     14%   D.Thomas                  LB                   71  100%         5      23%
-R.Spillane               LB                    50 100%         3     14%   J.Love                    S                    71  100%         2       9%
-C.Gonzalez               CB                    50 100%                     E.Jones                   LB                   71  100%         2       9%
-K.Byard                  S                     50 100%                     D.Witherspoon             CB                   70   99%         2       9%
-C.Elliss                 LB                    49  98%         3     14%   J.Jobe                    CB                   70   99%
-C.Davis                  CB                    49  98%                     R.Thomas                  S                    70   99%
-D.Jones                  LB                    42  84%         6     27%   N.Pritchett               CB                   53   75%         4      18%
-E.Ponder                 LB                    39  78%        11     50%
-M.Williams               DT                    33  66%         6     27%   B.Murphy                  DE                   50   70%         2       9%
-C.Barmore                DT                    30  60%         6     27%   L.Williams                DT                   49   69%         2       9%
-C.Durden                 DT                    28  56%         2      9%   D.Hall                    LB                   44   62%         2       9%
-M.Jones                  CB                    24  48%         5     23%   D.Lawrence                LB                   42   59%         2       9%
-D.Pettus                 S                     20  40%        20     91%   J.Reed                    DE                   34   48%         2       9%
-G.Jacas                  LB                    19  38%        20     91%   U.Nwosu                   LB                   33   46%
-J.Farmer                 DT                     9  18%                     R.Mills                   DT                   16   23%         3      14%
-L.Taylor                 DL                     7  14%         2      9%   D.Fowler                  LB                   16   23%         2       9%
-C.Woods                  CB                     1   2%        16     73%   T.Knight                  LB                   14   20%        17      77%
-N.Obiazor                LB                                   20     91%   B.Pili                    NT                     6   8%         3      14%
-D.Muasau                 LB                                   14     64%   P.O'Connell               LB                     1   1%        17      77%
-C.Latu                   TE                                   14     64%   C.O'Toole                 LB                                   19      86%
-C.Canada                 CB                                   11     50%   C.Surratt                 LB                                   17      77%
-J.Reed                   S                                     8     36%   V.Jones                   RB                                   17      77%
-J.Ashby                  LS                                    7     32%   A.Smith                   CB                                    9      41%
-M.Wishnowsky             P                                     7     32%   C.Stoll                   LS                                    8      36%
-A.Borregales             K                                     5     23%   M.Dickson                 P                                     8      36%
-T.Arkin                  TE                                    4     18%   M.Foster                  WR                                    7      32%
-Q.Hutchins               LB                                    3     14%   J.Myers                   K                                     7      32%
-C.Lomu                   T                                    2      9%   J.Neal                    CB                                   5      23%
-D.Crownover              T                                    2      9%   C.Haynes                  G                                    3      14%
+B.Coleman                T/G     69 100%                       4     15%   B.Hudson                  C       65 100%                       4      15%
+C.Paul                   G       69 100%                       4     15%   F.Mauigoa                 OL      65 100%                       4      15%
+J.Conerly                T       69 100%                       4     15%   J.Runyan                  G       65 100%                       4      15%
+N.Allegretti             C/G     69 100%                       4     15%   A.Thomas                  T       65 100%
+S.Cosmi                  G       69 100%                       4     15%   J.Eluemunor               OL      64  98%                       4      15%
+J.Daniels                QB      69 100%                                   J.McCarthy                QB      62  95%
+A.Williams               WR      59  86%                       3     12%   C.Skattebo                RB      58  89%
+S.Diggs                  WR      44  64%                                   M.Fields                  WR      58  89%
+T.Burks                  WR      42  61%                                   I.Likely                  TE      57  88%
+C.Okonkwo                TE      41  59%                                   M.Nabers                  WR      52  80%
+R.White                  RB      36  52%                       4     15%   D.Mooney                  WR      46  71%
+A.Ekeler                 RB      30  43%                                   T.Johnson                 TE      18  28%                      18      69%
+J.Bates                  TE      28  41%                      12     46%   C.Manhertz                TE      14  22%                       9      35%
+B.Sinnott                TE      24  35%                      12     46%   P.Ricard                  FB      13  20%
+V.Jefferson              WR      24  35%                       7     27%   D.Singletary              RB       5    8%                      5      19%
+L.McCaffrey              WR      14  20%                      11     42%   J.Hyatt                   WR       3    5%
+R.Henry                  RB       3    4%                                  J.Winston                 QB       3    5%
+F.Luvu                   LB                    65 100%         4     15%   M.Mbow                    OL       1    2%                      4      15%
+S.Styles                 LB                    65 100%         4     15%   A.Stinnie                 OL       1    2%                      4      15%
+N.Cross                  S                     65 100%                     A.Reese                   LB                    69 100%         4      15%
+A.Robertson              CB                    64  98%                     G.Newsome                 CB                    69 100%         4      15%
+T.Amos                   CB                    62  95%                     J.Holland                 S                     69 100%         1       4%
+J.Reaves                 S                     54  83%         9     35%   M.McFadden                LB                    69 100%         1       4%
+K.Chaisson               LB                    48  74%                     D.Banks                   CB                    69 100%
+O.Oweh                   LB                    48  74%                     A.Carter                  LB                    62  90%
+C.Omenihu                DE                    38  58%
+Q.Martin                 S                     34  52%        18     69%   A.Phillips                CB                    55  80%
+S.Tuttle                 DT                    34  52%         6     23%   A.Washington              S                     54  78%         4      15%
+T.Settle                 DT                    27  42%         6     23%   K.Thibodeaux              LB                    52  75%         4      15%
+D.Armstrong              LB                    25  38%         4     15%   D.Reader                  DL                    47  68%
+J.Newton                 DT                    21  32%         4     15%   S.Harris                  DL                    45  65%         4      15%
+D.Wise                   DE                    21  32%                     D.Alexander               DL                    27  39%         4      15%
+R.Douglas                CB                    18  28%         2      8%   B.Jamison-Travis          DL                    23  33%         4      15%
+P.Butler                 S                     16  25%        18     69%   D.Smoot                   LB                    23  33%
+J.Josephs                LB                    10  15%        14     54%   J.Pinnock                 S                     15  22%         2       8%
+J.Magee                  LB                                   22     85%   T.Ford                    LB                    10  14%        22      85%
+T.Owens                  S                                    21     81%   T.Nubin                   S                      1   1%        18      69%
+K.Medrano                LB                                   18     69%   Z.Barnes                  LB                                   22      85%
+A.Kaho                   LB                                   16     62%   N.Jones                   CB                                   22      85%
+M.Sainristil             CB                                   14     54%   J.Kelly                   LB                                   22      85%
+D.Stevens                K                                     9     35%   E.Campbell                DB                                   22      85%
+F.Moreau                 CB                                    8     31%   C.Martin                  LB                                   22      85%
+T.Ott                    LS                                    8     31%   G.Desrosiers              RB                                   10      38%
+T.Way                    P                                     8     31%   J.Stout                   P                                     9      35%
+A.Wylie                  T/G                                   4     15%   B.Mann                    LS                                    9      35%
+C.Hood                   CB                                  8      31%
+D.Zvada                  K                                   8      31%
+C.Jones                  WR                                  4      15%

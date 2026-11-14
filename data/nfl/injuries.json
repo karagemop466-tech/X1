@@ -2,7 +2,7 @@
   "provenance": {
     "source_key": "injuries_current",
     "source_url": "https://www.nfl.com/injuries/",
-    "retrieved_at": "2026-11-14T03:28:52Z",
+    "retrieved_at": "2026-11-14T03:35:50Z",
     "record_count": 345,
     "notes": []
   },
@@ -10,3797 +10,4142 @@
     {
       "club": "Commanders",
       "player": "John Bates",
+      "player_url": "https://www.nfl.com/players/john-bates/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Treylon Burks",
+      "player_url": "https://www.nfl.com/players/treylon-burks/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Jayden Daniels",
+      "player_url": "https://www.nfl.com/players/jayden-daniels/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Matt Gulbin",
+      "player_url": "https://www.nfl.com/players/matt-gulbin/",
       "position": "C",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Chig Okonkwo",
+      "player_url": "https://www.nfl.com/players/chigoziem-okonkwo/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Lucas Patrick",
+      "player_url": "https://www.nfl.com/players/lucas-patrick/",
       "position": "C",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Amik Robertson",
+      "player_url": "https://www.nfl.com/players/amik-robertson/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Shy Tuttle",
+      "player_url": "https://www.nfl.com/players/shy-tuttle/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Commanders",
       "player": "Colson Yankoff",
+      "player_url": "https://www.nfl.com/players/colson-yankoff/",
       "position": "TE",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Abdul Carter",
+      "player_url": "https://www.nfl.com/players/abdul-carter/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Jermaine Eluemunor",
+      "player_url": "https://www.nfl.com/players/jermaine-eluemunor/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Malik Harrison",
+      "player_url": "https://www.nfl.com/players/malik-harrison/",
       "position": "LB",
       "injuries": "Groin",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Colton Hood",
+      "player_url": "https://www.nfl.com/players/colton-hood/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Theo Johnson",
+      "player_url": "https://www.nfl.com/players/theo-johnson/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Charlie Jones",
+      "player_url": "https://www.nfl.com/players/charlie-jones-3/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "J.J. McCarthy",
+      "player_url": "https://www.nfl.com/players/j-j-mccarthy/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Darnell Mooney",
+      "player_url": "https://www.nfl.com/players/darnell-mooney/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Malik Nabers",
+      "player_url": "https://www.nfl.com/players/malik-nabers/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Cam Skattebo",
+      "player_url": "https://www.nfl.com/players/cam-skattebo/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Giants",
       "player": "Andrew Thomas",
+      "player_url": "https://www.nfl.com/players/andrew-thomas/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Ben Brown",
+      "player_url": "https://www.nfl.com/players/ben-brown-2/",
       "position": "C",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "A.J. Brown",
+      "player_url": "https://www.nfl.com/players/a-j-brown/",
       "position": "WR",
       "injuries": "Ankle, Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Kevin Byard",
+      "player_url": "https://www.nfl.com/players/kevin-byard/",
       "position": "S",
       "injuries": "Chest",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Carlton Davis III",
+      "player_url": "https://www.nfl.com/players/carlton-davis/",
       "position": "CB",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Reggie Gilliam",
+      "player_url": "https://www.nfl.com/players/reggie-gilliam/",
       "position": "FB",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "TreVeyon Henderson",
+      "player_url": "https://www.nfl.com/players/treveyon-henderson/",
       "position": "RB",
       "injuries": "Illness",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Hunter Henry",
+      "player_url": "https://www.nfl.com/players/hunter-henry/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Cameron Latu",
+      "player_url": "https://www.nfl.com/players/cameron-latu/",
       "position": "TE",
       "injuries": "Back",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Drake Maye",
+      "player_url": "https://www.nfl.com/players/drake-maye/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Morgan Moses",
+      "player_url": "https://www.nfl.com/players/morgan-moses/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Walter Rouse",
+      "player_url": "https://www.nfl.com/players/walter-rouse/",
       "position": "T",
       "injuries": "Concussion",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Brenden Schooler",
+      "player_url": "https://www.nfl.com/players/brenden-schooler/",
       "position": "S",
       "injuries": "Hamstring",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Rhamondre Stevenson",
+      "player_url": "https://www.nfl.com/players/rhamondre-stevenson/",
       "position": "RB",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Greg Van Roten",
+      "player_url": "https://www.nfl.com/players/greg-van-roten/",
       "position": "G",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Patriots",
       "player": "Charles Woods",
+      "player_url": "https://www.nfl.com/players/charles-woods/",
       "position": "CB",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Brian Branch",
+      "player_url": "https://www.nfl.com/players/brian-branch/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Jared Goff",
+      "player_url": "https://www.nfl.com/players/jared-goff/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Kerby Joseph",
+      "player_url": "https://www.nfl.com/players/kerby-joseph/",
       "position": "S",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Cade Mays",
+      "player_url": "https://www.nfl.com/players/cade-mays/",
       "position": "C",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "D.J. Reed",
+      "player_url": "https://www.nfl.com/players/d-j-reed/",
       "position": "CB",
       "injuries": "Hip",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Jacob Saylors",
+      "player_url": "https://www.nfl.com/players/jacob-saylors/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Amon-Ra St. Brown",
+      "player_url": "https://www.nfl.com/players/amon-ra-st-brown/",
       "position": "WR",
       "injuries": "Rib",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "Sione Vaki",
+      "player_url": "https://www.nfl.com/players/sione-vaki/",
       "position": "RB",
       "injuries": "Ankle",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Lions",
       "player": "DJ Wonnum",
+      "player_url": "https://www.nfl.com/players/d-j-wonnum/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Jeffrey Bassa",
+      "player_url": "https://www.nfl.com/players/jeffrey-bassa/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Mansoor Delane",
+      "player_url": "https://www.nfl.com/players/mansoor-delane/",
       "position": "CB",
       "injuries": "Shoulder",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Justin Fields",
+      "player_url": "https://www.nfl.com/players/justin-fields/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Jaden Hicks",
+      "player_url": "https://www.nfl.com/players/jaden-hicks/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Travis Kelce",
+      "player_url": "https://www.nfl.com/players/travis-kelce/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Patrick Mahomes",
+      "player_url": "https://www.nfl.com/players/patrick-mahomes/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Jaylon Moore",
+      "player_url": "https://www.nfl.com/players/jaylon-moore-2/",
       "position": "T",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Omarr Norman-Lott",
+      "player_url": "https://www.nfl.com/players/omarr-norman-lott/",
       "position": "DT",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Jaydn Ott",
+      "player_url": "https://www.nfl.com/players/jaydn-ott/",
       "position": "RB",
       "injuries": "Hamstring",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Rashee Rice",
+      "player_url": "https://www.nfl.com/players/rashee-rice/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Kenneth Walker III",
+      "player_url": "https://www.nfl.com/players/kenneth-walker-iii/",
       "position": "RB",
       "injuries": "Groin",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Peter Woods",
+      "player_url": "https://www.nfl.com/players/peter-woods/",
       "position": "DT",
       "injuries": "Neck",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chiefs",
       "player": "Xavier Worthy",
+      "player_url": "https://www.nfl.com/players/xavier-worthy/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Zachariah Branch",
+      "player_url": "https://www.nfl.com/players/zachariah-branch/",
       "position": "WR",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Kendal Daniels",
+      "player_url": "https://www.nfl.com/players/kendal-daniels/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Divine Deablo",
+      "player_url": "https://www.nfl.com/players/divine-deablo/",
       "position": "LB",
       "injuries": "Forearm",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Gervon Dexter Sr.",
+      "player_url": "https://www.nfl.com/players/gervon-dexter/",
       "position": "DT",
       "injuries": "Illness",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Jake Matthews",
+      "player_url": "https://www.nfl.com/players/jake-matthews/",
       "position": "T",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Liam McCullough",
+      "player_url": "https://www.nfl.com/players/liam-mccullough/",
       "position": "LS",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "James Pearce Jr.",
+      "player_url": "https://www.nfl.com/players/james-pearce-jr/",
       "position": "DE",
       "injuries": "Back",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Za'Darius Smith",
+      "player_url": "https://www.nfl.com/players/za-darius-smith/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Jawaan Taylor",
+      "player_url": "https://www.nfl.com/players/jawaan-taylor/",
       "position": "T",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Cameron Thomas",
+      "player_url": "https://www.nfl.com/players/cameron-thomas/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Falcons",
       "player": "Josh Woods",
+      "player_url": "https://www.nfl.com/players/josh-woods/",
       "position": "LB",
       "injuries": "Ankle",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Jordan Addison",
+      "player_url": "https://www.nfl.com/players/jordan-addison/",
       "position": "WR",
       "injuries": "Thumb",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Blake Cashman",
+      "player_url": "https://www.nfl.com/players/blake-cashman/",
       "position": "LB",
       "injuries": "Concussion",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Christian Darrisaw",
+      "player_url": "https://www.nfl.com/players/christian-darrisaw/",
       "position": "T",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "T.J. Hockenson",
+      "player_url": "https://www.nfl.com/players/t-j-hockenson/",
       "position": "TE",
       "injuries": "Wrist, Chest",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Tyrion Ingram-Dawkins",
+      "player_url": "https://www.nfl.com/players/tyrion-ingram-dawkins/",
       "position": "DT",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Theo Jackson",
+      "player_url": "https://www.nfl.com/players/theo-jackson/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Jauan Jennings",
+      "player_url": "https://www.nfl.com/players/jauan-jennings/",
       "position": "WR",
       "injuries": "Calf",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Josh Metellus",
+      "player_url": "https://www.nfl.com/players/josh-metellus/",
       "position": "S",
       "injuries": "Shoulder",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Kyler Murray",
+      "player_url": "https://www.nfl.com/players/kyler-murray/",
       "position": "QB",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Harrison Smith",
+      "player_url": "https://www.nfl.com/players/harrison-smith/",
       "position": "S",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Kyle Van Noy",
+      "player_url": "https://www.nfl.com/players/kyle-van-noy/",
       "position": "LB",
       "injuries": "Calf",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Jay Ward",
+      "player_url": "https://www.nfl.com/players/jay-ward/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Vikings",
       "player": "Carson Wentz",
+      "player_url": "https://www.nfl.com/players/carson-wentz/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Aaron Banks",
+      "player_url": "https://www.nfl.com/players/aaron-banks/",
       "position": "G",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Chris Brooks",
+      "player_url": "https://www.nfl.com/players/christopher-brooks/",
       "position": "RB",
       "injuries": "Ankle",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Javon Bullard",
+      "player_url": "https://www.nfl.com/players/javon-bullard/",
       "position": "S",
       "injuries": "Ankle, Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Zaire Franklin",
+      "player_url": "https://www.nfl.com/players/zaire-franklin/",
       "position": "LB",
       "injuries": "Shin",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Travis Glover",
+      "player_url": "https://www.nfl.com/players/travis-glover/",
       "position": "G",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Ty'Ron Hopper",
+      "player_url": "https://www.nfl.com/players/ty-ron-hopper/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Josh Jacobs",
+      "player_url": "https://www.nfl.com/players/josh-jacobs-x3315/",
       "position": "RB",
       "injuries": "Finger",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Xavier McKinney",
+      "player_url": "https://www.nfl.com/players/xavier-mckinney/",
       "position": "S",
       "injuries": "Foot",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Bo Melton",
+      "player_url": "https://www.nfl.com/players/bo-melton/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Skyy Moore",
+      "player_url": "https://www.nfl.com/players/skyy-moore/",
       "position": "WR",
       "injuries": "Ankle",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Micah Parsons",
+      "player_url": "https://www.nfl.com/players/micah-parsons/",
       "position": "LB",
       "injuries": "Knee, Illness",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Sean Rhyan",
+      "player_url": "https://www.nfl.com/players/sean-rhyan/",
       "position": "C",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Trey Smack",
+      "player_url": "https://www.nfl.com/players/trey-smack/",
       "position": "K",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Lukas Van Ness",
+      "player_url": "https://www.nfl.com/players/lukas-van-ness/",
       "position": "LB",
       "injuries": "Back",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Josh Whyle",
+      "player_url": "https://www.nfl.com/players/josh-whyle/",
       "position": "TE",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Savion Williams",
+      "player_url": "https://www.nfl.com/players/savion-williams/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Packers",
       "player": "Kevin Zeitler",
+      "player_url": "https://www.nfl.com/players/kevin-zeitler/",
       "position": "G",
       "injuries": "Ankle, Triceps",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Jessie Bates",
+      "player_url": "https://www.nfl.com/players/jessie-bates/",
       "position": "S",
       "injuries": "Not injury related - resting player",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Ezra Cleveland",
+      "player_url": "https://www.nfl.com/players/ezra-cleveland/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Branson Combs",
+      "player_url": "https://www.nfl.com/players/branson-combs/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Jordan Davis",
+      "player_url": "https://www.nfl.com/players/jordan-davis/",
       "position": "DT",
       "injuries": "Not injury related - resting player",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "BJ Green II",
+      "player_url": "https://www.nfl.com/players/bj-green-ii/",
       "position": "DE",
       "injuries": "Forearm",
       "practice_status": "Full Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Robert Hainsey",
+      "player_url": "https://www.nfl.com/players/robert-hainsey/",
       "position": "C",
       "injuries": "Concussion",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Antonio Johnson",
+      "player_url": "https://www.nfl.com/players/antonio-johnson-3/",
       "position": "S",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Jakobi Meyers",
+      "player_url": "https://www.nfl.com/players/jakobi-meyers/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Chris Rodriguez Jr.",
+      "player_url": "https://www.nfl.com/players/chris-rodriguez-jr/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Bhayshul Tuten",
+      "player_url": "https://www.nfl.com/players/bhayshul-tuten/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jaguars",
       "player": "Travon Walker",
+      "player_url": "https://www.nfl.com/players/travon-walker/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Cody Barton",
+      "player_url": "https://www.nfl.com/players/cody-barton/",
       "position": "LB",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "John Franklin-Myers",
+      "player_url": "https://www.nfl.com/players/john-franklin-myers/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Marcus Harris",
+      "player_url": "https://www.nfl.com/players/marcus-harris-4/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Anthony Hill Jr.",
+      "player_url": "https://www.nfl.com/players/anthony-hill-jr/",
       "position": "LB",
       "injuries": "Neck",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Jaylon Jones",
+      "player_url": "https://www.nfl.com/players/jaylon-jones-2/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "JC Latham",
+      "player_url": "https://www.nfl.com/players/jc-latham/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Tony Pollard",
+      "player_url": "https://www.nfl.com/players/tony-pollard/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Peter Skoronski",
+      "player_url": "https://www.nfl.com/players/peter-skoronski/",
       "position": "G",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Tyjae Spears",
+      "player_url": "https://www.nfl.com/players/tyjae-spears/",
       "position": "RB",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Carnell Tate",
+      "player_url": "https://www.nfl.com/players/carnell-tate/",
       "position": "WR",
       "injuries": "Shoulder",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Tommy Townsend",
+      "player_url": "https://www.nfl.com/players/tommy-townsend/",
       "position": "P",
       "injuries": "Knee, Achilles",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Titans",
       "player": "Kevin Winston Jr.",
+      "player_url": "https://www.nfl.com/players/kevin-winston-jr/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Alec Anderson",
+      "player_url": "https://www.nfl.com/players/alec-anderson-2/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Christian Benford",
+      "player_url": "https://www.nfl.com/players/christian-benford/",
       "position": "CB",
       "injuries": "Wrist",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Terrel Bernard",
+      "player_url": "https://www.nfl.com/players/terrel-bernard/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Spencer Brown",
+      "player_url": "https://www.nfl.com/players/spencer-brown/",
       "position": "T",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Dion Dawkins",
+      "player_url": "https://www.nfl.com/players/dion-dawkins/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Sam Franklin Jr.",
+      "player_url": "https://www.nfl.com/players/sam-franklin/",
       "position": "S",
       "injuries": "Shoulder",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Greg Gaines",
+      "player_url": "https://www.nfl.com/players/greg-gaines/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Jordan Hancock",
+      "player_url": "https://www.nfl.com/players/jordan-hancock/",
       "position": "CB",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Dalton Kincaid",
+      "player_url": "https://www.nfl.com/players/dalton-kincaid/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Connor McGovern",
+      "player_url": "https://www.nfl.com/players/connor-mcgovern-2/",
       "position": "C",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Ed Oliver",
+      "player_url": "https://www.nfl.com/players/ed-oliver/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Ar'maj Reed-Adams",
+      "player_url": "https://www.nfl.com/players/ar-maj-reed-adams/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "T.J. Sanders",
+      "player_url": "https://www.nfl.com/players/t-j-sanders/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bills",
       "player": "Tyrell Shavers",
+      "player_url": "https://www.nfl.com/players/tyrell-shavers/",
       "position": "WR",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Jarvis Brownlee Jr.",
+      "player_url": "https://www.nfl.com/players/jarvis-brownlee-jr/",
       "position": "CB",
       "injuries": "Illness",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Omar Cooper Jr.",
+      "player_url": "https://www.nfl.com/players/omar-cooper-jr/",
       "position": "WR",
       "injuries": "Ankle",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Adonai Mitchell",
+      "player_url": "https://www.nfl.com/players/adonai-mitchell/",
       "position": "WR",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Joseph Ossai",
+      "player_url": "https://www.nfl.com/players/joseph-ossai/",
       "position": "DE",
       "injuries": "Ankle",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "VJ Payne",
+      "player_url": "https://www.nfl.com/players/vj-payne/",
       "position": "S",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Harrison Phillips",
+      "player_url": "https://www.nfl.com/players/harrison-phillips/",
       "position": "DT",
       "injuries": "Ankle",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Trevin Wallace",
+      "player_url": "https://www.nfl.com/players/trevin-wallace/",
       "position": "LB",
       "injuries": "Groin",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Garrett Wilson",
+      "player_url": "https://www.nfl.com/players/garrett-wilson/",
       "position": "WR",
       "injuries": "Concussion",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Jets",
       "player": "Nahshon Wright",
+      "player_url": "https://www.nfl.com/players/nahshon-wright/",
       "position": "CB",
       "injuries": "Back",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Tucker Addington",
+      "player_url": "https://www.nfl.com/players/tucker-addington/",
       "position": "LS",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Kaytron Allen",
+      "player_url": "https://www.nfl.com/players/kaytron-allen/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Darrell Baker Jr.",
+      "player_url": "https://www.nfl.com/players/darrell-baker-jr/",
       "position": "CB",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Chris Bell",
+      "player_url": "https://www.nfl.com/players/chris-bell-2/",
       "position": "WR",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Aaron Brewer",
+      "player_url": "https://www.nfl.com/players/aaron-brewer-2/",
       "position": "C",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Malik Herring",
+      "player_url": "https://www.nfl.com/players/malik-herring/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Will Kacmarek",
+      "player_url": "https://www.nfl.com/players/will-kacmarek/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Michael Taaffe",
+      "player_url": "https://www.nfl.com/players/michael-taaffe/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Dante Trader Jr.",
+      "player_url": "https://www.nfl.com/players/dante-trader-jr/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Jared Wayne",
+      "player_url": "https://www.nfl.com/players/jared-wayne/",
       "position": "WR",
       "injuries": "Quadricep",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Dolphins",
       "player": "Jaylen Wright",
+      "player_url": "https://www.nfl.com/players/jaylen-wright/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Mo Alie-Cox",
+      "player_url": "https://www.nfl.com/players/mo-alie-cox/",
       "position": "TE",
       "injuries": "Groin",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "CJ Allen",
+      "player_url": "https://www.nfl.com/players/cj-allen/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Jaylon Carlies",
+      "player_url": "https://www.nfl.com/players/jaylon-carlies/",
       "position": "LB",
       "injuries": "Neck",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Akeem Davis-Gaither",
+      "player_url": "https://www.nfl.com/players/akeem-davis-gaither/",
       "position": "LB",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "A.J. Haulcy",
+      "player_url": "https://www.nfl.com/players/a-j-haulcy/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Arden Key",
+      "player_url": "https://www.nfl.com/players/arden-key/",
       "position": "DE",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Will Mallory",
+      "player_url": "https://www.nfl.com/players/will-mallory/",
       "position": "TE",
       "injuries": "Hamstring",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Luke Rhodes",
+      "player_url": "https://www.nfl.com/players/luke-rhodes/",
       "position": "LS",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Grover Stewart",
+      "player_url": "https://www.nfl.com/players/grover-stewart/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Jonathan Taylor",
+      "player_url": "https://www.nfl.com/players/jonathan-taylor/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Jerry Tillery",
+      "player_url": "https://www.nfl.com/players/jerry-tillery/",
       "position": "DT",
       "injuries": "Calf",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Jalen Travis",
+      "player_url": "https://www.nfl.com/players/jalen-travis/",
       "position": "T",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Justin Walley",
+      "player_url": "https://www.nfl.com/players/justin-walley/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Colts",
       "player": "Charvarius Ward",
+      "player_url": "https://www.nfl.com/players/charvarius-ward/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Jonathon Brooks",
+      "player_url": "https://www.nfl.com/players/jonathon-brooks/",
       "position": "RB",
       "injuries": "Groin",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Brady Christensen",
+      "player_url": "https://www.nfl.com/players/brady-christensen/",
       "position": "G",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Trevor Etienne",
+      "player_url": "https://www.nfl.com/players/trevor-etienne/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Chuba Hubbard",
+      "player_url": "https://www.nfl.com/players/chuba-hubbard/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Lee Hunter",
+      "player_url": "https://www.nfl.com/players/lee-hunter/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Mike Jackson",
+      "player_url": "https://www.nfl.com/players/mike-jackson/",
       "position": "CB",
       "injuries": "Groin",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Will Lee III",
+      "player_url": "https://www.nfl.com/players/will-lee-iii/",
       "position": "CB",
       "injuries": "Hamstring",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Xavier Legette",
+      "player_url": "https://www.nfl.com/players/xavier-legette/",
       "position": "WR",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Damien Lewis",
+      "player_url": "https://www.nfl.com/players/damien-lewis/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Bobby Okereke",
+      "player_url": "https://www.nfl.com/players/bobby-okereke/",
       "position": "LB",
       "injuries": "Foot",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Jaelan Phillips",
+      "player_url": "https://www.nfl.com/players/jaelan-phillips/",
       "position": "LB",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Panthers",
       "player": "Torricelli Simpkins III",
+      "player_url": "https://www.nfl.com/players/torricelli-simpkins-iii/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Kelvin Banks Jr.",
+      "player_url": "https://www.nfl.com/players/kelvin-banks-jr/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "CJ Donaldson",
+      "player_url": "https://www.nfl.com/players/cj-donaldson/",
       "position": "RB",
       "injuries": "Shoulder",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "David Edwards",
+      "player_url": "https://www.nfl.com/players/david-edwards-x1290/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Martin Emerson",
+      "player_url": "https://www.nfl.com/players/martin-emerson/",
       "position": "CB",
       "injuries": "Shin",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Travis Etienne",
+      "player_url": "https://www.nfl.com/players/travis-etienne/",
       "position": "RB",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Noah Fant",
+      "player_url": "https://www.nfl.com/players/noah-fant-x4946/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Taliese Fuaga",
+      "player_url": "https://www.nfl.com/players/taliese-fuaga/",
       "position": "T",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Alvin Kamara",
+      "player_url": "https://www.nfl.com/players/alvin-kamara/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Erik McCoy",
+      "player_url": "https://www.nfl.com/players/erik-mccoy/",
       "position": "C",
       "injuries": "Biceps",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Christen Miller",
+      "player_url": "https://www.nfl.com/players/christen-miller/",
       "position": "DT",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Asim Richards",
+      "player_url": "https://www.nfl.com/players/asim-richards/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Saints",
       "player": "Quincy Riley",
+      "player_url": "https://www.nfl.com/players/quincy-riley/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Azeez Al-Shaair",
+      "player_url": "https://www.nfl.com/players/azeez-al-shaair/",
       "position": "LB",
       "injuries": "Groin, Not injury related - personal matter",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Will Anderson Jr.",
+      "player_url": "https://www.nfl.com/players/will-anderson-jr/",
       "position": "DE",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Reed Blankenship",
+      "player_url": "https://www.nfl.com/players/reed-blankenship/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Trent Brown",
+      "player_url": "https://www.nfl.com/players/trent-brown/",
       "position": "T",
       "injuries": "Wrist, Illness",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Tank Dell",
+      "player_url": "https://www.nfl.com/players/tank-dell/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Blake Fisher",
+      "player_url": "https://www.nfl.com/players/blake-fisher/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Marvin Harrison Jr.",
+      "player_url": "https://www.nfl.com/players/marvin-harrison-jr/",
       "position": "WR",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Jacob Hummel",
+      "player_url": "https://www.nfl.com/players/jake-hummel/",
       "position": "LB",
       "injuries": "Groin",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Danielle Hunter",
+      "player_url": "https://www.nfl.com/players/danielle-hunter/",
       "position": "DE",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Brevin Jordan",
+      "player_url": "https://www.nfl.com/players/brevin-jordan/",
       "position": "TE",
       "injuries": "Finger, Foot",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Woody Marks",
+      "player_url": "https://www.nfl.com/players/woody-marks/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "David Montgomery",
+      "player_url": "https://www.nfl.com/players/david-montgomery/",
       "position": "RB",
       "injuries": "Groin",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Keylan Rutledge",
+      "player_url": "https://www.nfl.com/players/keylan-rutledge/",
       "position": "G",
       "injuries": "Neck, Shoulder",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Jaylin Smith",
+      "player_url": "https://www.nfl.com/players/jaylin-smith/",
       "position": "CB",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Wyatt Teller",
+      "player_url": "https://www.nfl.com/players/wyatt-teller/",
       "position": "G",
       "injuries": "Illness, Back",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Texans",
       "player": "Tommy Togiai",
+      "player_url": "https://www.nfl.com/players/tommy-togiai/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Austin Barber",
+      "player_url": "https://www.nfl.com/players/austin-barber/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Denzel Boston",
+      "player_url": "https://www.nfl.com/players/denzel-boston/",
       "position": "WR",
       "injuries": "Toe",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Michael Burton",
+      "player_url": "https://www.nfl.com/players/michael-burton/",
       "position": "FB",
       "injuries": "Calf",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Maliek Collins",
+      "player_url": "https://www.nfl.com/players/maliek-collins/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Harold Fannin Jr.",
+      "player_url": "https://www.nfl.com/players/harold-fannin-jr/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Ronnie Hickman Jr.",
+      "player_url": "https://www.nfl.com/players/ronnie-hickman-jr/",
       "position": "S",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Tytus Howard",
+      "player_url": "https://www.nfl.com/players/tytus-howard-x1979/",
       "position": "T",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Elgton Jenkins",
+      "player_url": "https://www.nfl.com/players/elgton-jenkins/",
       "position": "C",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Donovan McMillon",
+      "player_url": "https://www.nfl.com/players/donovan-mcmillon-2/",
       "position": "S",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Carson Schwesinger",
+      "player_url": "https://www.nfl.com/players/carson-schwesinger/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Denzel Ward",
+      "player_url": "https://www.nfl.com/players/denzel-ward/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Browns",
       "player": "Quincy Williams",
+      "player_url": "https://www.nfl.com/players/quincy-williams/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Davis Allen",
+      "player_url": "https://www.nfl.com/players/davis-allen/",
       "position": "TE",
       "injuries": "Oblique",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Steve Avila",
+      "player_url": "https://www.nfl.com/players/steve-avila/",
       "position": "G",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Joe Cardona",
+      "player_url": "https://www.nfl.com/players/joe-cardona/",
       "position": "LS",
       "injuries": "Ankle",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Kam Curl",
+      "player_url": "https://www.nfl.com/players/kamren-curl/",
       "position": "S",
       "injuries": "Toe",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Aaron Donald",
+      "player_url": "https://www.nfl.com/players/aaron-donald/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Terrance Ferguson",
+      "player_url": "https://www.nfl.com/players/terrance-ferguson-2/",
       "position": "TE",
       "injuries": "Ankle, Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Braden Fiske",
+      "player_url": "https://www.nfl.com/players/braden-fiske/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Myles Garrett",
+      "player_url": "https://www.nfl.com/players/myles-garrett/",
       "position": "LB",
       "injuries": "Knee, Not injury related - resting player",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Tyler Higbee",
+      "player_url": "https://www.nfl.com/players/tyler-higbee/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Trent McDuffie",
+      "player_url": "https://www.nfl.com/players/trent-mcduffie/",
       "position": "CB",
       "injuries": "Back",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Puka Nacua",
+      "player_url": "https://www.nfl.com/players/puka-nacua/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Colby Parkinson",
+      "player_url": "https://www.nfl.com/players/colby-parkinson/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Matthew Stafford",
+      "player_url": "https://www.nfl.com/players/matthew-stafford/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Rams",
       "player": "Byron Young",
+      "player_url": "https://www.nfl.com/players/byron-young-2/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Budda Baker",
+      "player_url": "https://www.nfl.com/players/budda-baker/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Zachary Carter",
+      "player_url": "https://www.nfl.com/players/zachary-carter-x9168/",
       "position": "DT",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Hjalte Froholdt",
+      "player_url": "https://www.nfl.com/players/hjalte-froholdt/",
       "position": "C",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Jon Gaines II",
+      "player_url": "https://www.nfl.com/players/jon-gaines-ii/",
       "position": "G",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Bam Knight",
+      "player_url": "https://www.nfl.com/players/bam-knight/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Hunter Long",
+      "player_url": "https://www.nfl.com/players/hunter-long/",
       "position": "TE",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Roy Lopez",
+      "player_url": "https://www.nfl.com/players/roy-lopez/",
       "position": "DT",
       "injuries": "Toe, Ankle",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Max Melton",
+      "player_url": "https://www.nfl.com/players/max-melton/",
       "position": "CB",
       "injuries": "Knee, Hand",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Darius Robinson",
+      "player_url": "https://www.nfl.com/players/darius-robinson-2/",
       "position": "DT",
       "injuries": "Wrist",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Isaac Seumalo",
+      "player_url": "https://www.nfl.com/players/isaac-seumalo/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Dante Stills",
+      "player_url": "https://www.nfl.com/players/dante-stills/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Josh Sweat",
+      "player_url": "https://www.nfl.com/players/josh-sweat/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Jayden Williams",
+      "player_url": "https://www.nfl.com/players/jayden-williams/",
       "position": "T",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Mack Wilson",
+      "player_url": "https://www.nfl.com/players/mack-wilson/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cardinals",
       "player": "Andrew Wingard",
+      "player_url": "https://www.nfl.com/players/andrew-wingard/",
       "position": "S",
       "injuries": "Groin",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "AJ Barner",
+      "player_url": "https://www.nfl.com/players/aj-barner/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Anthony Bradford",
+      "player_url": "https://www.nfl.com/players/anthony-bradford/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Charles Cross",
+      "player_url": "https://www.nfl.com/players/charles-cross-2/",
       "position": "T",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Sam Darnold",
+      "player_url": "https://www.nfl.com/players/sam-darnold/",
       "position": "QB",
       "injuries": "Ribs, Quadricep",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Derick Hall",
+      "player_url": "https://www.nfl.com/players/derick-hall/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Drew Lock",
+      "player_url": "https://www.nfl.com/players/drew-lock/",
       "position": "QB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Quenton Nelson",
+      "player_url": "https://www.nfl.com/players/quenton-nelson/",
       "position": "G",
       "injuries": "Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Uchenna Nwosu",
+      "player_url": "https://www.nfl.com/players/uchenna-nwosu/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Patrick O'Connell",
+      "player_url": "https://www.nfl.com/players/patrick-o-connell/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Connor O'Toole",
+      "player_url": "https://www.nfl.com/players/connor-o-toole/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Brandon Pili",
+      "player_url": "https://www.nfl.com/players/brandon-pili/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Jarran Reed",
+      "player_url": "https://www.nfl.com/players/jarran-reed/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Rashid Shaheed",
+      "player_url": "https://www.nfl.com/players/rashid-shaheed/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Jaxon Smith-Njigba",
+      "player_url": "https://www.nfl.com/players/jaxon-smith-njigba/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Seahawks",
       "player": "Leonard Williams",
+      "player_url": "https://www.nfl.com/players/leonard-williams/",
       "position": "DT",
       "injuries": "Stinger",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Raiders",
       "player": "Thomas Booker",
+      "player_url": "https://www.nfl.com/players/thomas-booker/",
       "position": "DT",
       "injuries": "Ankle",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Raiders",
       "player": "Foley Fatukasi",
+      "player_url": "https://www.nfl.com/players/foley-fatukasi/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Raiders",
       "player": "Ian Thomas",
+      "player_url": "https://www.nfl.com/players/ian-thomas/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Raiders",
       "player": "Dont'e Thornton Jr.",
+      "player_url": "https://www.nfl.com/players/dont-e-thornton-jr/",
       "position": "WR",
       "injuries": "Back",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Raiders",
       "player": "Trey Zuhn III",
+      "player_url": "https://www.nfl.com/players/trey-zuhn-iii/",
       "position": "C",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Mike Evans",
+      "player_url": "https://www.nfl.com/players/mike-evans/",
       "position": "WR",
       "injuries": "Achilles",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Renardo Green",
+      "player_url": "https://www.nfl.com/players/renardo-green/",
       "position": "CB",
       "injuries": "Back",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Dre Greenlaw",
+      "player_url": "https://www.nfl.com/players/dre-greenlaw-x9042/",
       "position": "LB",
       "injuries": "Knee",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Nate Hobbs",
+      "player_url": "https://www.nfl.com/players/nate-hobbs/",
       "position": "CB",
       "injuries": "Groin",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Deommodore Lenoir",
+      "player_url": "https://www.nfl.com/players/deommodore-lenoir/",
       "position": "CB",
       "injuries": "Foot",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Christian McCaffrey",
+      "player_url": "https://www.nfl.com/players/christian-mccaffrey/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Siran Neal",
+      "player_url": "https://www.nfl.com/players/siran-neal/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Demarcus Robinson",
+      "player_url": "https://www.nfl.com/players/demarcus-robinson/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Deebo Samuel Sr.",
+      "player_url": "https://www.nfl.com/players/deebo-samuel/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Upton Stout",
+      "player_url": "https://www.nfl.com/players/upton-stout/",
       "position": "CB",
       "injuries": "Shoulder, Neck",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "C.J. West",
+      "player_url": "https://www.nfl.com/players/cj-west/",
       "position": "DT",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "49ers",
       "player": "Trent Williams",
+      "player_url": "https://www.nfl.com/players/trent-williams/",
       "position": "T",
       "injuries": "Shoulder",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "DaRon Bland",
+      "player_url": "https://www.nfl.com/players/daron-bland/",
       "position": "CB",
       "injuries": "Ankle",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Jonathan Bullard",
+      "player_url": "https://www.nfl.com/players/jonathan-bullard/",
       "position": "DT",
       "injuries": "Calf",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Alijah Clark",
+      "player_url": "https://www.nfl.com/players/alijah-clark/",
       "position": "S",
       "injuries": "Illness",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Donovan Ezeiruaku",
+      "player_url": "https://www.nfl.com/players/donovan-ezeiruaku/",
       "position": "LB",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Jake Ferguson",
+      "player_url": "https://www.nfl.com/players/jake-ferguson/",
       "position": "TE",
       "injuries": "Knee, Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Tyler Goodson",
+      "player_url": "https://www.nfl.com/players/tyler-goodson/",
       "position": "RB",
       "injuries": "Ankle, Knee",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Malik Hooker",
+      "player_url": "https://www.nfl.com/players/malik-hooker/",
       "position": "S",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Marist Liufau",
+      "player_url": "https://www.nfl.com/players/marist-liufau/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "P.J. Locke",
+      "player_url": "https://www.nfl.com/players/p-j-locke/",
       "position": "S",
       "injuries": "Concussion",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Von Miller",
+      "player_url": "https://www.nfl.com/players/von-miller/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Jonathan Mingo",
+      "player_url": "https://www.nfl.com/players/jonathan-mingo/",
       "position": "WR",
       "injuries": "Ankle",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Devin Moore",
+      "player_url": "https://www.nfl.com/players/devin-moore-2/",
       "position": "CB",
       "injuries": "Hip",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "DeMarvion Overshown",
+      "player_url": "https://www.nfl.com/players/demarvion-overshown/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "George Pickens",
+      "player_url": "https://www.nfl.com/players/george-pickens/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Joey Porter Jr.",
+      "player_url": "https://www.nfl.com/players/joey-porter-jr/",
       "position": "CB",
       "injuries": "Ankle, Foot",
       "practice_status": "Limited Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Luke Schoonmaker",
+      "player_url": "https://www.nfl.com/players/luke-schoonmaker/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Brevyn Spann-Ford",
+      "player_url": "https://www.nfl.com/players/brevyn-spann-ford/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "Juanyeh Thomas",
+      "player_url": "https://www.nfl.com/players/juanyeh-thomas/",
       "position": "S",
       "injuries": "Hamstring",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Cowboys",
       "player": "KaVontae Turpin",
+      "player_url": "https://www.nfl.com/players/kavontae-turpin/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "Brandin Echols",
+      "player_url": "https://www.nfl.com/players/brandin-echols/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "DeShon Elliott",
+      "player_url": "https://www.nfl.com/players/deshon-elliott/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "Derrick Harmon",
+      "player_url": "https://www.nfl.com/players/derrick-harmon-2/",
       "position": "DT",
       "injuries": "Foot",
       "practice_status": "Full Participation in Practice",
       "game_status": "Questionable",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "Cameron Heyward",
+      "player_url": "https://www.nfl.com/players/cameron-heyward/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "Ben Skowronek",
+      "player_url": "https://www.nfl.com/players/ben-skowronek/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "Doneiko Slaughter",
+      "player_url": "https://www.nfl.com/players/doneiko-slaughter/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "Darnell Washington",
+      "player_url": "https://www.nfl.com/players/darnell-washington/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Steelers",
       "player": "T.J. Watt",
+      "player_url": "https://www.nfl.com/players/t-j-watt/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Jonathan Allen",
+      "player_url": "https://www.nfl.com/players/jonathan-allen/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Jalen Davis",
+      "player_url": "https://www.nfl.com/players/jalen-davis/",
       "position": "CB",
       "injuries": "Hamstring",
       "practice_status": "Full Participation in Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Kyle Dugger",
+      "player_url": "https://www.nfl.com/players/kyle-dugger/",
       "position": "S",
       "injuries": "Quadricep",
       "practice_status": "Did Not Participate In Practice",
       "game_status": "Out",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Dylan Fairchild",
+      "player_url": "https://www.nfl.com/players/dylan-fairchild/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "B.J. Hill",
+      "player_url": "https://www.nfl.com/players/b-j-hill/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Andrei Iosivas",
+      "player_url": "https://www.nfl.com/players/andrei-iosivas/",
       "position": "WR",
       "injuries": "Thumb",
       "practice_status": "Full Participation in Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Dexter Lawrence",
+      "player_url": "https://www.nfl.com/players/dexter-lawrence/",
       "position": "DT",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "Brian Parker II",
+      "player_url": "https://www.nfl.com/players/brian-parker-ii/",
       "position": "G",
       "injuries": "Knee",
       "practice_status": "Full Participation in Practice",
       "game_status": "Doubtful",
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Bengals",
       "player": "DJ Turner II",
+      "player_url": "https://www.nfl.com/players/dj-turner-2/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Kayode Awosika",
+      "player_url": "https://www.nfl.com/players/kayode-awosika/",
       "position": "G",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Bud Dupree",
+      "player_url": "https://www.nfl.com/players/bud-dupree/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Justin Eboigbe",
+      "player_url": "https://www.nfl.com/players/justin-eboigbe/",
       "position": "DE",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Alex Harkey",
+      "player_url": "https://www.nfl.com/players/alex-harkey/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Tre Harris",
+      "player_url": "https://www.nfl.com/players/tre-harris/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Cam Hart",
+      "player_url": "https://www.nfl.com/players/cam-hart/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Daiyan Henley",
+      "player_url": "https://www.nfl.com/players/daiyan-henley/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Deane Leonard",
+      "player_url": "https://www.nfl.com/players/deane-leonard/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Khalil Mack",
+      "player_url": "https://www.nfl.com/players/khalil-mack/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Ladd McConkey",
+      "player_url": "https://www.nfl.com/players/ladd-mcconkey/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Keaton Mitchell",
+      "player_url": "https://www.nfl.com/players/keaton-mitchell/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "David Njoku",
+      "player_url": "https://www.nfl.com/players/david-njoku/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Denzel Perryman",
+      "player_url": "https://www.nfl.com/players/denzel-perryman/",
       "position": "LB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Trey Pipkins",
+      "player_url": "https://www.nfl.com/players/trey-pipkins/",
       "position": "T",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Rodney Shelley",
+      "player_url": "https://www.nfl.com/players/rodney-shelley/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Branson Taylor",
+      "player_url": "https://www.nfl.com/players/branson-taylor/",
       "position": "G",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Brenen Thompson",
+      "player_url": "https://www.nfl.com/players/brenen-thompson/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Isas Waxter",
+      "player_url": "https://www.nfl.com/players/isas-waxter/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Chargers",
       "player": "Kendall Williamson",
+      "player_url": "https://www.nfl.com/players/kendall-williamson/",
       "position": "S",
       "injuries": null,
       "practice_status": "Did Not Participate In Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Rasheen Ali",
+      "player_url": "https://www.nfl.com/players/rasheen-ali/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Rashod Bateman",
+      "player_url": "https://www.nfl.com/players/rashod-bateman/",
       "position": "WR",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Kyle Hamilton",
+      "player_url": "https://www.nfl.com/players/kyle-hamilton/",
       "position": "S",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Jaylinn Hawkins",
+      "player_url": "https://www.nfl.com/players/jaylinn-hawkins/",
       "position": "S",
       "injuries": null,
       "practice_status": "Limited Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Matthew Hibner",
+      "player_url": "https://www.nfl.com/players/matthew-hibner/",
       "position": "TE",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Olaivavega Ioane",
+      "player_url": "https://www.nfl.com/players/olaivavega-ioane/",
       "position": "G",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Adam Randall",
+      "player_url": "https://www.nfl.com/players/adam-randall/",
       "position": "RB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     },
     {
       "club": "Ravens",
       "player": "Nate Wiggins",
+      "player_url": "https://www.nfl.com/players/nate-wiggins/",
       "position": "CB",
       "injuries": null,
       "practice_status": "Full Participation in Practice",
       "game_status": null,
       "source_url": "https://www.nfl.com/injuries/",
       "source_label": "Official NFL Injury Report (current week)",
-      "retrieved_at": "2026-11-14T03:28:52Z"
+      "retrieved_at": "2026-11-14T03:35:50Z"
     }
   ]
 }

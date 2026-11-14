@@ -1,702 +1,753 @@
-                                                              2026 Melbourne Game
                                              National Football League Game Summary
-
 NFL Copyright © 2026 by The National Football League. All rights reserved. This summary and play-by-play is for the express purpose of assisting media in their
 coverage of the game; any other use of this material is prohibited without the written permission of the National Football League.
 
-Date: Friday, 9/11/2026                                    San Francisco 49ers at Los Angeles Rams                                                   Start Time: 10:37 AM AEST
-                                                            at Melbourne Cricket Ground (MCG), Melbourne, Austral
+Date: Thursday, 11/12/2026                              Washington Commanders at New York Giants                                                         Start Time: 8:15 PM EST
+                                                                     at MetLife Stadium, East Rutherford, NJ
                                                                              Game Day Weather
-Game Weather: Sunny                                                                                                  Temp: 57° F (13.9° C) Humidity: 55%, Wind: NW 4 mph
-Open Stadium on Natural Grass
+Game Weather: Light Rain Fog/Mist                                                                                       Temp: 48° F (8.9° C) Humidity: 89%, Wind: NE 9 mph
+Open Stadium on Field Turf                                                                                                                                            Wind Chill: 44
 
-                                                                                     Officials
-           Referee:   Kemp, Alex (55)                                     Umpire:   Ellison, Brandon (128)                       Down Judge:      Carr, Mike (63)
-        Line Judge:   Baynes, Rusty (59)                             Field Judge:   Petty, Sean (28)                               Side Judge:    Quirk, Jim (5)
-       Back Judge:    Helverson, Scott (93)                       Replay Official:  Johnson, Julie (0)
+                                                                                      Officials
+           Referee:    Rogers, Brad (126)                                 Umpire:    Neale, Bryan (92)                            Down Judge:      Turner, Patrick (13)
+        Line Judge:    Codey, Kevin (16)                              Field Judge:   Blubaugh, Joe (57)                             Side Judge:    Meslow, David (118)
+       Back Judge:     Yette, Greg (38)                           Replay Official:   Crudup, Denise (0)
 
-                                                                                      Lineups
+                                                                                       Lineups
 
-                                San Francisco 49ers                                                                          Los Angeles Rams
-                  Offense                                      Defense                                           Offense                                     Defense
-      WR      7  D.Stribling                         DL    56  K.White                                TE    84   C.Parkinson                     OLB    95   M.Garrett
-      WR      5  M.Evans                             DL    99  C.West                                 LT    77   A.Jackson                         DE   91   K.Turner
-        LT   71  T.Williams                          DL    92  O.Odighizuwa                           LG    73   S.Avila                           DE   55   B.Fiske
-       LG    75  C.Colby                             DL    97  N.Bosa                                  C    65   C.Shelton                       OLB      0  B.Young
-         C   64  J.Brendel                           LB    53  J.Dugger                               RG    69   K.Dotson                         ILB   48   O.Speights
-       RG    77  D.Puni                              LB    54  F.Warner                               RT    71   W.McClendon                      ILB   53   N.Landman
-       RT    68  C.McKivitz                          LB    57  D.Greenlaw                            WR     12   P.Nacua                           CB   22   T.McDuffie
-       TE    85  G.Kittle                            DB     2  D.Lenoir                              WR     17   D.Adams                           CB   35   J.Watson
-       QB    13  B.Purdy                             CB     0  R.Green                                TE    18   T.Ferguson                         S   37   Q.Lake
-        FB   44  K.Juszczyk                           S    27  J.Brown                               QB      9   M.Stafford                         S     5  K.Kinchens
-       RB    23  C.McCaffrey                          S    36  M.Sigle                                RB    23   K.Williams                         S     3  K.Curl
+                            Washington Commanders                                                                              New York Giants
+                  Offense                                       Defense                                           Offense                                     Defense
+       WR    14  A.Williams                         OLB    98  O.Oweh                                 WR     17   D.Mooney                        OLB      5  K.Thibodeaux
+       TE    87  J.Bates                             DT    97  T.Settle                                TE    84   T.Johnson                         DL    93  S.Harris
+        LT   74  B.Coleman                           DT    96  S.Tuttle                                LT    78   A.Thomas                          DL    97  B.Jamison-Travis
+       LG    75  C.Paul                             OLB    45  K.Chaisson                              LG    76   J.Runyan                          DL    98  D.Reader
+         C   67  N.Allegretti                         LB   52  S.Styles                                 C    60   B.Hudson                        OLB      3  A.Carter
+       RG    76  S.Cosmi                              LB    4  F.Luvu                                 RG     65   F.Mauigoa                         LB    41  M.McFadden
+       RT    72  J.Conerly                           CB    23  T.Amos                                  RT    72   J.Eluemunor                       LB    52  A.Reese
+       TE    82  B.Sinnott                           CB     2  A.Robertson                            WR      1   M.Nabers                          CB    20  G.Newsome
+       WR    13  T.Burks                               S   39  J.Reaves                                TE     9   I.Likely                          CB     2  D.Banks
+       QB      5 J.Daniels                             S   25  N.Cross                                QB     18   J.McCarthy                          S    8  J.Holland
+       RB      1 R.White                               S   20  Q.Martin                                RB    44   C.Skattebo                          S   24  A.Washington
 
 
-                                     Substitutions                                                                               Substitutions
-WR 4 J.Cowing, S 6 M.Mustapha, WR 11 D.Robinson, P 15 C.Waitman, K 18                       CB 1 E.Forbes, S 2 J.McCollough, WR 4 K.Mumpfield, OLB 10 J.Stewart, QB 13
-E.Pineiro, WR 19 D.Samuel, CB 20 U.Stout, S 24 A.Davis, CB 25 J.Jones, RB 26                S.Bennett, WR 19 X.Smith, RB 20 R.Rivers, RB 24 B.Corum, CB 30 J.Wallace, S
-K.Black, DB 33 S.Neal, LS 46 J.Weeks, DL 47 K.Kareem, LB 49 G.Wallow, LB                    34 T.Ingle, P 42 E.Evans, ILB 44 G.Stuard, OLB 47 W.Bailey, LS 49 J.Cardona,
-51 L.Gifford, OL 58 J.Patterson, DL 59 O.Okoronkwo, OL 74 C.Willis, OL 76                   OL 50 B.Limmer, ILB 56 S.Dolac, NT 57 T.Hamilton, OL 68 D.Quessenberry, TE
-V.Lowe, WR 86 K.Hodge, TE 88 J.Tonges, TE 89 L.Farrell, DL 93 G.Halton, DL                  87 D.Allen, WR 88 J.Whittington, TE 89 T.Higbee, DE 90 T.Davis, K 92
-94 R.Height, DL 96 J.Thompson                                                               H.Mevis, OLB 94 D.Johnson, NT 97 P.Ford
+                                     Substitutions                                                                                Substitutions
+CB 0 M.Sainristil, WR 3 S.Diggs, P 10 T.Way, WR 11 L.McCaffrey, WR 12                        CB 12 C.Hood, P 15 J.Stout, QB 19 J.Winston, CB 22 A.Phillips, S 25 J.Pinnock,
+V.Jefferson, S 18 T.Owens, K 19 D.Stevens, CB 24 F.Moreau, CB 29 R.Douglas,                  RB 26 D.Singletary, S 27 T.Nubin, DB 28 E.Campbell, RB 30 G.Desrosiers, CB
+RB 30 A.Ekeler, RB 34 R.Henry, S 35 P.Butler, OLB 48 J.Josephs, LB 51                        31 N.Jones, K 34 D.Zvada, FB 45 P.Ricard, LB 46 Z.Barnes, OLB 48 T.Ford, LB
+A.Kaho, LB 56 K.Medrano, LB 58 J.Magee, LS 69 T.Ott, T/G 71 A.Wylie, TE 85                   51 J.Kelly, LB 55 C.Martin, LS 58 B.Mann, OL 64 A.Stinnie, OL 71 M.Mbow, WR
+C.Okonkwo, DE 90 C.Omenihu, DE 91 D.Wise, OLB 92 D.Armstrong, DT 95                          81 J.Hyatt, TE 85 C.Manhertz, WR 88 M.Fields, WR 89 C.Jones, DL 91
+J.Newton                                                                                     D.Alexander, OLB 96 D.Smoot
 
-                                     Did Not Play                                                                                Did Not Play
-QB 10 M.Jones                                                                               OL 63 D.McMahon
+                                      Did Not Play                                                                                Did Not Play
+QB 8 M.Mariota, C/G 61 J.Good-Jones, C 66 M.Gulbin                                           C 61 J.Schmitz
 
-                                       Not Active                                                                                 Not Active
-3QB 14 K.Rourke, WR 17 J.Watkins, CB 28 E.Prysock, RB 29 J.James, LB 48                     WR 6 C.Daniels, WR 8 T.Atwell, 3QB 15 T.Simpson, OL 66 B.Murray, TE 86
-T.Bethune, OL 69 E.Cruz                                                                     M.Klare
-                                                                       Field Goals (made ( )  & missed)
+                                       Not Active                                                                                   Not Active
+3QB 16 A.Kaliakmanis, CB 37 I.Yiadom, DT 50 R.Barber, G 62 T.Togiai, G 63                    CB 21 P.Adebo, CB 35 N.Reed, LB 54 M.Harrison, OL 67 J.Sills, OL 74 J.Davis,
+L.Patrick, TE 80 C.Yankoff                                                                   TE 86 T.Fidone, DL 99 B.Okoye
+                                                                        Field Goals (made ( )  & missed)
 
-E.Pineiro                                      (20) (56) 52RU
+D.Stevens                                       (46)                                         D.Zvada                                        33WL
 
-                                                                                                    1              2              3               4              OT          Total
-VISITOR:              San Francisco 49ers                                                           3              7               7             10                0             27
-HOME:                 Los Angeles Rams                                                              0              7               0              0                0              7
+                                                                                                     1              2              3               4              OT           Total
+VISITOR:               Washington Commanders                                                         0             10               7              7                 0             24
+HOME:                  New York Giants                                                               0              7               7              7                 0             21
 
                                                                                    Scoring Plays
 
-Team              Qtr        Time    Play Description (Extra Point) (Drive Info)                                                                                  Visitor    Home
-49ers               1         6:15   E.Pineiro 20 yd. Field Goal (15-65, 7:13)                                                                                           3         0
-Rams                2       14:57    K.Williams 5 yd. run (H.Mevis kick) (4-57, 1:55)                                                                                    3         7
-49ers               2         4:28   D.Robinson 39 yd. pass from B.Purdy (E.Pineiro kick) (9-86, 4:24)                                                                  10         7
-49ers               3       11:03    M.Evans 2 yd. pass from B.Purdy (E.Pineiro kick) (7-51, 3:57)                                                                      17         7
-49ers               4       12:57    D.Samuel 15 yd. pass from B.Purdy (E.Pineiro kick) (11-99, 5:44)                                                                   24         7
-49ers               4         9:43   E.Pineiro 56 yd. Field Goal (4-5, 1:25)                                                                                            27         7
-Paid Attendance: 100,021                                                                                                                                                Time: 2:47
-                                                         San Francisco 49ers vs Los Angeles Rams
-                                                     9/11/2026 at Melbourne Cricket Ground (MCG)
+Team              Qtr        Time    Play Description (Extra Point) (Drive Info)                                                                                   Visitor     Home
+Commanders           2       14:07   D.Stevens 46 yd. Field Goal (11-49, 4:57)                                                                                            3          0
+Giants               2        2:35   C.Skattebo 1 yd. run (D.Zvada kick) (16-72, 7:48)                                                                                    3          7
+Commanders           2        0:05   B.Sinnott 1 yd. pass from J.Daniels (D.Stevens kick) (9-67, 2:30)                                                                   10          7
+Giants               3       10:22   C.Skattebo 13 yd. run (D.Zvada kick) (5-55, 2:02)                                                                                   10         14
+Commanders           3        6:56   A.Williams 31 yd. pass from J.Daniels (D.Stevens kick) (6-77, 3:26)                                                                 17         14
+Giants               4        8:13   I.Likely 66 yd. pass from J.McCarthy (D.Zvada kick) (3-69, 0:51)                                                                    17         21
+Commanders           4        0:57   S.Diggs 32 yd. pass from J.Daniels (D.Stevens kick) (3-71, 0:49)                                                                    24         21
+Paid Attendance: 80,450                                                                                                                                                   Time: 3:04
+                                                      Washington Commanders vs New York Giants
+                                                             11/12/2026 at MetLife Stadium
                                                    Final Individual Statistics
-                        San Francisco 49ers                                                                 Los Angeles Rams
-RUSHING                                  ATT     YDS     AVG       LG     TD     RUSHING                                  ATT     YDS     AVG        LG     TD
-C.McCaffrey                                10      68     6.8       16      0    B.Corum                                    10       54     5.4      13      0
-K.Black                                    14      65      4.6      14      0    K.Williams                                 11       41     3.7       8      1
-B.Purdy                                     5      29     5.8       18      0    R.Rivers                                    5       19     3.8       7      0
-D.Samuel                                    1      12    12.0       12      0    S.Bennett                                   1        9     9.0       9      0
-                                                                                 M.Stafford                                  2       -1    -0.5       0      0
-Total                                      30     174     5.8       18      0    Total                                      29     122      4.2      13      1
+                    Washington Commanders                                                                   New York Giants
+RUSHING                                 ATT      YDS    AVG        LG     TD    RUSHING                                  ATT     YDS     AVG       LG     TD
+R.White                                   11       47     4.3      18       0   C.Skattebo                                 18       78     4.3      14      2
+J.Daniels                                 11       28     2.5       8       0   J.McCarthy                                  6       34     5.7      12      0
+A.Ekeler                                   9       26     2.9       7       0   D.Singletary                                1        3     3.0       3      0
+R.Henry                                    2        4     2.0       4       0   J.Winston                                   2        1     0.5       1      0
+Total                                     33      105     3.2      18       0   Total                                      27     116      4.3      14      2
 
-PASSING                   ATT    CMP    YDS    SK/YD    TD    LG   IN     RT     PASSING                   ATT    CMP     YDS   SK/YD     TD   LG   IN      RT
-B.Purdy                    34      25    205      0/0     3   39     1 105.6     M.Stafford                  25     15     155       0/0   0    41    1   61.2
-                                                                                 S.Bennett                    3       2     13       0/0   0     8    0   75.7
-Total                      34      25    205      0/0     3   39     1 105.6     Total                       28     17     168       0/0   0    41    1   62.8
+PASSING                  ATT    CMP     YDS    SK/YD    TD   LG   IN      RT    PASSING                   ATT    CMP     YDS    SK/YD    TD   LG   IN      RT
+J.Daniels                  33      23    249     1/14    3    32    2   96.7    J.McCarthy                  36      23    293     1/10    1   66     1   86.9
+Total                      33      23    249     1/14    3    32    2   96.7    Total                       36      23    293     1/10    1    66    1   86.9
 
-PASS RECEIVING                   TAR     REC     YDS     AVG       LG     TD     PASS RECEIVING                    TAR    REC     YDS     AVG       LG      TD
-M.Evans                             7       6      49     8.2       13      1    P.Nacua                              9      5       74    14.8      41      0
-D.Samuel                            7       6      48     8.0      15       1    D.Adams                              6      3       26     8.7      13      0
-C.McCaffrey                         8       5      20      4.0       8      0    K.Williams                           3      3       24     8.0      16      0
-D.Robinson                          3       2      50    25.0      39       1    T.Higbee                             2      2       12     6.0       8      0
-L.Farrell                           2       2      19     9.5       14      0    D.Allen                              1      1       13    13.0      13      0
-G.Kittle                            5       2      12     6.0        6      0    J.Whittington                        1      1        8     8.0       8      0
-K.Black                             1       1       5     5.0        5      0    C.Parkinson                          2      1        6     6.0       6      0
-J.Brendel                           1       1       2     2.0        2      0    R.Rivers                             1      1        5     5.0       5      0
-                                                                                 T.Ferguson                           1      0        0     0.0       0      0
-                                                                                 K.Mumpfield                          1      0        0     0.0       0      0
-Total                              34      25     205     8.2       39      3    Total                               27     17     168      9.9      41      0
+PASS RECEIVING                   TAR    REC      YDS    AVG        LG     TD    PASS RECEIVING                    TAR    REC     YDS     AVG       LG     TD
+S.Diggs                            10      6       83    13.8      32       1   I.Likely                            11      9     127     14.1     66       1
+B.Sinnott                           4      4       42    10.5      24       1   M.Nabers                             7      5       44     8.8      37      0
+A.Ekeler                            4      4       26     6.5       8       0   M.Fields                             4      3       62    20.7      25      0
+C.Okonkwo                           8      4       24     6.0      11       0   C.Skattebo                           4      3       44    14.7      34      0
+A.Williams                          2      2       42    21.0      31       1   D.Mooney                             5      2        8     4.0       6      0
+T.Burks                             3      2       27    13.5      20       0   T.Johnson                            3      1        8     8.0       8      0
+R.White                             2      1        5     5.0       5       0
+Total                              33     23      249    10.8      32       3   Total                               34     23     293     12.7      66      1
 
-INTERCEPTIONS                             NO     YDS     AVG       LG      TD    INTERCEPTIONS                             NO     YDS     AVG       LG      TD
-R.Green                                     1       0     0.0        0       0   Q.Lake                                      1        0     0.0       0       0
-Total                                       1       0     0.0        0       0   Total                                       1        0     0.0       0       0
+INTERCEPTIONS                            NO      YDS    AVG        LG     TD    INTERCEPTIONS                             NO     YDS     AVG       LG      TD
+R.Douglas                                  1        0     0.0       0       0   J.Holland                                   1        0     0.0       0       0
+                                                                                A.Washington                                1        0     0.0       0       0
+Total                                      1        0     0.0       0       0   Total                                       2        0     0.0       0       0
 
-PUNTING                    NO    YDS     AVG      NET      TB   IN20       LG    PUNTING                    NO    YDS     AVG      NET      TB    IN20      LG
-C.Waitman                    2     94    47.0     31.5      1        0     51    E.Evans                      3    145    48.3     42.7       0       2      54
-Total                        2     94    47.0     31.5      1        0     51    Total                        3    145    48.3     42.7       0       2      54
+PUNTING                    NO   YDS     AVG      NET      TB    IN20      LG    PUNTING                    NO    YDS     AVG      NET      TB    IN20      LG
+T.Way                        4   198     49.5    49.0       0       0      55   J.Stout                       5   224     44.8    38.2       1       2      68
+Total                        4   198     49.5    49.0       0       0      55   Total                         5   224     44.8    38.2       1       2      68
 
-PUNT RETURNS                     NO     YDS      AVG       FC      LG      TD    PUNT RETURNS                      NO     YDS     AVG       FC      LG      TD
-J.Cowing                            2      17      8.5      1       13       0   X.Smith                             1      11     11.0       0      11       0
-                                                                                 [TOUCHBACK]                         1       0      0.0       0       0       0
-Total                               2      17      8.5      1       13       0   Total                               1      11     11.0       0      11       0
+PUNT RETURNS                     NO     YDS      AVG      FC       LG     TD    PUNT RETURNS                      NO     YDS     AVG       FC      LG      TD
+L.McCaffrey                        2      13      6.5       0      12       0   C.Jones                             1       2      2.0       2       2       0
+[DOWNED]                           1       0      0.0       0       0       0   [DOWNED]                            1       0      0.0       0       0       0
+[OUT OF BOUNDS]                    1       0      0.0       0       0       0
+[TOUCHBACK]                        1       0      0.0       0       0       0
+Total                              2      13      6.5       0      12       0   Total                               1       2      2.0       2       2       0
 
-KICKOFF RETURNS                  NO     YDS      AVG       FC      LG      TD    KICKOFF RETURNS                   NO     YDS     AVG       FC      LG      TD
-D.Samuel                            2      74    37.0       0       45       0   J.Whittington                       4      94     23.5       0      31       0
-                                                                                 X.Smith                             1      25     25.0       0      25       0
-                                                                                 [TOUCHBACK]                         1       0      0.0       0       0       0
-Total                               2      74    37.0       0       45       0   Total                               5     119     23.8       0      31       0
+KICKOFF RETURNS                  NO     YDS      AVG      FC       LG     TD    KICKOFF RETURNS                   NO     YDS     AVG       FC      LG      TD
+L.McCaffrey                        3      58     19.3       0      25       0   G.Desrosiers                        3      74     24.7       0      26       0
+[OUT OF BOUNDS]                    1       0      0.0       0       0       0   D.Singletary                        1      22     22.0       0      22       0
+                                                                                [TOUCHBACK]                         1       0      0.0       0       0       0
+Total                              3      58     19.3       0      25       0   Total                               4      96     24.0       0      26       0
 
-          San Francisco 49ers
-          FUMBLES                                  FUM    LOST      OWN-REC      YDS     TD    FORCED       OPP-REC       YDS      TD     OUT-BDS
-          S.Neal                                      0       0               0      0     0           1            0        0       0              0
-          F.Warner                                    0       0               0      0     0           1            0        0       0              0
-          K.White                                     0       0               0      0     0           0            1        0       0              0
-          Total                                       0       0               0      0     0           2            1        0       0              0
+         Washington Commanders
+         FUMBLES                                  FUM    LOST       OWN-REC      YDS    TD    FORCED       OPP-REC       YDS      TD     OUT-BDS
+         P.Butler                                     0       0               0     0     0           1            0        0       0             0
+         F.Luvu                                       0       0               0     0     0           1            0        0       0             0
+         K.Medrano                                    0       0               0     0     0           1            0        0       0             0
+         J.Reaves                                     0       0               0     0     0           0            1        0       0             0
+         Total                                        0       0               0     0     0           3            1        0       0             0
 
-          Los Angeles Rams
-          FUMBLES                                  FUM    LOST      OWN-REC      YDS     TD    FORCED       OPP-REC       YDS      TD     OUT-BDS
-          J.Whittington                               1       0               1      0     0           0            0        0       0              0
-          T.Higbee                                    1       1               0      0     0           0            0        0       0              0
-          Total                                       2       1               1      0     0           0            0        0       0              0
-                                                            San Francisco 49ers vs Los Angeles Rams
-                                                        9/11/2026 at Melbourne Cricket Ground (MCG)
+         New York Giants
+         FUMBLES                                  FUM    LOST       OWN-REC      YDS    TD    FORCED       OPP-REC       YDS      TD     OUT-BDS
+         I.Likely                                     1       0               1     0     0           0            0        0       0             0
+         G.Desrosiers                                 1       0               0     0     0           0            0        0       0             0
+         M.Nabers                                     1       1               0     0     0           0            0        0       0             0
+         C.Martin                                     0       0               1     0     0           0            0        0       0             0
+         Total                                        3       1               2     0     0           0            0        0       0             0
+                                                         Washington Commanders vs New York Giants
+                                                                 11/12/2026 at MetLife Stadium
                                                           Final Team Statistics
-                                                                                                                          Visitor                              Home
-                                                                                                                           49ers                               Rams
- TOTAL FIRST DOWNS                                                                                                              23                                 15
-      By Rushing                                                                                                                10                                  7
-      By Passing                                                                                                                12                                  6
-      By Penalty                                                                                                                 1                                  2
- THIRD DOWN EFFICIENCY                                                                                                7-12-58.3%                           2-9-22.2%
- FOURTH DOWN EFFICIENCY                                                                                                  0-0-0.0%                          1-3-33.3%
- TOTAL NET YARDS                                                                                                              379                                 290
-      Total Offensive Plays (inc. times thrown passing)                                                                         64                                 57
-      Average gain per offensive play                                                                                          5.9                                5.1
- NET YARDS RUSHING                                                                                                            174                                 122
-      Total Rushing Plays                                                                                                       30                                 29
-      Average gain per rushing play                                                                                            5.8                                4.2
-      Tackles for a loss-number and yards                                                                                      0-0                                2-2
- NET YARDS PASSING                                                                                                            205                                 168
-      Times thrown - yards lost attempting to pass                                                                             0-0                                0-0
-      Gross yards passing                                                                                                     205                                 168
- PASS ATTEMPTS-COMPLETIONS-HAD INTERCEPTED                                                                                34-25-1                            28-17-1
-      Avg gain per pass play (inc.# thrown passing)                                                                            6.0                                6.0
- KICKOFFS Number-In End Zone-Touchbacks                                                                                      6-3-1                              2-0-0
- PUNTS Number and Average                                                                                                  2-47.0                              3-48.3
-      Had Blocked                                                                                                                0                                  0
- FGs - PATs Had Blocked                                                                                                        0-0                                0-0
- Net Punting Average                                                                                                          31.5                               42.7
- TOTAL RETURN YARDAGE (Not Including Kickoffs)                                                                                  17                                 11
-      No. and Yards Punt Returns                                                                                             2-17                                1-11
-      No. and Yards Kickoff Returns                                                                                          2-74                               5-119
-      No. and Yards Interception Returns                                                                                       1-0                                1-0
- PENALTIES Number and Yards                                                                                                  2-21                                4-43
- FUMBLES Number and Lost                                                                                                       0-0                                2-1
- TOUCHDOWNS                                                                                                                      3                                  1
-      Rushing                                                                                                                    0                                  1
-      Passing                                                                                                                    3                                  0
- EXTRA POINTS Made-Attempts                                                                                                    3-3                                1-1
-      Kicking Made-Attempts                                                                                                    3-3                                1-1
- FIELD GOALS Made-Attempts                                                                                                     2-3                                0-0
- RED ZONE EFFICIENCY                                                                                                     2-3-67%                             1-3-33%
- GOAL TO GO EFFICIENCY                                                                                                   1-2-50%                             1-2-50%
- SAFETIES                                                                                                                        0                                  0
- FINAL SCORE                                                                                                                    27                                  7
- TIME OF POSSESSION                                                                                                         33:50                               26:10
-                                                          San Francisco 49ers vs Los Angeles Rams
-                                                      9/11/2026 at Melbourne Cricket Ground (MCG)
-                                                Ball Possession And Drive Chart
+                                                                                                                          Visitor                             Home
+                                                                                                                  Commanders                                  Giants
+ TOTAL FIRST DOWNS                                                                                                             20                                  21
+      By Rushing                                                                                                                9                                   9
+      By Passing                                                                                                                9                                  11
+      By Penalty                                                                                                                2                                   1
+ THIRD DOWN EFFICIENCY                                                                                                7-14-50.0%                         4-12-33.3%
+ FOURTH DOWN EFFICIENCY                                                                                                 0-2-0.0%                         1-1-100.0%
+ TOTAL NET YARDS                                                                                                              340                                399
+      Total Offensive Plays (inc. times thrown passing)                                                                        67                                  64
+      Average gain per offensive play                                                                                          5.1                                6.2
+ NET YARDS RUSHING                                                                                                            105                                116
+      Total Rushing Plays                                                                                                      33                                  27
+      Average gain per rushing play                                                                                            3.2                                4.3
+      Tackles for a loss-number and yards                                                                                     3-3                                 2-4
+ NET YARDS PASSING                                                                                                            235                                283
+      Times thrown - yards lost attempting to pass                                                                           1-14                               1-10
+      Gross yards passing                                                                                                     249                                293
+ PASS ATTEMPTS-COMPLETIONS-HAD INTERCEPTED                                                                                33-23-2                            36-23-1
+      Avg gain per pass play (inc.# thrown passing)                                                                            6.9                                7.6
+ KICKOFFS Number-In End Zone-Touchbacks                                                                                     5-2-1                               4-0-0
+ PUNTS Number and Average                                                                                                  4-49.5                             5-44.8
+      Had Blocked                                                                                                               0                                   0
+ FGs - PATs Had Blocked                                                                                                       0-0                                 0-0
+ Net Punting Average                                                                                                         49.0                                38.2
+ TOTAL RETURN YARDAGE (Not Including Kickoffs)                                                                                 13                                   2
+      No. and Yards Punt Returns                                                                                             2-13                                 1-2
+      No. and Yards Kickoff Returns                                                                                          3-58                               4-96
+      No. and Yards Interception Returns                                                                                      1-0                                 2-0
+ PENALTIES Number and Yards                                                                                                  4-17                               6-62
+ FUMBLES Number and Lost                                                                                                      0-0                                 3-1
+ TOUCHDOWNS                                                                                                                     3                                   3
+      Rushing                                                                                                                   0                                   2
+      Passing                                                                                                                   3                                   1
+ EXTRA POINTS Made-Attempts                                                                                                   3-3                                 3-3
+      Kicking Made-Attempts                                                                                                   3-3                                 3-3
+ FIELD GOALS Made-Attempts                                                                                                    1-1                                 0-1
+ RED ZONE EFFICIENCY                                                                                                    1-1-100%                            2-4-50%
+ GOAL TO GO EFFICIENCY                                                                                                  1-1-100%                           1-1-100%
+ SAFETIES                                                                                                                       0                                   0
+ FINAL SCORE                                                                                                                   24                                  21
+ TIME OF POSSESSION                                                                                                         30:22                              29:38
+                                                      Washington Commanders vs New York Giants
+                                                              11/12/2026 at MetLife Stadium
+                                               Ball Possession And Drive Chart
 
-   San Francisco 49ers
+   Washington Commanders
 
- #     Time      Time     Time   How Ball               Drive              #       Yds       Yds       Net         1st       Last       How Given
-       Recd       Lost    Poss   Obtained               Began           Play      Gain       Pen       Yds      Down         Scrm       Up
+ #     Time     Time     Time   How Ball               Drive             #       Yds       Yds       Net         1st      Last        How Given
+       Recd      Lost     Poss  Obtained               Began          Play      Gain       Pen       Yds      Down        Scrm        Up
 
-  1    13:28      6:15     7:13  Punt                   SF 33             15        65          0       65            4    * LA 2       Field Goal
-  2     3:18      1:52     1:26  Punt                   SF 17              3          8         0         8           0      SF 25      Punt
+  1    11:18      7:33     3:45 Punt                   WAS 8              6        17        -5       12            1     WAS 20      Punt
 
-  3    14:57     12:04     2:53  Kickoff                SF 31              6        23          0       23            2      LA 46      Interception
-  4     8:52      4:28     4:24  Interception           SF 14              9        86          0       86            4      LA 39      Touchdown
-  5     2:43      0:20     2:23  Punt                   SF 8               5        26         15       41            2      SF 49      Punt
+  2     4:04    14:07      4:57 Missed FG              WAS 23            11        54        -5       49            3     NYG 28      Field Goal
+  3    11:53    10:23      1:30 Punt                   WAS 12             3         5         0         5           0     WAS 17      Punt
+  4     2:35      0:05     2:30 Kickoff                WAS 33             9        67         0       67            4    *NYG 1       Touchdown
 
-  6    15:00     11:03     3:57  Kickoff                SF 49              7        51          0       51            4    * LA 2       Touchdown
+  5    15:00    12:24      2:36 Kickoff                WAS 21             3       -12        -3       -15           0     WAS 6       Punt
+  6    10:22      6:56     3:26 Kickoff                WAS 23             6        77         0       77            3     NYG 31      Touchdown
+  7     4:06      2:32     1:34 Fumble                 WAS 20             3         3         0         3           0     WAS 23      Punt
 
-  7     3:41     12:57     5:44  Downs                  SF 1              11        99          0       99            6    * LA 15      Touchdown
-  8    11:08      9:43     1:25  Fumble                 LA 43              4          5         0         5           0      LA 38      Field Goal
-  9     7:54      3:29     4:25  Downs                  50                 7        16          0       16            1      LA 34      Missed FG
+  8    14:07      9:04     5:03 Punt                   WAS 20            10        49         0       49            3     NYG 31      Downs
+  9     8:13      5:27     2:46 Kickoff                WAS 40             7        36         0       36            3     NYG 24      Interception
+ 10     3:16      2:15     1:01 Punt                   WAS 37             4         8         0         8           0     WAS 45      Interception
+ 11     1:46      0:57     0:49 Punt                   WAS 29             3        38        33       71            2     NYG 32      Touchdown
+ 12     0:25      0:00     0:25 Interception           WAS 11             3        -2        15       13            1     WAS 25      End of Game
 
 
-                                        (260) Average SF 29
+                                       (277) Average WAS 23
 
-   Los Angeles Rams
+   New York Giants
 
- #     Time      Time     Time   How Ball               Drive              #       Yds       Yds       Net         1st       Last       How Given
-       Recd       Lost    Poss   Obtained               Began           Play      Gain       Pen       Yds      Down         Scrm       Up
+ #     Time     Time     Time   How Ball               Drive             #       Yds       Yds       Net         1st      Last        How Given
+       Recd      Lost     Poss  Obtained               Began          Play      Gain       Pen       Yds      Down        Scrm        Up
 
-  1    15:00     13:28     1:32  Kickoff                LA 17              3          9         0         9           0      LA 26      Punt
-  2     6:15      3:18     2:57  Kickoff                LA 25              6        15          0       15            1      LA 40      Punt
+  1    15:00    11:18      3:42 Kickoff                NYG 25             7        38        -5       33            2     WAS 42      Punt
+  2     7:33      4:04     3:29 Punt                   NYG 42             7        43         0       43            1    *WAS 15      Missed FG
 
-  3     1:52     14:57     1:55  Punt                   LA 43              4        57          0       57            2    * SF 5       Touchdown
-  4    12:04      8:52     3:12  Interception           LA 31              7        34          0       34            2      SF 35      Interception
-  5     4:28      2:43     1:45  Kickoff                LA 35              4        23        -10       13            1      LA 48      Punt
-  6     0:20      0:00     0:20  Punt                   LA 20              1         -1         0        -1           0      LA 20      End of Half
+  3    14:07    11:53      2:14 Kickoff                NYG 22             4         3         0         3           1     NYG 25      Punt
+  4    10:23      2:35     7:48 Punt                   NYG 28            16        68         4       72            8    *WAS 1       Touchdown
+  5     0:05      0:00     0:05 Kickoff                NYG 35             1        -1         0        -1           0     NYG 35      End of Half
 
-  7    11:03      3:41     7:22  Kickoff                LA 27             12        72          0       72            4    * SF 1       Downs
+  6    12:24    10:22      2:02 Punt                   NYG 45             5        55         0       55            3    *WAS 13      Touchdown
+  7     6:56      4:06     2:50 Kickoff                NYG 27             5        53         0       53            2    *WAS 19      Fumble
 
-  8    12:57     11:08     1:49  Kickoff                LA 23              4        17          3       20            1      LA 39      Fumble
-  9     9:43      7:54     1:49  Kickoff                LA 32              6        19          0       19            1      SF 49      Downs
- 10     3:29      0:00     3:29  Missed FG              LA 42             10        45          0       45            3    * SF 15      End of Game
+  8     2:32    14:07      3:25 Punt                   NYG 23             7        36        -5       31            2     WAS 46      Punt
+  9     9:04      8:13     0:51 Downs                  NYG 31             3        69         0       69            1     NYG 34      Touchdown
+ 10     5:27      3:16     2:11 Interception           NYG 2              3         9        -4         5           0     NYG 7       Punt
+ 11     2:15      1:46     0:29 Interception           WAS 46             3         5         0         5           0     WAS 41      Punt
+ 12     0:57      0:25     0:32 Kickoff                NYG 31             4        21         0       21            1     WAS 48      Interception
 
-                                        (295) Average LA 30
+                                       (365) Average NYG 30
 
 *  inside opponent's 20
 
-Time of Possession by Quarter                                                                     1st        2nd          3rd         4th        OT         Total
-Visitor    San Francisco 49ers                                                                   8:39        9:40         7:38       7:53                   33:50
-Home       Los Angeles Rams                                                                      6:21        5:20         7:22       7:07                   26:10
+Time of Possession by Quarter                                                                   1st        2nd          3rd        4th        OT         Total
+Visitor    Washington Commanders                                                               7:49        4:53         7:36     10:04                    30:22
+Home       New York Giants                                                                     7:11      10:07          7:24       4:56                   29:38
 
-Kickoff Drive No.-Start Average                                                                 49ers: 2 - SF 40                    Rams: 6 - LA 26
-                                                         San Francisco 49ers vs Los Angeles Rams
-                                                      9/11/2026 at Melbourne Cricket Ground (MCG)
+Kickoff Drive No.-Start Average                                                      Commanders: 4 - WAS 29                    Giants: 5 - NYG 28
+                                                       Washington Commanders vs New York Giants
+                                                               11/12/2026 at MetLife Stadium
                                                     Final Defensive Statistics
-San Francisco 49ers                                Regular Defensive Plays                                   Special Teams                      Misc
+Washington Commanders                              Regular Defensive Plays                                   Special Teams                       Misc
 
-                              TKL    AST   COMB         SK    / YDS   TFL   Q    IN   PD    FF   FR     TKL     AST     FF   FR    BL    TKL    AST     FF   FR
-F.Warner                         5       6       11       0        0     0    0    0     1    1    0        0       0     0    0     0       0      0    0     0
-M.Sigle                          4       5        9       0        0     0    0    0     0    0    0        0       0     0    0     0       0      0    0     0
-D.Lenoir                         3       3        6       0        0     0    0    0     0    0    0        0       0     0    0     0       0      0    0     0
-D.Greenlaw                       1       5        6       0        0     0    0    0     0    0    0        0       0     0    0     0       0      0    0     0
-N.Bosa                           3       1        4       0        0     2    1    0     0    0    0        0       0     0    0     0       0      0    0     0
-J.Brown                          2       2        4       0        0     0    0    0     0    0    0        0       0     0    0     0       0      0    0     0
-J.Dugger                         1       3        4       0        0     0    0    0     0    0    0        0       1     0    0     0       0      0    0     0
-R.Green                          2       1        3       0        0     0    0    1     1    0    0        0       0     0    0     0       0      0    0     0
-U.Stout                          2       0        2       0        0     0    1    0     0    0    0        0       0     0    0     0       0      0    0     0
-O.Odighizuwa                     1       1        2       0        0     0    4    0     0    0    0        0       0     0    0     0       0      0    0     0
-C.West                           1       1        2       0        0     0    1    0     0    0    0        0       0     0    0     0       0      0    0     0
-M.Mustapha                       1       1        2       0        0     0    0    0     0    0    0        1       0     0    0     0       0      0    0     0
-K.Kareem                         1       1        2       0        0     0    0    0     0    0    0        0       0     0    0     0       0      0    0     0
-J.Thompson                       0       2        2       0        0     0    0    0     0    0    0        0       0     0    0     0       0      0    0     0
-G.Wallow                         1       0        1       0        0     0    0    0     0    0    0        1       0     0    0     0       0      0    0     0
-O.Okoronkwo                      0       0        0       0        0     0    1    0     0    0    0        0       0     0    0     0       0      0    0     0
-J.Jones                          0       0        0       0        0     0    0    0     2    0    0        0       0     0    0     0       0      0    0     0
-K.White                          0       0        0       0        0     0    0    0     0    0    1        0       0     0    0     0       0      0    0     0
-K.Hodge                          0       0        0       0        0     0    0    0     0    0    0        1       1     0    0     0       0      0    0     0
-S.Neal                           0       0        0       0        0     0    0    0     0    0    0        1       0     1    0     0       0      0    0     0
-A.Davis                          0       0        0       0        0     0    0    0     0    0    0        0       2     0    0     0       0      0    0     0
-G.Kittle                         0       0        0       0        0     0    0    0     0    0    0        0       0     0    0     0       1      0    0     0
-Total                           28     32       60        0        0     2   8    1     4    1     1       4        4     1    0     0       1      0    0     0
+                              TKL    AST    COMB        SK    / YDS   TFL   Q    IN   PD    FF   FR     TKL     AST     FF   FR    BL     TKL    AST    FF   FR
+S.Styles                         5       8       13       0        0      1   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+J.Reaves                         7       2        9       0        0      0   1    0     1    0    1        0       0     0     0     0      0       0    0    0
+F.Luvu                           2       4        6       0        0      0   0    0     0    1    0        0       0     0     0     0      0       0    0    0
+N.Cross                          1       5        6       0        0      0   1    0     0    0    0        0       0     0     0     0      0       0    0    0
+A.Robertson                      4       1        5       0        0      2   0    0     1    0    0        0       0     0     0     0      0       0    0    0
+Q.Martin                         1       4        5       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+O.Oweh                           3       1        4       1       10      1   1    0     0    0    0        0       0     0     0     0      0       0    0    0
+T.Amos                           2       2        4       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+P.Butler                         1       3        4       0        0      0   0    0     1    1    0        1       0     0     0     0      0       0    0    0
+S.Tuttle                         1       2        3       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+K.Chaisson                       1       1        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+T.Settle                         0       2        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+D.Wise                           0       2        2       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+C.Omenihu                        0       1        1       0        0      0   2    0     0    0    0        0       0     0     0     0      0       0    0    0
+J.Newton                         0       1        1       0        0      0   0    0     0    0    0        0       0     0     0     0      0       0    0    0
+D.Armstrong                      0       0        0       0        0      0   1    0     0    0    0        0       0     0     0     0      0       0    0    0
+R.Douglas                        0       0        0       0        0      0   0    1     1    0    0        0       0     0     0     0      0       0    0    0
+K.Medrano                        0       0        0       0        0      0   0    0     0    0    0        1       1     1     0     0      0       0    0    0
+T.Owens                          0       0        0       0        0      0   0    0     0    0    0        1       1     0     0     0      0       0    0    0
+A.Kaho                           0       0        0       0        0      0   0    0     0    0    0        0       1     0     0     0      0       0    0    0
+J.Josephs                        0       0        0       0        0      0   0    0     0    0    0        0       1     0     0     0      0       0    0    0
+C.Okonkwo                        0       0        0       0        0      0   0    0     0    0    0        0       0     0     0     0      1       0    0    0
+Total                           28     39       67        1       10     4   6     1     4   2     1        3       4     1    0     0       1      0    0     0
 
 
 TKL = Tackle AST = Assist COMB = Combined QH=QB Hit IN = Interception PD = Pass Defense FF = Forced Fumble FR = Fumble Recovery
 
-Los Angeles Rams                                   Regular Defensive Plays                                   Special Teams                       Misc
-                              TKL    AST    COMB        SK    / YDS   TFL  QH    IN   PD    FF   FR     TKL     AST     FF   FR     BL    TKL    AST    FF   FR
- Q.Lake                           7      3       10       0        0      0   0    1     3    0     0       0       0     0     0     0      0       0    0    0
- N.Landman                        5      3        8       0        0      0   1    0     1    0     0       0       0     0     0     0      0       0    0    0
- K.Turner                         2      5        7       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- T.Davis                          2      5        7       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- K.Kinchens                       1      6        7       0        0      0   0    0     0    0     0       2       0     0     0     0      0       0    0    0
- S.Dolac                          3      2        5       0        0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
- J.Stewart                        2      3        5       0        0      0   1    0     0    0     0       0       1     0     0     0      0       0    0    0
- J.McCollough                     2      3        5       0        0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
- T.McDuffie                       4      0        4       0        0      1   0    0     2    0     0       0       0     0     0     0      0       0    0    0
- J.Watson                         2      2        4       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- K.Curl                           1      2        3       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- B.Fiske                          1      1        2       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- O.Speights                       0      2        2       0        0      0   0    0     1    0     0       0       0     0     0     0      0       0    0    0
- B.Young                          0      1        1       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- T.Hamilton                       0      1        1       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- D.Johnson                        0      1        1       0        0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
- J.Whittington                    0      0        0       0        0      0   0    0     0    0     0       0       0     0     1     0      0       0    0    0
- P.Nacua                          0      0        0       0        0      0   0    0     0    0     0       0       0     0     0     0      1       0    0    0
-Total                           32     40        72       0        0     1    2    1     7    0    0        3       2     0    1     0       1      0    0     0
-                                                             San Francisco 49ers vs Los Angeles Rams
-                                                         9/11/2026 at Melbourne Cricket Ground (MCG)
-                                                            First Half Summary
-                                PERIOD SCORES                                                         TIME OF POSSESSION
- 49ers                                  3  7 = 10                           49ers                            18:19
- Rams                                   0  7 = 7                            Rams                             11:41
-                                                                              Scoring Plays
-Team            Qtr        Time   Play Description (Extra Point) (Drive Info)                                                                          Visitor   Home
-49ers              1        6:15  E.Pineiro 20 yd. Field Goal (15-65, 7:13)                                                                                  3         0
-Rams               2      14:57   K.Williams 5 yd. run (H.Mevis kick) (4-57, 1:55)                                                                           3         7
-49ers              2        4:28  D.Robinson 39 yd. pass from B.Purdy (E.Pineiro kick) (9-86, 4:24)                                                         10         7
+New York Giants                                    Regular Defensive Plays                                   Special Teams                       Misc
+                              TKL    AST    COMB        SK    / YDS   TFL   QH   IN   PD    FF   FR     TKL     AST     FF    FR    BL    TKL    AST    FF   FR
+ A.Reese                          4      9       13        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ M.McFadden                       5      5       10        0       0      1   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ K.Thibodeaux                     5      3        8        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ A.Washington                     4      2        6        0       0      0   0    1     2    0     0       1       0     0     0     0      0       0    0    0
+ A.Phillips                       4      2        6        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ S.Harris                         3      1        4        1      14      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
+ G.Newsome                        3      1        4        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Banks                          2      1        3        0       0      1   0    0     1    0     0       0       0     0     0     0      0       0    0    0
+ A.Carter                         1      2        3        0       0      1   1    0     0    0     0       0       0     0     0     0      0       0    0    0
+ J.Holland                        1      2        3        0       0      0   0    1     1    0     0       0       0     0     0     0      0       0    0    0
+ B.Jamison-Travis                 1      1        2        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ J.Pinnock                        1      0        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Reader                         1      0        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Smoot                          0      1        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ D.Alexander                      0      1        1        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    0
+ E.Campbell                       0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
+ T.Ford                           0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
+ Z.Barnes                         0      0        0        0       0      0   0    0     0    0     0       1       0     0     0     0      0       0    0    0
+ T.Nubin                          0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
+ T.Johnson                        0      0        0        0       0      0   0    0     0    0     0       0       1     0     0     0      0       0    0    0
+ C.Martin                         0      0        0        0       0      0   0    0     0    0     0       0       0     0     1     0      0       0    0    0
+ M.Nabers                         0      0        0        0       0      0   0    0     0    0     0       0       0     0     0     0      1       0    0    0
+ I.Likely                         0      0        0        0       0      0   0    0     0    0     0       0       0     0     0     0      0       0    0    1
+Total                           35     31        66       1       14      4   2    2     4    0    0        4       2     0     1     0      1       0    0    1
+                                                          Washington Commanders vs New York Giants
+                                                                  11/12/2026 at MetLife Stadium
+                                                           First Half Summary
+                               PERIOD SCORES                                                         TIME OF POSSESSION
+ Commanders                            0  10 = 10                          Commanders                       12:42
+ Giants                                0  7 = 7                            Giants                           17:18
+                                                                             Scoring Plays
+Team            Qtr       Time    Play Description (Extra Point) (Drive Info)                                                                        Visitor    Home
+Commanders         2      14:07   D.Stevens 46 yd. Field Goal (11-49, 4:57)                                                                                 3        0
+Giants             2       2:35   C.Skattebo 1 yd. run (D.Zvada kick) (16-72, 7:48)                                                                         3        7
+Commanders         2       0:05   B.Sinnott 1 yd. pass from J.Daniels (D.Stevens kick) (9-67, 2:30)                                                       10         7
 
-                                                                                                             San Francisco 49ers                   Los Angeles Rams
- TOTAL FIRST DOWNS                                                                                                             12                                   6
-      First Downs Rushing-Passing-by Penalty                                                                              4 - 7 - 1                          4 - 2 - 0
- THIRD DOWN EFFICIENCY                                                                                                 5-8-62.5%                          1-5-20.0%
- TOTAL NET YARDS                                                                                                              208                                137
-      Total Offensive Plays                                                                                                    37                                  25
- NET YARDS RUSHING                                                                                                             67                                  72
- NET YARDS PASSING                                                                                                            141                                  65
-      Gross Yards Passing                                                                                                     141                                  65
-      Times thrown-yards lost attempting to pass                                                                               0-0                                0-0
- Pass Attempts-Completions-Had Intercepted                                                                             25 - 17 - 1                          11 - 4 - 1
- Punts-Number and Average                                                                                                 2 - 47.0                           3 - 48.3
- Penalties-Number and Yards                                                                                                  0 - 0                             2 - 25
- Fumbles-Number and Lost                                                                                                     0 - 0                               0 - 0
- Red Zone Efficiency                                                                                                      0-1-0%                           1-1-100%
- Average Drive Start                                                                                                        SF 21                              LA 28
+                                                                                                      Washington Commanders                        New York Giants
+ TOTAL FIRST DOWNS                                                                                                              8                                12
+      First Downs Rushing-Passing-by Penalty                                                                             4 - 4 - 0                          8 - 3 - 1
+ THIRD DOWN EFFICIENCY                                                                                                3-6-50.0%                          3-7-42.9%
+ TOTAL NET YARDS                                                                                                             143                                151
+      Total Offensive Plays                                                                                                   28                                 34
+ NET YARDS RUSHING                                                                                                            31                                 69
+ NET YARDS PASSING                                                                                                           112                                 82
+      Gross Yards Passing                                                                                                    112                                 92
+      Times thrown-yards lost attempting to pass                                                                             0-0                               1-10
+ Pass Attempts-Completions-Had Intercepted                                                                            15 - 11 - 0                        19 - 12 - 0
+ Punts-Number and Average                                                                                                2 - 47.5                           2 - 49.0
+ Penalties-Number and Yards                                                                                                3 - 14                              1 - 5
+ Fumbles-Number and Lost                                                                                                    0 - 0                              0 - 0
+ Red Zone Efficiency                                                                                                   1-1-100%                            1-2-50%
+ Average Drive Start                                                                                                    WAS 19                              NYG 30
 
-                              San Francisco 49ers                                                                    Los Angeles Rams
+                          Washington Commanders                                                                     New York Giants
 
-RUSHING                                     ATT      YDS     AVG        LG      TD     RUSHING                                     ATT     YDS      AVG        LG     TD
-K.Black                                        7       36      5.1        9       0    B.Corum                                        6       42      7.0      13       0
-C.McCaffrey                                    3       17      5.7        7       0    K.Williams                                     7       31     4.4         8      1
-D.Samuel                                       1       12     12.0       12       0    M.Stafford                                     1       -1     -1.0       -1      0
-B.Purdy                                        1         2     2.0        2       0
-Total                                         12       67      5.6       12       0    Total                                         14       72     5.1       13       1
+RUSHING                                     ATT      YDS     AVG        LG     TD     RUSHING                                    ATT      YDS      AVG       LG      TD
+R.White                                        6       20      3.3        7      0    C.Skattebo                                     8       35     4.4       14       1
+A.Ekeler                                       5        8      1.6        3      0    J.McCarthy                                     4       30     7.5       12       0
+J.Daniels                                      2        3      1.5        3      0    D.Singletary                                   1        3     3.0        3       0
+                                                                                      J.Winston                                      1        1     1.0        1       0
+Total                                         13       31      2.4        7      0    Total                                        14        69     4.9       14       1
 
-PASSING                     ATT    CMP      YDS    SK/YD     TD    LG   IN      RT     PASSING                     ATT    CMP     YDS    SK/YD     TD    LG   IN      RT
-B.Purdy                       25      17     141       0/0    1    39     1   78.9     M.Stafford                    11       4      65       0/0    0    41    1    19.1
-Total                         25      17     141       0/0    1    39     1   78.9     Total                         11       4      65       0/0    0    41    1    19.1
+PASSING                     ATT    CMP      YDS    SK/YD    TD    LG   IN      RT     PASSING                     ATT    CMP     YDS    SK/YD     TD    LG   IN      RT
+J.Daniels                     15      11    112       0/0     1    30    0  116.5     J.McCarthy                    19      12     92      1/10     0   34     0   74.9
+Total                         15      11    112       0/0     1    30    0  116.5     Total                         19      12     92      1/10     0   34     0   74.9
 
-PASS RECEIVING                      TAR     REC      YDS     AVG        LG      TD     PASS RECEIVING                      TAR    REC      YDS      AVG        LG     TD
-M.Evans                                 6      5       47      9.4       13       0    P.Nacua                                5       2       45    22.5       41       0
-C.McCaffrey                             6      4       20      5.0        8       0    K.Williams                             2       2       20    10.0       16       0
-G.Kittle                                5      2       12      6.0        6       0    D.Adams                                2       0        0     0.0        0       0
-D.Samuel                                3      2       11      5.5        9       0    C.Parkinson                            1       0        0     0.0        0       0
-D.Robinson                              2      1       39     39.0      39        1
-K.Black                                 1      1         5     5.0        5       0
-L.Farrell                               1      1         5     5.0        5       0
-J.Brendel                               1      1         2     2.0        2       0
-Total                                 25      17      141      8.3       39       1    Total                                 10       4       65    16.3       41       0
+PASS RECEIVING                      TAR     REC      YDS     AVG        LG     TD     PASS RECEIVING                      TAR    REC      YDS      AVG       LG      TD
+B.Sinnott                              3       3       18      6.0      12       1    I.Likely                               7       5       39     7.8       11       0
+S.Diggs                                5       2       34    17.0       30       0    M.Nabers                               3       3        8     2.7        6       0
+T.Burks                                2       2       27    13.5       20       0    C.Skattebo                             3       2       37    18.5       34       0
+C.Okonkwo                              2       2       17      8.5      11       0    D.Mooney                               4       2        8     4.0        6       0
+A.Ekeler                               2       2       16      8.0        8      0
+R.White                                1       0        0      0.0        0      0
+Total                                 15      11      112    10.2       30       1    Total                                 17     12        92     7.7       34       0
 
-San Francisco 49ers                                  Regular Defensive Plays                                   Special Teams                           Misc
+Washington Commanders                                Regular Defensive Plays                                  Special Teams                          Misc
 
-                               TKL     AST   COMB          SK   / YDS    TFL   Q    IN    PD    FF   FR      TKL     AST     FF    FR    BL    TKL     AST    FF    FR
-M.Sigle                            3      3         6        0        0      0   0    0     0     0     0       0        0     0     0     0       0       0    0     0
-F.Warner                           3      2         5        0        0      0   0    0     1     0     0       0        0     0     0     0       0       0    0     0
-N.Bosa                             2      0         2        0        0      1   1    0     0     0     0       0        0     0     0     0       0       0    0     0
-J.Dugger                           1      0         1        0        0      0   0    0     0     0     0       0        1     0     0     0       0       0    0     0
-Total                              9      5       14         0        0     1    1    0     1    0     0        0        1     0     0     0       0       0    0     0
-                                                      San Francisco 49ers vs Los Angeles Rams
-                                                   9/11/2026 at Melbourne Cricket Ground (MCG)
-                                                      First Half Summary
-Los Angeles Rams                                Regular Defensive Plays                               Special Teams                    Misc
-                            TKL   AST    COMB       SK   / YDS   TFL  QH   IN   PD    FF   FR    TKL    AST     FF   FR   BL    TKL    AST   FF   FR
-Q.Lake                         4      1        5      0        0     0  0    1     2   0     0      0       0     0    0    0      0      0    0    0
-N.Landman                      4      0        4      0        0     0  1    0     1   0     0      0       0     0    0    0      0      0    0    0
-T.McDuffie                     4      0        4      0        0     1  0    0     2   0     0      0       0     0    0    0      0      0    0    0
-J.Watson                       2      2        4      0        0     0  0    0     0   0     0      0       0     0    0    0      0      0    0    0
-Total                         14      3      17       0       0     1   1    1    5    0    0       0       0    0     0    0      0      0    0    0
-                                                        San Francisco 49ers vs Los Angeles Rams at Melbourne Cricket Ground (MCG)
+                               TKL    AST    COMB         SK    / YDS   TFL    Q    IN   PD    FF   FR      TKL     AST     FF    FR    BL    TKL    AST     FF   FR
+J.Reaves                          4       1         5       0        0      0   0    0      0    0     0       0        0     0     0     0       0      0     0     0
+N.Cross                           1       4         5       0        0      0   1    0      0    0     0       0        0     0     0     0       0      0     0     0
+S.Styles                          1       4         5       0        0      0   0    0      0    0     0       0        0     0     0     0       0      0     0     0
+O.Oweh                            3       0         3       1       10      1   1    0      0    0     0       0        0     0     0     0       0      0     0     0
+Total                             9       9       18        1       10      1   2    0     0     0    0        0        0     0     0     0       0      0    0     0
+                                                    Washington Commanders vs New York Giants
+                                                           11/12/2026 at MetLife Stadium
+                                                     First Half Summary
+New York Giants                                Regular Defensive Plays                               Special Teams                    Misc
+                           TKL    AST   COMB        SK   / YDS   TFL  QH   IN   PD   FF   FR    TKL     AST    FF   FR    BL   TKL    AST   FF   FR
+A.Reese                        2      4       6       0       0     0   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+M.McFadden                     3      2       5       0       0     1   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+K.Thibodeaux                   3      2       5       0       0     0   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+S.Harris                       2      0       2       0       0     0   0    0    0    0    0       0      0     0    0     0     0      0    0    0
+Total                        10      8       18       0       0     1   0   0     0   0     0      0       0     0    0    0      0      0    0    0
+                                                               Washington Commanders vs New York Giants at MetLife Stadium
 
-Play By Play                                                                        First Quarter                                                                                                    9/11/2026
-SF wins the coin toss and elects to defer. LA elects to Receive, and SF elects to defend the east goal.
-E.Pineiro kicks 65 yards from SF 35 to LA 0. J.Whittington to LA 17 for 17 yards (M.Mustapha).
-Los Angeles Rams at 15:00, (1st play from scrimmage 14:54)
-    1-10-LA 17             (14:54) (Shotgun) M.Stafford pass incomplete short left to P.Nacua (F.Warner) [N.Bosa].
-    2-10-LA 17             (14:50) (Shotgun) K.Williams left guard to LA 22 for 5 yards (F.Warner).
-    3-5-LA 22              (14:17) (Shotgun) M.Stafford pass short left to P.Nacua to LA 26 for 4 yards (D.Lenoir).
-    4-1-LA 26              (13:38) E.Evans punts 54 yards to SF 20, Center-J.Cardona. J.Cowing pushed ob at SF 33 for 13 yards (K.Kinchens).
-San Francisco 49ers at 13:28
-    1-10-SF 33             (13:28) C.McCaffrey up the middle to SF 39 for 6 yards (N.Landman).
-    2-4-SF 39              (12:59) (Shotgun) B.Purdy pass incomplete short left to G.Kittle (Q.Lake).
-    3-4-SF 39              (12:53) (Shotgun) B.Purdy pass short left to M.Evans to SF 46 for 7 yards (Q.Lake).                                                                                                P1
-    1-10-SF 46             (12:19) (Shotgun) B.Purdy pass short left to G.Kittle to LA 48 for 6 yards (J.Watson).
-    2-4-LA 48              (11:40) B.Purdy pass short right to D.Samuel pushed ob at LA 39 for 9 yards (T.McDuffie).                                                                                          P2
-    1-10-LA 39             (11:07) K.Black left guard to LA 38 for 1 yard (K.Turner; O.Speights).
-    2-9-LA 38              (10:30) B.Purdy pass short left to K.Black to LA 33 for 5 yards (K.Curl; K.Kinchens) [J.Stewart].
-    3-4-LA 33              (9:48) (Shotgun) B.Purdy pass short right to M.Evans to LA 26 for 7 yards (J.Watson; J.McCollough).                                                                                P3
-    1-10-LA 26             (9:07) (Shotgun) B.Purdy pass incomplete deep right to G.Kittle (T.McDuffie).
-    2-10-LA 26             (9:01) B.Purdy pass short right to C.McCaffrey to LA 18 for 8 yards (K.Curl).
-    3-2-LA 18              (8:19) (Shotgun) B.Purdy pass short left to M.Evans to LA 10 for 8 yards (Q.Lake).                                                                                                 P4
-    1-10-LA 10             (7:44) B.Purdy pass short right to D.Samuel to LA 8 for 2 yards (T.McDuffie).
-    2-8-LA 8               (7:04) B.Purdy pass short right to G.Kittle to LA 2 for 6 yards (T.Davis; K.Kinchens).
-    3-2-LA 2               (6:22) (Shotgun) B.Purdy pass incomplete short right to D.Robinson (T.McDuffie) [N.Landman].
-    4-2-LA 2               (6:17) E.Pineiro 20 yard field goal is GOOD, Center-J.Weeks, Holder-C.Waitman.
-Timeout at 06:15.
-                                                                  SF 3 LA 0,  15 plays, 65 yards,  7:13 drive,  8:45 elapsed
-E.Pineiro kicks 65 yards from SF 35 to LA 0. X.Smith to LA 25 for 25 yards (A.Davis; K.Hodge).
-Los Angeles Rams at 6:15, (1st play from scrimmage 6:10)
-    1-10-LA 25             (6:10) B.Corum up the middle to LA 34 for 9 yards (M.Sigle).
-    2-1-LA 34              (5:32) B.Corum up the middle to LA 33 for -1 yards (N.Bosa).
-    3-2-LA 33              (4:59) K.Williams up the middle to LA 36 for 3 yards (F.Warner; O.Odighizuwa).                                                                                                     R1
-    1-10-LA 36             (4:18) M.Stafford pass incomplete deep left to P.Nacua [O.Odighizuwa].
-    2-10-LA 36             (4:13) (Shotgun) M.Stafford pass short left to K.Williams to LA 40 for 4 yards (D.Greenlaw) [C.West].
-    3-6-LA 40              (3:29) (Shotgun) M.Stafford pass incomplete deep right to D.Adams [O.Odighizuwa].
-    4-6-LA 40              (3:25) E.Evans punts 43 yards to SF 17, Center-J.Cardona, fair catch by J.Cowing.
-Timeout at 03:18.
-San Francisco 49ers at 3:18
-    1-10-SF 17             (3:18) B.Purdy pass short left to L.Farrell to SF 22 for 5 yards (Q.Lake).
-    2-5-SF 22              (2:47) K.Black left guard to SF 25 for 3 yards (N.Landman).
-    3-2-SF 25              (2:06) (Shotgun) B.Purdy pass incomplete short left to C.McCaffrey (O.Speights).
-    4-2-SF 25              (2:01) C.Waitman punts 43 yards to LA 32, Center-J.Weeks. X.Smith to LA 43 for 11 yards (J.Dugger; A.Davis).
-Timeout at 01:52.
-Los Angeles Rams at 1:52
-    1-10-LA 43             (1:52) K.Williams up the middle to SF 49 for 8 yards (M.Sigle; J.Thompson).
-    2-2-SF 49              (1:31) (No Huddle, Shotgun) M.Stafford pass deep right to P.Nacua to SF 8 for 41 yards (M.Sigle; R.Green).                                                                         P2
-    1-8-SF 8               (:41) K.Williams up the middle to SF 5 for 3 yards (N.Bosa).
-END OF QUARTER                                                   Time            First Downs                       Efficiencies
-                                                     Score        Poss        R       P      X      T         3 Down          4 Down
-San Francisco 49ers                                       3        8:39        0      4       0      4           3/5             0/0
-Los Angeles Rams                                          0        6:21        1      1       0      2           1/3             0/0
-                                                       San Francisco 49ers vs Los Angeles Rams at Melbourne Cricket Ground (MCG)
-
-Play By Play                                                                     Second Quarter                                                                                                     9/11/2026
-Los Angeles Rams continued.
-                           ** Injury Update: SF-D.Stribling return is Questionable.
-    2-5-SF 5               (15:00) K.Williams up the middle for 5 yards, TOUCHDOWN.                                                                                                                          R3
-                           H.Mevis extra point is GOOD, Center-J.Cardona, Holder-E.Evans.
-                                                                  SF 3 LA 7,  4 plays, 57 yards,  1:55 drive,  0:03 elapsed
-H.Mevis kicks 63 yards from LA 35 to SF 2. D.Samuel to SF 31 for 29 yards (S.Dolac; J.Stewart).
-San Francisco 49ers at 14:57, (1st play from scrimmage 14:51)
-    1-10-SF 31             (14:51) (Shotgun) B.Purdy pass incomplete short left to D.Samuel. ** Injury Update: SF-D.Stribling has returned to the game.
-    2-10-SF 31             (14:47) (Shotgun) B.Purdy pass short middle to M.Evans to SF 43 for 12 yards (J.Watson).                                                                                          P5
-    1-10-SF 43             (14:14) C.McCaffrey right end to SF 47 for 4 yards (S.Dolac).
-    2-6-SF 47              (13:37) B.Purdy pass short middle to C.McCaffrey to LA 48 for 5 yards (B.Young; K.Turner).
-                           Timeout #1 by SF at 12:46.
-    3-1-LA 48              (12:46) B.Purdy up the middle to LA 46 for 2 yards (S.Dolac).                                                                                                                     R6
-    1-10-LA 46             (12:09) B.Purdy pass short right intended for G.Kittle INTERCEPTED by Q.Lake at LA 31. Q.Lake to LA 31 for no gain (G.Kittle).
-Timeout at 12:04.
-Los Angeles Rams at 12:04
-    1-10-LA 31             (12:04) B.Corum right guard to LA 36 for 5 yards (M.Sigle; F.Warner).
-    2-5-LA 36              (11:28) B.Corum left guard to LA 46 for 10 yards (M.Sigle).                                                                                                                       R4
-    1-10-LA 46             (10:49) B.Corum left tackle to SF 48 for 6 yards (J.Dugger).
-    2-4-SF 48              (10:11) B.Corum left tackle to SF 35 for 13 yards (M.Sigle).                                                                                                                      R5
-    1-10-SF 35             (9:23) K.Williams left guard to SF 35 for no gain (U.Stout).
-    2-10-SF 35             (9:02) (No Huddle, Shotgun) M.Stafford pass incomplete short right [O.Odighizuwa].
-    3-10-SF 35             (8:58) (Shotgun) M.Stafford pass deep right intended for P.Nacua INTERCEPTED by R.Green at SF 14. R.Green to SF 14 for no gain (P.Nacua).
-Timeout at 08:52.
-San Francisco 49ers at 8:52
-    1-10-SF 14             (8:52) (Shotgun) K.Black right tackle to SF 19 for 5 yards (T.Davis).
-    2-5-SF 19              (8:14) K.Black left end to SF 28 for 9 yards (T.Davis; J.Watson).                                                                                                                 R7
-    1-10-SF 28             (7:34) (Shotgun) B.Purdy pass short middle to J.Brendel to SF 30 for 2 yards (N.Landman). SF-D.Stribling was injured during the play.
-Timeout at 07:16.
-    2-8-SF 30              (7:01) (Shotgun) B.Purdy pass incomplete short left to C.McCaffrey (N.Landman).
-    3-8-SF 30              (6:55) (Shotgun) B.Purdy pass short left to M.Evans to SF 43 for 13 yards (T.McDuffie).                                                                                           P8
-    1-10-SF 43             (6:16) K.Black left end pushed ob at LA 48 for 9 yards (J.McCollough).
-    2-1-LA 48              (5:47) K.Black up the middle to LA 43 for 5 yards (N.Landman).                                                                                                                    R9
-    1-10-LA 43             (5:10) K.Black up the middle to LA 39 for 4 yards (T.Hamilton; O.Speights).
-    2-6-LA 39              (4:35) B.Purdy pass deep middle to D.Robinson for 39 yards, TOUCHDOWN.                                                                                                          P10
-                           E.Pineiro extra point is GOOD, Center-J.Weeks, Holder-C.Waitman.
-Timeout at 04:28.
-                                                                 SF 10 LA 7,  9 plays, 86 yards,  4:24 drive, 10:32 elapsed
-E.Pineiro kicks 65 yards from SF 35 to end zone, Touchback to the LA 35.
-Los Angeles Rams at 4:28
-    1-10-LA 35             (4:28) M.Stafford pass short left to K.Williams to SF 49 for 16 yards (F.Warner).                                                                                                 P6
-    1-10-SF 49             (3:48) K.Williams up the middle to SF 42 for 7 yards (F.Warner).
-    2-3-SF 42              (3:10) (Shotgun) M.Stafford pass incomplete short middle to P.Nacua.
-                           PENALTY on LA-W.McClendon, Offensive Holding, 10 yards, enforced at SF 42 - No Play.
-    2-13-LA 48             (3:05) (Shotgun) M.Stafford pass incomplete short right to C.Parkinson.
-    3-13-LA 48             (2:59) (Shotgun) M.Stafford pass incomplete deep left to D.Adams (J.Jones) [U.Stout].
-    4-13-LA 48             (2:54) E.Evans punts 48 yards to SF 4, Center-J.Cardona. J.Cowing to SF 8 for 4 yards (J.McCollough).
-San Francisco 49ers at 2:43
-    1-10-SF 8              (2:43) (Shotgun) D.Samuel right guard to SF 20 for 12 yards (Q.Lake; J.McCollough). SF-J.Tonges was injured during the play.                                                    R11
-Two-Minute Warning
-                                                      San Francisco 49ers vs Los Angeles Rams at Melbourne Cricket Ground (MCG)
-    1-10-SF 20             (2:00) (Shotgun) C.McCaffrey right guard to SF 27 for 7 yards (K.Kinchens; T.Davis).
-    2-3-SF 27              (1:24) (Shotgun) B.Purdy pass incomplete short middle to D.Samuel.
-                           PENALTY on LA-T.Davis, Roughing the Passer, 15 yards, enforced at SF 27 - No Play.                                                                                          X12
-    1-10-SF 42             (1:19) (Shotgun) B.Purdy pass short right to C.McCaffrey to SF 41 for -1 yards (T.McDuffie).
-    2-11-SF 41             (:39) B.Purdy pass short right to C.McCaffrey to SF 49 for 8 yards (Q.Lake).
-                           Timeout #2 by SF at 00:32.
-    3-3-SF 49              (:32) (Shotgun) B.Purdy pass incomplete short left to M.Evans.
-    4-3-SF 49              (:28) C.Waitman punts 51 yards to end zone, Center-J.Weeks, Touchback.
-Los Angeles Rams at 0:20
-    1-10-LA 20             (:20) M.Stafford kneels to LA 19 for -1 yards.
-END OF QUARTER                                                 Time            First Downs                      Efficiencies
-                                                   Score        Poss        R       P     X       T        3 Down          4 Down
-San Francisco 49ers                                    10         9:40       4      3      1      8           2/3            0/0
-Los Angeles Rams                                         7        5:20       3      1      0      4           0/2            0/0
-                                                       San Francisco 49ers vs Los Angeles Rams at Melbourne Cricket Ground (MCG)
-
-Play By Play                                                                      Third Quarter                                                                                                     9/11/2026
-SF elects to Receive, and LA elects to defend the West goal.
-H.Mevis kicks 61 yards from LA 35 to SF 4. D.Samuel to SF 49 for 45 yards (K.Kinchens).
-                           ** Injury Update: SF-J.Tonges is Out of the game.
-San Francisco 49ers at 15:00, (1st play from scrimmage 14:53)
-    1-10-SF 49             (14:53) C.McCaffrey right guard to LA 37 for 14 yards (K.Kinchens; J.McCollough).                                                                                               R13
-    1-10-LA 37             (14:20) C.McCaffrey left guard to LA 21 for 16 yards (K.Kinchens; Q.Lake).                                                                                                      R14
-    1-10-LA 21             (13:42) K.Black up the middle to LA 17 for 4 yards (N.Landman).
-    2-6-LA 17              (12:58) (Shotgun) B.Purdy pass short right to D.Robinson pushed ob at LA 6 for 11 yards (Q.Lake).                                                                                P15
-    1-6-LA 6               (12:21) C.McCaffrey right tackle to LA 5 for 1 yard (T.Davis).
-                           Timeout #1 by SF at 11:44.
-    2-5-LA 5               (11:44) (Shotgun) B.Purdy pass short left to D.Samuel to LA 2 for 3 yards (N.Landman; Q.Lake).
-    3-2-LA 2               (11:07) B.Purdy pass short left to M.Evans for 2 yards, TOUCHDOWN.                                                                                                               P16
-                           E.Pineiro extra point is GOOD, Center-J.Weeks, Holder-C.Waitman.
-Timeout at 11:03.
-                                                                  SF 17 LA 7,  7 plays, 51 yards,  3:57 drive,  3:57 elapsed
-E.Pineiro kicks 62 yards from SF 35 to LA 3. J.Whittington to LA 27 for 24 yards (S.Neal). FUMBLES (S.Neal), and recovers at LA 27.
-Los Angeles Rams at 11:03, (1st play from scrimmage 10:59)
-    1-10-LA 27             (10:59) B.Corum right tackle to LA 26 for -1 yards (N.Bosa).
-    2-11-LA 26             (10:24) M.Stafford pass incomplete deep right to P.Nacua (D.Lenoir).
-                           PENALTY on SF-D.Lenoir, Illegal Contact, 5 yards, enforced at LA 26 - No Play.                                                                                                    X7
-    1-10-LA 31             (10:17) B.Corum left end to LA 39 for 8 yards (D.Greenlaw; C.West).
-    2-2-LA 39              (9:39) B.Corum left tackle to LA 40 for 1 yard (N.Bosa; F.Warner).
-    3-1-LA 40              (9:01) M.Stafford pass short right to D.Allen pushed ob at SF 47 for 13 yards (D.Greenlaw; J.Brown). LA-D.Allen was injured during the play.                                      P8
-    1-10-SF 47             (8:29) K.Williams up the middle to SF 42 for 5 yards (D.Greenlaw; J.Thompson).
-    2-5-SF 42              (7:53) M.Stafford pass deep middle to P.Nacua to SF 19 for 23 yards (D.Lenoir; M.Sigle).                                                                                          P9
-    1-10-SF 19             (7:13) PENALTY on LA-K.Dotson, False Start, 5 yards, enforced at SF 19 - No Play.
-    1-15-SF 24             (6:56) M.Stafford pass short left to D.Adams to SF 11 for 13 yards (J.Brown).
-    2-2-SF 11              (6:20) K.Williams up the middle to SF 9 for 2 yards (K.Kareem).                                                                                                                 R10
-    1-9-SF 9               (5:37) M.Stafford pass short left to C.Parkinson pushed ob at SF 3 for 6 yards (D.Lenoir; D.Greenlaw).
-    2-3-SF 3               (5:07) K.Williams right guard to SF 2 for 1 yard (J.Dugger; F.Warner).
-    3-2-SF 2               (4:26) (Shotgun) M.Stafford pass short left to P.Nacua to SF 1 for 1 yard (D.Lenoir).
-    4-1-SF 1               (3:46) M.Stafford right guard to SF 1 for no gain (O.Odighizuwa).
-                           The Replay Official reviewed the short of the goal line ruling, and the play was Upheld. The ruling on the field stands.
-Timeout at 03:41.
-San Francisco 49ers at 3:41
-    1-10-SF 1              (3:41) B.Purdy up the middle to SF 1 for no gain (N.Landman; T.Davis).
-                           Penalty on SF-D.Robinson, Offensive Offside, declined.
-    2-10-SF 1              (3:27) B.Purdy pass short left to L.Farrell to SF 15 for 14 yards (K.Kinchens).                                                                                                  P17
-    1-10-SF 15             (2:41) C.McCaffrey right end to SF 24 for 9 yards (S.Dolac).
-    2-1-SF 24              (1:54) (Shotgun) B.Purdy pass short left to D.Samuel pushed ob at SF 37 for 13 yards (Q.Lake).                                                                                   P18
-    1-10-SF 37             (1:23) K.Black right end pushed ob at LA 49 for 14 yards (Q.Lake).                                                                                                              R19
-    1-10-LA 49             (:54) K.Black left end to LA 49 for no gain (B.Fiske; K.Kinchens).
-    2-10-LA 49             (:10) (Shotgun) B.Purdy scrambles left end to LA 31 for 18 yards (J.McCollough).                                                                                                R20
-END OF QUARTER                                                   Time            First Downs                       Efficiencies
-                                                     Score       Poss         R       P      X      T         3 Down         4 Down
-San Francisco 49ers                                      17        7:38        4      4      0       8          1/1             0/0
-Los Angeles Rams                                          7        7:22        1      2      1       4          1/2             0/1
-                                                       San Francisco 49ers vs Los Angeles Rams at Melbourne Cricket Ground (MCG)
-
-Play By Play                                                                     Fourth Quarter                                                                                                     9/11/2026
-San Francisco 49ers continued.
-    1-10-LA 31             (15:00) (Shotgun) B.Purdy pass short right to D.Samuel to LA 25 for 6 yards (T.Davis; J.Stewart).
-    2-4-LA 25              (14:20) (Shotgun) B.Purdy scrambles left end pushed ob at LA 17 for 8 yards (J.Stewart).                                                                                        R21
-    1-10-LA 17             (13:45) C.McCaffrey right guard to LA 15 for 2 yards (J.Stewart; K.Turner).
-    2-8-LA 15              (13:04) (Shotgun) B.Purdy pass short right to D.Samuel for 15 yards, TOUCHDOWN.                                                                                                 P22
-                           E.Pineiro extra point is GOOD, Center-J.Weeks, Holder-C.Waitman.
-Timeout at 12:57.
-                                                                 SF 24 LA 7,  11 plays, 99 yards,  5:44 drive,  2:03 elapsed
-E.Pineiro kicks 64 yards from SF 35 to LA 1. J.Whittington to LA 23 for 22 yards (G.Wallow). ** Injury Update: LA-D.Allen has returned to the game.
-Los Angeles Rams at 12:57, (1st play from scrimmage 12:53)
-    1-10-LA 23             (12:53) (Shotgun) M.Stafford pass short left to D.Adams to LA 26 for 3 yards (U.Stout).
-                           ** Injury Update: SF-D.Stribling is Out of the game.
-    2-7-LA 26              (12:30) (No Huddle, Shotgun) M.Stafford pass short middle to C.Parkinson to LA 36 for 10 yards (F.Warner; D.Greenlaw).
-                           PENALTY on LA-A.Jackson, Chop Block, 13 yards, enforced at LA 26 - No Play.
-    2-20-LA 13             (12:05) (Shotgun) K.Williams up the middle to LA 15 for 2 yards (F.Warner).
-    3-18-LA 15             (11:45) (No Huddle, Shotgun) M.Stafford pass incomplete deep middle to P.Nacua (R.Green) [R.Height].
-                           PENALTY on SF-R.Green, Defensive Pass Interference, 16 yards, enforced at LA 15 - No Play.                                                                                      X11
-    1-10-LA 31             (11:40) (Shotgun) M.Stafford pass short right to T.Higbee to LA 39 for 8 yards (F.Warner).
-    2-2-LA 39              (11:19) (No Huddle, Shotgun) M.Stafford pass short middle to T.Higbee to LA 44 for 5 yards (F.Warner; D.Greenlaw). FUMBLES (F.Warner),
-                           RECOVERED by SF-K.White at LA 43.
-Timeout at 11:08.
-San Francisco 49ers at 11:08
-    1-10-LA 43             (11:08) K.Black up the middle to LA 39 for 4 yards (K.Turner).
-    2-6-LA 39              (10:29) K.Black left tackle to LA 38 for 1 yard (J.Stewart; K.Turner).
-    3-5-LA 38              (9:52) (Shotgun) B.Purdy pass incomplete short left to C.McCaffrey (Q.Lake).
-    4-5-LA 38              (9:48) E.Pineiro 56 yard field goal is GOOD, Center-J.Weeks, Holder-C.Waitman.
-Timeout at 09:43.
-                                                                   SF 27 LA 7,  4 plays, 5 yards,  1:25 drive,  5:17 elapsed
-E.Pineiro kicks 64 yards from SF 35 to LA 1. J.Whittington to LA 32 for 31 yards (K.Hodge).
-Los Angeles Rams at 9:43, (1st play from scrimmage 9:38)
-    1-10-LA 32             (9:38) (Shotgun) M.Stafford pass short right to K.Williams to LA 36 for 4 yards (D.Lenoir).
-    2-6-LA 36              (9:08) (Shotgun) M.Stafford pass short left to D.Adams to LA 46 for 10 yards (R.Green).                                                                                         P12
-    1-10-LA 46             (8:45) (No Huddle, Shotgun) M.Stafford pass incomplete short middle to P.Nacua (J.Jones).
-    2-10-LA 46             (8:39) (Shotgun) M.Stafford pass incomplete deep right to D.Adams.
-    3-10-LA 46             (8:34) (Shotgun) M.Stafford pass short right to P.Nacua to SF 49 for 5 yards (M.Sigle).
-    4-5-SF 49              (7:58) (Shotgun) M.Stafford pass incomplete deep right to T.Ferguson [O.Odighizuwa].
-Timeout at 07:54.
-San Francisco 49ers at 7:54
-    1-10-50                (7:54) C.McCaffrey left guard to LA 43 for 7 yards (D.Johnson; K.Curl).
-    2-3-LA 43              (7:14) C.McCaffrey up the middle to LA 41 for 2 yards (S.Dolac; N.Landman).
-    3-1-LA 41              (6:34) B.Purdy up the middle to LA 40 for 1 yard (B.Fiske).                                                                                                                     R23
-    1-10-LA 40             (5:52) K.Black right guard to LA 38 for 2 yards (K.Turner).
-    2-8-LA 38              (5:08) K.Black left guard to LA 34 for 4 yards (S.Dolac; K.Turner).
-    3-4-LA 34              (4:24) (Shotgun) B.Purdy pass short right to C.McCaffrey to LA 34 for no gain (J.Stewart). LA-N.Landman was injured during the play.
-Timeout at 04:03.
-                           Timeout #2 by SF at 03:34.
-    4-4-LA 34              (3:34) E.Pineiro 52 yard field goal is No Good, Hit Right Upright, Center-J.Weeks, Holder-C.Waitman.
-Los Angeles Rams at 3:29
-    1-10-LA 42             (3:29) B.Corum up the middle to LA 46 for 4 yards (F.Warner; J.Brown).
-    2-6-LA 46              (3:05) (No Huddle, Shotgun) S.Bennett scrambles up the middle to SF 45 for 9 yards (J.Brown).                                                                                   R13
-                           Penalty on SF, Defensive Too Many Men on Field, declined.
-                                                      San Francisco 49ers vs Los Angeles Rams at Melbourne Cricket Ground (MCG)
-    1-10-SF 45             (2:46) (Shotgun) R.Rivers right guard to SF 38 for 7 yards (C.West).
-    2-3-SF 38              (2:22) (No Huddle, Shotgun) S.Bennett pass incomplete short middle to K.Mumpfield [O.Okoronkwo]. LA-K.Mumpfield was injured during the
-                           play.
-    3-3-SF 38              (2:18) (Shotgun) R.Rivers right guard to SF 37 for 1 yard (G.Wallow).
-Two-Minute Warning
-    4-2-SF 37              (2:00) R.Rivers right tackle to SF 32 for 5 yards (D.Lenoir; M.Sigle). ** Injury Update: LA-K.Mumpfield has returned to the game.                                            R14
-    1-10-SF 32             (1:26) (Shotgun) S.Bennett pass short middle to J.Whittington to SF 24 for 8 yards (M.Mustapha).
-    2-2-SF 24              (1:05) (No Huddle, Shotgun) S.Bennett pass short middle to R.Rivers to SF 19 for 5 yards (J.Dugger; M.Mustapha). LA-K.Dotson was injured                                      P15
-                           during the play.
-                           Timeout #1 by LA at 00:47.
-    1-10-SF 19             (:47) R.Rivers right guard to SF 15 for 4 yards (K.Kareem; J.Dugger).
-    2-6-SF 15              (:14) R.Rivers left end to SF 13 for 2 yards (R.Green).
+Play By Play                                                                      First Quarter                                                                                                11/12/2026
+NYG wins toss, elects to Receive, and WAS elects to defend the North goal.
+D.Stevens kicks 64 yards from WAS 35 to NYG 1. G.Desrosiers to NYG 25 for 24 yards (K.Medrano; A.Kaho).
+New York Giants at 15:00, (1st play from scrimmage 14:52)
+    1-10-NYG 25            (14:52) (Shotgun) J.McCarthy pass short left to C.Skattebo to NYG 28 for 3 yards (A.Robertson).
+    2-7-NYG 28             (14:13) (Shotgun) C.Skattebo right guard to NYG 37 for 9 yards (S.Styles; F.Luvu).                                                                                            R1
+    1-10-NYG 37            (13:34) (Shotgun) J.McCarthy pass short middle to I.Likely to NYG 46 for 9 yards (S.Styles; J.Reaves).
+    2-1-NYG 46             (12:55) (Shotgun) C.Skattebo left guard to WAS 40 for 14 yards (N.Cross).                                                                                                     R2
+    1-10-WAS 40            (12:15) (Shotgun) D.Singletary left tackle to WAS 37 for 3 yards (K.Chaisson; C.Omenihu).
+    2-7-WAS 37             (11:38) (Shotgun) J.McCarthy pass incomplete short left [C.Omenihu].
+    3-7-WAS 37             (11:33) (Shotgun) J.McCarthy pass incomplete short right to I.Likely.
+    4-7-WAS 37             (11:28) (Shotgun) PENALTY on NYG, Delay of Game, 5 yards, enforced at WAS 37 - No Play.
+    4-12-WAS 42            (11:28) J.Stout punts 34 yards to WAS 8, Center-B.Mann, downed by NYG-E.Campbell.
+Timeout at 11:18.
+Washington Commanders at 11:18
+    1-10-WAS 8             (11:18) (Shotgun) R.White left tackle to WAS 10 for 2 yards (A.Reese).
+    2-8-WAS 10             (10:36) (Shotgun) J.Daniels pass short left to T.Burks ran ob at WAS 17 for 7 yards (D.Banks).
+    3-1-WAS 17             (10:07) (Shotgun) R.White left tackle to WAS 18 for 1 yard (B.Jamison-Travis).                                                                                                R1
+    1-10-WAS 18            (9:33) R.White right tackle to WAS 21 for 3 yards (S.Harris).
+    2-7-WAS 21             (8:50) (Shotgun) PENALTY on WAS-B.Coleman, False Start, 5 yards, enforced at WAS 21 - No Play.
+    2-12-WAS 16            (8:28) (Shotgun) J.Daniels pass short right to S.Diggs to WAS 20 for 4 yards (A.Washington).
+    3-8-WAS 20             (7:45) (Shotgun) J.Daniels pass incomplete short left to R.White.
+    4-8-WAS 20             (7:41) T.Way punts 40 yards to NYG 40, Center-T.Ott. C.Jones to NYG 42 for 2 yards (T.Owens).
+Timeout at 07:33.
+New York Giants at 7:33
+    1-10-NYG 42            (7:33) (Shotgun) J.McCarthy pass short left to M.Nabers to NYG 39 for -3 yards (A.Robertson).
+    2-13-NYG 39            (6:53) (Shotgun) J.McCarthy pass short left to I.Likely to NYG 45 for 6 yards (S.Styles; T.Amos).
+    3-7-NYG 45             (6:15) (Shotgun) J.McCarthy pass short left to C.Skattebo pushed ob at WAS 21 for 34 yards (Q.Martin) [D.Armstrong].                                                           P3
+    1-10-WAS 21            (5:34) (Shotgun) J.McCarthy pass short right to M.Nabers to WAS 15 for 6 yards (N.Cross; S.Styles).
+    2-4-WAS 15             (4:54) C.Skattebo up the middle to WAS 15 for no gain (N.Cross; S.Tuttle).
+    3-4-WAS 15             (4:12) (Shotgun) J.McCarthy pass incomplete short right to C.Skattebo.
+    4-4-WAS 15             (4:08) D.Zvada 33 yard field goal is No Good, Wide Left, Center-B.Mann, Holder-J.Stout.
+Timeout at 04:04.
+Washington Commanders at 4:04
+    1-10-WAS 23            (4:04) (Shotgun) J.Daniels pass short middle to A.Ekeler to WAS 31 for 8 yards (M.McFadden).
+    2-2-WAS 31             (3:28) (Shotgun) A.Ekeler left tackle to WAS 34 for 3 yards (S.Harris).                                                                                                       R2
+    1-10-WAS 34            (3:09) (No Huddle, Shotgun) J.Daniels pass short right to C.Okonkwo to WAS 40 for 6 yards (J.Holland).
+    2-4-WAS 40             (2:43) (No Huddle, Shotgun) J.Daniels scrambles right end to WAS 43 for 3 yards (K.Thibodeaux; A.Reese).
+    3-1-WAS 43             (2:14) (No Huddle, Shotgun) A.Ekeler right guard to WAS 45 for 2 yards (G.Newsome; A.Reese).                                                                                  R3
+    1-10-WAS 45            (1:50) (No Huddle, Shotgun) A.Ekeler left tackle to WAS 47 for 2 yards (A.Reese; A.Phillips).
+    2-8-WAS 47             (1:25) (No Huddle, Shotgun) J.Daniels pass deep right to T.Burks ran ob at NYG 33 for 20 yards.                                                                                P4
+    1-10-NYG 33            (:44) PENALTY on WAS-J.Bates, False Start, 5 yards, enforced at NYG 33 - No Play.
+    1-15-NYG 38            (:22) (Shotgun) J.Daniels pass short right to C.Okonkwo pushed ob at NYG 27 for 11 yards (G.Newsome).
 END OF QUARTER                                                  Time           First Downs                       Efficiencies
-                                                    Score       Poss         R      P      X       T        3 Down          4 Down
-San Francisco 49ers                                     27        7:53       2       1      0      3           1/3            0/0
-Los Angeles Rams                                         7        7:07       2       2      1      5           0/2            1/2
-                                                         Miscellaneous Statistics Report
+                                                    Score       Poss         R      P      X      T         3 Down         4 Down
+Washington Commanders                                    0        7:49       3      1       0      4          2/3             0/0
+New York Giants                                          0        7:11       2      1       0      3          1/3             0/0
+                                                               Washington Commanders vs New York Giants at MetLife Stadium
 
-                                                                 San Francisco 49ers vs Los Angeles Rams
-                                                             9/11/2026 at Melbourne Cricket Ground (MCG)
-Ten Longest Plays for San Francisco 49ers
-Yards     Qtr    Play Start           Play Description
-    39       2   2-6-LA 39            (4:35) B.Purdy pass deep middle to D.Robinson for 39 yards, TOUCHDOWN.
-    18       3   2-10-LA 49           (:10) (Shotgun) B.Purdy scrambles left end to LA 31 for 18 yards (J.McCollough).
-    16       3   1-10-LA 37           (14:20) C.McCaffrey left guard to LA 21 for 16 yards (K.Kinchens; Q.Lake).
-    15       4   2-8-LA 15            (13:04) (Shotgun) B.Purdy pass short right to D.Samuel for 15 yards, TOUCHDOWN.
-    14       3   1-10-SF 49           (14:53) C.McCaffrey right guard to LA 37 for 14 yards (K.Kinchens; J.McCollough).
-    14       3   2-10-SF 1            (3:27) B.Purdy pass short left to L.Farrell to SF 15 for 14 yards (K.Kinchens).
-    14       3   1-10-SF 37           (1:23) K.Black right end pushed ob at LA 49 for 14 yards (Q.Lake).
-    13       2   3-8-SF 30            (6:55) (Shotgun) B.Purdy pass short left to M.Evans to SF 43 for 13 yards (T.McDuffie).
-    13       3   2-1-SF 24            (1:54) (Shotgun) B.Purdy pass short left to D.Samuel pushed ob at SF 37 for 13 yards (Q.Lake).
-    12       2   2-10-SF 31           (14:47) (Shotgun) B.Purdy pass short middle to M.Evans to SF 43 for 12 yards (J.Watson).
-Ten Longest Plays for Los Angeles Rams
-Yards     Qtr    Play Start           Play Description
-    41       1   2-2-SF 49            (1:31) (No Huddle, Shotgun) M.Stafford pass deep right to P.Nacua to SF 8 for 41 yards (M.Sigle; R.Green).
-    23       3   2-5-SF 42            (7:53) M.Stafford pass deep middle to P.Nacua to SF 19 for 23 yards (D.Lenoir; M.Sigle).
-    16       2   1-10-LA 35           (4:28) M.Stafford pass short left to K.Williams to SF 49 for 16 yards (F.Warner).
-    13       2   2-4-SF 48            (10:11) B.Corum left tackle to SF 35 for 13 yards (M.Sigle).
-    13       3   3-1-LA 40            (9:01) M.Stafford pass short right to D.Allen pushed ob at SF 47 for 13 yards (D.Greenlaw; J.Brown). LA-D.Allen was injured
-                                      during the play.
-    13       3   1-15-SF 24           (6:56) M.Stafford pass short left to D.Adams to SF 11 for 13 yards (J.Brown).
-    10       2   2-5-LA 36            (11:28) B.Corum left guard to LA 46 for 10 yards (M.Sigle).
-    10       4   2-6-LA 36            (9:08) (Shotgun) M.Stafford pass short left to D.Adams to LA 46 for 10 yards (R.Green).
-     9       1   1-10-LA 25           (6:10) B.Corum up the middle to LA 34 for 9 yards (M.Sigle).
-     9       4   2-6-LA 46            (3:05) (No Huddle, Shotgun) S.Bennett scrambles up the middle to SF 45 for 9 yards (J.Brown).
-                                      Penalty on SF, Defensive Too Many Men on Field, declined.
+Play By Play                                                                   Second Quarter                                                                                                  11/12/2026
+Washington Commanders continued.
+                           ** Injury Update: NYG-K.Thibodeaux return is Questionable.
+    2-4-NYG 27             (15:00) A.Ekeler right end to NYG 28 for -1 yards (M.McFadden).
+    3-5-NYG 28             (14:18) (Shotgun) J.Daniels pass short left to T.Burks to NYG 14 for 14 yards (D.Smoot).
+                           New York Giants challenged the pass completion ruling, and the play was REVERSED.
+                           (Shotgun) J.Daniels pass incomplete short left to S.Diggs (D.Banks). ** Injury Update: NYG-K.Thibodeaux has returned to the game.
+    4-5-NYG 28             (14:12) D.Stevens 46 yard field goal is GOOD, Center-T.Ott, Holder-T.Way.
+Timeout at 14:07.
+                                                              WAS 3 NYG 0,  11 plays, 49 yards,  4:57 drive,  0:53 elapsed
+D.Stevens kicks 65 yards from WAS 35 to NYG 0. D.Singletary to NYG 22 for 22 yards (P.Butler).
+New York Giants at 14:07, (1st play from scrimmage 14:02)
+    1-10-NYG 22            (14:02) (Shotgun) J.McCarthy scrambles up the middle to NYG 34 for 12 yards (J.Reaves).                                                                                       R4
+    1-10-NYG 34            (13:22) (Shotgun) C.Skattebo up the middle to NYG 35 for 1 yard (O.Oweh).
+    2-9-NYG 35             (12:44) (Shotgun) J.McCarthy pass incomplete short left to D.Mooney (A.Robertson).
+    3-9-NYG 35             (12:39) (Shotgun) J.McCarthy sacked at NYG 25 for -10 yards (O.Oweh).
+    4-19-NYG 25            (12:04) J.Stout punts 64 yards to WAS 11, Center-B.Mann. L.McCaffrey to WAS 12 for 1 yard (E.Campbell).
+Washington Commanders at 11:53
+    1-10-WAS 12            (11:53) (Shotgun) J.Daniels pass short right to B.Sinnott pushed ob at WAS 17 for 5 yards (J.Pinnock).
+    2-5-WAS 17             (11:22) R.White left tackle to WAS 17 for no gain (M.McFadden; D.Smoot).
+    3-5-WAS 17             (10:40) (Shotgun) J.Daniels pass incomplete short right to S.Diggs.
+    4-5-WAS 17             (10:36) T.Way punts 55 yards to NYG 28, Center-T.Ott, downed by WAS-A.Kaho.
+Timeout at 10:23.
+                           ** Injury Update: WAS-C.Okonkwo return is Questionable.
+New York Giants at 10:23
+    1-10-NYG 28            (10:23) J.McCarthy pass incomplete short right [N.Cross].
+    2-10-NYG 28            (10:17) (Shotgun) J.McCarthy pass short middle to I.Likely to NYG 33 for 5 yards (J.Reaves).
+    3-5-NYG 33             (9:38) (Shotgun) J.McCarthy pass short middle to D.Mooney to NYG 39 for 6 yards (N.Cross; A.Robertson) [C.Omenihu].                                                           P5
+    1-10-NYG 39            (8:51) J.McCarthy pass short middle to I.Likely to 50 for 11 yards (F.Luvu; Q.Martin).                                                                                        P6
+    1-10-50                (8:13) (Shotgun) J.McCarthy pass incomplete short left to I.Likely.
+    2-10-50                (8:10) (Shotgun) J.McCarthy scrambles left end pushed ob at WAS 39 for 11 yards (S.Tuttle).                                                                                   R7
+    1-10-WAS 39            (7:43) (No Huddle, Shotgun) C.Skattebo up the middle to WAS 37 for 2 yards (S.Styles).
+    2-8-WAS 37             (7:18) (No Huddle, Shotgun) J.McCarthy pass short left to D.Mooney pushed ob at WAS 35 for 2 yards (T.Amos).
+    3-6-WAS 35             (6:43) (Shotgun) J.McCarthy pass short middle to M.Nabers to WAS 30 for 5 yards (J.Reaves).
+    4-1-WAS 30             (5:57) J.Winston left guard to WAS 29 for 1 yard (K.Chaisson).                                                                                                                R8
+    1-10-WAS 29            (5:18) (Shotgun) J.McCarthy left end to WAS 21 for 8 yards (J.Reaves).
+    2-2-WAS 21             (4:47) (No Huddle, Shotgun) J.McCarthy pass incomplete short right to D.Mooney.
+    3-2-WAS 21             (4:43) (Shotgun) C.Skattebo right tackle to WAS 18 for 3 yards (O.Oweh).                                                                                                      R9
+    1-10-WAS 18            (4:00) (Shotgun) J.McCarthy pass short middle to I.Likely to WAS 10 for 8 yards (Q.Martin; F.Luvu).
+    2-2-WAS 10             (3:20) C.Skattebo up the middle to WAS 5 for 5 yards (T.Amos; N.Cross).                                                                                                     R10
+                           Timeout #1 by NYG at 02:44.
+    1-5-WAS 5              (2:44) J.McCarthy pass incomplete short left to I.Likely (J.Reaves).
+                           PENALTY on WAS-J.Reaves, Defensive Pass Interference, 4 yards, enforced at WAS 5 - No Play.                                                                                 X11
+    1-1-WAS 1              (2:40) A.Stinnie reported in as eligible.  C.Skattebo right guard for 1 yard, TOUCHDOWN.                                                                                    R12
+                           D.Zvada extra point is GOOD, Center-B.Mann, Holder-J.Stout.
+Timeout at 02:35.
+                                                       WAS 3 NYG 7,  16 plays, 72 yards, 1 penalty,  7:48 drive, 12:25 elapsed
+D.Zvada kicks 57 yards from NYG 35 to WAS 8. L.McCaffrey to WAS 33 for 25 yards (A.Washington).
+Washington Commanders at 2:35, (1st play from scrimmage 2:28)
+    1-10-WAS 33            (2:28) J.Daniels pass short left to A.Ekeler to WAS 41 for 8 yards (A.Reese; M.McFadden).
+Two-Minute Warning
+    2-2-WAS 41             (2:00) (Shotgun) J.Daniels pass deep right to S.Diggs pushed ob at NYG 29 for 30 yards (K.Thibodeaux).                                                                        P5
+                                                              Washington Commanders vs New York Giants at MetLife Stadium
+   1-10-NYG 29            (1:49) (Shotgun) A.Ekeler left tackle to NYG 27 for 2 yards (K.Thibodeaux).
+   2-8-NYG 27             (1:16) (Shotgun) J.Daniels pass short middle to B.Sinnott pushed ob at NYG 15 for 12 yards (M.McFadden).                                                                    P6
+                          The Replay Official reviewed the runner was out of bounds ruling, and the play was REVERSED.
+                          (Shotgun) J.Daniels pass short middle to B.Sinnott to NYG 15 for 12 yards (M.McFadden).
+                          Timeout #2 by NYG at 01:11.  10-second runoff avoided.
+   1-10-NYG 15            (1:11) R.White left guard to NYG 8 for 7 yards (A.Reese).
+                          Timeout #3 by NYG at 01:06.
+   2-3-NYG 8              (1:06) R.White right tackle to NYG 1 for 7 yards (K.Thibodeaux).                                                                                                            R7
+                          Timeout #1 by WAS at 00:19.
+   1-1-NYG 1              (:19) (Shotgun) J.Daniels right end to NYG 1 for no gain (D.Reader, K.Thibodeaux).
+                          Timeout #2 by WAS at 00:12.
+   2-1-NYG 1              (:12) (Shotgun) J.Daniels pass incomplete short left to S.Diggs.
+   3-1-NYG 1              (:09) (Shotgun) J.Daniels pass short middle to B.Sinnott for 1 yard, TOUCHDOWN [A.Carter].                                                                                  P8
+                          D.Stevens extra point is GOOD, Center-T.Ott, Holder-T.Way.
+                                                            WAS 10 NYG 7,  9 plays, 67 yards,  2:30 drive, 14:55 elapsed
+D.Stevens kicks 65 yards from WAS 35 to end zone, Touchback to the NYG 35.
+New York Giants at 0:05
+   1-10-NYG 35            (:05) J.McCarthy kneels to NYG 34 for -1 yards.
+END OF QUARTER                                                 Time           First Downs                      Efficiencies
+                                                   Score       Poss        R       P     X       T        3 Down         4 Down
+Washington Commanders                                  10        4:53       1      3      0      4          1/3             0/0
+New York Giants                                         7      10:07        6      2      1      9          2/4             1/1
+                                                               Washington Commanders vs New York Giants at MetLife Stadium
+
+Play By Play                                                                     Third Quarter                                                                                                 11/12/2026
+WAS elects to Receive, and NYG elects to defend the South goal.
+D.Zvada kicks 63 yards from NYG 35 to WAS 2. L.McCaffrey to WAS 21 for 19 yards (T.Ford).
+Washington Commanders at 15:00, (1st play from scrimmage 14:54)
+    1-10-WAS 21            (14:54) R.White right tackle to WAS 20 for -1 yards (A.Carter, A.Reese).
+    2-11-WAS 20            (14:14) (Shotgun) J.Daniels sacked at WAS 6 for -14 yards (S.Harris). ** Injury Update: WAS-C.Okonkwo has returned to the game.
+    3-25-WAS 6             (13:24) (Shotgun) PENALTY on WAS, Delay of Game, 3 yards, enforced at WAS 6 - No Play.
+    3-28-WAS 3             (13:10) (Shotgun) A.Ekeler right guard to WAS 6 for 3 yards (D.Alexander; A.Reese).
+    4-25-WAS 6             (12:32) T.Way punts 49 yards to NYG 45, Center-T.Ott, fair catch by C.Jones.
+Timeout at 12:24.
+New York Giants at 12:24
+    1-10-NYG 45            (12:24) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 30 for 25 yards (P.Butler).                                                                         P13
+    1-10-WAS 30            (11:52) (Shotgun) J.McCarthy pass incomplete short right to T.Johnson.
+    2-10-WAS 30            (11:48) (Shotgun) J.McCarthy pass short middle to I.Likely to WAS 20 for 10 yards (Q.Martin; P.Butler).                                                                      P14
+    1-10-WAS 20            (11:05) (Shotgun) C.Skattebo right tackle to WAS 13 for 7 yards (S.Styles; P.Butler).
+    2-3-WAS 13             (10:28) (Shotgun) C.Skattebo right end for 13 yards, TOUCHDOWN.                                                                                                             R15
+                           D.Zvada extra point is GOOD, Center-B.Mann, Holder-J.Stout.
+Timeout at 10:22.
+                           ** Injury Update: NYG-J.Pinnock return is Questionable.
+                                                             WAS 10 NYG 14,  5 plays, 55 yards,  2:02 drive,  4:38 elapsed
+D.Zvada kicks 56 yards from NYG 35 to WAS 9. L.McCaffrey to WAS 23 for 14 yards (T.Nubin; T.Johnson).
+Washington Commanders at 10:22, (1st play from scrimmage 10:17)
+    1-10-WAS 23            (10:17) (Shotgun) J.Daniels pass deep right to B.Sinnott to WAS 47 for 24 yards (A.Phillips).                                                                                 P9
+    1-10-WAS 47            (9:37) J.Daniels scrambles right end ran ob at NYG 45 for 8 yards (K.Thibodeaux).
+    2-2-NYG 45             (9:02) J.Daniels pass short middle to A.Ekeler to NYG 40 for 5 yards (A.Washington; A.Reese).                                                                                P10
+    1-10-NYG 40            (8:23) R.Henry up the middle to NYG 36 for 4 yards (M.McFadden).
+    2-6-NYG 36             (7:46) (Shotgun) J.Daniels pass short right to S.Diggs to NYG 31 for 5 yards (A.Washington).
+    3-1-NYG 31             (7:05) J.Daniels pass short right to A.Williams for 31 yards, TOUCHDOWN.                                                                                                     P11
+                           D.Stevens extra point is GOOD, Center-T.Ott, Holder-T.Way.
+Timeout at 06:56.
+                                                             WAS 17 NYG 14,  6 plays, 77 yards,  3:26 drive,  8:04 elapsed
+D.Stevens kicks 62 yards from WAS 35 to NYG 3. G.Desrosiers to NYG 27 for 24 yards (T.Owens; J.Josephs).
+New York Giants at 6:56, (1st play from scrimmage 6:49)
+    1-10-NYG 27            (6:49) (Shotgun) J.McCarthy pass deep left to M.Nabers pushed ob at WAS 36 for 37 yards (A.Robertson).                                                                       P16
+    1-10-WAS 36            (6:12) (Shotgun) C.Skattebo left guard to WAS 33 for 3 yards (T.Settle; D.Wise).
+    2-7-WAS 33             (5:35) (Shotgun) J.McCarthy pass short middle to M.Fields to WAS 17 for 16 yards (Q.Martin; N.Cross).                                                                        P17
+    1-10-WAS 17            (4:53) (Shotgun) C.Skattebo right end to WAS 19 for -2 yards (A.Robertson).
+    2-12-WAS 19            (4:14) (Shotgun) J.McCarthy pass short right to M.Nabers to WAS 16 for 3 yards (F.Luvu). FUMBLES (F.Luvu), RECOVERED by WAS-
+                           J.Reaves at WAS 20.
+Timeout at 04:06.
+                           ** Injury Update: NYG-B.Hudson return is Questionable.
+Washington Commanders at 4:06
+    1-10-WAS 20            (4:06) R.Henry right end to WAS 20 for no gain (A.Phillips).
+    2-10-WAS 20            (3:26) (Shotgun) J.Daniels pass incomplete deep middle to T.Burks.
+    3-10-WAS 20            (3:22) (Shotgun) J.Daniels pass short left to S.Diggs to WAS 23 for 3 yards (A.Reese).
+    4-7-WAS 23             (2:39) T.Way punts 54 yards to NYG 23, Center-T.Ott, fair catch by C.Jones.
+New York Giants at 2:32
+    1-10-NYG 23            (2:32) (Shotgun) J.McCarthy pass short middle to I.Likely to NYG 29 for 6 yards (J.Reaves, P.Butler). FUMBLES (P.Butler), and recovers at
+                           NYG 29. ** Injury Update: NYG-B.Hudson has returned to the game.
+    2-4-NYG 29             (2:13) (No Huddle, Shotgun) J.McCarthy pass short middle to C.Skattebo to NYG 36 for 7 yards (S.Styles).                                                                     P18
+    1-10-NYG 36            (1:37) (Shotgun) C.Skattebo up the middle to NYG 39 for 3 yards (S.Styles; J.Newton).
+    2-7-NYG 39             (:59) (Shotgun) J.McCarthy pass short middle to T.Johnson to NYG 47 for 8 yards (F.Luvu).                                                                                    P19
+                                                          Washington Commanders vs New York Giants at MetLife Stadium
+   1-10-NYG 47           (:26) (Shotgun) J.McCarthy pass short right to I.Likely to WAS 47 for 6 yards (S.Styles).
+END OF QUARTER                                             Time          First Downs                    Efficiencies
+                                                Score      Poss        R     P      X      T       3 Down         4 Down
+Washington Commanders                              17        7:36      0      3     0      3          1/3           0/0
+New York Giants                                    14        7:24      1      6     0      7          0/0           0/0
+                                                              Washington Commanders vs New York Giants at MetLife Stadium
+
+Play By Play                                                                   Fourth Quarter                                                                                                  11/12/2026
+New York Giants continued.
+    2-4-WAS 47             (15:00) (Shotgun) PENALTY on NYG-C.Manhertz, False Start, 5 yards, enforced at WAS 47 - No Play.
+    2-9-NYG 48             (15:00) (Shotgun) J.McCarthy scrambles right end pushed ob at WAS 46 for 6 yards (S.Styles).
+    3-3-WAS 46             (14:23) (Shotgun) J.McCarthy pass incomplete short left to T.Johnson (P.Butler).
+    4-3-WAS 46             (14:15) J.Stout punts 46 yards to end zone, Center-B.Mann, Touchback.
+Washington Commanders at 14:07
+    1-10-WAS 20            (14:07) (Shotgun) J.Daniels scrambles right end to WAS 25 for 5 yards (S.Harris; A.Reese).
+    2-5-WAS 25             (13:39) (No Huddle, Shotgun) A.Ekeler right guard to WAS 32 for 7 yards (A.Phillips).                                                                                       R12
+    1-10-WAS 32            (12:55) J.Daniels scrambles right end to WAS 37 for 5 yards (A.Reese).
+    2-5-WAS 37             (12:13) A.Ekeler left guard to WAS 41 for 4 yards (M.McFadden; A.Reese).
+    3-1-WAS 41             (11:33) (Shotgun) J.Daniels left tackle to WAS 43 for 2 yards (K.Thibodeaux; B.Jamison-Travis).                                                                             R13
+    1-10-WAS 43            (10:56) R.White right end pushed ob at NYG 39 for 18 yards (G.Newsome).                                                                                                     R14
+    1-10-NYG 39            (10:25) R.White up the middle to NYG 33 for 6 yards (M.McFadden; J.Holland).
+    2-4-NYG 33             (9:50) (Shotgun) J.Daniels pass incomplete short left to C.Okonkwo.
+    3-4-NYG 33             (9:46) (Shotgun) J.Daniels pass short right to C.Okonkwo to NYG 31 for 2 yards (A.Washington).
+    4-2-NYG 31             (9:09) (Shotgun) J.Daniels pass incomplete short middle to S.Diggs (A.Washington).
+Timeout at 09:04.
+New York Giants at 9:04
+    1-10-NYG 31            (9:04) C.Skattebo up the middle to NYG 34 for 3 yards (J.Reaves).
+    2-7-NYG 34             (8:28) (Shotgun) J.McCarthy pass incomplete short right to M.Nabers.
+    3-7-NYG 34             (8:24) (Shotgun) J.McCarthy pass deep middle to I.Likely for 66 yards, TOUCHDOWN.                                                                                           P20
+                           D.Zvada extra point is GOOD, Center-B.Mann, Holder-J.Stout.
+Timeout at 08:13.
+                                                             WAS 17 NYG 21,  3 plays, 69 yards,  0:51 drive,  6:47 elapsed
+D.Zvada kicks 62 yards from NYG 35 to WAS 3, out of bounds.
+PENALTY on NYG-D.Zvada, Kickoff Out of Bounds, placed at WAS 40.
+Washington Commanders at 8:13
+    1-10-WAS 40            (8:13) (Shotgun) J.Daniels pass short right to A.Williams to NYG 49 for 11 yards (G.Newsome).                                                                               P15
+    1-10-NYG 49            (7:51) (No Huddle, Shotgun) J.Daniels pass short right to C.Okonkwo ran ob at NYG 44 for 5 yards.
+    2-5-NYG 44             (7:23) A.Ekeler up the middle to NYG 40 for 4 yards (A.Carter; A.Phillips).
+    3-1-NYG 40             (7:04) (No Huddle, Shotgun) J.Daniels scrambles left end ran ob at NYG 28 for 12 yards (M.McFadden).
+                           Penalty on WAS-B.Coleman, Offensive Holding, offsetting, enforced at NYG 40 - No Play.
+                           Penalty on NYG-M.McFadden, Defensive Holding, offsetting.
+    3-1-NYG 40             (6:45) R.White right guard to NYG 35 for 5 yards (J.Holland; A.Washington).                                                                                                 R16
+    1-10-NYG 35            (6:21) (No Huddle, Shotgun) J.Daniels pass short middle to R.White to NYG 30 for 5 yards (K.Thibodeaux). NYG-K.Thibodeaux was injured
+                           during the play. WAS-R.White was injured during the play.
+Timeout at 06:10.
+    2-5-NYG 30             (6:01) (Shotgun) J.Daniels right end pushed ob at NYG 24 for 6 yards (M.McFadden).                                                                                          R17
+    1-10-NYG 24            (5:31) (Shotgun) J.Daniels pass deep left intended for C.Okonkwo INTERCEPTED by J.Holland at NYG 0. Touchback.
+                           The Replay Official reviewed the touchback ruling, and the play was REVERSED.
+                           (Shotgun) J.Daniels pass deep left intended for C.Okonkwo INTERCEPTED by J.Holland at NYG 2. J.Holland to NYG 2 for no gain
+                           (C.Okonkwo). ** Injury Update: NYG-K.Thibodeaux has returned to the game. ** Injury Update: WAS-R.White has returned to the game.
+New York Giants at 5:27
+    1-10-NYG 2             (5:27) C.Skattebo left guard to NYG 7 for 5 yards (S.Tuttle; T.Settle).
+    2-5-NYG 7              (4:40) (Shotgun) C.Skattebo right tackle to NYG 11 for 4 yards (S.Styles; O.Oweh).
+    3-1-NYG 11             (3:56) J.Winston up the middle to NYG 12 for 1 yard (S.Styles; D.Wise).
+                           Washington challenged the first down ruling, and the play was REVERSED.
+                           J.Winston up the middle to NYG 11 for no gain (S.Styles; D.Wise).
+    4-1-NYG 11             (3:27) (Run formation) PENALTY on NYG, Delay of Game, 4 yards, enforced at NYG 11 - No Play.
+    4-5-NYG 7              (3:27) J.Stout punts 68 yards to WAS 25, Center-B.Mann. L.McCaffrey pushed ob at WAS 37 for 12 yards (Z.Barnes).
+Washington Commanders at 3:16
+    1-10-WAS 37            (3:16) (Shotgun) J.Daniels pass incomplete short left to C.Okonkwo.
+    2-10-WAS 37            (3:12) (Shotgun) J.Daniels pass short left to S.Diggs to WAS 46 for 9 yards (A.Washington).
+    3-1-WAS 46             (2:48) (No Huddle, Shotgun) R.White up the middle to WAS 45 for -1 yards (D.Banks, A.Carter).
+                                                             Washington Commanders vs New York Giants at MetLife Stadium
+   4-2-WAS 45             (2:19) (No Huddle, Shotgun) J.Daniels pass short left intended for C.Okonkwo INTERCEPTED by A.Washington at WAS 46. A.Washington to
+                          WAS 46 for no gain.
+New York Giants at 2:15
+   1-10-WAS 46            (2:15) (Shotgun) C.Skattebo up the middle to WAS 41 for 5 yards (J.Reaves).
+                          Timeout #1 by WAS at 02:10.
+   2-5-WAS 41             (2:10) C.Skattebo left guard to WAS 39 for 2 yards (F.Luvu; J.Reaves).
+Two-Minute Warning
+   3-3-WAS 39             (2:00) (Shotgun) J.McCarthy left end to WAS 41 for -2 yards (S.Styles).
+                          Timeout #2 by WAS at 01:54.
+   4-5-WAS 41             (1:54) J.Stout punts 12 yards to WAS 29, Center-B.Mann, out of bounds.
+Washington Commanders at 1:46
+   1-10-WAS 29            (1:46) (Shotgun) J.Daniels pass incomplete deep left to T.Burks (D.Banks).
+                          PENALTY on NYG-D.Banks, Defensive Pass Interference, 33 yards, enforced at WAS 29 - No Play.                                                                              X18
+   1-10-NYG 38            (1:40) (Shotgun) J.Daniels scrambles right end pushed ob at NYG 37 for 1 yard (A.Phillips).
+   2-9-NYG 37             (1:33) (Shotgun) J.Daniels pass short left to A.Ekeler to NYG 32 for 5 yards (M.McFadden; D.Banks).
+   3-4-NYG 32             (1:05) (No Huddle, Shotgun) J.Daniels pass short middle to S.Diggs for 32 yards, TOUCHDOWN.                                                                               P19
+                          D.Stevens extra point is GOOD, Center-T.Ott, Holder-T.Way.
+                                                      WAS 24 NYG 21,  3 plays, 71 yards, 1 penalty,  0:49 drive, 14:03 elapsed
+D.Stevens kicks 64 yards from WAS 35 to NYG 1. G.Desrosiers to NYG 27 for 26 yards (K.Medrano). FUMBLES (K.Medrano), recovered by NYG-C.Martin at NYG
+31.
+New York Giants at 0:57, (1st play from scrimmage 0:48)
+   1-10-NYG 31            (:48) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 48 for 21 yards (T.Amos).                                                                          P21
+                          Timeout #1 by NYG at 00:42.
+   1-10-WAS 48            (:42) (Shotgun) J.McCarthy pass incomplete short left to M.Fields.
+   2-10-WAS 48            (:39) (Shotgun) J.McCarthy pass incomplete deep right to D.Mooney (J.Reaves) [J.Reaves].
+   3-10-WAS 48            (:34) (Shotgun) J.McCarthy pass deep right intended for M.Nabers INTERCEPTED by R.Douglas at WAS 11. R.Douglas to WAS 11 for no gain
+                          (M.Nabers).
+Washington Commanders at 0:25
+   1-10-WAS 11            (:25) J.Daniels kneels to WAS 10 for -1 yards.
+                          Timeout #2 by NYG at 00:23.
+   2-11-WAS 10            (:23) J.Daniels kneels to WAS 10 for no gain.
+                          PENALTY on NYG-D.Alexander, Unnecessary Roughness, 15 yards, enforced at WAS 10.                                                                                          X20
+   1-10-WAS 25            (:21) J.Daniels kneels to WAS 24 for -1 yards.
+END OF QUARTER                                                 Time           First Downs                      Efficiencies
+                                                   Score       Poss        R      P      X      T         3 Down         4 Down
+Washington Commanders                                  24      10:04        5      2      2      9          3/5             0/2
+New York Giants                                        21        4:56       0      2      0      2          1/5             0/0
+                                                        Miscellaneous Statistics Report
+
+                                                              Washington Commanders vs New York Giants
+                                                                       11/12/2026 at MetLife Stadium
+Ten Longest Plays for Washington Commanders
+Yards     Qtr    Play Start          Play Description
+    32       4   3-4-NYG 32          (1:05) (No Huddle, Shotgun) J.Daniels pass short middle to S.Diggs for 32 yards, TOUCHDOWN.
+    31       3   3-1-NYG 31          (7:05) J.Daniels pass short right to A.Williams for 31 yards, TOUCHDOWN.
+    30       2   2-2-WAS 41          (2:00) (Shotgun) J.Daniels pass deep right to S.Diggs pushed ob at NYG 29 for 30 yards (K.Thibodeaux).
+    24       3   1-10-WAS 23         (10:17) (Shotgun) J.Daniels pass deep right to B.Sinnott to WAS 47 for 24 yards (A.Phillips).
+    20       1   2-8-WAS 47          (1:25) (No Huddle, Shotgun) J.Daniels pass deep right to T.Burks ran ob at NYG 33 for 20 yards.
+    18       4   1-10-WAS 43         (10:56) R.White right end pushed ob at NYG 39 for 18 yards (G.Newsome).
+    15       4   2-11-WAS 10         (:23) J.Daniels kneels to WAS 10 for no gain.
+                                     PENALTY on NYG-D.Alexander, Unnecessary Roughness, 15 yards, enforced at WAS 10.
+    12       2   2-8-NYG 27          (1:16) (Shotgun) J.Daniels pass short middle to B.Sinnott pushed ob at NYG 15 for 12 yards (M.McFadden).
+                                     The Replay Official reviewed the runner was out of bounds ruling, and the play was REVERSED.
+                                     (Shotgun) J.Daniels pass short middle to B.Sinnott to NYG 15 for 12 yards (M.McFadden).
+    11       1   1-15-NYG 38         (:22) (Shotgun) J.Daniels pass short right to C.Okonkwo pushed ob at NYG 27 for 11 yards (G.Newsome).
+    11       4   1-10-WAS 40         (8:13) (Shotgun) J.Daniels pass short right to A.Williams to NYG 49 for 11 yards (G.Newsome).
+Ten Longest Plays for New York Giants
+Yards     Qtr    Play Start          Play Description
+    66       4   3-7-NYG 34          (8:24) (Shotgun) J.McCarthy pass deep middle to I.Likely for 66 yards, TOUCHDOWN.
+    37       3   1-10-NYG 27         (6:49) (Shotgun) J.McCarthy pass deep left to M.Nabers pushed ob at WAS 36 for 37 yards (A.Robertson).
+    34       1   3-7-NYG 45          (6:15) (Shotgun) J.McCarthy pass short left to C.Skattebo pushed ob at WAS 21 for 34 yards (Q.Martin) [D.Armstrong].
+    25       3   1-10-NYG 45         (12:24) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 30 for 25 yards (P.Butler).
+    21       4   1-10-NYG 31         (:48) (Shotgun) J.McCarthy pass deep left to M.Fields pushed ob at WAS 48 for 21 yards (T.Amos).
+    16       3   2-7-WAS 33          (5:35) (Shotgun) J.McCarthy pass short middle to M.Fields to WAS 17 for 16 yards (Q.Martin; N.Cross).
+    14       1   2-1-NYG 46          (12:55) (Shotgun) C.Skattebo left guard to WAS 40 for 14 yards (N.Cross).
+    13       3   2-3-WAS 13          (10:28) (Shotgun) C.Skattebo right end for 13 yards, TOUCHDOWN.
+    12       2   1-10-NYG 22         (14:02) (Shotgun) J.McCarthy scrambles up the middle to NYG 34 for 12 yards (J.Reaves).
+    11       2   1-10-NYG 39         (8:51) J.McCarthy pass short middle to I.Likely to 50 for 11 yards (F.Luvu; Q.Martin).
 
 
 
-Touchdown Scoring Information                                                                Offense        Defense      Special Teams
-VISITOR               San Francisco 49ers                                                            3               0              0
-HOME                  Los Angeles Rams                                                               1               0              0
+
+Touchdown Scoring Information                                                              Offense        Defense       Special Teams
+VISITOR               Washington Commanders                                                         3              0              0
+HOME                  New York Giants                                                               3              0              0
 
 Player Scoring Information
-Club    Player                                                TD    Rush       Rec   KO TD      Punt   Int TD     Fum      Misc        FG       XP      2Pt      2Pt    Sfty    Points
-                                                                       TD       TD                TD                TD       TD                      Rush       Rec
-SF      E.Pineiro                                                0        0        0        0        0        0        0        0        2        3        0        0       0          9
-SF      M.Evans                                                  0        0        1        0        0        0        0        0        0        0        0        0       0          6
-SF      D.Samuel                                                 0        0        1        0        0        0        0        0        0        0        0        0       0          6
-SF      D.Robinson                                               0        0        1        0        0        0        0        0        0        0        0        0       0          6
-LA      K.Williams                                               0        1        0        0        0        0        0        0        0        0        0        0       0          6
-LA      H.Mevis                                                  0        0        0        0        0        0        0        0        0        1        0        0       0          1
+Club    Player                                                TD    Rush      Rec   KO TD      Punt  Int TD      Fum      Misc       FG       XP      2Pt     2Pt     Sfty    Points
+                                                                      TD       TD                TD                TD       TD                     Rush       Rec
+WAS     S.Diggs                                                 0        0       1        0        0        0        0        0        0        0        0       0        0         6
+WAS     B.Sinnott                                               0        0       1        0        0        0        0        0        0        0        0       0        0         6
+WAS     A.Williams                                              0        0       1        0        0        0        0        0        0        0        0       0        0         6
+WAS     D.Stevens                                               0        0       0        0        0        0        0        0        1        3        0       0        0         6
+NYG     C.Skattebo                                              0        2       0        0        0        0        0        0        0        0        0       0        0        12
+NYG     I.Likely                                                0        0       1        0        0        0        0        0        0        0        0       0        0         6
+NYG     D.Zvada                                                 0        0       0        0        0        0        0        0        0        3        0       0        0         3
 
-Possession Detail                                            First Half                             Second Half                                         Game
-                                                          Visitor         Home                     Visitor         Home                            Visitor        Home
-Largest Lead                                                     3              4                        20              0                              20              4
-Drives Leading                                                   2              1                         4              0                                6             1
-Time of Possession Leading                                    3:49          3:12                     15:31           0:00                            19:20           3:12
-Largest Deficit                                                 -4             -3                         0            -20                               -4           -20
-Drives Trailing                                                  2              4                         0              4                                2             8
-Time of Possession Trailing                                   7:17          6:57                       0:00         14:29                             7:17         21:26
-Times Score Tied Up                                                             0                                        0                                              0
-Lead Changes                                                                    3                                        0                                              3
+Possession Detail                                           First Half                             Second Half                                        Game
+                                                         Visitor         Home                     Visitor        Home                            Visitor        Home
+Largest Lead                                                    3              4                         3             4                                3             4
+Drives Leading                                                  1              0                         4             2                                5             2
+Time of Possession Leading                                   1:30          0:00                      9:38           2:40                           11:08           2:40
+Largest Deficit                                                 -4            -3                        -4            -3                               -4            -3
+Drives Trailing                                                 1              3                         4             5                                5             8
+Time of Possession Trailing                                  2:30         10:07                      8:02           9:40                           10:32         19:47
+Times Score Tied Up                                                            0                                       0                                              0
+Lead Changes                                                                   3                                       4                                              7
                                                       Playtime Percentage
                                  Percent of playtime per player on offense, defense and special teams (Unofficial)
-                          San Francisco 49ers                                                         Los Angeles Rams
+                       Washington Commanders                                                            New York Giants
 
-                                Offense       Defense     Special Teams                                    Offense       Defense     Special Teams
+                                Offense       Defense     Special Teams                                     Offense       Defense     Special Teams
 
-C.Colby                  OL      65 100%                       6    30%    A.Jackson                 OL     61 100%                       1       5%
-C.McKivitz               OL      65 100%                       6    30%    C.Shelton                 OL     61 100%                       1       5%
-D.Puni                   OL      65 100%                       6    30%    S.Avila                   OL     61 100%                       1       5%
-B.Purdy                  QB      65 100%                                   W.McClendon               OL     61 100%                       1       5%
-J.Brendel                OL      65 100%                                   K.Dotson                  OL     59   97%                      1       5%
-T.Williams               T       65 100%                                   M.Stafford                QB     51   84%
-M.Evans                  WR      49  75%                                   C.Parkinson               TE     47   77%                      1       5%
-L.Farrell                TE      46  71%                      18    90%    P.Nacua                   WR     43   70%
-D.Robinson               WR      41  63%                                   K.Williams                RB     39   64%
-C.McCaffrey              RB      36  55%                                   D.Adams                   WR     33   54%
-K.Juszczyk               FB      33  51%                       6    30%    T.Ferguson                TE     31   51%                      6      30%
-G.Kittle                 TE      30  46%                                   J.Whittington             WR     25   41%                     13      65%
-K.Black                  RB      28  43%                                   D.Allen                   TE     21   34%                      9      45%
-D.Samuel                 WR      27  42%                       2    10%    X.Smith                   WR     16   26%                     11      55%
-D.Stribling              WR      21  32%                                   K.Mumpfield               WR     16   26%                      6      30%
-J.Tonges                 TE       8  12%                       4    20%    B.Corum                   RB     14   23%
-J.Cowing                 WR       5   8%                       5    25%    T.Higbee                  TE     12   20%                     10      50%
-K.Hodge                  WR       1   2%                      12    60%    S.Bennett                 QB     10   16%
-M.Sigle                  S                    61  100%         8    40%    R.Rivers                  RB      8   13%
-D.Lenoir                 DB                   61  100%         2    10%    B.Limmer                  OL      2    3%
-R.Green                  CB                   61  100%         1      5%   Q.Lake                    S                    65 100%        10      50%
-J.Brown                  S                    55   90%         7    35%    T.McDuffie                CB                   65 100%         6      30%
-F.Warner                 LB                   53   87%         2    10%    J.Watson                  CB                   65 100%         1       5%
-D.Greenlaw               LB                   40   66%         1      5%   N.Landman                 LB                   64  98%         7      35%
-O.Odighizuwa             DL                   36   59%         2    10%    K.Kinchens                S                    52  80%         6      30%
-N.Bosa                   DL                   36   59%         1      5%
-U.Stout                  CB                   36   59%         1      5%   B.Young                   LB                   47  72%         1       5%
-J.Dugger                 LB                   34   56%        12    60%    K.Turner                  DE                   43  66%         1       5%
-G.Halton                 DL                   31   51%         1      5%   M.Garrett                 LB                   40  62%         6      30%
-R.Height                 DL                   30   49%         3    15%    J.McCollough              S                    39  60%        15      75%
-K.White                  DL                   30   49%         2    10%    P.Ford                    NT                   33  51%         8      40%
-C.West                   DL                   23   38%         1      5%   T.Davis                   DE                   32  49%         3      15%
-J.Thompson               DL                   21   34%                     O.Speights                LB                   30  46%         9      45%
-K.Kareem                 DL                   19   31%                     K.Curl                    S                    30  46%         1       5%
-O.Okoronkwo              DL                   18   30%         1      5%   B.Fiske                   DE                   29  45%         7      35%
-G.Wallow                 LB                   13   21%        13    65%    J.Stewart                 LB                   28  43%         2      10%
-J.Jones                  CB                     8  13%         2    10%    S.Dolac                   LB                   19  29%        17      85%
-M.Mustapha               S                      6  10%        10    50%    D.Johnson                 LB                   15  23%         8      40%
-L.Gifford                LB                                   13    65%    T.Hamilton                NT                   12  18%         5      25%
-S.Neal                   DB                                   13    65%    J.Wallace                 CB                    7  11%         8      40%
-A.Davis                  S                                    13    65%    G.Stuard                  LB                                  14      70%
-E.Pineiro                K                                    12    60%    T.Ingle                   S                                    8      40%
-C.Waitman                P                                     8    40%    E.Evans                   P                                    4      20%
-J.Weeks                  LS                                    8    40%    J.Cardona                 LS                                   4      20%
-J.Patterson              OL                                    6    30%    H.Mevis                   K                                    3      15%
-C.Willis                  OL                                      6    30%    E.Forbes                   CB                                     2      10%
-V.Lowe                    OL                                      6    30%    W.Bailey                   LB                                     2      10%
-                                                                              D.Quessenberry             OL                                     1        5%
+B.Coleman                T/G     69 100%                       4     15%   B.Hudson                  C       65 100%                       4      15%
+C.Paul                   G       69 100%                       4     15%   F.Mauigoa                 OL      65 100%                       4      15%
+J.Conerly                T       69 100%                       4     15%   J.Runyan                  G       65 100%                       4      15%
+N.Allegretti             C/G     69 100%                       4     15%   A.Thomas                  T       65 100%
+S.Cosmi                  G       69 100%                       4     15%   J.Eluemunor               OL      64  98%                       4      15%
+J.Daniels                QB      69 100%                                   J.McCarthy                QB      62  95%
+A.Williams               WR      59  86%                       3     12%   C.Skattebo                RB      58  89%
+S.Diggs                  WR      44  64%                                   M.Fields                  WR      58  89%
+T.Burks                  WR      42  61%                                   I.Likely                  TE      57  88%
+C.Okonkwo                TE      41  59%                                   M.Nabers                  WR      52  80%
+R.White                  RB      36  52%                       4     15%   D.Mooney                  WR      46  71%
+A.Ekeler                 RB      30  43%                                   T.Johnson                 TE      18  28%                      18      69%
+J.Bates                  TE      28  41%                      12     46%   C.Manhertz                TE      14  22%                       9      35%
+B.Sinnott                TE      24  35%                      12     46%   P.Ricard                  FB      13  20%
+V.Jefferson              WR      24  35%                       7     27%   D.Singletary              RB       5    8%                      5      19%
+L.McCaffrey              WR      14  20%                      11     42%   J.Hyatt                   WR       3    5%
+R.Henry                  RB       3    4%                                  J.Winston                 QB       3    5%
+F.Luvu                   LB                    65 100%         4     15%   M.Mbow                    OL       1    2%                      4      15%
+S.Styles                 LB                    65 100%         4     15%   A.Stinnie                 OL       1    2%                      4      15%
+N.Cross                  S                     65 100%                     A.Reese                   LB                    69 100%         4      15%
+A.Robertson              CB                    64  98%                     G.Newsome                 CB                    69 100%         4      15%
+T.Amos                   CB                    62  95%                     J.Holland                 S                     69 100%         1       4%
+J.Reaves                 S                     54  83%         9     35%   M.McFadden                LB                    69 100%         1       4%
+K.Chaisson               LB                    48  74%                     D.Banks                   CB                    69 100%
+O.Oweh                   LB                    48  74%                     A.Carter                  LB                    62  90%
+C.Omenihu                DE                    38  58%
+Q.Martin                 S                     34  52%        18     69%   A.Phillips                CB                    55  80%
+S.Tuttle                 DT                    34  52%         6     23%   A.Washington              S                     54  78%         4      15%
+T.Settle                 DT                    27  42%         6     23%   K.Thibodeaux              LB                    52  75%         4      15%
+D.Armstrong              LB                    25  38%         4     15%   D.Reader                  DL                    47  68%
+J.Newton                 DT                    21  32%         4     15%   S.Harris                  DL                    45  65%         4      15%
+D.Wise                   DE                    21  32%                     D.Alexander               DL                    27  39%         4      15%
+R.Douglas                CB                    18  28%         2      8%   B.Jamison-Travis          DL                    23  33%         4      15%
+P.Butler                 S                     16  25%        18     69%   D.Smoot                   LB                    23  33%
+J.Josephs                LB                    10  15%        14     54%   J.Pinnock                 S                     15  22%         2       8%
+J.Magee                  LB                                   22     85%   T.Ford                    LB                    10  14%        22      85%
+T.Owens                  S                                    21     81%   T.Nubin                   S                      1   1%        18      69%
+K.Medrano                LB                                   18     69%   Z.Barnes                  LB                                   22      85%
+A.Kaho                   LB                                   16     62%   N.Jones                   CB                                   22      85%
+M.Sainristil             CB                                   14     54%   J.Kelly                   LB                                   22      85%
+D.Stevens                K                                     9     35%   E.Campbell                DB                                   22      85%
+F.Moreau                 CB                                    8     31%   C.Martin                  LB                                   22      85%
+T.Ott                    LS                                    8     31%   G.Desrosiers              RB                                   10      38%
+T.Way                    P                                     8     31%   J.Stout                   P                                     9      35%
+A.Wylie                  T/G                                   4     15%   B.Mann                    LS                                    9      35%
+C.Hood                   CB                                  8      31%
+D.Zvada                  K                                   8      31%
+C.Jones                  WR                                  4      15%
