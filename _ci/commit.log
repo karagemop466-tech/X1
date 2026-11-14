@@ -5,35 +5,95 @@ From https://github.com/karagemop466-tech/X1
  * branch            arena/d577959f-x1 -> FETCH_HEAD
 + git reset --mixed origin/arena/d577959f-x1
 Unstaged changes after reset:
+M	_ci/commit.log
 M	data/_probe.json
 M	data/_run_report.json
 M	data/_verification.json
+M	data/club_registry.json
 M	data/correlations.json
 M	data/injuries.json
 M	data/repo_review.json
 M	data/standings.json
 M	data/team_stats.json
-+ git add data
++ git add data _ci
++ git status --porcelain
+MM _ci/commit.log
+A  _ci/pipeline.log
+A  data/_pipeline_stamp.log
+M  data/_probe.json
+M  data/_run_report.json
+M  data/_verification.json
+M  data/club_registry.json
+M  data/correlations.json
+M  data/injuries.json
+M  data/repo_review.json
+M  data/standings.json
+M  data/team_stats.json
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-14T03:37:36Z'
-[arena/d577959f-x1 9841e76] data: refresh from official sources 2026-11-14T03:37:36Z
- 9 files changed, 4735 insertions(+), 4138 deletions(-)
- create mode 100644 data/club_registry.json
++ git commit -m 'data: refresh from official sources 2026-11-14T04:12:01Z'
+[arena/d577959f-x1 69223d0] data: refresh from official sources 2026-11-14T04:12:01Z
+ 12 files changed, 2910 insertions(+), 2632 deletions(-)
+ create mode 100644 _ci/pipeline.log
+ create mode 100644 data/_pipeline_stamp.log
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin arena/d577959f-x1
 From https://github.com/karagemop466-tech/X1
  * branch            arena/d577959f-x1 -> FETCH_HEAD
 + git rebase origin/arena/d577959f-x1
-Current branch arena/d577959f-x1 is up to date.
-+ git push origin HEAD:arena/d577959f-x1
-To https://github.com/karagemop466-tech/X1
-   69000ea..9841e76  HEAD -> arena/d577959f-x1
-+ echo 'MARKER: pushed on attempt 1'
-MARKER: pushed on attempt 1
-+ pushed=1
-+ break
-+ '[' 1 = 1 ']'
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 5
++ for attempt in 1 2 3 4 5
++ git fetch origin arena/d577959f-x1
+From https://github.com/karagemop466-tech/X1
+ * branch            arena/d577959f-x1 -> FETCH_HEAD
++ git rebase origin/arena/d577959f-x1
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 10
++ for attempt in 1 2 3 4 5
++ git fetch origin arena/d577959f-x1
+From https://github.com/karagemop466-tech/X1
+ * branch            arena/d577959f-x1 -> FETCH_HEAD
++ git rebase origin/arena/d577959f-x1
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 15
++ for attempt in 1 2 3 4 5
++ git fetch origin arena/d577959f-x1
+From https://github.com/karagemop466-tech/X1
+ * branch            arena/d577959f-x1 -> FETCH_HEAD
++ git rebase origin/arena/d577959f-x1
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 20
++ for attempt in 1 2 3 4 5
++ git fetch origin arena/d577959f-x1
+From https://github.com/karagemop466-tech/X1
+ * branch            arena/d577959f-x1 -> FETCH_HEAD
++ git rebase origin/arena/d577959f-x1
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
++ git rebase --abort
+fatal: no rebase in progress
++ true
++ sleep 25
++ '[' 0 = 1 ']'
++ echo 'MARKER: PUSH FAILED after 5 attempts'
+MARKER: PUSH FAILED after 5 attempts
 + echo 'MARKER: done'
 MARKER: done
