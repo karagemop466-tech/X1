@@ -43,9 +43,8 @@ jobs:
         id: pipeline
         continue-on-error: true
         run: |
-          mkdir -p _ci
-          { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee _ci/pipeline.log
-          cp _ci/pipeline.log /tmp/pipeline.log
+          mkdir -p /tmp/x1ci
+          { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee /tmp/x1ci/pipeline.log
 
       - name: Verify row-level source coverage
         continue-on-error: true
@@ -65,6 +64,9 @@ jobs:
             # pushed) without touching the working tree, then stage data/.
             # --mixed avoids the rebase conflicts a pull produces when the
             # pipeline has left the tree dirty.
+            # _ci/ is untracked, so it must be removed before any rebase: git
+            # refuses to rebase with an untracked file that upstream also has.
+            rm -rf _ci
             git fetch origin "${GITHUB_REF_NAME}"
             git reset --mixed "origin/${GITHUB_REF_NAME}"
             git add data
@@ -94,8 +96,7 @@ jobs:
           # Copy the log into the repo only after git has finished with it:
           # tee-ing straight into a tracked file leaves unstaged changes behind
           # the commit, which then blocks the rebase with "unstaged changes".
-          mkdir -p _ci
-          cp /tmp/commit.log _ci/commit.log
+          cp /tmp/commit.log /tmp/x1ci/commit.log
           grep -q "MARKER: done" /tmp/commit.log
 
       - name: Upload run logs through the API
@@ -107,16 +108,17 @@ jobs:
           # A rejected push must never hide the reason for it, so the logs are
           # also written with the contents API.
           for name in commit pipeline; do
-            src="_ci/${name}.log"
+            src="/tmp/x1ci/${name}.log"
             [ -f "$src" ] || echo "(no ${name} log)" > "$src"
             b64=$(base64 -w0 "$src")
-            sha=$(gh api "repos/${{ github.repository }}/contents/${src}?ref=${GITHUB_REF_NAME}" --jq .sha 2>/dev/null || true)
+            api_path="_ci/${name}.log"
+            sha=$(gh api "repos/${{ github.repository }}/contents/${api_path}?ref=${GITHUB_REF_NAME}" --jq .sha 2>/dev/null || true)
             if [ -n "$sha" ]; then
-              gh api -X PUT "repos/${{ github.repository }}/contents/${src}" \
+              gh api -X PUT "repos/${{ github.repository }}/contents/${api_path}" \
                 -f message="ci: diagnostics ${name} $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
                 -f content="$b64" -f branch="${GITHUB_REF_NAME}" -f sha="$sha" >/dev/null
             else
-              gh api -X PUT "repos/${{ github.repository }}/contents/${src}" \
+              gh api -X PUT "repos/${{ github.repository }}/contents/${api_path}" \
                 -f message="ci: diagnostics ${name} $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
                 -f content="$b64" -f branch="${GITHUB_REF_NAME}" >/dev/null
             fi

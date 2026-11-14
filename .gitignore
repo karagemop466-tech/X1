@@ -2,7 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 .venv/
-data/_pipeline.log
 data/_verify.log
 data/_pipeline_stamp.log
 _ci/
