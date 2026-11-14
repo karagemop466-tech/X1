@@ -91,7 +91,7 @@ SOURCES = {
     "computed_model": {
         "tier": "computed",
         "org": "this repository",
-        "url": "",
+        "url": "https://github.com/karagemop466-tech/X1/blob/main/src/console/originate.py",
         "label": "X1 walk-forward model (src/console/originate.py)",
         "note": "Fitted only on seasons earlier than the season being predicted.",
     },

@@ -303,19 +303,17 @@ def build_price_snapshots(games, captured_at):
         rec.update(kw)
         rows.append(rec)
 
-    week10 = [g for g in games if g["season"] == 2026 and g["week"] == 10]
+    # Markets originated now: every 2026 fixture that carries a market line and
+    # has not kicked off. A game that has already settled is no longer a market
+    # we originate, so it is recorded in the close-only bucket below instead.
+    originated = [g for g in games if g["season"] == 2026 and not g["settled"]
+                  and g["spread_line"] is not None]
     step = {"SIDE": 1, "TOTAL": 2, "MONEYLINE": 3}
-
-    # --- markets originated now: Week 10 2026 games that have not kicked off.
-    # A game that has already settled is no longer a market we originate, so it
-    # is recorded in the close-only bucket below instead. ---
-    for g in week10:
-        if g["settled"]:
-            continue
+    for g in originated:
         gid = g["game_id"]
         if g["spread_line"] is not None:
             for side, line in (("home", g["spread_line"]), ("away", -g["spread_line"])):
-                add(snapshot_id="OPEN-2026W10", captured_at_utc=captured_at,
+                add(snapshot_id="OPEN-2026", captured_at_utc=captured_at,
                     market_id=f"{gid}:SIDE:{side}", game_id=gid, season=2026, week=10,
                     origination_step=step["SIDE"], market_type="SIDE", side=side,
                     open_line=line, open_price="-110", open_source="nfldata_games",
@@ -328,7 +326,7 @@ def build_price_snapshots(games, captured_at):
                          "is not the sportsbook's own opening number.")
         if g["total_line"] is not None:
             for side in ("Over", "Under"):
-                add(snapshot_id="OPEN-2026W10", captured_at_utc=captured_at,
+                add(snapshot_id="OPEN-2026", captured_at_utc=captured_at,
                     market_id=f"{gid}:TOTAL:{side}", game_id=gid, season=2026, week=10,
                     origination_step=step["TOTAL"], market_type="TOTAL", side=side,
                     open_line=g["total_line"], open_price="-110", open_source="nfldata_games",
@@ -341,7 +339,7 @@ def build_price_snapshots(games, captured_at):
         for side, price in (("home", g["home_moneyline"]), ("away", g["away_moneyline"])):
             if price is None:
                 continue
-            add(snapshot_id="OPEN-2026W10", captured_at_utc=captured_at,
+            add(snapshot_id="OPEN-2026", captured_at_utc=captured_at,
                 market_id=f"{gid}:MONEYLINE:{side}", game_id=gid, season=2026, week=10,
                 origination_step=step["MONEYLINE"], market_type="MONEYLINE", side=side,
                 open_line="", open_price=int(price), open_source="nfldata_games",
@@ -453,7 +451,7 @@ def price_store_summary(rows):
         "with_open": sum(1 for r in rows if r["open_line"] != "" or r["open_price"] != ""),
         "with_close": sum(1 for r in rows if r["close_line"] != "" or r["close_price"] != ""),
         "with_both": 0,
-        "originated_2026_w10": sum(1 for r in rows if r["snapshot_id"] == "OPEN-2026W10"),
+        "originated_now": sum(1 for r in rows if r["snapshot_id"] == "OPEN-2026"),
         "settled_rows": sum(1 for r in rows if r["settled"] == "yes"),
         "by_market": defaultdict(int),
         "by_step": defaultdict(int),

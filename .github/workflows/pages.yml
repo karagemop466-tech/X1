@@ -44,6 +44,14 @@ jobs:
       # source link or an explicit "no official source" marker.
       - name: Verify the unified dashboard
         run: python3 tools/verify_app.py
+      # Added by session arena/5f1c014c-x1 (additive only). Rebuilds the line
+      # console from source and verifies it before the tree is assembled: a
+      # broken or unsourced page fails the build rather than shipping.
+      - name: Rebuild and verify the line console
+        run: |
+          set -euo pipefail
+          python3 tools/build_console.py
+          python3 tools/verify_console.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -74,9 +82,18 @@ jobs:
           # cannot drift apart and there is no redirect. The previous root landing
           # page is preserved at /legacy-fourth-down.html rather than deleted.
           cp -r app _site/
+          # Added by session arena/5f1c014c-x1: the line console (line origination,
+          # price store, strategy competition, decision register). Additive.
+          cp -r console _site/
+          mkdir -p _site/data/console
+          cp data/console/*.csv data/console/*.json _site/data/console/ 2>/dev/null || true
           cp index.html _site/legacy-fourth-down.html
-          cp app/index.html _site/index.html
-          sed -i -E 's#href="assets/#href="app/assets/#g; s#href="([a-z0-9_-]+\.html)#href="app/\1#g; s#href="\.\./#href="./#g' _site/index.html
+          # The site root serves the console landing page: it is the same file as
+          # console/index.html with same-folder links repointed into console/, so the
+          # two cannot drift apart and there is no redirect. The unified dashboard
+          # stays reachable at /app/ and is one click away from the root.
+          cp console/index.html _site/index.html
+          sed -i -E 's#href="assets/#href="console/assets/#g; s#href="([a-z0-9_-]+\.html)#href="console/\1#g; s#href="\.\./#href="./#g' _site/index.html
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
