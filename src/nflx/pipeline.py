@@ -350,22 +350,40 @@ def _current_game_id(html_text: str) -> Optional[str]:
     return match.group("gid") if match else None
 
 
+#: The Game Center page labels the link to the game's own game book.
+GAMEBOOK_LABELLED_RE = re.compile(
+    r"Download Game Book \(PDF\).{0,600}?href="
+    r"(?P<url>https://static\.www\.nfl\.com/[^\"]*?/gamecenter/[0-9a-f\-]+\.pdf)",
+    re.S,
+)
+
+#: The same link inside the page's serialized payload.
+GAMEBOOK_PAYLOAD_RE = re.compile(
+    r'"linkName":"Download Game Book \(PDF\)".{0,600}?"href":'
+    r'"(?P<url>https://static\.www\.nfl\.com/[^\"]*?/gamecenter/[0-9a-f\-]+\.pdf)"',
+    re.S,
+)
+
+
 def _gamebook_pdf_url(html_text: str, game_id: Optional[str] = None) -> Optional[str]:
     """The Game Book PDF URL for the game the page is showing.
 
     A Game Center page also links the game books of other games in its
-    navigation strip, so the link is matched against the page's own game id
-    rather than taking the first one on the page.
+    navigation strip, so the link is taken from the element the league labels
+    "Download Game Book (PDF)", and is then cross-checked against the page's
+    own game id when one can be read.
     """
-    if game_id:
-        pattern = re.compile(
-            r"https://static\.www\.nfl\.com/[^\"'\s]*?/gamecenter/"
-            + re.escape(game_id)
-            + r"\.pdf"
-        )
+    candidates: List[str] = []
+    for pattern in (GAMEBOOK_LABELLED_RE, GAMEBOOK_PAYLOAD_RE):
         match = pattern.search(html_text)
         if match:
-            return match.group(0)
+            candidates.append(match.group("url"))
+    if game_id:
+        for url in candidates:
+            if game_id in url:
+                return url
+    if candidates:
+        return candidates[0]
     match = GAMEBOOK_LINK_RE.search(html_text)
     return match.group(0) if match else None
 
