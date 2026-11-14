@@ -565,12 +565,26 @@ def build_queue(join):
             "unknown": f.get("unknown", ""),
             "source": f.get("source_url", ""), "source_label": f.get("source_label", ""),
         })
+    # Three of the eighteen questions are internal owner decisions (a bankroll, a publishing
+    # policy, a success target). No external publisher can settle them, so they carry no source
+    # URL by design. They are pointed at the repository file that holds the decision instead of
+    # being given an official link they do not have - a source link that does not support the
+    # row would be worse than an honest absence.
+    INTERNAL = {
+        "Q-11": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+        "Q-15": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+        "Q-16": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+    }
     for q in QUESTIONS["questions"]:
         if q["status"] == "open":
+            src = q.get("source_url") or INTERNAL.get(q["id"], "")
+            label = q.get("source_note", "")
+            if src.startswith("https://github.com"):
+                label = "internal owner decision - recorded in the register, no external source can settle it"
             rows.append({"id": q["id"], "register": "data/questions.json", "area": q["topic"],
                          "item": q["question"], "state": "open question",
                          "severity": "", "unknown": q.get("what_would_answer_it", ""),
-                         "source": q.get("source_url", ""), "source_label": q.get("source_note", "")})
+                         "source": src, "source_label": label})
     for f in build_findings(join)["findings"]:
         if f["status"] in ("needs review", "flagged"):
             rows.append({"id": f["id"], "register": "data/audit/findings.json", "area": f["category"],

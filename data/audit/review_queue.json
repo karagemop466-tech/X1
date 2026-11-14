@@ -276,8 +276,8 @@
    "state": "open question",
    "severity": "",
    "unknown": "A stated bankroll and a pre-registered staking rule.",
-   "source": "",
-   "source_label": "Internal decision; no external source can supply it."
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
   },
   {
    "id": "Q-12",
@@ -320,8 +320,8 @@
    "state": "open question",
    "severity": "",
    "unknown": "A written publishing policy, reviewed for the jurisdictions served.",
-   "source": "",
-   "source_label": "Internal decision; no external source can supply it."
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
   },
   {
    "id": "Q-16",
@@ -331,8 +331,8 @@
    "state": "open question",
    "severity": "",
    "unknown": "A target (e.g. number of strategies clearing Gate 2 with n_eff >= 400) and a named arbiter.",
-   "source": "",
-   "source_label": "Internal decision; no external source can supply it."
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+   "source_label": "internal owner decision - recorded in the register, no external source can settle it"
   },
   {
    "id": "Q-17",
