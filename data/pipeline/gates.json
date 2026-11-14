@@ -214,14 +214,16 @@
    "_source_label": "X1 project brief (verbatim, this repo)",
    "_source_org": "Project brief",
    "_retrieved_at": "2026-11-14",
-   "_flags": [],
+   "_flags": [
+    "defined by session arena-52aabfa8-x1 (T16) to close Q-26"
+   ],
    "id": "G-13",
    "gate": "Demotion gate",
-   "rule": "A live strategy is returned to paper when its realised drawdown or CLV breach the demotion threshold.",
-   "threshold": "Threshold not set — needs Q-26",
-   "why": "Protects the bankroll from a strategy that only worked on paper.",
+   "rule": "A strategy with status 'live' returns to 'paper' automatically at the first window close where any trigger fires: (a) two consecutive scored windows fail the skill gate or the calibration gate; (b) realised max drawdown exceeds the G5 cap of 25% of bankroll - a single breach is enough; (c) median closing-line value over a full window is <= 0 (armed only once a price feed exists, Q-02); (d) any provenance or timestamp breach while live - immediate, no window required. Re-promotion requires one full shadow window on paper passing every gate; past live results never re-promote a demoted strategy.",
+   "threshold": "2 failed windows (skill/calibration) | 1 drawdown breach (>25% of bankroll) | 1 window with median CLV <= 0 (when priced) | any provenance breach - each demotion recorded with the trigger and window that fired",
+   "why": "Removes discretion from demotion: a strategy that only worked on paper is sent back to paper mechanically, cited and logged, rather than defended.",
    "applies_to": "Live strategies",
-   "status": "Threshold pending Q-26",
+   "status": "Active - rule defined 2026-11-14; vacuous until a strategy reaches live (Season 0 has none)",
    "_unverified": [],
    "_verified": true
   },

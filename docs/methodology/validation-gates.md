@@ -140,3 +140,36 @@ backtest lies. Gate 6 exists solely to kill those.
 `data/gates.json` holds the machine-readable version of this page, and
 `tools/verify_data.py` asserts that every strategy on the leaderboard carries a
 gate-by-gate result. A strategy with a blank gate cannot be marked `published`.
+
+## The demotion gate (D1 / G-13) — live goes back to paper
+
+**Requirement:** "Define a demotion gate that sends a live strategy back to paper."
+*(Owner's brief, T16, session `arena-52aabfa8-x1`; closes decision-register question Q-26.)*
+
+Defined2026-11-14, pre-registered before any strategy is live. Machine-readable copies:
+`data/gates.json` (gate `D1`) and `data/pipeline/gates.json` (gate `G-13`).
+
+### Triggers — any one is sufficient
+
+| # | Trigger | Why that threshold |
+|---|---|---|
+| D1a | **Two consecutive scored windows** fail the skill gate (G2) or the calibration gate (G3) | One failed window is variance; two is a pattern. Matches the existing scoring rule "two failed windows demote". |
+| D1b | **Realised max drawdown exceeds the G5 cap (25% of bankroll)** at any window close — a single breach, not two | Drawdown is ruin risk, not variance: waiting for a second breach means waiting for the account to be gone. |
+| D1c | **Median closing-line value over a full window ≤ 0** — armed *only* once the Q-02 price feed exists | CLV is the earliest honest signal that the edge decayed; without prices this trigger cannot fire and is marked unarmed rather than assumed. |
+| D1d | **Any provenance or timestamp breach (G0 / G-10) while live** — immediate, no window required | A strategy whose inputs cannot be trusted has no result worth waiting on. |
+
+### Properties
+
+1. **Automatic, not discretionary.** The demotion happens at the window close that fires a
+   trigger. Nobody decides whether this time is different; the registry entry records *which*
+   trigger fired and in *which* window.
+2. **Uncapped.** There is no "one more window" — consistent with scoring rule 6 (no sitting
+   on old results).
+3. **Re-promotion is slow and symmetric with promotion.** A demoted strategy runs one full
+   **shadow window** on paper and must pass every gate in it. Its past live results never
+   re-promote it; a re-promoted strategy starts from a fresh window.
+4. **Vacuously true today.** Season 0 has no live strategy — every strategy is paper,
+   blocked or failed-gate — so no demotion can fire. The gate status says exactly that
+   instead of claiming enforcement that has nothing to enforce against.
+5. **Money thresholds are untouched.** If the owner funds a reward pool (Q-07), stake sizes
+   change; the triggers above are percentages and window counts and do not need rewriting.
