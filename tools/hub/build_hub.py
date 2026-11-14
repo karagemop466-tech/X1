@@ -192,7 +192,7 @@ def build_index_old_():
             if k in v:
                 return v[k]
         return 0
-    checks = sum(g(v, "checks", "status_checks") for v in ver if v)
+    checks = sum(g(v, "checks", "cell_checks", "status_checks") for v in ver if v)
     fails = sum(g(v, "fail") for v in ver if v)
     unv = sum(g(v, "unverified") for v in ver if v)
     dep = load("data/pipeline/deficiency.json") or {}
@@ -320,7 +320,7 @@ def build_index():
                      cell(name), cell(what), cell(canonical)])
     ver = [load("data/verification/standings.json"), load("data/verification/schedule.json"),
            load("data/verification/injuries.json"), load("data/verification/deficiency.json")]
-    checks = sum(g(v, "checks", "status_checks") for v in ver if v)
+    checks = sum(g(v, "checks", "cell_checks", "status_checks") for v in ver if v)
     fails = sum(g(v, "fail") for v in ver if v)
     unv = sum(g(v, "unverified") for v in ver if v)
 
@@ -425,7 +425,7 @@ most come first. Nothing on that page has been implemented.</p>
 
 
 def g(v, *keys):
-    """Read the first key present; the deficiency ledger names its counter differently."""
+    """Read the first key present; the ledgers name their counters differently."""
     for k in keys:
         if k in v:
             return v[k]
@@ -444,11 +444,11 @@ def build_verification():
         if not v:
             continue
         for k in tot:
-            tot[k] += g(v, k, "status_checks" if k == "checks" else k)
+            tot[k] += g(v, k, "cell_checks", "status_checks")
         pill = '<span class="pill pass">0 mismatches</span>' if not v["fail"] \
             else f'<span class="pill fail">{v["fail"]} mismatches</span>'
         rows.append([
-            cell(name), cell(f'{g(v, "checks", "status_checks"):,}'), cell(f'{g(v, "pass"):,}'),
+            cell(name), cell(f'{g(v, "checks", "cell_checks", "status_checks"):,}'), cell(f'{g(v, "pass"):,}'),
             rcell(pill), cell(f'{g(v, "unverified"):}'),
             rcell(srclink(v.get("official_source"), v.get("official_source"))),
         ])
@@ -1089,10 +1089,10 @@ def build_findings():
          rcell(srclink("https://www.nfl.com/standings/league/2026/REG", "nfl.com")),
          cell("Normalise to the league abbreviation.")],
         [cell("F-10"), cell("Structural irregularity"),
-         cell("Six parallel site sections are published from this repository simultaneously"),
-         cell("index.html + pages/, dashboard/, research/, site/, live/, archive/. Three were "
-              "built independently from the same official sources, so they duplicate content and "
-              "occasionally disagree."),
+         cell("Eight parallel site sections are published from this repository simultaneously"),
+         cell("index.html + pages/, pages/ audit layer, dashboard/, research/, site/, live/, "
+              "hub/, archive/. Three were built independently from the same official sources, so "
+              "they duplicate content and occasionally disagree."),
          rcell(srclink("https://karagemop466-tech.github.io/X1/", "live site")),
          cell("See D-10. This session adds hub/ and changes nothing owned by another session.")],
         [cell("F-11"), cell("Undefined threshold"),

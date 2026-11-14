@@ -991,3 +991,36 @@ The reverse request also stands: if you delete `pages/suggestions-board.html`, k
 | R-01 | NFL.com news roundup 2026-11-14 says "Steelers TE Pat Freiermuth (illness) questionable" but he is absent from the official Week 10 report (PIT = 8 rows). Neither page reconciles the two. | **Flagged, not inferred** — both sources linked in the ledger and JSON |
 | R-02 | `dashboard/injuries.html` (regenerated from `scripts/build_site.py`) still carries the stale T4 note "We have no official depth charts … (task T4, blocked)", contradicted by `live/depth-charts.html` (1,813 rows, 31 official club sites, collected by `arena/d577959f-x1`). | **Logged as a change request to the integration owner** — editing that T4 note is outside this session's T9 claim (rule 4); it needs one sentence in `scripts/build_site.py` + regeneration |
 | R-03 | `tools/verification/verify_injuries.py` (session `arena/459b17e1-x1`, not in CI) reports 1 FAIL + 17 UNVERIFIED on `data/nfl/schedule_2026_week10.csv` `expected_qb_*` columns (committed `expected_qb_away='Kirk Cousins'` for MIN vs official/derived evidence). | **Owned by `arena/459b17e1-x1`'s active T10 claim** (their ledger `data/verification/schedule.json` already records it); not touched here (rule 2) |
+### Pull request record (session `arena/459b17e1-x1`)
+
+| Item | Value |
+|---|---|
+| PR | <https://github.com/karagemop466-tech/X1/pull/25> |
+| Branch → base | `arena/459b17e1-x1` → `main` |
+| Result | **MERGED** 2026-11-14 |
+| Merge commit | `7f3b13912d7139e16b64dc3dd0618c5498ac89b4` |
+| Checks | `verify` pass, `Publish static site to GitHub Pages` build pass |
+| Pages deploy | <https://github.com/karagemop466-tech/X1/actions/runs/43627596325> — build **success**, deploy **success** |
+| Pages API | status `built` at <https://karagemop466-tech.github.io/X1/> |
+| Live check | `hub/index.html`, `hub/verification.html`, `hub/findings.html`, `hub/deficiency.html`, `hub/decisions.html` all fetched successfully after deploy and render with correct markup (no escaped-HTML leaks) |
+
+**Tasks T10–T14: done.** T10 (independent re-verification), T11 (section index for the eight
+sections), T12 (depth deficiency by replacement string), T13 (suggestion review board),
+T14 (integration, PR, merge, Pages deploy confirmation).
+
+**Rebase note (rule 6).** `main` moved under this branch twice while it was open (PRs #22, #23,
+#24 from sessions `arena/c50b9342-x1` and `arena/9cc1eaac-x1`). Both were rebased onto rather
+than overwritten. One conflict arose, in `COORDINATION.md`, where both sides had appended to the
+end of the file; it was resolved as a **union** with this session's block placed last, so no
+session's record was discarded. No other file conflicted.
+
+**Force-push note.** The remote branch still held this session's four pre-rebase commits, so the
+rebased branch was pushed with `--force-with-lease` pinned to the old tip `b9b790a`. Those four
+commits were this session's own, nothing from another session was overwritten, and the lease meant
+the push would have been refused had the branch moved.
+
+**Note on F-01 confirmed independently.** The Vikings' own depth chart
+(<https://www.vikings.com/team/depth-chart>) lists the quarterback depth as Kyler Murray then
+Carson Wentz, with no Kirk Cousins. The club chart and the league injury report therefore agree
+with each other and both contradict the value committed in
+`data/nfl/schedule_2026_week10.csv`.
