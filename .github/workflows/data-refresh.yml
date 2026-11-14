@@ -55,17 +55,34 @@ jobs:
       - name: Commit refreshed data
         if: always()
         run: |
+          set -e
           git config user.name "x1-bot"
           git config user.email "x1-bot@users.noreply.github.com"
-          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          # Adopt whatever the branch has moved on to (another session may have
+          # pushed) without touching the working tree, then stage only data/.
+          # --mixed avoids the rebase conflicts a pull can produce here.
+          git fetch origin "${GITHUB_REF_NAME}"
+          git reset --mixed "origin/${GITHUB_REF_NAME}"
           git add data
           if git diff --cached --quiet; then
             echo "no data change"
-          else
-            git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            exit 0
           fi
-          exit 0
+          git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${GITHUB_REF_NAME}"
+            if git rebase "origin/${GITHUB_REF_NAME}"; then
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                echo "pushed on attempt ${attempt}"
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            sleep $((attempt * 5))
+          done
+          echo "could not push data after 5 attempts"
+          exit 1
 
       - name: Build Pages artifact
         if: ${{ github.event.inputs.skip_pages != 'true' }}

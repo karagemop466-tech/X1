@@ -236,7 +236,7 @@ def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[s
             if not url:
                 attempts.append({"url": None, "error": "no club domain configured"})
                 break
-            result = fetch(url, retries=3, backoff=3.0, sleep=1.2)
+            result = fetch(url, retries=2, backoff=2.0, sleep=0.7)
             if not result.ok:
                 attempts.append({"url": url, "error": result.error})
                 continue
@@ -250,7 +250,7 @@ def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[s
             if "depth chart" in title.lower() and parsed["rows"]:
                 best = (url, title, parsed)
                 break
-            time.sleep(1.0)
+            time.sleep(0.5)
         if best is None:
             report["errors"].append(
                 {"dataset": "depth_charts", "team": abbrev, "attempts": attempts}

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions — X1</title>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+  <nav class="navlinks" id="nav"></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="kicker">Plan · Suggestions</div>
+    <h1>Suggestions register</h1>
+    <p>A dedicated place to review suggestions and choose a path before anything is
+       implemented. Each suggestion lists three paths and a recommendation. Nothing
+       here is built until the decision column says Approved.</p>
+  </div>
+
+  <div class="note"><strong>How to use this page.</strong> Pick a row, read the three
+    paths, then set <code>decision_status</code> and <code>owner</code> in
+    <a href="https://github.com/karagemop466-tech/X1/edit/main/data/suggestions.json" target="_blank" rel="noopener">data/suggestions.json &#8599;</a>
+    (or ask for the change). The site republishes automatically on the next commit.</div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>All suggestions</h2>
+      <span data-badge-for="tbl-sug"></span>
+      <span id="sug-counts"></span>
+    </div>
+    <p class="count" data-meta-for="tbl-sug"></p>
+    <div class="toolbar">
+      <input type="search" data-filter-for="tbl-sug" placeholder="Filter suggestions…">
+      <span class="spacer"></span>
+      <span class="count" data-count-for="tbl-sug"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="data" id="tbl-sug" data-src="data/suggestions.json"
+             data-columns="id,area,suggestion,rationale,impact,effort,risk,decision_status,owner"
+             data-page="40"></table>
+    </div>
+    <div class="pager" data-pager-for="tbl-sug"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>Decision paths, side by side</h2>
+    <p>The three options for every proposal, so a reviewer is choosing rather than
+       just approving. The recommended path is highlighted.</p>
+    <div class="table-wrap">
+      <table class="data" id="tbl-paths" data-src="data/suggestions.json"
+             data-columns="id,suggestion,path_a,path_b,path_c,recommended_path" data-page="40"></table>
+    </div>
+    <div class="toolbar" style="margin-top:10px">
+      <input type="search" data-filter-for="tbl-paths" placeholder="Filter paths…">
+      <span class="spacer"></span>
+      <span class="count" data-count-for="tbl-paths"></span>
+    </div>
+    <div class="pager" data-pager-for="tbl-paths"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>Decision workflow</h2>
+    <ol class="tight">
+      <li>A suggestion enters as <span class="badge mute">Proposed — awaiting decision</span>.</li>
+      <li>If it depends on an unanswered question it is additionally marked
+        <span class="badge bad">blocked by Q-nn</span> and cannot be approved until that
+        question is answered.</li>
+      <li>A reviewer chooses a path (or writes a fourth) and records
+        <code>Approved — path X</code> plus their name in <code>owner</code>.</li>
+      <li>Only then is it implemented, and the row is updated to reflect what shipped.</li>
+      <li>Anything rejected stays in the table with the rejection recorded, so the
+        same ground is not covered twice.</li>
+    </ol>
+  </div>
+</main>
+
+<footer class="footer">
+  X1 — suggestions. Review, choose a path, then implement.
+</footer>
+<script src="assets/js/site.js"></script>
+<script>
+(async function () {
+  try {
+    const s = await (await fetch('data/suggestions.json', {cache: 'no-store'})).json();
+    let awaiting = 0, implemented = 0, blocked = 0;
+    for (const r of s.rows) {
+      const st = (r.decision_status || '').toLowerCase();
+      if (st.includes('awaiting')) awaiting++;
+      if (st.includes('implemented')) implemented++;
+      if (st.includes('blocked')) blocked++;
+    }
+    document.getElementById('sug-counts').innerHTML =
+      `<span class="badge warn">${awaiting} awaiting decision</span> ` +
+      `<span class="badge ok">${implemented} implemented</span> ` +
+      `<span class="badge bad">${blocked} blocked</span>`;
+  } catch (e) { /* renderer reports load failures */ }
+})();
+</script>
+</body>
+</html>
