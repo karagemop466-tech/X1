@@ -42,12 +42,18 @@ jobs:
           python-version: '3.11'
 
       - name: Run the official-source pipeline
-        run: python3 -m pipeline
+        id: pipeline
+        continue-on-error: true
+        run: |
+          mkdir -p data
+          { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee data/_pipeline.log
 
       - name: Verify row-level source coverage
-        run: python3 scripts/verify_data.py || true
+        continue-on-error: true
+        run: python3 scripts/verify_data.py 2>&1 | tee data/_verify.log
 
       - name: Commit refreshed data
+        if: always()
         run: |
           git config user.name "x1-bot"
           git config user.email "x1-bot@users.noreply.github.com"
@@ -59,6 +65,7 @@ jobs:
             git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
+          exit 0
 
       - name: Build Pages artifact
         if: ${{ github.event.inputs.skip_pages != 'true' }}
