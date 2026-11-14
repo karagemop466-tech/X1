@@ -1,48 +1,31 @@
-# X1 — NFL Decision & Signal Dashboard
+# Fourth Down — NFL Strategy Lab
 
-An autonomous system that **collects, organizes, and analyzes NFL data** to **originate our own
-betting lines**. Strategies (single bet, parlay, player-prop combos) compete on a **leaderboard** and
-must pass **validation gates** that remove luck and isolate skill. Injury and depth-deficiency
-tracking (starters replaced by 2nd/3rd/4th-string backups, on offense and defense) is a core edge
-signal.
+A static, evidence-first research dashboard and requirements register for NFL line origination and strategy evaluation. This is a research specification—not a betting product, live data service, or source of picks.
 
-## What's in this repo
+## Pages
 
-A **live GitHub Pages site** (dashboard-style) plus the coordination/verification backbone.
+- `index.html` — executive summary and navigation
+- `research.html` — candidate signal families, line workflow, and correlation methodology
+- `validation.html` — staged gates and leaderboard competition design
+- `availability.html` — injury/depth tracking schema for offense and defense
+- `sources.html` — official NFL and NIST source register, verification scope, and limitations
+- `questions.html` — decision questions, knowns, gaps, and discovery suggestions
+- `review.html` — irregularities, unverified values, and review queue
 
-- `index.html` — landing / dashboard
-- Subpages organized by category:
-  - `executive-summary.html` — executive summary
-  - `requirements.html` — full list of requirements
-  - `questions.html` — open questions & information gaps
-  - `suggestions.html` — dedicated, reviewable suggestions board
-  - `strategies.html` — line-generation strategies (single / parlay / props)
-  - `validation-gates.html` — the 7-gate validation pipeline
-  - `correlations.html` — correlation methodology & values
-  - `injuries.html` — injury tracking & depth deficiency
-  - `leaderboard.html` — strategy competition
-  - `data-standings.html` — verified 2026 standings (all 32 teams)
-  - `data-lines.html` — verified Week 10 market lines
-  - `sources.html` — official source index
-  - `flagged-for-review.html` — unverified / caveated items
-- `assets/` — shared CSS/JS
-- `data/` — machine-readable verified exports (`standings-2026.json`, `flagged-count.json`)
-- `scripts/verify_links.py` — internal broken-link checker run before deploy
-- `COORDINATION.md` — shared task board, verification log, and deploy record
+## Evidence policy
 
-## Verification policy
+The repository began without an application, NFL data, odds history, tests, or deployment workflow. No NFL live values, injury statuses, odds, correlations, picks, or measured strategy performance are invented. Each proposed method is labeled as untested; empty values are left blank. Primary NFL links are provided beside relevant methodology, and limitations are explicit. A source page link does not mean its changing contents have been captured or independently verified for a specific event.
 
-Every numeric table row carries a link to an **official source**. NFL league data (standings, injuries,
-depth) is sourced only from **NFL.com**. Market lines are sourced from authoritative sportsbook/aggregator
-sources and flagged as a market (not league-official) source type. Any value that cannot be confirmed
-from an official source is left **blank** and listed on the **Flagged for Review** page — nothing is
-inferred or filled in, and nothing is published without a source.
+Sources linked in the site include NFL.com injury reports, statistics, schedules, and team pages; NFL Football Operations and Next Gen Stats material; and NIST reference material for statistical definitions and uncertainty. Review `sources.html` for the source register and `review.html` for all limitations. See `COORDINATION.md` for scope and verification history.
 
-## Live site
+## Data dashboard
 
-Published via GitHub Pages: **https://karagemop466-tech.github.io/X1/**
+`dashboard/` is generated from `data/` by `scripts/build_site.py` and linked from `index.html`. It holds the official NFL.com standings, Week 10 schedule and injury report (each row links to its source), the strategy registry and validation gates, the flagged-for-review page and the suggestions page. Regenerate with `python3 scripts/build_site.py`, then check with `python3 scripts/check_site.py`.
 
-## Automation
+## Local preview
 
-The pipeline (fetch → verify → organize → analyze → validate → publish) is designed to run without
-manual input. `scripts/verify_links.py` enforces the no-broken-links build requirement before publish.
+Open `index.html` in a browser or serve this directory with any static HTTP server. All pages are plain HTML/CSS and need no build step.
+
+## GitHub Pages
+
+GitHub Pages is deployed at [karagemop466-tech.github.io/X1](https://karagemop466-tech.github.io/X1/). The deployment was recorded in the coordination log; a workflow runs on pushes to `main`. A lightweight static checker now verifies local links and that each research-table row links to an official source host before deployment.

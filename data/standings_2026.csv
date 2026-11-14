@@ -1,0 +1,33 @@
+team_abbr,team,conference,W,L,T,PCT,PF,PA,NET_PTS,STRK,team_url,source_url
+BUF,Buffalo Bills,AFC,7,1,0,0.875,256,187,69,4W,https://www.nfl.com/teams/buffalo-bills/,https://www.nfl.com/standings/
+NE,New England Patriots,AFC,5,4,0,0.556,211,207,4,1L,https://www.nfl.com/teams/new-england-patriots/,https://www.nfl.com/standings/
+NYJ,New York Jets,AFC,2,7,0,0.222,182,223,-41,4L,https://www.nfl.com/teams/new-york-jets/,https://www.nfl.com/standings/
+MIA,Miami Dolphins,AFC,1,7,0,0.125,126,200,-74,2L,https://www.nfl.com/teams/miami-dolphins/,https://www.nfl.com/standings/
+PIT,Pittsburgh Steelers,AFC,6,2,0,0.750,180,144,36,4W,https://www.nfl.com/teams/pittsburgh-steelers/,https://www.nfl.com/standings/
+CIN,Cincinnati Bengals,AFC,6,2,0,0.750,240,175,65,4W,https://www.nfl.com/teams/cincinnati-bengals/,https://www.nfl.com/standings/
+CLE,Cleveland Browns,AFC,5,4,0,0.556,161,196,-35,2L,https://www.nfl.com/teams/cleveland-browns/,https://www.nfl.com/standings/
+BAL,Baltimore Ravens,AFC,4,5,0,0.444,189,236,-47,4L,https://www.nfl.com/teams/baltimore-ravens/,https://www.nfl.com/standings/
+JAX,Jacksonville Jaguars,AFC,6,2,0,0.750,229,121,108,2W,https://www.nfl.com/teams/jacksonville-jaguars/,https://www.nfl.com/standings/
+HOU,Houston Texans,AFC,3,5,0,0.375,209,192,17,1W,https://www.nfl.com/teams/houston-texans/,https://www.nfl.com/standings/
+IND,Indianapolis Colts,AFC,2,7,0,0.222,184,249,-65,5L,https://www.nfl.com/teams/indianapolis-colts/,https://www.nfl.com/standings/
+TEN,Tennessee Titans,AFC,1,7,0,0.125,144,199,-55,2L,https://www.nfl.com/teams/tennessee-titans/,https://www.nfl.com/standings/
+DEN,Denver Broncos,AFC,7,2,0,0.778,198,186,12,5W,https://www.nfl.com/teams/denver-broncos/,https://www.nfl.com/standings/
+KC,Kansas City Chiefs,AFC,6,2,0,0.750,202,143,59,1W,https://www.nfl.com/teams/kansas-city-chiefs/,https://www.nfl.com/standings/
+LV,Las Vegas Raiders,AFC,4,5,0,0.444,238,268,-30,1L,https://www.nfl.com/teams/las-vegas-raiders/,https://www.nfl.com/standings/
+LAC,Los Angeles Chargers,AFC,0,8,0,0.000,121,219,-98,8L,https://www.nfl.com/teams/los-angeles-chargers/,https://www.nfl.com/standings/
+NYG,New York Giants,NFC,5,3,1,0.611,203,196,7,1L,https://www.nfl.com/teams/new-york-giants/,https://www.nfl.com/standings/
+DAL,Dallas Cowboys,NFC,4,5,0,0.444,246,236,10,1W,https://www.nfl.com/teams/dallas-cowboys/,https://www.nfl.com/standings/
+WAS,Washington Commanders,NFC,3,5,1,0.389,196,223,-27,1W,https://www.nfl.com/teams/washington-commanders/,https://www.nfl.com/standings/
+PHI,Philadelphia Eagles,NFC,2,7,0,0.222,148,221,-73,7L,https://www.nfl.com/teams/philadelphia-eagles/,https://www.nfl.com/standings/
+CHI,Chicago Bears,NFC,7,2,0,0.778,241,184,57,4W,https://www.nfl.com/teams/chicago-bears/,https://www.nfl.com/standings/
+DET,Detroit Lions,NFC,6,2,0,0.750,222,189,33,4W,https://www.nfl.com/teams/detroit-lions/,https://www.nfl.com/standings/
+MIN,Minnesota Vikings,NFC,6,2,0,0.750,146,116,30,2L,https://www.nfl.com/teams/minnesota-vikings/,https://www.nfl.com/standings/
+GB,Green Bay Packers,NFC,6,3,0,0.667,216,191,25,2W,https://www.nfl.com/teams/green-bay-packers/,https://www.nfl.com/standings/
+CAR,Carolina Panthers,NFC,3,5,0,0.375,199,219,-20,3L,https://www.nfl.com/teams/carolina-panthers/,https://www.nfl.com/standings/
+NO,New Orleans Saints,NFC,3,5,0,0.375,185,216,-31,1W,https://www.nfl.com/teams/new-orleans-saints/,https://www.nfl.com/standings/
+TB,Tampa Bay Buccaneers,NFC,3,6,0,0.333,202,178,24,1L,https://www.nfl.com/teams/tampa-bay-buccaneers/,https://www.nfl.com/standings/
+ATL,Atlanta Falcons,NFC,3,6,0,0.333,188,223,-35,2L,https://www.nfl.com/teams/atlanta-falcons/,https://www.nfl.com/standings/
+SF,San Francisco 49ers,NFC,7,1,0,0.875,235,156,79,1W,https://www.nfl.com/teams/san-francisco-49ers/,https://www.nfl.com/standings/
+SEA,Seattle Seahawks,NFC,5,4,0,0.556,202,162,40,1W,https://www.nfl.com/teams/seattle-seahawks/,https://www.nfl.com/standings/
+LA,Los Angeles Rams,NFC,5,4,0,0.556,214,181,33,3W,https://www.nfl.com/teams/los-angeles-rams/,https://www.nfl.com/standings/
+AZ,Arizona Cardinals,NFC,3,6,0,0.333,178,255,-77,1L,https://www.nfl.com/teams/arizona-cardinals/,https://www.nfl.com/standings/
