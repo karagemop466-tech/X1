@@ -1,0 +1,68 @@
+{
+ "dataset": "injury_report_week10_2026_line_by_line_recheck",
+ "task": "T9 (takeover by session arena/cc51616e-x1)",
+ "source_url": "https://www.nfl.com/injuries/",
+ "source_title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com",
+ "retrieved_utc": "2026-11-14T18:32:22Z",
+ "retrieval_method": "page fetched in 8 chunks (chunkIndex 0-7) via the sandbox page reader; chunks 0-6 contained the 28 team tables, chunk 7 contained news only",
+ "checked_file": "data/injuries_2026_week10.csv",
+ "method": "Every printed cell (player, position, injury, practice status, game status) and every player URL of all 345 rows was compared against the corresponding cell of the official page, row by row, in page order. Row counts per team table were also reconciled (28 tables; 14 games). Three independent same-day transcriptions of the same official page were additionally cross-diffed programmatically: this CSV, data/nfl/injuries_week10.tsv (session b38a21d8) and data/pipeline/injuries.json (automated collector, retrieved 2026-11-14T17:02:18Z): 345/345 keys matched and 0 cell disagreements after team-code normalisation (LAR=LA, ARI=AZ).",
+ "totals": {
+  "rows": 345,
+  "games": 14,
+  "team_tables": 28,
+  "verified": 345,
+  "unverified": 0,
+  "mismatches_found": 1,
+  "mismatches_corrected": 1
+ },
+ "corrections": [
+  {
+   "id": "C-01",
+   "file": "data/injuries_2026_week10.csv",
+   "upstream_file": "data/raw/injuries_2026_week10_official.psv",
+   "row_key": "KC at ATL | KC | Jaylon Moore | T",
+   "field": "player_url",
+   "before": "https://www.nfl.com/players/jaylon-moore/",
+   "after": "https://www.nfl.com/players/jaylon-moore-2/",
+   "evidence": "official page chunk 1 prints [Jaylon Moore](https://www.nfl.com/players/jaylon-moore-2/)",
+   "corroborating_files_already_correct": [
+    "data/nfl/injuries_week10.tsv",
+    "data/pipeline/injuries.json",
+    "data/injuries/injuries_2026_week10.csv",
+    "data/nfl/availability_derived.tsv"
+   ],
+   "verified_by": [
+    "https://www.nfl.com/injuries/"
+   ]
+  }
+ ],
+ "observations": [
+  {
+   "id": "R-01",
+   "severity": "needs review (not a transcription error)",
+   "item": "The official NFL news roundup dated Saturday, Nov 14, 2026 carries the headline 'Steelers TE Pat Freiermuth (illness) questionable', but Pat Freiermuth does not appear anywhere on the official Week 10 injury report (PIT table has 8 rows: Echols, Elliott, Harmon, Heyward, Skowronek, Slaughter, Washington, Watt). The CSV transcribes the report as printed; the report itself is not reconciled with the news headline. Cause not stated by either page.",
+   "sources": [
+    "https://www.nfl.com/injuries/",
+    "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14"
+   ]
+  }
+ ],
+ "verification_performed": [
+  "line-by-line cell comparison of all 345 rows against page chunks 0-7 (2026-11-14)",
+  "row-count reconciliation: 28 team tables sum to 345 rows, 14 games",
+  "programmatic 3-way cross-diff: data/injuries_2026_week10.csv vs data/nfl/injuries_week10.tsv vs data/pipeline/injuries.json -> 0 cell disagreements",
+  "python3 scripts/verify_data.py -> pass (345 rows, 14 games)",
+  "python3 scripts/check_site.py -> pass (27 pages)",
+  "python3 tools/verify_data.py -> pass (2,944 assertions)",
+  "python3 tools/cross_check.py -> pass (345 injury rows, 1,380 cells, 0 disagreements)"
+ ],
+ "irregularities_published": [
+  "I-05",
+  "I-06",
+  "I-07",
+  "I-08",
+  "I-17 (resolved 2026-11-14)",
+  "R-01"
+ ]
+}
