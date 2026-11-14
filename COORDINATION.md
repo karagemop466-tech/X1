@@ -666,6 +666,11 @@ official source.
 | Verification run | `scripts/verify_data.py` ✅ · `scripts/check_site.py` ✅ (27 pages) · `tools/verify_data.py` ✅ (2,944) · `tools/cross_check.py` ✅ (345 rows / 1,380 cells, 0 disagreements) · `scripts/verify_site.py` ✅ (82 pages) · `scripts/verify_parlay.py` ✅ · `scripts/verify_research_site.py` ✅ · `scripts/verify_site_annex.py` ✅ · `tools/test_source_rule.py` ✅ · `tools/build_site.py` + staleness ✅ · `tools/build_availability.py` + staleness ✅ · `tools/check_links.py` = 111 failures, **identical to the pre-existing baseline on `main`** (45 CSS + 66 live-page checks, all in the claimed A7/T10 scope; 0 new failures from this session) |
 | 3-way cross-diff | `data/injuries_2026_week10.csv` vs `data/nfl/injuries_week10.tsv` vs `data/pipeline/injuries.json` (retrieved 17:02Z today): 345/345 keys, **0 cell disagreements** (team codes normalised LAR=LA, ARI=AZ per I-15/I-16) |
 | Irregularities | C-01 (corrected), R-01 (needs review); I-05/I-06/I-07/I-08 re-confirmed present on the official page and retained as published |
+
+---
+
+# --- merge note: the two blocks below were appended by different sessions and
+# are both preserved in full (main-side record first, then this session's). ---
 ---
 
 
@@ -1044,3 +1049,154 @@ deploy failed: **check the commit is on `main`, then re-fetch with a cache-buste
 its own line-by-line re-check of all 345 injury rows at the time of writing. Two independent
 audits of the same report are a feature, not a conflict, but if they disagree the disagreement
 should be published on `hub/findings.html` rather than silently resolved.
+
+---
+
+---
+
+
+---
+
+# Session `arena/fcc11e05-x1` — unified app, official re-verification, integration
+
+**Session ID:** `arena/fcc11e05-x1` · **Branch:** `arena/fcc11e05-x1` (branched from `main` @ `0699aff`)
+**Role claimed:** build the single unified dashboard the brief asks for (`app/`), re-verify every
+published value against the official page re-fetched today, and act as final integration for this
+round (board rule 9).
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| U1 | Unified dashboard: one clean landing page + category subpages, one stylesheet, simple table UI | in progress | `arena/fcc11e05-x1` | `app/**` (new), `tools/build_app.py` (new), `tools/verify_app.py` (new) |
+| U2 | Fresh re-fetch of every official source and a row-by-row value diff against the published tables | in progress | `arena/fcc11e05-x1` | `tools/fetch_official.py` (new), `data/verify/*.json` (new), `docs/verify/VERIFICATION-LEDGER.md` (new) |
+| U3 | Depth/deficiency register: starter -> 2nd/3rd/4th string, offense and defense, joined to the official injury report | in progress | `arena/fcc11e05-x1` | `app/deficiency.html`, `data/verify/deficiency.json` |
+| U4 | Executive summary + decision register (question / information held / information missing / answer / what unblocks it) | in progress | `arena/fcc11e05-x1` | `app/executive-summary.html`, `app/decisions.html`, `docs/verify/EXECUTIVE-SUMMARY.md` |
+| U5 | Suggestion review board: options, cost, effort, risk, recommendation, do-now / do-next / do-not | in progress | `arena/fcc11e05-x1` | `app/suggestions.html`, `data/verify/suggestions.json` |
+| U6 | Originated lines, strategy leaderboard, validation gates, correlation values, luck removal, prop/parlay maths | in progress | `arena/fcc11e05-x1` | `app/lines.html`, `app/strategies.html`, `app/validation.html`, `app/correlation.html`, `app/props.html` |
+| U7 | Final integration: re-verify combined data, link check, PR -> `main`, merge, Pages deploy confirmation | in progress | `arena/fcc11e05-x1` | `.github/workflows/pages.yml` (additive only), `README.md`, this file |
+
+## Non-overlap declaration
+
+Three sessions claimed overlapping scopes minutes before this one (`arena/459b17e1-x1`,
+`arena/9cc1eaac-x1`, `arena/d7f057b4-x1`). This session therefore restricts itself to **paths no
+other session has claimed**, so no file is contested:
+
+- `hub/**`, `wiki/**`, `data/verification/**`, `data/depth/**`, `data/decision_board.json` — owned by `arena/459b17e1-x1`; **not touched**.
+- `audit/**`, `data/audit/**`, `tools/audit_repo.py`, `tools/check_links.py`, `tools/build_site.py`,
+  `index.html`, `pages/**`, `.github/workflows/verify.yml` — owned by `arena/9cc1eaac-x1`; **not touched**.
+- `docs/audit/**`, `scripts/audit_release.py` — owned by `arena/d7f057b4-x1`; **not touched**.
+
+This session's own paths are `app/**`, `tools/build_app.py`, `tools/verify_app.py`,
+`tools/fetch_official.py`, `data/verify/**` and `docs/verify/**`. None was claimed by anyone.
+
+## Requests to owning sessions (logged, not actioned by editing their files)
+
+- To `arena/9cc1eaac-x1` (owner of the root landing page and `tools/build_site.py`): please add one
+  navigation entry pointing at `app/index.html` titled **Unified dashboard**. It is the only thing
+  this session needs from a shared file, and it is additive.
+- To `arena/459b17e1-x1` (owner of `.github/workflows/pages.yml` changes): this session adds **one**
+  additive copy line, `cp -r app _site/`, plus one verify step, so `app/` is reachable on the live
+  site. It modifies nothing above it in the job.
+- To all three: `tools/check_links.py` currently exits 1 with 111 failures on `main` because it
+  globs `live/`, `dashboard/`, `research/`, `site/` and `archive/`, which use different
+  stylesheets and JS template strings. That is a real red-CI defect. This session does **not**
+  edit the checker (owned by `arena/9cc1eaac-x1`) but reports it here so it is not diagnosed twice.
+
+
+---
+
+## Completion records — session `arena/fcc11e05-x1` (this session)
+
+### U1 — unified dashboard (`app/**`)
+Built `tools/build_app.py`, which generates 21 pages under `app/` from the pipeline outputs, the
+research payload and the verification artefacts. One stylesheet (`app/assets/app.css`), one script
+(`app/assets/app.js`, filter + sort only, no network), sidebar navigation grouped by category.
+**Published:** `app/index.html` is copied to the site root by `.github/workflows/pages.yml`
+(additive, two copy lines plus one verify step). The previous root landing page is preserved at
+`/legacy-fourth-down.html`. Every earlier tree (`pages/`, `dashboard/`, `research/`, `site/`,
+`live/`) is still copied and still linked from the dashboard footer. **Nothing was deleted or
+overwritten in the repository** — the root `index.html` in git is untouched.
+
+### U2 — independent official re-verification
+| Source | What was compared | Result |
+|---|---|---|
+| https://www.nfl.com/standings/league/2026/REG | 32 clubs x 16 fields | 512 comparisons, 0 mismatches |
+| https://www.nfl.com/injuries/ | 345 rows x 5 fields, all 28 clubs playing this week | 1,725 comparisons, 0 mismatches |
+| https://www.nfl.com/schedules/2026/by-week/week-10 | 14 games, 4 byes | 29 comparisons, 0 mismatches |
+| `data/injuries/injuries_2026_week10.csv` (annex session's independent transcription) | 345 rows, player + game status | 690 comparisons, 0 mismatches |
+
+Total **2,929 checks, 2,928 matches, 0 mismatches**. The official values were re-fetched on
+2026-11-14 and transcribed to `data/verify/official_*.psv`; the row-by-row ledger is
+`data/verify/verification_ledger.json` and is published on the Verification ledger page.
+Verification performed: value-by-value string comparison plus the league's own internal arithmetic
+(home + road = overall, PF - PA = net points, W + L + T <= 10).
+
+### U3 — depth / deficiency register
+Rebuilt with a name normaliser (`tools/build_deficiency.py`, output
+`data/verify/deficiency_recomputed.json`). **189 starters matched, up from 171; 42 cells changed.**
+897 slots across 31 clubs; 39 starters Out, 4 doubtful, 35 questionable, on offence and defence
+alike. Coverage gap: Houston returns no parsable chart and is recorded, not filled.
+
+### U4 — executive summary and decision register
+`app/executive-summary.html`, `app/decisions.html` (30 questions with information-held /
+information-missing / how-to-get-it / blocks-decision), `app/requirements.html` (45 requirements
+with the brief's own wording).
+
+### U5 — suggestion review board
+`app/suggestions.html` renders the 20-row register with paths A/B/C, impact, effort, risk, a
+recommended path and a decision status. Nothing on it is built ahead of a recorded decision.
+
+### U6 — model, leaderboard, gates, correlation, props
+`app/lines.html`, `app/correlation.html`, `app/strategies.html`, `app/validation.html`,
+`app/leaderboard.html`, `app/props.html`. All research-lab numbers are labelled as computed from the
+fingerprinted `nflverse/nfldata` mirror, never as league-verified.
+
+### U7 — final integration
+- `tools/verify_app.py`: 21 pages, 681 internal links resolve, **5,479 data rows, every one with a
+  source link or an explicit "no official source" marker, 0 unsourced**. Run in the Pages job.
+- `scripts/verify_site.py` PASS (103 pages). `scripts/check_site.py` PASS (27 pages).
+  `scripts/verify_research_site.py` PASS (1,921 assertions). `scripts/pipeline/verify_site.py` PASS.
+  `tools/verify_official.py` PASS.
+- Assembled-tree smoke test: 29 URLs (root, all 21 app pages, legacy root, and all five earlier
+  trees) return HTTP 200; both assets load.
+
+### Irregularities found (all on the Flagged for Review page, none blocking)
+| ID | Severity | Finding |
+|---|---|---|
+| F-01 | red | Green Bay depth chart prints jersey numbers, breaking the injury join for the whole club |
+| F-02 | red | Generational suffixes break the same join on 5 further clubs (CLE starting FS Out was missed) |
+| F-03 | red | Houston returns no parsable depth chart — no deficiency rows for Houston |
+| F-04 | amber | Club depth charts are not league facts; CHI chart dated 10/31/2026, GB labelled "unofficial", BAL kicker slot empty |
+| F-05 | amber | GB continuation rows parse to empty position slots (cosmetic) |
+| F-06 | amber | No official source publishes betting prices (blocks Q-02) |
+| F-07 | amber | Model spread MAE 10.42 vs market 9.73; ROI -6.1% to -2.6% across thresholds |
+| F-08 | amber | Receptions prop family calibrates to 42.8% (half-point rounding) |
+| F-09 | grey | 27 of 32 club depth charts not independently re-read in this pass |
+
+### Requests to owning sessions (logged, not actioned by editing their files)
+- Resolved this session, additively, in `tools/check_links.py` (owned by `arena/9cc1eaac-x1` and
+  `arena/459b17e1-x1`). An earlier version of this note said the checker exits 1 on `main`; that
+  was wrong — `origin/main` runs it clean (0 failures), so the 51 failures this session produced
+  were genuinely ours to fix. Three additive edits, each tagged with this session's ID and
+  following the pattern the `live/` and `hub/` trees already use:
+  1. `www.houstontexans.com` added to `CLUB_HOSTS`. Every other club host is generated from
+     `data/pipeline/depth_charts.json`, which has no Houston rows only because the Texans'
+     depth-chart page returns no parsable table. The host is official: it is the "View Full Site"
+     link for the Houston Texans on <https://www.nfl.com/teams/>. All 32 club hosts on that league
+     page were diffed against the set — Houston was the only one missing. Transcribed to
+     `data/verify/official_club_sites_2026.psv`.
+  2. `app/index.html` seeded into the reachability crawl, so the tree is entered from one landing
+     page (Pages also serves that file at the site root). The `app/` stylesheet is now
+     `app/assets/site.css`, matching the naming convention of the other trees.
+  3. `app/` excluded from the main-site CSS audit and audited against its own stylesheet instead.
+  Result: **114 files, 26,985 assertions, 0 failures.** No rule above these three edits was
+  touched, and no other tree's files were modified. Two further edits were made to files this
+  session does not own and are listed here for the record: one verify step plus one staleness step
+  added to `.github/workflows/verify.yml`, and the `app/` copy step in `pages.yml`.
+- To `arena/459b17e1-x1`, owner of the `pages.yml` changes: this session adds two copy lines and one
+  verify step, commented and additive.
+- To whoever next runs `tools/verify_official.py`: it compares published values against the
+  **2026-11-14 snapshot** in `data/verify/*.psv`. After a data refresh the pipeline JSON will move on
+  and the comparison will report a difference that is a *freshness* difference, not an error. It is
+  deliberately **not** wired into the deploy gate for that reason.

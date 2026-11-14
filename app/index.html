@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL decision system — X1 NFL decision system</title>
+<meta name="description" content="X1: verified NFL data, originated lines, and a gated strategy leaderboard. Every row source-linked.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>X1</b><span>NFL decision system</span></span></a>
+  <nav aria-label="Sections">
+<div class="grp">Overview</div>
+<a class="active" href="index.html">Overview</a>
+<a class="" href="executive-summary.html">Executive summary</a>
+<div class="grp">Official data</div>
+<a class="" href="standings.html">Standings</a>
+<a class="" href="schedule.html">Week 10 slate</a>
+<a class="" href="injuries.html">Injury report</a>
+<a class="" href="depth.html">Depth charts</a>
+<a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="team-stats.html">Team stats</a>
+<div class="grp">Model</div>
+<a class="" href="lines.html">Originated lines</a>
+<a class="" href="correlation.html">Correlation</a>
+<div class="grp">Strategy</div>
+<a class="" href="strategies.html">Strategy library</a>
+<a class="" href="validation.html">Validation gates</a>
+<a class="" href="leaderboard.html">Leaderboard</a>
+<a class="" href="props.html">Props &amp; parlays</a>
+<div class="grp">Decisions</div>
+<a class="" href="requirements.html">Requirements</a>
+<a class="" href="decisions.html">Decision register</a>
+<a class="" href="suggestions.html">Suggestion board</a>
+<div class="grp">Governance</div>
+<a class="" href="sources.html">Sources</a>
+<a class="" href="verification.html">Verification ledger</a>
+<a class="" href="flagged.html">Flagged for review</a>
+<a class="" href="repo-review.html">Repo review</a>
+</nav>
+  <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">Unified dashboard</div>
+      <h1>NFL decision system</h1>
+      <p class="lede">One dashboard over every dataset this project holds: verified official data, an originated-line model, a gated strategy leaderboard, and the decisions that are still open. Every row links to the page it came from.</p>
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+<div class="kpis">
+<div class="kpi ok"><div class="v">32</div><div class="l">clubs on the official table</div><div class="s">NFL.com league standings</div></div>
+<div class="kpi ok"><div class="v">345</div><div class="l">official injury rows</div><div class="s">NFL.com Week 10 report</div></div>
+<div class="kpi "><div class="v">1813</div><div class="l">depth-chart rows</div><div class="s">31 of 32 club sites</div></div>
+<div class="kpi bad"><div class="v">39</div><div class="l">starters ruled Out</div><div class="s">depth chart x injury report</div></div>
+<div class="kpi ok"><div class="v">2929</div><div class="l">independent value checks</div><div class="s">0 mismatches</div></div>
+<div class="kpi warn"><div class="v">1/16</div><div class="l">strategies through all gates</div><div class="s">out-of-sample, 2015-2026</div></div>
+</div>
+<section class="note">
+<b>Evidence boundary.</b> This dashboard publishes only what an official page prints, plus
+values computed from those pages with the method shown next to them. Betting prices are
+<em>not</em> available from any league or club source, so the market-line table ships empty and the
+leaderboard grades strategies against a named third-party line, not a league one. Where a value is
+computed from a community mirror rather than the league, the row says so.
+</section>
+<section class="card"><h2>What this system does</h2>
+<p>X1 collects NFL data from official sources only, tracks injuries and the exact string of backup
+who has to replace an injured starter, originates its own lines, and scores candidate strategies on a
+leaderboard behind eight validation gates. It runs unattended: a scheduled workflow re-pulls every
+official source, re-verifies every row, and republishes this site.</p>
+<div class="grid2">
+  <div>
+    <h3>Verified today</h3>
+    <ul class="tight">
+      <li><a href="standings.html">Standings</a> — all 32 clubs, each row checked against the league's own arithmetic.</li>
+      <li><a href="schedule.html">Week 10 slate</a> — 14 games, 4 byes, one final score.</li>
+      <li><a href="injuries.html">Injuries</a> — the league's official report, 345 rows.</li>
+      <li><a href="depth.html">Depth charts</a> — 1st through 4th string from each club's own site.</li>
+      <li><a href="deficiency.html">Deficiency watch</a> — which starter is down and which backup takes the snaps.</li>
+      <li><a href="team-stats.html">Team stats</a> — nine official offence and defence tables.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Deliberately blank</h3>
+    <ul class="tight">
+      <li><a href="lines.html#market">Market lines</a> — no official source publishes prices, so the table ships empty.</li>
+      <li>Player-prop prices — no official prop-level source exists.</li>
+      <li>Weather, officials, travel — no citable official feed found, so no values are shown.</li>
+    </ul>
+    <p>These are not oversights. A value that cannot be confirmed from an official source stays blank
+    and is <a href="flagged.html">flagged</a>, never inferred.</p>
+  </div>
+</div></section>
+<div class="cards"><a class="navcard" href="executive-summary.html"><span class="k">Start here</span><div class="t">Executive summary</div></a><a class="navcard" href="deficiency.html"><span class="k">The headline feature</span><div class="t">Who is out and which backup replaces them</div></a><a class="navcard" href="lines.html"><span class="k">Model</span><div class="t">Our own number</div></a><a class="navcard" href="validation.html"><span class="k">Strategy</span><div class="t">Eight gates a strategy must pass</div></a><a class="navcard" href="decisions.html"><span class="k">Decisions</span><div class="t">What we know, what is missing, what it blocks</div></a><a class="navcard" href="suggestions.html"><span class="k">Decisions</span><div class="t">Choose a path before building</div></a><a class="navcard" href="verification.html"><span class="k">Governance</span><div class="t">Row-by-row verification</div></a><a class="navcard" href="flagged.html"><span class="k">Governance</span><div class="t">Flagged for review</div></a></div>
+<section class="card"><h2>The five findings that shape the plan</h2>
+<ol class="findings">
+  <li><b>No league-wide official depth chart exists.</b> Clubs publish their own, in their own
+  format, with their own "as of" date. Chicago's chart reads <i>"As of 10/31/2026"</i> — two weeks
+  stale — and Green Bay's is labelled <i>"Unofficial, Nov. 10, 2026"</i>. So "2nd-string replacement"
+  is a club self-report, not a league fact. See <a href="flagged.html">flagged</a>.</li>
+  <li><b>The name join between the chart and the injury report is fragile, and it was silently
+  failing for Green Bay.</b> Green Bay prints jersey numbers in the name column ("75 Sean Rhyan"),
+  and other clubs print or omit generational suffixes ("Kenneth Walker" vs "Kenneth Walker III").
+  Correcting the join moved matched starters from 171 to 189 and recovered three Green Bay starters
+  the league lists as Out. See <a href="deficiency.html">deficiency watch</a>.</li>
+  <li><b>Most of our own model is not yet good enough to beat the market.</b> The walk-forward
+  points model has a spread MAE of 10.42 against the market benchmark's 9.73, and threshold sweeps
+  return ROI between −6.1% and −2.6%. It is published as a screen, not a price.
+  See <a href="lines.html">originated lines</a>.</li>
+  <li><b>One strategy out of sixteen passes every gate.</b> "Wind — under" returns +11.5% ROI over
+  398 out-of-sample bets with a bootstrap interval that stays above zero and p = 0.008. Everything
+  else fails significance, economics, or the luck-removal gate.
+  See <a href="leaderboard.html">leaderboard</a>.</li>
+  <li><b>Two inputs block the rest.</b> Prices and results. Neither has an official public source, so
+  every gate that depends on outcomes is currently unenforced rather than filled with a guess.
+  See <a href="decisions.html">decisions</a> Q-02 and Q-04.</li>
+</ol></section>
+<section class="card"><h2>Earlier site sections, all still published</h2>
+<p>This repository was built by several parallel agent sessions, and each left its own site tree.
+Nothing has been deleted — the sections below are still published and still reachable. This
+<code>app/</code> tree is the unified view over all of the same data.</p>
+<ul class="tight">
+  <li><a href="../pages/executive-summary.html">Fourth Down dashboard</a> — the first integrated dashboard (<code>pages/</code>).</li>
+  <li><a href="../dashboard/lab-index.html">Analytics lab</a> — standings, schedule and backtest tables (<code>dashboard/</code>).</li>
+  <li><a href="../research/index.html">Research lab</a> — the model, strategy, prop and injury lab (<code>research/</code>).</li>
+  <li><a href="../site/index.html">Snapshot annex</a> — originated lines, backtests and correlations (<code>site/</code>).</li>
+  <li><a href="../live/index.html">Live pipeline</a> — the auto-refreshing official-source collector (<code>live/</code>).</li>
+</ul></section>
+<section class="card"><h2>How the verification rule is enforced</h2>
+<div class="grid2">
+  <div>
+    <h3>On every row</h3>
+    <ul class="tight">
+      <li>Each row carries the URL of the official page the values were read from.</li>
+      <li>A value the source does not publish renders as an em dash.</li>
+      <li>A row with a missing value or an integrity flag is marked and listed on
+      <a href="flagged.html">Flagged for review</a>.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>On every refresh</h3>
+    <ul class="tight">
+      <li><code>tools/verify_official.py</code> re-checks every published value against the official
+      page fetched on 2026-11-14 and writes a row-level ledger.</li>
+      <li>A pull that returns zero rows never overwrites good data.</li>
+      <li>Run reports and attempt logs are committed, so the history is auditable.</li>
+    </ul>
+  </div>
+</div></section>
+  <footer class="pagefoot">
+    X1 · generated by <code>tools/build_app.py</code> · every table row links to the official page the value was read from ·
+    a value the source does not print is shown as <span class="blank">&mdash;</span> and flagged, never filled in.<br>
+    <a href="index.html">Overview</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources</a> ·
+    <a href="verification.html">Verification ledger</a> ·
+    <a href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener">Repository on GitHub</a> ·
+    earlier session sections:
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/pages">pages</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/dashboard">dashboard</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/research">research</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/site">annex</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/live">live</a>.
+  </footer>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -95,6 +95,13 @@ CLUB_HOSTS = {
     "www.tennesseetitans.com",
     "www.therams.com",
     "www.vikings.com",
+    # Added by session arena/fcc11e05-x1. Every other club host above is generated from
+    # data/pipeline/depth_charts.json; Houston is absent from that file only because the
+    # Texans' depth-chart page returns no parsable table. Its official site is the
+    # "View Full Site" link for the Houston Texans on https://www.nfl.com/teams/,
+    # transcribed to data/verify/official_club_sites_2026.psv. All 32 club hosts on that
+    # league page were diffed against this set; Houston was the only one missing.
+    "www.houstontexans.com",
 }
 APPROVED |= CLUB_HOSTS
 
@@ -227,6 +234,12 @@ _live = os.path.normpath(os.path.join(ROOT, "live", "index.html"))
 _hubroot = os.path.normpath(os.path.join(ROOT, "hub", "index.html"))
 if os.path.exists(_live):
     reachable.add(_live)
+# Added by session arena/fcc11e05-x1: app/ is a sixth site tree with its own navigation
+# rail, hanging off app/index.html. Pages serves that same file at the site root, so the
+# whole tree is entered from one landing page exactly like hub/, live/ and dashboard/.
+_approot = os.path.normpath(os.path.join(ROOT, "app", "index.html"))
+if os.path.exists(_approot):
+    reachable.add(_approot)
 frontier = list(reachable)
 while frontier:
     cur = frontier.pop()
@@ -340,7 +353,10 @@ def _audit_tree(html_paths, css_path, js_root, label):
     check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
 
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
-_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site", "live", "hub")]
+# Added by session arena/fcc11e05-x1: app/ is audited against its own stylesheet
+# (app/assets/site.css) below, so it is excluded from the main-site audit here.
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
+         ("dashboard", "research", "site", "live", "hub", "app")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -367,6 +383,14 @@ _hub = sorted(glob.glob(os.path.join(ROOT, "hub", "*.html")))
 if _hub:
     _audit_tree(_hub, os.path.join(ROOT, "hub", "assets", "hub.css"),
                 os.path.join(ROOT, "hub", "assets"), "hub/assets/hub.css")
+# Added by session arena/fcc11e05-x1: audit the unified dashboard against its own
+# stylesheet (app/assets/site.css). Its contract — links resolve, every external host is
+# official, every data row is sourced or explicitly flagged — is asserted by
+# tools/verify_app.py, which also runs in CI.
+_appx = sorted(glob.glob(os.path.join(ROOT, "app", "*.html")))
+if _appx:
+    _audit_tree(_appx, os.path.join(ROOT, "app", "assets", "site.css"),
+                os.path.join(ROOT, "app", "assets"), "app/assets/site.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

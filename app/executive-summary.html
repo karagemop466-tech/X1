@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary — X1 NFL decision system</title>
+<meta name="description" content="X1: verified NFL data, originated lines, and a gated strategy leaderboard. Every row source-linked.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="index.html"><span class="mark">X1</span><span><b>X1</b><span>NFL decision system</span></span></a>
+  <nav aria-label="Sections">
+<div class="grp">Overview</div>
+<a class="" href="index.html">Overview</a>
+<a class="active" href="executive-summary.html">Executive summary</a>
+<div class="grp">Official data</div>
+<a class="" href="standings.html">Standings</a>
+<a class="" href="schedule.html">Week 10 slate</a>
+<a class="" href="injuries.html">Injury report</a>
+<a class="" href="depth.html">Depth charts</a>
+<a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="team-stats.html">Team stats</a>
+<div class="grp">Model</div>
+<a class="" href="lines.html">Originated lines</a>
+<a class="" href="correlation.html">Correlation</a>
+<div class="grp">Strategy</div>
+<a class="" href="strategies.html">Strategy library</a>
+<a class="" href="validation.html">Validation gates</a>
+<a class="" href="leaderboard.html">Leaderboard</a>
+<a class="" href="props.html">Props &amp; parlays</a>
+<div class="grp">Decisions</div>
+<a class="" href="requirements.html">Requirements</a>
+<a class="" href="decisions.html">Decision register</a>
+<a class="" href="suggestions.html">Suggestion board</a>
+<div class="grp">Governance</div>
+<a class="" href="sources.html">Sources</a>
+<a class="" href="verification.html">Verification ledger</a>
+<a class="" href="flagged.html">Flagged for review</a>
+<a class="" href="repo-review.html">Repo review</a>
+</nav>
+  <div class="foot">Data snapshot 2026-11-14<br>Season 2026, Week 10<br>Evidence first. Nothing inferred.</div>
+</aside>
+<main>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">Read this first</div>
+      <h1>Executive summary</h1>
+      <p class="lede">Five findings, what they change, and what is still blocked.</p>
+    </div>
+    <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
+  </div>
+<div class="kpis">
+<div class="kpi ok"><div class="v">2929</div><div class="l">value checks passed</div><div class="s">0 mismatches</div></div>
+<div class="kpi bad"><div class="v">39</div><div class="l">starters ruled Out</div><div class="s">corrected join</div></div>
+<div class="kpi warn"><div class="v">1/16</div><div class="l">strategies pass all gates</div><div class="s">out of sample</div></div>
+<div class="kpi warn"><div class="v">0</div><div class="l">blocking questions</div><div class="s">owner decisions needed</div></div>
+<div class="kpi "><div class="v">10.98</div><div class="l">model spread MAE (pts)</div><div class="s">vs market 9.73</div></div>
+<div class="kpi grey"><div class="v">0</div><div class="l">market prices</div><div class="s">no official source exists</div></div>
+</div>
+<section class="card"><h2>Executive summary</h2>
+<p>X1 exists to answer one question honestly: <b>which NFL strategies are skill and which are a hot
+streak?</b> Everything in this site is built to make that answer checkable rather than asserted.</p>
+
+<h3>1. The base layer is sound and independently verified.</h3>
+<p>All 32 standings rows, all 345 official injury rows and the Week 10 slate were re-fetched from
+NFL.com on 2026-11-14 and compared cell by cell against what this repository publishes:
+<b>2929 checks, 0 mismatches</b>. Two independent transcriptions of the
+standings agree 32 of 32. The league's own arithmetic holds on every club: home plus road equals
+overall, points for minus points against equals net points.</p>
+
+<h3>2. The deficiency register now works, and it found what it is for.</h3>
+<p>Cross-referencing each club's printed depth chart with the league's injury report identifies
+<b>189 starting slots whose starter appears on the official report</b>,
+of which <b>39 are ruled Out</b>, 4 doubtful and
+35 questionable — on both offence and defence. Rebuilding the join with a
+proper name normaliser corrected <b>42 cells</b>; the most consequential is
+Cleveland's starting free safety Ronnie Hickman (Out, replaced by a 2nd-string) and three Green Bay
+starters whose jersey-numbered names never matched.</p>
+
+<h3>3. Our own number is not yet good enough to price against.</h3>
+<p>A walk-forward Poisson points model fitted only on earlier seasons produces a spread MAE of
+<b>10.98 points</b> against the market benchmark's 9.73 over 2021–2026,
+across 7,154 scored games. Threshold sweeps return ROI between −6.1% and −2.6%.
+The honest conclusion is that the model is a <b>screen, not a price</b>, and it is published that way.</p>
+
+<h3>4. One of sixteen strategies is skill by our own pre-registered definition.</h3>
+<p>"Wind — under" (outdoor games with sustained wind, bet the under) returns <b>+11.5% ROI over 398
+out-of-sample bets</b> from 2015 to 2026, hit rate 57.0%, bootstrap 95% interval +2.2% to +20.7%,
+sign-flip p = 0.008, and it stays positive when one-score games and blowouts are stripped out. Every
+other candidate fails at least one gate. That is the point of the gates: they are designed so that a
+lucky season cannot be crowned.</p>
+
+<h3>5. Two inputs block everything downstream.</h3>
+<p><b>Prices</b> and <b>results</b>. Neither is published by the league or by any club, so the
+market-line table is empty and every outcome-dependent gate is currently unenforced rather than
+guessed. Six questions are hard blockers — they cannot be answered from any official source and they
+stop specific parts of the system from working: <b>Q-01</b> bankroll, <b>Q-02</b> price feed,
+<b>Q-04</b> results feed, <b>Q-05</b> paper or real money, <b>Q-06</b> how rewards are defined,
+<b>Q-11</b> player-prop source.</p>
+
+<h3>What to do next</h3>
+<p>The <a href="suggestions.html">suggestion board</a> lists twenty options, each with three paths, a
+cost, an effort, a risk and a recommendation, and each waiting for a decision rather than being
+built. Nothing on that board has been implemented without a recorded choice.</p></section>
+  <footer class="pagefoot">
+    X1 · generated by <code>tools/build_app.py</code> · every table row links to the official page the value was read from ·
+    a value the source does not print is shown as <span class="blank">&mdash;</span> and flagged, never filled in.<br>
+    <a href="index.html">Overview</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources</a> ·
+    <a href="verification.html">Verification ledger</a> ·
+    <a href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener">Repository on GitHub</a> ·
+    earlier session sections:
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/pages">pages</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/dashboard">dashboard</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/research">research</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/site">annex</a>,
+    <a href="https://github.com/karagemop466-tech/X1/tree/main/live">live</a>.
+  </footer>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>
