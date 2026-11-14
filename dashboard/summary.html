@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary · X1 NFL Research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">X1 · NFL Research Dashboard</a>
+<nav class="menu"><a href="../index.html">← Main site</a><a class="active" href="index.html">Overview</a><a class="" href="standings.html">Data</a><a class="" href="strategies.html">Research</a><a class="" href="questions.html">Decisions</a><a class="" href="flagged.html">Review</a><a class="" href="sources.html">Sources</a></nav></header>
+<header class="top" style="background:#27395f;padding:8px 22px"><nav class="menu"><a class="" href="index.html">Home</a><a class="active" href="summary.html">Executive summary</a></nav></header>
+<main><h1>Executive summary</h1>
+<p class="lead">Data as of 2026-11-14 (UTC). Official source: NFL.com. This page shows only values that are verified against an official page, plus counts of pre-registered items.</p>
+<h2>1. What is verified</h2>
+<ul>
+<li><b>Standings:</b> all 32 rows re-checked against the NFL.com standings page on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak). Every value matched.</li>
+<li><b>Week 10 schedule:</b> all 14 games and 4 bye teams re-checked against NFL.com. The Thursday game is listed Final: Commanders 24, Giants 21.</li>
+<li><b>Injury report:</b> 345 rows across 14 games transcribed from NFL.com. 44 rows are re-checked line by line (WAS at NYG, NE at DET); the other 301 are pending (I-17). Transcribed status counts: Out 66, Doubtful 10, Questionable 84.</li>
+<li><b>Spot-check:</b> Mike Evans's NFL.com player page lists the 49ers, consistent with the injury report.</li>
+</ul>
+<h2>2. Strategy research</h2>
+<ul>
+<li>We pre-registered 10 strategies (ATS, totals, rest, and an Elo-versus-line model) and built the validation gates (G0–G5) before looking at results.</li>
+<li><b>No strategy is eligible.</b> Every strategy depends on point spreads or totals, and the line provider is not documented (I-10). Gate G0 fails, so results are withheld. No win rates, ROI, p-values, leaderboard positions, correlations or parlay figures are published.</li>
+<li>Correlation and parlay checks are part of the method (mirror bets must not be parlayed as independent legs). They run once inputs are verified.</li>
+</ul>
+<h2>3. Injury and depth tracking</h2>
+<ul>
+<li>We track official injury designations for every listed player in Week 10 (see the injury page for team and unit summaries).</li>
+<li><b>Not yet possible:</b> whether a backup replaced a starter. This needs official depth charts, which we have not collected (task T4, blocked). We make no claim about starter-versus-backup deficiencies.</li>
+</ul>
+<h2>4. Decisions needed from you</h2>
+<p>See the <a href="suggestions.html">Suggestions</a> page (options and trade-offs) and the <a href="questions.html">Questions &amp; gaps</a> page. The top decisions are:</p>
+<ol>
+<li>Which line data source to use, and whether to pay for a licensed historical feed. This blocks every strategy result.</li>
+<li>Whether to collect official depth charts (needed for starter-versus-backup tracking).</li>
+<li>Whether to keep the proposed gate thresholds (300 bets, Bonferroni p &lt; 0.05, 60% positive seasons).</li>
+<li>When results may be published: only after a verified line source (current rule), or on a labelled basis.</li>
+</ol>
+<h2>5. Flags</h2>
+<p>27 automatic flags and 17 manual flags are listed on the <a href="flagged.html">Flagged for review</a> page, each with an official source link where one exists.</p></main>
+<footer>Data as of 2026-11-14 (UTC). Built 2026-11-14 02:49 UTC. Official data: NFL.com. Secondary data is labelled. Nothing on this site is betting advice.
+· <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/karagemop466-tech/X1">Repository</a></footer>
+<script src="assets/app.js"></script></body></html>

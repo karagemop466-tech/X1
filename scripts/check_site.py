@@ -1,5 +1,5 @@
 """
-Integration check for docs/: (1) every internal link and asset resolves, (2) every
+Integration check for dashboard/: (1) every internal link and asset resolves, (2) every
 data-table row (<tbody> row) that carries entries has at least one external source link,
 (3) no page contains unfilled placeholders. Exit 1 on any failure.
 """
@@ -7,7 +7,7 @@ import re, sys
 from html.parser import HTMLParser
 from pathlib import Path
 
-DOCS = Path(__file__).resolve().parents[1] / "docs"
+DOCS = Path(__file__).resolve().parents[1] / "dashboard"
 bad = []
 pages = sorted(DOCS.glob("*.html"))
 
@@ -37,7 +37,7 @@ for page in pages:
     for row in p.rows:
         if row["text"].strip() and row["links"] == 0 and "Source" not in row["text"]:
             # matrix rows (correlation) are derived values; the caption on the page links the source
-            if page.name != "strategies.html":
+            if True:
                 bad.append(f"{page.name}: table row without source link: {row['text'].strip()[:80]!r}")
     if "TODO" in text or "{" in re.sub(r"<style.*?</style>|<script.*?</script>", "", text, flags=re.S) and "function" not in text:
         pass
