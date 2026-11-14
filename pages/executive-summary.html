@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a class="active" href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ EXECUTIVE SUMMARY</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">DOCUMENT</div>
+  <h1>Executive summary</h1>
+  <p>What is verified, what is deliberately absent, and the decisions that gate everything else.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Snapshot:</b> 2026-11-14 · 2026 NFL season, Week 10. This document describes the state of the
+  repository at that date; every quantitative table in it is a single-week snapshot and will go stale.</div>
+
+  <h2>The one-paragraph version</h2>
+  <p>This release does the two things a betting-strategy project usually skips: it
+        <strong>establishes a verified factual base</strong>, and it <strong>refuses to publish a number it cannot source</strong>.
+        Thirty-two teams' Week 10 standings, all 14 Week 10 games, 345 official injury-report rows and five clubs'
+        depth charts are transcribed with per-row links to the official page and mechanically re-checked by 2,944
+        integrity assertions. Against that base the project publishes a complete specification for originating lines,
+        removing luck, pricing correlation and running a skill-based leaderboard — and publishes zero prices, zero
+        correlation values and zero strategy results, because the licensed data those require does not exist here.
+        The gap is enumerated as 18 numbered decisions.</p>
+
+  <h2>What is verified and published today</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Item</th><th>Table</th><th>Official source</th></tr></thead><tbody>
+<tr><td>32 teams, 8 divisions, 2 conferences</td><td>Standings rows</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com standings ↗</a></td></tr>
+<tr><td>14 games (1 final, 13 scheduled) + 4 byes</td><td>Week 10 slate</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">nfl.com schedule ↗</a></td></tr>
+<tr><td>345 players across all 28 participating clubs</td><td>Injury-report rows</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com injuries ↗</a></td></tr>
+<tr><td>BUF, SEA, DET, GB, BAL</td><td>Depth-chart pilot clubs</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
+<tr><td>35 listed starters on the report, 8 ruled Out</td><td>Derived starter-at-risk (tier C)</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/build_availability.py" target="_blank" rel="noopener noreferrer">the script ↗</a></td></tr>
+<tr><td>2,944</td><td>Automated integrity assertions</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_data.py" target="_blank" rel="noopener noreferrer">verify_data.py ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>What is deliberately not published, and why</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Not published</th><th>Blocking reason</th><th>Decision</th><th>Reference</th></tr></thead><tbody>
+<tr><td>Fair lines / our own prices</td><td>No licensed odds feed to benchmark against</td><td>Q-02</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+<tr><td>Edge / expected value</td><td>No feed, and no settlement rule adopted</td><td>Q-02, Q-03</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>Correlation values</td><td>No joint-outcome dataset; ρ=0.10 needs ≈780+ paired obs</td><td>Q-10</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+<tr><td>Leaderboard rankings</td><td>No logged forecasts, no scored window</td><td>Q-12</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates ↗</a></td></tr>
+<tr><td>Points-per-injury weights</td><td>No licensed snap counts</td><td>Q-04</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/availability.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+<tr><td>Depth data for 27 clubs</td><td>Not yet captured</td><td>Q-14</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">flag F-02 ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>The five findings that actually matter</h2>
+  <ol class="findings big"><li><b>There is no league-wide official depth chart.</b><p>The NFL publishes none. Clubs publish their own, and Detroit and Green Bay print the word
+         <strong>“unofficial”</strong> on the page. Any claim about 2nd-, 3rd- or 4th-string replacements must be labelled a
+         club self-report, not a league fact. This is the biggest constraint on the availability requirement.</p></li><li><b>“Starter” is a definition you choose, not a fact you look up.</b><p>This release defines it mechanically — printed in column 1 of the club's chart — so the definition is
+         auditable and re-runnable rather than an editorial judgement per player.</p></li><li><b>A 55% hit rate over a season is not skill.</b><p>At −110 the break-even is 52.38%. 55.1% over 500 bets scores <strong>z ≈ 1.22</strong>, which is inside coin-flip
+         range. The site shows this arithmetic so a hot record cannot be mistaken for an edge.</p></li><li><b>Parlay margin compounds.</b><p>At −110 one leg carries a 4.55% hold; five legs carry 20.75% — about 4.6×. And assuming independence across
+         correlated legs misprices the ticket: two 50% legs with ρ = 0.30 have a joint probability of 0.325, so a book
+         paying +264 is handing the bettor roughly 18.5%. That is precisely why books price or cap correlated legs.
+         Prop combos are priced from a joint distribution or not priced at all.</p></li><li><b>Verification caught a real error of ours.</b><p>Arizona was first transcribed as 2–6; the official page prints 3–6 with .333. An arithmetic gate rejected the
+         row, the correction is corroborated by two independent listings, and it is documented publicly as
+         <a href="flagged.html">flag F-08</a>.</p></li></ol>
+
+  <h2>What the owner has to decide, in dependency order</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Order</th><th>Decision</th><th>Why it is here</th><th>Reference</th></tr></thead><tbody>
+<tr><td>1</td><td>Q-01 data licence · Q-02 odds feed</td><td>Nothing quantitative can be scored without these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>2</td><td>Q-05 definition of “starter”</td><td>Unlocks the credibility of the availability model</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>3</td><td>Q-03 settlement · Q-09 market scope</td><td>Makes a fair price gradeable</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>4</td><td>Q-11 bankroll · Q-12 first window</td><td>Required by the risk and pre-registration gates</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>5</td><td>Q-07/Q-08 rewards, eligibility</td><td>Only needed once results exist to reward</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>6</td><td>Q-14 coverage · Q-17 cadence</td><td>Scale and staleness</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Reviewer's route through this release</h2>
+  <ol class="route">
+    <li><a href="flagged.html">Flagged for review</a> — 13 items, each with what is verified, what is unknown and what settles it.</li>
+    <li><a href="decisions.html">Decision register</a> — 18 questions with the information already held.</li>
+    <li><a href="suggestions.html">Suggestions</a> — 12 proposals with impact, effort, dependency and a reversible first step.</li>
+    <li><a href="sources.html">Sources</a> — the verification tiers and every URL used.</li>
+    <li><a href="standings.html">Data tables</a> — the evidence itself, one link per row.</li>
+  </ol>
+
+  <h2>Honest limitations of this release</h2>
+  <ul class="lim">
+    <li>The injury report and schedule are a <b>single-week snapshot</b> and will be stale within days.</li>
+    <li>Depth coverage is <b>5 of 32 clubs</b>; the other 27 are blank on purpose.</li>
+    <li>One transcription error was found by our own gate. A second independent pass (suggestion S-10) is the cheapest remaining trust improvement and has not been done.</li>
+    <li>Three other agent sessions touched this repository concurrently; their divergent boards are preserved on their branches and audited as F-07.</li>
+    <li>No model has been fitted, so no claimed signal has empirical support. They are hypotheses with named tests, which is what a hypothesis is supposed to be.</li>
+  </ul>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

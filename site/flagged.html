@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for Review · X1 NFL Decision System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <div class="brand">X1 <span class="x1">NFL</span> Decision System</div>
+  <div class="tagline">Verified NFL data · original line origination · skill-gated strategy leaderboard · snapshot 2026-11-14 (UTC)</div>
+</header>
+<nav class="main"><a href="index.html">Overview</a><a href="teams.html">Teams</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries & Depth</a><a href="lines.html">X1 Lines</a><a href="strategies.html">Strategies & Leaderboard</a><a href="analysis.html">Executive Summary & Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html" class="active">Flagged for Review</a><a href="sources.html">Sources</a></nav>
+<main>
+  <div class="kicker">Verification</div>
+  <h1>Flagged for Review</h1>
+  <p class="lede">Irregularities, conflicts and unverified values — with sources — for review after the site goes live.</p>
+  <div class="bigflag neutral"><strong>What this page is:</strong> every irregularity, conflict, and unverified value discovered during verification. None of these block the release — they are published here for your review with the exact sources. Rule: nothing is inferred to fill a gap.</div>
+<div class="bigflag"><strong>F1 — Myles Garrett listed on Rams&#x27; Week 10 report</strong><br>Listed (LB, resting) on the official NFL.com Week 10 injury report; a trade path is not in the nflverse trade log — single-source, verify via club roster before modeling.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F2 — Aaron Donald listed on Rams&#x27; Week 10 report</strong><br>Listed (DT, DNP, no status) despite public retirement in March 2024 — either a 2026 return or a data error; verify via club roster.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F3 — Five star-player team changes single-sourced</strong><br>M. Harrison Jr. (HOU, OUT), M. Evans (SF, OUT Achilles), D. Lawrence (CIN), Q. Nelson (SEA, OUT), J. Porter Jr. (DAL), A.J. Brown (NE) appear on new teams in the official report; corroborate with club pages.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F4 — BAL Week 10 QB conflict — UNRESOLVED</strong><br>nflverse lists Tyler Huntley as starter; NFL.com news (Nov 5) reported Huntley out for season (turf toe); no QB on the official W10 report; Lamar Jackson on IR 6–10 weeks. Resolve at Monday inactives (~7:15 PM ET).<br><span class="src"><a href="https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury" target="_blank" rel="noopener">NFL.com news</a></span></div>
+<div class="bigflag"><strong>F5 — MIA Week 10 QB conflict</strong><br>nflverse lists Malik Willis; NFL.com news (Nov 13): Willis to IR, Kyle McCord in line for first start. Treated as McCord pending inactives.<br><span class="src"><a href="https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start" target="_blank" rel="noopener">NFL.com news</a></span></div>
+<div class="bigflag"><strong>F6 — ARI Week 10 QB conflict</strong><br>nflverse lists Gardner Minshew; NFL.com news (Nov 11): Carson Beck to start; Brissett benched in Week 8.<br><span class="src"><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11" target="_blank" rel="noopener">NFL.com news</a></span></div>
+<div class="bigflag"><strong>F7 — Daiyan Henley appears on LAC report despite trade to DEN</strong><br>NFL.com news (Nov 10) says Broncos traded for him; he still appears on the Chargers W10 report — explained by DEN&#x27;s bye; verify the transaction officially.<br><span class="src"><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-tuesday-nov-10" target="_blank" rel="noopener">NFL.com news</a></span></div>
+<div class="bigflag"><strong>F8 — nflverse rosters.csv stale (ends 2019)</strong><br>Official 2026 depth charts cannot be derived from in-repo data; blocks automated deficiency scoring (open question Q3).<br><span class="src"><a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener">nflverse</a></span></div>
+<div class="bigflag"><strong>F9 — nflverse closing_lines.csv stale (2006–2018)</strong><br>Long-run CLV studies limited; per-game market lines in games.csv (2019+) used instead; win_totals.csv ends 2020.<br><span class="src"><a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener">nflverse</a></span></div>
+<div class="bigflag"><strong>F10 — DNP players with no game status</strong><br>Many rows show Did Not Participate with no game status (e.g., BUF Bernard/Oliver, LAR Donald/Nacua/Fiske). Missing status ≠ out — never assume availability from practice rows alone.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F11 — Player name display inconsistency</strong><br>NFL.com shows &#x27;Jacob Hummel&#x27; with player URL slug jake-hummel — recorded as displayed; trivial.<br><span class="src"><a href="https://www.nfl.com/players/jake-hummel/" target="_blank" rel="noopener">NFL.com</a></span></div>
+<div class="bigflag"><strong>F12 — Unusual schedule facts (verified, for awareness)</strong><br>Season opened Wednesday Sept 9, 2026 (second-ever Wednesday Kickoff Game; NE@SEA, NBC); Melbourne game (SF@LA, Week 1) streamed on Netflix per media reports.<br><span class="src"><a href="https://www.nbcsports.com/nfl/news/how-to-watch-new-england-patriots-seattle-seahawks-nfl-opener-live-stream-preview-nbc-peacock-wednesday" target="_blank" rel="noopener">NBC Sports</a></span></div>
+<div class="bigflag"><strong>F13 — 20 of 32 home venues unverified</strong><br>Only venues visible on the official Week 10 schedule page are recorded; the rest are blank by rule — verify from each club&#x27;s official site.<br><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></div>
+<div class="bigflag"><strong>F14 — GitHub Pages deployment quirk</strong><br>This repo&#x27;s Pages is configured (by the owner) in legacy mode: build from the root of main on every push. The sandbox token cannot change Pages settings (API 403), so the dashboard lives under /site/ with a redirect at the root URL. A workflow-based deploy template is stored inert at docs/templates/deploy-pages.workflow.yml for when Pages admin is available (suggestion SG-13).<br><span class="src"><a href="https://karagemop466-tech.github.io/X1/" target="_blank" rel="noopener">live site</a></span></div>
+<section class="panel"><h2 style="margin-top:0">Cross-verification summary (what DID check out)</h2><ul class='tight'><li>Standings: 32/32 teams exact match NFL.com ↔ recomputed nflverse results (W-L-T, PF, PA).</li><li>Week 10 schedule: 14/14 games + 4 byes confirmed on NFL.com and nflverse.</li><li>International slate: 9/9 confirmed on operations.nfl.com and nflverse Neutral-site rows.</li><li>spread_line convention: verified on 5,228 games (99.4% agreement with moneyline favorite).</li><li>Season opener / Super Bowl LXI: Wednesday Sept 9, 2026 (NBC) and Feb 14, 2027 SoFi Stadium.</li></ul></section>
+</main>
+<footer class="site">
+  Data snapshot 2026-11-14 (UTC) · every table row links its official source; blanks are unverified and flagged, never inferred ·
+  built by session arena-a78e0158-x1 · <a href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener">repo</a>
+</footer>
+</body>
+</html>

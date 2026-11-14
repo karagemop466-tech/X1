@@ -7,6 +7,10 @@ name: data-refresh
 # published site is the repository root and Pages rebuilds itself whenever this
 # job commits new data to the branch.
 
+# Owned by session arena/d577959f-x1. Runs the automated official-source
+# collector that feeds the "Live pipeline" section of the site (live/*.html,
+# data/pipeline/*.json). Named so it cannot collide with the other sessions'
+# pages.yml / pipeline.yml / verify.yml workflows.
 on:
   schedule:
     # Injury reports move most on Wed/Thu/Fri and on game mornings.
@@ -17,7 +21,7 @@ on:
     branches: ['**']
     paths:
       - 'pipeline/**'
-      - 'scripts/**'
+      - 'scripts/pipeline/**'
       - '.github/workflows/data-refresh.yml'
 
 concurrency:
@@ -48,10 +52,10 @@ jobs:
 
       - name: Verify row-level source coverage
         continue-on-error: true
-        run: python3 scripts/verify_data.py 2>&1 | tee data/_verify.log
+        run: python3 scripts/pipeline/verify_data.py
 
       - name: Verify the published site
-        run: python3 scripts/verify_site.py
+        run: python3 scripts/pipeline/verify_site.py
 
       - name: Commit refreshed data
         if: always()
@@ -69,7 +73,7 @@ jobs:
             rm -rf _ci
             git fetch origin "${GITHUB_REF_NAME}"
             git reset --mixed "origin/${GITHUB_REF_NAME}"
-            git add data
+            git add data/pipeline
             git status --porcelain
             if git diff --cached --quiet; then
               echo "MARKER: nothing to commit"

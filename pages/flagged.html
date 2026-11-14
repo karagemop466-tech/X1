@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a class="active" href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ FLAGGED FOR REVIEW</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">REVIEW QUEUE</div>
+  <h1>Flagged for review</h1>
+  <p>Unverified items, coverage gaps and irregularities — kept deliberately visible. A flag never asserts a value: it
+  states what is verified, what is unknown, and what would settle it.</p>
+</section>
+<section class="content">
+  <div class="note"><b>13 items · 0 of them block the release.</b> Everything here is either a known
+  limitation with a named fix, or an irregularity recorded so a future reviewer does not mistake it for a scraping bug.</div>
+  <div class="statrow">
+    <div class="stat"><strong>13</strong><span>flags</span></div>
+    <div class="stat"><strong>4</strong><span>high severity</span></div>
+    <div class="stat"><strong>0</strong><span>blocking the release</span></div>
+    <div class="stat"><strong>17</strong><span>open decisions linked</span></div>
+  </div>
+  <div class="tablewrap"><table class="wide"><thead><tr><th>ID</th><th>Severity</th><th>Category</th><th>Item</th><th>What is verified</th><th>What is unknown</th><th>What settles it</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>F-01</b></td><td><span class="pill high">high</span></td><td>Data availability</td><td><b>No league-wide official depth chart exists.</b></td><td>nfl.com publishes team rosters and schedules, but no league-wide starter/backup chart. Individual clubs publish charts on their own sites.</td><td>Whether a club chart is authoritative. Detroit&#x27;s page says &#x27;2026 Unofficial Depth Chart&#x27;; Green Bay&#x27;s says &#x27;Unofficial, Nov. 10, 2026&#x27;.</td><td>Owner decision Q-05 on the acceptable verification tier; or a licensed depth feed.</td><td><a class="src-link" href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener noreferrer">Detroit Lions — &#x27;Unofficial Depth Chart&#x27; ↗</a><br><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-02</b></td><td><span class="pill high">high</span></td><td>Coverage gap</td><td><b>Depth charts collected for 5 of 32 clubs only.</b></td><td>BUF, SEA, DET, GB and BAL charts were read and transcribed row by row on 2026-11-14.</td><td>The remaining 27 clubs. Their depth fields are deliberately blank, not inferred.</td><td>Q-14: extend capture to all 32 clubs under a stated cadence.</td><td><a class="src-link" href="https://www.buffalobills.com/team/depth-chart" target="_blank" rel="noopener noreferrer">Buffalo Bills depth chart (one of five captured) ↗</a><br><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-03</b></td><td><span class="pill high">high</span></td><td>No market data</td><td><b>No odds, prices or historical lines exist in this repository.</b></td><td>Nothing in the repo contains a price. NFL.com articles cite a commercial book with a timestamp, which is a third-party snapshot and not a licensed feed.</td><td>Every fair line, edge, expected value and closing-line value. All are therefore unpublished.</td><td>Q-02: a licensed quote feed with timestamps and limits.</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season" target="_blank" rel="noopener noreferrer">NFL.com picks page (odds attributed to a commercial sportsbook) ↗</a><br><a class="src-link" href="https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-04</b></td><td><span class="pill high">high</span></td><td>No results</td><td><b>No strategy has been scored, and the leaderboard is empty by design.</b></td><td>Validation gates, ranking objective and reward structure are specified and machine-readable in data/gates.json.</td><td>Whether any candidate strategy has skill. Publishing a ranking now would be fabrication.</td><td>A scored test window under Q-12 after Q-01 and Q-02 are resolved.</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener noreferrer">This repository ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-05</b></td><td><span class="pill warn">medium</span></td><td>Correlation</td><td><b>No correlation value is published, and none can be yet.</b></td><td>The estimator, the power calculation and the multiple-comparison correction are documented in docs/methodology/correlation.md.</td><td>Every rho and every joint probability. Detecting rho = 0.10 needs roughly 780+ paired observations before conditioning.</td><td>Q-10: multiple seasons of licensed joint player-market outcomes.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">Current official snapshot — the only verified data held ↗</a><br><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-06</b></td><td><span class="pill warn">medium</span></td><td>Provenance</td><td><b>Sportradar&#x27;s status as exclusive official NFL data distributor is reported, not read off an NFL.com page here.</b></td><td>Multiple independent outlets report the 2015 appointment and 2019 expansion to sportsbook operators.</td><td>The current contractual text in 2026. It may have changed since the sources describing it.</td><td>A primary NFL or Sportradar release for the current term, or legal advice.</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">NFL.com (integrity/education context) ↗</a><br><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-07</b></td><td><span class="pill warn">medium</span></td><td>Parallel sessions</td><td><b>Three other agent sessions worked this repo concurrently and produced divergent coordination boards.</b></td><td>Branches arena/a78e0158-x1, arena/226be516-x1 and arena/6f377170-x1 exist. a78e0158 marked all tasks done while pushing no artifacts.</td><td>Whether those sessions will push content later and overlap with this release.</td><td>Review COORDINATION.md handoff log; merge or reject their PRs on their merits.</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/branches" target="_blank" rel="noopener noreferrer">Repository branches ↗</a><br><a class="src-link" href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-08</b></td><td><span class="pill warn">medium</span></td><td>Transcription</td><td><b>One transcription error was found and fixed during verification.</b></td><td>Arizona was first typed as 2-6; the official page prints 3-6 with PCT .333. ESPN and FOX both list Arizona at 3-6.</td><td>Whether any other row is mistyped but internally consistent. Mechanical checks cannot catch a plausible wrong number.</td><td>A second independent human or agent pass over each table against the live official page.</td><td><a class="src-link" href="https://www.espn.com/nfl/team/_/name/ari/arizona-cardinals" target="_blank" rel="noopener noreferrer">ESPN Cardinals team page (3-6, 4th NFC West) ↗</a><br><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-09</b></td><td><span class="pill warn">medium</span></td><td>Template artefact</td><td><b>The official standings page prints an unrendered template token in its heading.</b></td><td>The page heading literally reads &#x27;$year$ NFL $displayname$ Standings&#x27; at retrieval.</td><td>Nothing material — the table itself is correct and complete. Recorded because it is an irregularity on an official page.</td><td>No action; noted so a future reviewer does not mistake it for a scraping error.</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">NFL.com division standings ↗</a><br><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-10</b></td><td><span class="pill warn">medium</span></td><td>Anomalous listing</td><td><b>Some officially listed players sit oddly on their club&#x27;s depth chart.</b></td><td>Arizona&#x27;s Budda Baker is listed on the Week 10 report (full participation) while the Cardinals chart does not place him; Seattle lists Quenton Nelson at LG; Puka Nacua appears on the Rams&#x27; Week 10 report with no designation while NFL.com news reports a likely IR placement.</td><td>Whether these reflect trades, scheme changes or chart staleness. The cause is not stated by any source read.</td><td>Per-player transaction lookup in the official transaction hub before any of these rows is used as a feature.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">Official Week 10 injury report ↗</a><br><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-11</b></td><td><span class="pill warn">medium</span></td><td>Legal / eligibility</td><td><b>Reward funding, eligibility and jurisdiction are unresolved.</b></td><td>The NFL Gambling Policy caps prizes at $250 in related contests for NFL Personnel and bars personnel from sports-betting operations.</td><td>The owner&#x27;s entity, jurisdiction, funding source and contest terms.</td><td>Q-07 and Q-08, with jurisdiction-specific review.</td><td><a class="src-link" href="https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf" target="_blank" rel="noopener noreferrer">NFL Gambling Policy for NFL Personnel (2022) ↗</a><br><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-13</b></td><td><span class="pill warn">medium</span></td><td>Method</td><td><b>Two independent transcriptions agree, but agreement is not proof.</b></td><td>32 clubs x 7 fields and 345 players x 4 fields were compared against an independently produced second transcription on main; 0 disagreements across 1,604 values.</td><td>Whether both readers made the same systematic error (wrong column, mislabelled header). An agreement test cannot detect a shared blind spot.</td><td>A third independent read, or the league&#x27;s own structured data feed.</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">NFL.com standings ↗</a><br><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-12</b></td><td><span class="pill muted-pill">low</span></td><td>Data decay</td><td><b>Every published table is a snapshot and will go stale.</b></td><td>All tables state a 2026-11-14 retrieval date; the injury report is week-specific and changes daily.</td><td>How quickly a reader will notice. Staleness is certain, not hypothetical.</td><td>Q-17: a refresh cadence plus a visible staleness rule.</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">NFL.com injury report ↗</a><br><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+  <h2>The three that matter most</h2>
+  <ol class="route">
+    <li><b>F-01 — no league-wide official depth chart.</b> The entire “2nd/3rd/4th string” requirement rests on a source the league does not publish.</li>
+    <li><b>F-03 — no market data.</b> Every price-shaped number on this site is absent for one reason: there is no licensed odds feed.</li>
+    <li><b>F-08 — our own transcription error.</b> Arizona was typed 2–6 against an official 3–6. It was caught, corrected and published here rather than quietly fixed.</li>
+  </ol>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

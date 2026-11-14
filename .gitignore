@@ -1,7 +1,19 @@
 __pycache__/
 *.pyc
-.DS_Store
+.ipynb_checkpoints/
+data/cache/
 .venv/
-data/_verify.log
-data/_pipeline_stamp.log
+venv/
+.DS_Store
+
+# Raw research inputs are re-downloaded by scripts/run_pipeline.py and are
+# fingerprinted in data/raw_manifest.json. The one file that cannot be
+# re-downloaded (a hand transcription of an official injury report) is kept.
+data/raw/*
+!data/raw/official_injuries_w10_2026.csv
+_site/
+
+# session arena/d577959f-x1: live-pipeline scratch output
+data/pipeline/_verify.log
+data/pipeline/_pipeline_stamp.log
 _ci/

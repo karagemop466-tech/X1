@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(ROOT, "data")
+DATA_DIR = os.path.join(ROOT, "data", "pipeline")
 REPO_URL = "https://github.com/karagemop466-tech/X1"
 
 SKIP_DIRS = {".git", "__pycache__", "node_modules", ".venv", "site/data"}

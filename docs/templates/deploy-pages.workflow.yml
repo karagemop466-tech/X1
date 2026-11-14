@@ -1,0 +1,43 @@
+name: Deploy X1 site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: [site/**, .github/workflows/deploy-pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify site files exist
+        run: |
+          test -f site/index.html
+          for p in teams schedule injuries lines strategies analysis suggestions flagged sources; do
+            test -f "site/$p.html" || { echo "missing site/$p.html"; exit 1; }
+          done
+          echo "site files ok"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

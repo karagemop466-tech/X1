@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Line origination — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a class="active" href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ LINE ORIGINATION</i></span>
+    <span class="asof">SNAPSHOT 2026-11-14</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">METHOD / 01</div>
+  <h1>Line origination</h1>
+  <p>How to make our own numbers rather than copy the market — and why this page contains no prices.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Why no prices here:</b> a price is only published after a registered model version runs on a frozen,
+  licensed input snapshot and passes every validation gate. Anything else is a guess with a decimal point.</div>
+
+  <h2>The three numbers you must never confuse</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Number</th><th>What it is</th><th>Where it comes from</th><th>Reference</th></tr></thead><tbody>
+<tr><td><b>Fair line</b></td><td>Our probability converted with zero margin, <code>1/p</code></td><td>Our model</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td><b>Market line</b></td><td>A book&#x27;s price, which contains margin</td><td>A licensed, timestamped quote</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">Q-02 ↗</a></td></tr>
+<tr><td><b>Executable line</b></td><td>What we could actually get, at a stated book, limit and time</td><td>Same quote plus limits and rules</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>The pipeline (every strategy, no exceptions)</h2>
+  <pre class="flow">freeze inputs (as-of timestamp)
+   → estimate a full outcome distribution
+   → convert to fair odds (zero margin)
+   → compare with a market quote of the SAME market, side and rules
+   → log the forecast BEFORE kickoff (including passes)
+   → grade after settlement
+   → score only inside the registered test window</pre>
+  <p>A failure at any arrow means the strategy is <b>not scored</b>. Unscored is not the same as losing: it is unknown,
+  and unknown never enters the leaderboard.</p>
+
+  <h2>Probability → price</h2>
+  <div class="formula">
+    <code>fair decimal odds = 1 / p</code>
+    <code>fair American = −100·p/(1−p) if p &gt; 0.5, else +100·(1−p)/p</code>
+    <code>implied probability of a quote = 1 / decimal_odds&nbsp;&nbsp;<i>(always includes margin)</i></code>
+  </div>
+  <p>A spread or total is not a single probability. It needs a <b>distribution</b>:
+  <code>P(home wins by ≥ k)</code> and <code>P(push)</code> come from a modelled margin distribution, not a point
+  estimate. Without a variance term you cannot price a 3.5 against a 3, and that difference is exactly where thin
+  edges live.</p>
+
+  <h2>Seven signal families — hypotheses, not edges</h2>
+  <div class="tablewrap"><table class="compact"><thead><tr><th>ID</th><th>Family</th><th>Hypothesis</th><th>Falsifier</th><th>Data needed</th><th>Status</th><th>Source</th></tr></thead><tbody>
+<tr><td>SIG-01</td><td>Opponent-adjusted efficiency</td><td>Opponent-adjusted, sequentially-updated efficiency predicts spread/total outcomes better than raw yards.</td><td>No out-of-sample log-loss improvement over a neutral baseline.</td><td>Licensed play-by-play</td><td>hypothesis</td><td><a class="src-link" href="https://operations.nfl.com/gameday/technology/nfl-next-gen-stats/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td>SIG-02</td><td>Availability shock</td><td>Officially listed starters being ruled Out moves the fair line by more than the market adjusts, net of margin.</td><td>Effect disappears once the closing quote is used, or fails leave-one-team-out.</td><td>Official injury report (held) + closing quotes (Q-02)</td><td>partially computable - description side held, price side blocked</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td>SIG-03</td><td>Depth fragility</td><td>Clubs already running high snap-share concentration on non-starters degrade faster when another starter is lost.</td><td>Snap-share concentration adds no predictive power conditional on availability.</td><td>Licensed snap counts (Q-04)</td><td>blocked</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
+<tr><td>SIG-04</td><td>Rest and travel</td><td>Short-week and cross-country travel have a small but persistent effect on totals and second-half scoring.</td><td>Effect vanishes under venue fixed effects.</td><td>Official schedule + venues</td><td>hypothesis</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td>SIG-05</td><td>Officiating crew tendency</td><td>Penalty rate and total-spot discipline persist per crew year over year.</td><td>No year-to-year persistence above chance.</td><td>Official game books</td><td>hypothesis</td><td><a class="src-link" href="https://operations.nfl.com/the-rules/nfl-rulebook/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td>SIG-06</td><td>Weather</td><td>Sustained wind suppresses totals more than precipitation does.</td><td>No conditional effect after controlling for team tendencies.</td><td>Venue + archived weather</td><td>hypothesis</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td>SIG-07</td><td>Market movement</td><td>Price movement encodes information about availability before it is official.</td><td>n/a - benchmark discipline: this is a comparison series, never a model input.</td><td>Licensed quote history (Q-02)</td><td>benchmark only</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Availability signal, defined precisely</h2>
+  <pre class="flow">avail_i        ∈ {full, limited, dnp}
+designation_i  ∈ {-, questionable, doubtful, out}
+depth_rank_i   = rank on the club's published chart   (1 = column 1)
+snap_share_i   = trailing 4-game snap share           (licensed data needed)
+
+starter_at_risk = (depth_rank_i == 1) AND (designation_i != "-")
+replacement     = the player printed directly behind i on the same chart line
+deficit_T       = Σ_i w_i · 1[starter_at_risk_i]       (w_i from snap share, never from opinion)</pre>
+  <p><code>replacement</code> is <b>printed</b>, not guessed. That is why depth charts are stored verbatim: a reviewer can
+  check whether “next man up” is a real claim or an invention. Because <code>w_i</code> needs licensed snap data, the
+  deficit number cannot be computed today, and publishing a hand-weighted version would be fabrication wearing a formula.</p>
+
+  <h2>Player props are a different problem</h2>
+  <ol class="route">
+    <li><b>Opportunity model</b> — routes run, targets, carries, red-zone snaps. Opportunity precedes production.</li>
+    <li><b>Role model</b> — probability the player holds the role the line assumes. Depth chart and designation drive this.</li>
+    <li><b>Efficiency model</b> — yards per route or per carry, adjusted for opponent.</li>
+    <li><b>Distribution</b> — count stats are over-dispersed; use a negative-binomial-style model, never a Poisson.</li>
+    <li><b>Push handling</b> — a whole-number line can push, so it has three outcomes and is not a coin flip.</li>
+  </ol>
+
+  <h2>Three bet shapes, three different problems</h2>
+  <div class="tablewrap"><table class=""><thead><tr><th>Shape</th><th>Core difficulty</th><th>What kills it</th><th>Reference</th></tr></thead><tbody>
+<tr><td>Single bet</td><td>One probability, estimated accurately</td><td>Slow, tiny edge; high variance</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">gates ↗</a></td></tr>
+<tr><td>Cross-game parlay</td><td>Legs usually near-independent, so margin compounds: 4.55% hold at one leg → 20.75% at five</td><td>Margin multiplication; no diversification</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation ↗</a></td></tr>
+<tr><td>Same-game parlay / prop combo</td><td>Legs are dependent; a naive product is badly wrong</td><td>Assuming independence; correlated legs are priced punitively</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>What we can and cannot claim today</h2>
+  <table class="kv">
+    <thead><tr><th>Claim</th><th>Status</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Identify officially-listed starters on the week-10 report</td><td><span class="pill ok">Yes</span> — 35 rows derived from official + club sources</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">report ↗</a></td></tr>
+      <tr><td>Say how much a starter's absence is worth in points</td><td><span class="pill high">No</span> — needs licensed snap counts and historical outcomes</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/availability.md" target="_blank" rel="noopener noreferrer">availability method ↗</a></td></tr>
+      <tr><td>Price a fair line</td><td><span class="pill high">No</span> — needs a licensed quote feed to compare against</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">origination method ↗</a></td></tr>
+      <tr><td>Rank strategies by skill</td><td><span class="pill high">No</span> — needs logged forecasts and a scored window</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard method ↗</a></td></tr>
+      <tr><td>State a correlation between two legs</td><td><span class="pill high">No</span> — see <a href="correlation.html">correlation</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation method ↗</a></td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Those “No” rows are the real work queue; they appear as open decisions rather than being papered over.</p>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

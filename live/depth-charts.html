@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depth Charts — X1</title>
+<link rel="stylesheet" href="../assets/x1-live/site.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+  <nav class="navlinks" id="nav"></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="note" style="margin:0 0 12px"><strong>Live pipeline section</strong> —
+  auto-refreshed from official sources every six hours.
+  <a href="index.html">Section summary</a> ·
+  <a href="../index.html">Main dashboard</a></div>
+<div class="page-head">
+    <div class="kicker">Data · Depth charts</div>
+    <h1>Official club depth charts</h1>
+    <p>Starters through 4th string, taken from each club's own website. This is the
+       source that makes the deficiency watch possible: without knowing who is behind a
+       starter, there is no way to say how badly an injury hurts a lineup.</p>
+  </div>
+
+  <div class="note">Depth order is read left to right exactly as each club prints it:
+    column 1 is the starter, column 2 the 2nd string, and so on. Where a club leaves a
+    column empty, that slot simply has no player listed at that depth — which is itself
+    a finding, not a gap to be filled.</div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>Depth chart entries</h2>
+      <span data-badge-for="tbl-dc"></span>
+      <span id="dc-counts"></span>
+    </div>
+    <p class="count" data-meta-for="tbl-dc"></p>
+    <div class="toolbar">
+      <select data-team-for="tbl-dc"><option value="all">All teams</option></select>
+      <input type="search" data-filter-for="tbl-dc" placeholder="Filter by team, position or player…">
+      <label><input type="checkbox" data-flagged-for="tbl-dc"> Flagged only</label>
+      <span class="spacer"></span>
+      <span class="count" data-count-for="tbl-dc"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="data" id="tbl-dc" data-src="../data/pipeline/depth_charts.json" data-autofill="team"
+             data-columns="team_name,unit,position,slot,depth,player" data-page="60"></table>
+    </div>
+    <div class="pager" data-pager-for="tbl-dc"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-head"><h2>Club coverage</h2></div>
+    <p>Which official club sites returned a parsable depth chart on the last run, and
+       which did not. Unreachable clubs are missing from the deficiency watch for that
+       refresh — they are never filled in from another source.</p>
+    <div id="coverage" class="missing">Loading…</div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>Which domain counts as official</h2>
+    <p>The pipeline does not guess club domains. It reads the league's own
+      <a href="https://www.nfl.com/teams/" target="_blank" rel="noopener">teams page &#8599;</a>,
+      which prints a "View Full Site" link to each club's official website, and uses
+      whatever the league publishes there. The verified mapping is stored in
+      <code>data/club_registry.json</code> and refreshed on every run.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  X1 — depth charts from official club sites, starters through 4th string.
+</footer>
+<script src="../assets/x1-live/site.js"></script>
+<script>
+(async function () {
+  try {
+    const d = await (await fetch('../data/pipeline/depth_charts.json', {cache: 'no-store'})).json();
+    const sources = d.per_team_sources || [];
+    const ok = sources.filter(s => s.status === 'ok');
+    const bad = sources.filter(s => s.status !== 'ok');
+    document.getElementById('dc-counts').innerHTML =
+      `<span class="badge ok">${ok.length} clubs covered</span> ` +
+      `<span class="badge bad">${bad.length} unreachable</span>`;
+
+    let html = '<div class="table-wrap"><table class="data"><thead><tr>' +
+      '<th>Club</th><th>Status</th><th>Entries</th><th>Official page</th><th>Last attempt</th>' +
+      '</tr></thead><tbody>';
+    for (const s of sources) {
+      const attempts = s.attempts || [];
+      const last = attempts[attempts.length - 1] || {};
+      let detail = '';
+      if (s.status === 'ok') {
+        detail = `title: ${s.page_title || '(none)'}`;
+      } else {
+        detail = last.error || (last.title !== undefined
+          ? `HTTP ${last.status}, title "${last.title || ''}", ${last.rows} rows parsed`
+          : 'no attempt recorded');
+      }
+      html += `<tr class="${s.status === 'ok' ? '' : 'flagged'}">
+        <td>${s.team_abbrev}</td>
+        <td>${s.status === 'ok' ? '<span class="badge ok">covered</span>'
+                                : '<span class="badge bad">unreachable</span>'}</td>
+        <td class="num">${s.rows}</td>
+        <td>${s.url ? `<a class="src" href="${s.url}" target="_blank" rel="noopener">official site &#8599;</a>`
+                    : '<span class="missing">—</span>'}</td>
+        <td class="wrap-ok">${detail}</td></tr>`;
+    }
+    html += '</tbody></table></div>';
+    document.getElementById('coverage').outerHTML = html;
+  } catch (e) {
+    document.getElementById('coverage').textContent = 'Coverage data not available yet.';
+  }
+})();
+</script>
+</body>
+</html>

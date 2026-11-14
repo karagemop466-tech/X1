@@ -1,0 +1,52 @@
+name: Refresh research data
+
+# The research pipeline re-downloads the source data, refits the model,
+# re-runs the strategy library through the validation gates and regenerates the
+# site.  It never deploys on its own: the refreshed artefacts are published on
+# a branch so a human can review the diff before it reaches the live site.
+
+on:
+  schedule:
+    # Tuesday and Friday mornings: the league files practice reports on
+    # Wednesday-Friday, so a Friday refresh lands after the Sunday injury
+    # designations are published.
+    - cron: "23 6 * * TUE"
+    - cron: "23 6 * * FRI"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run the research pipeline
+        run: python scripts/run_pipeline.py
+      - name: Rebuild the site
+        run: python scripts/build_site.py
+      - name: Open a pull request with the refreshed artefacts
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/data-refresh
+          commit-message: "chore: refresh research data and rebuild site"
+          title: "Refresh research data"
+          body: |
+            Automated refresh of the research pipeline.
+
+            - raw inputs re-downloaded and fingerprinted
+            - model, strategies, gates and leaderboard re-run
+            - site regenerated
+
+            Review the diff on `data/processed/` and `docs/` before merging.
+          delete-branch: true

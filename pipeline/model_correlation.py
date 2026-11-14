@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(ROOT, "data")
+DATA_DIR = os.path.join(ROOT, "data", "pipeline")
 
 # Columns that are identifiers or non-quantitative, never correlated.
 SKIP_COLUMNS = {"Lng", "team_name", "team_abbrev"}

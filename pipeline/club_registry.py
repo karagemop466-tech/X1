@@ -23,7 +23,7 @@ from . import htmlutil as H
 TEAMS_URL = "https://www.nfl.com/teams/"
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data"
 DATA_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "club_registry.json"
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "pipeline", "club_registry.json"
 )
 
 

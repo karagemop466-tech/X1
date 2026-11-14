@@ -1,0 +1,356 @@
+{
+ "dataset": "leaderboard",
+ "title": "Strategy leaderboard",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief (verbatim)",
+  "org": "Project brief"
+ },
+ "columns": [
+  "rank",
+  "strategy_id",
+  "strategy",
+  "market",
+  "graded_bets",
+  "hit_rate",
+  "roi",
+  "mean_clv",
+  "t_stat",
+  "p_value",
+  "skill_gate",
+  "status"
+ ],
+ "rows": [
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-01",
+   "strategy": "Official-scoring side model",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Paper",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-02",
+   "strategy": "Official-stats total model",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Paper",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-03",
+   "strategy": "Injury-driven line adjustment",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Paper",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-04",
+   "strategy": "Deficiency mismatch (OL vs pass rush)",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Paper",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-05",
+   "strategy": "Low-correlation multi-game parlay",
+   "market": "Parlay",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Paper",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-06",
+   "strategy": "Same-game correlation-aware parlay",
+   "market": "Parlay",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Blocked",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-07",
+   "strategy": "Player prop combination",
+   "market": "Player prop combo",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Blocked",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-08",
+   "strategy": "Fade the public on late injury news",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Paper",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-09",
+   "strategy": "Rest-and-situational fade",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Blocked",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "X1 project brief (verbatim, this repo)",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [
+    "no graded results yet: outcome and price feeds are not available from any official source"
+   ],
+   "rank": "",
+   "strategy_id": "ST-10",
+   "strategy": "Closing line value only",
+   "market": "Single bet",
+   "graded_bets": "",
+   "hit_rate": "",
+   "roi": "",
+   "mean_clv": "",
+   "t_stat": "",
+   "p_value": "",
+   "skill_gate": "Not evaluated",
+   "status": "Blocked",
+   "_unverified": [],
+   "_verified": false,
+   "_allow_blank": [
+    "graded_bets",
+    "hit_rate",
+    "mean_clv",
+    "p_value",
+    "rank",
+    "roi",
+    "t_stat"
+   ]
+  }
+ ],
+ "verification": {
+  "rows": 10,
+  "rows_verified": 0,
+  "rows_flagged": 10,
+  "unverified_cells": 0,
+  "flagged_reasons": {
+   "no graded results yet: outcome and price feeds are not available from any official source": 10
+  }
+ },
+ "note": "Ranks and result columns are blank on purpose. A leaderboard that ranks strategies before any result exists would be ranking noise. Once a results feed and a price feed are recorded (Q-02, Q-04) these columns fill from graded data, and the skill gate decides what is allowed to rank at all."
+}

@@ -24,7 +24,8 @@ from . import sources as S
 from .http import fetch
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(ROOT, "data")
+# Namespaced: main-branch data/*.json belongs to the integration session.
+DATA_DIR = os.path.join(ROOT, "data", "pipeline")
 
 TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.S | re.I)
 

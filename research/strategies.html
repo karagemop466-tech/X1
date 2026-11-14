@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategies &middot; X1 - NFL Line Origination &amp; Strategy Lab</title>
+<meta name="description" content="Originated lines, gated strategies, verified sources.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <span class="mark">X1</span>
+      <span class="tag">NFL line origination &amp; strategy lab</span>
+    </div>
+    <nav class="site"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Executive summary</a><a href="requirements.html" class="">Requirements</a><a href="questions.html" class="">Questions &amp; gaps</a><a href="suggestions.html" class="">Suggestions</a><a href="strategies.html" class="active">Strategies</a><a href="leaderboard.html" class="">Leaderboard</a><a href="validation.html" class="">Validation gates</a><a href="lines.html" class="">Originated lines</a><a href="correlations.html" class="">Correlations &amp; luck</a><a href="props.html" class="">Player props</a><a href="injuries.html" class="">Injuries &amp; depth</a><a href="methods.html" class="">Methods</a><a href="sources.html" class="">Sources</a><a href="flagged.html" class="">Flagged for review</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<p class="subtle" style="margin:0 0 4px">Data snapshot 2026-11-14 &middot;
+<a href="../index.html">Main dashboard</a> &middot;
+<a href="../pages/standings.html">Standings</a> &middot;
+<a href="../pages/schedule.html">Week 10 schedule</a> &middot;
+<a href="../pages/availability.html">Official availability</a> &middot;
+<a href="../pages/sources.html">Source register</a></p>
+
+<h1>Strategy catalogue</h1>
+<p class="lede">Sixteen pre-registered strategies across the spread, total and parlay families, each
+evaluated walk-forward from 2015 to 2026. Parameters are re-selected at the start of every season
+using only games that finished earlier, so no season can influence the parameters used inside it.</p>
+
+<div class="card" id="S_wind_under" style="margin:12px 0">
+  <h4>Wind - under <span class="subtle">S_wind_under &middot; total family</span></h4>
+  <p style="margin:4px 0 8px">Bet the under in outdoor games with sustained wind.</p>
+  <div class="grid k4">
+    <div><strong>398</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="pos">+11.53%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>57.0%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>21.6</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge pass">G3 ok</span> <span class="badge pass">G4 ok</span> <span class="badge pass">G5 ok</span> <span class="badge pass">G6 ok</span> <span class="badge pass">G7 ok</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [+2.2%, +20.7%] units/bet
+  &middot; permutation p = 0.0077
+  &middot; failed gates: none</p>
+</div>
+<div class="card" id="S_cold_under" style="margin:12px 0">
+  <h4>Cold weather - under <span class="subtle">S_cold_under &middot; total family</span></h4>
+  <p style="margin:4px 0 8px">Bet the under in outdoor games with cold temperatures.</p>
+  <div class="grid k4">
+    <div><strong>187</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="pos">+2.27%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>52.4%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge pass">G4 ok</span> <span class="badge pass">G5 ok</span> <span class="badge pass">G6 ok</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2025
+  &middot; 95% CI [-11.6%, +16.3%] units/bet
+  &middot; permutation p = 0.3720
+  &middot; failed gates: G3, G7</p>
+</div>
+<div class="card" id="S_fade_favourite" style="margin:12px 0">
+  <h4>Fade the favourite (any line &gt;= threshold) <span class="subtle">S_fade_favourite &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet the underdog whenever the market spread is at least the threshold.</p>
+  <div class="grid k4">
+    <div><strong>199</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="pos">+0.49%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>51.8%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-12.7%, +13.8%] units/bet
+  &middot; permutation p = 0.4788
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_elo_momentum" style="margin:12px 0">
+  <h4>Elo momentum vs market spread <span class="subtle">S_elo_momentum &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet the side whose Elo edge is larger than the market spread implies.</p>
+  <div class="grid k4">
+    <div><strong>1,867</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-0.82%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>50.2%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-5.1%, +3.5%] units/bet
+  &middot; permutation p = 0.6470
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_qb_change" style="margin:12px 0">
+  <h4>Backup starting quarterback (bet against the team) <span class="subtle">S_qb_change &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet against the team whose starting quarterback changed from the previous game.</p>
+  <div class="grid k4">
+    <div><strong>891</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-1.02%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>49.6%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-7.4%, +5.3%] units/bet
+  &middot; permutation p = 0.6245
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="P_fade_under" style="margin:12px 0">
+  <h4>Parlay: underdog + under mid total <span class="subtle">P_fade_under &middot; parlay family</span></h4>
+  <p style="margin:4px 0 8px">Two-leg parlay combining an underdog spread leg with an under total leg.</p>
+  <div class="grid k4">
+    <div><strong>225</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-1.14%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>25.8%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-21.7%, +19.8%] units/bet
+  &middot; permutation p = 0.5439
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_model_spread" style="margin:12px 0">
+  <h4>Originated line vs market spread <span class="subtle">S_model_spread &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet the side where our originated spread differs from the market spread.</p>
+  <div class="grid k4">
+    <div><strong>1,548</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-1.79%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>49.4%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-6.6%, +3.0%] units/bet
+  &middot; permutation p = 0.7693
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_rest_home" style="margin:12px 0">
+  <h4>Rest advantage (home side) <span class="subtle">S_rest_home &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet the home team when it has a rest advantage over the visitor.</p>
+  <div class="grid k4">
+    <div><strong>357</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-2.71%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>48.5%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-13.1%, +7.3%] units/bet
+  &middot; permutation p = 0.7114
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_home_dog" style="margin:12px 0">
+  <h4>Home underdog against the spread <span class="subtle">S_home_dog &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet the home team in every game where the market makes it the underdog.</p>
+  <div class="grid k4">
+    <div><strong>1,191</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-2.73%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>49.1%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-8.1%, +2.7%] units/bet
+  &middot; permutation p = 0.8336
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_under_band" style="margin:12px 0">
+  <h4>Under a total band <span class="subtle">S_under_band &middot; total family</span></h4>
+  <p style="margin:4px 0 8px">Bet the under for market totals inside a chosen band.</p>
+  <div class="grid k4">
+    <div><strong>1,060</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-2.92%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>49.5%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-8.8%, +2.8%] units/bet
+  &middot; permutation p = 0.8395
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_model_total" style="margin:12px 0">
+  <h4>Originated total vs market total <span class="subtle">S_model_total &middot; total family</span></h4>
+  <p style="margin:4px 0 8px">Bet the side where our originated total differs from the market total.</p>
+  <div class="grid k4">
+    <div><strong>2,756</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-3.36%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>49.4%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-6.9%, +0.2%] units/bet
+  &middot; permutation p = 0.9678
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_fade_band" style="margin:12px 0">
+  <h4>Fade the favourite (spread band) <span class="subtle">S_fade_band &middot; spread family</span></h4>
+  <p style="margin:4px 0 8px">Bet the underdog inside a chosen spread band.</p>
+  <div class="grid k4">
+    <div><strong>475</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-3.45%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>49.5%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge pass">G7 ok</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-11.9%, +5.1%] units/bet
+  &middot; permutation p = 0.7911
+  &middot; failed gates: G3, G4, G5, G6</p>
+</div>
+<div class="card" id="S_over_band" style="margin:12px 0">
+  <h4>Over a total band <span class="subtle">S_over_band &middot; total family</span></h4>
+  <p style="margin:4px 0 8px">Bet the over for market totals inside a chosen band.</p>
+  <div class="grid k4">
+    <div><strong>902</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-5.34%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>48.7%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-11.6%, +0.8%] units/bet
+  &middot; permutation p = 0.9529
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="P_same_game" style="margin:12px 0">
+  <h4>Parlay: same-game spread + total edge <span class="subtle">P_same_game &middot; parlay family</span></h4>
+  <p style="margin:4px 0 8px">Same-game parlay combining the model spread and total edges.</p>
+  <div class="grid k4">
+    <div><strong>1,457</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-7.41%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>24.3%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-15.6%, +0.8%] units/bet
+  &middot; permutation p = 0.9630
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="S_dome_under" style="margin:12px 0">
+  <h4>Roof closed - under <span class="subtle">S_dome_under &middot; total family</span></h4>
+  <p style="margin:4px 0 8px">Bet the under in roofed stadiums above a total threshold.</p>
+  <div class="grid k4">
+    <div><strong>390</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-9.46%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>45.9%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-18.9%, +0.2%] units/bet
+  &middot; permutation p = 0.9711
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+<div class="card" id="P_spread_total" style="margin:12px 0">
+  <h4>Parlay: model spread edge + model total edge <span class="subtle">P_spread_total &middot; parlay family</span></h4>
+  <p style="margin:4px 0 8px">Two-leg parlay pairing the strongest spread and total edges of the week.</p>
+  <div class="grid k4">
+    <div><strong>234</strong><div class="subtle">out-of-sample bets</div></div>
+    <div><strong class="neg">-17.11%</strong><div class="subtle">ROI per unit</div></div>
+    <div><strong>21.4%</strong><div class="subtle">hit rate</div></div>
+    <div><strong>0.0</strong><div class="subtle">reward points</div></div>
+  </div>
+  <div class="pill-row"><span class="badge pass">G1 ok</span> <span class="badge pass">G2 ok</span> <span class="badge fail">G3 x</span> <span class="badge fail">G4 x</span> <span class="badge fail">G5 x</span> <span class="badge fail">G6 x</span> <span class="badge fail">G7 x</span> <span class="badge pass">G8 ok</span></div>
+  <p class="subtle" style="margin:8px 0 0">Seasons 2015&ndash;2026
+  &middot; 95% CI [-36.4%, +3.6%] units/bet
+  &middot; permutation p = 0.9535
+  &middot; failed gates: G3, G4, G5, G6, G7</p>
+</div>
+
+</main>
+<footer class="site">
+  X1 - NFL Line Origination &amp; Strategy Lab &middot; data snapshot 2026-11-14 &middot; generated 2026-11-14 by
+  <code>scripts/build_research_site.py</code> &middot;
+  every table row links to its source &middot;
+  <a href="flagged.html">unverified items are flagged, never filled in</a> &middot;
+  <a href="../index.html">back to the main dashboard</a>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
