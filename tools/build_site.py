@@ -53,6 +53,8 @@ NAV = [
     ("research/index.html", "Research lab"),
     ("site/index.html", "Snapshot annex (X1)"),
     ("live/index.html", "Live pipeline"),
+    # Added by session arena/459b17e1-x1: one entry for the second-opinion section.
+    ("hub/index.html", "Section index"),
 ]
 
 
@@ -301,6 +303,9 @@ def page_index():
     Its own headline finding is negative: the results-only model has no betting edge (ROI −6.1%…−2.6%).</p></div></div>
     <div class="blocker"><span class="pill">LIVE</span><div><b><a href="live/index.html">Live pipeline</a></b><p>The only tree that collects <em>club</em> depth charts at scale — 1,813 entries across 31 of 32 clubs —
     with the caveat that clubs label their own charts unofficial. Refreshed on a schedule.</p></div></div>
+    <div class="blocker"><span class="pill">AUDIT</span><div><b><a href="hub/index.html">Section index</a></b><p>What each of the eight sections is canonical for, an independent re-verification of the published
+    tables (1,184 standings cells, 345 injury rows across 28 club tables, 160 designations), the deficiency board by replacement
+    string, and a suggestion board that sets out two or three paths for each choice before anything is built.</p></div></div>
   </div>
   <div class="panel">
     <div class="eyebrow">BEFORE ANY DECISION</div>

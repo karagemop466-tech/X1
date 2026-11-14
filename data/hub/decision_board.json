@@ -1,0 +1,177 @@
+{
+ "dataset": "decision_board",
+ "title": "Suggestion review board — choose the path before implementing anything",
+ "generated_at": "2026-11-14",
+ "verified_by": "arena-459b17e1-x1",
+ "how_to_use": "Each row is a suggestion that has been raised somewhere in this repository. Nothing here is implemented. Every row states the choice to be made, the realistic options with what each costs and what each unlocks, and a recommended path. A row becomes implementable only when its blocking questions are answered and you have marked it approved.",
+ "statuses": {
+  "awaiting-decision": "A real fork in the road. You must pick a path before any code is written.",
+  "ready-to-implement": "The path is obvious and unblocked. Safe to schedule.",
+  "do-not-do-yet": "Cheaper to defer. Doing it now would waste effort or bake in a guess.",
+  "blocked": "Cannot be decided until a named question is answered by someone outside this repo."
+ },
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief (verbatim, this repository)",
+  "org": "Project brief"
+ },
+ "decisions": [
+  {
+   "id": "D-01",
+   "area": "Market data",
+   "suggestion": "Record opening and closing prices for every market we originate, so edge and closing-line value can be measured.",
+   "decision_needed": "Where does the price history come from: a paid/licensed feed, a self-recorded snapshot log, or nothing at all?",
+   "options": [
+    {"id": "A", "path": "Buy or license an odds feed (official or commercial vendor)", "cost": "Money. Contract. Usually the only route to clean historical closing lines.", "risk": "Licence terms may forbid republication; price.", "unlocks": "Edge, CLV, backtests, ROI — the whole leaderboard."},
+    {"id": "B", "path": "Run our own snapshot logger: poll a public sportsbook page on a fixed schedule and store what we see", "cost": "One small scheduled job. No licence fee.", "risk": "Coverage gaps, page changes, and it starts producing history only from the day it starts — it cannot backfill 2015-2025.", "unlocks": "Forward-looking CLV from today onward; no retro backtest."},
+    {"id": "C", "path": "Publish no prices at all and keep the lab a pure league-data model", "cost": "Nothing.", "risk": "The leaderboard can never be graded; strategies stay unranked forever.", "unlocks": "Nothing new."}
+   ],
+   "recommended": "B now, A as soon as a budget exists. B costs almost nothing and starts the clock on the only asset that cannot be bought later (our own recorded history). A is the only route to a retro backtest.",
+   "blocked_by": ["Q-02"],
+   "status": "awaiting-decision"
+  },
+  {
+   "id": "D-02",
+   "area": "Results",
+   "suggestion": "Record official final scores as a first-class dataset so bets can be graded automatically instead of by hand.",
+   "decision_needed": "Do we ingest results from nfl.com directly, or keep transcribing them?",
+   "options": [
+    {"id": "A", "path": "Scheduled collector reads the official scores page every hour on game day and appends to data/", "cost": "One job, similar to the existing data-refresh workflow.", "risk": "Low. The page is official and already fetched by this repo.", "unlocks": "Automatic grading of every bet, which is a hard prerequisite for gates G1-G8."},
+    {"id": "B", "path": "Keep manual transcription", "cost": "Human time every week.", "risk": "Errors, and it violates the 'no manual input' requirement in the brief.", "unlocks": "Nothing new."}
+   ],
+   "recommended": "A. This repo already fetches the official schedule page automatically; extending the same collector to final scores is the smallest possible change and removes the last manual step.",
+   "blocked_by": [],
+   "status": "ready-to-implement"
+  },
+  {
+   "id": "D-03",
+   "area": "Data licensing",
+   "suggestion": "Establish what we are legally allowed to ingest, store and republish before building anything that depends on third-party data.",
+   "decision_needed": "Do we restrict the project to league-published data only, or accept community-mirror data under a named caveat?",
+   "options": [
+    {"id": "A", "path": "League-published sources only. Everything else is left blank and flagged.", "cost": "Slower. Many interesting tables stay empty.", "risk": "Lowest legal exposure.", "unlocks": "A defensible public site."},
+    {"id": "B", "path": "Use community mirrors, but label every such row with the mirror name and repeat it on the Flagged page", "cost": "Nothing.", "risk": "Mirror accuracy and licence terms are unverified; the brief's own rule says such rows must be flagged, not presented as league-verified.", "unlocks": "Historical games, lines and play-by-play for modelling."}
+   ],
+   "recommended": "B, but only under the labelling rule already written into this repo's README — and A for anything we publish as a headline number. The distinction is already implemented; what is missing is your formal sign-off.",
+   "blocked_by": ["Q-01"],
+   "status": "awaiting-decision"
+  },
+  {
+   "id": "D-04",
+   "area": "Depth charts",
+   "suggestion": "Track 2nd, 3rd and 4th string backups so a deficiency is known when a starter is ruled out.",
+   "decision_needed": "Club depth charts are self-published and some are labelled 'Unofficial' by the club itself. Do we treat them as a source, or as a hint?",
+   "options": [
+    {"id": "A", "path": "Treat them as the source and publish the derived starter-to-replacement join", "cost": "Already done: 31 of 32 clubs, 1,813 depth entries, 897 deficiency rows.", "risk": "Clubs update charts at different cadences and some print 'Unofficial'; the derived replacement is only as good as the chart.", "unlocks": "The deficiency board the brief asks for."},
+    {"id": "B", "path": "Show the chart but never derive a replacement from it", "cost": "Loses the actual answer the brief asks for.", "risk": "None.", "unlocks": "Nothing beyond the raw chart."}
+   ],
+   "recommended": "A, with the caveat printed on every row. This session independently re-verified the 66 slots where a starter carries an official Out/Doubtful/Questionable designation: 57 are covered by a 2nd-string replacement, 1 by a 3rd-string, and 8 have no replacement printed on the club chart at all. That last group is the honest limit of what the sources support, and it should be shown as such.",
+   "blocked_by": [],
+   "status": "ready-to-implement"
+  },
+  {
+   "id": "D-05",
+   "area": "Starting quarterbacks",
+   "suggestion": "Name an expected starting quarterback for every game so the model can price the right offence.",
+   "decision_needed": "The NFL publishes no official starting-QB designation. Where may that column come from?",
+   "options": [
+    {"id": "A", "path": "Only from an NFL.com news story that explicitly names the starter", "cost": "Leaves most games blank.", "risk": "Lowest.", "unlocks": "Four of twenty-eight clubs this week: MIA, AZ, CLE, SEA."},
+    {"id": "B", "path": "Infer from the injury report (who is not Out) plus news", "cost": "Nothing.", "risk": "Produces confident-looking values the league never published — exactly what the brief forbids.", "unlocks": "A fuller-looking table that is partly invented."}
+   ],
+   "recommended": "A, and remove the two values that are actively contradicted. This session found the Week 10 table names Kirk Cousins as Minnesota's expected starter while the official Vikings injury report names only Kyler Murray (Out) and Carson Wentz (full participation); it names Tyler Huntley as Baltimore's starter while NFL.com's own news story reports him out for the season. Both are on the Flagged page.",
+   "blocked_by": ["Q-07"],
+   "status": "awaiting-decision"
+  },
+  {
+   "id": "D-06",
+   "area": "Line origination",
+   "suggestion": "Originate our own spreads and totals rather than anchor on a market number.",
+   "decision_needed": "Which model family, and how do we stop it leaking future information?",
+   "options": [
+    {"id": "A", "path": "Walk-forward Poisson points model fitted only on earlier seasons, refit each week", "cost": "Already implemented in research/.", "risk": "Deliberately simple; it will not beat a sharp market on its own.", "unlocks": "An independent number to compare against a market price once one exists."},
+    {"id": "B", "path": "Heavier model (machine learning, player-level, weather, travel)", "cost": "Much larger build and much larger data-licensing surface.", "risk": "Overfitting; and every extra input needs an official source.", "unlocks": "Possibly a better number, unverifiable until a price feed exists."}
+   ],
+   "recommended": "A until a price feed makes B measurable. The annex already measured the v1 results-only model: ROI between -6.1% and -2.6% across thresholds, i.e. no edge — and that negative result is itself the useful finding, because it tells us a naive model is not the answer.",
+   "blocked_by": ["Q-02", "Q-04"],
+   "status": "do-not-do-yet"
+  },
+  {
+   "id": "D-07",
+   "area": "Correlation",
+   "suggestion": "Publish correlation values so parlay and same-game-combination pricing is not built on an independence assumption.",
+   "decision_needed": "Team-season correlations are computable today; game-level correlations are not. Publish the first, or wait for the second?",
+   "options": [
+    {"id": "A", "path": "Publish the 988 team-level correlations now, with n and p, and print the caveat that they are not game-level", "cost": "Already computed.", "risk": "A reader may misuse them as parlay inputs if they skip the caveat.", "unlocks": "Honest, sourced numbers on the site."},
+    {"id": "B", "path": "Wait until play-by-play lets us compute game-level same-game correlation", "cost": "Unknown wait; needs a data licence.", "risk": "The site ships with no correlation numbers at all.", "unlocks": "The quantity a parlay actually needs."}
+   ],
+   "recommended": "A now, with the caveat in the table header rather than a footnote. The annex's game-level measurement already exists for the pair that matters most: same-game spread/total correlation of -0.023 over 1,496 games, and cross-game independence of 0.001 over 12,585 games. Both are small enough that a two-leg -110 parlay break-even arithmetic can be shown honestly.",
+   "blocked_by": ["Q-01"],
+   "status": "ready-to-implement"
+  },
+  {
+   "id": "D-08",
+   "area": "Luck removal",
+   "suggestion": "Make the gates reject a strategy that is merely running hot.",
+   "decision_needed": "How big must the sample be before a result counts?",
+   "options": [
+    {"id": "A", "path": "Fixed minimum: 100 settled out-of-sample bets, plus a bootstrap 95% interval whose lower bound is above zero, plus a sign-flip permutation test at p<=0.05", "cost": "Already implemented as gates G1 and G3.", "risk": "None.", "unlocks": "A leaderboard that cannot be won by variance."},
+    {"id": "B", "path": "Minimum 500 or 1,000 bets", "cost": "Almost nothing passes for a long time.", "risk": "The leaderboard stays empty for seasons.", "unlocks": "Stronger evidence, eventually."}
+   ],
+   "recommended": "A, with the arithmetic printed next to it so the threshold is not arbitrary: a genuinely skilled 55% bettor needs 991 bets before a 95% confidence interval clears zero. Anyone claiming skill on 200 bets is describing luck. Publish that number on the leaderboard page itself.",
+   "blocked_by": [],
+   "status": "ready-to-implement"
+  },
+  {
+   "id": "D-09",
+   "area": "Competition design",
+   "suggestion": "Run the strategy programme as a leaderboard competition with rewards for the top performers.",
+   "decision_needed": "What are the rewards, who funds them, and is that lawful where you are?",
+   "options": [
+    {"id": "A", "path": "Internal-only leaderboard with no monetary reward", "cost": "Nothing.", "risk": "None.", "unlocks": "Ranking, scoring, and a reward formula that is ready to switch on later."},
+    {"id": "B", "path": "Monetary prizes funded by the owner", "cost": "Real money; possibly a gambling-regulation question in your jurisdiction.", "risk": "Legal exposure that this project cannot assess.", "unlocks": "Real competition incentives."}
+   ],
+   "recommended": "A now, and take the reward question to a lawyer before B. The scoring formula is already written (1000 x ROI x min(1, bets/300) x confidence) and works under either option; only the payout leg needs a decision you cannot make from data.",
+   "blocked_by": ["Q-06"],
+   "status": "blocked"
+  },
+  {
+   "id": "D-10",
+   "area": "Site structure",
+   "suggestion": "Consolidate the six parallel site sections into one landing page with category-organised subpages.",
+   "decision_needed": "Merge and delete, or keep every section and add a hub that links them?",
+   "options": [
+    {"id": "A", "path": "Delete the superseded sections and keep one canonical site", "cost": "Breaks existing bookmarks and loses three sessions' independent work.", "risk": "Destroys cross-checks that are currently the only reason we trust the numbers.", "unlocks": "One tidy tree, at the cost of the evidence that agreement between them provides."},
+    {"id": "B", "path": "Keep every branch's section, publish a hub that organises them by category, and mark which is canonical for which question", "cost": "One new directory; no file owned by another session is modified.", "risk": "Some duplication remains visible.", "unlocks": "One front door, and the independent cross-checks stay auditable."}
+   ],
+   "recommended": "B. Two sessions independently transcribed the same official standings page and produced identical numbers for all 32 clubs; that agreement is evidence, and deleting one side would throw it away. This session therefore adds hub/ and touches nothing else. If you later want a single tree, do it as its own decision after you have seen this page.",
+   "blocked_by": [],
+   "status": "ready-to-implement"
+  },
+  {
+   "id": "D-11",
+   "area": "Automation",
+   "suggestion": "Keep the 'no manual input on my part' guarantee: the data must refresh itself.",
+   "decision_needed": "How often should the collector run, and what happens when a fetch fails?",
+   "options": [
+    {"id": "A", "path": "Keep the current schedule (every 6 hours plus game-day passes) and publish the attempt log when a fetch fails", "cost": "Already running.", "risk": "A silent failure would leave a stale table labelled with an old retrieval date.", "unlocks": "Nothing new, but it keeps the existing guarantee."},
+    {"id": "B", "path": "Add a visible freshness banner that goes red when any dataset is older than its expected cadence", "cost": "Small.", "risk": "None.", "unlocks": "Staleness becomes visible instead of inferred."}
+   ],
+   "recommended": "B on top of A. The collector already writes a run log; surfacing its last-success timestamp on the hub is a small change that closes the last gap between 'the data is fresh' and 'the data claims to be fresh'.",
+   "blocked_by": [],
+   "status": "ready-to-implement"
+  },
+  {
+   "id": "D-12",
+   "area": "Evidence grading",
+   "suggestion": "Put an evidence grade on every table row so a reader can tell a league fact from a club self-report from our own derived join.",
+   "decision_needed": "Adopt a four-level badge, or keep prose caveats?",
+   "options": [
+    {"id": "A", "path": "A = league-published, B = club-published, C = derived by a documented join, U = unverified", "cost": "One column on every table and a legend.", "risk": "None.", "unlocks": "Filtering and sorting by trust, which is the whole point of the exercise."},
+    {"id": "B", "path": "Keep prose caveats at the top of each page", "cost": "Nothing.", "risk": "Readers skip them; nothing is filterable.", "unlocks": "Nothing new."}
+   ],
+   "recommended": "A. It is the single cheapest change on this board and it makes every other decision easier to audit, because a reviewer can immediately see which rows depend on which decision above.",
+   "blocked_by": [],
+   "status": "ready-to-implement"
+  }
+ ]
+}

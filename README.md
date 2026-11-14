@@ -45,6 +45,35 @@ All four must pass before anything is published; CI (`.github/workflows/verify.y
 Everything is a snapshot dated **2026-11-14** — 2026 NFL season, Week 10.
 The injury report changes daily, so treat the tables as dated evidence, not a live feed.
 
+---
+
+## The second-opinion section (`hub/`)
+
+A third implementation, published at **`/hub/`**. It exists because four sessions each built a
+complete site in this repository and each one merged; deleting any of them would destroy work that
+is still the only copy of some findings. Rather than add an eighth competing dashboard, this
+section does four things nothing else does:
+
+| Path | Contents |
+|---|---|
+| `hub/index.html` | What each of the eight sections is canonical for |
+| `hub/verification.html` | An **independent** re-verification: the published tables re-fetched from nfl.com on 2026-11-14 and compared cell by cell, with the method published |
+| `hub/findings.html` | Twelve findings, two of which are values an official source actively contradicts |
+| `hub/deficiency.html` | Depth deficiency by replacement string — which of the 2nd, 3rd or 4th string has to replace an out starter |
+| `hub/decisions.html` | Suggestion review board: twelve suggestions, two or three paths each, cost / risk / what it unlocks, and a recommendation |
+
+```bash
+python3 tools/verification/verify_standings.py   # 1,184 cells + 320 arithmetic checks
+python3 tools/verification/verify_schedule.py    # 14 games + 4 byes
+python3 tools/verification/verify_injuries.py    # 345 rows across 28 club tables, 160 designations
+python3 tools/verification/verify_depth.py       # 66 designated starting slots
+python3 tools/hub/build_hub.py                   # regenerate hub/ and re-gate it
+```
+
+Result: **0 data mismatches** in the standings, the slate and the injury report. What does not
+hold up is a small set of values that were inferred rather than read — mostly quarterback names —
+and those are on `hub/findings.html`.
+
 ## Corrections
 
 Corrections are published, not silently applied. The current list is on the site's

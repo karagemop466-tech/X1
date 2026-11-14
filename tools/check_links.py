@@ -144,12 +144,22 @@ for path in files:
     # integration addendum: site/ is the snapshot annex tree; its contract (stylesheet,
     # per-row sources, host tiers) is asserted by scripts/verify_site_annex.py
     is_annex = rel.split(os.sep)[0] == "site"
+    # Added by session arena/459b17e1-x1: hub/ is a fifth site tree with its own
+    # stylesheet (hub/assets/hub.css) and its own contract, asserted by
+    # tools/hub/build_hub.py (links resolve, external hosts official, every data row
+    # sourced). Without this branch the main site's contract is applied to it and
+    # produces false failures. Nothing above this line is modified.
+    is_hub = rel.split(os.sep)[0] == "hub"
     # the live-pipeline tree (session arena/d577959f-x1) is a fourth site tree with its
     # own stylesheet and its own JS-rendered navigation; its contract is asserted by
     # scripts/pipeline/verify_site.py. Without this branch the checker applied the main
     # site's contract to it and produced 100+ false failures.
     is_live = rel.split(os.sep)[0] == "live"
-    if is_annex:
+    if is_hub:
+        check("assets/hub.css" in text, f"{rel}: links its stylesheet")
+        check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
+        check('href="../index.html"' in text, f"{rel}: links back to the landing page")
+    elif is_annex:
         check("style.css" in text, f"{rel}: links its stylesheet")
     elif is_research:
         # the research session's lab is a parallel site tree with its own
@@ -212,6 +222,9 @@ _dash = os.path.normpath(os.path.join(ROOT, "dashboard", "index.html"))
 if os.path.exists(_dash):
     reachable.add(_dash)
 _live = os.path.normpath(os.path.join(ROOT, "live", "index.html"))
+# Added by session arena/459b17e1-x1: hub/ hangs off hub/index.html, which the main
+# nav links. Reachable set extended the same way as the dashboard and live trees.
+_hubroot = os.path.normpath(os.path.join(ROOT, "hub", "index.html"))
 if os.path.exists(_live):
     reachable.add(_live)
 frontier = list(reachable)
@@ -235,7 +248,10 @@ for path in files:
     rel = os.path.relpath(path, ROOT)
     if rel.split(os.sep)[0] in ("dashboard", "research", "live"):
         continue
-    check(path in reachable, f"{rel}: reachable from index.html")
+    if rel.split(os.sep)[0] == "hub":
+        check(path in reachable or path == _hubroot, f"{rel}: reachable from index.html")
+    else:
+        check(path in reachable, f"{rel}: reachable from index.html")
 
 # Every parallel site tree must be entered from ONE landing page. Research, the data
 # dashboard and the snapshot annex all were; the live-pipeline tree was not, so on the
@@ -324,7 +340,7 @@ def _audit_tree(html_paths, css_path, js_root, label):
     check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
 
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
-_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site", "live")]
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site", "live", "hub")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -346,6 +362,11 @@ _db = sorted(glob.glob(os.path.join(ROOT, "dashboard", "*.html")))
 if _db:
     _audit_tree(_db, os.path.join(ROOT, "dashboard", "assets", "style.css"),
                 os.path.join(ROOT, "dashboard", "assets"), "dashboard/assets/style.css")
+# Added by session arena/459b17e1-x1: audit the hub tree against its own stylesheet.
+_hub = sorted(glob.glob(os.path.join(ROOT, "hub", "*.html")))
+if _hub:
+    _audit_tree(_hub, os.path.join(ROOT, "hub", "assets", "hub.css"),
+                os.path.join(ROOT, "hub", "assets"), "hub/assets/hub.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

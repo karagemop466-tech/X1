@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestion review board — X1</title>
+<link rel="stylesheet" href="assets/hub.css"></head>
+<body>
+<aside class="rail"><a class="brand" href="index.html">X1<small>NFL LINE LAB</small></a>
+<nav><div class="grp">SECOND OPINION</div><a href="index.html">Section index</a><a href="verification.html">Verification ledger</a><a href="findings.html">Findings</a><a href="deficiency.html">Depth deficiency</a><div class="grp">DECIDE</div><a class="active" href="decisions.html">Suggestion review board</a></nav></aside>
+<main>
+<div class="eyebrow">X1 · NFL LINE LAB · SNAPSHOT 2026-11-14</div>
+<h1>Suggestion review board</h1>
+<p class="lede">Review every suggestion, compare the paths, pick one — before any code is written.</p>
+
+<div class="note"><b>Nothing on this page has been implemented.</b> That is the point. Each row is a
+suggestion raised somewhere in this repository, restated as a choice with two or three realistic
+paths and the reason to prefer one. The brief asked for a place to review suggestions and choose a
+path before implementing anything — this is it. A row only becomes work when you have marked it
+approved.</div>
+<div class="stats">
+<div class="stat"><b>12</b><span>suggestions on the board</span></div>
+<div class="stat"><b>3</b><span>need your decision<br>a real fork in the road</span></div>
+<div class="stat"><b>7</b><span>unblocked and obvious<br>safe to schedule</span></div>
+<div class="stat"><b>1</b><span>cheaper to defer</span></div>
+<div class="stat"><b>1</b><span>need an outside answer</span></div>
+</div>
+
+<div class="decl" id="D-01">
+<h3>D-01 · Market data <span class="pill prop">choose a path</span></h3>
+<div class="meta">Suggestion: Record opening and closing prices for every market we originate, so edge and closing-line value can be measured.</div>
+<p><b>The decision:</b> Where does the price history come from: a paid/licensed feed, a self-recorded snapshot log, or nothing at all?</p>
+<div class="opt"><b>Option A — Buy or license an odds feed (official or commercial vendor)</b><p class="kv">Cost: Money. Contract. Usually the only route to clean historical closing lines.</p><p class="kv">Risk: Licence terms may forbid republication; price.</p><p class="kv">Unlocks: Edge, CLV, backtests, ROI — the whole leaderboard.</p></div><div class="opt rec"><b>Option B — Run our own snapshot logger: poll a public sportsbook page on a fixed schedule and store what we see</b><p class="kv">Cost: One small scheduled job. No licence fee.</p><p class="kv">Risk: Coverage gaps, page changes, and it starts producing history only from the day it starts — it cannot backfill 2015-2025.</p><p class="kv">Unlocks: Forward-looking CLV from today onward; no retro backtest.</p></div><div class="opt"><b>Option C — Publish no prices at all and keep the lab a pure league-data model</b><p class="kv">Cost: Nothing.</p><p class="kv">Risk: The leaderboard can never be graded; strategies stay unranked forever.</p><p class="kv">Unlocks: Nothing new.</p></div>
+<p><b>Recommended:</b> B now, A as soon as a budget exists. B costs almost nothing and starts the clock on the only asset that cannot be bought later (our own recorded history). A is the only route to a retro backtest.</p>
+<p class="small">Blocked by: Q-02 ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-03">
+<h3>D-03 · Data licensing <span class="pill prop">choose a path</span></h3>
+<div class="meta">Suggestion: Establish what we are legally allowed to ingest, store and republish before building anything that depends on third-party data.</div>
+<p><b>The decision:</b> Do we restrict the project to league-published data only, or accept community-mirror data under a named caveat?</p>
+<div class="opt"><b>Option A — League-published sources only. Everything else is left blank and flagged.</b><p class="kv">Cost: Slower. Many interesting tables stay empty.</p><p class="kv">Risk: Lowest legal exposure.</p><p class="kv">Unlocks: A defensible public site.</p></div><div class="opt rec"><b>Option B — Use community mirrors, but label every such row with the mirror name and repeat it on the Flagged page</b><p class="kv">Cost: Nothing.</p><p class="kv">Risk: Mirror accuracy and licence terms are unverified; the brief&#x27;s own rule says such rows must be flagged, not presented as league-verified.</p><p class="kv">Unlocks: Historical games, lines and play-by-play for modelling.</p></div>
+<p><b>Recommended:</b> B, but only under the labelling rule already written into this repo&#x27;s README — and A for anything we publish as a headline number. The distinction is already implemented; what is missing is your formal sign-off.</p>
+<p class="small">Blocked by: Q-01 ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-05">
+<h3>D-05 · Starting quarterbacks <span class="pill prop">choose a path</span></h3>
+<div class="meta">Suggestion: Name an expected starting quarterback for every game so the model can price the right offence.</div>
+<p><b>The decision:</b> The NFL publishes no official starting-QB designation. Where may that column come from?</p>
+<div class="opt rec"><b>Option A — Only from an NFL.com news story that explicitly names the starter</b><p class="kv">Cost: Leaves most games blank.</p><p class="kv">Risk: Lowest.</p><p class="kv">Unlocks: Four of twenty-eight clubs this week: MIA, AZ, CLE, SEA.</p></div><div class="opt"><b>Option B — Infer from the injury report (who is not Out) plus news</b><p class="kv">Cost: Nothing.</p><p class="kv">Risk: Produces confident-looking values the league never published — exactly what the brief forbids.</p><p class="kv">Unlocks: A fuller-looking table that is partly invented.</p></div>
+<p><b>Recommended:</b> A, and remove the two values that are actively contradicted. This session found the Week 10 table names Kirk Cousins as Minnesota&#x27;s expected starter while the official Vikings injury report names only Kyler Murray (Out) and Carson Wentz (full participation); it names Tyler Huntley as Baltimore&#x27;s starter while NFL.com&#x27;s own news story reports him out for the season. Both are on the Flagged page.</p>
+<p class="small">Blocked by: Q-07 ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-09">
+<h3>D-09 · Competition design <span class="pill blocked">blocked</span></h3>
+<div class="meta">Suggestion: Run the strategy programme as a leaderboard competition with rewards for the top performers.</div>
+<p><b>The decision:</b> What are the rewards, who funds them, and is that lawful where you are?</p>
+<div class="opt rec"><b>Option A — Internal-only leaderboard with no monetary reward</b><p class="kv">Cost: Nothing.</p><p class="kv">Risk: None.</p><p class="kv">Unlocks: Ranking, scoring, and a reward formula that is ready to switch on later.</p></div><div class="opt"><b>Option B — Monetary prizes funded by the owner</b><p class="kv">Cost: Real money; possibly a gambling-regulation question in your jurisdiction.</p><p class="kv">Risk: Legal exposure that this project cannot assess.</p><p class="kv">Unlocks: Real competition incentives.</p></div>
+<p><b>Recommended:</b> A now, and take the reward question to a lawyer before B. The scoring formula is already written (1000 x ROI x min(1, bets/300) x confidence) and works under either option; only the payout leg needs a decision you cannot make from data.</p>
+<p class="small">Blocked by: Q-06 ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-02">
+<h3>D-02 · Results <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Record official final scores as a first-class dataset so bets can be graded automatically instead of by hand.</div>
+<p><b>The decision:</b> Do we ingest results from nfl.com directly, or keep transcribing them?</p>
+<div class="opt rec"><b>Option A — Scheduled collector reads the official scores page every hour on game day and appends to data/</b><p class="kv">Cost: One job, similar to the existing data-refresh workflow.</p><p class="kv">Risk: Low. The page is official and already fetched by this repo.</p><p class="kv">Unlocks: Automatic grading of every bet, which is a hard prerequisite for gates G1-G8.</p></div><div class="opt"><b>Option B — Keep manual transcription</b><p class="kv">Cost: Human time every week.</p><p class="kv">Risk: Errors, and it violates the &#x27;no manual input&#x27; requirement in the brief.</p><p class="kv">Unlocks: Nothing new.</p></div>
+<p><b>Recommended:</b> A. This repo already fetches the official schedule page automatically; extending the same collector to final scores is the smallest possible change and removes the last manual step.</p>
+<p class="small">Blocked by: nothing ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-04">
+<h3>D-04 · Depth charts <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Track 2nd, 3rd and 4th string backups so a deficiency is known when a starter is ruled out.</div>
+<p><b>The decision:</b> Club depth charts are self-published and some are labelled &#x27;Unofficial&#x27; by the club itself. Do we treat them as a source, or as a hint?</p>
+<div class="opt rec"><b>Option A — Treat them as the source and publish the derived starter-to-replacement join</b><p class="kv">Cost: Already done: 31 of 32 clubs, 1,813 depth entries, 897 deficiency rows.</p><p class="kv">Risk: Clubs update charts at different cadences and some print &#x27;Unofficial&#x27;; the derived replacement is only as good as the chart.</p><p class="kv">Unlocks: The deficiency board the brief asks for.</p></div><div class="opt"><b>Option B — Show the chart but never derive a replacement from it</b><p class="kv">Cost: Loses the actual answer the brief asks for.</p><p class="kv">Risk: None.</p><p class="kv">Unlocks: Nothing beyond the raw chart.</p></div>
+<p><b>Recommended:</b> A, with the caveat printed on every row. This session independently re-verified the 66 slots where a starter carries an official Out/Doubtful/Questionable designation: 57 are covered by a 2nd-string replacement, 1 by a 3rd-string, and 8 have no replacement printed on the club chart at all. That last group is the honest limit of what the sources support, and it should be shown as such.</p>
+<p class="small">Blocked by: nothing ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-07">
+<h3>D-07 · Correlation <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Publish correlation values so parlay and same-game-combination pricing is not built on an independence assumption.</div>
+<p><b>The decision:</b> Team-season correlations are computable today; game-level correlations are not. Publish the first, or wait for the second?</p>
+<div class="opt rec"><b>Option A — Publish the 988 team-level correlations now, with n and p, and print the caveat that they are not game-level</b><p class="kv">Cost: Already computed.</p><p class="kv">Risk: A reader may misuse them as parlay inputs if they skip the caveat.</p><p class="kv">Unlocks: Honest, sourced numbers on the site.</p></div><div class="opt"><b>Option B — Wait until play-by-play lets us compute game-level same-game correlation</b><p class="kv">Cost: Unknown wait; needs a data licence.</p><p class="kv">Risk: The site ships with no correlation numbers at all.</p><p class="kv">Unlocks: The quantity a parlay actually needs.</p></div>
+<p><b>Recommended:</b> A now, with the caveat in the table header rather than a footnote. The annex&#x27;s game-level measurement already exists for the pair that matters most: same-game spread/total correlation of -0.023 over 1,496 games, and cross-game independence of 0.001 over 12,585 games. Both are small enough that a two-leg -110 parlay break-even arithmetic can be shown honestly.</p>
+<p class="small">Blocked by: Q-01 ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-08">
+<h3>D-08 · Luck removal <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Make the gates reject a strategy that is merely running hot.</div>
+<p><b>The decision:</b> How big must the sample be before a result counts?</p>
+<div class="opt rec"><b>Option A — Fixed minimum: 100 settled out-of-sample bets, plus a bootstrap 95% interval whose lower bound is above zero, plus a sign-flip permutation test at p&lt;=0.05</b><p class="kv">Cost: Already implemented as gates G1 and G3.</p><p class="kv">Risk: None.</p><p class="kv">Unlocks: A leaderboard that cannot be won by variance.</p></div><div class="opt"><b>Option B — Minimum 500 or 1,000 bets</b><p class="kv">Cost: Almost nothing passes for a long time.</p><p class="kv">Risk: The leaderboard stays empty for seasons.</p><p class="kv">Unlocks: Stronger evidence, eventually.</p></div>
+<p><b>Recommended:</b> A, with the arithmetic printed next to it so the threshold is not arbitrary: a genuinely skilled 55% bettor needs 991 bets before a 95% confidence interval clears zero. Anyone claiming skill on 200 bets is describing luck. Publish that number on the leaderboard page itself.</p>
+<p class="small">Blocked by: nothing ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-10">
+<h3>D-10 · Site structure <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Consolidate the six parallel site sections into one landing page with category-organised subpages.</div>
+<p><b>The decision:</b> Merge and delete, or keep every section and add a hub that links them?</p>
+<div class="opt"><b>Option A — Delete the superseded sections and keep one canonical site</b><p class="kv">Cost: Breaks existing bookmarks and loses three sessions&#x27; independent work.</p><p class="kv">Risk: Destroys cross-checks that are currently the only reason we trust the numbers.</p><p class="kv">Unlocks: One tidy tree, at the cost of the evidence that agreement between them provides.</p></div><div class="opt rec"><b>Option B — Keep every branch&#x27;s section, publish a hub that organises them by category, and mark which is canonical for which question</b><p class="kv">Cost: One new directory; no file owned by another session is modified.</p><p class="kv">Risk: Some duplication remains visible.</p><p class="kv">Unlocks: One front door, and the independent cross-checks stay auditable.</p></div>
+<p><b>Recommended:</b> B. Two sessions independently transcribed the same official standings page and produced identical numbers for all 32 clubs; that agreement is evidence, and deleting one side would throw it away. This session therefore adds hub/ and touches nothing else. If you later want a single tree, do it as its own decision after you have seen this page.</p>
+<p class="small">Blocked by: nothing ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-11">
+<h3>D-11 · Automation <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Keep the &#x27;no manual input on my part&#x27; guarantee: the data must refresh itself.</div>
+<p><b>The decision:</b> How often should the collector run, and what happens when a fetch fails?</p>
+<div class="opt"><b>Option A — Keep the current schedule (every 6 hours plus game-day passes) and publish the attempt log when a fetch fails</b><p class="kv">Cost: Already running.</p><p class="kv">Risk: A silent failure would leave a stale table labelled with an old retrieval date.</p><p class="kv">Unlocks: Nothing new, but it keeps the existing guarantee.</p></div><div class="opt rec"><b>Option B — Add a visible freshness banner that goes red when any dataset is older than its expected cadence</b><p class="kv">Cost: Small.</p><p class="kv">Risk: None.</p><p class="kv">Unlocks: Staleness becomes visible instead of inferred.</p></div>
+<p><b>Recommended:</b> B on top of A. The collector already writes a run log; surfacing its last-success timestamp on the hub is a small change that closes the last gap between &#x27;the data is fresh&#x27; and &#x27;the data claims to be fresh&#x27;.</p>
+<p class="small">Blocked by: nothing ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-12">
+<h3>D-12 · Evidence grading <span class="pill ready">ready to implement</span></h3>
+<div class="meta">Suggestion: Put an evidence grade on every table row so a reader can tell a league fact from a club self-report from our own derived join.</div>
+<p><b>The decision:</b> Adopt a four-level badge, or keep prose caveats?</p>
+<div class="opt rec"><b>Option A — A = league-published, B = club-published, C = derived by a documented join, U = unverified</b><p class="kv">Cost: One column on every table and a legend.</p><p class="kv">Risk: None.</p><p class="kv">Unlocks: Filtering and sorting by trust, which is the whole point of the exercise.</p></div><div class="opt"><b>Option B — Keep prose caveats at the top of each page</b><p class="kv">Cost: Nothing.</p><p class="kv">Risk: Readers skip them; nothing is filterable.</p><p class="kv">Unlocks: Nothing new.</p></div>
+<p><b>Recommended:</b> A. It is the single cheapest change on this board and it makes every other decision easier to audit, because a reviewer can immediately see which rows depend on which decision above.</p>
+<p class="small">Blocked by: nothing ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+<div class="decl" id="D-06">
+<h3>D-06 · Line origination <span class="pill defer">defer</span></h3>
+<div class="meta">Suggestion: Originate our own spreads and totals rather than anchor on a market number.</div>
+<p><b>The decision:</b> Which model family, and how do we stop it leaking future information?</p>
+<div class="opt rec"><b>Option A — Walk-forward Poisson points model fitted only on earlier seasons, refit each week</b><p class="kv">Cost: Already implemented in research/.</p><p class="kv">Risk: Deliberately simple; it will not beat a sharp market on its own.</p><p class="kv">Unlocks: An independent number to compare against a market price once one exists.</p></div><div class="opt"><b>Option B — Heavier model (machine learning, player-level, weather, travel)</b><p class="kv">Cost: Much larger build and much larger data-licensing surface.</p><p class="kv">Risk: Overfitting; and every extra input needs an official source.</p><p class="kv">Unlocks: Possibly a better number, unverifiable until a price feed exists.</p></div>
+<p><b>Recommended:</b> A until a price feed makes B measurable. The annex already measured the v1 results-only model: ROI between -6.1% and -2.6% across thresholds, i.e. no edge — and that negative result is itself the useful finding, because it tells us a naive model is not the answer.</p>
+<p class="small">Blocked by: Q-02, Q-04 ·
+Source of the suggestion: <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md" rel="noopener">project brief</a></p>
+</div>
+
+<footer>Every table row links to the official page it was read from. A value no official
+source publishes is left blank and badged UNVERIFIED — never inferred. Generated
+2026-11-14T18:33:55Z by session arena-459b17e1-x1.
+<p><a href="../index.html">← Back to the main dashboard</a> ·
+<a href="../pages/flagged.html">Flagged for review</a> ·
+<a href="../pages/sources.html">Sources</a></p></footer>
+</main></body></html>
