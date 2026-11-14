@@ -1,0 +1,170 @@
+correlations: 988 pairs
+repo_review: 54 files, 20 flagged
+{
+ "generated_at": "2026-11-14T04:11:43+00:00",
+ "branch_note": "pipeline run",
+ "datasets": {
+  "standings": {
+   "status": "written",
+   "rows": 32
+  },
+  "injuries": {
+   "status": "written",
+   "rows": 345
+  },
+  "team_stats": {
+   "status": "written",
+   "rows": 288
+  },
+  "model_correlation": {
+   "status": "written"
+  },
+  "repo_review": {
+   "status": "written"
+  }
+ },
+ "errors": [
+  {
+   "dataset": "depth_charts",
+   "team": "AZ",
+   "attempts": [
+    {
+     "url": "https://www.azcardinals.com/team/depth-chart",
+     "status": 200,
+     "title": "Arizona Cardinals Team",
+     "tables": 3,
+     "rows": 57
+    },
+    {
+     "url": "https://www.azcardinals.com/team/depth-chart/",
+     "status": 200,
+     "title": "Arizona Cardinals Team",
+     "tables": 3,
+     "rows": 57
+    },
+    {
+     "url": "https://www.azcardinals.com/depth-chart",
+     "error": "HTTP 404 Not Found"
+    }
+   ]
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "DAL",
+   "attempts": [
+    {
+     "url": "https://www.dallascowboys.com/team/depth-chart",
+     "status": 200,
+     "title": "Dallas Cowboys | Official Site of the Dallas Cowboys",
+     "tables": 3,
+     "rows": 58
+    },
+    {
+     "url": "https://www.dallascowboys.com/team/depth-chart/",
+     "status": 200,
+     "title": "Dallas Cowboys | Official Site of the Dallas Cowboys",
+     "tables": 3,
+     "rows": 58
+    },
+    {
+     "url": "https://www.dallascowboys.com/depth-chart",
+     "error": "HTTP 404 Not Found"
+    }
+   ]
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "HOU",
+   "attempts": [
+    {
+     "url": "https://www.houstontexans.com/team/depth-chart",
+     "status": 200,
+     "title": "Depth Chart | Houston Texans - HoustonTexans.com",
+     "tables": 0,
+     "rows": 0
+    },
+    {
+     "url": "https://www.houstontexans.com/team/depth-chart/",
+     "status": 200,
+     "title": "Depth Chart | Houston Texans - HoustonTexans.com",
+     "tables": 0,
+     "rows": 0
+    },
+    {
+     "url": "https://www.houstontexans.com/depth-chart",
+     "error": "HTTP 404 Not Found"
+    }
+   ]
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "SEA",
+   "attempts": [
+    {
+     "url": "https://www.seahawks.com/team/depth-chart",
+     "status": 200,
+     "title": "Seattle Seahawks",
+     "tables": 3,
+     "rows": 62
+    },
+    {
+     "url": "https://www.seahawks.com/team/depth-chart/",
+     "status": 200,
+     "title": "Seattle Seahawks",
+     "tables": 3,
+     "rows": 62
+    },
+    {
+     "url": "https://www.seahawks.com/depth-chart",
+     "error": "HTTP 404 Not Found"
+    }
+   ]
+  },
+  {
+   "dataset": "deficiency",
+   "error": "missing depth chart or injury input"
+  }
+ ],
+ "teams_resolved": [
+  "ATL",
+  "AZ",
+  "BAL",
+  "BUF",
+  "CAR",
+  "CHI",
+  "CIN",
+  "CLE",
+  "DAL",
+  "DEN",
+  "DET",
+  "GB",
+  "HOU",
+  "IND",
+  "JAX",
+  "KC",
+  "LA",
+  "LAC",
+  "LV",
+  "MIA",
+  "MIN",
+  "NE",
+  "NO",
+  "NYG",
+  "NYJ",
+  "PHI",
+  "PIT",
+  "SEA",
+  "SF",
+  "TB",
+  "TEN",
+  "WAS"
+ ],
+ "club_registry": [
+  {
+   "source": "discovered from nfl.com/teams/",
+   "count": 32
+  }
+ ],
+ "finished_at": "2026-11-14T04:12:00+00:00"
+}
+exit=0
