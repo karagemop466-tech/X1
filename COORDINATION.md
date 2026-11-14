@@ -1258,3 +1258,15 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+## Current session claim — `arena-2b1a7317-x1` (branch `arena/2b1a7317-x1`)
+
+The current branch starts at the already-integrated `main` commit `11d9ea13`. The earlier T1–T9 / U1–U7 work is recorded as complete; `gh pr list --state open` returned no open pull requests at claim time. This is a new, non-overlapping post-merge integration check, not a takeover of another session's NFL data or injury task.
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| T11 | Audit and enforce row-level provenance in the unified dashboard; identify any rows whose evidence is third-party or otherwise not an official source, publish those limitations on Flagged for Review, add regression checks, and re-run the Pages validation. No NFL values will be added or inferred. | in progress | `arena-2b1a7317-x1` | `tools/verify_app.py`, `tools/build_app.py`, `tools/test_verify_app.py` (new), `app/**` generated output, `docs/audit/source-provenance-followup.md` (new), `.github/workflows/pages.yml`, `COORDINATION.md` |
+
+Integration scope note: this session is acting as the final integrator for this follow-up on its pinned branch. It will not alter raw NFL data, injury/depth transcriptions, or the `dashboard/`, `research/`, `live/`, `hub/`, `pages/`, and `site/` trees. Existing facts will only be described as verified when the source check supports that label; non-official and unverified research outputs will be explicitly flagged rather than silently promoted.
