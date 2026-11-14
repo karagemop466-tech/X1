@@ -22,28 +22,31 @@ NFL = "https://www.nfl.com"
 # Only the official club domain is listed here, and it is validated by the
 # pipeline at runtime (HTTP status + page title must contain "Depth Chart").
 CLUB_DOMAINS: Dict[str, str] = {
-    "ARI": "arizonacardinals.com",
+    # Verified against https://www.nfl.com/teams/ ("View Full Site" links).
+    # Used only as a fallback: at runtime the pipeline re-reads the league's own
+    # teams page and prefers whatever it publishes there.
+    "ARI": "azcardinals.com",
     "ATL": "atlantafalcons.com",
     "BAL": "baltimoreravens.com",
     "BUF": "buffalobills.com",
-    "CAR": "carolinapanthers.com",
+    "CAR": "panthers.com",
     "CHI": "chicagobears.com",
-    "CIN": "cincinnatibengals.com",
+    "CIN": "bengals.com",
     "CLE": "clevelandbrowns.com",
     "DAL": "dallascowboys.com",
     "DEN": "denverbroncos.com",
     "DET": "detroitlions.com",
-    "GB": "greenbaypackers.com",
+    "GB": "packers.com",
     "HOU": "houstontexans.com",
-    "IND": "indianapoliscolts.com",
-    "JAX": "jacksonvillejaguars.com",
-    "KC": "kansascitychiefs.com",
-    "LV": "lasvegasraiders.com",
+    "IND": "colts.com",
+    "JAX": "jaguars.com",
+    "KC": "chiefs.com",
+    "LV": "raiders.com",
     "LAC": "chargers.com",
-    "LA": "rams.com",
+    "LA": "therams.com",
     "MIA": "miamidolphins.com",
-    "MIN": "minnesotavikings.com",
-    "NE": "newenglandpatriots.com",
+    "MIN": "vikings.com",
+    "NE": "patriots.com",
     "NO": "neworleanssaints.com",
     "NYG": "giants.com",
     "NYJ": "newyorkjets.com",
@@ -51,7 +54,7 @@ CLUB_DOMAINS: Dict[str, str] = {
     "PIT": "steelers.com",
     "SF": "49ers.com",
     "SEA": "seahawks.com",
-    "TB": "tampabaybuccaneers.com",
+    "TB": "buccaneers.com",
     "TEN": "tennesseetitans.com",
     "WAS": "commanders.com",
 }
@@ -68,6 +71,7 @@ DEPTH_CHART_PATHS: List[str] = [
 ]
 
 # ------------------------------------------------------------- league datasets
+CLUB_REGISTRY_URL = f"{NFL}/teams/"
 STANDINGS_URL = f"{NFL}/standings/league/2026/REG"
 INJURIES_URL = f"{NFL}/injuries/"
 INJURY_POLICY_URL = (
@@ -93,13 +97,27 @@ def team_stat_url(side: str, category: str, season: int = 2026) -> str:
     return f"{NFL}/stats/team-stats/{side}/{category}/{season}/reg/all"
 
 
-def club_domain(abbrev: str) -> str:
+def club_domain(abbrev: str, by_slug: Optional[Dict[str, str]] = None, slug: str = "") -> str:
+    """Official club domain for a team abbreviation.
+
+    Prefers the mapping the league itself published (keyed by team slug); falls
+    back to the verified static list.
+    """
+    if slug and by_slug and slug in by_slug:
+        return by_slug[slug]
     return CLUB_DOMAINS.get(ABBREV_ALIASES.get(abbrev, abbrev), "")
 
 
-def depth_chart_url(abbrev: str, path: str = "/team/depth-chart") -> str:
-    domain = club_domain(abbrev)
-    return f"https://www.{domain}{path}" if domain else ""
+def depth_chart_url(
+    abbrev: str,
+    path: str = "/team/depth-chart",
+    by_slug: Optional[Dict[str, str]] = None,
+    slug: str = "",
+) -> str:
+    domain = club_domain(abbrev, by_slug, slug)
+    if not domain:
+        return ""
+    return f"https://{domain}{path}" if domain.startswith("www.") else f"https://www.{domain}{path}"
 
 
 # ------------------------------------------------------- extra probe candidates

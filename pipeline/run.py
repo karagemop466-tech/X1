@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from . import htmlutil as H
-from . import model_correlation, repo_review
+from . import club_registry, model_correlation, repo_review
 from . import parsers as P
 from . import sources as S
 from .http import fetch
@@ -200,14 +200,39 @@ def build_injuries(report, team_index, nicks) -> Optional[Dict[str, Any]]:
     return payload
 
 
-def build_depth_charts(report, team_index) -> Optional[Dict[str, Any]]:
+def build_club_registry(report, team_index) -> Dict[str, str]:
+    """Read the league's own list of official club sites."""
+    result = fetch(S.CLUB_REGISTRY_URL, retries=2)
+    html = result.body if result.ok else None
+    if not result.ok:
+        report["errors"].append(
+            {"dataset": "club_registry", "url": S.CLUB_REGISTRY_URL, "error": result.error}
+        )
+    log: List[Dict[str, object]] = []
+    mapping = club_registry.resolve(html, log)
+    report["club_registry"] = log or [{"source": "fallback list in pipeline/sources.py"}]
+    by_abbrev: Dict[str, str] = {}
+    for abbrev, meta in team_index.items():
+        domain = S.club_domain(abbrev, mapping, meta.get("slug", ""))
+        if domain:
+            by_abbrev[abbrev] = domain
+    return by_abbrev
+
+
+def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     sources_seen: List[Dict[str, Any]] = []
     for abbrev, meta in sorted(team_index.items()):
         attempts: List[Dict[str, Any]] = []
         best = None
         for path in S.DEPTH_CHART_PATHS:
-            url = S.depth_chart_url(abbrev, path)
+            domain = (club_domains or {}).get(abbrev) or S.club_domain(
+                abbrev, None, meta.get("slug", "")
+            )
+            if not domain:
+                attempts.append({"url": None, "error": "no official club domain for this team"})
+                break
+            url = f"https://www.{domain}{path}"
             if not url:
                 attempts.append({"url": None, "error": "no club domain configured"})
                 break
@@ -486,7 +511,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     report["teams_resolved"] = sorted(team_index)
 
     injuries = build_injuries(report, team_index, nicks)
-    depth = build_depth_charts(report, team_index)
+    club_domains = build_club_registry(report, team_index)
+    depth = build_depth_charts(report, team_index, club_domains)
     stats = build_team_stats(report, team_index)
     deficiency = build_deficiency(report, depth, injuries, team_index)
 

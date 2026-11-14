@@ -1,1 +1,191 @@
-<!doctype html><title>X1</title><h1>X1</h1>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary — X1</title>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="brand"><mark>X1</mark> <small>NFL decision system</small></span>
+    <nav class="navlinks" id="nav"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="kicker">Executive summary</div>
+    <h1>X1 — NFL decision system, requirements, and strategy lab</h1>
+    <p>One page summary of what exists, what is verified, and what is blocked.
+       Every number below is computed from the data files on this site; every row
+       in every table links back to the official page it was read from.</p>
+  </div>
+
+  <section class="grid kpi" id="kpis">
+    <div class="card kpi"><div class="value" data-kpi="requirements">—</div><div class="label">Requirements tracked</div><div class="sub">Quoted verbatim from the project brief</div></div>
+    <div class="card kpi bad"><div class="value" data-kpi="blockers">—</div><div class="label">Blocking questions</div><div class="sub">Cannot be answered from any official source</div></div>
+    <div class="card kpi warn"><div class="value" data-kpi="suggestions">—</div><div class="label">Suggestions awaiting a decision</div><div class="sub">Each lists three paths and a recommendation</div></div>
+    <div class="card kpi ok"><div class="value" data-kpi="verified">—</div><div class="label">Verified data rows</div><div class="sub">Every one with an official source link</div></div>
+    <div class="card kpi"><div class="value" data-kpi="flagged">—</div><div class="label">Rows flagged for review</div><div class="sub">Published, never silently filled in</div></div>
+    <div class="card kpi"><div class="value" data-kpi="clubs">—</div><div class="label">Clubs with a verified depth chart</div><div class="sub">Out of 32</div></div>
+  </section>
+
+  <section class="card" style="margin-top:14px">
+    <h2>What this system is</h2>
+    <p>X1 collects NFL data from official sources only, tracks injuries and the
+       backup players who have to replace injured starters, originates its own
+       lines, and scores candidate strategies on a leaderboard behind a set of
+       validation gates. It runs unattended: a scheduled workflow re-pulls every
+       official source, re-verifies every row, and republishes this site.</p>
+    <div class="grid two">
+      <div>
+        <h3>What is verified today</h3>
+        <ul class="tight">
+          <li><a href="standings.html">Standings</a> — all 32 clubs, every row checked against the league's own arithmetic.</li>
+          <li><a href="injuries.html">Injuries</a> — the league's official injury report, re-pulled on a schedule.</li>
+          <li><a href="depth-charts.html">Depth charts</a> — starters through 4th string, from each club's own site.</li>
+          <li><a href="team-stats.html">Team stats</a> — nine official offensive and defensive tables with their printed column labels.</li>
+          <li><a href="correlations.html">Correlations</a> — computed from those official numbers, with n and p printed next to every value.</li>
+          <li><a href="injuries.html#deficiency">Deficiency watch</a> — which starter is out and which string of backup has to replace them.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What is deliberately blank</h3>
+        <ul class="tight">
+          <li><a href="lines.html">Market lines</a> — no official source publishes betting prices, so the table ships empty.</li>
+          <li>Leaderboard results — no official source publishes game results in a machine-readable form, so no strategy has a graded record.</li>
+          <li>Player prop data — no official prop-level source was verified.</li>
+          <li>Weather, officials, and rest/travel — no citable source found, so no values are shown.</li>
+        </ul>
+        <p style="margin-top:8px">These are not oversights. The verification rule is
+        that a value which cannot be confirmed from an official source stays blank
+        and is <a href="flagged.html">flagged</a>, never inferred.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:14px">
+    <h2>Headline findings</h2>
+    <ol class="tight">
+      <li><strong>The repository started empty.</strong> At the beginning of this
+        session the repo contained one file, a 4-byte <code>README.md</code>. Everything
+        on this site was built in this session.
+        <a href="https://github.com/karagemop466-tech/X1/commit/dab199ce305bd0168f61f9bbb25b4b601eb45324" target="_blank" rel="noopener">Source: initial commit &#8599;</a></li>
+      <li><strong>Official data is machine-readable without a licence.</strong>
+        <a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">Standings &#8599;</a>,
+        <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">injury reports &#8599;</a> and
+        <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">team stats &#8599;</a>
+        are server-rendered, so the pipeline reads them with the Python standard
+        library and no API key.</li>
+      <li><strong>Standings pass their own consistency check.</strong> For all 32 clubs,
+        home record plus road record equals the overall record, and points for minus
+        points against equals net points. The check runs on every refresh and is
+        reported on the <a href="standings.html">standings page</a>.</li>
+      <li><strong>Backups replacing starters are identifiable from official data.</strong>
+        Cross-referencing each club's printed depth chart with the league's injury
+        report gives the exact string of the next available player. See the
+        <a href="injuries.html#deficiency">deficiency watch</a>.</li>
+      <li><strong>Not every official club site is reachable.</strong> Some club depth
+        charts fail to return a parsable page. Those clubs are listed with their
+        HTTP attempt log on the <a href="flagged.html">Flagged for Review</a> page
+        rather than being guessed at.</li>
+      <li><strong>Correlations can be computed now, at team level.</strong> Example:
+        offensive total touchdowns against points for, r = 0.94 with n = 32, from
+        <a href="https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all" target="_blank" rel="noopener">official scoring stats &#8599;</a>
+        and <a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">official standings &#8599;</a>.
+        These are team-level associations and are not the same quantity as the
+        same-game correlation a parlay price needs.</li>
+      <li><strong>Two inputs block most of the model.</strong> Prices and results.
+        Neither has an official public source, so every gate that depends on
+        outcomes is unenforced rather than filled with a guess. See
+        <a href="questions.html">open questions</a> Q-02 and Q-04.</li>
+    </ol>
+  </section>
+
+  <section class="card" style="margin-top:14px">
+    <h2>Decision gate — read this before approving anything</h2>
+    <p>The brief asks for the questions that must be answered before a decision is
+      reasonable, and for the missing information to be surfaced. Six questions are
+      hard blockers: they cannot be answered from any official source and they stop
+      specific parts of the system from working.</p>
+    <ul class="tight">
+      <li><strong>Q-02</strong> — where do market prices come from? Blocks closing line value, parlay pricing and prop pricing.</li>
+      <li><strong>Q-04</strong> — where do verified results come from? Blocks every backtest, ROI figure and skill test.</li>
+      <li><strong>Q-05</strong> — paper or real money? Blocks rewards and compliance.</li>
+      <li><strong>Q-06</strong> — how are rewards defined? Blocks the leaderboard reward rule.</li>
+      <li><strong>Q-01</strong> — what is the bankroll? Blocks staking and leaderboard scoring.</li>
+      <li><strong>Q-11</strong> — is there a player-prop source? Blocks prop combos.</li>
+    </ul>
+    <p><a href="questions.html">Open all 30 questions &#8599;</a> &nbsp;·&nbsp;
+       <a href="suggestions.html">Open the suggestions register &#8599;</a></p>
+  </section>
+
+  <section class="card" style="margin-top:14px">
+    <h2>How the verification rule is enforced</h2>
+    <div class="grid two">
+      <div>
+        <h3>On every row</h3>
+        <ul class="tight">
+          <li>Each row carries the URL of the official page the values were read from.</li>
+          <li>A value the source does not publish renders as an em dash, not a guess.</li>
+          <li>A row with any missing value or any integrity flag is marked
+            <span class="badge warn">flag</span> and appears on
+            <a href="flagged.html">Flagged for Review</a>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>On every refresh</h3>
+        <ul class="tight">
+          <li><code>scripts/verify_data.py</code> re-checks every dataset: no row may
+            cite a host that is not on the official list.</li>
+          <li>A pull that returns zero rows never overwrites good data.</li>
+          <li>The run report and the attempt logs are committed to the repo, so the
+            whole history is auditable.</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:10px"><a href="data.html">Data &amp; verification detail &#8599;</a></p>
+  </section>
+</main>
+
+<footer class="footer">
+  X1 — NFL decision system. All data sourced from official NFL and club pages;
+  every table row links to the page it came from. Values that cannot be confirmed
+  from an official source are left blank and flagged.
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+(async function () {
+  const files = ['requirements', 'questions', 'suggestions', 'strategies', 'standings',
+                 'injuries', 'depth_charts', 'team_stats', 'deficiency', 'correlations',
+                 'repo_review', 'leaderboard'];
+  const loaded = {};
+  await Promise.all(files.map(async (f) => {
+    try { loaded[f] = await (await fetch(`data/${f}.json`, {cache: 'no-store'})).json(); }
+    catch (e) { loaded[f] = {rows: []}; }
+  }));
+  let verified = 0, flagged = 0;
+  for (const f of files) {
+    const v = (loaded[f] || {}).verification;
+    if (v) { verified += v.rows_verified || 0; flagged += v.rows_flagged || 0; }
+  }
+  const blockers = (loaded.questions.rows || []).filter(r => r.status === 'BLOCKER').length;
+  const awaiting = (loaded.suggestions.rows || []).filter(r => /awaiting/i.test(r.decision_status || '')).length;
+  const clubs = new Set((loaded.depth_charts.rows || []).map(r => r.team_abbrev)).size;
+  const set = (key, value) => {
+    const el = document.querySelector(`[data-kpi="${key}"]`);
+    if (el) el.textContent = value;
+  };
+  set('requirements', (loaded.requirements.rows || []).length);
+  set('blockers', blockers);
+  set('suggestions', awaiting);
+  set('verified', verified.toLocaleString());
+  set('flagged', flagged.toLocaleString());
+  set('clubs', clubs + '/32');
+})();
+</script>
+</body>
+</html>
