@@ -7,7 +7,7 @@ on:
   schedule:
     # Injury reports move most on Wed/Thu/Fri and on game mornings.
     - cron: "17 11,15,19,23 * * *"   # every 6 hours (UTC)
-    - cron: "42 12,16 * 3-11,0"      # extra pass on game days (Sun/Mon/Thu)
+    - cron: "42 12,16 * * 0,1,4"   # extra pass on game days (Sun/Mon/Thu)
   workflow_dispatch:
     inputs:
       skip_pages:
