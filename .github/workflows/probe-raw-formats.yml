@@ -23,37 +23,56 @@ jobs:
           curl -sS -A "$UA" -L --max-time 120 \
             "https://www.nfl.com/schedules/2026/by-week/week-10" -o /tmp/sched.html
           curl -sS -A "$UA" -L --max-time 120 \
-            "https://www.nfl.com/standings/league/2026/REG" -o /tmp/stand.html
+            "https://www.nfl.com/schedules/2026/by-week/week-3" -o /tmp/sched3.html
           curl -sS -A "$UA" -L --max-time 120 \
             "https://www.nfl.com/scores/" -o /tmp/scores.html
 
           python3 - <<'PY' > data/nfl/_debug/schedule_analysis.txt 2>&1
           import re, json
 
-          for name in ("sched", "stand", "scores"):
-              h = open(f"/tmp/{name}.html", encoding="utf-8", errors="replace").read()
-              print(f"===== {name} bytes={len(h)}")
-              anchors = re.findall(r'href="(/games/[^"]+)"', h)
-              uniq = sorted(set(anchors))
-              print(f"  /games/ anchors: {len(anchors)} unique={len(uniq)}")
-              for a in uniq:
-                  print(f"    {a}")
-              # JSON game object shape
-              objs = re.findall(
-                  r'\{"Description":"([^"]*)","Title":"([^"]*)","StartTime":"([^"]*)",'
-                  r'"EndTime":"([^"]*)","GameTerritory":"([^"]*)","GameId":"([^"]*)",'
-                  r'"Week":"([^"]*)"', h)
-              print(f"  json game objects: {len(objs)}")
-              ids = sorted(set(o[5] for o in objs))
-              print(f"  unique game ids: {len(ids)}")
-              for o in objs[:4]:
-                  print(f"    {o[1]} | {o[2]} | id={o[5]} | week={o[6]}")
-              # any other embedded arrays mentioning GameId
-              print(f"  'GameId' occurrences: {h.count('GameId')}")
-              print(f"  'DmaCodes' occurrences: {h.count('DmaCodes')}")
-              for marker in ("nationalGames=[", "Games=[", "gamedata", "__NEXT_DATA__", "window.__NUXT__"):
-                  print(f"  marker {marker!r}: {h.count(marker)}")
-              print()
+          h = open("/tmp/sched.html", encoding="utf-8", errors="replace").read()
+
+          print("=== DmaCodes context (schedule page) ===")
+          i = h.find("DmaCodes")
+          print(repr(h[max(0,i-1200):i+200]))
+
+          print()
+          print("=== JSON objects containing DmaCodes ===")
+          # any object with DmaCodes
+          for m in list(re.finditer(r"DmaCodes", h))[:2]:
+              start = h.rfind("{", max(0, m.start()-2000), m.start())
+              print(repr(h[start:m.start()+300])[:1500])
+              print("---")
+
+          print()
+          print("=== rendered row around a /games/ anchor ===")
+          m = re.search(r'href="(/games/commanders-at-giants-2026-reg-10)"', h)
+          if m:
+              seg = h[max(0,m.start()-4000):m.start()+4000]
+              text = re.sub(r"<[^>]+>", " ", seg)
+              text = re.sub(r"\s+", " ", text)
+              print(text[:2000])
+
+          print()
+          print("=== unique /games/ anchors for week 3 ===")
+          h3 = open("/tmp/sched3.html", encoding="utf-8", errors="replace").read()
+          for a in sorted(set(re.findall(r'href="(/games/[^"]+)"', h3))):
+              print("   ", a)
+
+          print()
+          print("=== scores page: does it carry final scores in markup? ===")
+          hs = open("/tmp/scores.html", encoding="utf-8", errors="replace").read()
+          for marker in ("Final", "FINAL", "Hidden Score", "data-testid=\"game-status\""):
+              print(f"  {marker}: {hs.count(marker)}")
+          m = re.search(r'href="(/games/commanders-at-giants-2026-reg-10)"', hs)
+          if m:
+              seg = hs[max(0,m.start()-6000):m.start()+6000]
+              text = re.sub(r"<[^>]+>", " ", seg)
+              text = re.sub(r"\s+", " ", text)
+              print("  TEXT:", text[:1200])
+          print()
+          print("=== standings nationalGames: all objects, deduped ===")
+          st = open("/tmp/stand.html", encoding="utf-8", errors="replace").read() if False else None
           PY
           cat data/nfl/_debug/schedule_analysis.txt
           exit 0
