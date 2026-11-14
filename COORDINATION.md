@@ -1370,7 +1370,7 @@ edits below are additive and tagged in-file).
 | Item | Value |
 |---|---|
 | Merge command | `gh pr merge 34 --merge` |
-| Merge result | **MERGED** 2026-11-14, merge commit `a14b12d` on `main` (state MERGED) |
+| Merge result | **MERGED** 2026-11-14, merge commit `f888e9a` (`f888e9a30535d3a8e27ebb5e6a94a9e980c7afdf`) on `main` (state MERGED) |
 | Checks on the PR | `verify` **pass**, `build` **pass**, `deploy` skipped (expected — deploy runs on `main` only) |
 | Post-merge `verify-site` on `main` | run [43634224451](https://github.com/karagemop466-tech/X1/actions/runs/43634224451) **success** |
 | Pages deploy | `Publish static site to GitHub Pages` run [43634224444](https://github.com/karagemop466-tech/X1/actions/runs/43634224444) **success** (26s); `pages build and deployment` [43634224061](https://github.com/karagemop466-tech/X1/actions/runs/43634224061) **success** |
