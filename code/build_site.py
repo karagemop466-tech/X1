@@ -505,7 +505,7 @@ def p_sources():
     def render(doc):
         with open(os.path.join(ROOT, doc), encoding="utf-8") as fh:
             return md_to_html(fh.read())
-    body = ('<section class="panel">' + render("docs/sources/sources.md") + "</section>"
+    body = ('<section class="panel">' + render("docs/annex/sources-snapshot.md") + "</section>"
             '<section class="panel"><h2 style="margin-top:0">Downloadable data</h2>'
             "<ul class='tight'>"
             + "".join(f"<li><code>{f}</code> — <a href='data/{f}' target='_blank' rel='noopener'>open CSV</a></li>"
