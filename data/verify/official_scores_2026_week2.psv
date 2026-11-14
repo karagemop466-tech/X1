@@ -1,0 +1,20 @@
+# Official 2026 NFL regular-season results, Week 2 — transcribed line by line from
+# https://www.nfl.com/scores/2026/week-2 (the league's official scores page) on 2026-11-14.
+# First-listed club on the official page is the away club; "Winner Indicator" marks the winner.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL
+lions-at-bills-2026-reg-2|2|DET|31|BUF|41|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/lions-at-bills-2026-reg-2
+panthers-at-falcons-2026-reg-2|2|CAR|34|ATL|3|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/panthers-at-falcons-2026-reg-2
+saints-at-ravens-2026-reg-2|2|NO|24|BAL|17|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/saints-at-ravens-2026-reg-2
+vikings-at-bears-2026-reg-2|2|MIN|9|CHI|3|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/vikings-at-bears-2026-reg-2
+bengals-at-texans-2026-reg-2|2|CIN|20|HOU|6|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/bengals-at-texans-2026-reg-2
+steelers-at-patriots-2026-reg-2|2|PIT|3|NE|20|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/steelers-at-patriots-2026-reg-2
+packers-at-jets-2026-reg-2|2|GB|20|NYJ|17|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/packers-at-jets-2026-reg-2
+browns-at-buccaneers-2026-reg-2|2|CLE|23|TB|19|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/browns-at-buccaneers-2026-reg-2
+eagles-at-titans-2026-reg-2|2|PHI|24|TEN|20|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/eagles-at-titans-2026-reg-2
+jaguars-at-broncos-2026-reg-2|2|JAX|13|DEN|20|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/jaguars-at-broncos-2026-reg-2
+raiders-at-chargers-2026-reg-2|2|LV|26|LAC|14|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/raiders-at-chargers-2026-reg-2
+seahawks-at-cardinals-2026-reg-2|2|SEA|31|AZ|7|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/seahawks-at-cardinals-2026-reg-2
+commanders-at-cowboys-2026-reg-2|2|WAS|20|DAL|37|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/commanders-at-cowboys-2026-reg-2
+dolphins-at-49ers-2026-reg-2|2|MIA|13|SF|35|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/dolphins-at-49ers-2026-reg-2
+colts-at-chiefs-2026-reg-2|2|IND|30|KC|33|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/colts-at-chiefs-2026-reg-2
+giants-at-rams-2026-reg-2|2|NYG|6|LAR|28|final|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/games/giants-at-rams-2026-reg-2

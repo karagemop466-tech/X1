@@ -1,0 +1,19 @@
+# Official 2026 NFL regular-season results, Week 8 — transcribed line by line from
+# https://www.nfl.com/scores/2026/week-8 (the league's official scores page) on 2026-11-14.
+# First-listed club on the official page is the away club; "Winner Indicator" marks the winner.
+# Byes this week (from the official page): HOU, NO, NYG, SF.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL
+panthers-at-packers-2026-reg-8|8|CAR|19|GB|27|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/panthers-at-packers-2026-reg-8
+ravens-at-bills-2026-reg-8|8|BAL|10|BUF|36|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/ravens-at-bills-2026-reg-8
+titans-at-bengals-2026-reg-8|8|TEN|36|CIN|43|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/titans-at-bengals-2026-reg-8
+cardinals-at-cowboys-2026-reg-8|8|AZ|33|DAL|30|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/cardinals-at-cowboys-2026-reg-8
+vikings-at-lions-2026-reg-8|8|MIN|15|DET|19|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/vikings-at-lions-2026-reg-8
+colts-at-jaguars-2026-reg-8|8|IND|7|JAX|42|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/colts-at-jaguars-2026-reg-8
+raiders-at-jets-2026-reg-8|8|LV|38|NYJ|33|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/raiders-at-jets-2026-reg-8
+browns-at-steelers-2026-reg-8|8|CLE|6|PIT|27|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/browns-at-steelers-2026-reg-8
+falcons-at-buccaneers-2026-reg-8|8|ATL|0|TB|16|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/falcons-at-buccaneers-2026-reg-8
+chargers-at-rams-2026-reg-8|8|LAC|9|LAR|24|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/chargers-at-rams-2026-reg-8
+chiefs-at-broncos-2026-reg-8|8|KC|24|DEN|28|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/chiefs-at-broncos-2026-reg-8
+patriots-at-dolphins-2026-reg-8|8|NE|24|MIA|19|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/patriots-at-dolphins-2026-reg-8
+eagles-at-commanders-2026-reg-8|8|PHI|10|WAS|27|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/eagles-at-commanders-2026-reg-8
+bears-at-seahawks-2026-reg-8|8|CHI|34|SEA|17|final|https://www.nfl.com/scores/2026/week-8|https://www.nfl.com/games/bears-at-seahawks-2026-reg-8
