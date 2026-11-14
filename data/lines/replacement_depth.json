@@ -1,0 +1,1383 @@
+{
+ "dataset": "replacement_depth",
+ "title": "Replacement depth \u2014 2nd/3rd/4th-string replacements tracked by position",
+ "generated_at": "2026-11-14T20:04:04Z",
+ "source": {
+  "url": "https://www.nfl.com/teams/",
+  "label": "Official club depth charts + official injury reports (Week 10, 2026-11-14)",
+  "organization": "NFL clubs (depth charts) + NFL (injury reports)",
+  "retrieved_at": "2026-11-14T20:04:04Z",
+  "official": true,
+  "note": "Depth order is read left to right exactly as each club prints its chart."
+ },
+ "columns": [
+  [
+   "replacement_depth",
+   "int|null",
+   "2, 3 or 4 = club-printed string of the replacement; blank when the club chart lists none"
+  ],
+  [
+   "depth_drop",
+   "int|null",
+   "Strings dropped from starter to replacement"
+  ],
+  [
+   "severity",
+   "int",
+   "1 = Questionable, 2 = Doubtful, 3 = Out (official game status)"
+  ]
+ ],
+ "rows": [
+  {
+   "team": "ATL",
+   "unit": "Defense",
+   "position": "ILB",
+   "starter": "Divine Deablo",
+   "starter_status": "Doubtful",
+   "replacement": "Christian Harris",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 2,
+   "source_depth_chart": "https://www.atlantafalcons.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "ATL",
+   "unit": "Special Teams",
+   "position": "PR",
+   "starter": "Zachariah Branch",
+   "starter_status": "Out",
+   "replacement": "Olamide Zaccheaus",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.atlantafalcons.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "AZ",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Max Melton",
+   "starter_status": "Questionable",
+   "replacement": "Kei'Trel Clark",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.azcardinals.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "AZ",
+   "unit": "Defense",
+   "position": "NT",
+   "starter": "Roy Lopez",
+   "starter_status": "Questionable",
+   "replacement": "Andrew Billings",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.azcardinals.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "AZ",
+   "unit": "Defense",
+   "position": "S",
+   "starter": "Andrew Wingard",
+   "starter_status": "Questionable",
+   "replacement": "Kitan Crawford",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.azcardinals.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "AZ",
+   "unit": "Offense",
+   "position": "C",
+   "starter": "Hjalte Froholdt",
+   "starter_status": "Out",
+   "replacement": "Kingsley Eguakun",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.azcardinals.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "AZ",
+   "unit": "Offense",
+   "position": "LT",
+   "starter": "Jayden Williams",
+   "starter_status": "Questionable",
+   "replacement": "Jedrick Wills",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.azcardinals.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "BUF",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Christian Benford",
+   "starter_status": "Questionable",
+   "replacement": "Dee Alford",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.buffalobills.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "BUF",
+   "unit": "Offense",
+   "position": "RT",
+   "starter": "Spencer Brown",
+   "starter_status": "Doubtful",
+   "replacement": "Tylan Grable",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 2,
+   "source_depth_chart": "https://www.buffalobills.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "CAR",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Will Lee III",
+   "starter_status": "Questionable",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 1,
+   "source_depth_chart": "https://www.panthers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "CAR",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "Bobby Okereke",
+   "starter_status": "Out",
+   "replacement": "Tyrel Dodson",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.panthers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "CAR",
+   "unit": "Defense",
+   "position": "OLB",
+   "starter": "Jaelan Phillips",
+   "starter_status": "Questionable",
+   "replacement": "Princely Umanmielen",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.panthers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "CLE",
+   "unit": "Defense",
+   "position": "FS",
+   "starter": "Ronnie Hickman",
+   "starter_status": "Out",
+   "replacement": "Donovan McMillon",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.clevelandbrowns.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "CLE",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Denzel Boston",
+   "starter_status": "Questionable",
+   "replacement": "Malachi Corley",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.clevelandbrowns.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "DAL",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Joey Porter Jr.",
+   "starter_status": "Questionable",
+   "replacement": "Shavon Revel Jr.",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.dallascowboys.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "DAL",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "DaRon Bland",
+   "starter_status": "Questionable",
+   "replacement": "Cobie Durant",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.dallascowboys.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "DAL",
+   "unit": "Defense",
+   "position": "OLB",
+   "starter": "Donovan Ezeiruaku",
+   "starter_status": "Out",
+   "replacement": "James Houston",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.dallascowboys.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "DET",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "D.J. Reed",
+   "starter_status": "Out",
+   "replacement": "Rock Ya-Sin",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.detroitlions.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "DET",
+   "unit": "Offense",
+   "position": "C",
+   "starter": "Cade Mays",
+   "starter_status": "Out",
+   "replacement": "Juice Scruggs",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.detroitlions.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "DET",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Amon-Ra St. Brown",
+   "starter_status": "Questionable",
+   "replacement": "DeAndre Carter",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.detroitlions.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Defense",
+   "position": "EDGE",
+   "starter": "90 Lukas Van Ness",
+   "starter_status": "Questionable",
+   "replacement": "57 Brenton Cox Jr",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "44 Zaire Franklin",
+   "starter_status": "Doubtful",
+   "replacement": "59 Ty\u2019Ron Hopper",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 2,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Defense",
+   "position": "NB",
+   "starter": "7 Javon Bullard",
+   "starter_status": "Questionable",
+   "replacement": "36 Kamal Hadden",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Defense",
+   "position": "S",
+   "starter": "29 Xavier McKinney",
+   "starter_status": "Questionable",
+   "replacement": "27 Kitan Oladapo",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Offense",
+   "position": "C",
+   "starter": "75 Sean Rhyan",
+   "starter_status": "Out",
+   "replacement": "52 Jager Burton",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Offense",
+   "position": null,
+   "starter": "81 Josh Whyle",
+   "starter_status": "Out",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 3,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "GB",
+   "unit": "Offense",
+   "position": "RB",
+   "starter": "8 Josh Jacobs",
+   "starter_status": "Out",
+   "replacement": "32 MarShawn Lloyd",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.packers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "IND",
+   "unit": "Defense",
+   "position": "MLB",
+   "starter": "Akeem Davis-Gaither",
+   "starter_status": "Out",
+   "replacement": "CJ Allen",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.colts.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "IND",
+   "unit": "Defense",
+   "position": "WLB",
+   "starter": "Jaylon Carlies",
+   "starter_status": "Out",
+   "replacement": "Bryce Boettcher",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.colts.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "IND",
+   "unit": "Offense",
+   "position": "RT",
+   "starter": "Jalen Travis",
+   "starter_status": "Out",
+   "replacement": "Luke Tenuta",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.colts.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "IND",
+   "unit": "Special Teams",
+   "position": "LS",
+   "starter": "Luke Rhodes",
+   "starter_status": "Out",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 3,
+   "source_depth_chart": "https://www.colts.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "JAX",
+   "unit": "Defense",
+   "position": "NT",
+   "starter": "Jordan Davis",
+   "starter_status": "Out",
+   "replacement": "Davon Godchaux",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.jaguars.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "JAX",
+   "unit": "Defense",
+   "position": "S",
+   "starter": "Jessie Bates III",
+   "starter_status": "Out",
+   "replacement": "Kaevon Merriweather",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.jaguars.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "JAX",
+   "unit": "Offense",
+   "position": "C",
+   "starter": "Robert Hainsey",
+   "starter_status": "Questionable",
+   "replacement": "Jonah Monheim",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.jaguars.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "KC",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Mansoor Delane",
+   "starter_status": "Questionable",
+   "replacement": "Kristian Fulton",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.chiefs.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "KC",
+   "unit": "Offense",
+   "position": "RB",
+   "starter": "Kenneth Walker",
+   "starter_status": "Questionable",
+   "replacement": "Emmett Johnson",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.chiefs.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "KC",
+   "unit": "Offense",
+   "position": "RT",
+   "starter": "Jaylon Moore",
+   "starter_status": "Out",
+   "replacement": "Joshua Ezeudu",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.chiefs.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "LA",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Trent McDuffie",
+   "starter_status": "Questionable",
+   "replacement": "Cam Lampkin",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.therams.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "LA",
+   "unit": "Defense",
+   "position": "OLB",
+   "starter": "Myles Garrett",
+   "starter_status": "Questionable",
+   "replacement": "Josaiah Stewart",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.therams.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "LA",
+   "unit": "Defense",
+   "position": "S",
+   "starter": "Kam Curl",
+   "starter_status": "Questionable",
+   "replacement": "Jaylen McCollough",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.therams.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "LA",
+   "unit": "Offense",
+   "position": "LG",
+   "starter": "Steve Avila",
+   "starter_status": "Out",
+   "replacement": "Bill Murray",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.therams.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "LA",
+   "unit": "Special Teams",
+   "position": "LS",
+   "starter": "Joe Cardona",
+   "starter_status": "Questionable",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 1,
+   "source_depth_chart": "https://www.therams.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "MIA",
+   "unit": "Offense",
+   "position": "C",
+   "starter": "Aaron Brewer",
+   "starter_status": "Out",
+   "replacement": "Andrew Meyer",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.miamidolphins.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "MIA",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Chris Bell",
+   "starter_status": "Doubtful",
+   "replacement": "Jalen Tolbert",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 2,
+   "source_depth_chart": "https://www.miamidolphins.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "MIN",
+   "unit": "Defense",
+   "position": "DL",
+   "starter": "Tyrion Ingram-Dawkins",
+   "starter_status": "Out",
+   "replacement": "Elijah Williams",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.vikings.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "MIN",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "Blake Cashman",
+   "starter_status": "Out",
+   "replacement": "Ivan Pace Jr.",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.vikings.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "MIN",
+   "unit": "Offense",
+   "position": "QB",
+   "starter": "Kyler Murray",
+   "starter_status": "Out",
+   "replacement": "Carson Wentz",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.vikings.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "MIN",
+   "unit": "Offense",
+   "position": "TE",
+   "starter": "T.J. Hockenson",
+   "starter_status": "Out",
+   "replacement": "Gavin Bartholomew",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.vikings.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "MIN",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Jordan Addison",
+   "starter_status": "Questionable",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 1,
+   "source_depth_chart": "https://www.vikings.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "MIN",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Jauan Jennings",
+   "starter_status": "Out",
+   "replacement": "Myles Price",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.vikings.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NE",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Carlton Davis III",
+   "starter_status": "Out",
+   "replacement": "Channing Canada",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.patriots.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NE",
+   "unit": "Defense",
+   "position": "S",
+   "starter": "Kevin Byard III",
+   "starter_status": "Questionable",
+   "replacement": "Jaylen Reed",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.patriots.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NE",
+   "unit": "Offense",
+   "position": "LG",
+   "starter": "Ben Brown",
+   "starter_status": "Out",
+   "replacement": "Walter Rouse",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.patriots.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NE",
+   "unit": "Offense",
+   "position": "RB",
+   "starter": "Rhamondre Stevenson",
+   "starter_status": "Questionable",
+   "replacement": "Corey Kiner",
+   "replacement_depth": 3,
+   "depth_label": "3rd string",
+   "depth_drop": 2,
+   "severity": 1,
+   "source_depth_chart": "https://www.patriots.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NE",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "A.J. Brown",
+   "starter_status": "Questionable",
+   "replacement": "Efton Chism III",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.patriots.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NO",
+   "unit": "Defense",
+   "position": "CB",
+   "starter": "Martin Emerson Jr.",
+   "starter_status": "Questionable",
+   "replacement": "Quincy Riley",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.neworleanssaints.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NO",
+   "unit": "Offense",
+   "position": "C",
+   "starter": "Erik McCoy",
+   "starter_status": "Out",
+   "replacement": "William Sherman",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.neworleanssaints.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NO",
+   "unit": "Offense",
+   "position": "RT",
+   "starter": "Taliese Fuaga",
+   "starter_status": "Out",
+   "replacement": "Mason Murphy",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.neworleanssaints.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NYJ",
+   "unit": "Defense",
+   "position": "DL",
+   "starter": "Harrison Phillips",
+   "starter_status": "Questionable",
+   "replacement": "Jack Heflin",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.newyorkjets.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NYJ",
+   "unit": "Defense",
+   "position": "NB",
+   "starter": "Jarvis Brownlee Jr.",
+   "starter_status": "Questionable",
+   "replacement": "D'Angelo Ponds",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.newyorkjets.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NYJ",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Garrett Wilson",
+   "starter_status": "Questionable",
+   "replacement": "Omar Cooper Jr.",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.newyorkjets.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "NYJ",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Adonai Mitchell",
+   "starter_status": "Questionable",
+   "replacement": "Tim Patrick",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.newyorkjets.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SEA",
+   "unit": "Defense",
+   "position": "DT",
+   "starter": "Leonard Williams",
+   "starter_status": "Out",
+   "replacement": "Rylie Mills",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.seahawks.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SEA",
+   "unit": "Offense",
+   "position": "LG",
+   "starter": "Quenton Nelson",
+   "starter_status": "Out",
+   "replacement": "Anthony Bradford",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.seahawks.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SEA",
+   "unit": "Offense",
+   "position": "LT",
+   "starter": "Charles Cross",
+   "starter_status": "Out",
+   "replacement": "Josh Jones",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.seahawks.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SEA",
+   "unit": "Offense",
+   "position": "QB",
+   "starter": "Sam Darnold",
+   "starter_status": "Out",
+   "replacement": "Drew Lock",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.seahawks.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "LCB",
+   "starter": "Renardo Green",
+   "starter_status": "Questionable",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 1,
+   "source_depth_chart": "https://www.49ers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "NB",
+   "starter": "Upton Stout",
+   "starter_status": "Questionable",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 1,
+   "source_depth_chart": "https://www.49ers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "RCB",
+   "starter": "Deommodore Lenoir",
+   "starter_status": "Questionable",
+   "replacement": "Ephesians Prysock",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.49ers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "WILL",
+   "starter": "Dre Greenlaw",
+   "starter_status": "Questionable",
+   "replacement": "Garret Wallow",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.49ers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SF",
+   "unit": "Offense",
+   "position": "LT",
+   "starter": "Trent Williams",
+   "starter_status": "Questionable",
+   "replacement": "Vederian Lowe",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 1,
+   "source_depth_chart": "https://www.49ers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "SF",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Mike Evans",
+   "starter_status": "Out",
+   "replacement": "Jordan Watkins",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.49ers.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "TEN",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "Cody Barton",
+   "starter_status": "Out",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 3,
+   "source_depth_chart": "https://www.tennesseetitans.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "TEN",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "Anthony Hill Jr.",
+   "starter_status": "Out",
+   "replacement": "Dorian Mausi",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.tennesseetitans.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "TEN",
+   "unit": "Offense",
+   "position": "LG",
+   "starter": "Peter Skoronski",
+   "starter_status": "Out",
+   "replacement": null,
+   "replacement_depth": null,
+   "depth_label": null,
+   "depth_drop": null,
+   "severity": 3,
+   "source_depth_chart": "https://www.tennesseetitans.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "no replacement listed on club depth chart \u2014 blank, not inferred"
+   ]
+  },
+  {
+   "team": "TEN",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Carnell Tate",
+   "starter_status": "Out",
+   "replacement": "Elic Ayomanor",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.tennesseetitans.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "TEN",
+   "unit": "Special Teams",
+   "position": "H",
+   "starter": "Tommy Townsend",
+   "starter_status": "Out",
+   "replacement": "Mitchell Trubisky",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.tennesseetitans.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  },
+  {
+   "team": "TEN",
+   "unit": "Special Teams",
+   "position": "P",
+   "starter": "Tommy Townsend",
+   "starter_status": "Out",
+   "replacement": "Joey Slye",
+   "replacement_depth": 2,
+   "depth_label": "2nd string",
+   "depth_drop": 1,
+   "severity": 3,
+   "source_depth_chart": "https://www.tennesseetitans.com/team/depth-chart",
+   "source_injury": "https://www.nfl.com/injuries/",
+   "flags": [
+    "depth order read exactly as the club prints it"
+   ]
+  }
+ ],
+ "rollup_by_unit": {
+  "Defense": {
+   "2nd string": 35,
+   "not listed": 4
+  },
+  "Offense": {
+   "2nd string": 30,
+   "not listed": 3,
+   "3rd string": 1
+  },
+  "Special Teams": {
+   "2nd string": 3,
+   "not listed": 2
+  }
+ },
+ "verification": {
+  "rows": 78,
+  "rows_verified": 69,
+  "rows_flagged": 9,
+  "unverified_cells": 9,
+  "flagged_reasons": [
+   "club chart lists no replacement at the position (HOU charts unparseable \u2014 F-03)"
+  ]
+ },
+ "note": "Every deficiency records the DEPTH of the replacement (2nd/3rd/4th string), not merely that a replacement happened. Where the club chart is unparseable (Houston, F-03) the depth stays blank and is published on the flagged-for-review page."
+}
