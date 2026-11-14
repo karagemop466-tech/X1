@@ -5,7 +5,7 @@ Collecting numpy
   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
 Downloading pypdf-7.1.0-py3-none-any.whl (418 kB)
 Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 54.8 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 172.5 MB/s  0:00:00
 Installing collected packages: pypdf, numpy
 
 Successfully installed numpy-2.4.6 pypdf-7.1.0
@@ -17,8 +17,8 @@ Successfully installed numpy-2.4.6 pypdf-7.1.0
   wrote data/nfl/schedule.json (143171 bytes)
 [4/5] player statistics
   wrote data/nfl/player_stats_passing.json (37186 bytes)
-  wrote data/nfl/player_stats_rushing.json (30033 bytes)
-  wrote data/nfl/player_stats_receiving.json (32859 bytes)
+  wrote data/nfl/player_stats_rushing.json (46752 bytes)
+  wrote data/nfl/player_stats_receiving.json (51034 bytes)
 [5/5] official game books
   wrote data/nfl/gamebooks.json (472 bytes)
   enriched schedule with official game book results
