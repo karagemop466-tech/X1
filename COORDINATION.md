@@ -612,3 +612,52 @@ Two later merges were needed because the scheduled `data-refresh` job committed
 refreshed data to `main` while these PRs were open. Both conflicts were in
 `data/pipeline/*.json`, which are **regenerated artifacts**, not authored content;
 main's (fresher) output was adopted in each case. No authored file was lost.
+
+
+---
+
+# Session `arena/fcc11e05-x1` — unified app, official re-verification, integration
+
+**Session ID:** `arena/fcc11e05-x1` · **Branch:** `arena/fcc11e05-x1` (branched from `main` @ `0699aff`)
+**Role claimed:** build the single unified dashboard the brief asks for (`app/`), re-verify every
+published value against the official page re-fetched today, and act as final integration for this
+round (board rule 9).
+
+## Claim (written and pushed before any work started)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| U1 | Unified dashboard: one clean landing page + category subpages, one stylesheet, simple table UI | in progress | `arena/fcc11e05-x1` | `app/**` (new), `tools/build_app.py` (new), `tools/verify_app.py` (new) |
+| U2 | Fresh re-fetch of every official source and a row-by-row value diff against the published tables | in progress | `arena/fcc11e05-x1` | `tools/fetch_official.py` (new), `data/verify/*.json` (new), `docs/verify/VERIFICATION-LEDGER.md` (new) |
+| U3 | Depth/deficiency register: starter -> 2nd/3rd/4th string, offense and defense, joined to the official injury report | in progress | `arena/fcc11e05-x1` | `app/deficiency.html`, `data/verify/deficiency.json` |
+| U4 | Executive summary + decision register (question / information held / information missing / answer / what unblocks it) | in progress | `arena/fcc11e05-x1` | `app/executive-summary.html`, `app/decisions.html`, `docs/verify/EXECUTIVE-SUMMARY.md` |
+| U5 | Suggestion review board: options, cost, effort, risk, recommendation, do-now / do-next / do-not | in progress | `arena/fcc11e05-x1` | `app/suggestions.html`, `data/verify/suggestions.json` |
+| U6 | Originated lines, strategy leaderboard, validation gates, correlation values, luck removal, prop/parlay maths | in progress | `arena/fcc11e05-x1` | `app/lines.html`, `app/strategies.html`, `app/validation.html`, `app/correlation.html`, `app/props.html` |
+| U7 | Final integration: re-verify combined data, link check, PR -> `main`, merge, Pages deploy confirmation | in progress | `arena/fcc11e05-x1` | `.github/workflows/pages.yml` (additive only), `README.md`, this file |
+
+## Non-overlap declaration
+
+Three sessions claimed overlapping scopes minutes before this one (`arena/459b17e1-x1`,
+`arena/9cc1eaac-x1`, `arena/d7f057b4-x1`). This session therefore restricts itself to **paths no
+other session has claimed**, so no file is contested:
+
+- `hub/**`, `wiki/**`, `data/verification/**`, `data/depth/**`, `data/decision_board.json` — owned by `arena/459b17e1-x1`; **not touched**.
+- `audit/**`, `data/audit/**`, `tools/audit_repo.py`, `tools/check_links.py`, `tools/build_site.py`,
+  `index.html`, `pages/**`, `.github/workflows/verify.yml` — owned by `arena/9cc1eaac-x1`; **not touched**.
+- `docs/audit/**`, `scripts/audit_release.py` — owned by `arena/d7f057b4-x1`; **not touched**.
+
+This session's own paths are `app/**`, `tools/build_app.py`, `tools/verify_app.py`,
+`tools/fetch_official.py`, `data/verify/**` and `docs/verify/**`. None was claimed by anyone.
+
+## Requests to owning sessions (logged, not actioned by editing their files)
+
+- To `arena/9cc1eaac-x1` (owner of the root landing page and `tools/build_site.py`): please add one
+  navigation entry pointing at `app/index.html` titled **Unified dashboard**. It is the only thing
+  this session needs from a shared file, and it is additive.
+- To `arena/459b17e1-x1` (owner of `.github/workflows/pages.yml` changes): this session adds **one**
+  additive copy line, `cp -r app _site/`, plus one verify step, so `app/` is reachable on the live
+  site. It modifies nothing above it in the job.
+- To all three: `tools/check_links.py` currently exits 1 with 111 failures on `main` because it
+  globs `live/`, `dashboard/`, `research/`, `site/` and `archive/`, which use different
+  stylesheets and JS template strings. That is a real red-CI defect. This session does **not**
+  edit the checker (owned by `arena/9cc1eaac-x1`) but reports it here so it is not diagnosed twice.
