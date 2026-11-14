@@ -186,3 +186,62 @@ python3 scripts/verify_site_annex.py   # annex link + source-row check
 
 Cross-check note: the independent standings transcriptions agree 32/32 exactly
 (`data/standings_2026.csv` ↔ `data/nfl/teams_standings_2026_w10.csv`).
+
+---
+
+## The unified dashboard (`app/`)
+
+Five parallel sessions each left their own site tree, so the published site grew five different
+designs over the same data. `app/` is the unified view over all of it: **one landing page, one
+navigation, one stylesheet**, organised by category, and still reading exactly the same verified
+files.
+
+```bash
+python3 tools/verify_official.py   # re-check every published value against the official page
+python3 tools/build_deficiency.py  # rebuild the deficiency register with the name normaliser
+python3 tools/build_app.py         # regenerate app/
+python3 tools/verify_app.py        # links resolve; every data row carries a source link or a marker
+```
+
+**Live:** the unified dashboard is served at the site root and at
+**`/app/`** — <https://karagemop466-tech.github.io/X1/app/>. The previous root landing page is
+preserved at **`/legacy-fourth-down.html`**, and every earlier tree (`pages/`, `dashboard/`,
+`research/`, `site/`, `live/`) is still published and linked from the dashboard's footer. Nothing
+was deleted.
+
+### Page map
+
+| Category | Pages |
+|---|---|
+| Overview | `index.html`, `executive-summary.html` |
+| Official data | `standings.html`, `schedule.html`, `injuries.html`, `depth.html`, `deficiency.html`, `team-stats.html` |
+| Model | `lines.html`, `correlation.html` |
+| Strategy | `strategies.html`, `validation.html`, `leaderboard.html`, `props.html` |
+| Decisions | `requirements.html`, `decisions.html`, `suggestions.html` |
+| Governance | `sources.html`, `verification.html`, `flagged.html`, `repo-review.html` |
+
+### Independent verification (session `arena/fcc11e05-x1`)
+
+The official pages were re-fetched on **2026-11-14** and every published value compared cell by
+cell against them. Result: **2,929 checks, 2,928 matches, 0 mismatches**, covering
+
+- all 32 standings rows × 16 fields (512 comparisons),
+- all 345 official injury rows × 5 fields across the 28 clubs playing this week (1,725 comparisons),
+- the same 345 rows as transcribed independently by an earlier session (690 comparisons),
+- the Week 10 slate and the league's own "Teams on Bye" list.
+
+The transcribed official values used as the comparison baseline live in `data/verify/*.psv`, and the
+full row-by-row ledger is written to `data/verify/verification_ledger.json` and published on the
+**Verification ledger** page.
+
+### Corrections this session found and published
+
+| ID | Finding | Effect |
+|---|---|---|
+| F-01 | Green Bay's club depth chart prints jersey numbers in the name column ("75 Sean Rhyan"), so the raw-string join to the injury report matched nothing for the whole club | rebuilt with a name normaliser; 3 Green Bay starters ruled Out recovered |
+| F-02 | Generational suffixes break the same join ("Kenneth Walker" vs "Kenneth Walker III", "Ronnie Hickman" vs "Ronnie Hickman Jr.") | 5 further clubs corrected, including Cleveland's starting free safety, Out |
+| F-03 | Houston's club depth chart returns no parsable table | recorded as a coverage gap, not filled in |
+| F-04 | Club depth charts are not league facts: Chicago's is dated 10/31/2026, Green Bay's is labelled "unofficial", Baltimore's kicker slot is empty | every row now states its tier and links the club's own page |
+
+Matched starters went from **171 to 189**; **42 cells** changed. All of it is on the
+**Flagged for review** page.

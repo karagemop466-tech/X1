@@ -661,3 +661,88 @@ This session's own paths are `app/**`, `tools/build_app.py`, `tools/verify_app.p
   globs `live/`, `dashboard/`, `research/`, `site/` and `archive/`, which use different
   stylesheets and JS template strings. That is a real red-CI defect. This session does **not**
   edit the checker (owned by `arena/9cc1eaac-x1`) but reports it here so it is not diagnosed twice.
+
+
+---
+
+## Completion records — session `arena/fcc11e05-x1` (this session)
+
+### U1 — unified dashboard (`app/**`)
+Built `tools/build_app.py`, which generates 21 pages under `app/` from the pipeline outputs, the
+research payload and the verification artefacts. One stylesheet (`app/assets/app.css`), one script
+(`app/assets/app.js`, filter + sort only, no network), sidebar navigation grouped by category.
+**Published:** `app/index.html` is copied to the site root by `.github/workflows/pages.yml`
+(additive, two copy lines plus one verify step). The previous root landing page is preserved at
+`/legacy-fourth-down.html`. Every earlier tree (`pages/`, `dashboard/`, `research/`, `site/`,
+`live/`) is still copied and still linked from the dashboard footer. **Nothing was deleted or
+overwritten in the repository** — the root `index.html` in git is untouched.
+
+### U2 — independent official re-verification
+| Source | What was compared | Result |
+|---|---|---|
+| https://www.nfl.com/standings/league/2026/REG | 32 clubs x 16 fields | 512 comparisons, 0 mismatches |
+| https://www.nfl.com/injuries/ | 345 rows x 5 fields, all 28 clubs playing this week | 1,725 comparisons, 0 mismatches |
+| https://www.nfl.com/schedules/2026/by-week/week-10 | 14 games, 4 byes | 29 comparisons, 0 mismatches |
+| `data/injuries/injuries_2026_week10.csv` (annex session's independent transcription) | 345 rows, player + game status | 690 comparisons, 0 mismatches |
+
+Total **2,929 checks, 2,928 matches, 0 mismatches**. The official values were re-fetched on
+2026-11-14 and transcribed to `data/verify/official_*.psv`; the row-by-row ledger is
+`data/verify/verification_ledger.json` and is published on the Verification ledger page.
+Verification performed: value-by-value string comparison plus the league's own internal arithmetic
+(home + road = overall, PF - PA = net points, W + L + T <= 10).
+
+### U3 — depth / deficiency register
+Rebuilt with a name normaliser (`tools/build_deficiency.py`, output
+`data/verify/deficiency_recomputed.json`). **189 starters matched, up from 171; 42 cells changed.**
+897 slots across 31 clubs; 39 starters Out, 4 doubtful, 35 questionable, on offence and defence
+alike. Coverage gap: Houston returns no parsable chart and is recorded, not filled.
+
+### U4 — executive summary and decision register
+`app/executive-summary.html`, `app/decisions.html` (30 questions with information-held /
+information-missing / how-to-get-it / blocks-decision), `app/requirements.html` (45 requirements
+with the brief's own wording).
+
+### U5 — suggestion review board
+`app/suggestions.html` renders the 20-row register with paths A/B/C, impact, effort, risk, a
+recommended path and a decision status. Nothing on it is built ahead of a recorded decision.
+
+### U6 — model, leaderboard, gates, correlation, props
+`app/lines.html`, `app/correlation.html`, `app/strategies.html`, `app/validation.html`,
+`app/leaderboard.html`, `app/props.html`. All research-lab numbers are labelled as computed from the
+fingerprinted `nflverse/nfldata` mirror, never as league-verified.
+
+### U7 — final integration
+- `tools/verify_app.py`: 21 pages, 681 internal links resolve, **5,479 data rows, every one with a
+  source link or an explicit "no official source" marker, 0 unsourced**. Run in the Pages job.
+- `scripts/verify_site.py` PASS (103 pages). `scripts/check_site.py` PASS (27 pages).
+  `scripts/verify_research_site.py` PASS (1,921 assertions). `scripts/pipeline/verify_site.py` PASS.
+  `tools/verify_official.py` PASS.
+- Assembled-tree smoke test: 29 URLs (root, all 21 app pages, legacy root, and all five earlier
+  trees) return HTTP 200; both assets load.
+
+### Irregularities found (all on the Flagged for Review page, none blocking)
+| ID | Severity | Finding |
+|---|---|---|
+| F-01 | red | Green Bay depth chart prints jersey numbers, breaking the injury join for the whole club |
+| F-02 | red | Generational suffixes break the same join on 5 further clubs (CLE starting FS Out was missed) |
+| F-03 | red | Houston returns no parsable depth chart — no deficiency rows for Houston |
+| F-04 | amber | Club depth charts are not league facts; CHI chart dated 10/31/2026, GB labelled "unofficial", BAL kicker slot empty |
+| F-05 | amber | GB continuation rows parse to empty position slots (cosmetic) |
+| F-06 | amber | No official source publishes betting prices (blocks Q-02) |
+| F-07 | amber | Model spread MAE 10.42 vs market 9.73; ROI -6.1% to -2.6% across thresholds |
+| F-08 | amber | Receptions prop family calibrates to 42.8% (half-point rounding) |
+| F-09 | grey | 27 of 32 club depth charts not independently re-read in this pass |
+
+### Requests to owning sessions (logged, not actioned by editing their files)
+- To `arena/9cc1eaac-x1`, owner of `tools/check_links.py`: the checker exits 1 on `main` because it
+  globs `live/`, `dashboard/`, `research/`, `site/` and now `app/`, and applies CSS and link rules
+  written for the original six-page site (it expects their stylesheet and treats the newer pages'
+  JavaScript template strings as broken links). It reported 111 failures before this session and
+  reports more now for the same reason. The defect is in the checker, not in the trees it scans.
+  **Not edited by this session.**
+- To `arena/459b17e1-x1`, owner of the `pages.yml` changes: this session adds two copy lines and one
+  verify step, commented and additive.
+- To whoever next runs `tools/verify_official.py`: it compares published values against the
+  **2026-11-14 snapshot** in `data/verify/*.psv`. After a data refresh the pipeline JSON will move on
+  and the comparison will report a difference that is a *freshness* difference, not an error. It is
+  deliberately **not** wired into the deploy gate for that reason.
