@@ -1,0 +1,7 @@
+# Official 2026 NFL regular-season results, Week 10 — as of 2026-11-14 only the Thursday game is
+# final. Verified from the official NFL Game Book PDF at static.www.nfl.com (linked from
+# https://www.nfl.com/games/commanders-at-giants-2026-reg-10), 2026-11-14. The other 13 Week 10
+# games are scheduled 2026-11-15/16 and have no result yet; they are listed in the schedule feed,
+# not here.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL | METHOD
+commanders-at-giants-2026-reg-10|10|WAS|24|NYG|21|final|https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf|https://www.nfl.com/games/commanders-at-giants-2026-reg-10|official game book PDF

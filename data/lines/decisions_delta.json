@@ -1,0 +1,74 @@
+{
+ "dataset": "decisions_delta",
+ "title": "Questions, information and answers \u2014 delta for the decision register",
+ "generated_at": "2026-11-14T20:04:04Z",
+ "delta_of": "data/pipeline/questions.json (T05)",
+ "updates": [
+  {
+   "id": "Q-02",
+   "status": "partially answered",
+   "answer_now": "What counts as 'the market' is decided pragmatically: the fingerprinted nflverse/nfldata bookmaker line, labelled third-party on every row (F-06). Opening vs closing is now recorded in the price-snapshot store.",
+   "still_missing": "An official or licensed odds feed, and any source of opening numbers for 2026 games.",
+   "unblocks": "CLV measurement and demotion trigger D-2 stay blocked; everything else moves.",
+   "source_urls": [
+    "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+   ]
+  },
+  {
+   "id": "Q-04",
+   "status": "answered",
+   "answer_now": "What counts as a settled result: the official score from nfl.com score pages, Game Center box scores or official Game Book PDFs, transcribed line by line and double-entry checked against the mirror (137/137 matched).",
+   "still_missing": "nothing for results; weeks 10-18 settle week by week as played.",
+   "unblocks": "backtests and ROI are computable at row level (data/lines/results_feed.json).",
+   "source_urls": [
+    "https://www.nfl.com/scores"
+   ]
+  },
+  {
+   "id": "Q-26",
+   "status": "answer proposed",
+   "answer_now": "Demotion thresholds are pre-registered in data/lines/demotion_gate.json (G-13: skill reversal, CLV collapse, drawdown, source breach).",
+   "still_missing": "owner confirmation of the numeric thresholds (S-20 on the suggestion board).",
+   "unblocks": "strategies can go live without leaving the demotion path undefined.",
+   "source_urls": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/lines/demotion_gate.json"
+   ]
+  }
+ ],
+ "new_questions": [
+  {
+   "id": "Q-31",
+   "question": "Should the project pay for a licensed odds feed (opening + closing) or stay on free third-party snapshots?",
+   "known": "Free sources give one unlabelled market line and no official prices (F-06).",
+   "unknown": "Budget and legality of redistribution in this repository.",
+   "how_to_find": "owner decision; survey on the suggestion board (S-21).",
+   "decision_unblocked": "CLV, D-2 trigger, price provenance at tier 'official-adjacent'."
+  },
+  {
+   "id": "Q-32",
+   "question": "Reconstruct per-cell n for the 16x16 strategy correlation matrix from bet logs, or keep the matrix suppressed from decisions?",
+   "known": "The research payload records r per cell but n only for top pairs.",
+   "unknown": "Whether the lab's per-bet logs are sufficient to rebuild n.",
+   "how_to_find": "extend code/pipeline_lab.py to export shared_games per cell (S-22).",
+   "decision_unblocked": "Matrix returns to decision use with n on every cell."
+  },
+  {
+   "id": "Q-33",
+   "question": "Should competition rewards stay in the cleared unit (win contribution) or convert to something tangible?",
+   "known": "Owners set rewards as win-contribution units; roadmap D-3 already flags funds conversion as blocked by licensing.",
+   "unknown": "Whether any prize funding exists outside the unit.",
+   "how_to_find": "owner answer recorded in decisions_decided.json when it arrives.",
+   "decision_unblocked": "Reward announcement wording on the leaderboard."
+  }
+ ],
+ "verification": {
+  "rows": 6,
+  "rows_verified": 3,
+  "rows_flagged": 3,
+  "unverified_cells": 3,
+  "flagged_reasons": [
+   "new questions carry unknowns; answers recorded as proposals only"
+  ]
+ },
+ "note": "Answers are recorded only where evidence exists in this repository or on the linked pages; nothing is inferred. Proposed answers await owner confirmation and are visible on the flagged-for-review page meanwhile."
+}

@@ -63,6 +63,7 @@ PAGES: List[Tuple[str, str, str, str, str]] = [
     ("verification.html", "Verification ledger", "Governance", "Row-by-row verification", "Independent re-check"),
     ("flagged.html", "Flagged for review", "Governance", "Flagged for review", "Never silently filled"),
     ("repo-review.html", "Repo review", "Governance", "Repository line-by-line review", "Audit"),
+    ("stores.html", "Verified stores", "Governance", "Verified stores — sourced or blank", "Price, results, origination, registers"),
 ]
 
 GROUPS = ["Overview", "Official data", "Model", "Strategy", "Decisions", "Governance"]
@@ -2144,6 +2145,175 @@ inferred. Schema requirements a feed must satisfy are below.</section>""")
                 lede="The second capture record for every market we originate — open column, close "
                      "column, and honest flags where no verified source exists.")
 
+def p_stores() -> str:
+    """Additive page by session arena/bf27a3bd-x1: the data/lines stores built in
+    this batch, each table row sourced or explicitly flagged. No page owned by
+    another session is touched by this function."""
+    ps = jload("data/lines/price_snapshots.json")
+    rf = jload("data/lines/results_feed.json")
+    og = jload("data/lines/origination.json")
+    ls = jload("data/lines/leaderboard_split.json")
+    rd = jload("data/lines/replacement_depth.json")
+    co = jload("data/lines/correlation_official.json")
+    dg = jload("data/lines/demotion_gate.json")
+    dd = jload("data/lines/decisions_delta.json")
+    sd = jload("data/lines/suggestions_delta.json")
+    body: List[str] = []
+
+    body.append("""<section class="note"><b>Sourced or blank — never inferred.</b> These stores were
+built by session <code>arena/bf27a3bd-x1</code> from official NFL pages and official Game Book PDFs
+(results) plus the fingerprinted nflverse/nfldata mirror (prices, labelled third-party per flag
+F-06). Every row carries its source link; a value no source records is blank and flagged, never
+filled. Verified end to end by <code>tools/verify_new_data.py</code> (wired into
+<code>pages.yml</code>).</section>""")
+
+    v = rf.get("verification", {})
+    body.append(kpis([
+        (str(v.get("rows", 0)), "games in the verified results feed", "official score per row, double-entry checked", "ok"),
+        (str(ps.get("verification", {}).get("rows_with_opening", 0)), "opening prices on record",
+         "blank + flagged everywhere else", "bad"),
+        (str(len(co.get("official", {}).get("rows", []))), "official correlations", "n published with every value", "ok"),
+        (str(len(dg.get("triggers", []))), "demotion triggers armed", "live strategy goes back to paper", "warn"),
+    ]))
+
+    # ---- results feed
+    rtrs = [[esc(r["game_id"]), str(r["week"]), esc(r["game_date"]),
+             f'{esc(r["away"])} <b>{r["away_score"]}</b> @ {esc(r["home"])} <b>{r["home_score"]}</b>',
+             badge(r["status"], "ok" if r["status"] == "final" else "warn"),
+             esc(r.get("verification_method") or ""),
+             src_cell([r["result_source_url"], r["game_url"]])] for r in rf["rows"]]
+    body.append(card("Verified results feed — every played 2026 game (official source per row)",
+                     table("t-st-results", ["Game", "Wk", "Date", "Final", "Status", "Verified from",
+                                            "Sources"], rtrs, center=[1, 4],
+                           note="Transcribed line by line from NFL.com score pages, Game Center box "
+                                "scores and official Game Book PDFs (static.www.nfl.com) where "
+                                "spoiler mode hides the score. Cross-checked against the "
+                                "fingerprinted mirror: 137/137 matched. Ties and overtime recorded "
+                                "in status. Full feed with settlement columns: "
+                                "<code>data/lines/results_feed.json</code>.")))
+
+    # ---- price snapshots (sample + coverage)
+    body.append(card("Price-snapshot store — opening vs closing, per market",
+                     f"<p>Rows: <b>{ps.get('verification', {}).get('rows', 0)}</b>. "
+                     f"With a closing number: <b>{ps.get('verification', {}).get('rows_with_closing', 0)}</b> "
+                     "(third-party, per-row link). With an opening number: "
+                     f"<b>{ps.get('verification', {}).get('rows_with_opening', 0)}</b> — no source in "
+                     "this repository records 2026 opening prices, so those cells are blank and "
+                     "flagged, never inferred (Q-02 / Q-31). Full store: "
+                     "<code>data/lines/price_snapshots.json</code> · builder: "
+                     "<code>tools/build_price_store.py</code>.</p>"))
+
+    # ---- origination ledger (the one played game with a settled result, plus order proof)
+    otrs = []
+    for r in og["rows"]:
+        if r["game_id"] != "2026_10_WAS_NYG":
+            continue
+        otrs.append([esc(r["game_id"]), str(r["origination_order"]), esc(r["market_type"]),
+                     dash(r.get("model_fair_line")), dash(r.get("market_line")),
+                     dash(r.get("difference")), esc(r.get("difference_unit") or ""),
+                     src_cell(r.get("market_source_url")),
+                     link("https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination.json", "full ledger")])
+    body.append(card("Origination ledger — side first, then total, then moneyline (fair / market / difference)",
+                     table("t-st-orig", ["Game", "Order", "Market", "Model fair line", "Market line",
+                                         "Difference", "Unit", "Market source", "Ledger"], otrs,
+                           numeric=[1, 3, 4, 5], center=[1],
+                           note="Shown for one game as a specimen; the full ledger covers all 150 "
+                                "originated markets in <code>data/lines/origination.json</code> with "
+                                "the fixed order 1=side, 2=total, 3=moneyline and model / market / "
+                                "difference as three separate columns.")))
+
+    # ---- leaderboard split
+    ltrs = []
+    for r in ls["rows"]:
+        sig = r["signal"]
+        ltrs.append([esc(r["key"]), esc(r["name"]), str(sig.get("bets_settled", "")),
+                     pc(sig.get("flat_stake_roi")), pc(sig.get("roi_luck_removed")),
+                     dash(r["staking"].get("staked_roi")), dash(r["staking"].get("bankroll_growth")),
+                     link("https://github.com/nflverse/nfldata", "nfldata games")])
+    body.append(card("Leaderboard split — signal block vs staking block",
+                     table("t-st-lb", ["Key", "Strategy", "Signals settled", "Signal ROI (flat)",
+                                       "Signal ROI, luck removed", "Staked ROI", "Bankroll growth",
+                                       "Benchmark source"], ltrs, numeric=[2, 3, 4, 5, 6],
+                           note="Signal is flat 1-unit staking with the recorded luck rule applied; "
+                                "staking metrics stay blank until real stakes exist, so a lucky "
+                                "staking run can never mask a bad signal. "
+                                "<code>data/lines/leaderboard_split.json</code>.")))
+
+    # ---- replacement depth rollup + flagged rows
+    ru = rd.get("rollup_by_unit", {})
+    rroll = []
+    for unit in ("Defense", "Offense", "Special Teams"):
+        c = ru.get(unit, {})
+        rroll.append([esc(unit), str(c.get("2nd string", 0)), str(c.get("3rd string", 0)),
+                      str(c.get("4th string", 0)), str(c.get("not listed", 0)),
+                      src_cell(["https://www.nfl.com/teams/", "https://www.nfl.com/injuries/"])])
+    body.append(card("Replacement depth — 2nd / 3rd / 4th string, tracked",
+                     table("t-st-depth", ["Unit", "2nd string", "3rd string", "4th string",
+                                          "Not listed (flagged)", "Sources"], rroll,
+                           numeric=[1, 2, 3, 4],
+                           note=f"{rd.get('verification', {}).get('rows', 0)} on-report slots; depth "
+                                "order read exactly as each club prints its chart. Row-level "
+                                "register: <code>data/lines/replacement_depth.json</code>.")))
+
+    # ---- correlations: official set with n
+    top = sorted(co["official"]["rows"], key=lambda r: -abs(float(r.get("r") or 0)))[:20]
+    ctrs = [[esc(r.get("pair")), esc(r.get("metric_a")), esc(r.get("metric_b")),
+             num(r.get("r"), 3), esc(r.get("n")), num(r.get("p_value"), 4),
+             src_cell(r.get("_source_urls") or r.get("_source_url"))] for r in top]
+    body.append(card("Correlations — official numbers only, n with every value",
+                     table("t-st-corr", ["Pair", "Metric A", "Metric B", "r", "n", "p", "Source"],
+                           ctrs, numeric=[3, 4, 5],
+                           note=f"Top 20 of {len(co['official']['rows'])} official values. Research "
+                                "numbers (mirror-derived) live in the same register flagged "
+                                "'not decision-usable'; matrix cells whose source recorded no n are "
+                                "marked 'n not recorded' and suppressed. "
+                                "<code>data/lines/correlation_official.json</code>.")))
+
+    # ---- demotion gate
+    dtrs = [[esc(t["id"]), f'<b>{esc(t["name"])}</b>', esc(t["rule"]),
+             str(t.get("n_min", "")),
+             badge("blocked: " + esc(t["blocked"]), "bad") if t.get("blocked") else badge("armed", "ok"),
+             link("https://github.com/karagemop466-tech/X1/blob/main/data/lines/demotion_gate.json", "gate register")]
+            for t in dg.get("triggers", [])]
+    body.append(card("Demotion gate G-13 — a live strategy goes back to paper",
+                     table("t-st-demotion", ["ID", "Trigger", "Rule", "Min n", "State", "Source"],
+                           dtrs, numeric=[3], center=[4],
+                           note="Pre-registered before anything is live; numeric thresholds are on "
+                                "the suggestion board (S-20) for owner confirmation. "
+                                "<code>data/lines/demotion_gate.json</code>.")))
+
+    # ---- deltas
+    qtrs = []
+    for u in dd.get("updates", []):
+        qtrs.append([esc(u["id"]), badge(u["status"], "warn" if "proposed" in u["status"] else "ok"),
+                     esc(u.get("answer_now") or ""), esc(u.get("still_missing") or ""),
+                     esc(u.get("unblocks") or ""),
+                     link((u.get("source_urls") or [""])[0], "source")])
+    for q in dd.get("new_questions", []):
+        qtrs.append([esc(q["id"]), badge("new question", "grey"), esc(q["question"]),
+                     esc(q["unknown"]), esc(q["decision_unblocked"]),
+                     link("https://github.com/karagemop466-tech/X1/blob/main/data/lines/decisions_delta.json", "register")])
+    body.append(card("Decision register delta — answers, missing information, what it unblocks",
+                     table("t-st-q", ["ID", "Status", "Answer / question", "Still missing / unknown",
+                                      "Unblocks", "Source"], qtrs,
+                           note="<code>data/lines/decisions_delta.json</code>.")))
+
+    strs = []
+    for s in sd.get("suggestions", []):
+        opts = " &nbsp;|&nbsp; ".join(f'<b>{esc(o["path"])}</b> {esc(o["label"])}' for o in s.get("options", []))
+        strs.append([esc(s["id"]), f'<b>{esc(s["title"])}</b>', esc(s["problem"]), opts,
+                     badge(s.get("recommended") or "?", "blue"),
+                     badge(s.get("status") or "", "warn" if "proposed" in str(s.get("status")) else "ok"),
+                     link("https://github.com/karagemop466-tech/X1/blob/main/data/lines/suggestions_delta.json", "register")])
+    body.append(card("Suggestion delta — paths with tradeoffs, best path chosen before building",
+                     table("t-st-sug", ["ID", "Suggestion", "Problem", "Paths", "Recommended",
+                                        "Status", "Source"], strs, center=[4, 5],
+                           note="<code>data/lines/suggestions_delta.json</code>.")))
+
+    return page("stores.html", "Verified stores", "Governance", "\n".join(body),
+                lede="This batch's price snapshots, verified results, origination ledger and "
+                     "strategy registers — every row sourced or explicitly blank and flagged.")
+
 
 BUILDERS = {
     "index.html": p_index,
@@ -2172,6 +2342,7 @@ BUILDERS = {
     "verification.html": p_verification,
     "flagged.html": p_flagged,
     "repo-review.html": p_repo_review,
+    "stores.html": p_stores,
 }
 
 

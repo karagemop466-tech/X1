@@ -1,0 +1,19 @@
+# Official 2026 NFL regular-season results, Week 7 — transcribed line by line from
+# https://www.nfl.com/scores/2026/week-7 (the league's official scores page) on 2026-11-14.
+# First-listed club on the official page is the away club; "Winner Indicator" marks the winner.
+# Byes this week (from the official page): BUF, JAX, LAC, WAS.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL
+patriots-at-bears-2026-reg-7|7|NE|24|CHI|30|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/patriots-at-bears-2026-reg-7
+steelers-at-saints-2026-reg-7|7|PIT|16|NO|10|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/steelers-at-saints-2026-reg-7
+49ers-at-falcons-2026-reg-7|7|SF|20|ATL|29|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/49ers-at-falcons-2026-reg-7
+bengals-at-ravens-2026-reg-7|7|CIN|35|BAL|13|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/bengals-at-ravens-2026-reg-7
+buccaneers-at-panthers-2026-reg-7|7|TB|43|CAR|13|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/buccaneers-at-panthers-2026-reg-7
+giants-at-texans-2026-reg-7|7|NYG|27|HOU|21|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/giants-at-texans-2026-reg-7
+colts-at-vikings-2026-reg-7|7|IND|10|MIN|16|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/colts-at-vikings-2026-reg-7
+dolphins-at-jets-2026-reg-7|7|MIA|28|NYJ|25|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/dolphins-at-jets-2026-reg-7
+browns-at-titans-2026-reg-7|7|CLE|27|TEN|24|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/browns-at-titans-2026-reg-7
+broncos-at-cardinals-2026-reg-7|7|DEN|30|AZ|16|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/broncos-at-cardinals-2026-reg-7
+packers-at-lions-2026-reg-7|7|GB|17|DET|20|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/packers-at-lions-2026-reg-7
+rams-at-raiders-2026-reg-7|7|LAR|35|LV|21|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/rams-at-raiders-2026-reg-7
+chiefs-at-seahawks-2026-reg-7|7|KC|3|SEA|20|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/chiefs-at-seahawks-2026-reg-7
+cowboys-at-eagles-2026-reg-7|7|DAL|38|PHI|21|final|https://www.nfl.com/scores/2026/week-7|https://www.nfl.com/games/cowboys-at-eagles-2026-reg-7

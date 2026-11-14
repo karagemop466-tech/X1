@@ -27,6 +27,9 @@ APPROVED = {
     "www.itl.nist.gov", "itl.nist.gov",
     # nextgenstats.nfl.com is an official NFL subdomain, already accepted by scripts/verify_site.py.
     "nextgenstats.nfl.com",
+    # static.www.nfl.com serves the official NFL Game Book PDFs (added for the verified
+    # results feed; already in RESEARCH_APPROVED below for the same reason).
+    "static.www.nfl.com",
 }
 # The research tree cites the league's document and tracking hosts as well.
 RESEARCH_APPROVED = {
