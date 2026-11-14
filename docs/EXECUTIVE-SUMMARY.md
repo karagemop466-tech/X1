@@ -112,3 +112,35 @@ Decision Register page with what would settle each one.
   preserved on their branches and the audit is on the Flagged page (F-07).
 - No model has been fit, so no claimed signal in the methodology section has been empirically
   supported. They are hypotheses with named tests, which is what a hypothesis is supposed to be.
+
+---
+
+# Executive Summary — second round addendum (2026-11-14, session `arena-1d3600f8-x1`)
+
+The first-round summary above is preserved verbatim. Several of its "deliberately not published"
+rows changed state this round — because the missing piece was built, not because the rule was
+relaxed.
+
+## What changed
+
+| First round said | Second round state |
+|---|---|
+| No results feed; ROI not computable | **Verified results feed now exists**: 137 settled 2026 games (Weeks 1–10 through TNF), every row sourced to its official nfl.com game page, double-entry checked against the official standings — 32/32 clubs match on PF/PA and W-L-T, league totals 6,291 = 6,291, zero mirror disagreements. ROI is now computed from official outcomes (`data/results/roi_summary.csv`): **nothing is positive at the assumed −110**; model spread MAE 10.05 pts on verified results. |
+| No price snapshots | **Price-snapshot store exists** (`data/price_snapshots/`): opening + closing capture slots for all 56 originated markets (14 games × side/total/moneyline), an append-only capture log, and a recorder tool. Opening quotes do not exist in any permitted source — blank and flagged (Q-02). Closing captures are the third-party mirror benchmark, labelled unverified on every row. |
+| Correlation values not published | **15 official-only correlations published** with n, r, permutation p, Fisher CI and row-level official sources (`data/analysis/correlations_official.csv`). Mirror-based values remain visible but quarantined as non-official reference. |
+| Leaderboard rankings withheld | The official-only board is still unranked (correct — no official prices yet), but the leaderboard now separates **signal from staking** (`data/leaderboard_signal_staking.csv`): final grade = min(signal, staking); 0 of 16 mirror-window strategies are rankable; a lucky staking run cannot mask a bad signal. |
+| Depth tracking = starter vs backup | **Depth of the replacement is now tracked and published**: of 189 on-report starters, replacements sit at 2nd string (168), 3rd string (3), or unreadable (18, flagged, never inferred). Per-team, per-unit, per-status aggregates with sources (`data/analysis/replacement_depth.json`). |
+| Demotion = one sentence | **Demotion gate G8 defined** (six mechanical triggers, action, re-entry, logging, authority; `data/gates.json`, `docs/methodology/demotion-gate.md`). D4/D5 switch on automatically when the price store gains captures. |
+
+## The standing honest position
+
+1. **The model is a screen, not a price.** On verified 2026 results nothing beats break-even at
+   −110. This is published, not hidden.
+2. **No official source publishes betting prices.** Every price cell is blank-and-flagged or
+   labelled third-party. Q-02 (a licensed price feed) remains the single highest-leverage decision
+   (suggestion S-A on the suggestion board).
+3. **Nothing is ranked on luck.** The min(signal, staking) rule and the G8 demotion gate are wired;
+   the board is honestly empty of promotable strategies.
+4. **Verification is double-entry.** Every new feed is cross-checked against an independent official
+   table; every table row on the site links to the page it came from (`tools/verify_app.py`: 5,784
+   rows, 0 unsourced).
