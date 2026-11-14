@@ -55,34 +55,59 @@ jobs:
       - name: Commit refreshed data
         if: always()
         run: |
-          set -e
+          mkdir -p _ci
+          {
+            set -x
+            git config user.name "x1-bot"
+            git config user.email "x1-bot@users.noreply.github.com"
+            # Adopt whatever the branch has moved on to (another session may have
+            # pushed) without touching the working tree, then stage only data/.
+            # --mixed avoids the rebase conflicts a pull can produce here, because
+            # pull refuses to run with the dirty tree the pipeline leaves behind.
+            git fetch origin "${GITHUB_REF_NAME}"
+            git reset --mixed "origin/${GITHUB_REF_NAME}"
+            git add data
+            if git diff --cached --quiet; then
+              echo "MARKER: no data change"
+            else
+              git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              pushed=0
+              for attempt in 1 2 3 4 5; do
+                git fetch origin "${GITHUB_REF_NAME}"
+                if git rebase "origin/${GITHUB_REF_NAME}"; then
+                  if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                    echo "MARKER: pushed on attempt ${attempt}"
+                    pushed=1
+                    break
+                  fi
+                else
+                  git rebase --abort || true
+                fi
+                sleep $((attempt * 5))
+              done
+              [ "${pushed}" = "1" ] || echo "MARKER: PUSH FAILED after 5 attempts"
+            fi
+            echo "MARKER: done"
+          } 2>&1 | tee _ci/commit.log
+          grep -q "MARKER: done" _ci/commit.log
+
+      - name: Publish CI log
+        if: always()
+        continue-on-error: true
+        run: |
           git config user.name "x1-bot"
           git config user.email "x1-bot@users.noreply.github.com"
-          # Adopt whatever the branch has moved on to (another session may have
-          # pushed) without touching the working tree, then stage only data/.
-          # --mixed avoids the rebase conflicts a pull can produce here.
           git fetch origin "${GITHUB_REF_NAME}"
           git reset --mixed "origin/${GITHUB_REF_NAME}"
-          git add data
-          if git diff --cached --quiet; then
-            echo "no data change"
-            exit 0
-          fi
-          git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          for attempt in 1 2 3 4 5; do
+          git add _ci
+          if git diff --cached --quiet; then echo "no ci log change"; exit 0; fi
+          git commit -m "ci: publish run log $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for attempt in 1 2 3; do
             git fetch origin "${GITHUB_REF_NAME}"
-            if git rebase "origin/${GITHUB_REF_NAME}"; then
-              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
-                echo "pushed on attempt ${attempt}"
-                exit 0
-              fi
-            else
-              git rebase --abort || true
-            fi
-            sleep $((attempt * 5))
+            git rebase "origin/${GITHUB_REF_NAME}" || { git rebase --abort || true; sleep 5; continue; }
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 5
           done
-          echo "could not push data after 5 attempts"
-          exit 1
 
       - name: Assemble the site
         if: ${{ github.event.inputs.skip_pages != 'true' }}
