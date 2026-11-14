@@ -5,7 +5,7 @@ Collecting numpy
   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
 Downloading pypdf-7.1.0-py3-none-any.whl (418 kB)
 Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 58.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 99.2 MB/s  0:00:00
 Installing collected packages: pypdf, numpy
 
 Successfully installed numpy-2.4.6 pypdf-7.1.0

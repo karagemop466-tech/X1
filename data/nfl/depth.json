@@ -2,7 +2,7 @@
   "provenance": {
     "source_key": "injuries_current",
     "source_url": "https://www.nfl.com/injuries/",
-    "retrieved_at": "2026-11-14T03:47:30Z",
+    "retrieved_at": "2026-11-14T03:58:56Z",
     "record_count": 0,
     "notes": [
       "Depth charts built from 90 official game book(s).",
@@ -516,7 +516,7 @@
       },
       "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
       "source_label": "NFL Official Game Book (PDF)",
-      "retrieved_at": "2026-11-14T03:48:33Z"
+      "retrieved_at": "2026-11-14T03:59:32Z"
     },
     {
       "club": "Washington Commanders",
@@ -1025,7 +1025,7 @@
       },
       "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
       "source_label": "NFL Official Game Book (PDF)",
-      "retrieved_at": "2026-11-14T03:48:33Z"
+      "retrieved_at": "2026-11-14T03:59:32Z"
     }
   ]
 }
