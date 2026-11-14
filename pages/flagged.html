@@ -24,6 +24,7 @@
       <a href="decisions.html">Decision register</a>
       <a href="suggestions.html">Suggestions</a>
       <a class="active" href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
       <a href="sources.html">Sources</a>
       <a href="review.html">Repo review</a>
   </nav>
@@ -46,10 +47,10 @@
   states what is verified, what is unknown, and what would settle it.</p>
 </section>
 <section class="content">
-  <div class="note"><b>12 items · 0 of them block the release.</b> Everything here is either a known
+  <div class="note"><b>13 items · 0 of them block the release.</b> Everything here is either a known
   limitation with a named fix, or an irregularity recorded so a future reviewer does not mistake it for a scraping bug.</div>
   <div class="statrow">
-    <div class="stat"><strong>12</strong><span>flags</span></div>
+    <div class="stat"><strong>13</strong><span>flags</span></div>
     <div class="stat"><strong>4</strong><span>high severity</span></div>
     <div class="stat"><strong>0</strong><span>blocking the release</span></div>
     <div class="stat"><strong>17</strong><span>open decisions linked</span></div>
@@ -66,6 +67,7 @@
 <tr><td><b>F-09</b></td><td><span class="pill warn">medium</span></td><td>Template artefact</td><td><b>The official standings page prints an unrendered template token in its heading.</b></td><td>The page heading literally reads &#x27;$year$ NFL $displayname$ Standings&#x27; at retrieval.</td><td>Nothing material — the table itself is correct and complete. Recorded because it is an irregularity on an official page.</td><td>No action; noted so a future reviewer does not mistake it for a scraping error.</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">NFL.com division standings ↗</a><br><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>F-10</b></td><td><span class="pill warn">medium</span></td><td>Anomalous listing</td><td><b>Some officially listed players sit oddly on their club&#x27;s depth chart.</b></td><td>Arizona&#x27;s Budda Baker is listed on the Week 10 report (full participation) while the Cardinals chart does not place him; Seattle lists Quenton Nelson at LG; Puka Nacua appears on the Rams&#x27; Week 10 report with no designation while NFL.com news reports a likely IR placement.</td><td>Whether these reflect trades, scheme changes or chart staleness. The cause is not stated by any source read.</td><td>Per-player transaction lookup in the official transaction hub before any of these rows is used as a feature.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">Official Week 10 injury report ↗</a><br><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>F-11</b></td><td><span class="pill warn">medium</span></td><td>Legal / eligibility</td><td><b>Reward funding, eligibility and jurisdiction are unresolved.</b></td><td>The NFL Gambling Policy caps prizes at $250 in related contests for NFL Personnel and bars personnel from sports-betting operations.</td><td>The owner&#x27;s entity, jurisdiction, funding source and contest terms.</td><td>Q-07 and Q-08, with jurisdiction-specific review.</td><td><a class="src-link" href="https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf" target="_blank" rel="noopener noreferrer">NFL Gambling Policy for NFL Personnel (2022) ↗</a><br><a class="src-link" href="https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>F-13</b></td><td><span class="pill warn">medium</span></td><td>Method</td><td><b>Two independent transcriptions agree, but agreement is not proof.</b></td><td>32 clubs x 7 fields and 345 players x 4 fields were compared against an independently produced second transcription on main; 0 disagreements across 1,604 values.</td><td>Whether both readers made the same systematic error (wrong column, mislabelled header). An agreement test cannot detect a shared blind spot.</td><td>A third independent read, or the league&#x27;s own structured data feed.</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">NFL.com standings ↗</a><br><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>F-12</b></td><td><span class="pill muted-pill">low</span></td><td>Data decay</td><td><b>Every published table is a snapshot and will go stale.</b></td><td>All tables state a 2026-11-14 retrieval date; the injury report is week-specific and changes daily.</td><td>How quickly a reader will notice. Staleness is certain, not hypothetical.</td><td>Q-17: a refresh cadence plus a visible staleness rule.</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">NFL.com injury report ↗</a><br><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 </tbody></table></div>
   <h2>The three that matter most</h2>
@@ -78,7 +80,9 @@
 
   <footer class="mainfoot">
     Independent research project · not financial or betting advice ·
-    snapshot 2026-11-14 · every published value links to its official source
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
   </footer>
 </main>
 </body>

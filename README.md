@@ -111,6 +111,10 @@ The repository began without an application, NFL data, odds history, tests, or d
 
 Sources linked in the site include NFL.com injury reports, statistics, schedules, and team pages; NFL Football Operations and Next Gen Stats material; and NIST reference material for statistical definitions and uncertainty. Review `sources.html` for the source register and `review.html` for all limitations. See `COORDINATION.md` for scope and verification history.
 
+## Data dashboard
+
+`dashboard/` is generated from `data/` by `scripts/build_site.py` and linked from `index.html`. It holds the official NFL.com standings, Week 10 schedule and injury report (each row links to its source), the strategy registry and validation gates, the flagged-for-review page and the suggestions page. Regenerate with `python3 scripts/build_site.py`, then check with `python3 scripts/check_site.py`.
+
 ## Local preview
 
 Open `index.html` in a browser or serve this directory with any static HTTP server. All pages are plain HTML/CSS and need no build step.

@@ -1,0 +1,46 @@
+leg_a,leg_b,common_games,redundant_mirror_or_nested,p_leg_a,p_leg_b,p_both_observed,p_both_if_independent,dependence_gap,phi,breakeven_2leg,parlay_roi_observed,parlay_roi_if_independent
+S01 Home team ATS (every game),S02 Away team ATS (every game),1326,True,0.4962,0.5038,0.0,0.25,-0.25,-1.0,0.2744,-1.0,-0.0889
+S01 Home team ATS (every game),S03 Favorite ATS (every game),1326,False,0.4962,0.4932,0.2941,0.2447,0.0494,0.1975,0.2744,0.0719,-0.108
+S01 Home team ATS (every game),S04 Underdog ATS (every game),1326,False,0.4962,0.5068,0.2021,0.2515,-0.0494,-0.1975,0.2744,-0.2634,-0.0834
+S01 Home team ATS (every game),S05 Home underdog ATS,532,True,0.5038,0.5038,0.5038,0.2538,0.25,1.0,0.2744,0.836,-0.0751
+S01 Home team ATS (every game),S06 Favorite of 7+ points ATS,370,False,0.5568,0.4811,0.3676,0.2678,0.0997,0.4018,0.2744,0.3396,-0.0238
+S01 Home team ATS (every game),S07 Over total (every game),1315,False,0.4958,0.4875,0.2494,0.2417,0.0077,0.031,0.2744,-0.0909,-0.1191
+S01 Home team ATS (every game),S08 Under total (every game),1315,False,0.4958,0.5125,0.2464,0.2541,-0.0077,-0.031,0.2744,-0.102,-0.0738
+S01 Home team ATS (every game),S09 Rest edge >= 2 days ATS,302,False,0.4801,0.5099,0.2384,0.2448,-0.0064,-0.0257,0.2744,-0.1311,-0.1077
+S01 Home team ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),627,False,0.5152,0.4944,0.3445,0.2547,0.0898,0.3594,0.2744,0.2556,-0.0717
+S02 Away team ATS (every game),S03 Favorite ATS (every game),1326,False,0.5038,0.4932,0.1991,0.2485,-0.0494,-0.1975,0.2744,-0.2744,-0.0944
+S02 Away team ATS (every game),S04 Underdog ATS (every game),1326,False,0.5038,0.5068,0.3047,0.2553,0.0494,0.1975,0.2744,0.1104,-0.0695
+S02 Away team ATS (every game),S05 Home underdog ATS,532,True,0.4962,0.5038,0.0,0.25,-0.25,-1.0,0.2744,-1.0,-0.0889
+S02 Away team ATS (every game),S06 Favorite of 7+ points ATS,370,False,0.4432,0.4811,0.1135,0.2132,-0.0997,-0.4018,0.2744,-0.5863,-0.2228
+S02 Away team ATS (every game),S07 Over total (every game),1315,False,0.5042,0.4875,0.238,0.2458,-0.0077,-0.031,0.2744,-0.1325,-0.1043
+S02 Away team ATS (every game),S08 Under total (every game),1315,False,0.5042,0.5125,0.2662,0.2584,0.0077,0.031,0.2744,-0.0299,-0.0582
+S02 Away team ATS (every game),S09 Rest edge >= 2 days ATS,302,False,0.5199,0.5099,0.2715,0.2651,0.0064,0.0257,0.2744,-0.0104,-0.0338
+S02 Away team ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),627,False,0.4848,0.4944,0.1499,0.2397,-0.0898,-0.3594,0.2744,-0.4536,-0.1263
+S03 Favorite ATS (every game),S04 Underdog ATS (every game),1326,True,0.4932,0.5068,0.0,0.25,-0.25,-1.0,0.2744,-1.0,-0.089
+S03 Favorite ATS (every game),S05 Home underdog ATS,532,True,0.4962,0.5038,0.0,0.25,-0.25,-1.0,0.2744,-1.0,-0.0889
+S03 Favorite ATS (every game),S06 Favorite of 7+ points ATS,370,True,0.4811,0.4811,0.4811,0.2314,0.2496,1.0,0.2744,0.7534,-0.1565
+S03 Favorite ATS (every game),S07 Over total (every game),1315,False,0.4943,0.4875,0.2373,0.2409,-0.0037,-0.0147,0.2744,-0.1353,-0.1218
+S03 Favorite ATS (every game),S08 Under total (every game),1315,False,0.4943,0.5125,0.257,0.2534,0.0037,0.0147,0.2744,-0.0632,-0.0766
+S03 Favorite ATS (every game),S09 Rest edge >= 2 days ATS,302,False,0.4967,0.5099,0.2947,0.2533,0.0414,0.1657,0.2744,0.0741,-0.0769
+S03 Favorite ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),627,True,0.5088,0.4944,0.0271,0.2515,-0.2244,-0.8979,0.2744,-0.9012,-0.0832
+S04 Underdog ATS (every game),S05 Home underdog ATS,532,True,0.5038,0.5038,0.5038,0.2538,0.25,1.0,0.2744,0.836,-0.0751
+S04 Underdog ATS (every game),S06 Favorite of 7+ points ATS,370,True,0.5189,0.4811,0.0,0.2496,-0.2496,-1.0,0.2744,-1.0,-0.0901
+S04 Underdog ATS (every game),S07 Over total (every game),1315,False,0.5057,0.4875,0.2502,0.2465,0.0037,0.0147,0.2744,-0.0882,-0.1016
+S04 Underdog ATS (every game),S08 Under total (every game),1315,False,0.5057,0.5125,0.2555,0.2592,-0.0037,-0.0147,0.2744,-0.0687,-0.0553
+S04 Underdog ATS (every game),S09 Rest edge >= 2 days ATS,302,False,0.5033,0.5099,0.2152,0.2567,-0.0414,-0.1657,0.2744,-0.2156,-0.0646
+S04 Underdog ATS (every game),S10 Own Elo model vs line (edge >= 3 pts),627,True,0.4912,0.4944,0.4673,0.2429,0.2244,0.8979,0.2744,0.7032,-0.1148
+S05 Home underdog ATS,S06 Favorite of 7+ points ATS,112,True,0.625,0.375,0.0,0.2344,-0.2344,-1.0,0.2744,-1.0,-0.1458
+S05 Home underdog ATS,S07 Over total (every game),526,False,0.5019,0.4639,0.2471,0.2328,0.0143,0.0575,0.2744,-0.0992,-0.1515
+S05 Home underdog ATS,S08 Under total (every game),526,False,0.5019,0.5361,0.2548,0.2691,-0.0143,-0.0575,0.2744,-0.0715,-0.0193
+S05 Home underdog ATS,S09 Rest edge >= 2 days ATS,115,False,0.4783,0.5478,0.2,0.262,-0.062,-0.2494,0.2744,-0.2711,-0.0451
+S05 Home underdog ATS,S10 Own Elo model vs line (edge >= 3 pts),398,True,0.505,0.5,0.5,0.2525,0.2475,0.99,0.2744,0.8223,-0.0797
+S06 Favorite of 7+ points ATS,S07 Over total (every game),368,False,0.481,0.5353,0.2636,0.2575,0.0061,0.0245,0.2744,-0.0393,-0.0616
+S06 Favorite of 7+ points ATS,S08 Under total (every game),368,False,0.481,0.4647,0.2174,0.2235,-0.0061,-0.0245,0.2744,-0.2077,-0.1854
+S06 Favorite of 7+ points ATS,S09 Rest edge >= 2 days ATS,91,False,0.4835,0.5055,0.3077,0.2444,0.0633,0.2533,0.2744,0.1214,-0.1092
+S06 Favorite of 7+ points ATS,S10 Own Elo model vs line (edge >= 3 pts),266,True,0.4812,0.5188,0.0,0.2496,-0.2496,-1.0,0.2744,-1.0,-0.0901
+S07 Over total (every game),S08 Under total (every game),1348,True,0.4852,0.5148,0.0,0.2498,-0.2498,-1.0,0.2744,-1.0,-0.0896
+S07 Over total (every game),S09 Rest edge >= 2 days ATS,296,False,0.4628,0.5034,0.2264,0.233,-0.0066,-0.0266,0.2744,-0.175,-0.1509
+S07 Over total (every game),S10 Own Elo model vs line (edge >= 3 pts),620,False,0.4984,0.4919,0.2452,0.2452,-0.0,-0.0001,0.2744,-0.1065,-0.1064
+S08 Under total (every game),S09 Rest edge >= 2 days ATS,296,False,0.5372,0.5034,0.277,0.2704,0.0066,0.0266,0.2744,0.0097,-0.0145
+S08 Under total (every game),S10 Own Elo model vs line (edge >= 3 pts),620,False,0.5016,0.4919,0.2468,0.2468,0.0,0.0001,0.2744,-0.1006,-0.1006
+S09 Rest edge >= 2 days ATS,S10 Own Elo model vs line (edge >= 3 pts),159,False,0.5535,0.4969,0.2013,0.275,-0.0737,-0.2966,0.2744,-0.2665,0.0022

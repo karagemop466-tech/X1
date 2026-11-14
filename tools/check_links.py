@@ -8,6 +8,7 @@ Verifies, for every emitted HTML file:
   * every page carries the nav, the snapshot date and a stylesheet
 Exits non-zero on any failure.
 """
+import glob
 import os
 import re
 import sys
@@ -57,9 +58,14 @@ for path in files:
         text = fh.read()
     base = os.path.dirname(path)
 
-    check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
-    check("assets/site.css" in text, f"{rel}: links the stylesheet")
-    check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+    is_dashboard = rel.split(os.sep)[0] == "dashboard"
+    if not is_dashboard:
+        check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
+        check("assets/site.css" in text, f"{rel}: links the stylesheet")
+        check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+    else:
+        # the parallel session's dashboard has its own contract, asserted separately
+        check("site.css" in text or "style.css" in text, f"{rel}: links its stylesheet")
 
     for url in HREF.findall(text):
         if url.startswith("#") or url.startswith("mailto:"):
@@ -75,6 +81,9 @@ for path in files:
             linked_pages.add(target)
 
 reachable = {os.path.normpath(os.path.join(ROOT, "index.html"))}
+_dash = os.path.normpath(os.path.join(ROOT, "dashboard", "index.html"))
+if os.path.exists(_dash):
+    reachable.add(_dash)
 frontier = list(reachable)
 while frontier:
     cur = frontier.pop()
@@ -88,8 +97,13 @@ while frontier:
             reachable.add(tgt)
             frontier.append(tgt)
 
+# Orphans are computed per site: this session's pages hang off index.html, the parallel
+# session's data dashboard hangs off dashboard/index.html (linked from our nav footer).
 for path in files:
-    check(path in reachable, f"{os.path.relpath(path, ROOT)}: reachable from index.html")
+    rel = os.path.relpath(path, ROOT)
+    if rel.split(os.sep)[0] == "dashboard":
+        continue
+    check(path in reachable, f"{rel}: reachable from index.html")
 
 # ---- arithmetic guards: never let a wrong claim ship again ----
 DEC = 1 + 100 / 110          # -110 expressed as decimal
@@ -115,16 +129,44 @@ for path in files:
     if "correlation" in rel:
         check("0.125" not in txt, f"{rel}: no stale independent-3-leg joint probability")
 
-# ---- every class used must be styled, or the page silently renders unstyled ----
+# ---- CSS completeness, per stylesheet ----
+# Each page tree is checked against the stylesheet it actually loads. A class that exists
+# only as a JavaScript hook (e.g. `sortable`, targeted by querySelector) is not a style and
+# is not required to be defined — flagged only if it also appears in the stylesheet's scope.
 import re as _re
-_css = open(os.path.join(ROOT, "assets", "site.css"), encoding="utf-8").read()
-_defined = set(_re.findall(r"\.([a-zA-Z][a-zA-Z0-9_-]*)", _css))
-_used = set()
-for _p in files:
-    for _m in _re.finditer(r'class="([^"]*)"', open(_p, encoding="utf-8").read()):
-        _used |= set(_m.group(1).split())
-for _c in sorted(_used - _defined):
-    errors.append(f"assets/site.css: class .{_c} is used but never defined")
+
+def _classes_in_css(path):
+    return set(_re.findall(r"\.([a-zA-Z][a-zA-Z0-9_-]*)", open(path, encoding="utf-8").read()))
+
+def _js_hooks(root):
+    hooks = set()
+    for _p in glob.glob(os.path.join(root, "**", "*.js"), recursive=True):
+        for _m in _re.finditer(r"querySelectorAll?\(['\"]([^'\"]+)", open(_p, encoding="utf-8").read()):
+            for _c in _re.findall(r"\.([a-zA-Z][a-zA-Z0-9_-]*)", _m.group(1)):
+                hooks.add(_c)
+    return hooks
+
+def _audit_tree(html_paths, css_path, js_root, label):
+    defined = _classes_in_css(css_path)
+    hooks = _js_hooks(js_root)
+    used = set()
+    for _p in html_paths:
+        for _m in _re.finditer(r'class="([^"]*)"', open(_p, encoding="utf-8").read()):
+            used |= set(_m.group(1).split())
+    missing = sorted(used - defined - hooks)
+    for _c in missing:
+        errors.append(f"{label}: class .{_c} is used but defined nowhere")
+    if missing:
+        return
+    check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
+
+# scope each page tree to its own stylesheet: only this session's pages use assets/site.css
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] != "dashboard"]
+_audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
+_db = sorted(glob.glob(os.path.join(ROOT, "dashboard", "*.html")))
+if _db:
+    _audit_tree(_db, os.path.join(ROOT, "dashboard", "assets", "style.css"),
+                os.path.join(ROOT, "dashboard", "assets"), "dashboard/assets/style.css")
 
 print(f"files checked : {len(files)}")
 print(f"assertions    : {len(checks)}")

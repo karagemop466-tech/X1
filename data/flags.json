@@ -164,6 +164,18 @@
       "source_label": "NFL.com injury report",
       "league_source_url": "https://www.nfl.com/injuries/",
       "league_source_label": "league page ↗"
+    },
+    {
+      "id": "F-13",
+      "severity": "medium",
+      "category": "Method",
+      "item": "Two independent transcriptions agree, but agreement is not proof.",
+      "verified": "32 clubs x 7 fields and 345 players x 4 fields were compared against an independently produced second transcription on main; 0 disagreements across 1,604 values.",
+      "unknown": "Whether both readers made the same systematic error (wrong column, mislabelled header). An agreement test cannot detect a shared blind spot.",
+      "settles_it": "A third independent read, or the league's own structured data feed.",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "source_label": "NFL.com standings",
+      "league_source_url": "https://www.nfl.com/standings/division/2026/REG"
     }
   ]
 }

@@ -44,6 +44,15 @@ jobs:
       - name: Prove the source-link rule can fail (mutation test)
         run: python3 tools/test_source_rule.py
 
+      - name: Second independent transcription cross-check
+        run: python3 tools/cross_check.py
+
+      - name: Parlay correlation regression (Frechet bounds, nested legs)
+        run: python3 scripts/verify_parlay.py
+
+      - name: Parallel session's dashboard checks
+        run: python3 scripts/check_site.py
+
       - name: Validate JSON registers
         run: |
           for f in data/*.json; do

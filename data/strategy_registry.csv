@@ -1,0 +1,11 @@
+strategy_id,name,family,definition
+S01,Home team ATS (every game),ATS,Bet home side against spread_line
+S02,Away team ATS (every game),ATS,Mirror of S01 (ignores pushes)
+S03,Favorite ATS (every game),ATS,Favorite = side with spread_line sign
+S04,Underdog ATS (every game),ATS,Mirror of S03
+S05,Home underdog ATS,ATS,Home side when spread_line < 0
+S06,Favorite of 7+ points ATS,ATS,"|spread_line| >= 7, bet favorite"
+S07,Over total (every game),TOTAL,Bet over total_line
+S08,Under total (every game),TOTAL,Mirror of S07
+S09,Rest edge >= 2 days ATS,ATS,Team with >= 2 more rest days than opponent
+S10,Own Elo model vs line (edge >= 3 pts),MODEL,"Elo K=20, HFA=65, 25 Elo/pt, 1/3 season reversion; bet when |model - line| >= 3"

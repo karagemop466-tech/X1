@@ -41,6 +41,7 @@ NAV = [
     ("pages/decisions.html", "Decision register"),
     ("pages/suggestions.html", "Suggestions"),
     ("pages/flagged.html", "Flagged for review"),
+    ("pages/cross-check.html", "Cross-check"),
     ("pages/sources.html", "Sources"),
     ("pages/review.html", "Repo review"),
 ]
@@ -93,6 +94,12 @@ def ext_icon(url):
     return link(url, "source ↗", "src-link")
 
 
+def rel_link(path, text, depth=0):
+    """Repository-root-relative link, adjusted for how deep the page sits."""
+    href = ("../" * depth + path) if depth else path
+    return f'<a href="{href}">{text}</a>'
+
+
 def shell(title, subtitle, body, depth=0):
     prefix = "../" * depth
     rel = lambda p: p if depth == 0 else "../" + p
@@ -132,7 +139,9 @@ def shell(title, subtitle, body, depth=0):
   {body}
   <footer class="mainfoot">
     Independent research project · not financial or betting advice ·
-    snapshot {RETRIEVED} · every published value links to its official source
+    snapshot {RETRIEVED} · every published value links to its official source<br>
+    Also in this repository: {rel_link('dashboard/index.html', 'the backtest data dashboard', depth)} — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
   </footer>
 </main>
 </body>
@@ -1217,6 +1226,77 @@ def page_review():
     return shell("Repo review", f"SNAPSHOT {RETRIEVED}", body, depth=1)
 
 
+
+# ---------------------------------------------------------------- cross-check
+def page_crosscheck():
+    st_rows = [
+        [cell("Standings"), cell("32 clubs"), cell("224 fields (W, L, T, PF, PA, NET, PCT)"), cell('<span class="pill ok">0 disagreements</span>'),
+         src_cell(DOC + "tools/cross_check.py", "the check ↗")],
+        [cell("Injury report"), cell("345 players"), cell("1,380 cells (position, injury, practice, game status)"), cell('<span class="pill ok">0 disagreements</span>'),
+         src_cell(DOC + "tools/cross_check.py", "the check ↗")],
+    ]
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">VERIFICATION</div>
+  <h1>Independent cross-check</h1>
+  <p>Two sessions transcribed the same official NFL pages without coordinating. Where they agree, a typo
+  is far less likely. This page reports the comparison — including the fact that it found nothing.</p>
+</section>
+<section class="content">
+  <div class="alert small">
+    <b>Why this page exists.</b>
+    <p>An arithmetic suite cannot catch a plausible but wrong number: this project's own Arizona error
+    (2–6 instead of 3–6) was only caught because the win percentage happened to stop adding up. The real
+    defence is a <strong>second independent transcription</strong>. One became available when another session
+    merged its own read of the same official pages into <code>main</code>, so the comparison below is a
+    genuine independent pass — not a self-review.</p>
+  </div>
+
+  <h2>Result</h2>
+  {table(["Dataset", "Scope", "Values compared", "Outcome", "Source"], st_rows)}
+
+  <p>Two independent reads of the same pages agreeing on <b>1,604</b> values is meaningful evidence that
+  the transcription is clean. It is <b>not</b> proof: two readers can make the same systematic error —
+  reading the wrong column, or both trusting the same mislabelled header. That residual risk is recorded
+  as flag F-13 and cannot be removed without a third source or the raw league data feed.</p>
+
+  <h2>What was actually compared</h2>
+  <div class="formula">
+    <code>standings : 32 clubs × (W, L, T, PF, PA, NET, PCT) = 224 comparisons</code>
+    <code>injuries  : 345 players × (position, injury, practice, game status) = 1,380 comparisons</code>
+    <code>join key  : (team, player) after normalising punctuation — e.g. “D.J.” vs “DJ”</code>
+  </div>
+
+  <h2>One real difference, and what it teaches</h2>
+  <p>The club key for the Rams differs between the two transcriptions: one writes <code>LAR</code>, the other
+  <code>LA</code>. Both are used in the wild; neither is wrong. The comparison therefore normalises the alias
+  explicitly rather than fuzzy-matching, because a fuzzy match on team codes is exactly the kind of shortcut
+  that silently pairs the wrong rows. The alias is declared in <code>tools/cross_check.py</code> so a reviewer
+  can see it and disagree with it.</p>
+
+  <h2>Reproduce it</h2>
+  <pre class="flow">python3 tools/cross_check.py
+→ standings clubs compared : 32  fields: 224
+→ injury rows compared     : 345  cells: 1380
+→ two independent transcriptions agree on every compared value</pre>
+
+  <h2>What this does not cover</h2>
+  <table class="kv">
+    <thead><tr><th>Gap</th><th>Why it is not covered</th><th>Reference</th></tr></thead>
+    <tbody>
+      <tr><td>Depth charts</td><td>Only this session transcribed them; there is no independent read to compare against</td>
+        <td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
+      <tr><td>The final score of WAS@NYG</td><td>Agreed on the schedule row, but the score itself was read once</td>
+        <td><a class="src-link" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener noreferrer">game page ↗</a></td></tr>
+      <tr><td>Any price, correlation or leaderboard value</td><td>Not produced by this session at all</td>
+        <td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+    </tbody>
+  </table>
+</section>
+"""
+    return shell("Cross-check", f"SNAPSHOT {RETRIEVED}", body, depth=1)
+
+
 def main():
     write("index.html", page_index())
     write("pages/executive-summary.html", page_exec())
@@ -1230,9 +1310,10 @@ def main():
     write("pages/decisions.html", page_decisions())
     write("pages/suggestions.html", page_suggestions())
     write("pages/flagged.html", page_flagged())
+    write("pages/cross-check.html", page_crosscheck())
     write("pages/sources.html", page_sources())
     write("pages/review.html", page_review())
-    print("wrote index.html + 13 pages")
+    print("wrote index.html + 14 pages")
 
 
 if __name__ == "__main__":
