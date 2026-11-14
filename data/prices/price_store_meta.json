@@ -1,0 +1,122 @@
+{
+ "dataset": "price_history",
+ "title": "Opening and closing price snapshots for every market we originate",
+ "generated_at": "2026-11-14T20:38:31.963592Z",
+ "generated_by": "tools/build_price_history.py (session arena-52aabfa8-x1, T10)",
+ "snapshot_date": "2026-11-14",
+ "columns": [
+  "game_id",
+  "season",
+  "week",
+  "game_type",
+  "date",
+  "away",
+  "home",
+  "market",
+  "side",
+  "snapshot",
+  "line",
+  "source_key",
+  "convention",
+  "flags"
+ ],
+ "requirement": "\"Add a price-snapshot store that records opening and closing numbers for every market we originate\" — owner's brief",
+ "sources": [
+  {
+   "key": "nfldata_games",
+   "url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "label": "nflverse/nfldata games.csv — closing market lines",
+   "org": "nflverse (not the NFL)",
+   "tier": "third_party_mirror",
+   "retrieved_at": "2026-11-14",
+   "file": "data/raw/nflverse/games.csv",
+   "sha256_prefix": "60ea2f76bd2c539c",
+   "coverage": "2019-2026; 2026 lines posted through week 11"
+  },
+  {
+   "key": "nfldata_initial_lines",
+   "url": "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv",
+   "label": "nflverse/nfldata initial_lines.csv — opening lines (WSGT)",
+   "org": "nflverse (not the NFL)",
+   "tier": "third_party_mirror",
+   "retrieved_at": "2026-11-14",
+   "file": "data/raw/nflverse/initial_lines.csv",
+   "coverage": "2021 regular season only; spread and total only; no moneylines"
+  },
+  {
+   "key": "official",
+   "url": "https://www.nfl.com/",
+   "label": "No official source publishes betting prices",
+   "org": "NFL",
+   "tier": "none_exists",
+   "note": "flag F-06 / question Q-02: every value here is a third-party benchmark, never league-verified"
+  }
+ ],
+ "conventions": {
+  "closing_spread": "signed game line; positive = home team favored (nflverse DATASETS.md)",
+  "closing_total": "single game total",
+  "closing_ml": "American odds for the named side",
+  "opening_spread": "line is for the named team as published; negative = that team favored (initial_lines.csv)",
+  "opening_total": "single game total; Over and Under published identical (verified)",
+  "opening_ml": "American odds for the named side"
+ },
+ "flag_codes": {
+  "NO-CLOSING-LINE-IN-MIRROR": "games.csv carries no closing line for this game (future 2026 weeks beyond the posted window). Cell blank — never guessed.",
+  "NO-OPENING-DATA-SEASON": "initial_lines.csv covers the 2021 regular season only; no opening number exists for this game in any reachable source.",
+  "NO-OPENING-MONEYLINE": "no reachable source publishes opening moneylines for any season. Cell blank by construction."
+ },
+ "counts": {
+  "rows": 20088,
+  "games": 2232,
+  "closing_values_present": 8492,
+  "closing_cells_blank": 436,
+  "opening_values_present": 816,
+  "opening_cells_blank": 10344
+ },
+ "verification": {
+  "checks": [
+   {
+    "id": "P1",
+    "what": "every present line parses as a number",
+    "result": "pass",
+    "detail": "9308 values checked"
+   },
+   {
+    "id": "P2",
+    "what": "2021 opening spread pairs exact negatives",
+    "result": "pass",
+    "detail": "272/272"
+   },
+   {
+    "id": "P3",
+    "what": "2021 opening Over == Under",
+    "result": "pass",
+    "detail": "272 games"
+   },
+   {
+    "id": "P4",
+    "what": "Week 10 2026 complete closing spread/total/ML",
+    "result": "pass",
+    "detail": "14/14 games"
+   },
+   {
+    "id": "P5",
+    "what": "game set identical to verified results feed",
+    "result": "pass",
+    "detail": "2232 games"
+   },
+   {
+    "id": "P6",
+    "what": "exactly 9 rows per game, no duplicate slot",
+    "result": "pass",
+    "detail": "20088 rows"
+   }
+  ],
+  "all_passed": true
+ },
+ "known_limitations": [
+  "Opening and closing use different published conventions (per-team opening spread vs signed game closing spread). They are stored verbatim as published; normalising them into one convention is a follow-up before any CLV number is computed from this store.",
+  "2021 is the only season with opening data, and it has no opening moneylines — CLV studies on moneylines are impossible from reachable sources (part of Q-02).",
+  "No value in this store is official. F-06 stands: a licensed or account price feed is the owner decision that would upgrade the tiers."
+ ]
+}

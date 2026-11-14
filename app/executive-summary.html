@@ -27,6 +27,8 @@
 <a class="" href="lines.html">Originated lines</a>
 <a class="" href="origination.html">Origination &amp; prices</a>
 <a class="" href="prices.html">Price snapshots</a>
+<a class="" href="results-feed.html">Results feed (all seasons)</a>
+<a class="" href="price-history.html">Price history</a>
 <a class="" href="correlation.html">Correlation</a>
 <div class="grp">Strategy</div>
 <a class="" href="strategies.html">Strategy library</a>
@@ -139,7 +141,43 @@ policy choices (demotion thresholds G8 vs D1–D5; reward staking term), both ar
 side and the choice is recorded as an owner decision on the
 <a href="decisions.html">decision register</a>. Finding I-14 is resolved by the results
 arithmetic: the standings do include the Thursday result; the earlier reading miscounted.
-Full merge log: <code>COORDINATION.md</code>.</p></section>
+Full merge log: <code>COORDINATION.md</code>.</p>
+<p><b>Third implementation, same rule.</b> Session <code>arena-52aabfa8-x1</code> (tasks T10–T17)
+built the same eight requirements independently and merged next under the same nothing-discarded
+rule: its all-season results feed and price-history store publish beside the others, its
+correlation work is an <i>independent recomputation of the pipeline's 988-row official set</i>
+(988/988 within tolerance — a check on top of the existing stores, not a replacement), and its
+requirement rows R-46…R-53 are in the <a href="requirements.html">register</a>.</p></section>
+<section class="card"><h2>Where each round-2 requirement landed (R-46 … R-53) — and what verified it</h2>
+<div class="grid2"><div><ul class="tight">
+<li><b>R-46 price snapshots</b> — three coexisting stores: <a href="prices.html">per-market
+captures</a>, <a href="price-history.html">all-season history</a> (20,088 rows, P1–P6 pass),
+and the origination price index.</li>
+<li><b>R-47 results feed</b> — <a href="results.html">official 2026 feed</a> (double-entry
+checked) plus the <a href="results-feed.html">all-season feed</a> (2,232 rows, per-row tier,
+C1–C4 pass).</li>
+<li><b>R-48 order</b> — pre-registered in <code>code/build_lines.py</code> and asserted against
+the emitted column order; published on <a href="origination.html">origination</a>.</li>
+<li><b>R-49 three columns</b> — fair / market / difference as separate columns for all three
+markets.</li>
+</ul></div><div><ul class="tight">
+<li><b>R-50 signal vs staking</b> — three implementations: the official-only schema, the
+mirror-window grades, and <code>rank_signal</code> computed from <code>signal_score</code> alone
+(<a href="leaderboard.html">leaderboard</a>).</li>
+<li><b>R-51 replacement depth</b> — per-slot store plus the deficiency register's 2nd/3rd/4th
+string column.</li>
+<li><b>R-52 official-only correlations with n</b> — the wide 3,570-pair matrix, the 988-row
+pipeline set independently recomputed <b>988/988</b> (ledger
+<code>data/verify/official_correlations.csv</code>), n on every value everywhere.</li>
+<li><b>R-53 demotion gate</b> — <a href="validation.html">G8 with six triggers</a> on the
+root register, G-13 in the pipeline register; Q-26 answered.</li>
+</ul></div></div>
+<p><b>Verification of the third implementation:</b> verify_data (2,944 checks), check_links
+(28,026), verify_site (116 pages), check_site, verify_research (1,921), pipeline verify,
+verify_against_official (2,183 cells, 0 mismatches), test_source_rule (mutation caught),
+verify_parlay, cross_check (1,380 cells), verify_app (23 pages, 5,942 rows, 0 unsourced),
+verify_new_data, and the staleness guards. New flags <b>F-10 … F-15</b> are on
+<a href="flagged.html">Flagged for review</a>; none block.</p></section>
 <section class="card"><h2>Round 2 — what session arena/907c5baf-x1 added (2026-11-14)</h2>
 <ul class="tight">
   <li><b>Verified results feed (second, independent transcription)</b> — 150 games from official

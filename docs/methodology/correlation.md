@@ -106,3 +106,41 @@ Every published correlation row must carry:
 `status` is one of `published` (all fields filled and passed) or `unverified` (published on the
 Flagged for Review page). The generator refuses to emit a `published` row with any blank field,
 which is how the rule "never fill in a value" is enforced mechanically rather than by good intentions.
+
+## 8. Official-only rule, and n on every value (T15)
+
+**Requirement:** "Compute correlations only from officially sourced numbers and publish n with
+each value."
+
+**The rule, as implemented:**
+
+1. **Inputs.** A correlation may be computed *only* from numbers read off a committed
+   official snapshot — the NFL.com standings transcription and the NFL.com team-stats
+   tables. Mirror data (nflverse) may benchmark, but a mirror-derived correlation is never
+   part of the requirement's set and is labelled third-party wherever it appears.
+2. **n.** Every published value carries its sample size. For the club-level set that is
+   `n = 32` (the 32 clubs, one observation each) — on every row, no exceptions.
+3. **Publication rule** (reproduced exactly, see below): a pair is published iff
+   `( |r| ≥ 0.40 or either side ∈ {PF, PA, NET_PTS, W, PCT} )` **and** `|r| < 0.99`. The
+   0.99 cut suppresses mechanically identical columns — a completed pass is both a `Cmp`
+   and a `Rec`, so those pairs are `r = 1.000` by construction and publishing them would
+   be noise, not information.
+4. **Verification.** `python3 tools/verify_official_correlations.py` recomputes all
+   **988** published rows from the official snapshots and fails the build on any
+   mismatch. Result on 2026-11-14: **988/988 recomputed within 0.0015, 988/988 with
+   n = 32, 988/988 official nfl.com sources only, 0 duplicates, publication set
+   reproduced exactly.** The line-by-row ledger is `data/verify/official_correlations.csv`
+   (pair, published r, recomputed r, delta, n, source, status).
+
+**Irregularity found while verifying (recorded, not silently fixed):** the dataset's own
+`method` text describes only the first half of the publication rule — it does not mention
+the `|r| < 0.99` redundancy cut. The cut was reverse-engineered by exact set reproduction
+(988 = 988, zero differences), so no published value is wrong; the documentation gap is
+logged for review rather than edited into another session's file.
+
+**What stays outside this set, and why:** same-game spread/total φ, cross-game residual
+correlations, prop-family pairs and the strategy×strategy matrix are computed from
+third-party market or mirror data — useful, labelled, but *not* the requirement's
+official-only set. The strategy matrix additionally publishes cells without a per-cell n
+(it is derived from a shared-games count the payload does not expose per pair); that gap is
+flagged rather than guessed.

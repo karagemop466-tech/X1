@@ -27,6 +27,12 @@ Competition design (see docs/methodology/leaderboard.md for the full spec):
 
 This script: (1) grades logged bets, (2) computes scores, (3) checks gates,
 (4) emits leaderboard + registry snapshots. Deterministic; stdlib only.
+
+Signal vs staking (T14): the board publishes TWO scores. `signal_score` /
+`rank_signal` are computed only from win rate vs break-even and are the rank
+key; `staking_score`, `equity_units` and `max_drawdown_units` are informational
+and structurally cannot enter the ranking, so a lucky staking run cannot mask a
+bad signal (docs/methodology/leaderboard.md, section 9).
 """
 import csv, json, math, os, datetime
 
@@ -166,10 +172,29 @@ def score(strategy_id, bets):
     n = w + l
     wr = w / n if n else 0.0
     pval = binom_p_leq(w, n, BREAKEVEN_WIN)
+    # T14 (owner's brief): signal and staking are SEPARATE scores.
+    #   signal_score  — z of the observed win rate against break-even, in units
+    #                   of its own sampling noise. Stake-independent: no equity,
+    #                   no drawdown, no compounding can enter it. Blank when
+    #                   there is no decided bet — an unmeasured signal is not a
+    #                   zero signal.
+    #   staking_score — realized units per decided bet (the P&L path's rate).
+    #                   Published for transparency, NEVER used to rank: a hot
+    #                   staking run cannot lift a bad signal, and a cold one
+    #                   cannot sink a good one.
+    if n > 0:
+        var = max(wr * (1.0 - wr) / n, 1e-12)
+        signal_score = round((wr - BREAKEVEN_WIN) / math.sqrt(var), 3)
+        staking_score = round(equity / n, 4)
+    else:
+        signal_score = ""
+        staking_score = ""
     return {"strategy": strategy_id, "bets": n, "wins": w, "losses": l, "pushes": p,
             "win_rate": round(wr, 4), "breakeven_p": BREAKEVEN_WIN,
             "binom_p_leq_breakeven": round(pval, 4),
             "avg_clv_pts": round(clv_sum / max(1, w + l + p), 3),
+            "signal_score": signal_score,
+            "staking_score": staking_score,
             "equity_units": round(equity, 2), "max_drawdown_units": round(maxdd, 2),
             "points": round(pts, 1)}
 
@@ -198,13 +223,29 @@ def main():
         sc["status"] = status
         rows.append(sc)
 
+    # T14 ranking: SIGNAL only. Measured strategies first, by signal_score
+    # desc (ties: larger n, then id); unmeasured (blank signal) keep registry
+    # order after them. staking_score / equity / drawdown never appear in this
+    # key — that is the whole point of the separation.
+    measured = [r for r in rows if r["signal_score"] != ""]
+    unmeasured = [r for r in rows if r["signal_score"] == ""]
+    measured.sort(key=lambda x: (-x["signal_score"], -x["bets"], x["strategy"]))
+    ordered = measured + unmeasured
+    for i, r in enumerate(measured, start=1):
+        r["rank_signal"] = i
+    for r in unmeasured:
+        r["rank_signal"] = ""
+
     with open(os.path.join(S, "leaderboard.csv"), "w", newline="") as fh:
         w_ = csv.DictWriter(fh, fieldnames=["strategy", "status", "bets", "wins", "losses",
-                                            "pushes", "win_rate", "avg_clv_pts", "equity_units",
-                                            "max_drawdown_units", "binom_p_leq_breakeven", "points"],
+                                            "pushes", "win_rate", "avg_clv_pts",
+                                            "binom_p_leq_breakeven",
+                                            "signal_score", "rank_signal",
+                                            "equity_units", "max_drawdown_units",
+                                            "staking_score", "points"],
                             extrasaction="ignore")
         w_.writeheader()
-        for r in sorted(rows, key=lambda x: -x["points"]):
+        for r in ordered:
             w_.writerow(r)
 
     # luck-vs-skill reference table: required n for significance at various win rates
@@ -232,6 +273,21 @@ def main():
         "generated": datetime.datetime.utcnow().isoformat() + "Z",
         "scoring": {"single_win": 10, "single_loss": -11, "clv_bonus_per_pt": 2.0,
                     "breakeven_win_rate_at_-110": BREAKEVEN_WIN},
+        "signal_vs_staking": {
+            "rule": ("signal and staking are separate columns and separate "
+                     "scores; rank_signal is computed from signal_score only. "
+                     "A lucky staking run cannot mask a bad signal because "
+                     "equity, drawdown and staking_score are structurally "
+                     "absent from the ranking key."),
+            "signal_score": ("z = (p_hat - p_break) / sqrt(p_hat(1-p_hat)/n) "
+                             "over decided bets; stake-independent; blank when "
+                             "n = 0 (unmeasured is not zero)"),
+            "rank_signal": "the leaderboard rank; ties break on larger n, then id",
+            "staking_score": ("realized units per decided bet; informational "
+                              "only, never a rank input"),
+            "equity_units": "flat-stake P&L path; informational only",
+            "max_drawdown_units": "worst peak-to-trough of that path; informational only",
+        },
         "gates": {"official_min_bets": GATE_MIN_BETS_OFFICIAL,
                   "provisional_min_bets": GATE_MIN_BETS_PROVISIONAL,
                   "significance": "binomial P(win<=breakeven) < 0.05",
@@ -248,8 +304,10 @@ def main():
 
     print("strategies registered:", len(STRATEGIES))
     print("bets logged:", len(bets))
-    for r in sorted(rows, key=lambda x: -x["points"]):
-        print(f"{r['strategy']}: status={r['status']} bets={r['bets']} points={r['points']}")
+    for r in ordered:
+        print(f"{r['strategy']}: status={r['status']} bets={r['bets']} "
+              f"signal={r['signal_score']!r} staking={r['staking_score']!r} "
+              f"points={r['points']}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,107 @@
+{
+ "dataset": "verified_results",
+ "title": "Verified results feed (backtest and ROI input)",
+ "generated_at": "2026-11-14T19:39:10.094189Z",
+ "generated_by": "tools/build_results_feed.py (session arena-52aabfa8-x1, T11)",
+ "snapshot_date": "2026-11-14",
+ "columns": [
+  "game_id",
+  "season",
+  "week",
+  "game_type",
+  "date",
+  "away",
+  "home",
+  "away_score",
+  "home_score",
+  "margin_home",
+  "total_points",
+  "status",
+  "official_source_url",
+  "official_verified",
+  "mirror_source_key",
+  "mirror_agrees_with_official",
+  "verification",
+  "flags"
+ ],
+ "sources": [
+  {
+   "key": "official_schedule_w10",
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "label": "NFL.com Week 10 schedule (committed transcription)",
+   "org": "NFL",
+   "retrieved_at": "2026-11-14",
+   "file": "data/verification/raw/nfl_schedule_2026_week10.md"
+  },
+  {
+   "key": "official_standings",
+   "url": "https://www.nfl.com/standings/league/2026/REG",
+   "label": "NFL.com league standings (committed transcription)",
+   "org": "NFL",
+   "retrieved_at": "2026-11-14",
+   "file": "data/verify/official_standings_2026_w10.psv"
+  },
+  {
+   "key": "nfldata_games",
+   "url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "label": "nflverse/nfldata games.csv — third-party mirror",
+   "org": "nflverse (not the NFL)",
+   "retrieved_at": "2026-11-14",
+   "file": "data/raw/nflverse/games.csv",
+   "sha256_prefix": "60ea2f76bd2c539c",
+   "tier": "third_party_mirror"
+  }
+ ],
+ "counts": {
+  "rows": 2232,
+  "final": 2097,
+  "scheduled": 135,
+  "official_verified": 1,
+  "scheduled_official": 13,
+  "mirror_only": 2218,
+  "seasons": "2019-2026"
+ },
+ "verification": {
+  "checks": [
+   {
+    "id": "C1",
+    "what": "official Week 10 FINAL score vs mirror score",
+    "result": "pass",
+    "detail": "WAS 24 @ NYG 21 — official snapshot and mirror agree",
+    "source": "https://www.nfl.com/schedules/2026/by-week/week-10"
+   },
+   {
+    "id": "C2",
+    "what": "official 'Scheduled' status vs mirror status, other 13 games",
+    "result": "pass",
+    "detail": "13/13 agree; scores blank on both sides",
+    "source": "https://www.nfl.com/schedules/2026/by-week/week-10"
+   },
+   {
+    "id": "C3",
+    "what": "mirror internal arithmetic (scores sum to total; result = home - away)",
+    "result": "pass",
+    "detail": "2097 final rows checked",
+    "source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+   },
+   {
+    "id": "C4",
+    "what": "2026 W/L/T recomputed from this feed vs official standings snapshot",
+    "result": "pass_with_known_difference",
+    "detail": "0 difference(s):  — the standings snapshot predates the Thursday Night game that this feed carries; informational flag F-12, not an error in the feed",
+    "source": "https://www.nfl.com/standings/league/2026/REG"
+   }
+  ],
+  "all_passed": true,
+  "rule": "a row is official_verified only when a committed official snapshot printed the value; everything else is mirror_only and flagged. Blank means not played, never unknown-but-filled."
+ },
+ "join_notes": [
+  "Team codes: the official pages print AZ, the mirror prints ARI; all other club codes are identical. The join maps only these two spellings (TEAM_CODE_MAP in tools/build_results_feed.py); each source's own spelling is preserved in its own file."
+ ],
+ "known_limitations": [
+  "Historical finals (2019-2025 and 2026 Weeks 1-9) have no committed official page in this repository, so they are mirror_only — usable for backtests, labelled not official (flag F-11).",
+  "The official standings snapshot predates the Thursday Night game, so recomputed 2026 records for WAS and NYG differ from it by exactly that game (flag F-12).",
+  "Full official box scores for every game remain an open owner question (Q-04); this feed does not close it, it makes the gap explicit per row."
+ ],
+ "roi_usage": "Settlement for any bet row is a join on game_id: W/L/P from away_score/home_score and the recorded market line. Only rows with status=final settle; scheduled rows contribute nothing to ROI."
+}
