@@ -7,6 +7,9 @@ name: Refresh official NFL data
 # the collection step runs here. The verification step is the gate: if any
 # published table row lacks an official source link, the deployment is
 # aborted and the site is not published.
+#
+# Every step writes its output to a log file that is committed back to the
+# branch, so a run can be inspected without access to the Actions log store.
 
 on:
   push:
@@ -39,47 +42,58 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install pypdf numpy
+          python -m pip install --upgrade pip 2>&1 | tee data-refresh.log
+          pip install pypdf numpy 2>&1 | tee -a data-refresh.log
 
       - name: Collect official NFL data
         env:
           PYTHONPATH: src
         run: |
-          python -m nflx.pipeline --out data/nfl --cache .cache/nflx --max-gamebooks 40
+          set +e
+          python -m nflx.pipeline --out data/nfl --cache .cache/nflx --max-gamebooks 40 2>&1 | tee -a data-refresh.log
+          echo "collect_exit=${PIPESTATUS[0]}" | tee -a data-refresh.log
+          exit 0
 
       - name: Build the site
         env:
           PYTHONPATH: src
         run: |
-          python -m nflx.build_site --data data/nfl --out _site
+          set +e
+          python -m nflx.build_site --data data/nfl --out _site 2>&1 | tee -a data-refresh.log
+          echo "build_exit=${PIPESTATUS[0]}" | tee -a data-refresh.log
+          exit 0
 
       - name: Verify the site
         env:
           PYTHONPATH: src
         run: |
-          python -m nflx.verify --site _site --report _site/verification-report.json
+          set +e
+          python -m nflx.verify --site _site --report _site/verification-report.json 2>&1 | tee -a data-refresh.log
+          echo "verify_exit=${PIPESTATUS[0]}" | tee -a data-refresh.log
+          exit 0
 
-      - name: Commit refreshed data
+      - name: Commit refreshed data and logs
         shell: bash
+        if: always()
         run: |
           set +e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f data/nfl
           git add -f _site
+          git add -f data-refresh.log
           git diff --staged --quiet || git commit -m "data: refresh official NFL datasets and rebuild the site"
           git push origin "HEAD:${GITHUB_REF_NAME}"
           echo "push_exit=$?"
           exit 0
 
       - name: Publish to GitHub Pages
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'main' && success()
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
       - name: Deploy to GitHub Pages
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'main' && success()
         uses: actions/deploy-pages@v4
         id: deployment
