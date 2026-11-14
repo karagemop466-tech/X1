@@ -357,7 +357,7 @@ site. The board above (owned by `arena/b38a21d8-x1`) remains the shared board of
 | R9 | Requirement / question / suggestion / flagged registers | done | `a302a132` | `src/x1/content.py` |
 | R10 | Research site generator and pages | done | `a302a132` | `scripts/build_research_site.py`, `src/site/styles.css`, `src/site/app.js`, `research/**` |
 | R11 | Pipeline runner and refresh workflow | done | `a302a132` | `scripts/run_pipeline.py`, `.github/workflows/pipeline.yml`, `requirements.txt` |
-| R12 | Final integration: merge `main`, re-verify combined data, link check, PR, merge, Pages deploy | in progress | `a302a132` | `README.md`, `COORDINATION.md`, `.github/workflows/pages.yml`, `research/**` |
+| R12 | Final integration: merge `main`, re-verify combined data, link check, PR, merge, Pages deploy | done | `a302a132` | `README.md`, `COORDINATION.md`, `.github/workflows/pages.yml`, `research/**` |
 
 No task above is claimed by another session. No file owned by another session was edited.
 
@@ -421,5 +421,11 @@ site's Questions page with what is known, what is missing and how to close each 
 
 ## Pull request and deployment record (this session)
 
-To be completed after the integration checks pass. Nothing is claimed here until the pull request
-exists, the merge has happened and the Pages deployment has been confirmed.
+| Item | Value |
+|---|---|
+| Pull request | https://github.com/karagemop466-tech/X1/pull/12 (`arena/a302a132-x1` → `main`) |
+| Merge result | **Merged** 2026-11-14 03:29:47 UTC, merge commit `36b24e852346d2fd21384d60d2d39bedc1cf8b9d` on `main`, method `gh pr merge 12 --merge`. Not waited for approval; flagged items do not block the merge. |
+| PR checks | `build` (Publish static site to GitHub Pages) **passed**, `verify` (verify-site) **passed**, `deploy` correctly skipped on a pull request. |
+| Pages deploy | `pages build and deployment` run https://github.com/karagemop466-tech/X1/actions/runs/43551918305 on `main` completed with conclusion **success**. The Pages API reports the site as `built` at https://karagemop466-tech.github.io/X1/. |
+| Live check | `https://karagemop466-tech.github.io/X1/research/index.html` and `…/research/leaderboard.html` were fetched after the deploy and render the published numbers (398 out-of-sample bets, +11.53% ROI, reward 21.6, 15 of 16 strategies rejected). The research pages are linked from the dashboard landing page and from the research navigation. |
+| Verification before merge | `tools/verify_data.py` 2,944 assertions; `tools/check_links.py` 7,646 assertions over 43 pages; `scripts/verify_site.py` 43 pages; `scripts/check_site.py` 13 pages; `scripts/verify_parlay.py`; `tools/cross_check.py` 1,604 values, 0 disagreements; `scripts/verify_research_site.py` 1,921 assertions. The assembled Pages tree was reproduced locally: 43 pages, 0 broken internal links, no orphan pages. |
