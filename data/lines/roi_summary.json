@@ -1,0 +1,74 @@
+{
+ "generated_at": "2026-11-14T19:59:56Z",
+ "season": 2026,
+ "settled_games": 137,
+ "price_tier": "third-party closing numbers (F-06)",
+ "result_tier": "official",
+ "flat_stake_benchmarks": [
+  {
+   "strategy": "flat: always away spread (closing, -110)",
+   "settled": 131,
+   "wins": 75.0,
+   "pushes": 6.0,
+   "hit_rate": 0.5725,
+   "profit_units": 12.182,
+   "roi": 0.093
+  },
+  {
+   "strategy": "flat: always over (closing, -110)",
+   "settled": 137,
+   "wins": 71.0,
+   "pushes": 0.0,
+   "hit_rate": 0.5182,
+   "profit_units": -1.455,
+   "roi": -0.0106
+  },
+  {
+   "strategy": "flat: always under (closing, -110)",
+   "settled": 137,
+   "wins": 66.0,
+   "pushes": 0.0,
+   "hit_rate": 0.4818,
+   "profit_units": -11.0,
+   "roi": -0.0803
+  },
+  {
+   "strategy": "flat: always away moneyline (closing)",
+   "settled": 136,
+   "wins": 69.0,
+   "pushes": 1.0,
+   "hit_rate": 0.5074,
+   "profit_units": -28.336,
+   "roi": -0.2084
+  },
+  {
+   "strategy": "flat: always home moneyline (closing)",
+   "settled": 136,
+   "wins": 67.0,
+   "pushes": 1.0,
+   "hit_rate": 0.4926,
+   "profit_units": -34.927,
+   "roi": -0.2568
+  },
+  {
+   "strategy": "model x1 side signals W10 (flat, -110)",
+   "settled": 1,
+   "wins": 1.0,
+   "pushes": 0.0,
+   "hit_rate": 1.0,
+   "profit_units": 0.909,
+   "roi": 0.9091
+  },
+  {
+   "strategy": "model x1 total signals W10 (flat, -110)",
+   "settled": 1,
+   "wins": 1.0,
+   "pushes": 0.0,
+   "hit_rate": 1.0,
+   "profit_units": 0.909,
+   "roi": 0.9091
+  }
+ ],
+ "luck_note": "Signal and staking are separated on the leaderboard; these benchmarks are flat-stake (pure signal) on purpose. Small samples (the model has 1 settled week) are not evidence of skill.",
+ "source_note": "Settled against data/lines/results_feed.json rows; model signals from data/lines/origination.json with model_config.json thresholds."
+}

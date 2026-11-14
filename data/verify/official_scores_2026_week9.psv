@@ -1,0 +1,22 @@
+# Official 2026 NFL regular-season results, Week 9 — transcribed line by line from official NFL
+# sources on 2026-11-14. The scores listing page (https://www.nfl.com/scores/2026/week-9) hides
+# recent scores behind a spoiler mode, so each row was verified on the official Game Center page
+# (https://www.nfl.com/games/...-2026-reg-9?tab=boxscore) or, where that page also hid the score,
+# from the official NFL Game Book PDF at static.www.nfl.com (linked from the Game Center page).
+# "Winner Indicator" on the official page marks the winner.
+# Columns: GAMEID(nfl.com slug) | WEEK | AWAY | AWAY_SCORE | HOME | HOME_SCORE | STATUS | SOURCE_URL | GAME_URL | METHOD
+jaguars-at-ravens-2026-reg-9|9|JAX|33|BAL|10|final|https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9?tab=boxscore|https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9|game center boxscore
+bengals-at-falcons-2026-reg-9|9|CIN|34|ATL|17|final|https://www.nfl.com/games/bengals-at-falcons-2026-reg-9?tab=boxscore|https://www.nfl.com/games/bengals-at-falcons-2026-reg-9|game center boxscore
+broncos-at-panthers-2026-reg-9|9|DEN|26|CAR|21|final|https://www.nfl.com/games/broncos-at-panthers-2026-reg-9?tab=boxscore|https://www.nfl.com/games/broncos-at-panthers-2026-reg-9|game center boxscore
+cowboys-at-colts-2026-reg-9|9|DAL|27|IND|23|final|https://static.www.nfl.com/image/upload/v1794224921/gamecenter/ab38123a-4feb-11f1-abca-2c54536568a9.pdf|https://www.nfl.com/games/cowboys-at-colts-2026-reg-9|official game book PDF
+jets-at-chiefs-2026-reg-9|9|NYJ|12|KC|35|final|https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab381724-4feb-11f1-abca-2c54536568a9.pdf|https://www.nfl.com/games/jets-at-chiefs-2026-reg-9|official game book PDF
+lions-at-dolphins-2026-reg-9|9|DET|19|MIA|9|final|https://static.www.nfl.com/image/upload/v1794224917/gamecenter/ab381a59-4feb-11f1-abca-2c54536568a9.pdf|https://www.nfl.com/games/lions-at-dolphins-2026-reg-9|official game book PDF
+browns-at-saints-2026-reg-9|9|CLE|22|NO|23|final (OT)|https://www.nfl.com/games/browns-at-saints-2026-reg-9?tab=boxscore|https://www.nfl.com/games/browns-at-saints-2026-reg-9|game center boxscore
+giants-at-eagles-2026-reg-9|9|NYG|19|PHI|11|final|https://www.nfl.com/games/giants-at-eagles-2026-reg-9?tab=boxscore|https://www.nfl.com/games/giants-at-eagles-2026-reg-9|game center boxscore
+rams-at-commanders-2026-reg-9|9|LAR|20|WAS|13|final|https://static.www.nfl.com/image/upload/v1794224919/gamecenter/ab382331-4feb-11f1-abca-2c54536568a9.pdf|https://www.nfl.com/games/rams-at-commanders-2026-reg-9|official game book PDF
+texans-at-chargers-2026-reg-9|9|HOU|44|LAC|22|final|https://www.nfl.com/games/texans-at-chargers-2026-reg-9?tab=boxscore|https://www.nfl.com/games/texans-at-chargers-2026-reg-9|game center boxscore
+packers-at-patriots-2026-reg-9|9|GB|45|NE|27|final|https://www.nfl.com/games/packers-at-patriots-2026-reg-9?tab=boxscore|https://www.nfl.com/games/packers-at-patriots-2026-reg-9|game center boxscore
+cardinals-at-seahawks-2026-reg-9|9|AZ|3|SEA|17|final|https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9?tab=boxscore|https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9|game center boxscore
+raiders-at-49ers-2026-reg-9|9|LV|17|SF|38|final|https://www.nfl.com/games/raiders-at-49ers-2026-reg-9?tab=boxscore|https://www.nfl.com/games/raiders-at-49ers-2026-reg-9|game center boxscore
+buccaneers-at-bears-2026-reg-9|9|TB|24|CHI|27|final|https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9?tab=boxscore|https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9|game center boxscore
+bills-at-vikings-2026-reg-9|9|BUF|23|MIN|6|final|https://www.nfl.com/games/bills-at-vikings-2026-reg-9?tab=boxscore|https://www.nfl.com/games/bills-at-vikings-2026-reg-9|game center boxscore

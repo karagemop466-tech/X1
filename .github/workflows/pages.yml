@@ -55,7 +55,14 @@ jobs:
       # was linked but never copied).
       - name: Crawl the assembled tree for broken links
         run: python3 tools/verify_deployed_tree.py
-
+      # Added by session arena/bf27a3bd-x1 (additive only). Verifies the new
+      # data stores (price snapshots, origination ledger, verified results feed,
+      # leaderboard split, replacement depth, official correlations, demotion
+      # gate) line by line: every row sourced or explicitly flagged, blanks
+      # flagged never silent, results re-checked against the official
+      # transcriptions, difference = model - market recomputed.
+      - name: Verify the new data stores
+        run: python3 tools/verify_new_data.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)

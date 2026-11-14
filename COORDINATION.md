@@ -1543,3 +1543,78 @@ The two defects that verifier found in the already-published site were fixed in 
    `lab/sources.html` and `lab/flagged.html`.
 
 ---
+
+# Session `arena/bf27a3bd-x1` — claim, collision log and completion record
+
+**Session ID:** `arena/bf27a3bd-x1` · **Branch:** `arena/bf27a3bd-x1` (branched from `main` @ `11d9ea1`).
+Claim pushed to this branch before work started (commit `42e099e`, invisible to `main` until the
+merge below — which is exactly how the collision recorded here happened).
+
+## Claim as pushed (T10–T18, owner's delta requirements)
+
+| # | Task | Files in scope |
+|---|---|---|
+| T10 | Price-snapshot store (opening + closing, blanks flagged) | `data/lines/price_snapshots.{json,csv}`, `tools/build_price_store.py` |
+| T11 | Verified results feed | `data/lines/results_feed.{json,csv}`, `roi_summary.json`, `tools/build_results_feed.py`, `data/verify/official_scores_2026_week*.psv` |
+| T12 | Origination order side → total → moneyline; fair / market / difference columns | `data/lines/origination.{json,csv}` |
+| T13 | Leaderboard: signal block separated from staking block | `data/lines/leaderboard_split.json` |
+| T14 | Depth of the replacement (2nd/3rd/4th string) tracked | `data/lines/replacement_depth.json` |
+| T15 | Correlations from official numbers only, `n` with every value | `data/lines/correlation_official.json` |
+| T16 | Demotion gate (live → paper) | `data/lines/demotion_gate.json` |
+| T17 | Decision + suggestion delta registers | `data/lines/decisions_delta.json`, `suggestions_delta.json` |
+| T18 | Integration | `tools/build_app.py` (additive), `app/**`, `tools/verify_new_data.py`, `.github/workflows/pages.yml` (one step) |
+
+## Collision log (rule: merge conflicts resolved without discarding others' work)
+
+Three sessions branched from the same base (`11d9ea1`) and were each given the same eight
+requirements. `arena/1d3600f8-x1` merged first (PR #34/#35, incl. `tools/build_results_feed.py`,
+`app/results.html`, `app/origination.html`), `arena/56769365-x1` merged second (PR #36/#37, the
+`lab/` line desk). This session's branch then collided with both. Resolution, applied during the
+merge of `origin/main` into `arena/bf27a3bd-x1` and logged here in full:
+
+1. **Shared generated files take the merged-main version**: `tools/build_app.py`, `app/**`
+   (including `app/results.html`, `app/origination.html`), `tools/build_results_feed.py`,
+   `app/assets/site.css`. The already-merged implementations of sessions `arena/1d3600f8-x1` and
+   `arena/56769365-x1` are preserved untouched; this session's rewritten page functions for the
+   same URLs were dropped and are preserved only in this branch's git history.
+2. **Same-name tool, renamed instead of replaced**: this session's generator was moved to
+   `tools/build_results_feed_official.py` (writes `data/lines/*`); session
+   `arena/1d3600f8-x1`'s `tools/build_results_feed.py` (writes `data/results/*`) keeps its name
+   and path.
+3. **Both additive workflow steps kept** in `.github/workflows/pages.yml` (the line-desk verify +
+   deployed-tree crawl from `arena/56769365-x1`, and the data-store verify from this session).
+4. **Unique work kept as-is**: `data/verify/official_scores_2026_week{1..10}.psv` (line-by-line
+   official transcriptions incl. Game Book PDFs), all `data/lines/*` stores, `tools/build_price_store.py`,
+   `tools/build_strategy_registers.py`, `tools/verify_new_data.py`.
+5. **This session's data stores are published additively** on one new page, `app/stores.html`
+   ("Verified stores"), registered additively in `tools/build_app.py` — no page owned by another
+   session is modified.
+
+## Sources (this session's batch)
+
+- Official NFL: `https://www.nfl.com/scores/2026/week-{1..9}`, `https://www.nfl.com/games/*-2026-reg-{9,10}`,
+  official Game Book PDFs at `https://static.www.nfl.com/image/upload/v…/gamecenter/*.pdf` (one per
+  spoiler-hidden game; exact URLs recorded per row in the week-9/10 PSV files).
+- Third-party (labelled, never league-verified): `https://github.com/nflverse/nfldata` (fingerprinted
+  mirror; manifest checked earlier in the session).
+
+## Verification (this session's batch)
+
+- `tools/verify_new_data.py`: ALL CHECKS PASS — 137/137 results re-matched line by line against the
+  official transcriptions; `difference = model − market` recomputed on every origination row; n checks
+  on correlations; blank opening prices flagged on all 900 rows; signal/staking blocks separate;
+  demotion triggers armed.
+- All eight deploy-gate scripts + `tools/verify_app.py` + `tools/check_links.py` pass on the merged
+  tree (run locally before push). `tools/build_app.py` build is deterministic.
+
+## Irregularities
+
+- **R-20** NFL.com spoiler mode hides recent listing-page scores; 4 week-9 game pages also hid
+  scores. Resolved via the official Game Book PDF linked from each game page (documented in the
+  PSV headers).
+- **R-21** No source in this repository records 2026 opening prices → 900/900 opening cells blank +
+  flagged; demotion trigger D-2 stays blocked (Q-02/Q-31 open).
+- **R-22** Research correlation-matrix cells carry no per-cell n in the source payload → cells marked
+  "n not recorded" and suppressed from decisions (Q-32 proposes reconstruction).
+- **R-23** Triple-implementation collision (above). Nothing of either other session was deleted;
+  both merged implementations remain live.
