@@ -1,0 +1,177 @@
+{
+ "generated_at": "2026-11-14T19:33:24Z",
+ "snapshot": "2026-11-14",
+ "title": "Originated lines: tuning, out-of-sample accuracy, calibration, defects",
+ "upstream": {
+  "repo": "https://github.com/nflverse/nfldata",
+  "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+  "retrieved_at": "2026-11-14",
+  "publisher": "nflverse (Lee Sharpe), repository `nfldata`, branch `master`"
+ },
+ "order": [
+  "SIDE",
+  "TOTAL",
+  "MONEYLINE"
+ ],
+ "model": {
+  "side": "margin = h_rating - a_rating + home_field; ridge lambda=20; decay=0.90 per week; prior-season weight 0.35",
+  "total": "total = mu + off_home + def_away + off_away + def_home; ridge lambda=20",
+  "moneyline": "P(home) = Phi(margin/sigma) + half the tie mass; sigma from the walk-forward residuals of the same season, never the current week",
+  "walk_forward": "refit before every week with only earlier weeks of the same season plus a decayed prior season"
+ },
+ "tuning": [
+  {
+   "lambda_side": 20.0,
+   "lambda_total": 20.0,
+   "tune_side_mae": 11.273,
+   "tune_total_mae": 11.187,
+   "tune_n": 4248
+  },
+  {
+   "lambda_side": 60.0,
+   "lambda_total": 20.0,
+   "tune_side_mae": 11.334,
+   "tune_total_mae": 11.187,
+   "tune_n": 4248
+  },
+  {
+   "lambda_side": 120.0,
+   "lambda_total": 20.0,
+   "tune_side_mae": 11.4,
+   "tune_total_mae": 11.187,
+   "tune_n": 4248
+  },
+  {
+   "lambda_side": 300.0,
+   "lambda_total": 20.0,
+   "tune_side_mae": 11.506,
+   "tune_total_mae": 11.187,
+   "tune_n": 4248
+  },
+  {
+   "chosen": {
+    "lambda_side": 20.0,
+    "lambda_total": 20.0
+   },
+   "rule": "lowest MAE on 1999-2014 only; frozen before the 2015-2026 test window was scored"
+  }
+ ],
+ "test_window": {
+  "from": 2015,
+  "to": 2026,
+  "games": 3165
+ },
+ "accuracy": {
+  "side_mae_model": 10.741,
+  "side_mae_market": 9.792,
+  "side_mae_constant_hfa_2_5": 10.959,
+  "side_mae_constant_zero": 11.098,
+  "total_mae_model": 11.102,
+  "total_mae_market": 10.447,
+  "brier_model": 0.241,
+  "brier_market": 0.212,
+  "brier_n": 3164,
+  "mean_abs_disagreement_with_market": 4.201,
+  "corr_fair_vs_market": 0.4699,
+  "n_side": 3165,
+  "n_total": 3165,
+  "n_market_side": 3165
+ },
+ "by_season": {
+  "2015": {
+   "side_mae_model": 10.94,
+   "side_mae_market": 10.12,
+   "total_mae_model": 10.98,
+   "n": 267
+  },
+  "2016": {
+   "side_mae_model": 9.52,
+   "side_mae_market": 9.04,
+   "total_mae_model": 10.7,
+   "n": 267
+  },
+  "2017": {
+   "side_mae_model": 10.96,
+   "side_mae_market": 10.08,
+   "total_mae_model": 11.23,
+   "n": 267
+  },
+  "2018": {
+   "side_mae_model": 10.39,
+   "side_mae_market": 9.87,
+   "total_mae_model": 11.56,
+   "n": 267
+  },
+  "2019": {
+   "side_mae_model": 11.18,
+   "side_mae_market": 10.18,
+   "total_mae_model": 11.35,
+   "n": 267
+  },
+  "2020": {
+   "side_mae_model": 10.92,
+   "side_mae_market": 9.79,
+   "total_mae_model": 11.71,
+   "n": 269
+  },
+  "2021": {
+   "side_mae_model": 11.9,
+   "side_mae_market": 10.67,
+   "total_mae_model": 11.13,
+   "n": 285
+  },
+  "2022": {
+   "side_mae_model": 9.71,
+   "side_mae_market": 8.78,
+   "total_mae_model": 10.94,
+   "n": 284
+  },
+  "2023": {
+   "side_mae_model": 11.23,
+   "side_mae_market": 9.98,
+   "total_mae_model": 10.79,
+   "n": 285
+  },
+  "2024": {
+   "side_mae_model": 11.02,
+   "side_mae_market": 9.7,
+   "total_mae_model": 10.4,
+   "n": 285
+  },
+  "2025": {
+   "side_mae_model": 10.36,
+   "side_mae_market": 9.67,
+   "total_mae_model": 11.2,
+   "n": 285
+  },
+  "2026": {
+   "side_mae_model": 10.71,
+   "side_mae_market": 9.45,
+   "total_mae_model": 11.51,
+   "n": 137
+  }
+ },
+ "honest_verdict": {
+  "beats_market_on_side": false,
+  "beats_market_on_total": false,
+  "beats_a_constant_on_side": true,
+  "statement": "The ratings model carries real information: it beats the naive 'home team by 2.5' baseline on side MAE. It does not beat the market. That is the expected result for a model with no information the market does not have, and it is published rather than hidden. No stake is staked on this model; it is a screen and the benchmark for the strategy layer."
+ },
+ "defects_found_in_this_build": [
+  {
+   "id": "L-01",
+   "severity": "high",
+   "was": "sample weight applied to the target only, not to the design matrix",
+   "effect": "total MAE published as 28.413 on a quantity averaging 44; the fit was shrinking toward zero rather than weighting recent games",
+   "fixed_in": "ridge() now accumulates w in both X'X and X'y",
+   "evidence": "data/lab/lines/fair_lines.json totals before/after; see this file's module docstring"
+  },
+  {
+   "id": "L-02",
+   "severity": "medium",
+   "was": "the current-week board selected max(season, week) among scheduled games and published week 18",
+   "effect": "the 'this week' board was not this week",
+   "fixed_in": "the board now takes the earliest week with unplayed games in the latest season with any unplayed games"
+  }
+ ]
+}

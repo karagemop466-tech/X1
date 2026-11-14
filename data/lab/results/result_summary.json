@@ -1,0 +1,196 @@
+{
+ "generated_at": "2026-11-14T19:21:40Z",
+ "snapshot": "2026-11-14",
+ "title": "Verified results feed: coverage, settlement rule and self-checks",
+ "upstream": {
+  "repo": "https://github.com/nflverse/nfldata",
+  "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+  "retrieved_at": "2026-11-14",
+  "publisher": "nflverse (Lee Sharpe), repository `nfldata`, branch `master`"
+ },
+ "files": {
+  "games.csv": {
+   "path": "data/lab/upstream/games.csv",
+   "sha256": "7d791bb4776e81a3e7687d38da0a89563233bb2e419b2bd44261b36ba70c39e1",
+   "bytes": 2190038,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "initial_lines.csv": {
+   "path": "data/lab/upstream/initial_lines.csv",
+   "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+   "bytes": 45068,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/initial_lines.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "closing_lines.csv": {
+   "path": "data/lab/upstream/closing_lines.csv",
+   "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+   "bytes": 942229,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/closing_lines.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "sc_lines.csv": {
+   "path": "data/lab/upstream/sc_lines.csv",
+   "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+   "bytes": 140765,
+   "present": true,
+   "upstream_url": "https://github.com/nflverse/nfldata/blob/master/data/sc_lines.csv",
+   "raw_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/sc_lines.csv",
+   "archive_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  }
+ },
+ "columns": {
+  "away_score": {
+   "file": "data/games.csv",
+   "column": "away_score",
+   "publisher": "nflverse nfldata",
+   "definition": "The number of points the away team scored. (DATASETS.md.)",
+   "url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+  },
+  "home_score": {
+   "file": "data/games.csv",
+   "column": "home_score",
+   "publisher": "nflverse nfldata",
+   "definition": "The number of points the home team scored. (DATASETS.md.)",
+   "url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+  },
+  "result": {
+   "file": "data/games.csv",
+   "column": "result",
+   "publisher": "nflverse nfldata",
+   "definition": "home_score - away_score. Published by the file and re-checked here.",
+   "url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+  },
+  "total": {
+   "file": "data/games.csv",
+   "column": "total",
+   "publisher": "nflverse nfldata",
+   "definition": "home_score + away_score. Published by the file and re-checked here.",
+   "url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+  },
+  "location": {
+   "file": "data/games.csv",
+   "column": "location",
+   "publisher": "nflverse nfldata",
+   "definition": "Home or Neutral. Neutral is flagged so a home-field assumption is never applied to a neutral-site game.",
+   "url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+  }
+ },
+ "settlement_rule": {
+  "version": "1.0",
+  "registered_at": "2026-11-14",
+  "side": {
+   "definition": "home_covers = (home_margin + home_line) > 0. A line of -3 means the home team must win by more than 3.",
+   "push": "home_margin + home_line == 0 is a PUSH; stake returned, not counted as a win or a loss, and excluded from the hit-rate denominator.",
+   "half_points": "Lines ending in .5 cannot push."
+  },
+  "total": {
+   "definition": "over_wins = (home_score + away_score) > total_line.",
+   "push": "exact equality is a PUSH and is excluded from the hit rate."
+  },
+  "moneyline": {
+   "definition": "the named side wins outright; a tie is a PUSH on the moneyline and is excluded (NFL regular-season ties are possible)."
+  },
+  "roi": {
+   "definition": "sum(profit) / sum(stake), stake = 1 unit per bet unless a staking rule is registered separately. A win at American price p returns decimal d (d = 1 + p/100 for p >= +100, d = 1 + 100/|p| otherwise), so profit = d - 1; a loss = -1; a push = 0.",
+   "why_here": "Written down once so the leaderboard, the backtest and the gates cannot disagree about what a win means."
+  },
+  "void_rules": [
+   "A game with no published final score is not graded.",
+   "A game with no published price is graded at the line (push-aware) and counted in the `no_price` bucket, never silently priced at -110.",
+   "A neutral-site game is flagged, not dropped."
+  ]
+ },
+ "coverage": {
+  "games": 7548,
+  "final": 7413,
+  "scheduled": 135,
+  "seasons": [
+   1999,
+   2026
+  ],
+  "by_season": {
+   "1999": 259,
+   "2000": 259,
+   "2001": 259,
+   "2002": 267,
+   "2003": 267,
+   "2004": 267,
+   "2005": 267,
+   "2006": 267,
+   "2007": 267,
+   "2008": 267,
+   "2009": 267,
+   "2010": 267,
+   "2011": 267,
+   "2012": 267,
+   "2013": 267,
+   "2014": 267,
+   "2015": 267,
+   "2016": 267,
+   "2017": 267,
+   "2018": 267,
+   "2019": 267,
+   "2020": 269,
+   "2021": 285,
+   "2022": 284,
+   "2023": 285,
+   "2024": 285,
+   "2025": 285,
+   "2026": 272
+  },
+  "final_by_season": {
+   "1999": 259,
+   "2000": 259,
+   "2001": 259,
+   "2002": 267,
+   "2003": 267,
+   "2004": 267,
+   "2005": 267,
+   "2006": 267,
+   "2007": 267,
+   "2008": 267,
+   "2009": 267,
+   "2010": 267,
+   "2011": 267,
+   "2012": 267,
+   "2013": 267,
+   "2014": 267,
+   "2015": 267,
+   "2016": 267,
+   "2017": 267,
+   "2018": 267,
+   "2019": 267,
+   "2020": 269,
+   "2021": 285,
+   "2022": 284,
+   "2023": 285,
+   "2024": 285,
+   "2025": 285,
+   "2026": 137
+  },
+  "neutral_site_games": 103,
+  "ties": 16,
+  "joined_to_a_priced_market": 7439
+ },
+ "_checks": {
+  "publisher_arithmetic_mismatches": 0,
+  "arithmetic_rechecked_ok": 7413,
+  "unplayed_rows_carried_not_scored": 135,
+  "score_never_zero_filled": true,
+  "settlement_rule_has_a_push_clause": true,
+  "decimal_odds_roundtrip_ok": true
+ },
+ "ready_for": {
+  "backtest_at_the_line": true,
+  "backtest_at_the_price": true,
+  "note": "The feed itself is complete for every game the publisher scored. ROI at a price is limited by the price store's coverage (see price_coverage.json), not by this feed."
+ }
+}

@@ -77,6 +77,16 @@ jobs:
       - name: Fail if the audit registers are stale
         run: git diff --exit-code -- data/audit
 
+      # Added by session arena/56769365-x1 (additive only). The line desk (lab/) is a seventh
+      # page tree with its own contract: links resolve, every data row carries a source link,
+      # no Python value leaks into a cell. It also fails if the committed pages are stale
+      # against a fresh build, so a hand-edited page cannot ship.
+      - name: Rebuild the line desk and verify its contract
+        run: python3 tools/lab/build_site.py
+
+      - name: Fail if the committed line desk is stale
+        run: git diff --exit-code -- lab
+
       - name: Parallel session's dashboard checks
         run: python3 scripts/check_site.py
 
@@ -99,7 +109,7 @@ jobs:
 
       - name: Rebuild round-2 stores and fail if stale (Added by session arena/907c5baf-x1)
         run: |
-          python3 tools/build_results_feed.py
+          python3 tools/build_results_feed_official.py
           python3 tools/build_price_store.py
           python3 tools/build_leaderboard_split.py
           python3 tools/build_app.py
