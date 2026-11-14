@@ -2533,3 +2533,46 @@ its content is preserved and this session's change is additive.
   and verifiers are kept unchanged; `tools/verify_app.py` rules continue to apply to every new row.
 - To `arena/d577959f-x1` (author of `pipeline/`): `data/pipeline/correlations.json` and
   `data/pipeline/deficiency.json` are read as inputs, never rewritten.
+
+---
+
+## Session `arena-600e6009-x1` — round-3 completion record (2026-11-14)
+
+**Status:** done · **PR:** [#47](https://github.com/karagemop466-tech/X1/pull/47) · **Merge:** `4d41342` (merge commit, 2026-11-14T21:17:07Z) · **Branch:** `arena/600e6009-x1`
+
+### What shipped (union with every parallel round — nothing discarded)
+
+| Requirement | This session's artefact | Coexists with (kept) |
+|---|---|---|
+| S1 price-snapshot store | `app/snapshots.html` + `data/snapshots/price_snapshots.json` (84 records, capture statuses `recorded` / `pending_kickoff` / `captured_post_final` / `not_captured_before_kickoff`), `tools/build_snapshots.py --check` | main's `prices.html` / `origination.html` / `store` families |
+| S2 verified results feed | third independent transcription `data/results/_raw/reads.tsv` → `tools/build_results_r3.py` → `verified_results.{json,csv}` → renamed `verified_results_2026_r3.csv` beside main's all-seasons `verified_results.csv`; 137/137 row diff, 32/32 standings arithmetic | T16 `verified_results_2026.csv`, N2 `_n2.csv` (main's cross-checked pair) |
+| S3/S4 origination order + fair/market/difference | `data/lines/origination_order_2026_week10.{csv,json}` via `tools/build_origination.py --check` (sequences asserted exactly 1,2,3) | main's `origination.html` + `data/lines/origination_*` |
+| S5 signal vs staking | `data/leaderboard_signal_staking_official.json` (official basis: ST-11 n=133, rank_basis=signal_only, staking blank by rule) + cards on `app/leaderboard.html` | main's T18 mirror-basis `leaderboard_signal_staking.json` + `leaderboard_split.json` |
+| S6 replacement depth | distribution + gaps (680 second-string, 8 third-string, 0 fourth, 16 unnamed) on `app/deficiency.html`, `data/depth/replacement_depth_summary.json` | main's `replacement-depth.html` per-slot store |
+| S7 official-only correlations | audit of all 988 pairs (n everywhere, hosts `www.nfl.com`, violations 0) on `app/correlation.html`, `data/correlations_official_check.json` via `tools/build_round3.py --check` | main's 15-pair published table + official_correlations store |
+| S8 demotion gate | adopted main's richer G8 (T21, D1–D6) as register of record; this round's duplicate G8 dropped | `data/gates.json` G8, `docs/methodology/demotion-gate.md` |
+| Registers | **Q-19…Q-24**, **S-13…S-18**, **F-14…F-19** appended to the root registers (main had not touched them) and rendered on the decision/suggestion/flagged pages | pipeline registers untouched |
+| Signal metric | **84–49 (63.16%), z=3.035, p=0.0024, n=133** price-independent grade card on `app/results.html` | main's assumed −110 ROI table |
+| Docs | third-round addendum in `docs/EXECUTIVE-SUMMARY.md` | round-1 and round-2 addenda preserved verbatim |
+| CI | `--check` steps for the four round-3 builders in `verify.yml` + deploy gate in `pages.yml` | all of main's gates (verify_stores, verify_new_data, verify_deployed_tree, staleness checks) |
+
+### Integration history
+1. Claim `3869088` before any work (rule 1) — non-overlap verified at claim time.
+2. First sync merged main @ `11bd501` (PRs #38/#41/#42): renamed `tools/build_results.py` → `build_results_r3.py` and `leaderboard_signal_staking.json` → `..._official.json` to avoid clobbering main's N2/T18; resolved main's committed conflict markers in `tools/build_results_feed_official.py` (kept the unique T11 side; the T16 side already lives byte-identical in `build_results_feed.py`).
+3. Second sync merged main @ `3a2f783` (PRs #40/#43/#44/#45/#46): re-applied all round-3 cards onto main's newer `build_app.py`, renamed my feed CSV to `verified_results_2026_r3.csv`, unioned `COORDINATION.md` and `docs/EXECUTIVE-SUMMARY.md` (every session's records preserved, duplicates removed).
+4. Full local suite green after each sync (30+ checks incl. freshness gates and main's new verifiers).
+
+### Merge & deploy evidence
+| Step | Result |
+|---|---|
+| PR | [#47](https://github.com/karagemop466-tech/X1/pull/47) |
+| CI on PR | `verify-site` success (18s), `Publish static site to GitHub Pages` build success (53s) |
+| Merge | `gh pr merge 47 --merge` → MERGED, commit `4d41342` |
+| Post-merge verify-site (main) | run [43641991700](https://github.com/karagemop466-tech/X1/actions/runs/43641991700) **success** (21s) |
+| Post-merge Pages build (main) | run [43641991746](https://github.com/karagemop466-tech/X1/actions/runs/43641991746) **success** (1m15s) |
+| Pages deployment | run [43641991215](https://github.com/karagemop466-tech/X1/actions/runs/43641991215) `pages build and deployment` **success** (26s) |
+| Live-site check (cache-buster) | `https://karagemop466-tech.github.io/X1/app/snapshots.html?v=4d41342` fetched live — the brand-new page renders all 84 snapshot rows with capture statuses, proving the deployed tree is the merged one |
+| Flagged items shipped | F-14…F-19 published on `app/flagged.html` (non-blocking per the brief) |
+| Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
+
+Session `arena-600e6009-x1` complete.
