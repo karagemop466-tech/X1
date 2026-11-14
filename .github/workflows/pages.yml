@@ -50,7 +50,7 @@ jobs:
       # feed never ships.
       - name: Verify round-3 feeds before deploy
         run: |
-          python3 tools/build_results.py --check
+          python3 tools/build_results_r3.py --check
           python3 tools/build_snapshots.py --check
           python3 tools/build_origination.py --check
           python3 tools/build_round3.py --check

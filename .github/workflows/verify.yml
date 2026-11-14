@@ -77,7 +77,7 @@ jobs:
       # official price source exists); --check then fails if the commit is stale.
       - name: Rebuild round-3 feeds (results, snapshots, origination, registers)
         run: |
-          python3 tools/build_results.py --check
+          python3 tools/build_results_r3.py --check
           python3 tools/build_snapshots.py --check
           python3 tools/build_origination.py --check
           python3 tools/build_round3.py --check

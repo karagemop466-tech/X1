@@ -5,7 +5,7 @@ Session `arena/600e6009-x1`.
 
 Outputs
 -------
-  data/leaderboard_signal_staking.json     S5 — signal and staking as separate
+  data/leaderboard_signal_staking_official.json     S5 — signal and staking as separate
                                            column groups, rank computed from the
                                            signal group only
   data/depth/replacement_depth_summary.json S6 — how deep the replacement goes
@@ -335,7 +335,7 @@ def build_correlation_check() -> dict:
 
 def main() -> int:
     lb = build_leaderboard()
-    write("data/leaderboard_signal_staking.json", lb)
+    write("data/leaderboard_signal_staking_official.json", lb)
     print(f"leaderboard_signal_staking: {lb['rows_count']} rows, "
           f"signal populated on {lb['verification']['rows_with_signal']}, "
           f"staking values published={lb['verification']['rows_with_staking_values']}")
@@ -353,7 +353,7 @@ def main() -> int:
           f"(distinct n={v['distinct_n_values']}), hosts={v['hosts']}, violations=0")
 
     if "--check" in sys.argv:
-        rel = ["data/leaderboard_signal_staking.json",
+        rel = ["data/leaderboard_signal_staking_official.json",
                "data/depth/replacement_depth_summary.json",
                "data/correlations_official_check.json"]
         out = subprocess.run(["git", "diff", "--exit-code", "--"] + rel,

@@ -289,7 +289,7 @@ def load() -> None:
         ("r3_signal", "data/results/signal_grade.json"),
         ("r3_snapshots", "data/snapshots/price_snapshots.json"),
         ("r3_origination", "data/lines/origination_order_2026_week10.json"),
-        ("r3_lb", "data/leaderboard_signal_staking.json"),
+        ("r3_lb", "data/leaderboard_signal_staking_official.json"),
         ("r3_depth", "data/depth/replacement_depth_summary.json"),
         ("r3_corr", "data/correlations_official_check.json"),
         ("root_questions", "data/questions.json"),
@@ -1031,7 +1031,7 @@ an edge until a price says what break-even costs, and no official price source e
                           f'(line exactly 0.0 — never forced to a side)', src_cell(sg_url)],
              ["Model", f'{esc(sig.get("model", {}).get("name", ""))} — fitted walk-forward, season '
                        f'<i>s</i> trained only on seasons before <i>s</i>', src_cell(sg_url)]],
-            note="Every figure above is recomputed by tools/build_results.py from the results feed "
+            note="Every figure above is recomputed by tools/build_results_r3.py from the results feed "
                  "and the model file; the JSON carries its own source URLs.") +
 f"""
 <p class="note">This signal feeds the <a href="leaderboard.html">leaderboard</a>'s signal group only.
