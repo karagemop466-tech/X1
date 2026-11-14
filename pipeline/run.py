@@ -234,7 +234,8 @@ def _fetch_team_depth_chart(
 
     name = meta.get("name") or abbrev
     for index, path in enumerate(S.DEPTH_CHART_PATHS):
-        url = f"https://www.{domain}{path}"
+        host = domain[4:] if domain.startswith("www.") else domain
+        url = f"https://www.{host}{path}"
         # Only the first candidate gets retries; fallbacks get one shot so a
         # dead club cannot hold the whole refresh open.
         result = fetch(url, retries=2 if index == 0 else 1, backoff=2.0, sleep=0.4, timeout=20.0)

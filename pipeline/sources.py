@@ -117,7 +117,8 @@ def depth_chart_url(
     domain = club_domain(abbrev, by_slug, slug)
     if not domain:
         return ""
-    return f"https://{domain}{path}" if domain.startswith("www.") else f"https://www.{domain}{path}"
+    host = domain[4:] if domain.startswith("www.") else domain
+    return f"https://www.{host}{path}"
 
 
 # ------------------------------------------------------- extra probe candidates

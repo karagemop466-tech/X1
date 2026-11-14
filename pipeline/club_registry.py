@@ -44,6 +44,10 @@ def discover(html: str) -> Dict[str, str]:
             host = (urlparse(follow[1]).hostname or "").lower()
             if not host or host.endswith("nfl.com"):
                 continue
+            # The league prints "https://www.club.com/"; store the bare domain so
+            # the fetcher decides the host prefix itself.
+            if host.startswith("www."):
+                host = host[4:]
             mapping[slug] = host
             break
     return mapping
