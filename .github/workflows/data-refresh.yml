@@ -55,20 +55,20 @@ jobs:
       - name: Commit refreshed data
         if: always()
         run: |
-          mkdir -p _ci
           {
             set -x
             git config user.name "x1-bot"
             git config user.email "x1-bot@users.noreply.github.com"
             # Adopt whatever the branch has moved on to (another session may have
-            # pushed) without touching the working tree, then stage only data/.
-            # --mixed avoids the rebase conflicts a pull can produce here, because
-            # pull refuses to run with the dirty tree the pipeline leaves behind.
+            # pushed) without touching the working tree, then stage data/ and the
+            # run logs. --mixed avoids the rebase conflicts a pull produces when
+            # the pipeline has left the tree dirty.
             git fetch origin "${GITHUB_REF_NAME}"
             git reset --mixed "origin/${GITHUB_REF_NAME}"
-            git add data
+            git add data _ci
+            git status --porcelain
             if git diff --cached --quiet; then
-              echo "MARKER: no data change"
+              echo "MARKER: nothing to commit"
             else
               git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
               pushed=0
@@ -90,24 +90,6 @@ jobs:
             echo "MARKER: done"
           } 2>&1 | tee _ci/commit.log
           grep -q "MARKER: done" _ci/commit.log
-
-      - name: Publish CI log
-        if: always()
-        continue-on-error: true
-        run: |
-          git config user.name "x1-bot"
-          git config user.email "x1-bot@users.noreply.github.com"
-          git fetch origin "${GITHUB_REF_NAME}"
-          git reset --mixed "origin/${GITHUB_REF_NAME}"
-          git add _ci
-          if git diff --cached --quiet; then echo "no ci log change"; exit 0; fi
-          git commit -m "ci: publish run log $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          for attempt in 1 2 3; do
-            git fetch origin "${GITHUB_REF_NAME}"
-            git rebase "origin/${GITHUB_REF_NAME}" || { git rebase --abort || true; sleep 5; continue; }
-            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
-            sleep 5
-          done
 
       - name: Assemble the site
         if: ${{ github.event.inputs.skip_pages != 'true' }}
