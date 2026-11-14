@@ -1,7 +1,7 @@
 {
  "dataset": "repo_review",
  "title": "Repository review — file by file",
- "generated_at": "2026-11-14T03:37:32+00:00",
+ "generated_at": "2026-11-14T04:16:43+00:00",
  "source": {
   "url": "https://github.com/karagemop466-tech/X1",
   "label": "Repository on GitHub",
@@ -17,16 +17,67 @@
  ],
  "rows": [
   {
+   "path": "_ci/pipeline.log",
+   "lines_reviewed": 0,
+   "bytes": 0,
+   "sha256_short": "e3b0c44298fc",
+   "finding": "file is empty; no trailing newline",
+   "status": "review",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/_ci/pipeline.log",
+   "_source_label": "Source file on GitHub: _ci/pipeline.log",
+   "_source_org": "Repository",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
+   "_flags": [
+    "flagged by an automated review rule"
+   ],
+   "_unverified": [],
+   "_verified": false
+  },
+  {
+   "path": "data/_run_report.json",
+   "lines_reviewed": 647,
+   "bytes": 18186,
+   "sha256_short": "e00c46af6cc6",
+   "finding": "large file (647 lines); consider splitting",
+   "status": "review",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/_run_report.json",
+   "_source_label": "Source file on GitHub: data/_run_report.json",
+   "_source_org": "Repository",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
+   "_flags": [
+    "flagged by an automated review rule"
+   ],
+   "_unverified": [],
+   "_verified": false
+  },
+  {
+   "path": "data/club_registry.json",
+   "lines_reviewed": 446,
+   "bytes": 14244,
+   "sha256_short": "c9768ef1bbb5",
+   "finding": "large file (446 lines); consider splitting",
+   "status": "review",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/club_registry.json",
+   "_source_label": "Source file on GitHub: data/club_registry.json",
+   "_source_org": "Repository",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
+   "_flags": [
+    "flagged by an automated review rule"
+   ],
+   "_unverified": [],
+   "_verified": false
+  },
+  {
    "path": "data/correlations.json",
    "lines_reviewed": 21800,
    "bytes": 803756,
-   "sha256_short": "a07eba4be21d",
+   "sha256_short": "cc4e83446e54",
    "finding": "large file (21800 lines); consider splitting",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/correlations.json",
    "_source_label": "Source file on GitHub: data/correlations.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -43,7 +94,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/deficiency.json",
    "_source_label": "Source file on GitHub: data/deficiency.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -60,7 +111,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/depth_charts.json",
    "_source_label": "Source file on GitHub: data/depth_charts.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -71,13 +122,13 @@
    "path": "data/injuries.json",
    "lines_reviewed": 7625,
    "bytes": 236765,
-   "sha256_short": "e432b915f039",
+   "sha256_short": "a407dfa5976d",
    "finding": "large file (7625 lines); consider splitting",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries.json",
    "_source_label": "Source file on GitHub: data/injuries.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -94,7 +145,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
    "_source_label": "Source file on GitHub: data/questions.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -103,15 +154,15 @@
   },
   {
    "path": "data/repo_review.json",
-   "lines_reviewed": 429,
-   "bytes": 13652,
-   "sha256_short": "71eb0901883b",
-   "finding": "large file (429 lines); consider splitting; todo-marker on line(s): 419",
+   "lines_reviewed": 848,
+   "bytes": 27377,
+   "sha256_short": "beb4e53ed8be",
+   "finding": "large file (848 lines); consider splitting; todo-marker on line(s): 838",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/repo_review.json",
    "_source_label": "Source file on GitHub: data/repo_review.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -128,7 +179,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/requirements.json",
    "_source_label": "Source file on GitHub: data/requirements.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -139,13 +190,13 @@
    "path": "data/standings.json",
    "lines_reviewed": 946,
    "bytes": 23734,
-   "sha256_short": "d7fdf50dcf3b",
+   "sha256_short": "92992de24190",
    "finding": "large file (946 lines); consider splitting",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/standings.json",
    "_source_label": "Source file on GitHub: data/standings.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -162,7 +213,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/suggestions.json",
    "_source_label": "Source file on GitHub: data/suggestions.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -173,13 +224,13 @@
    "path": "data/team_stats.json",
    "lines_reviewed": 12049,
    "bytes": 326247,
-   "sha256_short": "c8c0803ce44c",
+   "sha256_short": "18b3599fa021",
    "finding": "large file (12049 lines); consider splitting",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/team_stats.json",
    "_source_label": "Source file on GitHub: data/team_stats.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -196,7 +247,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/methodology.md",
    "_source_label": "Source file on GitHub: docs/methodology.md",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -213,7 +264,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/model_correlation.py",
    "_source_label": "Source file on GitHub: pipeline/model_correlation.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -222,15 +273,15 @@
   },
   {
    "path": "pipeline/parsers.py",
-   "lines_reviewed": 448,
-   "bytes": 17582,
-   "sha256_short": "60c21f9405b6",
-   "finding": "large file (448 lines); consider splitting",
+   "lines_reviewed": 469,
+   "bytes": 18398,
+   "sha256_short": "47e6f0b8f7cf",
+   "finding": "large file (469 lines); consider splitting",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/parsers.py",
    "_source_label": "Source file on GitHub: pipeline/parsers.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -247,7 +298,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/repo_review.py",
    "_source_label": "Source file on GitHub: pipeline/repo_review.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -256,15 +307,15 @@
   },
   {
    "path": "pipeline/run.py",
-   "lines_reviewed": 552,
-   "bytes": 21337,
-   "sha256_short": "7eb5fedee776",
-   "finding": "large file (552 lines); consider splitting; print-debug on line(s): 543",
+   "lines_reviewed": 564,
+   "bytes": 21943,
+   "sha256_short": "fc5b96ae9323",
+   "finding": "large file (564 lines); consider splitting; print-debug on line(s): 555",
    "status": "review",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/run.py",
    "_source_label": "Source file on GitHub: pipeline/run.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -281,7 +332,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/scripts/verify_data.py",
    "_source_label": "Source file on GitHub: scripts/verify_data.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -298,7 +349,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/scripts/verify_site.py",
    "_source_label": "Source file on GitHub: scripts/verify_site.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -315,7 +366,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/repo-review.html",
    "_source_label": "Source file on GitHub: site/repo-review.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [
     "flagged by an automated review rule"
    ],
@@ -324,15 +375,15 @@
   },
   {
    "path": ".github/workflows/data-refresh.yml",
-   "lines_reviewed": 140,
-   "bytes": 4643,
-   "sha256_short": "414b51e3980b",
+   "lines_reviewed": 160,
+   "bytes": 5758,
+   "sha256_short": "f32cac04835b",
    "finding": "no mechanical finding",
    "status": "ok",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml",
    "_source_label": "Source file on GitHub: .github/workflows/data-refresh.yml",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -347,7 +398,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/.gitignore",
    "_source_label": "Source file on GitHub: .gitignore",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -362,7 +413,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
    "_source_label": "Source file on GitHub: COORDINATION.md",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -377,52 +428,52 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/README.md",
    "_source_label": "Source file on GitHub: README.md",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
+   "_flags": [],
+   "_unverified": [],
+   "_verified": true
+  },
+  {
+   "path": "_ci/commit.log",
+   "lines_reviewed": 99,
+   "bytes": 3119,
+   "sha256_short": "58ed4a5d0344",
+   "finding": "no mechanical finding",
+   "status": "ok",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/_ci/commit.log",
+   "_source_label": "Source file on GitHub: _ci/commit.log",
+   "_source_org": "Repository",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
   },
   {
    "path": "data/_probe.json",
-   "lines_reviewed": 134,
-   "bytes": 2305,
-   "sha256_short": "77ee6fa4dc2f",
+   "lines_reviewed": 289,
+   "bytes": 4866,
+   "sha256_short": "bb235292890a",
    "finding": "no mechanical finding",
    "status": "ok",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/_probe.json",
    "_source_label": "Source file on GitHub: data/_probe.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
-   "_flags": [],
-   "_unverified": [],
-   "_verified": true
-  },
-  {
-   "path": "data/_run_report.json",
-   "lines_reviewed": 152,
-   "bytes": 3684,
-   "sha256_short": "e16bdf364f6a",
-   "finding": "no mechanical finding",
-   "status": "ok",
-   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/_run_report.json",
-   "_source_label": "Source file on GitHub: data/_run_report.json",
-   "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
   },
   {
    "path": "data/_verification.json",
-   "lines_reviewed": 93,
-   "bytes": 4026,
-   "sha256_short": "f3bc5ef93181",
+   "lines_reviewed": 279,
+   "bytes": 13214,
+   "sha256_short": "74dc5db6bb7e",
    "finding": "no mechanical finding",
    "status": "ok",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/_verification.json",
    "_source_label": "Source file on GitHub: data/_verification.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -437,7 +488,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
    "_source_label": "Source file on GitHub: data/gates.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -452,7 +503,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/leaderboard.json",
    "_source_label": "Source file on GitHub: data/leaderboard.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -467,7 +518,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/market_lines.json",
    "_source_label": "Source file on GitHub: data/market_lines.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:31+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -482,7 +533,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json",
    "_source_label": "Source file on GitHub: data/strategies.json",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -497,7 +548,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/project-brief.md",
    "_source_label": "Source file on GitHub: docs/project-brief.md",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -512,7 +563,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/__init__.py",
    "_source_label": "Source file on GitHub: pipeline/__init__.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -527,22 +578,22 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/__main__.py",
    "_source_label": "Source file on GitHub: pipeline/__main__.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
   },
   {
    "path": "pipeline/club_registry.py",
-   "lines_reviewed": 101,
-   "bytes": 3569,
-   "sha256_short": "db38d4399024",
+   "lines_reviewed": 136,
+   "bytes": 5017,
+   "sha256_short": "4d726e89d84e",
    "finding": "no mechanical finding",
    "status": "ok",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/club_registry.py",
    "_source_label": "Source file on GitHub: pipeline/club_registry.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -557,7 +608,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/htmlutil.py",
    "_source_label": "Source file on GitHub: pipeline/htmlutil.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -572,22 +623,22 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/http.py",
    "_source_label": "Source file on GitHub: pipeline/http.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
   },
   {
    "path": "pipeline/sources.py",
-   "lines_reviewed": 149,
-   "bytes": 5915,
-   "sha256_short": "1ffa5e6bd5bc",
+   "lines_reviewed": 150,
+   "bytes": 5916,
+   "sha256_short": "db5acd5d95dc",
    "finding": "no mechanical finding",
    "status": "ok",
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/sources.py",
    "_source_label": "Source file on GitHub: pipeline/sources.py",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -602,7 +653,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/assets/css/site.css",
    "_source_label": "Source file on GitHub: site/assets/css/site.css",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -617,7 +668,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/assets/js/site.js",
    "_source_label": "Source file on GitHub: site/assets/js/site.js",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -632,7 +683,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/correlations.html",
    "_source_label": "Source file on GitHub: site/correlations.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -647,7 +698,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/data.html",
    "_source_label": "Source file on GitHub: site/data.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -662,7 +713,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/depth-charts.html",
    "_source_label": "Source file on GitHub: site/depth-charts.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -677,7 +728,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/flagged.html",
    "_source_label": "Source file on GitHub: site/flagged.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -692,7 +743,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/index.html",
    "_source_label": "Source file on GitHub: site/index.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -707,7 +758,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/injuries.html",
    "_source_label": "Source file on GitHub: site/injuries.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -722,7 +773,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/lines.html",
    "_source_label": "Source file on GitHub: site/lines.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -737,7 +788,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/questions.html",
    "_source_label": "Source file on GitHub: site/questions.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -752,7 +803,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/requirements.html",
    "_source_label": "Source file on GitHub: site/requirements.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -767,7 +818,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/sources.html",
    "_source_label": "Source file on GitHub: site/sources.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -782,7 +833,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/standings.html",
    "_source_label": "Source file on GitHub: site/standings.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -797,7 +848,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/strategy-lab.html",
    "_source_label": "Source file on GitHub: site/strategy-lab.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -812,7 +863,7 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/suggestions.html",
    "_source_label": "Source file on GitHub: site/suggestions.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
@@ -827,22 +878,22 @@
    "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/site/team-stats.html",
    "_source_label": "Source file on GitHub: site/team-stats.html",
    "_source_org": "Repository",
-   "_retrieved_at": "2026-11-14T03:37:32+00:00",
+   "_retrieved_at": "2026-11-14T04:16:43+00:00",
    "_flags": [],
    "_unverified": [],
    "_verified": true
   }
  ],
- "total_files": 52,
- "review_commit": "69000ea6b373",
+ "total_files": 55,
+ "review_commit": "6ef97241b19a",
  "method": "Every tracked file is hashed, line counted and run through fixed mechanical rules (empty file, missing trailing newline, TODO/FIXME, placeholder value, hardcoded-secret shape, bare except, debug print, oversized file/line, unclosed HTML). Findings are reproducible by running `python3 -m pipeline.repo_review`.",
  "verification": {
-  "rows": 52,
+  "rows": 55,
   "rows_verified": 34,
-  "rows_flagged": 18,
+  "rows_flagged": 21,
   "unverified_cells": 0,
   "flagged_reasons": {
-   "flagged by an automated review rule": 18
+   "flagged by an automated review rule": 21
   }
  }
 }

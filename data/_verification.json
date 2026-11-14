@@ -3,7 +3,7 @@
  "results": [
   {
    "dataset": "club_registry",
-   "rows": 0,
+   "rows": 32,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,
@@ -155,14 +155,14 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 52,
+   "rows": 55,
    "rows_missing_source": 0,
-   "rows_non_official_source": 52,
+   "rows_non_official_source": 55,
    "null_cells": 0,
    "problems": [
-    "repo_review[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/correlations.json",
-    "repo_review[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/deficiency.json",
-    "repo_review[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/depth_charts.json"
+    "repo_review[0] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/_ci/pipeline.log",
+    "repo_review[1] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/_run_report.json",
+    "repo_review[2] source is not an official host: https://github.com/karagemop466-tech/X1/blob/main/data/club_registry.json"
    ],
    "ok": false
   },
