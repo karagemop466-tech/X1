@@ -1442,14 +1442,14 @@ satisfy. They are tracked here as **T11–T18**, with the new file scope this se
 
 | # | Task (owner's words, abbreviated) | Status | Owner | Files in scope (new, this session) |
 |---|---|---|---|---|
-| T11 | Price-snapshot store: opening **and** closing numbers for every market we originate | in progress | `arena/56769365-x1` | `data/lab/prices/*`, `docs/lab/price-store.md`, `tools/lab/build_prices.py` |
-| T12 | Verified results feed so backtests and ROI can be computed at all | in progress | `arena/56769365-x1` | `data/lab/results/*`, `docs/lab/results-feed.md`, `tools/lab/build_results.py` |
-| T13 | Originate the side first, then the total, then the moneyline | in progress | `arena/56769365-x1` | `data/lab/lines/*`, `tools/lab/build_lines.py` |
-| T14 | Fair line, market line and the difference as **separate columns** | in progress | `arena/56769365-x1` | `app/lab-*.html` (new pages only), `data/lab/*` |
-| T15 | Leaderboard: split **signal** from **staking** | in progress | `arena/56769365-x1` | `data/lab/leaderboard.json`, `app/lab-leaderboard.html` |
-| T16 | Depth of the replacement, not just the fact of it | in progress | `arena/56769365-x1` | `data/lab/deficiency.json`, `app/lab-deficiency.html` |
-| T17 | Correlations only from officially sourced numbers, **n with every value** | in progress | `arena/56769365-x1` | `data/lab/correlations.json`, `app/lab-correlation.html` |
-| T18 | A demotion gate that sends a live strategy back to paper | in progress | `arena/56769365-x1` | `data/lab/gates.json`, `app/lab-validation.html` |
+| T11 | Price-snapshot store: opening **and** closing numbers for every market we originate | **done** (PR #36) | `arena/56769365-x1` | `data/lab/prices/*`, `docs/lab/price-store.md`, `tools/lab/build_prices.py` |
+| T12 | Verified results feed so backtests and ROI can be computed at all | **done** (PR #36) | `arena/56769365-x1` | `data/lab/results/*`, `docs/lab/results-feed.md`, `tools/lab/build_results.py` |
+| T13 | Originate the side first, then the total, then the moneyline | **done** (PR #36) | `arena/56769365-x1` | `data/lab/lines/*`, `tools/lab/build_lines.py` |
+| T14 | Fair line, market line and the difference as **separate columns** | **done** (PR #36) | `arena/56769365-x1` | `app/lab-*.html` (new pages only), `data/lab/*` |
+| T15 | Leaderboard: split **signal** from **staking** | **done** (PR #36) | `arena/56769365-x1` | `data/lab/leaderboard.json`, `app/lab-leaderboard.html` |
+| T16 | Depth of the replacement, not just the fact of it | **done** (PR #36) | `arena/56769365-x1` | `data/lab/deficiency.json`, `app/lab-deficiency.html` |
+| T17 | Correlations only from officially sourced numbers, **n with every value** | **done** (PR #36) | `arena/56769365-x1` | `data/lab/correlations.json`, `app/lab-correlation.html` |
+| T18 | A demotion gate that sends a live strategy back to paper | **done** (PR #36) | `arena/56769365-x1` | `data/lab/gates.json`, `app/lab-validation.html` |
 
 **Files this session will edit that other sessions own — requested, not taken:**
 `COORDINATION.md` (this append-only block), `README.md` (one new section, append-only),
@@ -1506,3 +1506,40 @@ python3 tools/lab/build_summary.py
 python3 tools/lab/build_site.py         # writes lab/ and verifies its own contract
 # or: python3 tools/lab/build_all.py
 ```
+
+## Pull request record — PR #36 (appended post-merge, session `arena/56769365-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#36](https://github.com/karagemop466-tech/X1/pull/36) — `arena/56769365-x1` → `main` |
+| Title | Line desk: the eight new requirements, built and verified (0 of 8 strategies live) |
+| Merge command | `gh pr merge 36 --merge` |
+| Merge result | **MERGED** 2026-11-14T19:59:40Z, merge commit `4b7a1dd` (`4b7a1ddaa48cac18d67af2236cd3609473a868bc`) |
+| Checks on the PR | `build` **pass** (9s), `verify` **pass** (9s), `deploy` skipped as expected on a pull request |
+| Post-merge `verify-site` | run [43635060440](https://github.com/karagemop466-tech/X1/actions/runs/43635060440) **success** (19s) |
+| Post-merge Pages deploy | run [43635060407](https://github.com/karagemop466-tech/X1/actions/runs/43635060407) **success** (29s) |
+| Pages builder | `pages build and deployment` run [43635059857](https://github.com/karagemop466-tech/X1/actions/runs/43635059857) **success** (28s), commit `4b7a1dd` |
+| Pages API | `status: built` — <https://karagemop466-tech.github.io/X1/> |
+| Deployed artefact | `lab/index.html` present in the Pages build for commit `4b7a1dd`; the repo-root `index.html` links it |
+| Live-site check | **could not be run from this sandbox** — `karagemop466-tech.github.io` resolves to no route here (`curl` rc 35). The deployment is confirmed from the Pages API (`status: built`, newest build on the merge commit) and from the repository contents, not from an HTTP fetch of the rendered page. Recorded as a limit rather than stated as a live check. |
+
+### What shipped in PR #36
+
+Thirteen generated pages under `lab/`, ten artefact families under `data/lab/`, ten stdlib-only
+builders under `tools/lab/`, four methodology documents under `docs/lab/`, and one new verifier
+(`tools/verify_deployed_tree.py`) wired into `pages.yml` before the upload.
+
+The two defects that verifier found in the already-published site were fixed in the same PR: a
+`cp -r archive` that was missing from the workflow (so `hub/index.html`'s link to a committed
+96 KB archive had been dead), and a `sed` rewrite that fixed `href="assets/…"` but not
+`src="assets/…"` (so the served landing page's `app.js` 404'd and its filter and sort did nothing).
+
+### Limitations recorded at merge time
+
+1. No live HTTP check of the rendered site — the host is unreachable from this sandbox.
+2. No headless browser — the substitute is a tag-balance and link check inside
+   `tools/lab/build_site.py`.
+3. `docs/lab/` documents the method and the sources; the page-level detail lives on
+   `lab/sources.html` and `lab/flagged.html`.
+
+---
