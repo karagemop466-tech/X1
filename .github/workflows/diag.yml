@@ -10,13 +10,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:
@@ -25,7 +27,8 @@ jobs:
       - name: Probe official sources
         shell: bash
         run: |
-          python3 - <<'PY'
+          mkdir -p diag
+          { python3 - <<'PY'
           import re, ssl, sys, urllib.request
 
           UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -68,3 +71,16 @@ jobs:
               snippet = re.sub(r"<[^>]+>", " ", html[:1200])
               print("  head-snippet:", re.sub(r"\s+", " ", snippet)[:300])
           PY
+          } 2>&1 | tee diag/out.txt
+
+      - name: Publish probe output
+        shell: bash
+        run: |
+          git config user.name "x1-bot"
+          git config user.email "x1-bot@users.noreply.github.com"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git add diag/out.txt
+          if git diff --cached --quiet; then echo "no change"; else
+            git commit -m "diag: probe output $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
