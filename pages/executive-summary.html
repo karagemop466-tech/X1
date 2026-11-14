@@ -60,22 +60,22 @@
 
   <h2>What is verified and published today</h2>
   <div class="tablewrap"><table class=""><thead><tr><th>Item</th><th>Table</th><th>Official source</th></tr></thead><tbody>
-<tr><td>32 teams, 8 divisions, 2 conferences</td><td>Standings rows</td><td>&lt;a class=&quot;src-link&quot; href=&quot;https://www.nfl.com/standings/division/2026/REG&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;nfl.com/standings ↗&lt;/a&gt;</td></tr>
-<tr><td>14 games (1 final, 13 scheduled) + 4 byes</td><td>Week 10 slate</td><td>&lt;a class=&quot;src-link&quot; href=&quot;https://www.nfl.com/schedules/2026/REG/week/10/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;nfl.com/schedules ↗&lt;/a&gt;</td></tr>
-<tr><td>345 players across all 28 participating clubs</td><td>Injury-report rows</td><td>&lt;a class=&quot;src-link&quot; href=&quot;https://www.nfl.com/injuries/league/2026/reg10&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;nfl.com/injuries ↗&lt;/a&gt;</td></tr>
-<tr><td>BUF, SEA, DET, GB, BAL</td><td>Depth-chart pilot clubs</td><td>per-club links on the Availability page</td></tr>
-<tr><td>35 listed starters on the report, 8 ruled Out</td><td>Derived starter-at-risk</td><td>derived (tier C) — reproducible by script</td></tr>
-<tr><td>2,944</td><td>Automated integrity assertions</td><td>tools/verify_data.py</td></tr>
+<tr><td>32 teams, 8 divisions, 2 conferences</td><td>Standings rows</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com standings ↗</a></td></tr>
+<tr><td>14 games (1 final, 13 scheduled) + 4 byes</td><td>Week 10 slate</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">nfl.com schedule ↗</a></td></tr>
+<tr><td>345 players across all 28 participating clubs</td><td>Injury-report rows</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com injuries ↗</a></td></tr>
+<tr><td>BUF, SEA, DET, GB, BAL</td><td>Depth-chart pilot clubs</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
+<tr><td>35 listed starters on the report, 8 ruled Out</td><td>Derived starter-at-risk (tier C)</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/build_availability.py" target="_blank" rel="noopener noreferrer">the script ↗</a></td></tr>
+<tr><td>2,944</td><td>Automated integrity assertions</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_data.py" target="_blank" rel="noopener noreferrer">verify_data.py ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>What is deliberately not published, and why</h2>
-  <div class="tablewrap"><table class=""><thead><tr><th>Not published</th><th>Blocking reason</th><th>Decision</th></tr></thead><tbody>
-<tr><td>Fair lines / our own prices</td><td>No licensed odds feed to benchmark against</td><td>Q-02</td></tr>
-<tr><td>Edge / expected value</td><td>No feed, and no settlement rule adopted</td><td>Q-02, Q-03</td></tr>
-<tr><td>Correlation values</td><td>No joint-outcome dataset; ρ=0.10 needs ≈780+ paired obs</td><td>Q-10</td></tr>
-<tr><td>Leaderboard rankings</td><td>No logged forecasts, no scored window</td><td>Q-12</td></tr>
-<tr><td>Points-per-injury weights</td><td>No licensed snap counts</td><td>Q-04</td></tr>
-<tr><td>Depth data for 27 clubs</td><td>Not yet captured</td><td>Q-14</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>Not published</th><th>Blocking reason</th><th>Decision</th><th>Reference</th></tr></thead><tbody>
+<tr><td>Fair lines / our own prices</td><td>No licensed odds feed to benchmark against</td><td>Q-02</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+<tr><td>Edge / expected value</td><td>No feed, and no settlement rule adopted</td><td>Q-02, Q-03</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>Correlation values</td><td>No joint-outcome dataset; ρ=0.10 needs ≈780+ paired obs</td><td>Q-10</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+<tr><td>Leaderboard rankings</td><td>No logged forecasts, no scored window</td><td>Q-12</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates ↗</a></td></tr>
+<tr><td>Points-per-injury weights</td><td>No licensed snap counts</td><td>Q-04</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/availability.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
+<tr><td>Depth data for 27 clubs</td><td>Not yet captured</td><td>Q-14</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">flag F-02 ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>The five findings that actually matter</h2>
@@ -91,13 +91,13 @@
          <a href="flagged.html">flag F-08</a>.</p></li></ol>
 
   <h2>What the owner has to decide, in dependency order</h2>
-  <div class="tablewrap"><table class=""><thead><tr><th>Order</th><th>Decision</th><th>Why it is here</th></tr></thead><tbody>
-<tr><td>1</td><td>Q-01 data licence · Q-02 odds feed</td><td>Nothing quantitative can be scored without these</td></tr>
-<tr><td>2</td><td>Q-05 definition of “starter”</td><td>Unlocks the credibility of the availability model</td></tr>
-<tr><td>3</td><td>Q-03 settlement · Q-09 market scope</td><td>Makes a fair price gradeable</td></tr>
-<tr><td>4</td><td>Q-11 bankroll · Q-12 first window</td><td>Required by the risk and pre-registration gates</td></tr>
-<tr><td>5</td><td>Q-07/Q-08 rewards, eligibility</td><td>Only needed once results exist to reward</td></tr>
-<tr><td>6</td><td>Q-14 coverage · Q-17 cadence</td><td>Scale and staleness</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>Order</th><th>Decision</th><th>Why it is here</th><th>Reference</th></tr></thead><tbody>
+<tr><td>1</td><td>Q-01 data licence · Q-02 odds feed</td><td>Nothing quantitative can be scored without these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>2</td><td>Q-05 definition of “starter”</td><td>Unlocks the credibility of the availability model</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>3</td><td>Q-03 settlement · Q-09 market scope</td><td>Makes a fair price gradeable</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>4</td><td>Q-11 bankroll · Q-12 first window</td><td>Required by the risk and pre-registration gates</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>5</td><td>Q-07/Q-08 rewards, eligibility</td><td>Only needed once results exist to reward</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>6</td><td>Q-14 coverage · Q-17 cadence</td><td>Scale and staleness</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>Reviewer's route through this release</h2>

@@ -53,19 +53,19 @@
 
   <h2>Divisions</h2>
   <p>Split by bet shape because the statistics genuinely differ — not as a fairness gesture.</p>
-  <div class="tablewrap"><table class=""><thead><tr><th>Division</th><th>Entry bar</th></tr></thead><tbody>
-<tr><td>singles</td><td>500 tickets/bets minimum</td></tr>
-<tr><td>parlays_2_3</td><td>300 tickets/bets minimum</td></tr>
-<tr><td>prop_combos_samegame</td><td>400 tickets/bets minimum</td></tr>
-<tr><td>props_single</td><td>500 tickets/bets minimum</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>Division</th><th>Entry bar</th><th>Source</th></tr></thead><tbody>
+<tr><td>singles</td><td>500 tickets/bets minimum</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>parlays_2_3</td><td>300 tickets/bets minimum</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>prop_combos_samegame</td><td>400 tickets/bets minimum</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td>props_single</td><td>500 tickets/bets minimum</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
 </tbody></table></div>
   <table class="kv">
-    <thead><tr><th>Shape</th><th>Why it is its own division</th></tr></thead>
+    <thead><tr><th>Shape</th><th>Why it is its own division</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Singles</td><td>Lowest variance per ticket; needs the biggest sample to say anything</td></tr>
-      <tr><td>Parlays (2–3 legs)</td><td>Variance rises and margin compounds</td></tr>
-      <tr><td>Prop combos (same game, ≥2 legs)</td><td>Dependence makes the raw ticket count misleading — n_eff rules</td></tr>
-      <tr><td>Single props</td><td>Distribution modelling differs from game markets</td></tr>
+      <tr><td>Singles</td><td>Lowest variance per ticket; needs the biggest sample to say anything</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Parlays (2–3 legs)</td><td>Variance rises and margin compounds</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation ↗</a></td></tr>
+      <tr><td>Prop combos (same game, ≥2 legs)</td><td>Dependence makes the raw ticket count misleading — n_eff rules</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation ↗</a></td></tr>
+      <tr><td>Single props</td><td>Distribution modelling differs from game markets</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
     </tbody>
   </table>
 
@@ -76,12 +76,12 @@
 
   <h2>Rewards — structure now, money later</h2>
   <table class="kv">
-    <thead><tr><th>Reward</th><th>Season 0 (paper league)</th><th>Season 1 onward</th></tr></thead>
+    <thead><tr><th>Reward</th><th>Season 0 (paper league)</th><th>Season 1 onward</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Champion, per division</td><td>Title + badge only</td><td>Requires a funded pool</td></tr>
-      <tr><td>Runner-up</td><td>Badge</td><td>Requires a funded pool</td></tr>
-      <tr><td>Most improved</td><td>Badge</td><td>Requires a funded pool</td></tr>
-      <tr><td>Best calibration</td><td>Badge, awarded even without profit</td><td>Recommended to stay non-cash</td></tr>
+      <tr><td>Champion, per division</td><td>Title + badge only</td><td>Requires a funded pool</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Runner-up</td><td>Badge</td><td>Requires a funded pool</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Most improved</td><td>Badge</td><td>Requires a funded pool</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Best calibration</td><td>Badge, awarded even without profit</td><td>Recommended to stay non-cash</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">gates ↗</a></td></tr>
     </tbody>
   </table>
   <h3>Design rules that stop the board rewarding luck</h3>
@@ -95,14 +95,14 @@
 
   <h2>Anti-gaming rules</h2>
   <table class="kv">
-    <thead><tr><th>Attack</th><th>Rule</th></tr></thead>
+    <thead><tr><th>Attack</th><th>Rule</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Cherry-picked start date</td><td>The window is fixed by the calendar, never by the entrant</td></tr>
-      <tr><td>Re-registering a failed strategy under a new name</td><td>Strategy hash covers inputs and features; duplicates are rejected</td></tr>
-      <tr><td>Playing only soft numbers</td><td>Gate 6 uses only release-time quotes</td></tr>
-      <tr><td>Undefined settlement</td><td>Ticket invalid without a recorded rule</td></tr>
-      <tr><td>Backfilled forecasts</td><td>Forecasts must be timestamped before kickoff; late writes are voided</td></tr>
-      <tr><td>Survivorship in reporting</td><td>Every registered strategy is listed, including ones with zero bets</td></tr>
+      <tr><td>Cherry-picked start date</td><td>The window is fixed by the calendar, never by the entrant</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Re-registering a failed strategy under a new name</td><td>Strategy hash covers inputs and features; duplicates are rejected</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Playing only soft numbers</td><td>Gate 6 uses only release-time quotes</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Undefined settlement</td><td>Ticket invalid without a recorded rule</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Backfilled forecasts</td><td>Forecasts must be timestamped before kickoff; late writes are voided</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Survivorship in reporting</td><td>Every registered strategy is listed, including ones with zero bets</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
     </tbody>
   </table>
 

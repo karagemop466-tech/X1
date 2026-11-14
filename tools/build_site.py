@@ -22,8 +22,11 @@ D = os.path.join(ROOT, "data")
 NFL = os.path.join(D, "nfl")
 PAGES = os.path.join(ROOT, "pages")
 RETRIEVED = "2026-11-14"
+REPO = "https://github.com/karagemop466-tech/X1"
+DOC = REPO + "/blob/main/"
 SITE_NAME = "Fourth Down"
 SITE_TAG = "NFL Line Lab"
+NFL_ANCHOR = "https://www.nfl.com/"
 
 NAV = [
     ("index.html", "Overview"),
@@ -67,6 +70,21 @@ def cell(v, blank_note="not printed by the official source"):
 def link(url, text, cls=""):
     c = f' class="{cls}"' if cls else ""
     return f'<a{c} href="{esc(url)}" target="_blank" rel="noopener noreferrer">{esc(text)}</a>'
+
+
+REPO_BLOB = "https://github.com/karagemop466-tech/X1/blob/main/"
+
+
+def ref(path, label):
+    """Row-level link to the repository file that defines a non-data row."""
+    return f'<a class="src-link" href="{REPO_BLOB}{path}" target="_blank" rel="noopener noreferrer">{label} ↗</a>'
+
+
+def src_cell(url, label="source ↗"):
+    """Every table row must carry a traceable source. Never emits an empty cell."""
+    if not url:
+        url, label = REPO, "repo ↗"
+    return f'<td>{link(url, label, "src-link")}</td>'
 
 
 def ext_icon(url):
@@ -251,28 +269,28 @@ def page_exec():
         The gap is enumerated as %d numbered decisions.</p>""" % len(QUESTIONS["questions"])),
     ]
     rows_verified = [
-        [cell("32 teams, 8 divisions, 2 conferences"), cell("Standings rows"), cell(link(STANDINGS_URL, "nfl.com/standings ↗", "src-link"))],
-        [cell("14 games (1 final, 13 scheduled) + 4 byes"), cell("Week 10 slate"), cell(link(SCHED_URL, "nfl.com/schedules ↗", "src-link"))],
-        [cell(f"{len(INJ)} players across all 28 participating clubs"), cell("Injury-report rows"), cell(link(INJ_URL, "nfl.com/injuries ↗", "src-link"))],
-        [cell("BUF, SEA, DET, GB, BAL"), cell("Depth-chart pilot clubs"), cell("per-club links on the Availability page")],
-        [cell(f"{len(starters_at_risk)} listed starters on the report, {len(starters_out)} ruled Out"), cell("Derived starter-at-risk"), cell("derived (tier C) — reproducible by script")],
-        [cell("2,944"), cell("Automated integrity assertions"), cell("tools/verify_data.py")],
+        [cell("32 teams, 8 divisions, 2 conferences"), cell("Standings rows"), src_cell(STANDINGS_URL, "nfl.com standings ↗")],
+        [cell("14 games (1 final, 13 scheduled) + 4 byes"), cell("Week 10 slate"), src_cell(SCHED_URL, "nfl.com schedule ↗")],
+        [cell(f"{len(INJ)} players across all 28 participating clubs"), cell("Injury-report rows"), src_cell(INJ_URL, "nfl.com injuries ↗")],
+        [cell("BUF, SEA, DET, GB, BAL"), cell("Depth-chart pilot clubs"), src_cell("https://www.nfl.com/teams/", "nfl.com teams ↗")],
+        [cell(f"{len(starters_at_risk)} listed starters on the report, {len(starters_out)} ruled Out"), cell("Derived starter-at-risk (tier C)"), src_cell(DOC + "tools/build_availability.py", "the script ↗")],
+        [cell("2,944"), cell("Automated integrity assertions"), src_cell(DOC + "tools/verify_data.py", "verify_data.py ↗")],
     ]
     rows_missing = [
-        [cell("Fair lines / our own prices"), cell("No licensed odds feed to benchmark against"), cell("Q-02")],
-        [cell("Edge / expected value"), cell("No feed, and no settlement rule adopted"), cell("Q-02, Q-03")],
-        [cell("Correlation values"), cell("No joint-outcome dataset; ρ=0.10 needs ≈780+ paired obs"), cell("Q-10")],
-        [cell("Leaderboard rankings"), cell("No logged forecasts, no scored window"), cell("Q-12")],
-        [cell("Points-per-injury weights"), cell("No licensed snap counts"), cell("Q-04")],
-        [cell("Depth data for 27 clubs"), cell("Not yet captured"), cell("Q-14")],
+        [cell("Fair lines / our own prices"), cell("No licensed odds feed to benchmark against"), cell("Q-02"), src_cell(DOC + "docs/methodology/line-origination.md", "methodology ↗")],
+        [cell("Edge / expected value"), cell("No feed, and no settlement rule adopted"), cell("Q-02, Q-03"), src_cell(DOC + "data/questions.json", "register ↗")],
+        [cell("Correlation values"), cell("No joint-outcome dataset; ρ=0.10 needs ≈780+ paired obs"), cell("Q-10"), src_cell(DOC + "docs/methodology/correlation.md", "methodology ↗")],
+        [cell("Leaderboard rankings"), cell("No logged forecasts, no scored window"), cell("Q-12"), src_cell(DOC + "data/gates.json", "gates ↗")],
+        [cell("Points-per-injury weights"), cell("No licensed snap counts"), cell("Q-04"), src_cell(DOC + "docs/methodology/availability.md", "methodology ↗")],
+        [cell("Depth data for 27 clubs"), cell("Not yet captured"), cell("Q-14"), src_cell(DOC + "data/flags.json", "flag F-02 ↗")],
     ]
     blockers = [
-        [cell("1"), cell("Q-01 data licence · Q-02 odds feed"), cell("Nothing quantitative can be scored without these")],
-        [cell("2"), cell("Q-05 definition of “starter”"), cell("Unlocks the credibility of the availability model")],
-        [cell("3"), cell("Q-03 settlement · Q-09 market scope"), cell("Makes a fair price gradeable")],
-        [cell("4"), cell("Q-11 bankroll · Q-12 first window"), cell("Required by the risk and pre-registration gates")],
-        [cell("5"), cell("Q-07/Q-08 rewards, eligibility"), cell("Only needed once results exist to reward")],
-        [cell("6"), cell("Q-14 coverage · Q-17 cadence"), cell("Scale and staleness")],
+        [cell("1"), cell("Q-01 data licence · Q-02 odds feed"), cell("Nothing quantitative can be scored without these"), src_cell(DOC + "data/questions.json", "register ↗")],
+        [cell("2"), cell("Q-05 definition of “starter”"), cell("Unlocks the credibility of the availability model"), src_cell(DOC + "data/questions.json", "register ↗")],
+        [cell("3"), cell("Q-03 settlement · Q-09 market scope"), cell("Makes a fair price gradeable"), src_cell(DOC + "data/questions.json", "register ↗")],
+        [cell("4"), cell("Q-11 bankroll · Q-12 first window"), cell("Required by the risk and pre-registration gates"), src_cell(DOC + "data/questions.json", "register ↗")],
+        [cell("5"), cell("Q-07/Q-08 rewards, eligibility"), cell("Only needed once results exist to reward"), src_cell(DOC + "data/questions.json", "register ↗")],
+        [cell("6"), cell("Q-14 coverage · Q-17 cadence"), cell("Scale and staleness"), src_cell(DOC + "data/questions.json", "register ↗")],
     ]
     findings = [
         ("There is no league-wide official depth chart.",
@@ -313,13 +331,13 @@ def page_exec():
   {table(["Item", "Table", "Official source"], rows_verified)}
 
   <h2>What is deliberately not published, and why</h2>
-  {table(["Not published", "Blocking reason", "Decision"], rows_missing)}
+  {table(["Not published", "Blocking reason", "Decision", "Reference"], rows_missing)}
 
   <h2>The five findings that actually matter</h2>
   <ol class="findings big">{f_html}</ol>
 
   <h2>What the owner has to decide, in dependency order</h2>
-  {table(["Order", "Decision", "Why it is here"], blockers)}
+  {table(["Order", "Decision", "Why it is here", "Reference"], blockers)}
 
   <h2>Reviewer's route through this release</h2>
   <ol class="route">
@@ -361,9 +379,10 @@ def page_standings():
                     cell(r["pf"]), cell(r["pa"]), cell(r["diff"]),
                     cell(r["home"]), cell(r["road"]), cell(r["div_record"]), cell(r["conf_record"]),
                     cell(r["streak"]),
+                    f'<td>{link(STANDINGS_URL, "nfl.com ↗", "src-link")}</td>',
                 ])
         blocks.append(f"<h2>{esc(conf)} — American Football Conference</h2>" if conf == "AFC" else f"<h2>{esc(conf)} — National Football Conference</h2>")
-        blocks.append(table(["#", "Team", "Division", "W", "L", "T", "PCT", "PF", "PA", "NET", "Home", "Road", "Div", "Conf", "Strk"],
+        blocks.append(table(["#", "Team", "Division", "W", "L", "T", "PCT", "PF", "PA", "NET", "Home", "Road", "Div", "Conf", "Strk", "Source"],
                             rows, caption=f"{conf}: 16 clubs, 4 divisions"))
     body = f"""
 <section class="pagetitle">
@@ -414,7 +433,7 @@ def page_schedule():
             f'<td><span class="pill {"ok" if g["status"]=="final" else "muted-pill"}">{esc(status)}</span></td>',
             cell(score, "not played at snapshot"),
             cell(g["note"]),
-            f'<td>{ext_icon(g["game_url"])}</td>',
+            f'<td>{link(g["game_url"], "game page ↗", "src-link")} · {link(SCHED_URL, "schedule ↗", "src-link")}</td>',
         ])
     byes = ["CHI", "DEN", "PHI", "TB"]
     body = f"""
@@ -433,7 +452,7 @@ def page_schedule():
     {stat(len(SCHED)-len(final_games), 'still scheduled')}
     {stat(len(byes), 'clubs on bye')}
   </div>
-  {table(["Date", "Kickoff (ET)", "Matchup", "Network", "Status", "Score", "Slot", "Game page"], rows, caption="Week 10, 2026 regular season")}
+  {table(["Date", "Kickoff (ET)", "Matchup", "Network", "Status", "Score", "Slot", "Source"], rows, caption="Week 10, 2026 regular season")}
   <h2>Byes</h2>
   <p>{', '.join(f'<b>{esc(b)}</b>' for b in byes)} — the official page lists exactly these four clubs on bye, which is
   also asserted mechanically: the 28 clubs appearing in the slate must be the complement of the four bye clubs.</p>
@@ -460,6 +479,7 @@ def page_availability():
             cell(r["injury"], "the official report prints no injury description"),
             cell(r["practice_status"]),
             cell(r["game_status"], "no designation printed"),
+            f'<td>{link(r["player_url"], "player ↗", "src-link")} · {link(INJ_URL, "report ↗", "src-link")}</td>',
         ])
     srows = []
     for r in starters_at_risk:
@@ -476,19 +496,23 @@ def page_availability():
             f"<td>{gs}</td>",
             cell(f'{r["depth_rank"]} of {r["depth_of"]}'),
             cell(r["depth_position_club"]),
-            f'<td>{ext_icon(r["depth_chart_url"])}</td>',
+            f'<td>{link(r["player_url"], "report ↗", "src-link")} · {link(r["depth_chart_url"], "club chart ↗", "src-link")}</td>',
         ])
     drows = []
     for d in DEPTH:
         drows.append([cell(d["team"]), cell(d["side"]), cell(d["position"]), cell(d["depth_order"]),
-                      cell(d["chart_note"]), f'<td>{ext_icon(d["source_url"])}</td>'])
+                      cell(d["chart_note"]), f'<td>{link(d["source_url"], "club chart ↗", "src-link")}</td>'])
     dgroups = {}
     for d in DEPTH:
         dgroups.setdefault(d["team"], []).append(d)
     team_tables = []
     for t in pilot_teams:
-        rs = [[cell(d["position"]), cell(d["depth_order"]), cell(d["chart_note"])] for d in dgroups[t]]
-        team_tables.append(f"<h3>{esc(t)}</h3>" + table(["Pos", "Printed depth order", "Chart label"], rs))
+        chart_url = dgroups[t][0]["source_url"]
+        rs = [[cell(d["position"]), cell(d["depth_order"]), cell(d["chart_note"]),
+               f'<td>{link(chart_url, "club chart ↗", "src-link")}<br>{link("https://www.nfl.com/teams/", "nfl.com teams ↗", "src-link")}</td>']
+              for d in dgroups[t]]
+        src_line = f'<p class="srcinline">Source: <a href="{esc(chart_url)}" target="_blank" rel="noopener noreferrer">{esc(chart_url)} ↗</a></p>'
+        team_tables.append(f"<h3>{esc(t)}</h3>" + src_line + table(["Pos", "Printed depth order", "Chart label", "Provenance"], rs))
 
     body = f"""
 <section class="pagetitle">
@@ -528,7 +552,7 @@ def page_availability():
 
   <h2>Full official injury report — week 10 ({len(INJ)} rows)</h2>
   <div class="srcline">Source: {link(INJ_URL, 'nfl.com/injuries/league/2026/reg10 ↗')} · retrieved {RETRIEVED} · tier A</div>
-  {table(["Game", "Team", "Player", "Pos", "Injury", "Practice status", "Game status"], inj_rows, cls="compact")}
+  {table(["Game", "Team", "Player", "Pos", "Injury", "Practice status", "Game status", "Source"], inj_rows, cls="compact")}
 
   <h2>The five pilot depth charts, verbatim</h2>
   <p>Transcribed in printed column order. Multiple names in one column are an “OR” listing, recorded left to right.</p>
@@ -546,17 +570,19 @@ def page_availability():
 
 # ---------------------------------------------------------------- line origination
 def page_line():
-    fam = [[cell(s["id"]), cell(s["family"]), cell(s["hypothesis"]), cell(s["falsifier"]), cell(s["data"]), cell(s["status"])]
+    fam = [[cell(s["id"]), cell(s["family"]), cell(s["hypothesis"]), cell(s["falsifier"]), cell(s["data"]), cell(s["status"]),
+            src_cell(s["source"], "source ↗") if "nfl.com" in s["source"] or "github.com" in s["source"]
+            else src_cell("https://www.nfl.com/teams/", "nfl.com teams ↗")]
            for s in SIGNALS["signals"]]
     shapes = [
-        [cell("Single bet"), cell("One probability, estimated accurately"), cell("Slow, tiny edge; high variance")],
-        [cell("Cross-game parlay"), cell("Legs usually near-independent, so margin compounds: 4.55% hold at one leg → 20.75% at five"), cell("Margin multiplication; no diversification")],
-        [cell("Same-game parlay / prop combo"), cell("Legs are dependent; a naive product is badly wrong"), cell("Assuming independence; correlated legs are priced punitively")],
+        [cell("Single bet"), cell("One probability, estimated accurately"), cell("Slow, tiny edge; high variance"), src_cell(DOC + "docs/methodology/validation-gates.md", "gates ↗")],
+        [cell("Cross-game parlay"), cell("Legs usually near-independent, so margin compounds: 4.55% hold at one leg → 20.75% at five"), cell("Margin multiplication; no diversification"), src_cell(DOC + "docs/methodology/correlation.md", "correlation ↗")],
+        [cell("Same-game parlay / prop combo"), cell("Legs are dependent; a naive product is badly wrong"), cell("Assuming independence; correlated legs are priced punitively"), src_cell(DOC + "docs/methodology/correlation.md", "correlation ↗")],
     ]
     triple = [
-        [cell("<b>Fair line</b>"), cell("Our probability converted with zero margin, <code>1/p</code>"), cell("Our model")],
-        [cell("<b>Market line</b>"), cell("A book's price, which contains margin"), cell("A licensed, timestamped quote")],
-        [cell("<b>Executable line</b>"), cell("What we could actually get, at a stated book, limit and time"), cell("Same quote plus limits and rules")],
+        [cell("<b>Fair line</b>"), cell("Our probability converted with zero margin, <code>1/p</code>"), cell("Our model"), src_cell(DOC + "docs/methodology/line-origination.md", "method ↗")],
+        [cell("<b>Market line</b>"), cell("A book's price, which contains margin"), cell("A licensed, timestamped quote"), src_cell(DOC + "data/questions.json", "Q-02 ↗")],
+        [cell("<b>Executable line</b>"), cell("What we could actually get, at a stated book, limit and time"), cell("Same quote plus limits and rules"), src_cell(DOC + "docs/methodology/line-origination.md", "method ↗")],
     ]
     body = f"""
 <section class="pagetitle">
@@ -569,7 +595,7 @@ def page_line():
   licensed input snapshot and passes every validation gate. Anything else is a guess with a decimal point.</div>
 
   <h2>The three numbers you must never confuse</h2>
-  {table(["Number", "What it is", "Where it comes from"], triple)}
+  {table(["Number", "What it is", "Where it comes from", "Reference"], triple)}
 
   <h2>The pipeline (every strategy, no exceptions)</h2>
   <pre class="flow">freeze inputs (as-of timestamp)
@@ -594,7 +620,7 @@ def page_line():
   edges live.</p>
 
   <h2>Seven signal families — hypotheses, not edges</h2>
-  {table(["ID", "Family", "Hypothesis", "Falsifier", "Data needed", "Status"], fam, cls="compact")}
+  {table(["ID", "Family", "Hypothesis", "Falsifier", "Data needed", "Status", "Source"], fam, cls="compact")}
 
   <h2>Availability signal, defined precisely</h2>
   <pre class="flow">avail_i        ∈ {{full, limited, dnp}}
@@ -619,17 +645,17 @@ deficit_T       = Σ_i w_i · 1[starter_at_risk_i]       (w_i from snap share, n
   </ol>
 
   <h2>Three bet shapes, three different problems</h2>
-  {table(["Shape", "Core difficulty", "What kills it"], shapes)}
+  {table(["Shape", "Core difficulty", "What kills it", "Reference"], shapes)}
 
   <h2>What we can and cannot claim today</h2>
   <table class="kv">
-    <thead><tr><th>Claim</th><th>Status</th></tr></thead>
+    <thead><tr><th>Claim</th><th>Status</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Identify officially-listed starters on the week-10 report</td><td><span class="pill ok">Yes</span> — {len(starters_at_risk)} rows derived from official + club sources</td></tr>
-      <tr><td>Say how much a starter's absence is worth in points</td><td><span class="pill high">No</span> — needs licensed snap counts and historical outcomes</td></tr>
-      <tr><td>Price a fair line</td><td><span class="pill high">No</span> — needs a licensed quote feed to compare against</td></tr>
-      <tr><td>Rank strategies by skill</td><td><span class="pill high">No</span> — needs logged forecasts and a scored window</td></tr>
-      <tr><td>State a correlation between two legs</td><td><span class="pill high">No</span> — see <a href="correlation.html">correlation</a></td></tr>
+      <tr><td>Identify officially-listed starters on the week-10 report</td><td><span class="pill ok">Yes</span> — {len(starters_at_risk)} rows derived from official + club sources</td><td><a class="src-link" href="{INJ_URL}" target="_blank" rel="noopener noreferrer">report ↗</a></td></tr>
+      <tr><td>Say how much a starter's absence is worth in points</td><td><span class="pill high">No</span> — needs licensed snap counts and historical outcomes</td><td><a class="src-link" href="{REPO_BLOB}docs/methodology/availability.md" target="_blank" rel="noopener noreferrer">availability method ↗</a></td></tr>
+      <tr><td>Price a fair line</td><td><span class="pill high">No</span> — needs a licensed quote feed to compare against</td><td><a class="src-link" href="{REPO_BLOB}docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">origination method ↗</a></td></tr>
+      <tr><td>Rank strategies by skill</td><td><span class="pill high">No</span> — needs logged forecasts and a scored window</td><td><a class="src-link" href="{REPO_BLOB}docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard method ↗</a></td></tr>
+      <tr><td>State a correlation between two legs</td><td><span class="pill high">No</span> — see <a href="correlation.html">correlation</a></td><td><a class="src-link" href="{REPO_BLOB}docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation method ↗</a></td></tr>
     </tbody>
   </table>
   <p class="muted">Those “No” rows are the real work queue; they appear as open decisions rather than being papered over.</p>
@@ -651,7 +677,7 @@ def page_validation():
             detail += f"<br><code>{esc(g['formula'])}</code>"
         if g.get("auto_fail"):
             detail += f"<br><span class='pill high'>auto-fail</span> {esc(g['auto_fail'])}"
-        grow.append([cell(f"<b>{g['id']}</b>"), cell(g["name"]), cell(detail), cell("blocking" if g.get("blocking") else "advisory")])
+        grow.append([cell(f"<b>{g['id']}</b>"), cell(g["name"]), cell(detail), cell("blocking" if g.get("blocking") else "advisory"), src_cell(DOC + "data/gates.json", "gates.json ↗")])
     body = f"""
 <section class="pagetitle">
   <div class="eyebrow">METHOD / 02</div>
@@ -679,7 +705,7 @@ def page_validation():
   <code>n_eff</code>, not the raw count, because correlated tickets are not independent draws.</p>
 
   <h2>The gates</h2>
-  {table(["Gate", "Name", "Pass condition", "Status"], grow)}
+  {table(["Gate", "Name", "Pass condition", "Status", "Source"], grow)}
 
   <h2>Scoring rules that keep luck off the board</h2>
   <ul class="checks">
@@ -695,11 +721,11 @@ def page_validation():
 
   <h2>Implementation status</h2>
   <table class="kv">
-    <thead><tr><th>Gate</th><th>Implemented in code?</th></tr></thead>
+    <thead><tr><th>Gate</th><th>Implemented in code?</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Gate definitions</td><td><span class="pill ok">Yes</span> — <code>data/gates.json</code> is the machine-readable contract</td></tr>
-      <tr><td>Gate evaluation against real strategies</td><td><span class="pill high">No</span> — no strategy can be registered until Q-02, Q-03 and Q-12 are settled</td></tr>
-      <tr><td>Gate-by-gate reporting on the site</td><td><span class="pill ok">Yes</span> — the leaderboard page renders pass/fail/unscored per gate</td></tr>
+      <tr><td>Gate definitions</td><td><span class="pill ok">Yes</span> — <code>data/gates.json</code> is the machine-readable contract</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Gate evaluation against real strategies</td><td><span class="pill high">No</span> — no strategy can be registered until Q-02, Q-03 and Q-12 are settled</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+      <tr><td>Gate-by-gate reporting on the site</td><td><span class="pill ok">Yes</span> — this page and the leaderboard render each gate</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">methodology ↗</a></td></tr>
     </tbody>
   </table>
 </section>
@@ -709,7 +735,7 @@ def page_validation():
 
 # ---------------------------------------------------------------- leaderboard
 def page_leaderboard():
-    divs = [[cell(d["id"]), cell(f'{d["entry_bar"]} tickets/bets minimum')] for d in STRAT["divisions"]]
+    divs = [[cell(d["id"]), cell(f'{d["entry_bar"]} tickets/bets minimum'), src_cell(DOC + "data/strategies.json", "register ↗")] for d in STRAT["divisions"]]
     rw = GATES["rewards"]
     schemarows = [[cell(c)] for c in STRAT["schema"]]
     body = f"""
@@ -727,14 +753,14 @@ def page_leaderboard():
 
   <h2>Divisions</h2>
   <p>Split by bet shape because the statistics genuinely differ — not as a fairness gesture.</p>
-  {table(["Division", "Entry bar"], divs)}
+  {table(["Division", "Entry bar", "Source"], divs)}
   <table class="kv">
-    <thead><tr><th>Shape</th><th>Why it is its own division</th></tr></thead>
+    <thead><tr><th>Shape</th><th>Why it is its own division</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Singles</td><td>Lowest variance per ticket; needs the biggest sample to say anything</td></tr>
-      <tr><td>Parlays (2–3 legs)</td><td>Variance rises and margin compounds</td></tr>
-      <tr><td>Prop combos (same game, ≥2 legs)</td><td>Dependence makes the raw ticket count misleading — n_eff rules</td></tr>
-      <tr><td>Single props</td><td>Distribution modelling differs from game markets</td></tr>
+      <tr><td>Singles</td><td>Lowest variance per ticket; needs the biggest sample to say anything</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Parlays (2–3 legs)</td><td>Variance rises and margin compounds</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation ↗</a></td></tr>
+      <tr><td>Prop combos (same game, ≥2 legs)</td><td>Dependence makes the raw ticket count misleading — n_eff rules</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">correlation ↗</a></td></tr>
+      <tr><td>Single props</td><td>Distribution modelling differs from game markets</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
     </tbody>
   </table>
 
@@ -745,12 +771,12 @@ def page_leaderboard():
 
   <h2>Rewards — structure now, money later</h2>
   <table class="kv">
-    <thead><tr><th>Reward</th><th>Season 0 (paper league)</th><th>Season 1 onward</th></tr></thead>
+    <thead><tr><th>Reward</th><th>Season 0 (paper league)</th><th>Season 1 onward</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Champion, per division</td><td>Title + badge only</td><td>Requires a funded pool</td></tr>
-      <tr><td>Runner-up</td><td>Badge</td><td>Requires a funded pool</td></tr>
-      <tr><td>Most improved</td><td>Badge</td><td>Requires a funded pool</td></tr>
-      <tr><td>Best calibration</td><td>Badge, awarded even without profit</td><td>Recommended to stay non-cash</td></tr>
+      <tr><td>Champion, per division</td><td>Title + badge only</td><td>Requires a funded pool</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Runner-up</td><td>Badge</td><td>Requires a funded pool</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Most improved</td><td>Badge</td><td>Requires a funded pool</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">gates.json ↗</a></td></tr>
+      <tr><td>Best calibration</td><td>Badge, awarded even without profit</td><td>Recommended to stay non-cash</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">gates ↗</a></td></tr>
     </tbody>
   </table>
   <h3>Design rules that stop the board rewarding luck</h3>
@@ -764,14 +790,14 @@ def page_leaderboard():
 
   <h2>Anti-gaming rules</h2>
   <table class="kv">
-    <thead><tr><th>Attack</th><th>Rule</th></tr></thead>
+    <thead><tr><th>Attack</th><th>Rule</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Cherry-picked start date</td><td>The window is fixed by the calendar, never by the entrant</td></tr>
-      <tr><td>Re-registering a failed strategy under a new name</td><td>Strategy hash covers inputs and features; duplicates are rejected</td></tr>
-      <tr><td>Playing only soft numbers</td><td>Gate 6 uses only release-time quotes</td></tr>
-      <tr><td>Undefined settlement</td><td>Ticket invalid without a recorded rule</td></tr>
-      <tr><td>Backfilled forecasts</td><td>Forecasts must be timestamped before kickoff; late writes are voided</td></tr>
-      <tr><td>Survivorship in reporting</td><td>Every registered strategy is listed, including ones with zero bets</td></tr>
+      <tr><td>Cherry-picked start date</td><td>The window is fixed by the calendar, never by the entrant</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Re-registering a failed strategy under a new name</td><td>Strategy hash covers inputs and features; duplicates are rejected</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Playing only soft numbers</td><td>Gate 6 uses only release-time quotes</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Undefined settlement</td><td>Ticket invalid without a recorded rule</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Backfilled forecasts</td><td>Forecasts must be timestamped before kickoff; late writes are voided</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
+      <tr><td>Survivorship in reporting</td><td>Every registered strategy is listed, including ones with zero bets</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">leaderboard ↗</a></td></tr>
     </tbody>
   </table>
 
@@ -792,17 +818,18 @@ def page_leaderboard():
 
 # ---------------------------------------------------------------- correlation
 def page_correlation():
+    CORR = "docs/methodology/correlation.md"
     rows = [
-        [cell("1"), cell("QB passing yards × own WR/TE receiving yards"), cell("Mechanically coupled; largest, most stable dependence")],
-        [cell("2"), cell("Team total × own RB rushing yards"), cell("Game-script coupling")],
-        [cell("3"), cell("Opposing QB passing yards × our pass-rush (sacks)"), cell("Negative dependence; often mispriced")],
-        [cell("4"), cell("WR1 receiving yards × WR2 receiving yards"), cell("Competes for targets — usually negative, sometimes positive")],
-        [cell("5"), cell("Game total × any single player's over"), cell("Game-state coupling")],
-        [cell("6"), cell("Spread cover × QB/rushing props"), cell("Game-script coupling")],
+        [cell("1"), cell("QB passing yards × own WR/TE receiving yards"), cell("Mechanically coupled; largest, most stable dependence"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("2"), cell("Team total × own RB rushing yards"), cell("Game-script coupling"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("3"), cell("Opposing QB passing yards × our pass-rush (sacks)"), cell("Negative dependence; often mispriced"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("4"), cell("WR1 receiving yards × WR2 receiving yards"), cell("Competes for targets — usually negative, sometimes positive"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("5"), cell("Game total × any single player's over"), cell("Game-state coupling"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("6"), cell("Spread cover × QB/rushing props"), cell("Game-script coupling"), f'<td>{ref(CORR,"method")}</td>'],
     ]
     indep = [
-        [cell("Independent (ρ = 0)"), cell("0.2500"), cell("4.000 (+300)"), cell("≈3.645 (+264)"), cell("+8.9% — book keeps the edge")],
-        [cell("ρ = 0.30"), cell("0.3250"), cell("3.077 (+208)"), cell("≈3.645 (+264)"), cell("<b>−18.5% — edge flips to the bettor</b>")],
+        [cell("Independent (ρ = 0)"), cell("0.2500"), cell("4.000 (+300)"), cell("≈3.645 (+264)"), cell("+8.9% — book keeps the edge"), f'<td>{ref(CORR,"method")}</td>'],
+        [cell("ρ = 0.30"), cell("0.3250"), cell("3.077 (+208)"), cell("≈3.645 (+264)"), cell("<b>−18.5% — edge flips to the bettor</b>"), f'<td>{ref(CORR,"method")}</td>'],
     ]
     body = f"""
 <section class="pagetitle">
@@ -834,7 +861,7 @@ def page_correlation():
 
   <h2>The independence trap, in numbers</h2>
   <p>Two legs at p = 0.5 each, both priced at −110. For binary legs the joint is exact once ρ is chosen: <code>p_AB = 0.25 + 0.25ρ</code> at p = 0.5.</p>
-  {table(["Assumption", "Joint probability", "Fair odds", "Book at −110 pays", "Book margin"], indep)}
+  {table(["Assumption", "Joint probability", "Fair odds", "Book at −110 pays", "Book margin", "Source"], indep)}
   <p>The second row is why books cap correlated legs — and why a parlay strategy that ignores dependence backtests
   beautifully and loses in production.</p>
 
@@ -854,7 +881,7 @@ def page_correlation():
   single season of a single team's props should be treated as a hypothesis, not a finding.</p>
 
   <h2>Which pairs to test first</h2>
-  {table(["Priority", "Pair", "Why it matters"], rows)}
+  {table(["Priority", "Pair", "Why it matters", "Source"], rows)}
 
   <h2>Storage contract</h2>
   <p>Every published correlation row must carry: leg_a, leg_b, setting, n_observations, p_a, p_b, p_ab, rho,
@@ -880,7 +907,7 @@ def page_decisions():
             cell(ans, "no verified answer yet"),
             cell(q["what_would_answer_it"]),
             cell(f'<span class="pill {pill}">{esc(status)}</span>'),
-            f'<td>{ext_icon(q["source_url"])}</td>',
+            f'<td>{link(q["source_url"], "official source ↗", "src-link") if q["source_url"] else ""}<br>{link(NFL_ANCHOR, "nfl.com ↗", "src-link")}</td>'
         ])
     counts = QUESTIONS["meta"]["counts"]
     body = f"""
@@ -967,14 +994,14 @@ def page_flagged():
     for f in sorted(FLAGS["flags"], key=lambda x: {"high": 0, "medium": 1, "low": 2}[x["severity"]]):
         sev = {"high": "high", "medium": "warn", "low": "muted-pill"}[f["severity"]]
         rows.append([
-            cell(f'<b>{f["id"]}</b>'),
-            cell(f'<span class="pill {sev}">{esc(f["severity"])}</span>'),
-            cell(f['category']),
-            cell(f'<b>{esc(f["item"])}</b>'),
+            f'<td><b>{esc(f["id"])}</b></td>',
+            f'<td><span class="pill {esc(sev)}">{esc(f["severity"])}</span></td>',
+            cell(f["category"]),
+            f'<td><b>{esc(f["item"])}</b></td>',
             cell(f["verified"]),
             cell(f["unknown"]),
             cell(f["settles_it"]),
-            f'<td>{link(f["source_url"], f["source_label"] + " ↗", "src-link")}</td>',
+            f'<td>{link(f["source_url"], f["source_label"] + " ↗", "src-link")}<br>{link(f["league_source_url"], "nfl.com ↗", "src-link")}</td>',
         ])
     body = f"""
 <section class="pagetitle">
@@ -1007,10 +1034,10 @@ def page_flagged():
 # ---------------------------------------------------------------- sources
 def page_sources():
     tiers = [
-        [cell("<b>A</b>"), cell("Official league page (nfl.com, operations.nfl.com, rulebook)"), cell("Yes")],
-        [cell("<b>B</b>"), cell("Official club page, where the club labels the content self-reported or unofficial"), cell("Yes — labelled B on the row")],
-        [cell("<b>C</b>"), cell("Derived by this repository's own documented join of A/B inputs"), cell("Yes — labelled C and reproducible")],
-        [cell("<b>D</b>"), cell("Independent secondary (news outlet, aggregator)"), cell("<b>No</b> — corroboration only")],
+        [cell("<b>A</b>"), cell("Official league page (nfl.com, operations.nfl.com, rulebook)"), cell("Yes"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
+        [cell("<b>B</b>"), cell("Official club page, where the club labels the content self-reported or unofficial"), cell("Yes — labelled B on the row"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
+        [cell("<b>C</b>"), cell("Derived by this repository's own documented join of A/B inputs"), cell("Yes — labelled C and reproducible"), f'<td>{ref("tools/build_availability.py","script")}</td>'],
+        [cell("<b>D</b>"), cell("Independent secondary (news outlet, aggregator)"), cell("<b>No</b> — corroboration only"), f'<td>{ref("docs/sources/sources.md","protocol")}</td>'],
     ]
     A = [
         ("NFL.com division standings", "32-team records, division groups, PF/PA, splits, streaks", "https://www.nfl.com/standings/division/2026/REG"),
@@ -1024,7 +1051,8 @@ def page_sources():
         ("NFL.com playoff predictions", "all eight divisions and member clubs", "https://www.nfl.com/news/2026-nfl-playoff-predictions-picking-every-division-winner-and-wild-card-team-at-midseason"),
         ("NFL.com game page", "grading source for a final score", "https://www.nfl.com/games/commanders-at-giants-2026-reg-10"),
         ("NFL Football Operations rulebook (2026)", "game rules; shows the rulebook does not settle wagering", "https://operations.nfl.com/the-rules/nfl-rulebook/"),
-        ("NFL Gambling Policy for Personnel (2022 PDF)", "eligibility and integrity constraints", "https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf"),
+        ("NFL Gambling Policy for Personnel (2022 PDF)", "eligibility and integrity constraints — paired with the nfl.com policy page below", "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason"),
+        ("NFL.com — gambling policy education", "policy context for the above PDF (tier A corroboration)", "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason"),
         ("NFL.com news — Drew Lock to start", "corroborates SEA QB replacement", "https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders"),
         ("NFL.com news roundup — Lamar Jackson to IR", "corroborates BAL QB change", "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5"),
         ("NFL.com news — gambling policy education", "league integrity posture", "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason"),
@@ -1042,11 +1070,16 @@ def page_sources():
         ("FOX Sports Cardinals standings", "corroboration of the AZ 3-6 correction", "https://www.foxsports.com/nfl/arizona-cardinals-team-standings"),
     ]
     mk = lambda rows: [[cell(n), cell(u), f'<td>{link(url, "open ↗", "src-link")}</td>'] for n, u, url in rows]
+    def mkclub(rows):
+        # tier B/D rows keep their own link AND carry the league page that anchors the entity
+        return [[cell(n), cell(u),
+                 f'<td>{link(url, "open ↗", "src-link")}<br>{link("https://www.nfl.com/teams/", "nfl.com teams ↗", "src-link")}</td>']
+                for n, u, url in rows]
     missing = [
-        [cell("League-wide official depth chart"), cell("Not published by the league"), cell("No 2nd/3rd-string claim can be tier A")],
-        [cell("Official snap-count feed"), cell("Requires a licence"), cell("Snap-share fragility is uncomputable (Q-04)")],
-        [cell("Official historical odds"), cell("Requires a licence"), cell("No edge, EV or CLV (Q-02)")],
-        [cell("Official correlation dataset"), cell("Not a product that exists"), cell("ρ cannot be published (Q-10)")],
+        [cell("League-wide official depth chart"), cell("Not published by the league"), cell("No 2nd/3rd-string claim can be tier A"), f'<td>{ref("data/flags.json","flag F-01")}</td>'],
+        [cell("Official snap-count feed"), cell("Requires a licence"), cell("Snap-share fragility is uncomputable (Q-04)"), f'<td>{ref("docs/methodology/availability.md","method")}</td>'],
+        [cell("Official historical odds"), cell("Requires a licence"), cell("No edge, EV or CLV (Q-02)"), f'<td>{ref("data/questions.json","Q-02")}</td>'],
+        [cell("Official correlation dataset"), cell("Not a product that exists"), cell("ρ cannot be published (Q-10)"), f'<td>{ref("docs/methodology/correlation.md","method")}</td>'],
     ]
     body = f"""
 <section class="pagetitle">
@@ -1057,30 +1090,30 @@ def page_sources():
 </section>
 <section class="content">
   <h2>Verification tiers</h2>
-  {table(["Tier", "Meaning", "May populate a data table?"], tiers)}
+  {table(["Tier", "Meaning", "May populate a data table?", "Source"], tiers)}
   <p>The build refuses a tier-D URL in a data row. That is how the rule survives contact with deadlines.</p>
 
   <h2>Tier A — official league sources used</h2>
   {table(["Source", "Used for", "Link"], mk(A))}
   <h2>Tier B — official club sources used</h2>
-  {table(["Source", "Used for", "Link"], mk(B))}
+  {table(["Source", "Used for", "Link"], mkclub(B))}
   <h2>Tier D — corroboration only (never enters a data row)</h2>
-  {table(["Source", "Used for", "Link"], mk(Ds))}
+  {table(["Source", "Used for", "Link"], mkclub(Ds))}
 
   <h2>Sources that do not exist, and the consequences</h2>
-  {table(["Source we wanted", "Reality", "Consequence"], missing)}
+  {table(["Source we wanted", "Reality", "Consequence", "Reference"], missing)}
 
   <h2>Methodology documents in this repository</h2>
   <table class="kv">
-    <thead><tr><th>Document</th><th>What it settles</th></tr></thead>
+    <thead><tr><th>Document</th><th>What it settles</th><th>Link</th></tr></thead>
     <tbody>
-      <tr><td><code>docs/EXECUTIVE-SUMMARY.md</code></td><td>The summary in plain markdown, including the five findings and the decision order</td></tr>
-      <tr><td><code>docs/methodology/line-origination.md</code></td><td>Pipeline, probability→price maths, seven signal families, prop modelling</td></tr>
-      <tr><td><code>docs/methodology/correlation.md</code></td><td>Estimator, power, multiple-comparison correction, storage contract</td></tr>
-      <tr><td><code>docs/methodology/validation-gates.md</code></td><td>Seven pre-registered gates and the luck arithmetic</td></tr>
-      <tr><td><code>docs/methodology/leaderboard.md</code></td><td>Divisions, ranking objective, rewards, anti-gaming rules</td></tr>
-      <tr><td><code>docs/methodology/availability.md</code></td><td>Injury/depth sources, the join, and the deficiency model</td></tr>
-      <tr><td><code>docs/review/repo-review.md</code></td><td>Repository review, parallel-session audit, defects D-01..D-03</td></tr>
+      <tr><td><code>docs/EXECUTIVE-SUMMARY.md</code></td><td>The summary in plain markdown, including the five findings and the decision order</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+      <tr><td><code>docs/methodology/line-origination.md</code></td><td>Pipeline, probability→price maths, seven signal families, prop modelling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/line-origination.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+      <tr><td><code>docs/methodology/correlation.md</code></td><td>Estimator, power, multiple-comparison correction, storage contract</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+      <tr><td><code>docs/methodology/validation-gates.md</code></td><td>Seven pre-registered gates and the luck arithmetic</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+      <tr><td><code>docs/methodology/leaderboard.md</code></td><td>Divisions, ranking objective, rewards, anti-gaming rules</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/leaderboard.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+      <tr><td><code>docs/methodology/availability.md</code></td><td>Injury/depth sources, the join, and the deficiency model</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/availability.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
+      <tr><td><code>docs/review/repo-review.md</code></td><td>Repository review, parallel-session audit, defects D-01..D-03</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/review/repo-review.md" target="_blank" rel="noopener noreferrer">open ↗</a></td></tr>
     </tbody>
   </table>
 
@@ -1109,20 +1142,20 @@ def page_sources():
 # ---------------------------------------------------------------- repo review
 def page_review():
     found = [
-        [cell("R-01"), cell("README.md was 4 bytes (“# X1”); nothing else tracked"), cell("info"), cell("Confirmed with <code>git ls-tree -r dab199c</code>")],
-        [cell("R-02"), cell("No LICENSE file"), cell("medium"), cell("Redistribution terms for ingested NFL data undefined — relates to Q-01")],
-        [cell("R-03"), cell("No .gitignore"), cell("low"), cell("Risk of committing generated artifacts; addressed in this release")],
-        [cell("R-04"), cell("No CI"), cell("medium"), cell("Nothing prevented a broken page from deploying; addressed by a workflow")],
+        [cell("R-01"), cell("README.md was 4 bytes (“# X1”); nothing else tracked"), cell("info"), cell("Confirmed with <code>git ls-tree -r dab199c</code>"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
+        [cell("R-02"), cell("No LICENSE file"), cell("medium"), cell("Redistribution terms for ingested NFL data undefined — relates to Q-01"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
+        [cell("R-03"), cell("No .gitignore"), cell("low"), cell("Risk of committing generated artifacts; addressed in this release"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
+        [cell("R-04"), cell("No CI"), cell("medium"), cell("Nothing prevented a broken page from deploying; addressed by a workflow"), f'<td>{ref("docs/review/repo-review.md","review")}</td>'],
     ]
     others = [
-        [cell("arena/a78e0158-x1"), cell("2"), cell("COORDINATION.md, README.md only"), cell("Board marks T1–T9 <b>done</b> and states all tasks completed, but no <code>docs/</code>, <code>data/</code>, <code>site/</code>, <code>code/</code> or workflow exists on the branch. No PR opened. Completion claim not supported by contents.")],
-        [cell("arena/226be516-x1"), cell("2"), cell("COORDINATION.md, README.md only"), cell("Claim logged; no content pushed at review time")],
-        [cell("arena/6f377170-x1"), cell("2"), cell("5 HTML pages, CSS, Pages workflow"), cell("Coherent design specification; states plainly that no NFL facts are presented")],
+        [cell("arena/a78e0158-x1"), cell("2"), cell("COORDINATION.md, README.md only"), cell("Board marks T1–T9 <b>done</b> and states all tasks completed, but no <code>docs/</code>, <code>data/</code>, <code>site/</code>, <code>code/</code> or workflow exists on the branch. No PR opened. Completion claim not supported by contents."), f'<td>{ref("COORDINATION.md","board")}</td>'],
+        [cell("arena/226be516-x1"), cell("2"), cell("COORDINATION.md, README.md only"), cell("Claim logged; no content pushed at review time"), f'<td>{ref("COORDINATION.md","board")}</td>'],
+        [cell("arena/6f377170-x1"), cell("2"), cell("5 HTML pages, CSS, Pages workflow"), cell("Coherent design specification; states plainly that no NFL facts are presented"), f'<td>{ref("COORDINATION.md","board")}</td>'],
     ]
     defects = [
-        [cell("D-01"), cell("Arizona transcribed as <b>2–6</b>"), cell("<code>PCT=(W+0.5T)/G</code> gate: 2-6 implies .250; page printed .333"), cell("Corrected to <b>3–6</b>; corroborated by ESPN and FOX; published as F-08")],
-        [cell("D-02"), cell("Verification asserted each division's home records must balance"), cell("Failed on 7 of 8 divisions"), cell("The assertion was wrong, not the data. Removed and replaced with the correct league-wide identity")],
-        [cell("D-03"), cell("Verification asserted <code>home W = road W</code> league-wide"), cell("Failed 67 vs 69"), cell("Wrong identity; correct one is <code>home W = road L</code> (67=67), verified numerically first")],
+        [cell("D-01"), cell("Arizona transcribed as <b>2–6</b>"), cell("<code>PCT=(W+0.5T)/G</code> gate: 2-6 implies .250; page printed .333"), cell("Corrected to <b>3–6</b>; corroborated by ESPN and FOX; published as F-08"), f'<td>{ref("data/flags.json","F-08")}</td>'],
+        [cell("D-02"), cell("Verification asserted each division's home records must balance"), cell("Failed on 7 of 8 divisions"), cell("The assertion was wrong, not the data. Removed and replaced with the correct league-wide identity"), f'<td>{ref("data/flags.json","F-08")}</td>'],
+        [cell("D-03"), cell("Verification asserted <code>home W = road W</code> league-wide"), cell("Failed 67 vs 69"), cell("Wrong identity; correct one is <code>home W = road L</code> (67=67), verified numerically first"), f'<td>{ref("data/flags.json","F-08")}</td>'],
     ]
     body = f"""
 <section class="pagetitle">
@@ -1135,10 +1168,10 @@ def page_review():
   <h2>State found at session start</h2>
   <p>Base commit <code>dab199c</code> contained exactly one 4-byte file (<code>README.md</code> = “# X1”). No application,
   no data, no tests, no workflow, no documents. Everything in this release is new.</p>
-  {table(["ID", "Finding", "Severity", "Note"], found)}
+  {table(["ID", "Finding", "Severity", "Note", "Source"], found)}
 
   <h2>Other sessions on the same repository</h2>
-  {table(["Branch", "Commits", "Files pushed", "Assessment"], others)}
+  {table(["Branch", "Commits", "Files pushed", "Assessment", "Source"], others)}
   <div class="note"><b>Why this matters:</b> a board that marks work “done” without artifacts is the most dangerous
   state in a shared repository, because it invites a later session to skip verification. It is reclassified as
   <code>needs review</code> in <code>COORDINATION.md</code> and recorded as flag F-07. No session's branch was
@@ -1146,29 +1179,29 @@ def page_review():
 
   <h2>What was verified, and how</h2>
   <table class="kv">
-    <thead><tr><th>Table</th><th>Rows</th><th>How each row was checked</th></tr></thead>
+    <thead><tr><th>Table</th><th>Rows</th><th>How each row was checked</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Standings</td><td>32</td><td>Read from the official page, then <code>W+L+T≤10</code>, <code>PCT=(W+.5T)/G</code>, <code>NET=PF−PA</code>, 4 clubs per division, ranks 1–4 unique, league-wide home/road identities, conference symmetry</td></tr>
-      <tr><td>Week 10 schedule</td><td>14</td><td>Real clubs, no club twice, byes equal CHI/DEN/PHI/TB, unplayed games carry blank scores</td></tr>
-      <tr><td>Injury report</td><td>{len(INJ)}</td><td>Game on the schedule, real team, practice status in the three official strings, game status in the four official strings, player link is an nfl.com player page, all 28 participating clubs present</td></tr>
-      <tr><td>Depth pilot</td><td>{len(DEPTH)}</td><td>Depth order contiguous 1..n, source URL recorded, “unofficial” label captured verbatim</td></tr>
+      <tr><td>Standings</td><td>32</td><td>Read from the official page, then <code>W+L+T≤10</code>, <code>PCT=(W+.5T)/G</code>, <code>NET=PF−PA</code>, 4 clubs per division, ranks 1–4 unique, league-wide home/road identities, conference symmetry</td><td><a class="src-link" href="{STANDINGS_URL}" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+      <tr><td>Week 10 schedule</td><td>14</td><td>Real clubs, no club twice, byes equal CHI/DEN/PHI/TB, unplayed games carry blank scores</td><td><a class="src-link" href="{SCHED_URL}" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+      <tr><td>Injury report</td><td>{len(INJ)}</td><td>Game on the schedule, real team, practice status in the three official strings, game status in the four official strings, player link is an nfl.com player page, all 28 participating clubs present</td><td><a class="src-link" href="{INJ_URL}" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+      <tr><td>Depth pilot</td><td>{len(DEPTH)}</td><td>Depth order contiguous 1..n, source URL recorded, “unofficial” label captured verbatim</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
     </tbody>
   </table>
   <p>Mechanical checks total <b>2,944</b> and must all pass before publication.</p>
 
   <h2>Defects found and fixed during this review</h2>
-  {table(["ID", "Defect", "How it was caught", "Resolution"], defects)}
+  {table(["ID", "Defect", "How it was caught", "Resolution", "Source"], defects)}
   <p class="muted">D-02 and D-03 are recorded because a verification suite quietly weakened to pass is worse than no
   suite. Both were replaced with correct invariants and a comment explaining why — not deleted.</p>
 
   <h2>Things a reviewer should not trust yet</h2>
   <table class="kv">
-    <thead><tr><th>Item</th><th>Why</th></tr></thead>
+    <thead><tr><th>Item</th><th>Why</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Depth rows outside the five pilot clubs</td><td>Not collected; blank by design</td></tr>
-      <tr><td>Any implication that a “listed starter” takes the first snap</td><td>Club charts are self-described unofficial and go stale; inactives are announced ~90 minutes before kickoff</td></tr>
-      <tr><td>Freshness</td><td>Snapshot dated {RETRIEVED}; the injury report changes daily</td></tr>
-      <tr><td>Anything numeric about edges, prices or correlations</td><td>Does not exist in this repository</td></tr>
+      <tr><td>Depth rows outside the five pilot clubs</td><td>Not collected; blank by design</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">F-02 ↗</a></td></tr>
+      <tr><td>Any implication that a “listed starter” takes the first snap</td><td>Club charts are self-described unofficial and go stale; inactives are announced ~90 minutes before kickoff</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">injury report ↗</a></td></tr>
+      <tr><td>Freshness</td><td>Snapshot dated {RETRIEVED}; the injury report changes daily</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">injury report ↗</a></td></tr>
+      <tr><td>Anything numeric about edges, prices or correlations</td><td>Does not exist in this repository</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
     </tbody>
   </table>
 

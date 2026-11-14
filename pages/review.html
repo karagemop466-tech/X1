@@ -49,18 +49,18 @@
   <h2>State found at session start</h2>
   <p>Base commit <code>dab199c</code> contained exactly one 4-byte file (<code>README.md</code> = “# X1”). No application,
   no data, no tests, no workflow, no documents. Everything in this release is new.</p>
-  <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Finding</th><th>Severity</th><th>Note</th></tr></thead><tbody>
-<tr><td>R-01</td><td>README.md was 4 bytes (“# X1”); nothing else tracked</td><td>info</td><td>Confirmed with &lt;code&gt;git ls-tree -r dab199c&lt;/code&gt;</td></tr>
-<tr><td>R-02</td><td>No LICENSE file</td><td>medium</td><td>Redistribution terms for ingested NFL data undefined — relates to Q-01</td></tr>
-<tr><td>R-03</td><td>No .gitignore</td><td>low</td><td>Risk of committing generated artifacts; addressed in this release</td></tr>
-<tr><td>R-04</td><td>No CI</td><td>medium</td><td>Nothing prevented a broken page from deploying; addressed by a workflow</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Finding</th><th>Severity</th><th>Note</th><th>Source</th></tr></thead><tbody>
+<tr><td>R-01</td><td>README.md was 4 bytes (“# X1”); nothing else tracked</td><td>info</td><td>Confirmed with &lt;code&gt;git ls-tree -r dab199c&lt;/code&gt;</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/review/repo-review.md" target="_blank" rel="noopener noreferrer">review ↗</a></td></tr>
+<tr><td>R-02</td><td>No LICENSE file</td><td>medium</td><td>Redistribution terms for ingested NFL data undefined — relates to Q-01</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/review/repo-review.md" target="_blank" rel="noopener noreferrer">review ↗</a></td></tr>
+<tr><td>R-03</td><td>No .gitignore</td><td>low</td><td>Risk of committing generated artifacts; addressed in this release</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/review/repo-review.md" target="_blank" rel="noopener noreferrer">review ↗</a></td></tr>
+<tr><td>R-04</td><td>No CI</td><td>medium</td><td>Nothing prevented a broken page from deploying; addressed by a workflow</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/review/repo-review.md" target="_blank" rel="noopener noreferrer">review ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>Other sessions on the same repository</h2>
-  <div class="tablewrap"><table class=""><thead><tr><th>Branch</th><th>Commits</th><th>Files pushed</th><th>Assessment</th></tr></thead><tbody>
-<tr><td>arena/a78e0158-x1</td><td>2</td><td>COORDINATION.md, README.md only</td><td>Board marks T1–T9 &lt;b&gt;done&lt;/b&gt; and states all tasks completed, but no &lt;code&gt;docs/&lt;/code&gt;, &lt;code&gt;data/&lt;/code&gt;, &lt;code&gt;site/&lt;/code&gt;, &lt;code&gt;code/&lt;/code&gt; or workflow exists on the branch. No PR opened. Completion claim not supported by contents.</td></tr>
-<tr><td>arena/226be516-x1</td><td>2</td><td>COORDINATION.md, README.md only</td><td>Claim logged; no content pushed at review time</td></tr>
-<tr><td>arena/6f377170-x1</td><td>2</td><td>5 HTML pages, CSS, Pages workflow</td><td>Coherent design specification; states plainly that no NFL facts are presented</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>Branch</th><th>Commits</th><th>Files pushed</th><th>Assessment</th><th>Source</th></tr></thead><tbody>
+<tr><td>arena/a78e0158-x1</td><td>2</td><td>COORDINATION.md, README.md only</td><td>Board marks T1–T9 &lt;b&gt;done&lt;/b&gt; and states all tasks completed, but no &lt;code&gt;docs/&lt;/code&gt;, &lt;code&gt;data/&lt;/code&gt;, &lt;code&gt;site/&lt;/code&gt;, &lt;code&gt;code/&lt;/code&gt; or workflow exists on the branch. No PR opened. Completion claim not supported by contents.</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md" target="_blank" rel="noopener noreferrer">board ↗</a></td></tr>
+<tr><td>arena/226be516-x1</td><td>2</td><td>COORDINATION.md, README.md only</td><td>Claim logged; no content pushed at review time</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md" target="_blank" rel="noopener noreferrer">board ↗</a></td></tr>
+<tr><td>arena/6f377170-x1</td><td>2</td><td>5 HTML pages, CSS, Pages workflow</td><td>Coherent design specification; states plainly that no NFL facts are presented</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md" target="_blank" rel="noopener noreferrer">board ↗</a></td></tr>
 </tbody></table></div>
   <div class="note"><b>Why this matters:</b> a board that marks work “done” without artifacts is the most dangerous
   state in a shared repository, because it invites a later session to skip verification. It is reclassified as
@@ -69,33 +69,33 @@
 
   <h2>What was verified, and how</h2>
   <table class="kv">
-    <thead><tr><th>Table</th><th>Rows</th><th>How each row was checked</th></tr></thead>
+    <thead><tr><th>Table</th><th>Rows</th><th>How each row was checked</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Standings</td><td>32</td><td>Read from the official page, then <code>W+L+T≤10</code>, <code>PCT=(W+.5T)/G</code>, <code>NET=PF−PA</code>, 4 clubs per division, ranks 1–4 unique, league-wide home/road identities, conference symmetry</td></tr>
-      <tr><td>Week 10 schedule</td><td>14</td><td>Real clubs, no club twice, byes equal CHI/DEN/PHI/TB, unplayed games carry blank scores</td></tr>
-      <tr><td>Injury report</td><td>345</td><td>Game on the schedule, real team, practice status in the three official strings, game status in the four official strings, player link is an nfl.com player page, all 28 participating clubs present</td></tr>
-      <tr><td>Depth pilot</td><td>113</td><td>Depth order contiguous 1..n, source URL recorded, “unofficial” label captured verbatim</td></tr>
+      <tr><td>Standings</td><td>32</td><td>Read from the official page, then <code>W+L+T≤10</code>, <code>PCT=(W+.5T)/G</code>, <code>NET=PF−PA</code>, 4 clubs per division, ranks 1–4 unique, league-wide home/road identities, conference symmetry</td><td><a class="src-link" href="https://www.nfl.com/standings/division/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+      <tr><td>Week 10 schedule</td><td>14</td><td>Real clubs, no club twice, byes equal CHI/DEN/PHI/TB, unplayed games carry blank scores</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+      <tr><td>Injury report</td><td>345</td><td>Game on the schedule, real team, practice status in the three official strings, game status in the four official strings, player link is an nfl.com player page, all 28 participating clubs present</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+      <tr><td>Depth pilot</td><td>113</td><td>Depth order contiguous 1..n, source URL recorded, “unofficial” label captured verbatim</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">nfl.com teams ↗</a></td></tr>
     </tbody>
   </table>
   <p>Mechanical checks total <b>2,944</b> and must all pass before publication.</p>
 
   <h2>Defects found and fixed during this review</h2>
-  <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Defect</th><th>How it was caught</th><th>Resolution</th></tr></thead><tbody>
-<tr><td>D-01</td><td>Arizona transcribed as &lt;b&gt;2–6&lt;/b&gt;</td><td>&lt;code&gt;PCT=(W+0.5T)/G&lt;/code&gt; gate: 2-6 implies .250; page printed .333</td><td>Corrected to &lt;b&gt;3–6&lt;/b&gt;; corroborated by ESPN and FOX; published as F-08</td></tr>
-<tr><td>D-02</td><td>Verification asserted each division&#x27;s home records must balance</td><td>Failed on 7 of 8 divisions</td><td>The assertion was wrong, not the data. Removed and replaced with the correct league-wide identity</td></tr>
-<tr><td>D-03</td><td>Verification asserted &lt;code&gt;home W = road W&lt;/code&gt; league-wide</td><td>Failed 67 vs 69</td><td>Wrong identity; correct one is &lt;code&gt;home W = road L&lt;/code&gt; (67=67), verified numerically first</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Defect</th><th>How it was caught</th><th>Resolution</th><th>Source</th></tr></thead><tbody>
+<tr><td>D-01</td><td>Arizona transcribed as &lt;b&gt;2–6&lt;/b&gt;</td><td>&lt;code&gt;PCT=(W+0.5T)/G&lt;/code&gt; gate: 2-6 implies .250; page printed .333</td><td>Corrected to &lt;b&gt;3–6&lt;/b&gt;; corroborated by ESPN and FOX; published as F-08</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">F-08 ↗</a></td></tr>
+<tr><td>D-02</td><td>Verification asserted each division&#x27;s home records must balance</td><td>Failed on 7 of 8 divisions</td><td>The assertion was wrong, not the data. Removed and replaced with the correct league-wide identity</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">F-08 ↗</a></td></tr>
+<tr><td>D-03</td><td>Verification asserted &lt;code&gt;home W = road W&lt;/code&gt; league-wide</td><td>Failed 67 vs 69</td><td>Wrong identity; correct one is &lt;code&gt;home W = road L&lt;/code&gt; (67=67), verified numerically first</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">F-08 ↗</a></td></tr>
 </tbody></table></div>
   <p class="muted">D-02 and D-03 are recorded because a verification suite quietly weakened to pass is worse than no
   suite. Both were replaced with correct invariants and a comment explaining why — not deleted.</p>
 
   <h2>Things a reviewer should not trust yet</h2>
   <table class="kv">
-    <thead><tr><th>Item</th><th>Why</th></tr></thead>
+    <thead><tr><th>Item</th><th>Why</th><th>Source</th></tr></thead>
     <tbody>
-      <tr><td>Depth rows outside the five pilot clubs</td><td>Not collected; blank by design</td></tr>
-      <tr><td>Any implication that a “listed starter” takes the first snap</td><td>Club charts are self-described unofficial and go stale; inactives are announced ~90 minutes before kickoff</td></tr>
-      <tr><td>Freshness</td><td>Snapshot dated 2026-11-14; the injury report changes daily</td></tr>
-      <tr><td>Anything numeric about edges, prices or correlations</td><td>Does not exist in this repository</td></tr>
+      <tr><td>Depth rows outside the five pilot clubs</td><td>Not collected; blank by design</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/flags.json" target="_blank" rel="noopener noreferrer">F-02 ↗</a></td></tr>
+      <tr><td>Any implication that a “listed starter” takes the first snap</td><td>Club charts are self-described unofficial and go stale; inactives are announced ~90 minutes before kickoff</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">injury report ↗</a></td></tr>
+      <tr><td>Freshness</td><td>Snapshot dated 2026-11-14; the injury report changes daily</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">injury report ↗</a></td></tr>
+      <tr><td>Anything numeric about edges, prices or correlations</td><td>Does not exist in this repository</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/strategies.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
     </tbody>
   </table>
 

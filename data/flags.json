@@ -3,7 +3,10 @@
     "title": "Flagged for Review",
     "retrieved_at": "2026-11-14",
     "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-    "counts": { "total": 12, "blocks_release": 0 }
+    "counts": {
+      "total": 12,
+      "blocks_release": 0
+    }
   },
   "flags": [
     {
@@ -15,7 +18,9 @@
       "unknown": "Whether a club chart is authoritative. Detroit's page says '2026 Unofficial Depth Chart'; Green Bay's says 'Unofficial, Nov. 10, 2026'.",
       "settles_it": "Owner decision Q-05 on the acceptable verification tier; or a licensed depth feed.",
       "source_url": "https://www.detroitlions.com/team/depth-chart",
-      "source_label": "Detroit Lions — 'Unofficial Depth Chart'"
+      "source_label": "Detroit Lions — 'Unofficial Depth Chart'",
+      "league_source_url": "https://www.nfl.com/teams/",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-02",
@@ -26,7 +31,9 @@
       "unknown": "The remaining 27 clubs. Their depth fields are deliberately blank, not inferred.",
       "settles_it": "Q-14: extend capture to all 32 clubs under a stated cadence.",
       "source_url": "https://www.buffalobills.com/team/depth-chart",
-      "source_label": "Buffalo Bills depth chart (one of five captured)"
+      "source_label": "Buffalo Bills depth chart (one of five captured)",
+      "league_source_url": "https://www.nfl.com/teams/",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-03",
@@ -37,7 +44,9 @@
       "unknown": "Every fair line, edge, expected value and closing-line value. All are therefore unpublished.",
       "settles_it": "Q-02: a licensed quote feed with timestamps and limits.",
       "source_url": "https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season",
-      "source_label": "NFL.com picks page (odds attributed to a commercial sportsbook)"
+      "source_label": "NFL.com picks page (odds attributed to a commercial sportsbook)",
+      "league_source_url": "https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-04",
@@ -48,7 +57,9 @@
       "unknown": "Whether any candidate strategy has skill. Publishing a ranking now would be fabrication.",
       "settles_it": "A scored test window under Q-12 after Q-01 and Q-02 are resolved.",
       "source_url": "https://github.com/karagemop466-tech/X1",
-      "source_label": "This repository"
+      "source_label": "This repository",
+      "league_source_url": "https://www.nfl.com/",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-05",
@@ -59,7 +70,9 @@
       "unknown": "Every rho and every joint probability. Detecting rho = 0.10 needs roughly 780+ paired observations before conditioning.",
       "settles_it": "Q-10: multiple seasons of licensed joint player-market outcomes.",
       "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
-      "source_label": "Current official snapshot — the only verified data held"
+      "source_label": "Current official snapshot — the only verified data held",
+      "league_source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-06",
@@ -70,7 +83,9 @@
       "unknown": "The current contractual text in 2026. It may have changed since the sources describing it.",
       "settles_it": "A primary NFL or Sportradar release for the current term, or legal advice.",
       "source_url": "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason",
-      "source_label": "NFL.com (integrity/education context)"
+      "source_label": "NFL.com (integrity/education context)",
+      "league_source_url": "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-07",
@@ -81,7 +96,9 @@
       "unknown": "Whether those sessions will push content later and overlap with this release.",
       "settles_it": "Review COORDINATION.md handoff log; merge or reject their PRs on their merits.",
       "source_url": "https://github.com/karagemop466-tech/X1/branches",
-      "source_label": "Repository branches"
+      "source_label": "Repository branches",
+      "league_source_url": "https://github.com/karagemop466-tech/X1",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-08",
@@ -92,7 +109,9 @@
       "unknown": "Whether any other row is mistyped but internally consistent. Mechanical checks cannot catch a plausible wrong number.",
       "settles_it": "A second independent human or agent pass over each table against the live official page.",
       "source_url": "https://www.espn.com/nfl/team/_/name/ari/arizona-cardinals",
-      "source_label": "ESPN Cardinals team page (3-6, 4th NFC West)"
+      "source_label": "ESPN Cardinals team page (3-6, 4th NFC West)",
+      "league_source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-09",
@@ -103,7 +122,9 @@
       "unknown": "Nothing material — the table itself is correct and complete. Recorded because it is an irregularity on an official page.",
       "settles_it": "No action; noted so a future reviewer does not mistake it for a scraping error.",
       "source_url": "https://www.nfl.com/standings/division/2026/REG",
-      "source_label": "NFL.com division standings"
+      "source_label": "NFL.com division standings",
+      "league_source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-10",
@@ -114,7 +135,9 @@
       "unknown": "Whether these reflect trades, scheme changes or chart staleness. The cause is not stated by any source read.",
       "settles_it": "Per-player transaction lookup in the official transaction hub before any of these rows is used as a feature.",
       "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
-      "source_label": "Official Week 10 injury report"
+      "source_label": "Official Week 10 injury report",
+      "league_source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-11",
@@ -125,7 +148,9 @@
       "unknown": "The owner's entity, jurisdiction, funding source and contest terms.",
       "settles_it": "Q-07 and Q-08, with jurisdiction-specific review.",
       "source_url": "https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf",
-      "source_label": "NFL Gambling Policy for NFL Personnel (2022)"
+      "source_label": "NFL Gambling Policy for NFL Personnel (2022)",
+      "league_source_url": "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason",
+      "league_source_label": "league page ↗"
     },
     {
       "id": "F-12",
@@ -136,7 +161,9 @@
       "unknown": "How quickly a reader will notice. Staleness is certain, not hypothetical.",
       "settles_it": "Q-17: a refresh cadence plus a visible staleness rule.",
       "source_url": "https://www.nfl.com/injuries/",
-      "source_label": "NFL.com injury report"
+      "source_label": "NFL.com injury report",
+      "league_source_url": "https://www.nfl.com/injuries/",
+      "league_source_label": "league page ↗"
     }
   ]
 }

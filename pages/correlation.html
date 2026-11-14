@@ -68,9 +68,9 @@
 
   <h2>The independence trap, in numbers</h2>
   <p>Two legs at p = 0.5 each, both priced at −110. For binary legs the joint is exact once ρ is chosen: <code>p_AB = 0.25 + 0.25ρ</code> at p = 0.5.</p>
-  <div class="tablewrap"><table class=""><thead><tr><th>Assumption</th><th>Joint probability</th><th>Fair odds</th><th>Book at −110 pays</th><th>Book margin</th></tr></thead><tbody>
-<tr><td>Independent (ρ = 0)</td><td>0.2500</td><td>4.000 (+300)</td><td>≈3.645 (+264)</td><td>+8.9% — book keeps the edge</td></tr>
-<tr><td>ρ = 0.30</td><td>0.3250</td><td>3.077 (+208)</td><td>≈3.645 (+264)</td><td>&lt;b&gt;−18.5% — edge flips to the bettor&lt;/b&gt;</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>Assumption</th><th>Joint probability</th><th>Fair odds</th><th>Book at −110 pays</th><th>Book margin</th><th>Source</th></tr></thead><tbody>
+<tr><td>Independent (ρ = 0)</td><td>0.2500</td><td>4.000 (+300)</td><td>≈3.645 (+264)</td><td>+8.9% — book keeps the edge</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>ρ = 0.30</td><td>0.3250</td><td>3.077 (+208)</td><td>≈3.645 (+264)</td><td>&lt;b&gt;−18.5% — edge flips to the bettor&lt;/b&gt;</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
 </tbody></table></div>
   <p>The second row is why books cap correlated legs — and why a parlay strategy that ignores dependence backtests
   beautifully and loses in production.</p>
@@ -91,13 +91,13 @@
   single season of a single team's props should be treated as a hypothesis, not a finding.</p>
 
   <h2>Which pairs to test first</h2>
-  <div class="tablewrap"><table class=""><thead><tr><th>Priority</th><th>Pair</th><th>Why it matters</th></tr></thead><tbody>
-<tr><td>1</td><td>QB passing yards × own WR/TE receiving yards</td><td>Mechanically coupled; largest, most stable dependence</td></tr>
-<tr><td>2</td><td>Team total × own RB rushing yards</td><td>Game-script coupling</td></tr>
-<tr><td>3</td><td>Opposing QB passing yards × our pass-rush (sacks)</td><td>Negative dependence; often mispriced</td></tr>
-<tr><td>4</td><td>WR1 receiving yards × WR2 receiving yards</td><td>Competes for targets — usually negative, sometimes positive</td></tr>
-<tr><td>5</td><td>Game total × any single player&#x27;s over</td><td>Game-state coupling</td></tr>
-<tr><td>6</td><td>Spread cover × QB/rushing props</td><td>Game-script coupling</td></tr>
+  <div class="tablewrap"><table class=""><thead><tr><th>Priority</th><th>Pair</th><th>Why it matters</th><th>Source</th></tr></thead><tbody>
+<tr><td>1</td><td>QB passing yards × own WR/TE receiving yards</td><td>Mechanically coupled; largest, most stable dependence</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>2</td><td>Team total × own RB rushing yards</td><td>Game-script coupling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>3</td><td>Opposing QB passing yards × our pass-rush (sacks)</td><td>Negative dependence; often mispriced</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>4</td><td>WR1 receiving yards × WR2 receiving yards</td><td>Competes for targets — usually negative, sometimes positive</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>5</td><td>Game total × any single player&#x27;s over</td><td>Game-state coupling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
+<tr><td>6</td><td>Spread cover × QB/rushing props</td><td>Game-script coupling</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/correlation.md" target="_blank" rel="noopener noreferrer">method ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>Storage contract</h2>
