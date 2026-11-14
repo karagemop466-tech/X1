@@ -1358,3 +1358,9 @@ edits below are additive and tagged in-file).
 …/week-6 · …/week-7 · …/week-8 · …/week-9 · …/week-10 · <https://www.nfl.com/standings/> ·
 <https://www.nfl.com/injuries/> (via existing verified snapshot) ·
 [nflverse/nfldata](https://github.com/nflverse/nfldata) (third-party mirror, reference only).
+
+## Pull request record (session `arena-1d3600f8-x1`)
+
+| PR | Branch → base | Content | Result |
+|---|---|---|---|
+| [#34](https://github.com/karagemop466-tech/X1/pull/34) | `arena/1d3600f8-x1` → `main` | T15–T22: price-snapshot store, verified results feed, origination order + 3-column rule, signal/staking split, depth-of-replacement, official-only correlations with n, demotion gate G8, dashboard integration | checks: see PR; merge + Pages rows appended below |
