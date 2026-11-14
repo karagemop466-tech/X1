@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-11-14T19:53:50Z",
+ "generated_at": "2026-11-14T19:54:44Z",
  "snapshot": "2026-11-14",
  "title": "Executive summary: what this round actually established",
- "headline": "Six new mechanisms are built and running: a price-snapshot store, a verified results feed, an originated line (side, then total, then moneyline), a leaderboard that scores signal and staking separately, a replacement-depth model, and correlations that carry their own n. None of them produced a bettable edge, and the summary says why in numbers rather than adjectives.",
+ "headline": "All eight of this round's requirements are built and running: a price-snapshot store, a verified results feed, an originated line ordered side then total then moneyline, fair/market/difference as separate columns, a leaderboard that scores signal and staking separately, replacement depth down to the fourth string, correlations that carry their own n, and a demotion gate that has already fired. None of them produced a bettable edge, and the summary says why in numbers rather than adjectives.",
  "the_one_paragraph": "The results feed is complete and internally consistent (7,413 scored games, 0 arithmetic mismatches). The price store is structurally incomplete: 20,336 market rows, 0 of which have both an opening and a closing number, because the two files that evidence them cover different seasons and neither names a book or a timestamp. The model originates every market but loses to the market on every metric (side MAE 10.741 vs 9.792, Brier 0.241 vs 0.212). The leaderboard has 0 live strategies. One strategy shows a positive ROI and it is the one with the weakest signal -- the exact case the signal/staking split exists to catch -- and the demotion gate sends it back to paper on drawdown and on price loss.",
  "what_is_new": [
   {

@@ -39,11 +39,13 @@ def main() -> int:
         "snapshot": SNAPSHOT,
         "title": "Executive summary: what this round actually established",
         "headline": (
-            "Six new mechanisms are built and running: a price-snapshot store, a verified "
-            "results feed, an originated line (side, then total, then moneyline), a leaderboard "
-            "that scores signal and staking separately, a replacement-depth model, and "
-            "correlations that carry their own n. None of them produced a bettable edge, and "
-            "the summary says why in numbers rather than adjectives."
+            "All eight of this round's requirements are built and running: a price-snapshot "
+            "store, a verified results feed, an originated line ordered side then total then "
+            "moneyline, fair/market/difference as separate columns, a leaderboard that scores "
+            "signal and staking separately, replacement depth down to the fourth string, "
+            "correlations that carry their own n, and a demotion gate that has already fired. "
+            "None of them produced a bettable edge, and the summary says why in numbers rather "
+            "than adjectives."
         ),
         "the_one_paragraph": (
             f"The results feed is complete and internally consistent ({results['coverage']['final']:,} "
@@ -183,7 +185,7 @@ def main() -> int:
             "questions": q["counts"]["questions"],
             "suggestions": s["counts"]["suggestions"],
             "paths": s["counts"]["paths"],
-            "defects_found": 7,
+            "defects_found": 7,  # L-01..L-03, B-01..B-04; F-01 is a finding, not a defect
             "values_published": corr["counts"]["values_published"],
         },
     }
