@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T02:53:47+00:00",
+ "generated_at": "2026-11-14T02:59:00+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -11,21 +11,142 @@
    "rows": 345
   },
   "depth_charts": {
-   "status": "kept_previous",
-   "reason": "this run produced 0 rows; previous verified data retained",
-   "previous_rows": 0
+   "status": "written",
+   "rows": 997
   },
   "team_stats": {
    "status": "written",
    "rows": 288
   },
   "deficiency": {
-   "status": "kept_previous",
-   "reason": "this run produced 0 rows; previous verified data retained",
-   "previous_rows": 0
+   "status": "written",
+   "rows": 391
   }
  },
- "errors": [],
- "teams_resolved": [],
- "finished_at": "2026-11-14T02:53:56+00:00"
+ "errors": [
+  {
+   "dataset": "depth_charts",
+   "team": "AZ",
+   "error": "no club domain configured"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "CAR",
+   "url": "https://www.carolinapanthers.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "CIN",
+   "url": "https://www.cincinnatibengals.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "DAL",
+   "url": "https://www.dallascowboys.com/team/depth-chart",
+   "error": "page title does not look like a depth chart: 'Dallas Cowboys | Official Site of the Dallas Cowboys'"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "GB",
+   "url": "https://www.greenbaypackers.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "HOU",
+   "url": "https://www.houstontexans.com/team/depth-chart",
+   "error": "0 rows parsed"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "IND",
+   "url": "https://www.indianapoliscolts.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "JAX",
+   "url": "https://www.jacksonvillejaguars.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "KC",
+   "url": "https://www.kansascitychiefs.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "LA",
+   "url": "https://www.rams.com/team/depth-chart",
+   "error": "RemoteDisconnected: Remote end closed connection without response"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "LV",
+   "url": "https://www.lasvegasraiders.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "MIN",
+   "url": "https://www.minnesotavikings.com/team/depth-chart",
+   "error": "URLError: <urlopen error [Errno 111] Connection refused>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "NE",
+   "url": "https://www.newenglandpatriots.com/team/depth-chart",
+   "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.newenglandpatriots.com'. (_ssl.c:1018)>"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "SEA",
+   "url": "https://www.seahawks.com/team/depth-chart",
+   "error": "page title does not look like a depth chart: 'Seattle Seahawks'"
+  },
+  {
+   "dataset": "depth_charts",
+   "team": "TB",
+   "url": "https://www.tampabaybuccaneers.com/team/depth-chart",
+   "error": "page title does not look like a depth chart: ''"
+  }
+ ],
+ "teams_resolved": [
+  "ATL",
+  "AZ",
+  "BAL",
+  "BUF",
+  "CAR",
+  "CHI",
+  "CIN",
+  "CLE",
+  "DAL",
+  "DEN",
+  "DET",
+  "GB",
+  "HOU",
+  "IND",
+  "JAX",
+  "KC",
+  "LA",
+  "LAC",
+  "LV",
+  "MIA",
+  "MIN",
+  "NE",
+  "NO",
+  "NYG",
+  "NYJ",
+  "PHI",
+  "PIT",
+  "SEA",
+  "SF",
+  "TB",
+  "TEN",
+  "WAS"
+ ],
+ "finished_at": "2026-11-14T03:01:07+00:00"
 }

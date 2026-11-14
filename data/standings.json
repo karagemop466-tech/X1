@@ -1,7 +1,7 @@
 {
  "dataset": "standings",
  "title": "2026 NFL League Standings",
- "generated_at": "2026-11-14T02:53:47+00:00",
+ "generated_at": "2026-11-14T02:59:00+00:00",
  "source": {
   "url": "https://www.nfl.com/standings/league/2026/REG",
   "label": "NFL.com — 2026 League Standings (regular season)",
@@ -32,13 +32,11 @@
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "LAC",
-   "team_slug": null,
-   "team_name": "Los Angeles ChargersChargers",
+   "team_slug": "los-angeles-chargers",
+   "team_name": "Los Angeles Chargers",
    "W": "0",
    "L": "8",
    "T": "0",
@@ -55,22 +53,18 @@
    "NON_CONF": "0 - 3 - 0",
    "STRK": "8L",
    "LAST_5": "0 - 5 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "MIA",
-   "team_slug": null,
-   "team_name": "Miami DolphinsDolphins",
+   "team_slug": "miami-dolphins",
+   "team_name": "Miami Dolphins",
    "W": "1",
    "L": "7",
    "T": "0",
@@ -87,22 +81,18 @@
    "NON_CONF": "0 - 3 - 0",
    "STRK": "2L",
    "LAST_5": "1 - 4 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "TEN",
-   "team_slug": null,
-   "team_name": "Tennessee TitansTitans",
+   "team_slug": "tennessee-titans",
+   "team_name": "Tennessee Titans",
    "W": "1",
    "L": "7",
    "T": "0",
@@ -119,22 +109,18 @@
    "NON_CONF": "0 - 2 - 0",
    "STRK": "2L",
    "LAST_5": "1 - 4 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "IND",
-   "team_slug": null,
-   "team_name": "Indianapolis ColtsColts",
+   "team_slug": "indianapolis-colts",
+   "team_name": "Indianapolis Colts",
    "W": "2",
    "L": "7",
    "T": "0",
@@ -151,22 +137,18 @@
    "NON_CONF": "1 - 2 - 0",
    "STRK": "5L",
    "LAST_5": "0 - 5 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "NYJ",
-   "team_slug": null,
-   "team_name": "New York JetsJets",
+   "team_slug": "new-york-jets",
+   "team_name": "New York Jets",
    "W": "2",
    "L": "7",
    "T": "0",
@@ -183,22 +165,18 @@
    "NON_CONF": "0 - 3 - 0",
    "STRK": "4L",
    "LAST_5": "1 - 4 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "PHI",
-   "team_slug": null,
-   "team_name": "Philadelphia EaglesEagles",
+   "team_slug": "philadelphia-eagles",
+   "team_name": "Philadelphia Eagles",
    "W": "2",
    "L": "7",
    "T": "0",
@@ -215,22 +193,18 @@
    "NON_CONF": "1 - 1 - 0",
    "STRK": "7L",
    "LAST_5": "0 - 5 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "AZ",
-   "team_slug": null,
-   "team_name": "Arizona CardinalsCardinals",
+   "team_slug": "arizona-cardinals",
+   "team_name": "Arizona Cardinals",
    "W": "3",
    "L": "6",
    "T": "0",
@@ -247,22 +221,18 @@
    "NON_CONF": "1 - 1 - 0",
    "STRK": "1L",
    "LAST_5": "2 - 3 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "ATL",
-   "team_slug": null,
-   "team_name": "Atlanta FalconsFalcons",
+   "team_slug": "atlanta-falcons",
+   "team_name": "Atlanta Falcons",
    "W": "3",
    "L": "6",
    "T": "0",
@@ -279,22 +249,18 @@
    "NON_CONF": "0 - 3 - 0",
    "STRK": "2L",
    "LAST_5": "1 - 4 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "CAR",
-   "team_slug": null,
-   "team_name": "Carolina PanthersPanthers",
+   "team_slug": "carolina-panthers",
+   "team_name": "Carolina Panthers",
    "W": "3",
    "L": "5",
    "T": "0",
@@ -311,22 +277,18 @@
    "NON_CONF": "0 - 2 - 0",
    "STRK": "3L",
    "LAST_5": "2 - 3 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "HOU",
-   "team_slug": null,
-   "team_name": "Houston TexansTexans",
+   "team_slug": "houston-texans",
+   "team_name": "Houston Texans",
    "W": "3",
    "L": "5",
    "T": "0",
@@ -343,22 +305,18 @@
    "NON_CONF": "0 - 2 - 0",
    "STRK": "1W",
    "LAST_5": "3 - 2 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "NO",
-   "team_slug": null,
-   "team_name": "New Orleans SaintsSaints",
+   "team_slug": "new-orleans-saints",
+   "team_name": "New Orleans Saints",
    "W": "3",
    "L": "5",
    "T": "0",
@@ -375,22 +333,18 @@
    "NON_CONF": "2 - 2 - 0",
    "STRK": "1W",
    "LAST_5": "2 - 3 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "TB",
-   "team_slug": null,
-   "team_name": "Tampa Bay BuccaneersBuccaneers",
+   "team_slug": "tampa-bay-buccaneers",
+   "team_name": "Tampa Bay Buccaneers",
    "W": "3",
    "L": "6",
    "T": "0",
@@ -407,22 +361,18 @@
    "NON_CONF": "0 - 3 - 0",
    "STRK": "1L",
    "LAST_5": "3 - 2 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "WAS",
-   "team_slug": null,
-   "team_name": "Washington CommandersCommanders",
+   "team_slug": "washington-commanders",
+   "team_name": "Washington Commanders",
    "W": "3",
    "L": "5",
    "T": "1",
@@ -439,22 +389,18 @@
    "NON_CONF": "0 - 1 - 0",
    "STRK": "1W",
    "LAST_5": "2 - 2 - 1",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "BAL",
-   "team_slug": null,
-   "team_name": "Baltimore RavensRavens",
+   "team_slug": "baltimore-ravens",
+   "team_name": "Baltimore Ravens",
    "W": "4",
    "L": "5",
    "T": "0",
@@ -471,22 +417,18 @@
    "NON_CONF": "2 - 1 - 0",
    "STRK": "4L",
    "LAST_5": "1 - 4 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "DAL",
-   "team_slug": null,
-   "team_name": "Dallas CowboysCowboys",
+   "team_slug": "dallas-cowboys",
+   "team_name": "Dallas Cowboys",
    "W": "4",
    "L": "5",
    "T": "0",
@@ -503,22 +445,18 @@
    "NON_CONF": "2 - 1 - 0",
    "STRK": "1W",
    "LAST_5": "2 - 3 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "LV",
-   "team_slug": null,
-   "team_name": "Las Vegas RaidersRaiders",
+   "team_slug": "las-vegas-raiders",
+   "team_name": "Las Vegas Raiders",
    "W": "4",
    "L": "5",
    "T": "0",
@@ -535,22 +473,18 @@
    "NON_CONF": "1 - 2 - 0",
    "STRK": "1L",
    "LAST_5": "1 - 4 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "CLE",
-   "team_slug": null,
-   "team_name": "Cleveland BrownsBrowns",
+   "team_slug": "cleveland-browns",
+   "team_name": "Cleveland Browns",
    "W": "5",
    "L": "4",
    "T": "0",
@@ -567,22 +501,18 @@
    "NON_CONF": "2 - 1 - 0",
    "STRK": "2L",
    "LAST_5": "2 - 3 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "LA",
-   "team_slug": null,
-   "team_name": "Los Angeles RamsRams",
+   "team_slug": "los-angeles-rams",
+   "team_name": "Los Angeles Rams",
    "W": "5",
    "L": "4",
    "T": "0",
@@ -599,22 +529,18 @@
    "NON_CONF": "2 - 2 - 0",
    "STRK": "3W",
    "LAST_5": "3 - 2 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "NE",
-   "team_slug": null,
-   "team_name": "New England PatriotsPatriots",
+   "team_slug": "new-england-patriots",
+   "team_name": "New England Patriots",
    "W": "5",
    "L": "4",
    "T": "0",
@@ -631,22 +557,18 @@
    "NON_CONF": "0 - 3 - 0",
    "STRK": "1L",
    "LAST_5": "3 - 2 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "NYG",
-   "team_slug": null,
-   "team_name": "New York GiantsGiants",
+   "team_slug": "new-york-giants",
+   "team_name": "New York Giants",
    "W": "5",
    "L": "3",
    "T": "1",
@@ -663,22 +585,18 @@
    "NON_CONF": "2 - 0 - 0",
    "STRK": "1L",
    "LAST_5": "2 - 2 - 1",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "SEA",
-   "team_slug": null,
-   "team_name": "Seattle SeahawksSeahawks",
+   "team_slug": "seattle-seahawks",
+   "team_name": "Seattle Seahawks",
    "W": "5",
    "L": "4",
    "T": "0",
@@ -695,22 +613,18 @@
    "NON_CONF": "3 - 1 - 0",
    "STRK": "1W",
    "LAST_5": "2 - 3 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "CIN",
-   "team_slug": null,
-   "team_name": "Cincinnati BengalsBengals",
+   "team_slug": "cincinnati-bengals",
+   "team_name": "Cincinnati Bengals",
    "W": "6",
    "L": "2",
    "T": "0",
@@ -727,22 +641,18 @@
    "NON_CONF": "2 - 0 - 0",
    "STRK": "4W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "DET",
-   "team_slug": null,
-   "team_name": "Detroit LionsLions",
+   "team_slug": "detroit-lions",
+   "team_name": "Detroit Lions",
    "W": "6",
    "L": "2",
    "T": "0",
@@ -759,22 +669,18 @@
    "NON_CONF": "2 - 1 - 0",
    "STRK": "4W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "GB",
-   "team_slug": null,
-   "team_name": "Green Bay PackersPackers",
+   "team_slug": "green-bay-packers",
+   "team_name": "Green Bay Packers",
    "W": "6",
    "L": "3",
    "T": "0",
@@ -791,22 +697,18 @@
    "NON_CONF": "2 - 0 - 0",
    "STRK": "2W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "JAX",
-   "team_slug": null,
-   "team_name": "Jacksonville JaguarsJaguars",
+   "team_slug": "jacksonville-jaguars",
+   "team_name": "Jacksonville Jaguars",
    "W": "6",
    "L": "2",
    "T": "0",
@@ -823,22 +725,18 @@
    "NON_CONF": "1 - 0 - 0",
    "STRK": "2W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "KC",
-   "team_slug": null,
-   "team_name": "Kansas City ChiefsChiefs",
+   "team_slug": "kansas-city-chiefs",
+   "team_name": "Kansas City Chiefs",
    "W": "6",
    "L": "2",
    "T": "0",
@@ -855,22 +753,18 @@
    "NON_CONF": "0 - 1 - 0",
    "STRK": "1W",
    "LAST_5": "3 - 2 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "MIN",
-   "team_slug": null,
-   "team_name": "Minnesota VikingsVikings",
+   "team_slug": "minnesota-vikings",
+   "team_name": "Minnesota Vikings",
    "W": "6",
    "L": "2",
    "T": "0",
@@ -887,22 +781,18 @@
    "NON_CONF": "2 - 1 - 0",
    "STRK": "2L",
    "LAST_5": "3 - 2 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "PIT",
-   "team_slug": null,
-   "team_name": "Pittsburgh SteelersSteelers",
+   "team_slug": "pittsburgh-steelers",
+   "team_name": "Pittsburgh Steelers",
    "W": "6",
    "L": "2",
    "T": "0",
@@ -919,22 +809,18 @@
    "NON_CONF": "3 - 0 - 0",
    "STRK": "4W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "BUF",
-   "team_slug": null,
-   "team_name": "Buffalo BillsBills",
+   "team_slug": "buffalo-bills",
+   "team_name": "Buffalo Bills",
    "W": "7",
    "L": "1",
    "T": "0",
@@ -951,22 +837,18 @@
    "NON_CONF": "3 - 0 - 0",
    "STRK": "4W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "CHI",
-   "team_slug": null,
-   "team_name": "Chicago BearsBears",
+   "team_slug": "chicago-bears",
+   "team_name": "Chicago Bears",
    "W": "7",
    "L": "2",
    "T": "0",
@@ -983,22 +865,18 @@
    "NON_CONF": "2 - 0 - 0",
    "STRK": "4W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "DEN",
-   "team_slug": null,
-   "team_name": "Denver BroncosBroncos",
+   "team_slug": "denver-broncos",
+   "team_name": "Denver Broncos",
    "W": "7",
    "L": "2",
    "T": "0",
@@ -1015,22 +893,18 @@
    "NON_CONF": "4 - 1 - 0",
    "STRK": "5W",
    "LAST_5": "5 - 0 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   },
   {
    "_source_url": "https://www.nfl.com/standings/league/2026/REG",
    "_source_label": "NFL.com — 2026 League Standings (regular season)",
    "_source_org": "NFL",
-   "_retrieved_at": "2026-11-14T02:53:47+00:00",
-   "_flags": [
-    "team could not be resolved to an official NFL.com team page"
-   ],
+   "_retrieved_at": "2026-11-14T02:59:00+00:00",
+   "_flags": [],
    "team_abbrev": "SF",
-   "team_slug": null,
-   "team_name": "San Francisco 49ers49ers",
+   "team_slug": "san-francisco-49ers",
+   "team_name": "San Francisco 49ers",
    "W": "7",
    "L": "1",
    "T": "0",
@@ -1047,20 +921,16 @@
    "NON_CONF": "3 - 0 - 0",
    "STRK": "1W",
    "LAST_5": "4 - 1 - 0",
-   "_unverified": [
-    "team_slug"
-   ],
-   "_verified": false
+   "_unverified": [],
+   "_verified": true
   }
  ],
  "verification": {
   "rows": 32,
-  "rows_verified": 0,
-  "rows_flagged": 32,
-  "unverified_cells": 32,
-  "flagged_reasons": {
-   "team could not be resolved to an official NFL.com team page": 32
-  }
+  "rows_verified": 32,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "flagged_reasons": {}
  },
  "season": 2026,
  "week": null,

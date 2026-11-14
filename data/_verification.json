@@ -3,16 +3,37 @@
  "results": [
   {
    "dataset": "deficiency",
-   "rows": 0,
+   "rows": 391,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 0,
-   "problems": [],
-   "ok": true
+   "null_cells": 1268,
+   "problems": [
+    "deficiency[0] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[1] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[2] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[3] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[4] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[5] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[6] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[7] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[8] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[9] null field 'replacement' not declared in _unverified",
+    "deficiency[9] null field 'replacement_depth' not declared in _unverified",
+    "deficiency[9] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[10] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[11] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[12] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[13] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[14] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[15] null field 'replacement_game_status' not declared in _unverified",
+    "deficiency[17] null field 'replacement' not declared in _unverified",
+    "deficiency[17] null field 'replacement_depth' not declared in _unverified"
+   ],
+   "ok": false
   },
   {
    "dataset": "depth_charts",
-   "rows": 0,
+   "rows": 997,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,
@@ -24,7 +45,7 @@
    "rows": 345,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 1750,
+   "null_cells": 370,
    "problems": [
     "injuries[0] null field 'injuries' not declared in _unverified",
     "injuries[0] null field 'game_status' not declared in _unverified",
@@ -54,7 +75,7 @@
    "rows": 32,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 32,
+   "null_cells": 0,
    "problems": [],
    "ok": true
   },
@@ -68,5 +89,5 @@
    "ok": true
   }
  ],
- "hard_failures": 1
+ "hard_failures": 2
 }
