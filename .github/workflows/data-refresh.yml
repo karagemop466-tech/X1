@@ -51,6 +51,12 @@ jobs:
           # crash means there is no data change to commit.
           cp _ci/pipeline.log data/_pipeline_stamp.log
           date -u +%Y-%m-%dT%H:%M:%SZ >> data/_pipeline_stamp.log
+          {
+            echo "### data-refresh: pipeline output"
+            echo '```'
+            tail -60 _ci/pipeline.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Verify row-level source coverage
         continue-on-error: true
@@ -93,6 +99,14 @@ jobs:
             fi
             echo "MARKER: done"
           } 2>&1 | tee _ci/commit.log
+          # The job summary is readable through the Checks API even when the
+          # push fails, which is the only way to diagnose a rejected push.
+          {
+            echo "### data-refresh: commit step"
+            echo '```'
+            cat _ci/commit.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
           grep -q "MARKER: done" _ci/commit.log
 
       - name: Assemble the site
