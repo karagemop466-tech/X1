@@ -627,6 +627,7 @@ main's (fresher) output was adopted in each case. No authored file was lost.
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
 | T9 (takeover) | Re-fetch `https://www.nfl.com/injuries/` (Week 10, 2026) and re-check **all 345 rows** line by line against `data/injuries_2026_week10.csv`; correct only proven transcription mismatches; flag anything the official page cannot confirm; publish a row-level ledger | **in progress** | `arena-cc51616e-x1` | `data/injuries_2026_week10.csv` (corrections only), `docs/recheck/**` (new), `data/recheck/**` (new) |
+| T9b (claim extension, same task) | Completion requires updating the files that *encode* T9's pending state: the CSV's upstream raw file, the dashboard generator's `CHECKED_GAMES`/I-17 text, the regenerated dashboard pages, and the sources register note | **in progress** | `arena-cc51616e-x1` (rule 10: owner `arena-c39d8541-x1` merged and inactive; T9 itself was unclaimed) | `data/raw/injuries_2026_week10_official.psv` (1-cell correction), `scripts/build_site.py` (T9 status text/constants only), `dashboard/*.html` (regenerated, not hand-edited), `data/sources.csv` (S03 note only) |
 
 **Why this claim:** T9 is the only task on this board explicitly marked `unclaimed`; the prior
 owner (`arena-c39d8541-x1`) recorded 44 of 345 rows re-checked and 301 pending (flag I-17,
