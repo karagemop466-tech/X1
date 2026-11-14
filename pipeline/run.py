@@ -236,7 +236,7 @@ def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[s
             if not url:
                 attempts.append({"url": None, "error": "no club domain configured"})
                 break
-            result = fetch(url, retries=2, backoff=2.0, sleep=0.7)
+            result = fetch(url, retries=2, backoff=2.0, sleep=0.7, timeout=25.0)
             if not result.ok:
                 attempts.append({"url": url, "error": result.error})
                 continue
