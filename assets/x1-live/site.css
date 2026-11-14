@@ -50,6 +50,7 @@ a:hover { text-decoration: underline; }
 .brand small { color: #9fb0c4; font-weight: 500; font-size: 12px; }
 
 .navlinks { display: flex; gap: 2px; flex: 1; flex-wrap: wrap; }
+.navgroup { display: contents; }
 .navlinks a {
   color: #c6d2e0; padding: 6px 10px; border-radius: 7px; font-size: 13.5px;
   white-space: nowrap;
