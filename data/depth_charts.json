@@ -1,0 +1,28 @@
+{
+ "dataset": "depth_charts",
+ "title": "Official Club Depth Charts (starters through 4th string)",
+ "generated_at": "2026-11-14T02:50:44+00:00",
+ "source": {
+  "url": "https://www.nfl.com/teams/",
+  "label": "Official club sites (one depth chart per team)",
+  "org": "Club"
+ },
+ "columns": [
+  "team_name",
+  "unit",
+  "position",
+  "depth",
+  "player"
+ ],
+ "rows": [],
+ "verification": {
+  "rows": 0,
+  "rows_verified": 0,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "flagged_reasons": {}
+ },
+ "season": 2026,
+ "per_team_sources": [],
+ "note": "Depth order is read left to right exactly as each club prints it: column 1 is the starter, column 2 the 2nd string, and so on. Where a club leaves a column empty the position simply has no listed player at that depth."
+}

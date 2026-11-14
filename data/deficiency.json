@@ -1,0 +1,37 @@
+{
+ "dataset": "deficiency",
+ "title": "Lineup deficiency watch: starters down, backup who has to replace them",
+ "generated_at": "2026-11-14T02:50:51+00:00",
+ "source": {
+  "url": "https://www.nfl.com/injuries/",
+  "label": "Derived from official club depth charts + NFL.com injury report",
+  "org": "Derived"
+ },
+ "columns": [
+  "team_name",
+  "unit",
+  "position",
+  "starter",
+  "starter_game_status",
+  "replacement",
+  "replacement_depth",
+  "replacement_game_status",
+  "severity"
+ ],
+ "rows": [],
+ "verification": {
+  "rows": 0,
+  "rows_verified": 0,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "flagged_reasons": {}
+ },
+ "season": 2026,
+ "severity_scale": {
+  "out": 3,
+  "doubtful": 2,
+  "questionable": 1,
+  "not listed": 0
+ },
+ "note": "Derived, not scraped: the starter is column 1 of the club's own depth chart and the replacement is the next column whose player is not listed Out on the official injury report. Every row links to both official sources."
+}

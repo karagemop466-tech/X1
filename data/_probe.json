@@ -1,0 +1,134 @@
+{
+ "generated_at": "2026-11-14T02:50:51+00:00",
+ "urls": [
+  {
+   "url": "https://www.nfl.com/schedules/2026/REG",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL Schedules: Games, Times, Matchups &amp; Tickets",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/schedules/2026/reg1",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL Schedules: Games, Times, Matchups &amp; Tickets",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/scores/",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "NFL Scores and Highlights: Live Updates, Results &amp; Recaps",
+   "table_count": 0,
+   "tables": []
+  },
+  {
+   "url": "https://www.nfl.com/standings/league/2025/REG",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "2025 NFL League Standings",
+   "table_count": 1,
+   "tables": [
+    {
+     "rows": 32,
+     "cols": 17,
+     "header": [
+      "NFL Team",
+      "W",
+      "L",
+      "T",
+      "PCT",
+      "PF",
+      "PA",
+      "Net Pts",
+      "Home",
+      "Road",
+      "Div",
+      "Pct",
+      "Conf",
+      "Pct",
+      "Non-Conf",
+      "Strk",
+      "Last 5"
+     ],
+     "first_row": [
+      "Arizona CardinalsCardinals",
+      "3",
+      "14",
+      "0",
+      "0.176",
+      "355",
+      "488",
+      "-133",
+      "1 - 7 - 0",
+      "2 - 7 - 0",
+      "0 - 6 - 0",
+      "0.000",
+      "3 - 9 - 0",
+      "0.250",
+      "0 - 5 - 0",
+      "9L",
+      "0 - 5 - 0"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://www.nfl.com/stats/team-stats/offense/passing/2025/reg/all",
+   "ok": true,
+   "status": 200,
+   "error": null,
+   "title": "2025 NFL offense passing stats by Team | NFL.com",
+   "table_count": 1,
+   "tables": [
+    {
+     "rows": 32,
+     "cols": 16,
+     "header": [
+      "Team",
+      "Att",
+      "Cmp",
+      "Cmp %",
+      "Yds/Att",
+      "Pass Yds",
+      "TD",
+      "INT",
+      "Rate",
+      "1st",
+      "1st%",
+      "20+",
+      "40+",
+      "Lng",
+      "Sck",
+      "SckY"
+     ],
+     "first_row": [
+      "CardinalsCardinals",
+      "649",
+      "427",
+      "65.8",
+      "6.7",
+      "4354",
+      "29",
+      "11",
+      "92.7",
+      "216",
+      "33.3",
+      "49",
+      "5",
+      "50",
+      "59",
+      "399"
+     ]
+    }
+   ]
+  }
+ ]
+}

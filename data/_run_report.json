@@ -1,0 +1,29 @@
+{
+ "generated_at": "2026-11-14T02:50:43+00:00",
+ "branch_note": "pipeline run",
+ "datasets": {
+  "standings": {
+   "status": "written",
+   "rows": 32
+  },
+  "injuries": {
+   "status": "written",
+   "rows": 345
+  },
+  "depth_charts": {
+   "status": "empty",
+   "rows": 0
+  },
+  "team_stats": {
+   "status": "written",
+   "rows": 288
+  },
+  "deficiency": {
+   "status": "empty",
+   "rows": 0
+  }
+ },
+ "errors": [],
+ "teams_resolved": [],
+ "finished_at": "2026-11-14T02:50:56+00:00"
+}

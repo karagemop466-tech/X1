@@ -1,0 +1,72 @@
+{
+ "generated_at": null,
+ "results": [
+  {
+   "dataset": "deficiency",
+   "rows": 0,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "depth_charts",
+   "rows": 0,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "injuries",
+   "rows": 345,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 1750,
+   "problems": [
+    "injuries[0] null field 'injuries' not declared in _unverified",
+    "injuries[0] null field 'game_status' not declared in _unverified",
+    "injuries[1] null field 'injuries' not declared in _unverified",
+    "injuries[1] null field 'game_status' not declared in _unverified",
+    "injuries[2] null field 'injuries' not declared in _unverified",
+    "injuries[2] null field 'game_status' not declared in _unverified",
+    "injuries[3] null field 'injuries' not declared in _unverified",
+    "injuries[3] null field 'game_status' not declared in _unverified",
+    "injuries[4] null field 'injuries' not declared in _unverified",
+    "injuries[4] null field 'game_status' not declared in _unverified",
+    "injuries[6] null field 'injuries' not declared in _unverified",
+    "injuries[6] null field 'game_status' not declared in _unverified",
+    "injuries[7] null field 'injuries' not declared in _unverified",
+    "injuries[7] null field 'game_status' not declared in _unverified",
+    "injuries[9] null field 'injuries' not declared in _unverified",
+    "injuries[9] null field 'game_status' not declared in _unverified",
+    "injuries[10] null field 'injuries' not declared in _unverified",
+    "injuries[10] null field 'game_status' not declared in _unverified",
+    "injuries[12] null field 'injuries' not declared in _unverified",
+    "injuries[12] null field 'game_status' not declared in _unverified"
+   ],
+   "ok": false
+  },
+  {
+   "dataset": "standings",
+   "rows": 32,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 32,
+   "problems": [],
+   "ok": true
+  },
+  {
+   "dataset": "team_stats",
+   "rows": 288,
+   "rows_missing_source": 0,
+   "rows_non_official_source": 0,
+   "null_cells": 0,
+   "problems": [],
+   "ok": true
+  }
+ ],
+ "hard_failures": 1
+}
