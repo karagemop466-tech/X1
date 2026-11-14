@@ -260,7 +260,7 @@ def collect_gamebooks(
                 break
         if page is None:
             continue
-        if pages_read <= 2:
+        if pages_read <= 2 or pages_read % 40 == 0:
             debug_dir = out_dir / "_debug"
             debug_dir.mkdir(parents=True, exist_ok=True)
             (debug_dir / f"gamecenter_{pages_read}.html").write_text(
