@@ -13,9 +13,9 @@
 
 <div class="stats">
 <div class="stat"><b>3,005</b><span>cell checks run<br>against pages re-fetched 2026-11-14</span></div>
-<div class="stat"><b>2,886</b><span>cells reconciled<br>byte-identical to the official page</span></div>
+<div class="stat"><b>2,820</b><span>cells reconciled<br>byte-identical to the official page</span></div>
 <div class="stat"><b>1</b><span>mismatches<br>listed on the Flagged page</span></div>
-<div class="stat"><b>216</b><span>unverifiable values<br>no official page prints them</span></div>
+<div class="stat"><b>150</b><span>unverifiable values<br>no official page prints them</span></div>
 </div>
 <div class="note"><b>What "independent" means here.</b> The sessions that built these tables also
 verified them. This session re-fetched each official page on 2026-11-14, re-read the numbers, and
@@ -30,6 +30,10 @@ field.</div>
 <h2>Arithmetic checks run on the official page itself</h2>
 <p class="small">Before any committed value is trusted, the official page is tested against itself.
 If a page contradicts its own arithmetic, no transcription from it can be trusted either.</p>
+<p class="small">Checks exceed reconciled + mismatches + unverifiable by 34, and that gap is
+accounted for rather than hidden: the deficiency ledger records 66 checks but has no
+pass/unverified counters of its own, and the standings ledger records 32 provenance notes
+(venue fields and the dataset's own flag text) outside its cell count.</p>
 <table class=""><thead><tr><th class="">Check</th><th class="">Result</th><th class="">Why it matters</th></tr></thead><tbody><tr><td class="">PCT equals (W + 0.5T) / games</td><td class=""><span class="pill pass">320 pass</span></td><td class="">Catches a mis-aligned column, the single most common transcription failure.</td></tr><tr><td class="">PF - PA equals Net Pts</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Confirms the points columns were read from the right teams.</td></tr><tr><td class="">Home record + road record equals W-L-T</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Fails if a neutral-site game is double counted or a row is duplicated.</td></tr><tr><td class="">Conf record + non-conf record equals W-L-T</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Same, for the second pair of split columns.</td></tr><tr><td class="">Div win% equals the div record</td><td class=""><span class="pill pass">32 pass</span></td><td class="">The page prints two columns labelled only &#x27;Pct&#x27;; this fixes their meaning.</td></tr><tr><td class="">Conf win% equals the conf record</td><td class=""><span class="pill pass">32 pass</span></td><td class="">Same, for the conference pair.</td></tr><tr><td class="">Club table row counts sum to 345</td><td class=""><span class="pill pass">exact</span></td><td class="">28 club tables counted by hand against the committed total.</td></tr></tbody></table>
 
 <h2>What this ledger does not cover</h2>
@@ -42,7 +46,7 @@ is not being claimed as verified.</p>
 
 <footer>Every table row links to the official page it was read from. A value no official
 source publishes is left blank and badged UNVERIFIED — never inferred. Generated
-2026-11-14T18:41:36Z by session arena-459b17e1-x1.
+2026-11-14T18:45:01Z by session arena-459b17e1-x1.
 <p><a href="../index.html">← Back to the main dashboard</a> ·
 <a href="../pages/flagged.html">Flagged for review</a> ·
 <a href="../pages/sources.html">Sources</a></p></footer>

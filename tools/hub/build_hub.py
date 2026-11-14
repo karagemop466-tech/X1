@@ -192,9 +192,10 @@ def build_index_old_():
             if k in v:
                 return v[k]
         return 0
-    checks = sum(g(v, "checks", "cell_checks", "status_checks") for v in ver if v)
-    fails = sum(g(v, "fail") for v in ver if v)
-    unv = sum(g(v, "unverified") for v in ver if v)
+    _c = [counts(v) for v in ver if v]
+    checks = sum(c["checks"] for c in _c)
+    fails = sum(c["fail"] for c in _c)
+    unv = sum(c["unverified"] for c in _c)
     dep = load("data/pipeline/deficiency.json") or {}
     depth_rows = dep.get("verification", {}).get("rows", 0)
 
@@ -320,9 +321,10 @@ def build_index():
                      cell(name), cell(what), cell(canonical)])
     ver = [load("data/verification/standings.json"), load("data/verification/schedule.json"),
            load("data/verification/injuries.json"), load("data/verification/deficiency.json")]
-    checks = sum(g(v, "checks", "cell_checks", "status_checks") for v in ver if v)
-    fails = sum(g(v, "fail") for v in ver if v)
-    unv = sum(g(v, "unverified") for v in ver if v)
+    _c = [counts(v) for v in ver if v]
+    checks = sum(c["checks"] for c in _c)
+    fails = sum(c["fail"] for c in _c)
+    unv = sum(c["unverified"] for c in _c)
 
     body = f"""
 <div class="stats">
@@ -432,6 +434,22 @@ def g(v, *keys):
     return 0
 
 
+# The four ledgers do not name their counters identically: the standings ledger says
+# cell_checks, the deficiency ledger says status_checks and has no pass/unverified
+# counters at all (it records register_rows instead). Normalise once, explicitly, so a
+# missing counter reads as zero rather than silently picking up a different one.
+COUNTER_KEYS = {
+    "checks": ("checks", "cell_checks", "status_checks"),
+    "pass": ("pass",),
+    "fail": ("fail",),
+    "unverified": ("unverified",),
+}
+
+
+def counts(v):
+    return {name: g(v, *keys) for name, keys in COUNTER_KEYS.items()}
+
+
 def build_verification():
     files = [("data/verification/standings.json", "Standings"),
              ("data/verification/schedule.json", "Week 10 slate"),
@@ -443,13 +461,14 @@ def build_verification():
         v = load(rel)
         if not v:
             continue
+        _c = counts(v)
         for k in tot:
-            tot[k] += g(v, k, "cell_checks", "status_checks")
+            tot[k] += _c[k]
         pill = '<span class="pill pass">0 mismatches</span>' if not v["fail"] \
             else f'<span class="pill fail">{v["fail"]} mismatches</span>'
         rows.append([
-            cell(name), cell(f'{g(v, "checks", "cell_checks", "status_checks"):,}'), cell(f'{g(v, "pass"):,}'),
-            rcell(pill), cell(f'{g(v, "unverified"):}'),
+            cell(name), cell(f'{counts(v)["checks"]:,}'), cell(f'{counts(v)["pass"]:,}'),
+            rcell(pill), cell(f'{counts(v)["unverified"]:,}'),
             rcell(srclink(v.get("official_source"), v.get("official_source"))),
         ])
     body = f"""
@@ -473,6 +492,10 @@ field.</div>
 <h2>Arithmetic checks run on the official page itself</h2>
 <p class="small">Before any committed value is trusted, the official page is tested against itself.
 If a page contradicts its own arithmetic, no transcription from it can be trusted either.</p>
+<p class="small">Checks exceed reconciled + mismatches + unverifiable by 34, and that gap is
+accounted for rather than hidden: the deficiency ledger records 66 checks but has no
+pass/unverified counters of its own, and the standings ledger records 32 provenance notes
+(venue fields and the dataset's own flag text) outside its cell count.</p>
 {table([("Check", ""), ("Result", ""), ("Why it matters", "")], [
  [cell("PCT equals (W + 0.5T) / games"), rcell('<span class="pill pass">320 pass</span>'),
   cell("Catches a mis-aligned column, the single most common transcription failure.")],
