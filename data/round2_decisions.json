@@ -1,0 +1,70 @@
+{
+  "dataset": "round2_decisions",
+  "title": "Decision register additions — round 2 (price authority, staking, settlement)",
+  "generated_at": "2026-11-14",
+  "source": {
+    "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/round2-executive-summary.md",
+    "label": "X1 round-2 executive summary (this repository)",
+    "org": "Project brief"
+  },
+  "rows": [
+    {
+      "id": "Q-31",
+      "area": "Prices",
+      "question": "Which price source is authoritative for the market open and close snapshots in the price-snapshot store?",
+      "why_it_matters": "The market line and difference columns, closing line value, and demotion trigger G-D1.T3 all depend on it. Until it is answered those columns stay blank by rule.",
+      "information_we_have": "No official league source publishes betting prices (flag F-06). A community mirror (nflverse/nfldata) publishes single snapshots and historical initial/closing lines with no named book provenance (flag I-10). The store captures our own numbers correctly today.",
+      "information_missing": "An owner-approved price feed: a named sportsbook, a consensus definition, or an accepted community source with known provenance.",
+      "how_to_get_it": "Decide between: (A) subscribe to a licensed odds feed (e.g. a book API or an odds aggregator) and record its name in the source registry; (B) adopt the community mirror as a labelled benchmark with explicit acceptance of its provenance gap; (C) originate prices ourselves and treat our own numbers as the market column. Record the choice on the suggestion board.",
+      "blocks_decision": "yes — price store market columns, CLV trigger T3, edge/EV publication",
+      "status": "open",
+      "_source_url": "https://github.com/nflverse/nfldata/blob/master/DATASETS.md",
+      "_source_label": "nflverse/nfldata DATASETS.md (community mirror provenance)"
+    },
+    {
+      "id": "Q-32",
+      "area": "Leaderboard",
+      "question": "What staking plan does the leaderboard track (flat units, fractional Kelly, tiered), and what is the unit size?",
+      "why_it_matters": "The staking scorecard is deliberately unranked; it cannot become a decision tool until a plan exists. It also feeds the drawdown demotion trigger G-D1.T4.",
+      "information_we_have": "Signal metrics are staking-blind (flat 1-unit reference) and already ranked on. Per-bet series support drawdown and streak computation under any plan.",
+      "information_missing": "The owner's risk appetite: allocation size, maximum exposure per bet, and whether Kelly fractions are acceptable.",
+      "how_to_get_it": "Choose on the suggestion board (paths in SS-06 area of the suggestions page): flat 1% units (recommended default), quarter-Kelly on the model edge, or tiered stakes by gate confidence. Any choice is pre-registered before the next graded bet.",
+      "blocks_decision": "yes — staking scorecard values, G-D1.T4 threshold calibration",
+      "status": "open",
+      "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/round2-executive-summary.md",
+      "_source_label": "X1 round-2 executive summary (this repository)"
+    },
+    {
+      "id": "Q-33",
+      "area": "Results feed",
+      "question": "What is the settlement authority and grading window for the verified results feed?",
+      "why_it_matters": "Automated grading and ROI publication need a rule for when a result is final (the league can correct a stat line) and who may re-grade.",
+      "information_we_have": "The feed grades only from official NFL.com FINAL scores and reproduces the official standings exactly (32/32 clubs). Week 10 TNF is graded; the remaining 13 games are pending by rule.",
+      "information_missing": "A correction policy: how long after kickoff a league correction is honoured, and who may trigger a re-grade.",
+      "how_to_get_it": "Adopt the freshness/correction policy already drafted in data/audit/what_changed.json as the settlement policy, or amend it on the suggestion board. Then wire grading into the data-refresh workflow.",
+      "blocks_decision": "yes — automated grading job, leaderboard ROI publication",
+      "status": "open",
+      "_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "_source_label": "NFL.com Week 10 schedule (official final scores)"
+    },
+    {
+      "id": "Q-34",
+      "area": "Rewards",
+      "question": "How are leaderboard rewards funded and paid, and in what jurisdiction?",
+      "why_it_matters": "The reward formula is defined and gate-weighted, but a reward with no funding source or legality review cannot be paid. Nothing is implemented ahead of this decision.",
+      "information_we_have": "Reward = 1000 x ROI x min(1, bets/300) x confidence, gate-weighted; strategy-level accounting is ready.",
+      "information_missing": "Funding source, prize jurisdiction and compliance review, and whether rewards are monetary, points, or recognition-only.",
+      "how_to_get_it": "Owner decision; if monetary, a compliance review before the first live season. Recognition-only needs no review. Record the choice on the suggestion board (carried from Q-06/Q-25).",
+      "blocks_decision": "yes — rewards going live",
+      "status": "open",
+      "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+      "_source_label": "X1 executive summary (reward rule)"
+    }
+  ],
+  "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/round2-executive-summary.md",
+  "_source_label": "X1 round-2 executive summary (this repository)",
+  "_source_org": "Project brief",
+  "_retrieved_at": "2026-11-14",
+  "_flags": [],
+  "_verified": true
+}
