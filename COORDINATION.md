@@ -1258,3 +1258,49 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena/1d3600f8-x1` — price snapshots, verified results feed, and the eight emphasized requirements (this session)
+
+**Session ID:** `arena-1d3600f8-x1` · **Branch:** `arena/1d3600f8-x1` (branched from `11d9ea1`, `main`)
+**Claim written and pushed before any task work started (rule 1).**
+
+## Handoff / takeover justification (board rule 10)
+
+Every existing claim on this board is `done` or `needs review`; the owning sessions have merged and
+gone quiet. The owner brief re-emphasises eight requirements; auditing `main` against them shows
+six gaps and two partials (audit detail in the completion record below). No active claim covers
+them. This session claims them.
+
+## Claim
+
+| # | Task | Why it is a gap (audit of `main` @ 11d9ea1) | Status | Owner | Files in scope |
+|---|---|---|---|---|---|
+| T15 | **Price-snapshot store**: record opening and closing numbers for every market we originate | No store exists. `data/market_lines.json` ships empty with a note; nothing records opening/closing captures per market | claimed | `arena-1d3600f8-x1` | `data/price_snapshots/**`, `tools/build_price_snapshots.py`, `tools/record_price.py`, `docs/methodology/price-snapshots.md` |
+| T16 | **Verified results feed** so backtests and ROI can be computed at all | No results feed exists; the official-only leaderboard explicitly waits on "a results feed and a price feed". Only the Week 10 TNF final is recorded | claimed | `arena-1d3600f8-x1` | `data/results/**`, `tools/build_results_feed.py`, `tools/verify_results_feed.py`, `tools/grade_roi.py`, `docs/methodology/results-feed.md` |
+| T17 | **Origination order side → total → moneyline**, with the model's fair line, the market line, and the difference published as separate columns | Order is not codified anywhere; the originated CSV covers spread/total but has no market-moneyline or moneyline-difference columns | claimed | `arena-1d3600f8-x1` | `tools/build_origination_table.py`, `data/lines/origination_2026_week10.csv`, `docs/methodology/origination-order.md` |
+| T18 | **Leaderboard: separate 'signal' from 'staking'** so a lucky staking run cannot mask a bad signal | The board ranks by gate-weighted reward; no separate signal grade vs staking grade exists | claimed | `arena-1d3600f8-x1` | `tools/build_signal_staking.py`, `data/leaderboard_signal_staking.json`, `docs/methodology/signal-vs-staking.md` |
+| T19 | **Track the depth of the replacement**, not just the fact of a replacement | `replacement_depth` exists in `data/verify/deficiency_recomputed.json` but is not aggregated/published as a depth-of-replacement view | claimed | `arena-1d3600f8-x1` | `tools/build_replacement_depth.py`, `data/analysis/replacement_depth.json` |
+| T20 | **Correlations only from officially sourced numbers, with n published per value** | The correlation page leads with mirror-based values (nflverse) labelled benchmark-only; only one subsection is official. Requirement: publish official-only values with n | claimed | `arena-1d3600f8-x1` | `tools/build_correlations_official.py`, `data/analysis/correlations_official.csv` |
+| T21 | **Demotion gate** that sends a live strategy back to paper | Only "two failed windows demote" prose exists in scoring_rules; no gate object defines triggers, action, re-entry, logging | claimed | `arena-1d3600f8-x1` | `data/gates.json` (additive G8), `docs/methodology/demotion-gate.md` |
+| T22 | Final integration: wire T15–T21 into the unified dashboard, update exec summary + requirement register, run every verifier, PR → `main`, merge, Pages deploy confirmed, record here | Per board rule 9 (shared outputs: `tools/build_app.py`, `app/**`) | claimed | `arena-1d3600f8-x1` | `tools/build_app.py` (additive), `app/**` (regenerated), `docs/EXECUTIVE-SUMMARY.md`, `COORDINATION.md` |
+
+**Non-overlap declaration (checked against all claims on this board at 2026-11-14):** no `done` /
+`needs review` claim owns `data/price_snapshots/`, `data/results/`, `data/analysis/`, or the four
+new tools above — all new paths. `data/gates.json` edit is **additive** (one new gate object G8 +
+one scoring rule line), tagged in-file. `tools/build_app.py` edits are **additive** (new sections +
+two new pages + nav entries), tagged in-file, exactly as sessions `arena/459b17e1-x1` and
+`arena/fcc11e05-x1` did for their sections. No other session's branch or files are touched.
+
+## Verification sources this session will use (fetched live, not recalled)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/schedules/2026/by-week/week-N> (N = 1..10) | T16 row-level final scores (game anchors with FINAL results) |
+| <https://www.nfl.com/standings/> (2026 REG) | T16 aggregate cross-check: per-team PF/PA and W-L-T sums must equal the transcribed results |
+| `data/verify/official_*.psv` (2026-11-14 snapshot) | T17–T20 base tables already verified against official pages by earlier sessions |
+
+## Log (this session, append-only)
+
+- 2026-11-14 — Claim written and pushed before task work (this commit).
