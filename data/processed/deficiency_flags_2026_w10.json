@@ -1,0 +1,1341 @@
+{
+ "meta": {
+  "week": 10,
+  "season": 2026,
+  "method": "Impact flags computed from ESPN weekly report statuses (Out/Doubtful/IR-with-game-week-comment). HIGH = QB on report or >=3 defensive players; MEDIUM = 2 defensive or >=3 offensive; LOW otherwise. Expected backup names are left blank: depth-chart data could not be verified from an official source in this environment.",
+  "source": "https://www.espn.com/nfl/injuries"
+ },
+ "rows": [
+  {
+   "game_id": "2026_10_WAS_NYG",
+   "team": "NYG",
+   "side": "home",
+   "opp": "WAS",
+   "impact_level": "MEDIUM",
+   "projected_qb": "J.J. McCarthy",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Jason Pinnock",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4240706/jason-pinnock"
+    },
+    {
+     "n": "Malik Harrison",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4040615/malik-harrison"
+    }
+   ],
+   "offense_out_doubtful": [],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_WAS_NYG",
+   "team": "WAS",
+   "side": "away",
+   "opp": "NYG",
+   "impact_level": "HIGH",
+   "projected_qb": "Jayden Daniels",
+   "qb_situation": "Athan Kaliakmanis: Out (Nov 23)",
+   "defense_out_doubtful": [],
+   "offense_out_doubtful": [
+    {
+     "n": "Athan Kaliakmanis",
+     "p": "QB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4432722/athan-kaliakmanis"
+    },
+    {
+     "n": "Lucas Patrick",
+     "p": "G",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/2576736/lucas-patrick"
+    },
+    {
+     "n": "Colson Yankoff",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4361088/colson-yankoff"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_NE_DET",
+   "team": "DET",
+   "side": "home",
+   "opp": "NE",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Jared Goff",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [],
+   "offense_out_doubtful": [
+    {
+     "n": "Sione Vaki",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4912274/sione-vaki"
+    },
+    {
+     "n": "Amon-Ra St. Brown",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4374302/amon-ra-st-brown"
+    },
+    {
+     "n": "Giovanni Manu",
+     "p": "OT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/5209589/giovanni-manu"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_NE_DET",
+   "team": "NE",
+   "side": "away",
+   "opp": "DET",
+   "impact_level": "HIGH",
+   "projected_qb": "Drake Maye",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Brenden Schooler",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4047941/brenden-schooler"
+    },
+    {
+     "n": "Charles Woods",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4368113/charles-woods"
+    },
+    {
+     "n": "Kevin Byard",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/2574056/kevin-byard"
+    },
+    {
+     "n": "Carlton Davis III",
+     "p": "CB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3916923/carlton-davis-iii"
+    },
+    {
+     "n": "Harold Landry III",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3122793/harold-landry-iii"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Rhamondre Stevenson",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4569173/rhamondre-stevenson"
+    },
+    {
+     "n": "A.J. Brown",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4047646/aj-brown"
+    },
+    {
+     "n": "Ben Brown",
+     "p": "C",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4362890/ben-brown"
+    },
+    {
+     "n": "Walter Rouse",
+     "p": "OL",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4428394/walter-rouse"
+    },
+    {
+     "n": "Cameron Latu",
+     "p": "TE",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4372026/cameron-latu"
+    },
+    {
+     "n": "Romeo Doubs",
+     "p": "WR",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4361432/romeo-doubs"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_KC_ATL",
+   "team": "ATL",
+   "side": "home",
+   "opp": "KC",
+   "impact_level": "HIGH",
+   "projected_qb": "Michael Penix Jr.",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Divine Deablo",
+     "p": "LB",
+     "s": "Doubtful",
+     "src": "https://www.espn.com/nfl/player/_/id/4037626/divine-deablo"
+    },
+    {
+     "n": "Josh Woods",
+     "p": "LB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3128303/josh-woods"
+    },
+    {
+     "n": "James Pearce Jr.",
+     "p": "LB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/5081394/james-pearce-jr"
+    },
+    {
+     "n": "Gervon Dexter Sr.",
+     "p": "DT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4429014/gervon-dexter-sr"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Zachariah Branch",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4870612/zachariah-branch"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_KC_ATL",
+   "team": "KC",
+   "side": "away",
+   "opp": "ATL",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Patrick Mahomes",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Peter Woods",
+     "p": "DT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4871063/peter-woods"
+    },
+    {
+     "n": "Mansoor Delane",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4880124/mansoor-delane"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Jaylon Moore",
+     "p": "OT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4043041/jaylon-moore"
+    },
+    {
+     "n": "Jaydn Ott",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4685489/jaydn-ott"
+    },
+    {
+     "n": "Kenneth Walker III",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4567048/kenneth-walker-iii"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_HOU_CLE",
+   "team": "CLE",
+   "side": "home",
+   "opp": "HOU",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Deshaun Watson",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Ronnie Hickman",
+     "p": "S",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4569620/ronnie-hickman"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Michael Burton",
+     "p": "FB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/2515270/michael-burton"
+    },
+    {
+     "n": "Denzel Boston",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4832800/denzel-boston"
+    },
+    {
+     "n": "Joe Royer",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4565859/joe-royer"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_HOU_CLE",
+   "team": "HOU",
+   "side": "away",
+   "opp": "CLE",
+   "impact_level": "HIGH",
+   "projected_qb": "C.J. Stroud",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Will Anderson Jr.",
+     "p": "DE",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4685724/will-anderson-jr"
+    },
+    {
+     "n": "Danielle Hunter",
+     "p": "DE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/2976560/danielle-hunter"
+    },
+    {
+     "n": "Azeez Al-Shaair",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3919117/azeez-al-shaair"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Keylan Rutledge",
+     "p": "G",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4839498/keylan-rutledge"
+    },
+    {
+     "n": "Brevin Jordan",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4362504/brevin-jordan"
+    },
+    {
+     "n": "Wyatt Teller",
+     "p": "G",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3045474/wyatt-teller"
+    },
+    {
+     "n": "Trent Brown",
+     "p": "OT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3043109/trent-brown"
+    },
+    {
+     "n": "Marvin Harrison Jr.",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4432708/marvin-harrison-jr"
+    },
+    {
+     "n": "David Montgomery",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4035538/david-montgomery"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_MIN_GB",
+   "team": "GB",
+   "side": "home",
+   "opp": "MIN",
+   "impact_level": "HIGH",
+   "projected_qb": "Jordan Love",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Lukas Van Ness",
+     "p": "DE",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4686906/lukas-van-ness"
+    },
+    {
+     "n": "Javon Bullard",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4688930/javon-bullard"
+    },
+    {
+     "n": "Zaire Franklin",
+     "p": "LB",
+     "s": "Doubtful",
+     "src": "https://www.espn.com/nfl/player/_/id/3124005/zaire-franklin"
+    },
+    {
+     "n": "Xavier McKinney",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4241470/xavier-mckinney"
+    },
+    {
+     "n": "Micah Parsons",
+     "p": "DE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4361423/micah-parsons"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Josh Whyle",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4360086/josh-whyle"
+    },
+    {
+     "n": "Skyy Moore",
+     "p": "WR",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4430191/skyy-moore"
+    },
+    {
+     "n": "Chris Brooks",
+     "p": "RB",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/3149687/chris-brooks"
+    },
+    {
+     "n": "Kevin Zeitler",
+     "p": "G",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/14931/kevin-zeitler"
+    },
+    {
+     "n": "Travis Glover",
+     "p": "OT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4361904/travis-glover"
+    },
+    {
+     "n": "Luke Musgrave",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4428085/luke-musgrave"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_MIN_GB",
+   "team": "MIN",
+   "side": "away",
+   "opp": "GB",
+   "impact_level": "HIGH",
+   "projected_qb": "Kirk Cousins",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Joshua Metellus",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4046537/joshua-metellus"
+    },
+    {
+     "n": "Blake Cashman",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3728281/blake-cashman"
+    },
+    {
+     "n": "Kyle Van Noy",
+     "p": "LB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/16772/kyle-van-noy"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Jauan Jennings",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3886598/jauan-jennings"
+    },
+    {
+     "n": "Jordan Addison",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4429205/jordan-addison"
+    },
+    {
+     "n": "T.J. Hockenson",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4036133/tj-hockenson"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_MIA_IND",
+   "team": "IND",
+   "side": "home",
+   "opp": "MIA",
+   "impact_level": "HIGH",
+   "projected_qb": "Daniel Jones",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Jaylon Carlies",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4601021/jaylon-carlies"
+    },
+    {
+     "n": "Jerry Tillery",
+     "p": "DT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3863182/jerry-tillery"
+    },
+    {
+     "n": "Akeem Davis-Gaither",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3917142/akeem-davis-gaither"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Jalen Travis",
+     "p": "OT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4892240/jalen-travis"
+    },
+    {
+     "n": "Luke Rhodes",
+     "p": "LS",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/2566045/luke-rhodes"
+    },
+    {
+     "n": "Will Mallory",
+     "p": "TE",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4362523/will-mallory"
+    },
+    {
+     "n": "Mo Alie-Cox",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/2998565/mo-alie-cox"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_MIA_IND",
+   "team": "MIA",
+   "side": "away",
+   "opp": "IND",
+   "impact_level": "HIGH",
+   "projected_qb": "Malik Willis",
+   "qb_situation": "Malik Willis: Injured Reserve (Dec 13)",
+   "defense_out_doubtful": [
+    {
+     "n": "Darrell Baker Jr.",
+     "p": "CB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4036660/darrell-baker-jr"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Aaron Brewer",
+     "p": "C",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4040537/aaron-brewer"
+    },
+    {
+     "n": "Jared Wayne",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4430681/jared-wayne"
+    },
+    {
+     "n": "Chris Bell",
+     "p": "WR",
+     "s": "Doubtful",
+     "src": "https://www.espn.com/nfl/player/_/id/4869961/chris-bell"
+    },
+    {
+     "n": "Malik Willis",
+     "p": "QB",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4242512/malik-willis"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_CAR_NO",
+   "team": "NO",
+   "side": "home",
+   "opp": "CAR",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Tyler Shough",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Christen Miller",
+     "p": "DT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4685479/christen-miller"
+    },
+    {
+     "n": "Martin Emerson Jr.",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4429568/martin-emerson-jr"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Erik McCoy",
+     "p": "C",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3917331/erik-mccoy"
+    },
+    {
+     "n": "Taliese Fuaga",
+     "p": "OT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4606711/taliese-fuaga"
+    },
+    {
+     "n": "CJ Donaldson",
+     "p": "RB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/5081999/cj-donaldson"
+    },
+    {
+     "n": "Travis Etienne Jr.",
+     "p": "RB",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4239996/travis-etienne-jr"
+    },
+    {
+     "n": "Mason Tipton",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4573697/mason-tipton"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_CAR_NO",
+   "team": "CAR",
+   "side": "away",
+   "opp": "NO",
+   "impact_level": "HIGH",
+   "projected_qb": "Bryce Young",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Mike Jackson",
+     "p": "CB",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/3917853/mike-jackson"
+    },
+    {
+     "n": "Will Lee III",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/5151083/will-lee-iii"
+    },
+    {
+     "n": "Jaelan Phillips",
+     "p": "LB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4242975/jaelan-phillips"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Xavier Legette",
+     "p": "WR",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4430034/xavier-legette"
+    },
+    {
+     "n": "Jonathon Brooks",
+     "p": "RB",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4678008/jonathon-brooks"
+    },
+    {
+     "n": "Brady Christensen",
+     "p": "G",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4256062/brady-christensen"
+    },
+    {
+     "n": "Ikem Ekwonu",
+     "p": "OT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4427132/ikem-ekwonu"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_BUF_NYJ",
+   "team": "NYJ",
+   "side": "home",
+   "opp": "BUF",
+   "impact_level": "HIGH",
+   "projected_qb": "Geno Smith",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Nahshon Wright",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4570470/nahshon-wright"
+    },
+    {
+     "n": "Harrison Phillips",
+     "p": "DT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3117255/harrison-phillips"
+    },
+    {
+     "n": "Joseph Ossai",
+     "p": "DE",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4362094/joseph-ossai"
+    },
+    {
+     "n": "Jarvis Brownlee Jr.",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4426817/jarvis-brownlee-jr"
+    },
+    {
+     "n": "Trevin Wallace",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4683815/trevin-wallace"
+    },
+    {
+     "n": "VJ Payne",
+     "p": "S",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4837388/vj-payne"
+    },
+    {
+     "n": "Tyler Baron",
+     "p": "DE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4692555/tyler-baron"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Omar Cooper Jr.",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4723820/omar-cooper-jr"
+    },
+    {
+     "n": "Adonai Mitchell",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4597500/adonai-mitchell"
+    },
+    {
+     "n": "Garrett Wilson",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4569618/garrett-wilson"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_BUF_NYJ",
+   "team": "BUF",
+   "side": "away",
+   "opp": "NYJ",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Josh Allen",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Christian Benford",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4379778/christian-benford"
+    },
+    {
+     "n": "Sam Franklin Jr.",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4044133/sam-franklin-jr"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Tyrell Shavers",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4241476/tyrell-shavers"
+    },
+    {
+     "n": "Spencer Brown",
+     "p": "OT",
+     "s": "Doubtful",
+     "src": "https://www.espn.com/nfl/player/_/id/4030899/spencer-brown"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_JAX_TEN",
+   "team": "TEN",
+   "side": "home",
+   "opp": "JAX",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Cam Ward",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Cody Barton",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3926229/cody-barton"
+    },
+    {
+     "n": "Anthony Hill Jr.",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4870805/anthony-hill-jr"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Tommy Townsend",
+     "p": "P",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3915398/tommy-townsend"
+    },
+    {
+     "n": "Peter Skoronski",
+     "p": "G",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4429100/peter-skoronski"
+    },
+    {
+     "n": "Tyjae Spears",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4428557/tyjae-spears"
+    },
+    {
+     "n": "Carnell Tate",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4871023/carnell-tate"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_JAX_TEN",
+   "team": "JAX",
+   "side": "away",
+   "opp": "TEN",
+   "impact_level": "HIGH",
+   "projected_qb": "Trevor Lawrence",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "B.J. Green II",
+     "p": "DE",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4875266/bj-green-ii"
+    },
+    {
+     "n": "Jessie Bates III",
+     "p": "S",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3919512/jessie-bates-iii"
+    },
+    {
+     "n": "Cam'Ron Silmon-Craig",
+     "p": "S",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4877475/camron-silmon-craig"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Robert Hainsey",
+     "p": "C",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4242391/robert-hainsey"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_LA_ARI",
+   "team": "ARI",
+   "side": "home",
+   "opp": "LA",
+   "impact_level": "HIGH",
+   "projected_qb": "Gardner Minshew",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Andrew Wingard",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3918331/andrew-wingard"
+    },
+    {
+     "n": "Darius Robinson",
+     "p": "DE",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4569480/darius-robinson"
+    },
+    {
+     "n": "Max Melton",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4698113/max-melton"
+    },
+    {
+     "n": "Roy Lopez",
+     "p": "DT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4040805/roy-lopez"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Jon Gaines II",
+     "p": "G",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4367199/jon-gaines-ii"
+    },
+    {
+     "n": "Hjalte Froholdt",
+     "p": "C",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3886633/hjalte-froholdt"
+    },
+    {
+     "n": "Jayden Williams",
+     "p": "OT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4709718/jayden-williams"
+    },
+    {
+     "n": "Tip Reiman",
+     "p": "TE",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4696700/tip-reiman"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_LA_ARI",
+   "team": "LA",
+   "side": "away",
+   "opp": "ARI",
+   "impact_level": "LOW",
+   "projected_qb": "Matthew Stafford",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [],
+   "offense_out_doubtful": [],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_SEA_LV",
+   "team": "LV",
+   "side": "home",
+   "opp": "SEA",
+   "impact_level": "LOW",
+   "projected_qb": "Fernando Mendoza",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Thomas Booker IV",
+     "p": "DT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4360749/thomas-booker-iv"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Dont'e Thornton Jr.",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4432775/donte-thornton-jr"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_SEA_LV",
+   "team": "SEA",
+   "side": "away",
+   "opp": "LV",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Sam Darnold",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Leonard Williams",
+     "p": "DT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/2971622/leonard-williams"
+    },
+    {
+     "n": "Terrion Arnold",
+     "p": "CB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4592837/terrion-arnold"
+    }
+   ],
+   "offense_out_doubtful": [],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_SF_DAL",
+   "team": "DAL",
+   "side": "home",
+   "opp": "SF",
+   "impact_level": "HIGH",
+   "projected_qb": "Dak Prescott",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Donovan Ezeiruaku",
+     "p": "LB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4683848/donovan-ezeiruaku"
+    },
+    {
+     "n": "Joey Porter Jr.",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4426506/joey-porter-jr"
+    },
+    {
+     "n": "DaRon Bland",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4248911/daron-bland"
+    },
+    {
+     "n": "Juanyeh Thomas",
+     "p": "S",
+     "s": "Doubtful",
+     "src": "https://www.espn.com/nfl/player/_/id/4360590/juanyeh-thomas"
+    },
+    {
+     "n": "Alijah Clark",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4595352/alijah-clark"
+    },
+    {
+     "n": "P.J. Locke",
+     "p": "S",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/3929850/pj-locke"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Jonathan Mingo",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4426485/jonathan-mingo"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_SF_DAL",
+   "team": "SF",
+   "side": "away",
+   "opp": "DAL",
+   "impact_level": "HIGH",
+   "projected_qb": "Brock Purdy",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Renardo Green",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4427325/renardo-green"
+    },
+    {
+     "n": "Deommodore Lenoir",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4242488/deommodore-lenoir"
+    },
+    {
+     "n": "Dre Greenlaw",
+     "p": "LB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3916903/dre-greenlaw"
+    },
+    {
+     "n": "Upton Stout",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4565200/upton-stout"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Mike Evans",
+     "p": "WR",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/16737/mike-evans"
+    },
+    {
+     "n": "Trent Williams",
+     "p": "OT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/13241/trent-williams"
+    },
+    {
+     "n": "Isaac Guerendo",
+     "p": "RB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4372561/isaac-guerendo"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_PIT_CIN",
+   "team": "CIN",
+   "side": "home",
+   "opp": "PIT",
+   "impact_level": "LOW",
+   "projected_qb": "Joe Burrow",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Kyle Dugger",
+     "p": "S",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4401811/kyle-dugger"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Andrei Iosivas",
+     "p": "WR",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4368003/andrei-iosivas"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_PIT_CIN",
+   "team": "PIT",
+   "side": "away",
+   "opp": "CIN",
+   "impact_level": "MEDIUM",
+   "projected_qb": "Aaron Rodgers",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Derrick Harmon",
+     "p": "DT",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4682980/derrick-harmon"
+    },
+    {
+     "n": "Donte Kent",
+     "p": "CB",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/4608004/donte-kent"
+    }
+   ],
+   "offense_out_doubtful": [],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_LAC_BAL",
+   "team": "BAL",
+   "side": "home",
+   "opp": "LAC",
+   "impact_level": "HIGH",
+   "projected_qb": "Tyler Huntley",
+   "qb_situation": "QB1 Lamar Jackson (thumb) on IR; QB2 Tyler Huntley (toe) on IR; QB3 Skylar Thompson on IR (all ESPN) — backup depth extreme; named starter for Week 10 not confirmed in sources used.",
+   "defense_out_doubtful": [
+    {
+     "n": "Jaylinn Hawkins",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/3858276/jaylinn-hawkins"
+    },
+    {
+     "n": "Adisa Isaac",
+     "p": "LB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4426372/adisa-isaac"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Adam Randall",
+     "p": "RB",
+     "s": "Injured Reserve",
+     "src": "https://www.espn.com/nfl/player/_/id/4685526/adam-randall"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  },
+  {
+   "game_id": "2026_10_LAC_BAL",
+   "team": "LAC",
+   "side": "away",
+   "opp": "BAL",
+   "impact_level": "HIGH",
+   "projected_qb": "Justin Herbert",
+   "qb_situation": "no QB on weekly report",
+   "defense_out_doubtful": [
+    {
+     "n": "Deane Leonard",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4690171/deane-leonard"
+    },
+    {
+     "n": "Rodney Shelley",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4838693/rodney-shelley"
+    },
+    {
+     "n": "Kendall Williamson",
+     "p": "S",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4360745/kendall-williamson"
+    },
+    {
+     "n": "Isas Waxter",
+     "p": "CB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4574105/isas-waxter"
+    },
+    {
+     "n": "Justin Eboigbe",
+     "p": "DT",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4567138/justin-eboigbe"
+    }
+   ],
+   "offense_out_doubtful": [
+    {
+     "n": "Keaton Mitchell",
+     "p": "RB",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4596334/keaton-mitchell"
+    },
+    {
+     "n": "Ladd McConkey",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4612826/ladd-mcconkey"
+    },
+    {
+     "n": "Brenen Thompson",
+     "p": "WR",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4685553/brenen-thompson"
+    },
+    {
+     "n": "Branson Taylor",
+     "p": "G",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4433914/branson-taylor"
+    },
+    {
+     "n": "Kayode Awosika",
+     "p": "G",
+     "s": "Questionable",
+     "src": "https://www.espn.com/nfl/player/_/id/4040842/kayode-awosika"
+    },
+    {
+     "n": "Isaiah World",
+     "p": "OT",
+     "s": "Out",
+     "src": "https://www.espn.com/nfl/player/_/id/5084965/isaiah-world"
+    }
+   ],
+   "expected_backup_names": "",
+   "source": "https://www.espn.com/nfl/injuries"
+  }
+ ]
+}

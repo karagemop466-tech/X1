@@ -1,0 +1,214 @@
+{
+ "meta": {
+  "generated": "2026-11-14",
+  "by": "scripts/build_data.py",
+  "count": 34,
+  "policy": "Unverified/irregular items never block release; published on the site's Flagged for Review page."
+ },
+ "items": [
+  {
+   "category": "DATA-CONVENTION",
+   "detail": "spread_line vs closing_lines.csv agreement only 6138/6736 within 0.6 pts (mean |diff| 0.23) — differences are expected line-timing/book variation, not sign errors",
+   "source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "BAL Adam Randall (RB): status column = 'Injured Reserve' but comment = game-week designation ('Nov 4: Randall (neck) is officially listed as questionable for Thursday's game versus the ...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4685526/adam-randall",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "CAR Mike Jackson (CB): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Jackson (groin) is listed as doubtful for Sunday's game against New Orleans....')",
+   "source": "https://www.espn.com/nfl/player/_/id/3917853/mike-jackson",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "CAR Xavier Legette (WR): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Legette (knee) is listed as questionable for Sunday's game at New Orleans....')",
+   "source": "https://www.espn.com/nfl/player/_/id/4430034/xavier-legette",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "CAR Jonathon Brooks (RB): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Brooks (groin) is listed as doubtful for Sunday's game at New Orleans after being ...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4678008/jonathon-brooks",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "CAR Brady Christensen (G): status column = 'Injured Reserve' but comment = game-week designation ('Nov 7: Christensen (hamstring), who is on IR, has been ruled out for Sunday's battle again...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4256062/brady-christensen",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "CIN Andrei Iosivas (WR): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Iosivas (thumb) is listed as doubtful for Sunday's game against Pittsburgh....')",
+   "source": "https://www.espn.com/nfl/player/_/id/4368003/andrei-iosivas",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "GB Skyy Moore (WR): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Moore (ankle) is listed as questionable for Sunday's game against the Vikings, Wes...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4430191/skyy-moore",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "GB Chris Brooks (RB): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Brooks (ankle) is listed as questionable for Sunday's game against the Vikings, We...')",
+   "source": "https://www.espn.com/nfl/player/_/id/3149687/chris-brooks",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "JAX B.J. Green II (DE): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Green (elbow) has been ruled out ahead of Sunday's game against the Titans, Michae...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4875266/bj-green-ii",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "MIA Malik Willis (QB): status column = 'Injured Reserve' but comment = game-week designation ('Nov 11: The Dolphins hope Willis (abdomen) will return this year but haven't ruled out sea...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4242512/malik-willis",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "NE Romeo Doubs (WR): status column = 'Injured Reserve' but comment = game-week designation ('Oct 19: Doubs (shoulder) is hopeful to return after the Patriots' Week 11 bye and isn't ex...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4361432/romeo-doubs",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "NO Travis Etienne Jr. (RB): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Etienne (hamstring) said Friday that \"the week of practice went well,\" and that he...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4239996/travis-etienne-jr",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "NYJ VJ Payne (S): status column = 'Injured Reserve' but comment = game-week designation ('Nov 7: Payne (knee) has been ruled out for Sunday's Week 9 clash against Kansas City....')",
+   "source": "https://www.espn.com/nfl/player/_/id/4837388/vj-payne",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH",
+   "detail": "PIT Derrick Harmon (DT): status column = 'Injured Reserve' but comment = game-week designation ('Nov 13: Harmon (foot) is listed as questionable for Sunday's game against the Bengals, Nic...')",
+   "source": "https://www.espn.com/nfl/player/_/id/4682980/derrick-harmon",
+   "severity": "needs-review"
+  },
+  {
+   "category": "QB-DEPTH-BAL",
+   "detail": "All three Ravens QBs listed on ESPN injury report (IR). Week 10 starter not verifiable from sources available in this environment; left blank.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Kenneth Walker III listed under Kansas City (questionable, vs Falcons) — 2026 team assignment per ESPN; differs from 2025 rosters. Recorded as reported.",
+   "source": "https://www.espn.com/nfl/player/_/id/4567048/kenneth-walker-iii",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Marvin Harrison Jr. listed under Houston (out, vs Browns) — 2026 team assignment per ESPN.",
+   "source": "https://www.espn.com/nfl/player/_/id/4432708/marvin-harrison-jr",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Jaylen Waddle and Riley Moss comments describe a DEN game vs CAR while both are listed under Denver — consistent with 2026 roster assignment; recorded as reported.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Myles Garrett listed under Los Angeles Rams (questionable) — 2026 team assignment per ESPN.",
+   "source": "https://www.espn.com/nfl/player/_/id/3122132/myles-garrett",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Mike Evans listed under San Francisco (out, at Dallas) — 2026 team assignment per ESPN.",
+   "source": "https://www.espn.com/nfl/player/_/id/16737/mike-evans",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Quenton Nelson listed under Seattle (out) — 2026 team assignment per ESPN.",
+   "source": "https://www.espn.com/nfl/player/_/id/3129308/quenton-nelson",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Travis Etienne Jr. listed under New Orleans — 2026 team assignment per ESPN.",
+   "source": "https://www.espn.com/nfl/player/_/id/4239996/travis-etienne-jr",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "A.J. Brown and Romeo Doubs listed under New England — 2026 team assignments per ESPN.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "David Montgomery listed under Houston (questionable) — 2026 team assignment per ESPN.",
+   "source": "https://www.espn.com/nfl/player/_/id/4035538/david-montgomery",
+   "severity": "needs-review"
+  },
+  {
+   "category": "PLAYER-TEAM-2026",
+   "detail": "Joey Porter Jr., Jonathan Mingo, Jalen Thompson listed under Dallas — 2026 team assignments per ESPN.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "COMMENT-NAMES-UNLISTED",
+   "detail": "JAX: Jessie Bates III comment says coach Liam Coen also ruled out DT Jordan Davis for Week 10, but Jordan Davis has no separate row on the ESPN page. Not added as an inferred row.",
+   "source": "https://www.espn.com/nfl/player/_/id/3919512/jessie-bates-iii",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ODD-ROW",
+   "detail": "SEA: Terrion Arnold listed 'Out' but comment reads 'Aug 29: Arnold signed a contract with the Seahawks on Saturday.' — row recorded verbatim; verify meaning on ESPN player page.",
+   "source": "https://www.espn.com/nfl/player/_/id/4592837/terrion-arnold",
+   "severity": "needs-review"
+  },
+  {
+   "category": "NOT-INJURY",
+   "detail": "WAS: Athan Kaliakmanis listed Out — comment says (coach's decision) inactive as emergency QB; not an injury.",
+   "source": "https://www.espn.com/nfl/player/_/id/4432722/athan-kaliakmanis",
+   "severity": "needs-review"
+  },
+  {
+   "category": "UNVERIFIED-STAFF",
+   "detail": "ESPN comments reference 'head coach Jesse Minter' (BAL) and 'head coach Mike LaFleur' (ARI). Staff titles not independently verified in this session.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "DATA-ENVIRONMENT",
+   "detail": "nflverse weekly injury release (nflverse-data/releases/injuries/injuries_2026.csv) not downloadable in this sandbox (release-asset hosts blocked). ESPN league injury page used instead; NFL.com cross-check recommended.",
+   "source": "https://github.com/nflverse/nflverse-data/releases/tag/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "MODEL-LIMIT",
+   "detail": "Totals model not yet built: model_total_hint left blank for all Week 10 games. No values inferred.",
+   "source": "scripts/build_data.py",
+   "severity": "needs-review"
+  },
+  {
+   "category": "DEPTH-CHARTS",
+   "detail": "Named backups ('expected_backup_names') left blank for all teams: depth-chart data not verifiable from an official source in this environment. Position-group impact flags are provided instead.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  },
+  {
+   "category": "ESPN-STATUS-MISMATCH-COUNT",
+   "detail": "Status/comment mismatches (ESPN status column says IR but comment gives a Week-10 designation) are flagged per-row in injuries_2026_w10.json build output; they are recorded verbatim, never corrected.",
+   "source": "https://www.espn.com/nfl/injuries",
+   "severity": "needs-review"
+  }
+ ]
+}
