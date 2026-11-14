@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from . import htmlutil as H
+from . import model_correlation, repo_review
 from . import parsers as P
 from . import sources as S
 from .http import fetch
@@ -488,6 +489,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     depth = build_depth_charts(report, team_index)
     stats = build_team_stats(report, team_index)
     deficiency = build_deficiency(report, depth, injuries, team_index)
+
+    # Derived datasets. These read the freshly written files above, so a failed
+    # upstream fetch degrades them instead of producing numbers from thin air.
+    for builder in (model_correlation.main, repo_review.main):
+        try:
+            builder()
+            report["datasets"][builder.__module__.split(".")[-1]] = {"status": "written"}
+        except Exception as exc:  # noqa: BLE001
+            report["errors"].append(
+                {"dataset": builder.__module__, "error": f"{type(exc).__name__}: {exc}"}
+            )
 
     if only in (None, "probe"):
         build_probe(report)
