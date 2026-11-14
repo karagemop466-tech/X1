@@ -429,3 +429,8 @@ site's Questions page with what is known, what is missing and how to close each 
 | Pages deploy | `pages build and deployment` run https://github.com/karagemop466-tech/X1/actions/runs/43551918305 on `main` completed with conclusion **success**. The Pages API reports the site as `built` at https://karagemop466-tech.github.io/X1/. |
 | Live check | `https://karagemop466-tech.github.io/X1/research/index.html` and `…/research/leaderboard.html` were fetched after the deploy and render the published numbers (398 out-of-sample bets, +11.53% ROI, reward 21.6, 15 of 16 strategies rejected). The research pages are linked from the dashboard landing page and from the research navigation. |
 | Verification before merge | `tools/verify_data.py` 2,944 assertions; `tools/check_links.py` 7,646 assertions over 43 pages; `scripts/verify_site.py` 43 pages; `scripts/check_site.py` 13 pages; `scripts/verify_parlay.py`; `tools/cross_check.py` 1,604 values, 0 disagreements; `scripts/verify_research_site.py` 1,921 assertions. The assembled Pages tree was reproduced locally: 43 pages, 0 broken internal links, no orphan pages. |
+- **2026-11-14** — (round-3 update) main advanced again (PR #13) while PR #14 was open; re-merged
+  and re-resolved. Addendum above unchanged; annex integrations re-verified after every round:
+  all 9 verifiers PASS (verify_site 53 pages, annex 10 pages, check_links, verify_data 2,944
+  checks, cross_check, verify_parlay, test_source_rule, availability freshness).
+- **2026-11-14** — Integration PR: **#14** (`arena/a78e0158-x1` → `main`).

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary &amp; Open Questions · X1 NFL Decision System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <div class="brand">X1 <span class="x1">NFL</span> Decision System</div>
+  <div class="tagline">Verified NFL data · original line origination · skill-gated strategy leaderboard · snapshot 2026-11-14 (UTC)</div>
+</header>
+<nav class="main"><a href="index.html">Overview</a><a href="teams.html">Teams</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries & Depth</a><a href="lines.html">X1 Lines</a><a href="strategies.html">Strategies & Leaderboard</a><a href="analysis.html" class="active">Executive Summary & Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a></nav>
+<main>
+  <div class="kicker">Analysis</div>
+  <h1>Executive Summary &amp; Open Questions</h1>
+  <p class="lede">The full project summary and the decision matrix: what we know, what's missing, and how to discover it.</p>
+  <section class="panel"><h1>Executive summary</h1>
+<p><strong>Project X1 — NFL data, verification, and decision system</strong> · snapshot date 2026-11-14 (UTC)</p>
+<p>· session <code>arena-a78e0158-x1</code> · branch <code>arena/a78e0158-x1</code></p>
+<h2>What this is</h2>
+<p>A verified, source-linked NFL research base with three products:</p>
+<ol class='tight'><li><strong>A live GitHub Pages site</strong> — every table row carries an official source link; unverifiable</li></ol>
+<p>values are blank and flagged, never inferred.</p>
+<p>2. <strong>An original line-origination engine</strong> (<code>code/build_lines.py</code>) — the project&#x27;s own spreads and</p>
+<p>totals, fitted on game results only, validated leak-free against market benchmarks.</p>
+<p>3. <strong>A strategy leaderboard</strong> (<code>code/leaderboard.py</code>) with validation gates, measured correlation</p>
+<p>values, and a reward structure designed so luck cannot be paid.</p>
+<h2>Season state (verified 2026-11-14)</h2>
+<ul class='tight'><li>Week 10 in progress: 137 of 272 regular-season games played; season opened Wednesday Sept 9</li></ul>
+<p>(NE@SEA, Seattle defending Super Bowl LX champion). Super Bowl LXI: Feb 14, 2027, SoFi Stadium.</p>
+<ul class='tight'><li>Week 10: 14 games (TNF result: WAS 24, NYG 21), byes CHI/DEN/PHI/TB, Munich game NE@DET,</li></ul>
+<p>MNF LAC@BAL. Full slate on the Schedule page.</p>
+<ul class='tight'><li>Standings leaders through the Thursday game: BUF 7-1, SF 7-1, DEN 7-2, CHI 7-2; LAC 0-8,</li></ul>
+<p>MIA/TEN 1-7. All 32 rows cross-verified NFL.com ↔ nflverse (exact match).</p>
+<ul class='tight'><li>Record nine international games in 2026 (Melbourne, Rio, 3× London, Paris, Madrid, Munich,</li></ul>
+<p>Mexico City) — a structural signal source (travel/rest) unique to this season.</p>
+<h2>Verification results</h2>
+<ul class='tight'><li>Standings: 32/32 exact cross-source match. Week 10 schedule: 14/14. International: 9/9.</li><li>Injury report: 345 official rows transcribed with per-player links.</li><li>12 irregularities flagged (roster surprises, QB conflicts, stale input datasets) — published on</li></ul>
+<p>the <strong>Flagged for Review</strong> page; none block the release.</p>
+<h2>Findings that matter for decisions</h2>
+<ol class='tight'><li><strong>The v1 model has no betting edge — and that is measured, not assumed.</strong> Edge vs market ROI:</li></ol>
+<p>−6.1% (spreads) to −5.5% (totals); improving to −2.6% at a 7-point disagreement threshold.</p>
+<p>Strategies S4/S5 are registered as <code>failed-gate</code>. The path forward is model v2 with</p>
+<p>QB-adjustment (the single biggest missing feature, visible in LAC@BAL and SEA@LV).</p>
+<p>2. <strong>Same-game spread/total correlation is ≈ 0 in this dataset</strong> (φ = −0.023, n=1,496; margin-total</p>
+<p>r = 0.020) — same-game parlays price ≈ naively; cross-game independence is confirmed</p>
+<p>(r = 0.001, n=12,585). Correlation control is therefore cheap but must still be enforced.</p>
+<p>3. <strong>Luck cannot be paid by design.</strong> At −110, proving a true 55% capper takes 991 bets at 95%</p>
+<p>confidence; the leaderboard gates encode exactly that arithmetic (CLV bonuses, 100-bet minimum,</p>
+<p>binomial significance, drawdown caps).</p>
+<p>4. <strong>Injury/depth tracking is blocked by one missing input</strong>: official depth charts. The official</p>
+<p>injury report (345 verified rows) supports load flags today; deficiency scoring needs the</p>
+<p>discovery actions in open questions Q3/Q4.</p>
+<h2>Decisions needed from the owner (full matrix: open-questions.md)</h2>
+<ul class='tight'><li>Q6 odds feed for live market comparison &amp; CLV (blocks reward-grade CLV scoring),</li><li>Q7 reward-pool funding &amp; size,</li><li>Q3 depth-chart data collection (unlocks S1/S2 and the deficiency score),</li><li>Q2 model v2 priorities (QB adjustment recommended first),</li><li>Q10 risk posture (units per bet, stop-loss).</li></ul>
+<h2>Flagged for review (headline items)</h2>
+<p>Myles Garrett on LAR and Aaron Donald on LAR listings need confirmation (F1/F2); five star-player</p>
+<p>team changes are single-sourced (F3); the BAL Week 10 QB conflict is unresolved until Monday</p>
+<p>inactives (F4). Full list with links on the Flagged for Review page.</p></section><section class="panel"><h2 style="margin-top:0">Open questions — decision matrix</h2><h1>Open questions — what must be answered before decisions (T7)</h1>
+<p>Decision-readiness matrix: every question that must be answered before a reasonable decision can</p>
+<p>be made, what we already know (verified), what is missing, and the suggested action to discover it.</p>
+<p>Status values: <code>open</code> (needs owner decision or data), <code>in-progress</code>, <code>answered</code>.</p>
+<div class="tablewrap"><table class=""><thead><tr><th>#</th><th>Question</th><th>What we know (verified)</th><th>What we don't have</th><th>Suggested discovery action</th><th>Status</th></tr></thead><tbody><tr><td>Q1</td><td>What data can we trust automatically?</td><td>Standings/schedule/injuries cross-verified from official sources (32/32, 14/14, 9/9 matches); nflverse results match NFL.com exactly</td><td>A repeatable refresh pipeline (today: manual snapshots)</td><td>Add a weekly fetch script + Actions schedule; keep per-row provenance</td><td>open</td></tr><tr><td>Q2</td><td>Which model improvements give the first real edge?</td><td>v1 (results-only) has no edge: ROI −6.1%..−2.6% at all thresholds; market RMSE 13.3 vs ours 13.9</td><td>Quantified lift from QB-adjustment, recency weighting, situational features</td><td>Build model v2: QB starter adjustment (data already in qb_map), recency weights; re-run backtest; promote via gates</td><td>open</td></tr><tr><td>Q3</td><td>Who is actually 2nd/3rd string on each team?</td><td>Official weekly injury reports (345 verified rows, W10 2026)</td><td>Official depth charts for all 32 teams (no league-wide official source; club PR releases have them)</td><td>One-time collection of all 32 club depth charts into <code>data/depth/</code> with per-row club links; then snap-count verification via official gamebooks</td><td>open — <strong>highest-value unlock</strong> (enables S1/S2 + deficiency score)</td></tr><tr><td>Q4</td><td>How big is the backup-QB / injury-deficiency effect historically?</td><td>Market visibly prices QB news (e.g., LAC@BAL market line vs model without QB knowledge)</td><td>Historical injury-report archive joined to results</td><td>Archive NFL.com weekly reports (they exist per week, e.g. W9 2026); join to nflverse results 2019–2026; quantify</td><td>open</td></tr><tr><td>Q5</td><td>Which player-prop combos are correlated?</td><td>Game-level correlations measured: same-game spread/total φ=−0.023; cross-game r=0.001</td><td>Prop-level marginals and correlations (no official prop results feed in sandbox)</td><td>Obtain official league stat feeds (Next Gen Stats / GSIS via operations.nfl.com) or a licensed provider; compute per-market correlation matrix</td><td>open</td></tr><tr><td>Q6</td><td>Where will live market odds come from?</td><td>nflverse per-game closing lines (2019+, secondary source) for backtests</td><td>A live, timestamped odds feed for CLV scoring and price comparison</td><td>Decide provider/subscription (or use NFL.com-adjacent public endpoints if licensing allows); store timestamped lines in <code>data/odds/</code></td><td>open — <strong>blocks CLV-based rewards</strong></td></tr><tr><td>Q7</td><td>How is the reward pool funded and sized?</td><td>Reward mechanics defined (60/25/15 to top-3 official strategies)</td><td>Owner decision: pool size, currency, cadence</td><td>Owner decision required; no technical blocker</td><td>open — <strong>owner decision</strong></td></tr><tr><td>Q8</td><td>Which bets are allowed on the board?</td><td>Gates defined for singles, parlays (φ-adjusted), props</td><td>Owner policy: max parlay legs, prop-combo limits, bankroll cap</td><td>Owner decision; default proposal in suggestions SG-06</td><td>open — owner decision</td></tr><tr><td>Q9</td><td>How should the site grow?</td><td>Static site live with 10 pages, source-linked tables</td><td>Feature roadmap (filters, per-team pages, archive)</td><td>See suggestions register (SG-01..SG-08); owner picks</td><td>open</td></tr><tr><td>Q10</td><td>What is the risk posture?</td><td>Luck math computed (991 bets to prove a 55% capper)</td><td>Units per bet, stop-loss, correlation caps at portfolio level</td><td>Owner decision; defaults proposed in suggestions SG-07</td><td>open — owner decision</td></tr><tr><td>Q11</td><td>Are the flagged roster moves real?</td><td>12 irregularities flagged with sources (F1–F12)</td><td>Confirmation from club rosters/official transactions</td><td>Verify each flagged item against official club/transaction pages before using in models</td><td>in-progress</td></tr><tr><td>Q12</td><td>BAL Week 10 starting QB?</td><td>Conflict documented (nflverse: Huntley; NFL.com news Nov 5: out for season; no QB on official W10 report; Lamar on IR)</td><td>Final answer (inactives publish ~90 min before Monday 8:15 PM ET kickoff)</td><td>Check official inactives Monday night; update qb_map</td><td>in-progress</td></tr></tbody></table></div>
+<p><strong>Rule:</strong> nothing on the site or in the models treats an open question as answered.</p></section>
+</main>
+<footer class="site">
+  Data snapshot 2026-11-14 (UTC) · every table row links its official source; blanks are unverified and flagged, never inferred ·
+  built by session arena-a78e0158-x1 · <a href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener">repo</a>
+</footer>
+</body>
+</html>

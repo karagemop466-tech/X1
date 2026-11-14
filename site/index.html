@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · X1 NFL Decision System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <div class="brand">X1 <span class="x1">NFL</span> Decision System</div>
+  <div class="tagline">Verified NFL data · original line origination · skill-gated strategy leaderboard · snapshot 2026-11-14 (UTC)</div>
+</header>
+<nav class="main"><a href="index.html" class="active">Overview</a><a href="teams.html">Teams</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries & Depth</a><a href="lines.html">X1 Lines</a><a href="strategies.html">Strategies & Leaderboard</a><a href="analysis.html">Executive Summary & Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a></nav>
+<main>
+  <div class="kicker">Dashboard</div>
+  <h1>Overview</h1>
+  <p class="lede">One screen for the state of the project: verified data, the model, the leaderboard, and what needs your review.</p>
+  <div class="cards">
+<div class="card"><div class="k">Current week</div><div class="v">10</div><div class="s">14 games · byes CHI DEN PHI TB</div></div>
+<div class="card"><div class="k">Games played</div><div class="v">137 / 272</div><div class="s">through Week 10 Thursday</div></div>
+<div class="card"><div class="k">Standings verified</div><div class="v">32 / 32</div><div class="s">NFL.com ↔ nflverse exact match</div></div>
+<div class="card"><div class="k">Injury rows (official)</div><div class="v">345</div><div class="s">Week 10 NFL.com report</div></div>
+<div class="card"><div class="k">X1 model MAE</div><div class="v">13.9 pts σ</div><div class="s">spread · HFA 0.69</div></div>
+<div class="card"><div class="k">Flagged items</div><div class="v">14</div><div class="s">review before modeling</div></div>
+</div>
+<section class="panel"><h2 style="margin-top:0">What this site is</h2>
+<ul class='tight'><li><strong>Verified data</strong> — standings, schedule, international games, and the official injury report, each row linked to its source.</li><li><strong>Original lines (X1)</strong> — our own spreads/totals fitted on game results only, benchmarked against market lines with a leak-free backtest.</li><li><strong>Strategy leaderboard</strong> — registered strategies, validation gates, measured correlation values, and rewards that luck cannot win.</li><li><strong>Decision support</strong> — executive summary, the open-questions decision matrix, and a suggestions register awaiting your choices.</li></ul></section>
+<section class="panel"><h2 style="margin-top:0">Week 10 spotlight</h2>
+<div class="tablewrap"><table data-table class=""><thead><tr><th>Game</th><th>When (ET)</th><th>TV</th><th>Result</th><th>Expected QBs</th><th>Source</th></tr></thead><tbody><tr><td>WAS @ NYG</td><td>2026-11-12 8:15 PM ET</td><td>Prime Video</td><td>24-21</td><td>Jayden Daniels vs J.J. McCarthy</td><td><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></td></tr><tr><td>NE @ DET</td><td>2026-11-15 9:30 AM ET</td><td>FOX</td><td>—</td><td>Drake Maye vs Jared Goff</td><td><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></td></tr><tr><td>KC @ ATL</td><td>2026-11-15 1:00 PM ET</td><td>CBS</td><td>—</td><td>Patrick Mahomes vs Michael Penix Jr.</td><td><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></td></tr><tr><td>HOU @ CLE</td><td>2026-11-15 1:00 PM ET</td><td>FOX</td><td>—</td><td>C.J. Stroud vs Deshaun Watson</td><td><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></td></tr><tr><td>MIN @ GB</td><td>2026-11-15 1:00 PM ET</td><td>FOX</td><td>—</td><td>Kirk Cousins vs Jordan Love</td><td><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></td></tr><tr><td>MIA @ IND</td><td>2026-11-15 1:00 PM ET</td><td>CBS</td><td>—</td><td>Kyle McCord vs Daniel Jones</td><td><span class="src"><a href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">NFL.com schedule</a></span></td></tr></tbody></table></div>
+<p class="note">Full slate on the <a href="schedule.html">Schedule</a> page; QB conflicts flagged on the <a href="injuries.html">Injuries</a> page.</p></section>
+<section class="panel"><h2 style="margin-top:0">Top flags right now</h2>
+<div class="bigflag"><strong>F1 — Myles Garrett listed on Rams&#x27; Week 10 report</strong><br>Listed (LB, resting) on the official NFL.com Week 10 injury report; a trade path is not in the nflverse trade log — single-source, verify via club roster before modeling.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F2 — Aaron Donald listed on Rams&#x27; Week 10 report</strong><br>Listed (DT, DNP, no status) despite public retirement in March 2024 — either a 2026 return or a data error; verify via club roster.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F3 — Five star-player team changes single-sourced</strong><br>M. Harrison Jr. (HOU, OUT), M. Evans (SF, OUT Achilles), D. Lawrence (CIN), Q. Nelson (SEA, OUT), J. Porter Jr. (DAL), A.J. Brown (NE) appear on new teams in the official report; corroborate with club pages.<br><span class="src"><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report</a></span></div>
+<div class="bigflag"><strong>F4 — BAL Week 10 QB conflict — UNRESOLVED</strong><br>nflverse lists Tyler Huntley as starter; NFL.com news (Nov 5) reported Huntley out for season (turf toe); no QB on the official W10 report; Lamar Jackson on IR 6–10 weeks. Resolve at Monday inactives (~7:15 PM ET).<br><span class="src"><a href="https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury" target="_blank" rel="noopener">NFL.com news</a></span></div>
+<p class="note">All 14 items on the <a href="flagged.html">Flagged for Review</a> page.</p></section>
+<section class="panel"><h2 style="margin-top:0">System status</h2><p>0 bets logged across 6 registered strategies (all unproven/failed-gate/provisional — correct honest starting state). Reward pool: owner-funded (pending decision — open question Q7).</p><p class="note">Rebuild anything with <code>python3 code/build_reference_data.py && python3 code/build_lines.py && python3 code/leaderboard.py && python3 code/build_site.py</code></p></section>
+</main>
+<footer class="site">
+  Data snapshot 2026-11-14 (UTC) · every table row links its official source; blanks are unverified and flagged, never inferred ·
+  built by session arena-a78e0158-x1 · <a href="https://github.com/karagemop466-tech/X1" target="_blank" rel="noopener">repo</a>
+</footer>
+</body>
+</html>

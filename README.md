@@ -150,3 +150,39 @@ Open `index.html` in a browser or serve this directory with any static HTTP serv
 
 GitHub Pages is deployed at [karagemop466-tech.github.io/X1](https://karagemop466-tech.github.io/X1/). The deployment was recorded in the coordination log; a workflow runs on pushes to `main`. A lightweight static checker now verifies local links and that each research-table row links to an official source host before deployment.
 >>>PRESERVED VERBATIM>>>
+
+---
+
+## Snapshot annex (session `arena-a78e0158-x1`)
+
+A parallel, independently built **quantitative annex** is integrated alongside the sites above.
+Where the canonical site deliberately publishes no numbers, the annex publishes **computed**
+values with full inputs, code and audit trail:
+
+| Path | Contents |
+|---|---|
+| `site/` | The X1 snapshot dashboard (10 pages; every row source-linked; CSVs mirrored under `site/data/`) |
+| `data/nfl/`, `data/injuries/` | Verified snapshot: standings (cross-verified NFL.com ↔ nflverse, 32/32 exact), Week 10 schedule + byes, 9 international games, official 345-row injury report, QB map with conflicts flagged |
+| `data/lines/` | Originated X1 lines, leak-free backtest (1,779 games), threshold sweep, computed correlation report with 95% CIs, team ratings |
+| `data/strategies/` | Strategy registry with validation gates, leaderboard, luck-reference arithmetic, bet-log template |
+| `data/raw/nflverse/` | nflverse/nfldata source copies + provenance README |
+| `docs/annex/`, `docs/analysis/` | Annex review/sources/methodology docs; executive summary; decision matrix (Q1–Q12); suggestions register (SG-01..SG-13) |
+| `code/` | Deterministic stdlib builders: `build_reference_data.py`, `build_lines.py`, `leaderboard.py`, `build_site.py` |
+
+Headline (computed, not assumed): the v1 results-only model has **no betting edge** (ROI −6.1%…−2.6%
+across thresholds) — registered `failed-gate` on the annex leaderboard; same-game spread/total
+correlation φ = −0.023 (n=1,496); cross-game independence r = 0.001 (n=12,585); a true 55% capper
+needs 991 bets for 95% confidence — the gates encode this so luck cannot be rewarded.
+
+Rebuild the annex:
+
+```bash
+python3 code/build_reference_data.py   # verified CSVs from transcribed official data
+python3 code/build_lines.py            # ratings, leak-free backtest, Week 10 lines, correlations
+python3 code/leaderboard.py            # grades bets, scores strategies, checks gates
+python3 code/build_site.py             # regenerates site/ (annex)
+python3 scripts/verify_site_annex.py   # annex link + source-row check
+```
+
+Cross-check note: the independent standings transcriptions agree 32/32 exactly
+(`data/standings_2026.csv` ↔ `data/nfl/teams_standings_2026_w10.csv`).

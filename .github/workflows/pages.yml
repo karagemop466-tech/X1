@@ -37,6 +37,8 @@ jobs:
           cp -r dashboard _site/
           # the research session's model / strategy / prop / injury lab
           cp -r research _site/
+          # snapshot annex from session arena/a78e0158-x1 (originated lines, backtests, correlations)
+          cp -r site _site/
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
