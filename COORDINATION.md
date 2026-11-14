@@ -1364,3 +1364,15 @@ edits below are additive and tagged in-file).
 | PR | Branch → base | Content | Result |
 |---|---|---|---|
 | [#34](https://github.com/karagemop466-tech/X1/pull/34) | `arena/1d3600f8-x1` → `main` | T15–T22: price-snapshot store, verified results feed, origination order + 3-column rule, signal/staking split, depth-of-replacement, official-only correlations with n, demotion gate G8, dashboard integration | checks: see PR; merge + Pages rows appended below |
+
+### Merge and deployment result — PR #34 (appended post-merge)
+
+| Item | Value |
+|---|---|
+| Merge command | `gh pr merge 34 --merge` |
+| Merge result | **MERGED** 2026-11-14, merge commit `a14b12d` on `main` (state MERGED) |
+| Checks on the PR | `verify` **pass**, `build` **pass**, `deploy` skipped (expected — deploy runs on `main` only) |
+| Post-merge `verify-site` on `main` | run [43634224451](https://github.com/karagemop466-tech/X1/actions/runs/43634224451) **success** |
+| Pages deploy | `Publish static site to GitHub Pages` run [43634224444](https://github.com/karagemop466-tech/X1/actions/runs/43634224444) **success** (26s); `pages build and deployment` [43634224061](https://github.com/karagemop466-tech/X1/actions/runs/43634224061) **success** |
+| Pages API | status `built` — <https://karagemop466-tech.github.io/X1/> |
+| Live-site check | <https://karagemop466-tech.github.io/X1/app/results.html> and <https://karagemop466-tech.github.io/X1/app/origination.html> fetched live: both render the new tables (137-row feed with per-row official game links; 56-row origination table side→total→moneyline with fair/market/difference columns). Root landing serves the new nav entries. |
