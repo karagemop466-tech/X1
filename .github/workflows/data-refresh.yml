@@ -45,8 +45,8 @@ jobs:
         id: pipeline
         continue-on-error: true
         run: |
-          mkdir -p data
-          { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee data/_pipeline.log
+          mkdir -p _ci
+          { python3 -m pipeline; echo "exit=$?"; } 2>&1 | tee _ci/pipeline.log
 
       - name: Verify row-level source coverage
         continue-on-error: true
