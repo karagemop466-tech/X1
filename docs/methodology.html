@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method &amp; checks · X1 NFL Research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">X1 · NFL Research Dashboard</a>
+<nav class="menu"><a class="" href="index.html">Overview</a><a class="" href="standings.html">Data</a><a class="active" href="strategies.html">Research</a><a class="" href="questions.html">Decisions</a><a class="" href="flagged.html">Review</a><a class="" href="sources.html">Sources</a></nav></header>
+<header class="top" style="background:#27395f;padding:8px 22px"><nav class="menu"><a class="" href="strategies.html">Strategy leaderboard</a><a class="" href="model-lines.html">Model lines</a><a class="active" href="methodology.html">Method &amp; checks</a></nav></header>
+<main><h1>Method and data checks</h1>
+<p class="lead">How the numbers were produced, and what was checked. Code: <code>analysis/strategy_backtest.py</code>, <code>scripts/verify_data.py</code>, <code>scripts/build_site.py</code>.</p>
+<h2>Data</h2>
+<table><thead><tr><th>Dataset</th><th>Tier</th><th>Use</th><th>Check performed</th></tr></thead><tbody>
+<tr><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com standings 2026 ↗</a></td><td><span class="chip ok">official</span></td><td>Standings table</td><td>All 32 rows re-checked against the page on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak). Arithmetic also checked (PCT, net = PF − PA).</td></tr>
+<tr><td><a href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener">NFL.com Week 10 schedule ↗</a></td><td><span class="chip ok">official</span></td><td>Schedule, byes</td><td>14 games + 4 byes = 32 teams. Thursday final 24–21 matches nflverse.</td></tr>
+<tr><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com injury report, Week 10 ↗</a></td><td><span class="chip ok">official</span></td><td>Injury table, flags</td><td>Line-by-line re-check: 44 of 345 rows (WAS at NYG, NE at DET; chunk 0). Pending rows: I-17. Game list and team codes reconciled to the schedule.</td></tr>
+<tr><td><a href="https://github.com/nflverse/nfldata/tree/a04d58c0268645ce5081a210bd33650ab222547a" target="_blank" rel="noopener">nflverse nfldata (commit a04d58c0) ↗</a></td><td><span class="chip warn">secondary</span></td><td>Backtest results, own model</td><td>Sign convention checked: favorite wins straight-up 66.5% of games. Moneyline direction agrees with spread sign in 99.4% of 5202 games. Provider of lines is undocumented (I-10).</td></tr>
+</tbody></table>
+<h2>Backtest set-up</h2>
+<ul>
+<li>Regular-season games, 7104 completed in the file (1999–2026). Strategies use 2006 onward, where spreads exist.</li>
+<li>Spread convention: positive spread = home favored (verified against the dataset's own documentation and the moneyline check above). Home covers if home margin > spread. Equal = push.</li>
+<li>Pricing: −110 on both sides. <b>Assumption</b>, not verified against any book. Break-even 52.38%.</li>
+<li>Own model: sequential Elo, updated after each game. Each prediction uses only earlier games. Constants fixed before testing: K = 20, home field = 65 Elo, 25 Elo per point, one-third reversion to 1500 each season. Edge threshold 3 points.</li>
+<li>Splits: discovery 2006–2015, validation 2016–2020, holdout 2021–2025 (scored once), forward 2026. Nothing was tuned on any split.</li>
+<li>Multiple testing: Bonferroni across the 10 pre-registered strategies. Note that some strategies are mirrors of others, so the true number of independent tests is smaller. This makes the correction conservative.</li>
+<li>Team codes: STL, SD and OAK are mapped to LA, LAC and LV for ratings only (franchise relocations). The source uses ARI; NFL.com uses AZ (I-16).</li>
+</ul>
+<h2>Limits</h2>
+<ul>
+<li>Results depend on the line provider. Until the provider is verified, no result can be treated as evidence (G0).</li>
+<li>Results are not checked game-by-game against NFL.com for 2006–2025 (I-11). One 2026 game was spot-checked.</li>
+<li>No injury, depth-chart, snap-count, or player-prop data is used in the backtest yet.</li>
+<li>Past performance on this data does not show future results.</li>
+</ul>
+<h2>Raw check output</h2>
+<pre style="background:#fff;border:1px solid var(--line);padding:12px;overflow:auto;font-size:12.5px">{
+ &quot;completed_games_reg&quot;: 7104,
+ &quot;missing_spread_reg_2006plus&quot;: 109,
+ &quot;missing_total_reg_2006plus&quot;: 109,
+ &quot;duplicate_game_ids&quot;: 0,
+ &quot;sign_check_favorite_su_win_pct&quot;: 0.6654,
+ &quot;sign_check_moneyline_agreement&quot;: 0.994,
+ &quot;dataset_2026_week10_check&quot;: {
+  &quot;game&quot;: &quot;2026_10_WAS_NYG&quot;,
+  &quot;nfldata_score&quot;: &quot;WAS 24 - NYG 21&quot;,
+  &quot;nflcom_score&quot;: &quot;Commanders 24, Giants 21, FINAL (nfl.com schedule page)&quot;,
+  &quot;match&quot;: true
+ },
+ &quot;pricing_assumption&quot;: &quot;-110 both sides; breakeven 52.38%; NOT verified against any sportsbook&quot;,
+ &quot;elo_params&quot;: {
+  &quot;K&quot;: 20.0,
+  &quot;home_field&quot;: 65.0,
+  &quot;points_per_elo&quot;: 25.0,
+  &quot;season_reversion&quot;: 0.3333333333333333,
+  &quot;base&quot;: 1500.0,
+  &quot;edge_threshold&quot;: 3.0
+ }
+}</pre></main>
+<footer>Data as of 2026-11-14 (UTC). Built 2026-11-14 02:46 UTC. Official data: NFL.com. Secondary data is labelled. Nothing on this site is betting advice.
+· <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/karagemop466-tech/X1">Repository</a></footer>
+<script src="assets/app.js"></script></body></html>

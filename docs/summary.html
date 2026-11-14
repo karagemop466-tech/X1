@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary · X1 NFL Research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">X1 · NFL Research Dashboard</a>
+<nav class="menu"><a class="active" href="index.html">Overview</a><a class="" href="standings.html">Data</a><a class="" href="strategies.html">Research</a><a class="" href="questions.html">Decisions</a><a class="" href="flagged.html">Review</a><a class="" href="sources.html">Sources</a></nav></header>
+<header class="top" style="background:#27395f;padding:8px 22px"><nav class="menu"><a class="" href="index.html">Home</a><a class="active" href="summary.html">Executive summary</a></nav></header>
+<main><h1>Executive summary</h1>
+<p class="lead">Data as of 2026-11-14 (UTC). Official sources are NFL.com. Figures below are computed from the data files in this repository.</p>
+<h2>1. What is verified</h2>
+<ul>
+<li><b>Standings:</b> all 32 rows were re-checked against the NFL.com standings page on 2026-11-14 (W, L, T, PCT, PF, PA, net points, streak). Every value matched. Internal arithmetic also passes.</li>
+<li><b>Week 10 schedule:</b> 14 games plus 4 bye teams (CHI, DEN, PHI, TB). The Thursday game is marked final on NFL.com: Commanders 24, Giants 21. The nflverse data agrees.</li>
+<li><b>Injury report:</b> 345 rows across 14 games, transcribed from NFL.com. Line-by-line re-check is done for 44 rows (WAS at NYG, NE at DET). The other 301 rows are pending (I-17). Counts by status: Out 66, Doubtful 10, Questionable 84.</li>
+<li><b>Spot-checks passed:</b> Mike Evans is listed with the 49ers on his NFL.com player page, matching the injury report.</li>
+</ul>
+<h2>2. Strategy research: what the numbers say</h2>
+<ul>
+<li>We pre-registered 10 strategies (ATS, totals, rest, and our own Elo model) and tested them on regular-season games from 2006 to 2026 using a fixed holdout of 2021–2025.</li>
+<li><b>0 of 10 strategies pass all gates.</b> In the holdout, the best hit rate is 51.5% (S08 Under total (every game)). Break-even at −110 is 52.4%.</li>
+<li>Under-totals in the holdout hit 51.5% on 1348 bets. After a Bonferroni correction (×10), that is p = 1.00 (not significant).</li>
+<li>Our Elo-vs-line strategy (S10) hit 49.4% on 627 holdout bets (ROI -5.6% at −110), below the 52.4% break-even. Its market lines are unverified (I-10).</li>
+<li><b>Correlation:</b> mirror pairs (home vs away, over vs under) have phi = ±1. Parlaying them is meaningless, so 14 of 45 pairs are flagged redundant. Among the rest, the largest |phi| is 0.99.</li>
+<li><b>Why no strategy passes:</b> gate G0 fails. We cannot verify that the spread and total lines come from a documented, official, or licensed provider (flag I-10). The statistical gates are in the methodology page.</li>
+</ul>
+<h2>3. Injury and depth tracking</h2>
+<ul>
+<li>We track official injury designations for every listed player in Week 10 (see the injury page for team and unit summaries).</li>
+<li><b>Not yet possible:</b> whether a backup replaced a starter. This needs official depth charts, which we have not collected (task T4, blocked). Until then we make no claim about starter-versus-backup deficiencies.</li>
+</ul>
+<h2>4. Decisions needed from you</h2>
+<p>See the <a href="suggestions.html">Suggestions</a> page (options and trade-offs) and the <a href="questions.html">Questions & gaps</a> page. The top decisions are:</p>
+<ol>
+<li>Which line data source to use, and whether to pay for a licensed historical feed (blocks every strategy).</li>
+<li>Whether to collect official depth charts (needed for starter-versus-backup tracking).</li>
+<li>Whether to keep the current gate thresholds (300 bets, Bonferroni p &lt; 0.05, 60% positive seasons).</li>
+<li>Whether to show unverified research values (as now, clearly labelled) or blank them until the line source is verified.</li>
+</ol>
+<h2>5. Flags</h2>
+<p>27 automatic flags and 17 manual flags are listed on the <a href="flagged.html">Flagged for review</a> page, each with an official source link where one exists.</p></main>
+<footer>Data as of 2026-11-14 (UTC). Built 2026-11-14 02:46 UTC. Official data: NFL.com. Secondary data is labelled. Nothing on this site is betting advice.
+· <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/karagemop466-tech/X1">Repository</a></footer>
+<script src="assets/app.js"></script></body></html>
