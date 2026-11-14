@@ -1028,6 +1028,7 @@ def page_sources():
         ("NFL.com news — Drew Lock to start", "corroborates SEA QB replacement", "https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders"),
         ("NFL.com news roundup — Lamar Jackson to IR", "corroborates BAL QB change", "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5"),
         ("NFL.com news — gambling policy education", "league integrity posture", "https://www.nfl.com/news/nfl-increases-gambling-policy-education-integrity-monitoring-efforts-following-successful-offseason"),
+        ("NFL.com news — 2026 midseason power rankings", "used during review to cross-check Week 10 records", "https://www.nfl.com/news/2026-nfl-midseason-awards-joe-burrow-greg-rousseau-and-david-bailey-among-my-selections"),
     ]
     B = [
         ("Buffalo Bills depth chart", "BUF depth order", "https://www.buffalobills.com/team/depth-chart"),
@@ -1068,6 +1069,20 @@ def page_sources():
 
   <h2>Sources that do not exist, and the consequences</h2>
   {table(["Source we wanted", "Reality", "Consequence"], missing)}
+
+  <h2>Methodology documents in this repository</h2>
+  <table class="kv">
+    <thead><tr><th>Document</th><th>What it settles</th></tr></thead>
+    <tbody>
+      <tr><td><code>docs/EXECUTIVE-SUMMARY.md</code></td><td>The summary in plain markdown, including the five findings and the decision order</td></tr>
+      <tr><td><code>docs/methodology/line-origination.md</code></td><td>Pipeline, probability→price maths, seven signal families, prop modelling</td></tr>
+      <tr><td><code>docs/methodology/correlation.md</code></td><td>Estimator, power, multiple-comparison correction, storage contract</td></tr>
+      <tr><td><code>docs/methodology/validation-gates.md</code></td><td>Seven pre-registered gates and the luck arithmetic</td></tr>
+      <tr><td><code>docs/methodology/leaderboard.md</code></td><td>Divisions, ranking objective, rewards, anti-gaming rules</td></tr>
+      <tr><td><code>docs/methodology/availability.md</code></td><td>Injury/depth sources, the join, and the deficiency model</td></tr>
+      <tr><td><code>docs/review/repo-review.md</code></td><td>Repository review, parallel-session audit, defects D-01..D-03</td></tr>
+    </tbody>
+  </table>
 
   <h2>Re-verification procedure</h2>
   <ol class="route">
