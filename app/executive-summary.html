@@ -16,6 +16,7 @@
 <a class="active" href="executive-summary.html">Executive summary</a>
 <div class="grp">Official data</div>
 <a class="" href="standings.html">Standings</a>
+<a class="" href="results.html">Results feed</a>
 <a class="" href="schedule.html">Week 10 slate</a>
 <a class="" href="injuries.html">Injury report</a>
 <a class="" href="depth.html">Depth charts</a>
@@ -23,11 +24,14 @@
 <a class="" href="team-stats.html">Team stats</a>
 <div class="grp">Model</div>
 <a class="" href="lines.html">Originated lines</a>
+<a class="" href="origination.html">Origination</a>
+<a class="" href="prices.html">Price snapshots</a>
 <a class="" href="correlation.html">Correlation</a>
 <div class="grp">Strategy</div>
 <a class="" href="strategies.html">Strategy library</a>
 <a class="" href="validation.html">Validation gates</a>
 <a class="" href="leaderboard.html">Leaderboard</a>
+<a class="" href="demotion.html">Demotion gate</a>
 <a class="" href="props.html">Props &amp; parlays</a>
 <div class="grp">Decisions</div>
 <a class="" href="requirements.html">Requirements</a>
@@ -50,6 +54,29 @@
     </div>
     <span class="snap">SNAPSHOT 2026-11-14 · WEEK 10</span>
   </div>
+<section class="card"><h2>What changed in this batch</h2>
+<p>Three stores and one gate now exist because the brief asked for them, and every number in them is
+sourced or blank:</p>
+<ul class="tight">
+  <li><b>Price-snapshot store</b> (<a href="prices.html">Price snapshots</a>): opening and closing
+  numbers recorded separately for every market originated. No source records 2026 opening numbers, so
+  those cells are blank and flagged &mdash; never inferred.</li>
+  <li><b>Verified results feed</b> (<a href="results.html">Results feed</a>): all 137 played 2026
+  games transcribed line by line from official NFL pages and Game Book PDFs, double-entry checked
+  against the mirror (137/137, zero mismatches), so backtests and ROI are computable at row level.</li>
+  <li><b>Origination order</b> (<a href="origination.html">Origination</a>): side first, then total,
+  then moneyline, with model fair line, market line and difference as three separate columns.</li>
+  <li><b>Leaderboard split</b> (<a href="leaderboard.html">Leaderboard</a>): signal (flat stake, luck
+  removed) and staking scored in separate blocks, so a lucky staking run cannot mask a bad signal.</li>
+  <li><b>Replacement depth</b> (<a href="deficiency.html">Deficiency watch</a>): the depth of every
+  replacement (2nd/3rd/4th string) is tracked, not just that a replacement happened.</li>
+  <li><b>Correlations</b> (<a href="correlation.html">Correlation</a>): the decision set is computed
+  from official numbers only, with n published beside every value; mirror-derived numbers are flagged
+  research and suppressed from decisions.</li>
+  <li><b>Demotion gate G-13</b> (<a href="demotion.html">Demotion gate</a>): pre-registered triggers
+  send a live strategy back to paper; thresholds await owner confirmation on the
+  <a href="suggestions.html">suggestion board</a>.</li>
+</ul></section>
 <div class="kpis">
 <div class="kpi ok"><div class="v">2929</div><div class="l">value checks passed</div><div class="s">0 mismatches</div></div>
 <div class="kpi bad"><div class="v">39</div><div class="l">starters ruled Out</div><div class="s">corrected join</div></div>
