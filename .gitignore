@@ -11,3 +11,4 @@ venv/
 # re-downloaded (a hand transcription of an official injury report) is kept.
 data/raw/*
 !data/raw/official_injuries_w10_2026.csv
+_site/
