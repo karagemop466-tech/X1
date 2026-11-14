@@ -1,4 +1,6 @@
 name: probe-raw-formats
+# Development helper: captures raw official source formats onto a scratch
+# branch so parser work can be done against real bytes.
 on:
   push:
     branches: ["arena/0c2fcfa1-x1"]
@@ -38,7 +40,6 @@ jobs:
           PY
           echo "gamebook_lines=$(wc -l < data/nfl/_debug/gamebook_sample.txt)"
 
-          # Trimmed HTML captures for the three HTML parsers.
           curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/injuries/" \
             | head -c 1200000 > data/nfl/_debug/injuries_sample.html
           curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/standings/league/2026/REG" \
@@ -52,13 +53,15 @@ jobs:
 
           for f in data/nfl/_debug/*; do echo "$(wc -c < "$f") $f"; done
           exit 0
-      - name: Commit raw samples
+      - name: Commit raw samples to scratch branch
         shell: bash
         run: |
           set +e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B ci/raw-samples
           git add -f data/nfl/_debug
-          git diff --staged --quiet || git commit -m "ci: capture raw official source formats for parser development"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git diff --staged --quiet || git commit -m "ci: capture raw official source formats"
+          git push --force origin ci/raw-samples
+          echo "push_exit=$?"
           exit 0
