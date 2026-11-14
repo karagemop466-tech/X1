@@ -145,11 +145,12 @@ def stat(value, label, note=""):
     return f'<div class="stat"><strong>{esc(value)}</strong><span>{esc(label)}</span>{n}</div>'
 
 
-def table(headers, rows, caption="", cls=""):
+def table(headers, rows, caption="", cls="", data_table=False):
+    dt = " data-table" if data_table else ""
     th = "".join(f"<th>{esc(h)}</th>" for h in headers)
     body = "\n".join("<tr>" + "".join(r) + "</tr>" for r in rows)
     cap = f'<caption>{esc(caption)}</caption>' if caption else ""
-    return f"""<div class="tablewrap"><table class="{cls}">{cap}<thead><tr>{th}</tr></thead><tbody>
+    return f"""<div class="tablewrap"><table class="{cls}"{dt}>{cap}<thead><tr>{th}</tr></thead><tbody>
 {body}
 </tbody></table></div>"""
 
@@ -383,7 +384,7 @@ def page_standings():
                 ])
         blocks.append(f"<h2>{esc(conf)} — American Football Conference</h2>" if conf == "AFC" else f"<h2>{esc(conf)} — National Football Conference</h2>")
         blocks.append(table(["#", "Team", "Division", "W", "L", "T", "PCT", "PF", "PA", "NET", "Home", "Road", "Div", "Conf", "Strk", "Source"],
-                            rows, caption=f"{conf}: 16 clubs, 4 divisions"))
+                            rows, caption=f"{conf}: 16 clubs, 4 divisions", data_table=True))
     body = f"""
 <section class="pagetitle">
   <div class="eyebrow">DATA / 01</div>
@@ -452,7 +453,7 @@ def page_schedule():
     {stat(len(SCHED)-len(final_games), 'still scheduled')}
     {stat(len(byes), 'clubs on bye')}
   </div>
-  {table(["Date", "Kickoff (ET)", "Matchup", "Network", "Status", "Score", "Slot", "Source"], rows, caption="Week 10, 2026 regular season")}
+  {table(["Date", "Kickoff (ET)", "Matchup", "Network", "Status", "Score", "Slot", "Source"], rows, caption="Week 10, 2026 regular season", data_table=True)}
   <h2>Byes</h2>
   <p>{', '.join(f'<b>{esc(b)}</b>' for b in byes)} — the official page lists exactly these four clubs on bye, which is
   also asserted mechanically: the 28 clubs appearing in the slate must be the complement of the four bye clubs.</p>
@@ -541,7 +542,7 @@ def page_availability():
   <p>“Listed starter” means one thing only: the club's own chart prints the player in <strong>column 1</strong> of a position.
   That rule lives in <code>tools/build_availability.py</code> and is re-runnable.</p>
   {table(["Team", "Player", "Pos", "Injury", "Practice", "Game status", "Depth", "Club pos", "Club chart"], srows,
-         caption="Derived tier C: official injury report joined to club depth charts", cls="compact")}
+         caption="Derived tier C: official injury report joined to club depth charts", cls="compact", data_table=True)}
 
   <h2>Why the other 27 clubs are blank</h2>
   <div class="note">
@@ -552,7 +553,7 @@ def page_availability():
 
   <h2>Full official injury report — week 10 ({len(INJ)} rows)</h2>
   <div class="srcline">Source: {link(INJ_URL, 'nfl.com/injuries/league/2026/reg10 ↗')} · retrieved {RETRIEVED} · tier A</div>
-  {table(["Game", "Team", "Player", "Pos", "Injury", "Practice status", "Game status", "Source"], inj_rows, cls="compact")}
+  {table(["Game", "Team", "Player", "Pos", "Injury", "Practice status", "Game status", "Source"], inj_rows, cls="compact", data_table=True)}
 
   <h2>The five pilot depth charts, verbatim</h2>
   <p>Transcribed in printed column order. Multiple names in one column are an “OR” listing, recorded left to right.</p>

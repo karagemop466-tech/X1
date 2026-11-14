@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # COORDINATION.md — Shared Task Board
 
 Single source of truth for parallel agent sessions on `karagemop466-tech/X1`.
@@ -109,3 +110,86 @@ Owner rules (verbatim intent):
 | PR | Branch → base | Result | Link |
 |---|---|---|---|
 | #1 | `arena/b38a21d8-x1` → `main` | recorded in the PR itself; see "Merge result" row below after merge | ~ |
+=======
+# Coordination board
+
+Session ID: `arena/6f377170-x1` (current branch: `arena/6f377170-x1`). The repository contains only a minimal README and no other active task claims were present at inspection.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Baseline repository review and NFL decision-support site, sourced research framework, executive summary, and review queue | in progress | arena/6f377170-x1 | `COORDINATION.md`, `README.md`, `index.html`, `assets/` |
+
+## Log
+- 2026-11-14 — Inspected repository. Initial state: only a 4-byte `README.md`; no existing site, data, tests, or coordination board. Claimed the scope above. No other claims to coordinate with.
+- Verification/sources: repository inventory and `git status` only; NFL-specific data has not yet been added or represented as verified.
+- 2026-11-14 — Authored a static, responsive dashboard with separate research, validation, availability, open-questions, and flagged-review pages; added a GitHub Pages Actions workflow. All strategies are marked proposed/untested, and no NFL factual rows, odds, picks, correlations, or player statuses are populated.
+- Official-source verification performed by opening the linked NFL.com injury report and stats pages and NFL Football Operations Next Gen Stats and AT Spotters pages. These pages were reachable and describe the referenced services/processes. Next Gen Stats source specifically documents tracking-derived data and participation metrics; AT Spotters source states spotters alert medical staff and do not diagnose. These source checks do not establish model performance, historical access, depth charts, or any live injury facts. GitHub Pages documentation page also opened and confirms Actions is a supported publishing path.
+- Repository verification: local HTML page links checked against files; six pages and internal navigation are present. No automated browser or link-check test suite existed in this bare repo. Deployment has not been run. Remote currently has `main` and another session branch, but no remote ref for this session branch; initial `git pull --rebase origin arena/6f377170-x1` could not find that remote ref. No other session's branch/files were modified.
+- Irregularities/dependencies: no odds, NFL data snapshots, model, vendor license, or user-defined reward thresholds; recorded as open on `review.html`.
+- Pull request: https://github.com/karagemop466-tech/X1/pull/1 — merged 2026-11-14 (merge commit on main).
+- Pages verification: GitHub Actions run https://github.com/karagemop466-tech/X1/actions/runs/43547080600 completed successfully (build and deploy jobs passed). Live site https://karagemop466-tech.github.io/X1/ opened successfully; homepage and linked subpage URLs resolve. Site is live, but does not contain live NFL data or picks.
+- Workflow emitted platform notices that Node.js 20 is deprecated for the action versions and ubuntu-latest runner migration is scheduled. These are non-failing environment warnings; review action versions as routine maintenance.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Baseline repository review and NFL decision-support site, sourced research framework, executive summary, and review queue | done | arena/6f377170-x1 | `COORDINATION.md`, `README.md`, `index.html`, `assets/`, `research.html`, `validation.html`, `availability.html`, `questions.html`, `review.html`, `.github/workflows/pages.yml` |
+| Final integration: source register, row-level citation QA, and verification workflow | done | `arena/226be516-x1` | `COORDINATION.md`, `README.md`, `index.html`, `research.html`, `validation.html`, `availability.html`, `questions.html`, `review.html`, `sources.html`, `scripts/`, `.github/workflows/pages.yml` |
+
+## Integration log
+- 2026-11-14 — During PR preparation, discovered the first session had completed and merged the core dashboard to `main` (PR #1, deployment verified). Stopped treating this as a separate replacement site. Resolved merge conflicts by preserving the completed main-branch site as the integration baseline; this final integration adds a source register, per-row source-link checks, and citation coverage for the open-question and validation tables. The temporary duplicate site was removed. Existing site pages, UI, and main-branch findings were retained.
+- 2026-11-14 — Re-opened primary references for the integrated register: NFL injury reports (`https://www.nfl.com/injuries/`), player stats (`https://www.nfl.com/stats/player-stats/`), schedules (`https://www.nfl.com/schedules/`), team directory (`https://www.nfl.com/teams/`), roster example (`https://www.nfl.com/teams/los-angeles-rams/roster`), Next Gen Stats glossary (`https://nextgenstats.nfl.com/glossary`), NFL tracking overview (`https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats`), AT Spotters (`https://operations.nfl.com/game-operations-logistics/game-day-assistants/at-spotters`), 2026 Rulebook (`https://operations.nfl.com/rules-officiating/2026-nfl-rulebook`), NFL Big Data Bowl (`https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl/`), and NIST glossary/confidence limits (`https://www.itl.nist.gov/div898/handbook/glossary.htm`, `https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm`). Each row description is constrained to what its linked source supports; no live values or results were added.
+- Verification: `python3 scripts/verify_site.py` passes for all 7 HTML pages; local links resolve and each data-table row contains an HTTPS citation hosted by NFL/NGS/NIST (GitHub is allowed for the repository-state row only). `git diff --check` passes. The checker is part of the Pages build job so a missing citation or broken local link blocks deployment.
+- Existing deployment status applies to the baseline site: PR #1 merged and Pages run 43547080600 succeeded, as recorded above. The source-register integration itself is pending PR/merge and a new Pages run.
+- 2026-11-14 — Pre-push `git pull --rebase origin arena/226be516-x1` attempted after merging `origin/main` for integration. Git tried replaying the already-merged main session's initial coordination commit and stopped on an add/add `COORDINATION.md` conflict. Rebase was aborted without changing the integration merge; the current remote session ref remains an ancestor of this branch. A later pull/rebase was clean and the push was fast-forward. No completed main-branch work was rewritten or discarded.
+- 2026-11-14 — Final integration verification passed: `python3 scripts/verify_site.py` checks all 7 root HTML pages, local links, and at least one official HTTPS source link per data-table row. The same check passed in GitHub Actions on the PR and on `main`; `git diff --check` passed. Direct source checks are listed in `sources.html`. All strategy/backtest/odds/injury/correlation values remain blank; no outcome was inferred.
+- Integration PR #4: https://github.com/karagemop466-tech/X1/pull/4 — merged 2026-11-14 at merge commit `770ae96d2c3919124afd23e364b8ea862902ff97`.
+- Pages deployment after merge: https://github.com/karagemop466-tech/X1/actions/runs/43547826114 — build and deploy both succeeded. GitHub Pages API reports public site built at https://karagemop466-tech.github.io/X1/.
+- Non-blocking platform notices on latest deployment: current Actions versions were forced to Node.js 24 due Node.js 20 deprecation; `ubuntu-latest` migration notice. Track and update action versions as maintenance.
+>>>>>>> origin/main
+
+
+---
+
+# Appendix A — preserved board from `main` before this session's integration
+
+The board below was live on `main` at merge time. It is preserved **verbatim** because it records a
+completed, verified deployment by two other sessions (`arena/6f377170-x1`, `arena/226be516-x1`) and
+must not be discarded. Their pages remain in git history; the integrated dashboard supersedes them in
+the working tree. No claim in this appendix was modified or deleted.
+
+<<<PRESERVED VERBATIM>>>
+
+# Coordination board
+
+Session ID: `arena/6f377170-x1` (current branch: `arena/6f377170-x1`). The repository contains only a minimal README and no other active task claims were present at inspection.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Baseline repository review and NFL decision-support site, sourced research framework, executive summary, and review queue | in progress | arena/6f377170-x1 | `COORDINATION.md`, `README.md`, `index.html`, `assets/` |
+
+## Log
+- 2026-11-14 — Inspected repository. Initial state: only a 4-byte `README.md`; no existing site, data, tests, or coordination board. Claimed the scope above. No other claims to coordinate with.
+- Verification/sources: repository inventory and `git status` only; NFL-specific data has not yet been added or represented as verified.
+- 2026-11-14 — Authored a static, responsive dashboard with separate research, validation, availability, open-questions, and flagged-review pages; added a GitHub Pages Actions workflow. All strategies are marked proposed/untested, and no NFL factual rows, odds, picks, correlations, or player statuses are populated.
+- Official-source verification performed by opening the linked NFL.com injury report and stats pages and NFL Football Operations Next Gen Stats and AT Spotters pages. These pages were reachable and describe the referenced services/processes. Next Gen Stats source specifically documents tracking-derived data and participation metrics; AT Spotters source states spotters alert medical staff and do not diagnose. These source checks do not establish model performance, historical access, depth charts, or any live injury facts. GitHub Pages documentation page also opened and confirms Actions is a supported publishing path.
+- Repository verification: local HTML page links checked against files; six pages and internal navigation are present. No automated browser or link-check test suite existed in this bare repo. Deployment has not been run. Remote currently has `main` and another session branch, but no remote ref for this session branch; initial `git pull --rebase origin arena/6f377170-x1` could not find that remote ref. No other session's branch/files were modified.
+- Irregularities/dependencies: no odds, NFL data snapshots, model, vendor license, or user-defined reward thresholds; recorded as open on `review.html`.
+- Pull request: https://github.com/karagemop466-tech/X1/pull/1 — merged 2026-11-14 (merge commit on main).
+- Pages verification: GitHub Actions run https://github.com/karagemop466-tech/X1/actions/runs/43547080600 completed successfully (build and deploy jobs passed). Live site https://karagemop466-tech.github.io/X1/ opened successfully; homepage and linked subpage URLs resolve. Site is live, but does not contain live NFL data or picks.
+- Workflow emitted platform notices that Node.js 20 is deprecated for the action versions and ubuntu-latest runner migration is scheduled. These are non-failing environment warnings; review action versions as routine maintenance.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Baseline repository review and NFL decision-support site, sourced research framework, executive summary, and review queue | done | arena/6f377170-x1 | `COORDINATION.md`, `README.md`, `index.html`, `assets/`, `research.html`, `validation.html`, `availability.html`, `questions.html`, `review.html`, `.github/workflows/pages.yml` |
+| Final integration: source register, row-level citation QA, and verification workflow | done | `arena/226be516-x1` | `COORDINATION.md`, `README.md`, `index.html`, `research.html`, `validation.html`, `availability.html`, `questions.html`, `review.html`, `sources.html`, `scripts/`, `.github/workflows/pages.yml` |
+
+## Integration log
+- 2026-11-14 — During PR preparation, discovered the first session had completed and merged the core dashboard to `main` (PR #1, deployment verified). Stopped treating this as a separate replacement site. Resolved merge conflicts by preserving the completed main-branch site as the integration baseline; this final integration adds a source register, per-row source-link checks, and citation coverage for the open-question and validation tables. The temporary duplicate site was removed. Existing site pages, UI, and main-branch findings were retained.
+- 2026-11-14 — Re-opened primary references for the integrated register: NFL injury reports (`https://www.nfl.com/injuries/`), player stats (`https://www.nfl.com/stats/player-stats/`), schedules (`https://www.nfl.com/schedules/`), team directory (`https://www.nfl.com/teams/`), roster example (`https://www.nfl.com/teams/los-angeles-rams/roster`), Next Gen Stats glossary (`https://nextgenstats.nfl.com/glossary`), NFL tracking overview (`https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats`), AT Spotters (`https://operations.nfl.com/game-operations-logistics/game-day-assistants/at-spotters`), 2026 Rulebook (`https://operations.nfl.com/rules-officiating/2026-nfl-rulebook`), NFL Big Data Bowl (`https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl/`), and NIST glossary/confidence limits (`https://www.itl.nist.gov/div898/handbook/glossary.htm`, `https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm`). Each row description is constrained to what its linked source supports; no live values or results were added.
+- Verification: `python3 scripts/verify_site.py` passes for all 7 HTML pages; local links resolve and each data-table row contains an HTTPS citation hosted by NFL/NGS/NIST (GitHub is allowed for the repository-state row only). `git diff --check` passes. The checker is part of the Pages build job so a missing citation or broken local link blocks deployment.
+- Existing deployment status applies to the baseline site: PR #1 merged and Pages run 43547080600 succeeded, as recorded above. The source-register integration itself is pending PR/merge and a new Pages run.
+- 2026-11-14 — Pre-push `git pull --rebase origin arena/226be516-x1` attempted after merging `origin/main` for integration. Git tried replaying the already-merged main session's initial coordination commit and stopped on an add/add `COORDINATION.md` conflict. Rebase was aborted without changing the integration merge; the current remote session ref remains an ancestor of this branch. A later pull/rebase was clean and the push was fast-forward. No completed main-branch work was rewritten or discarded.
+- 2026-11-14 — Final integration verification passed: `python3 scripts/verify_site.py` checks all 7 root HTML pages, local links, and at least one official HTTPS source link per data-table row. The same check passed in GitHub Actions on the PR and on `main`; `git diff --check` passed. Direct source checks are listed in `sources.html`. All strategy/backtest/odds/injury/correlation values remain blank; no outcome was inferred.
+- Integration PR #4: https://github.com/karagemop466-tech/X1/pull/4 — merged 2026-11-14 at merge commit `770ae96d2c3919124afd23e364b8ea862902ff97`.
+- Pages deployment after merge: https://github.com/karagemop466-tech/X1/actions/runs/43547826114 — build and deploy both succeeded. GitHub Pages API reports public site built at https://karagemop466-tech.github.io/X1/.
+- Non-blocking platform notices on latest deployment: current Actions versions were forced to Node.js 24 due Node.js 20 deprecation; `ubuntu-latest` migration notice. Track and update action versions as maintenance.

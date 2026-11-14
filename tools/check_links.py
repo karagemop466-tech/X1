@@ -37,7 +37,7 @@ def check(cond, msg):
 def html_files():
     out = []
     for base, _, files in os.walk(ROOT):
-        if any(p in base for p in (".git", "node_modules", "tools", ".arena")):
+        if any(p in base for p in (".git", "node_modules", "tools", ".arena", "archive")):
             continue
         for f in files:
             if f.endswith(".html"):
@@ -114,6 +114,17 @@ for path in files:
     # only the correlation page may discuss joint probabilities, and it must not use the old 3-leg product
     if "correlation" in rel:
         check("0.125" not in txt, f"{rel}: no stale independent-3-leg joint probability")
+
+# ---- every class used must be styled, or the page silently renders unstyled ----
+import re as _re
+_css = open(os.path.join(ROOT, "assets", "site.css"), encoding="utf-8").read()
+_defined = set(_re.findall(r"\.([a-zA-Z][a-zA-Z0-9_-]*)", _css))
+_used = set()
+for _p in files:
+    for _m in _re.finditer(r'class="([^"]*)"', open(_p, encoding="utf-8").read()):
+        _used |= set(_m.group(1).split())
+for _c in sorted(_used - _defined):
+    errors.append(f"assets/site.css: class .{_c} is used but never defined")
 
 print(f"files checked : {len(files)}")
 print(f"assertions    : {len(checks)}")

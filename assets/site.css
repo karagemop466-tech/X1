@@ -280,3 +280,10 @@ ul.lim li::marker{color:var(--warn)}
   .tablewrap{border-color:#ccc}
   th{position:static}
 }
+
+/* ---------- late additions ---------- */
+.srcinline{font-size:11.5px;color:var(--ink3);margin:2px 0 8px}
+.srcinline a{color:var(--accent2)}
+.herotext{min-width:0}
+/* the hero right column is optional padding; keep it from stretching the grid */
+.hero > .herocard{min-width:0}
