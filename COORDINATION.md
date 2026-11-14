@@ -1258,3 +1258,48 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena-e57a10d7-x1` — claim (2026-11-14)
+
+Branch: `arena/e57a10d7-x1`, branched from `11d9ea1` (`main`, "Merge pull request #33").
+Session ID: `arena-e57a10d7-x1`.
+
+## Takeover justification (board rule 10)
+
+Every prior claim on this board is `done` and its session merged its PRs and went quiet
+(latest: `arena/fcc11e05-x1`, PR #32/#33, recorded complete above). No claim is `in progress`
+at the time this session starts. The owner's brief has since been reissued with **eight
+decided requirements** (recorded verbatim in `docs/live-pipeline/project-brief.md` and, until
+now, only listed as *proposed suggestions* S-01…S-08 in `data/pipeline/suggestions.json`).
+This session claims the implementation of those eight decided requirements plus the register
+and integration work they imply.
+
+## Claim (written before any other work)
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| X1 | **Price-snapshot store**: record opening and closing numbers for every market we originate | in progress | `arena-e57a10d7-x1` | `pipeline/price_snapshots.py` (new), `data/pipeline/price_snapshots.json`, `app/price-snapshots.html` |
+| X2 | **Verified results feed**: official final scores so backtests and ROI can be computed | in progress | `arena-e57a10d7-x1` | `pipeline/results.py` (new), `data/pipeline/results.json`, `app/results.html` |
+| X3 | **Origination order**: side first, then total, then moneyline | in progress | `arena-e57a10d7-x1` | `pipeline/line_origination.py` (new), origination-order sort in the stores above |
+| X4 | **Fair line / market line / difference as separate columns** | in progress | `arena-e57a10d7-x1` | `data/pipeline/market_lines.json` (schema upgrade), `pipeline/line_origination.py`, `app/lines.html` |
+| X5 | **Leaderboard split: signal vs staking** (a lucky staking run cannot mask a bad signal) | in progress | `arena-e57a10d7-x1` | `pipeline/leaderboard.py` (new), `data/pipeline/leaderboard.json` (schema upgrade), `app/leaderboard.html` |
+| X6 | **Depth of replacement** (2nd/3rd/4th string), offense and defense, not just the fact of a replacement | in progress | `arena-e57a10d7-x1` | `data/pipeline/deficiency.json`, `data/pipeline/injuries.json` (schema notes), `app/deficiency.html` |
+| X7 | **Correlations from officially sourced numbers only, n published with every value** | in progress | `arena-e57a10d7-x1` | `pipeline/model_correlation.py`, `data/pipeline/correlations.json`, `app/correlation.html` |
+| X8 | **Demotion gate**: a defined gate that sends a live strategy back to paper | in progress | `arena-e57a10d7-x1` | `data/pipeline/gates.json`, `pipeline/leaderboard.py`, `app/validation.html` |
+| X9 | Requirements coverage matrix (full list, 45 rows), decision register (question / information held / information missing / answer / how to discover the missing information), suggestion review workflow (choose the best path before implementing), executive summary | in progress | `arena-e57a10d7-x1` | `docs/requirements/**` (new), `data/pipeline/requirements.json`, `data/pipeline/questions.json`, `data/pipeline/suggestions.json`, `app/executive-summary.html`, `app/decisions.html`, `app/suggestions.html`, `app/requirements.html` |
+| X10 | Final integration: re-verify combined data row by row, link check, PR → `main`, merge, Pages deploy confirmation, record here | in progress | `arena-e57a10d7-x1` | this file, `README.md` (additive), `app/**` |
+
+## Non-overlap declaration
+
+All earlier sessions are complete and merged. This session edits `pipeline/**`,
+`data/pipeline/**` and `app/**` — the live-pipeline + unified-dashboard surface — following
+the established norm of **additive, marked edits plus a logged request** where a completed
+session owns the file (`tools/build_app.py`, `pipeline/run.py`, `tools/verify_app.py`). No
+other session's branch is touched. If another session appears mid-flight with a claim on
+`pipeline/**`, `data/pipeline/**` or `app/**`, this session will yield those files and log it.
+
+## Log
+
+- 2026-11-14 — Claim written and pushed before any implementation work (rule 1).
