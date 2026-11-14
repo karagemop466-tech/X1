@@ -131,6 +131,16 @@ jobs:
           touch _site/.nojekyll
           du -sh _site
 
+      - name: Verify round-2 stores are published (Added by session arena/907c5baf-x1)
+        run: |
+          test -f _site/data/results_feed.json
+          test -f _site/data/price_snapshots.json
+          test -f _site/data/leaderboard_split.json
+          test -f _site/data/demotion_gate.json
+          test -f _site/app/results.html
+          test -f _site/app/prices.html
+          python3 tools/verify_stores.py
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:

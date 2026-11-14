@@ -1,0 +1,122 @@
+{
+ "dataset": "demotion_gate",
+ "title": "Demotion gate — a live strategy goes back to paper",
+ "generated_at": "2026-11-14",
+ "status": "Defined and pre-registered. Trigger thresholds T2-T4 are proposed defaults awaiting owner ratification (decision Q-26). T1 and T5 are boolean rules and need no threshold. Nothing here is invented data: this is a policy definition, and every threshold is labelled as proposed where it is a choice rather than a fact.",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+  "label": "X1 executive summary (\"two failed windows demote; titles can be vacated\") + X1 project brief (\"Define a demotion gate that sends a live strategy back to paper\")",
+  "org": "Project brief"
+ },
+ "columns": [
+  "id",
+  "trigger",
+  "rule",
+  "threshold",
+  "threshold_status",
+  "why",
+  "action"
+ ],
+ "rows": [
+  {
+   "id": "G-D1.T1",
+   "trigger": "Two failed windows",
+   "rule": "Two consecutive scheduled review windows in which the live strategy fails any gate it had passed at promotion (sample sufficiency recomputed on the live window, statistical significance on live results, luck robustness).",
+   "threshold": "2 consecutive failed weekly review windows",
+   "threshold_status": "rule already published in docs/EXECUTIVE-SUMMARY.md and docs/methodology/validation-gates.md — no threshold choice needed",
+   "why": "A paper pass does not guarantee live performance; two windows filter one-off noise without letting a strategy sit on old results.",
+   "action": "Demote to paper at the end of the second failed window. Log the trigger id and the window on the leaderboard.",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+   "_source_label": "X1 executive summary + project brief (this repository)",
+   "_retrieved_at": "2026-11-14",
+   "_verified": true,
+   "_flags": []
+  },
+  {
+   "id": "G-D1.T2",
+   "trigger": "Negative-edge evidence",
+   "rule": "The rolling live window shows flat-stake ROI below zero with a one-sided 90% bootstrap upper confidence bound below zero: evidence that the edge is gone or negative.",
+   "threshold": "rolling 50 graded live bets (all live bets if fewer after 50 total live), flat-stake ROI < 0 and one-sided 90% bootstrap upper bound < 0",
+   "threshold_status": "PROPOSED DEFAULT — ratify or amend at decision Q-26",
+   "why": "Demoting on a losing streak alone would confuse luck with a dead edge; requiring the confidence bound keeps the gate skill-based.",
+   "action": "Demote to paper immediately when the window is reached and the condition holds.",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+   "_source_label": "X1 executive summary + project brief (this repository)",
+   "_retrieved_at": "2026-11-14",
+   "_verified": true,
+   "_flags": [
+    "thresholds T2/T3/T4 are proposed defaults pending ratification (Q-26)"
+   ]
+  },
+  {
+   "id": "G-D1.T3",
+   "trigger": "Closing-line-value decay",
+   "rule": "Mean closing line value over the recent live window turns negative with one-sided significance. CLV reacts faster than ROI to a vanished edge.",
+   "threshold": "last 50 priced bets, mean CLV < 0, one-sided p < 0.10",
+   "threshold_status": "PROPOSED DEFAULT — ratify or amend at decision Q-26; requires the price-snapshot store close captures (Q-31)",
+   "why": "By the time ROI turns negative the bankroll has already paid for the education; CLV is the leading indicator.",
+   "action": "Demote to paper; keep the strategy in the leaderboard with its CLV series published.",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+   "_source_label": "X1 executive summary + project brief (this repository)",
+   "_retrieved_at": "2026-11-14",
+   "_verified": true,
+   "_flags": [
+    "thresholds T2/T3/T4 are proposed defaults pending ratification (Q-26)"
+   ]
+  },
+  {
+   "id": "G-D1.T4",
+   "trigger": "Drawdown",
+   "rule": "Peak-to-trough drawdown of the strategy's live bankroll allocation breaches the cap at its fixed unit size (unit = 1% of allocation).",
+   "threshold": "drawdown >= 25% of allocation (25 units at 1% unit size)",
+   "threshold_status": "PROPOSED DEFAULT — ratify or amend at decision Q-26",
+   "why": "Survival first: a strategy that passes every skill gate can still hit an unlucky run the bankroll cannot absorb.",
+   "action": "Demote to paper; no new live stakes; open positions settle normally.",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+   "_source_label": "X1 executive summary + project brief (this repository)",
+   "_retrieved_at": "2026-11-14",
+   "_verified": true,
+   "_flags": [
+    "thresholds T2/T3/T4 are proposed defaults pending ratification (Q-26)"
+   ]
+  },
+  {
+   "id": "G-D1.T5",
+   "trigger": "Data-integrity breach",
+   "rule": "Any input the strategy used is found unverified, contradicted by an official source, or wrongly transcribed (a G1 source-gate failure discovered post-hoc).",
+   "threshold": "0 tolerance — one proven breach",
+   "threshold_status": "rule; no threshold needed",
+   "why": "Results computed from wrong inputs are not results. This is the same standard the site applies to published rows.",
+   "action": "Immediate demotion. Every affected bet is voided and re-graded from corrected inputs; the correction is logged in the coordination record and on the Flagged page.",
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+   "_source_label": "X1 executive summary + project brief (this repository)",
+   "_retrieved_at": "2026-11-14",
+   "_verified": true,
+   "_flags": []
+  }
+ ],
+ "demotion_procedure": {
+  "on_trigger": [
+   "no new live stakes on the strategy",
+   "open positions settle normally from the verified results feed",
+   "the strategy returns to the paper pool and keeps its full history",
+   "the leaderboard records the trigger id, the window and the date — the entry is never deleted"
+  ],
+  "re_promotion": [
+   "a fresh pre-registered window is required (hypothesis, inputs, market and staking rule recorded before grading, gate G2)",
+   "the old sample cannot be reused to pass gates",
+   "all eight promotion gates (G1-G8) must pass on the new window",
+   "the owner ratifies the return to live (decision Q-25)"
+  ],
+  "separation_from_staking": "the demotion gate reads SIGNAL metrics only (flat-stake ROI, CLV, gate failures); a lucky or unlucky staking plan can neither trigger nor prevent a demotion (see data/leaderboard_split.json)",
+  "who_can_override": "an override is an owner decision recorded on the suggestion board before it happens (decision Q-25); no silent overrides"
+ },
+ "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md",
+ "_source_label": "X1 executive summary + project brief (this repository)",
+ "_source_org": "Project brief",
+ "_retrieved_at": "2026-11-14",
+ "_flags": [
+  "thresholds T2/T3/T4 are proposed defaults: they are policy choices, labelled as such, pending owner ratification (Q-26) — not data values"
+ ],
+ "_verified": true
+}
