@@ -4,7 +4,7 @@
 
 | # | Source | Used for | Link | Retrieved |
 |---|---|---|---|---|
-| 1 | **nflverse/nfldata** — committed CSVs (`games.csv`, `teams.csv`, `standings.csv`, `closing_lines.csv`, `initial_lines.csv`, `win_totals.csv`) | All historical games 1999–2026 (scores, spreads, totals, rest, roof, wind, QBs), market lines, team metadata | [github.com/nflverse/nfldata](https://github.com/nflverse/nfldata) | 2026-11-14 (master tarball via codeload) |
+| 1 | **nflverse/nfldata** — committed CSVs (`games.csv`, `teams.csv`, `standings.csv`, `closing_lines.csv` (2006–2018), `initial_lines.csv` (2021), `win_totals.csv` (2003–2020), `trades.csv`, `rosters.csv` (to 2019)) | All historical games 1999–2026 (scores, spreads, totals, rest, roof, wind, QBs), market lines, team metadata | [github.com/nflverse/nfldata](https://github.com/nflverse/nfldata) | 2026-11-14 (master tarball via codeload + contents API) |
 | 2 | **NFL.com official standings** — league view, 2026 regular season | Cross-check of computed standings | [nfl.com/standings/league/2026/REG](https://www.nfl.com/standings/league/2026/REG) | 2026-11-14 |
 | 3 | **ESPN NFL injuries page** — "NFL Injury Status - 2026 Season" | Week 10 injury report, all 32 teams (491 rows), each row link to ESPN player page quoting club reports | [espn.com/nfl/injuries](https://www.espn.com/nfl/injuries) | 2026-11-14 |
 | 4 | **ESPN scoreboard** (site.api.espn.com — reachable via the agent's page-fetch tool) | Week 10 slate confirmation incl. Munich international game; team records spot-check | [espn.com/nfl/scoreboard](https://www.espn.com/nfl/scoreboard) | 2026-11-14 |

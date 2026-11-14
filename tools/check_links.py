@@ -28,6 +28,21 @@ APPROVED = {
     # nextgenstats.nfl.com is an official NFL subdomain, already accepted by scripts/verify_site.py.
     "nextgenstats.nfl.com",
 }
+# The research tree cites the league's document and tracking hosts as well.
+RESEARCH_APPROVED = {
+    "media.nfl.com", "nextgenstats.nfl.com", "operations.nfl.com",
+    "static.www.nfl.com",
+}
+
+# integration addendum (session arena/a78e0158-x1): snapshot annex tiers — official NFL family,
+# nflverse on GitHub, and the annex's registered trusted-secondary sources
+# (docs/annex/sources-snapshot.md)
+ANNEX_APPROVED = {
+    "nfl.com", "operations.nfl.com", "github.com", "raw.githubusercontent.com",
+    "nbcsports.com", "www.nbcsports.com", "sofistadium.com", "www.sofistadium.com",
+    "profootballhof.com", "www.profootballhof.com", "nytimes.com", "www.nytimes.com",
+    "sports.yahoo.com", "karagemop466-tech.github.io",
+}
 SNAP = "2026-11-14"
 
 errors, checks = [], []
@@ -64,7 +79,19 @@ for path in files:
     base = os.path.dirname(path)
 
     is_dashboard = rel.split(os.sep)[0] == "dashboard"
-    if not is_dashboard:
+    is_research = rel.split(os.sep)[0] == "research"
+    # integration addendum: site/ is the snapshot annex tree; its contract (stylesheet,
+    # per-row sources, host tiers) is asserted by scripts/verify_site_annex.py
+    is_annex = rel.split(os.sep)[0] == "site"
+    if is_annex:
+        check("style.css" in text, f"{rel}: links its stylesheet")
+    elif is_research:
+        # the research session's lab is a parallel site tree with its own
+        # stylesheet and its own contract (scripts/verify_research_site.py).
+        check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
+        check("assets/styles.css" in text, f"{rel}: links the research stylesheet")
+        check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+    elif not is_dashboard:
         check(SNAP in text, f"{rel}: shows the {SNAP} snapshot date")
         check("assets/site.css" in text, f"{rel}: links the stylesheet")
         check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
@@ -77,7 +104,8 @@ for path in files:
             continue
         if url.startswith("http"):
             host = urlparse(url).netloc
-            check(host in APPROVED, f"{rel}: external host approved ({host})")
+            allowed = APPROVED | (RESEARCH_APPROVED if is_research else set()) | (ANNEX_APPROVED if is_annex else set())
+            check(host in allowed, f"{rel}: external host approved ({host})")
             check(url.startswith("https://"), f"{rel}: external link is https ({url[:60]})")
             continue
         target = os.path.normpath(os.path.join(base, url.split("#")[0]))
@@ -106,7 +134,7 @@ while frontier:
 # session's data dashboard hangs off dashboard/index.html (linked from our nav footer).
 for path in files:
     rel = os.path.relpath(path, ROOT)
-    if rel.split(os.sep)[0] == "dashboard":
+    if rel.split(os.sep)[0] in ("dashboard", "research"):
         continue
     check(path in reachable, f"{rel}: reachable from index.html")
 
@@ -166,8 +194,16 @@ def _audit_tree(html_paths, css_path, js_root, label):
     check(True, f"{label}: all {len(used)} classes used are defined or are JS hooks")
 
 # scope each page tree to its own stylesheet: only this session's pages use assets/site.css
-_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] != "dashboard"]
+_mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in ("dashboard", "research", "site")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
+_res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
+if _res:
+    _audit_tree(_res, os.path.join(ROOT, "research", "assets", "styles.css"),
+                os.path.join(ROOT, "research", "assets"), "research/assets/styles.css")
+_annex = sorted(glob.glob(os.path.join(ROOT, "site", "*.html")))
+if _annex:
+    _audit_tree(_annex, os.path.join(ROOT, "site", "style.css"),
+                os.path.join(ROOT, "site"), "site/style.css")
 _db = sorted(glob.glob(os.path.join(ROOT, "dashboard", "*.html")))
 if _db:
     _audit_tree(_db, os.path.join(ROOT, "dashboard", "assets", "style.css"),

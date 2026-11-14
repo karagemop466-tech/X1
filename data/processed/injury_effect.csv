@@ -1,0 +1,9 @@
+position_group,games,avg_ats_margin,ats_cover_rate,note
+QB,19,2.526315789473684,0.6052631578947368,Positive = the team missing the player still covered the spread.
+RB,26,3.0961538461538463,0.5576923076923077,Positive = the team missing the player still covered the spread.
+WR,46,3.869565217391304,0.6195652173913044,Positive = the team missing the player still covered the spread.
+TE,22,6.295454545454546,0.75,Positive = the team missing the player still covered the spread.
+DL,34,-0.2647058823529412,0.5882352941176471,Positive = the team missing the player still covered the spread.
+LB,43,7.1395348837209305,0.7674418604651163,Positive = the team missing the player still covered the spread.
+DB,51,4.333333333333333,0.696078431372549,Positive = the team missing the player still covered the spread.
+OL,52,4.423076923076923,0.6442307692307692,Positive = the team missing the player still covered the spread.

@@ -1,12 +1,14 @@
-# Generated GitHub Pages artifact (if a build step ever emits one)
-_site/
-
-# local scratch
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
+data/cache/
 .venv/
+venv/
 .DS_Store
-.arena/
 
-# large local inputs used by analysis/strategy_backtest.py
-/tmp/nfldata/
+# Raw research inputs are re-downloaded by scripts/run_pipeline.py and are
+# fingerprinted in data/raw_manifest.json. The one file that cannot be
+# re-downloaded (a hand transcription of an official injury report) is kept.
+data/raw/*
+!data/raw/official_injuries_w10_2026.csv
+_site/

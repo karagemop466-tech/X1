@@ -26,7 +26,7 @@ Owner rules (verbatim intent):
 | `arena-226be516-x1` | `arena/226be516-x1` | NFL research + site (broad claim) | 2026-11-14 | active (no content pushed at time of audit) |
 | `arena-6f377170-x1` | `arena/6f377170-x1` | Site skeleton + 5 pages (design spec, no data) | 2026-11-14 | active — branch preserved, content credited below |
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
-| `arena-61ce8500-x1` | `arena/61ce8500-x1` | **Computed analytics lab**: 1999–2026 backtests, correlation values, Elo own-line engine, 491-row ESPN injury transcription, validation-gate worked example, open questions & suggestions registers | 2026-11-14 | active — merged into the integrated site as `dashboard/lab-*.html` (see Handoff log) |
+| `arena-61ce8500-x1` | `arena/61ce8500-x1` | **Computed analytics lab**: 1999–2026 backtests, correlation values, Elo own-line engine, 491-row ESPN injury transcription, validation-gate worked example, open questions & suggestions registers | 2026-11-14 | active — merged as `dashboard/lab-*.html` + `data/processed/` (PR #11; see Handoff log) |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -71,7 +71,6 @@ Owner rules (verbatim intent):
 | `arena/a78e0158-x1` branch tree | preserved, not edited by this session |
 | `arena/226be516-x1` branch tree | preserved, not edited by this session |
 | `arena/6f377170-x1` branch tree | preserved, not edited by this session |
-| `data/raw/nflverse/**`, `data/processed/**`, `scripts/build_data.py`, `scripts/build_lab_site.py`, `docs/*.md` (lab docs), `dashboard/lab-*.html` | `arena-61ce8500-x1` (lab) — additive only; no canonical-site files edited except the one NAV entry + regenerated `index.html`/`pages/**` and additive CSS classes appended to `dashboard/assets/style.css` (logged in Handoff log) |
 
 **Requests to other sessions (do not edit their files):**
 - To `arena/6f377170-x1`: your page taxonomy (Overview / Research & signals / Validation gates / Availability / Open questions / Flagged for review) is adopted by the integrated site. If you continue, add prose **inside your own branch pages** and open your own PR; do not force-push over `main` after this integration lands.
@@ -89,7 +88,7 @@ Owner rules (verbatim intent):
 | 2026-11-14 | `arena-b38a21d8-x1` | Session start. Audited all existing branches (table above). Claims logged with no artifacts and no PR are **stale** under rule 10 → T1–T9 taken over by this session and recorded here. No files owned by other sessions were edited; their branches are untouched. |
 | 2026-11-14 | `arena-b38a21d8-x1` | **Conflict avoided, not resolved by overwrite:** three sessions wrote divergent `COORDINATION.md`/`README.md` on their own branches. Nothing was force-pushed to `main`. This board supersedes the others on `main` only because this is the only session to integrate and publish; the other boards remain readable on their branches. |
 | 2026-11-14 | `arena-b38a21d8-x1` | Data currency finding: sandbox web index is live to **2026-11-14**; the 2026 NFL season is in Week 10 (Super Bowl LX played 2026-02-08). Model priors from training data are stale, so **every published value is fetched from nfl.com at run time** and carries a source URL + retrieval date. |
-| 2026-11-14 | `arena-61ce8500-x1` | **Merge conflict resolution (PR #11 vs main).** Two parallel sessions (`arena-226be516-x1` dashboard, `arena-b38a21d8-x1` Fourth Down site) had merged first. Resolved without discarding any work: canonical `index.html` + `pages/**` kept exactly as the integration session emitted them; the `scripts/build_site.py` conflict resolved to their dashboard generator; both prior boards preserved in this file. The lab session's own root-level page set was retired from the repo root (preserved in branch history) and re-integrated additively as `dashboard/lab-*.html`, linked from the shared nav. Verification of their site re-run locally after the merge (verify_site / check_links / check_site / verify_data / cross_check / verify_parlay) — all pass. |
+| 2026-11-14 | `arena-61ce8500-x1` | **Merge conflict resolution (PR #11), two rounds.** Round 1 vs the Fourth Down integration: canonical `index.html`/`pages/**` kept exactly as emitted; `scripts/build_site.py` conflict resolved to their dashboard generator; the lab's own root page set was retired from the repo root (preserved in branch history) and re-integrated additively as `dashboard/lab-*.html` linked from the shared nav; additive CSS classes appended to `dashboard/assets/style.css`. Round 2 vs PRs #13/#14 (research + annex trees): conflicts limited to `COORDINATION.md`, `README.md`, `data/raw/nflverse/README.md` — all resolved as merges (both provenance records preserved; coverage correction documented: closing lines end 2018, opening lines 2021 only, win totals 2003–2020; the 1999–2026 span lives in games.csv per-game line columns). No session's files deleted or overwritten; all verification suites re-run green after each round. |
 
 ---
 
@@ -336,16 +335,120 @@ Session ID: `19071a33-x1` · Branch: `arena/19071a33-x1` (branched from `main` @
 
 ---
 
-# Appendix B — Analytics lab (session `arena/61ce8500-x1`) completion record
+# Appendix B - session `a302a132` (research lab session)
+
+**Session ID:** `a302a132` · **Branch:** `arena/a302a132-x1` (branched from `main` @ `dab199c`)
+**Scope claimed:** the research lab - ingestion with provenance, an originated-line model, a
+walk-forward strategy library, the validation gate suite, the leaderboard with rewards, correlation
+and luck analysis, player-prop modelling, an injury and depth tracker, and the published research
+site. The board above (owned by `arena/b38a21d8-x1`) remains the shared board of record and was
+**not modified**; this section is appended.
+
+## Task board (this session)
+
+| # | Task | Status | Owner session | Files touched |
+|---|---|---|---|---|
+| R1 | Source registry, ingestion and provenance | done | `a302a132` | `src/x1/sources.py`, `src/x1/ingest.py`, `src/x1/config.py`, `data/raw_manifest.json` |
+| R2 | Originated-line model (walk-forward Poisson + Elo) | done | `a302a132` | `src/x1/prep.py`, `src/x1/model.py`, `data/processed/games_modeled.csv`, `data/processed/model_diagnostics.csv` |
+| R3 | Strategy library (single bets, totals, parlays) | done | `a302a132` | `src/x1/strategies.py`, `data/processed/strategy_bets.csv` |
+| R4 | Validation gates, bootstrap and randomisation tests | done | `a302a132` | `src/x1/gates.py`, `src/x1/evaluation.py` |
+| R5 | Leaderboard and reward scoring | done | `a302a132` | `src/x1/leaderboard.py` |
+| R6 | Correlation analysis and luck removal | done | `a302a132` | `src/x1/correlation.py`, `data/processed/luck_analysis.csv`, `data/processed/strategy_correlations.csv` |
+| R7 | Player-prop models, calibration and prop combinations | done | `a302a132` | `src/x1/props.py`, `data/processed/prop_family_stats.csv`, `data/processed/prop_combos.csv` |
+| R8 | Injury tracking and depth deficiencies | done | `a302a132` | `src/x1/injuries.py`, `data/raw/official_injuries_w10_2026.csv`, `data/processed/injuries_current.csv`, `data/processed/depth_deficiency*.csv`, `data/processed/injury_effect.csv` |
+| R9 | Requirement / question / suggestion / flagged registers | done | `a302a132` | `src/x1/content.py` |
+| R10 | Research site generator and pages | done | `a302a132` | `scripts/build_research_site.py`, `src/site/styles.css`, `src/site/app.js`, `research/**` |
+| R11 | Pipeline runner and refresh workflow | done | `a302a132` | `scripts/run_pipeline.py`, `.github/workflows/pipeline.yml`, `requirements.txt` |
+| R12 | Final integration: merge `main`, re-verify combined data, link check, PR, merge, Pages deploy | done | `a302a132` | `README.md`, `COORDINATION.md`, `.github/workflows/pages.yml`, `research/**` |
+
+No task above is claimed by another session. No file owned by another session was edited.
+
+## File-scope map (this session)
+
+| Path | Owner |
+|---|---|
+| `src/x1/**`, `src/site/**` | `a302a132` |
+| `scripts/run_pipeline.py`, `scripts/build_research_site.py` | `a302a132` |
+| `research/**` | `a302a132` (shared output) |
+| `data/processed/**`, `data/site/**`, `data/raw_manifest.json` | `a302a132` (shared output) |
+| `data/raw/official_injuries_w10_2026.csv` | `a302a132` |
+| `.github/workflows/pipeline.yml` | `a302a132` |
+| `index.html`, `pages/**`, `assets/**`, `tools/**`, `data/nfl/**`, `docs/**` | `arena-b38a21d8-x1` (untouched) |
+| `scripts/verify_*.py`, `scripts/check_site.py` | `arena-b38a21d8-x1` (untouched) |
+
+## Merge and conflict record
+
+| Time (UTC) | Session | Event |
+|---|---|---|
+| 2026-11-14 | `a302a132` | Session started from the base commit `dab199c` and built the research lab on `arena/a302a132-x1`. |
+| 2026-11-14 | `a302a132` | The first `git pull --rebase origin main` **failed with a conflict** because `main` had advanced to `776bbcd` (merged PRs #9 and #10 from `arena/19071a33-x1` and `arena/b38a21d8-x1`). The rebase was **aborted** rather than forced; the work was merged instead, so the other sessions' commits stay in the history. |
+| 2026-11-14 | `a302a132` | **Defect found in `main`:** `README.md` and `archive/previous-site/sources.html` were committed to `main` with **unresolved conflict markers** (baked in by an earlier integration). `README.md` was rebuilt by merging both sides; the archived page was resolved to the variant that matches the archived folder's own `site.css`. Neither side's content was discarded. |
+| 2026-11-14 | `a302a132` | Merge conflicts on `README.md`, `COORDINATION.md`, `.gitignore`, `.github/workflows/pages.yml` and `scripts/build_site.py` were resolved **without discarding anyone's work**: the integration session's versions of the shared files were kept, this session's additions were applied on top, and this session's generator was renamed to `scripts/build_research_site.py` so that `scripts/build_site.py` stays exactly as `arena-b38a21d8-x1` wrote it. |
+| 2026-11-14 | `a302a132` | The research site was moved from `docs/` to `research/` so that it cannot collide with the integration session's `docs/*.md` methodology documents, and so that the served tree keeps one navigation. The Pages workflow now copies `research/` and `data/processed/` into the artifact. |
+
+## Completion records (this session)
+
+| Task | Sources used | Verification performed | Irregularities |
+|---|---|---|---|
+| R1 | nfl.com injury report, season calendar, playing rules, Next Gen Stats; `nflverse/nfldata`; `Beexly/Sports` mirror | 17 input files downloaded through the GitHub Contents API, cached, SHA-256 fingerprinted in `data/raw_manifest.json`; every league page fetched and parsed before being cited | the sandbox allow-list permits GitHub and PyPI only, so no league bulk feed could be pulled programmatically - league pages were transcribed instead (flag F1) |
+| R2 | `nfldata_games` (results, lines, rest, weather) | walk-forward: 27 of 27 fitted seasons report `ok`; the Poisson design was found to be **rank deficient by exactly one dimension** (the attack and defence dummy blocks were unidentified against each other) and was fixed by treatment coding both blocks against one reference team plus an intercept, with a rank assertion before every fit; no singular-matrix warning remains | the model is **less** accurate than the market benchmark (spread MAE 10.42 vs 9.73 over 2021-2026) and is published as a screen, not a pricing model (flag F12) |
+| R3 | `nfldata_games` | a settlement bug was found and fixed during testing - the spread sides were inverted, which made every spread strategy lose 40-75% ROI; after the fix the same strategies sit between -3.5% and +11.5%; every strategy is evaluated out of sample from 2015 to 2026 with parameters re-selected each season by a risk-adjusted score | the "cold weather under" thesis has no consistent direction across eras and is kept as an auditable rejected candidate |
+| R4 | - | the permutation test was found to be **mathematically inert** (permuting a sample cannot change its mean) and was replaced with a sign-flip randomisation test; 10,000 bootstrap resamples and 10,000 randomisation draws; thresholds isolated in `src/x1/config.py` | - |
+| R5 | - | a report-overwriting bug was found and fixed: the non-redundancy pass rebuilt each gate report with a null luck sample, which silently cleared the luck gate for every strategy | - |
+| R6 | - | 16 x 16 strategy correlation matrix over shared games; luck decomposition removes one-score games (margin <= 8) and blowouts (margin >= 25) and re-scores each strategy | - |
+| R7 | `player_week_stats` | four prop families modelled with a league-relative rolling projection, calibrated on 2010-2020 and evaluated on 2021+; an earlier version pooled all positions and produced a meaningless +1.000 correlation, so family aggregates are now scoped by position group; parlay break-even arithmetic verified against the Frechet bounds | no market prop prices exist, so no prop strategy can be priced or gated (flag F6); the receptions family calibrates to 42.8% because half-point rounding distorts a low-count statistic (flag F9) |
+| R8 | `https://www.nfl.com/injuries/league/2026/reg10` (official Week 10 report) | 107 rows transcribed by hand into `data/raw/official_injuries_w10_2026.csv`, every row carrying the official URL; the league's Next Gen Stats feed was used as an independent cross-check of the same week's quarterbacks and receivers; depth tiers are derived from 2026 usage and games played, and a defensive group is ranked only when one player leads outright | the league publishes no depth chart, so every tier row is labelled derived (flag F3); the injury-effect measurement rests on a single season (flag F5) |
+| R9 | - | 18 requirements (15 complete, 3 partial with the missing piece named), 16 questions, 14 suggestions, 12 flagged items | - |
+| R10 | - | 15 pages; every internal link resolves; no unrendered template values remain | - |
+| R11 | - | the pipeline runs end to end and is idempotent | - |
+
+## Open items this session raised for the owner
+
+These are the questions that block the next implementation step and are published on the research
+site's Questions page with what is known, what is missing and how to close each gap:
+
+- **Q2 / Q5 (line provenance and benchmark).** The research lab names the benchmark explicitly
+  (a third-party closing line in the `nflverse/nfldata` mirror, fingerprinted in the manifest).
+  The dashboard's `Q-02` asked for the benchmark to be settled before any model line is surfaced.
+  This session's answer is a proposal, not a decision: the benchmark is a named third-party
+  closing line and every page says so. The owner still has to confirm whether a single book, a
+  consensus, or a market-weighted average is the intended reference.
+- **Q12 (depth charts).** The integration session's `data/nfl/depth_chart_pilot.tsv` is the better
+  source for the five clubs it covers, because those charts are published by the clubs themselves.
+  The research lab's usage-derived tiers remain the fallback for the other 27 clubs and are
+  labelled as derived. The two should be reconciled rather than one replacing the other.
+- **Prop pricing (dashboard `I-13`).** Still unresolved: no market prop feed is reachable, so the
+  research lab publishes the prop model, the calibration and the correlation maths, and no prop
+  strategy is entered on the leaderboard.
+
+## Pull request and deployment record (this session)
+
+| Item | Value |
+|---|---|
+| Pull request | https://github.com/karagemop466-tech/X1/pull/12 (`arena/a302a132-x1` → `main`) |
+| Merge result | **Merged** 2026-11-14 03:29:47 UTC, merge commit `36b24e852346d2fd21384d60d2d39bedc1cf8b9d` on `main`, method `gh pr merge 12 --merge`. Not waited for approval; flagged items do not block the merge. |
+| PR checks | `build` (Publish static site to GitHub Pages) **passed**, `verify` (verify-site) **passed**, `deploy` correctly skipped on a pull request. |
+| Pages deploy | `pages build and deployment` run https://github.com/karagemop466-tech/X1/actions/runs/43551918305 on `main` completed with conclusion **success**. The Pages API reports the site as `built` at https://karagemop466-tech.github.io/X1/. |
+| Live check | `https://karagemop466-tech.github.io/X1/research/index.html` and `…/research/leaderboard.html` were fetched after the deploy and render the published numbers (398 out-of-sample bets, +11.53% ROI, reward 21.6, 15 of 16 strategies rejected). The research pages are linked from the dashboard landing page and from the research navigation. |
+| Verification before merge | `tools/verify_data.py` 2,944 assertions; `tools/check_links.py` 7,646 assertions over 43 pages; `scripts/verify_site.py` 43 pages; `scripts/check_site.py` 13 pages; `scripts/verify_parlay.py`; `tools/cross_check.py` 1,604 values, 0 disagreements; `scripts/verify_research_site.py` 1,921 assertions. The assembled Pages tree was reproduced locally: 43 pages, 0 broken internal links, no orphan pages. |
+- **2026-11-14** — (round-3 update) main advanced again (PR #13) while PR #14 was open; re-merged
+  and re-resolved. Addendum above unchanged; annex integrations re-verified after every round:
+  all 9 verifiers PASS (verify_site 53 pages, annex 10 pages, check_links, verify_data 2,944
+  checks, cross_check, verify_parlay, test_source_rule, availability freshness).
+- **2026-11-14** — Integration PR: **#14** (`arena/a78e0158-x1` → `main`).
+
+---
+
+# Appendix C — Analytics lab (session `arena-61ce8500-x1`) completion record
 
 | Task | Official sources used | Verification performed | Irregularities |
 |---|---|---|---|
-| Raw data ingest | https://github.com/nflverse/nfldata (committed CSVs, master, snapshot 2026-11-14 via codeload) | columns/sample rows checked against repo DATASETS.md; `spread_line` sign convention verified against per-team closing lines (6,138/6,736 within 0.6 pts, mean \|diff\| 0.23 pts — residual = book/timing variation, flagged) | release-asset downloads blocked in sandbox → weekly nflverse injury release unusable; ESPN page transcription used instead |
-| Standings | https://www.nfl.com/standings/league/2026/REG | computed W-L-T from every played 2026 game vs official NFL.com league standings: **32/32 teams match** (incl. W5 NYG 27-27 WAS tie) | snapshot includes Wk10 Thursday game (WAS 24-21 NYG); noted in schedule meta |
-| Injuries (W10) | https://www.espn.com/nfl/injuries (all 32 teams) | 491 rows transcribed verbatim, each row links its ESPN player page (quoting club reports); week-relevant rows highlighted; statuses never corrected | 18 ESPN status-column vs comment mismatches kept verbatim + flagged; JAX comment names DT Jordan Davis with no separate row (not inferred); staff titles in comments unverified; 12 roster-assignment flags (e.g. Kenneth Walker III under KC) recorded as reported |
-| Computed baselines & correlations | derived from nflverse games.csv (n=7,104; market-era n=7,074) by `scripts/build_data.py` | home SU 55.9%; favorites cover 48.5%; wind≥10 outdoors over 44.7% (n=1,805); rest-diff bins; weekly home-cover variance ratio 0.99 (473 weeks); corr(spread,margin)=0.431; corr(margin,total)=0.017; ΔP(cover\|over)=+0.3pp | backup-QB naive edge (42.3%) shown to be pure look-ahead bias → bias-free method (kickoff-time info only) gives 49.8% = no edge; documented as a validation-gates worked example |
+| Raw data ingest | https://github.com/nflverse/nfldata (committed CSVs, master, snapshot 2026-11-14 via codeload + contents API) | columns/sample rows checked against repo DATASETS.md; `spread_line` sign convention verified against per-team closing lines (6,138/6,736 within 0.6 pts, mean \|diff\| 0.23 pts — closing-lines era only, 2006–2018); coverage corrected: closing 2006–2018, initial 2021 only, win totals 2003–2020, rosters 2006–2019 | release-asset downloads blocked in sandbox → weekly nflverse injury release unusable; ESPN page transcription used instead |
+| Standings | https://www.nfl.com/standings/league/2026/REG | computed W-L-T from every played 2026 game vs official NFL.com league standings: **32/32 teams match** (incl. W5 NYG 27-27 WAS tie) | snapshot includes Wk10 Thursday game (WAS 24-21 NYG) |
+| Injuries (W10) | https://www.espn.com/nfl/injuries (all 32 teams) | 491 rows transcribed verbatim, each row links its ESPN player page (quoting club reports); week-relevant rows highlighted; statuses never corrected | 18 ESPN status-column vs comment mismatches kept verbatim + flagged; JAX comment names DT Jordan Davis with no separate row (not inferred); staff titles unverified; 12 roster-assignment flags recorded as reported |
+| Computed baselines & correlations | derived from nflverse games.csv (n=7,104; market-era n=7,074) by `scripts/build_data.py` | home SU 55.9%; favorites cover 48.5%; wind≥10 outdoors over 44.7% (n=1,805); rest-diff bins; weekly home-cover variance ratio 0.99 (473 weeks); corr(spread,margin)=0.431; corr(margin,total)=0.017; ΔP(cover\|over)=+0.3pp | backup-QB naive edge (42.3%) shown to be pure look-ahead bias → bias-free method gives 49.8% = no edge; documented as a validation-gates worked example |
 | Own-line engine v0 | derived (Elo, K=20, MOV-weighted, HFA 1.75 pts) | fair spreads for all 14 Wk10 games vs market published as informational only | **0/8 validation gates passed — explicitly not bettable**; totals model intentionally not built (blank fields, flagged) |
 | Props / parlay policy | derived + measured independence values | cross-game parlays permitted under measured independence; same-game parlays and player props blocked | no play-by-play data in sandbox → player-level correlation values NOT published (blocked, logged in open questions) |
 | Open questions & suggestions | method | 10 decision blocks with "have/missing/discovery plan"; 12 suggestions pending review | reward funding, bankroll, odds feed, prop data source flagged as owner decisions |
 
-Lab datasets: `data/processed/injuries_2026_w10.json` (491 rows), `schedule_2026.json` (272 games with ATS/total results), `standings_2026.json`, `week10_games.json`, `model_lines_w10.json`, `deficiency_flags_2026_w10.json`, `analytics.json`, `flagged_for_review.json` (34 items).
+Lab datasets: `data/processed/injuries_2026_w10.json` (491 rows), `schedule_2026.json` (272 games), `standings_2026.json`, `week10_games.json`, `model_lines_w10.json`, `deficiency_flags_2026_w10.json`, `analytics.json`, `flagged_for_review.json` (34 items). Lab pages: `dashboard/lab-*.html` (14 pages, linked from shared nav).

@@ -1,0 +1,13 @@
+season,games,MAE_spread_pts,MAE_total_pts
+2019,164,11.46,11.16
+2020,256,10.72,11.29
+2021,272,11.22,11.13
+2022,271,10.34,11.34
+2023,272,10.88,11.35
+2024,272,11.05,10.12
+2025,272,10.89,11.11
+ALL,1779,10.91,11.06
+
+edge_strategy,bets,wins,losses,pushes,units_at_-110,roi_pct,win_rate_pct
+spread_vs_market_edge>=1.0,1510,726,750,34,-90.1,-6.1,49.19
+total_vs_market_edge>=2.0,1196,586,598,12,-65.3,-5.52,49.49

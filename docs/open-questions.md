@@ -31,7 +31,7 @@ Purpose: a single, reviewable list of the questions, information, and answers th
 | Field | Content |
 |---|---|
 | Status | PARTIAL |
-| What we have | Historical closing lines 2006–2026 and opening lines 2021–2026 via nflverse (verified convention, mean \|diff\| 0.23 pts) — [methodology.html](methodology.html) |
+| What we have | Historical closing lines 2006–2018 and opening lines 2021 only via nflverse (verified convention, mean \|diff\| 0.23 pts on 6,736 spreads); per-game spread/total/moneylines in games.csv cover 1999–2026 — [methodology.html](methodology.html) |
 | What's missing | A **live, in-season** odds feed (opening → closing per book) to log CLV at pick time and to detect stale lines |
 | How to discover | Evaluate: (a) nflverse weekly release assets (blocked in this sandbox, fine in GitHub Actions), (b) The Odds API / comparable paid feed, (c) manual book snapshot log; choose one and record its license |
 | Blocks | CLV scoring (leaderboard's 40% weight), line-shopping, model-vs-market alerts |

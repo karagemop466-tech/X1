@@ -28,10 +28,14 @@
       <a href="sources.html">Sources</a>
       <a href="../dashboard/lab-index.html">Analytics lab</a>
       <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
   </nav>
   <div class="railnote">
     <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
-    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
   </div>
   <footer>Evidence first. Nothing inferred.</footer>
 </aside>
@@ -70,7 +74,7 @@
 <tr><td><b>Q-12</b></td><td><b>Test window</b><br><span class="muted">What is the first scored window, and when does it open and close?</span></td><td>The 2026 season is in Week 10; Weeks 11-18 remain in the regular season.</td><td>—</td><td>A calendar decision recorded with a timestamp.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/REG/week/10/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Q-13</b></td><td><b>Grading source</b><br><span class="muted">Which official source grades a settled bet, and how are stat corrections handled?</span></td><td>Official box scores are the primary record of on-field results.</td><td>—</td><td>A named grading source plus a stat-correction policy with a revision window.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Q-14</b></td><td><b>Breadth of coverage</b><br><span class="muted">Do we collect depth charts for all 32 clubs, and at what cost in effort?</span></td><td>This release covers 5 clubs (BUF, SEA, DET, GB, BAL). 27 remain.</td><td>—</td><td>A capture schedule per club plus a storage format decision.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.buffalobills.com/team/depth-chart" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
-<tr><td><b>Q-15</b></td><td><b>Publishing policy</b><br><span class="muted">May we publish originated lines publicly, and with what disclaimer?</span></td><td>No publishing policy has been set. The site currently publishes no prices at all.</td><td>—</td><td>A written publishing policy, reviewed for the jurisdictions served.</td><td><span class="pill high">open</span></td><td><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Q-15</b></td><td><b>Publishing policy</b><br><span class="muted">May we publish originated lines publicly, and with what disclaimer?</span></td><td>No publishing policy has been set. The dashboard publishes no prices; the research lab prices strategies against a named third-party closing line and says so on every row.</td><td>—</td><td>A written publishing policy, reviewed for the jurisdictions served.</td><td><span class="pill high">open</span></td><td><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Q-16</b></td><td><b>Success criteria</b><br><span class="muted">What does success look like numerically in Season 0, and who decides a strategy is promoted?</span></td><td>Gates define per-strategy thresholds; no portfolio-level target exists.</td><td>—</td><td>A target (e.g. number of strategies clearing Gate 2 with n_eff &gt;= 400) and a named arbiter.</td><td><span class="pill high">open</span></td><td><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Q-17</b></td><td><b>Update cadence</b><br><span class="muted">How often may the published tables be refreshed, and how is staleness displayed?</span></td><td>Every table in this release carries the 2026-11-14 retrieval date.</td><td>—</td><td>A refresh schedule and a staleness banner rule.</td><td><span class="pill high">open</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Q-18</b></td><td><b>Data verification</b><br><span class="muted">Is the official Week 10 injury report complete for all 14 games?</span></td><td>All 14 Week 10 games and all 28 participating clubs are present in the captured report; 345 player rows were transcribed.</td><td>Yes for the captured snapshot: every week-10 game and every participating club has rows, verified mechanically by tools/verify_data.py (2,944 checks).</td><td>A second independent capture compared row-for-row to confirm nothing was missed in transcription.</td><td><span class="pill warn">partially answered</span></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">official source ↗</a><br><a class="src-link" href="https://www.nfl.com/" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
@@ -88,7 +92,10 @@
     Independent research project · not financial or betting advice ·
     snapshot 2026-11-14 · every published value links to its official source<br>
     Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
-    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
   </footer>
 </main>
 </body>

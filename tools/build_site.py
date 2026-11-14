@@ -45,6 +45,8 @@ NAV = [
     ("pages/sources.html", "Sources"),
     ("dashboard/lab-index.html", "Analytics lab"),
     ("pages/review.html", "Repo review"),
+    ("research/index.html", "Research lab"),
+    ("site/index.html", "Snapshot annex (X1)"),
 ]
 
 
@@ -133,7 +135,9 @@ def shell(title, subtitle, body, depth=0):
   </nav>
   <div class="railnote">
     <span class="dot"></span> Data snapshot <strong>{RETRIEVED}</strong>
-    <p>No prices, correlation values or strategy results are published: the licensed data they need is not available yet.</p>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
   </div>
   <footer>Evidence first. Nothing inferred.</footer>
 </aside>
@@ -147,7 +151,10 @@ def shell(title, subtitle, body, depth=0):
     Independent research project · not financial or betting advice ·
     snapshot {RETRIEVED} · every published value links to its official source<br>
     Also in this repository: {rel_link('dashboard/index.html', 'the backtest data dashboard', depth)} — 2006–2026
-    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons.
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and {rel_link('research/index.html', 'the research lab', depth)} — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
   </footer>
 </main>
 </body>
@@ -227,12 +234,16 @@ def page_index():
 
 <section class="alert">
   <b>Evidence boundary.</b>
-  <p>This release publishes <strong>no prices, no correlations and no strategy results</strong>. Those require a
-  licensed odds feed, licensed snap counts and a scored window, none of which exist here yet.
-  What it does publish — standings, the week-10 slate, the official injury report and a five-club
-  depth-chart pilot — is transcribed row by row from official pages and re-checked by
-  {esc('2,944')} automated assertions.</p>
-  <a href="pages/sources.html">How verification works →</a>
+  <p>This dashboard publishes <strong>only league-verified tables</strong> — standings, the week-10
+  slate, the official injury report and a five-club depth-chart pilot — transcribed row by row from
+  official pages and re-checked by {esc('2,944')} automated assertions. It publishes no prices,
+  correlations or strategy results of its own, because those need a licensed odds feed.
+  The priced research — originated lines, walk-forward gates, correlation values, luck removal and
+  player-prop mathematics — is published separately in the
+  <a href="research/index.html">research lab</a>, where the third-party line benchmark is named and
+  fingerprinted on every row.</p>
+  <a href="pages/sources.html">How verification works →</a> &nbsp;·&nbsp;
+  <a href="research/index.html">Open the research lab →</a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">AT A GLANCE</div><h2>Choose where to look</h2></div><span class="tag">SNAPSHOT {RETRIEVED}</span></section>
