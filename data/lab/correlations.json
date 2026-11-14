@@ -1,0 +1,847 @@
+{
+ "generated_at": "2026-11-14T19:52:35Z",
+ "snapshot": "2026-11-14",
+ "title": "Correlation values, each with the n it was computed on",
+ "rule": {
+  "minimum_n": 30,
+  "sourcing": "both sides of every pair must come from a sourced, recorded file; an unsourced pair is published as NOT SOURCED even if it would compute",
+  "intervals": "2000 bootstrap resamples per value, 2000 permutation draws for the p-value, fixed seed 20261114 so the page is reproducible"
+ },
+ "families": [
+  {
+   "id": "C1",
+   "title": "Within-game outcome correlations",
+   "why_it_matters": "these are the joints a parlay actually carries",
+   "rows": [
+    {
+     "name": "Home margin vs game total",
+     "n": 7413,
+     "r": 0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "1999-2026",
+     "note": "The correlation a same-game side+total parlay is exposed to. A positive value means games that go over also tend to be won by more. NFL margin and total are close to independent, and this row is how close.",
+     "status": "MEASURED",
+     "ci95": [
+      0.0,
+      0.04
+     ],
+     "p_value": 0.0715,
+     "excludes_zero": true
+    },
+    {
+     "name": "Home margin vs market spread",
+     "n": 7413,
+     "r": -0.43,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "1999-2026",
+     "note": "A validity check on the upstream: the market spread must correlate strongly with the actual margin or the price store's sign convention is wrong. The sign is negative because both columns use the home-team convention (negative = home favoured): a market of -7 goes with a positive home margin.",
+     "status": "MEASURED",
+     "ci95": [
+      -0.45,
+      -0.41
+     ],
+     "p_value": 0.0005,
+     "excludes_zero": true
+    },
+    {
+     "name": "Game total vs market total",
+     "n": 7413,
+     "r": 0.32,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "1999-2026",
+     "note": "Same validity check for the total. r = 0.32 is low in absolute terms because a book's total is a fair price, not a forecast of the realised score: the residual is the variance the market cannot remove, and that residual is the only thing a total model can win.",
+     "status": "MEASURED",
+     "ci95": [
+      0.3,
+      0.34
+     ],
+     "p_value": 0.0005,
+     "excludes_zero": true
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "title": "Model vs market agreement",
+   "why_it_matters": "validity, not edge: a model that does not move with the market is not measuring the same thing",
+   "rows": [
+    {
+     "name": "Originated side vs market side",
+     "n": 7439,
+     "r": 0.47,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+     ],
+     "window": "1999-2026",
+     "note": "Agreement with the market is not skill -- it is the minimum bar a model has to clear before its disagreements can mean anything.",
+     "status": "MEASURED",
+     "ci95": [
+      0.45,
+      0.49
+     ],
+     "p_value": 0.0005,
+     "excludes_zero": true
+    },
+    {
+     "name": "Originated total vs market total",
+     "n": 7439,
+     "r": 0.57,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+     ],
+     "window": "1999-2026",
+     "note": "Agreement with the market is not skill -- it is the minimum bar a model has to clear before its disagreements can mean anything.",
+     "status": "MEASURED",
+     "ci95": [
+      0.55,
+      0.58
+     ],
+     "p_value": 0.0005,
+     "excludes_zero": true
+    },
+    {
+     "name": "Originated home win probability vs market-implied",
+     "n": 5458,
+     "r": 0.42,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/DATASETS.md"
+     ],
+     "window": "1999-2026",
+     "note": "The market probability still contains the vig, so the market column is systematically above 0.5 for favourites; the correlation is still meaningful.",
+     "status": "MEASURED",
+     "ci95": [
+      0.4,
+      0.44
+     ],
+     "p_value": 0.0005,
+     "excludes_zero": true
+    }
+   ]
+  },
+  {
+   "id": "C3",
+   "title": "Stability by season",
+   "why_it_matters": "a correlation that only exists in one era is an artefact",
+   "rows": [
+    {
+     "name": "Margin vs total, 1999",
+     "n": 259,
+     "r": 0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "1999",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.1,
+      0.13
+     ],
+     "p_value": 0.8056,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2000",
+     "n": 259,
+     "r": 0.04,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2000",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.08,
+      0.14
+     ],
+     "p_value": 0.5302,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2001",
+     "n": 259,
+     "r": 0.1,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2001",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.02,
+      0.2
+     ],
+     "p_value": 0.1194,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2002",
+     "n": 267,
+     "r": 0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2002",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.08,
+      0.12
+     ],
+     "p_value": 0.7011,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2003",
+     "n": 267,
+     "r": -0.01,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2003",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.12,
+      0.1
+     ],
+     "p_value": 0.8881,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2004",
+     "n": 267,
+     "r": 0.03,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2004",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.09,
+      0.15
+     ],
+     "p_value": 0.6682,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2005",
+     "n": 267,
+     "r": -0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2005",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.13,
+      0.1
+     ],
+     "p_value": 0.7996,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2006",
+     "n": 267,
+     "r": -0.04,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2006",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.15,
+      0.07
+     ],
+     "p_value": 0.5347,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2007",
+     "n": 267,
+     "r": -0.01,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2007",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.12,
+      0.1
+     ],
+     "p_value": 0.9215,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2008",
+     "n": 267,
+     "r": 0.01,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2008",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.1,
+      0.12
+     ],
+     "p_value": 0.8241,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2009",
+     "n": 267,
+     "r": 0.0,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2009",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.1,
+      0.1
+     ],
+     "p_value": 0.929,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2010",
+     "n": 267,
+     "r": -0.0,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2010",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.12,
+      0.12
+     ],
+     "p_value": 0.941,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2011",
+     "n": 267,
+     "r": 0.09,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2011",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.02,
+      0.2
+     ],
+     "p_value": 0.1379,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2012",
+     "n": 267,
+     "r": 0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2012",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.1,
+      0.13
+     ],
+     "p_value": 0.7851,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2013",
+     "n": 267,
+     "r": 0.09,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2013",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.02,
+      0.22
+     ],
+     "p_value": 0.1444,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2014",
+     "n": 267,
+     "r": 0.11,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2014",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.01,
+      0.22
+     ],
+     "p_value": 0.086,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2015",
+     "n": 267,
+     "r": 0.08,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2015",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.04,
+      0.18
+     ],
+     "p_value": 0.2249,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2016",
+     "n": 267,
+     "r": -0.01,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2016",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.12,
+      0.1
+     ],
+     "p_value": 0.901,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2017",
+     "n": 267,
+     "r": 0.09,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2017",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.03,
+      0.2
+     ],
+     "p_value": 0.1599,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2018",
+     "n": 267,
+     "r": 0.08,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2018",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.02,
+      0.19
+     ],
+     "p_value": 0.1724,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2019",
+     "n": 267,
+     "r": -0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2019",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.14,
+      0.09
+     ],
+     "p_value": 0.7126,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2020",
+     "n": 269,
+     "r": -0.08,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2020",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.18,
+      0.03
+     ],
+     "p_value": 0.2109,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2021",
+     "n": 285,
+     "r": 0.07,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2021",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.04,
+      0.17
+     ],
+     "p_value": 0.2614,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2022",
+     "n": 284,
+     "r": -0.01,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2022",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.13,
+      0.1
+     ],
+     "p_value": 0.8176,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2023",
+     "n": 285,
+     "r": 0.08,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2023",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.05,
+      0.21
+     ],
+     "p_value": 0.1554,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2024",
+     "n": 285,
+     "r": 0.08,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2024",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.03,
+      0.18
+     ],
+     "p_value": 0.1674,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2025",
+     "n": 285,
+     "r": -0.02,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2025",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.12,
+      0.09
+     ],
+     "p_value": 0.8196,
+     "excludes_zero": false
+    },
+    {
+     "name": "Margin vs total, 2026",
+     "n": 137,
+     "r": -0.16,
+     "sources": [
+      "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+     ],
+     "window": "2026",
+     "note": "per-season stability check on C1's headline value",
+     "status": "MEASURED",
+     "ci95": [
+      -0.31,
+      -0.0
+     ],
+     "p_value": 0.0655,
+     "excludes_zero": true
+    }
+   ]
+  },
+  {
+   "id": "C4",
+   "title": "Required but not computable from sourced numbers",
+   "why_it_matters": "published as gaps rather than estimated",
+   "rows": [
+    {
+     "name": "Player-prop leg correlation (receptions vs receiving yards, same player)",
+     "n": 0,
+     "r": null,
+     "status": "NOT SOURCED",
+     "window": "-",
+     "sources": [
+      "data/lab/upstream/_pin.json"
+     ],
+     "why": "No prop price and no prop outcome is reachable from this environment. The nflverse release assets that carry player stats are hosted on a domain this sandbox cannot reach (recorded in data/lab/upstream/_pin.json).",
+     "what_would_close_it": "A licensed prop feed, or a league-published gamebook, for two seasons, so the same-player legs can be paired."
+    },
+    {
+     "name": "Injury count vs margin (the owner's availability thesis)",
+     "n": 0,
+     "r": null,
+     "status": "NOT SOURCED",
+     "sources": [
+      "data/lab/deficiency.json"
+     ],
+     "window": "-",
+     "why": "The injury report on this snapshot covers one week; a per-game injury count for two seasons is the minimum for this pair, and the league report is not reachable in bulk from this sandbox.",
+     "what_would_close_it": "Weekly injury reports archived for 2+ seasons (Q-L4)."
+    },
+    {
+     "name": "Cross-strategy profit correlation",
+     "n": 0,
+     "r": null,
+     "status": "NOT SOURCED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "-",
+     "why": "Requires a settled ticket list per strategy; the leaderboard's strategies are on paper and have no settled live tickets.",
+     "what_would_close_it": "Two seasons of paper tickets logged per strategy."
+    }
+   ]
+  },
+  {
+   "id": "C5",
+   "title": "Strategy overlap (from executed picks)",
+   "why_it_matters": "two strategies on the same games are one strategy dressed as two",
+   "rows": [
+    {
+     "name": "S-01-side-0.5 vs S-01-side-1.0",
+     "n": 2722,
+     "n_a": 2939,
+     "n_b": 2722,
+     "share_of_smaller_strategy": 1.0,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2722 shared games of 2939 and 2722; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-0.5 vs S-01-side-2.0",
+     "n": 2318,
+     "n_a": 2939,
+     "n_b": 2318,
+     "share_of_smaller_strategy": 1.0,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2318 shared games of 2939 and 2318; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-0.5 vs S-02-total-1.0",
+     "n": 2448,
+     "n_a": 2939,
+     "n_b": 2633,
+     "share_of_smaller_strategy": 0.93,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2448 shared games of 2939 and 2633; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-0.5 vs S-02-total-2.0",
+     "n": 2000,
+     "n_a": 2939,
+     "n_b": 2157,
+     "share_of_smaller_strategy": 0.927,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2000 shared games of 2939 and 2157; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-0.5 vs S-03-moneyline",
+     "n": 2663,
+     "n_a": 2939,
+     "n_b": 2751,
+     "share_of_smaller_strategy": 0.968,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2663 shared games of 2939 and 2751; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-0.5 vs S-04-parlay-2",
+     "n": 234,
+     "n_a": 2939,
+     "n_b": 234,
+     "share_of_smaller_strategy": 1.0,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "234 shared games of 2939 and 234; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-1.0 vs S-01-side-2.0",
+     "n": 2318,
+     "n_a": 2722,
+     "n_b": 2318,
+     "share_of_smaller_strategy": 1.0,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2318 shared games of 2722 and 2318; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-1.0 vs S-02-total-1.0",
+     "n": 2273,
+     "n_a": 2722,
+     "n_b": 2633,
+     "share_of_smaller_strategy": 0.863,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2273 shared games of 2722 and 2633; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-1.0 vs S-02-total-2.0",
+     "n": 1861,
+     "n_a": 2722,
+     "n_b": 2157,
+     "share_of_smaller_strategy": 0.863,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "1861 shared games of 2722 and 2157; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-1.0 vs S-03-moneyline",
+     "n": 2555,
+     "n_a": 2722,
+     "n_b": 2751,
+     "share_of_smaller_strategy": 0.939,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "2555 shared games of 2722 and 2751; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-1.0 vs S-04-parlay-2",
+     "n": 234,
+     "n_a": 2722,
+     "n_b": 234,
+     "share_of_smaller_strategy": 1.0,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "234 shared games of 2722 and 234; n here is the overlap count, which is what makes two strategies one strategy"
+    },
+    {
+     "name": "S-01-side-2.0 vs S-02-total-1.0",
+     "n": 1939,
+     "n_a": 2318,
+     "n_b": 2633,
+     "share_of_smaller_strategy": 0.836,
+     "r": null,
+     "status": "MEASURED",
+     "sources": [
+      "data/lab/leaderboard.json"
+     ],
+     "window": "2015-2026",
+     "why": "overlap measured from executed picks; a profit correlation needs settled tickets per strategy and is not claimed",
+     "note": "1939 shared games of 2318 and 2633; n here is the overlap count, which is what makes two strategies one strategy"
+    }
+   ]
+  }
+ ],
+ "counts": {
+  "values_published": 49,
+  "measured": 46,
+  "too_few": 0,
+  "not_sourced": 3
+ }
+}

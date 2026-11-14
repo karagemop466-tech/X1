@@ -1425,33 +1425,61 @@ def build_pages_7(ctx, pages):
           "missing source", "bad")])
 
     # ---------------- archived sites ----------------
+    # Ten parallel sessions each left a complete site in this repository. Deleting any of
+    # them would destroy work that is in places the only copy of a finding, so every one
+    # stays published and reachable from this page. The entry link is a real page, not a
+    # bare directory, so a link crawler starting at the site root can reach every one.
     trees = [
-        ("app/", "Unified dashboard", "arena/fcc11e05-x1",
+        ("app/", "index.html", "Unified dashboard", "arena/fcc11e05-x1",
          "21 pages, one navigation and one stylesheet. The previous canonical landing page."),
-        ("pages/", "Site tree", "arena/9cc1eaac-x1",
+        ("pages/", "index.html", "Site tree", "arena/9cc1eaac-x1",
          "Overview, research, validation, availability, sources, questions and review pages."),
-        ("dashboard/", "Dashboard", "earlier session",
+        ("dashboard/", "index.html", "Dashboard", "earlier session",
          "Model lines, leaderboard, gates, correlations, injuries and depth."),
-        ("research/", "Research lab", "arena-a302a132-x1",
+        ("research/", "index.html", "Research lab", "arena-a302a132-x1",
          "The priced benchmark: 16 strategies evaluated 2015-2026 against a fingerprinted mirror."),
-        ("site/", "Quantitative annex", "arena-a78e0158-x1",
+        ("site/", "index.html", "Quantitative annex", "arena-a78e0158-x1",
          "Computed values with inputs, code and an audit trail where the main site published none."),
-        ("live/", "Live pipeline section", "arena/d577959f-x1",
+        ("live/", "index.html", "Live pipeline section", "arena/d577959f-x1",
          "Pipeline outputs written straight from the official pages."),
-        ("hub/", "Second-opinion section", "arena/459b17e1-x1",
+        ("hub/", "index.html", "Second-opinion section", "arena/459b17e1-x1",
          "An independent re-verification, twelve findings and the suggestion review board."),
-        ("archive/previous-site/", "Superseded site", "first session",
+        ("lab/", "index.html", "Line desk", "arena/56769365-x1",
+         "Price snapshots, verified results, originated lines and a signal-vs-staking leaderboard."),
+        ("archive/previous-site/", "index.html", "Superseded site", "first session",
          "The original Fourth Down specification, preserved verbatim."),
     ]
+    def _entry(tree):
+        """The tree's index page if it has one, else its first page alphabetically.
+
+        Resolved at build time so the link can never point at a file that does
+        not exist.
+        """
+        d = os.path.join(ROOT, tree)
+        names = sorted(f for f in os.listdir(d) if f.endswith(".html")) if os.path.isdir(d) else []
+        if not names:
+            return ""
+        return "index.html" if "index.html" in names else names[0]
+
     REPO = "https://github.com/karagemop466-tech/X1/tree/main"
-    trs = [[f'<a href="{REPO}/{esc(p)}" target="_blank" rel="noopener">{esc(p)}</a>', esc(n),
-            esc(s), esc(d), f'<a class="src" href="{REPO}/{esc(p)}" target="_blank" '
-            f'rel="noopener">repo</a>'] for p, n, s, d in trees]
-    body = ('<div class="note">Nine parallel sessions each left a complete site in this repository. '
-            'Deleting any of them would destroy work that is in places the only copy of a finding, so '
-            'every one stays published and reachable from this page. The console at the site root is '
-            'the canonical landing page.</div>'
-            + table([("Tree", 0), ("Name", 0), ("Built by", 0), ("What it holds", 0)], trs, "arch"))
+    trs = [[f'<a href="../{esc(p)}">{esc(p)}</a>',
+            (f'<a href="../{esc(p)}{esc(_entry(p))}">{esc(_entry(p))}</a>'
+             if _entry(p) else '<span class="src mut">no page</span>'),
+            esc(n), esc(sess), esc(d),
+            f'<a class="src" href="{REPO}/{esc(p)}" target="_blank" rel="noopener">repo</a>']
+           for p, e, n, sess, d in trees]
+    n_pages = 0
+    for p, _e, _n, _sess, _d in trees:
+        d = os.path.join(ROOT, p)
+        if os.path.isdir(d):
+            n_pages += sum(1 for f in os.listdir(d) if f.endswith(".html"))
+    body = (f'<div class="note">{len(trees)} parallel sessions each left a complete site in this '
+            f'repository, {n_pages} published pages between them. Deleting any of them would '
+            'destroy work that is in places the only copy of a finding, so every one stays '
+            'published and reachable from this page. The console at the site root is the '
+            'canonical landing page.</div>'
+            + table([("Tree", 0), ("Entry page", 0), ("Name", 0), ("Built by", 0),
+                     ("What it holds", 0), ("Source", 0)], trs, "arch"))
     pages["archived-sites.html"] = page(
         "Archived sites", "Governance", body,
         "Every earlier site tree in this repository, still published, nothing deleted.")

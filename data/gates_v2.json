@@ -1,0 +1,103 @@
+{
+ "dataset": "gates_v2",
+ "title": "Demotion gate \u2014 the rule that sends a live strategy back to paper",
+ "generated_at": "2026-11-14",
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief (verbatim): define a demotion gate",
+  "org": "Project brief"
+ },
+ "columns": [
+  "id",
+  "trigger",
+  "rule",
+  "threshold",
+  "window",
+  "why",
+  "action"
+ ],
+ "rows": [
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner requirement (brief) + pre-registered gate design",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "D1",
+   "trigger": "CLV decay",
+   "rule": "The strategy's mean closing line value over the trailing window turns non-positive with a one-sided t-test rejecting mean CLV > 0.",
+   "threshold": "mean CLV <= 0 and one-sided t p < 0.10",
+   "window": "trailing 50 graded bets (min 30)",
+   "why": "CLV is the cleanest early evidence that the edge is gone: it moves before ROI does, and it is immune to the variance of final scores.",
+   "action": "automatic demotion to paper"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner requirement (brief) + pre-registered gate design",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "D2",
+   "trigger": "Drawdown",
+   "rule": "Peak-to-trough drawdown of the flat-stake signal bankroll breaches either absolute or relative limit.",
+   "threshold": ">= 25 units or >= 35% of peak",
+   "window": ">= 40 graded bets since promotion",
+   "why": "A drawdown larger than any plausible edge run is evidence the edge was never there \u2014 or is gone. The unit floor stops a young strategy being killed by noise.",
+   "action": "automatic demotion to paper"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner requirement (brief) + pre-registered gate design",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "D3",
+   "trigger": "Hit-rate decay",
+   "rule": "Rolling hit rate falls below the break-even rate implied by the prices taken, with a one-sided binomial test.",
+   "threshold": "hit rate < break-even and one-sided binomial p < 0.10",
+   "window": "trailing 50 graded bets (min 30)",
+   "why": "Catches a strategy that is still beating the close on tickets but losing them.",
+   "action": "automatic demotion to paper"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner requirement (brief) + pre-registered gate design",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "D4",
+   "trigger": "Data integrity",
+   "rule": "Any input behind a live signal fails its source check (unverified value, stale snapshot, broken feed), or a signal cannot be replayed from its recorded snapshot.",
+   "threshold": "any occurrence",
+   "window": "immediate",
+   "why": "An unverifiable live signal is an unmanaged bet. Suspend first, investigate second.",
+   "action": "immediate demotion to paper until the input passes its check again"
+  },
+  {
+   "_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_source_label": "Owner requirement (brief) + pre-registered gate design",
+   "_source_org": "Project brief",
+   "_retrieved_at": "2026-11-14",
+   "_flags": [],
+   "id": "D5",
+   "trigger": "Re-promotion (the way back)",
+   "rule": "A demoted strategy returns to live only by passing every promotion gate on NEW graded bets recorded after the demotion date. Pre-demotion data may not be reused, and D1-D3 must be clear on the new sample.",
+   "threshold": ">= 50 new graded bets, all promotion gates passed",
+   "window": "post-demotion only",
+   "why": "Without this rule a demotion is cosmetic: the same strategy would sail back on the same evidence that already failed.",
+   "action": "promotion re-considered; owner records the decision"
+  }
+ ],
+ "cadence": "Evaluated after every graded batch (at least weekly during the season).",
+ "authority": "Demotion is automatic and logged; the owner may demote at any time for any reason, and may overrule an automatic demotion only by recording why in the decision register. Promotions are always a recorded decision.",
+ "uses": "The signal block of the leaderboard split (data/leaderboard_split.json), never the staking block.",
+ "closes_question": "Q-26 (the demotion rule was undefined and blocked gate G-13).",
+ "verification": {
+  "rows": 5,
+  "rows_verified": 5,
+  "rows_flagged": 0,
+  "unverified_cells": 0,
+  "note": "These are policy definitions, not measurements: thresholds were set by design before any strategy is live (pre-registration), and every numeric value is reproduced here so it can be challenged before, not after, it binds."
+ },
+ "empty": false
+}

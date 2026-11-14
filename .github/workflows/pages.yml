@@ -44,6 +44,25 @@ jobs:
       # source link or an explicit "no official source" marker.
       - name: Verify the unified dashboard
         run: python3 tools/verify_app.py
+      # Added by session arena/56769365-x1 (additive only). The line desk: links resolve,
+      # every data row is sourced or explicitly marked, no leaked template values.
+      - name: Verify the line desk
+        run: python3 tools/lab/build_site.py
+      # Added by session arena/56769365-x1 (additive only). The verifiers above audit the
+      # repository; this one audits the tree that is actually uploaded. It replays the copy
+      # and sed steps below into a temp dir and crawls the result. Found two real defects
+      # that no repository-level check could see (a missing src= rewrite and a folder that
+      # was linked but never copied).
+      - name: Crawl the assembled tree for broken links
+        run: python3 tools/verify_deployed_tree.py
+      # Added by session arena/bf27a3bd-x1 (additive only). Verifies the new
+      # data stores (price snapshots, origination ledger, verified results feed,
+      # leaderboard split, replacement depth, official correlations, demotion
+      # gate) line by line: every row sourced or explicitly flagged, blanks
+      # flagged never silent, results re-checked against the official
+      # transcriptions, difference = model - market recomputed.
+      - name: Verify the new data stores
+        run: python3 tools/verify_new_data.py
       # Added by session arena/5f1c014c-x1 (additive only). Rebuilds the line
       # console from source and verifies it before the tree is assembled: a
       # broken or unsourced page fails the build rather than shipping.
@@ -82,18 +101,30 @@ jobs:
           # cannot drift apart and there is no redirect. The previous root landing
           # page is preserved at /legacy-fourth-down.html rather than deleted.
           cp -r app _site/
+          # Added by session arena/56769365-x1: the line desk (price snapshots, verified
+          # results, originated lines, signal-vs-staking leaderboard, demotion gate).
+          # Additive; every tree above is still copied and still reachable.
+          cp -r lab _site/
+          # Added by session arena/56769365-x1: hub/index.html links ../archive/previous-site/
+          # to a committed 96 KB archive that was never copied, so that link has been dead on
+          # the published site. Found by tools/verify_deployed_tree.py, which assembles the
+          # upload tree instead of auditing the repository. Additive: one copy line.
+          cp -r archive _site/
+          cp index.html _site/legacy-fourth-down.html
           # Added by session arena/5f1c014c-x1: the line console (line origination,
           # price store, strategy competition, decision register). Additive.
           cp -r console _site/
           mkdir -p _site/data/console
           cp data/console/*.csv data/console/*.json _site/data/console/ 2>/dev/null || true
-          cp index.html _site/legacy-fourth-down.html
-          # The site root serves the console landing page: it is the same file as
-          # console/index.html with same-folder links repointed into console/, so the
-          # two cannot drift apart and there is no redirect. The unified dashboard
-          # stays reachable at /app/ and is one click away from the root.
+          # Landing page, resolved once. Two sessions claimed the root; the console
+          # is served because it covers every requirement and links out to every
+          # tree. app/ stays reachable at /app/ and is one click away.
+          # Both href= and src= are rewritten: the root page loads
+          # <script src="assets/console.js">, which 404s as /assets/console.js
+          # unless the src is repointed too. The same defect on the app/ root was
+          # found by tools/verify_deployed_tree.py in session arena/56769365-x1.
           cp console/index.html _site/index.html
-          sed -i -E 's#href="assets/#href="console/assets/#g; s#href="([a-z0-9_-]+\.html)#href="console/\1#g; s#href="\.\./#href="./#g' _site/index.html
+          sed -i -E 's#href="assets/#href="console/assets/#g; s#src="assets/#src="console/assets/#g; s#href="([a-z0-9_-]+\.html)#href="console/\1#g; s#href="\.\./#href="./#g' _site/index.html
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
@@ -102,6 +133,17 @@ jobs:
           cp data/raw_manifest.json _site/data/ 2>/dev/null || true
           mkdir -p _site/data/pipeline
           cp data/pipeline/*.json _site/data/pipeline/ 2>/dev/null || true
+          # Added by session arena/3fa49c1a-x1: round-N stores (verified results
+          # feed, price snapshots, replacement depth, official correlations,
+          # originated markets, decision registers). Additive only — nothing
+          # above is modified or removed.
+          cp -r data/results _site/data/results
+          cp -r data/prices _site/data/prices
+          cp -r data/depth _site/data/depth
+          cp -r data/correlations _site/data/correlations
+          cp -r data/origin _site/data/origin
+          mkdir -p _site/data/lines
+          cp data/lines/originated_markets_2026_week10.csv _site/data/lines/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site

@@ -1,0 +1,157 @@
+{
+ "generated_at": "2026-11-14T19:53:50Z",
+ "snapshot": "2026-11-14",
+ "title": "Questions, what we have, what we do not have, and what it blocks",
+ "rule": "A question is closed only when its closing test is met by published evidence. Until then the decision it blocks is not made.",
+ "counts": {
+  "questions": 12,
+  "p0": 8,
+  "owner_calls": 4
+ },
+ "questions": [
+  {
+   "id": "Q-P1",
+   "area": "Price provenance",
+   "priority": "P0",
+   "question": "Which book, or which composite, is 'the market line'?",
+   "have": "20,336 market rows in the price store, but 0 of them name a book on the closing snapshot; the only named vendor is the code WSGT, on the 2021 initial-lines file.",
+   "missing": "a book identifier on every closing price row",
+   "blocks": "beat-the-close reporting, any claim that a fair line differs from a market a person could actually bet into, and gate G0 for every strategy",
+   "closing_test": "every new closing row carries a book code that maps to a named sportsbook in a registry, and two independent captures of the same book agree on the number",
+   "owner_call": false,
+   "source": "data/lab/prices/price_coverage.json (defect P-04)"
+  },
+  {
+   "id": "Q-P2",
+   "area": "Price provenance",
+   "priority": "P0",
+   "question": "When was each number captured?",
+   "have": "0 rows with a timestamp. The publisher's files have no time column at all, so 'opening' and 'closing' are inferences from a file name and a row order.",
+   "missing": "a capture timestamp on every snapshot",
+   "blocks": "true closing-line value (CLV), the demotion trigger D-03, and the opening-vs-closing column for any game",
+   "closing_test": "two snapshots of the same market on the same day, both timestamped, show the line moving",
+   "owner_call": false,
+   "source": "data/lab/prices/price_coverage.json (defect P-05)"
+  },
+  {
+   "id": "Q-P3",
+   "area": "Price provenance",
+   "priority": "P0",
+   "question": "Why do two nflverse files disagree about the closing spread?",
+   "have": "closing_lines.csv and games.csv agree on 2,267 games and disagree on 1,101 after normalising the documented sign convention (32.7%).",
+   "missing": "the publisher's statement of which file is authoritative, or a licensed feed that settles it",
+   "blocks": "choosing the benchmark the model is scored against",
+   "closing_test": "a third, independent source agrees with one of the two on a sample of at least 100 games",
+   "owner_call": false,
+   "source": "data/lab/prices/price_coverage.json (defect P-01)"
+  },
+  {
+   "id": "Q-M1",
+   "area": "Model",
+   "priority": "P0",
+   "question": "Is the originated line good enough to bet against a real market?",
+   "have": "Side MAE 10.741 vs market 9.792; total MAE 11.102 vs 10.447; Brier 0.241 vs 0.212 on 3,165 out-of-sample games. The model beats a constant home-field baseline and loses to the market on every metric.",
+   "missing": "information the market does not have, or a documented inefficiency to exploit",
+   "blocks": "staking anything; promoting any strategy out of paper",
+   "closing_test": "a strategy's out-of-sample z clears 1.96 with a bootstrap interval excluding the break-even, on a pre-registered window",
+   "owner_call": false,
+   "source": "data/lab/lines/model_report.json"
+  },
+  {
+   "id": "Q-M2",
+   "area": "Model",
+   "priority": "P1",
+   "question": "Should the injury/deficiency signal enter the line at all?",
+   "have": "37 certain starter replacements, 34 at the second string, 0 at the third; 15 depth losses among backups; and no measurement of what any of it does to the score.",
+   "missing": "a coefficient: the effect of a replacement's depth on the margin, estimated out of sample on at least two seasons",
+   "blocks": "using T16 as an input rather than a report",
+   "closing_test": "the coefficient's out-of-sample interval excludes zero and the line model's MAE improves when it is added",
+   "owner_call": false,
+   "source": "data/lab/deficiency.json (effect_status)"
+  },
+  {
+   "id": "Q-M3",
+   "area": "Model",
+   "priority": "P0",
+   "question": "Is Phi(margin / sigma) a valid map from our spread to a win probability?",
+   "have": "The moneyline derived from the side wins 34.7% of 2,743 decided tickets against a per-ticket bar of 36.1%, and 29.6% on competitive-margin games (z = -4.5). The selections are mostly underdogs, because that is where the model disagrees with the price.",
+   "missing": "a calibrated spread-to-probability map, fitted on realised outcomes rather than assumed normal",
+   "blocks": "publishing a moneyline at all, and any moneyline-based strategy",
+   "closing_test": "a reliability curve for the win probability whose slope is in [0.85, 1.15] and whose Brier beats the market-implied probability",
+   "owner_call": false,
+   "source": "data/lab/leaderboard.json (S-03), data/lab/lines/model_report.json"
+  },
+  {
+   "id": "Q-S1",
+   "area": "Strategy",
+   "priority": "P0",
+   "question": "Should a positive ROI with a weak signal ever be staked?",
+   "have": "1 strategy shows a positive ROI (two-leg side parlay, +10.5%) and its signal z is 1.00 against a 1.96 bar. It is demoted on drawdown (52.7% vs a 25% cap) and on price loss.",
+   "missing": "a rule: whether the ROI may be surfaced at all when the signal fails",
+   "blocks": "the definition of 'live' on the leaderboard",
+   "closing_test": "the owner picks a policy from S-L2 and it is written into the gate",
+   "owner_call": true,
+   "source": "data/lab/leaderboard.json"
+  },
+  {
+   "id": "Q-S2",
+   "area": "Strategy",
+   "priority": "P1",
+   "question": "What is a reward, and who pays it?",
+   "have": "eight candidate strategies, none live, no reward mechanism and no funding.",
+   "missing": "a reward definition (rank? payout? scrip?) and whether any real money is involved, which has legal consequences this repository cannot assess",
+   "blocks": "the rewards column on the leaderboard",
+   "closing_test": "a written reward rule, reviewed for legality by someone qualified to do so",
+   "owner_call": true,
+   "source": "data/lab/leaderboard.json"
+  },
+  {
+   "id": "Q-C1",
+   "area": "Correlation",
+   "priority": "P1",
+   "question": "What is the correlation between two legs of a real parlay?",
+   "have": "margin vs total r = 0.0216 (n = 7,413); side vs market r = -0.4262 (n = 7,413); 49 values in total, each with n and an interval.",
+   "missing": "player-prop leg correlations and same-player stat correlations",
+   "blocks": "pricing a prop combo, and gate G7 for any parlay involving props",
+   "closing_test": "a paired prop dataset for two seasons produces a value whose interval excludes zero",
+   "owner_call": false,
+   "source": "data/lab/correlations.json"
+  },
+  {
+   "id": "Q-D1",
+   "area": "Data access",
+   "priority": "P0",
+   "question": "Should the pipeline depend on a source this environment cannot reach?",
+   "have": "nfl.com is unreachable from this sandbox (HTTP 000); nflverse release assets redirect to a blocked host; the nflverse repository archive is reachable and pinned by SHA-256.",
+   "missing": "a decision on whether to fund a licensed feed, or to keep the reproducible-but-limited GitHub path",
+   "blocks": "prop markets, player stats beyond the box score, multi-season injury history",
+   "closing_test": "either a licence is recorded, or the lab publishes a written limitation statement that the owner accepts",
+   "owner_call": true,
+   "source": "data/lab/upstream/_pin.json"
+  },
+  {
+   "id": "Q-D2",
+   "area": "Data access",
+   "priority": "P1",
+   "question": "Why can't the injury report be read in bulk?",
+   "have": "the Week 10 report is present via a previous session's collection (345 rows); this session could not re-fetch nfl.com to re-verify a single one of them.",
+   "missing": "a reachable official injury endpoint or an archived weekly series",
+   "blocks": "re-verifying the injury rows, and the two-season injury history that Q-M2 needs",
+   "closing_test": "the pipeline fetches an official injury page at run time and the fetched rows diff clean against the published ones",
+   "owner_call": false,
+   "source": "data/lab/upstream/_pin.json (limitations)"
+  },
+  {
+   "id": "Q-V1",
+   "area": "Verification",
+   "priority": "P0",
+   "question": "What counts as 'official' for a betting price?",
+   "have": "no NFL or club source publishes a betting price, so every price row in this repository is second-hand by construction. The existing site's rule requires an official source on every data row.",
+   "missing": "a written exception that names the acceptable second-hand publishers and the verification each one gets",
+   "blocks": "publishing any price at all without breaking the site's own rule, or relaxing the rule silently",
+   "closing_test": "the source registry lists a price tier with its publisher, licence status and the check performed on it",
+   "owner_call": true,
+   "source": "data/lab/prices/price_coverage.json, docs/sources/sources.md"
+  }
+ ]
+}

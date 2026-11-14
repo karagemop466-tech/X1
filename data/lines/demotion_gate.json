@@ -1,0 +1,58 @@
+{
+ "dataset": "demotion_gate",
+ "title": "Demotion gate \u2014 a live strategy goes back to paper when any trigger fires",
+ "generated_at": "2026-11-14T20:04:04Z",
+ "gate_id": "G-13",
+ "scope": "every strategy with live (real-stake) status",
+ "status": "pre-registered and armed; no strategy is live yet",
+ "triggers": [
+  {
+   "id": "D-1",
+   "name": "Skill reversal",
+   "rule": "after >= 30 settled live signals: flat-stake live ROI < -5% AND one-sided t-test p < 0.10 that skill <= 0",
+   "rationale": "flat-stake measure stops staking luck from hiding signal decay",
+   "n_min": 30
+  },
+  {
+   "id": "D-2",
+   "name": "Closing-line collapse",
+   "rule": "mean closing-line value < 0 over the last 50 settled live signals",
+   "rationale": "beating the close is the least noisy skill marker",
+   "n_min": 50,
+   "blocked": "requires opening prices \u2014 Q-02 open"
+  },
+  {
+   "id": "D-3",
+   "name": "Drawdown",
+   "rule": "flat-stake bankroll drawdown > 25% from peak over any rolling 50 settled signals",
+   "rationale": "tail risk the CI does not show"
+  },
+  {
+   "id": "D-4",
+   "name": "Source integrity breach",
+   "rule": "any week in which > 10% of the strategy's input rows lose official sourcing (gate G-01 breach)",
+   "rationale": "data integrity is a single source of truth",
+   "n_min": 1
+  }
+ ],
+ "process": {
+  "on_fire": [
+   "strategy status set to paper (from live)",
+   "stakes voided at next settle",
+   "entry on the What changed page + flagged-for-review if disputed",
+   "re-qualification: 4 weeks AND >= 30 paper signals at flat stake beating 0 ROI with CI covering nothing worse than -5%"
+  ],
+  "authority": "pipeline gates job (data/pipeline/gates.json) \u2014 owner notified, veto via repository issue"
+ },
+ "threshold_provenance": "Thresholds are defaults pre-registered by this session per the owner instruction 'define a demotion gate that sends a live strategy back to paper'; numeric values are proposals on the suggestion board (S-20) and may be amended before any strategy goes live. Blank is never filled: triggers needing missing inputs (D-2) stay flagged until the input exists.",
+ "current_evaluation": [],
+ "verification": {
+  "rows": 4,
+  "rows_verified": 4,
+  "rows_flagged": 1,
+  "unverified_cells": 0,
+  "flagged_reasons": [
+   "D-2 blocked until opening prices are sourced (Q-02)"
+  ]
+ }
+}
