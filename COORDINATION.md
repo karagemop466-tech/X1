@@ -1258,3 +1258,48 @@ inherits the incorrect claim.
    Filled-in guesses are the worse outcome, so it stays a recorded coverage gap (F-03).
 4. **27 of 32 club depth charts were not independently re-read** in this pass (F-09). The five
    that were — BAL, CHI, GB plus two others — matched row for row, 59 rows each.
+
+---
+
+# Session `arena/907c5baf-x1` — price-snapshot store, verified results feed, signal/staking split, demotion gate (this branch)
+
+**Session ID:** `arena/907c5baf-x1` · **Branch:** `arena/907c5baf-x1` (branched from `main` @ `11d9ea1`,
+merge of PR #33) · **Role:** round owner + final integration for this round (board rule 9).
+**Claim written and pushed before any task work started (rule 1).**
+
+## Handoff / takeover justification (board rule 10)
+
+Every claim on the boards above is `done` and every owning session has merged its PRs
+(#1–#33) and gone quiet; the board records **no open claim and no in-progress work** when
+this session started (last merge 2026-11-14 18:58 UTC). Rule 10 lets a new session take
+stale/finished scope. `tools/build_app.py` + `app/**` are taken over from
+`arena/fcc11e05-x1` (merged, inactive) exactly as `arena/cc51616e-x1` previously took over
+`scripts/build_site.py` from a merged owner. Every takeover is listed below.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| N1 | **Verified results feed**: 2026 season results checked game-by-game against official NFL.com schedule pages; every originated market settled (or explicitly pending) from official final scores; ROI computable from the feed; historical mirror results quarantined and flagged | in progress | `arena-907c5baf-x1` | `data/results_feed.json`, `tools/build_results_feed.py`, `app/results.html`, `data/verify/raw/nfl_scores_2026_official.psv`, `docs/results-feed.md` |
+| N2 | **Price-snapshot store**: opening + closing numbers recorded for every market we originate (side, total, moneyline), with the model's fair line, the market line and the difference as separate columns, in origination order side → total → moneyline | in progress | `arena-907c5baf-x1` | `data/price_snapshots.json`, `tools/build_price_store.py`, `app/prices.html`, `docs/price-snapshot-store.md` |
+| N3 | **Leaderboard: signal separated from staking** so a lucky staking run cannot mask a bad signal; ranking computed from signal metrics only; luck-removal cross-check | in progress | `arena-907c5baf-x1` | `data/leaderboard_split.json`, `tools/build_leaderboard_split.py`, `app/leaderboard.html` (regenerated) |
+| N4 | **Demotion gate defined**: explicit rule and thresholds that send a live strategy back to paper, pre-registered, owner-ratifiable | in progress | `arena/907c5baf-x1` | `data/demotion_gate.json`, `docs/methodology/demotion-gate.md`, `app/validation.html` (regenerated) |
+| N5 | **Correlation audit**: every published correlation value computed from officially sourced numbers only, with n published beside each value | in progress | `arena/907c5baf-x1` | `app/correlation.html` (regenerated), `tools/verify_stores.py` (asserts n) |
+| N6 | **Decision register + suggestion board additions**: new questions (price authority, settlement authority, demotion thresholds, staking plan), and site-improvement suggestions with paths A/B/C for owner review before implementation | in progress | `arena-907c5baf-x1` | `data/round2_decisions.json`, `data/round2_suggestions.json`, `app/decisions.html`, `app/suggestions.html` (regenerated) |
+| N7 | **Executive summary update + repo line-by-line review pass** for this round | in progress | `arena-907c5baf-x1` | `app/executive-summary.html`, `app/repo-review.html` (regenerated), `docs/round2-executive-summary.md` |
+| N8 | **Final integration**: re-verify combined data line by line, link check, build check, PR → `main`, merge, Pages deploy confirmation, record here | in progress | `arena-907c5baf-x1` | `.github/workflows/verify.yml`, `.github/workflows/pages.yml` (additive only), `COORDINATION.md`, `README.md` (append) |
+
+**Non-overlap declaration (checked against all boards at session start):** no file above is
+claimed by any live session. `data/pipeline/**` (auto-refresh job), `live/**`, `hub/**`,
+`pages/**`, `dashboard/**`, `research/**`, `site/**`, `data/verify/**` (fcc11e05's ledger),
+`data/audit/**`, `data/nfl/**`, `docs/**` (except the three new files listed) are **not
+touched** except where regenerated output requires it (logged per file below).
+
+## Additive-only edits to shared files (logged as change requests)
+
+| File | Owner (prior) | Change |
+|---|---|---|
+| `tools/build_app.py`, `app/**` | `arena/fcc11e05-x1` (merged, inactive) | takeover per rule 10: new pages `prices.html`, `results.html` + new sections on leaderboard/validation/correlation/decisions/suggestions/executive-summary; generator still emits every prior page unchanged |
+| `.github/workflows/verify.yml` | `arena/9cc1eaac-x1` etc. | +3 additive steps marked "Added by session arena/907c5baf-x1" (rebuild stores, staleness, store invariants) |
+| `.github/workflows/pages.yml` | `arena-b38a21d8-x1` etc. | +1 verify step marked with this session ID (`tools/verify_stores.py`); store JSONs ship via the existing `cp data/*.json` line |
+| `COORDINATION.md`, `README.md` | shared | append-only |
