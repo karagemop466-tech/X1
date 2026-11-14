@@ -11,6 +11,12 @@
    "match": 137,
    "mismatch": 0,
    "absent": 0
+  },
+  "cross_transcription_agreement": {
+   "compared": 137,
+   "agree": 137,
+   "disagree": [],
+   "note": "cross-transcription against data/results/verified_results_2026.csv (session arena-1d3600f8-x1, same official sources, transcribed independently)"
   }
  },
  "league_totals": {

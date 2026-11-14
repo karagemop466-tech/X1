@@ -17,15 +17,15 @@
 <div class="grp">Official data</div>
 <a class="" href="standings.html">Standings</a>
 <a class="" href="schedule.html">Week 10 slate</a>
+<a class="" href="results.html">Results &amp; ROI</a>
 <a class="" href="injuries.html">Injury report</a>
-<a class="" href="results.html">Verified results</a>
 <a class="" href="depth.html">Depth charts</a>
-<a class="" href="replacement-depth.html">Replacement depth</a>
 <a class="" href="deficiency.html">Deficiency watch</a>
+<a class="" href="replacement-depth.html">Replacement depth</a>
 <a class="" href="team-stats.html">Team stats</a>
 <div class="grp">Model</div>
 <a class="" href="lines.html">Originated lines</a>
-<a class="" href="origination.html">Originated markets</a>
+<a class="" href="origination.html">Origination &amp; prices</a>
 <a class="" href="prices.html">Price snapshots</a>
 <a class="" href="correlation.html">Correlation</a>
 <div class="grp">Strategy</div>
@@ -84,12 +84,14 @@ official source, re-verifies every row, and republishes this site.</p>
       <li><a href="depth.html">Depth charts</a> — 1st through 4th string from each club's own site.</li>
       <li><a href="deficiency.html">Deficiency watch</a> — which starter is down and which backup takes the snaps.</li>
       <li><a href="team-stats.html">Team stats</a> — nine official offence and defence tables.</li>
+      <li><a href="results.html">Results &amp; ROI</a> — the verified results feed (137 settled games, double-entry checked against the standings) and the ROI it makes computable.</li>
+      <li><a href="origination.html">Origination &amp; prices</a> — side, then total, then moneyline; fair line, market line and difference as separate columns; the opening/closing price-snapshot store.</li>
     </ul>
   </div>
   <div>
     <h3>Deliberately blank</h3>
     <ul class="tight">
-      <li><a href="lines.html#market">Market lines</a> — no official source publishes prices, so the table ships empty.</li>
+      <li><a href="lines.html#market">Market lines</a> — no official source publishes prices, so the table ships empty; the <a href="origination.html">price-snapshot store</a> records the captures we do have with their provenance and keeps opening slots reserved and blank.</li>
       <li>Player-prop prices — no official prop-level source exists.</li>
       <li>Weather, officials, travel — no citable official feed found, so no values are shown.</li>
     </ul>
@@ -117,9 +119,10 @@ official source, re-verifies every row, and republishes this site.</p>
   398 out-of-sample bets with a bootstrap interval that stays above zero and p = 0.008. Everything
   else fails significance, economics, or the luck-removal gate.
   See <a href="leaderboard.html">leaderboard</a>.</li>
-  <li><b>Two inputs block the rest.</b> Prices and results. Neither has an official public source, so
-  every gate that depends on outcomes is currently unenforced rather than filled with a guess.
-  See <a href="decisions.html">decisions</a> Q-02 and Q-04.</li>
+  <li><b>One input still blocks the rest: prices.</b> The verified results feed closed the outcomes gap
+  (137 settled games, double-entry checked — see <a href="results.html">Results &amp; ROI</a>), but no
+  official or licensed source publishes betting prices, so CLV, recorded-price ROI and the price-dependent
+  gates stay unenforced rather than filled with a guess. See <a href="decisions.html">decisions</a> Q-02.</li>
 </ol></section>
 <section class="card"><h2>Earlier site sections, all still published</h2>
 <p>This repository was built by several parallel agent sessions, and each left its own site tree.
@@ -131,6 +134,7 @@ Nothing has been deleted — the sections below are still published and still re
   <li><a href="../research/index.html">Research lab</a> — the model, strategy, prop and injury lab (<code>research/</code>).</li>
   <li><a href="../site/index.html">Snapshot annex</a> — originated lines, backtests and correlations (<code>site/</code>).</li>
   <li><a href="../live/index.html">Live pipeline</a> — the auto-refreshing official-source collector (<code>live/</code>).</li>
+  <li><a href="../lab/index.html">Line desk</a> — price snapshots, verified results, originated lines and a signal-vs-staking leaderboard (<code>lab/</code>). Added by session <code>arena/56769365-x1</code>.</li>
 </ul></section>
 <section class="card"><h2>How the verification rule is enforced</h2>
 <div class="grid2">

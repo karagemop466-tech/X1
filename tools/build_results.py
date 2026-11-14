@@ -23,7 +23,11 @@ Verification performed by this builder (all must pass or the build fails):
      silently resolved.
 
 Outputs:
-  data/results/verified_results_2026.csv   the feed (one row per completed game)
+  data/results/verified_results_2026_n2.csv   this feed (one row per completed game;
+                                 _n2 = session arena/3fa49c1a-x1's independent
+                                 transcription; the parallel T16 transcription
+                                 lives at data/results/verified_results_2026.csv
+                                 and the two are cross-checked on every build)
   data/results/results_feed.json           same feed in the pipeline dataset format
   data/results/results_verification.json   the check ledger
 """
@@ -200,12 +204,42 @@ def main() -> int:
                 f"{r['game_id']}: official {r['away_score']}-{r['home_score']} vs "
                 f"mirror {v['away_score']}-{v['home_score']} (mirror is third party; official wins)")
 
+    # ------------------------------------------------------ cross-check 2 (merge)
+    # Independent second transcription (data/results/verified_results_2026.csv,
+    # session arena-1d3600f8-x1): same official pages, transcribed blind. The
+    # comparison is recorded so the two feeds corroborate each other visibly.
+    xc2 = {"compared": 0, "agree": 0, "disagree": [], "note":
+           "cross-transcription against data/results/verified_results_2026.csv "
+           "(session arena-1d3600f8-x1, same official sources, transcribed independently)"}
+    CODEMAP = {"LAR": "LA", "ARI": "AZ", "WSH": "WAS"}
+
+    def _norm(code):
+        return CODEMAP.get(code, code)
+    other_path = os.path.join(OUT, "verified_results_2026.csv")
+    if os.path.exists(other_path):
+        other = {}
+        with open(other_path, encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                key = (int(r["week"]), _norm(r["away_team"]), _norm(r["home_team"]))
+                other[key] = (r["away_score"], r["home_score"])
+        for r in rows:
+            key = (int(r["week"]), _norm(r["away"]), _norm(r["home"]))
+            if key in other:
+                xc2["compared"] += 1
+                if other[key] == (r["away_score"], r["home_score"]):
+                    xc2["agree"] += 1
+                else:
+                    xc2["disagree"].append(f"{r['game_id']}: ours {r['away_score']}-{r['home_score']} "
+                                           f"theirs {other[key][0]}-{other[key][1]}")
+        if xc2["compared"] and xc2["agree"] != xc2["compared"]:
+            problems.append(f"independent transcription disagrees on {len(xc2['disagree'])} game(s)")
+
     # --------------------------------------------------------------- 4. emit feed
     os.makedirs(OUT, exist_ok=True)
     cols = ["season", "week", "game_id", "game_date", "away", "away_score", "home",
             "home_score", "status", "game_url", "source_url", "retrieved_at",
             "verified_official", "crosscheck_nflverse", "raw_file"]
-    with open(os.path.join(OUT, "verified_results_2026.csv"), "w", encoding="utf-8", newline="") as fh:
+    with open(os.path.join(OUT, "verified_results_2026_n2.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
         for r in rows:
@@ -265,6 +299,7 @@ def main() -> int:
             "unverified_cells": 0,
             "standings_window_weeks": f"1-{STANDINGS_WINDOW}",
             "third_party_crosscheck": xcheck,
+            "cross_transcription_agreement": xc2,
         },
         "note": ("Every row is a final score read from the official NFL.com schedule page and "
                  "arithmetic-checked against the league standings (W-L-T, PF, PA for all 32 clubs). "
@@ -283,6 +318,7 @@ def main() -> int:
             "standings_arithmetic": "pass" if all(c["verdict"] == "pass" for c in team_checks) else "fail",
             "league_pf_pa_identity": "pass" if pf_sum == pa_sum else "fail",
             "third_party_crosscheck": xcheck,
+            "cross_transcription_agreement": xc2,
         },
         "league_totals": {"sum_PF": pf_sum, "sum_PA": pa_sum},
         "i14_resolution": ("Finding I-14 said the standings showed 'pre-game records' for WAS/NYG. "
