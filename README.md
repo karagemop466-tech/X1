@@ -232,8 +232,14 @@ python3 tools/build_app.py         # regenerate app/
 python3 tools/verify_app.py        # links resolve; every data row carries a source link or a marker
 ```
 
-**Live:** the unified dashboard is served at the site root and at
-**`/app/`** — <https://karagemop466-tech.github.io/X1/app/>. The previous root landing page is
+**Live:** <https://karagemop466-tech.github.io/X1/> — the site root serves the unified
+landing page, and the same tree is published at
+<https://karagemop466-tech.github.io/X1/app/>. The previous root landing page is preserved
+at <https://karagemop466-tech.github.io/X1/legacy-fourth-down.html>.
+
+> The Pages CDN can serve a stale homepage for a few minutes after a successful deploy.
+> If the root looks wrong, check the commit is on `main`, then re-fetch with a
+> cache-busting query string. The previous root landing page is
 preserved at **`/legacy-fourth-down.html`**, and every earlier tree (`pages/`, `dashboard/`,
 `research/`, `site/`, `live/`) is still published and linked from the dashboard's footer. Nothing
 was deleted.
