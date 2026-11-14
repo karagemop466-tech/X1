@@ -43,6 +43,21 @@ ANNEX_APPROVED = {
     "profootballhof.com", "www.profootballhof.com", "nytimes.com", "www.nytimes.com",
     "sports.yahoo.com", "karagemop466-tech.github.io",
 }
+# The research tree cites the league's document and tracking hosts as well.
+RESEARCH_APPROVED = {
+    "media.nfl.com", "nextgenstats.nfl.com", "operations.nfl.com",
+    "static.www.nfl.com",
+}
+
+# integration addendum (session arena/a78e0158-x1): snapshot annex tiers — official NFL family,
+# nflverse on GitHub, and the annex's registered trusted-secondary sources
+# (docs/annex/sources-snapshot.md)
+ANNEX_APPROVED = {
+    "nfl.com", "operations.nfl.com", "github.com", "raw.githubusercontent.com",
+    "nbcsports.com", "www.nbcsports.com", "sofistadium.com", "www.sofistadium.com",
+    "profootballhof.com", "www.profootballhof.com", "nytimes.com", "www.nytimes.com",
+    "sports.yahoo.com", "karagemop466-tech.github.io",
+}
 SNAP = "2026-11-14"
 
 errors, checks = [], []

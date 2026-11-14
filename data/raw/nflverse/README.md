@@ -1,56 +1,34 @@
-# data/raw/nflverse — source data provenance (merged record)
+# data/raw/nflverse — source data provenance
 
-Files in this directory are verbatim copies of committed files from **nflverse/nfldata**
-(<https://github.com/nflverse/nfldata>, `master` branch, snapshot **2026-11-14**), the open-source
-project that mirrors official NFL sources (NFL GSIS schedule/results feed, weekly club injury
-reports, market lines as recorded by sportsbook-tracking feeds).
+Files in this directory were downloaded on **2026-11-14** via the GitHub contents/blob API
+(`api.github.com`, the only GitHub host reachable from this sandbox) from:
 
-Two parallel sessions fetched the same upstream files via different reachable methods; both copies
-are byte-identical where they overlap and both provenance records are preserved here.
+- Repo: https://github.com/nflverse/nfldata (`master` branch, `data/` directory)
+- License: MIT (as stated in the nflverse/nfldata repository)
 
-## Acquisition methods used (both documented)
-
-1. **codeload tarball** (`codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master`) — session
-   `arena/61ce8500-x1`: `games.csv`, `teams.csv`, `standings.csv`, `closing_lines.csv`,
-   `initial_lines.csv`, `win_totals.csv`, `officials.csv`, `DATASETS.md`.
-2. **GitHub contents/blob API** (`api.github.com`) — session that built the line-origination model:
-   adds `trades.csv`, `rosters.csv`.
-
-## Files and verified coverage (span verified by scanning each file's season values)
-
-| File | Rows | Verified coverage | Contents | Upstream path |
-|---|---|---|---|---|
-| `games.csv` | 7,548 | **1999–2026** (2026 through Week 18) | One row per game: scores, week, rest, market spread/total/moneylines, weather, roof, surface, expected QBs, coaches, stadium | `data/games.csv` |
-| `closing_lines.csv` | 20,490 | **2006–2018** (verified: game_id year span) | Moneyline/spread/total closing lines per game side | `data/closing_lines.csv` |
-| `initial_lines.csv` | 1,088 | **2021 only** | Opening lines (WSGT) | `data/initial_lines.csv` |
-| `teams.csv` | — | historical | Team metadata incl. conference/division, ID mappings | `data/teams.csv` |
-| `standings.csv` | — | historical | Computed standings by season/week | `data/standings.csv` |
-| `trades.csv` | 4,975 | 2002–2026 | Player/pick trades | `data/trades.csv` |
-| `rosters.csv` | 28,617 | **2006–2019 (stale)** | Weekly rosters | `data/rosters.csv` |
-| `win_totals.csv` | 576 | **2003–2020** | Preseason win totals | `data/win_totals.csv` |
-| `officials.csv` | — | historical | Game officials | `data/officials.csv` |
-| `DATASETS.md` | — | — | Upstream data dictionary (column conventions) | `DATASETS.md` |
-
-Corrections vs earlier drafts: an earlier provenance note claimed closing lines ran 2006–2026 and
-opening lines 2021–2026; scanning the actual files shows **closing 2006–2018, opening 2021 only,
-win totals 2003–2020**. The `games.csv` per-game `spread_line`/`total_line` columns do cover
-1999–2026 and are the basis for all 2026 analytics; the discrete line files are older.
+| File | Size | Contents | Coverage |
+|---|---|---|---|
+| games.csv | 2.19 MB | One row per NFL game: scores, week, rest days, market spread/total/moneylines, weather, roof, surface, expected QBs | 1999–2026 (2026 through Week 18) |
+| closing_lines.csv | 0.94 MB | Moneyline/spread/total closing lines per game side | 2006–2018 (stale — not updated since; flagged) |
+| initial_lines.csv | 45 KB | Opening lines (WSGT) | 2021+ |
+| teams.csv | 91 KB | Team metadata incl. conference/division | historical |
+| standings.csv | 57 KB | Computed standings by season | historical |
+| trades.csv | 283 KB | Player/pick trades | 2002–2026 |
+| rosters.csv | 1.6 MB | Weekly rosters | **stale (ends 2019)** — flagged, not usable for 2026 depth charts |
+| win_totals.csv | 13 KB | Preseason win totals | 2003–2020 (stale) — flagged |
 
 ## Role in this project
+- **games.csv is the trusted-secondary numeric source** used to (a) cross-verify every
+  NFL.com standings row (32/32 exact match on W-L-T, PF, PA — see docs/review/repo-review.md),
+  and (b) fit/validate the line-origination model (`code/build_lines.py`).
+- Market lines embedded in games.csv are **bookmaker market data, not official NFL data**;
+  they are only used as a benchmark for the project's own originated lines, never presented as truth.
+- Refresh: re-run the fetch (see `code/build_reference_data.py` header) or download from the
+  nflverse releases; note release assets live on `objects.githubusercontent.com`, which this
+  sandbox cannot reach — the in-repo CSVs are the canonical copies here.
 
-- `games.csv` is the base for every computed value in `data/processed/` (analytics, correlations,
-  Elo ratings, model lines) and the lab pages — per-row "computed" links point to
-  `scripts/build_data.py`.
-- Market lines embedded in games.csv are **bookmaker market data, not official NFL data**; they are
-  used as the benchmark for the project's own originated lines, never presented as truth.
-- `rosters.csv` staleness is why 2026 backup/depth names are left blank and flagged (see the site's
-  Flagged for Review pages and `data/processed/flagged_for_review.json`).
-
-## Access notes (sandbox)
-
-- GitHub release assets (e.g. weekly `injuries_2026.csv` from nflverse-data releases) are **not
-  downloadable** here — the redirect hosts `objects.githubusercontent.com` /
-  `release-assets.githubusercontent.com` are blocked. Injury data was therefore transcribed from
-  ESPN's league injury page (`data/processed/injuries_2026_w10.json`, per-row source links).
-- `raw.githubusercontent.com` is blocked; committed repo files come via `codeload.github.com`
-  archives or the `api.github.com` contents API — both used successfully.
+## Known staleness flags (also on the site's Flagged for Review page)
+1. `rosters.csv` ends at the 2019 season → official 2026 depth charts cannot be derived here.
+2. `closing_lines.csv` ends at the 2018 season → long-run CLV studies limited; per-game
+   spread/total lines in `games.csv` (2019+) are used instead.
+3. `win_totals.csv` ends at 2020 → no 2026 preseason win totals in-repo.

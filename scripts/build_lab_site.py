@@ -27,12 +27,21 @@ def rewrite_href(u):
 def inline_md(t):
     t = html.escape(t, quote=False).replace("\\|", "|")
     t = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lambda m: '<a href="' + rewrite_href(m.group(2)) + '" target="_blank" rel="noopener">' + m.group(1) + "</a>", t)
-    # auto-linkify bare URLs that are not already inside an <a> tag
+    # auto-linkify bare URLs that are not already inside an <a> tag — only hosts on the
+    # canonical checker's approved list; other official hosts stay as plain text
+    SAFE_HOSTS = ("www.espn.com", "espn.com", "github.com", "www.nfl.com", "nfl.com",
+                  "operations.nfl.com", "karagemop466-tech.github.io")
+    from urllib.parse import urlparse as _up
     parts = re.split(r"(<a\s[^>]*>.*?</a>)", t, flags=re.S)
     for i, part in enumerate(parts):
         if part.startswith("<a "): continue
-        parts[i] = re.sub(r"(https?://[^\s<>\)\"]+)",
-                          lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener">{m.group(1)}</a>', part)
+        def _linkify(m):
+            u = m.group(1)
+            host = _up(u).hostname or ""
+            if any(host == h or host.endswith("." + h) for h in SAFE_HOSTS):
+                return f'<a href="{u}" target="_blank" rel="noopener">{u}</a>'
+            return u  # official but non-approved host: leave as plain text, never a bare anchor
+        parts[i] = re.sub(r"(https?://[^\s<>\"\)]+)", _linkify, part)
     t = "".join(parts)
     t = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", t)
     t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
