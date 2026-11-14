@@ -14,67 +14,69 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
-      - name: Analyze official schedule structure
+      - name: Extract game object shape
         shell: bash
         run: |
           set +e
           mkdir -p data/nfl/_debug
           UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
           curl -sS -A "$UA" -L --max-time 120 \
-            "https://www.nfl.com/schedules/2026/by-week/week-10" -o /tmp/sched.html
-          curl -sS -A "$UA" -L --max-time 120 \
             "https://www.nfl.com/schedules/2026/by-week/week-3" -o /tmp/sched3.html
-          curl -sS -A "$UA" -L --max-time 120 \
-            "https://www.nfl.com/scores/" -o /tmp/scores.html
 
-          python3 - <<'PY' > data/nfl/_debug/schedule_analysis.txt 2>&1
-          import re, json
+          python3 - <<'PY' > data/nfl/_debug/game_shape.txt 2>&1
+          import re, json, html
 
-          h = open("/tmp/sched.html", encoding="utf-8", errors="replace").read()
+          raw = open("/tmp/sched3.html", encoding="utf-8", errors="replace").read()
+          # The payload is HTML-escaped inside a script tag.
+          unesc = html.unescape(raw)
+          print("unescaped bytes:", len(unesc))
 
-          print("=== DmaCodes context (schedule page) ===")
-          i = h.find("DmaCodes")
-          print(repr(h[max(0,i-1200):i+200]))
+          # Find the script that holds the schedule payload.
+          scripts = re.findall(r"<script[^>]*>(.*?)</script>", unesc, re.S)
+          print("scripts:", len(scripts))
 
-          print()
-          print("=== JSON objects containing DmaCodes ===")
-          # any object with DmaCodes
-          for m in list(re.finditer(r"DmaCodes", h))[:2]:
-              start = h.rfind("{", max(0, m.start()-2000), m.start())
-              print(repr(h[start:m.start()+300])[:1500])
-              print("---")
+          best = None
+          for s in scripts:
+              if '"gameId"' in s and '"week"' in s:
+                  if best is None or len(s) > len(best):
+                      best = s
+          print("best script len:", len(best) if best else 0)
 
-          print()
-          print("=== rendered row around a /games/ anchor ===")
-          m = re.search(r'href="(/games/commanders-at-giants-2026-reg-10)"', h)
-          if m:
-              seg = h[max(0,m.start()-4000):m.start()+4000]
-              text = re.sub(r"<[^>]+>", " ", seg)
-              text = re.sub(r"\s+", " ", text)
-              print(text[:2000])
-
-          print()
-          print("=== unique /games/ anchors for week 3 ===")
-          h3 = open("/tmp/sched3.html", encoding="utf-8", errors="replace").read()
-          for a in sorted(set(re.findall(r'href="(/games/[^"]+)"', h3))):
-              print("   ", a)
-
-          print()
-          print("=== scores page: does it carry final scores in markup? ===")
-          hs = open("/tmp/scores.html", encoding="utf-8", errors="replace").read()
-          for marker in ("Final", "FINAL", "Hidden Score", "data-testid=\"game-status\""):
-              print(f"  {marker}: {hs.count(marker)}")
-          m = re.search(r'href="(/games/commanders-at-giants-2026-reg-10)"', hs)
-          if m:
-              seg = hs[max(0,m.start()-6000):m.start()+6000]
-              text = re.sub(r"<[^>]+>", " ", seg)
-              text = re.sub(r"\s+", " ", text)
-              print("  TEXT:", text[:1200])
-          print()
-          print("=== standings nationalGames: all objects, deduped ===")
-          st = open("/tmp/stand.html", encoding="utf-8", errors="replace").read() if False else None
+          if best:
+              # Locate a self-contained object that carries gameId + week.
+              for m in re.finditer(r'"gameId":"([0-9a-f\-]{36})"', best):
+                  start = best.rfind("{", 0, m.start())
+                  # walk forward to the matching close brace
+                  depth = 0
+                  end = -1
+                  for j in range(start, len(best)):
+                      if best[j] == "{":
+                          depth += 1
+                      elif best[j] == "}":
+                          depth -= 1
+                          if depth == 0:
+                              end = j + 1
+                              break
+                  if end < 0 or end - start > 6000:
+                      continue
+                  try:
+                      obj = json.loads(best[start:end])
+                  except ValueError:
+                      continue
+                  if isinstance(obj, dict) and "week" in obj and "gameId" in obj:
+                      print("=== GAME OBJECT KEYS ===")
+                      print(sorted(obj.keys()))
+                      print("=== SAMPLE ===")
+                      print(json.dumps(obj, indent=1)[:2500])
+                      break
+          # Count distinct game ids that mention week
+          ids = set(re.findall(r'"gameId":"([0-9a-f\-]{36})"', best or ""))
+          print("distinct game ids in payload:", len(ids))
+          weeks = re.findall(r'"week":(\d+)', best or "")
+          from collections import Counter
+          print("week value counts:", Counter(weeks).most_common(8))
           PY
-          cat data/nfl/_debug/schedule_analysis.txt
+          cat data/nfl/_debug/game_shape.txt
           exit 0
       - name: Commit analysis to scratch branch
         shell: bash
@@ -84,7 +86,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B ci/raw-samples
           git add -f data/nfl/_debug
-          git diff --staged --quiet || git commit -m "ci: analyze official schedule page structure"
+          git diff --staged --quiet || git commit -m "ci: extract game object shape from official schedule payload"
           git push --force origin ci/raw-samples
           echo "push_exit=$?"
           exit 0
