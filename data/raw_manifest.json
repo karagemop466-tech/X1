@@ -1,0 +1,172 @@
+[
+  {
+    "name": "games.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/games.csv",
+    "source_key": "nfldata_games",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv",
+    "bytes": 2190039,
+    "sha256": "60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8",
+    "status": "cached"
+  },
+  {
+    "name": "closing_lines.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/closing_lines.csv",
+    "source_key": "nfldata_closing_lines",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/closing_lines.csv",
+    "bytes": 942229,
+    "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+    "status": "cached"
+  },
+  {
+    "name": "rosters.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/rosters.csv",
+    "source_key": "nfldata_rosters",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/rosters.csv",
+    "bytes": 1606485,
+    "sha256": "0e9582602289c790348b08bd71d94103bb9ddbd3119b2ff8b5223d6c0fa01a39",
+    "status": "cached"
+  },
+  {
+    "name": "standings.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/standings.csv",
+    "source_key": "nfldata_standings",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/standings.csv",
+    "bytes": 56873,
+    "sha256": "a955694cba054283e9b5a1c65cb174b875aea0febabb0c5f4c61b37e719a315d",
+    "status": "cached"
+  },
+  {
+    "name": "teams.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/teams.csv",
+    "source_key": "nfldata_games",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/teams.csv",
+    "bytes": 90927,
+    "sha256": "b7cfab98e6ac35c684432f6ace65d6065b0b89b90e3a2e91116a69ae38e04d42",
+    "status": "cached"
+  },
+  {
+    "name": "sc_lines.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/sc_lines.csv",
+    "source_key": "nfldata_games",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/sc_lines.csv",
+    "bytes": 140765,
+    "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+    "status": "cached"
+  },
+  {
+    "name": "initial_lines.csv",
+    "repo": "nflverse/nfldata",
+    "path": "data/initial_lines.csv",
+    "source_key": "nfldata_games",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/initial_lines.csv",
+    "bytes": 45068,
+    "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+    "status": "cached"
+  },
+  {
+    "name": "datasets_readme.md",
+    "repo": "nflverse/nfldata",
+    "path": "DATASETS.md",
+    "source_key": "nfldata_games",
+    "url": "https://api.github.com/repos/nflverse/nfldata/contents/DATASETS.md",
+    "bytes": 17642,
+    "sha256": "8835ca9c15784a2cdc04c2c599c54b373629f8fbe91117acd5b7d0c615e03bf4",
+    "status": "cached"
+  },
+  {
+    "name": "injuries_2026.csv",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/injuries_2026.csv",
+    "source_key": "nflverse_injuries",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/injuries_2026.csv",
+    "bytes": 309785,
+    "sha256": "7ac1a6b6f69974ff172cea271f28dc01fca23c49ee170bcef7c1f4ac42549072",
+    "status": "cached"
+  },
+  {
+    "name": "rosters_2026.csv",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/rosters_2026.csv",
+    "source_key": "nflverse_weekly_rosters",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/rosters_2026.csv",
+    "bytes": 138744,
+    "sha256": "d67b54fbefa15480d73547699d2702cca42e1310f89f9685ef01640f9e4d9698",
+    "status": "cached"
+  },
+  {
+    "name": "player_stats_weekly_archive.parquet",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/player_stats_weekly_archive.parquet",
+    "source_key": "player_week_stats",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/player_stats_weekly_archive.parquet",
+    "bytes": 5621855,
+    "sha256": "4f05a9c5c6df6cc91647365c569c04707ce8c54b547b2ffdb7fe60647e0751df",
+    "status": "cached"
+  },
+  {
+    "name": "player_week_stats_2026.csv",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/pennydata_2026_player_week_stats.csv",
+    "source_key": "player_week_stats",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/pennydata_2026_player_week_stats.csv",
+    "bytes": 3404365,
+    "sha256": "49fa83ab6e6a124ec4db35442de9a85d9f28942ca03b79c14c8b9f19fe2054ba",
+    "status": "cached"
+  },
+  {
+    "name": "depth_charts.parquet",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/hf_mikeysports_2025_depth_charts_zone1.parquet",
+    "source_key": "depth_charts_2025",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/hf_mikeysports_2025_depth_charts_zone1.parquet",
+    "bytes": 492261,
+    "sha256": "4c994b9d59b5f7941f9c2ea290d7d27707d9bf1cbd8c15b5806ca3f8cee53c0b",
+    "status": "cached"
+  },
+  {
+    "name": "weather_history.parquet",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/kaggle_tobycrabtree_scores_weather_zone1.parquet",
+    "source_key": "weather_history",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/kaggle_tobycrabtree_scores_weather_zone1.parquet",
+    "bytes": 126775,
+    "sha256": "d5c1da2fb2a42a1cadcadaa59af6a6b9b5183f1d42c26747db93c017591f001e",
+    "status": "cached"
+  },
+  {
+    "name": "ngs_receiving.csv.gz",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/ngs_receiving.csv.gz",
+    "source_key": "ngs_receiving",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/ngs_receiving.csv.gz",
+    "bytes": 1023323,
+    "sha256": "0ba709703dcceaaa61560d36d278f321cb25fca660b0faf84fc9e3a430c5302d",
+    "status": "cached"
+  },
+  {
+    "name": "contracts.parquet",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/hf_ypolatog_contracts_500_zone1.parquet",
+    "source_key": "player_week_stats",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/hf_ypolatog_contracts_500_zone1.parquet",
+    "bytes": 41178,
+    "sha256": "db81212606c83d80911b7b31a142288b0b14668689209b7eb5e0984a546901fb",
+    "status": "cached"
+  },
+  {
+    "name": "pbp_2026_slim.csv.gz",
+    "repo": "Beexly/Sports",
+    "path": "data/nflverse/pbp_2026_slim_clean_checkout.csv.gz",
+    "source_key": "nflverse_injuries",
+    "url": "https://api.github.com/repos/Beexly/Sports/contents/data/nflverse/pbp_2026_slim_clean_checkout.csv.gz",
+    "bytes": 508069,
+    "sha256": "7142a3b2142084c07d77e240a140613c405478e59a46f8c1c0c95b4c33176323",
+    "status": "cached"
+  }
+]

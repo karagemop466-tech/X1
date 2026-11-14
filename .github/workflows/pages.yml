@@ -22,6 +22,8 @@ jobs:
         run: python3 scripts/verify_site.py
       - name: Verify dashboard links and sources
         run: python3 scripts/check_site.py
+      - name: Verify the research lab (links, contracts, placeholders)
+        run: python3 scripts/verify_research_site.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -33,9 +35,14 @@ jobs:
           cp -r pages assets _site/
           # the parallel session's data dashboard (real backtests + 2026 CSVs)
           cp -r dashboard _site/
+          # the research session's model / strategy / prop / injury lab
+          cp -r research _site/
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
+          mkdir -p _site/data/processed
+          cp data/processed/*.csv _site/data/processed/ 2>/dev/null || true
+          cp data/raw_manifest.json _site/data/ 2>/dev/null || true
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site

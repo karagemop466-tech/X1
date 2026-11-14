@@ -1,0 +1,3 @@
+team,position_group,starter,starter_tier,starter_status,injury,replacement,replacement_tier,tier_gap,starter_evidence,method,source_url,depth_source_url
+MIN,TE,T.J. Hockenson,1,Out,"Wrist, Chest",Gavin Bartholomew,2,1,32 work units over 6 games (weeks 1-7),2026 usage tiers,https://www.nfl.com/injuries/league/2026/reg10,https://github.com/Beexly/Sports/blob/main/data/nflverse/player_stats_weekly_archive.parquet
+MIN,QB,Kyler Murray,1,Out,Hamstring,Carson Wentz,2,1,125 work units over 5 games (weeks 1-7),2026 usage tiers,https://www.nfl.com/injuries/league/2026/reg10,https://github.com/Beexly/Sports/blob/main/data/nflverse/player_stats_weekly_archive.parquet

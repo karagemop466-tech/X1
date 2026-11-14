@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # X1 — Fourth Down: NFL Line Lab
 
 Verified NFL data, a line-origination methodology, and a skill-based strategy leaderboard —
@@ -50,47 +49,79 @@ The injury report changes daily, so treat the tables as dated evidence, not a li
 
 Corrections are published, not silently applied. The current list is on the site's
 **Flagged for review** page and in `docs/review/repo-review.md` (defects D-01 to D-03).
-=======
-# Fourth Down — NFL Strategy Lab
-
-A static, evidence-first research dashboard and requirements register for NFL line origination and strategy evaluation. This is a research specification—not a betting product, live data service, or source of picks.
-
-## Pages
-
-- `index.html` — executive summary and navigation
-- `research.html` — candidate signal families, line workflow, and correlation methodology
-- `validation.html` — staged gates and leaderboard competition design
-- `availability.html` — injury/depth tracking schema for offense and defense
-- `sources.html` — official NFL and NIST source register, verification scope, and limitations
-- `questions.html` — decision questions, knowns, gaps, and discovery suggestions
-- `review.html` — irregularities, unverified values, and review queue
-
-## Evidence policy
-
-The repository began without an application, NFL data, odds history, tests, or deployment workflow. No NFL live values, injury statuses, odds, correlations, picks, or measured strategy performance are invented. Each proposed method is labeled as untested; empty values are left blank. Primary NFL links are provided beside relevant methodology, and limitations are explicit. A source page link does not mean its changing contents have been captured or independently verified for a specific event.
-
-Sources linked in the site include NFL.com injury reports, statistics, schedules, and team pages; NFL Football Operations and Next Gen Stats material; and NIST reference material for statistical definitions and uncertainty. Review `sources.html` for the source register and `review.html` for all limitations. See `COORDINATION.md` for scope and verification history.
-
-## Local preview
-
-Open `index.html` in a browser or serve this directory with any static HTTP server. All pages are plain HTML/CSS and need no build step.
-
-## GitHub Pages
-
-GitHub Pages is deployed at [karagemop466-tech.github.io/X1](https://karagemop466-tech.github.io/X1/). The deployment was recorded in the coordination log; a workflow runs on pushes to `main`. A lightweight static checker now verifies local links and that each research-table row links to an official source host before deployment.
->>>>>>> origin/main
-
 
 ---
 
-## Appendix — previous README from `main` (preserved)
+## The research lab (`research/`)
 
-The dashboard text below was on `main` before the integrated release. It described the
-design-specification site built by `arena/6f377170-x1` and `arena/226be516-x1`; those pages are
-preserved in git history (`16ac19e`, `770ae96`). It is kept here so nothing from that session is lost.
+A second, independent implementation lives in this repository and is published alongside the
+dashboard at **`/research/`**. It answers the question the dashboard deliberately leaves open:
+*what do the strategies actually do once you price them and test them out of sample?*
+
+| Path | Contents |
+|---|---|
+| `research/` | The research site: model lines, strategies, leaderboard, gates, correlations, luck analysis, player props, injuries and depth (generated - do not hand-edit) |
+| `src/x1/` | The Python package: `config`, `sources`, `ingest`, `prep`, `model`, `strategies`, `evaluation`, `gates`, `correlation`, `leaderboard`, `props`, `injuries`, `content` |
+| `scripts/run_pipeline.py` | Downloads the inputs, fits the model, evaluates the library, applies the gates and writes the processed tables |
+| `scripts/build_research_site.py` | Regenerates `research/` from `data/site/payload.json` |
+| `data/processed/` | The tables that back every published number in the research site |
+| `data/raw_manifest.json` | Provenance for every input file: repository, path, bytes, SHA-256 |
+| `data/raw/official_injuries_w10_2026.csv` | A hand transcription of the official Week 10 injury report (the only raw file that cannot be re-downloaded) |
+
+```bash
+pip install -r requirements.txt
+python3 scripts/run_pipeline.py      # ingest -> model -> strategies -> gates -> payload
+python3 scripts/build_research_site.py   # regenerate research/
+```
+
+### The validation protocol
+
+A strategy earns reward **only** by passing all eight gates:
+
+| Gate | Name | Threshold |
+|---|---|---|
+| G1 | Sample sufficiency | >= 100 settled out-of-sample bets |
+| G2 | Out-of-sample integrity | Parameters chosen only from earlier seasons; no duplicate bets |
+| G3 | Statistical significance | Bootstrap 95% CI lower bound > 0 **and** sign-flip permutation p <= 0.05 |
+| G4 | Economic significance | ROI >= 2% per unit staked |
+| G5 | Beats naive baselines | ROI above every always-on baseline on the same window |
+| G6 | Luck robustness | Positive ROI after removing one-score games and blowouts |
+| G7 | Parameter stability | >= 60% of neighbouring parameter values stay positive |
+| G8 | Non-redundancy | Correlation with an accepted strategy <= 0.85 |
+
+Reward: `1000 * ROI * min(1, bets / 300) * confidence`, where *confidence* is the share of the
+bootstrap interval that stays above zero. A strategy that fails any gate earns zero.
+
+### What the research lab adds to the dashboard
+
+- **A priced, provenance-documented benchmark.** The dashboard withholds prices and correlations
+  because the line provenance was unverified. The research lab names the benchmark explicitly (a
+  third-party closing line carried in the `nflverse/nfldata` mirror, fingerprinted in
+  `data/raw_manifest.json`) and states it on every page that uses it.
+- **Originated lines.** A walk-forward Poisson points model produces its own spread and total for
+  7,154 games, fitted only on earlier seasons, and is compared with the market benchmark so the
+  size of the opportunity is published rather than assumed.
+- **Measured strategy results.** Sixteen pre-registered strategies, evaluated out of sample from
+  2015 to 2026 with parameters re-selected each season. One passes every gate.
+- **Correlation values, luck removal and player-prop mathematics**, with the parlay break-even
+  arithmetic that shows when a two-leg combination is impossible at -110 legs.
+
+### The rule both halves follow
+
+> If a value cannot be confirmed from a cited source, the cell stays blank and the item is flagged.
+> Nothing is inferred, and no number is invented to fill a table.
+
+The research lab adds one honest extension: where the value is confirmable but the *source is a
+community mirror rather than the league*, the row is published **with the mirror named and linked**,
+and the item is repeated on the Flagged for Review page. It is never presented as league-verified.
+
+---
+
+## Appendix - preserved README from the first session on `main`
+
+The text below was on `main` before the integration and is preserved verbatim.
 
 <<<PRESERVED VERBATIM>>>
-
 # Fourth Down — NFL Strategy Lab
 
 A static, evidence-first research dashboard and requirements register for NFL line origination and strategy evaluation. This is a research specification—not a betting product, live data service, or source of picks.
@@ -111,10 +142,6 @@ The repository began without an application, NFL data, odds history, tests, or d
 
 Sources linked in the site include NFL.com injury reports, statistics, schedules, and team pages; NFL Football Operations and Next Gen Stats material; and NIST reference material for statistical definitions and uncertainty. Review `sources.html` for the source register and `review.html` for all limitations. See `COORDINATION.md` for scope and verification history.
 
-## Data dashboard
-
-`dashboard/` is generated from `data/` by `scripts/build_site.py` and linked from `index.html`. It holds the official NFL.com standings, Week 10 schedule and injury report (each row links to its source), the strategy registry and validation gates, the flagged-for-review page and the suggestions page. Regenerate with `python3 scripts/build_site.py`, then check with `python3 scripts/check_site.py`.
-
 ## Local preview
 
 Open `index.html` in a browser or serve this directory with any static HTTP server. All pages are plain HTML/CSS and need no build step.
@@ -122,3 +149,4 @@ Open `index.html` in a browser or serve this directory with any static HTTP serv
 ## GitHub Pages
 
 GitHub Pages is deployed at [karagemop466-tech.github.io/X1](https://karagemop466-tech.github.io/X1/). The deployment was recorded in the coordination log; a workflow runs on pushes to `main`. A lightweight static checker now verifies local links and that each research-table row links to an official source host before deployment.
+>>>PRESERVED VERBATIM>>>
