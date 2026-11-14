@@ -240,7 +240,8 @@ def collect_gamebooks(
         except Exception as exc:
             notes.append(f"{page_url}: Game Center fetch failed ({exc})")
             continue
-        pdf_url = _gamebook_pdf_url(page.text())
+        game_id = _current_game_id(page.text())
+        pdf_url = _gamebook_pdf_url(page.text(), game_id)
         if not pdf_url:
             notes.append(f"{page_url}: no Game Book PDF link published on the page")
             continue
@@ -335,8 +336,36 @@ def enrich_schedule_with_gamebooks(out_dir: Path) -> None:
     print("  enriched schedule with official game book results")
 
 
-def _gamebook_pdf_url(html_text: str) -> Optional[str]:
-    """The Game Center page publishes the Game Book PDF URL directly."""
+#: The Game Center page marks the game it is showing with ``data-key`` on the
+#: element whose link is marked ``aria-current="page"``.
+CURRENT_GAME_RE = re.compile(
+    r'data-key="(?P<gid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"'
+    r'[^>]*>\s*<a[^>]*aria-current="page"'
+)
+
+
+def _current_game_id(html_text: str) -> Optional[str]:
+    """The league game id of the game the Game Center page is showing."""
+    match = CURRENT_GAME_RE.search(html_text)
+    return match.group("gid") if match else None
+
+
+def _gamebook_pdf_url(html_text: str, game_id: Optional[str] = None) -> Optional[str]:
+    """The Game Book PDF URL for the game the page is showing.
+
+    A Game Center page also links the game books of other games in its
+    navigation strip, so the link is matched against the page's own game id
+    rather than taking the first one on the page.
+    """
+    if game_id:
+        pattern = re.compile(
+            r"https://static\.www\.nfl\.com/[^\"'\s]*?/gamecenter/"
+            + re.escape(game_id)
+            + r"\.pdf"
+        )
+        match = pattern.search(html_text)
+        if match:
+            return match.group(0)
     match = GAMEBOOK_LINK_RE.search(html_text)
     return match.group(0) if match else None
 
