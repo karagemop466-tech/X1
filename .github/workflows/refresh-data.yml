@@ -43,14 +43,20 @@ jobs:
           pip install pypdf numpy
 
       - name: Collect official NFL data
+        env:
+          PYTHONPATH: src
         run: |
           python -m nflx.pipeline --out data/nfl --cache .cache/nflx --max-gamebooks 40
 
       - name: Build the site
+        env:
+          PYTHONPATH: src
         run: |
           python -m nflx.build_site --data data/nfl --out _site
 
       - name: Verify the site
+        env:
+          PYTHONPATH: src
         run: |
           python -m nflx.verify --site _site --report _site/verification-report.json
 
