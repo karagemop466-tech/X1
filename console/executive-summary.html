@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary - X1 NFL Line Console</title>
+<link rel="stylesheet" href="assets/console.css">
+</head><body><div class="layout">
+<aside><div class="brand"><b>X1 LINE CONSOLE</b><span>NFL origination &amp; strategy lab</span></div>
+<nav><div class="grp">Overview</div><a class="item" href="index.html">Overview</a><a class="item on" href="executive-summary.html">Executive summary</a><a class="item" href="requirements.html">The eight requirements</a><div class="grp">Official data</div><a class="item" href="standings.html">Standings<span class="tag">32</span></a><a class="item" href="schedule.html">Week 10 slate<span class="tag">14</span></a><a class="item" href="injuries.html">Injury report<span class="tag">345</span></a><a class="item" href="depth.html">Replacement depth<span class="tag">897</span></a><a class="item" href="deficiency.html">Deficiency register<span class="tag">897</span></a><div class="grp">Markets</div><a class="item" href="results.html">Verified results feed<span class="tag">7,548</span></a><a class="item" href="prices.html">Price-snapshot store<span class="tag">18.8k</span></a><a class="item" href="lines.html">Originated lines<span class="tag">6.3k</span></a><div class="grp">Strategy</div><a class="item" href="strategies.html">Strategy library<span class="tag">16</span></a><a class="item" href="leaderboard.html">Leaderboard<span class="tag">16</span></a><a class="item" href="gates.html">Validation and demotion gates<span class="tag">14</span></a><a class="item" href="correlations.html">Correlations</a><a class="item" href="luck.html">Removing luck</a><a class="item" href="props.html">Props and parlays</a><div class="grp">Decisions</div><a class="item" href="questions.html">Decision register<span class="tag">15</span></a><a class="item" href="suggestions.html">Suggestion review board<span class="tag">13</span></a><div class="grp">Governance</div><a class="item" href="verification.html">Verification ledger</a><a class="item" href="sources.html">Source registry</a><a class="item" href="repo-review.html">Repository review</a><a class="item" href="flagged.html">Flagged for review<span class="tag">8</span></a><a class="item" href="archived-sites.html">Archived sites<span class="tag">9</span></a></nav></aside>
+<main>
+<header class="page"><h1>Executive summary</h1><p>What was built, what the evidence says, and what has to change before anything goes live.</p></header>
+
+
+<h2>Executive summary</h2>
+<p>The brief asks for eight things: a price-snapshot store, a verified results feed, origination in
+the order side &rarr; total &rarr; moneyline, three published columns (fair, market, difference),
+signal and staking scored apart, replacement depth rather than replacement, correlations computed
+from sourced numbers with n published, and a demotion gate. All eight are built and published.
+The competition they run produces a negative result, and the negative result is the finding.</p>
+
+<h3>1. The model does not beat the market, and the market can prove it</h3>
+<p>The closing spread correlates <b>0.434</b> with the actual home margin
+(n=6,102). Our walk-forward fair spread correlates <b>0.2332</b>.
+In points, our fair line misses the actual margin by 14.198 RMSE against the
+market's 13.14 &mdash; about 1.1 points per game worse than the number we are
+trying to beat.</p>
+<p>The decisive test is whether the market moves toward our number. It does not. In 2021, the one
+season where a real opening number exists, the gap between our fair line and the market
+<b>grew</b> from 4.037 points at the open to 5.545
+points at the close &mdash; a change of +1.508 points with a standard error of
+0.229 over n=264 games. The gap shrank in only 30% of
+them. If our number carried information the opening line lacked, the close would have moved toward
+it. It moved away, by about six standard errors. <b>The disagreement is our error, not the
+market's.</b></p>
+
+<h3>2. Every strategy fails the gates, which is what the gates are for</h3>
+<p>16 strategies were pre-registered and evaluated out of sample from
+2004 to 2026, with every hyper-parameter re-chosen inside
+the training window only. None passed. The best flat-stake return on the board is
+<span class="neg">-0.60%</span> on 2,781 bets, against
+break-even at 52.38% and three always-on baselines that lose between 5.2% and 6.9%.
+A parlay strategy returned <span class="neg">-36.5%</span>.</p>
+<p>Two results deserve to be read closely. First, <b>bigger disagreement does not mean better
+bets</b>: the correlation between edge size and bet outcome is zero or negative for every strategy,
+and significantly negative for the largest side threshold
+(-0.069 , 95% CI -0.125 to -0.011). Second, <b>parlays multiply the
+vig</b>: with the two legs effectively uncorrelated (0.0199,
+n=6,102), a two-leg -110 parlay needs a 27.44% joint probability to break
+even and returns less at every book.</p>
+
+<h3>3. The data underneath is sound</h3>
+<p>7,413 settled games reconcile
+160/160 with the league's own standings table.
+The official pages were re-read today: 827 comparisons,
+0 mismatches. The market's own moneylines imply its own spreads to within
+0.516 points (n=5,432).
+The benchmark we are failing is a real one.</p>
+
+<h3>4. Signal and staking are now separable, and it matters</h3>
+<p>The leaderboard reports <code>signal_score</code> at flat one-unit staking, which bet sizing
+cannot move, and <code>staking_score</code> under the strategy's own quarter-Kelly plan. They
+disagree. <code>ST-TOT-5</code> and <code>ST-ROADFAV</code> have the <b>identical signal score</b> of 25.0, yet they sit 10.2 points apart on staking (35.2 against 25.0). A leaderboard ranked on staking would order them; the signal column says they are the same bet. Promotion requires the signal score, so neither is promoted.</p>
+
+<h3>5. Availability tracking works for 31 of 32 clubs</h3>
+<p>897 depth slots. 189 designated starters
+appear on the official Week 10 injury report, 39 of them Out,
+4 doubtful and 35
+questionable. Each row names the replacement and whether he is the 2nd, 3rd or 4th string, with a
+link to the club page it was read from. Houston publishes no parsable chart and is recorded as a
+coverage gap rather than filled in.</p>
+
+<h3>6. What has to change for any of this to pay</h3>
+<p>Three gaps block every remaining question: no source here publishes <b>opening prices</b>, none
+publishes <b>player-prop lines</b>, and none publishes <b>Houston's depth chart</b>. The first two
+are commercial; the third is a one-off transcription. Until opening prices exist, closing line
+value &mdash; the single best stake-free measure of whether a signal knows something &mdash; cannot
+be computed, and the demotion gate cannot be exercised on real money. The
+<a href="suggestions.html">suggestion board</a> prices each path.</p>
+
+<h3>The recommendation</h3>
+<div class="note good"><b>Do not promote anything, and do not raise the bet threshold to make the
+numbers look better.</b> Spend the next cycle on the price feed (SG-01) and player participation
+(SG-02). Both are cheap, and both are prerequisites for every other question on the board. The
+gates are working; the inputs are what is missing.</div>
+
+<footer>
+As of 2026-11-14T20:48:22Z. Built by <code>tools/build_console.py</code> from sources listed on the
+<a href="sources.html">source registry</a>. Every table row carries a source link or an explicit
+marker where no source exists. Values that cannot be confirmed are left blank and listed on the
+<a href="flagged.html">flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/console.js"></script></body></html>

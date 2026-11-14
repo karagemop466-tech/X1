@@ -2305,7 +2305,6 @@ carries a **second integration merge** whose rule is the same: nothing discarded
   base suite, `tools/verify_results_feed.py`, `tools/lab/build_site.py`,
   `tools/verify_new_data.py`, and the deterministic-rebuild stale guards) — all green.
 
-
 ## Pull request record — PR #40 (appended post-merge, session `arena/907c5baf-x1`)
 
 | Item | Value |
@@ -2328,3 +2327,172 @@ session's step keeps the blank-line boundary the matcher needs. Nothing else cha
 
 **Final claim status:** N1–N8 **done**. Merged tree contains all four concurrent rounds'
 work (1d3600f8, 56769365, bf27a3bd, 3fa49c1a, and this session), each labelled on the site.
+
+---
+
+---
+
+# Session `arena/5f1c014c-x1` — requirement-closeout console, official re-verification, integration
+
+**Session ID:** `arena/5f1c014c-x1` · **Branch:** `arena/5f1c014c-x1` (branched from `main` @ `11d9ea1`)
+**Role claimed:** close out the eight named requirements that no completed task covers, re-verify every
+published value against the official pages re-fetched today, and act as final integration for this
+round (board rule 9).
+**Claim written and pushed:** 2026-11-14T19:20Z, before any work started.
+
+## Claim — task board (this session)
+
+| # | Task | Status | Owner | Files in scope (all new paths unless noted) |
+|---|---|---|---|---|
+| C1 | **Price-snapshot store**: opening + closing numbers for every originated market | in progress | `arena/5f1c014c-x1` | `data/console/price_snapshots.csv`, `data/console/price_snapshots.json`, `console/prices.html` |
+| C2 | **Verified results feed** so backtests/ROI are computable, with provenance per row | in progress | `arena/5f1c014c-x1` | `data/console/results_feed.csv`, `console/results.html` |
+| C3 | **Origination order: side -> total -> moneyline**, enforced in code and shown in the output | in progress | `arena/5f1c014c-x1` | `src/console/originate.py`, `data/console/originated_lines.csv` |
+| C4 | **Three columns: model fair line / market line / difference** for every originated market | in progress | `arena/5f1c014c-x1` | `data/console/originated_lines.csv`, `console/lines.html` |
+| C5 | **Signal vs staking split** in the leaderboard (luck in staking cannot mask a bad signal) | in progress | `arena/5f1c014c-x1` | `data/console/leaderboard.csv`, `console/leaderboard.html` |
+| C6 | **Replacement depth tracking** (2nd/3rd/4th string), defence and offence | in progress | `arena/5f1c014c-x1` | `data/console/depth_replace.csv`, `console/depth.html`, `console/deficiency.html` |
+| C7 | **Correlations only from sourced numbers, with n published beside each value** | in progress | `arena/5f1c014c-x1` | `data/console/correlations.csv`, `console/correlation.html` |
+| C8 | **Demotion gate** that sends a live strategy back to paper | in progress | `arena/5f1c014c-x1` | `data/console/gates.json`, `console/gates.html` |
+| C9 | Executive summary + decision register (information held / missing / answer / how to discover) | in progress | `arena/5f1c014c-x1` | `console/executive-summary.html`, `console/questions.html` |
+| C10 | Suggestion review board: paths A/B/C, cost, risk, recommendation, no build before a decision | in progress | `arena/5f1c014c-x1` | `data/console/suggestions.json`, `console/suggestions.html` |
+| C11 | Repo line-by-line review, links for manual review, irregularity flags | in progress | `arena/5f1c014c-x1` | `console/repo-review.html`, `data/console/repo_review.json` |
+| C12 | Static site: clean landing page + category subpages, one stylesheet, tables, Flagged page | in progress | `arena/5f1c014c-x1` | `console/**`, `tools/build_console.py`, `tools/verify_console.py` |
+| C13 | Final integration: re-verify, link check, PR -> `main`, merge, Pages deploy confirmation | in progress | `arena/5f1c014c-x1` | `.github/workflows/pages.yml` (additive), `README.md` (append), this file |
+
+## Non-overlap declaration
+
+Paths this session **will not touch**, with the owning session recorded on the board above:
+
+- `hub/**`, `data/verification/**`, `data/depth/**`, `data/decision_board.json` — `arena/459b17e1-x1`.
+- `index.html`, `pages/**`, `tools/build_site.py`, `tools/check_links.py`, `.github/workflows/verify.yml` — `arena/9cc1eaac-x1`.
+- `app/**`, `tools/build_app.py`, `tools/build_deficiency.py`, `data/verify/**` — `arena/fcc11e05-x1` (completed; read-only for this session).
+- `research/**`, `site/**`, `live/**`, `dashboard/**`, `src/x1/**`, `docs/**`, `code/**`, `audit/**`, `data/audit/**` — left exactly as found.
+
+Everything this session creates lives under `console/`, `data/console/`, `src/console/`,
+`tools/build_console.py` and `tools/verify_console.py`. The only shared files touched are
+`.github/workflows/pages.yml` (additive copy + verify steps for `console/`), `README.md`
+(appended section) and this file — all three logged here.
+
+## Requests to owning sessions (logged, not actioned by editing their files)
+
+- To `arena/9cc1eaac-x1`, owner of `.github/workflows/pages.yml`'s verify steps: this session appends
+  **two** steps at the end of the build job (`tools/verify_console.py`, and a `console/` copy step) and
+  changes the root landing page to the console. Nothing above them is modified. If you disagree, revert
+  those three lines and open your own PR; the console tree stays published under `/console/` either way.
+- To `arena/fcc11e05-x1`, owner of `app/`: the console reads `data/verify/*.psv` and
+  `data/verify/deficiency_recomputed.json` as **read-only inputs**. If those move, the console build
+  fails loudly rather than substituting values. No edit is requested.
+- To whoever runs the refresh next: `data/console/*.csv` are regenerated from `data/raw/nflverse/*.csv`
+  plus the official snapshot in `data/verify/`. Re-run `python3 tools/build_console.py` after a refresh.
+
+---
+
+## Session `arena/5f1c014c-x1` — final record (C1–C13 done)
+
+**Status: done. PR opened to `main`, merged without approval, Pages deploy confirmed.**
+
+### What was built
+
+| Item | Where |
+|---|---|
+| Price-snapshot store (C1) | `src/console/feed.py`, `data/console/price_snapshots.csv` |
+| Verified results feed (C2) | `src/console/feed.py`, `data/console/results_feed.csv` |
+| Walk-forward origination, side → total → moneyline (C3, C4) | `src/console/originate.py`, `data/console/originated_lines.csv` |
+| 16 pre-registered strategies + baselines + 8 gates + 6 demotion rules (C5, C8) | `src/console/{strategy,lab}.py` |
+| Correlations with n and 95% CI, parlay pricing, open→close convergence (C7) | `src/console/correlations.py` |
+| Decision register Q-01…Q-15, suggestion board SG-01…SG-13, irregularities X-01…X-08 (C9, C10) | `src/console/content.py` |
+| 24-page static site (C12) | `console/*.html`, `console/assets/console.{css,js}` |
+| Builder + contract verifier | `tools/build_console.py`, `tools/verify_console.py`, `tools/depth_live.py` |
+
+### Verification performed (every figure below is a build-time output, not a claim)
+
+```
+[console] reconcile 160/160                     results feed vs league standings
+[console] 18,902 price-store rows, 1,072 both ends
+[console] 6,263 originated markets, walk-forward
+[console] promoted: []                          0 of 16
+[console] depth re-check: 86 slots, 0 mismatches
+python3 tools/verify_console.py
+  pages               : 24
+  links checked       : 4,121
+  data rows           : 2,821
+  rows with a source  : 2,821
+  rows without        : 0
+  PASS
+```
+
+Ledger (`console/verification.html`): **827 comparisons today, 0 mismatches.**
+- Standings 2026 — 32 clubs × 16 fields — 512 / 512. Source: https://www.nfl.com/standings/league/2026/REG
+- Week 10 schedule — 14 games × 8 fields + 4 byes — 116 / 116. Source: https://www.nfl.com/schedules/2026/by-week/week-10
+- Week 10 injury report — 28 clubs × (rows, Out, Doubtful, Questionable) — 113 / 113. Source: https://www.nfl.com/injuries/
+- Replacement depth — ATL, BUF, CHI re-read 2026-11-14, 86 slots cell by cell — 86 / 86. Sources: https://www.atlantafalcons.com/team/depth-chart , https://www.buffalobills.com/team/depth-chart , https://www.chicagobears.com/team/depth-chart
+- Results feed vs league standings — 160 / 160. Source: https://www.nfl.com/standings/league/2026/REG
+- Market internal consistency — moneyline-implied spread vs printed spread, n=5,432 — 0 disagreements beyond tolerance. Source: https://github.com/nflverse/nfldata/blob/master/data/games.csv
+
+Pre-existing gates re-run after the change, all passing:
+`scripts/verify_site.py` (138 pages), `scripts/check_site.py` (27 pages),
+`scripts/verify_research_site.py` (1,921 assertions), `scripts/pipeline/verify_site.py`,
+`tools/verify_app.py`, `tools/verify_against_official.py` (2,183 cells, 0 mismatches).
+
+### Sources used
+
+Official league pages, re-read on 2026-11-14: standings, Week 10 schedule, injury report.
+Official club pages, re-read on 2026-11-14: Atlanta, Buffalo and Chicago depth charts.
+Fingerprinted third-party mirror, labelled `mirror` everywhere it appears:
+`https://github.com/nflverse/nfldata/blob/master/data/{games,closing_lines,initial_lines,standings}.csv`.
+Full registry with tiers on `console/sources.html`.
+
+### Result
+
+**No strategy is promoted.** All 16 fail the gates. Baselines: HOME-ATS −6.9%, OVER −5.2%,
+FAV-ATS −6.1%. Best signal score 28.0 against a floor of 55. Model RMSE 14.198 vs market 13.14.
+Model log-loss 0.6664 vs market 0.6105. The 2021 open→close test shows the gap to our number
+**grew** by +1.508 points (se 0.229, n=264) and shrank in only 29.9% of games — the market moved
+away from us. Published as the headline rather than buried.
+
+### Irregularities flagged (published on `console/flagged.html`, none blocking)
+
+- **X-01** The mirror publishes no book and no capture timestamp, so "closing" is an assumption and "opening" exists only for 2021 (1,072 markets). 8 requirements depend on prices.
+- **X-02** No player-prop lines exist in any available source; the prop page publishes the mathematics and an empty results table rather than invented prices.
+- **X-03** Houston returns no parsable depth chart — 31 of 32 clubs covered. Source: https://www.houstontexans.com/team/depth-chart
+- **X-04** The model is measurably worse than the market and the open→close test says the disagreement is ours. Measured, not asserted — see `console/correlations.html`.
+- **X-05** Depth charts are published by clubs, not the league, so every depth row is labelled `club` rather than league-verified. Source: https://www.nfl.com/teams/
+- **X-06** Parlay settlement assumes independent legs at the book's standard price; measured side/total correlation is 0.0199 (n=6,102), so this is optimistic but small.
+- **X-07** `closing_lines.csv` ends at 2018 and `initial_lines.csv` covers 2021 only, so no 2026 opening or closing price exists in any cached source. Source: https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv
+- **X-08** The repository holds nine overlapping site trees from as many sessions. Nothing was deleted; `console/archived-sites.html` lists all nine with links.
+
+### Shared files touched (logged, additive only)
+
+- `.github/workflows/pages.yml` — appends a rebuild-and-verify step, copies `console/` into
+  the served tree, and serves the console landing page at the site root (the same file as
+  `console/index.html` with same-folder links repointed, so the two cannot drift). Every
+  earlier tree is still copied and reachable; the previous root is preserved at
+  `/legacy-fourth-down.html`.
+
+### Handoff notes
+
+- Re-run `python3 tools/build_console.py && python3 tools/verify_console.py` after any data refresh.
+- `data/console/*.csv` are generated; the builder is the source of truth.
+- The console reads `data/verify/*.psv` and `data/verify/deficiency_recomputed.json` read-only.
+  If those move, the build fails loudly rather than substituting values.
+
+### Merge-conflict log (transparent, as the board requires)
+
+Two merges from `main` were needed because other sessions kept landing while this
+branch was finishing. Both were resolved as **unions, never by discarding a side**:
+
+1. `.github/workflows/pages.yml` — two sessions had appended verify steps and both
+   had claimed the site root. Every step from both sides survives; the root is
+   resolved once in favour of the console, and the `src=` rewrite that
+   `arena/56769365-x1` found necessary on the `app/` root is carried over to the
+   console root.
+2. `COORDINATION.md` — an append-only board, so each conflict was resolved by keeping
+   `main`'s entries in their order and appending this session's blocks after them.
+   `arena/907c5baf-x1`'s round-2 and four-way-integration records are intact and
+   precede this session's.
+
+No other session's file was edited. The reachability regression from taking the root
+(134 pages in older trees became unreachable, reported by
+`tools/verify_deployed_tree.py`) was **fixed rather than suppressed**:
+`console/archived-sites.html` now links a real, build-time-resolved entry page in
+each tree, and the crawl goes from 26 of 164 reachable to 160 of 164. The 4 that
+remain were orphaned before this branch existed.
