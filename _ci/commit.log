@@ -33,9 +33,9 @@ M  data/standings.json
 M  data/team_stats.json
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-14T04:29:31Z'
-[arena/d577959f-x1 5c7d1b6] data: refresh from official sources 2026-11-14T04:29:31Z
- 11 files changed, 12664 insertions(+), 5032 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-14T04:31:15Z'
+[arena/d577959f-x1 324509a] data: refresh from official sources 2026-11-14T04:31:15Z
+ 11 files changed, 15023 insertions(+), 7945 deletions(-)
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin arena/d577959f-x1
@@ -63,7 +63,6 @@ fatal: no rebase in progress
 + git fetch origin arena/d577959f-x1
 From https://github.com/karagemop466-tech/X1
  * branch            arena/d577959f-x1 -> FETCH_HEAD
-   de84a96..5b45888  arena/d577959f-x1 -> origin/arena/d577959f-x1
 + git rebase origin/arena/d577959f-x1
 error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
