@@ -1,0 +1,64 @@
+name: probe-raw-formats
+on:
+  push:
+    branches: ["arena/0c2fcfa1-x1"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Install PDF tooling
+        run: pip install --quiet --disable-pip-version-check pypdf
+      - name: Capture raw source formats
+        shell: bash
+        run: |
+          set +e
+          mkdir -p data/nfl/_debug
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+
+          curl -sS -A "$UA" -L --max-time 90 \
+            "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf" \
+            -o /tmp/gb.pdf
+          echo "pdf_bytes=$(wc -c < /tmp/gb.pdf)"
+
+          python3 - <<'PY' > data/nfl/_debug/gamebook_sample.txt 2>&1
+          from pypdf import PdfReader
+          r = PdfReader("/tmp/gb.pdf")
+          print("PAGES:", len(r.pages))
+          for i, p in enumerate(r.pages):
+              print(f"===== PAGE {i+1} =====")
+              print(p.extract_text() or "")
+          PY
+          echo "gamebook_lines=$(wc -l < data/nfl/_debug/gamebook_sample.txt)"
+
+          # Trimmed HTML captures for the three HTML parsers.
+          curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/injuries/" \
+            | head -c 1200000 > data/nfl/_debug/injuries_sample.html
+          curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/standings/league/2026/REG" \
+            | head -c 900000 > data/nfl/_debug/standings_sample.html
+          curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/schedules/2026/by-week/week-10" \
+            | head -c 1500000 > data/nfl/_debug/schedule_sample.html
+          curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/games/commanders-at-giants-2026-reg-10" \
+            | head -c 900000 > data/nfl/_debug/gamecenter_sample.html
+          curl -sS -A "$UA" -L --max-time 90 "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc" \
+            | head -c 900000 > data/nfl/_debug/playerstats_sample.html
+
+          for f in data/nfl/_debug/*; do echo "$(wc -c < "$f") $f"; done
+          exit 0
+      - name: Commit raw samples
+        shell: bash
+        run: |
+          set +e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/nfl/_debug
+          git diff --staged --quiet || git commit -m "ci: capture raw official source formats for parser development"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          exit 0
