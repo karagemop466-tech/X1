@@ -1,0 +1,125 @@
+{
+  "provenance": {
+    "source_key": "game_book",
+    "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+    "retrieved_at": "",
+    "record_count": 0,
+    "notes": [
+      "Computed from 0 official game book(s).",
+      "Joint probabilities use a Gaussian copula; the independent product is shown alongside for comparison."
+    ]
+  },
+  "measured": [],
+  "unmeasured": [
+    {
+      "id": "strategy_vs_closing_line",
+      "label": "Strategy result vs closing-line value",
+      "scope": "strategy",
+      "metric": "clv",
+      "value": null,
+      "n": 0,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "unmeasured",
+      "note": "Requires a licensed, timestamped opening-to-closing price history. The league publishes no such series, so no value is asserted and gate G5 cannot be evaluated.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    },
+    {
+      "id": "strategy_vs_market_price",
+      "label": "Strategy edge vs market-implied probability",
+      "scope": "strategy",
+      "metric": "pearson",
+      "value": null,
+      "n": 0,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "unmeasured",
+      "note": "Requires a timestamped market-implied probability series matched to each decision. Not available from an official source, so no correlation is claimed.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    },
+    {
+      "id": "player_prop_vs_team_total",
+      "label": "Player prop outcome vs team total",
+      "scope": "prop",
+      "metric": "pearson",
+      "value": null,
+      "n": 0,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "unmeasured",
+      "note": "The pairing is well defined, but a per-decision price is needed to turn the historical relationship into an edge. The historical relationship itself is measurable once the full game-book set is collected.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    },
+    {
+      "id": "practice_status_vs_game_status",
+      "label": "Practice participation vs game designation",
+      "scope": "availability",
+      "metric": "categorical",
+      "value": null,
+      "n": 0,
+      "ci_low": null,
+      "ci_high": null,
+      "status": "unmeasured",
+      "note": "The official report publishes both designations but no conversion table, and the league's historical archive is not machine-readable in a citable form. No percentage conversion is asserted.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    }
+  ],
+  "joint_probabilities": [
+    {
+      "id": "JP-1",
+      "label": "Total points vs home point margin",
+      "p_a": null,
+      "p_b": null,
+      "correlation": null,
+      "joint_probability": null,
+      "independent_joint_probability": null,
+      "n_observations": 0,
+      "correlation_ci_low": null,
+      "correlation_ci_high": null,
+      "method": "gaussian-copula",
+      "status": "insufficient_data",
+      "note": "Only 0 usable observation(s); the relationship cannot be measured from the current official sample.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    },
+    {
+      "id": "JP-2",
+      "label": "Visitor points vs home point margin",
+      "p_a": null,
+      "p_b": null,
+      "correlation": null,
+      "joint_probability": null,
+      "independent_joint_probability": null,
+      "n_observations": 0,
+      "correlation_ci_low": null,
+      "correlation_ci_high": null,
+      "method": "gaussian-copula",
+      "status": "insufficient_data",
+      "note": "Only 0 usable observation(s); the relationship cannot be measured from the current official sample.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    },
+    {
+      "id": "JP-3",
+      "label": "Attendance vs total points",
+      "p_a": null,
+      "p_b": null,
+      "correlation": null,
+      "joint_probability": null,
+      "independent_joint_probability": null,
+      "n_observations": 0,
+      "correlation_ci_low": null,
+      "correlation_ci_high": null,
+      "method": "gaussian-copula",
+      "status": "insufficient_data",
+      "note": "Only 0 usable observation(s); the relationship cannot be measured from the current official sample.",
+      "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+      "source_label": "NFL Official Game Book (PDF)"
+    }
+  ],
+  "evaluations": {}
+}

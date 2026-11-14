@@ -1,0 +1,82 @@
+name: Refresh official NFL data
+
+# Collects the official NFL datasets, rebuilds the site, verifies it against
+# the source rules and publishes to GitHub Pages.
+#
+# The agent sandbox cannot reach NFL hosts, but GitHub Actions runners can, so
+# the collection step runs here. The verification step is the gate: if any
+# published table row lacks an official source link, the deployment is
+# aborted and the site is not published.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      max_gamebooks:
+        description: "Maximum official game books to parse"
+        default: "60"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-nfl-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pypdf numpy
+
+      - name: Collect official NFL data
+        run: |
+          python -m nflx.pipeline \
+            --out data/nfl \
+            --cache .cache/nflx \
+            --max-gamebooks "${{ github.event.inputs.max_gamebooks || 60 }}"
+
+      - name: Build the site
+        run: |
+          python -m nflx.build_site --data data/nfl --out _site
+
+      - name: Verify the site
+        run: |
+          python -m nflx.verify --site _site --report _site/verification-report.json
+
+      - name: Commit refreshed data
+        shell: bash
+        run: |
+          set +e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/nfl
+          git add -f _site
+          git diff --staged --quiet || git commit -m "data: refresh official NFL datasets and rebuild the site"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "push_exit=$?"
+          exit 0
+
+      - name: Publish to GitHub Pages
+        if: github.ref_name == 'main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        if: github.ref_name == 'main'
+        uses: actions/deploy-pages@v4
+        id: deployment

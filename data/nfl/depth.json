@@ -1,0 +1,12 @@
+{
+  "provenance": {
+    "source_key": "injuries_current",
+    "source_url": "https://www.nfl.com/injuries/",
+    "retrieved_at": "",
+    "record_count": 0,
+    "notes": [
+      "Depth analysis requires both the injury report and at least one parsed official game book. One or both were unavailable at the time of this run, so no deficiency is asserted."
+    ]
+  },
+  "records": []
+}
