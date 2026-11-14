@@ -1,0 +1,77 @@
+{
+  "source": {
+    "file": "games.csv",
+    "pinned_commit": "a04d58c0268645ce5081a210bd33650ab222547a",
+    "rows_all": 7548,
+    "rows_regular_season": 7239,
+    "seasons": [
+      1999,
+      2026
+    ]
+  },
+  "games_per_season_reg": {
+    "1999": 248,
+    "2000": 248,
+    "2001": 248,
+    "2002": 256,
+    "2003": 256,
+    "2004": 256,
+    "2005": 256,
+    "2006": 256,
+    "2007": 256,
+    "2008": 256,
+    "2009": 256,
+    "2010": 256,
+    "2011": 256,
+    "2012": 256,
+    "2013": 256,
+    "2014": 256,
+    "2015": 256,
+    "2016": 256,
+    "2017": 256,
+    "2018": 256,
+    "2019": 256,
+    "2020": 256,
+    "2021": 272,
+    "2022": 271,
+    "2023": 272,
+    "2024": 272,
+    "2025": 272,
+    "2026": 272
+  },
+  "completed_games_reg": 7104,
+  "missing_spread_reg_2006plus": 109,
+  "missing_total_reg_2006plus": 109,
+  "duplicate_game_ids": 0,
+  "sign_check_favorite_su_win_pct": 0.6654,
+  "sign_check_moneyline_agreement": 0.994,
+  "n_sign_check_moneyline": 5202,
+  "dataset_2026_week10_check": {
+    "game": "2026_10_WAS_NYG",
+    "nfldata_score": "WAS 24 - NYG 21",
+    "nflcom_score": "Commanders 24, Giants 21, FINAL (nfl.com schedule page)",
+    "match": true
+  },
+  "team_codes_in_source_not_on_nfl_com": {
+    "ARI": "NFL.com uses AZ",
+    "STL/SD/OAK": "legacy codes, mapped to LA/LAC/LV for rating only"
+  },
+  "bets_total_rows": 50684,
+  "holdout_season_counts": {
+    "2021": 272,
+    "2022": 271,
+    "2023": 272,
+    "2024": 272,
+    "2025": 272
+  },
+  "pricing_assumption": "-110 both sides; breakeven 52.38%; NOT verified against any sportsbook",
+  "elo_params": {
+    "K": 20.0,
+    "home_field": 65.0,
+    "points_per_elo": 25.0,
+    "season_reversion": 0.3333333333333333,
+    "base": 1500.0,
+    "edge_threshold": 3.0
+  },
+  "bonferroni_divisor": 10
+}
