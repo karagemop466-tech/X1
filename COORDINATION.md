@@ -615,6 +615,7 @@ main's (fresher) output was adopted in each case. No authored file was lost.
 
 ---
 
+
 # Session `arena/9cc1eaac-x1` — independent verification, decision gating and integration
 
 **Session ID:** `arena/9cc1eaac-x1` · **Branch:** `arena/9cc1eaac-x1` (branched from `main` @ `0699aff`)
@@ -794,3 +795,125 @@ live").
 check and the missing nav link. The standing open items (odds feed, data licence, reward
 funding, HOU depth chart) remain published on the Flagged for Review and Decision pages for
 owner review — they are owner decisions, not implementation gaps.
+
+
+# Session `arena/459b17e1-x1` — 2026-11-14 (this session)
+
+Branch: `arena/459b17e1-x1`, branched from `0699aff` (`main`, "ci: diagnostics pipeline
+2026-11-14T17:02:38Z").
+
+## Handoff / takeover justification (board rule 10)
+
+Every task on the board above is marked `done` and every owning session has merged its PR
+(#1–#21) and gone quiet; **the board records no open claim and no in-progress work at the
+time this session started**. Rule 10 therefore lets a new session pick up unfinished or
+unverified work. Nothing in this session edits another session's branch; all work happens on
+`arena/459b17e1-x1` and reaches `main` through a reviewed PR.
+
+## What the brief still asks for that no completed task covers
+
+Reading the owner's brief against the board, five gaps remain. This session claims them.
+
+| # | Task | Why it is a gap | Status | Owner | Files in scope |
+|---|---|---|---|---|---|
+| T10 | **Independent line-by-line re-verification** of every published table row against the official source, re-fetched today, with a row-level pass/fail ledger | The board's T3/T9 say "re-verified", but the re-verification was *self-performed by the same session that authored the row*. No session has published an independent ledger of row → official page → value → result. This is the brief's "VERIFICATION" section read literally. | **in progress** | `arena-459b17e1-x1` | `wiki/verification/*.md`, `data/verification/*.json` |
+| T11 | **Unified site**: one clean landing page with category-organised subpages covering the six fragmented sections | The published tree currently ships **six parallel site sections** (`index.html`+`pages/`, `dashboard/` (19 pages), `research/` (14), `site/` (10), `live/` (14), `archive/previous-site/`). That is the single largest irregularity in the repo and it is not on any flag list. The brief asks for "a clean landing page and subpages organised by category". | **in progress** | `arena-459b17e1-x1` | `hub/index.html`, `hub/*.html`, `hub/assets/*` |
+| T12 | **Depth-chart deficiency register**: starter vs 2nd/3rd/4th string, for both offense and defense, tied to the official injury report | `live/depth-charts.html` has 1,813 rows but the board's own T4 completion note says starter-vs-backup is "flagged, not invented". The brief explicitly asks the system to "know any deficiencies in defenses such as 2nd, 3rd or 4th string backups having to replace starters". | **in progress** | `arena-459b17e1-x1` | `wiki/depth/*.md`, `data/depth/*.json` |
+| T13 | **Suggestion review board** — a dedicated section where suggestions are listed, costed, sequenced and *chosen between* before implementation | `pages/suggestions.html` and `live/suggestions.html` both *list* suggestions. The brief asks for a section "so someone can review suggestions and choose the best path **before implementing any changes**" — i.e. a decision workflow with a recommended path and an explicit do-now / do-next / do-not list. No section does that. | **in progress** | `arena-459b17e1-x1` | `hub/decisions.html`, `data/decision_board.json` |
+| T14 | Integration: re-verify combined data, link check, PR → `main`, merge, Pages deploy confirmation, record in this board | Per board rule 9. | **in progress** | `arena-459b17e1-x1` | `.github/workflows/pages.yml` (additive only), this file, `README.md` |
+
+**Nothing in scope above is owned by an active session.** Where a file is owned by a
+completed session (e.g. `.github/workflows/pages.yml`, owned by `arena-b38a21d8-x1`), this
+session proposes its change here as a logged request and applies it **additively only**,
+exactly as session `arena/d577959f-x1` did for its own section.
+
+## Requests to owning sessions (logged, not actioned by editing their files)
+
+- To the owner of `.github/workflows/pages.yml` (`arena-b38a21d8-x1`): this session needs
+  **two additive copy lines** (`cp -r hub _site/`, plus one verify step) so the `hub/` section
+  is reachable on the live site. Marked "Added by session arena/459b17e1-x1". Removing them
+  unpublishes this section and changes nothing else.
+- To the owner of `index.html` (`arena-b38a21d8-x1`): the landing page should gain one
+  navigation card pointing at `hub/index.html`. Logged, not applied.
+ 314bd65 (coord: session arena/459b17e1-x1 claims T10-T14 (independent re-verification, unified site, depth deficiency, suggestion board, integration))
+
+---
+
+# Session `arena/459b17e1-x1` — completion record (2026-11-14)
+
+Branch `arena/459b17e1-x1`, rebased onto `main` at `98a7817` (PR #24) before the final push.
+Tasks T10–T14 claimed earlier in this file are **done**. All work is additive; no file owned by
+another session was deleted or overwritten.
+
+## Overlap with sessions `arena/c50b9342-x1` and `arena/9cc1eaac-x1` (declared, not hidden)
+
+Those two sessions claim A1–A9 and shipped, while this session was mid-verification:
+
+| Their work | This session's work | Relationship |
+|---|---|---|
+| `tools/verify_against_official.py` — 2,183 cells diffed against `data/nfl/*.tsv` | `tools/verification/verify_standings.py` (1,184 cells across **three** committed datasets + 320 arithmetic identity checks on the official page itself) and `verify_injuries.py` (28 club tables counted by hand; all 160 designated rows field by field) | Different tables, different method, same conclusion: **0 data mismatches**. Two independent audits agreeing is stronger than either alone, so both are published rather than merged into one. |
+| `pages/suggestions-board.html` + `data/audit/suggestion_board.json` (options, recommended path) | `hub/decisions.html` + `data/hub/decision_board.json` (12 suggestions × 2–3 paths, cost/risk/unlocks, recommended path, blocking question, status) | Genuinely duplicative in intent. Theirs is on the main nav; this session's is kept because it carries the cost/risk/unlocks columns and an explicit status (`awaiting-decision` / `ready-to-implement` / `do-not-do-yet` / `blocked`). **Their page remains canonical for navigation; if you keep only one, keep theirs.** |
+| `index.html` rewritten as a decision-first landing page | `hub/index.html` — a section index saying what each of the eight sections is canonical for | Complementary. The hub was deliberately reshaped away from being a ninth duplicate dashboard once their landing page appeared. |
+
+**Honest statement of scope:** this session originally built 15 hub pages and cut 10 of them
+after finding the other sessions had already published equivalent pages. An eighth duplicate
+dashboard would have been the very problem this session flags as finding F-10.
+
+## Verification performed (T10) — every number below is reproducible
+
+| Dataset | Official source re-fetched 2026-11-14 | Checks | Result |
+|---|---|---|---|
+| Standings | <https://www.nfl.com/standings/league/2026/REG> | 1,184 cell comparisons across `data/pipeline/standings.json`, `data/standings_2026.csv`, `data/nfl/teams_standings_2026_w10.csv`; plus 320 arithmetic identity checks on the page itself | **1,184 pass / 0 fail / 320 arithmetic pass**. 7 cells differ in formatting only (`0.75` vs `0.750`) — same value, not counted as a mismatch. |
+| Week 10 slate | <https://www.nfl.com/schedules/2026/by-week/week-10> | 390 checks over 14 games + 4 byes across three committed tables | **289 pass / 0 fail / 101 unverifiable** (56 market-price cells, 28 expected-QB cells, 17 others) |
+| Injury report | <https://www.nfl.com/injuries/> | 28 club tables counted by hand → 345 rows; all 160 rows carrying a game status compared field by field | **345 rows exact; 1,347 pass / 1 fail / 17 unverifiable** |
+| Depth deficiency | <https://www.nfl.com/injuries/> + 31 club depth charts via <https://www.nfl.com/teams/> | 66 starting slots where the register claims a designation | **66 pass / 0 fail**; 57 replaced by a 2nd string, 1 by a 3rd string, 8 with no replacement printed |
+
+Reproduce: `python3 tools/verification/verify_standings.py && python3 tools/verification/verify_schedule.py && python3 tools/verification/verify_injuries.py && python3 tools/verification/verify_depth.py`
+Raw official readings are stored in `data/verification/raw/` so the comparison is auditable.
+
+## Irregularities found (published on `hub/findings.html`)
+
+| ID | Item |
+|---|---|
+| F-01 | **Contradicted value** — `data/nfl/schedule_2026_week10.csv` names Kirk Cousins as Minnesota's expected Week 10 QB. The official Vikings injury report names only Kyler Murray (Out, hamstring) and Carson Wentz (full participation). Kirk Cousins does not appear. |
+| F-02 | **Contradicted value** — the same file names Tyler Huntley as Baltimore's starter; <https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury> reports him out for the season, and no Ravens QB appears on the official report. |
+| F-03 | 56 market-price cells (spread, total, two moneylines × 14 games) sourced from a community mirror, not the league. Not rendered on any published page, but present in the CSVs the site serves under `/data/`. |
+| F-04 | Expected starting QB unverifiable for 22 of 28 clubs — the NFL publishes no official designation. |
+| F-05 | Club depth charts are self-published; <https://www.packers.com/team/depth-chart> ends "Unofficial, Nov. 10, 2026". |
+| F-06 | Houston's depth chart returns no parsable page — 31 of 32 clubs covered. |
+| F-07 | `data/nfl/schedule_2026_week10.csv` cites `https://www.nfl.com/schedules/2026/REG10/`, which resolves to the generic schedule page. Canonical: `https://www.nfl.com/schedules/2026/by-week/week-10`. |
+| F-08 | Monday-night network: committed `ESPN/ABC`, official page prints `ESPN`; Thursday night network `Prime Video` is not printed by the page at all. |
+| F-09 | `data/nfl/schedule_week10.tsv` uses `LAR`; nfl.com uses `LA`. |
+| F-10 | Eight parallel site sections published from one repository. Handled with a section index, not deletion — see D-10. |
+| F-11 | Some validation gates carry no threshold (printed "not set", deliberately unenforced). |
+| F-12 | Baltimore's QB situation is unresolvable from official sources; leave blank until inactives. |
+
+## Files this session adds (all new paths; nothing deleted)
+
+| Path | Contents |
+|---|---|
+| `hub/index.html` | Section index — what each of the eight sections is canonical for |
+| `hub/verification.html` | The independent verification ledger |
+| `hub/findings.html` | The 12 findings above |
+| `hub/deficiency.html` | Depth deficiency by replacement string (66 designated slots) |
+| `hub/decisions.html` | Suggestion review board (12 suggestions, 2–3 paths each) |
+| `hub/assets/hub.css` | Stylesheet for the section |
+| `data/hub/decision_board.json` | The board data |
+| `data/verification/*.json` + `data/verification/raw/*.md` | The ledger and the raw official readings |
+| `tools/verification/verify_{standings,schedule,injuries,depth}.py` | The independent checkers |
+| `tools/hub/build_hub.py` | Generator + integrity gate (links resolve, external hosts official, every data row sourced) |
+
+## Additive-only edits to files owned by other sessions (logged as requests)
+
+| File | Owner | Change |
+|---|---|---|
+| `.github/workflows/pages.yml` | `arena-b38a21d8-x1` | +1 verify step, +1 `cp -r hub _site/` line, both marked "Added by session arena/459b17e1-x1" |
+| `tools/build_site.py` | `arena-b38a21d8-x1` (rewritten by `arena/c50b9342-x1`) | +1 nav tuple, +1 "AUDIT" card on the landing page, both marked |
+| `tools/check_links.py` | `arena-b38a21d8-x1` | +1 `is_hub` branch, `"hub"` added to two exclusion tuples, +1 CSS audit call, all marked |
+| `index.html`, `pages/*.html` | regenerated by the generator | +1 nav line each, nothing else (verified by diff) |
+
+**Request to the owner of `tools/build_site.py`:** if you would rather the hub were not linked
+from the main nav, remove the tuple marked "Added by session arena/459b17e1-x1" and re-run
+`python3 tools/build_site.py`. Removing it unpublishes the section and changes nothing else.
+The reverse request also stands: if you delete `pages/suggestions-board.html`, keep
+`data/hub/decision_board.json`, which carries the cost/risk/unlocks columns that page does not.
