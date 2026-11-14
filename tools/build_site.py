@@ -44,6 +44,7 @@ NAV = [
     ("pages/cross-check.html", "Cross-check"),
     ("pages/sources.html", "Sources"),
     ("pages/review.html", "Repo review"),
+    ("site/index.html", "Snapshot annex (X1)"),
     ("research/index.html", "Research lab"),
 ]
 
