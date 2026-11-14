@@ -1,0 +1,18 @@
+{
+ "rows": 18902,
+ "with_open": 1228,
+ "with_close": 18746,
+ "with_both": 1072,
+ "originated_now": 156,
+ "settled_rows": 18746,
+ "by_market": {
+  "SIDE": 4237,
+  "TOTAL": 4253,
+  "MONEYLINE": 10412
+ },
+ "by_step": {
+  "1": 4237,
+  "2": 4253,
+  "3": 10412
+ }
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview - X1 NFL Line Console</title>
+<link rel="stylesheet" href="assets/console.css">
+</head><body><div class="layout">
+<aside><div class="brand"><b>X1 LINE CONSOLE</b><span>NFL origination &amp; strategy lab</span></div>
+<nav><div class="grp">Overview</div><a class="item" href="index.html">Overview</a><a class="item" href="executive-summary.html">Executive summary</a><a class="item" href="requirements.html">The eight requirements</a><div class="grp">Official data</div><a class="item" href="standings.html">Standings<span class="tag">32</span></a><a class="item" href="schedule.html">Week 10 slate<span class="tag">14</span></a><a class="item" href="injuries.html">Injury report<span class="tag">345</span></a><a class="item" href="depth.html">Replacement depth<span class="tag">897</span></a><a class="item" href="deficiency.html">Deficiency register<span class="tag">897</span></a><div class="grp">Markets</div><a class="item" href="results.html">Verified results feed<span class="tag">7,548</span></a><a class="item" href="prices.html">Price-snapshot store<span class="tag">18.8k</span></a><a class="item" href="lines.html">Originated lines<span class="tag">6.3k</span></a><div class="grp">Strategy</div><a class="item" href="strategies.html">Strategy library<span class="tag">16</span></a><a class="item" href="leaderboard.html">Leaderboard<span class="tag">16</span></a><a class="item" href="gates.html">Validation and demotion gates<span class="tag">14</span></a><a class="item" href="correlations.html">Correlations</a><a class="item" href="luck.html">Removing luck</a><a class="item" href="props.html">Props and parlays</a><div class="grp">Decisions</div><a class="item" href="questions.html">Decision register<span class="tag">15</span></a><a class="item" href="suggestions.html">Suggestion review board<span class="tag">13</span></a><div class="grp">Governance</div><a class="item" href="verification.html">Verification ledger</a><a class="item" href="sources.html">Source registry</a><a class="item" href="repo-review.html">Repository review</a><a class="item" href="flagged.html">Flagged for review<span class="tag">8</span></a><a class="item" href="archived-sites.html">Archived sites<span class="tag">9</span></a></nav></aside>
+<main>
+<header class="page"><h1>Overview</h1><p>NFL line origination and a strategy competition where nothing is promoted without evidence.</p></header>
+<div class="kpis"><div class="kpi "><div class="lab">Strategies evaluated</div><div class="val">16</div><div class="sub">walk-forward, out of sample</div></div><div class="kpi bad"><div class="lab">Promoted</div><div class="val">0</div><div class="sub">all eight gates must pass</div></div><div class="kpi "><div class="lab">Settled games in the feed</div><div class="val">7,413</div><div class="sub">1999-2026</div></div><div class="kpi good"><div class="lab">Official comparisons today</div><div class="val">827</div><div class="sub">0 mismatches</div></div><div class="kpi "><div class="lab">Price-store rows</div><div class="val">18,902</div><div class="sub">1,072 with both ends</div></div></div>
+
+<div class="note bad"><b>The headline, stated first.</b> Nothing in this repository currently beats the
+closing NFL line, and the console is built to say so rather than to suggest otherwise.
+16 pre-registered strategies were evaluated out of sample over
+2004&ndash;2026. <b>0 passed the gates.</b>
+The best signal score on the board is 28 against a promotion floor of
+55. That is the result, and the gates are working as intended.</div>
+
+<h2>What this console is</h2>
+<p>A line-origination and strategy lab for NFL sides, totals, moneylines, parlays and player props.
+It originates its own lines in a fixed order &mdash; side, then total, then moneyline &mdash; publishes
+its fair number next to the market's number and the difference between them, and scores every
+strategy on two separate axes so that staking cannot disguise a bad signal. Every published row
+carries a source link. Where no source exists, the cell is blank and the item is on the
+<a href="flagged.html">flagged</a> page.</p>
+
+<h2>What is actually in place</h2>
+<ul class="tight">
+<li><b>A verified results feed</b> &mdash; 7,413 settled games, reconciled
+160/160 against the league's own standings.
+<a href="results.html">Results feed</a>.</li>
+<li><b>A price-snapshot store</b> &mdash; 18,902 rows; both opening and closing
+numbers present for 1,072 of them, all in 2021. Every other market has one
+published number and a blank where the other should be. <a href="prices.html">Price store</a>.</li>
+<li><b>Originated lines with three columns</b> &mdash; model fair, market, difference, for
+6,237 out-of-sample games plus the
+26 fixtures originated for this week.
+<a href="lines.html">Originated lines</a>.</li>
+<li><b>Signal and staking scored separately</b> &mdash; two columns, two scores, promotion on the
+signal one. <a href="leaderboard.html">Leaderboard</a>.</li>
+<li><b>Replacement depth, not just replacement</b> &mdash; 897 slots across
+31 clubs, each naming whether the 2nd, 3rd or 4th string steps in.
+<a href="depth.html">Replacement depth</a>.</li>
+<li><b>Correlations with n</b> &mdash; 20 published values, each with its
+sample size and a 95% interval. <a href="correlations.html">Correlations</a>.</li>
+<li><b>A demotion gate</b> &mdash; six rules that send a live strategy back to paper, with
+thresholds and windows. <a href="gates.html">Gates</a>.</li>
+<li><b>A decision register and a suggestion board</b> &mdash;
+15 questions and 13 suggestions, each with the
+information we hold, the information we do not, and the paths forward.
+<a href="questions.html">Questions</a> &middot; <a href="suggestions.html">Suggestions</a>.</li>
+</ul>
+
+<h2>What is not in place, and why</h2>
+<p>No source available to this repository publishes <b>opening betting prices</b>,
+<b>player-prop lines</b>, or <b>Houston's depth chart</b>. Those three gaps are the reason some
+columns are blank. They are listed on the <a href="flagged.html">flagged</a> page with their
+sources, and each has a suggestion attached.</p>
+
+<h2>Pages by category</h2>
+<div class="cards"><div class="card"><h3>Official data</h3><p><a href="standings.html">Standings</a> &middot; <a href="schedule.html">Week 10 slate</a> &middot; <a href="injuries.html">Injury report</a> &middot; <a href="depth.html">Replacement depth</a> &middot; <a href="deficiency.html">Deficiency register</a></p></div><div class="card"><h3>Markets</h3><p><a href="results.html">Verified results feed</a> &middot; <a href="prices.html">Price-snapshot store</a> &middot; <a href="lines.html">Originated lines</a></p></div><div class="card"><h3>Strategy</h3><p><a href="strategies.html">Strategy library</a> &middot; <a href="leaderboard.html">Leaderboard</a> &middot; <a href="gates.html">Validation and demotion gates</a> &middot; <a href="correlations.html">Correlations</a> &middot; <a href="luck.html">Removing luck</a> &middot; <a href="props.html">Props and parlays</a></p></div><div class="card"><h3>Decisions</h3><p><a href="questions.html">Decision register</a> &middot; <a href="suggestions.html">Suggestion review board</a></p></div><div class="card"><h3>Governance</h3><p><a href="verification.html">Verification ledger</a> &middot; <a href="sources.html">Source registry</a> &middot; <a href="repo-review.html">Repository review</a> &middot; <a href="flagged.html">Flagged for review</a> &middot; <a href="archived-sites.html">Archived sites</a></p></div></div>
+
+<h2>Where the numbers come from</h2>
+<p>Official league pages are re-read at build time and compared cell by cell &mdash;
+827 comparisons in the current <a href="verification.html">verification
+ledger</a>. Everything else is a fingerprinted third-party mirror of league data and is labelled
+<code>mirror</code> wherever it appears. Nothing is quoted from memory.</p>
+
+<footer>
+As of 2026-11-14T20:32:04Z. Built by <code>tools/build_console.py</code> from sources listed on the
+<a href="sources.html">source registry</a>. Every table row carries a source link or an explicit
+marker where no source exists. Values that cannot be confirmed are left blank and listed on the
+<a href="flagged.html">flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/console.js"></script></body></html>
