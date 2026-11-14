@@ -117,7 +117,15 @@
    ],
    "action": "status live -> paper at the next window close; recorded with the trigger that fired",
    "re_promotion": "one full shadow window on paper passing every gate; past live results never re-promote",
-   "status": "Active - rule defined 2026-11-14 (session arena-52aabfa8-x1, T16); vacuous in Season 0 because no strategy is live"
+   "status": "Active - rule defined 2026-11-14 (session arena-52aabfa8-x1, T16); vacuous in Season 0 because no strategy is live",
+   "criteria": [
+    "two consecutive scored windows fail G2 (skill) or G3 (calibration)",
+    "realised max drawdown exceeds the G5 cap (25% of bankroll) at any window close - one breach is enough",
+    "median closing-line value over a full window <= 0 (armed once the Q-02 price feed exists)",
+    "any G0 provenance or timestamp breach while live - immediate, no window required",
+    "action: status live -> paper at the next window close; recorded with the trigger that fired",
+    "re-promotion: one full shadow window on paper passing every gate; past live results never re-promote"
+   ]
   }
  ],
  "scoring_rules": [

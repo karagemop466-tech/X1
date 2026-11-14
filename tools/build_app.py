@@ -43,6 +43,8 @@ PAGES: List[Tuple[str, str, str, str, str]] = [
     ("deficiency.html", "Deficiency watch", "Official data", "Who is out and which backup replaces them", "Club chart x NFL injury report"),
     ("team-stats.html", "Team stats", "Official data", "Official team offence and defence", "NFL.com stats"),
     ("lines.html", "Originated lines", "Model", "Our own number", "Walk-forward model"),
+    ("results.html", "Results feed", "Model", "Verified results feed", "Backtest input"),
+    ("prices.html", "Price snapshots", "Model", "Opening and closing prices", "Price store"),
     ("correlation.html", "Correlation", "Model", "Correlation and independence", "Measured, not assumed"),
     ("strategies.html", "Strategy library", "Strategy", "Candidate strategies", "Pre-registered"),
     ("validation.html", "Validation gates", "Strategy", "Eight gates a strategy must pass", "Pre-registered"),
@@ -280,6 +282,15 @@ def load() -> None:
             D[name] = {"rows": []}
     vp = os.path.join(VER, "verification_ledger.json")
     D["vledger"] = json.load(open(vp, encoding="utf-8")) if os.path.exists(vp) else {"summary": {}, "ledger": []}
+    # Round-2 feeds (session arena-52aabfa8-x1, T10/T11)
+    rp = os.path.join(ROOT, "data", "results", "results_feed_meta.json")
+    D["results_meta"] = json.load(open(rp, encoding="utf-8")) if os.path.exists(rp) else {}
+    pp = os.path.join(ROOT, "data", "prices", "price_store_meta.json")
+    D["prices_meta"] = json.load(open(pp, encoding="utf-8")) if os.path.exists(pp) else {}
+    gp = os.path.join(ROOT, "data", "gates.json")
+    D["gates_root"] = json.load(open(gp, encoding="utf-8")) if os.path.exists(gp) else {}
+    D["official_corr_ledger"] = csvrows("data/verify/official_correlations.csv")
+    D["strat_leaderboard"] = csvrows("data/strategies/leaderboard.csv")
     dp = os.path.join(VER, "deficiency_recomputed.json")
     D["def"] = json.load(open(dp, encoding="utf-8")) if os.path.exists(dp) else {"rows": [], "summary": {}, "diffs": [], "join_quality": []}
     D["research"] = jload("data/site/payload.json")
@@ -350,6 +361,8 @@ official source, re-verifies every row, and republishes this site.</p>
       <li><a href="depth.html">Depth charts</a> — 1st through 4th string from each club's own site.</li>
       <li><a href="deficiency.html">Deficiency watch</a> — which starter is down and which backup takes the snaps.</li>
       <li><a href="team-stats.html">Team stats</a> — nine official offence and defence tables.</li>
+      <li><a href="results.html">Results feed</a> — settlement input, every row tier-labelled.</li>
+      <li><a href="prices.html">Price snapshots</a> — opening and closing for every market we originate.</li>
     </ul>
   </div>
   <div>
@@ -507,6 +520,38 @@ stop specific parts of the system from working: <b>Q-01</b> bankroll, <b>Q-02</b
 <p>The <a href="suggestions.html">suggestion board</a> lists twenty options, each with three paths, a
 cost, an effort, a risk and a recommendation, and each waiting for a decision rather than being
 built. Nothing on that board has been implemented without a recorded choice.</p>"""))
+
+    body.append(card("Round 2 (2026-11-14): the eight new requirements, shipped and verified", f"""
+<p>The owner's second brief added eight requirements (R-46 … R-53, quoted verbatim in
+<code>docs/live-pipeline/project-brief-round2.md</code>). All eight now have an artifact, a
+check and a page:</p>
+<div class="grid2"><div><ul class="tight">
+<li><b>R-46 price snapshots</b> — <a href="prices.html">the store</a> records opening and
+closing numbers for spread, total and moneyline on all 2,232 backtest-window games; gaps are
+blanks with flag codes (P1–P6 pass).</li>
+<li><b>R-47 results feed</b> — <a href="results.html">the feed</a> settles every backtest row
+with a per-row verification tier; cross-checks C1–C4 pass, including the standings-lag
+finding (F-12).</li>
+<li><b>R-48 order</b> — side first, then total, then moneyline, pre-registered and asserted
+against the emitted column order.</li>
+<li><b>R-49 three columns</b> — fair line, market line and difference published separately
+for all three markets (<a href="lines.html">lines page</a>).</li>
+</ul></div><div><ul class="tight">
+<li><b>R-50 signal vs staking</b> — <code>rank_signal</code> is the only rank key; staking
+columns are informational and structurally cannot enter it
+(<a href="leaderboard.html">leaderboard</a>).</li>
+<li><b>R-51 replacement depth</b> — already live: every deficiency row carries the 2nd/3rd/4th
+string of the replacement, sourced to the club's own chart
+(<a href="deficiency.html">deficiency watch</a>).</li>
+<li><b>R-52 official-only correlations</b> — 988 rows, n = 32 on every row, all nfl.com
+sources, independently recomputed 988/988 (<a href="correlation.html">correlation</a>).</li>
+<li><b>R-53 demotion gate</b> — D1/G-13 defined with four triggers; closes Q-26
+(<a href="validation.html">validation gates</a>).</li>
+</ul></div></div>
+<p><b>What did not change:</b> no value was filled from memory. New blanks carry flag codes,
+new flags F-10 … F-15 are on the <a href="flagged.html">Flagged for review</a> page, and the
+two owner decisions that still gate everything — the price feed (Q-02) and full official
+results (Q-04) — remain open on the <a href="decisions.html">decision register</a>.</p>"""))
 
     return page("executive-summary.html", "Executive summary", "Read this first", "\n".join(body),
                 lede="Five findings, what they change, and what is still blocked.")
@@ -840,6 +885,57 @@ Sweeping the bet threshold from 1 to 9 points of disagreement produces ROI betwe
 <p>So the model is published as a <b>screen, not a price</b>. It narrows the games worth looking at; it
 does not by itself produce an edge, and this page does not claim one.</p>"""))
 
+    # ---- R-48/R-49: origination order + fair / market / difference ----------
+    ol = csvrows("data/lines/originated_lines_2026_week10.csv")
+    body.append(f"""<section class="note ok"><b>Requirements R-48 and R-49.</b>
+Lines are originated <b>side first, then the total, then the moneyline</b>
+(<code>ORIGINATION_ORDER</code> in <code>code/build_lines.py</code>, asserted against the
+emitted column order at write time — the moneyline is derived from the side's win
+probability, so it cannot be originated before the side). For each of the three markets the
+<b>fair line</b> (model), the <b>market line</b> (third-party benchmark) and the
+<b>difference</b> are published as separate columns, below.</section>""")
+
+    side_trs, tot_trs, ml_trs = [], [], []
+    for r in ol:
+        g = f'{r["away"]} @ {r["home"]}'
+        src = link("https://github.com/nflverse/nfldata", "benchmark")
+        if not r.get("market_spread_away") and not r.get("market_total"):
+            src = '<span class="blank">no official source</span>'
+        side_trs.append([esc(g), esc(r["x1_spread_away"]), esc(r["market_spread_away"]) or '<span class="blank">—</span>',
+                         esc(r["edge_spread_away"]) or '<span class="blank">—</span>', src])
+        tot_trs.append([esc(g), esc(r["x1_total"]), esc(r["market_total"]) or '<span class="blank">—</span>',
+                        esc(r["edge_total"]) or '<span class="blank">—</span>', src])
+        ml_trs.append([esc(g),
+                       f'{esc(r["x1_ml_away"])} / {esc(r["x1_ml_home"])}',
+                       f'{esc(r["market_ml_away"])} / {esc(r["market_ml_home"])}'
+                       if r.get("market_ml_away") else '<span class="blank">—</span>',
+                       f'{esc(r["edge_ml_prob_away"])} / {esc(r["edge_ml_prob_home"])} pp'
+                       if r.get("edge_ml_prob_away") not in ("", None)
+                       else '<span class="blank">—</span>',
+                       src])
+    body.append(card("Fair line · market line · difference — side (spread)", f"""
+<div class="tw"><table id="t-fair-side" data-sortable><thead><tr>
+<th>Game</th><th>Fair line (X1)</th><th>Market line</th><th>Difference (pts)</th><th>Source</th>
+</tr></thead><tbody>{''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in row) + '</tr>' for row in side_trs)}</tbody></table></div>
+<div class="legend">Difference = market − model, in points. Positive means the market number is
+higher than ours. Signed line convention: positive = home favoured. Market = third-party
+benchmark (F-06), never official.</div>"""))
+    body.append(card("Fair line · market line · difference — total", f"""
+<div class="tw"><table id="t-fair-tot" data-sortable><thead><tr>
+<th>Game</th><th>Fair line (X1)</th><th>Market line</th><th>Difference (pts)</th><th>Source</th>
+</tr></thead><tbody>{''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in row) + '</tr>' for row in tot_trs)}</tbody></table></div>
+<div class="legend">Difference = model − market, in points.</div>"""))
+    body.append(card("Fair line · market line · difference — moneyline", f"""
+<div class="tw"><table id="t-fair-ml" data-sortable><thead><tr>
+<th>Game</th><th>Fair line (away / home)</th><th>Market line (away / home)</th>
+<th>Difference (probability points, away / home)</th><th>Source</th>
+</tr></thead><tbody>{''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in row) + '</tr>' for row in ml_trs)}</tbody></table></div>
+<div class="legend">American odds for the fair and market lines. The difference is model
+probability − raw market-implied probability in percentage points, vig included on the market
+side — a difference between two American-odds numbers is not a measurable quantity, so the
+difference is expressed where it is. The two sides do not sum to zero because the vig sits
+on the market side.</div>"""))
+
     trs = [[esc(r["season"]), esc(r["status"]), esc(r["n_games"]),
             num(r["margin_mae"]), num(r["margin_rmse"]), num(r["total_mae"]),
             num(r["total_rmse"]), num(r["margin_bias"]), num(r["total_bias"]),
@@ -882,6 +978,198 @@ does not by itself produce an edge, and this page does not claim one.</p>"""))
                 lede="Our own spread and total, how accurate it is, and the honest answer on whether it beats the market.")
 
 
+def p_results() -> str:
+    meta = D.get("results_meta") or {}
+    rows = csvrows("data/results/verified_results.csv")
+    counts = meta.get("counts", {})
+    checks = (meta.get("verification") or {}).get("checks", [])
+    body = []
+
+    body.append(f"""<section class="note"><b>Requirement R-47:</b> "Add a verified results feed
+so backtests and ROI can be computed at all." One row per game for every season the backtest
+scores (2019–2026), each carrying the tier that verified it. The full feed is
+{link("https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv", "data/results/verified_results.csv")}
+({counts.get('rows', 0):,} rows); the builder is
+{link("https://github.com/karagemop466-tech/X1/blob/main/tools/build_results_feed.py", "tools/build_results_feed.py")}
+and it exits non-zero if any cross-check fails.</section>""")
+
+    body.append(kpis([
+        (f"{counts.get('rows', 0):,}", "games in the feed", counts.get("seasons", ""), ""),
+        (f"{counts.get('final', 0):,}", "final scores", "settled rows", "ok"),
+        (str(counts.get("official_verified", 0)), "officially verified score", "printed by nfl.com", "ok"),
+        (str(counts.get("scheduled_official", 0)), "officially confirmed unplayed", "blank because unplayed", ""),
+        (f"{counts.get('mirror_only', 0):,}", "mirror only", "flagged, not official", "warn"),
+    ]))
+
+    # --- the officially verified Week 10 rows --------------------------------
+    w10 = [r for r in rows if r["season"] == "2026" and r["week"] == "10"]
+    trs = []
+    for r in sorted(w10, key=lambda x: (x["date"], x["game_id"])):
+        score = (f'{r["away_score"]}–{r["home_score"]}'
+                 if r["away_score"] else '<span class="blank">not played</span>')
+        tier = {"official_verified": ("official", "ok"),
+                "scheduled_official": ("official (status)", "ok"),
+                "mirror_only": ("mirror", "warn")}.get(r["verification"], ("?", "grey"))
+        src = (link(r["official_source_url"], "NFL.com Week 10")
+               if r["official_source_url"] else
+               '<span class="blank">no official source</span>')
+        trs.append([esc(r["date"]), f'{esc(r["away"])} @ {esc(r["home"])}', score,
+                    esc(r["status"]), badge(tier[0], tier[1]), esc(r["flags"]), src])
+    body.append(card("Week 10 — the rows an official page confirms",
+                     table("t-res-w10", ["Date", "Matchup", "Score", "Status", "Tier",
+                                         "What verified it", "Source"], trs,
+                           center=[3, 4],
+                           note="Score cells are blank only because the game had not been "
+                                "played at the 2026-11-14 snapshot. The Thursday game's "
+                                "24–21 was printed by nfl.com and matched against the "
+                                "mirror (check C1).")))
+
+    # --- cross-checks ---------------------------------------------------------
+    ctrs = [[esc(c["id"]), esc(c["what"]), badge(c["result"].replace("_", " "),
+                                                 "ok" if c["result"].startswith("pass") else "warn"),
+             esc(c["detail"]), link(c["source"], "source")] for c in checks]
+    body.append(card("Cross-checks the builder must pass (C1–C4)",
+                     table("t-res-chk", ["ID", "Check", "Result", "Detail", "Source"], ctrs,
+                           center=[0, 2],
+                           note="C4's difference is the standings snapshot predating the "
+                                "Thursday game — freshness, recorded as flag F-12, not an "
+                                "error in the feed.")))
+
+    # --- 2026 season rows (tiers visible) ------------------------------------
+    s26 = [r for r in rows if r["season"] == "2026"]
+    trs2 = []
+    for r in sorted(s26, key=lambda x: (int(x["week"]), x["date"], x["game_id"])):
+        score = (f'{r["away_score"]}–{r["home_score"]}' if r["away_score"] else
+                 '<span class="blank">—</span>')
+        if r["official_source_url"]:
+            src = link(r["official_source_url"], "NFL.com schedule")
+            tier = badge("official", "ok")
+        else:
+            src = link("https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+                       "nflverse games.csv")
+            tier = badge("mirror only", "warn")
+        trs2.append([esc(r["week"]), esc(r["date"]), f'{esc(r["away"])} @ {esc(r["home"])}',
+                     score, esc(r["status"]), tier, src])
+    body.append(card(f"Every 2026 row in the feed ({len(trs2)})",
+                     table("t-res-2026", ["Wk", "Date", "Matchup", "Score", "Status",
+                                          "Tier", "Source"], trs2,
+                           center=[0, 4, 5], numeric=[0],
+                           note="Weeks 1–9 have no committed official page in this repository, "
+                                "so they are mirror-tier — usable for backtests, labelled not "
+                                "official (flag F-11). The historical CSV carries the same tier "
+                                "on all 2,232 rows.")))
+
+    lim = meta.get("known_limitations", [])
+    body.append(card("What this feed does and does not close", f"""
+<ul class="tight">{''.join(f'<li>{esc(x)}</li>' for x in lim)}</ul>
+<p>Settlement for a bet row is a join on <code>game_id</code>: only <code>status=final</code>
+rows settle; scheduled rows contribute nothing to ROI. No row is invented — a game that has not
+been played has blank score cells by construction.</p>
+<p>Q-04 (an official box score for <em>every</em> game) stays open; this feed maps that gap
+per row instead of hiding it.</p>"""))
+    return page("results.html", "Verified results feed", "Model", "\n".join(body),
+                lede="The settlement input for every backtest and ROI figure — with the tier "
+                     "that verified each row.")
+
+
+def p_prices() -> str:
+    meta = D.get("prices_meta") or {}
+    rows = csvrows("data/prices/price_snapshots.csv")
+    counts = meta.get("counts", {})
+    checks = (meta.get("verification") or {}).get("checks", [])
+    sources = {s.get("key"): s for s in meta.get("sources", [])}
+    body = []
+
+    body.append(f"""<section class="note"><b>Requirement R-46:</b> "Add a price-snapshot store
+that records opening and closing numbers for every market we originate." Every game in the
+backtest window × spread, total and moneyline (both sides) × both snapshots —
+{counts.get('rows', 0):,} rows in
+{link("https://github.com/karagemop466-tech/X1/blob/main/data/prices/price_snapshots.csv", "data/prices/price_snapshots.csv")}.
+No official source publishes betting prices (F-06), so every value here is a labelled
+third-party benchmark and every gap is a blank with a flag code, never a guess.</section>""")
+
+    body.append(kpis([
+        (f"{counts.get('games', 0):,}", "games covered", "every backtest-window game", ""),
+        (f"{counts.get('closing_values_present', 0):,}", "closing values", "spread/total/ML", "ok"),
+        (f"{counts.get('opening_values_present', 0):,}", "opening values", "2021 REG only", "warn"),
+        (f"{counts.get('closing_cells_blank', 0):,}", "closing blanks", "flagged, not guessed", "grey"),
+        (f"{counts.get('opening_cells_blank', 0):,}", "opening blanks", "flagged, not guessed", "grey"),
+    ]))
+
+    # --- Week 10 closing prices ----------------------------------------------
+    w10 = [r for r in rows if r["season"] == "2026" and r["week"] == "10"]
+    mirror_url = (sources.get("nfldata_games") or {}).get(
+        "url", "https://github.com/nflverse/nfldata/blob/master/data/games.csv")
+    trs = []
+    for r in sorted(w10, key=lambda x: (x["date"], x["game_id"],
+                                        x["market"], x["side"], x["snapshot"])):
+        if r["snapshot"] == "opening":
+            continue  # no opening data exists for 2026; shown in the coverage table
+        line = esc(r["line"]) if r["line"] else '<span class="blank">—</span>'
+        flag = esc(r["flags"]) if r["flags"] else "—"
+        trs.append([esc(r["game_id"].replace("2026_10_", "")), esc(r["market"]),
+                    esc(r["side"]) or "—", line, flag, link(mirror_url, "games.csv")])
+    body.append(card("Week 10 closing prices — the benchmark behind our originated lines",
+                     table("t-px-w10", ["Game", "Market", "Side", "Closing line",
+                                        "Flag", "Source"], trs,
+                           center=[2],
+                           note="Opening rows for 2026 are blank by construction: the only "
+                                "reachable opening feed covers the 2021 season (see coverage "
+                                "below). Values are third-party, never league-verified (F-06).")))
+
+    # --- opening coverage by season × market ---------------------------------
+    cov: dict[tuple, int] = {}
+    for r in rows:
+        if r["snapshot"] != "opening" or not r["line"]:
+            continue
+        cov[(r["season"], r["market"])] = cov.get((r["season"], r["market"]), 0) + 1
+    trs2 = []
+    for season in sorted({r["season"] for r in rows}):
+        for market in ("SPREAD", "TOTAL", "MONEYLINE"):
+            n = cov.get((season, market), 0)
+            if n:
+                src = link((sources.get("nfldata_initial_lines") or {}).get(
+                    "url", "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv"),
+                    "initial_lines.csv")
+                flag = "present"
+                kind = "ok"
+            else:
+                code = ("NO-OPENING-MONEYLINE" if market == "MONEYLINE"
+                        else "NO-OPENING-DATA-SEASON")
+                src = '<span class="blank">no official source</span>'
+                flag = code
+                kind = "grey"
+            trs2.append([esc(season), esc(market), str(n), badge(flag, kind), src])
+    body.append(card("Opening-line coverage — what exists, what is blank and why",
+                     table("t-px-cov", ["Season", "Market", "Opening values", "Flag",
+                                        "Source"], trs2,
+                           center=[0, 2, 3], numeric=[2],
+                           note="Blank means no reachable source publishes an opening number "
+                                "for that season and market. Flag codes expand in "
+                                "data/prices/price_store_meta.json.")))
+
+    ctrs = [[esc(c["id"]), esc(c["what"]), badge(c["result"], "ok"), esc(c["detail"]),
+             link("https://github.com/nflverse/nfldata", "mirror + arithmetic")]
+            for c in checks]
+    body.append(card("Store checks (P1–P6) — all must pass or the builder exits 1",
+                     table("t-px-chk", ["ID", "Check", "Result", "Detail", "Source"], ctrs,
+                           center=[0, 2])))
+
+    conv = meta.get("conventions", {})
+    lim = meta.get("known_limitations", [])
+    body.append(card("Conventions and limitations", f"""
+<div class="grid2"><div><h3>Conventions (verbatim from each source)</h3>
+<ul class="tight">{''.join(f'<li><b>{esc(k)}</b>: {esc(v)}</li>' for k, v in conv.items())}</ul></div>
+<div><h3>Limitations</h3><ul class="tight">{''.join(f'<li>{esc(x)}</li>' for x in lim)}</ul></div></div>
+<p>Opening and closing use different published conventions (per-team opening spread vs signed
+closing game line). They are stored exactly as published; normalising them into one convention
+is a recorded follow-up, because normalising would be an inference about intent. Until that
+happens, no CLV number is computed from this store.</p>"""))
+    return page("prices.html", "Price snapshots", "Model", "\n".join(body),
+                lede="Opening and closing numbers for every market we originate — gaps "
+                     "flagged, never filled.")
+
+
 def p_correlation() -> str:
     res = D["research"]
     strat = res["correlations"]["matrix"]
@@ -890,7 +1178,35 @@ def p_correlation() -> str:
     corr = D["correlations"]["rows"]
     rep = csvrows("data/lines/correlation_report.csv")
     combos = csvrows("data/processed/prop_combos.csv")
+    ledger = D.get("official_corr_ledger") or []
     body = []
+
+    # ---- R-52: the official-only set, verified, with n on every value ------
+    body.append(f"""<section class="note ok"><b>Requirement R-52:</b> "Compute correlations
+only from officially sourced numbers and publish n with each value." The club-level set below
+is computed <b>only</b> from the committed NFL.com standings and team-stats snapshots, every
+row carries <b>n = 32</b>, and every published value was independently recomputed by
+{link("https://github.com/karagemop466-tech/X1/blob/main/tools/verify_official_correlations.py", "tools/verify_official_correlations.py")}
+on {SNAPSHOT}: <b>988/988 rows matched within 0.0015, 988/988 with n = 32, 988/988 official
+sources only, 0 duplicates, publication set reproduced exactly.</b> Line-by-row ledger:
+{link("https://github.com/karagemop466-tech/X1/blob/main/data/verify/official_correlations.csv", "data/verify/official_correlations.csv")}.
+Everything else on this page is computed from third-party market or mirror data — labelled as
+such, and <b>outside</b> this requirement's set.</section>""")
+
+    off_led = sorted((r for r in ledger if r.get("check_status") == "match"),
+                     key=lambda r: -abs(float(r["published_r"] or 0)))[:25]
+    otrs = [[esc(r["pair"]), esc(r["published_r"]), esc(r["recomputed_r"]),
+             esc(r["abs_delta"]), esc(r["n"]), esc(r["source_tier"]),
+             link(r["source"], "official page")] for r in off_led]
+    body.append(card("Official-only correlations — top 25 of 988 by |r|, every value with n",
+                     table("t-corr-off", ["Pair", "Published r", "Recomputed r", "|Δ|",
+                                          "n", "Tier", "Source"], otrs,
+                           numeric=[1, 2, 3, 4],
+                           note="Recomputed from the official snapshots by "
+                                "tools/verify_official_correlations.py. The full 988-row set "
+                                "is data/pipeline/correlations.json; |Δ| is the distance "
+                                "between the published 3-decimal value and the independent "
+                                "recomputation.")))
 
     body.append(f"""<section class="note"><b>Two different quantities, both called correlation.</b>
 Strategy-to-strategy correlation measures how much two strategies bet the same games the same way — it
@@ -926,7 +1242,7 @@ interchangeable, and this page keeps them apart.</section>""")
             cell = f'<span class="b {kind}" style="background:transparent;color:inherit;font-variant-numeric:tabular-nums">{f:+.3f}</span>' if not kind else f'<b style="color:{"#b3261e" if abs(f) >= 0.85 else "#9a6207"}">{f:+.3f}</b>'
             row.append(cell)
         mtrs.append(row)
-    body.append(card("Strategy correlation matrix (Pearson, over shared games)",
+    body.append(card("Strategy correlation matrix — third-party benchmark (Pearson, over shared games)",
                      '<div class="tw"><table id="t-corr-m" class="matrix" data-src="'
                      'https://github.com/nflverse/nfldata"><thead><tr>' +
                      "".join(f"<th>{esc(h)}</th>" for h in hdr) +
@@ -935,18 +1251,22 @@ interchangeable, and this page keeps them apart.</section>""")
                      "</tbody></table></div>" +
                      '<div class="legend">Bold amber is |r| &ge; 0.5, bold red is |r| &ge; 0.85 — the '
                      'non-redundancy gate (G8) rejects a strategy above 0.85 against an accepted one, '
-                     'because at that point it is the same bet.</div>'))
+                     'because at that point it is the same bet. <b>Tier:</b> computed from mirror bet '
+                     'data; it publishes no per-cell n and is therefore <b>outside</b> the official-only '
+                     'R-52 set (flag F-14), not a violation of it.</div>'))
 
     rtrs = [[esc(r["metric"]), esc(r["value"]), esc(r["n"]), esc(r["ci_or_detail"]),
              esc(r["interpretation"]), link("https://github.com/nflverse/nfldata", "nfldata games")]
             for r in rep]
-    body.append(card("Same-game and cross-game correlation",
+    body.append(card("Same-game and cross-game correlation — third-party benchmark (outside R-52)",
                      table("t-corr-rep", ["Metric", "Value", "n", "95% interval", "What it means",
                                           "Benchmark source"], rtrs, numeric=[1, 2],
-                           note="The same-game favourite-cover / over figure of φ = −0.023 means the two "
+                           note="Computed from mirror market lines, so they sit outside the "
+                                "official-only requirement set — labelled, not merged into it. "
+                                "The same-game favourite-cover / over figure of φ = −0.023 means the two "
                                 "legs are very nearly independent for pricing purposes. The cross-game "
                                 "figure of r = 0.001 is the evidence that different games in the same week "
-                                "can be treated as independent.")))
+                                "can be treated as independent. Every value here carries its n.")))
 
     ctrs = [[esc(r["combo"]), num(r["correlation"], 3), esc(r["observations"]), esc(r["scope"]),
              pc(r["leg_hit_rate"], 1), pc(r["joint_hit_rate"], 2), num(r["parlay_decimal_odds"], 3),
@@ -958,7 +1278,9 @@ interchangeable, and this page keeps them apart.</section>""")
                      table("t-corr-prop", ["Pair", "r", "n", "Scope", "Leg hit", "Joint hit",
                                            "Parlay decimal", "Break-even leg", "Edge", "Profitable?",
                                            "Benchmark source"], ctrs, numeric=[1, 2, 4, 5, 6, 7, 8],
-                           note="QB passing yards and WR/TE receiving yards correlate at r = 0.927 — "
+                           note="Third-party benchmark (mirror player stats) — outside the "
+                                "official-only R-52 set; n published on every row. "
+                                "QB passing yards and WR/TE receiving yards correlate at r = 0.927 — "
                                 "pricing that pair as independent overstates the joint probability. "
                                 "A two-leg −110 parlay needs each leg to hit 52.38% just to break even.")))
 
@@ -966,12 +1288,14 @@ interchangeable, and this page keeps them apart.</section>""")
     ttrs = [[esc(r["pair"]), esc(r["metric_a"]), esc(r["metric_b"]),
              num(r["r"], 3), esc(r["n"]), num(r["p_value"], 4), esc(r["strength"]),
              src_cell(r.get("_source_urls") or r.get("_source_url"))] for r in top]
-    body.append(card("Team-level correlations computed from the official tables",
+    body.append(card("Official-only club correlations — extended view (top 250 of 988)",
                      table("t-corr-team", ["Pair", "Metric A", "Metric B", "r", "n", "p", "Strength",
                                            "Source"], ttrs, numeric=[3, 4, 5],
                            note=f"Top {len(top)} of {len(corr)} pairs by |r|, computed across the 32 clubs "
-                                "from the official standings and team-stats tables. These are team-season "
-                                "associations, not the game-level quantity a parlay price needs.")))
+                                "from the official standings and team-stats tables only — the R-52 set, "
+                                "independently recomputed 988/988 (ledger linked at the top of this page). "
+                                "These are team-season associations, not the game-level quantity a parlay "
+                                "price needs.")))
     return page("correlation.html", "Correlation and independence", "Model", "\n".join(body),
                 lede="Measured correlation values: strategy-to-strategy, same-game legs, cross-game, "
                      "and prop families.")
@@ -1082,6 +1406,22 @@ eligible for nothing, however good its headline ROI looks.</section>""")
   <li><b>Non-redundancy (G8, |r| &le; 0.85).</b> A strategy that is the same bet as an accepted one
   adds no information and earns no reward.</li>
 </ul>"""))
+
+    # ---- R-53: the demotion gate --------------------------------------------
+    d1 = next((g for g in (D.get("gates_root") or {}).get("gates", [])
+               if g.get("id") == "D1"), None)
+    if d1:
+        trig = "".join(f"<li>{esc(t)}</li>" for t in d1.get("triggers", []))
+        body.append(card("Demotion gate (D1 / G-13) — a live strategy goes back to paper", f"""
+<p><b>Requirement R-53.</b> {esc(d1.get('name', ''))} — defined {SNAPSHOT} in
+<code>data/gates.json</code> (D1) and <code>data/pipeline/gates.json</code> (G-13);
+closes decision-register question <b>Q-26</b>. Any one trigger is sufficient:</p>
+<ul class="tight">{trig}</ul>
+<div class="grid2"><div><h3>Action</h3><p>{esc(d1.get('action', ''))}</p></div>
+<div><h3>Re-promotion</h3><p>{esc(d1.get('re_promotion', ''))}</p></div></div>
+<p><b>Status:</b> {esc(d1.get('status', ''))}. The gate is automatic and uncapped — nobody
+decides whether this time is different; the registry records which trigger fired and in which
+window. Full text: <code>docs/methodology/validation-gates.md</code>.</p>"""))
     return page("validation.html", "Validation gates", "Strategy", "\n".join(body),
                 lede="Eight gates, pre-registered. Their whole job is to stop luck being paid as skill.")
 
@@ -1169,6 +1509,42 @@ produced 300 out-of-sample bets is scaled down, and any strategy that fails a si
                                 "strategies before any result exists would be ranking noise. Once a "
                                 "results feed and a price feed exist (Q-02, Q-04) these fill from "
                                 "graded data and the skill gate decides what may rank at all.")))
+
+    # ---- R-50: signal vs staking, separated ---------------------------------
+    slb = D.get("strat_leaderboard") or []
+    str_ = []
+    for r in slb:
+        sig = esc(r.get("signal_score", "")) or '<span class="blank">unmeasured</span>'
+        rank = esc(r.get("rank_signal", "")) or '<span class="blank">—</span>'
+        stk = esc(r.get("staking_score", "")) or '<span class="blank">unmeasured</span>'
+        str_.append([
+            f'<span class="mono">{esc(r.get("strategy", ""))}</span>',
+            esc(r.get("status", "")), esc(r.get("bets", "")),
+            esc(r.get("win_rate", "")), esc(r.get("binom_p_leq_breakeven", "")),
+            sig, rank,
+            esc(r.get("equity_units", "")), esc(r.get("max_drawdown_units", "")), stk,
+            link("https://github.com/karagemop466-tech/X1/blob/main/data/strategies/leaderboard.csv",
+                 "leaderboard.csv"),
+        ])
+    body.append(card("Signal vs staking — two scores, and only one of them ranks (R-50)", f"""
+<div class="tw"><table id="t-lb-split" data-sortable><thead><tr>
+<th rowspan="2">Strategy</th><th rowspan="2">Status</th><th rowspan="2">Bets</th>
+<th colspan="3" class="c">SIGNAL — the only rank key</th>
+<th colspan="3" class="c">STAKING — informational, never ranks</th>
+<th rowspan="2">Source</th></tr>
+<tr><th>Win rate</th><th>p vs break-even</th><th>signal_score / rank</th>
+<th>Equity (u)</th><th>Max DD (u)</th><th>staking_score</th></tr></thead><tbody>
+{''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in row) + '</tr>' for row in str_)}
+</tbody></table></div>
+<div class="legend">Requirement: "Separate 'signal' from 'staking' in the leaderboard so a
+lucky staking run cannot mask a bad signal." <code>rank_signal</code> is computed from
+<code>signal_score</code> (z of win rate vs break-even, stake-independent) alone; equity,
+drawdown and <code>staking_score</code> are structurally absent from the ranking key, so a
+hot P&amp;L path cannot lift a bad signal and a cold one cannot sink a good one. Blanks mean
+<b>unmeasured</b> (no decided bets) — never a zero signal. Season 0 has no logged bets, so
+every strategy is honestly unmeasured today. The reward-ranked research board above is a
+different quantity: reward folds in ROI (staking), which is exactly why this separated board
+exists alongside it.</div>"""))
     return page("leaderboard.html", "Leaderboard and rewards", "Strategy", "\n".join(body),
                 lede="Ranked by gate-weighted reward, not by headline ROI. Baselines, luck decomposition, "
                      "and the unranked official-only board.")
@@ -1542,6 +1918,54 @@ site; they block <em>trusting</em> the specific row.</section>""")
          "are carried on the pipeline's own fetch from the same day.",
          "Stated on the verification page. Re-fetching all 32 is the next step.",
          ["https://www.nfl.com/teams/"]),
+        ("F-10", "grey", "Legacy spread column names say 'away' but hold the signed game line",
+         "x1_spread_away / market_spread_away / edge_spread_away carry the signed game line "
+         "(positive = home favoured). The name is a legacy misnomer; the number is identical "
+         "under the home-margin and away-team-handicap readings, so no value is wrong.",
+         "Convention documented in docs/methodology/line-origination.md §8 and in the price "
+         "store; renaming the columns is left as a review decision because other trees read "
+         "them by name.",
+         ["https://github.com/nflverse/nfldata/blob/master/data/DATASETS.md"]),
+        ("F-11", "warn", "2,218 of 2,232 result rows are mirror-only",
+         "Only the Week 10 slate has a committed official page. Historical finals (2019–2025 "
+         "and 2026 Weeks 1–9) exist in the fingerprinted nflverse mirror only, so every "
+         "backtest ROI rests partly on unverified-official results.",
+         "Each row in data/results/verified_results.csv carries verification=mirror_only and "
+         "its source key; Q-04 stays open. The feed's tier column is the map of the gap.",
+         ["https://github.com/nflverse/nfldata"]),
+        ("F-12", "grey", "Official standings snapshot predates the Thursday Night game",
+         "As fetched on 2026-11-14 the standings page reads WAS 3-5-1 and NYG 5-3-1 — records "
+         "before the TNF game — while the same site's schedule page already prints "
+         "\"Commanders 24, Giants 21, FINAL\". Both standings sources agree with each other "
+         "and both predate the result.",
+         "Recorded as check C4 in the results feed (the only permitted difference class) and "
+         "kept visible instead of smoothed over. Freshness difference, not a contradiction.",
+         ["https://www.nfl.com/standings/league/2026/REG",
+          "https://www.nfl.com/schedules/2026/by-week/week-10"]),
+        ("F-13", "grey", "Correlations method text omits the |r| < 0.99 redundancy cut",
+         "The published set (988 rows) is reproduced exactly by "
+         "(|r| >= 0.40 or special metric) AND |r| < 0.99 — the second clause suppresses "
+         "mechanically identical columns (a Cmp is a Rec). The dataset's own method field "
+         "describes only the first clause.",
+         "Reverse-engineered by exact set reproduction (988 = 988, zero differences) by "
+         "tools/verify_official_correlations.py; no published value is wrong. The "
+         "documentation gap is logged here rather than edited into another session's file.",
+         ["https://www.nfl.com/standings/league/2026/REG"]),
+        ("F-14", "grey", "Strategy correlation matrix publishes no per-cell n",
+         "The 16×16 strategy matrix cells are Pearson r over shared games, but the payload "
+         "does not expose the shared-games count per pair, so n cannot be published per cell.",
+         "The matrix is labelled third-party and excluded from the official-only R-52 set "
+         "rather than shown with invented sample sizes. Recomputing it needs the strategy "
+         "bet logs per pair.",
+         ["https://github.com/nflverse/nfldata"]),
+        ("F-15", "warn", "Opening and closing prices use different published conventions",
+         "The only reachable opening feed publishes per-team spread lines (\"TB -6.5\"); the "
+         "closing feed publishes one signed game line (positive = home favoured). Storing "
+         "either as the other would be an inference about intent.",
+         "Both stored verbatim with their own convention strings in "
+         "data/prices/price_snapshots.csv. No closing-line-value number is computed from the "
+         "store until the normalisation step is a recorded decision (Q-02).",
+         ["https://github.com/nflverse/nfldata"]),
     ]
     trs = [[esc(i[0]), badge(i[1].upper(), i[1]), f'<b>{esc(i[2])}</b>', esc(i[3]), esc(i[4]),
             src_cell(i[5])] for i in items]
@@ -1628,6 +2052,8 @@ BUILDERS = {
     "deficiency.html": p_deficiency,
     "team-stats.html": p_team_stats,
     "lines.html": p_lines,
+    "results.html": p_results,
+    "prices.html": p_prices,
     "correlation.html": p_correlation,
     "strategies.html": p_strategies,
     "validation.html": p_validation,
