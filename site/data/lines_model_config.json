@@ -1,0 +1,25 @@
+{
+  "generated": "2026-11-14T03:08:07.346999Z",
+  "fit_seasons_backtest": [
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "fit_rows_final": 2008,
+  "warmup_games": 80,
+  "ridge": 1e-06,
+  "hfa_points_final_fit": 0.69,
+  "residual_sd_spread": 13.89,
+  "residual_sd_total": 13.84,
+  "spread_line_convention": "away-team spread; negative = away favorite (verified vs ML on 5228 games)",
+  "bet_thresholds": {
+    "spread_pts": 1.0,
+    "total_pts": 2.0
+  },
+  "price_assumption": "flat -110 (win +0.909 units, loss -1)",
+  "data_source": "nflverse/nfldata games.csv (https://github.com/nflverse/nfldata)"
+}

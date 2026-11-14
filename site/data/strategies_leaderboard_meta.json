@@ -1,0 +1,27 @@
+{
+  "generated": "2026-11-14T03:09:53.528528Z",
+  "scoring": {
+    "single_win": 10,
+    "single_loss": -11,
+    "clv_bonus_per_pt": 2.0,
+    "breakeven_win_rate_at_-110": 0.524
+  },
+  "gates": {
+    "official_min_bets": 100,
+    "provisional_min_bets": 25,
+    "significance": "binomial P(win<=breakeven) < 0.05",
+    "max_drawdown_units": 25,
+    "portfolio_corr_cap": 0.7
+  },
+  "rewards": {
+    "pool": "owner-funded (pending decision \u2014 open question Q7)",
+    "payout_split": [
+      0.6,
+      0.25,
+      0.15
+    ],
+    "paid_to": "top-3 official strategies"
+  },
+  "logged_bets": 0,
+  "note": "No bets logged yet \u2014 every strategy is unproven/failed-gate/provisional. This is the correct honest starting state."
+}

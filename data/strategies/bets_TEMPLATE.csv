@@ -1,0 +1,2 @@
+bet_id,timestamp_utc,kickoff_utc,game_id,strategy,market,legs,description,leg_probs,phi,price_decimal,stake_units,clv_pts,result,graded_at_utc
+B-0001,2026-11-14T12:00:00Z,2026-11-15T18:20:00Z,2026_10_PIT_CIN,S4,spread,1,PIT +3.5 at market (X1 line better),,,1.909,1,0,,2026-11-16T04:00:00Z
