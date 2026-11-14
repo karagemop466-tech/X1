@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T02:50:43+00:00",
+ "generated_at": "2026-11-14T02:53:47+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -11,19 +11,21 @@
    "rows": 345
   },
   "depth_charts": {
-   "status": "empty",
-   "rows": 0
+   "status": "kept_previous",
+   "reason": "this run produced 0 rows; previous verified data retained",
+   "previous_rows": 0
   },
   "team_stats": {
    "status": "written",
    "rows": 288
   },
   "deficiency": {
-   "status": "empty",
-   "rows": 0
+   "status": "kept_previous",
+   "reason": "this run produced 0 rows; previous verified data retained",
+   "previous_rows": 0
   }
  },
  "errors": [],
  "teams_resolved": [],
- "finished_at": "2026-11-14T02:50:56+00:00"
+ "finished_at": "2026-11-14T02:53:56+00:00"
 }
