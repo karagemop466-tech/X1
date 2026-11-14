@@ -1296,3 +1296,63 @@ claim follows rule 10's takeover pattern exactly as sessions `arena/cc51616e-x1`
 ## Log (append-only)
 
 - 2026-11-14 — Claim written and pushed before any other work (rule 1).
+
+## Completion record — N1–N10 (session `arena/3fa49c1a-x1`, 2026-11-14)
+
+**Claims N1–N10: all done.** No task was taken from a live session; every earlier claim on this
+board was `done`/merged and the remote held only `main` when this session started (rule 10).
+
+| # | Task | Status | What shipped | Verification |
+|---|---|---|---|---|
+| N1 | Price-snapshot store | **done** | `data/prices/price_snapshots.csv` + `price_feed.json` (56 rows: one per originated market selection; open + close columns, CLV-ready schema). Openings blank (nothing records 2026 openers), closings recorded from the fingerprinted mirror with `verified=no`. | every cell is either verified, or blank/flagged; nothing inferred; `tools/build_originated_markets.py` deterministic |
+| N2 | Verified results feed | **done** | `data/results/verified_results_2026.csv` + `results_feed.json` — 137 completed 2026 games (weeks 1–10), every score read from the official NFL.com weekly schedule pages | `tools/build_results.py`: 32 clubs x W/L/T/PF/PA re-derived from the feed **160/160 match the official standings**; league identity ΣPF = ΣPA = 6291; third-party mirror cross-check 137/137 (corroboration only) |
+| N3 | Origination order side → total → moneyline | **done** | enforced in `tools/build_originated_markets.py` (MARKET_ORDER + build-fails assertions); 14 sides → 14 totals → 28 moneylines | order assertion in the builder; row order index published per row |
+| N4 | Fair line / market line / difference as separate columns | **done** | `data/lines/originated_markets_2026_week10.csv`, 56 rows; difference = fair − market (points; moneylines in win-probability pp) | sign convention documented once; market column carries UNVERIFIED provenance on every row |
+| N5 | Signal vs staking split | **done** | `data/leaderboard_split.json` + the split table on `app/leaderboard.html`; promotion/demotion read the signal block only | policy text embedded; values blank until graded data exists (by rule) |
+| N6 | Depth of the replacement | **done** | `data/depth/replacement_depth.{csv,json}` — 78 starter slots with a game status: 68 replaced by 2nd string, 1 by 3rd, 9 with no name listed; offense/defense/special teams | every row re-verified before publishing against the club depth chart (starter is depth 1, replacement is the next listed name at its string) and the nfl.com injury report (status matches exactly); 78/78 pass; GB jersey-number printing (F-01) handled in the matcher |
+| N7 | Correlations from official numbers only, n published | **done** | `data/correlations/official_correlations.{csv,json}` — 3,570 pairs, 85 official metrics x 32 clubs, r + **n** + p per row with both source URLs | independent recomputation vs the published pipeline table: **905/905 agree, 0 disagree**; third-party-derived correlations excluded from the store |
+| N8 | Demotion gate defined | **done** | `data/gates_v2.json` (D1 CLV decay, D2 drawdown ≥25u or ≥35% peak, D3 hit-rate decay, D4 data-integrity trip, D5 re-promotion: 50 new graded bets, no reuse) + `app/validation.html` | closes Q-26, unblocks G-13; thresholds pre-registered in writing before any strategy is live |
+| N9 | Registers + executive summary | **done** | `data/origin/decisions_taken.json` (8 directives → artefacts), `data/origin/question_answers.json` (Q-03/Q-04/Q-22/Q-26 closed; Q-02 narrowed), `docs/origin/EXECUTIVE-SUMMARY.md`, surfaced on `app/suggestions.html` and `app/decisions.html` | each register row links its evidence |
+| N10 | Integration | **done** | 25-page unified dashboard (4 new pages), Pages workflow additive copy lines for the new stores, full check suite green, PR + merge + Pages deploy | see below |
+
+### Sources used (all fetched live 2026-11-14)
+
+| Source | Used for |
+|---|---|
+| <https://www.nfl.com/schedules/2026/by-week/week-1> … <week-10> (all 10 weekly pages, every chunk) | N2: 137 final scores, game URLs |
+| <https://www.nfl.com/standings/league/2026/REG> | N2: the 160-value standings arithmetic check |
+| `data/pipeline/team_stats.json` rows citing <https://www.nfl.com/stats/team-stats/...> (9 official tables) + standings | N7: the 85-metric official matrix |
+| official club depth charts (31 clubs) + <https://www.nfl.com/injuries/> | N6: starter/replacement/status per row |
+| `data/raw/nflverse/games.csv` (community mirror, fingerprinted) | N1/N4: UNVERIFIED market close/benchmark values only, flagged on every row |
+
+### Verification performed (the whole suite, on the merged content)
+
+`tools/build_results.py` (160/160) · `tools/build_replacement_depth.py` (78/78 re-verified) ·
+`tools/build_correlations_official.py` (905/905) · `tools/build_originated_markets.py` (order
+assertions) · `tools/verify_app.py` (25 pages, 809 links, 5,860 rows **0 unsourced**) ·
+`tools/check_links.py` (118 files, **28,233 assertions, 0 failures**) · `tools/verify_data.py`
+(2,944) · `tools/verify_against_official.py` (every Week 10 cell) · `tools/cross_check.py`
+(1,380 cells) · `tools/test_source_rule.py` (rule mutation-tested) · `scripts/verify_site.py`
+(118 pages) · `scripts/check_site.py` (27) · `scripts/verify_parlay.py` ·
+`scripts/verify_research_site.py` (1,921) · `scripts/verify_site_annex.py` ·
+`scripts/pipeline/verify_data.py` · `scripts/pipeline/verify_site.py` · `tools/verify_official.py` ·
+stale-HTML guards (`build_availability`, `build_site`, `build_app`, `build_audit_registers` + git
+diff clean) · local Pages-tree assembly (17MB, 0 broken links on the new pages).
+
+### Irregularities found / resolved this round
+
+| ID | Item | State |
+|---|---|---|
+| I-14 (earlier sessions) | "Standings show pre-game records for WAS/NYG after TNF" | **RESOLVED — the claim was wrong.** The standings include the TNF result (WAS 3-5-1 / NYG 5-3-1 are post-game). The feed-vs-standings arithmetic passes only with the game included (WAS PF 172+24=196). No schedule/standings discrepancy exists; the old reading miscounted the games. |
+| N-01 | No source anywhere records 2026 opening prices; no official source records closing prices | **flagged, not filled** — the store's open column is blank by rule, close carries mirror values with `verified=no`; Q-02 remains the one open feed decision |
+| N-02 | Mirror prices in the originated-markets and price stores are third-party (F-03/I-10 lineage) | **flagged on every row** (UNVERIFIED badge), excluded from the leaderboard and from all correlation values |
+| N-03 | Club depth charts are self-published (GB "Unofficial, Nov. 10, 2026"); HOU unparsable (F-03) | caveat on every replacement-depth row; HOU absent, never guessed |
+
+### Additive-only edits to files owned by earlier sessions (logged per rule 4)
+
+| File | Owner | Change |
+|---|---|---|
+| `tools/build_app.py` | `arena/fcc11e05-x1` (completed; rule-10 takeover) | 4 new page builders + 5 additive sections, every edit tagged "Added by session arena/3fa49c1a-x1"; generator output committed and stale-checked |
+| `.github/workflows/pages.yml` | `arena-b38a21d8-x1` / later integrators | +6 copy lines for the new data stores, commented "Added by session arena/3fa49c1a-x1"; nothing above modified |
+
+**Full record of what was built and why:** `docs/origin/EXECUTIVE-SUMMARY.md`.
