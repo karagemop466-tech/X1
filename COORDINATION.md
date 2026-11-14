@@ -2496,3 +2496,40 @@ No other session's file was edited. The reachability regression from taking the 
 `console/archived-sites.html` now links a real, build-time-resolved entry page in
 each tree, and the crawl goes from 26 of 164 reachable to 160 of 164. The 4 that
 remain were orphaned before this branch existed.
+
+# Session `arena/600e6009-x1` — round-3 brief: eight named requirements + integration
+
+**Session ID:** `arena-600e6009-x1` · **Branch:** `arena/600e6009-x1` (branched from `main` @ `11d9ea1`, PR #33).
+**Claim written before any work started (rule 1).** All earlier board tasks are marked `done` and
+every earlier session's PR (#1–#33) is merged, so rule 10 applies: this session picks up the eight
+requirements from the round-3 brief that no completed task covers.
+
+## Non-overlap declaration
+
+No open PR exists (`gh pr list --state open` → empty) and no session has pushed a commit in this
+round. Every earlier claim on this board is `done`. This session edits **only** the paths listed
+below plus the shared integration outputs (`app/**` via its generator, `data/questions.json`,
+`data/suggestions.json`, `data/flags.json`, `data/gates.json`, `docs/**`, `COORDINATION.md`), which
+is permitted for the final integration session under rule 9. Where an earlier session owns a file,
+its content is preserved and this session's change is additive.
+
+## Claim
+
+| # | Task (round-3 brief requirement) | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| S1 | **Price-snapshot store** — record opening and closing numbers for every market we originate | **in progress** | `arena-600e6009-x1` | `data/snapshots/**` (new), `tools/build_snapshots.py` (new) |
+| S2 | **Verified results feed** — official final scores so backtests and ROI can be computed at all | **in progress** | `arena-600e6009-x1` | `data/results/**` (new), `tools/build_results.py` (new) |
+| S3 | **Origination order** — side first, then total, then moneyline; and fair line / market line / difference published as separate columns | **in progress** | `arena-600e6009-x1` | `data/lines/origination_order_*.csv` (new), `data/lines/fair_market_diff_*.csv` (new), `tools/build_origination.py` (new) |
+| S4 | **Leaderboard: signal separated from staking** so a lucky staking run cannot mask a bad signal | **in progress** | `arena-600e6009-x1` | `data/leaderboard_signal_staking.json` (new), leaderboard section of `tools/build_app.py` |
+| S5 | **Replacement depth** tracked (which string replaces the starter), not just the fact of replacement | **in progress** | `arena-600e6009-x1` | verification of `data/pipeline/deficiency.json` + surfacing in `tools/build_app.py` |
+| S6 | **Correlations from officially sourced numbers only**, with `n` published on every value | **in progress** | `arena-600e6009-x1` | verification of `data/pipeline/correlations.json` + surfacing in `tools/build_app.py` |
+| S7 | **Demotion gate** that sends a live strategy back to paper | **in progress** | `arena-600e6009-x1` | `data/gates.json` (additive G8 entry), `docs/methodology/` (new doc) |
+| S8 | **Integration** — registers (questions / suggestions / flags), executive summary, new app pages, full verify suite, PR → `main`, merge, Pages deploy confirm, record here | **in progress** | `arena-600e6009-x1` | `app/**` (via `tools/build_app.py`), `data/questions.json`, `data/suggestions.json`, `data/flags.json`, `docs/**`, this file |
+
+## Requests to owning sessions (logged, not actioned by editing their branches)
+
+- To `arena/fcc11e05-x1` (author of `tools/build_app.py`): this session is the round-3 integration
+  session and extends the generator with the pages the brief asks for. Its existing pages, contracts
+  and verifiers are kept unchanged; `tools/verify_app.py` rules continue to apply to every new row.
+- To `arena/d577959f-x1` (author of `pipeline/`): `data/pipeline/correlations.json` and
+  `data/pipeline/deficiency.json` are read as inputs, never rewritten.

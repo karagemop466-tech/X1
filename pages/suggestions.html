@@ -56,7 +56,7 @@
 <section class="pagetitle">
   <div class="eyebrow">SUGGESTIONS</div>
   <h1>Suggestions register</h1>
-  <p>12 reviewable proposals for improving the site and the decision process. Each carries its
+  <p>18 reviewable proposals for improving the site and the decision process. Each carries its
   impact, its cost, what it depends on and a reversible first step — so the owner can pick the best path before any
   change is implemented.</p>
 </section>
@@ -66,9 +66,9 @@
   in this release as patterns — the tier badges and the snapshot date in every header — and remain listed so the
   reviewer can accept or reject them explicitly.</div>
   <div class="statrow">
-    <div class="stat"><strong>12</strong><span>proposals</span></div>
-    <div class="stat"><strong>7</strong><span>high impact</span></div>
-    <div class="stat"><strong>8</strong><span>low effort</span></div>
+    <div class="stat"><strong>18</strong><span>proposals</span></div>
+    <div class="stat"><strong>11</strong><span>high impact</span></div>
+    <div class="stat"><strong>12</strong><span>low effort</span></div>
     <div class="stat"><strong>5</strong><span>no dependency — can start now</span></div>
   </div>
   
@@ -106,7 +106,7 @@
         <dt>Proposal</dt><dd>Render hours since retrieval next to each table; past 72 hours, show an amber banner; past 168 hours, show a red one saying the table must not be used for decisions.</dd>
         <dt>Why it improves decisions</dt><dd>Prevents a decision being made on a snapshot the reader believes is live.</dd>
         <dt>Reversible first step</dt><dd>Compute age in the build script from the retrieval timestamp already stored in each file header.</dd>
-        <dt>Risk &amp; mitigation</dt><dd>None material.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>No material risk identified.</dd>
         <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
       </dl>
     </article>
@@ -297,6 +297,120 @@
         <dt>Why it improves decisions</dt><dd>Makes disconfirmation cheap and public.</dd>
         <dt>Reversible first step</dt><dd>Add the field to the pre-registration schema.</dd>
         <dt>Risk &amp; mitigation</dt><dd>Boilerplate falsifiers that are trivially unmet. Mitigation: the falsifier must name a specific test from the gate list.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-13</span>
+        <h3>Name the price feed before any market column fills</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: medium</span>
+          <span class="pill muted-pill">depends on: Q, -, 1, 9,  , /,  , f, l, a, g,  , F, -, 0, 6</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>Market open/close, difference, CLV and ROI are all blank because no source is accepted as official (Q-19).</dd>
+        <dt>Proposal</dt><dd>Owner chooses one tier — single named book, consensus service, or own account statements — and records it in data/sources. The snapshot store then fills market_line only from recorded captures at that source.</dd>
+        <dt>Why it improves decisions</dt><dd>Turns four blocked columns into a decision with a single keystroke, and keeps the alternative tiers visible as options rather than silence.</dd>
+        <dt>Reversible first step</dt><dd>Owner marks a tier on the suggestions board; wiring is one column in tools/build_snapshots.py.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Licence terms may restrict republication; account statements are official for your P&amp;L but are not a market number.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-14</span>
+        <h3>Rank the leaderboard on signal only, keep staking in its own columns</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: n, o, t, h, i, n, g</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>A single ROI column lets a lucky staking run mask a bad signal; the board cannot tell the two apart.</dd>
+        <dt>Proposal</dt><dd>Adopt the split already published in data/leaderboard_signal_staking.json: rank strictly on signal_n / signal_z / signal_p against the registered baseline; publish ROI, units and drawdown in a separate staking group that is structurally excluded from rank.</dd>
+        <dt>Why it improves decisions</dt><dd>Rewards are then paid for measured skill only. A +40% ROI on 30 lucky bets cannot outrank a smaller but significant signal.</dd>
+        <dt>Reversible first step</dt><dd>Point the leaderboard rank at the signal group; keep staking columns visible but unranked.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Headline ROIs on the public board get smaller — that is the honest number.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-15</span>
+        <h3>Schedule the close capture at kickoff</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: Q, -, 2, 0</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>39 close captures are pending and the one already-played game is flagged not_captured_before_kickoff, because nothing runs the store at kickoff (Q-20).</dd>
+        <dt>Proposal</dt><dd>Add a kickoff-timestamped step to the existing data-refresh workflow that re-runs tools/build_snapshots.py with a capture flag and commits the result with its timestamp.</dd>
+        <dt>Why it improves decisions</dt><dd>Opening and closing numbers become a real series instead of a single snapshot, which is what any future CLV or line-move analysis needs.</dd>
+        <dt>Reversible first step</dt><dd>One workflow step plus one flag in the builder.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>A missed run leaves close blank — already handled: the store keeps the status rather than back-filling.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-16</span>
+        <h3>Ratify the G8 demotion thresholds before anything goes live</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: Q, -, 2, 1</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>The demotion gate exists with four proposed trigger numbers, but proposals ratified after results exist are worthless (Q-21).</dd>
+        <dt>Proposal</dt><dd>Owner accepts or edits the four numbers in data/gates.json G8 and records the ratification date; no strategy may be promoted to live until that date exists.</dd>
+        <dt>Why it improves decisions</dt><dd>Fixes the exit before entering, so demotion cannot be negotiated away by a strategy that is currently lucky.</dd>
+        <dt>Reversible first step</dt><dd>Edit four thresholds, stamp the date, publish on the validation page.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>Thresholds set too tight cause churn; too loose and decay persists. The rolling windows (100 / 50 bets) bound both errors.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-17</span>
+        <h3>Automate the weekly results feed refresh</h3>
+        <div class="tags">
+          <span class="pill high">impact: high</span>
+          <span class="pill muted-pill">effort: medium</span>
+          <span class="pill muted-pill">depends on: Q, -, 2, 4</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>This round&#x27;s 137 results were read page by page; without a scheduled step the feed silently goes stale and every backtest on it becomes wrong (Q-24).</dd>
+        <dt>Proposal</dt><dd>Add a by-week results step to data-refresh.yml: re-read completed weeks from nfl.com, re-run the three checks in tools/build_results.py, fail the build on any mismatch.</dd>
+        <dt>Why it improves decisions</dt><dd>Keeps the foundation of every ROI number fresh and self-checking; a layout change on nfl.com breaks the build loudly instead of corrupting data quietly.</dd>
+        <dt>Reversible first step</dt><dd>Port the parser in tools/build_results.py into the scheduled workflow and add the staleness check.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>NFL.com layout changes will fail the workflow; the failure mode is a red build, not a wrong number.</dd>
+        <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
+      </dl>
+    </article>
+    <article class="sugg">
+      <header>
+        <span class="pid">S-18</span>
+        <h3>Grade ST-11 through the gates when the sample allows</h3>
+        <div class="tags">
+          <span class="pill warn">impact: medium</span>
+          <span class="pill muted-pill">effort: low</span>
+          <span class="pill muted-pill">depends on: G, 1,  , s, a, m, p, l, e, ;,  , r, e, s, u, l, t, s,  , f, e, e, d,  , r, e, f, r, e, s, h,  , (, S, -, 1, 7, )</span>
+        </div>
+      </header>
+      <dl>
+        <dt>Problem</dt><dd>The one computed signal (walk-forward model side pick, 84-49, z=3.04) sits below the G1 singles threshold of 500, so it cannot rank yet.</dd>
+        <dt>Proposal</dt><dd>Keep grading it weekly on the official results feed; when decided games reach the registered threshold, run G0-G7 plus G8 on it exactly like any other strategy — no shortcuts for the house model.</dd>
+        <dt>Why it improves decisions</dt><dd>Gives the leaderboard its first honest entrant on a schedule, and tests the whole gate chain end to end before real money is discussed.</dd>
+        <dt>Reversible first step</dt><dd>Weekly grade appended by tools/build_results.py; promotion decision only after G1.</dd>
+        <dt>Risk &amp; mitigation</dt><dd>The signal may not survive the larger sample — which is what the gates are for.</dd>
         <dt>Decision</dt><dd><span class="pill muted-pill">proposed</span> — set by the owner; nothing here is implemented automatically</dd>
       </dl>
     </article>

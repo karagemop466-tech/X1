@@ -1,0 +1,291 @@
+{
+ "dataset": "leaderboard_signal_staking",
+ "title": "Leaderboard \u2014 signal and staking kept apart",
+ "generated_at": "2026-11-14",
+ "rule": {
+  "rank_basis": "signal group only",
+  "why": "ROI is signal x staking x price. A generous staking run on a coin-flip signal produces a hot ROI that means nothing, so staking columns are reported in their own group and are structurally excluded from rank: no staking value can raise or lower a signal_rank. A strategy ranks only on signal_n, signal_z and signal_p measured against its registered baseline.",
+  "demotion": "G8 (data/gates.json): a live strategy whose signal decays goes back to paper",
+  "reward_note": "rewards are paid on gate-passing signal, never on a staking streak"
+ },
+ "column_groups": {
+  "identity": [
+   "strategy_id",
+   "strategy",
+   "market",
+   "status"
+  ],
+  "signal": [
+   "signal_rank",
+   "signal_n",
+   "signal_hit_rate",
+   "signal_z",
+   "signal_p",
+   "signal_baseline",
+   "signal_note"
+  ],
+  "staking": [
+   "staking_roi",
+   "staking_units",
+   "staking_max_drawdown",
+   "staking_note"
+  ]
+ },
+ "rows_count": 11,
+ "source": {
+  "url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+  "label": "X1 project brief (strategy definitions)",
+  "org": "Project brief"
+ },
+ "verification": {
+  "rows": 11,
+  "rows_with_signal": 1,
+  "rows_with_staking_values": 0,
+  "rank_uses_staking_columns": false,
+  "violations": 0
+ },
+ "rows": [
+  {
+   "strategy_id": "ST-01",
+   "strategy": "Official-scoring side model",
+   "market": "Single bet",
+   "status": "Paper",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-02",
+   "strategy": "Official-stats total model",
+   "market": "Single bet",
+   "status": "Paper",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-03",
+   "strategy": "Injury-driven line adjustment",
+   "market": "Single bet",
+   "status": "Paper",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-04",
+   "strategy": "Deficiency mismatch (OL vs pass rush)",
+   "market": "Single bet",
+   "status": "Paper",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-05",
+   "strategy": "Low-correlation multi-game parlay",
+   "market": "Parlay",
+   "status": "Paper",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-06",
+   "strategy": "Same-game correlation-aware parlay",
+   "market": "Parlay",
+   "status": "Blocked",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-07",
+   "strategy": "Player prop combination",
+   "market": "Player prop combo",
+   "status": "Blocked",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-08",
+   "strategy": "Fade the public on late injury news",
+   "market": "Single bet",
+   "status": "Paper",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-09",
+   "strategy": "Rest-and-situational fade",
+   "market": "Single bet",
+   "status": "Blocked",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-10",
+   "strategy": "Closing line value only",
+   "market": "Single bet",
+   "status": "Blocked",
+   "signal_rank": "",
+   "signal_n": "",
+   "signal_hit_rate": "",
+   "signal_z": "",
+   "signal_p": "",
+   "signal_baseline": "",
+   "signal_note": "signal metric not yet computed for this strategy",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
+   "_flags": [
+    "staking columns blank on purpose",
+    "signal blank until the strategy's picks are graded"
+   ]
+  },
+  {
+   "strategy_id": "ST-11",
+   "strategy": "Walk-forward model side pick (research-lab line model)",
+   "market": "Single bet",
+   "status": "Paper \u2014 signal computed, not rankable yet (G1 sample)",
+   "signal_rank": "1",
+   "signal_n": 133,
+   "signal_hit_rate": 0.6316,
+   "signal_z": 3.035,
+   "signal_p": 0.0024,
+   "signal_baseline": 0.5,
+   "signal_note": "outcome-only grade against a 0.50 baseline; excludes 1 tie and 3 zero-line games; no price and no stake enter this number",
+   "staking_roi": "",
+   "staking_units": "",
+   "staking_max_drawdown": "",
+   "staking_note": "blocked: no official price source, so no return can be settled (Q-02)",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "_flags": [
+    "G1 not met: 133 decided games < 500 singles threshold \u2014 not eligible to rank",
+    "staking columns blank on purpose"
+   ]
+  }
+ ]
+}

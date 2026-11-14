@@ -51,6 +51,8 @@ PAGES: List[Tuple[str, str, str, str, str]] = [
     ("origination.html", "Origination & prices", "Model", "Side, then total, then moneyline", "Fair vs market vs difference"),
     # Added by session arena/3fa49c1a-x1 (N1 page, merged in from the parallel N1-N10 round)
     ("prices.html", "Price snapshots", "Model", "Price-snapshot store (per-market rows)", "Open and close, blank where no source"),
+    # Added by session arena/600e6009-x1 (round 3): capture-status store + origination order
+    ("snapshots.html", "Snapshots & order", "Model", "Price snapshots and origination order", "Open / close · side → total → moneyline"),
     # Added by session arena-52aabfa8-x1 (Round-2 union: all-season complements)
     ("results-feed.html", "Results feed (all seasons)", "Model", "Verified results feed, 2019–2026", "Backtest input with tiers"),
     ("price-history.html", "Price history", "Model", "Opening and closing prices, 2019–2026", "Full-window price store"),
@@ -332,6 +334,23 @@ def load() -> None:
     D["repdepth"] = jload("data/analysis/replacement_depth.json")
     D["corr_official"] = csvrows("data/analysis/correlations_official.csv")
     D["gates_registry"] = jload("data/gates.json")
+    # --- Added by session arena/600e6009-x1 (round 3) ---
+    # Root registers (authored, not pipeline-regenerated) plus this round's feeds.
+    for key, rel in (
+        ("r3_results", "data/results/verified_results.json"),
+        ("r3_signal", "data/results/signal_grade.json"),
+        ("r3_snapshots", "data/snapshots/price_snapshots.json"),
+        ("r3_origination", "data/lines/origination_order_2026_week10.json"),
+        ("r3_lb", "data/leaderboard_signal_staking_official.json"),
+        ("r3_depth", "data/depth/replacement_depth_summary.json"),
+        ("r3_corr", "data/correlations_official_check.json"),
+        ("root_questions", "data/questions.json"),
+        ("root_suggestions", "data/suggestions.json"),
+        ("root_flags", "data/flags.json"),
+    ):
+        _p = os.path.join(ROOT, rel)
+        if os.path.exists(_p):
+            D[key] = json.load(open(_p, encoding="utf-8"))
     # Round-2 union additions (session arena-52aabfa8-x1)
     rp = os.path.join(ROOT, "data", "results", "results_feed_meta.json")
     D["results_meta"] = json.load(open(rp, encoding="utf-8")) if os.path.exists(rp) else {}
@@ -961,6 +980,44 @@ are all <b>Out</b>. Both are documented on <a href="flagged.html">Flagged for re
                      f'(listed on <a href="{PFX}flagged.html">flagged</a> with sources). '
                      f'Full per-team table: data/analysis/replacement_depth.json.</div>'))
 
+    # --- Added by session arena/600e6009-x1 (round 3): replacement-depth distribution ---
+    dep = D.get("r3_depth") or {}
+    if dep.get("rows"):
+        tot = dep.get("totals", {})
+        byd = tot.get("by_depth_all_slots", {})
+        dtrs = [[esc(str(r.get("unit", ""))), esc(str(r.get("replacement_depth", ""))),
+                 esc(str(r.get("depth_label", ""))),
+                 num(r.get("slots"), 0), num(r.get("replacement_named"), 0),
+                 num(r.get("starters_out"), 0), num(r.get("starters_questionable"), 0),
+                 src_cell(r.get("source_url", ""))]
+                for r in dep["rows"]]
+        gaps = dep.get("gaps", [])
+        body.append(card("Replacement depth — not just that a replacement exists, but how far down "
+                         "the chart it comes from", f"""
+<p>Each row below counts starting slots by <b>which string</b> now holds the job: a 2nd-string
+replacement is a normal next-man-up; a 3rd-string is a roster stress point; a 4th-string is a
+potential emergency. Today's distribution: <b>{byd.get("2", 0)} slots run by the 2nd string,
+{byd.get("3", 0)} by the 3rd string, {byd.get("4", 0)} by the 4th</b>, across
+{tot.get("slots", 0)} charted slots — with {tot.get("no_replacement_named", 0)} slots naming no
+replacement at all ({tot.get("starters_on_report_without_named_replacement", 0)} of them are
+starters who <i>are</i> on the official injury report; those are listed below and never guessed).</p>
+""" + table("t-depth-dist",
+            ["Unit", "Depth", "String", "Slots", "With named replacement",
+             "Starters Out", "Starters Questionable", "Sources"],
+            dtrs, numeric=[3, 4, 5, 6], center=[1],
+            note="Depth is the chart column position of the replacement (2 = 2nd string … 4 = 4th). "
+                 "Every count comes from the deficiency join; the sources are the league injury "
+                 "report and the club's own chart page.")
+            + (card(f"Starters on the report with no named replacement ({len(gaps)})",
+                    table("t-depth-gaps",
+                          ["Club", "Unit", "Position", "Starter", "Game status", "Source"],
+                          [[esc(str(g.get("team", ""))), esc(str(g.get("unit", ""))),
+                            esc(str(g.get("position", ""))), f'<b>{esc(str(g.get("starter", "")))}</b>',
+                            badge(str(g.get("game_status", "")), "warn") if g.get("game_status") else dash(""),
+                            src_cell(g.get("source_url", ""))] for g in gaps],
+                          center=[4],
+                          note="Left unfilled on purpose: if the club chart does not name the next "
+                               "man up, no name is invented. Flagged as F-15.")) if gaps else "")))
     return page("deficiency.html", "Deficiency watch", "Official data", "\n".join(body),
                 lede="Which starter is down, and exactly which string of backup has to take the snaps — "
                      "offence and defence.")
@@ -1214,6 +1271,21 @@ mechanically identical columns (a Cmp is a Rec). The dataset's own method text o
 clause — logged as flag F-13, values unaffected. Line-by-row ledger:
 {link("https://github.com/karagemop466-tech/X1/blob/main/data/verify/official_correlations.csv", "data/verify/official_correlations.csv")}
 ({len(ledger)} rows: published r, recomputed r, Δ, n, source, status).</section>""")
+    # --- Added by session arena/600e6009-x1 (round 3): official-source audit of every pair ---
+    cc = D.get("r3_corr") or {}
+    if cc:
+        v = cc.get("verification", {})
+        body.append(card("Official-source check — every correlation, every n (round 3)", f"""
+<p>The build fails loudly unless every one of the <b>{v.get("pairs", 0)} published pairs</b>
+carries an integer <b>n</b>, a p-value, and a source URL on <b>{esc(", ".join(v.get("hosts", [])))}</b>
+— the league's own standings and team-stats tables. Result of this round's audit:
+<b>{v.get("pairs_with_n", 0)}/{v.get("pairs", 0)} pairs with n</b>, n ranging
+{v.get("n_min", "")}–{v.get("n_max", "")} (median {v.get("n_median", "")}), official hosts only,
+<b>{v.get("violations", 0)} violations</b>.</p>
+<p class="note">{esc(cc.get("caveat", ""))}</p>
+<p class="note">{esc(cc.get("excluded", ""))}</p>
+<a class="btn" href="https://github.com/karagemop466-tech/X1/blob/main/data/correlations_official_check.json">Check result JSON</a>
+<a class="btn" href="https://github.com/karagemop466-tech/X1/blob/main/tools/build_round3.py">Checker</a>"""))
     return page("correlation.html", "Correlation and independence", "Model", "\n".join(body),
                 lede="Measured correlation values: strategy-to-strategy, same-game legs, cross-game, "
                      "and prop families.")
@@ -1640,6 +1712,36 @@ a hot P&amp;L path cannot lift a bad signal and a cold one cannot sink a good on
 <b>unmeasured</b> (no decided bets), never a zero signal. Season 0 has no logged bets, so every
 registry strategy is honestly unmeasured today.</div>"""))
 
+    # --- Added by session arena/600e6009-x1 (round 3): official-basis signal rows ---
+    lb3 = D.get("r3_lb") or {}
+    if lb3:
+        rule = lb3.get("rule", {})
+        l3rows = lb3.get("rows") or []
+        body.append(card("Official-basis signal vs staking — the round-3 board", f"""
+<p>{esc(rule.get("why", ""))}</p>
+<p><b>Rank basis: {esc(rule.get("rank_basis", ""))}.</b> Staking columns are published for
+transparency but are structurally excluded from rank — no ROI figure can raise or lower a
+signal_rank. Demotion back to paper is enforced by gate <b>G8</b>
+(<a href="validation.html">validation</a>).</p>
+""" + table("t-lb-split",
+            ["ID", "Strategy", "Signal rank", "Signal n", "Hit rate", "z", "p",
+             "Staking ROI", "Staking units", "Status", "Source"],
+            [[esc(str(r.get("strategy_id", ""))),
+              f'<b>{esc(str(r.get("strategy", "")))}</b><br>{esc(str(r.get("market", "")))}',
+              esc(str(r.get("signal_rank", ""))) or badge("unranked", "grey"),
+              esc(str(r.get("signal_n", ""))) or dash(""),
+              esc(str(r.get("signal_hit_rate", ""))) or dash(""),
+              esc(str(r.get("signal_z", ""))) or dash(""),
+              esc(str(r.get("signal_p", ""))) or dash(""),
+              dash(str(r.get("staking_roi", ""))),
+              dash(str(r.get("staking_units", ""))),
+              esc(str(r.get("status", ""))),
+              src_cell(r.get("source_url", ""))]
+             for r in l3rows],
+            numeric=[3, 4, 5, 6], center=[2, 3, 4, 5, 6],
+            note="Signal columns grade outcome against a stated baseline with n and p on every row. "
+                 "Staking columns stay empty while no official price source exists (Q-02) — blank "
+                 "by rule, not by omission, and never fed into the rank.")))
     return page("leaderboard.html", "Leaderboard and rewards", "Strategy", "\n".join(body),
                 lede="Ranked by gate-weighted reward, not by headline ROI. Baselines, luck decomposition, "
                      "the signal/staking split, and the unranked official-only board.")
@@ -1775,6 +1877,39 @@ miscount. Machine-readable ledger: <code>data/results/results_verification.json<
 
     body.append('<section class="note warn"><b>Second independent transcription (session arena/907c5baf-x1).</b> The sections below come from a separate official-page transcription kept in data/verify/raw/ and its settlement engine — two independent readings of the same official pages, both published.</section>')
     body.append(p_results_x1_body())
+    # --- Added by session arena/600e6009-x1 (round 3): price-independent signal grade ---
+    sig = D.get("r3_signal") or {}
+    if sig:
+        excl = sig.get("exclusions", {})
+        sg_url = "https://github.com/karagemop466-tech/X1/blob/main/data/results/signal_grade.json"
+        body.append(card("Signal grade — outcome-only, no price, no stake (round 3)", f"""
+<p>Grading the model's side pick against the official result answers one narrow question:
+<b>does the model pick the winning side more often than a coin flip?</b> It uses only the verified
+results above and the model's pre-game line. No price, no stake, no return enters the number — a hit
+rate is not an edge until a price says what break-even costs, and no official price source exists
+(Q-02). This is deliberately separate from the ROI table, which assumes &minus;110.</p>
+""" + table("t-sig",
+            ["Metric", "Value", "Source"],
+            [["Decided games", f'{sig.get("n_decided", "")} of {sig.get("n_games", "")} matched '
+                               f'({excl.get("excluded_tie", 0)} tie, {excl.get("excluded_no_pick", 0)} no-pick excluded)',
+              src_cell(sg_url)],
+             ["Record", f'{sig.get("wins", "")}–{sig.get("losses", "")}', src_cell(sg_url)],
+             ["Hit rate", f'{sig.get("hit_rate", "")} against a {sig.get("baseline", "")} baseline',
+              src_cell(sg_url)],
+             ["z / p", f'{sig.get("z_vs_50pct", "")} two-sided p = {sig.get("p_two_sided", "")}',
+              src_cell(sg_url)],
+             ["Excluded", f'{esc(excl.get("tie_game", ""))}; no-pick games '
+                          f'{esc(", ".join(excl.get("no_pick_games", [])))} '
+                          f'(line exactly 0.0 — never forced to a side)', src_cell(sg_url)],
+             ["Model", f'{esc(sig.get("model", {}).get("name", ""))} — fitted walk-forward, season '
+                       f'<i>s</i> trained only on seasons before <i>s</i>', src_cell(sg_url)]],
+            note="Recomputed by tools/build_results_r3.py from the results feed and the model file; "
+                 "the JSON carries its own source URLs.") +
+f"""
+<p class="note">This signal feeds the <a href="leaderboard.html">leaderboard</a>'s signal group only.
+It sits below the G1 singles threshold (500 decided bets), so it is published as a measurement, not
+a promotion.</p>
+<a class="btn" href="{sg_url}">Signal grade JSON (with sources)</a>"""))
     return page("results.html", "Verified results feed and graded ROI", "Official data",
                 "\n".join(body),
                 lede="Every settled game from the official pages, double-entry verified, and the ROI it now makes possible.")
@@ -1934,6 +2069,31 @@ have named tests but owner-settable thresholds.</p>
                                note="Each new question names the decision it blocks and a concrete "
                                     "discovery action — the 'how to get it' column is how missing "
                                     "information gets found, not a placeholder.")))
+    # --- Added by session arena/600e6009-x1 (round 3): root decision register ---
+    rq = D.get("root_questions") or {}
+    rqs = rq.get("questions") or []
+    if rqs:
+        new_q = [x for x in rqs if x.get("id", "") >= "Q-19"]
+        body.append(card(f"Root register — questions, information held, and information missing "
+                         f"({len(new_q)} added this round, {len(rqs)} total)", f"""
+<p><b>Rule of this register:</b> {esc((rq.get("meta") or {}).get("rule", ""))} Each row states what
+we already hold, what is still missing, and the concrete thing that would close it — so a decision
+can be taken on the information that exists rather than on a hunch.</p>
+""" + table("t-root-q",
+            ["ID", "Topic", "Question", "Why it blocks", "Information we have",
+             "Missing — what would answer it", "Status", "Owner?", "Source"],
+            [[esc(str(x.get("id", ""))), esc(str(x.get("topic", ""))),
+              f'<b>{esc(str(x.get("question", "")))}</b>',
+              esc(str(x.get("why_it_blocks", ""))),
+              esc(str(x.get("known_information", ""))),
+              esc(str(x.get("what_would_answer_it", ""))),
+              badge(str(x.get("status", "")), "warn" if str(x.get("status", "")) == "open" else "blue"),
+              badge("owner", "bad") if x.get("owner_decision") else badge("research", "grey"),
+              src_cell(x.get("source_url", ""))]
+             for x in new_q],
+            center=[6, 7],
+            note="Owner? marks the rows where only the owner can decide; the rest close when the "
+                 "missing information is obtained.")))
     return page("decisions.html", "Decision register", "Decisions", "\n".join(body),
                 lede="Question, information held, information missing, how to get it, and what it blocks.")
 
@@ -2046,6 +2206,34 @@ table). Each row links to the artefacts. {esc(dec.get('note', ''))}</p>
                                     "strip, and a strategy-registry crosswalk. Nothing is built "
                                     "before a path is chosen.")))
 
+    # --- Added by session arena/600e6009-x1 (round 3): root suggestion register ---
+    rs = D.get("root_suggestions") or {}
+    rss = rs.get("suggestions") or []
+    if rss:
+        new_s = [x for x in rss if x.get("id", "") >= "S-13"]
+        body.append(card(f"Root suggestion register — review before anything is built "
+                         f"({len(new_s)} added this round, {len(rss)} total)", f"""
+<p><b>Nothing here is implemented by default.</b> {esc((rs.get("meta") or {}).get("purpose", ""))}
+Every row carries the problem it solves, the proposal, what it would change in decision-making, its
+impact, its cost, what it depends on, the reversible first step, and the risk — then it waits for a
+decision. Pick the best path first; build second.</p>
+""" + table("t-root-sug",
+            ["ID", "Suggestion", "Problem it solves", "Proposal", "Decision value",
+             "Impact", "Effort", "Depends on", "First step", "Risk", "Status", "Source"],
+            [[esc(str(x.get("id", ""))), f'<b>{esc(str(x.get("title", "")))}</b>',
+              esc(str(x.get("problem", ""))), esc(str(x.get("proposal", ""))),
+              esc(str(x.get("why_it_helps_decision_making", ""))),
+              badge(str(x.get("impact", "")), "bad" if str(x.get("impact", "")) == "high" else "grey"),
+              badge(str(x.get("effort", "")), "warn" if str(x.get("effort", "")) == "high" else "grey"),
+              esc(str(x.get("depends_on", ""))), esc(str(x.get("first_step", ""))),
+              esc(str(x.get("risk", ""))),
+              badge(str(x.get("status", "")), "blue"),
+              link("https://github.com/karagemop466-tech/X1/blob/main/data/suggestions.json",
+                   "register")]
+             for x in new_s],
+            center=[5, 6, 10],
+            note="Filter by status. 'proposed' means no decision has been recorded — the row is a "
+                 "choice waiting to be made, not work already authorised.")))
     return page("suggestions.html", "Suggestion board", "Decisions", "\n".join(body),
                 lede="Every improvement as a choice: three paths, cost, effort, risk, recommendation — "
                      "awaiting a decision before anything is built.")
@@ -2327,6 +2515,32 @@ transcriptions. The {ds.get('deltas_vs_published', 0)} deficiency corrections ab
 a <em>derived</em> table, not to any value read from an official page — every official value matched.</p>
 <p>Flagged items never block a release. They block trusting the specific row until the owner review
 closes them.</p>"""))
+    # --- Added by session arena/600e6009-x1 (round 3): root flag register ---
+    rf = D.get("root_flags") or {}
+    rflags = rf.get("flags") or []
+    if rflags:
+        new_f = [x for x in rflags if x.get("id", "") >= "F-14"]
+        body.append(card(f"Root flag register — {len(new_f)} added this round, "
+                         f"{len(rflags)} total, none blocks the release", f"""
+<p>{esc((rf.get("meta") or {}).get("rule", ""))} Each row states what is verified, what is unknown,
+and what would settle it — a flag never asserts a value.</p>
+""" + table("t-root-flag",
+            ["ID", "Severity", "Category", "Finding", "Verified", "Unknown",
+             "What would settle it", "Sources"],
+            [[esc(str(x.get("id", ""))),
+              badge(str(x.get("severity", "")),
+                    "bad" if str(x.get("severity", "")) == "high" else
+                    ("warn" if str(x.get("severity", "")) == "medium" else "grey")),
+              esc(str(x.get("category", ""))),
+              f'<b>{esc(str(x.get("item", "")))}</b>',
+              esc(str(x.get("verified", ""))),
+              esc(str(x.get("unknown", ""))),
+              esc(str(x.get("settles_it", ""))),
+              src_cell(x.get("source_url", ""))]
+             for x in new_f],
+            center=[1],
+            note="Severity: high = a published value is wrong or missing; medium = a limitation that "
+                 "changes how rows should be read; low = documented behaviour worth naming.")))
     return page("flagged.html", "Flagged for review", "Governance", "\n".join(body),
                 lede="Every irregularity found, with its evidence and what was done about it.")
 
@@ -3015,6 +3229,100 @@ happens, no CLV number is computed from this store.</p>"""))
                      "flagged, never filled.")
 
 
+def p_snapshots() -> str:
+    """Added by session arena/600e6009-x1 (round 3): the capture-status snapshot
+    store and the origination-order table. Coexists with prices.html and
+    origination.html; this page is the one that publishes capture statuses
+    (recorded / pending_kickoff / captured_post_final / not_captured_before_kickoff)
+    and keeps every market cell blank while no official source exists."""
+    snaps = D.get("r3_snapshots") or {}
+    orig = D.get("r3_origination") or {}
+    srows = snaps.get("rows") or []
+    orows = orig.get("rows") or []
+    sc = snaps.get("status_counts", {})
+    if not srows or not orows:
+        return page("snapshots.html", "Snapshots & order", "Model",
+                    "<section class='note warn'>Snapshot store not built yet.</section>",
+                    lede="Price snapshots and origination order.")
+    body = []
+    body.append("""<section class="note"><b>Two requirements, one page.</b> The snapshot store keeps
+an opening and a closing record for <em>every market we originate</em> — side, then total, then
+moneyline, in that order. Our own line is computed and always recorded. The market's line is recorded
+only when an official source publishes one; today none does, so those cells stay blank and flagged
+(Q-02) rather than filled from a mirror. Nothing is back-filled: a stage that was not captured in
+time keeps its status and an empty value.</section>""")
+    body.append(kpis([
+        (str(snaps.get("rows_count", 0)), "snapshot records", "14 games × 3 markets × 2 stages", ""),
+        (str(sc.get("recorded", 0)), "open captures recorded", "before kickoff", "ok"),
+        (str(sc.get("pending_kickoff", 0)), "close captures pending", "at kickoff", "warn"),
+        (str(sc.get("captured_post_final", 0) + sc.get("not_captured_before_kickoff", 0)),
+         "post-hoc records", "Thursday final predates the store", "bad"),
+        (str(snaps.get("verification", {}).get("market_line_values_published", 0)), "market lines published",
+         "blank + flagged by rule (Q-02)", "grey"),
+        (str(orig.get("verification", {}).get("games_with_correct_sequence", 0)) + "/14",
+         "games in order", "side → total → moneyline", "ok"),
+    ]))
+
+    trs = [[
+        esc(str(s.get("game_id", ""))), esc(str(s.get("gameday", ""))),
+        esc(str(s.get("away_team", ""))) + " at " + esc(str(s.get("home_team", ""))),
+        esc(str(s.get("origination_sequence", ""))), esc(str(s.get("market", ""))),
+        esc(str(s.get("stage", ""))),
+        badge(str(s.get("status", "")), "ok" if s.get("status") == "recorded" else
+              ("bad" if ("not_captured" in str(s.get("status")) or "post_final" in str(s.get("status"))) else "warn")),
+        f'<b>{esc(str(s.get("our_line", "—")))}</b>' + (f' / {esc(str(s.get("our_line_alt")))}' if s.get("our_line_alt") else ""),
+        dash(s.get("market_line", "")),
+        dash(s.get("difference", "")),
+        esc(str(s.get("market_line_status", ""))),
+        src_cell(s.get("source_url", "")),
+    ] for s in srows]
+    body.append(table("t-snap",
+                      ["Game", "Date", "Matchup", "Seq", "Market", "Stage", "Capture status",
+                       "Our line", "Market line", "Difference", "Why market is blank", "Source"],
+                      trs, numeric=[3], center=[3, 4, 5, 6],
+                      note="Filter by stage or status. Our line is the model's number; market line and "
+                           "difference stay empty because no official source publishes prices."))
+
+    otrs = [[
+        esc(str(o.get("game_id", ""))), esc(str(o.get("gameday", ""))),
+        esc(str(o.get("away_team", ""))) + " at " + esc(str(o.get("home_team", ""))),
+        f'<b>{o.get("origination_sequence", "")}</b>', esc(str(o.get("market", ""))),
+        f'<b>{esc(str(o.get("fair_line", "—")))}</b>' + (f' / {esc(str(o.get("fair_line_alt")))}' if o.get("fair_line_alt") else ""),
+        dash(o.get("market_line", "")), dash(o.get("difference", "")),
+        esc(str(o.get("market_line_status", ""))),
+        src_cell(o.get("source_url", "")),
+    ] for o in orows]
+    body.append(card("Origination order — side first, then total, then moneyline", """
+<p>Publication order is a published column, not a convention. The build refuses to emit a game whose
+sequences are not exactly 1, 2, 3. The three value columns are kept apart on purpose: <b>fair line</b>
+is ours, <b>market line</b> is theirs (blank until an official source exists), and <b>difference</b> is
+fair minus market — which is nothing while the market cell is empty, so it is empty too.</p>
+""" + table("t-orig",
+            ["Game", "Date", "Matchup", "Seq", "Market", "Fair line (ours)", "Market line", "Difference",
+             "Why market is blank", "Source"],
+            otrs, numeric=[3], center=[3, 4],
+            note="14 games × 3 markets = 42 rows, all in publication order. "
+                 "Difference fills automatically the moment a recorded market line exists.")))
+
+    body.append(card("Capture rules", """
+<ul class="tight">
+<li><b>open</b> — the number as originated, captured before kickoff.</li>
+<li><b>close</b> — the number as published at our cut-off, captured at kickoff.</li>
+<li><b>Our line</b> is computed by this repository and always recorded; the Thursday final's rows are
+marked <i>captured_post_final</i> because the store went live after that kickoff — recorded as found,
+never back-dated.</li>
+<li><b>Market line</b> and <b>difference</b> are blank until an official price source is settled
+(<a href="decisions.html">Q-19</a> / F-06). A third-party mirror number is not inserted here.</li>
+<li>A missed capture keeps its status (<i>pending_kickoff</i>, <i>not_captured_before_kickoff</i>)
+instead of borrowing the other stage's value.</li>
+</ul>
+<a class="btn" href="https://github.com/karagemop466-tech/X1/blob/main/data/snapshots/price_snapshots.json">Snapshot store JSON</a>
+<a class="btn" href="https://github.com/karagemop466-tech/X1/blob/main/tools/build_snapshots.py">Store builder</a>"""))
+    return page("snapshots.html", "Snapshots & order", "Model", "\n".join(body),
+                lede="Opening and closing numbers for every market we originate, in origination "
+                     "order, with fair / market / difference kept as separate columns.")
+
+
 BUILDERS = {
     "index.html": p_index,
     "executive-summary.html": p_exec,
@@ -3031,6 +3339,8 @@ BUILDERS = {
     "results-feed.html": p_results_feed,
     "origination.html": p_origination,
     "prices.html": p_prices,
+    # Added by session arena/600e6009-x1 (round 3)
+    "snapshots.html": p_snapshots,
     "price-history.html": p_price_history,
     "correlation.html": p_correlation,
     "strategies.html": p_strategies,

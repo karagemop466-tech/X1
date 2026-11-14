@@ -3,18 +3,12 @@
  "title": "Decision-critical questions",
  "rule": "A question is answered only when an official source settles it and that source is linked. The P0/P1/P2 priority is about what unblocks the most work per unit of effort, not urgency.",
  "counts": {
-  "total_in_full_register": 18,
-  "open_in_full_register": 17,
+  "total_in_full_register": 24,
+  "open_in_full_register": 22,
   "critical_here": 7,
   "p0": 3,
   "p1": 3,
-  "new_this_round": [
-   "Q-19",
-   "Q-20",
-   "Q-21",
-   "Q-22",
-   "Q-23"
-  ]
+  "new_this_round": []
  },
  "questions": [
   {

@@ -71,3 +71,32 @@ a recorded decision).
 **What still blocks real money numbers:** Q-02 (an owner-supplied price feed — no official
 source publishes prices) and Q-04 (official box scores for every historical game). This
 round mapped both gaps per row instead of hiding them; neither is closed by this round.
+
+---
+
+# Executive Summary — third round addendum (2026-11-14, session `arena-600e6009-x1`)
+
+The second-round addendum above is preserved as written. This round adds what it uniquely
+produced; where the same requirement was built by a parallel round, both artefacts are kept and
+labelled rather than one being dropped.
+
+## What this round added
+
+| Requirement | This round's artefact | Relationship to the second round's |
+|---|---|---|
+| Verified results feed | Third independent transcription of all 137 finals (`data/results/_raw/reads.tsv` → `tools/build_results_r3.py`), three checks per build: row diff vs the publishing mirror (137/137, 0 mismatches), standings arithmetic (32/32), source-URL audit | Cross-checks the T16/N2 feeds rather than replacing them |
+| Signal metric (price-independent) | Model side pick vs official result: **84–49 (63.16%), z = 3.035, p = 0.0024, n = 133** (1 tie, 3 zero-line games excluded and named), baseline 0.50 stated because no price exists | Complementary: the round-2 ROI table grades against an assumed −110; this grade needs no price at all |
+| Price-snapshot store | 84 records (14 games × side/total/moneyline × open/close) with a capture-status vocabulary (`recorded`, `pending_kickoff`, `captured_post_final`, `not_captured_before_kickoff`) — a stage missed in time keeps its status, never a borrowed value | Same requirement, stricter rule: every market cell blank (no mirror close), statuses published on `app/snapshots.html` |
+| Origination order + three columns | 42 rows, sequences asserted to be exactly 1, 2, 3 per game (side → total → moneyline); fair / market / difference as separate columns, difference blank while market is | Coexists with `app/origination.html`; the assertion lives in `tools/build_origination.py --check` |
+| Signal / staking split | Official-basis board (`data/leaderboard_signal_staking_official.json`): ST-11 populated on signal only (n = 133), staking columns blank by rule, `rank_basis = signal_only` | Complements the mirror-basis T18 board; both are on `app/leaderboard.html` |
+| Replacement depth | Distribution view: 680 slots on the 2nd string, 8 on the 3rd, 0 on the 4th, plus 16 starters on the report whose club chart names no next man (F-15, left unfilled) | Complements the per-slot store on `app/replacement-depth.html` |
+| Official-only correlations | Audit of all 988 published pairs: integer n on every value (n = 32), p present, hosts limited to `www.nfl.com`, violations = 0, re-run on every build (`tools/build_round3.py --check`) | Independent check over the same discipline the round-2 15-pair table applies |
+| Demotion gate | Adopted round-2's G8 (six triggers, `docs/methodology/demotion-gate.md`) as the register of record — this round's proposed duplicate G8 was dropped in favour of the richer, active one | Nothing discarded: the stronger definition wins the path |
+| Decision registers | **Q-19…Q-24** (price feed for the snapshot store, close capture job, G8 ratification, signal baseline, origination of record, results refresh), **S-13…S-18** (six reviewable proposals), **F-14…F-19** (post-hoc Thursday captures, 16 unnamed replacements, 3 zero-line games, the tie, ARI/AZ alias, two-model disagreement) | Root registers were untouched by the earlier rounds; these are additive |
+
+## Still open after this round
+
+- **Q-19 / Q-02** — no official price source: market lines, differences, CLV and ROI stay blank everywhere, by rule.
+- **Q-21** — this round asked for explicit ratification of demotion thresholds; the register of record is round-2's G8 (D1–D6, `data/gates.json`), whose D4/D5 stay inactive until a price feed exists.
+- **Q-23** — two in-repo models publish different Week 10 lines; neither is designated the origination of record yet (F-19).
+- **Q-24 / S-17** — the results feed is verified but not yet re-read by the scheduled refresh.

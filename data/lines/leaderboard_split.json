@@ -1,12 +1,12 @@
 {
  "dataset": "leaderboard_split",
  "title": "Strategy leaderboard \u2014 signal block and staking block scored separately",
- "generated_at": "2026-11-14T20:04:04Z",
+ "generated_at": "2026-11-14T21:13:59Z",
  "source": {
   "url": "https://github.com/nflverse/nfldata",
   "label": "Research lab (code/pipeline_lab.py) over fingerprinted nflverse/nfldata; results feed 2026 official",
   "organization": "this repository + nflverse",
-  "retrieved_at": "2026-11-14T20:04:04Z",
+  "retrieved_at": "2026-11-14T21:13:59Z",
   "official": false,
   "note": "No official NFL source publishes betting prices (F-06); price-derived numbers are third-party research."
  },

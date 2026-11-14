@@ -1,12 +1,12 @@
 {
  "dataset": "correlation_official",
  "title": "Correlations \u2014 official numbers first; every value published with n",
- "generated_at": "2026-11-14T20:04:04Z",
+ "generated_at": "2026-11-14T21:13:59Z",
  "source": {
   "url": "https://www.nfl.com/stats/season-stats",
   "label": "Official NFL regular-season stats + standings (2026, through Week 9)",
   "organization": "National Football League",
-  "retrieved_at": "2026-11-14T20:04:04Z",
+  "retrieved_at": "2026-11-14T21:13:59Z",
   "official": true,
   "note": "Official team-level correlations are the only decision-usable set. No official NFL source publishes betting prices (F-06); price-derived numbers are third-party research."
  },

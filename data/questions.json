@@ -1,9 +1,14 @@
 {
   "meta": {
-    "title": "Decision Register — Questions, Information gaps and Answers",
+    "title": "Decision Register \u2014 Questions, Information gaps and Answers",
     "retrieved_at": "2026-11-14",
     "rule": "A question may only be marked 'answered' when the answer is verified against an official source and that source is linked. Anything else stays open.",
-    "counts": { "answered": 0, "partially_answered": 1, "open": 17 }
+    "counts": {
+      "answered": 0,
+      "partially_answered": 2,
+      "open": 22,
+      "total": 24
+    }
   },
   "questions": [
     {
@@ -30,7 +35,7 @@
       "what_would_answer_it": "A named vendor, contract terms, and the retention rules for quotes.",
       "owner_decision": true,
       "source_url": "https://www.nfl.com/news/nfl-picks-week-10-2026-nfl-season",
-      "source_note": "NFL.com's own picks page attributes odds to a commercial sportsbook and timestamps them — evidence that any official-page odds are a third-party snapshot, not a league feed."
+      "source_note": "NFL.com's own picks page attributes odds to a commercial sportsbook and timestamps them \u2014 evidence that any official-page odds are a third-party snapshot, not a league feed."
     },
     {
       "id": "Q-03",
@@ -43,7 +48,7 @@
       "what_would_answer_it": "A house rulebook adopted before any strategy is registered.",
       "owner_decision": true,
       "source_url": "https://operations.nfl.com/the-rules/nfl-rulebook/",
-      "source_note": "The official 2026 NFL Rulebook defines game outcomes (including overtime and ties) but says nothing about wagering settlement — settlement is a book-level contract."
+      "source_note": "The official 2026 NFL Rulebook defines game outcomes (including overtime and ties) but says nothing about wagering settlement \u2014 settlement is a book-level contract."
     },
     {
       "id": "Q-04",
@@ -95,7 +100,7 @@
       "what_would_answer_it": "A written contest structure plus jurisdiction-specific legal review.",
       "owner_decision": true,
       "source_url": "https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf",
-      "source_note": "The NFL Gambling Policy caps permissible prizes at $250 in related contests for NFL Personnel and prohibits personnel from sports-betting operations — a constraint on who can enter and how rewards may be framed."
+      "source_note": "The NFL Gambling Policy caps permissible prizes at $250 in related contests for NFL Personnel and prohibits personnel from sports-betting operations \u2014 a constraint on who can enter and how rewards may be framed."
     },
     {
       "id": "Q-08",
@@ -113,7 +118,7 @@
     {
       "id": "Q-09",
       "topic": "Market scope",
-      "question": "Which markets are in scope for originating lines — spread, total, moneyline, team total, player props, alternates?",
+      "question": "Which markets are in scope for originating lines \u2014 spread, total, moneyline, team total, player props, alternates?",
       "why_it_blocks": "Each market needs a different distribution model. Committing to props before having a distribution model produces fabricated numbers.",
       "known_information": "The requirement names single bets, parlays and player-prop combinations.",
       "answer": "",
@@ -238,7 +243,85 @@
       "what_would_answer_it": "A second independent capture compared row-for-row to confirm nothing was missed in transcription.",
       "owner_decision": false,
       "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
-      "source_note": "Coverage check is internal consistency, not a second independent transcription — hence 'partially'."
+      "source_note": "Coverage check is internal consistency, not a second independent transcription \u2014 hence 'partially'."
+    },
+    {
+      "id": "Q-19",
+      "topic": "Price provenance",
+      "question": "Which source will be accepted as the official price feed for the market open/close columns of the snapshot store?",
+      "why_it_blocks": "The store now records our own line for every originated market, but market_line and difference stay blank until a source is named. No CLV, no ROI, no fair-vs-market column can fill without it.",
+      "known_information": "No league or club source publishes betting prices (flag F-06). The repository carries a fingerprinted third-party mirror whose line provenance is undocumented (flag I-10). The store itself is built and published: 84 records, open/close stages, blank-and-flag behaviour enforced by tools/build_snapshots.py.",
+      "answer": "Partial. The schema, stages and capture rules are decided; the feed itself is not. The realistic options are (a) one named book, (b) a consensus service, (c) the owner's own account statements \u2014 official for the owner's P&L but not a market number.",
+      "status": "open",
+      "what_would_answer_it": "Owner picks a tier and supplies access; market_line and difference then fill from recorded captures only, never from memory.",
+      "owner_decision": true,
+      "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/snapshots/price_snapshots.json",
+      "source_note": "Snapshot store as published this round"
+    },
+    {
+      "id": "Q-20",
+      "topic": "Update cadence",
+      "question": "What unattended job captures the close snapshot at kickoff for every originated market?",
+      "why_it_blocks": "Without it the close half of the store never fills: this round recorded 39 open captures and 39 close captures marked pending_kickoff, and the one already-played game is flagged not_captured_before_kickoff.",
+      "known_information": "The snapshot clock is 2026-11-14, after the Week 10 Thursday kickoff (2026-11-12), so that game's captures are post-hoc and are flagged rather than back-dated (flag F-14). The repo already runs data-refresh.yml every 6 hours.",
+      "answer": "Partial. The capture mechanics and the status vocabulary (recorded / pending_kickoff / not_captured_before_kickoff) are defined; no job yet runs them at kickoff.",
+      "status": "open",
+      "what_would_answer_it": "A kickoff-timestamped step in the scheduled workflow that re-runs tools/build_snapshots.py with a capture flag and commits the result.",
+      "owner_decision": false,
+      "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_snapshots.py",
+      "source_note": "Store contract and capture rules"
+    },
+    {
+      "id": "Q-21",
+      "topic": "Risk control",
+      "question": "What exact measured decay sends a live strategy back to paper under gate G8?",
+      "why_it_blocks": "A demotion gate with no ratified numbers is a description, not a control. Nothing may leave paper until the thresholds are fixed in advance.",
+      "known_information": "G8 was added to data/gates.json this round with four proposed triggers: rolling z < 1.0 over 100 graded bets; two consecutive gate re-run failures; median max drawdown > 25% of bankroll; mean CLV <= 0 over 50 bets. No strategy is live, so the gate is defined but not active.",
+      "answer": "Partial. The trigger families are chosen; the numbers are proposals. They must be ratified before promotion, never after \u2014 changing a gate after results exist is itself a gate violation.",
+      "status": "open",
+      "what_would_answer_it": "Owner accepts or edits the four thresholds in data/gates.json G8 and stamps the ratification date.",
+      "owner_decision": true,
+      "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+      "source_note": "Root gate register including the new G8"
+    },
+    {
+      "id": "Q-22",
+      "topic": "Grading source",
+      "question": "Should the signal group be graded against a 50% baseline or against the break-even implied by the price?",
+      "why_it_blocks": "A hit rate above 50% is not an edge if the price demands 52.4%. The leaderboard split needs one rule before strategies are compared to each other.",
+      "known_information": "With no official price there is no break-even to measure against (Q-19). ST-11 is therefore graded against 0.50 and every row says so: 84-49 on 133 decided games, z=3.04, p=0.0024, computed from official results only.",
+      "answer": "Partial. 50% is the only defensible baseline while prices are blocked; the rule must switch to price break-even \u2014 publishing both columns \u2014 as soon as Q-19 resolves.",
+      "status": "partially_answered",
+      "what_would_answer_it": "Q-19 resolution, then recompute signal_z against break-even and keep the 50% figure as a secondary column.",
+      "owner_decision": false,
+      "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/results/signal_grade.json",
+      "source_note": "Signal grade and its stated baseline"
+    },
+    {
+      "id": "Q-23",
+      "topic": "Method",
+      "question": "Which model is the origination of record when the two in-repo models disagree?",
+      "why_it_blocks": "Two models publish lines for the same games. The snapshot store and the origination-order table cite one of them; a fair/market/difference column is meaningless if 'fair' can mean two different numbers.",
+      "known_information": "Model A (code/build_lines.py ratings) posts WAS -0.5 for the Week 10 Thursday game; model B (research-lab walk-forward Poisson) posts home margin +3.09, i.e. WAS -3.09. Both files are in the repository with their own diagnostics; neither has been designated the origin of record.",
+      "answer": "Open. This round's snapshot store uses model A because it is the file that originates side, total and moneyline together; model B is used for the ST-11 signal grade. The split is documented, not decided.",
+      "status": "open",
+      "what_would_answer_it": "Owner designates one model of record for origination; the other becomes a published cross-check with its own column.",
+      "owner_decision": true,
+      "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_lines_2026_week10.csv",
+      "source_note": "Week 10 origination file (model A)"
+    },
+    {
+      "id": "Q-24",
+      "topic": "Report cadence",
+      "question": "How does the results feed stay current without a person re-reading the schedule pages?",
+      "why_it_blocks": "The feed is the foundation of every backtest. If it silently goes stale, ROI computed on it is wrong without anyone noticing.",
+      "known_information": "This round's 137 rows were produced by line-by-line reads of official by-week pages and verified three ways (row diff vs mirror, standings arithmetic, source-URL audit). The scheduled data-refresh workflow re-pulls standings, injuries and team stats every 6 hours but does not yet re-read results.",
+      "answer": "Partial. The verification path is proven and repeatable; the scheduled refresh does not yet include it.",
+      "status": "open",
+      "what_would_answer_it": "Add a by-week results step to data-refresh.yml (GitHub Actions can reach nfl.com) that re-reads completed weeks and re-runs tools/build_results.py checks, failing loudly on any mismatch.",
+      "owner_decision": false,
+      "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_results.py",
+      "source_note": "Results feed builder and its three checks"
     }
   ]
 }
