@@ -308,6 +308,28 @@ def build_depth_charts(report, team_index, club_domains=None) -> Optional[Dict[s
              "page_title": title, "attempts": attempts, "status": "ok"}
         )
 
+    payload = dataset(
+        "depth_charts",
+        "Official club depth charts (starters through 4th string)",
+        rows,
+        ["team_name", "unit", "position", "slot", "depth", "player"],
+        {
+            "url": "https://www.nfl.com/teams/",
+            "label": "Official club sites (one depth chart per team)",
+            "org": "Club",
+        },
+        season=2026,
+        per_team_sources=sources_seen,
+        note=(
+            "Depth order is read left to right exactly as each club prints it: column 1 is "
+            "the starter, column 2 the 2nd string, and so on. Where a club leaves a column "
+            "empty the position simply has no listed player at that depth."
+        ),
+    )
+    guard_write(os.path.join(DATA_DIR, "depth_charts.json"), payload, report, "depth_charts")
+    return payload
+
+
 def build_team_stats(report, team_index) -> Optional[Dict[str, Any]]:
     tables: List[Dict[str, Any]] = []
     for spec in S.TEAM_STAT_CATEGORIES:
