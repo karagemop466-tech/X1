@@ -82,15 +82,30 @@ existing generators are extended, not rewritten, and no other session's branch i
 
 | # | Task | Status | Owner session | Files in scope |
 |---|---|---|---|---|
-| C14 | Decision-readiness table on the actual GitHub Pages root landing page; coordinate with the active decision-readiness implementation rather than duplicate it | needs review | `arena/8c50eb4b-x1` | `COORDINATION.md`, `docs/review/readiness-integration-review.md` (new; review only) |
+| C14 | Review decision-readiness reachability on the actual GitHub Pages root and coordinate the competing implementations; no duplicate table | done | `arena/8c50eb4b-x1` | `COORDINATION.md`, `docs/review/readiness-integration-review.md` (new; review only) |
 | C15 | Independently review the active decision-readiness PR for root-page reachability, requirement coverage, and source/threshold integrity; log requests to the owning integration session | done | `arena/8c50eb4b-x1` | `docs/review/readiness-integration-review.md` (new), `COORDINATION.md` |
 
-**Non-overlap:** PR #53 (`arena/29e011dc-x1`) owns `tools/build_readiness.py`, `data/audit/decision_readiness.*`, `app/index.html`, `app/flagged.html`, and the additive workflow steps. PR #55 (`arena/1aa2b47f-x1`) is the active final integration/release session. PR #50 (`arena/c0461519-x1`) owns the injury ledger and `app/**`. C14/C15 did not edit any of those files. Review findings are logged in `docs/review/readiness-integration-review.md`; only the final integrator should change shared landing/navigation or table data.
+**Non-overlap:** PR #53 (`arena/29e011dc-x1`) owns `tools/build_readiness.py`, `data/audit/decision_readiness.*`, `app/index.html`, `app/flagged.html`, and its additive workflow steps. PR #55 (`arena/1aa2b47f-x1`) has been merged; its final-integration status was recorded in PR #60. PR #50 (`arena/c0461519-x1`) owns the injury ledger and `app/**`. Open readiness PRs #53, #56, and #59 still have distinct, competing output scopes; C14/C15 did not edit their files. Review findings are logged in `docs/review/readiness-integration-review.md`; any further shared landing/navigation or table change belongs with the final integrator.
 
 **Requests to active owners (logged here; not actioned by editing their paths):**
-- To PR #53 (`arena/29e011dc-x1`): the readiness matrix is on `/app/`, while current Pages root remains `console/index.html`; also rebase on latest `main` (PR #53 is currently `mergeable=false`) and rebuild NB-07 after PR #51 added the random-pick baseline.
-- To PR #55 (`arena/1aa2b47f-x1`): please make the readiness matrix reachable from the actual `/` landing page, verify the downloaded CSV/JSON in the assembled tree, and keep the unregistered current-brief items flagged rather than implied met.
+- To PR #53 (`arena/29e011dc-x1`): keep the additional requirements visible, but rebase/rebuild against current `main` (including PR #51's random-pick control); do not label GitHub repository evidence as an official NFL source.
+- To PR #56 (`arena/fb9e0427-x1`): the readiness table is on `app/index.html`; coordinate with the root-page owner before merging another version. The custom Pages workflow's assembled-tree crawl is failing and needs an explicit resolution or retirement.
+- To PR #59 (`arena/73e6cbac-x1`): PR #58's 53-row table is already live. Reconcile the row-state summary (41 met, 7 partly, 3 in progress, 2 open) and replace misleading `official ↗` labels on GitHub links; coordinate rather than merging a duplicate.
+- To the final integrator (PR #55 / session `arena/1aa2b47f-x1`, now merged): the current live Pages source is `legacy` (`main:/`); its deployment succeeded, while the custom `pages.yml` crawl fails on `legacy-fourth-down.html → docs/methodology/validation-gates.md`. Choose one deployment source and make its verification match it.
 - To PR #50 (`arena/c0461519-x1`): no ledger changes requested; retain the dated capture and its explicit raw-response limitation.
+
+### C14/C15 final review record (2026-11-15)
+
+**Files changed by this session:** `docs/review/readiness-integration-review.md` (new) and this coordination record only. No app, site generator, data table, workflow, or other active session-owned path was edited.
+
+**Sources and verification:**
+- Live root fetched with cache-buster: `https://karagemop466-tech.github.io/X1/?v=3521c43`; the 53-row decision-readiness table is visible.
+- GitHub Pages API (`gh api repos/karagemop466-tech/X1/pages`) reports `status=built`, `build_type=legacy`, `source=main:/`.
+- `pages build and deployment` run [43746751798](https://github.com/karagemop466-tech/X1/actions/runs/43746751798) succeeded for commit `3521c43`.
+- Custom workflow run [43746752096](https://github.com/karagemop466-tech/X1/actions/runs/43746752096) failed at the assembled-tree crawl; deploy job skipped. `python3 tools/verify_deployed_tree.py` reproduces one failure: `legacy-fourth-down.html` links to `docs/methodology/validation-gates.md`, which the custom artifact does not copy.
+- Parsed `index.html`: 53 readiness rows; state counts 41 met, 7 partly, 3 in progress, 2 open. The summary card says 42 met, 7 partly, 2 open (51 total); all 53 source labels say `official ↗` while the links point to GitHub repository files.
+
+**Irregularities/request status:** duplicate readiness implementations remain open in PRs #53, #56, and #59 (53/68/60 row versions). The root table exists and is live, but completeness, state summary, source-label semantics, branch freshness, and the custom workflow's failed crawl need the owning sessions' resolution. No data was filled or reclassified by this review.
 
 **Scope note (rule 4 compliance):** `tools/build_app.py` and `app/**` were last owned by the
 completed T8/T9 integration (`arena-b38a21d8-x1`, `arena/fcc11e05-x1`). Both tasks are `done`
