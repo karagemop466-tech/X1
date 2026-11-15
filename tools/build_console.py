@@ -43,14 +43,20 @@ MK = ('<span class="src mut">computed &mdash; from '
       'results_feed.csv">results_feed.csv</a></span>')
 
 NAV = [
+    # Added by session arena/b03ced7c-x1 (additive only): the decision-readiness
+    # table the owner's brief asks for, one row per requirement with its gate.
     ("Overview", [("index.html", "Overview", ""),
                   ("executive-summary.html", "Executive summary", ""),
-                  ("requirements.html", "The eight requirements", "")]),
+                  ("requirements.html", "The eight requirements", ""),
+                  ("readiness.html", "Decision readiness", "")]),
     ("Official data", [("standings.html", "Standings", "32"),
                        ("schedule.html", "Week 10 slate", "14"),
                        ("injuries.html", "Injury report", "345"),
                        ("depth.html", "Replacement depth", "897"),
-                       ("deficiency.html", "Deficiency register", "897")]),
+                       ("deficiency.html", "Deficiency register", "897"),
+                       # Added by session arena/b03ced7c-x1 (additive only)
+                       ("capture.html", "Week 10 re-capture", ""),
+                       ("depth-parse.html", "Depth parse defects", "")]),
     ("Markets", [("results.html", "Verified results feed", "7,548"),
                  ("prices.html", "Price-snapshot store", "18.8k"),
                  ("lines.html", "Originated lines", "6.3k")]),
@@ -383,6 +389,23 @@ def build_pages(ctx):
             continue
         links = "".join(f'<a href="{h}">{esc(l)}</a> &middot; ' for h, l, _ in items)
         cards.append(f'<div class="card"><h3>{esc(grp)}</h3><p>{links.rstrip("&middot; ")}</p></div>')
+    # Added by session arena/b03ced7c-x1 (additive only): the top five rows of the
+    # decision-readiness table, built from data/console/readiness.json so the
+    # landing page and readiness.html cannot drift apart.
+    try:
+        _rd = json.load(open(os.path.join(OUT_DATA, "readiness.json"), encoding="utf-8"))
+        _ids = ("R-02", "R-07", "R-08", "R-12", "R-29")
+        _pick = [_r for _i in _ids for _r in _rd["rows"] if _r["id"] == _i]
+        ready_top = table(
+            [("ID", 0), ("Requirement", 0), ("The gate that blocks it", 0),
+             ("The number that would clear it", 0), ("Where it stands today", 0), ("Source", 0)],
+            [[f'<a href="readiness.html#{esc(_r["id"])}">{esc(_r["id"])}</a>',
+              esc(_r["requirement"]), esc(_r["gate"]), esc(_r["needs"]), esc(_r["today"]),
+              src_link(_r["source"], "official")] for _r in _pick], "readyto")
+    except (OSError, ValueError, KeyError):
+        ready_top = ('<div class="note">The readiness table is not built in this tree. '
+                     'Run <code>python3 tools/official/readiness.py</code>.</div>')
+
     body = f"""
 <div class="note bad"><b>The headline, stated first.</b> Nothing in this repository currently beats the
 closing NFL line, and the console is built to say so rather than to suggest otherwise.
@@ -432,6 +455,15 @@ information we hold, the information we do not, and the paths forward.
 <b>player-prop lines</b>, or <b>Houston's depth chart</b>. Those three gaps are the reason some
 columns are blank. They are listed on the <a href="flagged.html">flagged</a> page with their
 sources, and each has a suggestion attached.</p>
+
+<h2>Decision readiness &mdash; one row per requirement</h2>
+<p><b>Added by session arena/b03ced7c-x1.</b> The table the brief asks for: for every requirement,
+the gate that blocks it, the number that would clear it, and where that number stands today.
+The five most consequential rows are below; all 75 are on
+<a href="readiness.html">decision readiness</a>. No number in the &ldquo;stands today&rdquo; column
+is typed by hand &mdash; each is produced by a measurement in
+<code>tools/official/readiness.py</code> and names the file it was read from.</p>
+{ready_top}
 
 <h2>Pages by category</h2>
 <div class="cards">{''.join(cards)}</div>
@@ -666,6 +698,17 @@ def build_pages_2(ctx, pages):
     body = ('<div class="note">The official injury report is a daily document. This is the report as '
             'it stood on the build date. The page was re-read today and matched on every club\'s row '
             'count and on its Out / Doubtful / Questionable totals.</div>'
+            # Added by session arena/b03ced7c-x1 (additive only): the table above is the
+            # 2026-11-14 read. The live page has moved since: it prints 347 rows and 32
+            # cells differ. Saying so here is the difference between a dated snapshot and
+            # a claim about today.
+            '<div class="note mid"><b>This table is dated 2026-11-14, and the page has moved '
+            'since.</b> Read again on 2026-11-15T18:14Z, the official page prints <b>347</b> rows '
+            'across the same 28 clubs: <b>2</b> rows are missing from the table above and '
+            '<b>32</b> cells differ. Both reads are published side by side, with every differing '
+            'cell listed, on <a href="capture.html">Week 10 official re-capture</a>. The table '
+            'below is not overwritten, because a designation that changed between the two dates '
+            'is evidence and the older read is the only record of it.</div>'
             + table(hdr, trs, "inj", filter_col=0, filter_label="Filter by club or player"))
     pages["injuries.html"] = page(
         "Injury report", "Official data", body,
@@ -1678,6 +1721,14 @@ def main():
     p = build_pages_5(ctx, p)
     p = build_pages_6(ctx, p)
     p = build_pages_7(ctx, p)
+    # Added by session arena/b03ced7c-x1 (additive only): four pages for the
+    # Week 10 re-capture, the two depth-parse failures, the readiness table and
+    # the official-source flags. They render through this module's own helpers,
+    # so they carry the same nav, stylesheet and source-cell contract.
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "official"))
+    import build_pages as official_pages  # noqa: E402
+    p.update(official_pages.build(dict(esc=esc, table=table, pill=pill, src_link=src_link,
+                                       page=page, sources=sources)))
     for name, html_text in p.items():
         with open(os.path.join(OUT_SITE, name), "w", encoding="utf-8") as fh:
             fh.write(html_text)
