@@ -365,6 +365,8 @@ def build_luck_panel():
             "strategies": len(b5),
             "ci_excludes_zero": len(verdict),
             "p_below_0_05": sum(1 for x in b5 if x["p_value"] < 0.05),
+            "p_below_0_05_above_breakeven": sum(1 for x in b5 if x["p_value"] < 0.05 and x["hit_rate"] > x["breakeven"]),
+            "p_below_0_05_below_breakeven": sum(1 for x in b5 if x["p_value"] < 0.05 and x["hit_rate"] < x["breakeven"]),
             "p_below_0_05_and_ci_positive": sum(1 for x in b5 if x["p_value"] < 0.05 and x["ci_low"] > 0),
             "best_signal": b5[0]["id"] if b5 else "",
             "best_p": min(x["p_value"] for x in b5) if b5 else None,
@@ -741,16 +743,19 @@ def build_site(readiness, luck, mind, venues_header, venues, flags):
   <div class="kpi bad"><div class="lab">Cannot be reconciled</div><div class="val">{flagged}</div><div class="sub">published on the flagged page</div></div>
 </div>
 
-<div class="note bad"><b>The headline, first.</b> No strategy in this lab beats the closing line.
-16 pre-registered strategies were evaluated out of sample and <b>0 passed the gates</b>. The best
-signal score on the board is {luck['blocks'][4]['summary']['best_signal'] if len(luck['blocks'])>4 else ''}
-with a p-value of {fmt(luck['blocks'][4]['summary']['best_p'], 3) if len(luck['blocks'])>4 else ''}.
-The one measured 2026 signal is 84-49 (63.2%) over 133 decided games. Its 95% lower bound
-(54.7%) is above the 52.38% break-even, so the <i>hit rate</i> is better than a break-even picker's —
-but a hit rate is not a return, and no held source publishes the price it would have been paid at.
-Seven of the sixteen strategies beat their break-even win rate at the 5% level and <b>none</b> of
-them turned that into a positive return at the prices taken. That is what vig does, and
-<a href="luck.html">the luck page</a> shows the arithmetic.</div>
+<div class="note bad"><b>The headline, first.</b> Nothing in this lab has beaten the closing line in
+a way the gates will accept. 16 pre-registered strategies were evaluated out of sample and
+<b>0 passed every gate</b>. The highest signal score on the board is
+{luck['blocks'][4]['summary']['best_signal'] if len(luck['blocks'])>4 else ''}, and the smallest
+p-value ({fmt(luck['blocks'][4]['summary']['best_p'], 5)}) belongs to
+{luck['blocks'][4]['summary']['best_p_id'] if len(luck['blocks'])>4 else ''} — which is a
+<i>losing</i> hit rate tested against its own low break-even, not a profitable one.
+{luck['blocks'][4]['summary']['p_below_0_05'] if len(luck['blocks'])>4 else ''} strategies differ from
+their break-even win rate at the 5% level; <b>none</b> has a bootstrap ROI interval above zero.
+The one measured 2026 signal is 84-49 (63.2%) over 133 decided games, with a 95% lower bound of
+54.7% — above the 52.38% break-even for the <i>hit rate</i>, but a hit rate is not a return and no
+held source publishes the price it would have been paid at. <a href="luck.html">The luck page</a>
+shows all of the arithmetic.</div>
 
 <h2>Start here</h2>
 <div class="home">
@@ -881,9 +886,12 @@ merely incomplete.</div>
                 f'from their own break-even at the 5% level (smallest p = {fmt(s["best_p"], 6)}, '
                 f'<code>{esc(s["best_p_id"])}</code>). <b>{s["ci_excludes_zero"]}</b> have a bootstrap ROI '
                 f'interval that excludes zero, and <b>{s["p_below_0_05_and_ci_positive"]}</b> pass both. '
-                f'The gap between those counts is itself the finding: beating the break-even win rate did not '
-                f'produce a positive return at the prices were taken, which is what the vig does to a good pick. '
-                f'Promotion requires both, so nothing is promoted.</div>')
+                f'The gap between those two counts is the finding. <b>{s["p_below_0_05_above_breakeven"]}</b> of '
+                f'the {s["p_below_0_05"]} beat their break-even win rate and <b>{s["p_below_0_05_below_breakeven"]}</b> '
+                f'are significantly <i>worse</i> than it — and even the ones that beat it lose money at the prices '
+                f'taken, because the break-even is computed on the average price actually received. Beating '
+                f'52.38% on paper is not the same as making money. Promotion requires both statistics, so '
+                f'nothing is promoted.</div>')
     body = ('<div class="note bad"><b>What "removing luck" means here.</b> It does not mean subtracting a '
             'number. It means three things: (1) a test that says how extreme a record must be before '
             'chance stops explaining it; (2) an interval around every measured rate, so a hot streak '
@@ -1134,8 +1142,10 @@ because it is convenient.</div>
     body = f"""
 <div class="note bad"><b>The result.</b> 16 pre-registered strategies, 0 promoted. The best signal
 score on the board is {luck['blocks'][4]['summary']['best_signal'] if len(luck['blocks'])>4 else ''},
-and {luck['blocks'][4]['summary']['p_below_0_05'] if len(luck['blocks'])>4 else ''} strategies beat their
-break-even win rate at the 5% level while <b>0</b> produce a bootstrap ROI interval above zero. The
+and {luck['blocks'][4]['summary']['p_below_0_05'] if len(luck['blocks'])>4 else ''} strategies differ
+from their break-even win rate at the 5% level while <b>0</b> produce a bootstrap ROI interval above
+zero, and {luck['blocks'][4]['summary']['p_below_0_05_below_breakeven'] if len(luck['blocks'])>4 else ''} of
+those differences are significantly <b>worse</b> than break-even rather than better. The
 model's fair line also loses to the closing market on both spread and total error (14.20 vs 13.14
 points RMSE on the spread). That is the state of this lab today, and every page on this site is
 built to make it impossible to misread.</div>

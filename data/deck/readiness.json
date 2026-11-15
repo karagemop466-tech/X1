@@ -1,7 +1,7 @@
 {
  "meta": {
   "title": "Decision readiness",
-  "generated_at": "2026-11-15T18:29:48Z",
+  "generated_at": "2026-11-15T18:30:56Z",
   "rule": "One row per brief line. status/source verified by tools/build_deck.py; a blocked row means no artefact exists anywhere in the repository."
  },
  "rows": [

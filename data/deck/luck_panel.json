@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T18:29:48Z",
+ "generated_at": "2026-11-15T18:30:56Z",
  "blocks": [
   {
    "id": "L1",
@@ -387,6 +387,8 @@
     "strategies": 16,
     "ci_excludes_zero": 0,
     "p_below_0_05": 7,
+    "p_below_0_05_above_breakeven": 2,
+    "p_below_0_05_below_breakeven": 5,
     "p_below_0_05_and_ci_positive": 0,
     "best_signal": "ST-TOT-3",
     "best_p": 0.0,

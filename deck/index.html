@@ -32,7 +32,7 @@
 <header class="page">
   <h1>Overview</h1>
   <p>The decision dashboard: what is proven, what is blocked, and by what number.</p>
-  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+  <div class="stamp">Built 2026-11-15T18:30:56Z · every row carries its source · blank means not held, never zero</div>
 </header>
 
 <div class="kpis">
@@ -45,16 +45,19 @@
   <div class="kpi bad"><div class="lab">Cannot be reconciled</div><div class="val">3</div><div class="sub">published on the flagged page</div></div>
 </div>
 
-<div class="note bad"><b>The headline, first.</b> No strategy in this lab beats the closing line.
-16 pre-registered strategies were evaluated out of sample and <b>0 passed the gates</b>. The best
-signal score on the board is ST-TOT-3
-with a p-value of 0.000.
-The one measured 2026 signal is 84-49 (63.2%) over 133 decided games. Its 95% lower bound
-(54.7%) is above the 52.38% break-even, so the <i>hit rate</i> is better than a break-even picker's —
-but a hit rate is not a return, and no held source publishes the price it would have been paid at.
-Seven of the sixteen strategies beat their break-even win rate at the 5% level and <b>none</b> of
-them turned that into a positive return at the prices taken. That is what vig does, and
-<a href="luck.html">the luck page</a> shows the arithmetic.</div>
+<div class="note bad"><b>The headline, first.</b> Nothing in this lab has beaten the closing line in
+a way the gates will accept. 16 pre-registered strategies were evaluated out of sample and
+<b>0 passed every gate</b>. The highest signal score on the board is
+ST-TOT-3, and the smallest
+p-value (0.00000) belongs to
+ST-ML-10 — which is a
+<i>losing</i> hit rate tested against its own low break-even, not a profitable one.
+7 strategies differ from
+their break-even win rate at the 5% level; <b>none</b> has a bootstrap ROI interval above zero.
+The one measured 2026 signal is 84-49 (63.2%) over 133 decided games, with a 95% lower bound of
+54.7% — above the 52.38% break-even for the <i>hit rate</i>, but a hit rate is not a return and no
+held source publishes the price it would have been paid at. <a href="luck.html">The luck page</a>
+shows all of the arithmetic.</div>
 
 <h2>Start here</h2>
 <div class="home">
