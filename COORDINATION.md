@@ -28,8 +28,23 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
+| `arena-b8722e85-x1` | `arena/b8722e85-x1` | Expanded-brief requirement capture + decision-readiness criteria (non-overlapping source artifacts; app integration deferred to final integration after open PRs) | 2026-11-15 | in progress |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
+
+---
+
+## Claim — expanded owner brief and decision-readiness criteria (session `arena-b8722e85-x1`)
+
+The claim is on the fixed current branch `arena/b8722e85-x1` (Arena does not permit this session to create or switch to a `session-<id>/<task>` branch). The open PRs #50 (`arena/c0461519-x1`) and #51 (`arena/3f5badd0-x1`) are active and touch `app/**`/`tools/build_app.py` and `lab/**`/`tools/lab/**` respectively. To avoid overlap, this session does **not** edit those paths or the existing site navigation. It claims only these new source artifacts; the eventual landing-page rendering is a request for the final integration after those PRs are resolved.
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| RD-1 | Capture the additional requirements in the latest owner brief as a verbatim, additive round-3 source and register (R-54 onward); reconcile duplicates/conflicts without removing the original brief | in progress | `arena-b8722e85-x1` | `docs/live-pipeline/project-brief-round3.md` (new), `data/audit/requirements_round3.json` (new) |
+| RD-2 | Define a row for every registered requirement with its current state, blocking gate, and evidence-backed clearance criterion; leave unknown thresholds blank and flag them instead of inventing numbers | in progress | `arena-b8722e85-x1` | `data/audit/decision_readiness.json` (new), `tools/build_decision_readiness.py` (new), `tools/verify_decision_readiness.py` (new), `docs/audit/decision-readiness.md` (new) |
+| RD-3 | Request final integration to render the readiness table on the landing page and link the expanded brief; do not edit `app/**` while PR #50 owns that tree | needs review | `arena-b8722e85-x1` | `COORDINATION.md` request only; integration-owned page changes deferred |
+
+Non-overlap: no existing `app/**`, `tools/build_app.py`, `lab/**`, `.github/workflows/**`, or other session's source paths will be edited. Existing official data tables are read-only during this task. Requirement text comes from the owner's latest request; NFL facts/thresholds in the readiness rows will use only already verified source-backed data or registered gates. Unsupported thresholds will be left blank and marked unverified.
 
 ---
 
