@@ -43,14 +43,20 @@ MK = ('<span class="src mut">computed &mdash; from '
       'results_feed.csv">results_feed.csv</a></span>')
 
 NAV = [
+    # Added by session arena/b03ced7c-x1 (additive only): the decision-readiness
+    # table the owner's brief asks for, one row per requirement with its gate.
     ("Overview", [("index.html", "Overview", ""),
                   ("executive-summary.html", "Executive summary", ""),
-                  ("requirements.html", "The eight requirements", "")]),
+                  ("requirements.html", "The eight requirements", ""),
+                  ("readiness.html", "Decision readiness", "")]),
     ("Official data", [("standings.html", "Standings", "32"),
                        ("schedule.html", "Week 10 slate", "14"),
                        ("injuries.html", "Injury report", "345"),
                        ("depth.html", "Replacement depth", "897"),
-                       ("deficiency.html", "Deficiency register", "897")]),
+                       ("deficiency.html", "Deficiency register", "897"),
+                       # Added by session arena/b03ced7c-x1 (additive only)
+                       ("capture.html", "Week 10 re-capture", ""),
+                       ("depth-parse.html", "Depth parse defects", "")]),
     ("Markets", [("results.html", "Verified results feed", "7,548"),
                  ("prices.html", "Price-snapshot store", "18.8k"),
                  ("lines.html", "Originated lines", "6.3k")]),
@@ -1678,6 +1684,14 @@ def main():
     p = build_pages_5(ctx, p)
     p = build_pages_6(ctx, p)
     p = build_pages_7(ctx, p)
+    # Added by session arena/b03ced7c-x1 (additive only): four pages for the
+    # Week 10 re-capture, the two depth-parse failures, the readiness table and
+    # the official-source flags. They render through this module's own helpers,
+    # so they carry the same nav, stylesheet and source-cell contract.
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "official"))
+    import build_pages as official_pages  # noqa: E402
+    p.update(official_pages.build(dict(esc=esc, table=table, pill=pill, src_link=src_link,
+                                       page=page, sources=sources)))
     for name, html_text in p.items():
         with open(os.path.join(OUT_SITE, name), "w", encoding="utf-8") as fh:
             fh.write(html_text)
