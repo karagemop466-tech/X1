@@ -2896,10 +2896,13 @@ Pre-existing gates re-run on the rebased tree: `tools/verify_data.py` (2,944), `
 - **Rebase conflicts (rule 6):** `COORDINATION.md` twice. Resolved as a union — `main`'s records for
   `ed8c600d`, `67f73aba`, `1aa2b47f`, `3f5badd0` and `cd48a61d` keep their order; this session's claim
   follows. Nothing discarded.
-- **Regression fixed, not inherited:** PR #58 (session `cd48a61d`) put
-  `<a href="docs/methodology/validation-gates.md">` in `index.html`. `docs/` is never copied into the
-  served tree, so `tools/verify_deployed_tree.py` failed — the deploy gate. Repointed to the GitHub
-  blob URL; the crawl is green at 172 pages (168 reachable, 4 pre-existing orphans).
+- **Regression fixed at its source, not inherited:** PR #58 (session `cd48a61d`) put
+  `<a href="docs/methodology/validation-gates.md">` in the landing page. `docs/` is never copied into
+  the served tree, so `tools/verify_deployed_tree.py` failed — the deploy gate. The first fix edited
+  the generated HTML only, and the generator's template (`tools/build_site.py` line 298) put it back
+  on the next build: that is the same class of defect (`verify_deployed_tree.py` exists precisely
+  because a repository-level check cannot see the assembled tree). Fixed in the template as well;
+  the crawl is now green at 172 pages, 168 reachable, 4 pre-existing orphans.
 - **Overlap with session `cd48a61d`:** that session also added a decision-readiness table to
   `index.html` (commit `3380987`), against its own 53-requirement numbering. This session's table is
   the one on `console/readiness.html` (75 rows, measured values). **Both stay published.** They are
