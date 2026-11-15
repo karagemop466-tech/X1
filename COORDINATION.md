@@ -2622,3 +2622,15 @@ Not claimed here (the site, the integration and every other brief item stay with
 **Request to the integration session (not actioned here, per the rules):** publish the 2026-11-15 capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. Do not overwrite the 2026-11-14 table. Then re-run `tools/verify_w10_recapture.py` until it exits 0.
 
 **Not done in this session (honest scope):** the brief's other items (daily timestamped captures, a durable snapshot store, the leaderboard, correlation and gating changes, and the 14 "Week 10 snapshot" items) were already handled by earlier merged rounds, or need data this sandbox cannot fetch. They are not claimed here.
+
+### Pull request and deployment record — session `arena-ed8c600d-x1` (E1)
+
+| Step | Result |
+|---|---|
+| PR | [#49](https://github.com/karagemop466-tech/X1/pull/49), `arena/ed8c600d-x1` → `main` |
+| CI on PR | `verify` pass (15s), `build` pass (35s); `deploy` skipped on PR as designed |
+| Merge | `gh pr merge 49 --merge` → MERGED, commit `4f361c9` (2026-11-15T18:14:01Z) |
+| Post-merge verify-site (main) | run 43745574910 **success** (14s) |
+| Pages deployment | run 43745574909 **success** (1m12s) |
+| Live-site check | `https://karagemop466-tech.github.io/X1/app/injuries.html` fetched live. It still shows the 2026-11-14 snapshot, which is expected (no change to the site) and is the source of flags F-E1-1 to F-E1-4 and F-E1-6. |
+| Files changed on main | additive only: `data/capture/2026_w10/**`, `tools/verify_w10_recapture.py`, `COORDINATION.md` |
