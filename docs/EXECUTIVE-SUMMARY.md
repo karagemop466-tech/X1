@@ -101,4 +101,57 @@ labelled rather than one being dropped.
 - **Q-23** — two in-repo models publish different Week 10 lines; neither is designated the origination of record yet (F-19).
 - **Q-24 / S-17** — the results feed is verified but not yet re-read by the scheduled refresh.
 
+## 10. Round 4 — decision readiness (2026-11-15, session `arena-fb9e0427-x1`)
+
+**What this round added.** A decision-readiness register with **one row per requirement** (60 rows: the 53
+rows of the 2026-11-14 register plus 7 brief items that register does not carry). Each row names the gate
+that blocks it, the value measured now from a named repository file, and the number that would clear it.
+It is on the landing page (`app/index.html`), and every row carries its evidence link. The data is in
+`data/audit/readiness.json`, rebuilt by `tools/build_state_audit.py --check` in CI.
+
+**Headline, measured this round.** The register is not a fair picture of the data:
+
+| | Register (2026-11-14) | Round 4 (checked against the files) |
+|---|---|---|
+| met | 42 | **33** |
+| partly met | 7 | **16** |
+| in progress | 2 | 2 |
+| open | 2 | **9** |
+
+Nine register rows changed state, every one from **met** to **partly met**: the G1 threshold conflict (R-12), the missing cluster bound (R-14), one capture date with no retained series (R-15), 31 of 32 depth charts (R-16), no snap counts or inactive lists (R-17), the open injury re-capture (R-20), the price pairs (R-46), the official results (R-47) and the mirror market lines (R-49). The register text is unchanged, and the change is shown beside it, not written over it.
+
+**The numbers that block the most rows.**
+
+- **Official prices:** opening and closing spreads exist for **272 of 2,232** games, moneylines for **0**, and
+  **0 of 20,088** rows come from an official source (`data/prices/price_history.csv`). The 2,232 games × 3
+  markets = **6,696** official pairs needed.
+- **Official results:** **14 of 2,232** results are officially verified; the rest rely on the third-party mirror.
+  The 2026 feed was built on 2026-11-14, and on 2026-11-15 nfl.com shows the Patriots–Lions game as **Final
+  (10–35)**, which the feed still lists as scheduled.
+- **Injury captures:** the published table is **one** capture date (345 rows). Nothing retains a series. The
+  injury file has one git commit, and daily captures from Wednesday to kickoff need **5 per game week**.
+- **Depth:** **31 of 32** clubs parsed. The Houston chart is an image and is not parsed.
+- **Strategy gate:** the one strategy that passes every gate has **398 bets**. `data/gates.json` requires **500**
+  singles bets, and the README requires 100. The two registers disagree, and this is flagged, not resolved.
+- **Gaps with no data at all:** no ablation, no game-cluster bound, no multiplicity adjustment, no NWS forecast,
+  no roof designation, no reserve list, no inactive list, no snap count, and no random-picks control on any
+  leaderboard run. Each is an open row with its measured count.
+
+**Verified this round.** Four clubs (Commanders, Giants, Patriots, Lions; 44 players, 176 fields) were
+compared against the live nfl.com injury page fetched on 2026-11-15, with **0 mismatches** against the
+2026-11-14 table (`tools/spotcheck_injuries_r4.py`, `data/audit/round4_spotcheck_injuries.csv`). That is a spot
+check of 4 of 28 clubs, not a re-verification. PR #49 (another session, merged as `4f361c9`) reported 16 differing rows
+and 2 absent Ravens rows. This round recounted those numbers from its files (flag F4-06) but did not re-read the live page for them.
+
+**Flagged, published, not changed.** The landing page quotes a spread MAE of 10.42 (model) and 9.73
+(market). `data/lab/lines/model_report.json` publishes 10.741 and 9.792 over 3,165 games, and the figures
+were not reproduced from `data/lab/lines/fair_lines.csv`. The text was left as found and is listed on the
+Flagged for review page with both sources. The register also cites Q-09 for reward rules, but Q-09 is
+"Market scope" in `data/questions.json`; rewards are Q-07 there and Q-20 in the decision register.
+
+**Still open after this round (with the number that clears each).** Official prices (6,696 pairs, now 0);
+official results (2,232 rows, now 14); daily injury captures (5 per game week, now 1 date); 32 of 32 depth
+charts (now 31); a reward rule set (Q-07, not decided); a joint-probability calibration per combo family (3
+families, now 0 files); and one G1 sample threshold that both registers state (they state 100 and 500 today).
+
 ---\n\n# Executive Summary — fourth round: session `arena/1aa2b47f-x1` review and release (2026-11-15)\n\nThis session took over the integrated branch (`arena/1aa2b47f-x1`, identical to `main` at `51d6e32`) and ran the offline verification the build cannot do against live official pages, because `nfl.com` and `operations.nfl.com` return connection failure from this sandbox (HTTP 000). No value was inferred and nothing was published that is not already in a committed official snapshot.\n\n## What this session verified (offline)\n\n| Check | Result |\n|---|---|\n| `tools/verify_data.py` | 2,944 integrity assertions — all pass |\n| `tools/check_links.py` | 159 files, 40,653 assertions — all links resolve, no orphans, every external host approved |\n| `scripts/verify_site.py` | 159 HTML pages — local links resolve, every data-table row carries an official source link |\n| Live official sources | `nfl.com`, `operations.nfl.com` unreachable (HTTP 000) — verification is against committed snapshots only |\n\n## Standing honest position (unchanged)\n\n1. **No official source publishes betting prices.** Every price, CLV, difference and ROI cell is blank and flagged (Q-02 / F-06). Q-02 is the single highest-leverage open decision.\n2. **Nothing is ranked on luck.** Signal is separated from staking; G8 demotes live→paper mechanically; the board is honestly empty of promotable strategies.\n3. **Depth is club self-report.** No league-wide official depth chart exists; several clubs print 'unofficial' (Q-05 / F-01).\n\n## Irregularities carried forward (none block release)\n\nFlags F-01…F-19 and defects D-01…D-03 remain on the Flagged for Review page with source links. Highest-signal open items: Q-02 (licensed price feed), Q-04 (licensed snap counts), Q-07 (reward funding/legality), R-02 (no LICENSE file). No new irregularity was introduced this session; no published value was changed.\n\n## Recommended owner actions (suggestions board, unchanged)\n\n- **S-13** — name the price feed (unblocks Q-19/Q-02 and every market column).\n- **S-17** — schedule the results-feed refresh (unblocks Q-24).\n- **S-16** — ratify the G8 demotion thresholds (Q-21).\n- **S-10** — second independent transcription pass on standings and injuries.\n- Add a `LICENSE` (R-02) before republishing any ingested NFL data.
