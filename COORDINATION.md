@@ -49,7 +49,7 @@ Handoff log: at 2026-11-15 18:21 UTC, PR #53 was open and its changed-file list 
 
 Current handoff (2026-11-15): PR #63 merged as `f6f9f89`; it added a separate console readiness/flags surface and fixed the `docs/` deployment-link defect. PRs #50, #53, #56, #59, #61, and #66 were open at this check. A read-only search found no site link to `docs/audit/official-gamebook-source-review.md` and no `IR-10`…`IR-12` matches in `app/`, `console/`, `hub/`, `data/`, `tools/`, or `docs/`. Memo linking and any flags remain an integration request; the proposed IDs are not reserved and need the site owner's collision check.
 
-Conflict log (2026-11-15): the original session-branch rebase and a later rebase onto `main` after PR #63/#65 both conflicted in append-only `COORDINATION.md` records. Resolved by retaining the current `arena/cd48a61d-x1` and `arena-b8722e85-x1` registry entries, preserving the complete E1, C1/C2, final-integration, and PR #63 records, and separating E1 from C1/C2 into distinct claim tables. No app, data, generator, or workflow path was changed.
+Conflict log (2026-11-15): the original session-branch rebase and later rebases onto `main` after PRs #63/#65 conflicted in append-only `COORDINATION.md` records. Resolved by retaining the current `arena/cd48a61d-x1` and `arena-b8722e85-x1` registry entries, preserving the complete E1, C1/C2, final-integration, and PR #63 records, and separating E1 from C1/C2 into distinct claim tables. Merging the original remote claim commit afterward also conflicted in `COORDINATION.md` and on the same memo; resolved in favor of the updated handoff and cleaned memo while retaining the original claim as a merge parent. No app, data, generator, or workflow path was changed.
 
 ---
 
