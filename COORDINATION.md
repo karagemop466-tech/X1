@@ -28,6 +28,7 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
+| `arena-208b025a-x1` | `arena/208b025a-x1` | Console integration: dated Week 10 injury re-capture, decision-readiness table, executive summary and links to the review registers | 2026-11-15 | active |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -2769,4 +2770,33 @@ No new irregularities were introduced by this session. Open owner decisions rema
 Verification green across all three suites. The unified dashboard (`app/`) is the canonical site: one landing page, category-organised subpages, tables throughout, an executive summary, a decision register (30+ questions), a suggestion board (A/B/C paths, review-before-build), and a Flagged for Review page. All 53 requirements R-01…R-53 are registered; R-41 and R-42 close with this PR/merge/deploy. Flagged irregularities and unverified items do not block the merge and remain published on `app/flagged.html` with source links.
 
 Session `arena/67f73aba-x1` claim committed; PR/merge/deploy/record follow.
+---
 
+# Session `arena/208b025a-x1` — dated capture and decision-readiness integration
+
+**Session ID:** `arena-208b025a-x1` · **Branch:** `arena/208b025a-x1` · **Started:** 2026-11-15 UTC.
+**Claim written before content work.** The branch was fast-forwarded from `51d6e32` to the current `main` at `4f361c9` (PR #49) before this claim.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| I1 | Publish the 2026-11-15 official Week 10 injury-report transcription as a separately dated capture; preserve the 2026-11-14 snapshot, expose the differences and capture limitations, and do not label the old 0-mismatch check as current | **in progress** | `arena/208b025a-x1` | `tools/build_console.py`, `data/console/injury_capture_2026-11-15.csv` (generated), `console/injury-capture.html` (generated), `console/injuries.html`, `console/verification.html`, `console/flagged.html`; `data/capture/2026_w10/**` read-only |
+| I2 | Add a decision-readiness view to the canonical console landing page: one row for every entry in the existing 53-row requirements register, with a blocking gate and a numeric clearance only where the source register actually defines one; leave unsupported gates/thresholds blank and flag them | **in progress** | `arena/208b025a-x1` | `tools/build_console.py`, `data/console/decision_readiness.csv` (generated), `console/index.html`, `console/requirements.html`, `console/executive-summary.html`, `tools/verify_console_integration.py` (new) |
+| I3 | Make the full decision/questions and suggestions review paths discoverable from the console, preserve their options and recommendation/status fields, run the build/link/data checks, and prepare the integration PR / deployment record | **in progress** | `arena/208b025a-x1` | `tools/build_console.py`, `console/questions.html`, `console/suggestions.html`, `console/index.html`, `console/flagged.html`, `console/verification.html`, `.github/workflows/pages.yml`, `COORDINATION.md` |
+
+## Non-overlap and evidence policy
+
+- The official re-capture files under `data/capture/2026_w10/` and the existing 2026-11-14 injury data are read-only. The integration will publish a new dated view and will not rewrite the original snapshot.
+- PR #50 (`arena/c0461519-x1`, draft immutable injury ledger) and PR #51 (`arena/3f5badd0-x1`, control baselines) are open as of this claim. Their scopes (`app/**` / `tools/snapshot_ledger.py` and `lab/**` / `tools/lab/build_controls.py` / `verify.yml`) are not edited by this claim. No merge or ownership transfer is implied.
+- No claim will be made that the 2026-11-15 transcription is a raw NFL response: its own README says the raw HTTP bytes and exact clock time were not retained. The table will cite the official NFL page, carry the captured date and transcription hash, and keep the corresponding unknowns visible.
+- Project requirements are sourced to the owner brief and repository evidence; they are not NFL facts. Official-source links apply to factual data rows. A missing official threshold will remain blank and be labelled not defined rather than invented.
+
+## Sync/conflict note
+
+Before the claim, `git pull --rebase origin main` initially produced an add/add conflict in `COORDINATION.md` because this checkout was shallow and hid the shared ancestor. The rebase was aborted with no file edits; `git fetch --unshallow origin main` exposed the ancestry, and the retry fast-forwarded cleanly to `4f361c9`. No work or other session's content was discarded. This note records that sync issue per rule 6.
+
+
+### Rebase conflict resolution — session `arena/208b025a-x1`
+
+A second `git pull --rebase origin main` fetched `24c65d9` (PR #54), whose append-only coordination record overlapped this session's newly appended claim. The conflict was resolved as a union: the complete `arena/67f73aba-x1` main-side record is retained, and this session's registry row and full claim are appended after it. No other session's text was deleted or rewritten.
