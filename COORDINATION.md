@@ -2770,3 +2770,28 @@ Verification green across all three suites. The unified dashboard (`app/`) is th
 
 Session `arena/67f73aba-x1` claim committed; PR/merge/deploy/record follow.
 
+
+---
+
+# Session `arena/1aa2b47f-x1` — repo review, verification and release (current branch)
+
+**Session ID:** `arena/1aa2b47f-x1` · **Branch:** `arena/1aa2b47f-x1` (branched from `main` @ `51d6e32`, identical to main at claim time) · **Role:** repo line-by-line review, offline verification of the committed official snapshots, suggestions/questions/executive-summary review, site integration and release (PR → main → merge → GitHub Pages deploy confirm).
+
+**Scope claimed (rule 1):** `COORDINATION.md` (append-only claim record), `docs/review/repo-review.md`, `docs/EXECUTIVE-SUMMARY.md` (append-only addendum), `data/questions.json` and `data/suggestions.json` (read-only review), `app/**` and `pages/**` (read-only verification; no section removed or rewritten). All existing T1–T17 / S1–S8 scope remains owned by its recording sessions and is not re-opened.
+
+**Constraint recorded at claim time:** `nfl.com`, `operations.nfl.com` and all official NFL hosts return connection failure from this sandbox (HTTP 000, tested 2026-11-15). Live verification against official pages is therefore not possible in this session. All verification is against the committed official snapshots (each carries its fetch URL and retrieval date), plus internal link and cross-reference checks. Any value not present in a committed official snapshot is left blank and flagged — nothing is inferred.
+
+**Started (UTC):** 2026-11-15 · **Status:** in progress
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| T-R1 | Repo line-by-line review + irregularity flags | in progress | `arena/1aa2b47f-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | in progress | `arena/1aa2b47f-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | in progress | `arena/1aa2b47f-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: confirm build + Pages deploy, PR → main, merge, record result | in progress | `arena/1aa2b47f-x1` | `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
+
+---
+
+## Handoff note for this session
+
+No other session's files are edited. Existing `index.html`, `pages/**`, `assets/**`, `app/**`, `tools/**`, `scripts/**`, `data/**`, `docs/**` and `.github/workflows/**` are treated as read-only except the append-only records named above. Any defect found is logged as a flag (never silently patched into a published value) and the owner decides the fix.
