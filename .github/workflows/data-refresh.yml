@@ -57,6 +57,15 @@ jobs:
       - name: Verify the published site
         run: python3 scripts/pipeline/verify_site.py
 
+      # Added by session arena/8c67ec75-x1 (additive only). Every scheduled capture is kept
+      # in data/pipeline/archive/ with its raw SHA-256, fetch time and conflict flags. The
+      # self-test proves the archive rules; the verifier fails the run on an integrity break
+      # (missing file, hash/name mismatch, broken predecessor link). Freshness is a warning.
+      - name: Verify the immutable capture archive
+        run: |
+          python3 scripts/pipeline/test_archive.py
+          python3 scripts/pipeline/verify_archive.py
+
       - name: Commit refreshed data
         if: always()
         run: |

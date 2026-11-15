@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from . import htmlutil as H
+from . import archive as ARCHIVE
 from . import club_registry, model_correlation, repo_review
 from . import parsers as P
 from . import sources as S
@@ -169,14 +170,42 @@ def nick_map(index: Dict[str, Dict[str, str]]) -> Dict[str, str]:
     return out
 
 
+# Fields kept in the immutable archive. Source-link and bookkeeping keys are omitted
+# because the archive is one file per capture, and every row is tied to the capture's
+# own source_url and captured_at.
+ARCHIVE_FIELDS = ("team_abbrev", "team_name", "player", "position", "injuries",
+                  "practice_status", "game_status", "game_date", "kickoff_et", "broadcast")
+
+
+def _archive_safely(dataset, url, body, rows, report, *, fetch_ok=True, fetch_error=None):
+    """Record a capture in the immutable archive. Must never break the main pipeline."""
+    try:
+        compact = [{k: r.get(k) for k in ARCHIVE_FIELDS} for r in rows]
+        entry = ARCHIVE.archive_capture(
+            dataset, url, body, compact, fetch_ok=fetch_ok, fetch_error=fetch_error,
+        )
+        report["datasets"][f"archive_{dataset}"] = {
+            "status": entry.get("status"),
+            "rows": entry.get("rows"),
+            "file": entry.get("file"),
+            "conflict_flags": entry.get("conflict_flags", []),
+        }
+    except Exception as exc:  # noqa: BLE001
+        report["errors"].append({"dataset": f"archive_{dataset}",
+                                 "error": f"{type(exc).__name__}: {exc}"})
+
+
 def build_injuries(report, team_index, nicks) -> Optional[Dict[str, Any]]:
     result = fetch(S.INJURIES_URL)
     if not result.ok:
         report["errors"].append({"dataset": "injuries", "url": S.INJURIES_URL, "error": result.error})
+        _archive_safely("injuries", S.INJURIES_URL, "", [], report,
+                        fetch_ok=False, fetch_error=result.error)
         return None
     doc = H.parse(result.body)
     parsed = P.parse_injuries(doc, S.INJURIES_URL, team_index, nicks)
     rows = parsed["rows"]
+    _archive_safely("injuries", S.INJURIES_URL, result.body, rows, report)
     payload = dataset(
         "injuries",
         f"Official NFL Injury Report — Week {parsed.get('week')}, {parsed.get('season')}",
