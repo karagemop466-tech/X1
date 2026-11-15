@@ -571,8 +571,8 @@
    "quote": "Calibrate what 'Questionable' means empirically instead of using old percentages",
    "gate": "Play rate per designation with an interval, from joined seasons.",
    "needs": "Per-designation play rate with 95% CI",
-   "today": "published table holds 345 rows against 347 printed today; 2 rows missing, 32 cells differ; two same-day reads agree: yes",
-   "measurement": 345,
+   "today": "published table holds 347 rows against 347 printed today; 0 rows missing, 0 cells differ; two same-day reads agree: yes",
+   "measurement": 347,
    "provenance": "data/console/week10_reconcile.json (nfl.com injury report, read 2026-11-15)",
    "clears": "Several seasons of designations joined to inactives.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -610,8 +610,8 @@
    "quote": "Kerby Joseph, Cade Mays and D.J. Reed are published with a blank game-status cell",
    "gate": "Every printed designation present in the published table.",
    "needs": "0 printed designations missing",
-   "today": "published table holds 345 rows against 347 printed today; 2 rows missing, 32 cells differ; two same-day reads agree: yes",
-   "measurement": 345,
+   "today": "published table holds 347 rows against 347 printed today; 0 rows missing, 0 cells differ; two same-day reads agree: yes",
+   "measurement": 347,
    "provenance": "data/console/week10_reconcile.json (nfl.com injury report, read 2026-11-15)",
    "clears": "Done for these three: all print Out on today's page and Out in the table. Two Ravens rows are the real gap.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -623,8 +623,8 @@
    "quote": "Published counts are stale: 254 rows and 4 no-injury sections versus 279 rows and 2 sections live",
    "gate": "A dated re-capture, published beside the older one, never overwritten.",
    "needs": "The live row count published with its clock time",
-   "today": "published table holds 345 rows against 347 printed today; 2 rows missing, 32 cells differ; two same-day reads agree: yes",
-   "measurement": 345,
+   "today": "published table holds 347 rows against 347 printed today; 0 rows missing, 0 cells differ; two same-day reads agree: yes",
+   "measurement": 347,
    "provenance": "data/console/week10_reconcile.json (nfl.com injury report, read 2026-11-15)",
    "clears": "Done in this session: 347 rows, 2026-11-15T18:14Z, published beside the 345-row 11-14 table.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
