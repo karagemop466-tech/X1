@@ -2603,3 +2603,30 @@ Out of reach this round, and recorded as blocked (not built, not faked): officia
 inactive lists (no official source fetched yet), licensed prices and a settled opening/closing archive, a
 multi-season archive of injury reports, the Texans depth-chart image (needs an authorised structured source).
 Each is a row in `data/r4/readiness.json` with the number that would clear it.
+
+---
+
+## Overlap notice and release — session `arena-8e329878-x1` (2026-11-15, after recon of `origin/main` @ `24c65d9`)
+
+**Recorded after the claim at `1bf41b4`.** The claim was written without first reading the remote claim branches. Re-reading them shows the following overlaps. This session releases the overlapping items and stops adding parallel copies. No other session's files are edited.
+
+| Item | Overlapping session (earlier or equal claim) | Action by this session |
+|---|---|---|
+| R4-1 immutable injury store, 3-hourly capture | `arena-c0461519-x1` (L1/L2, claimed 18:11:49 UTC, PR #50 open) | **Released.** Work at `85e1610` stays on branch `arena/8e329878-x1` as unmerged reference. Not proposed for `main`. |
+| R4-2 Week 10 verifier against stored capture | `arena-ed8c600d-x1` (E1, merged PR #49); `arena-c0461519-x1` | Superseded. Note: its 1,380/0 result applies to the 2026-11-14 capture only. E1 reads 347 rows on the live page today against 345 published. |
+| R4-3 review, R4-4 readiness page | `arena/29e011dc-x1` (X1 decision-readiness register, PR #53 open) | **Released.** `tools/r4/readiness.py` and `data/r4/readiness.json` are committed as reference, not wired into any page, and not proposed for `main`. |
+| R4-5 delta page, R4-6 executive summary and suggestions | `arena/1aa2b47f-x1` (T-R1..T-R4, PR #55 open); `arena/29e011dc-x1` (X3) | **Released.** No further work by this session. |
+| R4-7 integration | `arena/67f73aba-x1` (merged PR #54); `arena/1aa2b47f-x1` (T-R4) | **Released.** |
+
+### Findings this session reports to the integration owner (not fixed here)
+
+1. **Week 10 row count is unresolved on the board.** The live official page (E1, read 2026-11-15) lists 347 rows, 2 of them Ravens rows missing from the published table (Calais Campbell, Ronnie Stanley). The published 345-row table is a 2026-11-14 snapshot. The stored 2026-11-14 capture verifies 345/345 with 0 mismatches. The two results are consistent with a page change between 14 and 15 November. A logged live read from the L1 ledger is needed before any count is published as current.
+2. **Depth coverage.** `data/pipeline/depth_charts.json` covers 31 of 32 clubs (HOU absent). The generator confirmed this count. The `_ci/pipeline.log` HOU entries show the club-page URLs were attempted and not parsed.
+3. **Pipeline parser defect.** `pipeline/parsers.py::parse_injuries` raises `UnboundLocalError` on `abbrev` when the team index is empty. Not patched here; should be logged as a flagged defect.
+4. **Push outcome.** `_ci/commit.log` records "PUSH FAILED after 5 attempts" for an earlier data-refresh run. Whether the 347-row data was ever pushed is unknown from the repo.
+5. **Dispatch limit.** `gh workflow run` returns 404 on non-default branches. Live captures must be triggered from `main` after merge, or by the L2 schedule.
+
+### Status
+
+- `arena-8e329878-x1`: **released** from R4-1..R4-7 as above. No PR opened by this session. Branch `arena/8e329878-x1` kept as a record.
+- Completion record: this section (no merge, no deploy by this session).
