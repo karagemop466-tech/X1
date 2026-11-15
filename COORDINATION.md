@@ -2579,6 +2579,26 @@ Session `arena-600e6009-x1` complete.
 
 ---
 
+# Session `arena-3f5badd0-x1` — control baselines + repo re-verification (branch `arena/3f5badd0-x1`)
+
+**Session ID:** `arena-3f5badd0-x1` · **Branch:** `arena/3f5badd0-x1` (branched from `51d6e32`, `main`)
+**Claim written and pushed before any task work started (rule 1).**
+
+## Handoff / takeover justification (board rule 10)
+
+The owner brief re-lists about 60 requirements. Auditing this branch against them: most are already
+`done` on the board by earlier sessions (PRs #1–#47). Re-running the full verification chain on this
+branch passes (`build_availability`, `verify_data` 2,944 checks, `build_site`, `check_links`,
+`verify_site`, `verify_app`, `build_app`, `build_results_r3 --check`, `verify_against_official`
+2,183 cells / 0 mismatches). Items with **no artefact anywhere in the repo** (grep, 0 files):
+"control baseline (random picks; favorites only) on every leaderboard run" and "removal of luck
+game-cluster lower bound". This session claims the control-baseline item.
+
+Not claimed (blocked in this sandbox, logged as open items instead of faked): daily nfl.com injury
+captures and club depth-page captures (`www.nfl.com` / `raw.githubusercontent.com` not reachable
+from bash; they need a scheduled workflow whose first run cannot be observed here), 2026 official
+snap counts and inactive lists (no official source fetched), 2026 spreads (the mirror ends with
+2026 partial and no official price source exists, Q-02).
 # Session `arena/ed8c600d-x1` — Week 10 official injury re-capture and row-level verification (this session)
 
 **Session ID:** `arena-ed8c600d-x1` · **Branch:** `arena/ed8c600d-x1` (branched from `main` @ `51d6e32`).
@@ -2589,6 +2609,73 @@ Bash cannot reach nfl.com (TLS error, `curl` exit 35); the official page was rea
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
+| C1 | **Control baselines** (random picks, favourites only) on every leaderboard run, pre-registered before the numbers are computed | in progress | `arena-3f5badd0-x1` | `docs/lab/control-baselines.md` (new), `tools/lab/build_controls.py` (new), `data/lab/controls/**` (new), `lab/controls.html` (new), `lab/` nav via `tools/lab/build_site.py` (own file) |
+| C2 | Re-verify the 2026 published numbers this session touches against the pinned mirror | in progress | `arena-3f5badd0-x1` | read-only |
+
+Non-overlap: no other session holds a claim on the `lab/` section or `tools/lab/`. The root and `app/`
+trees are not edited.
+
+## Completion record — C1 / C2 (session `arena-3f5badd0-x1`)
+
+**Status:** C1 done · C2 done · PR and deploy: see the pull request record below.
+
+### What shipped
+
+| Item | Artefact |
+|---|---|
+| Pre-registration (rules frozen before any control number was computed) | `docs/lab/control-baselines.md`, commit **`0747005`** (the registration) |
+| Control A (random picks, seed 20261115, 1,000 replications) and Control B (favourites only, ATS and straight up) | `tools/lab/build_controls.py`, `data/lab/controls/control_baselines.{json,csv}` |
+| Reproduction gate | `python3 tools/lab/build_controls.py --check` added to `.github/workflows/verify.yml` (additive) |
+| Page | `lab/controls.html` ("Control baselines"), in the lab nav (`tools/lab/build_site.py`, own file) |
+| Control gate on all 8 leaderboard rows | every row shows **NOT RUN**, with the reason; none is passed or failed on a window it cannot be scored on |
+
+### Results (registered universe: 1,871 REG games, 2019–2025, spread on record)
+
+- Favourites ATS: **881–947–43**, win rate **48.2%**, Wilson 95% [45.9%, 50.5%]; break-even at −110 = 52.4%.
+- Favourites straight up: **66.4%** (n = 1,865 non-tied games).
+- Random picks ATS (1,000 reps): mean **50.0%**, band 47.8%–52.1%; **94.3%** of random runs score at least as well as favourites.
+- By season, favourites ATS: 2019 45.9%, 2020 44.5%, 2021 46.6%, 2022 45.2%, 2023 53.1%, 2024 53.4%, 2025 48.3%. The 2023 and 2024 intervals cross the bar.
+
+### Sources used (fetched or read this session)
+
+- nflverse/nfldata `data/games.csv`, pinned copy in `data/lab/upstream/` (archive SHA-256 `0c93b5ec…`, file SHA-256 `7d791bb4…`). Public path: https://github.com/nflverse/nfldata/blob/master/data/games.csv (fetched 2026-11-15; the live file is newer than the pin, see irregularities).
+- Repository history of that file: https://github.com/nflverse/nfldata/commits/master/data/games.csv
+- The spread sign convention was checked against the data itself (1,871 games; home teams with a positive line won 66.3%, slope 1.05). It is not taken from a page.
+- Official NFL pages: **none** used for the controls. The NFL is not a source for spreads. Scores come from the mirror (the verified results feed carries 1 official-verified row for 2026; this round does not change that).
+
+### Verification performed (this session, all green)
+
+| Check | Result |
+|---|---|
+| `tools/build_availability.py`, `tools/verify_data.py` | 2,944 integrity checks passed |
+| `tools/build_site.py`, `tools/check_links.py`, `scripts/verify_site.py` | 160 HTML pages, all links resolve, every data-table row has an official source link |
+| `tools/verify_app.py`, `tools/build_app.py` | links resolve; every data row sourced or flagged |
+| `tools/verify_against_official.py` (Week 10 cells vs official pages) | 2,183 cells, **0 mismatches** |
+| `tools/cross_check.py`, `scripts/verify_parlay.py`, `tools/test_source_rule.py`, `tools/verify_stores.py`, `tools/build_results_r3.py --check` | all pass |
+| `tools/lab/build_controls.py --check`, `tools/lab/build_site.py --check` | reproducible; 14 lab pages, links resolve |
+| Arithmetic | 881+947+43 = 1,871; 2019–2025 season rows sum to the pooled row |
+
+### Irregularities (also on the lab Flagged for review page, `lab/flagged.html`, C1-01 to C1-03)
+
+1. **C1-01** The spread used as the favourite benchmark comes from a community mirror; it names no sportsbook, timestamp or price. Non-blocking. Q-02 stays open.
+2. **C1-02** No leaderboard run can be scored against a control on the same games (2026 windows, no price). All 8 rows show NOT RUN. The gate is not passed.
+3. **C1-03** The mirror changed after our pin: upstream commit `6d38e30` ("Automated data update", today) postdates the pinned copy. The pinned bytes are used and not re-pinned here, so the universe does not move. Re-pinning would be a new registration.
+4. Pre-existing and recorded earlier: the owner's 136-game log and the "Pages CDN" staleness note in the README are unchanged by this round.
+
+### Requested in the brief, NOT done in this session (logged, not faked)
+
+| Brief item | Why it is not done | What would unblock it |
+|---|---|---|
+| Daily or Wed–Fri captures of the nfl.com injury report, club depth pages and inactive evidence, with hashes and timestamps | `www.nfl.com` and `raw.githubusercontent.com` are not reachable from this sandbox's bash. A scheduled capture workflow could not be observed to succeed here, so it would be untested. | A GitHub Actions cron job on the runner, plus one observed successful run before the claim is marked done |
+| Official inactive lists and snap counts for 2026 | No official source was fetched. Snap counts are a licensed or PFR-style source in this repo's own docs (Q-items). | A per-game official source fetched and hashed (the Game Book PDFs were not reachable) |
+| 2026 spreads for a leaderboard control on the same games | No dated, named-book 2026 price exists (Q-02) | A licensed odds feed with timestamps, or a provider-recorded opening and closing line |
+| Game-cluster lower bound and multiplicity adjustment for the leaderboard | Not started. A cluster bootstrap needs the per-game bet log the leaderboard does not publish | Per-game bet log from the leaderboard's strategy definitions |
+| Owner brief items already done by earlier sessions (price store, results feed, origination order, signal vs staking, depth groups, correlation with n, demotion gate, pre-registration, decision-readiness table, Flagged page, per-team view, etc.) | Re-verified where this session touched them; not re-built | none this round |
+
+### Process notes for the owner
+
+- The brief asked for `session-<id>/<task>` branches and parallel sessions. This session is pinned to `arena/3f5badd0-x1` by the platform, so it works on that one branch. Other sessions' claims are on the board above and were not edited.
+- The brief also asked for an "executive summary" and a "suggestions" section. Both exist (`lab/executive-summary.html`, `lab/suggestions.html`, `app/suggestions.html`); they were not changed in this round.
 | E1 | **Re-capture the official Week 10 NFL.com injury report** (all 8 pages, 14 games, 28 clubs) and compare it row by row with the published `data/nfl/injuries_week10.tsv` (345 data rows) — the brief's "254 vs 279 rows / stale counts" item and the Lions designation item (VR-08/VR-12) | **done** (findings flagged, see record below) | `arena-ed8c600d-x1` | `data/capture/2026_w10/**` (new), `tools/verify_w10_recapture.py` (new), this file |
 
 Not claimed here (the site, the integration and every other brief item stay with their owning sessions or the integration step): publishing changes to `app/**`, `data/nfl/injuries_week10.tsv`, any model, leaderboard or registry.
