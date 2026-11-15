@@ -1,0 +1,81 @@
+name: Official injury-report capture
+
+# Session arena-8e329878-x1 (R4-1). Reads https://www.nfl.com/injuries/ every three
+# hours, logs every read with its UTC clock time and SHA-256, and stores the raw
+# HTML only when its hash differs from the previous distinct capture. A layout
+# drift, a blocked fetch or a failed hash check fails this run, so the failure
+# shows in the Actions tab rather than producing a blank table.
+#
+# Commits made by this job carry [skip ci] unless a NEW distinct capture was
+# stored, so the read log does not trigger a Pages rebuild on every read.
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: official-capture
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Capture the official injury report
+        id: capture
+        run: python3 tools/capture/official_injuries.py capture
+
+      - name: Verify the published table against the newest capture
+        if: steps.capture.outcome == 'success'
+        run: python3 tools/capture/verify_against_capture.py
+
+      - name: Commit the read log and any new capture
+        if: always()
+        env:
+          REF: ${{ github.ref_name }}
+        run: |
+          set -u
+          git config user.name "x1-capture-bot"
+          git config user.email "x1-capture-bot@users.noreply.github.com"
+          git add data/captures/official_injuries
+          if git diff --cached --quiet; then
+            echo "nothing new to commit"
+            exit 0
+          fi
+          stamp="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          if git diff --cached --name-only | grep -q '/raw/'; then
+            msg="capture: new official injury-report capture at ${stamp}"
+          else
+            msg="capture: read logged at ${stamp} [skip ci]"
+          fi
+          git commit -q -m "$msg"
+          for attempt in 1 2 3 4 5; do
+            if git pull -q --rebase origin "$REF" && git push -q origin "HEAD:$REF"; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push attempt $attempt failed; retrying"
+            sleep $((attempt * 5))
+          done
+          echo "PUSH FAILED after 5 attempts"
+          exit 1
+
+      - name: Fail the run if the capture failed
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo "The official capture failed. See the step above for the reason."
+          exit 1
