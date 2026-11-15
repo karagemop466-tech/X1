@@ -3015,3 +3015,21 @@ Pre-existing gates re-run on the rebased tree: `tools/verify_data.py` (2,944), `
 **Open rows after this round (unchanged; each has its blocking count on the landing page):** official prices (6,696 pairs needed, 0 present), official results (14 of 2,232 verified), daily injury captures (1 of 5 per game week), 31 of 32 depth charts parsed, a reward rule set (Q-07), joint-probability calibration per combo family (0 of 3), one G1 sample threshold (100 in the README, 500 in `data/gates.json`).
 
 **Handoff:** no other session's file was edited in this round, other than the merge resolutions recorded above (append-only COORDINATION.md and EXECUTIVE-SUMMARY.md kept on both sides; generated `console/`, `index.html` and `build_site.py` taken from `main`).
+# Session `arena/79598415-x1` — publish the 2026-11-15 Week 10 injury capture (E1 request)
+
+**Session ID:** `arena-79598415-x1` · **Branch:** `arena/79598415-x1` (branched from `main` @ `3521c43`)
+**Claim written and pushed:** 2026-11-15T18:4xZ, before any data change.
+
+**Why this claim exists.** Completion record E1 (session `arena-ed8c600d-x1`, merged `4f361c9`) asked the integration session to publish the 2026-11-15 official capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. As of `main` `3521c43`, `data/nfl/injuries_week10.tsv` still holds the 2026-11-14 table (345 data rows, no Campbell or Stanley). The integration session `arena/67f73aba-x1` finished (PR #54) without taking that request. Nobody holds it on the board, so this session claims it as a narrow integration item (rule 9).
+
+**Claim (rule 1). Files in scope:**
+- `data/nfl/snapshots/injuries_week10_2026-11-15.tsv` (new), `data/nfl/snapshots/injuries_week10_2026-11-14.tsv` (new, preserved copy of the old table)
+- `data/nfl/injuries_week10.tsv` (replaced with the 2026-11-15 read, 347 rows)
+- `data/injuries_2026_week10.csv`, `data/injuries/injuries_2026_week10.csv`, `data/verify/official_injuries_2026_w10.psv` (derived copies regenerated from the same read)
+- `tools/build_w10_snapshot.py` (new builder with `--check`)
+- `tools/verify_against_official.py` (repair for F-E1-6: the injury check now tests the live 2026-11-15 transcription and keeps the 2026-11-14 one as history)
+- `data/capture/2026_w10/recapture_report.{md,json}` (regenerated)
+
+**Explicitly NOT in scope (logged as requests in the section below):** `console/**`, `src/console/**`, `data/console/**` (session `arena/5f1c014c-x1`); `app/**` and `tools/build_app.py` (session `arena-c0461519-x1`, PR #50 DRAFT); the landing-page readiness table (already on `main`, commit `3380987`); all other site trees.
+
+**Source:** https://www.nfl.com/injuries/ (read through the fetch tool 2026-11-15 UTC, 8 pages, 14 games, 28 clubs; transcription `data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv`, 347 rows).
