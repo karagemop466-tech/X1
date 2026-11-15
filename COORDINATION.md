@@ -2576,3 +2576,36 @@ its content is preserved and this session's change is additive.
 | Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
 
 Session `arena-600e6009-x1` complete.
+
+---
+
+# Session `arena-3f5badd0-x1` — control baselines + repo re-verification (branch `arena/3f5badd0-x1`)
+
+**Session ID:** `arena-3f5badd0-x1` · **Branch:** `arena/3f5badd0-x1` (branched from `51d6e32`, `main`)
+**Claim written and pushed before any task work started (rule 1).**
+
+## Handoff / takeover justification (board rule 10)
+
+The owner brief re-lists about 60 requirements. Auditing this branch against them: most are already
+`done` on the board by earlier sessions (PRs #1–#47). Re-running the full verification chain on this
+branch passes (`build_availability`, `verify_data` 2,944 checks, `build_site`, `check_links`,
+`verify_site`, `verify_app`, `build_app`, `build_results_r3 --check`, `verify_against_official`
+2,183 cells / 0 mismatches). Items with **no artefact anywhere in the repo** (grep, 0 files):
+"control baseline (random picks; favorites only) on every leaderboard run" and "removal of luck
+game-cluster lower bound". This session claims the control-baseline item.
+
+Not claimed (blocked in this sandbox, logged as open items instead of faked): daily nfl.com injury
+captures and club depth-page captures (`www.nfl.com` / `raw.githubusercontent.com` not reachable
+from bash; they need a scheduled workflow whose first run cannot be observed here), 2026 official
+snap counts and inactive lists (no official source fetched), 2026 spreads (the mirror ends with
+2026 partial and no official price source exists, Q-02).
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| C1 | **Control baselines** (random picks, favourites only) on every leaderboard run, pre-registered before the numbers are computed | in progress | `arena-3f5badd0-x1` | `docs/lab/control-baselines.md` (new), `tools/lab/build_controls.py` (new), `data/lab/controls/**` (new), `lab/controls.html` (new), `lab/` nav via `tools/lab/build_site.py` (own file) |
+| C2 | Re-verify the 2026 published numbers this session touches against the pinned mirror | in progress | `arena-3f5badd0-x1` | read-only |
+
+Non-overlap: no other session holds a claim on the `lab/` section or `tools/lab/`. The root and `app/`
+trees are not edited.
