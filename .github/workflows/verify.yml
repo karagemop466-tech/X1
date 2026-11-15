@@ -2,7 +2,7 @@ name: verify-site
 
 on:
   push:
-    branches: [main]
+    branches: [main, arena/c0461519-x1]   # arena/c0461519-x1 added TEMPORARILY (PR events not firing in this sandbox); remove before merge
   pull_request:
   workflow_dispatch:
 
