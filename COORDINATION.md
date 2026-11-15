@@ -2634,3 +2634,52 @@ Not claimed here (the site, the integration and every other brief item stay with
 | Pages deployment | run 43745574909 **success** (1m12s) |
 | Live-site check | `https://karagemop466-tech.github.io/X1/app/injuries.html` fetched live. It still shows the 2026-11-14 snapshot, which is expected (no change to the site) and is the source of flags F-E1-1 to F-E1-4 and F-E1-6. |
 | Files changed on main | additive only: `data/capture/2026_w10/**`, `tools/verify_w10_recapture.py`, `COORDINATION.md` |
+---
+
+---
+
+# Session `arena/67f73aba-x1` — final integration and delivery (this session)
+
+**Session ID:** `arena/67f73aba-x1` · **Branch:** `arena/67f73aba-x1` (branched from `main` @ `4f361c9`, the current main head)
+**Claim written and pushed before any work (rule 1).** Open PRs: none (`gh pr list --state open` → empty). nfl.com is not reachable from this sandbox, so all verification is against the committed official snapshots (each carries its fetch URL and date); no value not present in an official snapshot is published.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| F1 | Final verification: re-run the full integrity, link and app verification suites on the combined tree | done | `arena/67f73aba-x1` | `tools/verify_data.py`, `tools/check_links.py`, `tools/verify_app.py` |
+| F2 | Pull request from this branch to `main` summarising changes, sources and flagged irregularities | pending PR | `arena/67f73aba-x1` | `COORDINATION.md` (this record), PR |
+| F3 | Merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | pending deploy | `arena/67f73aba-x1` | `COORDINATION.md` (this record) |
+
+## Verification performed (final integration)
+
+| Check | Result |
+|---|---|
+| `python3 tools/verify_data.py` | **2,944 checks passed, all integrity checks passed, EXIT=0** |
+| `python3 tools/check_links.py` | **159 files, 40,653 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0** |
+| `python3 tools/verify_app.py` | **29 pages, 1,088 internal links, 7,254 data rows (7,230 sourced, 24 flagged no-source, 0 unsourced), passed** |
+
+No published value was changed. Nothing was inferred or filled in; every value that cannot be confirmed from an official source remains blank and flagged. All prior session work (T1–T17 and round 2 N1–N10 / T15–T22) is preserved intact; nothing was discarded or overwritten.
+
+## Irregularities (all pre-existing, none blocking, all on the Flagged for Review page)
+
+No new irregularities were introduced by this session. Open owner decisions remain: Q-02 (price feed), Q-07 (bankroll/reward funding), Q-31 (market price authority), and the reward rules; these are tracked on `app/decisions.html` and `app/suggestions.html`.
+
+## Pull request record
+
+| Item | Value |
+|---|---|
+| PR | pending |
+| Branch → base | `arena/67f73aba-x1` → `main` |
+| Title | Final integration: verify combined data, confirm clean build, record delivery |
+| Merge command | `gh pr merge <N> --merge` |
+| Merge result | pending |
+| Pages deploy | pending |
+| Live site | https://karagemop466-tech.github.io/X1/ |
+
+## Completion record
+
+Verification green across all three suites. The unified dashboard (`app/`) is the canonical site: one landing page, category-organised subpages, tables throughout, an executive summary, a decision register (30+ questions), a suggestion board (A/B/C paths, review-before-build), and a Flagged for Review page. All 53 requirements R-01…R-53 are registered; R-41 and R-42 close with this PR/merge/deploy. Flagged irregularities and unverified items do not block the merge and remain published on `app/flagged.html` with source links.
+
+Session `arena/67f73aba-x1` claim committed; PR/merge/deploy/record follow.
+
