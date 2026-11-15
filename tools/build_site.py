@@ -237,6 +237,7 @@ BOARD = load_audit("suggestion_board.json")
 QUEUE = load_audit("review_queue.json")
 CHANGES = load_audit("what_changed.json")
 REQS = load_audit("requirements_assessed.json")
+REQS_BY_ID = {x["id"]: x for x in REQS.get("rows", [])}
 
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
 SCHED_URL = "https://www.nfl.com/schedules/2026/REG/week/10/"
@@ -295,6 +296,17 @@ def state_pill_css(state):
             "in progress": "muted-pill"}.get(state, "muted-pill")
 
 def readiness_table():
+    """SUPERSEDED — kept for its cross-check value only, and deliberately NOT rendered.
+
+    This was session arena/cd48a61d-x1's landing register (commit 544d4e5). It is correct that
+    the table must be generated rather than hand-written, which is what both sessions concluded.
+    It is superseded here because page_readiness()/the landing table publish a *measured* current
+    value per requirement, whereas READINESS_GATE carries prose thresholds for 12 of the 53 rows
+    and "SNAPSHOT 2026-11-14" for the rest. Rather than delete another session's work, the gate
+    map below is retained as a second opinion that a reviewer can diff against GATE_FOR in
+    tools/build_decision_readiness.py. Rendering both would put two tables with the same caption
+    on one page, so only the measured one is rendered.
+    """
     rows = []
     for x in REQS["rows"]:
         rid = x["id"]
@@ -333,6 +345,7 @@ def page_index():
              if r["current_value"] is not None else
              '<td><span class="pill warn" title="' + esc(r["blank_reason"]) + '">blank</span></td>'),
             f'<td><span class="pill {esc(cls)}">{esc(verdict)}</span></td>',
+            f'<td>{esc(REQS_BY_ID.get(r["id"], {}).get("state", r["register_status"]))}</td>',
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["requirement_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
@@ -340,7 +353,7 @@ def page_index():
         ])
     readiness_html = table(
         ["ID", "Pri", "Requirement", "Gate that blocks it", "Number that would clear it",
-         "Current value", "Verdict", "Source"],
+         "Current value", "Verdict", "State", "Source"],
         landing_rows, cls="wide", data_table=True)
     rc_ready = READY["counts"]
 
@@ -430,7 +443,6 @@ def page_index():
     <a class="more" href="pages/decisions-critical.html">Decision table →</a>
   </div>
 </section>
-{readiness_table()}
 
 <section class="duo">
   <div class="panel">
@@ -457,7 +469,7 @@ def page_index():
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">DECISION READINESS</div>
-<h2>Every requirement: the gate that blocks it, and the number that would clear it</h2></div>
+<h2>Every requirement: what blocks it, what clears it</h2></div>
 <span class="tag">{rc_ready['requirements']} ROWS · {rc_ready['rows_with_a_computed_current_value']} MEASURED</span></section>
 <section class="content">
   <div class="note"><b>Read this table before deciding anything.</b> A row whose current value is
