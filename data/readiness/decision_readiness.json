@@ -17,7 +17,7 @@
   },
   "coverage_warning": "This matrix covers only the 53 requirement rows in requirements_assessed.json. The later detailed additions in the latest owner brief are not individually cross-walked here; do not treat this count as complete coverage of every added statement.",
   "threshold_policy": "Only thresholds explicitly present in data/gates.json are shown. Blank threshold means no registered numeric clearance value; no number was inferred. This is not a canonical cross-tree gate choice.",
-  "cross_tree_conflicts": [
+  "known_irregularities": [
     {
       "issue": "G1 sample-size threshold differs by tree",
       "root_register": "data/gates.json: effective sample thresholds are 500 singles, 300 two-leg parlay tickets, 400 three-plus-leg tickets, 500 prop tickets.",
@@ -37,6 +37,17 @@
         "https://github.com/karagemop466-tech/X1/blob/main/docs/audit/EXECUTIVE-SUMMARY.md",
         "https://github.com/karagemop466-tech/X1/blob/main/console/gates.html"
       ]
+    },
+    {
+      "issue": "Fresh Week 10 injury re-capture differs from the published snapshot",
+      "root_register": "The 2026-11-15 transcription contains 347 rows; the published 2026-11-14 table has 345.",
+      "console_register": "The row comparator reports 2 rows missing and 32 field differences across 16 rows; it exits nonzero.",
+      "resolution": "Flagged, not overwritten. Keep the dated capture distinct and reconcile the source timing before refreshing the public injury table.",
+      "sources": [
+        "https://www.nfl.com/injuries/",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/recapture_report.md",
+        "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_w10_recapture.py"
+      ]
     }
   ],
   "rows": [
@@ -52,7 +63,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/requirements.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -68,7 +79,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/decisions-critical.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -84,7 +95,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/suggestions-board.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -100,7 +111,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/suggestions-board.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -116,7 +127,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/decisions-critical.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -132,7 +143,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/decisions-critical.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -148,7 +159,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/line-origination.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -164,9 +175,9 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/line-origination.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
-      "row_review_flag": "Conflicting pass/promotion summaries exist in separate site trees; see the cross-tree conflict disclosure above."
+      "row_review_flag": "Conflicting pass/promotion summaries exist in separate site trees; see the disclosed gate/result conflict."
     },
     {
       "id": "R-09",
@@ -180,7 +191,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/leaderboard.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -196,7 +207,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/leaderboard.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -212,7 +223,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/correlation.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -228,7 +239,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/validation.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -244,7 +255,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/correlation.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -260,7 +271,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/validation.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -275,10 +286,10 @@
       "registered_numeric_threshold": "",
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/availability.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
-      "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
-      "source_flag": "REQUIREMENT_SOURCE_ONLY",
-      "row_review_flag": ""
+      "official_nfl_source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
+      "source_flag": "OFFICIAL_RECENT_MISMATCH",
+      "row_review_flag": "A 2026-11-15 NFL report re-capture differs from the published 2026-11-14 table (2 rows missing, 32 field differences); see the recapture report before relying on this status."
     },
     {
       "id": "R-16",
@@ -292,7 +303,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/availability.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -308,7 +319,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/availability.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -324,7 +335,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/executive-brief.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -340,7 +351,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/changes.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -356,7 +367,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/changes.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -372,7 +383,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/review.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -388,7 +399,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/review-queue.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -404,7 +415,7 @@
       "evidence_url": "https://karagemop466-tech.github.io/X1/",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -420,7 +431,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/index.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -436,7 +447,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/index.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -452,7 +463,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/review-queue.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -468,7 +479,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/sources.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -484,7 +495,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/availability.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -500,7 +511,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/sources.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -516,7 +527,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -532,7 +543,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -548,7 +559,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -564,7 +575,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/flagged.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -580,7 +591,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -596,7 +607,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -612,7 +623,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -628,7 +639,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/changes.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -644,7 +655,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/sources.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -660,7 +671,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -676,7 +687,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -692,7 +703,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -708,7 +719,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -724,7 +735,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/review-queue.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -740,7 +751,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/flagged.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -756,7 +767,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/changes.html",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -772,7 +783,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/prices/price_history.csv",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -788,7 +799,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -804,7 +815,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/code/build_lines.py",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -820,7 +831,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_lines_2026_week10.csv",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -836,7 +847,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/code/leaderboard.py",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -852,7 +863,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/analysis/replacement_depth.json",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -868,7 +879,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/verify/official_correlations.csv",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     },
@@ -884,7 +895,7 @@
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
       "requirement_source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round2.md",
       "official_nfl_source_url": null,
-      "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+      "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
       "source_flag": "REQUIREMENT_SOURCE_ONLY",
       "row_review_flag": ""
     }
