@@ -1,12 +1,15 @@
 # Immutable injury-report ledger (session arena-c0461519-x1).
 #
-# pull_request : PROBE. Captures the official NFL.com injury page into a scratch
-#                directory on the runner, verifies the hash chain, and uploads the
-#                result as an artifact. A failed fetch or a schema change fails the
-#                check instead of passing silently.
-# schedule     : CAPTURE. Appends one ledger line per read to data/ledger/injuries/,
-#                stores raw bytes only when the page content changes, verifies the
-#                whole chain, and commits. A fatal flag fails the run (the alarm).
+# Every run performs a real read of the official NFL.com injury page on the GitHub
+# runner, verifies the whole hash chain, regenerates the dashboard page that shows
+# it, and commits the result (append-only; raw bytes only when the page changes).
+#
+#   pull_request (same-repo branch) : PROBE + commit to that PR branch, so the first
+#                                     live capture is in git where it can be re-hashed.
+#   pull_request (fork)             : read and verify only; nothing is committed.
+#   schedule / workflow_dispatch    : CAPTURE on the default branch; a fatal flag
+#                                     (fetch failure, empty page, schema drift) fails
+#                                     the run after the failed read is recorded.
 name: injury-ledger
 
 on:
@@ -16,6 +19,7 @@ on:
   pull_request:
     paths:
       - "tools/snapshot_ledger.py"
+      - "tools/build_app.py"
       - ".github/workflows/injury-ledger.yml"
       - "data/ledger/**"
 
@@ -27,74 +31,53 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  probe:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Capture the official injury page into a scratch ledger
-        run: python3 tools/snapshot_ledger.py capture --out "$RUNNER_TEMP/ledger"
-
-      - name: Verify the scratch ledger (hash chain and raw bytes)
-        run: python3 tools/snapshot_ledger.py verify --dir "$RUNNER_TEMP/ledger"
-
-      - name: Keep the probe capture as an artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: injury-ledger-probe
-          path: ${{ runner.temp }}/ledger
-          if-no-files-found: warn
-
-  capture:
-    if: github.event_name != 'pull_request'
+  ledger:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Capture the official injury page
+      - name: Read the official injury page and append one ledger line
         id: capture
         continue-on-error: true
         run: python3 tools/snapshot_ledger.py capture --out data/ledger/injuries
 
-      - name: Verify the whole ledger
+      - name: Verify the whole ledger (chain and raw bytes)
         run: python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries
 
-      - name: Commit the new ledger lines (append-only)
-        if: always()
+      - name: Regenerate the ledger page
+        run: python3 tools/build_app.py
+
+      - name: Commit the new ledger lines and the page (append-only)
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         run: |
           set -e
+          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
           git config user.name "x1-bot"
           git config user.email "x1-bot@users.noreply.github.com"
-          git add data/ledger/injuries
+          git add data/ledger/injuries app
           if git diff --cached --quiet; then
             echo "nothing new to commit"
             exit 0
           fi
-          git commit -m "ledger: injury-report read $(date -u +%Y-%m-%dT%H:%M:%SZ) [skip ci]"
+          git commit -m "ledger: injury-report read $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           for attempt in 1 2 3; do
-            if git pull --rebase -q origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}"; then
-              echo "pushed"; exit 0
+            if git pull --rebase -q origin "$BRANCH" && git push -q origin "HEAD:$BRANCH"; then
+              echo "pushed to $BRANCH"; exit 0
             fi
             echo "push attempt ${attempt} failed; retrying"; sleep $((attempt * 5))
           done
           echo "could not push the ledger"; exit 1
 
-      - name: Alarm — fail the run when the capture hit a fatal flag
+      - name: Alarm — fail the run when the read hit a fatal flag
         if: steps.capture.outcome == 'failure'
         run: |
-          echo "::error::Injury-report capture failed or the page schema changed. The ledger line records the flags."
+          echo "::error::Injury-report read failed or the page schema changed. The ledger line records the flags."
           exit 1
