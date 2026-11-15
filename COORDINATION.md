@@ -2770,3 +2770,19 @@ Verification green across all three suites. The unified dashboard (`app/`) is th
 
 Session `arena/67f73aba-x1` claim committed; PR/merge/deploy/record follow.
 
+# Session `arena-5373d6a1-x1` — requirement decision-readiness matrix
+
+**Claim:** 2026-11-15 · current branch `arena/5373d6a1-x1` (based on `main` at `51d6e326`).
+This is a final-integration task for a missing, owner-requested readiness view; previous
+integrations are complete. It does not reopen or edit their datasets or generators.
+
+| Task | Status | Owner | Files in scope |
+|---|---|---|---|
+| RDM-1 | in progress | `arena-5373d6a1-x1` | `data/readiness/**`, `tools/build_readiness.py`, `pages/readiness.html`, `index.html`, this file |
+
+**Deliverable:** render the existing assessed requirement register as a landing-page-linked
+decision-readiness table, with each tracked requirement's blocking gate and a precisely stated
+clearance criterion. Existing numeric thresholds are reused only when explicitly registered;
+where no number is registered the cell stays blank and is flagged as unspecified. No NFL fact or
+market value is inferred. The prior owners' inputs under `data/audit/`, `data/gates.json`, and
+`data/questions.json` are read-only. Other claimed paths are not edited.
