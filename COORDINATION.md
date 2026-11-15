@@ -2576,3 +2576,19 @@ its content is preserved and this session's change is additive.
 | Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
 
 Session `arena-600e6009-x1` complete.
+
+---
+
+# Session `arena/ed8c600d-x1` — Week 10 official injury re-capture and row-level verification (this session)
+
+**Session ID:** `arena-ed8c600d-x1` · **Branch:** `arena/ed8c600d-x1` (branched from `main` @ `51d6e32`).
+**Claim written and pushed before any other work (rule 1).** Open PRs: none (`gh pr list --state open` → empty).
+Bash cannot reach nfl.com (TLS error, `curl` exit 35); the official page was read through the fetch tool, all 8 chunks.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| E1 | **Re-capture the official Week 10 NFL.com injury report** (all 8 pages, 14 games, 28 clubs) and compare it row by row with the published `data/nfl/injuries_week10.tsv` (346 data rows) — the brief's "254 vs 279 rows / stale counts" item and the Lions designation item (VR-08/VR-12) | **in progress** | `arena-ed8c600d-x1` | `data/capture/2026_w10/**` (new), `tools/verify_w10_recapture.py` (new), this file |
+
+Not claimed here (the site, the integration and every other brief item stay with their owning sessions or the integration step): publishing changes to `app/**`, `data/nfl/injuries_week10.tsv`, any model, leaderboard or registry.
