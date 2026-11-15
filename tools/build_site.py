@@ -231,13 +231,79 @@ starters_at_risk = [r for r in AVAIL if r["listed_starter"] == "yes"]
 starters_out = [r for r in starters_at_risk if r["game_status"] == "Out"]
 open_q = [q for q in QUESTIONS["questions"] if q["status"] == "open"]
 pilot_teams = sorted({d["team"] for d in DEPTH})
+
+# ---------------------------------------------------------------- decision readiness
+# Landing-page register: one row per requirement, the pre-registered gate that
+# blocks it, and the number that clears it. States come from
+# data/audit/requirements_assessed.json; gate / clearing text is the
+# pre-registered position from docs/methodology/validation-gates.md and
+# data/gates.json. Owner-decision items are left blank-flagged, never guessed.
+READINESS_GATE = {
+    "R-07": ("Q-02 (no licensed price feed / market benchmark); G0 provenance",
+             "model spread error below market benchmark (now 10.42 vs 9.73)",
+             "pages/line-origination.html", "line origination"),
+    "R-08": ("G0–G7",
+             "a signal passes all eight gates: singles n_eff &ge; 500, z &ge; 1.96, bootstrap CI excludes 0",
+             "docs/methodology/validation-gates.md", "validation gates"),
+    "R-09": ("no strategy has cleared the economic gates",
+             "&ge; 1 strategy passes all 8 gates",
+             "pages/leaderboard.html", "leaderboard"),
+    "R-10": ("Q-20 (reward rules, funding, legality undefined)",
+             "written rules + jurisdiction review + funding decision",
+             "pages/decisions-critical.html", "Q-20"),
+    "R-11": ("Q-21 (no prop market price)",
+             "named prop feed, or explicit off-leaderboard decision",
+             "pages/decisions-critical.html", "Q-21"),
+    "R-13": ("no prop/market price feed for prop&ndash;market pairs",
+             "official-only correlation with n published (988 team-stat rows, n=32, done)",
+             "pages/correlation.html", "correlation"),
+    "R-19": ("scheduled refresh disabled by default; fixed snapshot date",
+             "enable scheduled refresh; build-time snapshot date",
+             "pages/changes.html", "what changed"),
+    "R-25": ("four stylesheets across five trees",
+             "one stylesheet (cosmetic, no data impact)",
+             "index.html", "landing page"),
+    "R-33": ("platform pins one branch per session (harness limitation)",
+             "harness change &mdash; not an agent action; flagged F-01",
+             "COORDINATION.md", "COORDINATION.md"),
+    "R-37": ("none",
+             "this session&rsquo;s COORDINATION.md record + Flagged for Review page",
+             "COORDINATION.md", "COORDINATION.md"),
+    "R-41": ("none", "create this PR", "COORDINATION.md", "COORDINATION.md"),
+    "R-42": ("none",
+             "merge PR + confirm GitHub Pages deploy + record result",
+             "COORDINATION.md", "COORDINATION.md"),
+}
+
+def state_pill_css(state):
+    return {"met": "ok", "partly met": "warn", "open": "high",
+            "in progress": "muted-pill"}.get(state, "muted-pill")
+
+def readiness_table():
+    rows = []
+    for x in REQS["rows"]:
+        rid = x["id"]
+        state = x["state"]
+        gate, clearing, src_path, src_label = READINESS_GATE.get(
+            rid, ("none &mdash; met", "already met",
+                  "pages/requirements.html", "requirements register"))
+        rows.append(f"<tr><td><b>{esc(rid)}</b></td>"
+                    f"<td>{esc(x['requirement'])}</td>"
+                    f"<td><span class=\"pill {state_pill_css(state)}\">{esc(state)}</span></td>"
+                    f"<td>{esc(gate)}</td>"
+                    f"<td>{esc(clearing)}</td>"
+                    f"<td>{ref(src_path, src_label)}</td></tr>")
+    return f"""<section class="sectionhead"><div><div class="eyebrow">DECISION READINESS</div><h2>Every requirement: what blocks it, what clears it</h2></div><span class="tag">SNAPSHOT {RETRIEVED}</span></section>
+<section class="content">
+  <div class="note"><b>One row per requirement.</b> State is taken from the <a href="pages/requirements.html">requirements register</a>; the gate is the pre-registered condition in <a href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/validation-gates.md" target="_blank" rel="noopener noreferrer">validation-gates.md</a> and <a href="data/gates.json">data/gates.json</a>; the clearing number is the threshold that must be reached before the requirement can be treated as done. Rows already met list their evidence. Items that depend on an owner decision not yet taken are left blank and flagged rather than guessed.</div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Decision-readiness register: 53 requirements, the gate that blocks each, and the number that clears it</caption><thead><tr><th>Req</th><th>Requirement</th><th>State</th><th>Gate that blocks it</th><th>Number that clears it</th><th>Source</th></tr></thead><tbody>
+{"".join(rows)}
+</tbody></table></div>
+</section>"""
 final_games = [g for g in SCHED if g["status"] == "final"]
 
 
 # ---------------------------------------------------------------- overview
-ROOT_READINESS_FRAGMENT = open(os.path.join(ROOT, "tools", "site_fragments", "root_decision_readiness.fragment"), encoding="utf-8").read()
-
-
 def page_index():
     v = AUDIT["verification"]
     body = f"""
@@ -285,7 +351,7 @@ def page_index():
   <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
 </section>
 
-{ROOT_READINESS_FRAGMENT}<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
+<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
 <section class="cards">
   <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. {v['cells_compared']:,} cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
   <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across {FULL_JOIN['clubs_with_a_chart']} clubs finds <b>{FULL_JOIN['starters_ruled_out']} starters ruled Out</b> plus {FULL_JOIN['backups_depth_2_to_4_out_or_doubtful']} second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
@@ -324,6 +390,7 @@ def page_index():
     <a class="more" href="pages/decisions-critical.html">Decision table →</a>
   </div>
 </section>
+{readiness_table()}
 
 <section class="duo">
   <div class="panel">

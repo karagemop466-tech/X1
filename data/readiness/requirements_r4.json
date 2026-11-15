@@ -1,7 +1,7 @@
 {
  "dataset": "requirements_r4",
  "title": "Decision readiness: one row per requirement in the owner's brief",
- "generated_at": "2026-11-15T18:27:02+00:00",
+ "generated_at": "2026-11-15T18:43:00+00:00",
  "method": "Statuses were assessed in session arena-8c67ec75-x1 by reading the files and pages named in each row. Numbers are computed by tools/build_readiness.py from those files.",
  "status_counts": {
   "Built": 10,

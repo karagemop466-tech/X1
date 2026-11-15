@@ -1,0 +1,119 @@
+CLUB,UNIT,POSITION,SLOT,DEPTH,KIND,LIVE_CELL,PUBLISHED_CELL,NOTE,SOURCE
+GB,Defense,CB,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,CB,2,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,DT,2,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,2,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,LB,2,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,NB,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,S,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Defense,S,2,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,(unlabelled),1,3,not_on_live_chart,,81 Josh Whyle,in the store but not printed on the live chart,https://www.packers.com/team/depth-chart
+GB,Offense,(unlabelled),2,3,not_on_live_chart,,26 Kaleb Johnson,in the store but not printed on the live chart,https://www.packers.com/team/depth-chart
+GB,Offense,C,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,LT,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,QB,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,RB,1,4,missing_named_in_published,26 Kaleb Johnson,,a named player is printed on the live chart and absent from the store,https://www.packers.com/team/depth-chart
+GB,Offense,RG,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,RT,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,WR,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,WR,2,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,WR,3,2,value,,13 Coleman Owen,printed cell differs,https://www.packers.com/team/depth-chart
+GB,Offense,WR,3,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,H,1,2,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,H,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,K,1,2,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,K,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,KR,1,2,value,,13 Coleman Owen,printed cell differs,https://www.packers.com/team/depth-chart
+GB,Special Teams,KR,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,LS,1,2,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,LS,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,P,1,2,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,P,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Special Teams,PR,1,1,value,,13 Coleman Owen,printed cell differs,https://www.packers.com/team/depth-chart
+GB,Special Teams,PR,1,3,missing_empty_cell,,,"the chart prints this cell empty; the store holds no row, so the emptiness cannot be told apart from an unread cell",https://www.packers.com/team/depth-chart
+GB,Offense,WR,1,1,live_named,9 Christian Watson,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,WR,1,2,live_named,16 Bo Melton,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,WR,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,WR,2,1,live_named,0 Matthew Golden,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,WR,2,2,live_named,87 J. Michael Sturdivant,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,WR,2,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,LT,1,1,live_named,77 Jordan Morgan,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,LT,1,2,live_named,73 John Williams,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,LT,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,LG,1,1,live_named,65 Aaron Banks,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,LG,1,2,live_named,79 Travis Glover,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,LG,1,3,live_named,67 Donovan Jennings,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,C,1,1,live_named,75 Sean Rhyan,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,C,1,2,live_named,52 Jager Burton,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,C,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,RG,1,1,live_named,72 Laken Tomlinson,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RG,1,2,live_named,70 Kevin Zeitler,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RG,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,RT,1,1,live_named,71 Anthony Belton,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RT,1,2,live_named,74 Mekhi Becton Sr.,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RT,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,TE,1,1,live_named,85 Tucker Kraft,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,TE,1,2,live_named,18 Jonnu Smith,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,TE,1,3,live_named,86 Mark Redman,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,WR,3,1,live_named,83 Savion Williams,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,WR,3,2,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,WR,3,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,QB,1,1,live_named,10 Jordan Love,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,QB,1,2,live_named,6 Tyrod Taylor,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,QB,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Offense,RB,1,1,live_named,8 Josh Jacobs,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RB,1,2,live_named,32 MarShawn Lloyd,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RB,1,3,live_named,22 Pierre Strong Jr.,,number stripped,https://www.packers.com/team/depth-chart
+GB,Offense,RB,1,4,live_named,26 Kaleb Johnson,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,DT,1,1,live_named,94 Karl Brooks,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,DT,1,2,live_named,97 Jordon Riley,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,DT,1,3,live_named,93 Anthony Campbell,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,DT,2,1,live_named,95 Devonte Wyatt,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,DT,2,2,live_named,55 Chris McClellan,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,DT,2,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,1,1,live_named,90 Lukas Van Ness,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,1,2,live_named,57 Brenton Cox Jr,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,LB,1,1,live_named,44 Zaire Franklin,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,LB,1,2,live_named,59 Ty’Ron Hopper,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,LB,1,3,live_named,54 Kristian Welch,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,LB,2,1,live_named,58 Isaiah McDuffie,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,LB,2,2,live_named,31 Nick Niemann,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,LB,2,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,2,1,live_named,99 Barryn Sorrell,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,2,2,live_named,51 Dani Dennis-Sutton,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,EDGE,2,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,CB,1,1,live_named,25 Keisean Nixon,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,CB,1,2,live_named,24 Carrington Valentine,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,CB,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,CB,2,1,live_named,2 Brandon Cisse,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,CB,2,2,live_named,21 Benjamin St-Juste,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,CB,2,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,S,1,1,live_named,29 Xavier McKinney,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,S,1,2,live_named,27 Kitan Oladapo,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,S,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,S,2,1,live_named,33 Evan Williams,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,S,2,2,live_named,27 Kitan Oladapo,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,S,2,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Defense,NB,1,1,live_named,7 Javon Bullard,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,NB,1,2,live_named,36 Kamal Hadden,,number stripped,https://www.packers.com/team/depth-chart
+GB,Defense,NB,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,K,1,1,live_named,28 Trey Smack,,number stripped,https://www.packers.com/team/depth-chart
+GB,Special Teams,K,1,2,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,K,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,P,1,1,live_named,19 Daniel Whelan,,number stripped,https://www.packers.com/team/depth-chart
+GB,Special Teams,P,1,2,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,P,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,H,1,1,live_named,19 Daniel Whelan,,number stripped,https://www.packers.com/team/depth-chart
+GB,Special Teams,H,1,2,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,H,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,PR,1,1,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,PR,1,2,live_named,0 Matthew Golden,,number stripped,https://www.packers.com/team/depth-chart
+GB,Special Teams,PR,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,KR,1,1,live_named,16 Bo Melton,,number stripped,https://www.packers.com/team/depth-chart
+GB,Special Teams,KR,1,2,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,KR,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,LS,1,1,live_named,42 Matt Orzech,,number stripped,https://www.packers.com/team/depth-chart
+GB,Special Teams,LS,1,2,live_empty,,,no number,https://www.packers.com/team/depth-chart
+GB,Special Teams,LS,1,3,live_empty,,,no number,https://www.packers.com/team/depth-chart

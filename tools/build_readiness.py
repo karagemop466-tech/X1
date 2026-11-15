@@ -800,7 +800,15 @@ def render_flags(flags: list, esc) -> str:
 
 
 def apply(pages: dict, page_fn, esc) -> dict:
-    """Called from tools/build_console.py. Adds the landing section, the readiness page and the flags."""
+    """Called from tools/build_console.py after the other builders have run.
+
+    Round-4 integration (arena-8c67ec75-x1): the landing table and readiness.html
+    are owned by the readiness build already on main (tools/official/build_pages.py,
+    data/console/readiness.json). This hook therefore does NOT touch index.html or
+    readiness.html. It adds two things that are not on main:
+      * readiness-register.html: the 85-row round-4 register with evidence links;
+      * the round-4 flags, appended to flagged.html.
+    """
     m = compute_metrics()
     rows = build_rows(m)
     missing = evidence_check(rows)
@@ -809,15 +817,10 @@ def apply(pages: dict, page_fn, esc) -> dict:
     flags = build_flags(m)
     write_outputs(rows, flags, m)
     data = _json(os.path.join(OUT_DIR, "requirements_r4.json"))
-    anchor = "<h2>What this console is</h2>"
-    index = pages["index.html"]
-    if index.count(anchor) != 1:
-        raise SystemExit("landing page anchor not found exactly once")
-    pages["index.html"] = index.replace(anchor, render_section(data, esc) + "\n" + anchor, 1)
-    pages["readiness.html"] = page_fn(
-        "Readiness", "readiness",
+    pages["readiness-register.html"] = page_fn(
+        "Readiness register (R4)", "readiness",
         render_section(data, esc) + render_flags(flags, esc),
-        subtitle="Every requirement in the brief, its status, the gate that blocks it and the number that clears it.")
+        subtitle="Round 4: every requirement in the brief, its status, the gate that blocks it, the number that clears it, and its evidence link.")
     flagged = pages["flagged.html"]
     if flagged.count("</main>") != 1:
         raise SystemExit("flagged page anchor not found exactly once")

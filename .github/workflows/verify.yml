@@ -120,6 +120,26 @@ jobs:
       - name: Verify round-2 store contract (Added by session arena/907c5baf-x1)
         run: python3 tools/verify_stores.py
 
+      # Added by session arena/b03ced7c-x1 (additive only). The Week 10 official
+      # re-capture, the depth-parse measurement, the readiness table and the flags
+      # register are rebuilt from their inputs; then every published number is
+      # re-derived and compared. A re-capture that drifts from its transcription, a
+      # depth row silently cleaned, or a readiness row without a source fails here
+      # rather than shipping.
+      - name: Rebuild the Week 10 re-capture, depth parse and readiness table
+        run: |
+          set -euo pipefail
+          python3 tools/official/week10_reconcile.py
+          python3 tools/official/depth_parse.py
+          python3 tools/official/readiness.py
+
+      - name: Fail if the re-capture, depth parse or readiness files are stale
+        run: |
+          git diff --exit-code -- data/console/week10_reconcile.json data/console/week10_reconcile.csv data/console/depth_parse.json data/console/depth_parse.csv data/console/readiness.json data/console/readiness.csv
+
+      - name: Verify every published number against the fresh capture
+        run: python3 tools/official/verify_published.py
+
       - name: Rebuild round-2 stores and fail if stale (Added by session arena/907c5baf-x1)
         run: |
           python3 tools/build_results_feed_907c.py
