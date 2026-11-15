@@ -6,293 +6,17 @@
   "official_capture_note": "SHA-256 of the session's transcription file. The fetch tool does not expose raw page bytes, so this is a hash of the transcription, not of the HTTP response.",
   "published_file": "data/nfl/injuries_week10.tsv",
   "official_rows": 347,
-  "published_rows": 345,
+  "published_rows": 347,
   "games_official": 14,
   "games_published": 14,
   "clubs_official": 28,
   "clubs_published": 28,
   "duplicate_keys_official": [],
   "duplicate_keys_published": [],
-  "missing_in_published": [
-    {
-      "game": "LAC@BAL",
-      "team": "BAL",
-      "player": "Calais Campbell",
-      "position": "DT",
-      "injury": "",
-      "practice_status": "Did Not Participate In Practice",
-      "game_status": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "BAL",
-      "player": "Ronnie Stanley",
-      "position": "T",
-      "injury": "",
-      "practice_status": "Did Not Participate In Practice",
-      "game_status": ""
-    }
-  ],
+  "missing_in_published": [],
   "extra_in_published": [],
-  "field_mismatches": [
-    {
-      "game": "MIA@IND",
-      "team": "IND",
-      "player": "Arden Key",
-      "field": "injury",
-      "official": "",
-      "published": "Hamstring"
-    },
-    {
-      "game": "MIA@IND",
-      "team": "IND",
-      "player": "Arden Key",
-      "field": "game_status",
-      "official": "",
-      "published": "Questionable"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Kayode Awosika",
-      "field": "injury",
-      "official": "Fibula",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Kayode Awosika",
-      "field": "practice_status",
-      "official": "Full Participation in Practice",
-      "published": "Limited Participation in Practice"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Kayode Awosika",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Bud Dupree",
-      "field": "practice_status",
-      "official": "Full Participation in Practice",
-      "published": "Did Not Participate In Practice"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Justin Eboigbe",
-      "field": "injury",
-      "official": "Ankle",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Justin Eboigbe",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Ladd McConkey",
-      "field": "injury",
-      "official": "Back",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Ladd McConkey",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Keaton Mitchell",
-      "field": "practice_status",
-      "official": "Full Participation in Practice",
-      "published": "Limited Participation in Practice"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "David Njoku",
-      "field": "injury",
-      "official": "Fibula",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "David Njoku",
-      "field": "practice_status",
-      "official": "Full Participation in Practice",
-      "published": "Limited Participation in Practice"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "David Njoku",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Denzel Perryman",
-      "field": "injury",
-      "official": "Pectoral",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Denzel Perryman",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Trey Pipkins",
-      "field": "injury",
-      "official": "Not injury related - personal matter, Knee",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Trey Pipkins",
-      "field": "practice_status",
-      "official": "Limited Participation in Practice",
-      "published": "Did Not Participate In Practice"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Trey Pipkins",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Rodney Shelley",
-      "field": "practice_status",
-      "official": "Full Participation in Practice",
-      "published": "Limited Participation in Practice"
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Branson Taylor",
-      "field": "injury",
-      "official": "Ankle",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Branson Taylor",
-      "field": "game_status",
-      "official": "Out",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Brenen Thompson",
-      "field": "injury",
-      "official": "Hamstring",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Brenen Thompson",
-      "field": "game_status",
-      "official": "Doubtful",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Isas Waxter",
-      "field": "injury",
-      "official": "Ankle",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Isas Waxter",
-      "field": "game_status",
-      "official": "Out",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Kendall Williamson",
-      "field": "injury",
-      "official": "Calf",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "LAC",
-      "player": "Kendall Williamson",
-      "field": "game_status",
-      "official": "Out",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "BAL",
-      "player": "Jaylinn Hawkins",
-      "field": "injury",
-      "official": "Knee",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "BAL",
-      "player": "Jaylinn Hawkins",
-      "field": "game_status",
-      "official": "Out",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "BAL",
-      "player": "Adam Randall",
-      "field": "injury",
-      "official": "Neck, Hamstring",
-      "published": ""
-    },
-    {
-      "game": "LAC@BAL",
-      "team": "BAL",
-      "player": "Adam Randall",
-      "field": "game_status",
-      "official": "Questionable",
-      "published": ""
-    }
-  ],
-  "rows_with_any_field_mismatch": 16,
+  "field_mismatches": [],
+  "rows_with_any_field_mismatch": 0,
   "summary_counts_official": {
     "Out": 70,
     "Questionable": 90,
@@ -306,7 +30,7 @@
     "no game status": 185
   },
   "blank_game_status_official": 176,
-  "blank_game_status_published": 185,
+  "blank_game_status_published": 176,
   "per_game": [
     {
       "game": "BUF@NYJ",
@@ -336,7 +60,7 @@
     {
       "game": "LAC@BAL",
       "official_rows": 29,
-      "published_rows": 27
+      "published_rows": 29
     },
     {
       "game": "LAR@AZ",
@@ -393,7 +117,7 @@
     {
       "team": "BAL",
       "official_rows": 10,
-      "published_rows": 8
+      "published_rows": 10
     },
     {
       "team": "BUF",

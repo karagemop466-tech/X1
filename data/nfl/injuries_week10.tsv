@@ -1,9 +1,7 @@
-# SOURCE: https://www.nfl.com/injuries/league/2026/reg10  ("Official NFL Injury Report ... Week 10 of the 2026 Season")
-# Retrieved 2026-11-14. One row per player as PRINTED by NFL.com. Nothing added, nothing inferred.
-# practice_status values printed: Full Participation in Practice / Limited Participation in Practice / Did Not Participate In Practice
-# game_status values printed: Out / Doubtful / Questionable / (blank = no designation printed)
-# injury blank = the official report prints no injury description for that player.
-# command = printed game assignment (scores/network from https://www.nfl.com/schedules/2026/REG/week/10/)
+# SOURCE: https://www.nfl.com/injuries/  ("Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season")
+# Retrieved 2026-11-15 (UTC) by session arena-ed8c600d-x1 (transcription); published by arena-79598415-x1 via tools/build_w10_snapshot.py.
+# One row per player as PRINTED by NFL.com. Nothing added, nothing inferred. Blank = blank on the page.
+# Previous capture (2026-11-14, 345 rows): data/nfl/snapshots/injuries_week10_2026-11-14.tsv
 game	team	player	position	injury	practice_status	game_status	player_url
 WAS@NYG	WAS	John Bates	TE		Full Participation in Practice		https://www.nfl.com/players/john-bates/
 WAS@NYG	WAS	Treylon Burks	WR		Did Not Participate In Practice		https://www.nfl.com/players/treylon-burks/
@@ -165,7 +163,7 @@ MIA@IND	IND	CJ Allen	LB		Full Participation in Practice		https://www.nfl.com/pla
 MIA@IND	IND	Jaylon Carlies	LB	Neck	Did Not Participate In Practice	Out	https://www.nfl.com/players/jaylon-carlies/
 MIA@IND	IND	Akeem Davis-Gaither	LB	Knee	Did Not Participate In Practice	Out	https://www.nfl.com/players/akeem-davis-gaither/
 MIA@IND	IND	A.J. Haulcy	S		Full Participation in Practice		https://www.nfl.com/players/a-j-haulcy/
-MIA@IND	IND	Arden Key	DE	Hamstring	Full Participation in Practice	Questionable	https://www.nfl.com/players/arden-key/
+MIA@IND	IND	Arden Key	DE		Full Participation in Practice		https://www.nfl.com/players/arden-key/
 MIA@IND	IND	Will Mallory	TE	Hamstring	Limited Participation in Practice	Questionable	https://www.nfl.com/players/will-mallory/
 MIA@IND	IND	Luke Rhodes	LS	Hamstring	Did Not Participate In Practice	Out	https://www.nfl.com/players/luke-rhodes/
 MIA@IND	IND	Grover Stewart	DT		Full Participation in Practice		https://www.nfl.com/players/grover-stewart/
@@ -323,30 +321,32 @@ PIT@CIN	CIN	Andrei Iosivas	WR	Thumb	Full Participation in Practice	Doubtful	http
 PIT@CIN	CIN	Dexter Lawrence	DT		Did Not Participate In Practice		https://www.nfl.com/players/dexter-lawrence/
 PIT@CIN	CIN	Brian Parker II	G	Knee	Full Participation in Practice	Doubtful	https://www.nfl.com/players/brian-parker-ii/
 PIT@CIN	CIN	DJ Turner II	CB		Full Participation in Practice		https://www.nfl.com/players/dj-turner-2/
-LAC@BAL	LAC	Kayode Awosika	G		Limited Participation in Practice		https://www.nfl.com/players/kayode-awosika/
-LAC@BAL	LAC	Bud Dupree	DE		Did Not Participate In Practice		https://www.nfl.com/players/bud-dupree/
-LAC@BAL	LAC	Justin Eboigbe	DE		Limited Participation in Practice		https://www.nfl.com/players/justin-eboigbe/
+LAC@BAL	LAC	Kayode Awosika	G	Fibula	Full Participation in Practice	Questionable	https://www.nfl.com/players/kayode-awosika/
+LAC@BAL	LAC	Bud Dupree	DE		Full Participation in Practice		https://www.nfl.com/players/bud-dupree/
+LAC@BAL	LAC	Justin Eboigbe	DE	Ankle	Limited Participation in Practice	Questionable	https://www.nfl.com/players/justin-eboigbe/
 LAC@BAL	LAC	Alex Harkey	G		Full Participation in Practice		https://www.nfl.com/players/alex-harkey/
 LAC@BAL	LAC	Tre Harris	WR		Full Participation in Practice		https://www.nfl.com/players/tre-harris/
 LAC@BAL	LAC	Cam Hart	CB		Full Participation in Practice		https://www.nfl.com/players/cam-hart/
 LAC@BAL	LAC	Daiyan Henley	LB		Full Participation in Practice		https://www.nfl.com/players/daiyan-henley/
 LAC@BAL	LAC	Deane Leonard	CB		Full Participation in Practice		https://www.nfl.com/players/deane-leonard/
 LAC@BAL	LAC	Khalil Mack	LB		Full Participation in Practice		https://www.nfl.com/players/khalil-mack/
-LAC@BAL	LAC	Ladd McConkey	WR		Did Not Participate In Practice		https://www.nfl.com/players/ladd-mcconkey/
-LAC@BAL	LAC	Keaton Mitchell	RB		Limited Participation in Practice		https://www.nfl.com/players/keaton-mitchell/
-LAC@BAL	LAC	David Njoku	TE		Limited Participation in Practice		https://www.nfl.com/players/david-njoku/
-LAC@BAL	LAC	Denzel Perryman	LB		Full Participation in Practice		https://www.nfl.com/players/denzel-perryman/
-LAC@BAL	LAC	Trey Pipkins	T		Did Not Participate In Practice		https://www.nfl.com/players/trey-pipkins/
-LAC@BAL	LAC	Rodney Shelley	CB		Limited Participation in Practice		https://www.nfl.com/players/rodney-shelley/
-LAC@BAL	LAC	Branson Taylor	G		Did Not Participate In Practice		https://www.nfl.com/players/branson-taylor/
-LAC@BAL	LAC	Brenen Thompson	WR		Did Not Participate In Practice		https://www.nfl.com/players/brenen-thompson/
-LAC@BAL	LAC	Isas Waxter	CB		Did Not Participate In Practice		https://www.nfl.com/players/isas-waxter/
-LAC@BAL	LAC	Kendall Williamson	S		Did Not Participate In Practice		https://www.nfl.com/players/kendall-williamson/
+LAC@BAL	LAC	Ladd McConkey	WR	Back	Did Not Participate In Practice	Questionable	https://www.nfl.com/players/ladd-mcconkey/
+LAC@BAL	LAC	Keaton Mitchell	RB		Full Participation in Practice		https://www.nfl.com/players/keaton-mitchell/
+LAC@BAL	LAC	David Njoku	TE	Fibula	Full Participation in Practice	Questionable	https://www.nfl.com/players/david-njoku/
+LAC@BAL	LAC	Denzel Perryman	LB	Pectoral	Full Participation in Practice	Questionable	https://www.nfl.com/players/denzel-perryman/
+LAC@BAL	LAC	Trey Pipkins	T	Not injury related - personal matter, Knee	Limited Participation in Practice	Questionable	https://www.nfl.com/players/trey-pipkins/
+LAC@BAL	LAC	Rodney Shelley	CB		Full Participation in Practice		https://www.nfl.com/players/rodney-shelley/
+LAC@BAL	LAC	Branson Taylor	G	Ankle	Did Not Participate In Practice	Out	https://www.nfl.com/players/branson-taylor/
+LAC@BAL	LAC	Brenen Thompson	WR	Hamstring	Did Not Participate In Practice	Doubtful	https://www.nfl.com/players/brenen-thompson/
+LAC@BAL	LAC	Isas Waxter	CB	Ankle	Did Not Participate In Practice	Out	https://www.nfl.com/players/isas-waxter/
+LAC@BAL	LAC	Kendall Williamson	S	Calf	Did Not Participate In Practice	Out	https://www.nfl.com/players/kendall-williamson/
 LAC@BAL	BAL	Rasheen Ali	RB		Full Participation in Practice		https://www.nfl.com/players/rasheen-ali/
 LAC@BAL	BAL	Rashod Bateman	WR		Full Participation in Practice		https://www.nfl.com/players/rashod-bateman/
+LAC@BAL	BAL	Calais Campbell	DT		Did Not Participate In Practice		https://www.nfl.com/players/calais-campbell/
 LAC@BAL	BAL	Kyle Hamilton	S		Full Participation in Practice		https://www.nfl.com/players/kyle-hamilton/
-LAC@BAL	BAL	Jaylinn Hawkins	S		Limited Participation in Practice		https://www.nfl.com/players/jaylinn-hawkins/
+LAC@BAL	BAL	Jaylinn Hawkins	S	Knee	Limited Participation in Practice	Out	https://www.nfl.com/players/jaylinn-hawkins/
 LAC@BAL	BAL	Matthew Hibner	TE		Full Participation in Practice		https://www.nfl.com/players/matthew-hibner/
 LAC@BAL	BAL	Olaivavega Ioane	G		Full Participation in Practice		https://www.nfl.com/players/olaivavega-ioane/
-LAC@BAL	BAL	Adam Randall	RB		Full Participation in Practice		https://www.nfl.com/players/adam-randall/
+LAC@BAL	BAL	Adam Randall	RB	Neck, Hamstring	Full Participation in Practice	Questionable	https://www.nfl.com/players/adam-randall/
+LAC@BAL	BAL	Ronnie Stanley	T		Did Not Participate In Practice		https://www.nfl.com/players/ronnie-stanley/
 LAC@BAL	BAL	Nate Wiggins	CB		Full Participation in Practice		https://www.nfl.com/players/nate-wiggins/

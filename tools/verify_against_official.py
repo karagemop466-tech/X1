@@ -138,8 +138,41 @@ FIELDS = [("player", 1), ("position", 2), ("injury", 3),
           ("practice_status", 4), ("game_status", 5)]
 
 
+# The live reference for the published injury table is the 2026-11-15 read of
+# https://www.nfl.com/injuries/ (transcribed by arena-ed8c600d-x1, re-checked by
+# arena-79598415-x1). The 2026-11-14 transcription in audit/ is kept as history: it is
+# checked against its own 2026-11-14 snapshot file, not against the live table.
+LIVE_INJURY_PSV = os.path.join(ROOT, "data", "capture", "2026_w10",
+                               "official_nflcom_injuries_week10_transcription.psv")
+SNAPSHOT_1114 = os.path.join(ROOT, "data", "nfl", "snapshots", "injuries_week10_2026-11-14.tsv")
+
+
+def read_live_injuries():
+    out = []
+    with open(LIVE_INJURY_PSV, encoding="utf-8") as fh:
+        for ln in fh:
+            if not ln.strip() or ln.startswith("#"):
+                continue
+            game, team, player, pos, inj, prac, status = ln.rstrip("\n").split("|")
+            out.append((team, player, pos, inj, prac, status))
+    return out
+
+
 def check_injuries():
-    rows = read_tsv(os.path.join(ROOT, "data", "nfl", "injuries_week10.tsv"))
+    return _check_injury_table(
+        os.path.join(ROOT, "data", "nfl", "injuries_week10.tsv"), read_live_injuries(),
+        "2026-11-15 read of the official page (transcription in data/capture/2026_w10/)",
+        table="injuries")
+
+
+def check_injuries_snapshot_1114():
+    return _check_injury_table(SNAPSHOT_1114, OFF.INJURIES,
+                               "2026-11-14 transcription (audit/official_snapshot_2026_w10.py)",
+                               table="injuries_snapshot_2026-11-14")
+
+
+def _check_injury_table(path, official, reference, table):
+    rows = read_tsv(path)
     index = {}
     for r in rows:
         index.setdefault((r["team"], r["player"]), []).append(r)
@@ -147,7 +180,7 @@ def check_injuries():
     cells = 0
     mismatches = []
     unmatched = []
-    for team, player, pos, inj, prac, game in OFF.INJURIES:
+    for team, player, pos, inj, prac, game in official:
         cands = index.get((team, player))
         if not cands:
             unmatched.append(f"{team} {player}")
@@ -156,21 +189,23 @@ def check_injuries():
         for field, idx in FIELDS:
             cells += 1
             published = (r.get(field) or "").strip()
-            official = str((team, player, pos, inj, prac, game)[idx]).strip()
-            if published != official:
+            official_value = str((team, player, pos, inj, prac, game)[idx]).strip()
+            if published != official_value:
                 mismatches.append({"player": f"{team} {player}", "column": field,
-                                   "published": published, "official": official})
+                                   "published": published, "official": official_value})
     # players the official page prints but the published file omits
     published_keys = {(r["team"], r["player"]) for r in rows}
-    missing = [f"{t} {p}" for (t, p, *_rest) in OFF.INJURIES if (t, p) not in published_keys]
+    missing = [f"{t} {p}" for (t, p, *_rest) in official if (t, p) not in published_keys]
     # players the published file carries that this read did not see
-    official_keys = {(t, p) for (t, p, *_rest) in OFF.INJURIES}
+    official_keys = {(t, p) for (t, p, *_rest) in official}
     extra = [f"{r['team']} {r['player']}" for r in rows if (r["team"], r["player"]) not in official_keys]
     return {
-        "table": "injuries",
+        "table": table,
+        "reference": reference,
         "source": OFF.SOURCES["injuries"],
         "rows_published": len(rows),
-        "rows_official": len(OFF.INJURIES),
+        "rows_official": len(official),
+        "rows_missing_from_published": missing,
         "cells_compared": cells,
         "mismatches": mismatches,
         "rows_unmatched": unmatched,
@@ -191,7 +226,8 @@ def main(argv):
     # reason. The retrieval date is what a reader needs; the moment of the run is not a fact
     # about the data.
     started = OFF.RETRIEVED
-    results = [check_standings(), check_schedule(), check_byes(), check_injuries()]
+    results = [check_standings(), check_schedule(), check_byes(), check_injuries(),
+               check_injuries_snapshot_1114()]
     total_cells = sum(r["cells_compared"] for r in results)
     total_bad = sum(len(r["mismatches"]) for r in results)
     total_unmatched = sum(len(r["rows_unmatched"]) for r in results)
