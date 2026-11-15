@@ -287,3 +287,9 @@ ul.lim li::marker{color:var(--warn)}
 .herotext{min-width:0}
 /* the hero right column is optional padding; keep it from stretching the grid */
 .hero > .herocard{min-width:0}
+
+/* ---------------------------------------------------------------- decision readiness
+   Added by session arena-73e6cbac-x1. Append-only: no existing rule is modified.
+   The requirement text in the readiness tables is long, so it gets a floor width
+   instead of forcing the whole table wide. */
+.wideflag { min-width: 22rem; }
