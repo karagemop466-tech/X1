@@ -2825,11 +2825,87 @@ Session `arena/67f73aba-x1` complete — PR #54 merged (commit `24c65d9`), GitHu
 
 No other session's files are edited. Existing `index.html`, `pages/**`, `assets/**`, `app/**`, `tools/**`, `scripts/**`, `data/**`, `docs/**` and `.github/workflows/**` are treated as read-only except the append-only records named above. Any defect found is logged as a flag (never silently patched into a published value) and the owner decides the fix.
 | D1 | **Re-capture** the official Week 10 2026 injury report (all 8 chunks, 14 games, 28 clubs) as a *new dated read* beside the 2026-11-14 and ed8c600d's 2026-11-15 ones, and diff all three reads against each other | **done** | `arena-b03ced7c-x1` | `data/official/2026_w10_capture_2026-11-15T1814z/` (new), `tools/official/week10_reconcile.py` (new), `data/console/week10_reconcile.{json,csv}` (new), `console/capture.html` (new) |
-| D2 | **Execute E1's integration request**: publish the 2026-11-15 read beside the 11-14 table (never over it) and enumerate the two missing Ravens rows and every changed cell | **done** | `arena-b03ced7c-x1` | `console/capture.html`, `console/injuries.html` (additive note only; the 11-14 table is unchanged) |
+| D2 | **Execute E1's integration request**: publish the 2026-11-15 read beside the 11-14 table and enumerate the two missing Ravens rows and every changed cell | **partly done** | `arena-b03ced7c-x1` | `console/capture.html`, `console/injuries.html` (additive note only; the 11-14 table is unchanged) |
+| D2-note | E1 asked for three things. (a) Publish the 11-15 read beside the 11-14 one — **done**. (b) Add the two missing Ravens rows — **not done, deliberately**: adding them would mean publishing a row the live page prints into a table labelled 2026-11-14, and the two dates cannot be told apart (flag OF-03). (c) Re-run `tools/verify_w10_recapture.py` until it exits 0 — **cannot be done without (b)**, so it exits 1 and is **not** wired into CI (it never was). Verified that it is absent from both workflows. | needs review | `arena-b03ced7c-x1` | — |
 | D3 | **The two depth-parsing failures**: Texans image chart and Packers jersey-number prefix. Number-stripping + raw-string retention recovers Packers rows; the Texans image is **not transcribed** — it is recorded as an authorized-source gap | in progress | `arena-b03ced7c-x1` | `tools/official/parse_depth.py` (new), `data/official/depth_parse_2026_w10/` (new) |
 | D4 | **Decision-readiness table**: one row per requirement in the owner's brief, the gate that blocks it, the number that would clear it, and the evidence we hold | in progress | `arena-b03ced7c-x1` | `tools/official/build_readiness.py` (new), `data/official/readiness.json` (new) |
-| D5 | **Verification of every published number against a live official read**: the counts the console prints (345 injury rows, 897 depth slots, 31 clubs) are re-derived from the fresh capture and every disagreement flagged | in progress | `arena-b03ced7c-x1` | `tools/official/verify_published.py` (new) |
+| D5 | **Verification of every published number against the fresh capture**: 9 assertions, including that the console table equals the published TSV cell for cell, that every printed designation is one the page prints, that depth game statuses re-check against the live read, and that the Packers defect is still visible in the display layer | **done — 9 of 9 pass** | `arena-b03ced7c-x1` | `tools/official/verify_published.py` (new) |
 | D6 | **Integration and release**: new "Line desk" pages for the capture, the parse defect, the readiness table and the flags; link check; CI; PR → `main`; merge; Pages deploy confirmation recorded here | in progress | `arena-b03ced7c-x1` | `console/**` (via `tools/build_console.py`, additive), `.github/workflows/pages.yml` + `verify.yml` (additive steps), `README.md`, this file, PR |
 
 Not claimed: the model, the leaderboard mathematics, the price store and the price policy (owned
 and `done` by earlier sessions), any other session's branch, and any deletion of existing content.
+
+---
+
+## Completion record — session `arena-b03ced7c-x1` (2026-11-15)
+
+### What actually shipped
+
+| Artefact | What it holds | Verified by |
+|---|---|---|
+| `data/official/2026_w10_capture_2026-11-15T1814z/official_injuries_week10_2026-11-15T1814z.psv` | 347 rows, 14 games, 28 clubs, read at 18:14Z through the fetch tool (8 of 8 chunks), with the page's own totals 70 Out / 90 Questionable / 11 Doubtful / 176 blank | `tools/official/verify_published.py` check 6 recomputes the totals from the file |
+| `tools/official/week10_reconcile.py` → `data/console/week10_reconcile.{json,csv}` | three reads of one page compared row by row and cell by cell | the builder prints its own counts; CI rebuilds it and diffs |
+| `console/capture.html` | the dated read, the two missing rows, all 32 differing cells, and the "transcribed, not byte-verified" limit | `tools/verify_console.py` (0 unsourced rows) |
+| `tools/official/depth_parse.py` → `data/console/depth_parse.{json,csv}` | Green Bay re-parsed with the raw string kept; Houston recorded as an image with **no** transcription | the builder measures the join: 0/17 → 14/17 |
+| `console/depth-parse.html` | the two failures, 33 differing cells, the three unlisted Packers players | `tools/verify_console.py` |
+| `tools/official/readiness.py` → `data/console/readiness.{json,csv}` | 75 requirements, each with its gate, the clearing number, and today's measured value | CI rebuilds and diffs; `verify_published.py` checks 5 |
+| `console/readiness.html` + a five-row block on `console/index.html` | the table the brief asks for, on the landing page and in full | `tools/verify_console.py` |
+| `data/official/flags_2026_11_15.json` → `console/official-flags.html` | 16 findings, including **three brief claims that could not be reproduced** | every row carries an official URL |
+| `.github/workflows/verify.yml` + `pages.yml` | rebuild-and-diff for all three builders, plus `verify_published.py`, on every push | the workflows parse (PyYAML) |
+
+### Sources (all official, read 2026-11-15 UTC through the fetch tool)
+
+- Injury report: https://www.nfl.com/injuries/league/2026/reg10 (8 chunks, 347 rows)
+- Standings: https://www.nfl.com/standings/league/2026/REG (used to check the feed's 137 settled games)
+- Week 10 slate: https://www.nfl.com/schedules/2026/by-week/week-10 (used to confirm the two unfed finals)
+- Packers depth chart: https://www.packers.com/team/depth-chart ("Unofficial, Nov. 10, 2026")
+- Texans depth chart: https://www.houstontexans.com/team/depth-chart (chart is an image)
+- Ravens depth chart: https://www.baltimoreravens.com/team/depth-chart
+- Seahawks depth chart: https://www.seahawks.com/team/depth-chart/ (two players in one cell)
+- Commanders depth chart: https://www.commanders.com/team/depth-chart (empty cells in one row)
+
+### Verification performed
+
+`tools/official/verify_published.py` → **9 of 9 pass**: console table = published TSV (345 rows, 0 differ
+after the stated LAR→LA code map); every designation is one the page uses; 61 depth starter statuses
+re-checked, 61 confirmed; Packers defect still visible (30 of 30 starters carry a jersey number);
+75 readiness rows all sourced and all measured; totals recompute to 176/90/70/11; two same-day reads
+agree on all 347 rows; the published row count is the file's row count.
+
+Pre-existing gates re-run on the rebased tree: `tools/verify_data.py` (2,944), `tools/check_links.py`
+(41,317 assertions), `tools/verify_app.py`, `tools/verify_console.py` (28 pages, 3,043 sourced rows),
+`tools/verify_deployed_tree.py` (172 pages), `tools/verify_stores.py`, `tools/verify_new_data.py`,
+`tools/verify_against_official.py` (2,183 cells), `tools/cross_check.py` (1,380 cells),
+`scripts/verify_site.py` (163 pages), `scripts/check_site.py`, `scripts/verify_research_site.py`,
+`tools/lab/build_site.py`. **All exit 0.**
+
+### Irregularities (published on `console/official-flags.html`, 16 items, none blocking)
+
+- **OF-01 (red)** No raw bytes for any injury read: nfl.com is unreachable over TLS from bash
+  (`curl` exit 35). Every capture is a transcription.
+- **OF-05 (red)** Houston's depth chart is an image; 0 of 897 published depth slots.
+- **OF-13 (red)** 1,072 of 18,902 markets have both an opening and a closing number (all 2021).
+- **OF-09/10/11 (amber, brief claims not reproducible)**: "Ravens still publish Lamar Jackson and
+  Tyler Huntley at QB" — the live chart shows Brissett/Fagnano/Slovis; "254 vs 279 rows" — nothing
+  in the repo holds either count; "the 136-game log" — the feed holds 137 settled of 272.
+- **OF-12** Two 2026 Week 10 finals are missing from the feed (NE 10–DET 35, WAS 24–NYG 21).
+- Plus OF-02/03/04/06/07/08/14/15/16 (details on the page).
+
+### Conflict and handoff log
+
+- **Rebase conflicts (rule 6):** `COORDINATION.md` twice. Resolved as a union — `main`'s records for
+  `ed8c600d`, `67f73aba`, `1aa2b47f`, `3f5badd0` and `cd48a61d` keep their order; this session's claim
+  follows. Nothing discarded.
+- **Regression fixed, not inherited:** PR #58 (session `cd48a61d`) put
+  `<a href="docs/methodology/validation-gates.md">` in `index.html`. `docs/` is never copied into the
+  served tree, so `tools/verify_deployed_tree.py` failed — the deploy gate. Repointed to the GitHub
+  blob URL; the crawl is green at 172 pages (168 reachable, 4 pre-existing orphans).
+- **Overlap with session `cd48a61d`:** that session also added a decision-readiness table to
+  `index.html` (commit `3380987`), against its own 53-requirement numbering. This session's table is
+  the one on `console/readiness.html` (75 rows, measured values). **Both stay published.** They are
+  different artefacts with different numbering; neither was deleted. The owner should pick one as
+  canonical — recorded as suggestion material, not decided here.
+- **Scope narrowed on discovering PR #50** (`arena/c0461519-x1`, the hashed injury ledger): this
+  session does **not** build a competing ledger. It reconciles reads and defers byte capture to #50.
+- **`tools/verify_w10_recapture.py` exits 1** and is not in CI. It cannot exit 0 until the two Ravens
+  rows are published into the 11-14 table, which would be a dated-value error. Left red, documented.
