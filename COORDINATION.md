@@ -2622,3 +2622,65 @@ Not claimed here (the site, the integration and every other brief item stay with
 **Request to the integration session (not actioned here, per the rules):** publish the 2026-11-15 capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. Do not overwrite the 2026-11-14 table. Then re-run `tools/verify_w10_recapture.py` until it exits 0.
 
 **Not done in this session (honest scope):** the brief's other items (daily timestamped captures, a durable snapshot store, the leaderboard, correlation and gating changes, and the 14 "Week 10 snapshot" items) were already handled by earlier merged rounds, or need data this sandbox cannot fetch. They are not claimed here.
+## Session `arena/29e011dc-x1` — claim and completion record (2026-11-15)
+
+**Claim (logged after the first review pass, disclosed):** this session read the board, ran the full
+`verify.yml` chain on `51d6e32` (all green), and checked the brief's items against the repo before
+changing any file. The claim is recorded here, before the commit that carries the work.
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| X1 | Decision-readiness register: one row per requirement, the gate that blocks it, the number that clears it, on the landing page | **done** | `arena/29e011dc-x1` | `tools/build_readiness.py` (new), `data/audit/decision_readiness.{json,csv}` (new), `tools/build_app.py` (additive: `readiness_card`), `app/index.html` (generated) |
+| X2 | Dated official schedule announcement published beside the live schedule page | **done** | `arena/29e011dc-x1` | `data/audit/schedule_announcement_2026.json` (new), `tools/build_app.py` (additive: `schedule_announcement_card`), `app/schedule.html` (generated) |
+| X3 | Irregularities from the repository review, on the Flagged for Review page | **done** | `arena/29e011dc-x1` | `data/audit/irregularities_review.json` (new), `tools/build_app.py` (additive: `irregularities_card`), `app/flagged.html` (generated) |
+| X4 | CI reproducibility and publishing for the new files | **done** | `arena/29e011dc-x1` | `.github/workflows/verify.yml` (one step added), `.github/workflows/pages.yml` (one `cp` line for `data/audit/`), `tools/check_links.py` (one approved host: `media.nfl.com`) |
+
+### Sources used (all read or checked on 2026-11-15, UTC)
+
+| Source | What was taken from it | Link |
+|---|---|---|
+| NFL Football Communications, "2026 NFL Schedule Announced" (dated May 14, 2026) | Date, 18 weeks, 272 games, Week 1 kickoff Sept 9, Week 18 dates, 9 international games. Quoted verbatim in `data/audit/schedule_announcement_2026.json`. | https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced |
+| NFL.com, 2026 NFL Injury Report, Week 10 | Spot-check of Detroit rows (Kerby Joseph, Cade Mays, D.J. Reed: Out); page structure. | https://www.nfl.com/injuries/ |
+| NFL.com terms of use | The address `https://www.nfl.com/terms-of-use` returned a 404 page. No terms were read. | https://www.nfl.com/terms-of-use (broken; not linked from the site) |
+| Row-level re-capture by session `arena-ed8c600d-x1` (merged in PR #49) | 347 official vs 345 published rows; 2 missing; 32 cells in 16 rows differ. Attributed, not re-verified here. | https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/recapture_report.md |
+
+### Verification performed
+
+- `python3 tools/build_readiness.py --check` → fresh build equals the committed files.
+- Every number in the readiness register is read at build time from the file named in its *Evidence*
+  column. Checked values: side MAE model 10.741 and market 9.792 (`data/lab/lines/model_report.json`);
+  line-desk leaderboard 0 of 8 through all gates (`data/lab/leaderboard.json`, `gates_failed` empty);
+  best singles z −0.57 (same file); 345 injury rows, one snapshot date (`data/injuries/injuries_2026_week10.csv`);
+  8 distinct stylesheet files (counted across the page trees); 14 games on the Week 10 slate (`data/console/schedule_week10.csv`).
+- Re-run of the full CI chain (`verify.yml` steps, `pages.yml` checks: `verify_site`, `check_site`,
+  `verify_research_site`, `pipeline/verify_site`, `build_hub`, `verify_against_official`, `verify_app`,
+  `verify_deployed_tree`, `verify_new_data`, `verify_console`, `verify_stores`, `test_source_rule`) — see the
+  merge record below for the final run.
+
+### Irregularities found (published on `app/flagged.html`; none blocks the release)
+
+| ID | Severity | Finding |
+|---|---|---|
+| IR-01 | high | Two leaderboards disagree: landing page (`data/site/payload.json`) says 1 of 16 strategies passes every gate; line desk (`data/lab/leaderboard.json`) says 0 of 8. The requirements register (R-09) says none has cleared. |
+| IR-02 | high | Three different model-error figures for one model: 10.42 vs 9.73 (typed text in the generator), 10.741 vs 9.792 (model report), 10.98 (payload, all seasons). |
+| IR-03 | medium | Market benchmark 9.73 is typed into `tools/build_app.py` on six lines, not read from the model report (9.792). |
+| IR-04 | high | Scheduled data-refresh runs succeed, but the injury file holds one capture date and no fetch time. |
+| IR-05 | medium | The same Week 10 injury report is stored in three files with three layouts (345 rows each). |
+| IR-06 | low | Compiled `.pyc` files are tracked in Git and change on every build. Reverted locally; not removed from history. |
+| IR-07 | medium | Eight different stylesheet files across the page trees. |
+| IR-08 | high | Published Week 10 injury table: 2 official rows missing, 16 rows differ (per the merged re-capture report). Not corrected here. |
+| IR-09 | medium | The NFL terms-of-use address returns 404; no NFL terms are recorded in the repo. |
+
+### Shared-file edits (additive, logged per rule 4)
+
+- `tools/build_app.py`: three new functions and three call sites (landing, schedule, flagged); loader lines. Existing sections untouched.
+- `tools/check_links.py`: one host added to `APPROVED` (`media.nfl.com`).
+- `.github/workflows/verify.yml`: one step (`build_readiness.py --check`).
+- `.github/workflows/pages.yml`: `cp data/audit/*.json data/audit/*.csv _site/data/audit/` so the readiness CSV and the register resolve on the live site (without it the links would 404).
+
+### Not done in this session (still open — see the readiness register for the gate and the number that clears each)
+
+Injury and depth ablations (NB-01); official inactive lists and snap counts (NB-02); designation reliability and
+the empirical "Questionable" calibration (NB-03, NB-04); the weather/roof overlay (NB-05); the per-team view (NB-08);
+the public/private data split (NB-10, terms unread); roster-event versioning (NB-12); the prospective two-stage
+leaderboard (NB-13). Two of the brief's items are *partly* met and are named as such (NB-07, NB-09, NB-11, NB-14).

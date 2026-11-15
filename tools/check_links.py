@@ -30,6 +30,9 @@ APPROVED = {
     # static.www.nfl.com serves the official NFL Game Book PDFs (added for the verified
     # results feed; already in RESEARCH_APPROVED below for the same reason).
     "static.www.nfl.com",
+    # media.nfl.com is the league's official media host (added by session arena/29e011dc-x1 for
+    # the dated 2026 schedule announcement, retrieved 2026-11-15).
+    "media.nfl.com",
 }
 # The research tree cites the league's document and tracking hosts as well.
 RESEARCH_APPROVED = {

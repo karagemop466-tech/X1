@@ -154,6 +154,11 @@ jobs:
           cp -r data/origin _site/data/origin
           mkdir -p _site/data/lines
           cp data/lines/originated_markets_2026_week10.csv _site/data/lines/
+          # Added by session arena/29e011dc-x1 (additive): the decision-readiness register,
+          # the schedule announcement and the review registers that app/index.html and
+          # app/flagged.html link to. Without this line those downloads would 404.
+          mkdir -p _site/data/audit
+          cp data/audit/*.json data/audit/*.csv _site/data/audit/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site
