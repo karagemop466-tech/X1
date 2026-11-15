@@ -47,6 +47,7 @@ PAGES: list[tuple[str, str, str, str]] = [
     ("leaderboard.html", "Leaderboard", "Signal versus staking", "T5 · competition"),
     ("deficiency.html", "Replacement depth", "Who steps in, and how far back", "T6 · depth"),
     ("correlation.html", "Correlation", "With n on every value", "T7 · measured"),
+    ("controls.html", "Control baselines", "Would a coin toss do as well?", "C1 · controls"),
     ("validation.html", "Demotion gate", "When a strategy goes back to paper", "T8 · gate"),
     ("questions.html", "Questions", "What we know, what we don't", "Decision support"),
     ("suggestions.html", "Suggestions", "Choose a path before building", "Decision support"),
@@ -1058,6 +1059,23 @@ def p_flagged() -> str:
     for d in board["summary"]["defects_found_in_this_build"]:
         flags.append(["B", d["id"], d["severity"], f"Leaderboard defect, fixed: {d['was']}",
                       d["effect"], src(f"{GITHUB}/tools/lab/build_strategies.py"), "fixed"])
+    # C1 (session arena-3f5badd0-x1): irregularities of the control-baseline round.
+    MIRROR_URL = "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    flags.append(["K", "C1-01", "medium",
+                  "Control baselines use a community-mirror spread, not an official price",
+                  "favourites 881–947–43 against the spread, 2019–2025; the mirror states no book or timestamp",
+                  src(MIRROR_URL, "nflverse/nfldata games.csv"),
+                  "does not block; a named-book dated spread would confirm or move the favourites row (Q-02)"])
+    flags.append(["K", "C1-02", "medium",
+                  "No leaderboard run can be scored against a control on the same games",
+                  "8 of 8 leaderboard rows show NOT RUN; their window and price are not in the registered universe",
+                  src(f"{GITHUB}/data/lab/leaderboard.json", "leaderboard.json"),
+                  "does not block; the control gate stays NOT RUN until a dated 2026 price exists"])
+    flags.append(["K", "C1-03", "low",
+                  "The mirror file changed on GitHub after the pinned copy was taken",
+                  "upstream commit 6d38e30 (automated data update) posted after the pin; the pinned bytes are used",
+                  src("https://github.com/nflverse/nfldata/commits/master/data/games.csv", "file history"),
+                  "not re-pinned in this round, so the registered universe does not move"])
     for f in defi["findings"]:
         flags.append(["X", f["id"], "info", f["finding"], f["measure"],
                       " ".join(src(u) for u in f["source"]) if all(
@@ -1209,6 +1227,113 @@ def check() -> int:
     print(f"lab site verification passed: {len(files)} pages, links resolve, every data row sourced")
     return 0
 
+def p_controls() -> str:
+    """Control baselines, pre-registered in docs/lab/control-baselines.md (commit 0747005)."""
+    c = jload("data/lab/controls/control_baselines.json")
+    b = jload("data/lab/leaderboard.json")
+    REG = "https://github.com/karagemop466-tech/X1/commit/0747005"
+    MIRROR = "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    CTRL = f"{GITHUB}/data/lab/controls/control_baselines.json"
+    fav, rnd = c["favourites_pooled"], c["random_picks"]
+
+    def ci(lo, hi):
+        return f"{pct(lo)}&ndash;{pct(hi)}" if lo is not None and hi is not None else dash()
+
+    headline = f"""
+<div class="note"><b>Pre-registered before the numbers were computed.</b> The rules are frozen in
+<a href="{REG}" target="_blank" rel="noopener">docs/lab/control-baselines.md at commit <code>0747005</code></a>.
+Universe: {fav["games"]:,} regular-season games, 2019–2025, with a spread on record. Source:
+<a href="{MIRROR}" target="_blank" rel="noopener">nflverse/nfldata games.csv</a>, a community mirror, <b>not an NFL source</b>.</div>
+
+<div class="kpis">
+{kpi(pct(fav["win_rate"]), "Favourites, against the spread", f'{fav["wins"]}–{fav["losses"]}–{fav["pushes"]} · Wilson 95% {ci(fav["wilson95_lo"], fav["wilson95_hi"])}', "")}
+{kpi(pct(rnd["mean_win_rate"]), "Random picks, mean of 1,000 runs", f'band {pct(rnd["p2_5"])}–{pct(rnd["p97_5"])} · seed {rnd["seed"]}', "")}
+{kpi(pct(fav["su_fav_win_rate"]), "Favourites, straight up", f'n = {fav["su_n"]:,} non-tied games', "")}
+{kpi(pct(c["conventions"]["break_even_at_minus_110"]), "Break-even at −110", "arithmetic, not an observed price", "")}
+</div>
+"""
+    season_rows = []
+    for s in c["seasons"]:
+        f = s["favourites"]
+        season_rows.append([
+            str(f["scope"].split(" ")[0]), str(f["games"]),
+            f'{f["wins"]}–{f["losses"]}–{f["pushes"]}', pct(f["win_rate"]), ci(f["wilson95_lo"], f["wilson95_hi"]),
+            pct(f["su_fav_win_rate"]),
+            (f'<span class="blank">below the bar</span>' if f["wilson95_hi"] < c["conventions"]["break_even_at_minus_110"]
+             else ("above the bar, interval clears it" if f["wilson95_lo"] > c["conventions"]["break_even_at_minus_110"]
+                   else ("point above the bar, interval crosses it" if f["win_rate"] >= c["conventions"]["break_even_at_minus_110"]
+                         else "point below the bar, interval crosses it"))),
+            src(MIRROR, "games.csv"),
+        ])
+    seasons_tbl = table(
+        ["Season", "Games", "Fav W–L–P (ATS)", "Fav ATS rate", "Wilson 95%", "Fav straight-up", "vs −110 bar", "Source"],
+        season_rows, numeric=(1, 3, 5),
+        note="Favourite = the side the mirror's spread favours. Pushes are excluded from the rate. "
+             "Straight-up ties are excluded. The 2026 season is not scored here: no 2026 spread is on record (open question Q-02).")
+
+    lb_rows = []
+    for r in b["rows"]:
+        sg = r["signal"]
+        lb_rows.append([
+            esc(r["name"]), esc(r["market"]), str(sg.get("n", 0)), pct(sg.get("hit_rate")),
+            badge("NOT RUN", "grey"),
+            dash("no control exists on the same games: the strategy's window and price are not in the registered universe"),
+            dash("same as above"),
+            src(f"{GITHUB}/data/lab/leaderboard.json", "leaderboard.json"),
+        ])
+    lb_tbl = table(
+        ["Strategy", "Market", "n", "Hit rate", "Control gate", "vs random picks", "vs favourites", "Source"],
+        lb_rows, numeric=(2, 3),
+        note="Every leaderboard run is shown with the control result it would need. None can be compared yet, "
+             "so none passes or fails the control gate. This is recorded, not hidden. Closing the gap needs a "
+             "dated 2026 spread with a named book (open question Q-02).")
+
+    body = f"""
+<div class="card">
+  <h2>Favourites and random picks, 2019–2025</h2>
+  {seasons_tbl}
+</div>
+
+<div class="card">
+  <h2>The control gate on every leaderboard run</h2>
+  <p>A strategy beats the controls only if its win rate is above both controls on the same games, and its
+  95% lower bound is above the {pct(c["conventions"]["break_even_at_minus_110"])} bar. The gate is written before any
+  result is seen and cannot be applied to a window with no price.</p>
+  {lb_tbl}
+</div>
+
+<div class="card">
+  <h2>What the controls show, and what they do not</h2>
+  <ul>
+    <li><b>Random picks</b> centre on {pct(rnd["mean_win_rate"])}. They sit inside a band of
+        {pct(rnd["p2_5"])}–{pct(rnd["p97_5"])}. A pick that does nothing scores about 50%, before any price.</li>
+    <li><b>Favourites</b> win {pct(fav["win_rate"])} against the spread. That is below the {pct(c["conventions"]["break_even_at_minus_110"])} bar at −110.
+        {pct(rnd["share_of_reps_at_or_above_favourites"])} of random runs score at least as well as favourites.</li>
+    <li><b>Straight up</b>, favourites win {pct(fav["su_fav_win_rate"])}. That number is not a betting edge, because the price is
+        the thing being bet against.</li>
+    <li><b>Not shown:</b> any strategy result on 2026. A leaderboard win rate of 50–52% is not evidence of skill
+        until it is measured against these controls on the same games.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Limits and integrity</h2>
+  <ul>
+    <li>Pinned bytes: archive SHA-256 <code>{esc(c["source"]["pinned_archive_sha256"][:16])}…</code>,
+        file SHA-256 <code>{esc(c["source"]["sha256"][:16])}…</code>. The mirror file was updated on GitHub
+        after this pin was taken (today's automated update). This page uses the pinned bytes; the file is not re-pinned here.</li>
+    <li>The mirror states no sportsbook, timestamp or price for <code>spread_line</code>. A different spread source
+        could move the favourites row.</li>
+    <li>Win rates are not ROI. ROI at −110 is an assumption, not an observed price, and is not shown on this page.</li>
+    <li>Reproduce: <code>python3 tools/lab/build_controls.py --check</code>. The artefact is
+        <a href="{CTRL}" target="_blank" rel="noopener">control_baselines.json</a>.</li>
+  </ul>
+</div>
+"""
+    lede = ("Every strategy on this desk should be read against a bet that needs no model. "
+            "Here are the two cheapest bets there are, measured on the same kind of games.")
+    return page("controls.html", "Control baselines", "C1 · controls", body, lede=lede)
+
 
 def main() -> int:
     if "--check" in sys.argv:
@@ -1223,6 +1348,7 @@ def main() -> int:
         "leaderboard.html": p_leaderboard,
         "deficiency.html": p_deficiency,
         "correlation.html": p_correlation,
+        "controls.html": p_controls,
         "validation.html": p_validation,
         "questions.html": p_questions,
         "suggestions.html": p_suggestions,

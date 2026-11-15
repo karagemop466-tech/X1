@@ -2,7 +2,7 @@ name: verify-site
 
 on:
   push:
-    branches: [main]
+    branches: [main, arena/c0461519-x1]   # TEMPORARY for branch-head CI proof; remove before merge
   pull_request:
   workflow_dispatch:
 
@@ -132,3 +132,9 @@ jobs:
       # ledger must re-hash to its chain. An empty ledger passes; a tampered line fails.
       - name: Verify the immutable injury-report ledger (Added by session arena-c0461519-x1)
         run: python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries
+
+      # Added by session arena-3f5badd0-x1 (additive only). Control baselines (random picks,
+      # favourites only) pre-registered in docs/lab/control-baselines.md (commit 0747005).
+      # --check fails if the committed artefact differs from a fresh computation.
+      - name: Control baselines reproduce from the pinned mirror (C1)
+        run: python3 tools/lab/build_controls.py --check

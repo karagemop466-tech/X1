@@ -1732,8 +1732,26 @@ def page_crosscheck():
     return shell("Cross-check", f"SNAPSHOT {RETRIEVED}", body, depth=1)
 
 
+def landing_html() -> str:
+    """Landing page = generated sections + the decision-readiness fragment.
+
+    Added by session arena-c0461519-x1: the decision-readiness table was hand-added to
+    index.html at commit 3380987 and every build silently removed it. The table now lives in
+    tools/fragments/landing_decision_readiness.fragment and is re-inserted at the same position,
+    so the committed index.html is reproducible again.
+    """
+    import re as _re
+    html = page_index()
+    frag_path = os.path.join(ROOT, "tools", "fragments", "landing_decision_readiness.fragment")
+    frag = open(frag_path, encoding="utf-8").read()
+    frag = _re.sub(r"^<!--.*?-->\n", "", frag, count=1, flags=_re.S).rstrip("\n")
+    marker = '<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY'
+    assert html.count(marker) == 1, "landing marker not found exactly once"
+    return html.replace(marker, frag + "\n\n" + marker)
+
+
 def main():
-    write("index.html", page_index())
+    write("index.html", landing_html())
     write("pages/executive-summary.html", page_exec_summary())
     write("pages/standings.html", page_standings())
     write("pages/schedule.html", page_schedule())
