@@ -2576,3 +2576,49 @@ its content is preserved and this session's change is additive.
 | Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
 
 Session `arena-600e6009-x1` complete.
+
+---
+
+# Session `arena/ed8c600d-x1` — Week 10 official injury re-capture and row-level verification (this session)
+
+**Session ID:** `arena-ed8c600d-x1` · **Branch:** `arena/ed8c600d-x1` (branched from `main` @ `51d6e32`).
+**Claim written and pushed before any other work (rule 1).** Open PRs: none (`gh pr list --state open` → empty).
+Bash cannot reach nfl.com (TLS error, `curl` exit 35); the official page was read through the fetch tool, all 8 chunks.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| E1 | **Re-capture the official Week 10 NFL.com injury report** (all 8 pages, 14 games, 28 clubs) and compare it row by row with the published `data/nfl/injuries_week10.tsv` (345 data rows) — the brief's "254 vs 279 rows / stale counts" item and the Lions designation item (VR-08/VR-12) | **done** (findings flagged, see record below) | `arena-ed8c600d-x1` | `data/capture/2026_w10/**` (new), `tools/verify_w10_recapture.py` (new), this file |
+
+Not claimed here (the site, the integration and every other brief item stay with their owning sessions or the integration step): publishing changes to `app/**`, `data/nfl/injuries_week10.tsv`, any model, leaderboard or registry.
+
+## Completion record — E1 (session `arena-ed8c600d-x1`, 2026-11-15)
+
+**Sources (all NFL.com, read through the fetch tool on 2026-11-15 UTC):**
+- Week 10 injury report: https://www.nfl.com/injuries/ — 8 chunks, 14 games, 28 clubs, 347 printed rows.
+- Context pages named in the report's news list (not used as data): https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders , https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again
+
+**What shipped (new paths only):**
+- `data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv` — the 347 rows as printed.
+- `data/capture/2026_w10/recapture_report.{md,json}` — generated comparison.
+- `data/capture/2026_w10/README.md` — method and limits.
+- `tools/verify_w10_recapture.py` — exit 1 while the published table differs from the page.
+
+**Verification performed:**
+- Row-by-row key comparison (game, club, player): 345 published rows all found on the page; 0 extra rows; 2 official rows absent from the published table; 0 duplicate keys.
+- Field comparison on matched rows (injury / practice status / game status): 32 cells differ in 16 rows.
+- The Lions designations (Kerby Joseph, Cade Mays, D.J. Reed) are **Out** on the page and **Out** in `data/nfl/injuries_week10.tsv` — **match**; the earlier "blank game-status" item is already resolved in the TSV.
+- The page's printed summary counts (66 / 84 / 10 / 185) do not match the current page (70 / 90 / 11 / 176).
+
+**Irregularities (flagged for review — nothing in the site was changed):**
+- **F-E1-1** Ravens rows missing from the published table: Calais Campbell (DT, Did Not Participate, no designation) and Ronnie Stanley (T, Did Not Participate, no designation), both on the Monday LAC@BAL block.
+- **F-E1-2** Monday LAC@BAL designations differ from the published table on 15 rows (e.g., Keaton Mitchell practice LP→FP; Bud Dupree FP→DNP; Jaylinn Hawkins Out, Injury Knee; Adam Randall Questionable, Neck+Hamstring). The published table prints these cells blank.
+- **F-E1-3** Arden Key (DE, MIA@IND): published Hamstring / Questionable; current page shows no injury, Full Participation, no designation. Could be a dated change or a stale cell. This session cannot tell which capture time is newer from the data alone.
+- **F-E1-4** The `app/injuries.html` text says "re-fetched … 2026-11-14 … 0 mismatches out of 2929 checks". That statement holds only for the 2026-11-14 read. It does not hold for the 2026-11-15 page.
+- **F-E1-6** `tools/verify_against_official.py` reports "every published Week 10 cell agrees with the official page" (0 mismatches of 2,183). Its reference is `audit/official_snapshot_2026_w10.py`, a 2026-11-14 transcription. The check therefore confirms the 2026-11-14 table against itself. It does not test the live page, which differs on 16 rows (F-E1-1 to F-E1-3).
+- **F-E1-5** Bash cannot reach nfl.com (TLS error, `curl` exit 35), so the raw response bytes are not retained. The capture is a transcription through the fetch tool.
+
+**Request to the integration session (not actioned here, per the rules):** publish the 2026-11-15 capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. Do not overwrite the 2026-11-14 table. Then re-run `tools/verify_w10_recapture.py` until it exits 0.
+
+**Not done in this session (honest scope):** the brief's other items (daily timestamped captures, a durable snapshot store, the leaderboard, correlation and gating changes, and the 14 "Week 10 snapshot" items) were already handled by earlier merged rounds, or need data this sandbox cannot fetch. They are not claimed here.
