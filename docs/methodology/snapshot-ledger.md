@@ -67,8 +67,12 @@ The mutation test used during build: changing one field of a line makes `verify`
   Over a Wednesday–Sunday window that is at least one read per day, which is the brief's "daily
   from Wednesday to kickoff". Reads at the same content reuse one raw file, so storage grows with
   page **changes**, not with reads.
-* Pull requests that touch the ledger run a **probe**: a real capture into a scratch directory on
-  the runner, verified, and uploaded as the `injury-ledger-probe` artifact.
+* Runs on a same-repository pull request read the page on the runner, verify the chain, and
+  commit the result to the PR branch. Fork pull requests read and verify only.
+* The **first live capture** came from a branch push, not a pull request: pull_request
+  synchronize and reopen events did not start workflow runs for this branch in the build sandbox,
+  so a temporary `push` trigger was added and removed again (see the irregularities in
+  `COORDINATION.md`).
 
 ## What this does NOT do yet (honest limits)
 
@@ -81,6 +85,22 @@ The mutation test used during build: changing one field of a line makes `verify`
 * Week 1–9 archives are not in this ledger. The ledger starts at the first read.
 * Hashes prove that the stored bytes did not change after capture. They do not prove that NFL
   published those bytes at that time; the capture time is the runner's clock.
+
+## First capture (record)
+
+| Item | Value |
+|---|---|
+| Ledger line | `seq 1`, `captured_at_utc 2026-11-15T18:21:05Z`, `http_status 200`, `bytes 399868` |
+| Page title | "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season \| NFL.com" |
+| Decoded SHA-256 | `fb7259efb662941c9cefbe180f5a5b7268e192604c2fdf3be75b66da4cc07d8c` |
+| Raw file | `data/ledger/injuries/raw/20261115T182105Z_fb7259efb662.html.gz` |
+| Captured by | GitHub Actions run `43746250190` (`runner` field), committed by `x1-bot` |
+| Flags | `first_capture` (no fatal flag; "Practice Status" text present) |
+| Spot-check (decoded raw vs official page) | Kerby Joseph (Knee, DNP, **Out**), Cade Mays (Ankle, DNP, **Out**), D.J. Reed (Hip, DNP, **Out**); Malik Harrison (Groin, LP, **Questionable**); Amon-Ra St. Brown (Rib, LP, **Questionable**) |
+
+The spot-check reads the committed raw bytes; the designations match the official page as fetched
+through the fetch tool at the same session. The full 345-row table is **not** parsed by this
+ledger and is covered by the existing verifiers (`tools/verify_against_official.py`).
 
 ## Sources
 
