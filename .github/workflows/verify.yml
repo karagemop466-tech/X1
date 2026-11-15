@@ -32,6 +32,9 @@ jobs:
       - name: Rebuild the site
         run: python3 tools/build_site.py
 
+      - name: Verify decision-readiness table and registered thresholds
+        run: python3 tools/build_readiness.py --check
+
       - name: Fail if committed HTML is stale
         run: git diff --exit-code -- index.html pages
 
