@@ -28,23 +28,42 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
-| `arena-b8722e85-x1` | `arena/b8722e85-x1` | Expanded-brief requirement capture + decision-readiness criteria (non-overlapping source artifacts; app integration deferred to final integration after open PRs) | 2026-11-15 | in progress |
+| `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53) | 2026-11-15 | done — memo delivered; final-site link/flags requested in PR #54 |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
 ---
 
-## Claim — expanded owner brief and decision-readiness criteria (session `arena-b8722e85-x1`)
+## Claim correction and handoff — expanded-brief/readiness work superseded
 
-The claim is on the fixed current branch `arena/b8722e85-x1` (Arena does not permit this session to create or switch to a `session-<id>/<task>` branch). The open PRs #50 (`arena/c0461519-x1`) and #51 (`arena/3f5badd0-x1`) are active and touch `app/**`/`tools/build_app.py` and `lab/**`/`tools/lab/**` respectively. To avoid overlap, this session does **not** edit those paths or the existing site navigation. It claims only these new source artifacts; the eventual landing-page rendering is a request for the final integration after those PRs are resolved.
+This session initially claimed to capture the expanded brief and build a readiness matrix. Before creating any task files, I found PR #53, opened by `arena/29e011dc-x1`, whose published change list directly covers that work (68 rows: the existing 53 plus 15 new brief items, with a decision-readiness table on the landing page). To avoid duplicate or conflicting work, no requirement delta file, readiness dataset, generator, or app page was created here. The canonical landing-page readiness table was subsequently merged in PR #58 (commit `8a5fe2f`). Duplicate readiness PRs #53, #56, and #59 are still open as of this note; this session does not modify their scopes. The initial claim is closed as a coordination handoff. The current branch remains fixed at `arena/b8722e85-x1`.
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
-| RD-1 | Capture the additional requirements in the latest owner brief as a verbatim, additive round-3 source and register (R-54 onward); reconcile duplicates/conflicts without removing the original brief | in progress | `arena-b8722e85-x1` | `docs/live-pipeline/project-brief-round3.md` (new), `data/audit/requirements_round3.json` (new) |
-| RD-2 | Define a row for every registered requirement with its current state, blocking gate, and evidence-backed clearance criterion; leave unknown thresholds blank and flag them instead of inventing numbers | in progress | `arena-b8722e85-x1` | `data/audit/decision_readiness.json` (new), `tools/build_decision_readiness.py` (new), `tools/verify_decision_readiness.py` (new), `docs/audit/decision-readiness.md` (new) |
-| RD-3 | Request final integration to render the readiness table on the landing page and link the expanded brief; do not edit `app/**` while PR #50 owns that tree | needs review | `arena-b8722e85-x1` | `COORDINATION.md` request only; integration-owned page changes deferred |
+| RD-1 | Expanded-brief capture/register | done — handed off to PR #53 before implementation; no duplicate files created | `arena-b8722e85-x1` | none (canonical implementation: PR #53) |
+| RD-2 | One-row-per-requirement decision-readiness table | done — handed off to PR #53 before implementation; no duplicate files created | `arena-b8722e85-x1` | none (canonical implementation: PR #53) |
+| RD-3 | Landing-page integration request | done — the readiness table landed in PR #58; no generated page was edited in this session | `arena-b8722e85-x1` | none |
 
-Non-overlap: no existing `app/**`, `tools/build_app.py`, `lab/**`, `.github/workflows/**`, or other session's source paths will be edited. Existing official data tables are read-only during this task. Requirement text comes from the owner's latest request; NFL facts/thresholds in the readiness rows will use only already verified source-backed data or registered gates. Unsupported thresholds will be left blank and marked unverified.
+Handoff log: at 2026-11-15 18:21 UTC, PR #53 was open and its changed-file list included `data/audit/decision_readiness.{json,csv}`, `tools/build_readiness.py`, `app/index.html`, and `app/flagged.html`; this overlapped RD-1–RD-3. PR #58 later merged the landing-page readiness table. As of 18:25 UTC, PRs #53, #56, and #59 still open with overlapping readiness/site scopes; final integration should reconcile the duplicates without discarding changes. This session created no readiness or site files and did not touch PR #50 (`app/**`, `tools/build_app.py`, injury ledger) or PR #51 (`lab/**`, `tools/lab/**`).
+
+---
+
+## Current claim — official NFL Game Book source feasibility and data-rights review
+
+This is a docs-only, non-overlapping research task. It does not collect or republish player-level gamebook rows, edit `data/**`, change generated site pages, or modify any path claimed by PRs #50, #51, #53, or #54. The source review will record one official NFL Game Center → Game Book PDF path, distinguish what that single sample does and does not show, and publish the Game Book's own usage restriction. No legal conclusion will be made; raw/row-level data remains unpublished unless appropriate written authorization or terms review is documented.
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| GB-1 | Verify that an official NFL Game Book can evidence listed lineups and game-day status, check the actual document for snap-count fields and data-use terms, and give the final integrator a source-linked recommendation | done — memo completed; site publication requested from integration | `arena-b8722e85-x1` | `docs/audit/official-gamebook-source-review.md` (new), `COORDINATION.md` (this record only) |
+
+### Completion record — GB-1 (2026-11-15)
+
+- **Official sources inspected:** [NFL Game Center — New England at Detroit, 2026 REG Week 10](https://www.nfl.com/games/patriots-at-lions-2026-reg-10); its linked [NFL-hosted Game Book PDF](https://static.www.nfl.com/image/upload/v1794764592/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf); [NFL 2026 schedule](https://www.nfl.com/schedules/2026/REG/week/10).
+- **Verification:** opened the official Game Center and followed its “Download Game Book (PDF)” link; inspected all seven parsed PDF chunks. Confirmed the source sections/headings and the exact usage notice; kept source strings rather than normalizing them.
+- **Deliverable:** `docs/audit/official-gamebook-source-review.md` — a source-feasibility and data-rights memo. No player-level rows, PDF bytes, or inferred values were added.
+- **Irregularities / limits:** (1) Game Center venue strings (`MUNICH`; `FC BAYERN MUNICH STADIUM`) differ from the PDF's `Allianz Arena, Munich, Germany`; (2) the PDF explicitly says any other use requires written NFL permission; (3) no per-player snap-count field was found in this one sample; (4) this is one fixture only; (5) the fetch tool provided parsed text, not raw bytes, so there is no retained PDF hash or immutable capture.
+
+Request to the current integration owner(s) (PR #54 merged; the follow-up site PRs remain active): link the source-review memo from the Decision/Flagged pages and publish non-blocking flags for the usage restriction, venue-label difference, and unverified snap-count coverage (proposed IDs IR-10…IR-12; confirm no ID collision before use). PR #50 currently owns the app generator/pages; PRs #56 and #59 also have site changes in flight. Preserve the boundary in the memo: one gamebook is a feasibility check, not 32-team/season coverage; the PDF states that other use requires written NFL permission; do not publish transcribed player rows without documented permission. No generated app file is edited by this session.
 
 ---
 
