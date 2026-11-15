@@ -1,0 +1,10 @@
+scope,games,wins,losses,pushes,win_rate,wilson95_lo,wilson95_hi,n_non_push,beats_break_even_lower_bound,su_fav_win_rate,su_n,mean_win_rate,p2_5,p97_5,share_of_reps_at_or_above_favourites,replications,seed
+2019–2025 favourites (ATS),1871,881,947,43,0.4819,0.4591,0.5049,1828,False,0.6643,1865,,,,,,
+"2019–2025 random picks (ATS), 1,000 replications",1871,,,,,,,,,,,0.5003,0.4776,0.5213,0.943,1000,20261115
+2019 favourites (ATS),256,113,133,10,0.4593,0.3982,0.5218,246,False,0.6431,255,,,,,,
+2020 favourites (ATS),256,114,142,0,0.4453,0.3857,0.5066,256,False,0.6745,255,,,,,,
+2021 favourites (ATS),272,125,143,4,0.4664,0.4076,0.5262,268,False,0.6236,271,,,,,,
+2022 favourites (ATS),271,118,143,10,0.4521,0.3929,0.5127,261,False,0.6617,269,,,,,,
+2023 favourites (ATS),272,137,121,14,0.531,0.4701,0.591,258,False,0.6801,272,,,,,,
+2024 favourites (ATS),272,143,125,4,0.5336,0.4738,0.5924,268,False,0.7132,272,,,,,,
+2025 favourites (ATS),272,131,140,1,0.4834,0.4245,0.5427,271,False,0.6531,271,,,,,,

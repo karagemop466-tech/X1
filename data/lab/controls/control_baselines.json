@@ -1,0 +1,185 @@
+{
+  "session": "arena-3f5badd0-x1",
+  "rule_version": "1",
+  "registration": "0747005 (docs/lab/control-baselines.md)",
+  "source": {
+    "publisher": "nflverse/nfldata (community mirror, NOT an official NFL source)",
+    "file": "data/lab/upstream/games.csv",
+    "sha256": "7d791bb4776e81a3e7687d38da0a89563233bb2e419b2bd44261b36ba70c39e1",
+    "pinned_archive_sha256": "0c93b5ec9cd23572ec2ff79e3173fda5f1beecce7dae61c93eaa1c27f9218c9a",
+    "url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+  },
+  "conventions": {
+    "spread_line": "home-team perspective; positive = home favoured",
+    "home_covers": "margin_home - spread_line > 0; push when equal",
+    "break_even_at_minus_110": 0.5238
+  },
+  "favourites_pooled": {
+    "scope": "2019–2025 favourites (ATS)",
+    "games": 1871,
+    "wins": 881,
+    "losses": 947,
+    "pushes": 43,
+    "win_rate": 0.4819,
+    "wilson95_lo": 0.4591,
+    "wilson95_hi": 0.5049,
+    "n_non_push": 1828,
+    "beats_break_even_lower_bound": false,
+    "su_fav_win_rate": 0.6643,
+    "su_n": 1865,
+    "su_wilson95": [
+      0.6426,
+      0.6854
+    ]
+  },
+  "random_picks": {
+    "scope": "2019–2025 random picks (ATS), 1,000 replications",
+    "games": 1871,
+    "replications": 1000,
+    "seed": 20261115,
+    "mean_win_rate": 0.5003,
+    "p2_5": 0.4776,
+    "p97_5": 0.5213,
+    "share_of_reps_at_or_above_favourites": 0.943
+  },
+  "seasons": [
+    {
+      "season": 2019,
+      "games": 256,
+      "favourites": {
+        "scope": "2019 favourites (ATS)",
+        "games": 256,
+        "wins": 113,
+        "losses": 133,
+        "pushes": 10,
+        "win_rate": 0.4593,
+        "wilson95_lo": 0.3982,
+        "wilson95_hi": 0.5218,
+        "n_non_push": 246,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.6431,
+        "su_n": 255
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    },
+    {
+      "season": 2020,
+      "games": 256,
+      "favourites": {
+        "scope": "2020 favourites (ATS)",
+        "games": 256,
+        "wins": 114,
+        "losses": 142,
+        "pushes": 0,
+        "win_rate": 0.4453,
+        "wilson95_lo": 0.3857,
+        "wilson95_hi": 0.5066,
+        "n_non_push": 256,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.6745,
+        "su_n": 255
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    },
+    {
+      "season": 2021,
+      "games": 272,
+      "favourites": {
+        "scope": "2021 favourites (ATS)",
+        "games": 272,
+        "wins": 125,
+        "losses": 143,
+        "pushes": 4,
+        "win_rate": 0.4664,
+        "wilson95_lo": 0.4076,
+        "wilson95_hi": 0.5262,
+        "n_non_push": 268,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.6236,
+        "su_n": 271
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    },
+    {
+      "season": 2022,
+      "games": 271,
+      "favourites": {
+        "scope": "2022 favourites (ATS)",
+        "games": 271,
+        "wins": 118,
+        "losses": 143,
+        "pushes": 10,
+        "win_rate": 0.4521,
+        "wilson95_lo": 0.3929,
+        "wilson95_hi": 0.5127,
+        "n_non_push": 261,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.6617,
+        "su_n": 269
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    },
+    {
+      "season": 2023,
+      "games": 272,
+      "favourites": {
+        "scope": "2023 favourites (ATS)",
+        "games": 272,
+        "wins": 137,
+        "losses": 121,
+        "pushes": 14,
+        "win_rate": 0.531,
+        "wilson95_lo": 0.4701,
+        "wilson95_hi": 0.591,
+        "n_non_push": 258,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.6801,
+        "su_n": 272
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    },
+    {
+      "season": 2024,
+      "games": 272,
+      "favourites": {
+        "scope": "2024 favourites (ATS)",
+        "games": 272,
+        "wins": 143,
+        "losses": 125,
+        "pushes": 4,
+        "win_rate": 0.5336,
+        "wilson95_lo": 0.4738,
+        "wilson95_hi": 0.5924,
+        "n_non_push": 268,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.7132,
+        "su_n": 272
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    },
+    {
+      "season": 2025,
+      "games": 272,
+      "favourites": {
+        "scope": "2025 favourites (ATS)",
+        "games": 272,
+        "wins": 131,
+        "losses": 140,
+        "pushes": 1,
+        "win_rate": 0.4834,
+        "wilson95_lo": 0.4245,
+        "wilson95_hi": 0.5427,
+        "n_non_push": 271,
+        "beats_break_even_lower_bound": false,
+        "su_fav_win_rate": 0.6531,
+        "su_n": 271
+      },
+      "games_list_source": "data/lab/upstream/games.csv"
+    }
+  ],
+  "unverified": [
+    "The mirror does not state the sportsbook, the timestamp or the price of spread_line.",
+    "No 2026 spread is in the registered universe; 2026 is not scored here (Q-02).",
+    "Every value is from a community mirror, not from nfl.com."
+  ]
+}
