@@ -13,6 +13,11 @@
 name: injury-ledger
 
 on:
+  # TEMPORARY (arena-c0461519-x1): pull_request events did not fire for this branch in
+  # this sandbox, so the first live capture is triggered by a branch push. Remove after the
+  # first verified commit (see COORDINATION.md, L2).
+  push:
+    branches: [arena/c0461519-x1]
   schedule:
     - cron: "17 */4 * * *"   # every 4 hours UTC: the report is read daily, Wed through kickoff
   workflow_dispatch:
