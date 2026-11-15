@@ -346,6 +346,15 @@ def page_index():
   </div>
 </section>
 """
+    # Decision-readiness block (added to the landing page by commit 3380987). It is kept as a
+    # fragment so this generator reproduces the committed index.html byte for byte; the CI step
+    # "Fail if committed HTML is stale" requires that.
+    _frag = os.path.join(ROOT, "tools", "fragments", "index_decision_readiness.htmlfrag")
+    with open(_frag, encoding="utf-8", newline="") as fh:
+        _frag_html = fh.read()
+    _mark = '<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY'
+    assert body.count(_mark) == 1, "landing-page anchor not found"
+    body = body.replace(_mark, _frag_html + _mark, 1)
     return shell("Overview", f"SNAPSHOT {RETRIEVED}", body)
 
 
