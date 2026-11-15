@@ -42,7 +42,7 @@ Every ledger line carries:
 |---|---|---|
 | `first_capture` | info | first successful read of the ledger |
 | `unchanged` | info | same week and same `content_sha256` as the previous read |
-| `revised` | change | same week, different `content_sha256` — a designation, practice line or other content changed |
+| `revised` | change | same week, different `content_sha256` — **anything on the page** changed: an injury row, a designation, or a news item in the page's carousel. It does not identify which. |
 | `week_rollover` | change | the page now shows a different week or season |
 | `http_error` | **fatal** | non-200 response or transport error |
 | `empty_body` | **fatal** | fewer than 20,000 bytes returned |
@@ -62,6 +62,17 @@ false positive. From seq 3 on, change flags use `content_sha256`, which masks UU
 content change (for example a designation edited from Questionable to Out) still produces a new
 `content_sha256` and a `revised` flag. The unit check run during the build: same page → `unchanged`;
 one designation edited → `revised`; outage → `http_error`.
+
+### What `revised` does and does not mean (live evidence, 2026-11-15)
+
+Ledger seq 3 (read 18:40:17Z) is `revised` against seq 2 (18:29:02Z). The only text that differs
+after masking UUIDs is a news-carousel link and its heading: the headline "Notable injuries, news
+from Sunday's Week 10 games" gained the suffix "Chiefs TE Travis Kelce hurts ankle". The injury
+rows did not differ in these two reads. Seq 4 (18:46:11Z) is `unchanged` against seq 3, which
+confirms the UUID masking on live data (its exact bytes differ from seq 3, its content does not).
+
+So the ledger can prove that the page changed and when. It cannot yet say which designation changed.
+That needs the row parser, which is the next step and is not built here.
 
 ## Integrity checks (`python3 tools/snapshot_ledger.py verify`)
 

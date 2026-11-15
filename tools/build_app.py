@@ -3488,8 +3488,9 @@ def p_injury_ledger() -> str:
         "<section class=\"note\"><b>What this proves.</b> Each row is one read of the official page, "
         "with the UTC time it was taken, the SHA-256 of the bytes received, and a hash link to the row "
         "before it. A changed page gets a new raw file; an identical re-read reuses the existing one. "
-        "This proves <i>that</i> the page changed and <i>when</i>. It does not yet say which player's "
-        "designation changed — that needs the row parser, which is not built.</section>",
+        "<b>'revised'</b> means <i>anything</i> on the page changed — a designation, or a news item in the "
+        "page's carousel (the first revision was a news headline). The ledger proves <i>that</i> the page "
+        "changed and <i>when</i>; it does not yet say which row changed, because the row parser is not built.</section>",
         card("Read log (newest first)", table(
             "ledger-tbl",
             ["#", "Read (UTC)", "HTTP", "Week (page title)", "Bytes", "SHA-256", "Flags",

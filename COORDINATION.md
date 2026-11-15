@@ -2993,3 +2993,66 @@ Pre-existing gates re-run on the rebased tree: `tools/verify_data.py` (2,944), `
   session does **not** build a competing ledger. It reconciles reads and defers byte capture to #50.
 - **`tools/verify_w10_recapture.py` exits 1** and is not in CI. It cannot exit 0 until the two Ravens
   rows are published into the 11-14 table, which would be a dated-value error. Left red, documented.
+
+## Session `arena-c0461519-x1` — completion record (L1 + L2), 2026-11-15
+
+**Status:** L1 and L2 **done** (ledger live, first reads committed by the runner). Other requirements of the
+brief are **not** claimed by this session and remain as recorded by earlier sessions (see the board above).
+
+| Task | Result |
+|---|---|
+| L1 immutable, hash-chained injury-report ledger | `tools/snapshot_ledger.py` (capture / verify / status), `data/ledger/injuries/ledger.jsonl` (3 lines at this record), raw gzip per changed read under `data/ledger/injuries/raw/`, page `app/injury-ledger.html`, method `docs/methodology/snapshot-ledger.md` |
+| L2 scheduled capture + alarm | `.github/workflows/injury-ledger.yml` (cron every 4 h UTC; PR probe commits on same-repo PRs; fatal flags fail the run); verify step added to `verify.yml` (marked) |
+
+### Sources (all official)
+* NFL.com 2026 injury report, Week 10: https://www.nfl.com/injuries/ — read by the GitHub runner in runs
+  `43746250190` (seq 1, 18:21:05Z), `43746993706` (seq 2, 18:29:02Z), `43748035103` (seq 3, 18:40:17Z),
+  `43748472419` (seq 4, 18:46:11Z). Also read through the fetch tool on 2026-11-15 for the spot-check.
+* NFL.com injury-report policy page (cited, not re-read): https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report
+
+### Verification performed
+* Full `verify.yml` step list and `pages.yml` assembly + crawl run locally on the merged tree: all pass
+  (`tools/verify_deployed_tree.py`: 165 of 169 reachable; 4 known orphans, reported not failed).
+* CI on the branch head: `verify-site` **success** on push for `f1c120a` (full suite) and on the merge commits
+  (see the PR record below for the final head).
+* Ledger: `tools/snapshot_ledger.py verify` re-hashes every stored page and walks the chain (passes on 4 lines).
+  A mutation test (one field edited) fails with `entry_sha256 mismatch`. A synthetic outage fails with
+  `http_error`, `empty_body`, `schema_drift` and exits 1.
+* Spot-check of the committed raw bytes against the official page: Kerby Joseph (Knee, DNP, **Out**), Cade Mays
+  (Ankle, DNP, **Out**), D.J. Reed (Hip, DNP, **Out**); Malik Harrison (Groin, LP, **Questionable**); Amon-Ra
+  St. Brown (Rib, LP, **Questionable**). Matches the official page as fetched through the fetch tool.
+
+### Irregularities (for review — none blocks the merge; also on the ledger page / methodology)
+1. **`pull_request` synchronize and reopen events did not start workflow runs** for this branch in the build
+   sandbox (several pushes and a close/reopen). Workaround: temporary `push` triggers on `injury-ledger.yml`
+   and `verify.yml` for this branch; both removed before merge. Recorded here so the reviewer can see it.
+2. **Run logs and artifacts cannot be downloaded from the sandbox** (blob storage blocked; `gh run view --log`
+   and `gh run download` fail with EOF). Evidence is taken from git (the committed raw files and ledger lines)
+   and from `gh run list` / `gh run view --json jobs` step results.
+3. **Change flag false positive (seq 2):** the page embeds a random UUID per render, so byte hashes differ on
+   unchanged content. Seq 2 is flagged `revised` and is not edited (append-only). From seq 3 the flag uses a
+   UUID-masked `content_sha256`. Seq 4 is then `unchanged`, as it should be.
+4. **`revised` is page-level, not row-level:** seq 3's only text change is a news-carousel headline ("…Chiefs TE
+   Travis Kelce hurts ankle"). The ledger therefore cannot yet say which designation changed. A row parser pinned
+   to the table's expected rows and fields is the next step (not built).
+5. **`main`'s Pages deploy was failing** at "Crawl the assembled tree": `pages.yml` copied the root `index.html` to
+   `legacy-fourth-down.html`, and that copy linked `docs/…` files that are not uploaded. Fixed in
+   `.github/workflows/pages.yml` by repointing those links to the repository on GitHub (sed line in the marked block).
+6. **`index.html` was not reproducible on `main`:** the decision-readiness table was hand-added (commit `3380987`)
+   and the builder overwrote it. `main` has since moved the table into `tools/build_site.py` (`544d4e5`, `add1d62`);
+   this branch adopted that version. Its decision-readiness rows label links "official ↗" but point at repository
+   pages, not at official sites. **Flagged, not changed** (labelling, owner decision).
+7. **The 6-hourly pipeline still overwrites** `data/pipeline/injuries.json` (not an immutable store). Request to the
+   owning session: point the pipeline's injury output at `tools/snapshot_ledger.py` capture, or keep both.
+8. **`console/` pages embed a build timestamp**, so `tools/build_console.py` always changes them. They are not
+   staleness-checked (the Pages job rebuilds them on the runner). Left as is.
+9. **Weeks 1–9 injury reports are not archived in this ledger.** The ledger starts 2026-11-15.
+10. `data/audit/readiness.json` counts app pages; it was regenerated after adding `injury-ledger.html` (29 → 30).
+
+### What the brief asks for that this session did **not** build (honest list)
+Most of the ~100 items in the brief are covered only partly, or by earlier sessions' work recorded above. This
+session did not build: a row-level injury delta parser; daily depth-chart snapshots; the official inactive-list and
+snap-count capture; the Texans depth-image source; the reserve-list capture; the Lions/Week-10 table re-capture
+(already corrected on `main`; spot-checked only here); the NWS wind/precipitation overlay; any new strategy,
+pre-registration or leaderboard change; the parlay/prop joint-evidence gate; a licensed price feed. Each needs
+either a data source this environment cannot reach, or a separate scoped task.
