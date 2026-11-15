@@ -2778,8 +2778,8 @@ integrations are complete. It does not reopen or edit their datasets or generato
 
 | Task | Status | Owner | Files in scope |
 |---|---|---|---|
-| RDM-1 | done | `arena-5373d6a1-x1` | `data/readiness/**`, `tools/build_readiness.py`, `tools/build_site.py` (final integration), `pages/readiness.html`, `index.html` (final integration), `.github/workflows/verify.yml` (append-only verification step), this file |
-| RDM-2 | in progress | `arena-5373d6a1-x1` | PR, merge, Pages deployment and completion record in this file |
+| RDM-1 | superseded / handed off | `arena-5373d6a1-x1` | Initial implementation was reverted after discovering overlapping PR #53; no readiness files remain in this branch. |
+| RDM-2 | no PR (deferred to active final integrator) | `arena-5373d6a1-x1` | Coordination handoff only; do not merge this branch as a duplicate. |
 
 **Deliverable:** render the existing assessed requirement register as a landing-page-linked
 decision-readiness table, with each tracked requirement's blocking gate and a precisely stated
@@ -2788,37 +2788,31 @@ where no number is registered the cell stays blank and is flagged as unspecified
 market value is inferred. The prior owners' inputs under `data/audit/`, `data/gates.json`, and
 `data/questions.json` are read-only. Other claimed paths are not edited.
 
-## RDM-1 completion record — readiness matrix (2026-11-15)
+## RDM-1 work record and handoff (2026-11-15)
 
-**RDM-1 status:** done. **RDM-2 status:** integration/PR/deploy in progress.
+**Outcome:** The initial readiness implementation passed local checks, then was reverted before opening a PR after a contemporaneous GitHub PR listing revealed PR #53 from `arena/29e011dc-x1`, which implements the same requirement more completely (53 registered requirements plus 15 unregistered brief items), including the landing-page table, exact gates, schedule announcement and flagged irregularities. This session will not publish a competing version or edit that session's files.
 
-### Delivered
+**Overlapping PR:** [#53](https://github.com/karagemop466-tech/X1/pull/53) — `arena/29e011dc-x1`.
+**Final integrator at discovery:** `arena/67f73aba-x1` (recorded above). Request is logged below; current session does not merge another branch or claim its ownership.
 
-- `pages/readiness.html` and `data/readiness/decision_readiness.json`: generated one row for each of the 53 entries currently present in `data/audit/requirements_assessed.json`, with recorded state, mapped registered gate, exact registered criterion/threshold when present, evidence link, requirement-brief link, and a source-gap flag.
-- The landing-page card/navigation and `tools/build_site.py` now regenerate the readiness page. The `verify-site` workflow runs `tools/build_readiness.py --check` after the site build.
-- Numeric thresholds come only from `data/gates.json`; absent thresholds remain “not set.” The page explicitly says that this register has 53 entries and does **not** cross-walk every detailed addition in the latest owner brief.
+### Findings to reconcile or preserve in PR #53 / final integration
 
-### Sources and verification
+1. `data/gates.json` uses effective-sample thresholds 500 singles / 300 two-leg parlays / 400 three-plus-leg tickets / 500 props; `console/gates.html` G1 instead says at least 200 settled out-of-sample bets. These are distinct registered gates and must not be silently collapsed.
+2. `docs/audit/EXECUTIVE-SUMMARY.md` reports 1/16 strategies pass, while `console/gates.html` says zero strategies promoted/live. Keep both tree-specific definitions visible until reconciled.
+3. `python3 tools/verify_w10_recapture.py` exits 1: official transcription 347 rows vs published 345; 2 missing rows and 32 field differences. Official source: https://www.nfl.com/injuries/ ; comparison: `data/capture/2026_w10/recapture_report.md`. Do not overwrite the 2026-11-14 snapshot without retaining the dated capture.
+4. The current requirement assessment has 53 rows; the larger latest owner brief contains detailed additions not cross-walked in that register. PR #53 claims 15 extra brief items; verify its coverage against the full owner brief.
 
-- Official source registry: `docs/sources/sources.md`.
-- NFL standings: https://www.nfl.com/standings/division/2026/REG
-- NFL Week 10 schedule: https://www.nfl.com/schedules/2026/REG/week/10/
-- NFL Week 10 injury report (published snapshot verification): https://www.nfl.com/injuries/league/2026/reg10
-- Fresh injury-report re-capture source: https://www.nfl.com/injuries/ (capture and comparison report in `data/capture/2026_w10/`).
-- `python3 tools/build_readiness.py --check` — 53 rows; deterministic output; missing thresholds remain blank.
-- `python3 tools/check_links.py` — 160 files, 40,920 assertions, no broken links/orphans/unapproved hosts.
-- `python3 scripts/verify_site.py` — 160 HTML pages; row-source rule passes.
-- `python3 tools/verify_against_official.py` — 2,183 cells from the 2026-11-14 snapshot, 0 mismatches (does not verify the newer capture; see flag below).
-- Full remaining workflow checks were rerun locally: data integrity, source-rule mutation test, independent cross-check, parlay bounds, app/console contracts, price/results/origination/gate builders, lab/research/annex checks, JSON parsing; all passed.
+### Request to owning sessions (logged, not actioned by editing their branches)
 
-### Flagged irregularities (published on the readiness table; non-blocking)
+- To `arena/29e011dc-x1` (PR #53): please include or explicitly disposition findings 1–4 above in the decision-readiness/Flagged pages, and retain the fresh injury mismatch as non-blocking until the capture timing is resolved.
+- To `arena/67f73aba-x1` (active final integration): PR #53 is the overlapping readiness deliverable; please integrate the owning PR rather than this branch. This branch's implementation commits were reverted to avoid duplicate pages/generators. The verification observations above are available for the final review.
 
-1. **Requirement coverage is incomplete:** the assessment register contains 53 rows, while the latest brief includes additional detailed requirements not individually cross-walked. The page discloses this; it does not claim full coverage.
-2. **Gate registry conflict:** `data/gates.json` uses 500/300/400/500 effective-sample thresholds by wager type; `console/gates.html` uses 200 settled out-of-sample bets for G1. The readiness matrix displays the root registry but does not declare it canonical.
-3. **Strategy summaries conflict across trees:** `docs/audit/EXECUTIVE-SUMMARY.md` says 1 of 16 passed; `console/gates.html` reports 0 promoted/live. They use distinct gate/strategy trees and must not be combined before reconciliation.
-4. **Fresh injury re-capture differs:** `python3 tools/verify_w10_recapture.py` exits 1: 347 official transcription rows vs 345 published, 2 rows missing and 32 field differences across 16 rows. Source: https://www.nfl.com/injuries/. This branch preserves the dated 2026-11-14 published table and flags the 2026-11-15 capture instead of silently overwriting it; see `data/capture/2026_w10/recapture_report.md`.
-5. **Direct NFL source URLs:** only R-15 has a direct NFL link in this matrix; other rows link to the project brief and evidence pages and are visibly marked “NFL source not recorded.” This is a limitation in the assessment data, not a claim that those project requirements are NFL facts.
+### Verification history (for the reverted implementation; not a claim about current branch outputs)
+
+- The temporary 53-row readiness page passed `tools/build_readiness.py --check`, `tools/check_links.py`, and `scripts/verify_site.py`; the full local suite passed except the separately flagged `tools/verify_w10_recapture.py` mismatch.
+- Official snapshot check for the 2026-11-14 published values: `tools/verify_against_official.py` compared 2,183 cells with 0 mismatches. This does not verify the 2026-11-15 recapture.
+- The overlapping implementation was reverted in commits `19b7ca6` and `5c18343`; no readiness page or generator from this session remains for merge.
 
 ### Rebase conflict log
 
-During `git pull --rebase origin main`, `COORDINATION.md` conflicted with the just-merged Week 10 re-capture session (PR #49). The resolution was a union: both the complete `arena-ed8c600d-x1` record and this session's readiness claim were retained. No source data or other session-owned files were discarded or edited.
+During rebase onto newer `main`, append-only `COORDINATION.md` conflicted with the Week 10 re-capture session and a later integration claim. Each conflict was resolved as a union, retaining all existing session records. The temporary implementation was then reverted because PR #53 was found to own the overlapping deliverable. No other session's files were changed.
