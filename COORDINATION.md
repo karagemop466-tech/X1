@@ -3015,3 +3015,46 @@ Pre-existing gates re-run on the rebased tree: `tools/verify_data.py` (2,944), `
 **Open rows after this round (unchanged; each has its blocking count on the landing page):** official prices (6,696 pairs needed, 0 present), official results (14 of 2,232 verified), daily injury captures (1 of 5 per game week), 31 of 32 depth charts parsed, a reward rule set (Q-07), joint-probability calibration per combo family (0 of 3), one G1 sample threshold (100 in the README, 500 in `data/gates.json`).
 
 **Handoff:** no other session's file was edited in this round, other than the merge resolutions recorded above (append-only COORDINATION.md and EXECUTIVE-SUMMARY.md kept on both sides; generated `console/`, `index.html` and `build_site.py` taken from `main`).
+
+
+---
+
+# Session `arena-73e6cbac-x1` — decision-readiness table: gate + clearing number per requirement (this session)
+
+**Session ID:** `arena-73e6cbac-x1` · **Branch:** `arena/73e6cbac-x1` (branched from `main` @ `51d6e32`,
+fast-forwarded to `origin/main` @ `4f361c9` before any work). **Started (UTC):** 2026-11-15.
+
+## Claim (written and pushed before any other work, per rule 1)
+
+**Motivation.** An owner requirement in the brief is still unbuilt by any session:
+
+> "Put a decision-readiness table on the landing page: one row per requirement, with the gate that
+> blocks it and the number that would clear it"
+
+A grep of the whole tree for `would clear` / `clearing number` returns **zero** data files and **zero**
+pages. `app/requirements.html` and `data/pipeline/requirements.json` carry 53 rows with columns
+`ID / Category / Requirement / Source quote / Priority / Status / Acceptance` — a *status* register, not a
+*decision-readiness* one: it never names the blocking gate nor the numeric threshold that would clear it.
+`data/gates.json` holds the nine registered gates but no mapping from requirement → gate → threshold.
+So the artefact does not exist and is unowned. It is claimed here.
+
+| # | Task | Status | Owner | Files in scope (all new unless noted) |
+|---|---|---|---|---|
+| D1 | **Decision-readiness register**: one row per requirement with `blocking gate`, `the number that would clear it`, and the **current measured value with n and source** — every one of the three computed from data already in the repo or from an official page fetched live, never asserted | in progress | `arena-73e6cbac-x1` | `tools/build_decision_readiness.py` (new), `data/readiness/*.json` + `*.csv` (new dir), `docs/methodology/decision-readiness.md` (new) |
+| D2 | **Landing-page decision-readiness table** + a dedicated subpage | in progress | `arena-73e6cbac-x1` | `pages/readiness.html` (new), `index.html` (regenerated), `tools/build_site.py` (additive: one `NAV` entry + one `page_readiness()` + one landing section), `assets/site.css` (append-only) |
+| D3 | **Independent live re-verification** of the published Week-10 cells against the official page **as it stands on 2026-11-15**, and publication of every mismatch found as a new flag | in progress | `arena-73e6cbac-x1` | `data/verification/2026_11_15/**` (new), `data/flags.json` (append-only: new F-ids only) |
+| D4 | Integration for this session's own artefacts only: nav, link check, PR → `main`, merge, Pages deploy confirmation | in progress | `arena-73e6cbac-x1` | this file |
+
+**Not claimed — owned elsewhere, and this session will not touch them:**
+
+| File / area | Owner | Why not here |
+|---|---|---|
+| `app/**`, `tools/build_app.py` | session `arena-c0461519-x1` (PR #50, open) — **and** the unified-dashboard owners before it | PR #50 currently regenerates all 32 `app/*.html` files plus `tools/build_app.py`. Editing them here would conflict. The landing table therefore goes on the **repo-root** landing page (legacy Pages source) and in `pages/`, which PR #50 does not touch. |
+| `lab/**`, `tools/lab/**`, `data/lab/controls/**`, `.github/workflows/verify.yml` | session `arena-3f5badd0-x1` (PR #51, open) | PR #51 edits `verify.yml` and 15 `lab/*.html` files. This session adds no CI step; its build is self-verifying via `--check`. |
+| `data/nfl/injuries_week10.tsv` and the 2026-11-14 capture | owner request recorded in the PR #49 record | E1 explicitly asked the integration session to add the dated 2026-11-15 snapshot beside the 2026-11-14 one and **not** overwrite it. This session does exactly that, in new files only. |
+| `data/pipeline/requirements.json`, `data/pipeline/questions.json`, `data/gates.json` | earlier merged sessions | Read-only here. The readiness register **joins** them; it does not rewrite them. Any disagreement is published as a flag, not silently corrected. |
+
+**Rule 9 note.** `index.html` and `pages/**` are shared outputs whose only legitimate writer is a final
+integration session. This session *is* an integration session for its own artefacts (D1–D3), and the change
+it makes to `index.html` is one additive section plus one nav entry. It will re-run the committed
+generators and every existing verifier before pushing, and it will not alter any other section's output.
