@@ -1,0 +1,195 @@
+{
+ "dataset": "standings_diff_2026_11_15",
+ "title": "Published 2026-11-14 standings vs the official nfl.com page as it reads on 2026-11-15",
+ "generated_at": "2026-11-15T18:25:40Z",
+ "generated_by": "tools/verify_2026_11_15.py (session arena-73e6cbac-x1)",
+ "source": {
+  "url": "https://www.nfl.com/standings/",
+  "org": "NFL.com",
+  "tier": "official"
+ },
+ "published_file": "data/nfl/standings.tsv",
+ "official_file": "data/verification/2026_11_15/official_standings_2026_11_15.tsv",
+ "compare_columns": [
+  "w",
+  "l",
+  "t",
+  "pct",
+  "pf",
+  "pa",
+  "diff",
+  "streak"
+ ],
+ "counts": {
+  "clubs_published": 32,
+  "clubs_on_official_page": 32,
+  "clubs_with_a_differing_cell": 2,
+  "clubs_identical": 30,
+  "cells_compared": 256,
+  "cells_that_differ": 12
+ },
+ "transcription_arithmetic_problems": [],
+ "changed_clubs": {
+  "DET": {
+   "published_record": "6-2-0",
+   "official_record": "7-2-0",
+   "published_net_pts": "33",
+   "official_net_pts": "58",
+   "net_pts_delta": 25.0,
+   "fields": [
+    "diff",
+    "pa",
+    "pct",
+    "pf",
+    "streak",
+    "w"
+   ]
+  },
+  "NE": {
+   "published_record": "5-4-0",
+   "official_record": "5-5-0",
+   "published_net_pts": "4",
+   "official_net_pts": "-21",
+   "net_pts_delta": -25.0,
+   "fields": [
+    "diff",
+    "l",
+    "pa",
+    "pct",
+    "pf",
+    "streak"
+   ]
+  }
+ },
+ "unchanged_clubs": [
+  "ATL",
+  "AZ",
+  "BAL",
+  "BUF",
+  "CAR",
+  "CHI",
+  "CIN",
+  "CLE",
+  "DAL",
+  "DEN",
+  "GB",
+  "HOU",
+  "IND",
+  "JAX",
+  "KC",
+  "LAC",
+  "LAR",
+  "LV",
+  "MIA",
+  "MIN",
+  "NO",
+  "NYG",
+  "NYJ",
+  "PHI",
+  "PIT",
+  "SEA",
+  "SF",
+  "TB",
+  "TEN",
+  "WAS"
+ ],
+ "why_this_is_not_silently_fixed": "The published table is a dated artefact of the 2026-11-14 page and is cited as such throughout the site. Rewriting it would destroy the record of what was known before kickoff, which the owner's point-in-time requirement depends on. The diff is published instead, and the stale cells are flagged.",
+ "rows": [
+  {
+   "abbr": "DET",
+   "status": "cell differs",
+   "field": "w",
+   "published": "6",
+   "official": "7",
+   "note": ""
+  },
+  {
+   "abbr": "DET",
+   "status": "cell differs",
+   "field": "pct",
+   "published": "0.750",
+   "official": "0.778",
+   "note": ""
+  },
+  {
+   "abbr": "DET",
+   "status": "cell differs",
+   "field": "pf",
+   "published": "222",
+   "official": "257",
+   "note": ""
+  },
+  {
+   "abbr": "DET",
+   "status": "cell differs",
+   "field": "pa",
+   "published": "189",
+   "official": "199",
+   "note": ""
+  },
+  {
+   "abbr": "DET",
+   "status": "cell differs",
+   "field": "diff",
+   "published": "33",
+   "official": "58",
+   "note": ""
+  },
+  {
+   "abbr": "DET",
+   "status": "cell differs",
+   "field": "streak",
+   "published": "4W",
+   "official": "5W",
+   "note": ""
+  },
+  {
+   "abbr": "NE",
+   "status": "cell differs",
+   "field": "l",
+   "published": "4",
+   "official": "5",
+   "note": ""
+  },
+  {
+   "abbr": "NE",
+   "status": "cell differs",
+   "field": "pct",
+   "published": "0.556",
+   "official": "0.500",
+   "note": ""
+  },
+  {
+   "abbr": "NE",
+   "status": "cell differs",
+   "field": "pf",
+   "published": "211",
+   "official": "221",
+   "note": ""
+  },
+  {
+   "abbr": "NE",
+   "status": "cell differs",
+   "field": "pa",
+   "published": "207",
+   "official": "242",
+   "note": ""
+  },
+  {
+   "abbr": "NE",
+   "status": "cell differs",
+   "field": "diff",
+   "published": "4",
+   "official": "-21",
+   "note": ""
+  },
+  {
+   "abbr": "NE",
+   "status": "cell differs",
+   "field": "streak",
+   "published": "1L",
+   "official": "2L",
+   "note": ""
+  }
+ ]
+}

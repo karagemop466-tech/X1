@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 19,
+  "flag": 21,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -223,6 +223,28 @@
    "unknown": "Which number is 'the' fair line when they disagree \u2014 that is question Q-23.",
    "source": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination_order_2026_week10.json",
    "source_label": "Origination-order table (model of record for this round)"
+  },
+  {
+   "id": "F-20",
+   "register": "data/flags.json",
+   "area": "Stale data",
+   "item": "The published 2026-11-14 standings are already false for 2 of 32 clubs.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether the site should serve a dated snapshot (what it does now, correctly labelled 2026-11-14) or track the live page. That is a product decision, not a data one.",
+   "source": "https://www.nfl.com/standings/",
+   "source_label": "nfl.com standings 2026 REG (live, 2026-11-15)"
+  },
+  {
+   "id": "F-21",
+   "register": "data/flags.json",
+   "area": "Method hazard",
+   "item": "A live game page shows a box score that is not a result, and any scraper that reads it will record a false final.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "How long the 0-0 window lasts on each game, and whether the feed flips to a real score before or after the game is marked Final.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "nfl.com Week 10 schedule (live, 2026-11-15)"
   },
   {
    "id": "Q-01",

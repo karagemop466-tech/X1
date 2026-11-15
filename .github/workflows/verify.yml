@@ -26,6 +26,23 @@ jobs:
       - name: Fail if the derived table is stale
         run: git diff --exit-code -- data/nfl/availability_derived.tsv
 
+      # Added by session arena-73e6cbac-x1 (additive only). The decision-readiness register
+      # must be reproducible: rebuild it and fail if the committed JSON/CSV differs, then
+      # re-diff the published standings against the dated 2026-11-15 official transcription.
+      # A stale register would silently publish yesterday's "current value" as today's.
+      - name: Rebuild the decision-readiness register and fail if stale
+        run: |
+          # --check compares every field except generated_at, so the guard tests the
+          # register's CONTENT and not the wall-clock timestamp of the last build.
+          # (A plain rebuild always differs on generated_at, which would make this
+          # step fail on every commit — including a no-op one.)
+          python3 tools/build_decision_readiness.py --check
+
+      - name: Re-diff the published standings against the 2026-11-15 official read
+        run: |
+          # Same reason: --check compares content, ignoring the build timestamp.
+          python3 tools/verify_2026_11_15.py --check
+
       - name: Line-by-line integrity checks
         run: python3 tools/verify_data.py
 
