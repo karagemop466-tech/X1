@@ -2576,3 +2576,17 @@ its content is preserved and this session's change is additive.
 | Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
 
 Session `arena-600e6009-x1` complete.
+
+---
+
+# Session `arena/c0461519-x1` — immutable official injury-report ledger (claim)
+
+**Session ID:** `arena-c0461519-x1` · **Branch:** `arena/c0461519-x1` (base `main` @ `51d6e32`) · **Status:** active
+**Claim written before any work (rule 1).** Single-branch session (Arena pins this session to `arena/c0461519-x1`; the `session-<id>/<task>` convention is adapted, as recorded in the registry above).
+
+| # | Task | Status | Owner | Files in scope (all new unless noted) |
+|---|---|---|---|---|
+| L1 | **Immutable, hash-chained capture of the official NFL injury report** with raw bytes, SHA-256, UTC capture time, conflict flags; never overwrites | in progress | `arena-c0461519-x1` | `tools/snapshot_ledger.py`, `data/ledger/injuries/**`, `docs/methodology/snapshot-ledger.md` |
+| L2 | Scheduled capture + drift/freshness alarm (fails the run loudly on HTTP error, missing title, or schema change) | in progress | `arena-c0461519-x1` | `.github/workflows/injury-ledger.yml` (new); one additive step in `.github/workflows/verify.yml` (marked) |
+
+Non-overlap: this session edits none of the shared generators (`tools/build_app.py`, `pipeline/**`, `data/pipeline/**`). The existing 6-hourly pipeline is left untouched and is logged as a request below (it overwrites `data/pipeline/injuries.json`; a future session may point it at the ledger).
