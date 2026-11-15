@@ -1,0 +1,450 @@
+{
+  "meta": {
+    "purpose": "Inputs for tools/build_readiness.py. Gate wording, templates and links are authored here. Every measured value is computed by the builder from the named file.",
+    "rule": "A clearing number is either computed from a named file, quoted from a named gate in data/gates.json, or marked 'proposed' (a threshold chosen by this round, not a fact from a source). A value that cannot be measured stays blank and is flagged. Nothing is inferred.",
+    "session": "arena-fb9e0427-x1",
+    "round": "round 4, 2026-11-15",
+    "template_keys": "{key} is replaced by the value the builder measured for that key. An unknown key fails the build."
+  },
+  "rows": {
+    "R-01": {
+      "r4": "met"
+    },
+    "R-02": {
+      "r4": "met"
+    },
+    "R-03": {
+      "r4": "met"
+    },
+    "R-04": {
+      "r4": "met"
+    },
+    "R-05": {
+      "r4": "met"
+    },
+    "R-06": {
+      "r4": "met"
+    },
+    "R-18": {
+      "r4": "met"
+    },
+    "R-21": {
+      "r4": "met"
+    },
+    "R-22": {
+      "r4": "met"
+    },
+    "R-23": {
+      "r4": "met"
+    },
+    "R-24": {
+      "r4": "met"
+    },
+    "R-26": {
+      "r4": "met"
+    },
+    "R-27": {
+      "r4": "met"
+    },
+    "R-28": {
+      "r4": "met"
+    },
+    "R-29": {
+      "r4": "met"
+    },
+    "R-30": {
+      "r4": "met"
+    },
+    "R-31": {
+      "r4": "met"
+    },
+    "R-32": {
+      "r4": "met"
+    },
+    "R-34": {
+      "r4": "met"
+    },
+    "R-35": {
+      "r4": "met"
+    },
+    "R-36": {
+      "r4": "met"
+    },
+    "R-37": {
+      "r4": "met"
+    },
+    "R-38": {
+      "r4": "met"
+    },
+    "R-39": {
+      "r4": "met"
+    },
+    "R-40": {
+      "r4": "met"
+    },
+    "R-43": {
+      "r4": "met"
+    },
+    "R-44": {
+      "r4": "met"
+    },
+    "R-45": {
+      "r4": "met"
+    },
+    "R-48": {
+      "r4": "met"
+    },
+    "R-50": {
+      "r4": "met"
+    },
+    "R-51": {
+      "r4": "met"
+    },
+    "R-52": {
+      "r4": "met"
+    },
+    "R-53": {
+      "r4": "met"
+    },
+    "R-07": {
+      "r4": "partly met",
+      "gate": "Our own side line must beat the market benchmark out of sample. On the 2015-2026 walk-forward window it does not.",
+      "measured": "Side MAE {side_mae_model} (model) vs {side_mae_market} (market) over {n_side} games; gap {side_mae_gap} points.",
+      "clears": "Close a side-MAE gap of {side_mae_gap} points against the market benchmark, out of sample.",
+      "basis": "data/lab/lines/model_report.json (accuracy block; the test window is published in the same file).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/lab/lines/model_report.json",
+      "ev_label": "model_report.json"
+    },
+    "R-08": {
+      "r4": "partly met",
+      "gate": "G1 sample size and G2 skill above variance. One strategy passes every gate, and its bet count is below the singles threshold in data/gates.json.",
+      "measured": "{lb_pass} of {lb_rows} strategies pass; the passing strategy has {lb_pass_bets} bets.",
+      "clears": "{g1_gates} singles bets (G1). The passing strategy is short by {g1_short} bets.",
+      "basis": "data/gates.json, G1 singles_bets.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/leaderboard.html",
+      "ev_label": "leaderboard"
+    },
+    "R-09": {
+      "r4": "partly met",
+      "gate": "A random-picks control on every leaderboard run. No random-picks control is computed. One always-favourite baseline is shared by all runs and is not a per-run control.",
+      "measured": "{lb_random_control} of {lb_rows} runs carry a random-picks control. Shared always-favourite ROI {lb_fav_roi_pct}%.",
+      "clears": "{lb_rows} of {lb_rows} runs carry a random-picks control.",
+      "basis": "Owner brief: control baseline (random picks; favourites only) on every leaderboard run.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/leaderboard.html",
+      "ev_label": "leaderboard"
+    },
+    "R-10": {
+      "r4": "open",
+      "gate": "Reward rules, funding and legality are undefined. The register cites Q-09 for this, but Q-09 in data/questions.json is 'Market scope'. Rewards are Q-07 there and Q-20 in data/audit/decision_questions.json.",
+      "measured": "0 reward rules recorded. Open questions: Q-07 (data/questions.json) and Q-20 (decision_questions.json).",
+      "clears": "1 owner-approved reward rule set, with legality checked, closing Q-07 / Q-20.",
+      "basis": "data/questions.json (Q-07) and data/audit/decision_questions.json (Q-20).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+      "ev_label": "questions.json"
+    },
+    "R-11": {
+      "r4": "partly met",
+      "gate": "A parlay or prop combo may be ranked only with a directly validated joint probability and the operator's void and push rules (G7). Multiplying marginals is not allowed.",
+      "measured": "{files_joint} joint-probability files in the repository, against {g7_families} combo families under G7.",
+      "clears": "{g7_families} of {g7_families} families with a holdout-calibrated joint probability.",
+      "basis": "data/gates.json, G7 applies_to (cross-game parlay, same-game parlay, prop combo).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/correlation.html",
+      "ev_label": "correlation"
+    },
+    "R-12": {
+      "r4": "partly met",
+      "gate": "The G1 sample threshold differs between registers, so the pass rule is not one rule. README.md and app/validation.html say 100. data/gates.json says 500.",
+      "measured": "README and app/validation.html: {g1_readme}. data/gates.json: {g1_gates}.",
+      "clears": "One G1 threshold in both registers (1 of 1 agreed).",
+      "basis": "README.md line 'G1 | Sample sufficiency | >= 100'; data/gates.json G1.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+      "ev_label": "gates.json"
+    },
+    "R-13": {
+      "r4": "partly met",
+      "gate": "Correlations cover team-stat pairs only. No player-to-market pair has an official source, so the blocked pairs are not computed.",
+      "measured": "{corr_official} official team-stat pairs (n = 32 each); {corr_player} player-market pairs.",
+      "clears": "Player-market pairs with n_eff of at least 500 (the G1 props threshold).",
+      "basis": "data/gates.json G1 props_tickets = 500.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/correlation.html",
+      "ev_label": "correlation"
+    },
+    "R-14": {
+      "r4": "partly met",
+      "gate": "Luck removal has bootstrap and sign-flip tests. It has no game-cluster lower bound and no multiplicity adjustment, and no cluster file exists in the repository.",
+      "measured": "{files_cluster} cluster files. {res_official} of {res_rows} results are officially verified.",
+      "clears": "{g1_gates} official settled singles bets (G1). Official settled today: {res_official}.",
+      "basis": "data/gates.json G1; data/results/verified_results.csv.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/validation.html",
+      "ev_label": "validation"
+    },
+    "R-15": {
+      "r4": "partly met",
+      "gate": "Daily captures from Wednesday to kickoff, each with a fetch timestamp and a retained hash. The repository holds one dated report, and the injury file has one git commit (observed 2026-11-15).",
+      "measured": "{inj_dates} capture date(s); {inj_rows} rows in the published Week 10 table.",
+      "clears": "5 daily captures per game week (Wednesday to Sunday), each retained.",
+      "basis": "Owner brief (Wednesday to kickoff, daily). The scheduled refresh (.github/workflows/data-refresh.yml) runs every 6 hours; its output is not retained as a series.",
+      "ev": "https://www.nfl.com/injuries/",
+      "ev_label": "nfl.com injury report"
+    },
+    "R-16": {
+      "r4": "partly met",
+      "gate": "Depth charts parsed from {depth_clubs} of {standings_rows} clubs. The Houston depth chart is an image and is not parsed.",
+      "measured": "{depth_clubs} of {standings_rows} clubs parsed.",
+      "clears": "{standings_rows} of {standings_rows} clubs parsed from an authorised source.",
+      "basis": "Owner brief: run the 32-team sweep before any team-level model is trusted.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/depth.html",
+      "ev_label": "depth"
+    },
+    "R-17": {
+      "r4": "partly met",
+      "gate": "Offence needs starter and backup status from snap counts or official inactive lists. Neither is in the repository.",
+      "measured": "Snap-count files: {files_snap}. Inactive-list files: {files_inactive}.",
+      "clears": "Snap counts or official inactive lists for all {res_2026_final} final 2026 games (0 covered today).",
+      "basis": "data/results/verified_results.csv (2026 final games).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/deficiency.html",
+      "ev_label": "deficiency"
+    },
+    "R-19": {
+      "r4": "partly met",
+      "gate": "The scheduled refresh runs without a person, but nothing retains a series of captures and nothing alarms when a source or schema changes.",
+      "measured": "{inj_dates} retained injury capture date(s).",
+      "clears": "5 consecutive daily captures retained, with no manual step.",
+      "basis": "Owner brief (no manual input).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml",
+      "ev_label": "data-refresh.yml"
+    },
+    "R-20": {
+      "r4": "partly met",
+      "gate": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled, and this round did not re-verify it.",
+      "measured": "{inj_rows} published rows. PR #49 reports 16 differing and 2 absent (its report, not re-verified here).",
+      "clears": "0 differing rows after reconciliation against nfl.com.",
+      "basis": "PR #49 (open). Its files: data/capture/2026_w10/.",
+      "ev": "https://github.com/karagemop466-tech/X1/pull/49",
+      "ev_label": "PR #49"
+    },
+    "R-25": {
+      "r4": "partly met",
+      "gate": "No owner sign-off on the layout is recorded in the repository.",
+      "measured": "{pages} pages in app/.",
+      "clears": "1 owner sign-off recorded (0 today).",
+      "basis": "Owner brief (clean, simple dashboard).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/app/index.html",
+      "ev_label": "landing page"
+    },
+    "R-33": {
+      "r4": "open",
+      "gate": "The platform pins each session to one branch. The brief asks for session-<id>/<task> branches.",
+      "measured": "One branch per session (COORDINATION.md platform constraint).",
+      "clears": "1 owner decision on branch naming.",
+      "basis": "COORDINATION.md, platform constraint.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
+      "ev_label": "COORDINATION.md"
+    },
+    "R-41": {
+      "r4": "in progress",
+      "gate": "The pull request for this round is not yet merged.",
+      "measured": "Pull request for this round: opened at the end of this round.",
+      "clears": "1 merged pull request to main.",
+      "basis": "Owner brief (PR, summary, sources, flags).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
+      "ev_label": "COORDINATION.md"
+    },
+    "R-42": {
+      "r4": "in progress",
+      "gate": "The merge and the Pages deploy are not yet confirmed.",
+      "measured": "Confirmed at the end of this round, with run links recorded in COORDINATION.md.",
+      "clears": "1 successful Pages build for the merge commit.",
+      "basis": "Owner brief (merge, deploy, record).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
+      "ev_label": "COORDINATION.md"
+    },
+    "R-46": {
+      "r4": "partly met",
+      "gate": "Opening and closing numbers exist for part of the games, and none is from an official source. Both lines exist for spread and total on a fraction of games, and never for the moneyline.",
+      "measured": "Spread: {price_oc_spread} of {games} games. Total: {price_oc_total} of {games}. Moneyline: {price_oc_ml} of {games}. Official rows: {price_official} of {price_rows}.",
+      "clears": "Official opening and closing lines for all {games} games in 3 markets, which is {games3} pairs. Official pairs today: 0.",
+      "basis": "Owner brief ('every market we originate'). Source keys in the file: nfldata_games, nfldata_initial_lines, none.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/prices/price_history.csv",
+      "ev_label": "price_history.csv"
+    },
+    "R-47": {
+      "r4": "partly met",
+      "gate": "Only {res_official} of {res_rows} rows carry an official verification. The rest rest on the third-party mirror. The 2026 feed also lags nfl.com: {res_2026_sched} 2026 games are still 'scheduled'.",
+      "measured": "{res_official} of {res_rows} rows officially verified.",
+      "clears": "{res_rows} of {res_rows} rows officially verified.",
+      "basis": "data/results/verified_results.csv, column official_verified.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv",
+      "ev_label": "verified_results.csv"
+    },
+    "R-49": {
+      "r4": "partly met",
+      "gate": "The fair, market and difference columns exist. The market values in the Week 10 file come from the nfldata mirror, not an official source.",
+      "measured": "{orig_market} of {orig_rows} Week 10 rows carry a mirror market line; {orig_official} carry an official one.",
+      "clears": "{orig_rows} of {orig_rows} rows with an official market line.",
+      "basis": "data/lines/originated_lines_2026_week10.csv; README (market benchmark is a third-party mirror).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_lines_2026_week10.csv",
+      "ev_label": "originated lines"
+    }
+  },
+  "extra": [
+    {
+      "id": "X-01",
+      "category": "Model",
+      "priority": "P0",
+      "r4": "open",
+      "requirement": "Injury and depth ablation: the same model with and without verified availability features, on chronological holdouts, reported with uncertainty.",
+      "gate": "Needs weekly official injury reports across several seasons. The repository holds one season and one capture date.",
+      "measured": "{inj_seasons} season(s) of injury reports; {inj_dates} capture date(s).",
+      "clears": "3 seasons of weekly reports (2 to train, 1 holdout). This is a proposed threshold, not a figure from a source.",
+      "basis": "Proposed by this round. Not from a source.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv",
+      "ev_label": "injury file"
+    },
+    {
+      "id": "X-02",
+      "category": "Validation",
+      "priority": "P0",
+      "r4": "open",
+      "requirement": "Game-cluster lower bound and a multiplicity adjustment on benchmark-relative Brier skill.",
+      "gate": "Needs officially scored games. Official results today: {res_official} of {res_rows}.",
+      "measured": "{res_official} officially scored games; {files_cluster} cluster files.",
+      "clears": "{g1_gates} official settled singles bets (G1).",
+      "basis": "data/gates.json G1.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+      "ev_label": "gates.json"
+    },
+    {
+      "id": "X-03",
+      "category": "Model",
+      "priority": "P1",
+      "r4": "open",
+      "requirement": "NWS hourly wind and precipitation, with the official roof and surface, coupled to totals and passing props.",
+      "gate": "No forecast capture and no roof designation is held in the repository.",
+      "measured": "{files_nws} forecast files; {files_roof} roof files.",
+      "clears": "All {res_2026_rows} 2026 games in the results feed, each with a captured forecast and a roof designation.",
+      "basis": "Scope of the 2026 results feed (data/results/verified_results.csv).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv",
+      "ev_label": "results feed"
+    },
+    {
+      "id": "X-04",
+      "category": "Coordination",
+      "priority": "P1",
+      "r4": "open",
+      "requirement": "Official reserve list captured each week, so that 'not listed' never means 'available'.",
+      "gate": "No reserve-list capture is held in the repository.",
+      "measured": "{files_reserve} reserve-list files.",
+      "clears": "{standings_rows} of {standings_rows} clubs captured for each game week.",
+      "basis": "Owner brief. 32 clubs (data/pipeline/standings.json).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv",
+      "ev_label": "injury file"
+    },
+    {
+      "id": "X-05",
+      "category": "Injuries",
+      "priority": "P0",
+      "r4": "open",
+      "requirement": "Official inactive lists and snap counts captured per game, so a backup's replacement of a starter is confirmed rather than suspected.",
+      "gate": "Neither file family is held in the repository.",
+      "measured": "{files_inactive} inactive-list files; {files_snap} snap-count files.",
+      "clears": "Inactive lists for all {res_2026_final} final 2026 games (0 today).",
+      "basis": "data/results/verified_results.csv (2026 final games).",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv",
+      "ev_label": "results feed"
+    },
+    {
+      "id": "X-06",
+      "category": "Injuries",
+      "priority": "P1",
+      "r4": "open",
+      "requirement": "Injury designation reliability: play rate per designation, with confidence intervals, measured before the label is used as a feature.",
+      "gate": "Needs designations matched to inactive lists across seasons. Designations exist for {inj_seasons} season and no inactive list is held.",
+      "measured": "{inj_seasons} season(s) of designations; 0 inactive lists to match.",
+      "clears": "3 seasons of designations matched to inactive lists. This is a proposed threshold, not from a source.",
+      "basis": "Proposed by this round. Not from a source.",
+      "ev": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv",
+      "ev_label": "injury file"
+    },
+    {
+      "id": "X-07",
+      "category": "Data feeds",
+      "priority": "P0",
+      "r4": "open",
+      "requirement": "Results freshness alarm: a game whose official page shows Final must not still be 'scheduled' in the feed.",
+      "gate": "The 2026 feed was built on 2026-11-14. The Patriots-Lions game (2026-11-15) shows Final on nfl.com (fetched 2026-11-15) and is still 'scheduled' in the feed. No freshness alarm exists.",
+      "measured": "{res_2026_sched} 2026 games 'scheduled' in the feed. NE-DET: Final on nfl.com, scheduled in the feed.",
+      "clears": "0 games whose official page shows Final remain 'scheduled'.",
+      "basis": "nfl.com 2026 Week 10 schedule page, fetched 2026-11-15.",
+      "ev": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "ev_label": "nfl.com schedule"
+    }
+  ],
+  "flags": [
+    {
+      "id": "F4-01",
+      "title": "G1 sample threshold conflicts between registers",
+      "detail": "README.md and app/validation.html say 100 settled out-of-sample bets. data/gates.json says {g1_gates} singles bets. The one strategy that passes every gate has {lb_pass_bets} bets, which passes the first and fails the second.",
+      "links": [
+        "https://github.com/karagemop466-tech/X1/blob/main/README.md",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+        "https://github.com/karagemop466-tech/X1/blob/main/app/validation.html"
+      ]
+    },
+    {
+      "id": "F4-02",
+      "title": "Reward-rule cross-reference points at the wrong question",
+      "detail": "The register row R-10 cites Q-09 for reward rules. In data/questions.json Q-09 is 'Market scope'. Rewards are Q-07 there, and Q-20 in data/audit/decision_questions.json.",
+      "links": [
+        "https://github.com/karagemop466-tech/X1/blob/main/data/questions.json",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/audit/decision_questions.json"
+      ]
+    },
+    {
+      "id": "F4-03",
+      "title": "Headline model error does not match the model report",
+      "detail": "The landing page states a spread MAE of 10.42 for the model and 9.73 for the market. data/lab/lines/model_report.json publishes side MAE {side_mae_model} (model) and {side_mae_market} (market) over {n_side} games. The landing figures were not reproduced from data/lab/lines/fair_lines.csv under either sign convention. Published as found; the text was not changed.",
+      "links": [
+        "https://github.com/karagemop466-tech/X1/blob/main/data/lab/lines/model_report.json",
+        "https://github.com/karagemop466-tech/X1/blob/main/app/index.html",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/lab/lines/fair_lines.csv"
+      ]
+    },
+    {
+      "id": "F4-04",
+      "title": "Results feed is one day behind official finals",
+      "detail": "On 2026-11-15 nfl.com shows the Patriots-Lions game (Munich) as Final, 10-35. The feed records it as scheduled, with no score, because it was built on 2026-11-14. {res_2026_sched} 2026 rows are still 'scheduled'. There is no freshness alarm.",
+      "links": [
+        "https://www.nfl.com/schedules/2026/by-week/week-10",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv"
+      ]
+    },
+    {
+      "id": "F4-05",
+      "title": "Injury captures are overwritten, not retained",
+      "detail": "The scheduled refresh runs successfully, but data/injuries/injuries_2026_week10.csv has one git commit (observed 2026-11-15, git log). A series of dated captures does not exist, so the 'continuous' claim in R-15 cannot be checked back in time.",
+      "links": [
+        "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv",
+        "https://www.nfl.com/injuries/"
+      ]
+    },
+    {
+      "id": "F4-06",
+      "title": "Open injury re-capture disagrees with the published table",
+      "detail": "PR #49 (another session, open) reports that the official page carries 347 rows, with 16 published rows differing and 2 absent. This round did not re-verify that report, and the published table has not changed.",
+      "links": [
+        "https://github.com/karagemop466-tech/X1/pull/49",
+        "https://www.nfl.com/injuries/"
+      ]
+    },
+    {
+      "id": "F4-07",
+      "title": "Requirement register states overstate the evidence",
+      "detail": "Six rows were recorded as met but are partly met on the data: R-12 (threshold conflict), R-14 (no cluster bound), R-20 (open re-capture), R-46 (price pairs), R-47 (official rows) and R-49 (mirror market lines). Their register text is unchanged. This round's state is shown beside it.",
+      "links": [
+        "https://github.com/karagemop466-tech/X1/blob/main/data/audit/requirements_assessed.json"
+      ]
+    }
+  ]
+}

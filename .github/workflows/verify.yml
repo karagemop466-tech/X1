@@ -90,6 +90,12 @@ jobs:
       - name: Fail if the audit registers are stale
         run: git diff --exit-code -- data/audit
 
+      # Added by session arena/fb9e0427-x1 (round 4, additive only). The decision-readiness register:
+      # one row per requirement, with every measured value recomputed from a named file. --check fails
+      # if the committed data/audit/readiness.json differs from a fresh build.
+      - name: Decision-readiness register is reproducible
+        run: python3 tools/build_readiness.py --check
+
       # Added by session arena/56769365-x1 (additive only). The line desk (lab/) is a seventh
       # page tree with its own contract: links resolve, every data row carries a source link,
       # no Python value leaks into a cell. It also fails if the committed pages are stale

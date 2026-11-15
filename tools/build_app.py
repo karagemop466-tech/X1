@@ -376,6 +376,40 @@ def status_cell(s: Optional[str]) -> str:
     return badge(lab, k)
 
 
+
+# ------------------------------------------------ round 4: decision readiness
+READY_BADGE = {"met": "ok", "partly met": "warn", "in progress": "blue", "open": "bad"}
+
+
+def readiness_table(rows: List[Dict[str, Any]], tid: str) -> str:
+    """One row per requirement; every row carries its evidence link (verify_app rule 2)."""
+    trs = []
+    for x in rows:
+        r4 = x["r4_state"]
+        reg = x["register_state"]
+        reg_cell = badge(reg, READY_BADGE.get(reg, "grey")) if reg in READY_BADGE else badge(reg, "grey")
+        r4_cell = badge(r4, READY_BADGE.get(r4, "grey")) + (" <span class='blank'>changed</span>" if x["changed"] else "")
+        basis = f"<br><span class='blank'>basis: {esc(x['basis'])}</span>" if x.get("basis") else ""
+        clears = esc(x["clears"]) if x.get("clears") else dash()
+        measured = esc(x["measured"]) if x.get("measured") else dash()
+        trs.append([
+            f"<b>{esc(x['id'])}</b>",
+            esc(x["requirement"]),
+            reg_cell,
+            r4_cell,
+            esc(x["gate"]),
+            measured,
+            clears + basis,
+            link(x["evidence_url"], x.get("evidence_label") or "evidence"),
+        ])
+    return table(tid, ["ID", "Requirement", "Register (2026-11-14)", "Round 4", "Blocking gate",
+                       "Measured now", "Number that clears it", "Evidence"], trs,
+                 note="Register = the state recorded in data/audit/requirements_assessed.json, left unchanged. "
+                      "Round 4 = the state after this round checked the data files. Every measured value is "
+                      "recomputed from a named file by tools/build_readiness.py. A clearing number marked "
+                      "<em>proposed</em> is a design threshold, not a figure from a source. "
+                      "Full data: data/audit/readiness.json.")
+
 # ------------------------------------------------------------------- pages
 def p_index() -> str:
     st = D["standings"]["rows"]
@@ -475,6 +509,17 @@ official source, re-verifies every row, and republishes this site.</p>
   official or licensed source publishes betting prices, so CLV, recorded-price ROI and the price-dependent
   gates stay unenforced rather than filled with a guess. See <a href="decisions.html">decisions</a> Q-02.</li>
 </ol>"""))
+
+    rd = jload("data/audit/readiness.json")
+    rc = rd["counts"]
+    body.append(card("Decision readiness — one row per requirement", f"""
+<p>Each requirement the brief names, with the gate that blocks it, what is measured now, and the number
+that would clear it. The register column is the state recorded on 2026-11-14. The round-4 column is the
+state after this round checked the data. <b>{rc['rows']} rows:</b> {rc['round4'].get('met', 0)} met,
+{rc['round4'].get('partly met', 0)} partly met, {rc['round4'].get('in progress', 0)} in progress,
+{rc['round4'].get('open', 0)} open. {rc['changed']} register rows changed state this round; each is listed on
+<a href="flagged.html">Flagged for review</a>.</p>
+""" + readiness_table(rd["rows"], "t-ready")))
 
     body.append(card("Earlier site sections, all still published", f"""
 <p>This repository was built by several parallel agent sessions, and each left its own site tree.
@@ -2541,6 +2586,21 @@ and what would settle it — a flag never asserts a value.</p>
             center=[1],
             note="Severity: high = a published value is wrong or missing; medium = a limitation that "
                  "changes how rows should be read; low = documented behaviour worth naming.")))
+    # --- Round 4 (session arena-fb9e0427-x1): readiness state audit and conflicts ---
+    rdf = jload("data/audit/readiness.json")
+    rfl = rdf.get("flags", [])
+    fr = []
+    for f in rfl:
+        links = f.get("links", [])
+        fr.append([esc(f.get("id", "")), f"<b>{esc(f.get('title', ''))}</b>", esc(f.get("detail", "")),
+                   src_cell(links)])
+    body.append(card(f"Round 4 — {len(rfl)} state changes, conflicts and open discrepancies", f"""
+<p>Found while building the decision-readiness table on the landing page. Each row says what the file
+shows and where to check it. No value on this list has been silently changed; the source text is kept and
+the discrepancy is published.</p>
+""" + table("t-r4-flag", ["ID", "Finding", "Detail", "Sources"], fr,
+            note="Changed-state rows (R-12 to R-49) are the register's own 'met' rows that the data does not "
+                 "support. Their register text is unchanged, and the round-4 state is shown beside it.")))
     return page("flagged.html", "Flagged for review", "Governance", "\n".join(body),
                 lede="Every irregularity found, with its evidence and what was done about it.")
 
