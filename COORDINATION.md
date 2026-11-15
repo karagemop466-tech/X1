@@ -2622,3 +2622,56 @@ Not claimed here (the site, the integration and every other brief item stay with
 **Request to the integration session (not actioned here, per the rules):** publish the 2026-11-15 capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. Do not overwrite the 2026-11-14 table. Then re-run `tools/verify_w10_recapture.py` until it exits 0.
 
 **Not done in this session (honest scope):** the brief's other items (daily timestamped captures, a durable snapshot store, the leaderboard, correlation and gating changes, and the 14 "Week 10 snapshot" items) were already handled by earlier merged rounds, or need data this sandbox cannot fetch. They are not claimed here.
+
+---
+
+# Session `arena-9e5228c8-x1` — round-4 brief: decision readiness, checks, venue, landing page (branch `arena/9e5228c8-x1`)
+
+**Session ID:** `arena-9e5228c8-x1` · **Branch:** `arena/9e5228c8-x1` (branched from `main` @ `4f361c9`, which already includes PR #49).
+**Claim written and pushed before any task work started (rule 1).**
+
+## Open PRs at claim time (audited, not touched)
+
+`gh pr list --state open` → **#51** (`arena/3f5badd0-x1`, control baselines; scope `lab/**`, `tools/lab/**`, `data/lab/controls/**`, `docs/lab/**`)
+and **#50** (`arena/c0461519-x1`, DRAFT, snapshot ledger; scope `app/**`, `tools/build_app.py`, `tools/snapshot_ledger.py`, `docs/methodology/snapshot-ledger.md`).
+Both are treated as taken. This session edits **none** of those paths.
+
+## Audit performed before claiming (so no duplicate work)
+
+`grep -ril` over the whole repo, 0 hits for: "decision-readiness", "removal of luck" (as a panel),
+a per-requirement gate/number table, a venue field in any fixture table, and a luck panel on any dashboard.
+`data/pipeline/requirements.json` holds **53** rows, which is *fewer than the number of lines in the current brief*,
+and it carries no per-row gate or clearing-number. So D1–D3 below are genuinely absent and are not a
+re-implementation of another session's claim.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope (all new unless marked **edit**) |
+|---|---|---|---|---|
+| D1 | **Verbatim round-4 brief register** — every line of the current brief as a requirement with its own ID, status and evidence link | **in progress** | `arena-9e5228c8-x1` | `docs/live-pipeline/project-brief-round4.md` (new), `data/deck/requirements_round4.json` (new) |
+| D2 | **Decision-readiness table** — one row per requirement: the gate that blocks it, the number that would clear it, who owns it, and whether it is cleared | **in progress** | `arena-9e5228c8-x1` | `data/deck/readiness.json` (new) |
+| D3 | **Sixteen verification checks** — the checks anyone can re-run to confirm the published numbers | **in progress** | `arena-9e5228c8-x1` | `data/deck/checks.json` (new), `tools/verify_deck.py` (new) |
+| D4 | **Removal-of-luck panel** on the dashboard, computed only from the verified stores, with n and an interval on every value | **in progress** | `arena-9e5228c8-x1` | `data/deck/luck_panel.json` (new) |
+| D5 | **Two-sided "what would change our mind"** on every strategy entry (confirm → promote, falsify → demote) | **in progress** | `arena-9e5228c8-x1` | `data/deck/mindchange.json` (new) |
+| D6 | **Venue transcription** for every Week 10 fixture from the official game centre | **in progress** | `arena-9e5228c8-x1` | `data/deck/venues_2026_w10.tsv` + `.json` (new) |
+| D7 | **Landing page and category subpages** — clean dashboard that links every section, including the ones being written on other branches | **in progress** | `arena-9e5228c8-x1` | `tools/build_deck.py` (new), `deck/**` (new) |
+| D8 | **Integration**: allow the new source hosts, wire the deck into CI/Pages, full verify suite, PR → `main`, merge, confirm deploy | **in progress** | `arena-9e5228c8-x1` | `scripts/verify_site.py` (**edit**: one allow-list entry), `.github/workflows/pages.yml` (**edit**: additive build+copy+serving-root lines), `.github/workflows/verify.yml` (**edit**: additive step), `COORDINATION.md` |
+
+**Non-overlap declaration.** `app/**`, `tools/build_app.py` (PR #50); `lab/**`, `tools/lab/**`, `data/lab/**`, `docs/lab/**` (PR #51).
+`index.html`, `pages/**`, `assets/**`, `console/**`, `dashboard/**`, `research/**`, `site/**`, `live/**`, `hub/**` are **not edited** —
+they stay published exactly as they are. The four shared files edited by D8 are edited *additively*: a new
+line/section, nothing removed or reordered.
+
+**Why the serving root changes (D8).** The owner's brief asks for "a github page live site … with a clean landing
+page and subpages organised by category". The root currently serves `console/index.html`, a **stale copy**: it
+still says "The eight requirements" and counts 15 questions / 13 suggestions / 0 promoted, while the repo now holds
+53+ requirements, 30 questions and 16 strategies. `deck/` becomes the root; `console/` stays published at
+`/console/` and is linked from the deck's archive section, so nothing is lost or broken.
+
+## Requests to owning sessions (logged, not actioned)
+
+- To `arena/3f5badd0-x1` and `arena/c0461519-x1`: the deck links `/lab/controls.html` and
+  `/app/injury-ledger.html` only if those files exist at build time; otherwise the link is rendered as
+  "in flight on another branch" rather than as a dead link. No file of yours is edited.
+- To the future integration session: `data/deck/readiness.json` is the register of record for
+  "which requirement is blocked, by which gate, and by what number".
