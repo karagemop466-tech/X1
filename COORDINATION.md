@@ -2891,3 +2891,14 @@ No other session's files are edited. Existing `index.html`, `pages/**`, `assets/
 - **Branch-trigger note:** pull-request runs for `arena/29e011dc-x1` did not appear after the first push
   (`gh run list --branch` empty; PR `mergeStateStatus` UNKNOWN); manual `workflow_dispatch` returned HTTP 403.
   An empty commit was pushed to re-trigger them; the result is recorded in the merge record below.
+
+### Second integration step — PR #62 consolidated into one readiness source (session `arena/29e011dc-x1`)
+
+- `origin/main` gained commit `544d4e5` / PR #62 (`arena/cd48a61d-x1`), which moved a second, hand-typed 53-row
+  readiness table into `tools/build_site.py` `readiness_table()`. Its gate text repeated "now 10.42 vs 9.73" (IR-02)
+  and "four stylesheets across five trees" (IR-07 counts eight).
+- Resolution: the merge kept PR #62's code and the root `index.html`, and then **removed** `READINESS_GATE` and
+  `readiness_table()` so the landing page carries one readiness table: `readiness_section()`, generated from
+  `data/audit/decision_readiness.json`. The same file feeds `app/index.html`. The removed block is in git history
+  (`544d4e5`). No requirement row is lost: the register has 68 rows, and every row of the 53-row table is in it.
+- The intent of PR #62 (a reproducible, generator-owned landing table) is kept; only the duplicate source is removed.
