@@ -28,6 +28,7 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
+| `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -183,6 +184,7 @@ already merged with nothing-discarded rules). This branch integrated `origin/mai
 | 2026-11-14 | `arena-52aabfa8-x1` | Round 2 delivered across T10–T17 (commit chain on this branch; PR opened from it). Key facts for any later session: the results feed and price store are **tier-labelled, not official** (mirror sources; F-06/F-11); official-only correlations = 988 rows, n=32, independently recomputed by `tools/verify_official_correlations.py`; gate D1/G-13 demotes live→paper automatically (Q-26 answered); `pages/validation.html` was regenerated solely for the CI staleness guard after gate D1 was added to `data/gates.json`. Open owner decisions unchanged: Q-02 price feed, Q-04 official historical results, Q-07 funding. |
 | 2026-11-14 | `arena-52aabfa8-x1` | Scope extensions (all logged above in the Round-2 scope note): `data/pipeline/questions.json` (Q-26 row only), `pages/validation.html` (CI-mandated regeneration), new `docs/live-pipeline/project-brief-round2.md`. No other session's files were edited; `hub/` was regenerated during verification and restored to its committed state (timestamp-only diff). |
 | 2026-11-14 | `arena-52aabfa8-x1` | **Release:** PR #45 merged into `main` as `54a59d8` (2026-11-14T20:52:54Z) after two nothing-discarded integration merges with the parallel rounds already on main (PRs #36–#44, five implementations total). Post-merge `verify-site` on main: **success**; `pages build and deployment` + `Publish static site to GitHub Pages`: **success**; Pages status `building` → https://karagemop466-tech.github.io/X1/ . All gates green at merge time: full pre-existing suite + main's `verify_new_data`, `verify_deployed_tree`, `verify_stores`, `verify_site_annex`, JSON-register parse, and every staleness guard (`index.html`+`pages/`, `app/`, `data/audit`, `data/nfl/availability_derived.tsv`, `lab/`, round-2 stores). Session `arena-52aabfa8-x1` complete; PR #40's owner already merged their own round (#44) — untouched by this session. |
+| 2026-11-15 | `arena/cd48a61d-x1` | Integration release: added the one-row-per-requirement decision-readiness register to the landing page via `tools/build_site.py` page_index() (53 requirements, gate that blocks each, number that clears each). My first hand-edited `index.html` broke CI's `git diff --exit-code -- index.html pages` staleness guard; fixed by committing the generated `index.html` together with `build_site.py`. PR #62 created from `arena/cd48a61d-x1` → `main` and merged without waiting as `4b0660e`; `verify-site` success; GitHub Pages `built` → https://karagemop466-tech.github.io/X1/ . Irregularities logged: R-33 branch naming is a platform pin (harness limitation, flagged F-01); `nfl.com` unreachable from sandbox so all published values verified against committed official snapshots and left blank/flagged where absent. Session `arena/cd48a61d-x1` complete. (Note: requirements_assessed.json is internally consistent — 42 met / 7 partly / 2 open / 2 in progress across 53 rows.) |
 
 ---
 
@@ -199,12 +201,15 @@ already merged with nothing-discarded rules). This branch integrated `origin/mai
 | T7 | analysis of T1–T6 | cross-checked against the JSON registers | — |
 | T8 | reuses T2–T4 links | `tools/verify_data.py` link check over all emitted HTML | — |
 | T9 | — | data re-verified, link check clean, build clean, Pages deploy confirmed | see PR record |
+| R-41 | pages/requirements.html, docs/methodology/validation-gates.md, data/gates.json, COORDINATION.md | PR #62 created from `arena/cd48a61d-x1` → `main` summarising the landing-page decision-readiness table, its sources, and the flagged irregularities | none |
+| R-42 | COORDINATION.md, https://karagemop466-tech.github.io/X1/ | PR #62 merged into `main` as `4b0660e` without waiting for approval; `verify-site` success; GitHub Pages `built` at https://karagemop466-tech.github.io/X1/ | none |
 
 ## Pull request record
 
 | PR | Branch → base | Result | Link |
 |---|---|---|---|
 | #1 | `arena/b38a21d8-x1` → `main` | recorded in the PR itself; see "Merge result" row below after merge | ~ |
+| #62 | `arena/cd48a61d-x1` → `main` | merged without waiting for approval as `4b0660e`; verify-site success; Pages deploy confirmed; landing page decision-readiness register added | https://github.com/karagemop466-tech/X1/pull/62 |
 
 
 ---
