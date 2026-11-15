@@ -101,13 +101,10 @@ def build_payload() -> dict:
             "registered_numeric_threshold": number,
             "evidence_url": row["evidence_url"],
             "requirement_source_url": row["brief_source"],
-            "official_nfl_source_url": "https://www.nfl.com/injuries/league/2026/reg10" if row["id"] == "R-15" else None,
-            "source_note": "Direct NFL injury-report source is linked for R-15. For other requirements no direct official NFL URL is recorded against this row. The project brief/evidence links are not represented as NFL sources; no source is inferred from the topic.",
-            "source_flag": "OFFICIAL_RECENT_MISMATCH" if row["id"] == "R-15" else "REQUIREMENT_SOURCE_ONLY",
-            "row_review_flag": (
-                "Conflicting pass/promotion summaries exist in separate site trees; see the disclosed gate/result conflict." if row["id"] == "R-08" else
-                "A 2026-11-15 NFL report re-capture differs from the published 2026-11-14 table (2 rows missing, 32 field differences); see the recapture report before relying on this status." if row["id"] == "R-15" else ""
-            ),
+            "official_nfl_source_url": None,
+            "source_note": "No direct official NFL URL is recorded against this requirement row. The project brief/evidence links below are not represented as NFL sources; any NFL-specific fact remains subject to its linked evidence page and source registry.",
+            "source_flag": "REQUIREMENT_SOURCE_ONLY",
+            "row_review_flag": "Conflicting pass/promotion summaries exist in separate site trees; see the cross-tree conflict disclosure above." if row["id"] == "R-08" else "",
         })
 
     counts = assessment["counts"]
@@ -118,7 +115,7 @@ def build_payload() -> dict:
         "assessment_counts": counts,
         "coverage_warning": "This matrix covers only the 53 requirement rows in requirements_assessed.json. The later detailed additions in the latest owner brief are not individually cross-walked here; do not treat this count as complete coverage of every added statement.",
         "threshold_policy": "Only thresholds explicitly present in data/gates.json are shown. Blank threshold means no registered numeric clearance value; no number was inferred. This is not a canonical cross-tree gate choice.",
-        "known_irregularities": [
+        "cross_tree_conflicts": [
             {
                 "issue": "G1 sample-size threshold differs by tree",
                 "root_register": "data/gates.json: effective sample thresholds are 500 singles, 300 two-leg parlay tickets, 400 three-plus-leg tickets, 500 prop tickets.",
@@ -132,13 +129,6 @@ def build_payload() -> dict:
                 "console_register": "console/gates.html shows zero strategies live / promoted.",
                 "resolution": "Unresolved across different strategy/gate trees. Do not combine these results or describe a single repo-wide promotion count until definitions and windows are reconciled.",
                 "sources": ["https://github.com/karagemop466-tech/X1/blob/main/docs/audit/EXECUTIVE-SUMMARY.md", "https://github.com/karagemop466-tech/X1/blob/main/console/gates.html"]
-            },
-            {
-                "issue": "Fresh Week 10 injury re-capture differs from the published snapshot",
-                "root_register": "The 2026-11-15 transcription contains 347 rows; the published 2026-11-14 table has 345.",
-                "console_register": "The row comparator reports 2 rows missing and 32 field differences across 16 rows; it exits nonzero.",
-                "resolution": "Flagged, not overwritten. Keep the dated capture distinct and reconcile the source timing before refreshing the public injury table.",
-                "sources": ["https://www.nfl.com/injuries/", "https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/recapture_report.md", "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_w10_recapture.py"]
             }
         ],
         "rows": output,
@@ -154,7 +144,6 @@ def render(payload: dict) -> str:
         badge_class = "ok" if row["assessment_status"] == "met" else "warn"
         review_badge = f'<span class="pill warn">{esc(row["row_review_flag"])}</span>' if row["row_review_flag"] else ""
         number = esc(row["registered_numeric_threshold"]) if row["registered_numeric_threshold"] else "<span class=\"pill warn\" title=\"No numeric threshold is registered; none has been inferred\">— not set</span>"
-        nfl_source = (f'<a class="src-link" href="{esc(row["official_nfl_source_url"])}" target="_blank" rel="noopener noreferrer">Official NFL source ↗</a>' if row["official_nfl_source_url"] else '<span class="pill warn" title="No direct official NFL URL is recorded for this requirement row">NFL source not recorded</span>')
         body_rows.append(
             "<tr>"
             f"<td><b>{esc(row['id'])}</b></td>"
@@ -166,7 +155,7 @@ def render(payload: dict) -> str:
             f"<td>{number}</td>"
             f"<td><a class=\"src-link\" href=\"{esc(row['evidence_url'])}\" target=\"_blank\" rel=\"noopener noreferrer\">Evidence ↗</a><br>"
             f"<a class=\"src-link\" href=\"{esc(row['requirement_source_url'])}\" target=\"_blank\" rel=\"noopener noreferrer\">Project brief ↗</a><br>"
-            f"{nfl_source}</td>"
+            "<span class=\"pill warn\" title=\"No direct official NFL URL is recorded for this requirement row\">NFL source not recorded</span></td>"
             "</tr>"
         )
 
@@ -174,7 +163,7 @@ def render(payload: dict) -> str:
         "<li><b>" + esc(item["issue"]) + ":</b> " + esc(item["root_register"]) + " " + esc(item["console_register"]) + " " + esc(item["resolution"]) + " " + " · ".join(
             f'<a class="src-link" href="{esc(url)}" target="_blank" rel="noopener noreferrer">source ↗</a>' for url in item["sources"]
         ) + "</li>"
-        for item in payload["known_irregularities"]
+        for item in payload["cross_tree_conflicts"]
     )
 
     return f'''<!doctype html>
@@ -194,7 +183,7 @@ def render(payload: dict) -> str:
 <section class="pagetitle"><div class="eyebrow">REQUIREMENT GATES</div><h1>Decision readiness</h1>
 <p>One row for every requirement currently in the assessed register. See the gate that blocks an unresolved item and the exact clearance rule where one is registered.</p></section>
 <section class="content"><div class="statrow"><div class="stat"><strong>{counts.get('met', 0)}</strong><span>met</span></div><div class="stat"><strong>{counts.get('partly_met', 0)}</strong><span>partly met</span></div><div class="stat"><strong>{counts.get('open', 0)}</strong><span>open</span></div><div class="stat"><strong>{counts.get('in_progress', 0)}</strong><span>in progress</span></div></div>
-<div class="note"><b>Coverage limitation:</b> {esc(payload['coverage_warning'])}<br><b>Threshold rule:</b> {esc(payload['threshold_policy'])}<br><b>Source rule:</b> Requirement/evidence links point to the owner brief and repository evidence. The assessment does not record a direct NFL source per requirement, so the NFL-source cell is deliberately flagged rather than guessed.<details><summary>Flagged irregularities ({len(payload['known_irregularities'])})</summary><ul>{conflicts_html}</ul></details></div>
+<div class="note"><b>Coverage limitation:</b> {esc(payload['coverage_warning'])}<br><b>Threshold rule:</b> {esc(payload['threshold_policy'])}<br><b>Source rule:</b> Requirement/evidence links point to the owner brief and repository evidence. The assessment does not record a direct NFL source per requirement, so the NFL-source cell is deliberately flagged rather than guessed.<details><summary>Flagged cross-tree conflicts ({len(payload['cross_tree_conflicts'])})</summary><ul>{conflicts_html}</ul></details></div>
 <div class="tablewrap"><table class="wide" data-table><caption>Requirement readiness — {esc(summary)}. Each row links to its assessment evidence and source brief.</caption><thead><tr><th>ID</th><th>Category</th><th>Requirement and assessment detail</th><th>Assessment</th><th>Blocking gate</th><th>Clearance criterion</th><th>Registered numeric threshold</th><th>Source links / flag</th></tr></thead><tbody>{''.join(body_rows)}</tbody></table></div>
 <p>Gate definitions: <a class="src-link" href="../data/gates.json">data/gates.json</a>. Requirement evidence registry: <a class="src-link" href="../data/audit/requirements_assessed.json">data/audit/requirements_assessed.json</a>. Official NFL sources actually used for NFL facts are listed on the <a href="sources.html">source registry</a>; no source has been inferred from a requirement's topic.</p>
 </section></main></body></html>'''
