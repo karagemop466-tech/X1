@@ -2721,14 +2721,32 @@ Not claimed here (the site, the integration and every other brief item stay with
 | Pages deployment | run 43745574909 **success** (1m12s) |
 | Live-site check | `https://karagemop466-tech.github.io/X1/app/injuries.html` fetched live. It still shows the 2026-11-14 snapshot, which is expected (no change to the site) and is the source of flags F-E1-1 to F-E1-4 and F-E1-6. |
 | Files changed on main | additive only: `data/capture/2026_w10/**`, `tools/verify_w10_recapture.py`, `COORDINATION.md` |
----
 
 ---
 
-# Session `arena/67f73aba-x1` — final integration and delivery (this session)
+# Session `arena/67f73aba-x1` — final integration and delivery
 
 **Session ID:** `arena/67f73aba-x1` · **Branch:** `arena/67f73aba-x1` (branched from `main` @ `4f361c9`, the current main head)
 **Claim written and pushed before any work (rule 1).** Open PRs: none (`gh pr list --state open` → empty). nfl.com is not reachable from this sandbox, so all verification is against the committed official snapshots (each carries its fetch URL and date); no value not present in an official snapshot is published.
+---
+
+# Session `arena-b03ced7c-x1` — Week 10 official re-capture, two parse defects, decision readiness, and integration
+
+**Session ID:** `arena-b03ced7c-x1` · **Branch:** `arena/b03ced7c-x1` (branched from `main` @ `51d6e32`, rebased onto `main` @ `3521c43`; PR #49 merged as `4f361c9`, and PRs #51/#52/#54/#55/#57/#58/#60 merged while this session worked).
+**Conflict log (rule 6).** The rebase conflicted on this file only, twice, both times in the append-only register. Resolved as a **union**: `main`'s records for sessions `ed8c600d`, `67f73aba`, `1aa2b47f`, `3f5badd0` and `cd48a61d` are kept in their order, and this session's claim is appended after them. Nothing on either side was discarded.
+**Claim written and pushed before any other work (rule 1).**
+
+## Non-overlap declaration
+
+- `gh pr list --state open` at claim time: **no open pull requests** (PR #49 merged as `4f361c9`).
+- Every earlier board row is `done`. The last session (`arena/ed8c600d-x1`, task E1) left a
+  **request to the integration session** on the board, not a claim: publish the 2026-11-15
+  capture as a new dated snapshot, add the two missing Ravens rows, update the Monday
+  LAC@BAL cells. That request is executed here (task D2) and the E1 files are read, never rewritten.
+- Bash in this sandbox cannot open a TLS connection to `nfl.com` (`curl` exit 35,
+  `urllib` `SSL_ERROR_SYSCALL`), so every official page is read through the fetch tool and the
+  transcription is committed under `data/capture/` with its timestamps. This is stated on the
+  page itself, not hidden.
 
 ## Claim
 
@@ -2806,3 +2824,12 @@ Session `arena/67f73aba-x1` complete — PR #54 merged (commit `24c65d9`), GitHu
 ## Handoff note for this session
 
 No other session's files are edited. Existing `index.html`, `pages/**`, `assets/**`, `app/**`, `tools/**`, `scripts/**`, `data/**`, `docs/**` and `.github/workflows/**` are treated as read-only except the append-only records named above. Any defect found is logged as a flag (never silently patched into a published value) and the owner decides the fix.
+| D1 | **Re-capture** the official Week 10 2026 injury report (all 8 chunks, 14 games, 28 clubs) as a *new dated read* beside the 2026-11-14 and ed8c600d's 2026-11-15 ones, and diff all three reads against each other | **done** | `arena-b03ced7c-x1` | `data/official/2026_w10_capture_2026-11-15T1814z/` (new), `tools/official/week10_reconcile.py` (new), `data/console/week10_reconcile.{json,csv}` (new), `console/capture.html` (new) |
+| D2 | **Execute E1's integration request**: publish the 2026-11-15 read beside the 11-14 table (never over it) and enumerate the two missing Ravens rows and every changed cell | **done** | `arena-b03ced7c-x1` | `console/capture.html`, `console/injuries.html` (additive note only; the 11-14 table is unchanged) |
+| D3 | **The two depth-parsing failures**: Texans image chart and Packers jersey-number prefix. Number-stripping + raw-string retention recovers Packers rows; the Texans image is **not transcribed** — it is recorded as an authorized-source gap | in progress | `arena-b03ced7c-x1` | `tools/official/parse_depth.py` (new), `data/official/depth_parse_2026_w10/` (new) |
+| D4 | **Decision-readiness table**: one row per requirement in the owner's brief, the gate that blocks it, the number that would clear it, and the evidence we hold | in progress | `arena-b03ced7c-x1` | `tools/official/build_readiness.py` (new), `data/official/readiness.json` (new) |
+| D5 | **Verification of every published number against a live official read**: the counts the console prints (345 injury rows, 897 depth slots, 31 clubs) are re-derived from the fresh capture and every disagreement flagged | in progress | `arena-b03ced7c-x1` | `tools/official/verify_published.py` (new) |
+| D6 | **Integration and release**: new "Line desk" pages for the capture, the parse defect, the readiness table and the flags; link check; CI; PR → `main`; merge; Pages deploy confirmation recorded here | in progress | `arena-b03ced7c-x1` | `console/**` (via `tools/build_console.py`, additive), `.github/workflows/pages.yml` + `verify.yml` (additive steps), `README.md`, this file, PR |
+
+Not claimed: the model, the leaderboard mathematics, the price store and the price policy (owned
+and `done` by earlier sessions), any other session's branch, and any deletion of existing content.
