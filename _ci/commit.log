@@ -36,9 +36,9 @@ M  data/pipeline/standings.json
 M  data/pipeline/team_stats.json
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-15T02:37:55Z'
-[main b7bf880] data: refresh from official sources 2026-11-15T02:37:55Z
- 11 files changed, 10977 insertions(+), 7418 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-15T17:41:51Z'
+[main 29a514d] data: refresh from official sources 2026-11-15T17:41:51Z
+ 11 files changed, 15953 insertions(+), 12372 deletions(-)
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin main
