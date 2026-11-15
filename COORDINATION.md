@@ -82,7 +82,7 @@ existing generators are extended, not rewritten, and no other session's branch i
 
 | # | Task | Status | Owner session | Files in scope |
 |---|---|---|---|---|
-| C14 | Put one decision-readiness row per assessed project requirement on the console landing page; show only evidence-backed blocking gates and numeric clearance criteria, leaving unsupported numbers blank and flagged | in progress | `arena/8c50eb4b-x1` | `src/console/readiness.py` (new), `tools/build_console.py`, `tools/verify_console.py`, `data/console/decision_readiness.csv` + `.json` (new), `console/index.html` (generated), `console/assets/console.css` (only if needed), `COORDINATION.md` |
+| C14 | Put one decision-readiness row per assessed project requirement on the console landing page; show only evidence-backed blocking gates and numeric clearance criteria, leaving unsupported numbers blank and flagged | in progress | `arena/8c50eb4b-x1` | `src/console/readiness.py` (new), `tools/build_console.py`, `tools/verify_console.py`, `data/console/decision_readiness.csv` + `.json` (new), `data/console/flagged.csv` (generated), `console/index.html` + `console/flagged.html` (generated), `COORDINATION.md` |
 
 **Non-overlap:** PR #50 (`arena/c0461519-x1`) is open and owns new injury-ledger files, `.github/workflows/**`, and `app/**`. C14 edits none of those paths. Its only shared-file overlap is this append-only task board; this claim is inserted in the registry/task section, separate from that PR's end-of-file session block.
 
