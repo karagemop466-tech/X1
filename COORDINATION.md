@@ -2735,8 +2735,8 @@ Not claimed here (the site, the integration and every other brief item stay with
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
 | F1 | Final verification: re-run the full integrity, link and app verification suites on the combined tree | done | `arena/67f73aba-x1` | `tools/verify_data.py`, `tools/check_links.py`, `tools/verify_app.py` |
-| F2 | Pull request from this branch to `main` summarising changes, sources and flagged irregularities | pending PR | `arena/67f73aba-x1` | `COORDINATION.md` (this record), PR |
-| F3 | Merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | pending deploy | `arena/67f73aba-x1` | `COORDINATION.md` (this record) |
+| F2 | Pull request from this branch to `main` summarising changes, sources and flagged irregularities | done — PR #54 | `arena/67f73aba-x1` | `COORDINATION.md` (this record), PR |
+| F3 | Merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | done — merged 24c65d9, Pages built | `arena/67f73aba-x1` | `COORDINATION.md` (this record) |
 
 ## Verification performed (final integration)
 
@@ -2756,19 +2756,19 @@ No new irregularities were introduced by this session. Open owner decisions rema
 
 | Item | Value |
 |---|---|
-| PR | pending |
+| PR | [#54](https://github.com/karagemop466-tech/X1/pull/54), `arena/67f73aba-x1` → `main` |
 | Branch → base | `arena/67f73aba-x1` → `main` |
 | Title | Final integration: verify combined data, confirm clean build, record delivery |
-| Merge command | `gh pr merge <N> --merge` |
-| Merge result | pending |
-| Pages deploy | pending |
+| Merge command | `gh pr merge 54 --merge` |
+| Merge result | MERGED, commit `24c65d9` (2026-11-15) |
+| Pages deploy | built — https://karagemop466-tech.github.io/X1/ |
 | Live site | https://karagemop466-tech.github.io/X1/ |
 
 ## Completion record
 
 Verification green across all three suites. The unified dashboard (`app/`) is the canonical site: one landing page, category-organised subpages, tables throughout, an executive summary, a decision register (30+ questions), a suggestion board (A/B/C paths, review-before-build), and a Flagged for Review page. All 53 requirements R-01…R-53 are registered; R-41 and R-42 close with this PR/merge/deploy. Flagged irregularities and unverified items do not block the merge and remain published on `app/flagged.html` with source links.
 
-Session `arena/67f73aba-x1` claim committed; PR/merge/deploy/record follow.
+Session `arena/67f73aba-x1` complete — PR #54 merged (commit `24c65d9`), GitHub Pages built, delivery recorded. No new irregularities; flagged items remain on `app/flagged.html` with source links and do not block the merge.
 
 
 ---
