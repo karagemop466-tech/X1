@@ -28,7 +28,7 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
-| `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53) | 2026-11-15 | done — memo delivered; final-site link/flags requested in PR #54 |
+| `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53, landing update merged in PR #58) | 2026-11-15 | done — memo delivered; follow-up site link/flags requested |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -40,11 +40,13 @@ This session initially claimed to capture the expanded brief and build a readine
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
-| RD-1 | Expanded-brief capture/register | done — handed off to PR #53 before implementation; no duplicate files created | `arena-b8722e85-x1` | none (canonical implementation: PR #53) |
-| RD-2 | One-row-per-requirement decision-readiness table | done — handed off to PR #53 before implementation; no duplicate files created | `arena-b8722e85-x1` | none (canonical implementation: PR #53) |
+| RD-1 | Expanded-brief capture/register | done — handed off before implementation; no duplicate files created | `arena-b8722e85-x1` | none (readiness table landed in PR #58) |
+| RD-2 | One-row-per-requirement decision-readiness table | done — handed off before implementation; no duplicate files created | `arena-b8722e85-x1` | none (canonical landing update: PR #58) |
 | RD-3 | Landing-page integration request | done — the readiness table landed in PR #58; no generated page was edited in this session | `arena-b8722e85-x1` | none |
 
-Handoff log: at 2026-11-15 18:21 UTC, PR #53 was open and its changed-file list included `data/audit/decision_readiness.{json,csv}`, `tools/build_readiness.py`, `app/index.html`, and `app/flagged.html`; this overlapped RD-1–RD-3. PR #58 later merged the landing-page readiness table. As of 18:25 UTC, PRs #53, #56, and #59 still open with overlapping readiness/site scopes; final integration should reconcile the duplicates without discarding changes. This session created no readiness or site files and did not touch PR #50 (`app/**`, `tools/build_app.py`, injury ledger) or PR #51 (`lab/**`, `tools/lab/**`).
+Handoff log: at 2026-11-15 18:21 UTC, PR #53 was open and its changed-file list included `data/audit/decision_readiness.{json,csv}`, `tools/build_readiness.py`, `app/index.html`, and `app/flagged.html`; this overlapped RD-1–RD-3. PR #58 later merged the landing-page readiness table. At 18:25 UTC, PRs #53, #56, and #59 were still open with overlapping readiness/site scopes; final integration should reconcile the duplicates without discarding changes. This session created no readiness or site files and did not touch PR #50 (`app/**`, `tools/build_app.py`, injury ledger) or PR #51 (`lab/**`, `tools/lab/**`).
+
+Conflict log (2026-11-15): `git pull --rebase` against this session's remote branch encountered append-only `COORDINATION.md` conflicts while replaying PR #51 and PR #54 records. Resolved by retaining both the Week 10 recapture, control-baseline, and final-integration sections; no session record or non-board file was dropped. The sections were then separated for readability.
 
 ---
 
@@ -2613,6 +2615,64 @@ Session `arena-600e6009-x1` complete.
 
 ---
 
+# Session `arena/ed8c600d-x1` — Week 10 official injury re-capture and row-level verification (this session)
+
+**Session ID:** `arena-ed8c600d-x1` · **Branch:** `arena/ed8c600d-x1` (branched from `main` @ `51d6e32`).
+**Claim written and pushed before any other work (rule 1).** Open PRs: none (`gh pr list --state open` → empty).
+Bash cannot reach nfl.com (TLS error, `curl` exit 35); the official page was read through the fetch tool, all 8 chunks.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| E1 | **Re-capture the official Week 10 NFL.com injury report** (all 8 pages, 14 games, 28 clubs) and compare it row by row with the published `data/nfl/injuries_week10.tsv` (345 data rows) — the brief's "254 vs 279 rows / stale counts" item and the Lions designation item (VR-08/VR-12) | **done** (findings flagged, see record below) | `arena-ed8c600d-x1` | `data/capture/2026_w10/**` (new), `tools/verify_w10_recapture.py` (new), this file |
+
+Not claimed here (the site, the integration and every other brief item stay with their owning sessions or the integration step): publishing changes to `app/**`, `data/nfl/injuries_week10.tsv`, any model, leaderboard or registry.
+
+## Completion record — E1 (session `arena-ed8c600d-x1`, 2026-11-15)
+
+**Sources (all NFL.com, read through the fetch tool on 2026-11-15 UTC):**
+- Week 10 injury report: https://www.nfl.com/injuries/ — 8 chunks, 14 games, 28 clubs, 347 printed rows.
+- Context pages named in the report's news list (not used as data): https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders , https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again
+
+**What shipped (new paths only):**
+- `data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv` — the 347 rows as printed.
+- `data/capture/2026_w10/recapture_report.{md,json}` — generated comparison.
+- `data/capture/2026_w10/README.md` — method and limits.
+- `tools/verify_w10_recapture.py` — exit 1 while the published table differs from the page.
+
+**Verification performed:**
+- Row-by-row key comparison (game, club, player): 345 published rows all found on the page; 0 extra rows; 2 official rows absent from the published table; 0 duplicate keys.
+- Field comparison on matched rows (injury / practice status / game status): 32 cells differ in 16 rows.
+- The Lions designations (Kerby Joseph, Cade Mays, D.J. Reed) are **Out** on the page and **Out** in `data/nfl/injuries_week10.tsv` — **match**; the earlier "blank game-status" item is already resolved in the TSV.
+- The page's printed summary counts (66 / 84 / 10 / 185) do not match the current page (70 / 90 / 11 / 176).
+
+**Irregularities (flagged for review — nothing in the site was changed):**
+- **F-E1-1** Ravens rows missing from the published table: Calais Campbell (DT, Did Not Participate, no designation) and Ronnie Stanley (T, Did Not Participate, no designation), both on the Monday LAC@BAL block.
+- **F-E1-2** Monday LAC@BAL designations differ from the published table on 15 rows (e.g., Keaton Mitchell practice LP→FP; Bud Dupree FP→DNP; Jaylinn Hawkins Out, Injury Knee; Adam Randall Questionable, Neck+Hamstring). The published table prints these cells blank.
+- **F-E1-3** Arden Key (DE, MIA@IND): published Hamstring / Questionable; current page shows no injury, Full Participation, no designation. Could be a dated change or a stale cell. This session cannot tell which capture time is newer from the data alone.
+- **F-E1-4** The `app/injuries.html` text says "re-fetched … 2026-11-14 … 0 mismatches out of 2929 checks". That statement holds only for the 2026-11-14 read. It does not hold for the 2026-11-15 page.
+- **F-E1-6** `tools/verify_against_official.py` reports "every published Week 10 cell agrees with the official page" (0 mismatches of 2,183). Its reference is `audit/official_snapshot_2026_w10.py`, a 2026-11-14 transcription. The check therefore confirms the 2026-11-14 table against itself. It does not test the live page, which differs on 16 rows (F-E1-1 to F-E1-3).
+- **F-E1-5** Bash cannot reach nfl.com (TLS error, `curl` exit 35), so the raw response bytes are not retained. The capture is a transcription through the fetch tool.
+
+**Request to the integration session (not actioned here, per the rules):** publish the 2026-11-15 capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. Do not overwrite the 2026-11-14 table. Then re-run `tools/verify_w10_recapture.py` until it exits 0.
+
+**Not done in this session (honest scope):** the brief's other items (daily timestamped captures, a durable snapshot store, the leaderboard, correlation and gating changes, and the 14 "Week 10 snapshot" items) were already handled by earlier merged rounds, or need data this sandbox cannot fetch. They are not claimed here.
+
+### Pull request and deployment record — session `arena-ed8c600d-x1` (E1)
+
+| Step | Result |
+|---|---|
+| PR | [#49](https://github.com/karagemop466-tech/X1/pull/49), `arena/ed8c600d-x1` → `main` |
+| CI on PR | `verify` pass (15s), `build` pass (35s); `deploy` skipped on PR as designed |
+| Merge | `gh pr merge 49 --merge` → MERGED, commit `4f361c9` (2026-11-15T18:14:01Z) |
+| Post-merge verify-site (main) | run 43745574910 **success** (14s) |
+| Pages deployment | run 43745574909 **success** (1m12s) |
+| Live-site check | `https://karagemop466-tech.github.io/X1/app/injuries.html` fetched live. It still shows the 2026-11-14 snapshot, which is expected (no change to the site) and is the source of flags F-E1-1 to F-E1-4 and F-E1-6. |
+| Files changed on main | additive only: `data/capture/2026_w10/**`, `tools/verify_w10_recapture.py`, `COORDINATION.md` |
+
+---
+
 # Session `arena-3f5badd0-x1` — control baselines + repo re-verification (branch `arena/3f5badd0-x1`)
 
 **Session ID:** `arena-3f5badd0-x1` · **Branch:** `arena/3f5badd0-x1` (branched from `51d6e32`, `main`)
@@ -2633,16 +2693,12 @@ captures and club depth-page captures (`www.nfl.com` / `raw.githubusercontent.co
 from bash; they need a scheduled workflow whose first run cannot be observed here), 2026 official
 snap counts and inactive lists (no official source fetched), 2026 spreads (the mirror ends with
 2026 partial and no official price source exists, Q-02).
-# Session `arena/ed8c600d-x1` — Week 10 official injury re-capture and row-level verification (this session)
-
-**Session ID:** `arena-ed8c600d-x1` · **Branch:** `arena/ed8c600d-x1` (branched from `main` @ `51d6e32`).
-**Claim written and pushed before any other work (rule 1).** Open PRs: none (`gh pr list --state open` → empty).
-Bash cannot reach nfl.com (TLS error, `curl` exit 35); the official page was read through the fetch tool, all 8 chunks.
 
 ## Claim
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
+
 | C1 | **Control baselines** (random picks, favourites only) on every leaderboard run, pre-registered before the numbers are computed | in progress | `arena-3f5badd0-x1` | `docs/lab/control-baselines.md` (new), `tools/lab/build_controls.py` (new), `data/lab/controls/**` (new), `lab/controls.html` (new), `lab/` nav via `tools/lab/build_site.py` (own file) |
 | C2 | Re-verify the 2026 published numbers this session touches against the pinned mirror | in progress | `arena-3f5badd0-x1` | read-only |
 
@@ -2710,53 +2766,6 @@ trees are not edited.
 
 - The brief asked for `session-<id>/<task>` branches and parallel sessions. This session is pinned to `arena/3f5badd0-x1` by the platform, so it works on that one branch. Other sessions' claims are on the board above and were not edited.
 - The brief also asked for an "executive summary" and a "suggestions" section. Both exist (`lab/executive-summary.html`, `lab/suggestions.html`, `app/suggestions.html`); they were not changed in this round.
-| E1 | **Re-capture the official Week 10 NFL.com injury report** (all 8 pages, 14 games, 28 clubs) and compare it row by row with the published `data/nfl/injuries_week10.tsv` (345 data rows) — the brief's "254 vs 279 rows / stale counts" item and the Lions designation item (VR-08/VR-12) | **done** (findings flagged, see record below) | `arena-ed8c600d-x1` | `data/capture/2026_w10/**` (new), `tools/verify_w10_recapture.py` (new), this file |
-
-Not claimed here (the site, the integration and every other brief item stay with their owning sessions or the integration step): publishing changes to `app/**`, `data/nfl/injuries_week10.tsv`, any model, leaderboard or registry.
-
-## Completion record — E1 (session `arena-ed8c600d-x1`, 2026-11-15)
-
-**Sources (all NFL.com, read through the fetch tool on 2026-11-15 UTC):**
-- Week 10 injury report: https://www.nfl.com/injuries/ — 8 chunks, 14 games, 28 clubs, 347 printed rows.
-- Context pages named in the report's news list (not used as data): https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders , https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again
-
-**What shipped (new paths only):**
-- `data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv` — the 347 rows as printed.
-- `data/capture/2026_w10/recapture_report.{md,json}` — generated comparison.
-- `data/capture/2026_w10/README.md` — method and limits.
-- `tools/verify_w10_recapture.py` — exit 1 while the published table differs from the page.
-
-**Verification performed:**
-- Row-by-row key comparison (game, club, player): 345 published rows all found on the page; 0 extra rows; 2 official rows absent from the published table; 0 duplicate keys.
-- Field comparison on matched rows (injury / practice status / game status): 32 cells differ in 16 rows.
-- The Lions designations (Kerby Joseph, Cade Mays, D.J. Reed) are **Out** on the page and **Out** in `data/nfl/injuries_week10.tsv` — **match**; the earlier "blank game-status" item is already resolved in the TSV.
-- The page's printed summary counts (66 / 84 / 10 / 185) do not match the current page (70 / 90 / 11 / 176).
-
-**Irregularities (flagged for review — nothing in the site was changed):**
-- **F-E1-1** Ravens rows missing from the published table: Calais Campbell (DT, Did Not Participate, no designation) and Ronnie Stanley (T, Did Not Participate, no designation), both on the Monday LAC@BAL block.
-- **F-E1-2** Monday LAC@BAL designations differ from the published table on 15 rows (e.g., Keaton Mitchell practice LP→FP; Bud Dupree FP→DNP; Jaylinn Hawkins Out, Injury Knee; Adam Randall Questionable, Neck+Hamstring). The published table prints these cells blank.
-- **F-E1-3** Arden Key (DE, MIA@IND): published Hamstring / Questionable; current page shows no injury, Full Participation, no designation. Could be a dated change or a stale cell. This session cannot tell which capture time is newer from the data alone.
-- **F-E1-4** The `app/injuries.html` text says "re-fetched … 2026-11-14 … 0 mismatches out of 2929 checks". That statement holds only for the 2026-11-14 read. It does not hold for the 2026-11-15 page.
-- **F-E1-6** `tools/verify_against_official.py` reports "every published Week 10 cell agrees with the official page" (0 mismatches of 2,183). Its reference is `audit/official_snapshot_2026_w10.py`, a 2026-11-14 transcription. The check therefore confirms the 2026-11-14 table against itself. It does not test the live page, which differs on 16 rows (F-E1-1 to F-E1-3).
-- **F-E1-5** Bash cannot reach nfl.com (TLS error, `curl` exit 35), so the raw response bytes are not retained. The capture is a transcription through the fetch tool.
-
-**Request to the integration session (not actioned here, per the rules):** publish the 2026-11-15 capture as a new dated snapshot beside the 2026-11-14 one, add the two missing Ravens rows, and update the Monday LAC@BAL cells. Do not overwrite the 2026-11-14 table. Then re-run `tools/verify_w10_recapture.py` until it exits 0.
-
-**Not done in this session (honest scope):** the brief's other items (daily timestamped captures, a durable snapshot store, the leaderboard, correlation and gating changes, and the 14 "Week 10 snapshot" items) were already handled by earlier merged rounds, or need data this sandbox cannot fetch. They are not claimed here.
-
-### Pull request and deployment record — session `arena-ed8c600d-x1` (E1)
-
-| Step | Result |
-|---|---|
-| PR | [#49](https://github.com/karagemop466-tech/X1/pull/49), `arena/ed8c600d-x1` → `main` |
-| CI on PR | `verify` pass (15s), `build` pass (35s); `deploy` skipped on PR as designed |
-| Merge | `gh pr merge 49 --merge` → MERGED, commit `4f361c9` (2026-11-15T18:14:01Z) |
-| Post-merge verify-site (main) | run 43745574910 **success** (14s) |
-| Pages deployment | run 43745574909 **success** (1m12s) |
-| Live-site check | `https://karagemop466-tech.github.io/X1/app/injuries.html` fetched live. It still shows the 2026-11-14 snapshot, which is expected (no change to the site) and is the source of flags F-E1-1 to F-E1-4 and F-E1-6. |
-| Files changed on main | additive only: `data/capture/2026_w10/**`, `tools/verify_w10_recapture.py`, `COORDINATION.md` |
----
-
 ---
 
 # Session `arena/67f73aba-x1` — final integration and delivery (this session)
