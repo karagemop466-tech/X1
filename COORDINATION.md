@@ -28,6 +28,7 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
+| `arena-fb9e0427-x1` | `arena/fb9e0427-x1` | **Round 4: decision-readiness register on the landing page, requirement state audit, gap register (ablation, cluster bootstrap, NWS/roof overlay, control baseline, reserve/inactive/snap capture), Flagged-for-Review additions, integration + PR + merge** | 2026-11-15 | active (round-4 owner; claim written before work) |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -2576,3 +2577,24 @@ its content is preserved and this session's change is additive.
 | Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
 
 Session `arena-600e6009-x1` complete.
+
+---
+
+## Session `arena-fb9e0427-x1` — round-4 claim (2026-11-15, written before any work)
+
+**Branch:** `arena/fb9e0427-x1` (branched from `main` @ `51d6e32`; no other branch is touched). `main` = branch base; no PR was open at claim time (`gh pr list --state open` empty).
+
+**Why a round-4 claim is needed.** Every item in the 2026-11-15 brief that has a file in the tree is already covered by an earlier merged round (PRs #1–#48). The brief items with **zero** artefacts in the tree are: an injury/depth **ablation**, a game-**cluster** lower bound with a **multiplicity** adjustment, the **NWS hourly wind/precip + roof** overlay, and a **control baseline** on every leaderboard run. Also missing: a **decision-readiness table on the landing page** (one row per requirement, with the blocking gate and the number that clears it). The requirement register (`data/audit/requirements_assessed.json`, 53 rows) has no gate or clearing-number field, and several of its `met` states contradict the data (see the audit below).
+
+| # | Task | Status | Owner | Files in scope (non-overlapping with every merged round) |
+|---|---|---|---|---|
+| X4-1 | **Decision-readiness register.** One row per requirement (the 53 register rows plus the brief items the register omits), each with: the register's state as recorded, this round's state after checking the data, the blocking gate, the value measured from the repo's own files, and the number that would clear it. | in progress | `arena-fb9e0427-x1` | `data/audit/readiness.json` (new), `data/audit/readiness_gates.json` (new, hand-authored gate definitions), `tools/build_readiness.py` (new) |
+| X4-2 | **Landing-page table** rendered from X4-1, with the state audit visible beside the register's own state. | in progress | `arena-fb9e0427-x1` | `tools/build_app.py` (`p_index` and a new `p_flagged` block only), `app/index.html`, `app/flagged.html` (regenerated) |
+| X4-3 | **State audit and Flagged-for-Review additions.** Publish each `met` row this round downgraded, the G1 threshold conflict (100 in README and `app/validation.html` vs 500 in `data/gates.json`), and the freshness gap between the 2026-11-14 snapshot and the official Nov 15 final. | in progress | `arena-fb9e0427-x1` | the X4-1 register + `app/flagged.html` (via X4-2) |
+| X4-4 | **Official reachability and freshness check** (`fetch_page` on nfl.com, recorded with the date and URL). Reachability only; not a re-verification of values. | in progress | `arena-fb9e0427-x1` | this file |
+| X4-5 | **Integration:** `verify.yml` / `pages.yml` gain one `build_readiness.py --check` step each; full local suite; PR to `main`; merge; Pages deploy confirmed; record here. | in progress | `arena-fb9e0427-x1` | `.github/workflows/verify.yml`, `.github/workflows/pages.yml`, this file |
+
+**Not in scope this round (stated, not hidden):** no new NFL values are scraped, no model is refit, no strategy is re-graded. The ablation, the cluster bootstrap, the NWS overlay and the control baseline are recorded as **open** with the measured count that blocks them. They are not implemented here, because each needs data the repository does not hold (see X4-1).
+
+**Non-overlap declaration.** No other session has an open claim or an unmerged branch (checked 2026-11-15). Shared outputs (`app/**`, `data/audit/**`, `COORDINATION.md`) change only in this round, as the integration session for round 4 (rule 9).
+
