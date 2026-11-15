@@ -46,7 +46,7 @@ This session initially claimed to capture the expanded brief and build a readine
 
 Handoff log: at 2026-11-15 18:21 UTC, PR #53 was open and its changed-file list included `data/audit/decision_readiness.{json,csv}`, `tools/build_readiness.py`, `app/index.html`, and `app/flagged.html`; this overlapped RD-1–RD-3. PR #58 later merged the landing-page readiness table. At 18:25 UTC, PRs #53, #56, and #59 were still open with overlapping readiness/site scopes; final integration should reconcile the duplicates without discarding changes. This session created no readiness or site files and did not touch PR #50 (`app/**`, `tools/build_app.py`, injury ledger) or PR #51 (`lab/**`, `tools/lab/**`).
 
-Conflict log (2026-11-15): `git pull --rebase` against this session's remote branch encountered append-only `COORDINATION.md` conflicts while replaying PR #51 and PR #54 records. Resolved by retaining both the Week 10 recapture, control-baseline, and final-integration sections; no session record or non-board file was dropped. The sections were then separated for readability.
+Conflict log (2026-11-15): the first `git pull --rebase` against this session's remote branch encountered append-only `COORDINATION.md` conflicts while replaying the PR #51 and PR #54 records. A later rebase onto current `main` surfaced the same E1/C1 ordering conflict. Both were resolved by retaining the complete Week 10 recapture, control-baseline, and final-integration records, with E1 and C1/C2 in separate sections; no session record or non-board file was dropped. When merging the original remote claim commit, kept this superseding handoff/GB-1 record and retained the claim commit in branch history.
 
 ---
 
