@@ -2721,3 +2721,12 @@ Not claimed here (the site, the integration and every other brief item stay with
 | Pages deployment | run 43745574909 **success** (1m12s) |
 | Live-site check | `https://karagemop466-tech.github.io/X1/app/injuries.html` fetched live. It still shows the 2026-11-14 snapshot, which is expected (no change to the site) and is the source of flags F-E1-1 to F-E1-4 and F-E1-6. |
 | Files changed on main | additive only: `data/capture/2026_w10/**`, `tools/verify_w10_recapture.py`, `COORDINATION.md` |
+
+### Pull request and deployment record — session `arena-3f5badd0-x1`
+
+- **PR:** [#51](https://github.com/karagemop466-tech/X1/pull/51) (`arena/3f5badd0-x1` → `main`) · **Merge:** `e0e23cd` (merge commit, `gh pr merge 51 --merge`) · state **MERGED**.
+- **Conflict during merge:** `main` had moved (PRs #49, #52). The only conflict was the append-only `COORDINATION.md`; both sides' blocks were kept in full (commit `6ce8a73`). No other session's file was edited to resolve it.
+- **Checks:** GitHub Actions did not start `verify-site` for the PR head, and a `workflow_dispatch` call returned HTTP 403 for this integration token, so the CI chain was run **locally on the exact merged tree**, step by step, with all steps passing (see the completion record). On `main`, run `verify-site` for `e0e23cd` = **success**; `pages build and deployment` for `e0e23cd` = **success**; `Publish static site to GitHub Pages` for `e0e23cd` = cancelled (superseded by the next push, `24c65d9`).
+- **Live check:** https://karagemop466-tech.github.io/X1/lab/controls.html?v=e0e23cd renders the controls page with its rows and source links.
+- **Later main:** PR #54 (`24c65d9`) merged after this one. Its `verify-site` = success and its `pages build and deployment` = success.
+- **Observed, not caused by this session:** `tools/verify_w10_recapture.py` (added on `main` by session `arena-ed8c600d-x1`, E1) exits 1 on the current tree: 347 official rows vs 345 published, 2 missing, 32 field mismatches in 16 rows. That verifier is not in `verify.yml` or `pages.yml`, so the build does not fail on it. Those rows are already flagged F-E1-1…5 by that session. This session did not change the injury table.
