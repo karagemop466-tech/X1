@@ -44,6 +44,10 @@ jobs:
       # source link or an explicit "no official source" marker.
       - name: Verify the unified dashboard
         run: python3 tools/verify_app.py
+      # Added by session arena/fb9e0427-x1 (round 4, additive only). The landing page's decision-readiness
+      # table is rendered from data/audit/readiness.json; the deploy fails if that register is stale.
+      - name: Verify the decision-readiness register before deploy
+        run: python3 tools/build_state_audit.py --check
       # Added by session arena/600e6009-x1 (round 3, additive only): the deploy gate
       # rebuilds the results feed, snapshot store, origination order and round-3
       # registers and fails if any invariant or freshness check breaks — a broken

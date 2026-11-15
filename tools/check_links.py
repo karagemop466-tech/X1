@@ -123,7 +123,9 @@ def check(cond, msg):
 def html_files():
     out = []
     for base, _, files in os.walk(ROOT):
-        if any(p in base for p in (".git", "node_modules", "tools", ".arena", "archive")):
+        # _site/ is the assembled Pages build output (a copy of the tree, built by pages.yml);
+        # auditing it here double-counts pages and audits them against the wrong stylesheet.
+        if any(p in base for p in (".git", "node_modules", "tools", ".arena", "archive", os.sep + "_site")):
             continue
         for f in files:
             if f.endswith(".html"):
