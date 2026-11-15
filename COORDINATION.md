@@ -2576,3 +2576,30 @@ its content is preserved and this session's change is additive.
 | Open questions shipped | Q-19…Q-24 on `app/decisions.html`; suggestions S-13…S-18 on `app/suggestions.html` awaiting owner choice |
 
 Session `arena-600e6009-x1` complete.
+
+---
+
+# Session `arena-8e329878-x1` — round-4 claim (written before work, rule 1)
+
+**Session ID:** `arena-8e329878-x1` · **Branch:** `arena/8e329878-x1` (branched from `main` @ `51d6e32`).
+**Platform note:** this session may only commit to `arena/8e329878-x1`, so the `session-<id>/<task>` branch
+convention is adapted to one branch per session, as earlier sessions recorded. No other branch is created or pushed.
+
+**Board check at claim time:** `gh pr list --state open` → empty. Remote heads include ~30 `arena/*` branches; every
+PR in the history is merged or closed. The `in progress` rows above belong to sessions with no open PR and no
+open branch work, so they are reported as stale in the round-4 review rather than silently taken over.
+
+| # | Task (round-4 brief) | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R4-1 | **Immutable, timestamped official injury-report capture**: raw SHA-256, UTC clock time, parser pinned to layout, drift fails loudly, append-only read log, delta-only publishing | in progress | `arena-8e329878-x1` | `tools/capture/**` (new), `data/captures/official_injuries/**` (new), `.github/workflows/capture-official.yml` (new) |
+| R4-2 | **Line-by-line check of the Week 10 injury table** against the official capture (row, field, value) | in progress | `arena-8e329878-x1` | `tools/capture/verify_against_capture.py` (new), `data/captures/official_injuries/verification_week10.json` (new) |
+| R4-3 | **Repo review, round 4**: every irregularity with the command that shows it and the official link | in progress | `arena-8e329878-x1` | `docs/review/round4-repo-review.md` (new), `data/review/round4_irregularities.json` (new) |
+| R4-4 | **Decision-readiness table on the landing page**: one row per requirement, the gate blocking it, the number that would clear it | in progress | `arena-8e329878-x1` | `data/r4/readiness.json` (new), `tools/build_app.py` (additive page entries), `app/index.html` (regenerated) |
+| R4-5 | **Injury-report delta page** (what changed between captures, never the level) | in progress | `arena-8e329878-x1` | `app/captures.html` (new, generated), `tools/build_app.py` (additive) |
+| R4-6 | **Executive summary + suggestion paths** for owner choice (no build before a decision) | in progress | `arena-8e329878-x1` | `docs/round4-executive-summary.md` (new), `data/r4/suggestions.json` (new), `app/executive-summary.html`, `app/suggestions.html` (regenerated) |
+| R4-7 | **Integration**: full verify suite, link check, PR → `main`, merge, Pages deploy confirmation, record here | in progress | `arena-8e329878-x1` | `.github/workflows/verify.yml` and `pages.yml` (additive only if needed), this file, `README.md` (append) |
+
+Out of reach this round, and recorded as blocked (not built, not faked): official NFL Game Book snap counts and
+inactive lists (no official source fetched yet), licensed prices and a settled opening/closing archive, a
+multi-season archive of injury reports, the Texans depth-chart image (needs an authorised structured source).
+Each is a row in `data/r4/readiness.json` with the number that would clear it.
