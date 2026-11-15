@@ -31,6 +31,7 @@ Owner rules (verbatim intent):
 | `arena-fb9e0427-x1` | `arena/fb9e0427-x1` | **Round 4: decision-readiness register on the landing page, requirement state audit, gap register (ablation, cluster bootstrap, NWS/roof overlay, control baseline, reserve/inactive/snap capture), Flagged-for-Review additions, integration + PR + merge** | 2026-11-15 | active (round-4 owner; claim written before work) |
 
 | `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
+| `arena/8c50eb4b-x1` | `arena/8c50eb4b-x1` | **C14 final integration: add a full decision-readiness register for every assessed requirement, with evidence-backed blockers and clearance thresholds** | 2026-11-15 | **active** — additive console scope only; no edits to PR #50's `app/**` or workflow files |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -76,6 +77,14 @@ existing generators are extended, not rewritten, and no other session's branch i
 | T15 | Correlations computed only from officially sourced numbers, n published with every value | "Compute correlations only from officially sourced numbers and publish n with each value" | **done** | `arena-52aabfa8-x1` | `data/verify/official_correlations.csv` (new), `docs/methodology/correlation.md` (append only) |
 | T16 | Demotion gate: a live strategy goes back to paper | "Define a demotion gate that sends a live strategy back to paper" | **done** | `arena-52aabfa8-x1` | `data/gates.json`, `data/pipeline/gates.json`, `docs/methodology/validation-gates.md` (append only) |
 | T17 | Integration: register the 8 requirements, update executive summary + site pages, verify, PR → main, merge, Pages confirm | brief: "create a pull request … merge without waiting … confirm GitHub Pages deploys" | **done** | `arena-52aabfa8-x1` | `tools/build_app.py` (additive), `app/**` (regenerated), `data/pipeline/requirements.json`, `docs/EXECUTIVE-SUMMARY.md`, `COORDINATION.md`, PR |
+
+### Current session — C14 decision-readiness integration (claimed 2026-11-15)
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| C14 | Put one decision-readiness row per assessed project requirement on the console landing page; show only evidence-backed blocking gates and numeric clearance criteria, leaving unsupported numbers blank and flagged | in progress | `arena/8c50eb4b-x1` | `src/console/readiness.py` (new), `tools/build_console.py`, `tools/verify_console.py`, `data/console/decision_readiness.csv` + `.json` (new), `console/index.html` (generated), `console/assets/console.css` (only if needed), `COORDINATION.md` |
+
+**Non-overlap:** PR #50 (`arena/c0461519-x1`) is open and owns new injury-ledger files, `.github/workflows/**`, and `app/**`. C14 edits none of those paths. Its only shared-file overlap is this append-only task board; this claim is inserted in the registry/task section, separate from that PR's end-of-file session block.
 
 **Scope note (rule 4 compliance):** `tools/build_app.py` and `app/**` were last owned by the
 completed T8/T9 integration (`arena-b38a21d8-x1`, `arena/fcc11e05-x1`). Both tasks are `done`
