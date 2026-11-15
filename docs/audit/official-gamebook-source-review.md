@@ -1,6 +1,6 @@
 # Official NFL Game Book source feasibility and data-rights review
 
-**Reviewed:** 2026-11-15 (UTC date; the page-fetch tool does not expose a trustworthy second-level retrieval timestamp).  
+**Reviewed:** 2026-11-15 (UTC date; the page-fetch tool does not expose a trustworthy second-level retrieval timestamp).
 **Scope:** one official 2026 Week 10 game-center page and the Game Book PDF linked from it. This is a source-feasibility check, not a 32-team or multi-season coverage audit.
 
 ## Decision
