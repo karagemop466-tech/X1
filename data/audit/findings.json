@@ -2,10 +2,10 @@
  "generated_at": "2026-11-14",
  "title": "Audit findings \u2014 what this round checked and what it found",
  "verification": {
-  "cells_compared": 2183,
+  "cells_compared": 3918,
   "mismatches": 0,
-  "tables_ok": 4,
-  "tables": 4,
+  "tables_ok": 5,
+  "tables": 5,
   "per_table": [
    {
     "table": "standings",
@@ -33,6 +33,14 @@
    },
    {
     "table": "injuries",
+    "cells": 1735,
+    "rows_published": 347,
+    "mismatches": 0,
+    "source": "https://www.nfl.com/injuries/league/2026/reg10",
+    "ok": true
+   },
+   {
+    "table": "injuries_snapshot_2026-11-14",
     "cells": 1725,
     "rows_published": 345,
     "mismatches": 0,
@@ -47,14 +55,14 @@
    "severity": "high",
    "category": "Coverage",
    "finding": "The site's injury join uses a five-club depth pilot while a 31-club depth collection already sits in the repository.",
-   "evidence": "The site reports 6 \"listed starters ruled Out\". The same join run across the 31 clubs already collected returns 31. No published value is wrong; the published number is a floor presented as if it were the population.",
+   "evidence": "The site reports 7 \"listed starters ruled Out\". The same join run across the 31 clubs already collected returns 32. No published value is wrong; the published number is a floor presented as if it were the population.",
    "measured": {
     "pilot_clubs": 5,
-    "pilot_starters_out": 6,
+    "pilot_starters_out": 7,
     "clubs_available": 31,
-    "full_starters_out": 31,
-    "injury_rows": 345,
-    "joined_rows": 255
+    "full_starters_out": 32,
+    "injury_rows": 347,
+    "joined_rows": 257
    },
    "source": "https://www.atlantafalcons.com/team/depth-chart",
    "source_label": "example club depth chart (each row carries its own)",
@@ -96,7 +104,7 @@
    "severity": "medium",
    "category": "Verification",
    "finding": "301 of 345 injury rows had never been re-checked by a second reader (flag I-17).",
-   "evidence": "This round transcribed all 345 rows from the official page independently and diffed every cell: 2,183 cells across the four tables, 0 mismatches. I-17 can be closed.",
+   "evidence": "This round transcribed all 345 rows from the official page independently and diffed every cell: 3,918 cells across the four tables, 0 mismatches. I-17 can be closed.",
    "measured": {
     "injury_cells": 1725,
     "injury_mismatches": 0

@@ -47,9 +47,26 @@
   },
   {
    "table": "injuries",
+   "reference": "2026-11-15 read of the official page (transcription in data/capture/2026_w10/)",
+   "source": "https://www.nfl.com/injuries/league/2026/reg10",
+   "rows_published": 347,
+   "rows_official": 347,
+   "rows_missing_from_published": [],
+   "cells_compared": 1735,
+   "mismatches": [],
+   "rows_unmatched": [],
+   "teams_missing_from_published": [],
+   "published_rows_not_in_this_read": [],
+   "note": "The official page prints 28 club tables: the four clubs on bye (CHI, DEN, PHI, TB) have no table in Week 10. rows_official is therefore lower than rows_published whenever the published file also carries bye-week rows from elsewhere; see published_rows_not_in_this_read.",
+   "ok": true
+  },
+  {
+   "table": "injuries_snapshot_2026-11-14",
+   "reference": "2026-11-14 transcription (audit/official_snapshot_2026_w10.py)",
    "source": "https://www.nfl.com/injuries/league/2026/reg10",
    "rows_published": 345,
    "rows_official": 345,
+   "rows_missing_from_published": [],
    "cells_compared": 1725,
    "mismatches": [],
    "rows_unmatched": [],
@@ -60,11 +77,11 @@
   }
  ],
  "totals": {
-  "cells_compared": 2183,
+  "cells_compared": 3918,
   "mismatches": 0,
   "rows_unmatched": 0,
-  "tables_ok": 4,
-  "tables": 4
+  "tables_ok": 5,
+  "tables": 5
  },
  "ok": true
 }
