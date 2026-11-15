@@ -28,6 +28,8 @@ Owner rules (verbatim intent):
 | `arena-b38a21d8-x1` | `arena/b38a21d8-x1` | **Verified official data + decision framework + integration + release** | 2026-11-14 | active (this board's owner) |
 | `arena-cc51616e-x1` | `arena/cc51616e-x1` | **T9 takeover: injury-report line-by-line re-check (345 rows vs nfl.com)** | 2026-11-14 | active |
 | `arena-52aabfa8-x1` | `arena/52aabfa8-x1` | **T10–T17: eight new owner requirements (price snapshots, results feed, origination order, fair/market/diff columns, signal-vs-staking, replacement depth, official-only correlations, demotion gate) + integration & release** | 2026-11-14 | **done** — T10–T17 released in PR #45 (merged `54a59d8`), Pages deploy confirmed |
+| `arena-fb9e0427-x1` | `arena/fb9e0427-x1` | **Round 4: decision-readiness register on the landing page, requirement state audit, gap register (ablation, cluster bootstrap, NWS/roof overlay, control baseline, reserve/inactive/snap capture), Flagged-for-Review additions, integration + PR + merge** | 2026-11-15 | active (round-4 owner; claim written before work) |
+
 | `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
@@ -2583,6 +2585,68 @@ its content is preserved and this session's change is additive.
 Session `arena-600e6009-x1` complete.
 
 ---
+
+## Session `arena-fb9e0427-x1` — round-4 claim (2026-11-15, written before any work)
+
+**Branch:** `arena/fb9e0427-x1` (branched from `main` @ `51d6e32`; no other branch is touched). `main` = branch base; no PR was open at claim time (`gh pr list --state open` empty).
+
+**Why a round-4 claim is needed.** Every item in the 2026-11-15 brief that has a file in the tree is already covered by an earlier merged round (PRs #1–#48). The brief items with **zero** artefacts in the tree are: an injury/depth **ablation**, a game-**cluster** lower bound with a **multiplicity** adjustment, the **NWS hourly wind/precip + roof** overlay, and a **control baseline** on every leaderboard run. Also missing: a **decision-readiness table on the landing page** (one row per requirement, with the blocking gate and the number that clears it). The requirement register (`data/audit/requirements_assessed.json`, 53 rows) has no gate or clearing-number field, and several of its `met` states contradict the data (see the audit below).
+
+| # | Task | Status | Owner | Files in scope (non-overlapping with every merged round) |
+|---|---|---|---|---|
+| X4-1 | **Decision-readiness register.** One row per requirement (the 53 register rows plus the brief items the register omits), each with: the register's state as recorded, this round's state after checking the data, the blocking gate, the value measured from the repo's own files, and the number that would clear it. | in progress | `arena-fb9e0427-x1` | `data/audit/readiness.json` (new), `data/audit/readiness_gates.json` (new, hand-authored gate definitions), `tools/build_state_audit.py` (new) |
+| X4-2 | **Landing-page table** rendered from X4-1, with the state audit visible beside the register's own state. | in progress | `arena-fb9e0427-x1` | `tools/build_app.py` (`p_index` and a new `p_flagged` block only), `app/index.html`, `app/flagged.html` (regenerated) |
+| X4-3 | **State audit and Flagged-for-Review additions.** Publish each `met` row this round downgraded, the G1 threshold conflict (100 in README and `app/validation.html` vs 500 in `data/gates.json`), and the freshness gap between the 2026-11-14 snapshot and the official Nov 15 final. | in progress | `arena-fb9e0427-x1` | the X4-1 register + `app/flagged.html` (via X4-2) |
+| X4-4 | **Official reachability and freshness check** (`fetch_page` on nfl.com, recorded with the date and URL). Reachability only; not a re-verification of values. | in progress | `arena-fb9e0427-x1` | this file |
+| X4-5 | **Integration:** `verify.yml` / `pages.yml` gain one `build_readiness.py --check` step each; full local suite; PR to `main`; merge; Pages deploy confirmed; record here. | in progress | `arena-fb9e0427-x1` | `.github/workflows/verify.yml`, `.github/workflows/pages.yml`, this file |
+
+**Not in scope this round (stated, not hidden):** no new NFL values are scraped, no model is refit, no strategy is re-graded. The ablation, the cluster bootstrap, the NWS overlay and the control baseline are recorded as **open** with the measured count that blocks them. They are not implemented here, because each needs data the repository does not hold (see X4-1).
+
+**Non-overlap declaration (corrected 2026-11-15, after merging `origin/main`).** The first version said no other session had an open claim or unmerged branch. That was wrong. Open PRs when this was corrected: **#50** (`arena/c0461519-x1`, injury ledger: new files, `verify.yml` step, `app/injury-ledger.html`), **#53** (`arena/29e011dc-x1`, decision-readiness register: `tools/build_readiness.py` (add/add with this round's tool, renamed here to `tools/build_state_audit.py`), `data/audit/decision_readiness.*`, a landing-page card, `app/flagged.html`, `tools/build_app.py`, `verify.yml`, `pages.yml`, `check_links.py`), and **#55** (`arena/1aa2b47f-x1`, review and release: `COORDINATION.md`, exec summary addendum). PR #49 (`arena/ed8c600d-x1`) merged as `4f361c9`. Merge conflicts with #53 are logged in the PR #56 record below; this round did not edit #53's files beyond its own names. Shared outputs (`app/**`, `data/audit/**`, `COORDINATION.md`) change only in this round, as the integration session for round 4 (rule 9).
+
+### Round-4 completion record — session `arena-fb9e0427-x1` (2026-11-15)
+
+**Status:** X4-1 to X4-5 built and verified; PR #56 to `main`. Merge and Pages result are recorded in the PR record below.
+
+**What shipped (all on `arena/fb9e0427-x1`; nothing deleted, nothing another session owns was edited):**
+
+| Task | Artefact |
+|---|---|
+| X4-1 decision-readiness register | `data/audit/readiness.json` (60 rows: the 53 register rows and 7 brief items the register does not carry); `data/audit/readiness_gates.json` (gate wording, templates, basis, links, flags); `tools/build_state_audit.py` (every measured value recomputed from a named file; `--check` fails if stale) |
+| X4-2 landing-page table | `app/index.html` (card titled "Requirement state audit (round 4)", 60 rows, each with an evidence link; it is not the decision-readiness register of PR #53); `tools/build_app.py` (`readiness_table`, the landing card, a Round-4 section on `app/flagged.html`) |
+| X4-3 state audit and flags | 9 register rows changed state, all from met to partly met (R-12, R-14, R-15, R-16, R-17, R-20, R-46, R-47, R-49); 7 flags F4-01 to F4-07 on `app/flagged.html`; register text unchanged, change shown beside it |
+| X4-4 official reachability and a spot check | `tools/spotcheck_injuries_r4.py` → `data/audit/round4_spotcheck_injuries.csv` (4 clubs, 44 players, 176 fields, 0 mismatches) |
+| X4-5 integration | `.github/workflows/verify.yml` and `pages.yml`: one `build_state_audit.py --check` step each. `tools/check_links.py`: `_site/` excluded from the walk (see correction below). `docs/EXECUTIVE-SUMMARY.md` section 10 |
+
+**Sources used (fetched 2026-11-15, not recalled):**
+
+- `https://www.nfl.com/injuries/`: "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season", chunk 0 of 8. The Commanders, Giants, Patriots and Lions blocks are complete in this chunk, and they were transcribed for the spot check.
+- `https://www.nfl.com/schedules/2026/by-week/week-10`: chunk 0 of 3. Shows the Commanders 24–Giants 21 final (Nov 12) and the Patriots 10–Lions 35 final (Nov 15, Munich).
+- Repository files as cited in each readiness row (`data/prices/price_history.csv`, `data/results/verified_results.csv`, `data/injuries/injuries_2026_week10.csv`, `data/gates.json`, `data/lab/lines/model_report.json`, `data/site/payload.json`, `README.md`, `data/questions.json`, `data/audit/decision_questions.json`).
+- Open PR #49 (`arena/ed8c600d-x1`, another session): read as a claim, not re-verified.
+
+**Verification performed:**
+
+1. Every measured value in `readiness.json` is recomputed from the file named in its row. A rebuild gives the same bytes (`--check`).
+2. **Correction (2026-11-15).** The earlier line "all 41 steps passed" was written before the final run and was wrong. The final run on the merged tree (`origin/main` merged in) executed every `run:` step from the raw YAML: **27 of 27** in `verify.yml` and **15 of 15** in `pages.yml` (42 run steps, 0 FAIL). Before this, one run failed at the "Link and structure check" (`tools/check_links.py`: `class .x1 is used but defined nowhere`, `assets/site.css`). Cause, reproduced: a stale local `_site/` (the assembled Pages output) was walked as ordinary pages and audited against the root stylesheet. Fix: `_site` is excluded from `html_files()`. The check passes with or without a stale `_site/`. Earlier runs that dirtied the tree (timestamps in `console/`, `hub/`, `data/console/`, and a `.pyc`) were restored with `git checkout`.
+3. Spot check against the live nfl.com page: 4 clubs, 44 players, 176 field comparisons, 0 mismatches. That is 4 of 28 clubs. It is not a full re-verification.
+4. Cross-checks that found irregularities (below): the G1 threshold in the README and in `data/gates.json`; the Q-09 cross-reference; the MAE in the landing text against `model_report.json`; the 2026 feed against the official Nov 15 final; the injury file's single git commit.
+5. `verify_app.py`: links resolve; every row sourced or flagged. No literal "None" on any page.
+
+**Irregularities (published on `app/flagged.html` under Round 4; none blocks the merge):**
+
+- **F4-01** The G1 sample threshold is 100 in the README and `app/validation.html`, and 500 in `data/gates.json`. The one strategy that passes every gate has 398 bets.
+- **F4-02** Register row R-10 cites Q-09 for reward rules. In `data/questions.json`, Q-09 is "Market scope". Rewards are Q-07 there, and Q-20 in `data/audit/decision_questions.json`.
+- **F4-03** The landing page quotes a spread MAE of 10.42 (model) and 9.73 (market). `data/lab/lines/model_report.json` publishes 10.741 and 9.792 over 3,165 games. Not reproduced from `fair_lines.csv` under either sign convention. Published as found; not changed.
+- **F4-04** The 2026 feed was built on 2026-11-14. On 2026-11-15 nfl.com shows the Patriots–Lions game as Final, 10–35, and the feed still lists it as scheduled. 135 of the 272 2026 rows are scheduled. No freshness alarm exists.
+- **F4-05** The scheduled refresh (`data-refresh.yml`) runs successfully, but `data/injuries/injuries_2026_week10.csv` has one git commit, so nothing retains a series of captures.
+- **F4-06** PR #49 reports 347 rows on the live page, 16 differing rows and 2 absent. Not re-verified here.
+- **F4-07** Nine rows recorded as met are partly met on the data (listed above).
+
+**Not built this round, and why (recorded as open rows with the measured count that blocks them):** the injury and depth ablation (1 season of injury reports held); the game-cluster lower bound and multiplicity adjustment (14 officially scored games); the NWS and roof overlay (0 forecast files, 0 roof files); the random-picks control on leaderboard runs (0 of 16 runs; a shared always-favourite baseline exists, ROI −2.7%, but it is not a per-run control); the reserve list (0 files); inactive lists and snap counts (0 files each); designation reliability (1 season of designations); and the results freshness alarm. Building any of these needs data this repository does not hold. None was filled in.
+
+**Interpretation the owner should check:** the register said 42 requirements were met. On the data, 33 are. The landing table shows both states side by side. The state changes are this round's judgement against the data files, and each is listed with its basis for review.
+
 
 # Session `arena-3f5badd0-x1` — control baselines + repo re-verification (branch `arena/3f5badd0-x1`)
 
