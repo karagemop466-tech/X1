@@ -1,10 +1,10 @@
 + git config user.name x1-bot
 + git config user.email x1-bot@users.noreply.github.com
 + rm -rf _ci
-+ git fetch origin main
++ git fetch origin arena/8c67ec75-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git reset --mixed origin/main
+ * branch            arena/8c67ec75-x1 -> FETCH_HEAD
++ git reset --mixed origin/arena/8c67ec75-x1
 Unstaged changes after reset:
 D	_ci/commit.log
 D	_ci/pipeline.log
@@ -26,6 +26,8 @@ M	data/pipeline/team_stats.json
 M  data/pipeline/_probe.json
 M  data/pipeline/_run_report.json
 M  data/pipeline/_verification.json
+A  data/pipeline/archive/injuries/20261115T182207Z_100f247a0830.json
+A  data/pipeline/archive/injuries/index.jsonl
 M  data/pipeline/club_registry.json
 M  data/pipeline/correlations.json
 M  data/pipeline/deficiency.json
@@ -36,15 +38,17 @@ M  data/pipeline/standings.json
 M  data/pipeline/team_stats.json
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-15T17:41:51Z'
-[main 29a514d] data: refresh from official sources 2026-11-15T17:41:51Z
- 11 files changed, 15953 insertions(+), 12372 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-15T18:22:30Z'
+[arena/8c67ec75-x1 467fd8b] data: refresh from official sources 2026-11-15T18:22:30Z
+ 13 files changed, 21005 insertions(+), 13083 deletions(-)
+ create mode 100644 data/pipeline/archive/injuries/20261115T182207Z_100f247a0830.json
+ create mode 100644 data/pipeline/archive/injuries/index.jsonl
 + pushed=0
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/8c67ec75-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
+ * branch            arena/8c67ec75-x1 -> FETCH_HEAD
++ git rebase origin/arena/8c67ec75-x1
 error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
 + git rebase --abort
@@ -52,10 +56,10 @@ fatal: no rebase in progress
 + true
 + sleep 5
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/8c67ec75-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
+ * branch            arena/8c67ec75-x1 -> FETCH_HEAD
++ git rebase origin/arena/8c67ec75-x1
 error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
 + git rebase --abort
@@ -63,10 +67,10 @@ fatal: no rebase in progress
 + true
 + sleep 10
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/8c67ec75-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
+ * branch            arena/8c67ec75-x1 -> FETCH_HEAD
++ git rebase origin/arena/8c67ec75-x1
 error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
 + git rebase --abort
@@ -74,10 +78,10 @@ fatal: no rebase in progress
 + true
 + sleep 15
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/8c67ec75-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
+ * branch            arena/8c67ec75-x1 -> FETCH_HEAD
++ git rebase origin/arena/8c67ec75-x1
 error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
 + git rebase --abort
@@ -85,10 +89,10 @@ fatal: no rebase in progress
 + true
 + sleep 20
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/8c67ec75-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
+ * branch            arena/8c67ec75-x1 -> FETCH_HEAD
++ git rebase origin/arena/8c67ec75-x1
 error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
 + git rebase --abort
