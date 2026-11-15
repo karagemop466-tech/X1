@@ -120,7 +120,10 @@ jobs:
           # the published site. Found by tools/verify_deployed_tree.py, which assembles the
           # upload tree instead of auditing the repository. Additive: one copy line.
           cp -r archive _site/
-          cp index.html _site/legacy-fourth-down.html
+          # Added by session arena-c0461519-x1: the legacy copy links into docs/, data/, tools/ and
+          # scripts/, which are not uploaded. Repoint those links to the repository on GitHub (the
+          # files stay reviewable there) so the preserved page has no broken local links.
+          sed -E 's#href="(docs|data|tools|scripts)/#href="https://github.com/karagemop466-tech/X1/blob/main/\1/#g' index.html > _site/legacy-fourth-down.html
           # Added by session arena/5f1c014c-x1: the line console (line origination,
           # price store, strategy competition, decision register). Additive.
           cp -r console _site/

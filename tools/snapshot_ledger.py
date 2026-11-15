@@ -73,6 +73,20 @@ def sha256_hex(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+_UUID_RE = re.compile(rb"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")
+
+
+def content_sha256(body: bytes) -> str:
+    """Hash of the page with random UUIDs masked.
+
+    The official page embeds a fresh random UUID on each render (for example a carousel
+    `data-jsonid`). Two reads of an unchanged report therefore differ in exact bytes. Change
+    detection uses this normalised hash; the exact-bytes SHA-256 is still stored for integrity.
+    Found on the first two live reads: same length, 28 differing characters, all UUIDs.
+    """
+    return sha256_hex(_UUID_RE.sub(b"<uuid>", body))
+
+
 def canonical(entry: Dict[str, Any]) -> bytes:
     return json.dumps(entry, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
 
@@ -136,8 +150,24 @@ def describe(body: bytes) -> Dict[str, Any]:
     }
 
 
+def prev_content_sha(prev: Dict[str, Any]) -> Optional[str]:
+    """Normalised hash of the previous read. Older lines (written before the normalised hash
+    existed) are recomputed from their stored raw file; the ledger line itself is never edited."""
+    if prev.get("content_sha256"):
+        return prev["content_sha256"]
+    if prev.get("file"):
+        path = os.path.join(_CURRENT_DIR[0], prev["file"])
+        if os.path.exists(path):
+            with open(path, "rb") as fh:
+                return content_sha256(gzip.decompress(fh.read()))
+    return None
+
+
+_CURRENT_DIR: List[str] = [DEFAULT_DIR]
+
+
 def build_flags(status: int, error: Optional[str], body: bytes, info: Dict[str, Any],
-                prev: Optional[Dict[str, Any]], new_sha: str) -> List[str]:
+                prev: Optional[Dict[str, Any]], new_content_sha: str) -> List[str]:
     flags: List[str] = []
     if error or status != 200:
         flags.append("http_error")
@@ -149,7 +179,7 @@ def build_flags(status: int, error: Optional[str], body: bytes, info: Dict[str, 
         if prev and prev.get("week") is not None:
             if (prev.get("season"), prev.get("week")) != (info["season"], info["week"]):
                 flags.append("week_rollover")
-            elif prev.get("sha256") == new_sha:
+            elif prev_content_sha(prev) == new_content_sha:
                 flags.append("unchanged")
             else:
                 flags.append("revised")
@@ -170,7 +200,9 @@ def capture(dir_: str, dry_run: bool) -> int:
                                         "has_injury_report_title": False,
                                         "has_practice_status_text": False}
     new_sha = sha256_hex(body) if body else ""
-    flags = build_flags(status, error, body, info, prev_week, new_sha)
+    new_content = content_sha256(body) if body else ""
+    _CURRENT_DIR[0] = dir_
+    flags = build_flags(status, error, body, info, prev_week, new_content)
 
     raw_name = None
     gz_sha = None
@@ -203,6 +235,7 @@ def capture(dir_: str, dry_run: bool) -> int:
         "error": error,
         "bytes": len(body),
         "sha256": new_sha or None,
+        "content_sha256": new_content or None,
         "file": (f"{RAW_SUBDIR}/{raw_name}" if raw_name else None),
         "gzip_sha256": gz_sha,
         "season": info["season"],

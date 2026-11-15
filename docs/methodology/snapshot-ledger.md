@@ -28,7 +28,8 @@ Every ledger line carries:
 | `captured_at_utc` | clock time of the read (UTC, seconds) |
 | `source_url` / `final_url` | the official page requested (`https://www.nfl.com/injuries/`) and the URL after redirects |
 | `http_status`, `error` | response code and any transport error |
-| `bytes`, `sha256` | size and SHA-256 of the decoded page bytes |
+| `bytes`, `sha256` | size and SHA-256 of the decoded page bytes (exact, for integrity) |
+| `content_sha256` | SHA-256 with random UUIDs masked (used for change flags; see below) |
 | `file`, `gzip_sha256` | the raw file holding those bytes and its own hash (null when the read failed) |
 | `season`, `week`, `title` | read from the page's own `<title>` ("… Week N of the YYYY Season") |
 | `flags` | change and conflict flags (below) |
@@ -40,8 +41,8 @@ Every ledger line carries:
 | Flag | Kind | Meaning |
 |---|---|---|
 | `first_capture` | info | first successful read of the ledger |
-| `unchanged` | info | decoded bytes identical to the previous read of the same week |
-| `revised` | change | same week, different bytes — the page changed between reads (a designation, a practice line, or a template change; the raw files let a reviewer tell which) |
+| `unchanged` | info | same week and same `content_sha256` as the previous read |
+| `revised` | change | same week, different `content_sha256` — a designation, practice line or other content changed |
 | `week_rollover` | change | the page now shows a different week or season |
 | `http_error` | **fatal** | non-200 response or transport error |
 | `empty_body` | **fatal** | fewer than 20,000 bytes returned |
@@ -49,6 +50,18 @@ Every ledger line carries:
 
 A fatal flag makes the scheduled run fail (the alarm). The failed read is still written as a
 ledger line, so the outage is itself on the record.
+
+### Why change detection masks UUIDs (a false positive found on live reads)
+
+The official page embeds a fresh random UUID on every render (e.g. a carousel `data-jsonid`).
+The first two live reads (ledger seq 1 and 2, 8 minutes apart) had the same length (399,862
+characters) and differed in **28 characters, all inside one UUID**. A byte-level hash alone
+would therefore report a change every read. Seq 2 was written with the byte-level rule and is
+flagged `revised`; that line is **not** edited (the ledger is append-only), and it is a known
+false positive. From seq 3 on, change flags use `content_sha256`, which masks UUIDs. A genuine
+content change (for example a designation edited from Questionable to Out) still produces a new
+`content_sha256` and a `revised` flag. The unit check run during the build: same page → `unchanged`;
+one designation edited → `revised`; outage → `http_error`.
 
 ## Integrity checks (`python3 tools/snapshot_ledger.py verify`)
 
