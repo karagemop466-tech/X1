@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item on" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Executive summary</h1>
+  <p>The whole lab in one page: the headline result, the gates, and the open decisions.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note bad"><b>The result.</b> 16 pre-registered strategies, 0 promoted. The best signal
+score on the board is ST-TOT-3,
+and 7 strategies beat their
+break-even win rate at the 5% level while <b>0</b> produce a bootstrap ROI interval above zero. The
+model's fair line also loses to the closing market on both spread and total error (14.20 vs 13.14
+points RMSE on the spread). That is the state of this lab today, and every page on this site is
+built to make it impossible to misread.</div>
+
+<h2>What is built</h2>
+<div class="scroll"><table data-table>
+<thead><tr><th>Capability</th><th>State</th><th>Evidence</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>Requirements register, line by line</td><td class="num"><b>132 of 132</b></td><td>every brief line, verified verbatim</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">brief_round3_sentences.tsv</a></td></tr>
+<tr><td>Verified results feed</td><td class="num"><b>7,548 games</b></td><td>1999–2026, standings reconciled 160/160</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/results_feed.csv" target="_blank" rel="noopener">results_feed.csv</a></td></tr>
+<tr><td>Originated lines</td><td class="num"><b>6,263 markets</b></td><td>side → total → moneyline, fair/market/difference</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/originated_lines.csv" target="_blank" rel="noopener">originated_lines.csv</a></td></tr>
+<tr><td>Strategy leaderboard</td><td class="num"><b>16 strategies</b></td><td>signal and staking scored apart</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">strategy_results.csv</a></td></tr>
+<tr><td>Validation gates</td><td class="num"><b>9 + 14</b></td><td>root register and pipeline register</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener">gates.json</a></td></tr>
+<tr><td>Replacement depth</td><td class="num"><b>897 slots</b></td><td>31 clubs, 2nd/3rd string named</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/depth_replacement.csv" target="_blank" rel="noopener">depth_replacement.csv</a></td></tr>
+<tr><td>Official correlations</td><td class="num"><b>20 values</b></td><td>each with n and a 95% interval</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/correlations.csv" target="_blank" rel="noopener">correlations.csv</a></td></tr>
+<tr><td>Venues, Week 10</td><td class="num"><b>14 of 14</b></td><td>official game centre per fixture</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/venues_2026_w10.tsv" target="_blank" rel="noopener">venues_2026_w10.tsv</a></td></tr>
+<tr><td>Price snapshot store</td><td class="num"><b>18,902 rows</b></td><td>both ends for 1,072; a book on none</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/price_snapshots.csv" target="_blank" rel="noopener">price_snapshots.csv</a></td></tr>
+</tbody></table></div>
+
+<h2>What is not built, and the single thing that unblocks each</h2>
+<div class="scroll"><table data-table>
+<thead><tr><th>Gap</th><th>Why it matters</th><th>Unblocked by</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>No opening prices from a named book</td><td class="num"><b>CLV cannot be computed, so no strategy can be called profitable</b></td><td>An owner decision on a licensed price feed (Q-02)</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">data/pipeline/questions.json</a></td></tr>
+<tr><td>No snap counts, no inactive lists</td><td class="num"><b>A confirmed replacement needs playing time, not a chart</b></td><td>An official snap-count and inactive source</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">data/pipeline/questions.json</a></td></tr>
+<tr><td>No multi-season injury archive</td><td class="num"><b>Designation reliability cannot be measured, so it cannot be a feature</b></td><td>Dated captures retained week over week</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/README.md" target="_blank" rel="noopener">data/capture/2026_w10/README.md</a></td></tr>
+<tr><td>No transactions log</td><td class="num"><b>Stale depth rows cannot be detected</b></td><td>The official transactions feed</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/flags.json" target="_blank" rel="noopener">data/deck/flags.json</a></td></tr>
+<tr><td>No prop lines at all</td><td class="num"><b>Prop and combo strategies cannot be priced or gated</b></td><td>A licensed prop feed (Q-02 family)</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/flagged.csv" target="_blank" rel="noopener">data/console/flagged.csv</a></td></tr>
+</tbody></table></div>
+
+<h2>The decisions waiting on you</h2>
+<p>The brief says no manual input. Two things genuinely need a decision and cannot be derived from
+any source: <b>what price feed</b> the lab is allowed to use (Q-02) and <b>which row-level tables may
+be public</b> (B-54). Everything else on this site was either computed or is waiting on data, not on
+you. See <a href="questions.html">Questions</a>.</p>
+
+<div class="note"><b>How to check any number here.</b> Every value links to the file it came from, and
+<a href="checks.html">the checks page</a> lists sixteen re-runnable commands. If a number on this site
+cannot be reproduced from a committed file, that is a defect — report it and it goes on
+<a href="flagged.html">Flagged for review</a>.</div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

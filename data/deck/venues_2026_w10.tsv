@@ -1,0 +1,28 @@
+# Week 10, 2026 — venue of every fixture, transcribed from the official game centre
+#
+# Source: each fixture's own NFL.com Game Center page, "Game Info" block, read on 2026-11-15 UTC.
+# Field names: the page prints exactly two fields, "Location" and "Stadium".
+# The values below are those two fields, character for character (the page prints them in capitals).
+# Nothing is inferred: a fixture whose page did not print a field would leave it blank and be flagged.
+# The "note" column records ONLY what the official page itself printed next to the fixture
+# (an international-game label or the network); it is not a derived field.
+#
+# Cross-check performed: the fixture list, kickoff times and home/away order agree with
+# data/nfl/schedule_week10.tsv (transcribed 2026-11-14 from the official weekly schedule page).
+# Score and status columns are NOT taken from here; they stay with the verified results feed.
+date_et	time_et	away	home	network	location_as_printed	stadium_as_printed	official_note	source_url	retrieved_at
+2026-11-12	8:15 PM	WAS	NYG	Prime Video	EAST RUTHERFORD, NJ	METLIFE STADIUM	Thursday Night Football	https://www.nfl.com/games/commanders-at-giants-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	9:30 AM	NE	DET	FOX	MUNICH	FC BAYERN MUNICH STADIUM	International Game (Munich)	https://www.nfl.com/games/patriots-at-lions-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	KC	ATL	CBS	ATLANTA, GA	MERCEDES-BENZ STADIUM		https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	HOU	CLE	FOX	CLEVELAND, OH	HUNTINGTON BANK FIELD		https://www.nfl.com/games/texans-at-browns-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	MIN	GB	FOX	GREEN BAY, WI	LAMBEAU FIELD		https://www.nfl.com/games/vikings-at-packers-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	MIA	IND	CBS	INDIANAPOLIS, IN	LUCAS OIL STADIUM		https://www.nfl.com/games/dolphins-at-colts-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	CAR	NO	FOX	NEW ORLEANS, LA	CAESARS SUPERDOME		https://www.nfl.com/games/panthers-at-saints-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	BUF	NYJ	CBS	EAST RUTHERFORD, NJ	METLIFE STADIUM		https://www.nfl.com/games/bills-at-jets-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	1:00 PM	JAX	TEN	FOX	NASHVILLE, TN	NISSAN STADIUM		https://www.nfl.com/games/jaguars-at-titans-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	4:05 PM	LAR	AZ	CBS	GLENDALE, AZ	STATE FARM STADIUM		https://www.nfl.com/games/rams-at-cardinals-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	4:05 PM	SEA	LV	CBS	PARADISE, NV	ALLEGIANT STADIUM		https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	4:25 PM	SF	DAL	FOX	ARLINGTON, TX	AT&T STADIUM		https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10	2026-11-15T18:28Z
+2026-11-15	8:20 PM	PIT	CIN	NBC	CINCINNATI, OH	PAYCOR STADIUM	Sunday Night Football	https://www.nfl.com/games/steelers-at-bengals-2026-reg-10	2026-11-15T18:28Z
+2026-11-16	8:15 PM	LAC	BAL	ESPN	BALTIMORE, MD	M&T BANK STADIUM	Monday Night Football	https://www.nfl.com/games/chargers-at-ravens-2026-reg-10	2026-11-15T18:28Z
+# BYES printed by the official schedule page for Week 10: CHI, DEN, PHI, TB (4 clubs, 14 fixtures = 32 clubs).

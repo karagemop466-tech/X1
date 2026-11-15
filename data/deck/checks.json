@@ -1,0 +1,167 @@
+{
+ "meta": {
+  "generated_at": "2026-11-15T18:29:48Z"
+ },
+ "rows": [
+  {
+   "id": "C01",
+   "name": "Brief is verbatim",
+   "command": "python3 tools/build_deck.py --check",
+   "proves": "Every sentence in the readiness register is a literal substring of the captured brief.",
+   "does_not_prove": "That the brief is complete — only that nothing was reworded.",
+   "result": "132/132 sentences matched",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_deck.py",
+   "source_label": "tools/build_deck.py"
+  },
+  {
+   "id": "C02",
+   "name": "Readiness rows are complete",
+   "command": "python3 tools/build_deck.py --check",
+   "proves": "Every row names a gate that exists in a published gate register and carries a clearing number.",
+   "does_not_prove": "That the clearing number is achievable — it is a target, not a forecast.",
+   "result": "132 rows, 132 gated",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv",
+   "source_label": "data/deck/brief_round3_sentences.tsv"
+  },
+  {
+   "id": "C03",
+   "name": "Site links resolve",
+   "command": "python3 scripts/verify_site.py",
+   "proves": "Every internal link in the served tree resolves, and every data-table row carries an official source link.",
+   "does_not_prove": "That the linked page still exists — a link to a live official page is checked at build time only.",
+   "result": "159 pages, 0 broken",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/scripts/verify_site.py",
+   "source_label": "scripts/verify_site.py"
+  },
+  {
+   "id": "C04",
+   "name": "Deck contract",
+   "command": "python3 tools/verify_deck.py",
+   "proves": "Every deck table row has a source cell, no placeholder leaked, navigation is complete.",
+   "does_not_prove": "That the values are right — only that each one is attributed.",
+   "result": "13 pages verified",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_deck.py",
+   "source_label": "tools/verify_deck.py"
+  },
+  {
+   "id": "C05",
+   "name": "Published cells match the official page",
+   "command": "python3 tools/verify_against_official.py",
+   "proves": "Every published Week 10 cell equals an independent transcription of the official page.",
+   "does_not_prove": "That the official page has not changed since the transcription date.",
+   "result": "2,183 cells, 0 mismatches",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/audit/official_snapshot_2026_w10.py",
+   "source_label": "audit/official_snapshot_2026_w10.py"
+  },
+  {
+   "id": "C06",
+   "name": "Injury re-capture diff",
+   "command": "python3 tools/verify_w10_recapture.py",
+   "proves": "Row-by-row comparison of the current official report against the published table.",
+   "does_not_prove": "That either capture is the final word — the report changes daily.",
+   "result": "345 matched, 2 absent, 32 cells differ",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/recapture_report.json",
+   "source_label": "data/capture/2026_w10/recapture_report.json"
+  },
+  {
+   "id": "C07",
+   "name": "Standings arithmetic",
+   "command": "python3 tools/verify_data.py",
+   "proves": "W+L+T = games played, and PF/PA reconcile, for every club row.",
+   "does_not_prove": "That the standings are current — only that they are internally consistent.",
+   "result": "2,944 assertions",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_data.py",
+   "source_label": "tools/verify_data.py"
+  },
+  {
+   "id": "C08",
+   "name": "Results feed reconciliation",
+   "command": "python3 tools/build_console.py",
+   "proves": "The mirror's game results reproduce the league's own standings for the 2026 season.",
+   "does_not_prove": "That the mirror is complete — the reconcile covers 137 games.",
+   "result": "160/160 checks pass",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/console/payload.json",
+   "source_label": "data/console/payload.json"
+  },
+  {
+   "id": "C09",
+   "name": "Origination step order",
+   "command": "python3 tools/build_origination.py --check",
+   "proves": "Side is step 1, total step 2, moneyline step 3 on every originated row.",
+   "does_not_prove": "That the order is optimal — only that it is the order published.",
+   "result": "sequence 1,2,3 asserted",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination_order_2026_week10.json",
+   "source_label": "data/lines/origination_order_2026_week10.json"
+  },
+  {
+   "id": "C10",
+   "name": "Difference recomputation",
+   "command": "python3 tools/verify_new_data.py",
+   "proves": "Every published difference equals model minus market, recomputed from the row.",
+   "does_not_prove": "That the model number is good — that is what the RMSE comparison is for.",
+   "result": "6,263 rows recomputed",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_new_data.py",
+   "source_label": "tools/verify_new_data.py"
+  },
+  {
+   "id": "C11",
+   "name": "Correlation sources",
+   "command": "python3 tools/verify_official_correlations.py",
+   "proves": "Every correlation pair comes from an official host, and n is present on every value.",
+   "does_not_prove": "That the correlation is causal — it is a measured association.",
+   "result": "988 pairs, 0 host violations",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/verify/official_correlations.csv",
+   "source_label": "data/verify/official_correlations.csv"
+  },
+  {
+   "id": "C12",
+   "name": "Signal/staking separation",
+   "command": "python3 tools/verify_deck.py",
+   "proves": "The leaderboard rank key provably excludes staking, ROI and equity fields.",
+   "does_not_prove": "That the signal is skilful — only that staking cannot influence the rank.",
+   "result": "16/16 rows, rank key checked",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/console/leaderboard_meta.json",
+   "source_label": "data/console/leaderboard_meta.json"
+  },
+  {
+   "id": "C13",
+   "name": "Luck panel reproducibility",
+   "command": "python3 tools/build_deck.py --check",
+   "proves": "The published percentiles and intervals equal a fresh recomputation from the committed CSVs.",
+   "does_not_prove": "That the simulation is the only way to read the data — it is a null model.",
+   "result": "6 blocks recomputed",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/deck/luck_panel.json",
+   "source_label": "data/deck/luck_panel.json"
+  },
+  {
+   "id": "C14",
+   "name": "Venue transcription",
+   "command": "python3 tools/verify_deck.py",
+   "proves": "Every Week 10 fixture has a stadium and location transcribed with its own game-centre URL.",
+   "does_not_prove": "That a venue will not change — it should not, but no check can prove that.",
+   "result": "14/14 fixtures, 0 blank",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/deck/venues_2026_w10.tsv",
+   "source_label": "data/deck/venues_2026_w10.tsv"
+  },
+  {
+   "id": "C15",
+   "name": "Deployed tree crawl",
+   "command": "python3 tools/verify_deployed_tree.py",
+   "proves": "The exact tree uploaded to Pages is assembled and crawled; every link in it resolves.",
+   "does_not_prove": "That the CDN serves the new tree immediately.",
+   "result": "assembled tree, 0 broken",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_deployed_tree.py",
+   "source_label": "tools/verify_deployed_tree.py"
+  },
+  {
+   "id": "C16",
+   "name": "Source-rule mutation test",
+   "command": "python3 tools/test_source_rule.py",
+   "proves": "The source rule actually fails when a source link is removed (a mutation test).",
+   "does_not_prove": "That every row's source is the right source — only that a missing one is caught.",
+   "result": "mutation caught",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/test_source_rule.py",
+   "source_label": "tools/test_source_rule.py"
+  }
+ ]
+}

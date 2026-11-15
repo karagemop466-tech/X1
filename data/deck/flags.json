@@ -1,0 +1,82 @@
+{
+ "meta": {
+  "title": "Round-3 flags raised by session arena-9e5228c8-x1",
+  "generated_at": "2026-11-15",
+  "rule": "A flag is published with the source that shows the discrepancy. Nothing here is resolved by guessing. None of these block the merge; the brief says flagged items are published on the Flagged for Review page and reviewed after the site is live.",
+  "how_to_read": "Each row names what was checked, what the check found, the official source used, and what would settle it. A flag is not a claim that someone was wrong; it is a question the data cannot answer on its own."
+ },
+ "flags": [
+  {
+   "id": "D-01",
+   "severity": "medium",
+   "area": "Brief traceability",
+   "item": "The brief cites evidence IDs (VR-04, VR-08, VR-17, VR-24, VQ-05, SG-03, SG-05, Q06) that are not defined anywhere in this repository.",
+   "found": "A repository-wide search for each of those exact tokens returns only the brief text itself (this round's docs/live-pipeline/project-brief-round3.md) and no register that defines them. There is no VR-, VQ- or SG- series in data/.",
+   "effect": "Those lines can be traced to the brief but not to the evidence the brief relies on. In this round's register they are marked unverified and carry the brief as their only source, never an invented citation.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief-round3.md",
+   "source_label": "Round-3 brief (verbatim), the only place these IDs appear",
+   "settles_it": "Publishing the register those IDs refer to, or re-issuing the lines with a link to the official page each one came from.",
+   "status": "open — non-blocking"
+  },
+  {
+   "id": "D-02",
+   "severity": "medium",
+   "area": "Injury table counts",
+   "item": "The brief says the published Week 10 table holds 254 rows (and 279 live), but this repository's table holds 345 rows.",
+   "found": "data/console/injuries_week10.csv: 345 data rows over 28 clubs carrying a fixture. Three independent transcriptions in this repo (data/nfl/injuries_week10.tsv, data/capture/2026_w10/, data/verify/*.psv) all agree at 345. So 254 and 279 are not the counts of any table in this repository.",
+   "effect": "The brief's row counts cannot be reconciled from here. The published table is left exactly as it is at 345 rows and no row is deleted to make a number match.",
+   "source_url": "https://www.nfl.com/injuries/",
+   "source_label": "NFL.com — official injury report (the page all three transcriptions were read from)",
+   "settles_it": "Naming which artefact shows 254 rows. If it is another session's table, the two tables are different datasets and both should be labelled as such.",
+   "status": "open — non-blocking"
+  },
+  {
+   "id": "D-03",
+   "severity": "low",
+   "area": "Lions designations",
+   "item": "The brief says Kerby Joseph, Cade Mays and D.J. Reed have a blank game-status cell; the stored table has \"Out\" for all three.",
+   "found": "data/console/injuries_week10.csv: DET Kerby Joseph (Knee, DNP) \"Out\"; DET Cade Mays (Ankle, DNP) \"Out\"; DET D.J. Reed (Hip, DNP) \"Out\".",
+   "effect": "Nothing to populate. The item is closed as already satisfied rather than \"fixed\" a second time, and it is published here so the mismatch between the brief and the table is visible rather than quietly ignored.",
+   "source_url": "https://www.nfl.com/injuries/",
+   "source_label": "NFL.com — official injury report",
+   "settles_it": "Confirmation from the owner that the brief referred to an earlier capture; no data change is needed either way.",
+   "status": "closed as already satisfied — published for transparency"
+  },
+  {
+   "id": "D-04",
+   "severity": "medium",
+   "area": "Depth slots",
+   "item": "The brief says 149 club/unit/position slots list more than one rank-1 player. This repository cannot reproduce 149, or any shared rank-1 slot.",
+   "found": "data/pipeline/depth_charts.json holds 1,813 chart rows over 897 slots. Measured: 0 slots record a second player at depth rank 1; 688 slots list more than one player across their ranks. The brief's 149 is not derivable from the stored chart by any reading tried here.",
+   "effect": "Neither number is published as if it were the other. The register records the brief's claim, this repo's measurement, and the gap. The store keeps every multi-player group in full, so no starter is fabricated either way.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/depth_charts.json",
+   "source_label": "This repository's depth-chart store (itself read from the 31 club pages it links)",
+   "settles_it": "A raw capture of a club page that shows two players at rank 1 in one slot, so the count can be read off the page.",
+   "status": "open — non-blocking"
+  },
+  {
+   "id": "D-05",
+   "severity": "high",
+   "area": "Data currency",
+   "item": "The fixtures transcribed here are being played right now, so any game-centre field can change while it is being read.",
+   "found": "On 2026-11-15 the Week 10 slate was live: the schedule page showed NE 10 @ DET 35 FINAL and KC 7 @ ATL 0 in Q1, while other fixtures had not kicked off. Venue fields (Location, Stadium) do not change during a game, which is why they were chosen for transcription; score and status were deliberately not transcribed from these pages.",
+   "effect": "The venue file is safe to publish. Anything time-varying on the same pages is left to the verified results feed, which is built on its own schedule.",
+   "source_url": "https://www.nfl.com/schedules/2026/REG10/",
+   "source_label": "NFL.com — 2026 Week 10 schedule (live during capture)",
+   "settles_it": "Nothing to settle: the rule applied was to transcribe only the fields that are fixed for the fixture.",
+   "status": "recorded — informs what may be transcribed from a live page"
+  },
+  {
+   "id": "D-06",
+   "severity": "medium",
+   "area": "Deployment scope",
+   "item": "This repository now publishes 14 separate sites over the same data, and the site root has served a different tree in each of the last three rounds.",
+   "found": "14 trees contain an index.html: app/, console/, dashboard/, deck/, hub/, lab/, live/, pages/, research/, site/ and archive/previous-site/ (not served), plus the root index.html. Before this round pages.yml copied console/index.html to the root; that console page states 'The eight requirements', 15 questions, 13 suggestions and 0 promoted, while the repository now holds 132 brief lines, 54 questions and 16 evaluated strategies.",
+   "effect": "A reader landing on the root sees stale counts. This round serves deck/ at the root instead, keeps console/ published at /console/, and links every other tree from one archive page so nothing is lost. The consolidation itself is a decision for the owner (see the suggestions page).",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/pages.yml",
+   "source_label": "pages.yml — the file that decides what the site root serves",
+   "settles_it": "An owner decision on which single tree is the site of record; until then every tree stays published and the root points at the newest one.",
+   "status": "open — non-blocking, mitigated this round"
+  }
+ ]
+}

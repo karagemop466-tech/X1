@@ -1,0 +1,407 @@
+{
+ "generated_at": "2026-11-15T18:29:48Z",
+ "blocks": [
+  {
+   "id": "L1",
+   "title": "How many wins clear the break-even?",
+   "question": "At n decisions, how many wins does a strategy need before a 52.38% break-even can be rejected at the 5% level?",
+   "method": "One-sided exact binomial tail test against p0 = 0.5238 (the break-even at -110). The reported number is the smallest k with P(X >= k | p0) < 0.05.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/console/results_feed.csv",
+   "source_label": "data/console/results_feed.csv (settled games; the n used by the leaderboard)",
+   "rows": [
+    {
+     "n": 50,
+     "wins_to_clear_breakeven": 33,
+     "hit_rate_to_clear": 0.66,
+     "note": ""
+    },
+    {
+     "n": 100,
+     "wins_to_clear_breakeven": 62,
+     "hit_rate_to_clear": 0.62,
+     "note": ""
+    },
+    {
+     "n": 137,
+     "wins_to_clear_breakeven": 82,
+     "hit_rate_to_clear": 0.5985401459854015,
+     "note": ""
+    },
+    {
+     "n": 200,
+     "wins_to_clear_breakeven": 117,
+     "hit_rate_to_clear": 0.585,
+     "note": ""
+    },
+    {
+     "n": 500,
+     "wins_to_clear_breakeven": 281,
+     "hit_rate_to_clear": 0.562,
+     "note": ""
+    },
+    {
+     "n": 1000,
+     "wins_to_clear_breakeven": 551,
+     "hit_rate_to_clear": 0.551,
+     "note": ""
+    },
+    {
+     "n": 2000,
+     "wins_to_clear_breakeven": 1085,
+     "hit_rate_to_clear": 0.5425,
+     "note": ""
+    },
+    {
+     "n": 3500,
+     "wins_to_clear_breakeven": 1883,
+     "hit_rate_to_clear": 0.538,
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "title": "A real edge still takes hundreds of bets to see",
+   "question": "If a strategy genuinely wins 2 points more often than its break-even, how many settled bets before the 5% test can fire?",
+   "method": "Normal approximation to the binomial with the null standard error: n = z^2 p0(1-p0) / (p1-p0)^2 at z = 1.645 (one-sided 5%). This is a planning number, not a result.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv",
+   "source_label": "Break-even rates used by the published leaderboard (BREAKEVEN_HIT_RATE column)",
+   "rows": [
+    {
+     "odds": "-105",
+     "break_even": 0.5122,
+     "true_edge_pp": 1.0,
+     "bets_to_detect": 6760
+    },
+    {
+     "odds": "-105",
+     "break_even": 0.5122,
+     "true_edge_pp": 2.0,
+     "bets_to_detect": 1690
+    },
+    {
+     "odds": "-105",
+     "break_even": 0.5122,
+     "true_edge_pp": 5.0,
+     "bets_to_detect": 271
+    },
+    {
+     "odds": "-110",
+     "break_even": 0.5238,
+     "true_edge_pp": 1.0,
+     "bets_to_detect": 6749
+    },
+    {
+     "odds": "-110",
+     "break_even": 0.5238,
+     "true_edge_pp": 2.0,
+     "bets_to_detect": 1688
+    },
+    {
+     "odds": "-110",
+     "break_even": 0.5238,
+     "true_edge_pp": 5.0,
+     "bets_to_detect": 270
+    },
+    {
+     "odds": "-120",
+     "break_even": 0.5455,
+     "true_edge_pp": 1.0,
+     "bets_to_detect": 6708
+    },
+    {
+     "odds": "-120",
+     "break_even": 0.5455,
+     "true_edge_pp": 2.0,
+     "bets_to_detect": 1677
+    },
+    {
+     "odds": "-120",
+     "break_even": 0.5455,
+     "true_edge_pp": 5.0,
+     "bets_to_detect": 269
+    }
+   ]
+  },
+  {
+   "id": "L3",
+   "title": "The one measured 2026 signal, stated with its interval",
+   "question": "The model's side pick went 84-49 in 133 decided 2026 games. How much of that is luck?",
+   "method": "Wilson score interval on 84/133. The comparison is against 50% (a coin flip), NOT against a book's break-even, because no official price exists (Q-02). A hit rate above 50% is not the same thing as a profitable bet.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/results/signal_grade.json",
+   "source_label": "data/results/signal_grade.json (n_matched_games 137, n_decided 133, n_wins 84)",
+   "rows": [
+    {
+     "wins": 84,
+     "decisions": 133,
+     "hit_rate": 0.631578947368421,
+     "wilson_low": 0.5469796589648774,
+     "wilson_high": 0.7087907800612074,
+     "z_vs_50pct": 3.0348848933344192,
+     "clears_50pct": true,
+     "clears_breakeven_110": true,
+     "verdict": "The 95% lower bound is 54.70%, which is above the 52.38% break-even at -110. So the hit rate is better than a coin flip with 95% confidence — but a hit rate is not a return: the price actually taken decides the profit, and no official price exists here (Q-02)."
+    }
+   ]
+  },
+  {
+   "id": "L4",
+   "title": "What a break-even player's record looks like over the same 133 games",
+   "question": "If a strategy were exactly break-even (52.38%), what range of 133-game records would be ordinary?",
+   "method": "10,000 simulated 133-decision seasons at p = 0.5238, seed 20261115, re-run on every build and compared against the stored value. The 5th and 95th percentiles bound the ordinary range.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_deck.py",
+   "source_label": "tools/build_deck.py (this simulation; seed published so it is reproducible)",
+   "rows": [
+    {
+     "simulations": 10000,
+     "decisions": 133,
+     "p": 0.5238,
+     "p05_wins": 60,
+     "median_wins": 70,
+     "p95_wins": 79,
+     "p05_rate": 0.45112781954887216,
+     "p95_rate": 0.5939849624060151,
+     "observed_wins": 84,
+     "observed_percentile": 0.9947
+    }
+   ]
+  },
+  {
+   "id": "L5",
+   "title": "Luck removed by construction: signal and staking scored apart",
+   "question": "Of the 16 pre-registered strategies, how many have an interval that excludes zero?",
+   "method": "Two different statistics are published per row and they answer two different questions. The p-value is a two-sided exact binomial test of the win rate against the row's own break-even hit rate — it asks whether the picks were better than a break-even picker. The interval is a bootstrap on realised flat-stake ROI — it asks whether the money made is distinguishable from zero. A row can fail one and pass the other, because a pick can beat the break-even win rate and still lose money at the prices actually taken. Neither statistic is substituted for the other.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv",
+   "source_label": "data/console/strategy_results.csv (all 16 pre-registered strategies)",
+   "rows": [
+    {
+     "id": "ST-TOT-3",
+     "family": "Total edge",
+     "bets": 2781,
+     "hit_rate": 0.5206129149945276,
+     "breakeven": 0.5238,
+     "p_value": 0.745137,
+     "ci_low": -0.04034,
+     "ci_high": 0.02841,
+     "signal": 28.0,
+     "staking": 35.15,
+     "roi": -0.006014840966297062
+    },
+    {
+     "id": "ST-TOT-5",
+     "family": "Total edge",
+     "bets": 1378,
+     "hit_rate": 0.5232129697862933,
+     "breakeven": 0.5238,
+     "p_value": 0.978321,
+     "ci_low": -0.05119,
+     "ci_high": 0.04921,
+     "signal": 25.0,
+     "staking": 35.16,
+     "roi": -0.0011215199894442879
+    },
+    {
+     "id": "ST-UNDER48",
+     "family": "Market structure",
+     "bets": 1308,
+     "hit_rate": 0.5151045701006971,
+     "breakeven": 0.5238,
+     "p_value": 0.539936,
+     "ci_low": -0.06596,
+     "ci_high": 0.03232,
+     "signal": 25.0,
+     "staking": 35.08,
+     "roi": -0.016402557686961035
+    },
+    {
+     "id": "ST-ROADFAV",
+     "family": "Market structure",
+     "bets": 1777,
+     "hit_rate": 0.500578034682081,
+     "breakeven": 0.5238,
+     "p_value": 0.054154,
+     "ci_low": -0.08769,
+     "ci_high": -0.0002,
+     "signal": 25.0,
+     "staking": 24.98,
+     "roi": -0.04317798127589954
+    },
+    {
+     "id": "ST-HOMEDOG",
+     "family": "Market structure",
+     "bets": 1777,
+     "hit_rate": 0.49942196531791905,
+     "breakeven": 0.5238,
+     "p_value": 0.043185,
+     "ci_low": -0.0883,
+     "ci_high": -0.00082,
+     "signal": 23.0,
+     "staking": 26.32,
+     "roi": -0.04532664859057744
+    },
+    {
+     "id": "ST-OVER40",
+     "family": "Market structure",
+     "bets": 1193,
+     "hit_rate": 0.5196245733788396,
+     "breakeven": 0.5238,
+     "p_value": 0.792418,
+     "ci_low": -0.0615,
+     "ci_high": 0.04671,
+     "signal": 20.0,
+     "staking": 33.77,
+     "roi": -0.007848815057532384
+    },
+    {
+     "id": "ST-DIVDOG",
+     "family": "Market structure",
+     "bets": 2184,
+     "hit_rate": 0.5171441991545327,
+     "breakeven": 0.5238,
+     "p_value": 0.543545,
+     "ci_low": -0.05166,
+     "ci_high": 0.0256,
+     "signal": 20.0,
+     "staking": 30.45,
+     "roi": -0.012404262404262591
+    },
+    {
+     "id": "ST-TOT-7",
+     "family": "Total edge",
+     "bets": 588,
+     "hit_rate": 0.5146804835924007,
+     "breakeven": 0.5238,
+     "p_value": 0.677442,
+     "ci_low": -0.09508,
+     "ci_high": 0.0603,
+     "signal": 20.0,
+     "staking": 29.98,
+     "roi": -0.017161410018552776
+    },
+    {
+     "id": "ST-ML-10",
+     "family": "Moneyline value",
+     "bets": 3025,
+     "hit_rate": 0.3072588664235996,
+     "breakeven": 0.2626,
+     "p_value": 0.0,
+     "ci_low": -0.08368,
+     "ci_high": 0.02913,
+     "signal": 20.0,
+     "staking": 26.21,
+     "roi": -0.02904875122018107
+    },
+    {
+     "id": "ST-ML-5",
+     "family": "Moneyline value",
+     "bets": 4155,
+     "hit_rate": 0.3306801736613603,
+     "breakeven": 0.285,
+     "p_value": 0.0,
+     "ci_low": -0.08185,
+     "ci_high": 0.0088,
+     "signal": 20.0,
+     "staking": 26.41,
+     "roi": -0.03534881015441097
+    },
+    {
+     "id": "ST-SIDE-7",
+     "family": "Side edge",
+     "bets": 1170,
+     "hit_rate": 0.5004366812227075,
+     "breakeven": 0.5238,
+     "p_value": 0.11686,
+     "ci_low": -0.09736,
+     "ci_high": 0.0101,
+     "signal": 20.0,
+     "staking": 23.54,
+     "roi": -0.04366744366744408
+    },
+    {
+     "id": "ST-REST2",
+     "family": "Situational",
+     "bets": 633,
+     "hit_rate": 0.5,
+     "breakeven": 0.5238,
+     "p_value": 0.242227,
+     "ci_low": -0.11963,
+     "ci_high": 0.02786,
+     "signal": 20.0,
+     "staking": 21.47,
+     "roi": -0.04423380726698241
+    },
+    {
+     "id": "ST-SIDE-3",
+     "family": "Side edge",
+     "bets": 3436,
+     "hit_rate": 0.48881598568446166,
+     "breakeven": 0.5238,
+     "p_value": 5.2e-05,
+     "ci_low": -0.09673,
+     "ci_high": -0.03315,
+     "signal": 20.0,
+     "staking": 20.05,
+     "roi": -0.0651920838183944
+    },
+    {
+     "id": "ST-BOTH-3",
+     "family": "Combination",
+     "bets": 3204,
+     "hit_rate": 0.48855689764780674,
+     "breakeven": 0.5238,
+     "p_value": 7.9e-05,
+     "ci_low": -0.09902,
+     "ci_high": -0.03342,
+     "signal": 20.0,
+     "staking": 19.7,
+     "roi": -0.06608217001475532
+    },
+    {
+     "id": "ST-SIDE-5",
+     "family": "Side edge",
+     "bets": 2119,
+     "hit_rate": 0.4867469879518072,
+     "breakeven": 0.5238,
+     "p_value": 0.000768,
+     "ci_low": -0.10863,
+     "ci_high": -0.02823,
+     "signal": 20.0,
+     "staking": 18.61,
+     "roi": -0.06928654167918043
+    },
+    {
+     "id": "ST-PARLAY-4",
+     "family": "Parlay",
+     "bets": 889,
+     "hit_rate": 0.24436936936936937,
+     "breakeven": 0.3797,
+     "p_value": 0.0,
+     "ci_low": -0.43624,
+     "ci_high": -0.29244,
+     "signal": 20.0,
+     "staking": 0.0,
+     "roi": -0.3648343388894566
+    }
+   ],
+   "summary": {
+    "strategies": 16,
+    "ci_excludes_zero": 0,
+    "p_below_0_05": 7,
+    "p_below_0_05_and_ci_positive": 0,
+    "best_signal": "ST-TOT-3",
+    "best_p": 0.0,
+    "best_p_id": "ST-ML-10"
+   }
+  },
+  {
+   "id": "L6",
+   "title": "Control baselines",
+   "question": "How does a no-skill rule score on the same graded universe?",
+   "method": "Not held in this tree. A parallel session is building it (PR #51, lab/controls.html). This block is a pointer, not a number.",
+   "source_url": "https://github.com/karagemop466-tech/X1/pull/51",
+   "source_label": "PR #51 — control baselines (in flight, not merged at build time)",
+   "rows": [],
+   "empty_note": "No control number is published here. Inventing one would defeat the purpose of a control."
+  }
+ ]
+}

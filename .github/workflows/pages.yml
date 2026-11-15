@@ -81,6 +81,14 @@ jobs:
           set -euo pipefail
           python3 tools/build_console.py
           python3 tools/verify_console.py
+      # Added by session arena-9e5228c8-x1 (additive). Rebuild the deck and verify it before the
+      # tree is assembled, so a broken landing page fails the build rather than shipping.
+      - name: Rebuild and verify the deck (Added by session arena-9e5228c8-x1)
+        run: |
+          set -euo pipefail
+          python3 tools/build_deck.py
+          python3 tools/verify_deck.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -133,8 +141,24 @@ jobs:
           # <script src="assets/console.js">, which 404s as /assets/console.js
           # unless the src is repointed too. The same defect on the app/ root was
           # found by tools/verify_deployed_tree.py in session arena/56769365-x1.
-          cp console/index.html _site/index.html
-          sed -i -E 's#href="assets/#href="console/assets/#g; s#src="assets/#src="console/assets/#g; s#href="([a-z0-9_-]+\.html)#href="console/\1#g; s#href="\.\./#href="./#g' _site/index.html
+          # Changed by session arena-9e5228c8-x1: the root now serves the deck, the entry point
+          # that carries the decision-readiness register the brief asks for. This is the only
+          # behaviour changed at the root in this round. console/ remains published and unchanged
+          # at /console/ (one click away, and linked from the deck's archive page), the previous
+          # root landing page is still preserved at /legacy-fourth-down.html, and every other
+          # tree is still copied above. The deck's links are same-folder, so the root copy needs
+          # its assets/ path only; readiness.html and the rest are copied to the root as well so
+          # that a reader who trims the URL to the domain still lands on a working page.
+          # The deck is published once, at /deck/. The root is a *rewritten copy* of
+          # deck/index.html with same-folder links repointed into deck/ — the same pattern
+          # the console used before it. Publishing the deck at two depths instead was tried
+          # first and is wrong: one href cannot be correct from both / and /deck/, which is
+          # exactly what tools/verify_deployed_tree.py caught (deck/archive.html resolving
+          # deck/deck/). Both href= and src= are rewritten, because the page loads
+          # <script src="assets/deck.js"> which would 404 as /assets/deck.js.
+          cp -r deck _site/
+          cp deck/index.html _site/index.html
+          sed -i -E 's#href="assets/#href="deck/assets/#g; s#src="assets/#src="deck/assets/#g; s#href="([a-z0-9_-]+\.html)#href="deck/\1#g' _site/index.html
           mkdir -p _site/data
           cp data/*.json _site/data/ 2>/dev/null || true
           cp data/*.csv _site/data/ 2>/dev/null || true
@@ -167,6 +191,19 @@ jobs:
           test -f _site/app/results.html
           test -f _site/app/prices.html
           python3 tools/verify_stores.py
+
+      - name: Verify the deck is the published root (Added by session arena-9e5228c8-x1)
+        run: |
+          set -euo pipefail
+          test -f _site/index.html
+          grep -q "X1 LINE LAB" _site/index.html
+          test -f _site/deck/readiness.html
+          test -f _site/deck/luck.html
+          test -f _site/deck/venues.html
+          test -f _site/deck/assets/deck.css
+          test -f _site/console/index.html
+          test -f _site/deck/index.html
+          test -f _site/legacy-fourth-down.html
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3

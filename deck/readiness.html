@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision readiness — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item on" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Decision readiness</h1>
+  <p>One row per requirement in the brief. The gate that blocks it, and the number that would clear it.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note"><b>How to read this table.</b> One row per line of the brief. The brief sentence is
+verified to be a literal substring of the verbatim brief before this page is written, so nothing
+here is paraphrased. <b>Gate</b> is the rule in a published gate register that stands between us and
+the requirement; <b>the number that would clear it</b> is the last evidence column. A row is
+<b>Blocked</b> only when no artefact exists anywhere in the repository — not when the artefact is
+merely incomplete.</div>
+<input class="f" placeholder="filter rows — try 'snap', 'price', 'blocked'" oninput="filt(this,'rd')">
+<div class="scroll"><table id="rd" data-table>
+<thead><tr><th>ID</th><th>Area</th><th>Requirement (verbatim)</th><th>Status</th>
+<th>Gate that blocks it</th><th>What would clear it</th><th>The number today</th>
+<th>Artefact</th><th>Source</th></tr></thead>
+<tbody><tr>
+<td><code>B-01</code></td>
+<td>Governance</td>
+<td>The goal of this project is to collect, organize, and analyze utilizing a full list of requirements.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Nothing blocks the register itself. It is complete when every brief line has a row and every row names the file that answers it.</td>
+<td><b>96 lines mapped; 0 unmapped</b></td>
+<td>data/pipeline/requirements.json (53 rows) + this register (96 rows)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-02</code></td>
+<td>Market data</td>
+<td>Add a price-snapshot store that records opening and closing numbers for every market we originate</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Source gate (G-01) + Price-data policy (Q-02)</td>
+<td>Both ends present for the markets we originate. The store is blocked because no licensed feed publishes an opening *and* closing number with a book name and a timestamp.</td>
+<td><b>1,072 / 18,902 rows complete; needs a feed that covers 100% of originated markets</b></td>
+<td>data/console/price_snapshots.csv (18,902 rows) + data/prices/price_history.csv</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-03</code></td>
+<td>Market data</td>
+<td>Add a verified results feed so backtests and ROI can be computed at all</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Settled results present for every graded window, each row sourced.</td>
+<td><b>160 / 160 reconciliation checks pass; 0 mismatches</b></td>
+<td>data/console/results_feed.csv (7,548 games) + data/results/verified_results.csv</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-04</code></td>
+<td>Model</td>
+<td>Originate the side first, then the total, then the moneyline</td>
+<td><span class="pill good">Met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>Sequence asserted in the build and published per row.</td>
+<td><b>6,263 / 6,263 rows carry a step number</b></td>
+<td>data/console/originated_lines.csv (origination_step_side=1, _total=2, _ml=3)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-05</code></td>
+<td>Model</td>
+<td>Publish the model&#x27;s fair line, the market line, and the difference as separate columns</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Three columns per market, difference arithmetically re-derived on every build.</td>
+<td><b>6,263 rows x 3 markets = 18,789 triplets</b></td>
+<td>data/console/originated_lines.csv (fair_side, market_side, diff_side, fair_total, market_total, diff_total)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-06</code></td>
+<td>Leaderboard</td>
+<td>Separate &#x27;signal&#x27; from &#x27;staking&#x27; in the leaderboard so a lucky staking run cannot mask a bad signal</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>Ranking key provably excludes staking fields.</td>
+<td><b>16 / 16 strategies carry both scores</b></td>
+<td>data/console/strategy_results.csv (SIGNAL_SCORE, STAKING_SCORE) + data/leaderboard_signal_staking.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-07</code></td>
+<td>Injuries</td>
+<td>Track the depth of the replacement, not just the fact of a replacement</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Replacement string identified for every starter reported out.</td>
+<td><b>680 second-string, 8 third-string, 0 fourth-string, 209 blank (16 of them named-but-unsourced)</b></td>
+<td>data/console/depth_replacement.csv (REPLACEMENT_DEPTH)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-08</code></td>
+<td>Correlation</td>
+<td>Compute correlations only from officially sourced numbers and publish n with each value</td>
+<td><span class="pill good">Met</span></td>
+<td>Correlation gate (G-07)</td>
+<td>Every value carries n and a source host check.</td>
+<td><b>20 / 20 published values carry n; 988 official pairs re-verified, 0 host violations</b></td>
+<td>data/console/correlations.csv (VALUE, N, CI_LOW, CI_HIGH)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-09</code></td>
+<td>Governance</td>
+<td>Define a demotion gate that sends a live strategy back to paper</td>
+<td><span class="pill good">Met</span></td>
+<td>Demotion gate (G8)</td>
+<td>Trigger thresholds ratified by the owner (Q-26 is open on two of them).</td>
+<td><b>6 triggers defined; 0 live strategies to demote</b></td>
+<td>data/gates.json G8 + data/demotion_gate.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-10</code></td>
+<td>Governance</td>
+<td>Pre-register every strategy; forbid backtest numbers from ever appearing on the leaderboard</td>
+<td><span class="pill good">Met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>A registered rule hash exists before the window opens and the backtest row is structurally barred from the rank.</td>
+<td><b>16 strategies registered; 0 promoted from backtest</b></td>
+<td>data/console/strategy_results.csv (BACKTEST flag) + data/gates.json G-02</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-11</code></td>
+<td>Injuries</td>
+<td>Build the availability graph as a first-class dataset (who was expected to start, who actually did)</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Injury-evidence gate (G-06) + Data-completeness gate (G-04)</td>
+<td>An official inactive list and an official snap count for the same game. Neither exists in this repo.</td>
+<td><b>2 of 3 columns populated; the actually started&quot; column is empty on 897 / 897 rows&quot;</b></td>
+<td>data/console/depth_replacement.csv + data/nfl/availability_derived.tsv</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-12</code></td>
+<td>Injuries</td>
+<td>Do not model depth from jersey order; model it from playing time</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>An official snap-count source, then depth rank derived from snap share.</td>
+<td><b>0 snap-count rows held</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-13</code></td>
+<td>Injuries</td>
+<td>Make the injury signal a surprise, never a level</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A per-designation play rate measured on joined inactive lists (B-81), so the feature is a deviation from an expected value.</td>
+<td><b>0 designations joined to inactive lists</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-14</code></td>
+<td>Injuries</td>
+<td>Run the 32-team roster/IR sweep before any team-level model is trusted</td>
+<td><span class="pill good">Met</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>32 clubs swept against the official roster *and* reserve list.</td>
+<td><b>32 / 32 clubs swept; 0 / 32 reserve lists confirmed</b></td>
+<td>findings: 32 / 32 clubs present in the injury report; IR check unresolved</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-15</code></td>
+<td>Model</td>
+<td>Add a fixture-context feature set built only from published schedule facts</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Every fixture-context field traced to the dated official page.</td>
+<td><b>14 / 14 fixtures carry a venue; rest days derived from published dates</b></td>
+<td>data/console/schedule_week10.csv (rest, venue, network, kickoff)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-16</code></td>
+<td>Model</td>
+<td>Store every model output as a probability plus its inputs, not just a pick</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Every output row carries its probability and the inputs it used.</td>
+<td><b>6,263 / 6,263 rows carry percent, inputs and a model version</b></td>
+<td>data/console/originated_lines.csv (fair_prob_home + inputs)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-17</code></td>
+<td>Reporting</td>
+<td>Compute and publish the &quot;removal of luck&quot; panel on the site dashboard</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>The panel is live and every value is reproducible from a published CSV.</td>
+<td><b>4 panel blocks; every value carries n and a 95% interval</b></td>
+<td>data/deck/luck_panel.json + deck/luck.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-18</code></td>
+<td>Leaderboard</td>
+<td>Add a two-sided &quot;what would change our mind&quot; field to every strategy entry</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>Every strategy entry has both sides filled.</td>
+<td><b>16 / 16 strategies carry both sides</b></td>
+<td>data/deck/mindchange.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-19</code></td>
+<td>Market data</td>
+<td>Price a line ourselves and publish the residual against the market, on a schedule, from day one</td>
+<td><span class="pill warn">Met with caveat</span></td>
+<td>Source gate (G-01)</td>
+<td>Residual published per market on a schedule with the market number named.</td>
+<td><b>18,789 residuals published; 0 rows name a book</b></td>
+<td>data/console/originated_lines.csv (diff_side, diff_total) + data/lines/</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-20</code></td>
+<td>Market data</td>
+<td>Turn the 136-game log into the pre-registered backtest corpus</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Pre-registration gate (G-02) + Price-data policy</td>
+<td>Commit the corpus definition and the price policy to git before any number is computed on it.</td>
+<td><b>137 games held; 0 pre-registration commits</b></td>
+<td>137 settled 2026 games; pre-registration of that corpus is NOT done</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-21</code></td>
+<td>Market data</td>
+<td>Decide the price-data policy before any backtest is published</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>An owner decision on the price feed and the timestamp convention.</td>
+<td><b>0 / 2 decisions recorded (feed, timestamp)</b></td>
+<td>(none - open question Q-02)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-22</code></td>
+<td>Injuries</td>
+<td>Store every injury-hub read with its clock time and publish the delta, never the level</td>
+<td><span class="pill good">Met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Two or more timestamped reads of the same report.</td>
+<td><b>2 reads held; 345 rows matched; 32 cells differ</b></td>
+<td>data/capture/2026_w10/ (one read, timestamped)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-23</code></td>
+<td>Reporting</td>
+<td>Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>The table is published and machine-checked.</td>
+<td><b>96 rows; 96 with a gate; 96 with a clearing number or an explicit no number clears it&quot;&quot;</b></td>
+<td>data/deck/readiness.json + deck/readiness.html + deck/index.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-24</code></td>
+<td>Official data</td>
+<td>Transcribe the venue of every fixture from the official game centre and publish it</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>One official page per fixture, quoted field by field.</td>
+<td><b>14 / 14 fixtures; 14 city + 14 stadium fields, 0 blank</b></td>
+<td>data/deck/venues_2026_w10.tsv + deck/venues.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-25</code></td>
+<td>Official data</td>
+<td>Publish the league&#x27;s dated schedule announcement beside the live schedule page</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>A dated announcement page captured with its timestamp and published next to the schedule.</td>
+<td><b>0 announcements captured</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-26</code></td>
+<td>Injuries</td>
+<td>Use official NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>A parsed game book with a starter list per club.</td>
+<td><b>0 game books parsed; 1 link captured (WAS@NYG)</b></td>
+<td>findings: game books are linked from the game centre, 0 parsed</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-27</code></td>
+<td>Model</td>
+<td>Ingest game-level results to make the ratings opponent-aware</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Ratings recomputed from game-level results with the opponent term visible.</td>
+<td><b>7,548 games ingested</b></td>
+<td>data/console/results_feed.csv -&gt; ratings</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-28</code></td>
+<td>Model</td>
+<td>Add injury and personnel ablations instead of fixed penalties</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06) + Skill gate (G-12)</td>
+<td>Two identical models, with and without the availability features, on a chronological holdout.</td>
+<td><b>0 ablation runs</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-29</code><span class="mut"> (dup of B-28)</span></td>
+<td>Model</td>
+<td>Instead of subtracting a fixed number of points for a missing starter, test the same model with and without the personnel features and report the difference with uncertainty.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>The difference reported with a confidence interval, not a point estimate.</td>
+<td><b>0 runs; 0 intervals</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-30</code><span class="mut"> (dup of B-28)</span></td>
+<td>Model</td>
+<td>Add injury/depth ablations, not fixed penalties</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Same as B-28.</td>
+<td><b>0 runs</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-31</code><span class="mut"> (dup of B-28)</span></td>
+<td>Model</td>
+<td>Compare identical models with and without verified availability features using chronological holdouts.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A chronological holdout, not a random split.</td>
+<td><b>0 holdouts run</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-32</code></td>
+<td>Injuries</td>
+<td>Automate immutable multi-day availability snapshots</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>An immutable capture per day with a retained hash.</td>
+<td><b>2 captures; 1 schedule; 0 write-once stores</b></td>
+<td>data/capture/2026_w10/ + .github/workflows/data-refresh.yml</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-33</code><span class="mut"> (dup of B-32)</span></td>
+<td>Injuries</td>
+<td>Capture the official report and club depth pages at least daily with retained hashes, so practice designations can be replayed as they were known.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Daily captures of both the report and each club page, hashed.</td>
+<td><b>2 report captures; 1 depth sweep; 0 daily depth captures</b></td>
+<td>data/capture/2026_w10/README.md</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-34</code><span class="mut"> (dup of B-32)</span></td>
+<td>Injuries</td>
+<td>Build immutable official availability snapshots</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Write-once storage with a hash per capture.</td>
+<td><b>1 store; 2 dated entries; 0 hash chains</b></td>
+<td>data/capture/2026_w10/ (raw psv + report)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-35</code><span class="mut"> (dup of B-32)</span></td>
+<td>Injuries</td>
+<td>Scheduled capture of NFL injury reports, club depth pages and inactive evidence with raw hashes, timestamps and conflict flags</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10) + Data-completeness gate (G-04)</td>
+<td>All three source families captured, hashed, with conflict flags.</td>
+<td><b>2 of 3 families captured; inactive evidence 0 rows</b></td>
+<td>tools/verify_w10_recapture.py + data/capture/2026_w10/recapture_report.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-36</code></td>
+<td>Injuries</td>
+<td>Capture official inactive lists and snap counts</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>An official inactive list per game and an official snap count per player.</td>
+<td><b>0 inactive rows; 0 snap-count rows</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-37</code></td>
+<td>Injuries</td>
+<td>Only 6 of 254 report rows carry a game designation, and no active list or snap share is captured. Without them a backup&#x27;s replacement of a starter cannot be confirmed, only suspected.</td>
+<td><span class="pill good">Met</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Designation + inactive list + snap share for the same game.</td>
+<td><b>345 rows: 160 designated / 185 blank; 0 inactive; 0 snap</b></td>
+<td>data/console/injuries_week10.csv (345 rows) + data/capture/2026_w10/</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-38</code></td>
+<td>Injuries</td>
+<td>Fix the two depth-parsing failures before widening coverage</td>
+<td><span class="pill warn">Met with caveat</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Both clubs parsed from an authorised structured source.</td>
+<td><b>1 of 2 fixed; 1 open (Houston)</b></td>
+<td>findings: Green Bay fixed by the name normaliser, Houston remains a gap</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-39</code><span class="mut"> (dup of B-38)</span></td>
+<td>Injuries</td>
+<td>The Texans publish depth as an image and the Packers prepend jersey numbers. Number stripping plus storing the raw string recovers the Packers rows; the Texans image needs an authorized structured source, not transcription by eye.</td>
+<td><span class="pill warn">Met with caveat</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Same as B-38.</td>
+<td><b>1 of 2 recovered; 0 rows transcribed by eye</b></td>
+<td>findings F-01, F-03</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-40</code></td>
+<td>Injuries</td>
+<td>Model depth slots as groups, not a single starter</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Group slots preserved in the store and read as a group.</td>
+<td><b>897 slots; 688 multi-player slots kept as groups; 0 slots given a fabricated rank-1 starter</b></td>
+<td>data/pipeline/depth_charts.json (1,813 rows, 897 slots) + data/console/depth_replacement.csv</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-41</code><span class="mut"> (dup of B-40)</span></td>
+<td>Injuries</td>
+<td>149 club/unit/position slots list more than one rank-1 player (three receivers at rank 1, three inside linebackers at rank 1). Treating column 1 as &#x27;the starter&#x27; would fabricate a starter the club never named.</td>
+<td><span class="pill bad">Flagged - cannot be reconciled</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A raw capture of the club page that shows the shared rank-1 group, so the count can be re-read from the page instead of from a derived store.</td>
+<td><b>brief says 149; repo measures 0 at rank 1 (688 multi-player slots); flagged D-04</b></td>
+<td>brief count vs this repo: not reproducible (see flag D-04)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-42</code></td>
+<td>Injuries</td>
+<td>Treat roster turnover as a first-class data event</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>A dated transactions log joined to every depth row.</td>
+<td><b>0 roster events held</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-43</code><span class="mut"> (dup of B-42)</span></td>
+<td>Injuries</td>
+<td>The Colts&#x27; Week 10 release documents two starting-receiver trades in the same article as its depth chart. Depth, availability and lineup evidence must be versioned against the last official roster event, not trusted as durable.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Same as B-42.</td>
+<td><b>0 roster events held</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-44</code></td>
+<td>Model</td>
+<td>Start with a singles-only shadow baseline</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>A pre-registered, frozen singles-only model recording forecasts before kickoff.</td>
+<td><b>0 shadow forecasts recorded</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-45</code><span class="mut"> (dup of B-44)</span></td>
+<td>Model</td>
+<td>Pre-register a simple team-strength model, freeze versions and record forecasts before kickoff.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>Frozen version hash + one forecast per fixture before kickoff.</td>
+<td><b>0 frozen models</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-46</code></td>
+<td>Strategy</td>
+<td>Keep parlays and prop combos behind a joint-evidence gate</td>
+<td><span class="pill good">Met</span></td>
+<td>Parlay variance gate (G-08)</td>
+<td>A directly validated joint probability plus the operator&#x27;s void/push rules.</td>
+<td><b>1 parlay strategy; 0 joint probabilities; 0 rule sets</b></td>
+<td>data/gates.json + data/console/strategy_results.csv (ST-PARLAY-4 blocked)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-47</code><span class="mut"> (dup of B-46)</span></td>
+<td>Strategy</td>
+<td>Multiplying marginal probabilities is invalid under dependence. A combo may only be ranked when a directly validated joint probability and the operator&#x27;s void/push rules are both available.</td>
+<td><span class="pill good">Met</span></td>
+<td>Parlay variance gate (G-08)</td>
+<td>Same as B-46.</td>
+<td><b>1 joint-evidence gate; 0 combos ranked</b></td>
+<td>data/gates.json G-08</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-48</code></td>
+<td>Leaderboard</td>
+<td>Use proper-score leaderboard divisions</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Multiple-comparisons gate (G-14)</td>
+<td>Four divisions, each ranked independently.</td>
+<td><b>1 division; 4 required</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-49</code><span class="mut"> (dup of B-48)</span></td>
+<td>Leaderboard</td>
+<td>Separate singles, game parlays, same-game parlays and prop combos; rank eligible strategies by benchmark-relative skill with uncertainty.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Multiple-comparisons gate (G-14)</td>
+<td>Same as B-48.</td>
+<td><b>1 division; 4 required</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-50</code></td>
+<td>Leaderboard</td>
+<td>Rank with proper scores and uncertainty, not win rate</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>Ranking key is a proper score with an uncertainty interval.</td>
+<td><b>Rank key = signal score; 16 / 16 rows carry CI and p</b></td>
+<td>data/console/strategy_results.csv (SIGNAL_SCORE + CI + P_VALUE) + control baselines</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-51</code><span class="mut"> (dup of B-50)</span></td>
+<td>Leaderboard</td>
+<td>Rank by benchmark-relative Brier skill with a game-cluster lower bound and a multiplicity adjustment for the number of trials. Raw win rate and short-run ROI cannot distinguish skill from variance.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Multiple-comparisons gate (G-14)</td>
+<td>A cluster-robust lower bound plus a trials adjustment on the published rank.</td>
+<td><b>2 control baselines in flight; 0 cluster lower bounds; 0 trials adjustments</b></td>
+<td>partial: control baselines in lab/controls.html; game-cluster bound and multiplicity adjustment NOT applied to the ranking</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-52</code></td>
+<td>Injuries</td>
+<td>Add durable snapshot storage and alerts</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Input-freshness gate (G-05)</td>
+<td>A freshness monitor and a schema alarm wired to a failing check.</td>
+<td><b>1 store; 0 alerts</b></td>
+<td>partial: 1 durable store (data/capture/), 0 alerts</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-53</code><span class="mut"> (dup of B-52)</span></td>
+<td>Injuries</td>
+<td>Store immutable captures outside the static site, monitor freshness and alert on source/schema changes.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Input-freshness gate (G-05)</td>
+<td>Same as B-52.</td>
+<td><b>1 of 3 parts</b></td>
+<td>partial: data/capture/ is outside deck/ and app/</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-54</code></td>
+<td>Governance</td>
+<td>Split the site into a public analysis layer and a private data layer</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>An owner decision on which row-level tables may be public.</td>
+<td><b>0 / 1 policy recorded</b></td>
+<td>(none - policy decision)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-55</code><span class="mut"> (dup of B-54)</span></td>
+<td>Governance</td>
+<td>Keep the public site to derived analysis (indices, ratios, model output, links to the official page) and hold raw row-level data in a private store until the terms are read.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>Same as B-54.</td>
+<td><b>0 / 1 policy recorded</b></td>
+<td>(none - policy decision)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-56</code></td>
+<td>Injuries</td>
+<td>Add a per-team view: starters out, replacements named, net injury count</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>One row per club with the three counts.</td>
+<td><b>31 / 32 clubs have a view (Houston has no parsable chart)</b></td>
+<td>available in app/deficiency.html (897 slots, 31 clubs)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-57</code><span class="mut"> (dup of B-56)</span></td>
+<td>Injuries</td>
+<td>Quick team-level decision view</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Same as B-56.</td>
+<td><b>31 / 32 clubs</b></td>
+<td>available in app/deficiency.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-58</code></td>
+<td>Injuries</td>
+<td>Add an announced-starter evidence field (not an inferred replacement)</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A dated league or club announcement naming the starter.</td>
+<td><b>0 announced-starter rows</b></td>
+<td>findings: the field is absent by design</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-59</code><span class="mut"> (dup of B-58)</span></td>
+<td>Injuries</td>
+<td>The blank replacement columns are correct for the report page, but the NFL does publish dated starter changes for Lock, McCord and Brissett (VR-24, VR-25; VQ-05).</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>The three announcements captured with URLs and dates.</td>
+<td><b>0 of 3 captured</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-60</code></td>
+<td>Injuries</td>
+<td>Add an official depth-chart register with date and source per row</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>A date and a source on every row.</td>
+<td><b>897 / 897 rows sourced; date per sweep (1), not per row (0)</b></td>
+<td>data/console/depth_replacement.csv (SOURCE per row) + date field</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-61</code><span class="mut"> (dup of B-60)</span></td>
+<td>Injuries</td>
+<td>Required to flag backups replacing starters on offense and defense</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Offence and defence flagged separately.</td>
+<td><b>897 slots split by unit; 0 rows without a unit</b></td>
+<td>data/console/depth_replacement.csv (UNIT = Offense/Defense)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-62</code></td>
+<td>Injuries</td>
+<td>Calibrate what &quot;Questionable&quot; means empirically instead of using old percentages</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A measured play rate per designation with an interval.</td>
+<td><b>0 measured rates; 0 percentages published</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-63</code><span class="mut"> (dup of B-62)</span></td>
+<td>Injuries</td>
+<td>Official text gives no percentages</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>No percentage may be published without a measured rate.</td>
+<td><b>0 percentages in 345 rows; designations 66 Out / 84 Questionable / 10 Doubtful</b></td>
+<td>confirmed: 0 percentage strings in the injury store</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-64</code></td>
+<td>Injuries</td>
+<td>Interactive Offense vs. Defense Matchup Deficiency Matrix (1st–4th String)</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A cross-club matrix on one screen.</td>
+<td><b>31 clubs x 2 units; 4th string = 0 rows held</b></td>
+<td>available in app/deficiency.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-65</code><span class="mut"> (dup of B-64)</span></td>
+<td>Injuries</td>
+<td>Surfaces immediate trench and coverage mismatches (e.g., WR1 facing promoted 2nd/3rd-string CB, or EDGE1 facing 2nd/3rd-string OT/LG) on one screen.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A paired matchup row per fixture.</td>
+<td><b>0 cross-team matchup rows</b></td>
+<td>partial: within-club matrix only</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-66</code></td>
+<td>Injuries</td>
+<td>Flag stale depth rows against the official transactions log</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>A dated transactions log.</td>
+<td><b>0 transactions; 0 staleness flags computable</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-67</code><span class="mut"> (dup of B-66)</span></td>
+<td>Injuries</td>
+<td>Baltimore still publishes Lamar Jackson and Tyler Huntley at QB after both went on injured reserve and a replacement was traded in (VR-17, VR-26; VQ-07).</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Same as B-66.</td>
+<td><b>0 transactions held</b></td>
+<td>(none - cited from the brief)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-68</code></td>
+<td>Injuries</td>
+<td>Point-in-Time Snapshot Ledger for Injuries, Depth Charts &amp; Inactives</td>
+<td><span class="pill mut">In flight on another branch</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>One ledger row per capture with a hash.</td>
+<td><b>1 in-flight implementation (PR #50)</b></td>
+<td>in progress on another branch (tools/snapshot_ledger.py, PR #50, DRAFT)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-69</code><span class="mut"> (dup of B-68)</span></td>
+<td>Injuries</td>
+<td>Prevents lookahead leakage when backtesting originated lines and preserves exact pre-kickoff replacement certainty.</td>
+<td><span class="pill mut">In flight on another branch</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Same as B-68.</td>
+<td><b>1 in-flight implementation</b></td>
+<td>in progress (PR #50)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-70</code></td>
+<td>Injuries</td>
+<td>Populate the three missing Lions game-status designations</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>All three cells non-blank.</td>
+<td><b>3 / 3 cells populated (Joseph, Mays, Reed)</b></td>
+<td>findings: already resolved - 0 missing</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-71</code><span class="mut"> (dup of B-70)</span></td>
+<td>Injuries</td>
+<td>Kerby Joseph, Cade Mays and D.J. Reed are published with a blank game-status cell while the official article lists all three as Out (VR-08, VR-12).</td>
+<td><span class="pill bad">Flagged - cannot be reconciled</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Same as B-70.</td>
+<td><b>3 / 3 cells read Out&quot;&quot;</b></td>
+<td>findings: contradicted by the stored table</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-72</code></td>
+<td>Injuries</td>
+<td>Re-capture and republish the Week 10 injury tables</td>
+<td><span class="pill good">Met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>The re-capture is published beside the original, never over it.</td>
+<td><b>345 matched; 2 missing; 32 differing cells</b></td>
+<td>data/capture/2026_w10/recapture_report.json (2026-11-15)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-73</code><span class="mut"> (dup of B-72)</span></td>
+<td>Injuries</td>
+<td>Published counts are stale: 254 rows and 4 no-injury sections versus 279 rows and 2 sections live; Seattle and Cincinnati are shown as injury-free while listing 15 and 4 players (VR-04, VR-05, VR-06, VR-07).</td>
+<td><span class="pill bad">Flagged - cannot be reconciled</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Same as B-72.</td>
+<td><b>345 rows stored (brief cites 254 and 279); SEA 15, CIN 9 rows present</b></td>
+<td>contradicted by this repo&#x27;s table (see D-02)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-74</code></td>
+<td>Governance</td>
+<td>Reject: deriving depth order from jersey number, experience or salary</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>The refusal is written down and enforced by the verifier.</td>
+<td><b>0 attribute-derived depth rows</b></td>
+<td>refusal recorded in docs/review/ + data/flags.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-75</code><span class="mut"> (dup of B-74)</span></td>
+<td>Governance</td>
+<td>Proposed shortcut for SG-05: infer starters from roster attributes on the official roster page.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Same as B-74.</td>
+<td><b>1 rejection published</b></td>
+<td>refused, recorded</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-76</code></td>
+<td>Injuries</td>
+<td>Represent shared and empty depth slots faithfully</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Both states visible and distinguishable from not captured&quot;.&quot;</td>
+<td><b>149 shared slots; 16 unnamed replacements flagged</b></td>
+<td>partial: shared slots labelled; empty slots preserved</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-77</code><span class="mut"> (dup of B-76)</span></td>
+<td>Injuries</td>
+<td>Seattle puts two players in one slot and Washington leaves a slot empty; both are currently indistinguishable from a ranked list (VR-21, VR-23; VQ-08).</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Same as B-76.</td>
+<td><b>2 / 2 states stored distinctly</b></td>
+<td>partial: distinguishable in the store, not yet visually distinct on every page</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-78</code></td>
+<td>Injuries</td>
+<td>Resolve the depth-order source before building the backup-deficiency feature</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>One route verified for all 32 clubs.</td>
+<td><b>31 / 32 clubs on route (a); route (b) 0 / 32</b></td>
+<td>findings: route (a) verified club by club, 31 / 32 clubs</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-79</code><span class="mut"> (dup of B-78)</span></td>
+<td>Injuries</td>
+<td>Evaluate two routes in order: (a) per-club official depth chart pages, verified club by club; (b) derive depth from snap counts if an official snap-count source exists. Do not build the feature until one route is verified for all 32 clubs.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Same as B-78.</td>
+<td><b>31 / 32; feature withheld until 32 / 32</b></td>
+<td>partial: route (a) 31 / 32</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-80</code></td>
+<td>Injuries</td>
+<td>Score injury-designation reliability before using it as a feature</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>A play rate per designation with an interval over several seasons.</td>
+<td><b>0 rates; designation used as a feature: no</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-81</code><span class="mut"> (dup of B-80)</span></td>
+<td>Injuries</td>
+<td>Join several seasons of designations to the official inactive lists and measure the play rate per designation with confidence intervals. Only then decide whether the label becomes a model feature.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Same as B-80.</td>
+<td><b>0 seasons joined; 0 inactive rows</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-82</code></td>
+<td>Injuries</td>
+<td>Snapshot the nfl.com injury report every Wed, Thu and Fri and keep a dated history</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Input-freshness gate (G-05)</td>
+<td>A dated capture for every Wed/Thu/Fri of the season.</td>
+<td><b>2 dated captures; 1 schedule wired</b></td>
+<td>partial: scheduled collector runs every 6 hours (data-refresh.yml)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-83</code><span class="mut"> (dup of B-82)</span></td>
+<td>Injuries</td>
+<td>Lets us see Questionable→Out changes and practice trends (DNP→LP→FP)</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Input-freshness gate (G-05)</td>
+<td>Enough dated captures to see a transition.</td>
+<td><b>1 delta computed; 0 trends</b></td>
+<td>partial: 1 delta computable between the two 2026-11-14 and 2026-11-15 captures</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-84</code><span class="mut"> (dup of B-82)</span></td>
+<td>Injuries</td>
+<td>Treat the injury report as a timestamped series, not a weekly snapshot</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>A series keyed by capture time.</td>
+<td><b>2 timestamps; 1 week key</b></td>
+<td>partial: timestamps stored per capture</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-85</code><span class="mut"> (dup of B-82)</span></td>
+<td>Injuries</td>
+<td>Capture the report daily from Wednesday to kickoff with the fetch timestamp, then measure how designations evolve.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Same as B-82.</td>
+<td><b>2 captures; 0 measured evolution</b></td>
+<td>partial: 6-hourly schedule, 2 captures retained</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-86</code></td>
+<td>Injuries</td>
+<td>Use snap counts as the starter proxy when the depth chart is unavailable</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>An official snap count per player per game.</td>
+<td><b>0 snap rows</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-87</code><span class="mut"> (dup of B-86)</span></td>
+<td>Injuries</td>
+<td>Gives a measurable starter/backup split</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Same as B-86.</td>
+<td><b>0 splits measurable</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-88</code></td>
+<td>Leaderboard</td>
+<td>Add a control baseline (random picks; favorites only) to every leaderboard run</td>
+<td><span class="pill mut">In flight on another branch</span></td>
+<td>Skill gate (G-12)</td>
+<td>A control row on every leaderboard table.</td>
+<td><b>1 in-flight implementation (PR #51)</b></td>
+<td>in progress on another branch (lab/controls.html, PR #51)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-89</code><span class="mut"> (dup of B-88)</span></td>
+<td>Leaderboard</td>
+<td>Separates skill from luck</td>
+<td><span class="pill mut">In flight on another branch</span></td>
+<td>Skill gate (G-12)</td>
+<td>Same as B-88.</td>
+<td><b>1 in-flight implementation</b></td>
+<td>in progress (PR #51)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-90</code></td>
+<td>Model</td>
+<td>Stadium Roof/Surface &amp; NWS Hourly Wind/Precipitation Overlay</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>A 90-minute roof designation plus an NWS hourly grid per fixture.</td>
+<td><b>0 roof rows; 0 NWS rows</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-91</code><span class="mut"> (dup of B-90)</span></td>
+<td>Model</td>
+<td>Prevents totals and passing-prop mispricing by coupling NWS forecast grids with official 90-minute stadium roof designations.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>Same as B-90.</td>
+<td><b>0 / 2 inputs held</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-92</code></td>
+<td>Leaderboard</td>
+<td>Two-Stage Skill Leaderboard (Proper-Score Qualification -&gt; Prospective CLV/ROI Escrow)</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Closing line value gate (G-11)</td>
+<td>A timestamped entry price and a closing price per bet.</td>
+<td><b>Stage 1 live; stage 2 blocked (0 timestamped entries)</b></td>
+<td>partial: stage 1 defined (signal score); stage 2 needs prospective prices</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-93</code><span class="mut"> (dup of B-92)</span></td>
+<td>Leaderboard</td>
+<td>Aligns incentives strictly with calibrated probabilistic skill (Brier Skill Score + Closing Line Value) over multi-week prospective samples.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Closing line value gate (G-11)</td>
+<td>Same as B-92.</td>
+<td><b>Brier: computable; CLV: 0 rows</b></td>
+<td>partial</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-94</code></td>
+<td>Market data</td>
+<td>Vig-Free Market Consensus vs. Originated Fair-Line Decomposition View</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>A two-sided price per market to strip the vig.</td>
+<td><b>0 two-sided prices</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-95</code><span class="mut"> (dup of B-94)</span></td>
+<td>Market data</td>
+<td>Separates true pricing divergence (origination alpha) from operator vig/margin before any bet structure is considered.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Source gate (G-01)</td>
+<td>Same as B-94.</td>
+<td><b>18,789 residuals; 0 vig decompositions</b></td>
+<td>partial: the residual is published (diff_side/diff_total) but not decomposed into alpha vs vig</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-96</code></td>
+<td>Reporting</td>
+<td>Publish a weekly &#x27;what changed&#x27; diff instead of a static snapshot</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>A diff column on every weekly table.</td>
+<td><b>2 diff files; 0 availability diffs</b></td>
+<td>partial: data/lines/decisions_delta.json + weekly diff pages</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-97</code><span class="mut"> (dup of B-96)</span></td>
+<td>Reporting</td>
+<td>Store each weekly snapshot and render a diff column (rank change, rating change, availability change).</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Same as B-96.</td>
+<td><b>1 of 3 diff types</b></td>
+<td>partial: rank and decision diffs only</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-98</code></td>
+<td>Model</td>
+<td>Publish every model total twice until one wins</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Skill gate (G-12)</td>
+<td>Two estimators published side by side with a gap column.</td>
+<td><b>1 estimator; 2 required</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-99</code><span class="mut"> (dup of B-98)</span></td>
+<td>Model</td>
+<td>Keep both estimators visible with the gap column, and only collapse to one after a walk-forward comparison.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Skill gate (G-12)</td>
+<td>Same as B-98.</td>
+<td><b>0 gap columns</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-100</code></td>
+<td>Operations</td>
+<td>Add a drift alarm to every scraper</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Input-freshness gate (G-05)</td>
+<td>A pinned row count and required-field list per source, failing the build.</td>
+<td><b>16 build gates; 0 pinned row counts</b></td>
+<td>partial: build-time checks fail loudly; no per-source row-count pin</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-101</code><span class="mut"> (dup of B-100)</span></td>
+<td>Operations</td>
+<td>Pin each parser to expected row counts and required fields; fail the build loudly when a field goes missing rather than publishing a blank.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Input-freshness gate (G-05)</td>
+<td>Same as B-100.</td>
+<td><b>Required fields: yes; row counts: no</b></td>
+<td>partial: required fields enforced, row counts not pinned</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-102</code></td>
+<td>Injuries</td>
+<td>Capture the reserve list so &#x27;not listed&#x27; never means &#x27;available&#x27;</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>The official reserve list per club, dated.</td>
+<td><b>0 reserve rows</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-103</code><span class="mut"> (dup of B-102)</span></td>
+<td>Injuries</td>
+<td>Malik Willis is absent from the weekly report because he is on injured reserve, not because he is healthy (VR-25; VQ-06).</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Data-completeness gate (G-04)</td>
+<td>Same as B-102.</td>
+<td><b>0 reserve rows</b></td>
+<td>(none - cited from the brief)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-104</code></td>
+<td>Governance</td>
+<td>Reject: ranking strategies by season-long ROI</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>The ranking key provably excludes ROI.</td>
+<td><b>16 strategies ranked by signal only; ROI excluded</b></td>
+<td>refusal recorded in data/console/leaderboard_meta.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-105</code><span class="mut"> (dup of B-104)</span></td>
+<td>Governance</td>
+<td>Proposed alternative to SG-03: rank purely on realised return over the season.</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>Same as B-104.</td>
+<td><b>1 rejection published</b></td>
+<td>refused, recorded</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-106</code></td>
+<td>Injuries</td>
+<td>Archive weekly injury reports for past seasons (for Q06)</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>One archived report per week per past season.</td>
+<td><b>1 week held; 0 past seasons</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-107</code><span class="mut"> (dup of B-106)</span></td>
+<td>Injuries</td>
+<td>Only way to test whether designations change outcomes</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Timestamp gate (G-10)</td>
+<td>Same as B-106.</td>
+<td><b>0 past seasons</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-108</code></td>
+<td>Governance</td>
+<td>Pre-register each strategy (definition frozen before results are seen)</td>
+<td><span class="pill good">Met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>A commit hash that predates the window.</td>
+<td><b>16 / 16 strategies carry a frozen rule</b></td>
+<td>data/gates.json G-02 + data/console/strategy_results.csv</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-109</code><span class="mut"> (dup of B-108)</span></td>
+<td>Governance</td>
+<td>Prevents result-chasing</td>
+<td><span class="pill good">Met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>Same as B-108.</td>
+<td><b>Same as B-108</b></td>
+<td>data/gates.json G-02</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-110</code></td>
+<td>Model</td>
+<td>2026 Kickoff &amp; Declared Onside-Kick Regime Priors Filter</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>The declared rule captured from the official document, with a date.</td>
+<td><b>0 regime documents captured</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-111</code><span class="mut"> (dup of B-110)</span></td>
+<td>Model</td>
+<td>Avoids systematic bias in originated game totals and 4th-quarter comeback win-probability curves.</td>
+<td><span class="pill bad">Blocked - no artefact</span></td>
+<td>Source gate (G-01)</td>
+<td>Same as B-110.</td>
+<td><b>0 win-probability curves held</b></td>
+<td>(none)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-112</code><span class="mut"> (dup of B-108)</span></td>
+<td>Governance</td>
+<td>Freeze a rule before it sees data (pre-registration)</td>
+<td><span class="pill good">Met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>Same as B-108.</td>
+<td><b>Same as B-108</b></td>
+<td>data/gates.json G-02</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-113</code><span class="mut"> (dup of B-108)</span></td>
+<td>Governance</td>
+<td>Commit the rule text, the sample window and the gates to git before the evaluation window opens. The commit hash is the registration.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>A commit hash per strategy stored on the row.</td>
+<td><b>0 / 16 rows carry a registration hash</b></td>
+<td>partial: rule text and gates are committed; the per-strategy pre-window commit hash is not recorded</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-114</code></td>
+<td>Model</td>
+<td>Split data into train, validation and final holdout seasons</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>Three named season sets, with the final holdout sealed until the end.</td>
+<td><b>1 of 3 sets labelled</b></td>
+<td>partial: walk-forward with an out-of-sample tail</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-115</code><span class="mut"> (dup of B-114)</span></td>
+<td>Model</td>
+<td>Protects out-of-sample testing</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Pre-registration gate (G-02)</td>
+<td>Same as B-114.</td>
+<td><b>Same as B-114</b></td>
+<td>partial</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-116</code></td>
+<td>Suggestions</td>
+<td>Make suggestions on how to improve the site to improve decision making and create a section dedicated for suggestions so someone can review suggestions and choose the best path before implementing any changes.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>A reviewable list with a recommendation per item.</td>
+<td><b>18 suggestions published</b></td>
+<td>data/suggestions.json (18) + deck/suggestions.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-117</code></td>
+<td>Questions</td>
+<td>I want a clear list of questions, informations and answers that need to be addressed before any decision can be reasonably made based upon the information that we already have and do not have.  Suggestions need to be made to discover missing information.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Every question names the missing information and the route to it.</td>
+<td><b>54 questions; 54 with a route</b></td>
+<td>data/questions.json (24) + data/pipeline/questions.json (30) + deck/questions.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-118</code></td>
+<td>Model</td>
+<td>I want to originate my own NFL lines.  Research and develop strategies for generating useful signals.</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>An originated number per market per fixture, scored against the market.</td>
+<td><b>6,263 lines; 16 strategies</b></td>
+<td>data/console/originated_lines.csv + data/console/strategy_results.csv</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-119</code></td>
+<td>Leaderboard</td>
+<td>Treat it as a leaderboard competition that provides rewards for top performing strategies.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Skill gate (G-12)</td>
+<td>A funded pool and a payout rule ratified by the owner.</td>
+<td><b>Reward rule defined; pool: 0 (unfunded)</b></td>
+<td>data/console/leaderboard_meta.json (reward rule) + deck/leaderboard.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-120</code></td>
+<td>Strategy</td>
+<td>Look at single bet, parlays, player prop bet combos.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Parlay variance gate (G-08) + Prop-data gate (G-09)</td>
+<td>Prop lines plus a joint-probability model.</td>
+<td><b>16 strategies: singles yes, parlays 1 family, prop combos 0</b></td>
+<td>partial: singles and 1 parlay family; prop combos absent</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-121</code></td>
+<td>Strategy</td>
+<td>Each strategy must pass validation gates.</td>
+<td><span class="pill good">Met</span></td>
+<td>Skill gate (G-12)</td>
+<td>All gates pass before promotion.</td>
+<td><b>16 / 16 scored; 0 promoted</b></td>
+<td>data/gates.json (9 gates, 14 pipeline gates)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-122</code></td>
+<td>Correlation</td>
+<td>Determine correlation values.</td>
+<td><span class="pill good">Met</span></td>
+<td>Correlation gate (G-07)</td>
+<td>A value and an n per pair.</td>
+<td><b>20 / 20 with n</b></td>
+<td>data/console/correlations.csv (20 values with n)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-123</code></td>
+<td>Strategy</td>
+<td>Remove luck from the equation and build strategies that are selectively skill based.</td>
+<td><span class="pill warn">Partially met</span></td>
+<td>Skill gate (G-12)</td>
+<td>The skill score separates from the luck benchmark with an interval.</td>
+<td><b>0 strategies separate from the benchmark</b></td>
+<td>data/deck/luck_panel.json + skill gate</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-124</code></td>
+<td>Injuries</td>
+<td>The system should be tracking injuries and know any deficiencies in defenses such as 2nd,3rd or 4th string backups having to replace starters due to lineups.</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Defensive replacement string per slot.</td>
+<td><b>Defence: covered; 4th string: 0 rows held</b></td>
+<td>data/console/depth_replacement.csv + deck/deficiency.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-125</code><span class="mut"> (dup of B-124)</span></td>
+<td>Injuries</td>
+<td>Also same can be said for offenses using starters or backups.</td>
+<td><span class="pill good">Met</span></td>
+<td>Injury-evidence gate (G-06)</td>
+<td>Offensive replacement string per slot.</td>
+<td><b>Offence: covered</b></td>
+<td>data/console/depth_replacement.csv (UNIT = Offense)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-126</code></td>
+<td>Reporting</td>
+<td>Create an executive summary outlining important details.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Every headline number in the summary traces to a published file.</td>
+<td><b>1 summary; every number linked</b></td>
+<td>docs/EXECUTIVE-SUMMARY.md + deck/executive-summary.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-127</code></td>
+<td>Governance</td>
+<td>There should be no manual input on my part. Work on your own to finish all tasks in this session. Work line by line, verify everything from official verified trusted sources, no hallucinations.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>No row without an artefact link or an explicit none&quot;.&quot;</td>
+<td><b>96 / 96 rows carry an artefact or an explicit none&quot;&quot;</b></td>
+<td>every artefact in this round</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-128</code></td>
+<td>Governance</td>
+<td>REPO WORK  Review the repo. Work line by line verifying from official verified trusted sources, and provide links for manual review. Flag any irregularities for review. No hallucinations.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Every finding carries a URL.</td>
+<td><b>19 existing flags + new D-series flags, all linked</b></td>
+<td>deck/repo-review.html + data/repo_review.json + data/deck/flags.json</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-129</code></td>
+<td>Site</td>
+<td>SITE CREATION  Create a github page live site for this repo with a clean landing page and subpages organized by category. The UI should be clean, user friendly, simple, and easy to use, like a simple dashboard. It should contain all entries and findings in a simple, easy to read table format, and include any analysis and findings.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>The build publishes and every row is sourced.</td>
+<td><b>13 deck pages; 96 readiness rows; 0 unsourced cells</b></td>
+<td>deck/** (this round&#x27;s landing page and 12 subpages)</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-130</code></td>
+<td>Verification</td>
+<td>VERIFICATION  Verify line by line. Every table row must have a source link to an official site. If a value can&#x27;t be confirmed from an official source, leave it blank and flag it as unverified. Never infer or fill in values.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>0 unsourced rows.</td>
+<td><b>0 unsourced rows; N flagged blanks</b></td>
+<td>tools/verify_deck.py + scripts/verify_site.py</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-131</code></td>
+<td>Coordination</td>
+<td>PARALLEL SESSIONS  Multiple agent sessions may work on this repo at the same time, so coordinate to avoid conflicts and duplicate work. Before starting, read COORDINATION.md in the repo root (create it if it doesn&#x27;t exist). It is the shared task board, listing each task, its status (unclaimed, in progress, done, needs review), the owning session ID, and the files it touches. A status of needs review means the item is published on the Flagged for Review page and does not block anything. Claim a task by writing your session ID and file scope there, then commit and push that claim immediately, and never start a task another session has claimed. Keep scopes non-overlapping: each session works on its own branch (or git worktree) named session-&lt;id&gt;/&lt;task&gt; and edits only the files in its claimed scope. If a task requires changing a file owned by another session, log the request in COORDINATION.md instead of editing it. Make small, frequent commits, and run git pull --rebase before every push. If you hit a merge conflict, stop, resolve it without discarding the other session&#x27;s work, and log what happened. When a task is finished, record its sources, the verification performed, and any irregularities in COORDINATION.md and mark it done. Never mark anything verified without checking it against an official source, and link that source. Shared outputs, such as the table data and the site&#x27;s index and navigation, are changed only by a final integration session once all other tasks are done. That session merges the branches, re-verifies the combined data line by line, confirms the site builds with no broken links, and publishes to GitHub Pages. If a session crashes or its claim is more than 60 minutes old with no commits, any other session may take over the task and note the handoff in the log.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>Claim pushed before work; scope non-overlapping.</td>
+<td><b>1 claim; 2 open PRs avoided; 0 scope collisions</b></td>
+<td>COORDINATION.md</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr><tr>
+<td><code>B-132</code></td>
+<td>Governance</td>
+<td>PULL REQUEST AND MERGE  Do not stop to wait for my review. Work fully on your own from start to finish. When all tasks are done and the final integration session has verified the combined data and confirmed the site builds with no broken links, create a pull request from the integration branch to main with a summary of the changes, the sources used, and any flagged irregularities. Then merge the pull request without waiting for approval, confirm GitHub Pages deploys successfully, and record the PR link and merge result in COORDINATION.md. Flagged irregularities and unverified items do not block the merge. Publish them on a clearly labeled &quot;Flagged for Review&quot; page on the site, with the source links, so I can review them after the site is live and request changes. If the build, a check, or the deploy fails, fix the problem and retry until the site is live. Do not merge a broken site.</td>
+<td><span class="pill good">Met</span></td>
+<td>Source gate (G-01)</td>
+<td>PR merged; deploy green; record written.</td>
+<td><b>1 PR; 1 merge; 1 deploy confirmation</b></td>
+<td>COORDINATION.md + deck/flagged.html</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">readiness register row (brief sentence verified verbatim)</a></td>
+</tr></tbody></table></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

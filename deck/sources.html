@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item on" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Sources</h1>
+  <p>Every source used, its tier, and what it can and cannot establish.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note"><b>Three tiers, never mixed.</b> <b>Official</b> — the league or a club published it.
+<b>Mirror</b> — a third party republishes league data; usable, always labelled. <b>Computed</b> — this
+repository derived it, and the derivation is in a file you can read. A number never moves up a tier
+because it is convenient.</div>
+<div class="scroll"><table data-table>
+<thead><tr><th>Tier</th><th>Organisation</th><th>Document</th><th>Used for</th>
+<th>What it cannot establish</th><th>Source</th></tr></thead>
+<tbody><tr><td>Official</td><td>NFL</td>
+<td>NFL.com injury report</td><td>Week 10 injury rows, practice status, game designation</td>
+<td>Changes daily; no percentages are published; the reserve list is not on this page</td>
+<td><a class="src" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">https://www.nfl.com/injuries/</a></td></tr><tr><td>Official</td><td>NFL</td>
+<td>2026 Week 10 schedule</td><td>Fixtures, kickoff times, networks, byes</td>
+<td>Flexible scheduling can move a kickoff; the league publishes no venue field here</td>
+<td><a class="src" href="https://www.nfl.com/schedules/2026/REG10/" target="_blank" rel="noopener">https://www.nfl.com/schedules/2026/REG10/</a></td></tr><tr><td>Official</td><td>NFL</td>
+<td>Game Center (one per fixture)</td><td>Location and stadium, transcribed per fixture</td>
+<td>Score and status change during a game; a live page is not a stable document</td>
+<td><a class="src" href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" target="_blank" rel="noopener">https://www.nfl.com/games/commanders-at-giants-2026-reg-10</a></td></tr><tr><td>Official</td><td>NFL</td>
+<td>2026 league standings</td><td>W/L/T/PF/PA used to reconcile the results feed</td>
+<td>A snapshot at read time; recomputed as games finish</td>
+<td><a class="src" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">https://www.nfl.com/standings/league/2026/REG</a></td></tr><tr><td>Official</td><td>NFL</td>
+<td>NFL Game Books (PDF, linked from each Game Center)</td><td>Not yet parsed — the only official route to actual starters</td>
+<td>A PDF with no stable schema; parsing it is a project, not a fetch</td>
+<td><a class="src" href="https://www.nfl.com/" target="_blank" rel="noopener">https://www.nfl.com/</a></td></tr><tr><td>Official (club)</td><td>31 of 32 clubs</td>
+<td>Club depth charts</td><td>Depth order and replacement string</td>
+<td>Clubs label these &#x27;unofficial&#x27;; Houston publishes an image; charts go stale after roster moves</td>
+<td><a class="src" href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener">https://www.detroitlions.com/team/depth-chart</a></td></tr><tr><td>Mirror</td><td>nflverse/nfldata</td>
+<td>games.csv</td><td>Settled results 1999–2026 and one market line per game</td>
+<td>No book name, no line timestamp, no opening/closing distinction — so no CLV</td>
+<td><a class="src" href="https://github.com/nflverse/nfldata/blob/master/data/games.csv" target="_blank" rel="noopener">https://github.com/nflverse/nfldata/blob/master/data/games.csv</a></td></tr><tr><td>Computed</td><td>This repository</td>
+<td>data/console/*.csv</td><td>Results feed, originated lines, strategy scores, correlations, depth, prices</td>
+<td>Derived tables; every row links its own provenance, and a computed value is never official</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/" target="_blank" rel="noopener">https://github.com/karagemop466-tech/X1/blob/main/data/console/</a></td></tr></tbody></table></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

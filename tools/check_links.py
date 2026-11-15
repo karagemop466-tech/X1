@@ -187,6 +187,15 @@ for path in files:
         # back-link assertion was added here and does not conflict with anything on main.
         check("assets/x1-live/site.css" in text, f"{rel}: links its stylesheet")
         check('href="../index.html"' in text, f"{rel}: links back to the landing page")
+    elif rel.split(os.sep)[0] == "deck":
+        # Added by session arena-9e5228c8-x1: deck/ is a further page tree (the site root)
+        # with its own stylesheet (deck/assets/deck.css) and its own contract, asserted by
+        # tools/verify_deck.py (links resolve, every row sourced, brief verbatim, no
+        # placeholders). Without this branch the main site's contract is applied to it and
+        # produces false failures on a stylesheet it does not use. Nothing above is modified.
+        check("assets/deck.css" in text, f"{rel}: links its stylesheet")
+        check("Flagged for review" in text, f"{rel}: nav includes Flagged for review")
+        check("Class" not in rel, "class names in deck")
     elif rel.split(os.sep)[0] == "console":
         # Added by session arena/5f1c014c-x1: console/ is a further page tree with its
         # own stylesheet (console/assets/console.css) and its own contract, asserted by
@@ -251,6 +260,14 @@ if os.path.exists(_live):
 _approot = os.path.normpath(os.path.join(ROOT, "app", "index.html"))
 if os.path.exists(_approot):
     reachable.add(_approot)
+# Added by session arena-9e5228c8-x1: deck/ is the site root this round (pages.yml serves a
+# rewritten deck/index.html at /). Seeding its index makes the whole tree reachable exactly
+# as app/, hub/ and live/ were seeded, instead of being judged against the old root page it
+# replaces. Nothing above changes.
+_deckroot = os.path.normpath(os.path.join(ROOT, "deck", "index.html"))
+if os.path.exists(_deckroot):
+    reachable.add(_deckroot)
+    reachable.add(os.path.normpath(os.path.join(ROOT, "index.html")))
 frontier = list(reachable)
 while frontier:
     cur = frontier.pop()
@@ -277,6 +294,13 @@ for path in files:
     elif rel.split(os.sep)[0] == "lab":
         check(path in reachable or path == os.path.normpath(os.path.join(ROOT, "lab", "index.html")),
               f"{rel}: reachable from index.html")
+    elif rel.split(os.sep)[0] == "deck":
+        # Added by session arena-9e5228c8-x1: the deck's internal linking is its own
+        # contract (tools/verify_deck.py asserts nav completeness and link resolution), so
+        # like hub/ and lab/ it is entered from one landing page rather than from the
+        # old root page it now replaces.
+        check(path in reachable or path == os.path.normpath(os.path.join(ROOT, "deck", "index.html")),
+              f"{rel}: reachable from its own index.html")
     else:
         check(path in reachable, f"{rel}: reachable from index.html")
 
@@ -379,8 +403,10 @@ def _audit_tree(html_paths, css_path, js_root, label):
 # ../app/assets/site.css, so it is audited against that stylesheet below, exactly as app/ is.
 # Added by session arena/5f1c014c-x1: console/ is audited against its own stylesheet
 # (console/assets/console.css) below, so it is excluded from the main-site audit here.
+# Added by session arena-9e5228c8-x1: deck/ is audited against its own stylesheet
+# (deck/assets/deck.css) below, so it is excluded from the main-site audit here.
 _mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
-         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console")]
+         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console", "deck")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -426,6 +452,13 @@ _labx = sorted(glob.glob(os.path.join(ROOT, "lab", "*.html")))
 if _labx:
     _audit_tree(_labx, os.path.join(ROOT, "app", "assets", "site.css"),
                 os.path.join(ROOT, "app", "assets"), "lab -> app/assets/site.css")
+
+# Added by session arena-9e5228c8-x1: the deck (site root) is audited against its own
+# stylesheet, so an undefined class or a stylesheet it does not load cannot ship.
+_deck = sorted(glob.glob(os.path.join(ROOT, "deck", "*.html")))
+if _deck:
+    _audit_tree(_deck, os.path.join(ROOT, "deck", "assets", "deck.css"),
+                os.path.join(ROOT, "deck", "assets"), "deck/assets/deck.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Findings and analysis — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item on" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Findings and analysis</h1>
+  <p>What the data actually says, including the parts that are unwelcome.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note bad"><b>The findings that matter, including the unwelcome ones.</b> This repository
+exists to originate lines and prove them. It has not proved one yet, and the findings below are why.
+Publishing them is the point: a lab that only publishes its successes is not measuring anything.</div>
+<div class="scroll"><table data-table>
+<thead><tr><th>ID</th><th>Topic</th><th>Finding</th><th>What it means</th><th>Source</th></tr></thead>
+<tbody><tr><td><code>N-01</code></td><td>Strategy skill</td>
+<td><b>0 of 16 pre-registered strategies clear the gates.</b></td><td>The gates are doing their job. A lab where everything passes is not gated.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">strategy_results.csv</a></td></tr><tr><td><code>N-02</code></td><td>Model vs market</td>
+<td><b>The originated line loses to the closing line on both spread and total error.</b></td><td>RMSE spread 14.20 model vs 13.14 market; total 13.91 vs 13.34. The market is better than the model today.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/payload.json" target="_blank" rel="noopener">payload.json (rmse block)</a></td></tr><tr><td><code>N-03</code></td><td>The one encouraging signal</td>
+<td><b>The model&#x27;s side pick went 84-49 (63.2%) over 133 decided 2026 games.</b></td><td>Above a coin flip (lower bound above 50%), but below the 52.38% break-even in profit terms once the interval is applied. Encouraging, not proven.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/signal_grade.json" target="_blank" rel="noopener">signal_grade.json</a></td></tr><tr><td><code>N-04</code></td><td>Price provenance</td>
+<td><b>No held source names a book or timestamps a price.</b></td><td>Every price-bearing number is a mirror number. Closing-line value, the only honest measure of bet quality, cannot be computed.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/flagged.csv" target="_blank" rel="noopener">flagged.csv (X-01)</a></td></tr><tr><td><code>N-05</code></td><td>Injury evidence</td>
+<td><b>160 of 345 injury rows carry a game designation; 0 carry a snap count or an inactive flag.</b></td><td>A designation is a stated expectation. Without playing time it cannot be turned into a measured surprise.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/injuries_week10.csv" target="_blank" rel="noopener">injuries_week10.csv</a></td></tr><tr><td><code>N-06</code></td><td>Depth coverage</td>
+<td><b>31 of 32 clubs have a parsable depth chart; Houston publishes an image.</b></td><td>Any league-wide depth feature has a known 1/32 hole, stated rather than smoothed.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/depth_replacement.csv" target="_blank" rel="noopener">depth_replacement.csv</a></td></tr><tr><td><code>N-07</code></td><td>Replacement depth</td>
+<td><b>Of 897 slots, 680 name a 2nd-string replacement and only 8 a 3rd-string one; 209 are blank.</b></td><td>Most injuries this week promote a backup, not a third-stringer. The blank 209 are slots with no injury, not missing data.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/depth_replacement.csv" target="_blank" rel="noopener">depth_replacement.csv</a></td></tr><tr><td><code>N-08</code></td><td>Correlation</td>
+<td><b>Same-game side and total outcomes are close to independent (phi = 0.0199, n = 6,102).</b></td><td>Multiplying marginal prices for a same-game two-leg parlay is a small error, not a fatal one — and the size of the error is now published.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/correlations.csv" target="_blank" rel="noopener">correlations.csv</a></td></tr><tr><td><code>N-09</code></td><td>Site consolidation</td>
+<td><b>The repository publishes 14 site trees over the same data, and the root served a stale console page until this round.</b></td><td>A reader could see &#x27;eight requirements&#x27; on a repository holding 132 brief lines. The root now serves this deck; consolidation is an owner decision.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/flags.json" target="_blank" rel="noopener">flags.json (D-06)</a></td></tr><tr><td><code>N-10</code></td><td>Brief traceability</td>
+<td><b>8 evidence IDs cited in the brief (VR-*, VQ-*, SG-*, Q06) are defined nowhere in the repository.</b></td><td>Those lines can be traced to the brief but not to their evidence source. They are marked unverified rather than given an invented citation.</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/flags.json" target="_blank" rel="noopener">flags.json (D-01)</a></td></tr></tbody></table></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

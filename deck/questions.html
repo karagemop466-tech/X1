@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Questions to answer before deciding — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item on" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Questions to answer before deciding</h1>
+  <p>What we hold, what we are missing, and the route to the missing piece.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note"><b>Why questions before answers.</b> A decision made on information we do not hold
+is a guess with a paper trail. Each row below names what we hold, what we are missing, and the
+specific route to the missing piece. Nothing here is a recommendation: it is the checklist that has
+to be empty before the recommendation means anything.</div>
+<div class="kpis"><div class="kpi"><div class="lab">Questions registered</div>
+<div class="val">54</div><div class="sub">two registers, both published</div></div>
+<div class="kpi bad"><div class="lab">Blockers</div>
+<div class="val">7</div>
+<div class="sub">cannot proceed without a decision</div></div></div>
+<input class="f" placeholder="filter — try 'price', 'snap', 'bankroll'" oninput="filt(this,'qs')">
+<div class="scroll"><table id="qs" data-table>
+<thead><tr><th>ID</th><th>Area</th><th>Question</th><th>Information we hold</th>
+<th>Information missing</th><th>How to get it</th><th>Status</th><th>Source</th></tr></thead>
+<tbody><tr><td><code>Q-01</code></td>
+<td>Bankroll</td><td>What is the stake unit and total bankroll the leaderboard measures?</td>
+<td>Nothing. No bankroll figure has been supplied.</td>
+<td>Stake unit, bankroll size, max exposure per slate.</td>
+<td>Owner decision recorded in the repo; no external source exists.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-02</code></td>
+<td>Market data</td><td>Which price feed will supply market spreads, totals and player-prop prices?</td>
+<td>No official NFL or club source publishes betting prices (verified: nfl.com and club sites publish none).</td>
+<td>A licensed/account feed for opening and closing prices.</td>
+<td>Decide a feed (owner&#x27;s sportsbook account export, or a licensed data vendor) and record it here.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-03</code></td>
+<td>Market data</td><td>Do we record the price at the time we originate the line, at close, or both?</td>
+<td>Nothing.</td>
+<td>Timestamp convention and storage format for price snapshots.</td>
+<td>Define in the data schema; needs the feed from Q-02 first.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-04</code></td>
+<td>Results data</td><td>What is the official source for final scores and box scores?</td>
+<td>nfl.com/schedules and nfl.com/scores return no server-rendered results table (verified by probe).</td>
+<td>A results source that can be cited.</td>
+<td>Probe candidate official endpoints further, or license a feed; meanwhile no results table is published.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-05</code></td>
+<td>Legal</td><td>Is this paper (simulated) only, or will real money be staked?</td>
+<td>Nothing stated.</td>
+<td>A yes/no scope decision, plus any jurisdiction constraints.</td>
+<td>Owner decision recorded in the repo.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-06</code></td>
+<td>Rewards</td><td>How are rewards for top strategies defined, funded and paid?</td>
+<td>Nothing.</td>
+<td>Reward structure, funding source, eligibility, settlement period.</td>
+<td>Owner decision; a reward rule document committed to the repo.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-07</code></td>
+<td>Sample size</td><td>What is the minimum number of graded bets before a strategy is allowed to bet real size?</td>
+<td>Nothing.</td>
+<td>A minimum bet count, expressed per market type.</td>
+<td>Set from the validation gate design; needs the results feed from Q-04 to calibrate.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-08</code></td>
+<td>Skill test</td><td>Which statistical test decides that a result is skill and not luck?</td>
+<td>Nothing decided.</td>
+<td>Chosen test, significance level, and how multiple strategies are corrected for.</td>
+<td>Choose and record: binomial/CLT test on hit rate vs the break-even probability implied by the price, plus a t-test on CLV.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-09</code></td>
+<td>Multiple testing</td><td>How do we correct for the fact that many strategies are tested at once?</td>
+<td>Nothing.</td>
+<td>Correction method (Bonferroni, Benjamini-Hochberg) and a cap on the number of live strategies.</td>
+<td>Decide in the gate design; document in the methodology page.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-10</code></td>
+<td>Correlation</td><td>What correlation threshold makes two legs ineligible for the same parlay?</td>
+<td>Correlation values computable from official season team stats (n=32) only; see the Correlations page.</td>
+<td>Play-by-play or game-level data for true same-game correlations.</td>
+<td>Compute team-level correlations now from official data (done); add game-level later once a results feed exists.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-11</code></td>
+<td>Correlation</td><td>Are player-prop correlations in scope, and from what data?</td>
+<td>No official source for player prop lines or player prop results was found.</td>
+<td>A source for player-level usage and results.</td>
+<td>Probe official player-stats pages; if unavailable, flag and leave blank.</td>
+<td><span class="pill bad">BLOCKER</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-12</code></td>
+<td>Injuries</td><td>Which injury designation should trigger an automatic line move?</td>
+<td>Official definitions of the designations (nfl.com competition-committee release).</td>
+<td>Historical hit rates for each designation — needs the results feed from Q-04.</td>
+<td>Compute once a results feed exists; until then the deficiency watch flags but does not price.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-13</code></td>
+<td>Injuries</td><td>How do we treat a player who is Questionable but a full participant on the final report?</td>
+<td>The league&#x27;s own definition of Questionable and Full Participation.</td>
+<td>Empirical play rates by designation — needs results data.</td>
+<td>Defer to Q-12.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-14</code></td>
+<td>Injuries</td><td>When the official report changes after we publish a line, do we re-originate?</td>
+<td>The refresh job re-pulls the official injury report every 6 hours.</td>
+<td>A re-pricing policy and a versioned line history.</td>
+<td>Define the policy; the pipeline already timestamps every pull.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-15</code></td>
+<td>Depth charts</td><td>Which clubs&#x27; official depth charts are authoritative when a club site is unreachable?</td>
+<td>Per-club attempt log with HTTP status and page title (see Depth Charts page).</td>
+<td>A fallback official source, or acceptance that those clubs are uncovered.</td>
+<td>Already handled by flagging: uncovered clubs are published on Flagged for Review, never guessed.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-16</code></td>
+<td>Depth charts</td><td>How deep must a club&#x27;s chart be printed before we call a position &#x27;covered&#x27;?</td>
+<td>The number of names printed per position is in the depth chart dataset.</td>
+<td>A coverage rule.</td>
+<td>Decide: require at least two printed names to call a slot covered.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-17</code></td>
+<td>Roster moves</td><td>Are practice-squad elevations and roster transactions in scope for the deficiency model?</td>
+<td>Nothing verified.</td>
+<td>An official transactions source that is machine-readable.</td>
+<td>Probe official transaction pages; if unavailable, flag.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-18</code></td>
+<td>Weather</td><td>Do we need venue and weather data, and is there an official source?</td>
+<td>No official NFL weather source was verified.</td>
+<td>An official or licensed weather feed.</td>
+<td>Only adopt if a citable source is found; otherwise leave the field blank.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-19</code></td>
+<td>Officials</td><td>Do we need referee assignments and their tendencies?</td>
+<td>No official, machine-readable officials assignment source was verified.</td>
+<td>A citable source.</td>
+<td>Leave out until a source is verified.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-20</code></td>
+<td>Rest and travel</td><td>Do we need rest days and travel distance?</td>
+<td>Schedule pages exist but are client-rendered, so no verified table was extracted.</td>
+<td>A citable source for game times and venues.</td>
+<td>Probe further; otherwise leave blank and flag.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-21</code></td>
+<td>Play-by-play</td><td>Do we need play-by-play or drive-level data?</td>
+<td>No official static play-by-play source was verified.</td>
+<td>A licensed play-by-play feed, or official gamebooks in a machine-readable form.</td>
+<td>Probe official gamebook endpoints; if unavailable, flag as a known model limitation.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-22</code></td>
+<td>Line origination</td><td>Which markets do we originate first: side, total, or moneyline?</td>
+<td>Official team stats and standings support a side and total model today.</td>
+<td>A prioritisation decision.</td>
+<td>Recommend side first, then total (see Suggestions S-04).</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-23</code></td>
+<td>Line origination</td><td>What is the definition of a &#x27;useful signal&#x27;?</td>
+<td>Nothing.</td>
+<td>A measurable definition (e.g. positive expected value after vig at a stated confidence).</td>
+<td>Decide and record in the methodology page.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-24</code></td>
+<td>Parlays</td><td>Are parlays built from our own correlations only, or also from market-implied correlation?</td>
+<td>Our own team-level correlations from official stats.</td>
+<td>Market-implied correlation — needs the price feed from Q-02.</td>
+<td>Defer to Q-02.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-25</code></td>
+<td>Governance</td><td>Who approves a suggestion and who can change a gate threshold?</td>
+<td>Nothing.</td>
+<td>Named decision owner and a recorded decision for each suggestion.</td>
+<td>Owner decision recorded in the Suggestions table (decision_status column).</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-26</code></td>
+<td>Governance</td><td>What happens to a strategy that passes gates on paper but loses live?</td>
+<td>Demotion rule defined and pre-registered: gate D1 in data/gates.json and gate G-13 in data/pipeline/gates.json (two failed windows, one drawdown breach over the 25% cap, CLV&lt;=0 window when priced, or any provenance breach -&gt; live to paper; re-promotion only via a full shadow window). Full text: docs/methodology/validation-gates.md.</td>
+<td>Nothing for the rule itself. Any monetary stake sizing still depends on the reward/funding decision in Q-07.</td>
+<td>Done 2026-11-14 by session arena-52aabfa8-x1 (T16). Revisit only if the owner funds a pool (Q-07), which changes nothing in the triggers.</td>
+<td><span class="pill mut">ANSWERED</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-27</code></td>
+<td>Governance</td><td>How are leaderboard ties broken?</td>
+<td>Nothing.</td>
+<td>Tie-break rule (e.g. more graded bets wins, then earlier registration).</td>
+<td>Decide and record on the Strategy Lab page.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-28</code></td>
+<td>Operations</td><td>How long are data snapshots retained?</td>
+<td>The refresh job commits each pull to git, so history exists by default.</td>
+<td>A retention rule.</td>
+<td>Git history is the archive; decide whether to prune.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-29</code></td>
+<td>Operations</td><td>What is the recovery path if a scheduled refresh fails for several cycles?</td>
+<td>The refresh job records a run report and never overwrites good data with an empty pull.</td>
+<td>An alerting rule.</td>
+<td>Add a job that fails loudly when a dataset returns zero rows for N consecutive runs.</td>
+<td><span class="pill mut">OPEN</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-30</code></td>
+<td>Coordination</td><td>What is the branch naming rule when this harness pins a session to one branch?</td>
+<td>Both instructions, quoted in the brief and in the session rules.</td>
+<td>A resolution from the owner, or an accepted deviation.</td>
+<td>Logged as irregularity F-01 on the Flagged for Review page; the task board records the single-branch scope.</td>
+<td><span class="pill mut">FLAGGED</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/questions.json" target="_blank" rel="noopener">pipeline register</a></td></tr><tr><td><code>Q-01</code></td>
+<td></td><td>Do we have the legal right to ingest and republish NFL play-by-play, snap counts and historical odds?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-02</code></td>
+<td></td><td>Which licensed feed supplies historical closing lines, and at what granularity (book, time, limit)?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-03</code></td>
+<td></td><td>What exact settlement rules apply to each market we originate (push, void, overtime, stat corrections)?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-04</code></td>
+<td></td><td>Can we obtain licensed snap counts per player per game?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-05</code></td>
+<td></td><td>Is a club-published, self-labelled &#x27;unofficial&#x27; depth chart sufficient to call a player a starter?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-06</code></td>
+<td></td><td>How often is the official injury report captured, and what timestamp governs a forecast?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-07</code></td>
+<td></td><td>What funds the leaderboard rewards, who is eligible, and in which jurisdictions?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-08</code></td>
+<td></td><td>Will any NFL personnel (player, coach, staff) be permitted to enter strategies?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-09</code></td>
+<td></td><td>Which markets are in scope for originating lines — spread, total, moneyline, team total, player props, alternates?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-10</code></td>
+<td></td><td>Do we have enough joint historical outcomes to publish a correlation value?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-11</code></td>
+<td></td><td>What is the bankroll, the staking rule, and the maximum acceptable drawdown?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-12</code></td>
+<td></td><td>What is the first scored window, and when does it open and close?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-13</code></td>
+<td></td><td>Which official source grades a settled bet, and how are stat corrections handled?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-14</code></td>
+<td></td><td>Do we collect depth charts for all 32 clubs, and at what cost in effort?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-15</code></td>
+<td></td><td>May we publish originated lines publicly, and with what disclaimer?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-16</code></td>
+<td></td><td>What does success look like numerically in Season 0, and who decides a strategy is promoted?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-17</code></td>
+<td></td><td>How often may the published tables be refreshed, and how is staleness displayed?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-18</code></td>
+<td></td><td>Is the official Week 10 injury report complete for all 14 games?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">partially_answered</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-19</code></td>
+<td></td><td>Which source will be accepted as the official price feed for the market open/close columns of the snapshot store?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-20</code></td>
+<td></td><td>What unattended job captures the close snapshot at kickoff for every originated market?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-21</code></td>
+<td></td><td>What exact measured decay sends a live strategy back to paper under gate G8?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-22</code></td>
+<td></td><td>Should the signal group be graded against a 50% baseline or against the break-even implied by the price?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">partially_answered</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-23</code></td>
+<td></td><td>Which model is the origination of record when the two in-repo models disagree?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr><tr><td><code>Q-24</code></td>
+<td></td><td>How does the results feed stay current without a person re-reading the schedule pages?</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="pill mut">open</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/questions.json" target="_blank" rel="noopener">root register</a></td></tr></tbody></table></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

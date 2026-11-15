@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification checks — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item on" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Verification checks</h1>
+  <p>Sixteen checks anyone can re-run. Each states what it proves and what it does not.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note"><b>What these are.</b> Sixteen checks that can be re-run by anyone with a checkout
+and Python 3. Each one fails loudly instead of publishing a blank. The last column is the result of
+the most recent run in this build; the "does not prove" column is the part that matters most — it
+is the boundary between a check that is evidence and a check that is decoration.</div>
+<div class="scroll"><table data-table>
+<thead><tr><th>#</th><th>Check</th><th>Command</th><th>What it proves</th>
+<th>What it does not prove</th><th class="num">Latest result</th><th>Source</th></tr></thead>
+<tbody><tr><td><code>C01</code></td><td>Brief is verbatim</td>
+<td><code>python3 tools/build_deck.py --check</code></td><td>Every sentence in the readiness register is a literal substring of the captured brief.</td>
+<td><span class="mut">That the brief is complete — only that nothing was reworded.</span></td>
+<td class="num">132/132 sentences matched</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/tools/build_deck.py" target="_blank" rel="noopener">tools/build_deck.py</a></td></tr><tr><td><code>C02</code></td><td>Readiness rows are complete</td>
+<td><code>python3 tools/build_deck.py --check</code></td><td>Every row names a gate that exists in a published gate register and carries a clearing number.</td>
+<td><span class="mut">That the clearing number is achievable — it is a target, not a forecast.</span></td>
+<td class="num">132 rows, 132 gated</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/brief_round3_sentences.tsv" target="_blank" rel="noopener">data/deck/brief_round3_sentences.tsv</a></td></tr><tr><td><code>C03</code></td><td>Site links resolve</td>
+<td><code>python3 scripts/verify_site.py</code></td><td>Every internal link in the served tree resolves, and every data-table row carries an official source link.</td>
+<td><span class="mut">That the linked page still exists — a link to a live official page is checked at build time only.</span></td>
+<td class="num">159 pages, 0 broken</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/scripts/verify_site.py" target="_blank" rel="noopener">scripts/verify_site.py</a></td></tr><tr><td><code>C04</code></td><td>Deck contract</td>
+<td><code>python3 tools/verify_deck.py</code></td><td>Every deck table row has a source cell, no placeholder leaked, navigation is complete.</td>
+<td><span class="mut">That the values are right — only that each one is attributed.</span></td>
+<td class="num">13 pages verified</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_deck.py" target="_blank" rel="noopener">tools/verify_deck.py</a></td></tr><tr><td><code>C05</code></td><td>Published cells match the official page</td>
+<td><code>python3 tools/verify_against_official.py</code></td><td>Every published Week 10 cell equals an independent transcription of the official page.</td>
+<td><span class="mut">That the official page has not changed since the transcription date.</span></td>
+<td class="num">2,183 cells, 0 mismatches</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/audit/official_snapshot_2026_w10.py" target="_blank" rel="noopener">audit/official_snapshot_2026_w10.py</a></td></tr><tr><td><code>C06</code></td><td>Injury re-capture diff</td>
+<td><code>python3 tools/verify_w10_recapture.py</code></td><td>Row-by-row comparison of the current official report against the published table.</td>
+<td><span class="mut">That either capture is the final word — the report changes daily.</span></td>
+<td class="num">345 matched, 2 absent, 32 cells differ</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/recapture_report.json" target="_blank" rel="noopener">data/capture/2026_w10/recapture_report.json</a></td></tr><tr><td><code>C07</code></td><td>Standings arithmetic</td>
+<td><code>python3 tools/verify_data.py</code></td><td>W+L+T = games played, and PF/PA reconcile, for every club row.</td>
+<td><span class="mut">That the standings are current — only that they are internally consistent.</span></td>
+<td class="num">2,944 assertions</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_data.py" target="_blank" rel="noopener">tools/verify_data.py</a></td></tr><tr><td><code>C08</code></td><td>Results feed reconciliation</td>
+<td><code>python3 tools/build_console.py</code></td><td>The mirror&#x27;s game results reproduce the league&#x27;s own standings for the 2026 season.</td>
+<td><span class="mut">That the mirror is complete — the reconcile covers 137 games.</span></td>
+<td class="num">160/160 checks pass</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/payload.json" target="_blank" rel="noopener">data/console/payload.json</a></td></tr><tr><td><code>C09</code></td><td>Origination step order</td>
+<td><code>python3 tools/build_origination.py --check</code></td><td>Side is step 1, total step 2, moneyline step 3 on every originated row.</td>
+<td><span class="mut">That the order is optimal — only that it is the order published.</span></td>
+<td class="num">sequence 1,2,3 asserted</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination_order_2026_week10.json" target="_blank" rel="noopener">data/lines/origination_order_2026_week10.json</a></td></tr><tr><td><code>C10</code></td><td>Difference recomputation</td>
+<td><code>python3 tools/verify_new_data.py</code></td><td>Every published difference equals model minus market, recomputed from the row.</td>
+<td><span class="mut">That the model number is good — that is what the RMSE comparison is for.</span></td>
+<td class="num">6,263 rows recomputed</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_new_data.py" target="_blank" rel="noopener">tools/verify_new_data.py</a></td></tr><tr><td><code>C11</code></td><td>Correlation sources</td>
+<td><code>python3 tools/verify_official_correlations.py</code></td><td>Every correlation pair comes from an official host, and n is present on every value.</td>
+<td><span class="mut">That the correlation is causal — it is a measured association.</span></td>
+<td class="num">988 pairs, 0 host violations</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/verify/official_correlations.csv" target="_blank" rel="noopener">data/verify/official_correlations.csv</a></td></tr><tr><td><code>C12</code></td><td>Signal/staking separation</td>
+<td><code>python3 tools/verify_deck.py</code></td><td>The leaderboard rank key provably excludes staking, ROI and equity fields.</td>
+<td><span class="mut">That the signal is skilful — only that staking cannot influence the rank.</span></td>
+<td class="num">16/16 rows, rank key checked</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/leaderboard_meta.json" target="_blank" rel="noopener">data/console/leaderboard_meta.json</a></td></tr><tr><td><code>C13</code></td><td>Luck panel reproducibility</td>
+<td><code>python3 tools/build_deck.py --check</code></td><td>The published percentiles and intervals equal a fresh recomputation from the committed CSVs.</td>
+<td><span class="mut">That the simulation is the only way to read the data — it is a null model.</span></td>
+<td class="num">6 blocks recomputed</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/luck_panel.json" target="_blank" rel="noopener">data/deck/luck_panel.json</a></td></tr><tr><td><code>C14</code></td><td>Venue transcription</td>
+<td><code>python3 tools/verify_deck.py</code></td><td>Every Week 10 fixture has a stadium and location transcribed with its own game-centre URL.</td>
+<td><span class="mut">That a venue will not change — it should not, but no check can prove that.</span></td>
+<td class="num">14/14 fixtures, 0 blank</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/venues_2026_w10.tsv" target="_blank" rel="noopener">data/deck/venues_2026_w10.tsv</a></td></tr><tr><td><code>C15</code></td><td>Deployed tree crawl</td>
+<td><code>python3 tools/verify_deployed_tree.py</code></td><td>The exact tree uploaded to Pages is assembled and crawled; every link in it resolves.</td>
+<td><span class="mut">That the CDN serves the new tree immediately.</span></td>
+<td class="num">assembled tree, 0 broken</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_deployed_tree.py" target="_blank" rel="noopener">tools/verify_deployed_tree.py</a></td></tr><tr><td><code>C16</code></td><td>Source-rule mutation test</td>
+<td><code>python3 tools/test_source_rule.py</code></td><td>The source rule actually fails when a source link is removed (a mutation test).</td>
+<td><span class="mut">That every row&#x27;s source is the right source — only that a missing one is caught.</span></td>
+<td class="num">mutation caught</td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/tools/test_source_rule.py" target="_blank" rel="noopener">tools/test_source_rule.py</a></td></tr></tbody></table></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

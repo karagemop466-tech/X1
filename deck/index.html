@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item on" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>Overview</h1>
+  <p>The decision dashboard: what is proven, what is blocked, and by what number.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><div class="lab">Requirements in the brief</div><div class="val">132</div>
+    <div class="sub">every line, verbatim, one row each</div></div>
+  <div class="kpi good"><div class="lab">Met</div><div class="val">56</div><div class="sub">artefact published and linked</div></div>
+  <div class="kpi warn"><div class="lab">Partial</div><div class="val">34</div><div class="sub">some of the evidence exists</div></div>
+  <div class="kpi bad"><div class="lab">Blocked</div><div class="val">35</div><div class="sub">no artefact, and the gate is named</div></div>
+  <div class="kpi"><div class="lab">In flight elsewhere</div><div class="val">4</div><div class="sub">another session's PR</div></div>
+  <div class="kpi bad"><div class="lab">Cannot be reconciled</div><div class="val">3</div><div class="sub">published on the flagged page</div></div>
+</div>
+
+<div class="note bad"><b>The headline, first.</b> No strategy in this lab beats the closing line.
+16 pre-registered strategies were evaluated out of sample and <b>0 passed the gates</b>. The best
+signal score on the board is ST-TOT-3
+with a p-value of 0.000.
+The one measured 2026 signal is 84-49 (63.2%) over 133 decided games. Its 95% lower bound
+(54.7%) is above the 52.38% break-even, so the <i>hit rate</i> is better than a break-even picker's —
+but a hit rate is not a return, and no held source publishes the price it would have been paid at.
+Seven of the sixteen strategies beat their break-even win rate at the 5% level and <b>none</b> of
+them turned that into a positive return at the prices taken. That is what vig does, and
+<a href="luck.html">the luck page</a> shows the arithmetic.</div>
+
+<h2>Start here</h2>
+<div class="home">
+  <a class="card" href="readiness.html"><h3>Decision readiness</h3>
+    <div class="n">132 rows</div>
+    <p>Every requirement in the brief, the gate that blocks it, and the number that would clear it.</p></a>
+  <a class="card" href="checks.html"><h3>Verification checks</h3>
+    <div class="n">16</div>
+    <p>Re-runnable checks: what each proves, what it does not, and the command to repeat it.</p></a>
+  <a class="card" href="luck.html"><h3>Removal of luck</h3>
+    <div class="n">6 blocks</div>
+    <p>Luck removed by test, by interval, and by construction — with n on every value.</p></a>
+  <a class="card" href="mindchange.html"><h3>What would change our mind</h3>
+    <div class="n">16 strategies</div>
+    <p>Two sides per strategy: the result that promotes it, and the result that demotes it.</p></a>
+  <a class="card" href="venues.html"><h3>Venues</h3>
+    <div class="n">14 / 14</div>
+    <p>Location and stadium for every Week 10 fixture, from its own official game centre.</p></a>
+  <a class="card" href="questions.html"><h3>Questions</h3>
+    <div class="n">54</div>
+    <p>What we hold, what is missing, and the route to the missing piece.</p></a>
+  <a class="card" href="suggestions.html"><h3>Suggestions</h3>
+    <div class="n">38</div>
+    <p>Proposals with paths, cost and risk, waiting on a choice rather than on more code.</p></a>
+  <a class="card" href="archive.html"><h3>Every site tree</h3>
+    <div class="n">178</div>
+    <p>Every page in every published tree, linked from one place. Nothing was deleted to tidy up.</p></a>
+  <a class="card" href="flagged.html"><h3>Flagged for review</h3>
+    <div class="n">6</div>
+    <p>Values that could not be confirmed, and discrepancies the data cannot settle.</p></a>
+</div>
+
+<h2>What this repository actually holds</h2>
+<div class="scroll"><table data-table>
+<thead><tr><th>Item</th><th class="num">Held</th><th>What it is</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>Settled games in the results feed</td><td class="num"><b>7,548</b></td><td>1999–2026; 160/160 standings checks pass</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/results_feed.csv" target="_blank" rel="noopener">data/console/results_feed.csv</a></td></tr>
+<tr><td>Originated markets</td><td class="num"><b>6,263</b></td><td>side, then total, then moneyline, each with fair/market/difference columns</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/originated_lines.csv" target="_blank" rel="noopener">data/console/originated_lines.csv</a></td></tr>
+<tr><td>Pre-registered strategies</td><td class="num"><b>16</b></td><td>all evaluated out of sample; 0 passed every gate</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv</a></td></tr>
+<tr><td>Depth slots with a named replacement string</td><td class="num"><b>897</b></td><td>31 clubs; 2nd string 680, 3rd 8, blank 209</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/depth_replacement.csv" target="_blank" rel="noopener">data/console/depth_replacement.csv</a></td></tr>
+<tr><td>Injury rows for Week 10</td><td class="num"><b>345</b></td><td>28 clubs; 160 carry a game designation</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/injuries_week10.csv" target="_blank" rel="noopener">data/console/injuries_week10.csv</a></td></tr>
+<tr><td>Correlations published with n</td><td class="num"><b>20</b></td><td>each with a 95% interval and its source</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/correlations.csv" target="_blank" rel="noopener">data/console/correlations.csv</a></td></tr>
+<tr><td>Price-snapshot rows</td><td class="num"><b>18,902</b></td><td>both ends for 1,072 (all 2021); a book name on none</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/price_snapshots.csv" target="_blank" rel="noopener">data/console/price_snapshots.csv</a></td></tr>
+<tr><td>Week 10 venues transcribed</td><td class="num"><b>14</b></td><td>location and stadium per fixture, official game centre</td><td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/deck/venues_2026_w10.tsv" target="_blank" rel="noopener">data/deck/venues_2026_w10.tsv</a></td></tr>
+</tbody></table></div>
+
+<h2>The three things that block the most</h2>
+<div class="note warn"><b>1 · No official price.</b> The league publishes no betting line, and no held source names a
+book or timestamps a price. Every price-bearing number in this repository is therefore labelled
+<code>mirror</code>. Closing-line value cannot be computed, and no strategy can be called profitable.
+<span class="mut">(Q-02, blocker)</span></div>
+<div class="note warn"><b>2 · No snap counts and no inactive lists.</b> "A backup replaced the starter" can be
+<i>suspected</i> from a depth chart but not <i>confirmed</i> from playing time. Every replacement row says
+which string steps in; none says the player actually took the snaps.
+<span class="mut">(B-36, B-86, blocker)</span></div>
+<div class="note warn"><b>3 · The injury report is not yet a time series.</b> Two dated captures exist, which is
+one delta. A season of dated captures is what makes practice designations replayable.
+<span class="mut">(B-82, in progress)</span></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>

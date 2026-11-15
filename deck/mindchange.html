@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What would change our mind — X1 NFL Line Lab</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body><div class="layout">
+<aside>
+  <div class="brand"><b>X1 LINE LAB</b><span>Verified NFL data · originated lines</span></div>
+  <nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<a class="item" href="archive.html">Other site trees</a>
+<div class="grp">Decisions</div>
+<a class="item" href="readiness.html">Decision readiness</a>
+<a class="item" href="questions.html">Questions to answer</a>
+<a class="item" href="suggestions.html">Suggestions</a>
+<div class="grp">Strategy</div>
+<a class="item" href="luck.html">Removal of luck</a>
+<a class="item on" href="mindchange.html">What would change our mind</a>
+<div class="grp">Official data</div>
+<a class="item" href="venues.html">Venues, Week 10</a>
+<div class="grp">Verification</div>
+<a class="item" href="checks.html">Verification checks</a>
+<a class="item" href="findings.html">Findings</a>
+<a class="item" href="flagged.html">Flagged for review</a>
+<a class="item" href="sources.html">Sources</a></nav>
+</aside>
+<main>
+<header class="page">
+  <h1>What would change our mind</h1>
+  <p>Both sides of every strategy entry: the number that confirms it and the number that kills it.</p>
+  <div class="stamp">Built 2026-11-15T18:29:48Z · every row carries its source · blank means not held, never zero</div>
+</header>
+
+<div class="note"><b>Why both sides.</b> A strategy entry that only says what would confirm it is a
+marketing document. Each row below states the number that promotes the strategy <i>and</i> the
+number that demotes it, both computed from that strategy's own sample size and break-even — so the
+two thresholds are adjacent, and there is no gap in which a strategy can sit unfalsified.</div>
+<input class="f" placeholder="filter — try 'parlay' or 'moneyline'" oninput="filt(this,'mc')">
+<div class="scroll"><table id="mc" data-table>
+<thead><tr><th>ID</th><th>Family</th><th>Rule</th><th class="num">Bets</th>
+<th class="num">Hit rate</th><th class="num">Break-even</th><th class="num">p</th>
+<th>What would confirm it (promote)</th><th>What would change our mind (demote)</th><th>Source</th></tr></thead>
+<tbody><tr>
+<td><code>ST-TOT-3</code></td><td>Total edge</td>
+<td>Back the total the model disagrees with the market on by 3 or more points</td>
+<td class="num">2,781</td><td class="num">52.06%</td>
+<td class="num">52.38%</td><td class="num">0.7451</td>
+<td><b>&gt;= 1501 wins / 2,781 bets</b><br><span class="mut">1501 or more wins in 2,781 settled bets clears the 5% test against the 52.38% break-even (it needs +44 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 1500 wins / 2,781 bets</b><br><span class="mut">1500 or fewer wins in 2,781 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-TOT-5</code></td><td>Total edge</td>
+<td>Same, but only when the disagreement is 5 or more points</td>
+<td class="num">1,378</td><td class="num">52.32%</td>
+<td class="num">52.38%</td><td class="num">0.9783</td>
+<td><b>&gt;= 753 wins / 1,378 bets</b><br><span class="mut">753 or more wins in 1,378 settled bets clears the 5% test against the 52.38% break-even (it needs +31 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 752 wins / 1,378 bets</b><br><span class="mut">752 or fewer wins in 1,378 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-UNDER48</code></td><td>Market structure</td>
+<td>Back the under whenever the total is 48 or higher</td>
+<td class="num">1,308</td><td class="num">51.51%</td>
+<td class="num">52.38%</td><td class="num">0.5399</td>
+<td><b>&gt;= 716 wins / 1,308 bets</b><br><span class="mut">716 or more wins in 1,308 settled bets clears the 5% test against the 52.38% break-even (it needs +31 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 715 wins / 1,308 bets</b><br><span class="mut">715 or fewer wins in 1,308 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-ROADFAV</code></td><td>Market structure</td>
+<td>Back road teams laying 2.5 or more points</td>
+<td class="num">1,777</td><td class="num">50.06%</td>
+<td class="num">52.38%</td><td class="num">0.0542</td>
+<td><b>&gt;= 966 wins / 1,777 bets</b><br><span class="mut">966 or more wins in 1,777 settled bets clears the 5% test against the 52.38% break-even (it needs +35 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 965 wins / 1,777 bets</b><br><span class="mut">965 or fewer wins in 1,777 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-HOMEDOG</code></td><td>Market structure</td>
+<td>Back home teams getting 2.5 or more points</td>
+<td class="num">1,777</td><td class="num">49.94%</td>
+<td class="num">52.38%</td><td class="num">0.0432</td>
+<td><b>&gt;= 966 wins / 1,777 bets</b><br><span class="mut">966 or more wins in 1,777 settled bets clears the 5% test against the 52.38% break-even (it needs +35 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 965 wins / 1,777 bets</b><br><span class="mut">965 or fewer wins in 1,777 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-OVER40</code></td><td>Market structure</td>
+<td>Back the over whenever the total is 40 or lower</td>
+<td class="num">1,193</td><td class="num">51.96%</td>
+<td class="num">52.38%</td><td class="num">0.7924</td>
+<td><b>&gt;= 654 wins / 1,193 bets</b><br><span class="mut">654 or more wins in 1,193 settled bets clears the 5% test against the 52.38% break-even (it needs +29 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 653 wins / 1,193 bets</b><br><span class="mut">653 or fewer wins in 1,193 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-DIVDOG</code></td><td>Market structure</td>
+<td>Back the underdog in every division game</td>
+<td class="num">2,184</td><td class="num">51.71%</td>
+<td class="num">52.38%</td><td class="num">0.5435</td>
+<td><b>&gt;= 1183 wins / 2,184 bets</b><br><span class="mut">1183 or more wins in 2,184 settled bets clears the 5% test against the 52.38% break-even (it needs +39 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 1182 wins / 2,184 bets</b><br><span class="mut">1182 or fewer wins in 2,184 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-TOT-7</code></td><td>Total edge</td>
+<td>Same, but only when the disagreement is 7 or more points</td>
+<td class="num">588</td><td class="num">51.47%</td>
+<td class="num">52.38%</td><td class="num">0.6774</td>
+<td><b>&gt;= 329 wins / 588 bets</b><br><span class="mut">329 or more wins in 588 settled bets clears the 5% test against the 52.38% break-even (it needs +21 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 328 wins / 588 bets</b><br><span class="mut">328 or fewer wins in 588 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-ML-10</code></td><td>Moneyline value</td>
+<td>Same, but only at 10 or more points of probability</td>
+<td class="num">3,025</td><td class="num">30.73%</td>
+<td class="num">26.26%</td><td class="num">0.0000</td>
+<td><b>&gt;= 835 wins / 3,025 bets</b><br><span class="mut">835 or more wins in 3,025 settled bets clears the 5% test against the 26.26% break-even (it needs +41 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 834 wins / 3,025 bets</b><br><span class="mut">834 or fewer wins in 3,025 settled bets fails the same test. A realised ROI below the 26.26% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-ML-5</code></td><td>Moneyline value</td>
+<td>Back the moneyline the model prices 5 or more points of probability away from the market</td>
+<td class="num">4,155</td><td class="num">33.07%</td>
+<td class="num">28.50%</td><td class="num">0.0000</td>
+<td><b>&gt;= 1233 wins / 4,155 bets</b><br><span class="mut">1233 or more wins in 4,155 settled bets clears the 5% test against the 28.50% break-even (it needs +49 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 1232 wins / 4,155 bets</b><br><span class="mut">1232 or fewer wins in 4,155 settled bets fails the same test. A realised ROI below the 28.50% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-SIDE-7</code></td><td>Side edge</td>
+<td>Same, but only when the disagreement is 7 or more points</td>
+<td class="num">1,170</td><td class="num">50.04%</td>
+<td class="num">52.38%</td><td class="num">0.1169</td>
+<td><b>&gt;= 642 wins / 1,170 bets</b><br><span class="mut">642 or more wins in 1,170 settled bets clears the 5% test against the 52.38% break-even (it needs +29 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 641 wins / 1,170 bets</b><br><span class="mut">641 or fewer wins in 1,170 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-REST2</code></td><td>Situational</td>
+<td>Back home teams with a rest advantage of 2 or more days</td>
+<td class="num">633</td><td class="num">50.00%</td>
+<td class="num">52.38%</td><td class="num">0.2422</td>
+<td><b>&gt;= 353 wins / 633 bets</b><br><span class="mut">353 or more wins in 633 settled bets clears the 5% test against the 52.38% break-even (it needs +21 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 352 wins / 633 bets</b><br><span class="mut">352 or fewer wins in 633 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-SIDE-3</code></td><td>Side edge</td>
+<td>Back the side the model disagrees with the market on by 3 or more points</td>
+<td class="num">3,436</td><td class="num">48.88%</td>
+<td class="num">52.38%</td><td class="num">0.0001</td>
+<td><b>&gt;= 1849 wins / 3,436 bets</b><br><span class="mut">1849 or more wins in 3,436 settled bets clears the 5% test against the 52.38% break-even (it needs +49 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 1848 wins / 3,436 bets</b><br><span class="mut">1848 or fewer wins in 3,436 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-BOTH-3</code></td><td>Combination</td>
+<td>Take the side and the total as two separate single bets when both disagree by 3 or more</td>
+<td class="num">3,204</td><td class="num">48.86%</td>
+<td class="num">52.38%</td><td class="num">0.0001</td>
+<td><b>&gt;= 1726 wins / 3,204 bets</b><br><span class="mut">1726 or more wins in 3,204 settled bets clears the 5% test against the 52.38% break-even (it needs +48 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 1725 wins / 3,204 bets</b><br><span class="mut">1725 or fewer wins in 3,204 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-SIDE-5</code></td><td>Side edge</td>
+<td>Same, but only when the disagreement is 5 or more points</td>
+<td class="num">2,119</td><td class="num">48.67%</td>
+<td class="num">52.38%</td><td class="num">0.0008</td>
+<td><b>&gt;= 1149 wins / 2,119 bets</b><br><span class="mut">1149 or more wins in 2,119 settled bets clears the 5% test against the 52.38% break-even (it needs +39 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 1148 wins / 2,119 bets</b><br><span class="mut">1148 or fewer wins in 2,119 settled bets fails the same test. A realised ROI below the 52.38% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr><tr>
+<td><code>ST-PARLAY-4</code></td><td>Parlay</td>
+<td>Same-game parlay of the model&#x27;s side and total when both disagree by 4 or more</td>
+<td class="num">889</td><td class="num">24.44%</td>
+<td class="num">37.97%</td><td class="num">0.0000</td>
+<td><b>&gt;= 362 wins / 889 bets</b><br><span class="mut">362 or more wins in 889 settled bets clears the 5% test against the 37.97% break-even (it needs +24 vs a break-even player).</span><br>
+<span class="mut">gate: G2 skill above variance (data/gates.json)</span></td>
+<td><b>&lt;= 361 wins / 889 bets</b><br><span class="mut">361 or fewer wins in 889 settled bets fails the same test. A realised ROI below the 37.97% break-even after the gate window also demotes it.</span><br>
+<span class="mut">gate: G8 demotion gate (data/gates.json)</span></td>
+<td><a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/strategy_results.csv" target="_blank" rel="noopener">data/console/strategy_results.csv (BETS, HIT_RATE, BREAKEVEN_HIT_RATE, P_VALUE)</a></td></tr></tbody></table></div>
+
+<footer>
+X1 NFL Line Lab · session <code>arena-9e5228c8-x1</code> · generated by <code>tools/build_deck.py</code>,
+verified by <code>tools/verify_deck.py</code>.
+Values are read from files in this repository; where no source exists the cell is left blank and
+the item is on the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</main></div>
+<script src="assets/deck.js"></script>
+</body></html>
