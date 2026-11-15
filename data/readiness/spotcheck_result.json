@@ -1,0 +1,497 @@
+{
+ "provenance": {
+  "official_url": "https://www.nfl.com/injuries/",
+  "read_via": "fetch_page tool, 8 chunks (chunkIndex 0-7); chunks 0-6 cover all 28 clubs",
+  "read_on": "2026-11-15 (UTC, session arena-8c67ec75-x1)",
+  "published_capture": "snapshot 2026-11-14 (data/injuries/injuries_2026_week10.csv)"
+ },
+ "official_rows": 347,
+ "published_rows": 345,
+ "teams_compared": 28,
+ "teams_with_zero_mismatch": [
+  "ATL",
+  "AZ",
+  "BUF",
+  "CAR",
+  "CIN",
+  "CLE",
+  "DAL",
+  "DET",
+  "GB",
+  "HOU",
+  "JAX",
+  "KC",
+  "LA",
+  "LV",
+  "MIA",
+  "MIN",
+  "NE",
+  "NO",
+  "NYG",
+  "NYJ",
+  "PIT",
+  "SEA",
+  "SF",
+  "TEN",
+  "WAS"
+ ],
+ "teams_with_mismatch": [
+  "BAL",
+  "IND",
+  "LAC"
+ ],
+ "mismatch_count": 34,
+ "mismatch_categories": {
+  "injuries differs (timing or transcription; see row)": 13,
+  "designation blank in published table": 12,
+  "missing from published table": 2,
+  "designation removed since 2026-11-14 capture (timing)": 1,
+  "practice_status differs (timing or transcription; see row)": 6
+ },
+ "published_duplicate_keys": [],
+ "per_team": {
+  "ATL": {
+   "official_rows": 11,
+   "published_rows": 11,
+   "matched_rows": 11,
+   "row_mismatches": 0
+  },
+  "AZ": {
+   "official_rows": 15,
+   "published_rows": 15,
+   "matched_rows": 15,
+   "row_mismatches": 0
+  },
+  "BAL": {
+   "official_rows": 10,
+   "published_rows": 8,
+   "matched_rows": 8,
+   "row_mismatches": 6
+  },
+  "BUF": {
+   "official_rows": 14,
+   "published_rows": 14,
+   "matched_rows": 14,
+   "row_mismatches": 0
+  },
+  "CAR": {
+   "official_rows": 12,
+   "published_rows": 12,
+   "matched_rows": 12,
+   "row_mismatches": 0
+  },
+  "CIN": {
+   "official_rows": 9,
+   "published_rows": 9,
+   "matched_rows": 9,
+   "row_mismatches": 0
+  },
+  "CLE": {
+   "official_rows": 12,
+   "published_rows": 12,
+   "matched_rows": 12,
+   "row_mismatches": 0
+  },
+  "DAL": {
+   "official_rows": 19,
+   "published_rows": 19,
+   "matched_rows": 19,
+   "row_mismatches": 0
+  },
+  "DET": {
+   "official_rows": 9,
+   "published_rows": 9,
+   "matched_rows": 9,
+   "row_mismatches": 0
+  },
+  "GB": {
+   "official_rows": 17,
+   "published_rows": 17,
+   "matched_rows": 17,
+   "row_mismatches": 0
+  },
+  "HOU": {
+   "official_rows": 16,
+   "published_rows": 16,
+   "matched_rows": 16,
+   "row_mismatches": 0
+  },
+  "IND": {
+   "official_rows": 14,
+   "published_rows": 14,
+   "matched_rows": 14,
+   "row_mismatches": 2
+  },
+  "JAX": {
+   "official_rows": 11,
+   "published_rows": 11,
+   "matched_rows": 11,
+   "row_mismatches": 0
+  },
+  "KC": {
+   "official_rows": 13,
+   "published_rows": 13,
+   "matched_rows": 13,
+   "row_mismatches": 0
+  },
+  "LA": {
+   "official_rows": 14,
+   "published_rows": 14,
+   "matched_rows": 14,
+   "row_mismatches": 0
+  },
+  "LAC": {
+   "official_rows": 19,
+   "published_rows": 19,
+   "matched_rows": 19,
+   "row_mismatches": 26
+  },
+  "LV": {
+   "official_rows": 5,
+   "published_rows": 5,
+   "matched_rows": 5,
+   "row_mismatches": 0
+  },
+  "MIA": {
+   "official_rows": 11,
+   "published_rows": 11,
+   "matched_rows": 11,
+   "row_mismatches": 0
+  },
+  "MIN": {
+   "official_rows": 13,
+   "published_rows": 13,
+   "matched_rows": 13,
+   "row_mismatches": 0
+  },
+  "NE": {
+   "official_rows": 15,
+   "published_rows": 15,
+   "matched_rows": 15,
+   "row_mismatches": 0
+  },
+  "NO": {
+   "official_rows": 12,
+   "published_rows": 12,
+   "matched_rows": 12,
+   "row_mismatches": 0
+  },
+  "NYG": {
+   "official_rows": 11,
+   "published_rows": 11,
+   "matched_rows": 11,
+   "row_mismatches": 0
+  },
+  "NYJ": {
+   "official_rows": 9,
+   "published_rows": 9,
+   "matched_rows": 9,
+   "row_mismatches": 0
+  },
+  "PIT": {
+   "official_rows": 8,
+   "published_rows": 8,
+   "matched_rows": 8,
+   "row_mismatches": 0
+  },
+  "SEA": {
+   "official_rows": 15,
+   "published_rows": 15,
+   "matched_rows": 15,
+   "row_mismatches": 0
+  },
+  "SF": {
+   "official_rows": 12,
+   "published_rows": 12,
+   "matched_rows": 12,
+   "row_mismatches": 0
+  },
+  "TEN": {
+   "official_rows": 12,
+   "published_rows": 12,
+   "matched_rows": 12,
+   "row_mismatches": 0
+  },
+  "WAS": {
+   "official_rows": 9,
+   "published_rows": 9,
+   "matched_rows": 9,
+   "row_mismatches": 0
+  }
+ },
+ "mismatches": [
+  {
+   "team": "BAL",
+   "player": "Adam Randall",
+   "field": "injuries",
+   "official": "Neck, Hamstring",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "BAL",
+   "player": "Adam Randall",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "BAL",
+   "player": "Calais Campbell",
+   "field": "row",
+   "official": "present",
+   "published": "absent",
+   "category": "missing from published table"
+  },
+  {
+   "team": "BAL",
+   "player": "Jaylinn Hawkins",
+   "field": "injuries",
+   "official": "Knee",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "BAL",
+   "player": "Jaylinn Hawkins",
+   "field": "game_status",
+   "official": "Out",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "BAL",
+   "player": "Ronnie Stanley",
+   "field": "row",
+   "official": "present",
+   "published": "absent",
+   "category": "missing from published table"
+  },
+  {
+   "team": "IND",
+   "player": "Arden Key",
+   "field": "injuries",
+   "official": "",
+   "published": "Hamstring",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "IND",
+   "player": "Arden Key",
+   "field": "game_status",
+   "official": "",
+   "published": "Questionable",
+   "category": "designation removed since 2026-11-14 capture (timing)"
+  },
+  {
+   "team": "LAC",
+   "player": "Branson Taylor",
+   "field": "injuries",
+   "official": "Ankle",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Branson Taylor",
+   "field": "game_status",
+   "official": "Out",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Brenen Thompson",
+   "field": "injuries",
+   "official": "Hamstring",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Brenen Thompson",
+   "field": "game_status",
+   "official": "Doubtful",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Bud Dupree",
+   "field": "practice_status",
+   "official": "Full Participation in Practice",
+   "published": "Did Not Participate In Practice",
+   "category": "practice_status differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "David Njoku",
+   "field": "injuries",
+   "official": "Fibula",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "David Njoku",
+   "field": "practice_status",
+   "official": "Full Participation in Practice",
+   "published": "Limited Participation in Practice",
+   "category": "practice_status differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "David Njoku",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Denzel Perryman",
+   "field": "injuries",
+   "official": "Pectoral",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Denzel Perryman",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Isas Waxter",
+   "field": "injuries",
+   "official": "Ankle",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Isas Waxter",
+   "field": "game_status",
+   "official": "Out",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Justin Eboigbe",
+   "field": "injuries",
+   "official": "Ankle",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Justin Eboigbe",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Kayode Awosika",
+   "field": "injuries",
+   "official": "Fibula",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Kayode Awosika",
+   "field": "practice_status",
+   "official": "Full Participation in Practice",
+   "published": "Limited Participation in Practice",
+   "category": "practice_status differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Kayode Awosika",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Keaton Mitchell",
+   "field": "practice_status",
+   "official": "Full Participation in Practice",
+   "published": "Limited Participation in Practice",
+   "category": "practice_status differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Kendall Williamson",
+   "field": "injuries",
+   "official": "Calf",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Kendall Williamson",
+   "field": "game_status",
+   "official": "Out",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Ladd McConkey",
+   "field": "injuries",
+   "official": "Back",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Ladd McConkey",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  },
+  {
+   "team": "LAC",
+   "player": "Rodney Shelley",
+   "field": "practice_status",
+   "official": "Full Participation in Practice",
+   "published": "Limited Participation in Practice",
+   "category": "practice_status differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Trey Pipkins",
+   "field": "injuries",
+   "official": "Not injury related - personal matter, Knee",
+   "published": "",
+   "category": "injuries differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Trey Pipkins",
+   "field": "practice_status",
+   "official": "Limited Participation in Practice",
+   "published": "Did Not Participate In Practice",
+   "category": "practice_status differs (timing or transcription; see row)"
+  },
+  {
+   "team": "LAC",
+   "player": "Trey Pipkins",
+   "field": "game_status",
+   "official": "Questionable",
+   "published": "",
+   "category": "designation blank in published table"
+  }
+ ],
+ "verdict": "34 differences; see mismatches. Category tells whether the published value is stale (timing) or wrong (defect)."
+}
