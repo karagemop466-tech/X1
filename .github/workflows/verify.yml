@@ -127,3 +127,8 @@ jobs:
           python3 tools/build_leaderboard_split.py
           python3 tools/build_app.py
           git diff --exit-code -- data/results_feed.json data/price_snapshots.json data/leaderboard_split_907c.json app
+
+      # Added by session arena-c0461519-x1 (additive only): the immutable injury-report
+      # ledger must re-hash to its chain. An empty ledger passes; a tampered line fails.
+      - name: Verify the immutable injury-report ledger (Added by session arena-c0461519-x1)
+        run: python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries

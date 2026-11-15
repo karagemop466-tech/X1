@@ -41,6 +41,8 @@ PAGES: List[Tuple[str, str, str, str, str]] = [
     # Added by session arena-1d3600f8-x1 (T16)
     ("results.html", "Results & ROI", "Official data", "Verified results feed and graded ROI", "NFL.com results"),
     ("injuries.html", "Injury report", "Official data", "Official Week 10 injury report", "NFL.com injuries"),
+    # Added by session arena-c0461519-x1 (L1/L2): immutable capture ledger of the official injury page
+    ("injury-ledger.html", "Injury-report ledger", "Official data", "Every read of the official injury report, hashed", "Immutable · timestamped · flagged"),
     ("depth.html", "Depth charts", "Official data", "Club depth charts, 1st to 4th string", "Club sites"),
     ("deficiency.html", "Deficiency watch", "Official data", "Who is out and which backup replaces them", "Club chart x NFL injury report"),
     # Added by session arena/3fa49c1a-x1 (N6 page, merged in from the parallel N1-N10 round)
@@ -3357,6 +3359,92 @@ BUILDERS = {
     "stores.html": p_stores,
 }
 
+
+# Added by session arena-c0461519-x1 (L1/L2): the immutable injury-report ledger page.
+# Reads data/ledger/injuries/ledger.jsonl (append-only; see tools/snapshot_ledger.py).
+LEDGER_DIR = os.path.join("data", "ledger", "injuries")
+LEDGER_REPO_URL = "https://github.com/karagemop466-tech/X1/blob/main/"
+
+
+def load_ledger() -> List[Dict[str, Any]]:
+    path = os.path.join(ROOT, LEDGER_DIR, "ledger.jsonl")
+    if not os.path.exists(path):
+        return []
+    out: List[Dict[str, Any]] = []
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                out.append(json.loads(line))
+    return out
+
+
+def p_injury_ledger() -> str:
+    lines = load_ledger()
+    src = "https://www.nfl.com/injuries/"
+    if not lines:
+        body = (
+            "<section class=\"note warn\"><b>No captures committed yet.</b> The scheduled job "
+            "(<code>.github/workflows/injury-ledger.yml</code>) writes the first ledger line on "
+            "its next run. Until then this page shows no rows, and no row is inferred. "
+            f"Source: <a href=\"{src}\" target=\"_blank\" rel=\"noopener\">{src}</a>.</section>"
+        )
+        return page("injury-ledger.html", "Injury-report ledger", "Official data", body,
+                    lede="Every read of the official injury report, hashed and timestamped.")
+
+    raw_count = sum(1 for e in lines if e.get("file"))
+    fatal = [e for e in lines if set(e.get("flags", [])) & {"http_error", "empty_body", "schema_drift"}]
+    last = lines[-1]
+    last_ok = next((e for e in reversed(lines) if e.get("sha256")), None)
+    kp = kpis([
+        (str(len(lines)), "Reads logged", "every read, including failures", "blue"),
+        (str(raw_count), "Distinct page versions", "raw bytes stored, one per change", "ok"),
+        (esc(last["captured_at_utc"]), "Last read (UTC)", f"HTTP {last.get('http_status')}", "ok"),
+        (str(len(fatal)), "Fatal flags", "http_error, empty_body or schema_drift", "bad" if fatal else "ok"),
+    ])
+
+    rows = []
+    for e in reversed(lines):
+        flags = ", ".join(e.get("flags", [])) or "—"
+        raw = e.get("file")
+        raw_html = (
+            f"<a href=\"{LEDGER_REPO_URL}{LEDGER_DIR}/{esc(raw)}\" target=\"_blank\" rel=\"noopener\">"
+            f"{esc(os.path.basename(raw))}</a>" if raw else dash()
+        )
+        sha = e.get("sha256")
+        rows.append([
+            esc(e.get("seq")),
+            esc(e.get("captured_at_utc")),
+            esc(e.get("http_status")),
+            esc(f"Week {e['week']}, {e['season']}") if e.get("week") else dash(),
+            esc(e.get("bytes")),
+            f"<code title=\"{esc(sha or '')}\">{esc(sha[:12]) if sha else '—'}</code>",
+            esc(flags),
+            raw_html,
+            src_cell(src, "NFL.com injuries"),
+        ])
+    body = [
+        kp,
+        "<section class=\"note\"><b>What this proves.</b> Each row is one read of the official page, "
+        "with the UTC time it was taken, the SHA-256 of the bytes received, and a hash link to the row "
+        "before it. A changed page gets a new raw file; an identical re-read reuses the existing one. "
+        "This proves <i>that</i> the page changed and <i>when</i>. It does not yet say which player's "
+        "designation changed — that needs the row parser, which is not built.</section>",
+        card("Read log (newest first)", table(
+            "ledger-tbl",
+            ["#", "Read (UTC)", "HTTP", "Week (page title)", "Bytes", "SHA-256", "Flags",
+             "Raw bytes (repo)", "Source"],
+            rows, numeric=(4,), center=(0, 2),
+            note="Verify locally: <code>python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries</code>. "
+                 "Method: <a href=\"https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/snapshot-ledger.md\">docs/methodology/snapshot-ledger.md</a>.",
+        )),
+    ]
+    return page("injury-ledger.html", "Injury-report ledger", "Official data", "\n".join(body),
+                lede="Every read of the official injury report, hashed and timestamped.")
+
+
+# Added by session arena-c0461519-x1 (L1/L2): registered after its definition.
+BUILDERS["injury-ledger.html"] = p_injury_ledger
 
 def main() -> int:
     global PFX, UP
