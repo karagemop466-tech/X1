@@ -79,7 +79,7 @@ console/official-flags.html,console,18534
 console/prices.html,console,145773
 console/props.html,console,5003
 console/questions.html,console,16777
-console/readiness.html,console,51067
+console/readiness.html,console,51063
 console/repo-review.html,console,12911
 console/requirements.html,console,7162
 console/results.html,console,248273
@@ -147,7 +147,7 @@ data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9046
 data/console/readiness.csv,data,29132
 data/console/readiness.json,data,52916
-data/console/repo_inventory.csv,data,27058
+data/console/repo_inventory.csv,data,27215
 data/console/results_feed.csv,data,1374469
 data/console/schedule_week10.csv,data,1805
 data/console/standings_2026.csv,data,3691
@@ -594,7 +594,7 @@ src/x1/strategies.py,src,25831
 tools/build_app.py,tools,217334
 tools/build_audit_registers.py,tools,59830
 tools/build_availability.py,tools,5505
-tools/build_console.py,tools,104134
+tools/build_console.py,tools,106779
 tools/build_correlations_official.py,tools,9440
 tools/build_correlations_official_store.py,tools,9784
 tools/build_deficiency.py,tools,7464
@@ -639,6 +639,7 @@ tools/lab/fetch_upstream.py,tools,4911
 tools/official/build_pages.py,tools,19843
 tools/official/depth_parse.py,tools,13911
 tools/official/readiness.py,tools,42401
+tools/official/verify_published.py,tools,8497
 tools/official/week10_reconcile.py,tools,14157
 tools/record_price.py,tools,4098
 tools/test_source_rule.py,tools,1738
