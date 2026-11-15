@@ -49,6 +49,9 @@
     "inj_seasons": 1,
     "depth_clubs": 31,
     "standings_rows": 32,
+    "spot_players": 44,
+    "spot_clubs": 4,
+    "spot_mismatch": 0,
     "orig_rows": 14,
     "orig_market": 14,
     "orig_official": 0,
@@ -392,8 +395,8 @@
       "register_state": "met",
       "r4_state": "partly met",
       "changed": true,
-      "gate": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled, and this round did not re-verify it.",
-      "measured": "345 published rows. PR #49 reports 16 differing and 2 absent (its report, not re-verified here).",
+      "gate": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled. This round checked 4 of 28 clubs against nfl.com and found no difference, but that is not a full re-verification.",
+      "measured": "345 published rows. Round-4 spot check of nfl.com (2026-11-15): 44 players in 4 clubs, 0 mismatches (data/audit/round4_spotcheck_injuries.csv). PR #49 reports 16 differing and 2 absent (its report, not re-verified here).",
       "clears": "0 differing rows after reconciliation against nfl.com.",
       "basis": "PR #49 (open). Its files: data/capture/2026_w10/.",
       "evidence_label": "PR #49",
@@ -824,7 +827,7 @@
       "register_state": "met",
       "r4_state": "partly met",
       "changed": true,
-      "gate": "Only 14 of 2,232 rows carry an official verification. The rest rest on the third-party mirror. The 2026 feed also lags nfl.com: 135 2026 games are still 'scheduled'.",
+      "gate": "Only 14 of 2,232 rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: 135 2026 games are still 'scheduled'.",
       "measured": "14 of 2,232 rows officially verified.",
       "clears": "2,232 of 2,232 rows officially verified.",
       "basis": "data/results/verified_results.csv, column official_verified.",
@@ -1100,8 +1103,8 @@
     },
     {
       "id": "F4-07",
-      "title": "Requirement register states overstate the evidence",
-      "detail": "Six rows were recorded as met but are partly met on the data: R-12 (threshold conflict), R-14 (no cluster bound), R-20 (open re-capture), R-46 (price pairs), R-47 (official rows) and R-49 (mirror market lines). Their register text is unchanged. This round's state is shown beside it.",
+      "title": "Nine requirement rows recorded as met are partly met on the data",
+      "detail": "Nine rows were recorded as met and are partly met on the data: R-12 (threshold conflict), R-14 (no cluster bound), R-15 (one capture date, no retained series), R-16 (31 of 32 depth charts), R-17 (no snap counts or inactive lists), R-20 (open re-capture), R-46 (price pairs), R-47 (official rows) and R-49 (mirror market lines). Their register text is unchanged, and this round's state is shown beside it.",
       "links": [
         "https://github.com/karagemop466-tech/X1/blob/main/data/audit/requirements_assessed.json"
       ]
@@ -1149,7 +1152,7 @@
     {
       "id": "R-20",
       "title": "R-20 state changed this round: register 'met' -> 'partly met'",
-      "detail": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled, and this round did not re-verify it.",
+      "detail": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled. This round checked 4 of 28 clubs against nfl.com and found no difference, but that is not a full re-verification.",
       "links": [
         "https://github.com/karagemop466-tech/X1/pull/49"
       ]
@@ -1165,7 +1168,7 @@
     {
       "id": "R-47",
       "title": "R-47 state changed this round: register 'met' -> 'partly met'",
-      "detail": "Only 14 of 2,232 rows carry an official verification. The rest rest on the third-party mirror. The 2026 feed also lags nfl.com: 135 2026 games are still 'scheduled'.",
+      "detail": "Only 14 of 2,232 rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: 135 2026 games are still 'scheduled'.",
       "links": [
         "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv"
       ]

@@ -2599,8 +2599,8 @@ and what would settle it — a flag never asserts a value.</p>
 shows and where to check it. No value on this list has been silently changed; the source text is kept and
 the discrepancy is published.</p>
 """ + table("t-r4-flag", ["ID", "Finding", "Detail", "Sources"], fr,
-            note="Changed-state rows (R-12 to R-49) are the register's own 'met' rows that the data does not "
-                 "support. Their register text is unchanged, and the round-4 state is shown beside it.")))
+            note="Changed-state rows are the register's own 'met' rows that the data does not support. "
+                 "Their register text is unchanged, and the round-4 state is shown beside it.")))
     return page("flagged.html", "Flagged for review", "Governance", "\n".join(body),
                 lede="Every irregularity found, with its evidence and what was done about it.")
 

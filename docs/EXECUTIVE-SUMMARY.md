@@ -100,3 +100,56 @@ labelled rather than one being dropped.
 - **Q-21** — this round asked for explicit ratification of demotion thresholds; the register of record is round-2's G8 (D1–D6, `data/gates.json`), whose D4/D5 stay inactive until a price feed exists.
 - **Q-23** — two in-repo models publish different Week 10 lines; neither is designated the origination of record yet (F-19).
 - **Q-24 / S-17** — the results feed is verified but not yet re-read by the scheduled refresh.
+
+## 10. Round 4 — decision readiness (2026-11-15, session `arena-fb9e0427-x1`)
+
+**What this round added.** A decision-readiness register with **one row per requirement** (60 rows: the 53
+rows of the 2026-11-14 register plus 7 brief items that register does not carry). Each row names the gate
+that blocks it, the value measured now from a named repository file, and the number that would clear it.
+It is on the landing page (`app/index.html`), and every row carries its evidence link. The data is in
+`data/audit/readiness.json`, rebuilt by `tools/build_readiness.py --check` in CI.
+
+**Headline, measured this round.** The register is not a fair picture of the data:
+
+| | Register (2026-11-14) | Round 4 (checked against the files) |
+|---|---|---|
+| met | 42 | **33** |
+| partly met | 7 | **16** |
+| in progress | 2 | 2 |
+| open | 2 | **9** |
+
+Nine register rows changed state, every one from **met** to **partly met**: the G1 threshold conflict (R-12), the missing cluster bound (R-14), one capture date with no retained series (R-15), 31 of 32 depth charts (R-16), no snap counts or inactive lists (R-17), the open injury re-capture (R-20), the price pairs (R-46), the official results (R-47) and the mirror market lines (R-49). The register text is unchanged, and the change is shown beside it, not written over it.
+
+**The numbers that block the most rows.**
+
+- **Official prices:** opening and closing spreads exist for **272 of 2,232** games, moneylines for **0**, and
+  **0 of 20,088** rows come from an official source (`data/prices/price_history.csv`). The 2,232 games × 3
+  markets = **6,696** official pairs needed.
+- **Official results:** **14 of 2,232** results are officially verified; the rest rely on the third-party mirror.
+  The 2026 feed was built on 2026-11-14, and on 2026-11-15 nfl.com shows the Patriots–Lions game as **Final
+  (10–35)**, which the feed still lists as scheduled.
+- **Injury captures:** the published table is **one** capture date (345 rows). Nothing retains a series. The
+  injury file has one git commit, and daily captures from Wednesday to kickoff need **5 per game week**.
+- **Depth:** **31 of 32** clubs parsed. The Houston chart is an image and is not parsed.
+- **Strategy gate:** the one strategy that passes every gate has **398 bets**. `data/gates.json` requires **500**
+  singles bets, and the README requires 100. The two registers disagree, and this is flagged, not resolved.
+- **Gaps with no data at all:** no ablation, no game-cluster bound, no multiplicity adjustment, no NWS forecast,
+  no roof designation, no reserve list, no inactive list, no snap count, and no random-picks control on any
+  leaderboard run. Each is an open row with its measured count.
+
+**Verified this round.** Four clubs (Commanders, Giants, Patriots, Lions; 44 players, 176 fields) were
+compared against the live nfl.com injury page fetched on 2026-11-15, with **0 mismatches** against the
+2026-11-14 table (`tools/spotcheck_injuries_r4.py`, `data/audit/round4_spotcheck_injuries.csv`). That is a spot
+check of 4 of 28 clubs, not a re-verification. Open PR #49, from another session, reports 16 differing rows
+and 2 absent rows, and this round did not re-verify it.
+
+**Flagged, published, not changed.** The landing page quotes a spread MAE of 10.42 (model) and 9.73
+(market). `data/lab/lines/model_report.json` publishes 10.741 and 9.792 over 3,165 games, and the figures
+were not reproduced from `data/lab/lines/fair_lines.csv`. The text was left as found and is listed on the
+Flagged for review page with both sources. The register also cites Q-09 for reward rules, but Q-09 is
+"Market scope" in `data/questions.json`; rewards are Q-07 there and Q-20 in the decision register.
+
+**Still open after this round (with the number that clears each).** Official prices (6,696 pairs, now 0);
+official results (2,232 rows, now 14); daily injury captures (5 per game week, now 1 date); 32 of 32 depth
+charts (now 31); a reward rule set (Q-07, not decided); a joint-probability calibration per combo family (3
+families, now 0 files); and one G1 sample threshold that both registers state (they state 100 and 500 today).

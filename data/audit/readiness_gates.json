@@ -216,8 +216,8 @@
     },
     "R-20": {
       "r4": "partly met",
-      "gate": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled, and this round did not re-verify it.",
-      "measured": "{inj_rows} published rows. PR #49 reports 16 differing and 2 absent (its report, not re-verified here).",
+      "gate": "An open re-capture (PR #49, another session) reports 16 differing rows and 2 absent rows against the published table. It is not reconciled. This round checked 4 of 28 clubs against nfl.com and found no difference, but that is not a full re-verification.",
+      "measured": "{inj_rows} published rows. Round-4 spot check of nfl.com (2026-11-15): {spot_players} players in {spot_clubs} clubs, {spot_mismatch} mismatches (data/audit/round4_spotcheck_injuries.csv). PR #49 reports 16 differing and 2 absent (its report, not re-verified here).",
       "clears": "0 differing rows after reconciliation against nfl.com.",
       "basis": "PR #49 (open). Its files: data/capture/2026_w10/.",
       "ev": "https://github.com/karagemop466-tech/X1/pull/49",
@@ -270,7 +270,7 @@
     },
     "R-47": {
       "r4": "partly met",
-      "gate": "Only {res_official} of {res_rows} rows carry an official verification. The rest rest on the third-party mirror. The 2026 feed also lags nfl.com: {res_2026_sched} 2026 games are still 'scheduled'.",
+      "gate": "Only {res_official} of {res_rows} rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: {res_2026_sched} 2026 games are still 'scheduled'.",
       "measured": "{res_official} of {res_rows} rows officially verified.",
       "clears": "{res_rows} of {res_rows} rows officially verified.",
       "basis": "data/results/verified_results.csv, column official_verified.",
@@ -440,8 +440,8 @@
     },
     {
       "id": "F4-07",
-      "title": "Requirement register states overstate the evidence",
-      "detail": "Six rows were recorded as met but are partly met on the data: R-12 (threshold conflict), R-14 (no cluster bound), R-20 (open re-capture), R-46 (price pairs), R-47 (official rows) and R-49 (mirror market lines). Their register text is unchanged. This round's state is shown beside it.",
+      "title": "Nine requirement rows recorded as met are partly met on the data",
+      "detail": "Nine rows were recorded as met and are partly met on the data: R-12 (threshold conflict), R-14 (no cluster bound), R-15 (one capture date, no retained series), R-16 (31 of 32 depth charts), R-17 (no snap counts or inactive lists), R-20 (open re-capture), R-46 (price pairs), R-47 (official rows) and R-49 (mirror market lines). Their register text is unchanged, and this round's state is shown beside it.",
       "links": [
         "https://github.com/karagemop466-tech/X1/blob/main/data/audit/requirements_assessed.json"
       ]

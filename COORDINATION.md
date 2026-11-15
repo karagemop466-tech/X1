@@ -2598,3 +2598,46 @@ Session `arena-600e6009-x1` complete.
 
 **Non-overlap declaration.** No other session has an open claim or an unmerged branch (checked 2026-11-15). Shared outputs (`app/**`, `data/audit/**`, `COORDINATION.md`) change only in this round, as the integration session for round 4 (rule 9).
 
+### Round-4 completion record — session `arena-fb9e0427-x1` (2026-11-15)
+
+**Status:** X4-1 to X4-5 built and verified locally; merge record appended after the PR.
+
+**What shipped (all on `arena/fb9e0427-x1`; nothing deleted, nothing another session owns was edited):**
+
+| Task | Artefact |
+|---|---|
+| X4-1 decision-readiness register | `data/audit/readiness.json` (60 rows: the 53 register rows and 7 brief items the register does not carry); `data/audit/readiness_gates.json` (gate wording, templates, basis, links, flags); `tools/build_readiness.py` (every measured value recomputed from a named file; `--check` fails if stale) |
+| X4-2 landing-page table | `app/index.html` (new "Decision readiness" card, 60 rows, each with an evidence link); `tools/build_app.py` (`readiness_table`, the landing card, a Round-4 section on `app/flagged.html`) |
+| X4-3 state audit and flags | 9 register rows changed state, all from met to partly met (R-12, R-14, R-15, R-16, R-17, R-20, R-46, R-47, R-49); 7 flags F4-01 to F4-07 on `app/flagged.html`; register text unchanged, change shown beside it |
+| X4-4 official reachability and a spot check | `tools/spotcheck_injuries_r4.py` → `data/audit/round4_spotcheck_injuries.csv` (4 clubs, 44 players, 176 fields, 0 mismatches) |
+| X4-5 integration | `.github/workflows/verify.yml` and `pages.yml`: one `build_readiness.py --check` step each. `docs/EXECUTIVE-SUMMARY.md` section 10 |
+
+**Sources used (fetched 2026-11-15, not recalled):**
+
+- `https://www.nfl.com/injuries/`: "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season", chunk 0 of 8. The Commanders, Giants, Patriots and Lions blocks are complete in this chunk, and they were transcribed for the spot check.
+- `https://www.nfl.com/schedules/2026/by-week/week-10`: chunk 0 of 3. Shows the Commanders 24–Giants 21 final (Nov 12) and the Patriots 10–Lions 35 final (Nov 15, Munich).
+- Repository files as cited in each readiness row (`data/prices/price_history.csv`, `data/results/verified_results.csv`, `data/injuries/injuries_2026_week10.csv`, `data/gates.json`, `data/lab/lines/model_report.json`, `data/site/payload.json`, `README.md`, `data/questions.json`, `data/audit/decision_questions.json`).
+- Open PR #49 (`arena/ed8c600d-x1`, another session): read as a claim, not re-verified.
+
+**Verification performed:**
+
+1. Every measured value in `readiness.json` is recomputed from the file named in its row. A rebuild gives the same bytes (`--check`).
+2. All 41 steps of `verify.yml` and `pages.yml` were run locally with the workflow's own commands, and each passed. A dirty worktree was the only cause of two `git diff --exit-code` steps failing, and they pass on the commit.
+3. Spot check against the live nfl.com page: 4 clubs, 44 players, 176 field comparisons, 0 mismatches. That is 4 of 28 clubs. It is not a full re-verification.
+4. Cross-checks that found irregularities (below): the G1 threshold in the README and in `data/gates.json`; the Q-09 cross-reference; the MAE in the landing text against `model_report.json`; the 2026 feed against the official Nov 15 final; the injury file's single git commit.
+5. `verify_app.py`: links resolve; every row sourced or flagged. No literal "None" on any page.
+
+**Irregularities (published on `app/flagged.html` under Round 4; none blocks the merge):**
+
+- **F4-01** The G1 sample threshold is 100 in the README and `app/validation.html`, and 500 in `data/gates.json`. The one strategy that passes every gate has 398 bets.
+- **F4-02** Register row R-10 cites Q-09 for reward rules. In `data/questions.json`, Q-09 is "Market scope". Rewards are Q-07 there, and Q-20 in `data/audit/decision_questions.json`.
+- **F4-03** The landing page quotes a spread MAE of 10.42 (model) and 9.73 (market). `data/lab/lines/model_report.json` publishes 10.741 and 9.792 over 3,165 games. Not reproduced from `fair_lines.csv` under either sign convention. Published as found; not changed.
+- **F4-04** The 2026 feed was built on 2026-11-14. On 2026-11-15 nfl.com shows the Patriots–Lions game as Final, 10–35, and the feed still lists it as scheduled. 135 of the 272 2026 rows are scheduled. No freshness alarm exists.
+- **F4-05** The scheduled refresh (`data-refresh.yml`) runs successfully, but `data/injuries/injuries_2026_week10.csv` has one git commit, so nothing retains a series of captures.
+- **F4-06** PR #49 reports 347 rows on the live page, 16 differing rows and 2 absent. Not re-verified here.
+- **F4-07** Nine rows recorded as met are partly met on the data (listed above).
+
+**Not built this round, and why (recorded as open rows with the measured count that blocks them):** the injury and depth ablation (1 season of injury reports held); the game-cluster lower bound and multiplicity adjustment (14 officially scored games); the NWS and roof overlay (0 forecast files, 0 roof files); the random-picks control on leaderboard runs (0 of 16 runs; a shared always-favourite baseline exists, ROI −2.7%, but it is not a per-run control); the reserve list (0 files); inactive lists and snap counts (0 files each); designation reliability (1 season of designations); and the results freshness alarm. Building any of these needs data this repository does not hold. None was filled in.
+
+**Interpretation the owner should check:** the register said 42 requirements were met. On the data, 33 are. The landing table shows both states side by side. The state changes are this round's judgement against the data files, and each is listed with its basis for review.
+

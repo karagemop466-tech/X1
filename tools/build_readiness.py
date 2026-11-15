@@ -127,6 +127,12 @@ def measure() -> Dict[str, Any]:
     m["depth_clubs"] = len({r["team_abbrev"] for r in dc})
     m["standings_rows"] = len(load_json("data/pipeline/standings.json")["rows"])
 
+    # Round-4 spot check of four clubs against the live nfl.com page (tools/spotcheck_injuries_r4.py)
+    sc = load_csv("data/audit/round4_spotcheck_injuries.csv")
+    m["spot_players"] = len(sc)
+    m["spot_clubs"] = len({r["team"] for r in sc})
+    m["spot_mismatch"] = sum(1 for r in sc if r["match"] != "yes")
+
     # Originated lines, Week 10 (data/lines/originated_lines_2026_week10.csv)
     ol = load_csv("data/lines/originated_lines_2026_week10.csv")
     m["orig_rows"] = len(ol)
