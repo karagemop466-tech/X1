@@ -1,6 +1,6 @@
 {
   "meta": {
-    "purpose": "Inputs for tools/build_readiness.py. Gate wording, templates and links are authored here. Every measured value is computed by the builder from the named file.",
+    "purpose": "Inputs for tools/build_state_audit.py. Gate wording, templates and links are authored here. Every measured value is computed by the builder from the named file.",
     "rule": "A clearing number is either computed from a named file, quoted from a named gate in data/gates.json, or marked 'proposed' (a threshold chosen by this round, not a fact from a source). A value that cannot be measured stays blank and is flagged. Nothing is inferred.",
     "session": "arena-fb9e0427-x1",
     "round": "round 4, 2026-11-15",
@@ -431,11 +431,12 @@
     },
     {
       "id": "F4-06",
-      "title": "Open injury re-capture disagrees with the published table",
-      "detail": "PR #49 (another session, open) reports that the official page carries 347 rows, with 16 published rows differing and 2 absent. This round did not re-verify that report, and the published table has not changed.",
+      "title": "Injury re-capture (PR #49, merged) disagrees with the published table",
+      "detail": "PR #49 (merged as 4f361c9) recorded 347 official rows on nfl.com/injuries and 345 published rows. Recounted this round from data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv and data/injuries/injuries_2026_week10.csv: 14 rows carry team code LAR in the capture and LA in the published file (a code difference, not a missing player); after that normalisation, 2 Ravens rows (Calais Campbell, Ronnie Stanley) are absent from the published table; 16 rows differ in at least one field (injuries, practice status or game status). The capture is a transcription by that session and was not re-read against the live page this round. The published table has not changed.",
       "links": [
         "https://github.com/karagemop466-tech/X1/pull/49",
-        "https://www.nfl.com/injuries/"
+        "https://www.nfl.com/injuries/",
+        "https://github.com/karagemop466-tech/X1/blob/main/data/capture/2026_w10/recapture_report.md"
       ]
     },
     {

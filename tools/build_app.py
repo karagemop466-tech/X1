@@ -406,7 +406,7 @@ def readiness_table(rows: List[Dict[str, Any]], tid: str) -> str:
                        "Measured now", "Number that clears it", "Evidence"], trs,
                  note="Register = the state recorded in data/audit/requirements_assessed.json, left unchanged. "
                       "Round 4 = the state after this round checked the data files. Every measured value is "
-                      "recomputed from a named file by tools/build_readiness.py. A clearing number marked "
+                      "recomputed from a named file by tools/build_state_audit.py. A clearing number marked "
                       "<em>proposed</em> is a design threshold, not a figure from a source. "
                       "Full data: data/audit/readiness.json.")
 
@@ -512,8 +512,8 @@ official source, re-verifies every row, and republishes this site.</p>
 
     rd = jload("data/audit/readiness.json")
     rc = rd["counts"]
-    body.append(card("Decision readiness — one row per requirement", f"""
-<p>Each requirement the brief names, with the gate that blocks it, what is measured now, and the number
+    body.append(card("Requirement state audit (round 4) — one row per requirement", f"""
+<p>This audit checks each requirement's recorded state against the repository files. It is separate from the decision-readiness register proposed in open PR #53 (`data/audit/decision_readiness.json`), which is not merged here. Each requirement the brief names, with the gate that blocks it, what is measured now, and the number
 that would clear it. The register column is the state recorded on 2026-11-14. The round-4 column is the
 state after this round checked the data. <b>{rc['rows']} rows:</b> {rc['round4'].get('met', 0)} met,
 {rc['round4'].get('partly met', 0)} partly met, {rc['round4'].get('in progress', 0)} in progress,

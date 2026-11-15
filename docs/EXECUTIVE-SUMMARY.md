@@ -107,7 +107,7 @@ labelled rather than one being dropped.
 rows of the 2026-11-14 register plus 7 brief items that register does not carry). Each row names the gate
 that blocks it, the value measured now from a named repository file, and the number that would clear it.
 It is on the landing page (`app/index.html`), and every row carries its evidence link. The data is in
-`data/audit/readiness.json`, rebuilt by `tools/build_readiness.py --check` in CI.
+`data/audit/readiness.json`, rebuilt by `tools/build_state_audit.py --check` in CI.
 
 **Headline, measured this round.** The register is not a fair picture of the data:
 
@@ -140,8 +140,8 @@ Nine register rows changed state, every one from **met** to **partly met**: the 
 **Verified this round.** Four clubs (Commanders, Giants, Patriots, Lions; 44 players, 176 fields) were
 compared against the live nfl.com injury page fetched on 2026-11-15, with **0 mismatches** against the
 2026-11-14 table (`tools/spotcheck_injuries_r4.py`, `data/audit/round4_spotcheck_injuries.csv`). That is a spot
-check of 4 of 28 clubs, not a re-verification. Open PR #49, from another session, reports 16 differing rows
-and 2 absent rows, and this round did not re-verify it.
+check of 4 of 28 clubs, not a re-verification. PR #49 (another session, merged as `4f361c9`) reported 16 differing rows
+and 2 absent Ravens rows. This round recounted those numbers from its files (flag F4-06) but did not re-read the live page for them.
 
 **Flagged, published, not changed.** The landing page quotes a spread MAE of 10.42 (model) and 9.73
 (market). `data/lab/lines/model_report.json` publishes 10.741 and 9.792 over 3,165 games, and the figures

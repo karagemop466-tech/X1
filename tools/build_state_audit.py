@@ -15,8 +15,8 @@ Nothing here reads the network. Every measured value is recomputed from the file
 each run, and `--check` fails if the committed data/audit/readiness.json is stale.
 
 Usage:
-  python3 tools/build_readiness.py          # write data/audit/readiness.json
-  python3 tools/build_readiness.py --check  # exit 1 if the committed file is stale
+  python3 tools/build_state_audit.py          # write data/audit/readiness.json
+  python3 tools/build_state_audit.py --check  # exit 1 if the committed file is stale
 """
 
 from __future__ import annotations
@@ -307,7 +307,7 @@ def main(argv: List[str]) -> int:
     if "--check" in argv:
         cur = open(p(OUT_PATH), encoding="utf-8").read() if os.path.exists(p(OUT_PATH)) else ""
         if cur != text:
-            print(f"STALE: {OUT_PATH} differs from a fresh build. Run tools/build_readiness.py.")
+            print(f"STALE: {OUT_PATH} differs from a fresh build. Run tools/build_state_audit.py.")
             return 1
         print(f"ok: {OUT_PATH} matches a fresh build ({doc['counts']['rows']} rows)")
         return 0

@@ -2588,7 +2588,7 @@ Session `arena-600e6009-x1` complete.
 
 | # | Task | Status | Owner | Files in scope (non-overlapping with every merged round) |
 |---|---|---|---|---|
-| X4-1 | **Decision-readiness register.** One row per requirement (the 53 register rows plus the brief items the register omits), each with: the register's state as recorded, this round's state after checking the data, the blocking gate, the value measured from the repo's own files, and the number that would clear it. | in progress | `arena-fb9e0427-x1` | `data/audit/readiness.json` (new), `data/audit/readiness_gates.json` (new, hand-authored gate definitions), `tools/build_readiness.py` (new) |
+| X4-1 | **Decision-readiness register.** One row per requirement (the 53 register rows plus the brief items the register omits), each with: the register's state as recorded, this round's state after checking the data, the blocking gate, the value measured from the repo's own files, and the number that would clear it. | in progress | `arena-fb9e0427-x1` | `data/audit/readiness.json` (new), `data/audit/readiness_gates.json` (new, hand-authored gate definitions), `tools/build_state_audit.py` (new) |
 | X4-2 | **Landing-page table** rendered from X4-1, with the state audit visible beside the register's own state. | in progress | `arena-fb9e0427-x1` | `tools/build_app.py` (`p_index` and a new `p_flagged` block only), `app/index.html`, `app/flagged.html` (regenerated) |
 | X4-3 | **State audit and Flagged-for-Review additions.** Publish each `met` row this round downgraded, the G1 threshold conflict (100 in README and `app/validation.html` vs 500 in `data/gates.json`), and the freshness gap between the 2026-11-14 snapshot and the official Nov 15 final. | in progress | `arena-fb9e0427-x1` | the X4-1 register + `app/flagged.html` (via X4-2) |
 | X4-4 | **Official reachability and freshness check** (`fetch_page` on nfl.com, recorded with the date and URL). Reachability only; not a re-verification of values. | in progress | `arena-fb9e0427-x1` | this file |
@@ -2596,21 +2596,21 @@ Session `arena-600e6009-x1` complete.
 
 **Not in scope this round (stated, not hidden):** no new NFL values are scraped, no model is refit, no strategy is re-graded. The ablation, the cluster bootstrap, the NWS overlay and the control baseline are recorded as **open** with the measured count that blocks them. They are not implemented here, because each needs data the repository does not hold (see X4-1).
 
-**Non-overlap declaration.** No other session has an open claim or an unmerged branch (checked 2026-11-15). Shared outputs (`app/**`, `data/audit/**`, `COORDINATION.md`) change only in this round, as the integration session for round 4 (rule 9).
+**Non-overlap declaration (corrected 2026-11-15, after merging `origin/main`).** The first version said no other session had an open claim or unmerged branch. That was wrong. Open PRs when this was corrected: **#50** (`arena/c0461519-x1`, injury ledger: new files, `verify.yml` step, `app/injury-ledger.html`), **#53** (`arena/29e011dc-x1`, decision-readiness register: `tools/build_readiness.py` (add/add with this round's tool, renamed here to `tools/build_state_audit.py`), `data/audit/decision_readiness.*`, a landing-page card, `app/flagged.html`, `tools/build_app.py`, `verify.yml`, `pages.yml`, `check_links.py`), and **#55** (`arena/1aa2b47f-x1`, review and release: `COORDINATION.md`, exec summary addendum). PR #49 (`arena/ed8c600d-x1`) merged as `4f361c9`. Merge conflicts with #53 are logged in the PR #56 record below; this round did not edit #53's files beyond its own names. Shared outputs (`app/**`, `data/audit/**`, `COORDINATION.md`) change only in this round, as the integration session for round 4 (rule 9).
 
 ### Round-4 completion record — session `arena-fb9e0427-x1` (2026-11-15)
 
-**Status:** X4-1 to X4-5 built and verified locally; merge record appended after the PR.
+**Status:** X4-1 to X4-5 built and verified; PR #56 to `main`. Merge and Pages result are recorded in the PR record below.
 
 **What shipped (all on `arena/fb9e0427-x1`; nothing deleted, nothing another session owns was edited):**
 
 | Task | Artefact |
 |---|---|
-| X4-1 decision-readiness register | `data/audit/readiness.json` (60 rows: the 53 register rows and 7 brief items the register does not carry); `data/audit/readiness_gates.json` (gate wording, templates, basis, links, flags); `tools/build_readiness.py` (every measured value recomputed from a named file; `--check` fails if stale) |
-| X4-2 landing-page table | `app/index.html` (new "Decision readiness" card, 60 rows, each with an evidence link); `tools/build_app.py` (`readiness_table`, the landing card, a Round-4 section on `app/flagged.html`) |
+| X4-1 decision-readiness register | `data/audit/readiness.json` (60 rows: the 53 register rows and 7 brief items the register does not carry); `data/audit/readiness_gates.json` (gate wording, templates, basis, links, flags); `tools/build_state_audit.py` (every measured value recomputed from a named file; `--check` fails if stale) |
+| X4-2 landing-page table | `app/index.html` (card titled "Requirement state audit (round 4)", 60 rows, each with an evidence link; it is not the decision-readiness register of PR #53); `tools/build_app.py` (`readiness_table`, the landing card, a Round-4 section on `app/flagged.html`) |
 | X4-3 state audit and flags | 9 register rows changed state, all from met to partly met (R-12, R-14, R-15, R-16, R-17, R-20, R-46, R-47, R-49); 7 flags F4-01 to F4-07 on `app/flagged.html`; register text unchanged, change shown beside it |
 | X4-4 official reachability and a spot check | `tools/spotcheck_injuries_r4.py` → `data/audit/round4_spotcheck_injuries.csv` (4 clubs, 44 players, 176 fields, 0 mismatches) |
-| X4-5 integration | `.github/workflows/verify.yml` and `pages.yml`: one `build_readiness.py --check` step each. `docs/EXECUTIVE-SUMMARY.md` section 10 |
+| X4-5 integration | `.github/workflows/verify.yml` and `pages.yml`: one `build_state_audit.py --check` step each. `tools/check_links.py`: `_site/` excluded from the walk (see correction below). `docs/EXECUTIVE-SUMMARY.md` section 10 |
 
 **Sources used (fetched 2026-11-15, not recalled):**
 
@@ -2622,7 +2622,7 @@ Session `arena-600e6009-x1` complete.
 **Verification performed:**
 
 1. Every measured value in `readiness.json` is recomputed from the file named in its row. A rebuild gives the same bytes (`--check`).
-2. All 41 steps of `verify.yml` and `pages.yml` were run locally with the workflow's own commands, and each passed. A dirty worktree was the only cause of two `git diff --exit-code` steps failing, and they pass on the commit.
+2. **Correction (2026-11-15).** The earlier line "all 41 steps passed" was written before the final run and was wrong. The final run on the merged tree (`origin/main` merged in) executed every `run:` step from the raw YAML: **27 of 27** in `verify.yml` and **15 of 15** in `pages.yml` (42 run steps, 0 FAIL). Before this, one run failed at the "Link and structure check" (`tools/check_links.py`: `class .x1 is used but defined nowhere`, `assets/site.css`). Cause, reproduced: a stale local `_site/` (the assembled Pages output) was walked as ordinary pages and audited against the root stylesheet. Fix: `_site` is excluded from `html_files()`. The check passes with or without a stale `_site/`. Earlier runs that dirtied the tree (timestamps in `console/`, `hub/`, `data/console/`, and a `.pyc`) were restored with `git checkout`.
 3. Spot check against the live nfl.com page: 4 clubs, 44 players, 176 field comparisons, 0 mismatches. That is 4 of 28 clubs. It is not a full re-verification.
 4. Cross-checks that found irregularities (below): the G1 threshold in the README and in `data/gates.json`; the Q-09 cross-reference; the MAE in the landing text against `model_report.json`; the 2026 feed against the official Nov 15 final; the injury file's single git commit.
 5. `verify_app.py`: links resolve; every row sourced or flagged. No literal "None" on any page.
