@@ -44,6 +44,7 @@ MK = ('<span class="src mut">computed &mdash; from '
 
 NAV = [
     ("Overview", [("index.html", "Overview", ""),
+                  ("readiness.html", "Decision readiness", ""),
                   ("executive-summary.html", "Executive summary", ""),
                   ("requirements.html", "The eight requirements", "")]),
     ("Official data", [("standings.html", "Standings", "32"),
@@ -1678,6 +1679,10 @@ def main():
     p = build_pages_5(ctx, p)
     p = build_pages_6(ctx, p)
     p = build_pages_7(ctx, p)
+    # Round 4 (arena-8c67ec75-x1): decision-readiness register on the landing page,
+    # its own page, and the round-4 flags on the flagged page. Additive; see tools/build_readiness.py.
+    import build_readiness  # noqa: E402  (tools/ is the script directory, so this resolves)
+    p = build_readiness.apply(p, page, esc)
     for name, html_text in p.items():
         with open(os.path.join(OUT_SITE, name), "w", encoding="utf-8") as fh:
             fh.write(html_text)

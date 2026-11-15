@@ -1,0 +1,31 @@
+{
+  "source": "https://www.nfl.com/injuries/ (Week 10 2026 injury report, read 2026-11-15 via fetch_page, chunks 0-7)",
+  "schedule_source": "https://www.nfl.com/schedules/2026/by-week/week-10 (via data/schedule_2026_week10.csv and data/nfl/schedule_2026_week10.csv, 14 games)",
+  "official_clubs_listed": 28,
+  "official_clubs_absent": {
+    "CHI": "no Week 10 game in the schedule files; the injury page lists only clubs playing this week (bye)",
+    "DEN": "no Week 10 game in the schedule files; bye",
+    "PHI": "no Week 10 game in the schedule files; bye",
+    "TB": "no Week 10 game in the schedule files; bye"
+  },
+  "correction_to_earlier_note": "Earlier notes said CHI, DEN, PHI and TB were in chunks 0-3. They are not in any chunk. The four clubs are absent because they have no Week 10 game, so the TSV has no transcription gap for them.",
+  "row_verification": {
+    "row_by_row_against_official_text": ["BAL (10 rows)", "IND (14 rows)", "LAC (19 rows)", "SEA (15 rows)", "SF (12 rows)", "CIN (9 rows)"],
+    "row_counts_checked_against_official_text": ["ATL 11", "KC 13", "LV 5", "PIT 8", "NE 15", "DET 9", "WAS 9", "NYG 11"],
+    "not_yet_rechecked_row_by_row": ["AZ", "BUF", "CAR", "CLE", "DAL", "GB", "HOU", "JAX", "LA", "MIA", "MIN", "NO", "NYJ", "TEN"],
+    "not_yet_rechecked_note": "These 14 clubs agree with data/injuries/injuries_2026_week10.csv on every row (per spotcheck_result.json). Agreement with the published CSV is not agreement with the official page, so these clubs stay provisional."
+  },
+  "disputed_rows": {
+    "count": 34,
+    "transcription_correct": true,
+    "published_table_wrong": true,
+    "detail": "On all 34 disputed rows the TSV matches the official text. The published CSV is the side that differs (blank injury and game-status cells, two missing Ravens rows, practice statuses that differ from the page). Cause of the Arden Key (IND) difference is not established; the 'timing' label in spotcheck_diffs.csv is a guess."
+  },
+  "official_news_headlines_read_2026_11_15": [
+    "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start (https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start)",
+    "NFL news roundup, Saturday Nov 14: Patriots place RB TreVeyon Henderson (illness) on injured reserve (https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14)",
+    "Sam Darnold ruled out for Seahawks' Week 10 game vs. Raiders; Drew Lock expected to start again (https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again)",
+    "Ravens officially place Lamar Jackson on injured reserve (https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5)"
+  ],
+  "status": "provisional: 6 clubs fully verified row by row; 8 clubs spot-checked by count; 14 clubs agree with the CSV but are not yet re-read row by row"
+}

@@ -1,0 +1,1135 @@
+{
+ "dataset": "requirements_r4",
+ "title": "Decision readiness: one row per requirement in the owner's brief",
+ "generated_at": "2026-11-15T18:24:31+00:00",
+ "method": "Statuses were assessed in session arena-8c67ec75-x1 by reading the files and pages named in each row. Numbers are computed by tools/build_readiness.py from those files.",
+ "status_counts": {
+  "Built": 10,
+  "Built, not yet run": 5,
+  "Partly built": 30,
+  "Blocked: data": 14,
+  "Blocked: decision": 3,
+  "Not started": 19,
+  "Unverified": 2,
+  "Closed (approach rejected by brief, not used)": 2
+ },
+ "rows_total": 85,
+ "rows": [
+  {
+   "id": "R4-01",
+   "group": "Markets, lines and prices",
+   "requirement": "Price-snapshot store: opening and closing numbers for every market we originate",
+   "brief_ref": "Brief 1; 'Add a price-snapshot store'",
+   "status": "Partly built",
+   "exists_today": "84 capture records; 0 carry a market line; 84 market cells blank",
+   "blocker": "Blocked: no official or licensed price source (open question Q-31)",
+   "clears_when": "Both opening and closing market line present, with a named source, for all 56 originated 2026 markets",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/snapshots/price_snapshots.csv"
+  },
+  {
+   "id": "R4-02",
+   "group": "Markets, lines and prices",
+   "requirement": "Verified results feed so backtests and ROI can be computed",
+   "brief_ref": "Brief 2; 'Add a verified results feed'",
+   "status": "Partly built",
+   "exists_today": "137 verified 2026 games, reconciled to official standings; history is mirror-only",
+   "blocker": "Blocked: 2019–2025 official pages not committed (mirror only)",
+   "clears_when": "Official page committed for every 2019–2025 regular-season week",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results_2026_r3.csv"
+  },
+  {
+   "id": "R4-03",
+   "group": "Markets, lines and prices",
+   "requirement": "Backtest corpus: turn the 136-game log into the pre-registered backtest corpus",
+   "brief_ref": "Brief 'Turn the 136-game log'",
+   "status": "Blocked: decision",
+   "exists_today": "137 rows in the 2026 feed (brief says 136; reconcile)",
+   "blocker": "No pre-registration commit; price policy not decided (Q-31)",
+   "clears_when": "One git commit that freezes rule text, sample window and gates before scoring; count reconciled to 136",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results_2026_r3.csv"
+  },
+  {
+   "id": "R4-04",
+   "group": "Markets, lines and prices",
+   "requirement": "Decide the price-data policy before any backtest is published",
+   "brief_ref": "Brief 'Decide the price-data policy'",
+   "status": "Blocked: decision",
+   "exists_today": "Policy not written; question open",
+   "blocker": "Owner decision Q-31 (price-source authority)",
+   "clears_when": "Owner ratifies one named price source and one timestamp rule",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/console/questions.csv"
+  },
+  {
+   "id": "R4-05",
+   "group": "Markets, lines and prices",
+   "requirement": "Originate the side first, then the total, then the moneyline",
+   "brief_ref": "Brief 3",
+   "status": "Built",
+   "exists_today": "data/lines/origination_order_2026_week10.csv, sequences asserted 1-2-3 by builder",
+   "blocker": "None",
+   "clears_when": "Already met for Week 10; repeat for each new week",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination_order_2026_week10.csv"
+  },
+  {
+   "id": "R4-06",
+   "group": "Markets, lines and prices",
+   "requirement": "Publish the model's fair line, the market line and the difference as separate columns",
+   "brief_ref": "Brief 4",
+   "status": "Partly built",
+   "exists_today": "Three columns exist; market column blank on 84 of 84 capture rows",
+   "blocker": "Blocked: no market source (Q-31)",
+   "clears_when": "Market column populated from the named source for every originated market",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/origination_order_2026_week10.csv"
+  },
+  {
+   "id": "R4-07",
+   "group": "Markets, lines and prices",
+   "requirement": "Price our own line and publish the residual against the market, on a schedule, from day one",
+   "brief_ref": "Brief 'Price a line ourselves'",
+   "status": "Partly built",
+   "exists_today": "Residuals computed by a manual build; no scheduled residual job",
+   "blocker": "Blocked: market column empty; no schedule",
+   "clears_when": "Scheduled job writes the residual each week with the market column filled",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv"
+  },
+  {
+   "id": "R4-08",
+   "group": "Markets, lines and prices",
+   "requirement": "Vig-free market consensus versus originated fair-line decomposition",
+   "brief_ref": "Brief 'Vig-Free Market Consensus'",
+   "status": "Not started",
+   "exists_today": "No vig removal code path publishes a consensus",
+   "blocker": "Blocked: needs two or more priced sources per market",
+   "clears_when": "Consensus for each market from at least two named sources, vig removed and shown",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv"
+  },
+  {
+   "id": "R4-09",
+   "group": "Markets, lines and prices",
+   "requirement": "Publish every model total twice until one wins, with the gap column",
+   "brief_ref": "Brief 'Publish every model total twice'",
+   "status": "Not started",
+   "exists_today": "One total estimator is published",
+   "blocker": "Blocked: decision (the walk-forward comparison is not specified)",
+   "clears_when": "Two estimators on the same games, a gap column, and a walk-forward winner named",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv"
+  },
+  {
+   "id": "R4-10",
+   "group": "Markets, lines and prices",
+   "requirement": "Store every model output as a probability plus its inputs, not just a pick",
+   "brief_ref": "Brief 'Store every model output'",
+   "status": "Not started",
+   "exists_today": "Outputs are points and spreads; no probability column and no input hash",
+   "blocker": "Blocked: decision (model specification)",
+   "clears_when": "Every output row carries a probability and a hash of its inputs",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv"
+  },
+  {
+   "id": "R4-11",
+   "group": "Markets, lines and prices",
+   "requirement": "Fixture-context feature set built only from published schedule facts",
+   "brief_ref": "Brief 'Add a fixture-context feature set'",
+   "status": "Not started",
+   "exists_today": "14 Week 10 fixtures with date, time and TV only",
+   "blocker": "Blocked: feature table not built",
+   "clears_when": "Feature table for every 2026 fixture, each field traced to a published schedule row",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/nfl/schedule_2026_week10.csv"
+  },
+  {
+   "id": "R4-12",
+   "group": "Markets, lines and prices",
+   "requirement": "Transcribe the venue of every fixture from the official game centre and publish it",
+   "brief_ref": "Brief 'Transcribe the venue'",
+   "status": "Partly built",
+   "exists_today": "1 of 14 Week 10 fixtures carry a venue note",
+   "blocker": "Blocked: game-centre pages not captured",
+   "clears_when": "14 of 14 Week 10 venues, each linked to its nfl.com game centre",
+   "evidence": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  },
+  {
+   "id": "R4-13",
+   "group": "Markets, lines and prices",
+   "requirement": "Publish the league's dated schedule announcement beside the live schedule",
+   "brief_ref": "Brief 'Publish the league's dated schedule announcement'",
+   "status": "Not started",
+   "exists_today": "Live schedule page exists; no dated announcement captured",
+   "blocker": "Blocked: announcement not captured",
+   "clears_when": "Announcement URL and capture date shown beside the live schedule",
+   "evidence": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  },
+  {
+   "id": "R4-14",
+   "group": "Markets, lines and prices",
+   "requirement": "Stadium roof and surface, with NWS hourly wind and precipitation overlay",
+   "brief_ref": "Brief 'Stadium Roof/Surface & NWS'",
+   "status": "Blocked: data",
+   "exists_today": "No roof designation and no NWS grid in the repository",
+   "blocker": "Blocked: data (roof designation and NWS feed not captured)",
+   "clears_when": "Official roof designation at 90 minutes before kickoff, and an NWS hourly grid for every kickoff",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/nfl/schedule_2026_week10.csv"
+  },
+  {
+   "id": "R4-15",
+   "group": "Markets, lines and prices",
+   "requirement": "Kickoff and declared onside-kick regime priors filter for totals and comeback curves",
+   "brief_ref": "Brief '2026 Kickoff & Declared Onside-Kick'",
+   "status": "Blocked: data",
+   "exists_today": "No declared-onside-kick source captured",
+   "blocker": "Blocked: data (regime source not identified)",
+   "clears_when": "Named official source for each declared regime, with a date",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/console/questions.csv"
+  },
+  {
+   "id": "R4-16",
+   "group": "Injuries and availability",
+   "requirement": "Store every injury-hub read with its clock time and publish the delta, never the level",
+   "brief_ref": "Brief 'Store every injury-hub read'",
+   "status": "Built, not yet run",
+   "exists_today": "Archive keeps every distinct capture with fetch time and SHA-256 (pipeline/archive.py)",
+   "blocker": "Blocked: first scheduled run has not yet written an archive entry",
+   "clears_when": "At least two archived captures for a team, and a delta page built from them",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/archive.py"
+  },
+  {
+   "id": "R4-17",
+   "group": "Injuries and availability",
+   "requirement": "Automate immutable multi-day availability snapshots (official report and club depth pages, hashed)",
+   "brief_ref": "Brief 'Automate immutable multi-day'",
+   "status": "Built, not yet run",
+   "exists_today": "data-refresh workflow runs every 6 hours and now archives the injury report; club depth pages not archived",
+   "blocker": "Blocked: first run; club depth pages not yet in the archive",
+   "clears_when": "Three distinct days of archive entries for the injury report, and the depth pages added",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml"
+  },
+  {
+   "id": "R4-18",
+   "group": "Injuries and availability",
+   "requirement": "Build immutable official availability snapshots with raw hashes, timestamps and conflict flags",
+   "brief_ref": "Brief 'Build immutable official availability'",
+   "status": "Built, not yet run",
+   "exists_today": "Archive stores hash, time, row count and conflict flags; the self-test passes (4 behaviours)",
+   "blocker": "Blocked: first scheduled run; club depth and inactive evidence not archived",
+   "clears_when": "One stored capture with zero integrity failures in scripts/pipeline/verify_archive.py",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/scripts/pipeline/verify_archive.py"
+  },
+  {
+   "id": "R4-19",
+   "group": "Injuries and availability",
+   "requirement": "Snapshot the injury report every Wednesday, Thursday and Friday and keep a dated history",
+   "brief_ref": "Brief 'Snapshot the nfl.com injury report every Wed'",
+   "status": "Built, not yet run",
+   "exists_today": "Six-hourly schedule covers Wed, Thu and Fri; each change is archived",
+   "blocker": "Blocked: first run",
+   "clears_when": "Stored captures on all three days of one game week",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml"
+  },
+  {
+   "id": "R4-20",
+   "group": "Injuries and availability",
+   "requirement": "Treat the injury report as a timestamped series, daily from Wednesday to kickoff, and measure DNP to LP to FP",
+   "brief_ref": "Brief 'Treat the injury report as a timestamped series'",
+   "status": "Not started",
+   "exists_today": "No series yet; archive began this round",
+   "blocker": "Blocked: time (needs a game week of captures)",
+   "clears_when": "Four captures across one game week for each player with a practice status",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/archive.py"
+  },
+  {
+   "id": "R4-21",
+   "group": "Injuries and availability",
+   "requirement": "Measure how Questionable turns into Out, and practice trends",
+   "brief_ref": "Brief 'Questionable to Out changes'",
+   "status": "Not started",
+   "exists_today": "No series",
+   "blocker": "Blocked: time (needs at least two weeks of captures)",
+   "clears_when": "Two full weeks of archive for the 2026 season",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/archive.py"
+  },
+  {
+   "id": "R4-22",
+   "group": "Injuries and availability",
+   "requirement": "Use the injury signal as a surprise (change from the last capture), never as a level",
+   "brief_ref": "Brief 'Make the injury signal a surprise'",
+   "status": "Not started",
+   "exists_today": "Repository publishes levels (game_status on the report)",
+   "blocker": "Blocked: needs an archived series",
+   "clears_when": "Surprise defined on two archived captures; level never used as a feature",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv"
+  },
+  {
+   "id": "R4-23",
+   "group": "Injuries and availability",
+   "requirement": "Capture the official inactive lists and snap counts",
+   "brief_ref": "Brief 'Capture official inactive lists and snap counts'",
+   "status": "Blocked: data",
+   "exists_today": "Only 160 of 345 injury-report rows carry a game designation; no inactive list and no snap counts in the repository",
+   "blocker": "Blocked: data (no captured inactive list or snap-count source)",
+   "clears_when": "Official inactive list and snap counts for every 2026 game, with a source link on each row",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv"
+  },
+  {
+   "id": "R4-24",
+   "group": "Injuries and availability",
+   "requirement": "Use official NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps",
+   "brief_ref": "Brief 'Use official NFL Game Books'",
+   "status": "Blocked: data",
+   "exists_today": "No Game Book captured",
+   "blocker": "Blocked: data (Game Books not in the repository)",
+   "clears_when": "Game Book captured and hashed for every completed 2026 game",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-25",
+   "group": "Injuries and availability",
+   "requirement": "Archive weekly injury reports for past seasons so designations can be tested against outcomes",
+   "brief_ref": "Brief 'Archive weekly injury reports for past seasons'",
+   "status": "Blocked: data",
+   "exists_today": "Only the 2026 Week 10 report is in the repository",
+   "blocker": "Blocked: data (past official reports not captured)",
+   "clears_when": "Every regular-season week of the seasons in scope captured with a hash",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-26",
+   "group": "Injuries and availability",
+   "requirement": "Score injury-designation reliability (play rate per designation with confidence intervals) before using it as a feature",
+   "brief_ref": "Brief 'Score injury-designation reliability'",
+   "status": "Blocked: data",
+   "exists_today": "Designations exist; no joined inactive lists and no outcomes",
+   "blocker": "Blocked: data (needs inactive lists and several seasons)",
+   "clears_when": "A play-rate interval for each designation from at least one full season joined to official inactives",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv"
+  },
+  {
+   "id": "R4-27",
+   "group": "Injuries and availability",
+   "requirement": "Calibrate empirically what 'Questionable' means, instead of old percentages",
+   "brief_ref": "Brief 'Calibrate what Questionable means'",
+   "status": "Blocked: data",
+   "exists_today": "Official text gives no percentages; no outcome data",
+   "blocker": "Blocked: data (same as the reliability row)",
+   "clears_when": "Calibrated play rate for Questionable with an interval, from a joined season",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-28",
+   "group": "Injuries and availability",
+   "requirement": "Capture the reserve list so 'not listed' never means 'available'",
+   "brief_ref": "Brief 'Capture the reserve list'",
+   "status": "Blocked: data",
+   "exists_today": "The injury report does not list injured reserve; official news links show reserve moves",
+   "blocker": "Blocked: data (no reserve list captured)",
+   "clears_when": "Official reserve list captured each week, and every IR player marked on the depth register",
+   "evidence": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start"
+  },
+  {
+   "id": "R4-29",
+   "group": "Injuries and availability",
+   "requirement": "Announced-starter evidence field, never an inferred replacement",
+   "brief_ref": "Brief 'Add an announced-starter evidence field'",
+   "status": "Not started",
+   "exists_today": "Official news links name starters (Drew Lock, Sam Darnold); no field captures them",
+   "blocker": "Blocked: data (official dated starter statements not captured)",
+   "clears_when": "Field filled only from a dated official statement, with a link on every value",
+   "evidence": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again"
+  },
+  {
+   "id": "R4-30",
+   "group": "Injuries and availability",
+   "requirement": "Treat roster turnover as a first-class data event, with depth versioned against the last official roster event",
+   "brief_ref": "Brief 'Treat roster turnover as a first-class data event'",
+   "status": "Blocked: data",
+   "exists_today": "No transactions log captured",
+   "blocker": "Blocked: data (official transactions log not captured)",
+   "clears_when": "Transactions log captured with dates; Colts Week 10 receiver trades verified against it",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-31",
+   "group": "Injuries and availability",
+   "requirement": "Flag stale depth rows against the official transactions log",
+   "brief_ref": "Brief 'Flag stale depth rows'",
+   "status": "Blocked: data",
+   "exists_today": "No transactions log; no stale-row check",
+   "blocker": "Blocked: data (same as the turnover row)",
+   "clears_when": "Zero depth rows naming a player on injured reserve or traded, with the log date shown",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-32",
+   "group": "Injuries and availability",
+   "requirement": "Populate the three missing Lions game-status designations",
+   "brief_ref": "Brief 'Populate the three missing Lions'",
+   "status": "Built",
+   "exists_today": "Kerby Joseph, Cade Mays and D.J. Reed: 3 of 3 read as Out on the official page and in the published table",
+   "blocker": "None",
+   "clears_when": "Done for the 2026-11-15 read",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-33",
+   "group": "Injuries and availability",
+   "requirement": "Seattle and Cincinnati shown as injury-free while listing players",
+   "brief_ref": "Brief 'Re-capture and republish the Week 10 injury tables'",
+   "status": "Built",
+   "exists_today": "SEA 15 rows and CIN 9 rows match the official read row for row (brief's '4' for Cincinnati is superseded by the page)",
+   "blocker": "None",
+   "clears_when": "Done for both clubs",
+   "evidence": "https://www.nfl.com/injuries/"
+  },
+  {
+   "id": "R4-34",
+   "group": "Injuries and availability",
+   "requirement": "Re-capture and republish the Week 10 injury tables against the official page",
+   "brief_ref": "Brief 'Re-capture and republish the Week 10 injury tables'",
+   "status": "Partly built",
+   "exists_today": "Official read: 347 rows; published: 345; 34 row differences in 3 clubs (BAL, IND, LAC)",
+   "blocker": "Blocked: decision (owner to accept the 2026-11-15 read as the republished table)",
+   "clears_when": "Zero row differences on a fresh read; 25 of 28 clubs already match",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/spotcheck_diffs.csv"
+  },
+  {
+   "id": "R4-35",
+   "group": "Injuries and availability",
+   "requirement": "Drift alarm on every scraper: pin row counts and required fields; fail loudly when a field goes blank",
+   "brief_ref": "Brief 'Add a drift alarm to every scraper'",
+   "status": "Partly built",
+   "exists_today": "Integrity checks pass the LAC and BAL rows (blank designations) as verified; 32 differences in those two clubs (LAC 26, BAL 6)",
+   "blocker": "Blocked: decision (rule for a blank designation on a listed player)",
+   "clears_when": "Build fails when a club's designation cells are all blank while the page lists players",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_injury_spotcheck.py"
+  },
+  {
+   "id": "R4-36",
+   "group": "Depth and personnel",
+   "requirement": "Fix the two depth-parsing failures: Texans published as an image, Packers prefix jersey numbers",
+   "brief_ref": "Brief 'Fix the two depth-parsing failures'",
+   "status": "Partly built",
+   "exists_today": "Depth parsed for 20 of 32 clubs; Texans (HOU) not parsed",
+   "blocker": "Blocked: data (Texans depth is an image; needs an authorised structured source)",
+   "clears_when": "Structured official source for HOU; Packers rows parse with numbers stripped and raw string stored",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv"
+  },
+  {
+   "id": "R4-37",
+   "group": "Depth and personnel",
+   "requirement": "32-team roster and injured-reserve sweep before any team-level model is trusted",
+   "brief_ref": "Brief 'Run the 32-team roster/IR sweep'",
+   "status": "Partly built",
+   "exists_today": "20 of 32 clubs in the depth register; the injury table covers 28 clubs (4 on bye)",
+   "blocker": "Blocked: data (HOU depth; reserve list)",
+   "clears_when": "32 of 32 clubs in the depth register and the reserve list",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json"
+  },
+  {
+   "id": "R4-38",
+   "group": "Depth and personnel",
+   "requirement": "Resolve the depth-order source before building the backup-deficiency feature (route a: club pages; route b: snap counts)",
+   "brief_ref": "Brief 'Resolve the depth-order source'",
+   "status": "Partly built",
+   "exists_today": "Route (a) used for 20 of 32 clubs; route (b) not available",
+   "blocker": "Blocked: data (HOU)",
+   "clears_when": "One route verified for all 32 clubs before the feature is built",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json"
+  },
+  {
+   "id": "R4-39",
+   "group": "Depth and personnel",
+   "requirement": "Model depth slots as groups, not a single starter (ties and empty slots allowed)",
+   "brief_ref": "Brief 'Model depth slots as groups'",
+   "status": "Unverified",
+   "exists_today": "Not re-counted this round; the brief cites 149 slots with more than one rank-1 player",
+   "blocker": "Unverified: needs a re-count from the depth register",
+   "clears_when": "Group count re-computed from the register and published next to the 149 cited",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv"
+  },
+  {
+   "id": "R4-40",
+   "group": "Depth and personnel",
+   "requirement": "Represent shared and empty depth slots faithfully",
+   "brief_ref": "Brief 'Represent shared and empty depth slots'",
+   "status": "Unverified",
+   "exists_today": "Not checked this round (Seattle shared slot and Washington empty slot cited in the brief)",
+   "blocker": "Unverified",
+   "clears_when": "Shared and empty flags present on the affected rows, checked against the club page",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv"
+  },
+  {
+   "id": "R4-41",
+   "group": "Depth and personnel",
+   "requirement": "Add an official depth-chart register with date and source on every row",
+   "brief_ref": "Brief 'Add an official depth-chart register'",
+   "status": "Partly built",
+   "exists_today": "897 slots carry a source per club; no capture date per row",
+   "blocker": "Blocked: decision (dating rule for club pages)",
+   "clears_when": "Capture date and source on every row",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv"
+  },
+  {
+   "id": "R4-42",
+   "group": "Depth and personnel",
+   "requirement": "Flag backups replacing starters on offense and on defense, by string (2nd, 3rd, 4th)",
+   "brief_ref": "Brief 'Track injuries and deficiencies'",
+   "status": "Partly built",
+   "exists_today": "688 slots name a replacement; 209 name none; 16 starters on the report have no named replacement",
+   "blocker": "Blocked: data (HOU; reserve list)",
+   "clears_when": "Every starter on the report mapped to a named replacement or to an explicit 'none'",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json"
+  },
+  {
+   "id": "R4-43",
+   "group": "Depth and personnel",
+   "requirement": "Interactive offense versus defense matchup deficiency matrix (1st to 4th string)",
+   "brief_ref": "Brief 'Interactive Offense vs. Defense Matchup'",
+   "status": "Partly built",
+   "exists_today": "Deficiency table exists; no interactive matrix",
+   "blocker": "Blocked: depends on the complete depth register",
+   "clears_when": "Matrix built for 32 clubs and reviewed against the register",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/console/depth_replacement.csv"
+  },
+  {
+   "id": "R4-44",
+   "group": "Depth and personnel",
+   "requirement": "Model depth from playing time, not from jersey order",
+   "brief_ref": "Brief 'Do not model depth from jersey order'",
+   "status": "Blocked: data",
+   "exists_today": "Depth uses the club's own chart order; playing-time (snap) data is not captured",
+   "blocker": "Blocked: data (snap counts)",
+   "clears_when": "Snap-count source verified for every 2026 game and linked per row",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json"
+  },
+  {
+   "id": "R4-45",
+   "group": "Depth and personnel",
+   "requirement": "Use snap counts as the starter proxy when the depth chart is unavailable",
+   "brief_ref": "Brief 'Use snap counts as the starter proxy'",
+   "status": "Blocked: data",
+   "exists_today": "No snap counts in the repository",
+   "blocker": "Blocked: data (no official snap-count source captured)",
+   "clears_when": "Snap counts for every 2026 game from a source named on each row",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json"
+  },
+  {
+   "id": "R4-46",
+   "group": "Depth and personnel",
+   "requirement": "Reject: deriving depth order from jersey number, experience or salary",
+   "brief_ref": "Brief 'Reject: deriving depth order from jersey number'",
+   "status": "Closed (approach rejected by brief, not used)",
+   "exists_today": "Pipeline uses the club's depth-chart column order, not roster attributes",
+   "blocker": "None",
+   "clears_when": "Remains closed",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/parsers.py"
+  },
+  {
+   "id": "R4-47",
+   "group": "Depth and personnel",
+   "requirement": "Injury and personnel ablations: the same model with and without personnel features, the difference with uncertainty",
+   "brief_ref": "Brief 'Add injury and personnel ablations'",
+   "status": "Not started",
+   "exists_today": "No model with personnel features exists",
+   "blocker": "Blocked: data (depth and snaps) and decision (model specification)",
+   "clears_when": "Chronological holdout with a paired difference and an interval for each feature set",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lab/lines/model_report.json"
+  },
+  {
+   "id": "R4-48",
+   "group": "Depth and personnel",
+   "requirement": "Injury and depth ablations: identical models with and without verified availability features, chronological holdouts",
+   "brief_ref": "Brief 'Add injury/depth ablations, not fixed penalties'",
+   "status": "Not started",
+   "exists_today": "No availability features in any fitted model",
+   "blocker": "Blocked: data (archive series; snap counts)",
+   "clears_when": "Identical models compared on a chronological holdout with the difference reported with uncertainty",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lab/lines/model_report.json"
+  },
+  {
+   "id": "R4-49",
+   "group": "Depth and personnel",
+   "requirement": "Availability graph as a first-class dataset: who was expected to start, and who actually did",
+   "brief_ref": "Brief 'Build the availability graph'",
+   "status": "Not started",
+   "exists_today": "No expected-start dataset; no game-book starters",
+   "blocker": "Blocked: data (game books; depth register)",
+   "clears_when": "Expected and actual starter recorded for every starting slot of every 2026 game",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv"
+  },
+  {
+   "id": "R4-50",
+   "group": "Depth and personnel",
+   "requirement": "Per-team view: starters out, replacements named, net injury count",
+   "brief_ref": "Brief 'Add a per-team view'",
+   "status": "Partly built",
+   "exists_today": "Replacement depth exists by unit and position; no per-team view",
+   "blocker": "Blocked: data (HOU)",
+   "clears_when": "32 club views, each showing starters out, replacements named and the net count",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json"
+  },
+  {
+   "id": "R4-51",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Pre-register every strategy; forbid backtest numbers from ever appearing on the leaderboard",
+   "brief_ref": "Brief 'Pre-register every strategy'",
+   "status": "Partly built",
+   "exists_today": "Registry lists 10 strategies; leaderboard shows backtest columns holdout_bets, holdout_win_pct, holdout_ci95 and more",
+   "blocker": "Blocked: decision (leaderboard rule for backtest columns)",
+   "clears_when": "Leaderboard with no backtest column, and a registry row for every strategy the site reports",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  },
+  {
+   "id": "R4-52",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Pre-register each strategy: definition frozen before results are seen",
+   "brief_ref": "Brief 'Pre-register each strategy'",
+   "status": "Partly built",
+   "exists_today": "Registration recorded as a date (gates.json registered_at), not as a commit hash",
+   "blocker": "Blocked: decision (registration method)",
+   "clears_when": "A git commit hash per strategy, dated before its evaluation window opens",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+  },
+  {
+   "id": "R4-53",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Freeze a rule before it sees data: commit the rule text, sample window and gates; the commit hash is the registration",
+   "brief_ref": "Brief 'Freeze a rule before it sees data'",
+   "status": "Not started",
+   "exists_today": "No strategy has a commit hash as its registration",
+   "blocker": "Blocked: decision (process), then time",
+   "clears_when": "One commit per strategy, with its hash in the registry",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_registry.csv"
+  },
+  {
+   "id": "R4-54",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Split data into train, validation and final holdout seasons",
+   "brief_ref": "Brief 'Split data into train, validation and final holdout'",
+   "status": "Partly built",
+   "exists_today": "Model tuned on 1999–2014 and scored on 2015–2026; no named final holdout season",
+   "blocker": "Blocked: decision (which seasons are final holdout)",
+   "clears_when": "Named final holdout seasons, untouched until the window opens",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lab/lines/model_config.json"
+  },
+  {
+   "id": "R4-55",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Singles-only shadow baseline, pre-registered and frozen, with forecasts recorded before kickoff",
+   "brief_ref": "Brief 'Start with a singles-only shadow baseline'",
+   "status": "Not started",
+   "exists_today": "No timestamped forecast log before kickoff",
+   "blocker": "Blocked: data (closing prices for the scoring)",
+   "clears_when": "One logged forecast per fixture at least one hour before kickoff (14 in Week 10)",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv"
+  },
+  {
+   "id": "R4-56",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Parlays and prop combos only behind a joint-evidence gate (validated joint probability and void and push rules)",
+   "brief_ref": "Brief 'Keep parlays and prop combos behind a joint-evidence gate'",
+   "status": "Blocked: data",
+   "exists_today": "Parlay result file exists; no validated joint probability and no operator void or push rules",
+   "blocker": "Blocked: data (joint probability; operator rules)",
+   "clears_when": "Joint probability validated against outcomes, and the operator's void and push rules recorded",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/parlay_results.csv"
+  },
+  {
+   "id": "R4-57",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Leaderboard divisions: singles, game parlays, same-game parlays and prop combos, ranked separately",
+   "brief_ref": "Brief 'Use proper-score leaderboard divisions'",
+   "status": "Not started",
+   "exists_today": "Singles only in the registry; no division split",
+   "blocker": "Blocked: data (per-division samples)",
+   "clears_when": "A division table with at least one row per division",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_registry.csv"
+  },
+  {
+   "id": "R4-58",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Rank by benchmark-relative Brier skill with a game-cluster lower bound and a multiplicity adjustment",
+   "brief_ref": "Brief 'Rank with proper scores and uncertainty'",
+   "status": "Not started",
+   "exists_today": "Brier appears in gate text only; the leaderboard does not rank by it",
+   "blocker": "Blocked: data (probabilities and closing prices)",
+   "clears_when": "Brier skill against a named benchmark, with a cluster-bootstrap lower bound above zero",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+  },
+  {
+   "id": "R4-59",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Two-stage skill leaderboard: proper-score qualification, then prospective closing-line value and ROI escrow",
+   "brief_ref": "Brief 'Two-Stage Skill Leaderboard'",
+   "status": "Blocked: data",
+   "exists_today": "No closing-line value series; no escrow",
+   "blocker": "Blocked: data (closing lines); decision (escrow rules)",
+   "clears_when": "A prospective window with closing-line value recorded for every ticket",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+  },
+  {
+   "id": "R4-60",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Control baseline (random picks; favourites only) on every leaderboard run",
+   "brief_ref": "Brief 'Add a control baseline'",
+   "status": "Not started",
+   "exists_today": "No random or favourites control rows in any leaderboard run",
+   "blocker": "Blocked: none (buildable now)",
+   "clears_when": "Random and favourites rows in every leaderboard run",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  },
+  {
+   "id": "R4-61",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Rank by proper scores with uncertainty, not win rate or short-run ROI",
+   "brief_ref": "Brief 'Rank with proper scores and uncertainty, not win rate'",
+   "status": "Partly built",
+   "exists_today": "Leaderboard ranks by a signal score; 10 rows, with ROI columns shown beside it",
+   "blocker": "Blocked: decision (ranking objective)",
+   "clears_when": "Ranking column is a proper score with an interval; ROI columns removed from the ranking",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  },
+  {
+   "id": "R4-62",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Reject: ranking strategies by season-long realised return",
+   "brief_ref": "Brief 'Reject: ranking strategies by season-long ROI'",
+   "status": "Closed (approach rejected by brief, not used)",
+   "exists_today": "Leaderboard shows season ROI as a column; the rank column is the signal score",
+   "blocker": "None (confirm the rank column)",
+   "clears_when": "Confirmed by a reviewer reading the rank formula",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  },
+  {
+   "id": "R4-63",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Removal-of-luck panel on the dashboard",
+   "brief_ref": "Brief 'Compute and publish the removal of luck panel'",
+   "status": "Partly built",
+   "exists_today": "Panel page exists on the line console; its inputs are not yet on a schedule",
+   "blocker": "Blocked: data (closing lines for the full sample)",
+   "clears_when": "Panel computed from the verified feed and published with its n",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/console/luck.html"
+  },
+  {
+   "id": "R4-64",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Two-sided 'what would change our mind' field on every strategy entry",
+   "brief_ref": "Brief 'Add a two-sided what would change our mind field'",
+   "status": "Not started",
+   "exists_today": "Registry columns: strategy_id, name, family, definition; no such field",
+   "blocker": "Blocked: decision (the wording of each side)",
+   "clears_when": "Field filled for all 10 registered strategies",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_registry.csv"
+  },
+  {
+   "id": "R4-65",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Define a demotion gate that sends a live strategy back to paper",
+   "brief_ref": "Brief 'Define a demotion gate'",
+   "status": "Partly built",
+   "exists_today": "Defined in data/demotion_gate.json; thresholds T2 to T4 are proposed defaults",
+   "blocker": "Blocked: decision (ratify thresholds, question Q-26)",
+   "clears_when": "Owner ratifies the thresholds in writing",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/demotion_gate.json"
+  },
+  {
+   "id": "R4-66",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Sample sufficiency gate G1, one definition used everywhere",
+   "brief_ref": "Brief 'Each strategy must pass validation gates'",
+   "status": "Partly built",
+   "exists_today": "Three definitions: singles 500 bets in gates.json; 100 in the README; two-leg parlays 300 tickets",
+   "blocker": "Blocked: decision (one threshold)",
+   "clears_when": "One G1 threshold, cited identically in gates.json, the README and the leaderboard",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+  },
+  {
+   "id": "R4-67",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Correlations only from officially sourced numbers, with n published on every value",
+   "brief_ref": "Brief 'Compute correlations only from officially sourced numbers'",
+   "status": "Partly built",
+   "exists_today": "Audit of 988 pairs found no violations; coverage limited to the 2026 official feed",
+   "blocker": "Blocked: data (historical official pages)",
+   "clears_when": "Every correlation published with n and an official source for each input",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/correlations_official_check.json"
+  },
+  {
+   "id": "R4-68",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Determine correlation values between the signals and markets we use",
+   "brief_ref": "Brief 'Determine correlation values'",
+   "status": "Partly built",
+   "exists_today": "Published values with n exist for 2026 inputs",
+   "blocker": "Blocked: data (historical official pages)",
+   "clears_when": "Values for every pair named in the strategy registry, each with n",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/correlations_official_check.json"
+  },
+  {
+   "id": "R4-69",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Reward the top-performing strategies",
+   "brief_ref": "Brief 'Provide rewards for the top performing strategies'",
+   "status": "Blocked: decision",
+   "exists_today": "Reward design is written; no funded pool; jurisdiction review not done",
+   "blocker": "Blocked: decision (Q-34 reward funding and legality)",
+   "clears_when": "Owner decision on Q-34, and a jurisdiction review on file",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+  },
+  {
+   "id": "R4-70",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Strategies that generate useful signals, tested out of sample",
+   "brief_ref": "Brief 'Research and develop strategies for generating useful signals'",
+   "status": "Partly built",
+   "exists_today": "16 strategies evaluated on the site; 0 pass every gate",
+   "blocker": "Blocked: data (prospective window) and decision (G1)",
+   "clears_when": "At least one strategy passing every gate on a prospective window",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  },
+  {
+   "id": "R4-71",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Originate our own NFL lines rather than reuse someone else's numbers",
+   "brief_ref": "Brief 'Originate my own NFL lines'",
+   "status": "Partly built",
+   "exists_today": "Own model lines exist for 2026 Week 10 and for the 2015–2026 walk-forward",
+   "blocker": "Blocked: market column empty (Q-31)",
+   "clears_when": "Residual against a named market for each originated line",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv"
+  },
+  {
+   "id": "R4-72",
+   "group": "Strategies, validation and leaderboard",
+   "requirement": "Single bets, parlays and player-prop combinations covered",
+   "brief_ref": "Brief 'Look at single bet, parlays, player prop bet combos'",
+   "status": "Partly built",
+   "exists_today": "Singles, parlays and props pages exist; no validated prop data",
+   "blocker": "Blocked: data (player-prop lines)",
+   "clears_when": "Prop lines from a named source for each prop row",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/parlay_results.csv"
+  },
+  {
+   "id": "R4-73",
+   "group": "Process, site and governance",
+   "requirement": "Decision-readiness table on the landing page, one row per requirement, with the gate that blocks it and the number that would clear it",
+   "brief_ref": "Brief 'Put a decision-readiness table on the landing page'",
+   "status": "Built",
+   "exists_today": "This table, on the landing page, generated from data/readiness",
+   "blocker": "None",
+   "clears_when": "Done",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/requirements_r4.json"
+  },
+  {
+   "id": "R4-74",
+   "group": "Process, site and governance",
+   "requirement": "Executive summary of the important details",
+   "brief_ref": "Brief 'Create an executive summary'",
+   "status": "Built",
+   "exists_today": "console/executive-summary.html and docs/EXECUTIVE-SUMMARY.md",
+   "blocker": "None",
+   "clears_when": "Refreshed each round",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/docs/EXECUTIVE-SUMMARY.md"
+  },
+  {
+   "id": "R4-75",
+   "group": "Process, site and governance",
+   "requirement": "Clear list of questions, the information we hold, the information we lack, and the answers needed",
+   "brief_ref": "Brief 'I want a clear list of questions'",
+   "status": "Built",
+   "exists_today": "Decision register on console/questions.html",
+   "blocker": "None",
+   "clears_when": "Maintained",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/console/questions.csv"
+  },
+  {
+   "id": "R4-76",
+   "group": "Process, site and governance",
+   "requirement": "Suggestions section for site improvements, each with more than one path for the owner to choose",
+   "brief_ref": "Brief 'Make suggestions on how to improve the site'",
+   "status": "Built",
+   "exists_today": "Suggestion review board on console/suggestions.html",
+   "blocker": "None",
+   "clears_when": "Maintained",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/console/suggestions.csv"
+  },
+  {
+   "id": "R4-77",
+   "group": "Process, site and governance",
+   "requirement": "Repository line-by-line review with links for manual review and irregularities flagged",
+   "brief_ref": "Brief 'REPO WORK'",
+   "status": "Built",
+   "exists_today": "Repository review page, plus the round-4 flags on the flagged page",
+   "blocker": "None",
+   "clears_when": "Refreshed each round",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/flags.json"
+  },
+  {
+   "id": "R4-78",
+   "group": "Process, site and governance",
+   "requirement": "GitHub Pages site: clean landing page and subpages organised by category",
+   "brief_ref": "Brief 'SITE CREATION'",
+   "status": "Built",
+   "exists_today": "Live at karagemop466-tech.github.io/X1, from the Pages workflow",
+   "blocker": "None",
+   "clears_when": "Live",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/pages.yml"
+  },
+  {
+   "id": "R4-79",
+   "group": "Process, site and governance",
+   "requirement": "Every table row carries a source link to an official site; blank and flagged when unverified",
+   "brief_ref": "Brief 'VERIFICATION'",
+   "status": "Partly built",
+   "exists_today": "Link presence is enforced by tools/verify_console.py; value correctness is not (LAC and BAL rows passed)",
+   "blocker": "Blocked: decision (adopt a value-level check in the build)",
+   "clears_when": "Build fails on any row whose value differs from an independent read of the official page",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_console.py"
+  },
+  {
+   "id": "R4-80",
+   "group": "Process, site and governance",
+   "requirement": "Flagged for Review page with source links, not blocking the merge",
+   "brief_ref": "Brief 'PULL REQUEST AND MERGE'",
+   "status": "Built",
+   "exists_today": "console/flagged.html, including the round-4 section",
+   "blocker": "None",
+   "clears_when": "Maintained",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/console/flagged.html"
+  },
+  {
+   "id": "R4-81",
+   "group": "Process, site and governance",
+   "requirement": "Snapshot storage outside the static site, with freshness and source or schema change alerts",
+   "brief_ref": "Brief 'Add durable snapshot storage and alerts'",
+   "status": "Built, not yet run",
+   "exists_today": "Archive lives under data/pipeline/archive and is not copied to the site; verifier warns on staleness",
+   "blocker": "Blocked: first scheduled run",
+   "clears_when": "Freshness warning and integrity failure both exercised on live data",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/scripts/pipeline/verify_archive.py"
+  },
+  {
+   "id": "R4-82",
+   "group": "Process, site and governance",
+   "requirement": "Split the site into a public analysis layer and a private data layer until the terms are read",
+   "brief_ref": "Brief 'Split the site into a public analysis layer and a private data layer'",
+   "status": "Not started",
+   "exists_today": "Everything is public; row-level data sits in data/ and is served",
+   "blocker": "Blocked: decision (which tables stay private until the terms are read)",
+   "clears_when": "Owner decision on the table list, and a private store for the rest",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/console/payload.json"
+  },
+  {
+   "id": "R4-83",
+   "group": "Process, site and governance",
+   "requirement": "Weekly 'what changed' diff, not a static snapshot",
+   "brief_ref": "Brief 'Publish a weekly what changed diff'",
+   "status": "Partly built",
+   "exists_today": "One what-changed record exists; no weekly store",
+   "blocker": "Blocked: time (needs a second weekly snapshot)",
+   "clears_when": "Diff published for each of the last two weekly snapshots",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/audit/what_changed.json"
+  },
+  {
+   "id": "R4-84",
+   "group": "Process, site and governance",
+   "requirement": "Coordination: one branch per session, claims recorded on the board, no edits to another session's files",
+   "brief_ref": "Brief 'PARALLEL SESSIONS'",
+   "status": "Partly built",
+   "exists_today": "Board kept in COORDINATION.md; the platform pins one branch per session, so session-<id>/<task> branches are not used",
+   "blocker": "Decision (accept the one-branch rule as the convention)",
+   "clears_when": "Owner accepts the convention in writing",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md"
+  },
+  {
+   "id": "R4-85",
+   "group": "Process, site and governance",
+   "requirement": "No manual input from the owner; finish all tasks in the session",
+   "brief_ref": "Brief 'There should be no manual input'",
+   "status": "Partly built",
+   "exists_today": "Scheduled pipeline and CI run without input; the open decisions above still wait for the owner",
+   "blocker": "Blocked: decision (each open decision in this table)",
+   "clears_when": "Zero open decisions in this table",
+   "evidence": "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/requirements_r4.json"
+  }
+ ],
+ "flags": [
+  {
+   "id": "R4-F01",
+   "severity": "high",
+   "title": "Chargers (LAC) and Ravens (BAL) rows in the published injury table have blank designations",
+   "detail": "Field differences against the official page read on 2026-11-15: LAC 26, BAL 6 (two Ravens rows, Calais Campbell and Ronnie Stanley, are absent; Jaylinn Hawkins has no injury and no game status where the page shows Knee and Out). On the Chargers the injury descriptions and game statuses are blank where the page prints them. The pipeline marked all 345 rows verified, with zero flags.",
+   "links": [
+    "https://www.nfl.com/injuries/",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/spotcheck_diffs.csv"
+   ]
+  },
+  {
+   "id": "R4-F02",
+   "severity": "medium",
+   "title": "Verification checks presence of a link, not that the value matches the official page",
+   "detail": "tools/verify_console.py passes on 2026-11-15 (every link resolves, every row sourced), while the injury table it reads differs from the official page in 34 field values (R4-F01). Source presence is checked; source values are not.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_console.py",
+    "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_app.py",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/spotcheck_diffs.csv"
+   ]
+  },
+  {
+   "id": "R4-F03",
+   "severity": "high",
+   "title": "The leaderboard publishes backtest and forward ROI columns",
+   "detail": "The brief forbids backtest numbers on the leaderboard. data/strategy_leaderboard.csv has holdout_bets, holdout_win_pct, holdout_ci95, holdout_roi_110, holdout_p_raw, holdout_p_bonf, forward_2026_bets, forward_2026_win_pct, forward_2026_roi_110, holdout_positive_seasons.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+   ]
+  },
+  {
+   "id": "R4-F04",
+   "severity": "high",
+   "title": "The G1 sample-size gate is defined three ways",
+   "detail": "gates.json: 500 singles bets and 300 two-leg tickets; README: 100 bets; leaderboard column G1_sample_ge_300. One definition must be ratified.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+    "https://github.com/karagemop466-tech/X1/blob/main/README.md",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+   ]
+  },
+  {
+   "id": "R4-F05",
+   "severity": "high",
+   "title": "The strategy registry lists fewer strategies than the site reports",
+   "detail": "data/strategy_registry.csv has 10 strategies; the site reports 16 strategies.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_registry.csv",
+    "https://github.com/karagemop466-tech/X1/blob/main/console/index.html"
+   ]
+  },
+  {
+   "id": "R4-F06",
+   "severity": "medium",
+   "title": "Pre-registration is recorded as a date, not as a commit hash",
+   "detail": "data/gates.json records registered_at as a date. The brief requires the commit hash to be the registration.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+   ]
+  },
+  {
+   "id": "R4-F07",
+   "severity": "low",
+   "title": "The owner brief's game-log count (136) differs from the repository's 2026 feed (137 rows)",
+   "detail": "137 rows in verified_results_2026_r3.csv. The brief figure is quoted, not re-verified. The difference needs reconciling before the corpus is frozen.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results_2026_r3.csv"
+   ]
+  },
+  {
+   "id": "R4-F08",
+   "severity": "medium",
+   "title": "Injury counts in the brief are superseded by the official page",
+   "detail": "The brief cites 254 and 279 rows and 4 Cincinnati players (quoted, not re-verified). On the 2026-11-15 read the page lists 347 rows and 9 Cincinnati players. Each figure is kept with its date.",
+   "links": [
+    "https://www.nfl.com/injuries/"
+   ]
+  },
+  {
+   "id": "R4-F09",
+   "severity": "medium",
+   "title": "Texans (HOU) depth chart not parsed",
+   "detail": "The houstontexans.com depth-chart URL returned HTTP 200 with a page title and no parsed tables in data/pipeline/_run_report.json, and a later attempt returned 404. No authorised structured source is recorded, so HOU is left blank, not transcribed by eye.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/_run_report.json"
+   ]
+  },
+  {
+   "id": "R4-F10",
+   "severity": "medium",
+   "title": "Only 1 of 14 Week 10 fixtures carries a venue",
+   "detail": "The venue of each fixture must come from the official game centre. The game-centre pages have not been captured.",
+   "links": [
+    "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/nfl/schedule_2026_week10.csv"
+   ]
+  },
+  {
+   "id": "R4-F11",
+   "severity": "high",
+   "title": "The injury archive has not yet written an entry",
+   "detail": "pipeline/archive.py and its workflow step are merged in this round. The archive's first entry is created by the first scheduled run; until then no multi-day history exists.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/pipeline/archive.py",
+    "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml"
+   ]
+  },
+  {
+   "id": "R4-F12",
+   "severity": "medium",
+   "title": "Reserve moves are in official news, not in the injury report",
+   "detail": "The Dolphins' QB Malik Willis moved to injured reserve, and the Patriots placed RB TreVeyon Henderson on injured reserve, per official news links. The report does not show reserve status, so 'not listed' is not 'available'.",
+   "links": [
+    "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+    "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14"
+   ]
+  },
+  {
+   "id": "R4-F13",
+   "severity": "high",
+   "title": "The price store stamps every row with the build time, not a capture time",
+   "detail": "src/console/feed.py build_price_snapshots writes one build timestamp into captured_at_utc, open_captured_at_utc and close_captured_at_utc. The committed rows read 2026-11-14T20:48:22Z. A rebuild on 2026-11-15 rewrites all 18,902 rows to 2026-11-15T18:20:14Z, and the row order changes. The mirror publishes no capture time (its own note says so), so these fields must not be presented as capture times. Found during the R4-1 console rebuild, which was not committed.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/src/console/feed.py",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/console/price_snapshots.csv"
+   ]
+  }
+ ],
+ "metrics": {
+  "inj_published_rows": 345,
+  "inj_published_designated": 160,
+  "inj_published_teams": 28,
+  "inj_official_rows": 347,
+  "inj_mismatch": 34,
+  "inj_teams_checked": 28,
+  "inj_teams_clean": 25,
+  "inj_teams_dirty": "BAL, IND, LAC",
+  "inj_by_team": {
+   "BAL": 6,
+   "IND": 2,
+   "LAC": 26
+  },
+  "inj_bal_lac_mismatch": 32,
+  "inj_lac_rows_mismatch": 26,
+  "inj_bal_mismatch": 6,
+  "inj_ind_mismatch": 2,
+  "inj_sea_rows": 15,
+  "inj_cin_rows": 9,
+  "lions_out": 3,
+  "fixtures_wk10": 14,
+  "venues_wk10": 1,
+  "depth_clubs": 20,
+  "depth_slots": 897,
+  "depth_named": 688,
+  "depth_unnamed": 209,
+  "depth_starters_no_replacement": 16,
+  "results_2026_rows": 137,
+  "price_rows": 84,
+  "price_open_close_marketline": 0,
+  "price_market_rows_blank": 84,
+  "registry_strategies": 10,
+  "registry_has_what_would_change": false,
+  "leaderboard_rows": 10,
+  "leaderboard_backtest_cols": [
+   "holdout_bets",
+   "holdout_win_pct",
+   "holdout_ci95",
+   "holdout_roi_110",
+   "holdout_p_raw",
+   "holdout_p_bonf",
+   "forward_2026_bets",
+   "forward_2026_win_pct",
+   "forward_2026_roi_110",
+   "holdout_positive_seasons"
+  ],
+  "g1_singles": 500,
+  "g1_parlay2": 300,
+  "demotion_status": "Defined and pre-registered. Trigger thresholds T2-T4 are proposed defaults awaiting owner ratification (decision Q-26). T1 and T5 are boolean rules and need no threshold. Nothing here is invented data: this is a policy definition, and every threshold is labelled as proposed where it is a choice rather than a fact."
+ }
+}
