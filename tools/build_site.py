@@ -235,6 +235,9 @@ final_games = [g for g in SCHED if g["status"] == "final"]
 
 
 # ---------------------------------------------------------------- overview
+ROOT_READINESS_FRAGMENT = open(os.path.join(ROOT, "tools", "site_fragments", "root_decision_readiness.fragment"), encoding="utf-8").read()
+
+
 def page_index():
     v = AUDIT["verification"]
     body = f"""
@@ -282,7 +285,7 @@ def page_index():
   <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
 </section>
 
-<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
+{ROOT_READINESS_FRAGMENT}<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
 <section class="cards">
   <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. {v['cells_compared']:,} cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
   <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across {FULL_JOIN['clubs_with_a_chart']} clubs finds <b>{FULL_JOIN['starters_ruled_out']} starters ruled Out</b> plus {FULL_JOIN['backups_depth_2_to_4_out_or_doubtful']} second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
