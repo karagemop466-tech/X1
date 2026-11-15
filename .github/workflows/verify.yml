@@ -133,3 +133,9 @@ jobs:
           python3 tools/build_leaderboard_split.py
           python3 tools/build_app.py
           git diff --exit-code -- data/results_feed.json data/price_snapshots.json data/leaderboard_split_907c.json app
+
+      # Added by session arena-3f5badd0-x1 (additive only). Control baselines (random picks,
+      # favourites only) pre-registered in docs/lab/control-baselines.md (commit 0747005).
+      # --check fails if the committed artefact differs from a fresh computation.
+      - name: Control baselines reproduce from the pinned mirror (C1)
+        run: python3 tools/lab/build_controls.py --check
