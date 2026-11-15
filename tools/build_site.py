@@ -1859,6 +1859,34 @@ def page_crosscheck():
 
 # ---------------------------------------------------------------- decision readiness
 READY = load_json("readiness/decision_readiness.json")
+# Verbatim archive of the hand-written decision-readiness table that was committed directly to
+# index.html by commit 3380987 (2026-11-15) WITHOUT regenerating the generator. That made main's
+# 'Fail if committed HTML is stale' check fail, because tools/build_site.py rewrites index.html and
+# never emitted that section. Per COORDINATION.md rule 6 the other session's work is not discarded:
+# its exact text is preserved here, in a marked file, and rendered on its own page with its
+# provenance and its numbers checked against the measured register.
+THEIRS_PATH = os.path.join(D, "readiness", "handwritten_landing_transcript.frag")
+with open(THEIRS_PATH, encoding="utf-8") as fh:
+    THEIRS_READINESS = fh.read()
+
+
+def _rebase_fragment_links(fragment, depth=1):
+    """The preserved fragment was authored for the repo root, so its relative hrefs point at
+    paths that only resolve from index.html. Rendered inside pages/, each one needs the ../ that
+    makes it resolve there too. Nothing else about the fragment is touched."""
+    prefix = "../" * depth
+    # docs/ and data/ are repository sources, not served paths: the Pages build copies neither,
+    # so a relative link to them 404s on the live site. Point those at the repository instead.
+    for repo_only in ("docs/", "data/"):
+        fragment = fragment.replace(f'href="{repo_only}', f'href="{REPO}/blob/main/{repo_only}')
+    for target in ("pages/", "dashboard/", "research/", "live/", "hub/",
+                   "lab/", "console/", "site/", "archive/", "app/", "assets/"):
+        fragment = fragment.replace(f'href="{target}', f'href="{prefix}{target}')
+    return fragment
+
+
+THEIRS_READINESS = _rebase_fragment_links(THEIRS_READINESS, 1)
+
 READY_DIFF = load_json("verification/2026_11_15/standings_diff.json")
 READY_CAPTURE = load_json("capture/2026_w10/recapture_report.json")
 
@@ -2027,6 +2055,26 @@ def page_readiness():
   <p class="muted">The official Game Center for that game reports <b>New England 10 – Detroit 35, Final</b>,
   at FC Bayern Munich Stadium, Munich. It also publishes the Game Book PDF:
   <a href="https://www.nfl.com/games/patriots-at-lions-2026-reg-10">nfl.com game centre ↗</a>.</p>
+
+  <h2>Preserved: the hand-written table that was committed straight to the landing page</h2>
+  <div class="note"><b>Why this is here, not deleted.</b> On 2026-11-15 a commit
+  (<code>3380987</code>, "Add decision-readiness table to landing page") wrote a 53-row table
+  <em>directly</em> into <code>index.html</code> without changing the generator that produces that file.
+  Because <code>tools/build_site.py</code> rewrites <code>index.html</code> on every build, the next build
+  removed it — and the CI check "Fail if committed HTML is stale" has been failing on <code>main</code>
+  ever since, because the committed file and the generator disagree.
+  Per coordination rule 6 the work is <b>preserved verbatim</b> below rather than discarded, with its
+  provenance stated. Its own text is reproduced exactly as committed; where its numbers disagree with
+  the measured register above, both are shown and the disagreement is left visible.</div>
+  <p class="muted"><b>What differs.</b> The preserved table's verdicts are prose claims
+  ("met", "already met"), not measurements: every one of its first six rows reads
+  <i>met — already met</i>, and its gate column reads <i>none</i> for them. The generated register above
+  measures the same requirements and, for example, shows R-05 blocked by <b>G-01 Source gate</b> with
+  988 official correlation pairs. Both readings are published; neither is silently overwritten.
+  The preserved table also predates flag F-20/F-21, so its counts are the 2026-11-14 counts.</p>
+  <details><summary>Show the preserved table, verbatim as committed</summary>
+  {THEIRS_READINESS}
+  </details>
 
   <h2>What this page cannot tell you</h2>
   <ul class="route">
