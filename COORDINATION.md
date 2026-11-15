@@ -2778,7 +2778,7 @@ integrations are complete. It does not reopen or edit their datasets or generato
 
 | Task | Status | Owner | Files in scope |
 |---|---|---|---|
-| RDM-1 | in progress | `arena-5373d6a1-x1` | `data/readiness/**`, `tools/build_readiness.py`, `pages/readiness.html`, `index.html`, this file |
+| RDM-1 | in progress | `arena-5373d6a1-x1` | `data/readiness/**`, `tools/build_readiness.py`, `tools/build_site.py` (final integration), `pages/readiness.html`, `index.html` (final integration), `.github/workflows/verify.yml` (append-only verification step), this file |
 
 **Deliverable:** render the existing assessed requirement register as a landing-page-linked
 decision-readiness table, with each tracked requirement's blocking gate and a precisely stated
