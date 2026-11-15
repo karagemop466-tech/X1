@@ -2609,3 +2609,33 @@ so rule 10 is not triggered. Current `main` tip: `51d6e32`.
 **Non-overlap declaration:** no open claim touches these files. Shared files (`console/**`, `tools/build_console.py`,
 `pipeline/**`, workflows) are edited additively, and each edit is logged in the record below.
 
+
+## Round-4 status — `arena-8c67ec75-x1` (recorded in the task order; R4-5 still pending)
+
+Commits on `arena/8c67ec75-x1`: `d2c4d6f` (R4-2 code), `e4a267d` and `64c828b` (R4-3 tool and partial TSV), `0874a72` (R4-1 register and page). Later commits add R4-1 and R4-4 corrections and this record.
+
+### R4-1 — decision-readiness register: **done (build, wiring, verification)**
+- Output: `tools/build_readiness.py` → `data/readiness/requirements_r4.{csv,json}`, `flags_r4.json`. 85 requirement rows. Each row carries status, what exists in the repo, blocker, number that clears it, and an evidence link (`evidence` must be non-empty; the builder asserts this).
+- Wired: `tools/build_console.py` `main()` calls `build_readiness.apply(p, page, esc)`. NAV entry `readiness.html` added. Landing page table on `console/index.html`; full table on `console/readiness.html` (columns: Status, What exists today, Blocked by, Number that clears it, Evidence).
+- Verification: `tools/verify_console.py` PASS (4,410 links, 3,017 data rows, 0 unsourced); `tools/verify_app.py` PASS; `tools/verify_data.py` PASS (2,944 checks); `tools/check_links.py` PASS (160 files, 41,151 assertions); `scripts/pipeline/verify_archive.py` PASS (no archive yet).
+- Irregularity logged: the console rebuild re-stamps every row of `data/console/price_snapshots.csv` with the build time (R4-F13). The rebuilt file was **not** committed; the committed file was restored. Not fixed in this round.
+- Corrections made before publishing: the first draft said Jaylinn Hawkins was shown Limited where the page shows Out. The real error is that her Out game status is blank in the published table (her Limited practice status is correct). Flag F02 no longer claims `verify_app.py` is missing (it exists). Flag F10 link path checked: `data/nfl/schedule_2026_week10.csv` exists and matches the 14 games in `data/schedule_2026_week10.csv`, so no path fix was needed. The "every 6 hours" claim is wrong: `data-refresh.yml` cron is `17 11,15,19,23 * * *` (every 4 hours, four runs a day) plus game-day passes `42 12,16 * * 0,1,4`. Corrected in the register.
+
+### R4-2 — hashed injury archive: **code done; first archive entry pending the first scheduled run**
+- `pipeline/archive.py` (append-only, SHA-256, fetch time); `pipeline/run.py` calls it before overwriting `data/pipeline/injuries.json`.
+- Self-test `scripts/pipeline/test_archive.py`: 4 behaviours PASS. Verifier `scripts/pipeline/verify_archive.py`: PASS on the empty archive.
+- `.github/workflows/data-refresh.yml`: step "Verify the immutable capture archive" added. YAML validated with PyYAML (8 steps; `pages.yml` 18 steps; `verify.yml` 27 steps).
+- Irregularity: `_ci/commit.log` on this branch shows a CI push that failed after 5 attempts (`MARKER: PUSH FAILED after 5 attempts`); the diagnostics commits `2f2eb6d` and `6a8d247` only touched `_ci/`. Not investigated further.
+
+### R4-3 — official spot-check of the Week 10 injury table: **partly verified (provisional)**
+- Source: https://www.nfl.com/injuries/ (Week 10 2026), read 2026-11-15, chunks 0–7 (all chunks read this round; the earlier note that the four missing clubs sat in chunks 0–3 was wrong).
+- Corrections: **CHI, DEN, PHI and TB are not missing from the transcription. They have no Week 10 game** (the 14 fixtures in `data/schedule_2026_week10.csv` and `data/nfl/schedule_2026_week10.csv` cover 28 clubs). The injury page lists only clubs playing, so there is nothing to transcribe. Recorded in `data/readiness/official_spotcheck_w10_coverage.json`.
+- Diff result (unchanged): 34 row mismatches in BAL, IND and LAC (`data/readiness/spotcheck_diffs.csv`). **On all 34 disputed rows the transcription matches the official text; the published CSV is wrong** (blank injury and game-status cells, two Ravens rows missing: Calais Campbell and Ronnie Stanley, practice statuses that differ). The "timing" label on the IND Arden Key row is a guess and is marked unverified.
+- Row-level verification against the official text: BAL, IND, LAC, SEA, SF, CIN (all rows); row counts checked for ATL, KC, LV, PIT, NE, DET, WAS, NYG. **Not yet re-read row by row: AZ, BUF, CAR, CLE, DAL, GB, HOU, JAX, LA, MIA, MIN, NO, NYJ, TEN.** Those 14 clubs agree with the published CSV on every row, which is not the same as agreeing with the official page. They stay provisional.
+- Naming: the claim named `data/readiness/official_spotcheck_w10.csv`; the file is `.tsv`.
+
+### R4-4 — flagged-for-review additions: **done (published)**
+- 14 round-4 flags on `console/flagged.html`: R4-F01 to R4-F14 with source links. None blocks the merge.
+- Gap-list disposition: 31-club depth figure = 31 clubs in `data/pipeline/depth_charts.json`; Houston is the missing club (R4-F09). Replacement-depth club count (20 clubs, 78 rows) does not reconcile with the 897-slot total (R4-F14). Gate threshold conflict (100 / 500 / 300): R4-F04. 10 vs 16 strategies: R4-F05. ROI columns on the leaderboard: R4-F03. Pre-registration as a date, not a hash: R4-F06. HOU depth: R4-F09. LAC/BAL defects: R4-F01. Snap counts and Game Book: no dataset in the repo; covered by "Blocked: data" rows in the register (not re-flagged). New: R4-F13 (price-store timestamps are build time), R4-F14 (depth coverage).
+
+### R4-5 — integration: **pending** (PR, merge, Pages confirmation to follow in this session)

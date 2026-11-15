@@ -1,7 +1,7 @@
 {
  "dataset": "requirements_r4",
  "title": "Decision readiness: one row per requirement in the owner's brief",
- "generated_at": "2026-11-15T18:24:31+00:00",
+ "generated_at": "2026-11-15T18:27:02+00:00",
  "method": "Statuses were assessed in session arena-8c67ec75-x1 by reading the files and pages named in each row. Numbers are computed by tools/build_readiness.py from those files.",
  "status_counts": {
   "Built": 10,
@@ -197,7 +197,7 @@
    "requirement": "Automate immutable multi-day availability snapshots (official report and club depth pages, hashed)",
    "brief_ref": "Brief 'Automate immutable multi-day'",
    "status": "Built, not yet run",
-   "exists_today": "data-refresh workflow runs every 6 hours and now archives the injury report; club depth pages not archived",
+   "exists_today": "data-refresh workflow runs four times a day (cron 17 11,15,19,23 UTC) plus game-day passes, and now archives the injury report; club depth pages not archived",
    "blocker": "Blocked: first run; club depth pages not yet in the archive",
    "clears_when": "Three distinct days of archive entries for the injury report, and the depth pages added",
    "evidence": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml"
@@ -1078,6 +1078,17 @@
    "links": [
     "https://github.com/karagemop466-tech/X1/blob/main/src/console/feed.py",
     "https://github.com/karagemop466-tech/X1/blob/main/data/console/price_snapshots.csv"
+   ]
+  },
+  {
+   "id": "R4-F14",
+   "severity": "medium",
+   "title": "Replacement-depth coverage does not reconcile with the 31-club and 897-slot figures on the landing page",
+   "detail": "data/depth/replacement_depth.csv has 78 rows across 20 clubs. data/depth/replacement_depth_summary.json reports 897 slots from data/pipeline/depth_charts.json, which lists 31 clubs (all except Houston, see R4-F09). The club count in the replacement file is not explained by the depth charts. Not reconciled this round.",
+   "links": [
+    "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json",
+    "https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/depth_charts.json"
    ]
   }
  ],

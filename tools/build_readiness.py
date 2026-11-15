@@ -216,7 +216,7 @@ def build_rows(m: dict) -> list:
         REPO + "pipeline/archive.py")
     row(I, "Automate immutable multi-day availability snapshots (official report and club depth pages, hashed)",
         "Brief 'Automate immutable multi-day'", "Built, not yet run",
-        "data-refresh workflow runs every 6 hours and now archives the injury report; club depth pages not archived",
+        "data-refresh workflow runs four times a day (cron 17 11,15,19,23 UTC) plus game-day passes, and now archives the injury report; club depth pages not archived",
         "Blocked: first run; club depth pages not yet in the archive",
         "Three distinct days of archive entries for the injury report, and the depth pages added",
         REPO + ".github/workflows/data-refresh.yml")
@@ -699,6 +699,13 @@ def build_flags(m: dict) -> list:
                     "to 2026-11-15T18:20:14Z, and the row order changes. The mirror publishes no capture time (its own note says so), so these "
                     "fields must not be presented as capture times. Found during the R4-1 console rebuild, which was not committed."),
          "links": [REPO + "src/console/feed.py", REPO + "data/console/price_snapshots.csv"]},
+        {"id": "R4-F14", "severity": "medium",
+         "title": "Replacement-depth coverage does not reconcile with the 31-club and 897-slot figures on the landing page",
+         "detail": ("data/depth/replacement_depth.csv has 78 rows across 20 clubs. data/depth/replacement_depth_summary.json reports 897 slots "
+                    "from data/pipeline/depth_charts.json, which lists 31 clubs (all except Houston, see R4-F09). The club count in the "
+                    "replacement file is not explained by the depth charts. Not reconciled this round."),
+         "links": [REPO + "data/depth/replacement_depth.csv", REPO + "data/depth/replacement_depth_summary.json",
+                   REPO + "data/pipeline/depth_charts.json"]},
     ]
 
 

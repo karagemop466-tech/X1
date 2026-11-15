@@ -126,5 +126,16 @@
    "https://github.com/karagemop466-tech/X1/blob/main/src/console/feed.py",
    "https://github.com/karagemop466-tech/X1/blob/main/data/console/price_snapshots.csv"
   ]
+ },
+ {
+  "id": "R4-F14",
+  "severity": "medium",
+  "title": "Replacement-depth coverage does not reconcile with the 31-club and 897-slot figures on the landing page",
+  "detail": "data/depth/replacement_depth.csv has 78 rows across 20 clubs. data/depth/replacement_depth_summary.json reports 897 slots from data/pipeline/depth_charts.json, which lists 31 clubs (all except Houston, see R4-F09). The club count in the replacement file is not explained by the depth charts. Not reconciled this round.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/depth_charts.json"
+  ]
  }
 ]
