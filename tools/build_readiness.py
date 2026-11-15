@@ -35,6 +35,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GH = "https://github.com/karagemop466-tech/X1/blob/main/"
 AS_OF = "2026-11-15"
 
+# Register rows whose own evidence link is not an accepted official host (see build_rows).
+EVIDENCE_OVERRIDE = {"R-23": ".github/workflows/pages.yml"}
+
 
 def jl(rel: str) -> Any:
     with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
@@ -199,10 +202,18 @@ def build_rows(F: Dict[str, Any]) -> List[Dict[str, Any]]:
             raise SystemExit(f"no blocker written for {r['id']} ({r['state']})")
         else:
             gate, clear, basis, ev = b["gate"], b["clear"], b["basis"], b["evidence"]
+        # The register's own evidence URL for R-23 is the live github.io page, which the site's
+        # source-link rule does not accept as an official host. The evidence that the site is
+        # published is the workflow that publishes it, so that file is linked instead.
+        if r["id"] in EVIDENCE_OVERRIDE:
+            ev = EVIDENCE_OVERRIDE[r["id"]]
+            ev_url = gh(ev)
+        else:
+            ev_url = evidence_link(ev, r.get("evidence_url"))
         rows.append(dict(
             id=r["id"], group="Register", requirement=r["requirement"],
             state=r["state"], blocking_gate=gate, clearing_number=clear, basis=basis,
-            evidence=ev, evidence_url=evidence_link(ev, r.get("evidence_url")),
+            evidence=ev, evidence_url=ev_url,
             source_url=r.get("brief_source") or "",
             assessment=r.get("assessment", "")))
 

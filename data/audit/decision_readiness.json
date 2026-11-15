@@ -306,8 +306,8 @@
       "blocking_gate": "No blocker: met",
       "clearing_number": "Nothing to clear",
       "basis": "none",
-      "evidence": "https://karagemop466-tech.github.io/X1/",
-      "evidence_url": "https://karagemop466-tech.github.io/X1/",
+      "evidence": ".github/workflows/pages.yml",
+      "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/pages.yml",
       "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
       "assessment": "GitHub Pages workflow builds, verifies and deploys on every push to main."
     },

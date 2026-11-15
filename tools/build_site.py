@@ -235,6 +235,41 @@ final_games = [g for g in SCHED if g["status"] == "final"]
 
 
 # ---------------------------------------------------------------- overview
+
+def readiness_section():
+    """Decision-readiness register on the landing page: one row per requirement, the gate that
+    blocks it, and the number that would clear it. Generated from data/audit/decision_readiness.json
+    (built by tools/build_readiness.py), the same file app/index.html renders, so the two pages
+    cannot disagree. Added by session arena/29e011dc-x1 to replace a hand-edited table that the
+    generator could not reproduce (commit 3380987) and that repeated an unreconciled figure."""
+    path = os.path.join(ROOT, "data", "audit", "decision_readiness.json")
+    with open(path, encoding="utf-8") as fh:
+        rd = json.load(fh)
+    c = rd.get("counts", {})
+    kind = {"met": "ok", "partly met": "warn", "open": "high", "in progress": ""}
+    trs = []
+    for r in rd["rows"]:
+        basis = {"repo": "defined in repo", "proposed": "proposed, not accepted", "none": "—"}.get(r["basis"], r["basis"])
+        trs.append([
+            f'<td><b>{esc(r["id"])}</b></td>',
+            f'<td>{esc(r["requirement"])}</td>',
+            f'<td><span class="pill {kind.get(r["state"], "")}">{esc(r["state"])}</span></td>',
+            f'<td>{esc(r["blocking_gate"])}</td>',
+            f'<td>{esc(r["clearing_number"])}</td>',
+            f'<td>{esc(basis)}</td>',
+            src_cell(r.get("evidence_url") or r.get("source_url", "")),
+        ])
+    rows_html = "\n".join("<tr>" + "".join(t) + "</tr>" for t in trs)
+    return f"""
+<section class="sectionhead"><div><div class="eyebrow">DECISION READINESS</div><h2>Every requirement: what blocks it, what clears it</h2></div><span class="tag">AS OF {esc(rd.get("as_of", ""))}</span></section>
+<section class="content">
+  <div class="note"><b>{c.get("total", 0)} requirements, one row each:</b> {c.get("met", 0)} met, {c.get("partly_met", 0)} partly met, {c.get("open", 0)} open, {c.get("in_progress", 0)} in progress. The gate column names what blocks the item. The number column names what would clear it; where the repo does not define that number, the basis column says it is <i>proposed</i> and not yet accepted. Each number is read from the file linked in the source column. The same register is on <a href="app/index.html">the unified dashboard</a> and downloadable as <a href="data/audit/decision_readiness.csv">CSV</a>.</div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Decision-readiness register: {c.get("total", 0)} requirements, the gate that blocks each, and the number that clears it</caption><thead><tr><th>ID</th><th>Requirement</th><th>State</th><th>Gate that blocks it</th><th>Number that clears it</th><th>Basis</th><th>Source</th></tr></thead><tbody>
+{rows_html}
+</tbody></table></div>
+</section>
+"""
+
 def page_index():
     v = AUDIT["verification"]
     body = f"""
@@ -346,7 +381,7 @@ def page_index():
   </div>
 </section>
 """
-    return shell("Overview", f"SNAPSHOT {RETRIEVED}", body)
+    return shell("Overview", f"SNAPSHOT {RETRIEVED}", body + readiness_section())
 
 
 # ---------------------------------------------------------------- exec summary
