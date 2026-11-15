@@ -31,7 +31,7 @@ Owner rules (verbatim intent):
 | `arena-fb9e0427-x1` | `arena/fb9e0427-x1` | **Round 4: decision-readiness register on the landing page, requirement state audit, gap register (ablation, cluster bootstrap, NWS/roof overlay, control baseline, reserve/inactive/snap capture), Flagged-for-Review additions, integration + PR + merge** | 2026-11-15 | active (round-4 owner; claim written before work) |
 
 | `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
-| `arena/8c50eb4b-x1` | `arena/8c50eb4b-x1` | **C14 final integration: add a full decision-readiness register for every assessed requirement, with evidence-backed blockers and clearance thresholds** | 2026-11-15 | **active** — additive console scope only; no edits to PR #50's `app/**` or workflow files |
+| `arena/8c50eb4b-x1` | `arena/8c50eb4b-x1` | **C14/C15 review and handoff: decision-readiness coverage, canonical-root reachability, and active-PR coordination** | 2026-11-15 | **done** — review delivered in `docs/review/readiness-integration-review.md`; no files owned by active PRs were edited |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -82,9 +82,15 @@ existing generators are extended, not rewritten, and no other session's branch i
 
 | # | Task | Status | Owner session | Files in scope |
 |---|---|---|---|---|
-| C14 | Put one decision-readiness row per assessed project requirement on the console landing page; show only evidence-backed blocking gates and numeric clearance criteria, leaving unsupported numbers blank and flagged | in progress | `arena/8c50eb4b-x1` | `src/console/readiness.py` (new), `tools/build_console.py`, `tools/verify_console.py`, `data/console/decision_readiness.csv` + `.json` (new), `data/console/flagged.csv` (generated), `console/index.html` + `console/flagged.html` (generated), `COORDINATION.md` |
+| C14 | Decision-readiness table on the actual GitHub Pages root landing page; coordinate with the active decision-readiness implementation rather than duplicate it | needs review | `arena/8c50eb4b-x1` | `COORDINATION.md`, `docs/review/readiness-integration-review.md` (new; review only) |
+| C15 | Independently review the active decision-readiness PR for root-page reachability, requirement coverage, and source/threshold integrity; log requests to the owning integration session | done | `arena/8c50eb4b-x1` | `docs/review/readiness-integration-review.md` (new), `COORDINATION.md` |
 
-**Non-overlap:** PR #50 (`arena/c0461519-x1`) is open and owns new injury-ledger files, `.github/workflows/**`, and `app/**`. C14 edits none of those paths. Its only shared-file overlap is this append-only task board; this claim is inserted in the registry/task section, separate from that PR's end-of-file session block.
+**Non-overlap:** PR #53 (`arena/29e011dc-x1`) owns `tools/build_readiness.py`, `data/audit/decision_readiness.*`, `app/index.html`, `app/flagged.html`, and the additive workflow steps. PR #55 (`arena/1aa2b47f-x1`) is the active final integration/release session. PR #50 (`arena/c0461519-x1`) owns the injury ledger and `app/**`. C14/C15 did not edit any of those files. Review findings are logged in `docs/review/readiness-integration-review.md`; only the final integrator should change shared landing/navigation or table data.
+
+**Requests to active owners (logged here; not actioned by editing their paths):**
+- To PR #53 (`arena/29e011dc-x1`): the readiness matrix is on `/app/`, while current Pages root remains `console/index.html`; also rebase on latest `main` (PR #53 is currently `mergeable=false`) and rebuild NB-07 after PR #51 added the random-pick baseline.
+- To PR #55 (`arena/1aa2b47f-x1`): please make the readiness matrix reachable from the actual `/` landing page, verify the downloaded CSV/JSON in the assembled tree, and keep the unregistered current-brief items flagged rather than implied met.
+- To PR #50 (`arena/c0461519-x1`): no ledger changes requested; retain the dated capture and its explicit raw-response limitation.
 
 **Scope note (rule 4 compliance):** `tools/build_app.py` and `app/**` were last owned by the
 completed T8/T9 integration (`arena-b38a21d8-x1`, `arena/fcc11e05-x1`). Both tasks are `done`
