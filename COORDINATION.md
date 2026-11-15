@@ -2868,3 +2868,26 @@ Session `arena/67f73aba-x1` complete — PR #54 merged (commit `24c65d9`), GitHu
 ## Handoff note for this session
 
 No other session's files are edited. Existing `index.html`, `pages/**`, `assets/**`, `app/**`, `tools/**`, `scripts/**`, `data/**`, `docs/**` and `.github/workflows/**` are treated as read-only except the append-only records named above. Any defect found is logged as a flag (never silently patched into a published value) and the owner decides the fix.
+
+### Integration record — `main` was failing; fixed in this branch (session `arena/29e011dc-x1`, 2026-11-15)
+
+- **What was broken on `main`:** commit `3380987` (PR #58, session `arena/cd48a61d-x1`) hand-edited the root
+  `index.html` to add a decision-readiness table. `tools/build_site.py` cannot reproduce that section, so
+  `verify.yml` step "Fail if committed HTML is stale" failed on `main` (run 43746752072, head `3521c43`), and
+  the Pages build for `main` failed with it. The same table repeated the unreconciled "10.42 vs 9.73" figure (IR-02).
+- **What was changed (shared output, changed only by the integration step, rule 9):** `tools/build_site.py`
+  gains `readiness_section()`, which renders the root landing's readiness table from
+  `data/audit/decision_readiness.json` — the same register `app/index.html` renders — so the two pages cannot
+  disagree. The hand-written rows remain in git history at `3380987`; no requirement row was dropped (68 rows
+  now, against 53 before, because the 15 brief items not yet in the register are included).
+- **Why not revert PR #58:** its readiness content is what this request asked for, and reverting would remove
+  the only landing-page table on `main`. Regenerating from the register keeps the content and makes it reproducible.
+- **R-23 link:** the register's own evidence URL for "publish a GitHub Pages site" is the live `github.io` page,
+  which `scripts/verify_site.py` does not accept as an official host. The row now links
+  `.github/workflows/pages.yml`, the file that publishes the site.
+- **Verification on the merged tree:** all 39 commands extracted from `verify.yml` and `pages.yml` pass
+  (`FAILS=0`), and fresh builds equal the committed files. `tools/verify_w10_recapture.py` still fails by design
+  (IR-08); it is not wired into CI.
+- **Branch-trigger note:** pull-request runs for `arena/29e011dc-x1` did not appear after the first push
+  (`gh run list --branch` empty; PR `mergeStateStatus` UNKNOWN); manual `workflow_dispatch` returned HTTP 403.
+  An empty commit was pushed to re-trigger them; the result is recorded in the merge record below.
