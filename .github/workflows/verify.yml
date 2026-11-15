@@ -32,13 +32,16 @@ jobs:
       # A stale register would silently publish yesterday's "current value" as today's.
       - name: Rebuild the decision-readiness register and fail if stale
         run: |
-          python3 tools/build_decision_readiness.py
-          git diff --exit-code -- data/readiness
+          # --check compares every field except generated_at, so the guard tests the
+          # register's CONTENT and not the wall-clock timestamp of the last build.
+          # (A plain rebuild always differs on generated_at, which would make this
+          # step fail on every commit — including a no-op one.)
+          python3 tools/build_decision_readiness.py --check
 
       - name: Re-diff the published standings against the 2026-11-15 official read
         run: |
-          python3 tools/verify_2026_11_15.py
-          git diff --exit-code -- data/verification/2026_11_15
+          # Same reason: --check compares content, ignoring the build timestamp.
+          python3 tools/verify_2026_11_15.py --check
 
       - name: Line-by-line integrity checks
         run: python3 tools/verify_data.py

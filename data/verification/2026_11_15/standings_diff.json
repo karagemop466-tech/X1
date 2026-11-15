@@ -1,7 +1,7 @@
 {
  "dataset": "standings_diff_2026_11_15",
  "title": "Published 2026-11-14 standings vs the official nfl.com page as it reads on 2026-11-15",
- "generated_at": "2026-11-15T18:19:10Z",
+ "generated_at": "2026-11-15T18:25:40Z",
  "generated_by": "tools/verify_2026_11_15.py (session arena-73e6cbac-x1)",
  "source": {
   "url": "https://www.nfl.com/standings/",
