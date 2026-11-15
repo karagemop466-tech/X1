@@ -67,7 +67,7 @@
   </div>
   <div class="herocard">
     <div class="eyebrow">RE-VERIFIED AGAINST THE OFFICIAL PAGES</div>
-    <div class="stat"><strong>2,183</strong><span>cells diffed, cell by cell</span><span class="statnote">independent re-transcription</span></div>
+    <div class="stat"><strong>3,918</strong><span>cells diffed, cell by cell</span><span class="statnote">independent re-transcription</span></div>
     <div class="stat"><strong>32</strong><span>teams verified</span><span class="statnote">nfl.com standings</span></div>
     <div class="stat"><strong>14</strong><span>week-10 games verified</span><span class="statnote">nfl.com schedule</span></div>
     <div class="stat"><strong>347</strong><span>injury rows verified</span><span class="statnote">nfl.com injury report</span></div>
@@ -79,7 +79,7 @@
 <section class="alert">
   <b>What changed in this round.</b>
   <p>Every published Week&nbsp;10 table was re-read from the official pages and diffed cell by cell:
-  <strong>2,183 cells, 0 mismatches</strong>. That closes the gap recorded as
+  <strong>3,918 cells, 0 mismatches</strong>. That closes the gap recorded as
   flag I-17, where 301 of 345 injury rows had never been re-checked by a second reader. Two limits are
   now stated plainly instead of being left implicit: the evidence window is a
   <strong>five-club</strong> depth pilot, while the club charts for <strong>31 clubs</strong> that already sat in the
@@ -99,8 +99,8 @@
 
 <section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
 <section class="cards">
-  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. 2,183 cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
-  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across 31 clubs finds <b>31 starters ruled Out</b> plus 17 second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
+  <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. 3,918 cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
+  <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across 31 clubs finds <b>32 starters ruled Out</b> plus 20 second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
   <a class="card" href="pages/line-origination.html"><span class="ico">◎</span><small>METHOD / 03</small><h3>Line origination</h3><p>The pipeline from frozen inputs to a fair price, the seven signal families, and the prop model that must not assume independence.</p><span class="more">Read the method →</span></a>
   <a class="card" href="pages/validation.html"><span class="ico">✓</span><small>METHOD / 04</small><h3>Validation gates</h3><p>Seven pre-registered gates. A 55% record over 500 bets scores z≈1.22 — inside coin-flip range. Here is the arithmetic that removes luck.</p><span class="more">See the gates →</span></a>
   <a class="card" href="pages/leaderboard.html"><span class="ico">↗</span><small>COMPETITION / 05</small><h3>Strategy leaderboard</h3><p>Four divisions, rank by skill not ROI, effective sample size for correlated tickets, and rewards that do not crown luck.</p><span class="more">See the design →</span></a>
@@ -160,7 +160,7 @@
   <div class="panel">
     <div class="eyebrow">HOW THIS STAYS HONEST</div>
     <h2>Four checks that run before every publish</h2>
-    <div class="blocker"><span class="pill">1</span><div><b>Independent re-transcription</b><p>2,183 cells diffed against a separately transcribed copy of the official pages. Any contradiction fails the build.</p></div></div>
+    <div class="blocker"><span class="pill">1</span><div><b>Independent re-transcription</b><p>3,918 cells diffed against a separately transcribed copy of the official pages. Any contradiction fails the build.</p></div></div>
     <div class="blocker"><span class="pill">2</span><div><b>Source on every row</b><p>A row without an official link does not render. A mutation test proves the rule can fail.</p></div></div>
     <div class="blocker"><span class="pill">3</span><div><b>Blank beats inferred</b><p>A cell the official page does not print stays empty and carries a title explaining why.</p></div></div>
     <div class="blocker"><span class="pill">4</span><div><b>Freshness is visible</b><p>The snapshot date is on every page because an injury table decays within days.</p></div></div>
