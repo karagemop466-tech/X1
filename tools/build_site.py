@@ -15,8 +15,6 @@ import html
 import json
 import os
 import re
-import subprocess
-import sys
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,7 +48,6 @@ NAV = [
     ("pages/review-queue.html", "Review queue"),
     ("pages/changes.html", "What changed"),
     ("pages/requirements.html", "Requirements &amp; status"),
-    ("pages/readiness.html", "Decision readiness"),
     ("dashboard/lab-index.html", "Analytics lab"),
     ("pages/review.html", "Repo review"),
     ("research/index.html", "Research lab"),
@@ -281,9 +278,8 @@ def page_index():
 <section class="cards">
   <a class="card" href="pages/decisions-critical.html"><span class="ico">?</span><small>DECIDE / 01</small><h3>The blocking questions</h3><p>Every question that has to be answered before a strategy can honestly be scored, with what is already known, what is missing, and the evidence that would close it.</p><span class="more">Open the decision table →</span></a>
   <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
-  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open, {REQS["counts"].get("in_progress", 0)} in progress — full statuses shown on the requirement page.</p><span class="more">See the list →</span></a>
-  <a class="card" href="pages/readiness.html"><span class="ico">⏱</span><small>GATE / 04</small><h3>Decision readiness</h3><p>One row per currently tracked requirement: its blocker, registered clearance test, and any missing numeric threshold or direct NFL source.</p><span class="more">Open the readiness table →</span></a>
-  <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 05</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
+  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
+  <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
@@ -1758,7 +1754,6 @@ def main():
     write("pages/review-queue.html", page_review_queue())
     write("pages/changes.html", page_changes())
     write("pages/requirements.html", page_requirements())
-    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "build_readiness.py")], cwd=ROOT, check=True)
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
     print(f"wrote index.html + {n} pages")
 
