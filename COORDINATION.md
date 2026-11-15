@@ -3058,3 +3058,65 @@ So the artefact does not exist and is unowned. It is claimed here.
 integration session. This session *is* an integration session for its own artefacts (D1–D3), and the change
 it makes to `index.html` is one additive section plus one nav entry. It will re-run the committed
 generators and every existing verifier before pushing, and it will not alter any other section's output.
+
+## Completion record — D1–D4 (session `arena-73e6cbac-x1`, 2026-11-15)
+
+**Status: done.** Rebased onto `main` @ `0dc0c18`; all 21 committed verifiers pass.
+
+### What shipped
+
+| Artefact | Path | What it is |
+|---|---|---|
+| Register builder | `tools/build_decision_readiness.py` | 53 rows; `--check` fails if stale |
+| Register data | `data/readiness/decision_readiness.json` / `.csv` | gate + clearing number + measured current value + source tier |
+| Landing table | `index.html` (one section) | the owner's requirement, rendered from the register |
+| Full page | `pages/readiness.html` | every note, derivation, gate tally, the 2026-11-15 diff |
+| Methodology | `docs/methodology/decision-readiness.md` | method, the two corrections measurement forced, limits |
+| Live re-verification | `data/verification/2026_11_15/**`, `tools/verify_2026_11_15.py` | 12 of 256 cells differ, 2 of 32 clubs |
+| Flags | `data/flags.json` F-20, F-21 | stale standings; 0-0-in-progress-as-final hazard |
+| CI | `verify.yml`: two additive steps | both use `--check` (content, not the build clock) |
+| Preserved work | `data/readiness/handwritten_landing_transcript.frag` | commit 3380987's hand-written table, rendered verbatim on `pages/readiness.html` |
+
+### Sources (all read live 2026-11-15, none recalled)
+
+`https://www.nfl.com/standings/` · `https://www.nfl.com/games/patriots-at-lions-2026-reg-10` ·
+`https://www.nfl.com/schedules/2026/by-week/week-10` · `https://www.nfl.com/injuries/` ·
+`data/gates.json` · `data/pipeline/gates.json` · `data/pipeline/requirements.json` ·
+`docs/live-pipeline/project-brief.md`
+
+### Verification performed
+
+21 verifiers pass on the rebased tree, including the source-link rule on every data-table row, its
+mutation test, the independent transcription cross-check, the parlay bounds check, the deployed-tree
+crawl, and the pages/verify `staleness` guards. `build_site.py`, `build_audit_registers.py`,
+`build_hub.py` and `build_app.py` are idempotent (a second run yields no diff beyond wall-clock stamps).
+
+### Irregularities found and handled
+
+| ID | What | State |
+|---|---|---|
+| **F-20** | Published 2026-11-14 standings false for DET and NE as of 2026-11-15 (the Munich game) | flagged; table deliberately not rewritten; diff published |
+| **F-21** | Live page shows in-progress games at 0-0; a naive parser would write 0-0 finals | flagged with the fix (Final status + Game Book check) |
+| **I-73-1** | `main` was red on "Fail if committed HTML is stale" because commit 3380987 hand-edited the generated `index.html` | **fixed here**: generator now owns the section; the other session's table is preserved verbatim and rendered, not deleted |
+| **I-73-2** | Three sessions independently built a decision-readiness artefact (`tools/build_decision_readiness.py` here, `readiness_table()` in `build_site.py`, `tools/official/readiness.py`) | **declared, not fought**: each is published, each has a distinct audience. See the note below. |
+
+### Rule 6 conflict log
+
+Two `COORDINATION.md` rebase conflicts (both append-only; resolved by keeping main's block first and
+this session's block after it — nothing discarded). Generated-file conflicts in `hub/**`, `app/**`,
+`data/audit/**` and `index.html` were resolved by **regenerating from the generators**, never by
+choosing a side.
+
+### Duplicate readiness artefacts — declared
+
+The brief's item was claimed by three sessions and all three shipped. Rather than delete two of them:
+
+* `tools/build_decision_readiness.py` (this session) — per-requirement **measured** value, n, as-of and
+  source tier, with a `--check` staleness guard and the 2026-11-15 diff.
+* `readiness_table()` in `tools/build_site.py` (session `arena/cd48a61d-x1`) — retained in the file,
+  marked deliberately-not-rendered, as a second opinion a reviewer can diff against `GATE_FOR`.
+* `tools/official/readiness.py` (session `arena/b03ced7c-x1`) — writes `data/console/readiness.json` for
+  the console tree, with its own measurement functions.
+
+A future integration session may collapse these to one. Nothing is lost either way, and the owner can
+compare three independent attempts, which is the useful part.
