@@ -57,6 +57,40 @@ jobs:
       - name: Verify the published site
         run: python3 scripts/pipeline/verify_site.py
 
+      # Added by session arena-543cdcb0-x1. Everything the collector read is retained as a dated,
+      # hash-addressed capture BEFORE anything is committed, and the retention is gated: a read whose
+      # shape does not match data/captures/config.json stops the derived tables from being published.
+      # The captures themselves are always pushed - losing evidence because a report changed format is
+      # how the site ended up with one capture for five game weeks.
+      - name: Retain the reads, then gate the capture store
+        if: always()
+        run: |
+          set -uo pipefail
+          python3 -m pipeline.capture_store ingest
+          python3 -m pipeline.capture_store status
+          # The verdict is recorded with if/else, not `${PIPESTATUS[0]}`: the step's implicit `-e`
+          # aborts it on the failing pipeline, so the echo after it never runs and the next step sees
+          # the variable UNSET. That is how a run whose rebuild gate failed reported "derived artefacts
+          # withheld (rebuild/verify gate = unset)" - true by accident, and it hid which gate said no.
+          if python3 scripts/pipeline/verify_captures.py | tee /tmp/x1ci/captures.log; then
+            echo "CAPTURE_GATE=0" >> "$GITHUB_ENV"
+          else
+            echo "CAPTURE_GATE=1" >> "$GITHUB_ENV"
+          fi
+
+      # A refreshed data/pipeline only lands if the artefacts derived from it land in the same commit:
+      # verify.yml fails on staleness, so pushing data alone would turn main red. This rebuilds them and
+      # runs the same verifiers CI runs, and the commit step honours the verdict.
+      - name: Rebuild every artefact the refresh moves
+        if: always()
+        run: |
+          set -uo pipefail
+          if python3 tools/rebuild_for_refresh.py --pre-commit | tee /tmp/x1ci/rebuild.log; then
+            echo "REBUILD_GATE=0" >> "$GITHUB_ENV"
+          else
+            echo "REBUILD_GATE=1" >> "$GITHUB_ENV"
+          fi
+
       - name: Commit refreshed data
         if: always()
         run: |
@@ -64,42 +98,98 @@ jobs:
             set -x
             git config user.name "x1-bot"
             git config user.email "x1-bot@users.noreply.github.com"
-            # Adopt whatever the branch has moved on to (another session may have
-            # pushed) without touching the working tree, then stage data/.
-            # --mixed avoids the rebase conflicts a pull produces when the
-            # pipeline has left the tree dirty.
-            # _ci/ is untracked, so it must be removed before any rebase: git
-            # refuses to rebase with an untracked file that upstream also has.
-            rm -rf _ci
+            # The defect this replaced: `rm -rf _ci` deleted two TRACKED files (the workflow's own
+            # diagnostics logs - the comment beside it claimed they were untracked), and
+            # `git reset --mixed` left those deletions unstaged. `git rebase` refuses to run with
+            # unstaged changes, so every commit this job ever made was committed locally, retried
+            # five times, and thrown away - while the last step pushed the LOGS through the contents
+            # API, which is how main ended up with "ci: diagnostics" commits and no data. The logs are
+            # restored instead of deleted, and --autostash means a stray dirty file can never again
+            # silently veto a push.
+            git checkout -- _ci 2>/dev/null || true
             git fetch origin "${GITHUB_REF_NAME}"
             git reset --mixed "origin/${GITHUB_REF_NAME}"
-            git add data/pipeline
-            git status --porcelain
-            if git diff --cached --quiet; then
-              echo "MARKER: nothing to commit"
+
+            # 1. Evidence first, unconditionally: the capture index and any payload the run hashed.
+            git add data/captures
+            if ! git diff --cached --quiet; then
+              git commit -m "ci: retain $(date -u +%Y-%m-%dT%H:%M:%SZ) official captures"
             else
-              git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-              pushed=0
-              for attempt in 1 2 3 4 5; do
-                git fetch origin "${GITHUB_REF_NAME}"
-                if git rebase "origin/${GITHUB_REF_NAME}"; then
-                  if git push origin "HEAD:${GITHUB_REF_NAME}"; then
-                    echo "MARKER: pushed on attempt ${attempt}"
-                    pushed=1
-                    break
-                  fi
-                else
-                  git rebase --abort || true
+              echo "MARKER: no new captures"
+            fi
+
+            # 2. Derived analysis, only when it is consistent with the data it came from.
+            if [ "${REBUILD_GATE:-1}" = "0" ]; then
+              # Stage by ALLOWLIST PREFIX rather than by the tool's --paths list. The first version used
+              # --paths and promptly withheld nothing while failing its own post-commit gate: three
+              # artefacts that build_round3.py legitimately rewrites (data/replacement_depth_summary.json,
+              # data/leaderboard_2026.json, data/correlations_official_check.json) were rebuilt, left
+              # uncommitted, and so the "committed registers reproduce" check correctly found the commit
+              # incomplete. A list a human must keep in sync with 20 builders is the bug; the prefix is
+              # the contract. Inputs (data/raw, data/capture, data/verification, data/nfl) are not written
+              # by any builder, so they cannot move; _ci/ is outside the prefix entirely.
+              git add -A data app lab pages index.html
+              if ! git diff --cached --quiet; then
+                git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              else
+                echo "MARKER: derived artefacts already current"
+              fi
+            else
+              echo "MARKER: derived artefacts withheld (rebuild/verify gate = ${REBUILD_GATE:-unset})"
+            fi
+
+            # 3. Push the evidence now. It is gated by CAPTURE_GATE alone, and a withheld analysis
+            #    commit must never be able to take the dated reads down with it.
+            git push origin "HEAD:${GITHUB_REF_NAME}" || echo "MARKER: capture push failed; continuing"
+
+            # 4. Only then run the checks that compare an artefact against HEAD: before this commit they
+            #    would have compared the new registers against the OLD commit and reported the refresh
+            #    itself as staleness (which is exactly how build_round3.py --check withheld every derived
+            #    artefact on 2026-11-16T19:09Z). After it, "stale" means what it is supposed to mean.
+            if [ "${REBUILD_GATE:-1}" = "0" ]; then
+              # `set -o pipefail` is load-bearing here: without it the exit status of
+              # `python3 … | tee …` is tee's, so a failed gate read as success and the artefacts were
+              # pushed anyway - the exact "green run, broken data" shape this whole job was written to end.
+              set -o pipefail
+              if ! python3 tools/rebuild_for_refresh.py --post-commit | tee /tmp/x1ci/postcommit.log; then
+                echo "MARKER: POST-COMMIT GATE FAILED - derived artefacts are not being pushed"
+                echo "::error::the refreshed artefacts do not reproduce the committed registers; captures landed, analysis withheld"
+                exit 1
+              fi
+            fi
+
+            pushed=0
+            for attempt in 1 2 3 4 5; do
+              git fetch origin "${GITHUB_REF_NAME}"
+              if git -c rebase.autoStash=true rebase "origin/${GITHUB_REF_NAME}"; then
+                if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                  echo "MARKER: pushed on attempt ${attempt}"
+                  pushed=1
+                  break
                 fi
-                sleep $((attempt * 5))
-              done
-              [ "${pushed}" = "1" ] || echo "MARKER: PUSH FAILED after 5 attempts"
+              else
+                git rebase --abort || true
+                echo "MARKER: rebase refused on attempt ${attempt}; tree state follows"
+                git status --porcelain
+              fi
+              sleep $((attempt * 5))
+            done
+            [ "${pushed}" = "1" ] || echo "MARKER: PUSH FAILED after 5 attempts"
+            # A run that collected data and could not land it must be visible in the job, not only in
+            # an artefact nobody opens.
+            if [ "${pushed}" != "1" ]; then
+              echo "::error::data-refresh collected official reads but could not push them; see the MARKER lines"
+              exit 1
             fi
             echo "MARKER: done"
           } 2>&1 | tee /tmp/commit.log
-          # Copy the log into the repo only after git has finished with it:
-          # tee-ing straight into a tracked file leaves unstaged changes behind
-          # the commit, which then blocks the rebase with "unstaged changes".
+          # The commit log is uploaded as _ci/commit.log; the two gate logs are appended to the
+          # pipeline log so a single artefact carries the whole run's reasoning.
+          for extra in captures rebuild postcommit; do
+            if [ -s "/tmp/x1ci/${extra}.log" ]; then
+              { echo "===== ${extra}.log ====="; cat "/tmp/x1ci/${extra}.log"; } >> /tmp/x1ci/pipeline.log
+            fi
+          done
           cp /tmp/commit.log /tmp/x1ci/commit.log
           grep -q "MARKER: done" /tmp/commit.log
 

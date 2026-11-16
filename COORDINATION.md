@@ -3167,3 +3167,97 @@ The brief's item was claimed by three sessions and all three shipped. Rather tha
 
 A future integration session may collapse these to one. Nothing is lost either way, and the owner can
 compare three independent attempts, which is the useful part.
+
+
+---
+
+# Session `arena-543cdcb0-x1` — collector push defect, Week 10 finals capture, shadow-baseline evaluation (this session)
+
+**Session ID:** `arena-543cdcb0-x1` · **Branch:** `arena/543cdcb0-x1` (branched from `main` @ `061d310`, which is the current `origin/main` tip). **Started (UTC):** 2026-11-16.
+
+## Why this session exists — one operational defect found before any work
+
+`main`'s own diagnostics log (`_ci/commit.log`, commit `061d310`) shows the scheduled
+`data-refresh` collector runs green, collects 11 datasets from nfl.com, commits them locally —
+and then **never pushes**:
+
+```
++ git rebase origin/main
+error: cannot rebase: You have unstaged changes.
+...
+MARKER: PUSH FAILED after 5 attempts
+```
+
+Root cause read from the workflow: the commit step runs `rm -rf _ci` and then
+`git reset --mixed "origin/$REF"`. `_ci/commit.log` and `_ci/pipeline.log` **are tracked files**
+(the workflow's own comment says "_ci/ is untracked", which is false), so the reset leaves two
+unstaged deletions in the tree. `git add data/pipeline` stages only the data; the commit succeeds;
+the subsequent `git rebase` refuses to run with unstaged changes, retries 5×, and gives up. The
+last step then pushes the *logs* through the contents API, which is why `main` advanced with
+`ci: diagnostics …` while every captured dataset was discarded.
+
+Consequence for the owner's brief: the requirements that depend on a dated series — *"Snapshot the
+nfl.com injury report every Wed, Thu and Fri and keep a dated history"*, *"Treat the injury report as
+a timestamped series, not a weekly snapshot"*, *"Automate immutable multi-day availability snapshots
+… Today the site holds one capture, which cannot support backtesting"* — cannot be met by the
+automation as it stands, however many times it runs green, because (a) nothing is pushed and
+(b) even if it were, `data/pipeline/*.json` is a single overwritten file: the collector has **no
+retention**, so a successful push still leaves one capture, not a series.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| C-1 | Fix the collector so a successful run actually lands: no unstaged deletion before `git rebase`, autostash retry, and the run refuses to push data that does not pass the repo's own verifiers | in progress | `arena-543cdcb0-x1` | `.github/workflows/data-refresh.yml` (commit step only) |
+| C-2 | Dated immutable capture retention: every run appends a hash-addressed capture under `data/captures/` (payload deduplicated by content hash, index line per read with clock time, source URL, row count, schema key set) | in progress | `arena-543cdcb0-x1` | `pipeline/capture_store.py` (new), `data/captures/**` (new) |
+| C-3 | Drift alarm: per-dataset pins for required fields and expected row counts; a missing field or a count outside tolerance is recorded as an alarm instead of publishing a blank; freshness = hours since the last accepted capture | in progress | `arena-543cdcb0-x1` | `pipeline/drift.py` (new), `scripts/pipeline/verify_captures.py` (new), `docs/methodology/capture-retention.md` (new) |
+| C-4 | Week 10 finals capture pack read live on 2026-11-16 (13 games now FINAL, the Monday-night game still scheduled), official standings as of today, Week 11 partial, and the injury-page freshness read — each row with its official URL and clock time | in progress | `arena-543cdcb0-x1` | `data/verification/2026_11_16/**` (new), `tools/verify_2026_11_16.py` (new) |
+| C-5 | Singles-only shadow baseline, pre-registered and evaluated chronologically on the newly final games: team-strength model fitted only through Week 9, Week 10 predicted before its results were used, scored with proper scores, benchmark skill, game-cluster bootstrap interval and n | in progress | `arena-543cdcb0-x1` | `docs/preregistration/` (new), `data/shadow/**` (new), `tools/build_shadow_baseline.py` (new) |
+| C-6 | Publish C-1…C-5: two new pages, one landing block, registers rebuilt by the committed generators, full verifier suite, PR → `main`, merge, Pages confirmation | in progress | `arena-543cdcb0-x1` | `pages/capture-2026-11-16.html`, `pages/capture-system.html`, `index.html`, `tools/build_site.py` (additive), `COORDINATION.md` |
+
+**Overlap check (rule 3/4).** Open PR #61 (`arena/8c67ec75-x1`, last touched 2026-11-15 18:30Z) touches
+`.github/workflows/data-refresh.yml`, `pipeline/run.py`, `scripts/pipeline/verify_archive.py` and
+`data/readiness/**`. This session therefore (a) **does not edit `pipeline/run.py`** — retention and drift
+are new modules invoked at the end of the run, so a merge stays textual and additive; (b) edits the
+workflow only inside the "Commit refreshed data" step and appends one new step; (c) touches no
+`data/readiness/**` file. **Request to the final integrator:** if PR #61 merges, keep both its
+`pipeline/archive.py` and this session's `pipeline/capture_store.py`, and reconcile the two
+retention designs rather than dropping either.
+
+### Done 2026-11-16 (this session, arena/543cdcb0-x1) — C-1…C-6 landed
+
+| item | artefact | how to re-check |
+|---|---|---|
+| C-1 collector push defect | `.github/workflows/data-refresh.yml`, "Commit refreshed data" step only | read `_ci/commit.log` on `main` for `MARKER: PUSH FAILED after 5 attempts`, then diff the step |
+| C-2 retention | `pipeline/capture_store.py`, `data/captures/{index.jsonl,payloads/}` — 9 captures / 7 datasets | `python3 -m pipeline.capture_store verify` (exit 0) |
+| C-3 drift pins | `pipeline/drift.py`, `data/captures/config.json`, `scripts/pipeline/verify_captures.py` | `python3 scripts/pipeline/verify_captures.py --self-test` → 5/5 caught |
+| C-4 dated reads + closure | `data/verification/2026_11_16/` (3 TSVs + summary + diff), `tools/verify_2026_11_16.py` | `python3 tools/verify_2026_11_16.py` → A1–A6 all pass |
+| C-5 pre-registration | `docs/preregistration/PR-01-*.md`, `tools/build_preregistration.py` (anchor resolved from git), `tools/build_shadow_baseline.py` | `--check` on both; tamper test in the session log |
+| C-6 site | `pages/capture-system.html`, `pages/shadow-baseline.html`, `pages/next-decisions.html`, one NAV entry each + one landing section | `python3 tools/build_site.py && python3 scripts/verify_site.py` |
+| refresh integrity | `tools/rebuild_for_refresh.py` (rebuild + verify the 11 derived artefacts; refuses to commit clock-stamped `console/`, `hub/`, `data/console/payload.json`, `price_snapshots.csv`) | `python3 tools/rebuild_for_refresh.py` → `ok (0 step(s) failed)` |
+| hygiene | `.gitignore`: un-ignored `data/raw/nflverse/**` + the Week 10 injury PSV (14 tracked files were silently matched by `data/raw/*`); untracked `code/__pycache__/*.pyc` | `git ls-files -i -c --exclude-standard` → only `_ci/*.log` remains, by design |
+
+**Numbers published, with their source of truth:** Brier 0.224242 on n=117 games (weeks 3–10,
+chronological holdout), Brier skill vs the 0.55 home baseline +0.116401 with a game-cluster 95% lower
+bound of +0.0021 (10 000 resamples, seed 20261116), hit rate 0.641026, MAE 9.6681 pts, luck panel 75
+realised wins vs 76.057 expected (sd 5.042, z −0.21); 14 pre-kickoff forecasts frozen at
+`data/shadow/forecasts_pre_kickoff.csv`. Injury day-over-day delta 34 changed cells; standings delta 184
+changed cells, 72 field changes all closing.
+
+**Deliberately NOT done, and why (do not "fix" these by half-doing them):**
+1. `data/results/_raw/reads.tsv` was **not** extended with the 13 Week 10 finals, so
+   `results_feed_meta.json` still reports `official_verified: 1` for Week 10. Measured reason: appending
+   those rows in isolation makes **23 of 32 clubs** disagree with `data/pipeline/standings.json`, the
+   baseline the feed's arithmetic gate validates against, and 13 of them have no score in the pinned
+   mirror the row-diff gate requires (`build_results_r3.py` aborts on `no mirror row to diff against`),
+   plus a hard `expected 137 rows` pin. Closing it is one coordinated commit (transcription + count pin
+   + standings baseline + mirror re-pin) = suggestion **S-22** / question **Q-62** on
+   `pages/next-decisions.html`.
+2. `data/nfl/standings.tsv` and `data/nfl/schedule_week10.tsv` were **not** rewritten. The newer read is
+   a dated delta pack; the delta closes against the older table, which is the finding.
+3. `pipeline/run.py` untouched (PR #61 owns it). Consequence recorded on the capture page: retained
+   payloads hold transcriptions, not raw response bytes — see suggestion **S-23**.
+
+**For the integrator:** `tools/patch_site_543cdcb0.py` and `tools/patch_site_next_decisions.py` are the
+one-shot patches that edited `tools/build_site.py`; both abort unless every anchor matches exactly once.
+Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.

@@ -1,0 +1,29 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-10  (page title: "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets")
+# Read via the fetch tool, chunks 0-1 of 2, on 2026-11-16 at 18:44 UTC. Transcribed by session arena-543cdcb0-x1.
+# One row per fixture as PRINTED by the official page. status="Final" = the page prints a final score and a
+# "Final" label; status="Scheduled" = no score printed (the game had not been played at retrieval).
+# away_record / home_record are the club records printed beside each club logo on THIS page. They are the
+# post-game records the page shows, and they are cross-checked against the separate official standings page
+# (data/verification/2026_11_16/official_standings_2026_11_16.tsv) by tools/verify_2026_11_16.py.
+# time_et blank for a final = the page prints "Final / Nov 15" for a completed game and does not reprint the
+# kickoff time in the text this read captures. Blank is not "unknown and filled in"; it is not printed.
+# venue blank = the weekly schedule page does not print a venue field. Venue is only printed by each game's
+# own Game Center page (one fetch per fixture), which is why this pack does not publish venues.
+game_id	date_et	time_et	network	note	away	away_score	away_record	home	home_score	home_record	status	game_url	source_url
+2026_10_WAS_NYG	2026-11-12	8:15 PM	Prime Video	Thursday Night Football	WAS	24	3-5-1	NYG	21	5-3-1	Final	https://www.nfl.com/games/commanders-at-giants-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_NE_DET	2026-11-15		FOX	International Game, November 15th (Munich)	NE	10	5-5	DET	35	7-2	Final	https://www.nfl.com/games/patriots-at-lions-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_KC_ATL	2026-11-15		CBS		KC	35	7-2	ATL	13	3-7	Final	https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_HOU_CLE	2026-11-15		FOX		HOU	24	3-6	CLE	27	6-4	Final	https://www.nfl.com/games/texans-at-browns-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_MIN_GB	2026-11-15		FOX		MIN	30	7-2	GB	10	6-4	Final	https://www.nfl.com/games/vikings-at-packers-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_MIA_IND	2026-11-15		CBS		MIA	22	1-8	IND	24	3-7	Final	https://www.nfl.com/games/dolphins-at-colts-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_CAR_NO	2026-11-15		FOX		CAR	20	4-5	NO	17	3-6	Final	https://www.nfl.com/games/panthers-at-saints-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_BUF_NYJ	2026-11-15		CBS		BUF	31	8-1	NYJ	12	2-8	Final	https://www.nfl.com/games/bills-at-jets-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_JAX_TEN	2026-11-15		FOX		JAX	40	7-2	TEN	23	1-8	Final	https://www.nfl.com/games/jaguars-at-titans-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_LA_ARZ	2026-11-15		CBS		LA	34	6-4	AZ	6	3-7	Final	https://www.nfl.com/games/rams-at-cardinals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_SEA_LV	2026-11-15		CBS		SEA	21	6-4	LV	13	4-6	Final	https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_SF_DAL	2026-11-15		FOX		SF	46	8-1	DAL	40	4-6	Final	https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_PIT_CIN	2026-11-15		NBC	Sunday Night Football, November 15th	PIT	18	6-3	CIN	38	7-2	Final	https://www.nfl.com/games/steelers-at-bengals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_LAC_BAL	2026-11-16	8:15 PM	ESPN	Monday Night Football, November 16th - not played at retrieval	LAC		0-8	BAL		4-5	Scheduled	https://www.nfl.com/games/chargers-at-ravens-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+# TEAMS ON BYE printed by the same page (record as printed): CHI 7-2, DEN 7-2, PHI 2-7, TB 3-6
+# Ties printed this week: none (the page prints no tied final).
+# Games on the page: 14. Finals: 13. Scheduled: 1 (2026_10_LAC_BAL, kickoff 2026-11-16 8:15 PM ET).

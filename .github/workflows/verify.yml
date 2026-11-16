@@ -176,3 +176,34 @@ jobs:
       # --check fails if the committed artefact differs from a fresh computation.
       - name: Control baselines reproduce from the pinned mirror (C1)
         run: python3 tools/lab/build_controls.py --check
+
+      # Added by session arena-543cdcb0-x1 (additive only). The capture store is what turns "the
+      # collector ran" into evidence: every retained payload must hash to its content-addressed name,
+      # no payload may be orphaned, and every pin in data/captures/config.json is exercised by a
+      # corruption self-test. Freshness is NOT gated here on purpose - a pull request cannot fix a
+      # missed collector run; data-refresh.yml gates it after it collects.
+      - name: Capture store integrity, drift pins and their mutation test
+        run: |
+          python3 scripts/pipeline/verify_captures.py --no-freshness
+          python3 scripts/pipeline/verify_captures.py --self-test
+
+      # Added by session arena-543cdcb0-x1 (additive only). Three registers this round created, each
+      # rebuilt from its inputs and required to reproduce: the pre-registration register (which resolves
+      # every rule's registration commit from git), the PR-01 shadow baseline (walk-forward score and the
+      # immutable pre-kickoff record), and the review board of suggestions and open questions.
+      - name: Pre-registration, shadow baseline and review-board registers reproduce
+        run: |
+          # No `git fetch --unshallow` here on purpose. Both the artefact and this check are produced in
+          # a shallow checkout (actions/checkout default fetch-depth 1), and a register built one way must
+          # be compared in the same conditions or the gate fails on the environment rather than on the
+          # data. The anchor that needs full history is resolved by a human/full-clone run of
+          # `python3 tools/build_preregistration.py`, and CI carries it forward instead of flattening it.
+          python3 tools/build_preregistration.py --check
+          python3 tools/build_shadow_baseline.py --check
+          python3 tools/build_next_decisions.py --check
+
+      # The 2026-11-16 official pack, re-derived and compared to what is committed: standings arithmetic,
+      # league closure, three-page record cross-check, slate completeness (32 clubs exactly once), the
+      # dated-delta closure and the Week 10 promotion accounting. Read-only by design (see --write).
+      - name: The dated official pack still closes
+        run: python3 tools/verify_2026_11_16.py --check

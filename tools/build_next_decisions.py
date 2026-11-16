@@ -1,0 +1,500 @@
+#!/usr/bin/env python3
+"""The round's decision register: what to improve, what is unknown, and what each answer unblocks.
+
+The owner's instruction this answers, verbatim: *"Make suggestions on how to improve the site to improve
+decision making and create a section dedicated for suggestions so someone can review suggestions and
+choose the best path before implementing any changes"*, and *"a clear list of questions, informations and
+answers that need to be addressed before any decision can be reasonably made based upon the information
+that we already have and do not have. Suggestions need to be made to discover missing information"*.
+
+Two rules this register obeys, because a suggestion list that ignores them is just noise:
+
+  1. **Every entry names the evidence that produced it** — a repository file or an official page, with
+     the number that made it worth reading. No entry says "consider improving X".
+  2. **Nothing here is implemented by this tool.** The register presents paths and a recommendation; the
+     choice is the owner's. `decision_status` starts at `Proposed` on every row and is only changed by a
+     human commit, so the board cannot mark its own suggestions accepted.
+
+Usage
+  python3 tools/build_next_decisions.py            # write data/next_decisions/round_2026_11_16.{json,csv}
+  python3 tools/build_next_decisions.py --check    # fail if the committed register is stale
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import io
+import json
+import os
+import sys
+from datetime import datetime, timezone
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTDIR = os.path.join(ROOT, "data", "next_decisions")
+READ = "2026-11-16"
+REPO = "https://github.com/karagemop466-tech/X1/blob/main/"
+
+# -------------------------------------------------------------------------------------- suggestions
+# paths are the alternatives a reviewer chooses between; recommended is a preference with a reason,
+# not a decision. effort/impact are this session's estimate and are labelled as such in the register.
+SUGGESTIONS = [
+    {
+        "id": "S-21", "area": "Trust", "impact": "High", "effort": "Low", "risk": "Low",
+        "title": "Publish the collector's push state, not just its run state",
+        "why": "Six consecutive scheduled runs reported `success` while the repository's own "
+               "`_ci/commit.log` printed `MARKER: PUSH FAILED after 5 attempts` on every one of them. "
+               "A green checkmark next to a job that landed nothing is worse than a red one, because it "
+               "ends the enquiry. The site should print, per dataset, the last run whose output is "
+               "actually in `git`, so 'the collector ran' and 'the data is here' are separate claims.",
+        "path_a": "A: the refresh job writes `data/pipeline/_last_push.json` (commit sha, row counts, "
+                  "timestamp) in the same commit as the data, and the capture page renders that file.",
+        "path_b": "B: the page derives it live from `git log --grep 'data: refresh'` at build time.",
+        "path_c": "C: leave it to the workflow annotations only.",
+        "recommended": "A",
+        "recommended_because": "a committed file is checkable by the same verifier that checks "
+                                "everything else; (B) is right until a session force-pushes, and (C) is "
+                                "exactly the log nobody opened this time.",
+        "evidence_file": "_ci/commit.log",
+        "source_url": REPO + "actions/workflows/data-refresh.yml",
+    },
+    {
+        "id": "S-22", "area": "Data integrity", "impact": "High", "effort": "Medium", "risk": "Medium",
+        "title": "Move the results feed's four coupled baselines in one commit, or leave the feed alone",
+        "why": "The feed says 1 of 14 Week 10 games is officially verified; the official page now prints "
+               "13 finals, and this session transcribed them (with the standings cross-checked three "
+               "ways). The feed cannot simply absorb them: appending those 13 rows to the published feed "
+               "makes 23 of 32 clubs disagree with the standings baseline the feed is *validated "
+               "against*, and the row-count pin and the pinned mirror have scores for only 1 of the 13. "
+               "Four artefacts — the transcription, the count pin, the standings baseline, the mirror "
+               "re-pin — are one change or none. Today it is none, deliberately, and the discrepancy is "
+               "published instead of hidden.",
+        "path_a": "A: one PR that moves all four together and re-runs every results gate, reviewed as a "
+                  "single diff.",
+        "path_b": "B: keep the 2026-11-14 feed frozen as a dated artefact and publish the newer read "
+                  "only on the capture page (this round's choice).",
+        "path_c": "C: append the finals without re-baselining (rejected: it breaks the arithmetic gate "
+                  "that exists to catch exactly this).",
+        "recommended": "A, next round",
+        "recommended_because": "(B) is safe but understates verified coverage on a page owners read as "
+                               "'the feed'; (A) is a contained change if it is one commit with the gates "
+                               "in the same diff.",
+        "evidence_file": "data/results/raw/official_results_2026_week10.psv",
+        "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    },
+    {
+        "id": "S-23", "area": "Evidence", "impact": "High", "effort": "Low", "risk": "Low",
+        "title": "Have the collector store the raw response bytes beside each capture",
+        "why": "Retention now stores a hashed transcription plus a diff, which is enough to prove the "
+               "shape and to diff days. It is not enough to re-derive a field the extractor did not "
+               "notice — which is the failure mode that hid the two undocumented record triples on the "
+               "standings page. The fix is one line where the fetch happens, and that file is owned by "
+               "open PR #61, so this session recorded the request rather than editing it.",
+        "path_a": "A: gzip each response into `data/captures/raw/<dataset>/<sha>.html.gz` and add its "
+                  "hash to the index line.",
+        "path_b": "B: keep text only, and accept that a new field needs a fresh read (a day's delay).",
+        "path_c": "C: store only the HTML fragment the parser consumed.",
+        "recommended": "A",
+        "recommended_because": "the retention cost is a few hundred KB per day per dataset, and it is "
+                               "the only artefact that lets a future session re-parse without trusting "
+                               "this one's parser.",
+        "evidence_file": "data/captures/index.jsonl",
+        "source_url": REPO + "pull/61",
+    },
+    {
+        "id": "S-24", "area": "Availability", "impact": "Medium", "effort": "Low", "risk": "Medium",
+        "title": "Stop trusting a day-over-day injury delta until two machine reads of the same URL exist",
+        "why": "The first delta measured (2026-11-14 → 2026-11-15) produced 34 changed cells, but the two "
+               "sides came from different extraction paths: the collector's parser versus a hand "
+               "transcription. Two of the 34 are 'appeared' rows that only exist because one source "
+               "labels the Rams `LAR` and the other `LA`. A join alias now hides that, which is the right "
+               "interim answer, but a delta built across two parsers cannot distinguish a club moving a "
+               "player from a page reflowing.",
+        "path_a": "A: publish day-over-day deltas only between two captures whose `pipeline_source` and "
+                  "schema hash match; show cross-path comparisons labelled as such.",
+        "path_b": "B: publish all deltas with the caveat sentence.",
+        "path_c": "C: wait until the collector has two consecutive green days.",
+        "recommended": "A",
+        "recommended_because": "the surprise-not-level rule is only worth anything if the surprise is not "
+                               "an artefact of the reader.",
+        "evidence_file": "data/captures/diffs/injuries__2026-11-14__2026-11-15.csv",
+        "source_url": "https://www.nfl.com/injuries/",
+    },
+    {
+        "id": "S-25", "area": "Strategy", "impact": "High", "effort": "Medium", "risk": "Low",
+        "title": "Register the injury-surprise model as PR-04 before scoring it",
+        "why": "The mechanism that makes PR-01 honest costs nothing to reuse: a rule file, its window and "
+               "its gates committed before any evaluation. There are now exactly two dated injury "
+               "captures, which is enough to write the rule and not nearly enough to fit anything to it. "
+               "Registering now, with the first evaluation window opening at week 12, is what keeps the "
+               "result interpretable; fitting it to these two days would produce a number that means "
+               "nothing.",
+        "path_a": "A: write PR-04 (designation-change → market-adjusted margin surprise) this round, "
+                  "evaluate from week 12.",
+        "path_b": "B: accumulate 4 weeks of captures first, then register.",
+        "path_c": "C: skip it until the price question is answered.",
+        "recommended": "A",
+        "recommended_because": "the window is defined by game weeks, not by how many captures happen to "
+                               "exist, and (B) invites the temptation to tune on the accumulated days.",
+        "evidence_file": "docs/preregistration/PR-01-shadow-baseline.md",
+        "source_url": REPO + "blob/main/docs/methodology/demotion-gate.md",
+    },
+    {
+        "id": "S-26", "area": "Presentation", "impact": "Medium", "effort": "Low", "risk": "Low",
+        "title": "Print `n` and the window next to every number the site states",
+        "why": "The shadow-baseline page does this (Brier 0.224, n=117, weeks 3-10, one season) and the "
+               "landing page's headline stats mostly do, but several older panels still show a percentage "
+               "with no count beside it. A rate without a denominator is the single most common way this "
+               "repository could mislead a reader while every input being true.",
+        "path_a": "A: extend the site checker to require an `n=` or a row count within the same element as "
+                  "any printed percentage.",
+        "path_b": "B: fix the known panels by hand.",
+        "path_c": "C: leave it to captions.",
+        "recommended": "A",
+        "recommended_because": "a gate that fires on the next page somebody writes is cheaper than an "
+                               "audit of the twenty already written.",
+        "evidence_file": "scripts/verify_site.py",
+        "source_url": REPO + "blob/main/tools/build_site.py",
+    },
+    {
+        "id": "S-27", "area": "Site structure", "impact": "High", "effort": "High", "risk": "Medium",
+        "title": "Pick one decision surface and archive the rest",
+        "why": "The same readiness question is currently answered on 21 pages under `pages/`, plus four "
+               "parallel site trees (`app/`, `console/`, `hub/`, `site/`) and 30+ more under `live/`, "
+               "`lab/`, `audit/`, `analysis/`. Every one of them is individually verified and "
+               "source-linked, and a reader cannot hold twenty copies of a claim in their head, so the "
+               "verification work does not convert into decisions. Divergence is already visible: "
+               "`docs/analysis/` records nine open questions while `data/audit/decision_questions.json` "
+               "carries four.",
+        "path_a": "A: one canonical decision page (this register + readiness), every other tree marked "
+                  "`archived` with a banner and a link, nothing deleted.",
+        "path_b": "B: keep all trees, add a per-page 'supersedes / superseded by' line.",
+        "path_c": "C: do nothing; the site is a record of work, not a tool.",
+        "recommended": "A",
+        "recommended_because": "archiving keeps the audit trail (the brief values that) while telling the "
+                               "reader where to look, which is the part that is missing now.",
+        "evidence_file": "docs/analysis/open-questions.md",
+        "source_url": REPO + "blob/main/tools/build_site.py",
+    },
+    {
+        "id": "S-28", "area": "Verification", "impact": "Medium", "effort": "Medium", "risk": "Low",
+        "title": "Make the alarm list something a reader can clear, not only read",
+        "why": "Two alarms are live (a column-count mismatch in the deficiency register, a club code "
+               "outside the standings register). They are published, which is right, but nothing records "
+               "that somebody looked at one, agreed it was harmless, and chose to keep it. An alarm with "
+               "no disposition becomes background noise within a fortnight — which is precisely how the "
+               "`_ci` comment that said 'untracked' survived next to tracked files for weeks.",
+        "path_a": "A: a `data/captures/dispositions.json` keyed by capture + violation kind, with a "
+                  "one-line human reason; the page shows 'acknowledged by <commit> on <date>'.",
+        "path_b": "B: issues in the tracker instead.",
+        "path_c": "C: leave alarms unadjudicated.",
+        "recommended": "A",
+        "recommended_because": "the reason has to live next to the data it excuses, and be diffable; "
+                               "the store already carries `alarm_only` versus `fail_the_build`, so this is "
+                               "the same shape with a human answer in it.",
+        "evidence_file": "data/captures/status.json",
+        "source_url": REPO + "blob/main/data/captures/config.json",
+    },
+    {
+        "id": "S-29", "area": "Injuries", "impact": "Medium", "effort": "Medium", "risk": "Low",
+        "title": "Capture inactives and snap counts as a first-class dataset with its own pins",
+        "why": "The brief asks for official inactive lists and snap counts; the retained set contains no "
+               "snap share at all, so 'a backup replaced the starter' is still only confirmed where the "
+               "league prints a designation, and the backup-deficiency matrix rests on depth charts "
+               "instead. The pins framework is already there — the dataset simply does not exist yet.",
+        "path_a": "A: add `game_report_inactives` and `snap_counts` to the config with row-count and "
+                  "closure pins (32 clubs exactly once per game; Σsnap shares within tolerance), ingest "
+                  "retroactively for weeks 9-11.",
+        "path_b": "B: keep treating them out of scope until the collector lands green twice.",
+        "path_c": "C: derive nothing and rely on designations.",
+        "recommended": "A",
+        "recommended_because": "the retroactive ingest is possible now and gets harder every week, and a "
+                               "pin written before the data arrives is the cheap version of the honesty "
+                               "the rest of this repo is built on.",
+        "evidence_file": "data/captures/config.json",
+        "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+    },
+    {
+        "id": "S-30", "area": "Sources", "impact": "Medium", "effort": "Low", "risk": "Medium",
+        "title": "Decide, in one line, whether Game Book PDFs are in the ingestion set",
+        "why": "A real 'Download Game Book (PDF)' link exists on the official game pages — reachable from "
+               "the Week 10 Chiefs-at-Falcons page — so the play-level record the brief wants as the source "
+               "of actual starters is obtainable. It is also ~14 PDFs a week of parsing that no other "
+               "artefact in this repository currently consumes, which makes it a scope decision rather "
+               "than an engineering one.",
+        "path_a": "A: ingest play-by-play only (structured, one source), leave Game Books as the manual "
+                  "check for contested rows.",
+        "path_b": "B: ingest Game Books for the starter/offence columns and cross-check them against the "
+                  "depth charts.",
+        "path_c": "C: neither, until the availability page proves it needs them.",
+        "recommended": "A",
+        "recommended_because": "(A) gets the same confirmation from a machine-readable source; (B) is "
+                               "worth revisiting only where play-by-play and the chart disagree.",
+        "evidence_file": "docs/audit/official-gamebook-source-review.md",
+        "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+    },
+]
+
+# ----------------------------------------------------------------------------------------- questions
+# Each row: what the repository already establishes, what it cannot answer, the concrete way to find
+# out, and which decision waits on it. `blocking` names the site element that stays blank meanwhile.
+QUESTIONS = [
+    {
+        "id": "Q-61", "question": "Which price data may the site use for a market line, and is a "
+                                 "third-party mirror acceptable for that?",
+        "known": "The repository has no official price source. A fingerprinted nflverse mirror carries "
+                 "spread/moneyline/total prices for the 2026 games (all labelled `mirror`), and the "
+                 "shadow baseline deliberately publishes its fair line with `market_line` and `residual` "
+                 "blank.",
+        "missing": "A decision on whether a mirror price may stand in for 'the market' in a published "
+                   "residual, and if so, whose book, at what timestamp, and with what label.",
+        "how_to_find_out": "Owner decision, one line. Nothing external is required: the two candidate "
+                           "labels ('mirror-derived, not official' versus 'no residual published') are "
+                           "both implementable today, and the mirror's own pin already fixes which bytes "
+                           "a number came from.",
+        "unblocks": "the residual column, the CLV component of scoring, every ROI figure, and gates G5/G6 "
+                    "on the leaderboard",
+        "blocking": "market line and residual on pages/line-origination.html and pages/shadow-baseline.html",
+        "default_if_unanswered": "keep the columns blank (current state)",
+        "source_url": REPO + "blob/main/data/shadow/backtest_summary.json",
+    },
+    {
+        "id": "Q-62", "question": "Is the results feed's closure baseline the 2026-11-14 standings "
+                                 "snapshot or the live standings register?",
+        "known": "The feed is validated by reproducing W-L-T/PF/PA of the standings as read 2026-11-14, "
+                 "and that equality is what limits it to 137 rows. The 2026-11-16 official standings are "
+                 "transcribed, cross-checked against two other official pages (60 records, 0 mismatches) "
+                 "and proven to close against the delta (160 assertions, 0 failures).",
+        "missing": "Which of the two the leaderboard's data gate should read, since a rolling baseline "
+                   "makes the feed self-fulfilling and a frozen one freezes coverage.",
+        "how_to_find_out": "No new data needed — it is a policy choice about whether 'verified' is "
+                           "relative to a date. One line in docs/methodology, then S-22 executes it.",
+        "unblocks": "S-22; the `official_verified` count going from 1 to 14 for Week 10",
+        "blocking": "the results feed's coverage claim on pages/validation.html",
+        "default_if_unanswered": "frozen baseline; newer reads published as dated evidence only",
+        "source_url": REPO + "blob/main/tools/build_results.py",
+    },
+    {
+        "id": "Q-63", "question": "Now that every read is retained, may `data/pipeline/*.json` keep being "
+                                 "overwritten in place?",
+        "known": "The register files are the collector's output and are overwritten each run; that is what "
+                 "left the site with one capture for five game weeks. The capture store now retains every "
+                 "read by content hash, so an in-place overwrite no longer destroys history — with one "
+                 "exception: only reads the collector actually runs get retained.",
+        "missing": "Whether hand-authored dated artefacts (data/nfl/*.tsv, the 2026_11_16 pack) are the "
+                   "canonical record and the register is a cache, or whether the register is canonical and "
+                   "the dated files are extracts.",
+        "how_to_find_out": "Answerable from the repository by choosing one and stating it; the "
+                           "distinction only matters the first time the two disagree (they currently do, "
+                           "for 23 of 32 clubs after Week 10).",
+        "unblocks": "which file any future checker is allowed to read, and whether the register may be "
+                    "re-baselined without a review",
+        "blocking": "every 'as of' date on the site, which is currently inherited from whichever file a "
+                    "given page happened to read",
+        "default_if_unanswered": "dated files canonical; register treated as a cache",
+        "source_url": REPO + "blob/main/pipeline/capture_store.py",
+    },
+    {
+        "id": "Q-64", "question": "Is a careful hand transcription of an official page 'officially "
+                                 "verified', or does verification require the machine read?",
+        "known": "The Week 10 injury pack and all three 2026-11-16 packs are hand transcriptions of "
+                 "official pages, each cross-checked arithmetically (standings closure, slate "
+                 "completeness, 32-clubs-exactly-once) and cross-compared against a second official page "
+                 "that prints the same records. They are the only source for several published numbers.",
+        "missing": "Whether the same status attaches to them as to the collector's parsed reads, and "
+                   "whether the site should print a distinct label for the two.",
+        "how_to_find_out": "Owner decision. A useful data point already in the repo: the arithmetic gates "
+                           "caught a transcription error of mine in this very session (a bye row written "
+                           "with the wrong column order, caught by the 13-column check), which is evidence "
+                           "the checks work — and evidence they are checks, not proof.",
+        "unblocks": "how the verification pages label rows, and whether 'official_verified' needs a tier",
+        "blocking": "the wording of every verified/unverified label on pages/validation.html",
+        "default_if_unanswered": "label hand transcriptions as `transcribed` beside `parsed`, both "
+                                 "official-sourced",
+        "source_url": REPO + "blob/main/data/verification/2026_11_16/verification_summary_2026_11_16.json",
+    },
+    {
+        "id": "Q-65", "question": "What staking rule and bankroll does the leaderboard assume, if any?",
+        "known": "Scoring constants are registered (single win 10 / loss -11, CLV bonus 2.0 per point, "
+                 "breakeven 0.524 at -110) and the gates are written (100 bets official minimum, 25 "
+                 "provisional, binomial P(win ≤ breakeven) < 0.05, 25-unit max drawdown, 0.7 portfolio "
+                 "correlation cap). The brief requires signal to be separated from staking.",
+        "missing": "The stake itself — flat unit, fraction, or Kelly — and the bankroll the units are "
+                   "denominated in. Without it, no row of the leaderboard can be settled.",
+        "how_to_find_out": "Owner decision. The site can publish signal-only indefinitely, which is the "
+                           "current state and is internally consistent; anything else needs a number.",
+        "unblocks": "the leaderboard's economic columns and the reward mechanics",
+        "blocking": "every ROI, bankroll and drawdown column on pages/leaderboard.html",
+        "default_if_unanswered": "signal only; staking columns stay absent, not zero",
+        "source_url": REPO + "blob/main/docs/methodology/signal-vs-staking.md",
+    },
+    {
+        "id": "Q-66", "question": "Who funds the reward pool, and is there a jurisdiction constraint?",
+        "known": "The pool is recorded as owner-funded and pending, and the reward rules are not written. "
+                 "Nothing in the repository pays out anything.",
+        "missing": "Funding decision, rules in writing, and a legality read for the owner's jurisdiction.",
+        "how_to_find_out": "Owner and, for legality, a lawyer — not a data task. Flagged so it is not "
+                           "mistaken for a gap in collection.",
+        "unblocks": "R-10 in the readiness register, and any claim that the leaderboard has stakes",
+        "blocking": "pages/decisions-critical.html Q-20",
+        "default_if_unanswered": "the leaderboard stays a ranking with no payout",
+        "source_url": REPO + "blob/main/pages/decisions-critical.html",
+    },
+    {
+        "id": "Q-67", "question": "Where does depth come from for a club whose chart the league does not "
+                                 "publish as text?",
+        "known": "31 of 32 clubs yield parseable depth from the collected source; the Texans' chart is "
+                 "published as an image and produced 0 slots, and four players (Chris Brooks, Micah "
+                 "Parsons, Skyy Moore and others) cannot be joined at all. Club sites are already an "
+                 "accepted host precisely because the league publishes no chart of its own.",
+        "missing": "Whether a club's own page is acceptable for the depth ordering that feeds the "
+                   "replacement matrix, given it is neither contemporaneous nor uniform in format.",
+        "how_to_find_out": "Owner decision on source hierarchy; mechanically, club pages are fetchable "
+                           "today and the deficiency matrix would then need a per-source label rather "
+                           "than a single 'official' column.",
+        "unblocks": "the backup-deficiency matrix's coverage claim, and the 0-slot exception",
+        "blocking": "pages/availability.html depth coverage (31/32) and the missing-player join flags",
+        "default_if_unanswered": "publish the hole: 31/32 with the Texans row blank and flagged",
+        "source_url": "https://www.nfl.com/team/depth-charts/",
+    },
+    {
+        "id": "Q-68", "question": "How many consecutive days of captures are needed before a drift alarm "
+                                 "is treated as a finding rather than as noise?",
+        "known": "Two dated injury reads exist (2026-11-14, 2026-11-15) and one standings delta (11-14 → "
+                 "11-16). The first delta changed shape once already — 62 changed cells became 34 after "
+                 "the club-code alias was added — which shows the estimate moves with the join, not with "
+                 "the league.",
+        "missing": "A minimum-n rule for publishing 'the injury report moved' claims, and the same rule "
+                   "for the surprise-not-level signal the brief asks for.",
+        "how_to_find_out": "No decision needed to gather it, only time and green runs: the series is the "
+                           "answer. Worth stating now so the page can say 'n=2' rather than implying a "
+                           "trend.",
+        "unblocks": "S-24, PR-04's evaluation window, and any 'movement' column on the availability page",
+        "blocking": "the injury-movement claim on pages/availability.html",
+        "default_if_unanswered": "publish every delta with its n and its two dates, no rolling averages",
+        "source_url": REPO + "blob/main/data/captures/diffs/injuries__2026-11-14__2026-11-15.csv",
+    },
+    {
+        "id": "Q-69", "question": "What are the two undocumented record triples and the duplicate "
+                                 "win-percentage columns on the standings page?",
+        "known": "The page's own legend defines W L T PCT HOME ROAD DIV CONF PF PA NET PTS STRK. The table "
+                 "prints two further record triples and a second PCT column; `data/pipeline/standings.json` "
+                 "carries 18 printed columns including two columns both headed `Pct`. This session did not "
+                 "transcribe the undocumented ones.",
+        "missing": "A definition. Publishing 'DIV' or 'CONF' as a division or conference record without "
+                   "the page saying so would be inference, and the arithmetic check that closes W-L-T does "
+                   "not extend to columns whose meaning is assumed.",
+        "how_to_find_out": "Two candidate answers are cheap to test: NFL Operations' definitions page, or "
+                           "reproducing each undocumented triple from the schedule for one club and seeing "
+                           "which subset of games it equals. The second is arithmetic, needs no new source, "
+                           "and can be done here — it is listed as a suggestion the moment anyone has an "
+                           "hour.",
+        "unblocks": "whether the standings table on the site is complete or a subset",
+        "blocking": "nothing published today, because the columns are simply absent — which is the "
+                    "correct outcome while the question is open",
+        "default_if_unanswered": "leave the undocumented columns out of the published table",
+        "source_url": "https://www.nfl.com/standings/league/2026/REG",
+    },
+    {
+        "id": "Q-70", "question": "Does a blank cell on a mid-week read mean 'no designation', or 'the "
+                                "page had not been published yet'?",
+        "known": "The `game_status` column is legitimately blank most days — the injury report has no "
+                 "Monday or Saturday edition — so the pin allows up to 95% blank and only alarms above "
+                 "that. It also means a field that vanished entirely could hide inside a generous "
+                 "allowance.",
+        "missing": "The publishing calendar, stated as data (which days the league posts which report), "
+                   "so the allowance can be day-specific instead of one fixed fraction.",
+        "how_to_find_out": "Derivable from the captures themselves once a fortnight of them exists — the "
+                           "blank-fraction by weekday is a histogram this repository will be able to print "
+                           "from its own index, with no new source.",
+        "unblocks": "tightening `blank-over-allowance` from an alarm to a gate without firing on Wednesdays",
+        "blocking": "the strength of the injury-drift gate",
+        "default_if_unanswered": "keep the generous allowance, alarm-only, with the reason on the page",
+        "source_url": REPO + "blob/main/data/captures/config.json",
+    },
+]
+
+
+def build() -> dict:
+    return {
+        "dataset": "next_decisions",
+        "title": "Suggestions and open questions for the owner to choose between, with the evidence that produced each",
+        "read_on": READ,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_by": "tools/build_next_decisions.py (session arena-543cdcb0-x1)",
+        "rule": "nothing on this page is implemented by the tool that writes it; decision_status is set "
+                "only by a human commit, so a suggestion cannot approve itself",
+        "impact_effort_note": "impact, effort and risk are this session's estimates, not measurements.",
+        "suggestion_columns": ["id", "area", "title", "why", "path_a", "path_b", "path_c",
+                               "recommended", "recommended_because", "impact", "effort", "risk",
+                               "evidence_file", "source_url", "decision_status"],
+        "question_columns": ["id", "question", "known", "missing", "how_to_find_out", "unblocks",
+                            "blocking", "default_if_unanswered", "source_url"],
+        "suggestions": [{**s, "decision_status": "Proposed — awaiting the owner's choice"} for s in SUGGESTIONS],
+        "questions": QUESTIONS,
+        "executive_summary": [
+            {"what": "The collector was healthy and landed nothing for a week.",
+             "detail": "Every scheduled run exited 0 while its own commit log recorded a push that failed "
+                       "five times: the commit step deleted two tracked log files and left the deletions "
+                       "unstaged, and `git rebase` refuses a dirty tree. The workflow now restores them, "
+                       "rebases with `--autostash`, and fails loudly if it cannot push."},
+            {"what": "Retention exists, so a read is no longer overwritten by the next read.",
+             "detail": "9 captures over 7 datasets, content-addressed, with 2 published alarms and 0 "
+                       "integrity failures; day-over-day injury and standings deltas became computable for "
+                       "the first time (34 changed cells; 184 standings cells)."},
+            {"what": "Week 10 and Week 11 are now transcribed from the official pages, with closure proved.",
+             "detail": "13 finals + 1 unplayed fixture; 32-club standings cross-checked against two other "
+                       "official pages (60 records, 0 mismatches) and against the delta that reproduces "
+                       "them (160 assertions, 0 failures). The published 2026-11-14 tables were left as "
+                       "dated artefacts rather than rewritten."},
+            {"what": "PR-01 is registered, scored, and started.",
+             "detail": "Brier 0.224 on 117 chronologically held-out games, +0.116 skill against the "
+                       "0.55 home baseline with a +0.002 lower bound; hit rate 0.641; realised wins 75 "
+                       "against 76.1 expected (z = -0.21), i.e. the record is exactly what its own model "
+                       "expects of luck. 14 pre-kickoff forecasts are now frozen."},
+            {"what": "The site's own claim of verified Week 10 coverage is still 1 of 14, on purpose.",
+             "detail": "Closing that gap means moving the transcription, the row-count pin, the standings "
+                       "baseline and the mirror pin in one commit; appending in isolation breaks 23 of 32 "
+                       "clubs against the baseline the feed is validated by. That is S-22 and Q-62."},
+        ],
+    }
+
+
+def to_csv(rows: list[dict], cols: list[str]) -> str:
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=cols, lineterminator="\n", extrasaction="ignore")
+    w.writeheader()
+    w.writerows(rows)
+    return buf.getvalue()
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--check", action="store_true")
+    args = ap.parse_args(argv)
+    payload = build()
+    js = json.dumps(payload, indent=1) + "\n"
+    parts = [to_csv(payload["suggestions"], payload["suggestion_columns"]),
+             to_csv(payload["questions"], payload["question_columns"])]
+    if args.check:
+        strip = lambda s: "\n".join(l for l in s.split("\n") if '"generated_at"' not in l)
+        if strip(open(os.path.join(OUTDIR, "round_" + READ.replace("-", "_") + ".json"),
+                      encoding="utf-8").read()) != strip(js):
+            print("STALE: data/next_decisions/round json differs from a fresh build")
+            return 1
+        print(f"CHECK OK: {len(payload['suggestions'])} suggestions, {len(payload['questions'])} questions")
+        return 0
+    os.makedirs(OUTDIR, exist_ok=True)
+    stem = "round_" + READ.replace("-", "_")
+    with open(os.path.join(OUTDIR, stem + ".json"), "w", encoding="utf-8") as fh:
+        fh.write(js)
+    with open(os.path.join(OUTDIR, stem + "_suggestions.csv"), "w", encoding="utf-8") as fh:
+        fh.write(parts[0])
+    with open(os.path.join(OUTDIR, stem + "_questions.csv"), "w", encoding="utf-8") as fh:
+        fh.write(parts[1])
+    print(f"wrote data/next_decisions/{stem}.json (+2 csv) · "
+          f"{len(payload['suggestions'])} suggestions, {len(payload['questions'])} questions")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

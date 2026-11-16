@@ -1,0 +1,17 @@
+# PR-01 pre-kickoff shadow record. Written 2026-11-16T18:52:12Z by tools/build_shadow_baseline.py; immutable by convention and by build.
+# market_line / residual are blank on purpose: no official price source (Q-02).
+recorded_at_utc,week,game_id,kickoff_et,away,home,p_home,model_side,expected_margin_home,fair_line_home,fair_american_home,fair_american_away,market_line,residual,source_url,status_at_record
+2026-11-16T18:52:12Z,10,2026_10_LAC_BAL,2026-11-16 8:15 PM,LAC,BAL,0.701232,home,7.1273,-7.0,235,-235,,,https://www.nfl.com/games/chargers-at-ravens-2026-reg-10,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_IND_HOU,2026-11-19 8:15 PM,IND,HOU,0.726308,home,8.1227,-8.0,265,-265,,,https://www.nfl.com/games/colts-at-texans-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_ARZ_KC,2026-11-22 1:00 PM,AZ,KC,0.90526,home,17.7136,-17.5,956,-956,,,https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_BAL_CAR,2026-11-22 1:00 PM,BAL,CAR,0.62572,home,4.3273,-4.5,167,-167,,,https://www.nfl.com/games/ravens-at-panthers-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_MIA_BUF,2026-11-22 1:00 PM,MIA,BUF,0.889315,home,16.5091,-16.5,803,-803,,,https://www.nfl.com/games/dolphins-at-bills-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_NO_CHI,2026-11-22 1:00 PM,NO,CHI,0.767706,home,9.8727,-10.0,330,-330,,,https://www.nfl.com/games/saints-at-bears-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_PIT_PHI,2026-11-22 1:00 PM,PIT,PHI,0.315326,away,-6.4909,6.5,-217,217,,,https://www.nfl.com/games/steelers-at-eagles-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_TB_DET,2026-11-22 1:00 PM,TB,DET,0.635883,home,4.6909,-4.5,175,-175,,,https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_TEN_DAL,2026-11-22 1:00 PM,TEN,DAL,0.735017,home,8.4788,-8.5,277,-277,,,https://www.nfl.com/games/titans-at-cowboys-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_NYJ_LAC,2026-11-22 4:05 PM,NYJ,LAC,0.406314,away,-3.2,3.0,-146,146,,,https://www.nfl.com/games/jets-at-chargers-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_JAX_NYG,2026-11-22 4:25 PM,JAX,NYG,0.24949,away,-9.1273,9.0,-301,301,,,https://www.nfl.com/games/jaguars-at-giants-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_LV_DEN,2026-11-22 4:25 PM,LV,DEN,0.667817,home,5.8576,-6.0,201,-201,,,https://www.nfl.com/games/raiders-at-broncos-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_MIN_SF,2026-11-22 8:20 PM,MIN,SF,0.638409,home,4.7818,-5.0,177,-177,,,https://www.nfl.com/games/vikings-at-49ers-2026-reg-11,scheduled (not played when recorded)
+2026-11-16T18:52:12Z,11,2026_11_CIN_WAS,2026-11-23 8:15 PM,CIN,WAS,0.262489,away,-8.5818,8.5,-281,281,,,https://www.nfl.com/games/bengals-at-commanders-2026-reg-11,scheduled (not played when recorded)

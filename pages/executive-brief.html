@@ -32,6 +32,9 @@
       <a href="changes.html">What changed</a>
       <a href="requirements.html">Requirements &amp;amp; status</a>
       <a href="readiness.html">Decision readiness</a>
+      <a href="capture-system.html">Capture system</a>
+      <a href="shadow-baseline.html">Shadow baseline</a>
+      <a href="next-decisions.html">Suggestions &amp; questions</a>
       <a href="../dashboard/lab-index.html">Analytics lab</a>
       <a href="review.html">Repo review</a>
       <a href="../research/index.html">Research lab</a>
@@ -81,7 +84,7 @@
 </tbody></table></div>
   <h2>Findings</h2>
   <div class="tablewrap"><table class="wide" data-table><caption>Audit findings</caption><thead><tr><th>ID</th><th>Severity</th><th>Area</th><th>Finding</th><th>Evidence / measurement</th><th>Fix</th><th>Status</th><th>Source</th></tr></thead><tbody>
-<tr><td><b>A-01</b></td><td><span class="pill high">high</span></td><td>Coverage</td><td><b>The site&#x27;s injury join uses a five-club depth pilot while a 31-club depth collection already sits in the repository.</b></td><td>The site reports 6 &quot;listed starters ruled Out&quot;. The same join run across the 31 clubs already collected returns 31. No published value is wrong; the published number is a floor presented as if it were the population.</td><td>Published on pages/availability.html: the full join is the main table, the pilot is kept below it as a labelled subset, and the coverage is stated on the page. The remaining decision for the owner is whether that becomes the permanent presentation (Q-19).</td><td>fixed</td><td><a class="src-link" href="https://www.atlantafalcons.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>A-01</b></td><td><span class="pill high">high</span></td><td>Coverage</td><td><b>The site&#x27;s injury join uses a five-club depth pilot while a 31-club depth collection already sits in the repository.</b></td><td>The site reports 6 &quot;listed starters ruled Out&quot;. The same join run across the 31 clubs already collected returns 30. No published value is wrong; the published number is a floor presented as if it were the population.</td><td>Published on pages/availability.html: the full join is the main table, the pilot is kept below it as a labelled subset, and the coverage is stated on the page. The remaining decision for the owner is whether that becomes the permanent presentation (Q-19).</td><td>fixed</td><td><a class="src-link" href="https://www.atlantafalcons.com/team/depth-chart" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
 <tr><td><b>A-02</b></td><td><span class="pill high">high</span></td><td>Navigation</td><td><b>The live-pipeline tree (15 pages) was not linked from the landing page and appeared in no navigation.</b></td><td>tools/check_links.py asserted reachability for every page tree except live/, so 15 pages could only be reached by typing the URL. The nav list in tools/build_site.py had no entry for it either. Reproduced with `python3 tools/check_links.py` before the fix.</td><td>Add live/ to the landing page and the nav, and make check_links.py assert reachability for it.</td><td>fixed</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/live/index.html" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
 <tr><td><b>A-03</b></td><td><span class="pill high">high</span></td><td>CI</td><td><b>The verify-site workflow was red on main: tools/check_links.py failed with 111 errors.</b></td><td>Two causes. (a) It scanned raw HTML and treated JavaScript template strings such as href=&quot;${s.url}&quot; as internal links. (b) It applied the main site&#x27;s stylesheet contract to the live/ tree, which uses its own stylesheet and JS-rendered navigation. Neither was a defect in the published pages.</td><td>Strip JS template literals before link assertions, and give live/ its own contract check.</td><td>fixed</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/actions" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
 <tr><td><b>A-04</b></td><td><span class="pill warn">medium</span></td><td>Verification</td><td><b>301 of 345 injury rows had never been re-checked by a second reader (flag I-17).</b></td><td>This round transcribed all 345 rows from the official page independently and diffed every cell: 2,183 cells across the four tables, 0 mismatches. I-17 can be closed.</td><td>Done — tools/verify_against_official.py now runs this diff on every build.</td><td>fixed</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
@@ -96,7 +99,7 @@
   <div class="note"><b>Publish the 31-club depth join, or state that five clubs are all the evidence you want?</b>
   The site currently reports 6 starters ruled out on the strength of a
   five-club pilot. The same join across the 31 clubs already collected returns
-  <b>31</b>. Nothing about the published number is false; it is a floor that reads like a
+  <b>30</b>. Nothing about the published number is false; it is a floor that reads like a
   total. Recommendation, cost and reversal are on the
   <a href="suggestions-board.html">suggestions board (B-01)</a>; the question is
   <a href="decisions-critical.html">Q-19</a>.</div>

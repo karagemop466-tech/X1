@@ -22,18 +22,18 @@
  ],
  "rows_count": 9,
  "totals": {
-  "slots": 897,
-  "replacement_named": 688,
-  "no_replacement_named": 209,
+  "slots": 896,
+  "replacement_named": 681,
+  "no_replacement_named": 215,
   "starters_on_report_without_named_replacement": 16,
   "by_depth": {
-   "2": 680,
-   "3": 8
+   "2": 671,
+   "3": 10
   },
   "by_depth_all_slots": {
-   "2": 680,
-   "none": 209,
-   "3": 8
+   "2": 671,
+   "none": 215,
+   "3": 10
   }
  },
  "gaps": [
@@ -167,7 +167,7 @@
   }
  ],
  "verification": {
-  "rows": 897,
+  "rows": 896,
   "depth_values_valid": true,
   "violations": 0,
   "note": "depth 4 exists in the schema and the charts; no slot needs a 4th string today"
@@ -177,11 +177,11 @@
    "unit": "Defense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 316,
-   "starters_out": 11,
+   "slots": 315,
+   "starters_out": 12,
    "starters_doubtful": 1,
    "starters_questionable": 15,
-   "replacement_named": 316,
+   "replacement_named": 315,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -201,7 +201,7 @@
    "unit": "Defense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 36,
+   "slots": 37,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 3,
@@ -213,11 +213,11 @@
    "unit": "Offense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 302,
-   "starters_out": 17,
+   "slots": 297,
+   "starters_out": 16,
    "starters_doubtful": 2,
-   "starters_questionable": 8,
-   "replacement_named": 302,
+   "starters_questionable": 10,
+   "replacement_named": 297,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -225,11 +225,11 @@
    "unit": "Offense",
    "replacement_depth": "3",
    "depth_label": "3rd string",
-   "slots": 2,
+   "slots": 3,
    "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 1,
-   "replacement_named": 2,
+   "replacement_named": 3,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -237,7 +237,7 @@
    "unit": "Offense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 47,
+   "slots": 50,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,
@@ -249,11 +249,11 @@
    "unit": "Special Teams",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 62,
+   "slots": 59,
    "starters_out": 3,
    "starters_doubtful": 0,
    "starters_questionable": 0,
-   "replacement_named": 62,
+   "replacement_named": 59,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -261,11 +261,11 @@
    "unit": "Special Teams",
    "replacement_depth": "3",
    "depth_label": "3rd string",
-   "slots": 2,
+   "slots": 3,
    "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 0,
-   "replacement_named": 2,
+   "replacement_named": 3,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -273,7 +273,7 @@
    "unit": "Special Teams",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 126,
+   "slots": 128,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,

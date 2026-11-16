@@ -16,7 +16,7 @@
    "priority": "P0",
    "blocks": "The entire injury/depth feature",
    "question": "Is a five-club depth pilot an acceptable evidence base, or should the site publish the 31-club join that already exists?",
-   "known": "31 of 32 clubs already have a club-depth-chart collection in the repository (1813 entries, every row linked to its club page).",
+   "known": "31 of 32 clubs already have a club-depth-chart collection in the repository (1805 entries, every row linked to its club page).",
    "missing": "A decision on whether a club self-report counts as evidence, and what to do about the one club (HOU) with no parsable chart.",
    "closes_with": "A one-line owner ruling recorded in COORDINATION.md.",
    "recommend": "Publish the full join and label every row 'club self-report', keeping the pilot visible as a subset.",
