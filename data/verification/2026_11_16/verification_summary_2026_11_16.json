@@ -1,0 +1,76 @@
+{
+ "pack": "nfl-official-2026-11-16",
+ "generated_at": "2026-11-16T18:40:36+00:00",
+ "retrieved_at_utc": "2026-11-16T18:44Z (Week 10 results) / 2026-11-16T18:47Z (standings) / 2026-11-16T18:52Z (Week 11 schedule)",
+ "read_by": "session arena-543cdcb0-x1, via the fetch tool; no value recalled from memory",
+ "sources": {
+  "standings": "https://www.nfl.com/standings/league/2026/REG",
+  "week10_results": "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "week11_schedule": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "published_baseline": "https://github.com/karagemop466-tech/X1/blob/main/data/nfl/standings.tsv"
+ },
+ "checks": {
+  "A1_standings_arithmetic": {
+   "clubs": 32,
+   "passed": 32,
+   "assertions": 96,
+   "verdict": "pass",
+   "note": "NET = PF - PA; PCT = (W + T/2)/GP; HOME + ROAD = W-L-T. The third identity is what proves the two record triples transcribed are home and road, in that order."
+  },
+  "A2_league_closure": {
+   "total_wins": 148,
+   "total_losses": 148,
+   "total_ties": 2,
+   "total_points_for": 6880,
+   "total_points_against": 6880,
+   "games_implied": 149,
+   "verdict": "pass"
+  },
+  "A3_cross_page_records": {
+   "records_compared": 60,
+   "clubs_covered": 32,
+   "mismatches": 0,
+   "detail": [],
+   "verdict": "pass",
+   "note": "Two further official pages that print every club's record: the Week 10 results page (28 clubs) and the Week 11 schedule page (32 clubs). A transcription slip in the standings read has to disagree with at least one of them."
+  },
+  "A4_slate_completeness": {
+   "fixtures": 13,
+   "byes": 6,
+   "clubs_appearing": 32,
+   "clubs_missing": [],
+   "clubs_appearing_more_than_once": [],
+   "verdict": "pass",
+   "note": "Every one of the 32 clubs must appear exactly once per game week, either in a fixture or in the bye block. A partial page read fails this, which is why the collector now runs it before publishing a schedule capture."
+  },
+  "A5_dated_delta_closure": {
+   "clubs": 32,
+   "fields_per_club": 5,
+   "assertions": 160,
+   "failures": 0,
+   "new_finals_applied": 12,
+   "verdict": "pass",
+   "note": "The published table is not edited. The delta it is missing is computed from the Week 10 results that were 'scheduled' when it was read, and every field that moves is a diff row."
+  },
+  "A6_promotion": {
+   "week10_games_on_page": 14,
+   "final_now": 13,
+   "final_at_prior_read": 1,
+   "promoted_scheduled_to_final": 12,
+   "still_open": [
+    "2026_10_LAC_BAL"
+   ],
+   "verdict": "pass",
+   "note": "The Monday-night game (2026_10_LAC_BAL, 2026-11-16 8:15 PM ET) had not been played when this pack was read, so Week 10 is not closed. Scores for it stay blank everywhere."
+  }
+ },
+ "failures": [],
+ "verdict": "pass",
+ "limits": [
+  "The standings table was read from the LEAGUE view, not the division view the published table uses; division and conference records are therefore not re-checked here.",
+  "Two record triples and two win-percentage columns on the standings page have no LEGEND definition and were not transcribed, per the site rule about undefined columns.",
+  "Kickoff times are not printed for completed games on the weekly page, so the time_et column is blank for the 13 finals; the times in data/nfl/schedule_week10.tsv come from the 2026-11-14 read.",
+  "No venue field is printed on the weekly schedule page. Venue requires one Game Center fetch per fixture; that capture is not part of this pack and remains an open, costed gap.",
+  "Week 10 is not closed: the Monday-night game is scheduled at retrieval."
+ ]
+}

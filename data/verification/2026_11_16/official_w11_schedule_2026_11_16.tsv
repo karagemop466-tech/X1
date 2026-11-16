@@ -1,0 +1,31 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-11  (page title: "NFL Week 11 Schedule 2026: Games, Times, Matchups & Tickets")
+# Read via the fetch tool, chunks 0-2 of 3, on 2026-11-16 at 18:52 UTC. Transcribed by session arena-543cdcb0-x1.
+# 13 fixtures + 6 clubs on bye = 32 clubs covered, which is the completeness invariant this pack checks
+# (tools/verify_2026_11_16.py: every club appears exactly once, in one fixture or in the bye block).
+# away_record / home_record / bye_record are printed on THIS page; they are cross-checked against the
+# separate official standings page read eight minutes earlier, so a record must agree across two pages.
+# venue blank = the weekly schedule page prints no venue field. The page DOES print the event label
+# ("Mexico City 2026 logo", section header "Sunday Night Football, November 22nd") — recorded in note,
+# which is the only venue-grade fact this page prints.
+# roof / surface / weather: the page prints a "Weather" string for some games ("Clearnight"); it is a
+# one-word current-conditions string, not a kickoff forecast, so it is NOT published as a forecast.
+row_type	game_id	date_et	time_et	network	note	away	away_record	home	home_record	status	game_url	source_url
+game	2026_11_IND_HOU	2026-11-19	8:15 PM	PRIME	Thursday Night Football, November 19th	IND	3-7	HOU	3-6	Scheduled	https://www.nfl.com/games/colts-at-texans-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_MIA_BUF	2026-11-22	1:00 PM	CBS	Sunday 1:00 window; covered on NFL RedZone	MIA	1-8	BUF	8-1	Scheduled	https://www.nfl.com/games/dolphins-at-bills-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_BAL_CAR	2026-11-22	1:00 PM	FOX	Sunday 1:00 window	BAL	4-5	CAR	4-5	Scheduled	https://www.nfl.com/games/ravens-at-panthers-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_NO_CHI	2026-11-22	1:00 PM	FOX	Sunday 1:00 window	NO	3-6	CHI	7-2	Scheduled	https://www.nfl.com/games/saints-at-bears-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_TEN_DAL	2026-11-22	1:00 PM	FOX	Sunday 1:00 window	TEN	1-8	DAL	4-6	Scheduled	https://www.nfl.com/games/titans-at-cowboys-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_TB_DET	2026-11-22	1:00 PM	FOX	Sunday 1:00 window	TB	3-6	DET	7-2	Scheduled	https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_ARZ_KC	2026-11-22	1:00 PM	CBS	Sunday 1:00 window	AZ	3-7	KC	7-2	Scheduled	https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_PIT_PHI	2026-11-22	1:00 PM	CBS	Sunday 1:00 window	PIT	6-3	PHI	2-7	Scheduled	https://www.nfl.com/games/steelers-at-eagles-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_NYJ_LAC	2026-11-22	4:05 PM	FOX	Sunday 4:05 window; weather string printed: Clearnight	NYJ	2-8	LAC	0-8	Scheduled	https://www.nfl.com/games/jets-at-chargers-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_JAX_NYG	2026-11-22	4:25 PM	CBS	Sunday 4:25 window	JAX	7-2	NYG	5-3-1	Scheduled	https://www.nfl.com/games/jaguars-at-giants-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_LV_DEN	2026-11-22	4:25 PM	CBS	Sunday 4:25 window	LV	4-6	DEN	7-2	Scheduled	https://www.nfl.com/games/raiders-at-broncos-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_MIN_SF	2026-11-22	8:20 PM	NBC	Sunday Night Football, November 22nd - international game, page prints the "Mexico City 2026" event logo	MIN	7-2	SF	8-1	Scheduled	https://www.nfl.com/games/vikings-at-49ers-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_CIN_WAS	2026-11-23	8:15 PM	ESPN	Monday Night Football, November 23rd; weather string printed: Clearnight	CIN	7-2	WAS	3-5-1	Scheduled	https://www.nfl.com/games/bengals-at-commanders-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_ATL				Teams on Bye block; club is in `away`, its printed record in `away_record`	ATL	3-7			Bye		https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_CLE				Teams on Bye block; club is in `away`, its printed record in `away_record`	CLE	6-4			Bye		https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_GB				Teams on Bye block; club is in `away`, its printed record in `away_record`	GB	6-4			Bye		https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_LA				Teams on Bye block; club is in `away`, its printed record in `away_record`	LA	6-4			Bye		https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_NE				Teams on Bye block; club is in `away`, its printed record in `away_record`	NE	5-5			Bye		https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_SEA				Teams on Bye block; club is in `away`, its printed record in `away_record`	SEA	6-4			Bye		https://www.nfl.com/schedules/2026/by-week/week-11
