@@ -391,6 +391,11 @@ def outputs(summary: dict) -> tuple[str, str, str]:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--write", action="store_true",
+                    help="re-emit the three artefacts. Default is read-only: a verifier that rewrites "
+                         "its own inputs stamps a fresh generated_at on every run and leaves unstaged "
+                         "changes behind, which is the exact failure that stranded the collector's "
+                         "pushes. Re-emit deliberately, or not at all.")
     args = ap.parse_args(argv)
 
     summary = build()
@@ -409,6 +414,15 @@ def main(argv=None) -> int:
         if same:
             print("CHECK OK: the 2026-11-16 pack matches a fresh build of the same reads")
         return 0 if same else 1
+
+    if not args.write:
+        print("2026-11-16 official re-verification (read-only; pass --write to re-emit the pack)")
+        for k, v in summary["checks"].items():
+            print(f"  {k:32s} {v['verdict']}")
+        print(f"  failures: {len(summary['failures'])}")
+        for f in summary["failures"][:20]:
+            print("   !", f)
+        return 1 if any(summary["checks"][k]["verdict"] == "FAIL" for k in summary["checks"]) else 0
 
     outdir = VDIR
     os.makedirs(outdir, exist_ok=True)

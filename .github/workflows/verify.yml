@@ -196,3 +196,9 @@ jobs:
           python3 tools/build_preregistration.py --check
           python3 tools/build_shadow_baseline.py --check
           python3 tools/build_next_decisions.py --check
+
+      # The 2026-11-16 official pack, re-derived and compared to what is committed: standings arithmetic,
+      # league closure, three-page record cross-check, slate completeness (32 clubs exactly once), the
+      # dated-delta closure and the Week 10 promotion accounting. Read-only by design (see --write).
+      - name: The dated official pack still closes
+        run: python3 tools/verify_2026_11_16.py --check
