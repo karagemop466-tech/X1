@@ -176,3 +176,13 @@ jobs:
       # --check fails if the committed artefact differs from a fresh computation.
       - name: Control baselines reproduce from the pinned mirror (C1)
         run: python3 tools/lab/build_controls.py --check
+
+      # Added by session arena-543cdcb0-x1 (additive only). The capture store is what turns "the
+      # collector ran" into evidence: every retained payload must hash to its content-addressed name,
+      # no payload may be orphaned, and every pin in data/captures/config.json is exercised by a
+      # corruption self-test. Freshness is NOT gated here on purpose - a pull request cannot fix a
+      # missed collector run; data-refresh.yml gates it after it collects.
+      - name: Capture store integrity, drift pins and their mutation test
+        run: |
+          python3 scripts/pipeline/verify_captures.py --no-freshness
+          python3 scripts/pipeline/verify_captures.py --self-test

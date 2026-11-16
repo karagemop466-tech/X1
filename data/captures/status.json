@@ -1,0 +1,115 @@
+{
+ "generated_at": "2026-11-16T18:48:30Z",
+ "captures": 9,
+ "datasets": [
+  "injuries",
+  "standings",
+  "depth_charts",
+  "team_stats",
+  "deficiency",
+  "week_schedule",
+  "week_results"
+ ],
+ "freshness": {
+  "injuries": {
+   "status": "ok",
+   "captures": 2,
+   "distinct_payloads": 2,
+   "last_as_read_at": "2026-11-15T18:14:00Z",
+   "hours_since_last_read": 24.6,
+   "clock_skew_hours": "",
+   "max_age_hours": 96,
+   "last_drift": "fail"
+  },
+  "standings": {
+   "status": "ok",
+   "captures": 2,
+   "distinct_payloads": 2,
+   "last_as_read_at": "2026-11-16T18:47:00Z",
+   "hours_since_last_read": 0.0,
+   "clock_skew_hours": "",
+   "max_age_hours": 96,
+   "last_drift": "pass"
+  },
+  "depth_charts": {
+   "status": "ok",
+   "captures": 1,
+   "distinct_payloads": 1,
+   "last_as_read_at": "2026-11-14T17:02:22+00:00",
+   "hours_since_last_read": 49.8,
+   "clock_skew_hours": "",
+   "max_age_hours": 168,
+   "last_drift": "pass"
+  },
+  "team_stats": {
+   "status": "ok",
+   "captures": 1,
+   "distinct_payloads": 1,
+   "last_as_read_at": "2026-11-14T17:02:27+00:00",
+   "hours_since_last_read": 49.8,
+   "clock_skew_hours": "",
+   "max_age_hours": 168,
+   "last_drift": "pass"
+  },
+  "deficiency": {
+   "status": "ok",
+   "captures": 1,
+   "distinct_payloads": 1,
+   "last_as_read_at": "2026-11-14T17:02:27+00:00",
+   "hours_since_last_read": 49.8,
+   "clock_skew_hours": "",
+   "max_age_hours": 168,
+   "last_drift": "fail"
+  },
+  "week_schedule": {
+   "status": "ok",
+   "captures": 1,
+   "distinct_payloads": 1,
+   "last_as_read_at": "2026-11-16T18:52:00Z",
+   "hours_since_last_read": 0.0,
+   "clock_skew_hours": "0.1",
+   "max_age_hours": 336,
+   "last_drift": "pass"
+  },
+  "week_results": {
+   "status": "ok",
+   "captures": 1,
+   "distinct_payloads": 1,
+   "last_as_read_at": "2026-11-16T18:44:00Z",
+   "hours_since_last_read": 0.1,
+   "clock_skew_hours": "",
+   "max_age_hours": 336,
+   "last_drift": "pass"
+  }
+ },
+ "alarms": [
+  {
+   "dataset": "deficiency",
+   "kind": "schema-or-count",
+   "at": "2026-11-14T17:02:27+00:00",
+   "detail": [
+    {
+     "detail": "the payload declares 12 columns and its rows carry 14 keys; undeclared in the rows: ['depth_listed', 'team_abbrev']; declared but not in the rows: none",
+     "field": "depth_listed+team_abbrev",
+     "kind": "declared-columns-mismatch"
+    }
+   ],
+   "capture_id": "deficiency@20261114T170227+0000@358caf415bb9"
+  },
+  {
+   "dataset": "injuries",
+   "kind": "schema-or-count",
+   "at": "2026-11-15T18:14:00Z",
+   "detail": [
+    {
+     "detail": "'LAR' is not one of the 32 club codes the standings page prints; it is a spelling of another club or a page change, and a join on it would silently drop 14 rows",
+     "field": "team",
+     "kind": "club-code-outside-register"
+    }
+   ],
+   "capture_id": "injuries@20261115T181400Z@0df1313a65f5"
+  }
+ ],
+ "verdict": "alarmed",
+ "rule": "an alarm is published; a blank cell is never published as an absence of news"
+}

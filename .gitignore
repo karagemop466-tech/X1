@@ -11,6 +11,15 @@ venv/
 # re-downloaded (a hand transcription of an official injury report) is kept.
 data/raw/*
 !data/raw/official_injuries_w10_2026.csv
+# Added by session arena-543cdcb0-x1. `data/raw/*` was silently governing the PINNED upstream mirror
+# (data/raw/nflverse/*.csv) and the Week 10 official injury transcription: 14 files were tracked while
+# matching the ignore rule, so `git add data/raw/nflverse/games.csv` did nothing without `-f`, a
+# `git clean -xdf` in any session would have deleted the mirror the results feed and the control
+# baselines are cross-checked against, and `git ls-files -i -c` was non-empty on main. Re-included
+# explicitly: a pinned, hashed input is evidence, and evidence is not scratch.
+!data/raw/nflverse/
+!data/raw/nflverse/**
+!data/raw/injuries_2026_week10_official.psv
 _site/
 
 # session arena/d577959f-x1: live-pipeline scratch output

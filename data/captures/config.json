@@ -1,0 +1,443 @@
+{
+ "dataset": "capture_store",
+ "title": "Dated retention and drift pins for official reads",
+ "written_by": "pipeline/capture_store.py",
+ "generated_at": "2026-11-16T19:05:00Z",
+ "owner_note": "Edit this file, not the code, when the league changes what it prints. A pin that a human has not read is not a pin: every number below is the count or field set the 2026-11-14/15/16 reads actually produced, and the range is that count widened for the ordinary week-to-week movement of the report, not tuned to make a build pass.",
+ "datasets": {
+  "injuries": {
+   "pipeline_source": "data/pipeline/injuries.json",
+   "fields": [
+    "team",
+    "player",
+    "position",
+    "injury",
+    "practice_status",
+    "game_status",
+    "game_label"
+   ],
+   "map": {
+    "team": "team_abbrev",
+    "player": "player",
+    "position": "position",
+    "injury": "injuries",
+    "practice_status": "practice_status",
+    "game_status": "game_status",
+    "game_label": "game_date"
+   },
+   "key_fields": [
+    "team",
+    "player"
+   ],
+   "diff_key": [
+    "team",
+    "player"
+   ],
+   "diff_fields": [
+    "position",
+    "injury",
+    "practice_status",
+    "game_status"
+   ],
+   "diff_alias": {
+    "LAR": "LA",
+    "ARI": "AZ"
+   },
+   "diff_alias_note": "Normalised only when two reads are matched up, never inside a retained payload: the Nov-15 hand transcription labels the Rams LAR and the collector's read labels the same club LA. Without the alias the day-over-day delta reports 14 players 'gone' and 14 'appeared' who are the same 14 rows. The spelling split itself is the pre-existing finding (flags F-15, I-15, I-16), so the payloads keep what each source printed."
+  },
+  "standings": {
+   "pipeline_source": "data/pipeline/standings.json",
+   "fields": [
+    "abbr",
+    "name",
+    "w",
+    "l",
+    "t",
+    "pct",
+    "pf",
+    "pa",
+    "net",
+    "home",
+    "road"
+   ],
+   "map": {
+    "abbr": "team_abbrev",
+    "name": "team_name",
+    "w": "W",
+    "l": "L",
+    "t": "T",
+    "pct": "PCT",
+    "pf": "PF",
+    "pa": "PA",
+    "net": "NET_PTS",
+    "home": "Home",
+    "road": "Road"
+   },
+   "key_fields": [
+    "abbr"
+   ],
+   "diff_key": [
+    "abbr"
+   ],
+   "diff_fields": [
+    "w",
+    "l",
+    "t",
+    "pct",
+    "pf",
+    "pa",
+    "net",
+    "home",
+    "road"
+   ]
+  },
+  "depth_charts": {
+   "pipeline_source": "data/pipeline/depth_charts.json",
+   "fields": [
+    "team",
+    "unit",
+    "position",
+    "slot",
+    "depth",
+    "player",
+    "player_url"
+   ],
+   "map": {
+    "team": "team_abbrev",
+    "unit": "unit",
+    "position": "position",
+    "slot": "slot",
+    "depth": "depth",
+    "player": "player",
+    "player_url": "player_url"
+   },
+   "key_fields": [
+    "team",
+    "player",
+    "unit",
+    "position",
+    "slot"
+   ],
+   "diff_key": [
+    "team",
+    "player"
+   ],
+   "diff_fields": [
+    "unit",
+    "position",
+    "slot",
+    "depth"
+   ]
+  },
+  "team_stats": {
+   "pipeline_source": "data/pipeline/team_stats.json",
+   "fields": "auto",
+   "map": {},
+   "key_fields": [
+    "team_abbrev"
+   ],
+   "diff_key": [
+    "team_abbrev"
+   ],
+   "diff_fields": []
+  },
+  "deficiency": {
+   "pipeline_source": "data/pipeline/deficiency.json",
+   "fields": "auto",
+   "map": {},
+   "key_fields": [
+    "team_abbrev",
+    "unit",
+    "position",
+    "slot",
+    "starter",
+    "replacement"
+   ],
+   "diff_key": [
+    "team_abbrev",
+    "slot"
+   ],
+   "diff_fields": [
+    "severity",
+    "replacement",
+    "replacement_game_status"
+   ]
+  },
+  "week_schedule": {
+   "pipeline_source": "",
+   "fields": [
+    "row_type",
+    "game_id",
+    "date_et",
+    "time_et",
+    "network",
+    "note",
+    "away",
+    "away_record",
+    "home",
+    "home_record",
+    "status",
+    "game_url",
+    "source_url"
+   ],
+   "map": {},
+   "key_fields": [
+    "row_type",
+    "game_id",
+    "away"
+   ],
+   "diff_key": [
+    "game_id"
+   ],
+   "diff_fields": [
+    "date_et",
+    "time_et",
+    "network",
+    "status"
+   ]
+  },
+  "week_results": {
+   "pipeline_source": "",
+   "fields": [
+    "game_id",
+    "date_et",
+    "time_et",
+    "network",
+    "note",
+    "away",
+    "away_score",
+    "away_record",
+    "home",
+    "home_score",
+    "home_record",
+    "status",
+    "game_url",
+    "source_url"
+   ],
+   "map": {},
+   "key_fields": [
+    "game_id",
+    "away",
+    "home"
+   ],
+   "diff_key": [
+    "game_id"
+   ],
+   "diff_fields": [
+    "status",
+    "away_score",
+    "home_score"
+   ]
+  }
+ },
+ "pins": {
+  "injuries": {
+   "required_fields": [
+    "team",
+    "player",
+    "position",
+    "practice_status",
+    "game_status"
+   ],
+   "min_rows": 150,
+   "max_rows": 900,
+   "unique_key": [
+    "team",
+    "player"
+   ],
+   "vocabulary": [
+    "practice_status",
+    "game_status"
+   ],
+   "max_blank_fraction": {
+    "player": 0.0,
+    "team": 0.0,
+    "position": 0.02,
+    "practice_status": 0.05,
+    "game_status": 0.95
+   },
+   "why_game_status_allowance_is_high": "The official weekly report prints a game designation only for Friday's designations; the 2026-11-14 read carried 160 designations over 345 rows and the Week 10 sweep found only a minority of rows with any game status. An allowance below 0.95 would fire on every Wednesday read for a reason that is not a defect.",
+   "invariants": [
+    "club-vocabulary"
+   ],
+   "clubs": [
+    "ATL",
+    "AZ",
+    "BAL",
+    "BUF",
+    "CAR",
+    "CHI",
+    "CIN",
+    "CLE",
+    "DAL",
+    "DEN",
+    "DET",
+    "GB",
+    "HOU",
+    "IND",
+    "JAX",
+    "KC",
+    "LA",
+    "LAC",
+    "LV",
+    "MIA",
+    "MIN",
+    "NE",
+    "NO",
+    "NYG",
+    "NYJ",
+    "PHI",
+    "PIT",
+    "SEA",
+    "SF",
+    "TB",
+    "TEN",
+    "WAS"
+   ]
+  },
+  "standings": {
+   "required_fields": [
+    "abbr",
+    "w",
+    "l",
+    "t",
+    "pf",
+    "pa"
+   ],
+   "exact_rows": 32,
+   "unique_key": [
+    "abbr"
+   ],
+   "invariants": [
+    "standings-closure"
+   ],
+   "max_blank_fraction": {
+    "w": 0.0,
+    "l": 0.0,
+    "pf": 0.0,
+    "pa": 0.0
+   }
+  },
+  "depth_charts": {
+   "required_fields": [
+    "team",
+    "position",
+    "player",
+    "slot",
+    "depth"
+   ],
+   "min_rows": 1000,
+   "max_rows": 4000,
+   "unique_key": [
+    "team",
+    "player",
+    "unit",
+    "position",
+    "slot"
+   ],
+   "max_blank_fraction": {
+    "player": 0.0,
+    "slot": 0.02,
+    "depth": 0.02
+   }
+  },
+  "team_stats": {
+   "required_fields": [
+    "team_abbrev",
+    "team_name"
+   ],
+   "min_rows": 200,
+   "max_rows": 400,
+   "max_blank_fraction": {
+    "team_abbrev": 0.0
+   },
+   "why_no_unique_key": "team_stats.json stacks one row per club per stat category (288 rows = 32 clubs x 9 printed categories), and the payload does not print a category column. An identity pin is therefore impossible without inventing one, which the site rule forbids; row count and a non-blank club are pinned instead, and the missing key is recorded as a limit."
+  },
+  "deficiency": {
+   "required_fields": [
+    "team_abbrev",
+    "unit",
+    "position",
+    "slot",
+    "starter",
+    "replacement"
+   ],
+   "min_rows": 200,
+   "max_rows": 3000,
+   "unique_key": [
+    "team_abbrev",
+    "unit",
+    "position",
+    "slot",
+    "starter",
+    "replacement"
+   ]
+  },
+  "week_schedule": {
+   "required_fields": [
+    "row_type",
+    "game_id",
+    "away",
+    "home",
+    "status",
+    "game_url"
+   ],
+   "min_rows": 13,
+   "max_rows": 20,
+   "unique_key": [
+    "game_id",
+    "away"
+   ],
+   "invariants": [
+    "slate-closure"
+   ],
+   "clubs": 32
+  },
+  "week_results": {
+   "required_fields": [
+    "game_id",
+    "date_et",
+    "away",
+    "home",
+    "status",
+    "game_url"
+   ],
+   "min_rows": 12,
+   "max_rows": 20,
+   "unique_key": [
+    "game_id"
+   ],
+   "max_blank_fraction": {
+    "status": 0.0,
+    "game_url": 0.0,
+    "away_score": 0.15
+   }
+  }
+ },
+ "freshness_hours": {
+  "injuries": 96,
+  "standings": 96,
+  "depth_charts": 168,
+  "team_stats": 168,
+  "deficiency": 168,
+  "week_schedule": 336,
+  "week_results": 336
+ },
+ "freshness_note": "Budgets are the longest interval the LEAGUE can leave the source empty, not a preference. The injury report has no Monday or Saturday edition, so a Sunday-evening read of a Monday-evening schedule is inside budget at 96h; a Tuesday afternoon read with nothing new is a real alarm. Week-level schedule/results reads are per game week, hence 336h.",
+ "gate_policy": {
+  "fail_the_build": [
+   "missing-field",
+   "row-count-out-of-range",
+   "duplicate-key",
+   "standings-closure",
+   "slate-closure"
+  ],
+  "alarm_only": [
+   "declared-columns-mismatch",
+   "blank-over-allowance",
+   "unknown-value",
+   "club-code-outside-register"
+  ],
+  "why_blank_is_alarm_only": "game_status is legitimately blank on a Wednesday read (the league prints designations only from Wednesday onward, and only 160 of 345 rows carried one in the 2026-11-14 read). A gate that fails on a blank designation column would fire on most days for a reason that is not a defect, and an alarm people route around is worse than an alarm people read. It is published on the site instead, next to the count that caused it."
+ }
+}
