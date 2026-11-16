@@ -1,7 +1,7 @@
 correlations: 1045 pairs
-repo_review: 723 files, 439 flagged
+repo_review: 728 files, 444 flagged
 {
- "generated_at": "2026-11-16T19:02:13+00:00",
+ "generated_at": "2026-11-16T19:08:53+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -99,19 +99,44 @@ repo_review: 723 files, 439 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-16T19:02:37+00:00"
+ "finished_at": "2026-11-16T19:09:14+00:00"
 }
 exit=0
 ===== captures.log =====
-status: alarmed  captures=14  alarms=3
 capture gate: 0 build-failing problem(s), 1 published alarm(s)
   alarm deficiency: [declared-columns-mismatch] the payload declares 12 columns and its rows carry 14 keys; undeclared in the rows: ['depth_listed', 'team_abbrev']; declared but not in the rows: none
-  14 captures retained; 14 distinct payloads
+  19 captures retained; 14 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 35
       listed 2nd-string (backups) with designation: 14
       injured players absent from their club chart: 10
+$ python3 tools/build_results_feed_907c.py
+    standings arithmetic: 32/32 match, 0 mismatch
+    mirror cross-check   : 137 agree, 0 disagree of 137
+    settlement           : 3W-3L-0P over 6 legs
+$ python3 tools/build_price_store_907c.py
+    price snapshots : 56 rows (14 games x 4 originated numbers)
+    order check     : spread(seq1) -> total(seq2) -> moneyline(seq3) per game
+    market cells    : all blank + flagged (no official odds source)
+$ python3 tools/build_leaderboard_split.py
+    signal scorecard : 17 rows (1 official-track + 16 mirror reference)
+    staking scorecard: 16 rows (unranked by rule)
+$ python3 tools/build_results_r3.py
+    verified_results: 137 rows, 0 mismatches, 32/32 standings reconciled
+    signal_grade: 84-49 (63.16%), z=3.035, p=0.0024, n=133
+$ python3 tools/build_snapshots.py
+    price_snapshots: 84 records, statuses={'captured_post_final': 3, 'not_captured_before_kickoff': 3, 'recorded': 39, 'pending_kickoff': 39}, market_line published=0 (all blank+flagged)
+$ python3 tools/build_origination.py
+    origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
+$ python3 tools/build_round3.py
+    leaderboard_signal_staking: 11 rows, signal populated on 1, staking values published=0
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 671, 'none': 215, '3': 10}, gaps(on report, no replacement named)=16
+    correlations_official_check: 1045 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
+$ python3 tools/lab/build_controls.py
+    random ATS     : mean 0.5003  band [0.4776, 0.5213]  reps >= favourites 0.943
+    break-even     : 0.5238
+    wrote data/lab/controls/control_baselines.{json,csv}
 $ python3 tools/official/week10_reconcile.py
     [reconcile] console table vs published table: 0 differing of 345
     [reconcile] status counts live: {'(none)': 176, 'Out': 70, 'Questionable': 90, 'Doubtful': 11}
@@ -132,7 +157,7 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (390,893 bytes)
+    wrote app/repo-review.html (394,753 bytes)
     wrote app/stores.html (132,709 bytes)
     29 pages written
 $ python3 tools/build_console.py
@@ -145,6 +170,8 @@ $ python3 tools/lab/build_site.py
     lab site verification passed: 14 pages, links resolve, every data row sourced
 $ python3 tools/build_site.py
     wrote index.html + 24 pages
+$ python3 tools/build_next_decisions.py
+    wrote data/next_decisions/round_2026_11_16.json (+2 csv) · 10 suggestions, 10 questions
 $ python3 tools/verify_data.py
     checks passed : 2944
     INFO listed starters ruled OUT in week 10: 8 (DET Cade Mays, DET D.J. Reed, GB Josh Jacobs, GB Sean Rhyan, SEA Charles Cross, SEA Sam Darnold, SEA Quenton Nelson, SEA Leonard Williams)
@@ -189,7 +216,7 @@ $ python3 tools/build_round3.py --check
        {
 $ python3 tools/check_links.py
     files checked : 168
-    assertions    : 44060
+    assertions    : 44092
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
     Site verification passed: 168 HTML pages; local links resolve; every data-table row has an official source link.
@@ -200,11 +227,7 @@ $ python3 scripts/pipeline/verify_site.py
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
     capture gate: 0 build-failing problem(s), 1 published alarm(s)
       alarm deficiency: [declared-columns-mismatch] the payload declares 12 columns and its rows carry 14 keys; undeclared in the rows: ['depth_listed', 'team_abbrev']; declared but not in the rows: none
-      14 captures retained; 14 distinct payloads
-$ python3 tools/build_preregistration.py --check
-    STALE: data/preregistration/register.json differs from a fresh build
-$ python3 tools/build_shadow_baseline.py --check
-    STALE: data/shadow/backtest_summary.json differs from a fresh build (content, not the clock)
+      19 captures retained; 14 distinct payloads
 $ python3 tools/build_next_decisions.py --check
     CHECK OK: 10 suggestions, 10 questions
-rebuild_for_refresh: FAIL (3 step(s) failed)
+rebuild_for_refresh: FAIL (1 step(s) failed)
