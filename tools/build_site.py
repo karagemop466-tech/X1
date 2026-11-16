@@ -711,6 +711,12 @@ def page_capture_system():
   &ldquo;the report says nothing changed&rdquo; and &ldquo;nobody looked&rdquo; have to be distinguishable.</p>
 
   <h2>Freshness, against a budget the league can actually meet</h2>
+  <p class="muted">The hours below were computed when <code>data/captures/status.json</code> was last
+  written by an explicit <code>capture_store status</code> run ({esc(CAP_STATUS["generated_at"])}), not
+  when this page was built: a published page must be a function of committed files only, and an
+  elapsed-time figure recomputed at build time makes the site permanently, correctly &ldquo;stale&rdquo;.
+  The collector rewrites the file in the same commit as the data it just retained, so the pair moves
+  together.</p>
   {table(["Dataset", "Captures", "Last read", "Hours since", "Budget", "Status", "Pin"], fresh_rows,
          "Freshness per dataset", "", True)}
   <p class="muted">{esc(CAP_CFG["freshness_note"])}</p>

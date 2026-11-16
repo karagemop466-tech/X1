@@ -15,6 +15,13 @@ every push. It answers two questions and no others:
     python3 scripts/pipeline/verify_captures.py            # gate
     python3 scripts/pipeline/verify_captures.py --self-test  # prove the gate can fail
 
+This command WRITES NOTHING. It used to refresh `data/captures/status.json` "so the site publishes what
+the gate saw", which made the published page a function of the wall clock: `pages/capture-system.html`
+embeds `hours_since_last_read`, so every rebuild changed seven cells and verify.yml's
+`git diff --exit-code -- index.html pages` staleness gate could never pass. A checker that rewrites the
+artefact a page renders is not a checker; `python3 -m pipeline.capture_store status` is the explicit,
+deliberate write, run by the refresh job before it commits.
+
 Exit codes: 0 pass, 1 gate failure (a real defect), 2 the store is missing or unreadable.
 """
 from __future__ import annotations
@@ -146,9 +153,6 @@ def main(argv=None) -> int:
     except FileNotFoundError as exc:
         print(f"cannot read the capture store: {exc}")
         return 2
-    class _A:
-        pass
-    store.cmd_status(_A())  # rewrite data/captures/status.json so the site publishes what the gate saw
     print(f"capture gate: {len(hard)} build-failing problem(s), {len(soft)} published alarm(s)")
     for h in hard:
         print("  FAIL", h)
