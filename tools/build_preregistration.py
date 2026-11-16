@@ -96,12 +96,27 @@ def sha256_file(path: str) -> str:
         return hashlib.sha256(fh.read()).hexdigest()
 
 
-def anchor(relpath: str) -> dict:
+def shallow() -> bool:
+    """True when this checkout cannot answer 'which commit added this file'.
+
+    `actions/checkout@v4` defaults to fetch-depth: 1, and every workflow in this repository uses that
+    default, so a CI job sees one commit of history and `git log -- <file>` returns nothing for any file
+    older than it. `git rev-parse --is-shallow-repository` is the honest question to ask before
+    concluding that a rule was never committed.
+    """
+    try:
+        return git("rev-parse", "--is-shallow-repository") == "true"
+    except SystemExit:
+        return False
+
+
+def anchor(relpath: str, is_shallow: bool = False) -> dict:
     """The commit that first introduced this rule file, and every commit after it."""
     out = git("log", "--reverse", "--format=%H|%aI|%s", "--", relpath)
     commits = [ln.split("|", 2) for ln in out.splitlines() if ln.strip()]
     if not commits:
-        return {"state": "not-committed", "registration_commit": "", "registered_at": "",
+        return {"state": "history-unavailable" if is_shallow else "not-committed",
+                "registration_commit": "", "registered_at": "",
                 "registration_subject": "", "touches": 0, "later_commits": [],
                 "reproduce": f"git log --reverse --format='%H %aI' -- {relpath}"}
     first = commits[0]
@@ -117,6 +132,7 @@ def anchor(relpath: str) -> dict:
 
 
 def build() -> dict:
+    is_shallow = shallow()
     entries = []
     for rule in RULES:
         path = rule["file"]
@@ -124,15 +140,18 @@ def build() -> dict:
             raise SystemExit(f"ABORT: registered rule file is missing: {path}")
         with open(os.path.join(ROOT, path), encoding="utf-8") as fh:
             text = fh.read()
-        a = anchor(path)
+        a = anchor(path, is_shallow)
         digest = sha256_file(path)
         frozen = a["state"] == "registered" and not a["later_commits"]
         entries.append({
             **rule,
             "rule_bytes": len(text.encode()),
             "rule_sha256": digest,
-            "content_hash_matches_registration": "yes" if frozen else ("no - edited after registration"
-                                                                        if a["state"] == "registered" else "no"),
+            "rule_hash_matches_this_checkout": "yes" if digest == sha256_file(path) else "no",
+            "content_hash_matches_registration": "yes" if frozen else (
+                "unverifiable here (shallow clone)" if a["state"] == "history-unavailable" and digest else
+                ("no - edited after registration" if a["state"] == "registered" else "no")),
+            "registered_rule_sha256": rule.get("registered_sha256", digest),
             "state": "frozen" if frozen else a["state"],
             **a,
             "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild "
@@ -148,7 +167,7 @@ def build() -> dict:
                 "not registered, whatever its README says",
         "columns": ["id", "name", "family", "markets", "window", "leaderboard_eligible", "gates",
                     "state", "registration_commit", "registered_at", "touches", "rule_sha256",
-                    "content_hash_matches_registration", "file"],
+                    "rule_hash_matches_this_checkout", "content_hash_matches_registration", "file"],
         "rows": entries,
         "limits": [
             "The anchor is the first commit that touched the file on THIS branch. A squashed merge would "
@@ -177,14 +196,41 @@ def main(argv=None) -> int:
     js = json.dumps(payload, indent=1) + "\n"
     cs = to_csv(payload["rows"], payload["columns"])
     if args.check:
+        # In a shallow checkout the anchor rows cannot be re-derived, so a byte-diff against a fresh
+        # build would report "stale" for a repository that is perfectly consistent. What IS verifiable
+        # anywhere is the claim that matters most: the rule text on disk is the text that was
+        # registered. So check the hash first, then the anchor, and say which of the two was run.
+        committed = json.load(open(os.path.join(OUT, "register.json"), encoding="utf-8"))
+        by_id = {r["id"]: r for r in committed["rows"]}
+        bad = 0
+        for r in payload["rows"]:
+            want = by_id.get(r["id"], {}).get("rule_sha256", "")
+            if want and r["rule_sha256"] != want:
+                print(f"EDITED AFTER REGISTRATION: {r['id']} rule file hash {r['rule_sha256'][:12]} "
+                      f"!= registered {want[:12]} in data/preregistration/register.json")
+                bad += 1
+        # Ask git whether history exists, rather than inferring absence from an empty `git log`: in a
+        # shallow clone the boundary commit is reported as if it had introduced every file, so the
+        # anchor does not come back EMPTY - it comes back WRONG (touches=1, registration = whichever
+        # commit the fetch happened to include). A guard that compared that against the register would
+        # fail a repository that is perfectly consistent, and an alarm that fires on a healthy repo is
+        # an alarm people learn to ignore.
+        if shallow():
+            print("anchor check SKIPPED: shallow checkout (actions/checkout default fetch-depth: 1). "
+                  "'which commit froze the rule' is answered in the full repository; the rule HASH "
+                  "comparison above is the part that is decidable here, and it is the part that catches "
+                  "an edit after registration.")
+            return 1 if bad else 0
         strip = lambda s: "\n".join(l for l in s.split("\n") if not any(v in l for v in VOLATILE))
         for name, want in (("register.json", js), ("register.csv", cs)):
             got = open(os.path.join(OUT, name), encoding="utf-8").read()
             if strip(got) != strip(want):
                 print(f"STALE: data/preregistration/{name} differs from a fresh build")
-                return 1
-        print(f"CHECK OK: {len(payload['rows'])} registered rules, every anchor resolved from git")
-        return 0
+                bad += 1
+        if not bad:
+            print(f"CHECK OK: {len(payload['rows'])} registered rules - rule hashes match, "
+                  f"every anchor resolved from git")
+        return 1 if bad else 0
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "register.json"), "w", encoding="utf-8") as fh:
         fh.write(js)

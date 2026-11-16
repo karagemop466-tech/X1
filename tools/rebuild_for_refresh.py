@@ -35,6 +35,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Reconciliation of the derived set, per `.github/workflows/verify.yml` on 2026-11-16.
 REBUILD = [
     ["python3", "tools/build_availability.py"],
+    # The results/price/leaderboard stores. CI gates these for staleness
+    # (`git diff --exit-code -- data/results_feed.json data/price_snapshots.json
+    # data/leaderboard_split_907c.json app`), and the first version of this list verified them
+    # without rebuilding them, so `--check` correctly failed: a refresh moved their inputs and left
+    # the committed artefacts behind. Read `PAIRS` below for why the two lists are no longer separate.
+    ["python3", "tools/build_results_feed_907c.py"],
+    ["python3", "tools/build_price_store_907c.py"],
+    ["python3", "tools/build_leaderboard_split.py"],
+    ["python3", "tools/build_results_r3.py"],
+    ["python3", "tools/build_snapshots.py"],
+    ["python3", "tools/build_origination.py"],
+    ["python3", "tools/build_round3.py"],
+    ["python3", "tools/lab/build_controls.py"],
     ["python3", "tools/official/week10_reconcile.py"],
     ["python3", "tools/official/depth_parse.py"],
     ["python3", "tools/official/readiness.py"],
@@ -46,6 +59,35 @@ REBUILD = [
     ["python3", "tools/lab/build_site.py"],
     ["python3", "tools/build_site.py"],
 ]
+
+# Any `--check` builder whose output this job commits must FIRST be run without `--check`, or the
+# check compares a stale committed artefact against new inputs and fails for a reason the job cannot
+# fix. Rather than maintain that rule by hand, `pairs()` derives the rebuild set from the verify set:
+# every `X --check` in VERIFY is executed as `X` then `X --check`. This exists because the first
+# version of this file listed `build_round3.py --check` in VERIFY and not `build_round3.py` in
+# REBUILD, and CI correctly reported the register as stale on a run whose inputs had just moved.
+# Two artefacts are checked but never rebuilt by a refresh, because re-writing them is the wrong
+# ownership:  data/shadow/forecasts_pre_kickoff.csv is a pre-kickoff record whose whole value is that
+# nobody regenerates it, and data/preregistration/register.json is a function of the repository's
+# commit history, which a CI checkout (actions/checkout default fetch-depth: 1) does not have.
+# Their --check steps still run, and each is written to pass on what a shallow checkout CAN verify.
+NEVER_REBUILD = {"tools/build_shadow_baseline.py", "tools/build_preregistration.py"}
+
+
+def pairs(verify: list[list[str]]) -> tuple[list[list[str]], list[list[str]]]:
+    rebuild, check = list(REBUILD), []
+    for cmd in verify:
+        if "--check" in cmd:
+            build = [c for c in cmd if c != "--check"]
+            if build[-1] in NEVER_REBUILD:
+                continue
+            if build not in rebuild:
+                rebuild.append(build)
+            check.append(cmd)
+        elif cmd not in check:
+            check.append(cmd)
+    return rebuild, check
+
 
 VERIFY = [
     ["python3", "tools/verify_data.py"],
@@ -78,6 +120,10 @@ PATHS = [
     "data/console/readiness.json", "data/console/readiness.csv",
     "data/console/repo_inventory.csv",
     "data/readiness", "data/verification", "data/shadow", "data/preregistration", "data/next_decisions",
+    "data/results_feed.json", "data/price_snapshots.json", "data/leaderboard_split_907c.json",
+    "data/results/verified_results_2026_n2.csv", "data/results/results_feed.json",
+    "data/results/results_verification.json", "data/results/verification_report.json",
+    "data/results/verified_results_2026.csv",
     "app", "lab", "pages", "index.html",
 ]
 
@@ -110,6 +156,7 @@ def main(argv=None) -> int:
     ap.add_argument("--rebuild", action="store_true")
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--paths", action="store_true")
+    ap.add_argument("--pairs", action="store_true", help="print the derived rebuild/verify plan and exit")
     ap.add_argument("--explain", action="store_true", help="show what a refresh commits and what it refuses to")
     args = ap.parse_args(argv)
     if args.explain:
@@ -121,12 +168,19 @@ def main(argv=None) -> int:
     if args.paths:
         print("\n".join(PATHS))
         return 0
+    rebuild, check = pairs(VERIFY)
+    if args.pairs:
+        for cmd in rebuild:
+            print("rebuild " + " ".join(cmd))
+        for cmd in check:
+            print("verify  " + " ".join(cmd))
+        return 0
     bad = 0
     if not args.verify:
-        for cmd in REBUILD:
+        for cmd in rebuild:
             bad += run(cmd) != 0
     if not args.rebuild:
-        for cmd in VERIFY:
+        for cmd in check:
             bad += run(cmd) != 0
     print(f"rebuild_for_refresh: {'FAIL' if bad else 'ok'} ({bad} step(s) failed)")
     return 1 if bad else 0

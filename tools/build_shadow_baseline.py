@@ -423,6 +423,11 @@ def build() -> dict:
 
 
 CLOCK = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})?")
+# Provenance, not content. The refresh job rewrites data/pipeline/standings.json on every run, and the
+# input-hash block records that file's SHA-256; if the comparison included it, `--check` would report a
+# stale artefact every day even when not one number moved. The hashes are still PUBLISHED (they are how
+# a reader knows which bytes the score came from) - they are simply not what the staleness gate asserts.
+VOLATILE_TOP = ("inputs",)
 
 
 def normalise(text: str) -> str:
@@ -437,7 +442,13 @@ def normalise(text: str) -> str:
     if not lines:
         return ""
     if lines[0].startswith("{"):
-        return CLOCK.sub("<clock>", "\n".join(lines))
+        try:
+            obj = json.loads("\n".join(lines))
+        except json.JSONDecodeError:
+            return CLOCK.sub("<clock>", "\n".join(lines))
+        for k in VOLATILE_TOP:
+            obj.pop(k, None)
+        return CLOCK.sub("<clock>", json.dumps(obj, indent=1, sort_keys=True))
     header = lines[0].split(",")
     clock_cols = {i for i, h in enumerate(header) if h in ("recorded_at_utc", "generated_at", "read_on")}
     out = []
