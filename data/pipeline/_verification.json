@@ -24,13 +24,13 @@
    "rows": 896,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 2849,
+   "null_cells": 2853,
    "problems": [],
    "ok": true
   },
   {
    "dataset": "depth_charts",
-   "rows": 1803,
+   "rows": 1798,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 56,
@@ -84,7 +84,7 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 728,
+   "rows": 730,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,

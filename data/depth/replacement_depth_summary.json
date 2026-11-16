@@ -23,17 +23,17 @@
  "rows_count": 9,
  "totals": {
   "slots": 896,
-  "replacement_named": 680,
-  "no_replacement_named": 216,
-  "starters_on_report_without_named_replacement": 16,
+  "replacement_named": 678,
+  "no_replacement_named": 218,
+  "starters_on_report_without_named_replacement": 17,
   "by_depth": {
-   "2": 671,
-   "3": 9
+   "2": 670,
+   "3": 8
   },
   "by_depth_all_slots": {
-   "2": 671,
-   "none": 216,
-   "3": 9
+   "2": 670,
+   "none": 218,
+   "3": 8
   }
  },
  "gaps": [
@@ -150,6 +150,14 @@
    "source_url": "https://www.miamidolphins.com/team/depth-chart"
   },
   {
+   "team": "NYG",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Darnell Mooney",
+   "game_status": "",
+   "source_url": "https://www.giants.com/team/depth-chart"
+  },
+  {
    "team": "PIT",
    "unit": "Defense",
    "position": "DT",
@@ -178,7 +186,7 @@
    "replacement_depth": "2",
    "depth_label": "2nd string",
    "slots": 317,
-   "starters_out": 12,
+   "starters_out": 11,
    "starters_doubtful": 1,
    "starters_questionable": 15,
    "replacement_named": 317,
@@ -225,11 +233,11 @@
    "unit": "Offense",
    "replacement_depth": "3",
    "depth_label": "3rd string",
-   "slots": 3,
+   "slots": 2,
    "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 1,
-   "replacement_named": 3,
+   "replacement_named": 2,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -237,7 +245,7 @@
    "unit": "Offense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 52,
+   "slots": 53,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,
@@ -249,11 +257,11 @@
    "unit": "Special Teams",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 59,
+   "slots": 58,
    "starters_out": 3,
    "starters_doubtful": 0,
    "starters_questionable": 0,
-   "replacement_named": 59,
+   "replacement_named": 58,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -273,7 +281,7 @@
    "unit": "Special Teams",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 128,
+   "slots": 129,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,
@@ -394,6 +402,14 @@
    "starter": "Tucker Addington",
    "game_status": "",
    "source_url": "https://www.miamidolphins.com/team/depth-chart"
+  },
+  {
+   "team": "NYG",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "Darnell Mooney",
+   "game_status": "",
+   "source_url": "https://www.giants.com/team/depth-chart"
   },
   {
    "team": "PIT",

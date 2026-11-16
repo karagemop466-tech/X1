@@ -47,14 +47,14 @@
    "severity": "high",
    "category": "Coverage",
    "finding": "The site's injury join uses a five-club depth pilot while a 31-club depth collection already sits in the repository.",
-   "evidence": "The site reports 6 \"listed starters ruled Out\". The same join run across the 31 clubs already collected returns 31. No published value is wrong; the published number is a floor presented as if it were the population.",
+   "evidence": "The site reports 6 \"listed starters ruled Out\". The same join run across the 31 clubs already collected returns 30. No published value is wrong; the published number is a floor presented as if it were the population.",
    "measured": {
     "pilot_clubs": 5,
     "pilot_starters_out": 6,
     "clubs_available": 31,
-    "full_starters_out": 31,
+    "full_starters_out": 30,
     "injury_rows": 345,
-    "joined_rows": 254
+    "joined_rows": 253
    },
    "source": "https://www.atlantafalcons.com/team/depth-chart",
    "source_label": "example club depth chart (each row carries its own)",
