@@ -3223,3 +3223,41 @@ workflow only inside the "Commit refreshed data" step and appends one new step; 
 `data/readiness/**` file. **Request to the final integrator:** if PR #61 merges, keep both its
 `pipeline/archive.py` and this session's `pipeline/capture_store.py`, and reconcile the two
 retention designs rather than dropping either.
+
+### Done 2026-11-16 (this session, arena/543cdcb0-x1) — C-1…C-6 landed
+
+| item | artefact | how to re-check |
+|---|---|---|
+| C-1 collector push defect | `.github/workflows/data-refresh.yml`, "Commit refreshed data" step only | read `_ci/commit.log` on `main` for `MARKER: PUSH FAILED after 5 attempts`, then diff the step |
+| C-2 retention | `pipeline/capture_store.py`, `data/captures/{index.jsonl,payloads/}` — 9 captures / 7 datasets | `python3 -m pipeline.capture_store verify` (exit 0) |
+| C-3 drift pins | `pipeline/drift.py`, `data/captures/config.json`, `scripts/pipeline/verify_captures.py` | `python3 scripts/pipeline/verify_captures.py --self-test` → 5/5 caught |
+| C-4 dated reads + closure | `data/verification/2026_11_16/` (3 TSVs + summary + diff), `tools/verify_2026_11_16.py` | `python3 tools/verify_2026_11_16.py` → A1–A6 all pass |
+| C-5 pre-registration | `docs/preregistration/PR-01-*.md`, `tools/build_preregistration.py` (anchor resolved from git), `tools/build_shadow_baseline.py` | `--check` on both; tamper test in the session log |
+| C-6 site | `pages/capture-system.html`, `pages/shadow-baseline.html`, `pages/next-decisions.html`, one NAV entry each + one landing section | `python3 tools/build_site.py && python3 scripts/verify_site.py` |
+| refresh integrity | `tools/rebuild_for_refresh.py` (rebuild + verify the 11 derived artefacts; refuses to commit clock-stamped `console/`, `hub/`, `data/console/payload.json`, `price_snapshots.csv`) | `python3 tools/rebuild_for_refresh.py` → `ok (0 step(s) failed)` |
+| hygiene | `.gitignore`: un-ignored `data/raw/nflverse/**` + the Week 10 injury PSV (14 tracked files were silently matched by `data/raw/*`); untracked `code/__pycache__/*.pyc` | `git ls-files -i -c --exclude-standard` → only `_ci/*.log` remains, by design |
+
+**Numbers published, with their source of truth:** Brier 0.224242 on n=117 games (weeks 3–10,
+chronological holdout), Brier skill vs the 0.55 home baseline +0.116401 with a game-cluster 95% lower
+bound of +0.0021 (10 000 resamples, seed 20261116), hit rate 0.641026, MAE 9.6681 pts, luck panel 75
+realised wins vs 76.057 expected (sd 5.042, z −0.21); 14 pre-kickoff forecasts frozen at
+`data/shadow/forecasts_pre_kickoff.csv`. Injury day-over-day delta 34 changed cells; standings delta 184
+changed cells, 72 field changes all closing.
+
+**Deliberately NOT done, and why (do not "fix" these by half-doing them):**
+1. `data/results/_raw/reads.tsv` was **not** extended with the 13 Week 10 finals, so
+   `results_feed_meta.json` still reports `official_verified: 1` for Week 10. Measured reason: appending
+   those rows in isolation makes **23 of 32 clubs** disagree with `data/pipeline/standings.json`, the
+   baseline the feed's arithmetic gate validates against, and 13 of them have no score in the pinned
+   mirror the row-diff gate requires (`build_results_r3.py` aborts on `no mirror row to diff against`),
+   plus a hard `expected 137 rows` pin. Closing it is one coordinated commit (transcription + count pin
+   + standings baseline + mirror re-pin) = suggestion **S-22** / question **Q-62** on
+   `pages/next-decisions.html`.
+2. `data/nfl/standings.tsv` and `data/nfl/schedule_week10.tsv` were **not** rewritten. The newer read is
+   a dated delta pack; the delta closes against the older table, which is the finding.
+3. `pipeline/run.py` untouched (PR #61 owns it). Consequence recorded on the capture page: retained
+   payloads hold transcriptions, not raw response bytes — see suggestion **S-23**.
+
+**For the integrator:** `tools/patch_site_543cdcb0.py` and `tools/patch_site_next_decisions.py` are the
+one-shot patches that edited `tools/build_site.py`; both abort unless every anchor matches exactly once.
+Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.

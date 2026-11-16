@@ -186,3 +186,13 @@ jobs:
         run: |
           python3 scripts/pipeline/verify_captures.py --no-freshness
           python3 scripts/pipeline/verify_captures.py --self-test
+
+      # Added by session arena-543cdcb0-x1 (additive only). Three registers this round created, each
+      # rebuilt from its inputs and required to reproduce: the pre-registration register (which resolves
+      # every rule's registration commit from git), the PR-01 shadow baseline (walk-forward score and the
+      # immutable pre-kickoff record), and the review board of suggestions and open questions.
+      - name: Pre-registration, shadow baseline and review-board registers reproduce
+        run: |
+          python3 tools/build_preregistration.py --check
+          python3 tools/build_shadow_baseline.py --check
+          python3 tools/build_next_decisions.py --check

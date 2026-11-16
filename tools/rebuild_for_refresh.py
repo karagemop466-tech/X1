@@ -64,6 +64,9 @@ VERIFY = [
     ["python3", "scripts/verify_site.py"],
     ["python3", "scripts/pipeline/verify_site.py"],
     ["python3", "scripts/pipeline/verify_captures.py", "--no-freshness"],
+    ["python3", "tools/build_preregistration.py", "--check"],
+    ["python3", "tools/build_shadow_baseline.py", "--check"],
+    ["python3", "tools/build_next_decisions.py", "--check"],
 ]
 
 # Everything the builders above are allowed to write. Deliberately explicit, and deliberately not `.`:
@@ -74,7 +77,8 @@ PATHS = [
     "data/console/depth_parse.json", "data/console/depth_parse.csv",
     "data/console/readiness.json", "data/console/readiness.csv",
     "data/console/repo_inventory.csv",
-    "data/readiness", "data/verification", "app", "lab", "pages", "index.html",
+    "data/readiness", "data/verification", "data/shadow", "data/preregistration", "data/next_decisions",
+    "app", "lab", "pages", "index.html",
 ]
 
 # Deliberately NOT committed by a refresh, although they are rebuilt and verified:
