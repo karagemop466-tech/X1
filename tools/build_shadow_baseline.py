@@ -364,7 +364,10 @@ def build() -> dict:
     m = metrics(scored)
     m["bootstrap"] = bootstrap(scored)
     forward, _ = forward_record(games, state["__final__"])
-    forecast_hash = hashlib.sha256(to_csv(forward).encode()).hexdigest()
+    # The fingerprint covers what was forecast, not when it was written: a re-run at 18:52 and a build
+    # at 18:53 of the same numbers must agree, or the staleness guard is a clock and not a check.
+    sub = [{k: v for k, v in r.items() if k != "recorded_at_utc"} for r in forward]
+    forecast_hash = hashlib.sha256(to_csv(sub).encode()).hexdigest()
 
     return {
         "dataset": "shadow_baseline_PR-01",
@@ -396,7 +399,8 @@ def build() -> dict:
             "recorded_at_utc": NOW,
             "games_recorded": len(forward),
             "content_sha256": forecast_hash,
-            "immutability": "the CSV is written once; a second run that would change it aborts the build",
+            "immutability": "the CSV is written once; a second run that would change any forecast number "
+                            "aborts the build (the recorded clock is excluded from the fingerprint)",
             "file": "data/shadow/forecasts_pre_kickoff.csv",
         },
         "blank_by_policy": {
@@ -418,6 +422,34 @@ def build() -> dict:
     }
 
 
+CLOCK = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})?")
+
+
+def normalise(text: str) -> str:
+    """Compare artefacts on CONTENT, not on the minute they were built.
+
+    Every artefact here carries a build clock somewhere (`generated_at`, `recorded_at_utc`, the header
+    comment). A staleness guard that diffs raw bytes would fail on every CI rebuild and would then be
+    switched off, which is worse than not having it. So the clock is masked and the rows are compared
+    as a set: a forecast that changed in any scored field, or gained/lost a row, still fails.
+    """
+    lines = [ln for ln in text.split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+    if not lines:
+        return ""
+    if lines[0].startswith("{"):
+        return CLOCK.sub("<clock>", "\n".join(lines))
+    header = lines[0].split(",")
+    clock_cols = {i for i, h in enumerate(header) if h in ("recorded_at_utc", "generated_at", "read_on")}
+    out = []
+    for ln in lines[1:]:
+        f = ln.split(",")
+        for i in clock_cols:
+            if i < len(f):
+                f[i] = "<clock>"
+        out.append(",".join(f))
+    return "\n".join(sorted(out))
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -433,7 +465,6 @@ def main(argv=None) -> int:
     forward_csv = to_csv(forward_rows)
 
     if args.check:
-        strip = lambda s: "\n".join(l for l in s.split("\n") if "generated_at" not in l)
         want = {
             "backtest_summary.json": json.dumps(payload, indent=1) + "\n",
             "games_scored.csv": scored_csv,
@@ -448,8 +479,8 @@ def main(argv=None) -> int:
                 bad += 1
                 continue
             got = open(path, encoding="utf-8").read()
-            if strip(got) != strip(text):
-                print(f"STALE: data/shadow/{name} differs from a fresh build")
+            if normalise(got) != normalise(text):
+                print(f"STALE: data/shadow/{name} differs from a fresh build (content, not the clock)")
                 bad += 1
         if not bad:
             print(f"CHECK OK: shadow baseline reproduces from its inputs "
@@ -459,14 +490,10 @@ def main(argv=None) -> int:
     os.makedirs(OUTDIR, exist_ok=True)
     if os.path.exists(FORECAST_PATH):
         old = open(FORECAST_PATH, encoding="utf-8").read()
-        if old.strip() and not old.startswith("#"):
-            # Compare ignoring the recorded clock: a re-run must not be able to reprice a forecast.
-            def without_clock(s):
-                return "\n".join(ln for ln in s.split("\n") if "recorded_at_utc" not in ln)
-            if without_clock(old) != without_clock(forward_csv):
-                raise SystemExit("ABORT: forecasts_pre_kickoff.csv already exists with different "
-                                 "content. A pre-kickoff record is immutable; grade the old one and "
-                                 "register a new one instead of overwriting it.")
+        if normalise(old) != normalise(forward_csv):
+            raise SystemExit("ABORT: data/shadow/forecasts_pre_kickoff.csv already exists and the model "
+                             "would record different numbers. A pre-kickoff record is immutable: grade the "
+                             "recorded one, then register a new rule version - never overwrite a forecast.")
         with open(FORECAST_PATH, "w", encoding="utf-8") as fh:
             fh.write("# PR-01 pre-kickoff shadow record. Written "
                      f"{NOW} by tools/build_shadow_baseline.py; immutable by convention and by build.\n"
