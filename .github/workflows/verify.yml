@@ -193,6 +193,11 @@ jobs:
       # immutable pre-kickoff record), and the review board of suggestions and open questions.
       - name: Pre-registration, shadow baseline and review-board registers reproduce
         run: |
+          # The register's whole claim is "this commit froze this rule", which needs history, and
+          # actions/checkout defaults to fetch-depth 1. Best-effort deepen so the real anchor check runs
+          # in CI; if it fails, the tool skips the anchor and still verifies the rule hash, which is the
+          # part that catches an edit after registration.
+          git fetch --unshallow --quiet origin 2>/dev/null || git fetch --deepen=200 --quiet origin 2>/dev/null || true
           python3 tools/build_preregistration.py --check
           python3 tools/build_shadow_baseline.py --check
           python3 tools/build_next_decisions.py --check
