@@ -85,7 +85,7 @@ jobs:
         if: always()
         run: |
           set -uo pipefail
-          if python3 tools/rebuild_for_refresh.py | tee /tmp/x1ci/rebuild.log; then
+          if python3 tools/rebuild_for_refresh.py --pre-commit | tee /tmp/x1ci/rebuild.log; then
             echo "REBUILD_GATE=0" >> "$GITHUB_ENV"
           else
             echo "REBUILD_GATE=1" >> "$GITHUB_ENV"
@@ -130,6 +130,22 @@ jobs:
               echo "MARKER: derived artefacts withheld (rebuild/verify gate = ${REBUILD_GATE:-unset})"
             fi
 
+            # 3. Push the evidence now. It is gated by CAPTURE_GATE alone, and a withheld analysis
+            #    commit must never be able to take the dated reads down with it.
+            git push origin "HEAD:${GITHUB_REF_NAME}" || echo "MARKER: capture push failed; continuing"
+
+            # 4. Only then run the checks that compare an artefact against HEAD: before this commit they
+            #    would have compared the new registers against the OLD commit and reported the refresh
+            #    itself as staleness (which is exactly how build_round3.py --check withheld every derived
+            #    artefact on 2026-11-16T19:09Z). After it, "stale" means what it is supposed to mean.
+            if [ "${REBUILD_GATE:-1}" = "0" ]; then
+              if ! python3 tools/rebuild_for_refresh.py --post-commit | tee /tmp/x1ci/postcommit.log; then
+                echo "MARKER: POST-COMMIT GATE FAILED - derived artefacts are not being pushed"
+                echo "::error::the refreshed artefacts do not reproduce the committed registers; captures landed, analysis withheld"
+                exit 1
+              fi
+            fi
+
             pushed=0
             for attempt in 1 2 3 4 5; do
               git fetch origin "${GITHUB_REF_NAME}"
@@ -157,7 +173,7 @@ jobs:
           } 2>&1 | tee /tmp/commit.log
           # The commit log is uploaded as _ci/commit.log; the two gate logs are appended to the
           # pipeline log so a single artefact carries the whole run's reasoning.
-          for extra in captures rebuild; do
+          for extra in captures rebuild postcommit; do
             if [ -s "/tmp/x1ci/${extra}.log" ]; then
               { echo "===== ${extra}.log ====="; cat "/tmp/x1ci/${extra}.log"; } >> /tmp/x1ci/pipeline.log
             fi

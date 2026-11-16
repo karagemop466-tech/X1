@@ -77,6 +77,18 @@ REBUILD = [
 NEVER_REBUILD = {"tools/build_shadow_baseline.py"}
 
 
+# A `X --check` command compares the artefact in the working tree against what a fresh build produces,
+# and several of them read the comparison base from git (build_round3.py --check diffs the COMMITTED
+# register). Inside the refresh job that is unfalsifiable by construction: the job has every right to
+# change the register, so the check reports STALE, the gate withholds the artefacts, and the new data
+# never lands - which is how a green-looking collector ends up publishing nothing again. So the checks
+# are split: content verifiers run before the commit, and the HEAD-comparing `--check` set runs AFTER it,
+# where HEAD is the commit that was just made and the comparison finally means "the thing we published
+# reproduces from the thing we published it from".
+def is_post_commit(cmd: list[str]) -> bool:
+    return "--check" in cmd
+
+
 def pairs(verify: list[list[str]]) -> tuple[list[list[str]], list[list[str]]]:
     rebuild, check = list(REBUILD), []
     for cmd in verify:
@@ -160,6 +172,10 @@ def main(argv=None) -> int:
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--paths", action="store_true")
     ap.add_argument("--pairs", action="store_true", help="print the derived rebuild/verify plan and exit")
+    ap.add_argument("--pre-commit", action="store_true",
+                    help="rebuild everything, then run only the checks that do not compare against HEAD")
+    ap.add_argument("--post-commit", action="store_true",
+                    help="run the HEAD-comparing checks, after the commit that moved HEAD")
     ap.add_argument("--explain", action="store_true", help="show what a refresh commits and what it refuses to")
     args = ap.parse_args(argv)
     if args.explain:
@@ -172,6 +188,23 @@ def main(argv=None) -> int:
         print("\n".join(PATHS))
         return 0
     rebuild, check = pairs(VERIFY)
+    if args.post_commit:
+        bad = 0
+        for cmd in check:
+            if is_post_commit(cmd):
+                bad += run(cmd) != 0
+        print(f"rebuild_for_refresh --post-commit: {'FAIL' if bad else 'ok'} "
+              f"({bad} check(s) failed against the new commit)")
+        return 1 if bad else 0
+    if args.pre_commit:
+        bad = 0
+        for cmd in rebuild:
+            bad += run(cmd) != 0
+        for cmd in check:
+            if not is_post_commit(cmd):
+                bad += run(cmd) != 0
+        print(f"rebuild_for_refresh --pre-commit: {'FAIL' if bad else 'ok'} ({bad} step(s) failed)")
+        return 1 if bad else 0
     if args.pairs:
         for cmd in rebuild:
             print("rebuild " + " ".join(cmd))
