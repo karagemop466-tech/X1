@@ -120,7 +120,15 @@ jobs:
 
             # 2. Derived analysis, only when it is consistent with the data it came from.
             if [ "${REBUILD_GATE:-1}" = "0" ]; then
-              git add $(python3 tools/rebuild_for_refresh.py --paths)
+              # Stage by ALLOWLIST PREFIX rather than by the tool's --paths list. The first version used
+              # --paths and promptly withheld nothing while failing its own post-commit gate: three
+              # artefacts that build_round3.py legitimately rewrites (data/replacement_depth_summary.json,
+              # data/leaderboard_2026.json, data/correlations_official_check.json) were rebuilt, left
+              # uncommitted, and so the "committed registers reproduce" check correctly found the commit
+              # incomplete. A list a human must keep in sync with 20 builders is the bug; the prefix is
+              # the contract. Inputs (data/raw, data/capture, data/verification, data/nfl) are not written
+              # by any builder, so they cannot move; _ci/ is outside the prefix entirely.
+              git add -A data app lab pages index.html
               if ! git diff --cached --quiet; then
                 git commit -m "data: refresh from official sources $(date -u +%Y-%m-%dT%H:%M:%SZ)"
               else
@@ -139,6 +147,10 @@ jobs:
             #    itself as staleness (which is exactly how build_round3.py --check withheld every derived
             #    artefact on 2026-11-16T19:09Z). After it, "stale" means what it is supposed to mean.
             if [ "${REBUILD_GATE:-1}" = "0" ]; then
+              # `set -o pipefail` is load-bearing here: without it the exit status of
+              # `python3 … | tee …` is tee's, so a failed gate read as success and the artefacts were
+              # pushed anyway - the exact "green run, broken data" shape this whole job was written to end.
+              set -o pipefail
               if ! python3 tools/rebuild_for_refresh.py --post-commit | tee /tmp/x1ci/postcommit.log; then
                 echo "MARKER: POST-COMMIT GATE FAILED - derived artefacts are not being pushed"
                 echo "::error::the refreshed artefacts do not reproduce the committed registers; captures landed, analysis withheld"

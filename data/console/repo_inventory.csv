@@ -1,5 +1,5 @@
 PATH,TOP,BYTES
-.github/workflows/data-refresh.yml,.github,9850
+.github/workflows/data-refresh.yml,.github,10985
 .github/workflows/pages.yml,.github,11310
 .github/workflows/pipeline.yml,.github,1792
 .github/workflows/verify.yml,.github,10535
@@ -7,8 +7,8 @@ PATH,TOP,BYTES
 .nojekyll,.nojekyll,0
 COORDINATION.md,COORDINATION.md,320638
 README.md,README.md,18710
-_ci/commit.log,_ci,3386
-_ci/pipeline.log,_ci,9763
+_ci/commit.log,_ci,5984
+_ci/pipeline.log,_ci,10489
 analysis/strategy_backtest.py,analysis,17108
 app/assets/app.js,app,2871
 app/assets/site.css,app,7261
@@ -169,7 +169,7 @@ data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9046
 data/console/readiness.csv,data,29132
 data/console/readiness.json,data,52916
-data/console/repo_inventory.csv,data,31689
+data/console/repo_inventory.csv,data,31690
 data/console/results_feed.csv,data,1374469
 data/console/schedule_week10.csv,data,1805
 data/console/standings_2026.csv,data,3691
@@ -288,8 +288,8 @@ data/pipeline/standings.json,data,23735
 data/pipeline/strategies.json,data,10635
 data/pipeline/suggestions.json,data,19640
 data/pipeline/team_stats.json,data,326313
-data/preregistration/register.csv,data,1741
-data/preregistration/register.json,data,6288
+data/preregistration/register.csv,data,1774
+data/preregistration/register.json,data,6193
 data/price_snapshots.json,data,77397
 data/price_snapshots/market_index.csv,data,17105
 data/price_snapshots/snapshots.csv,data,24901
@@ -527,8 +527,8 @@ live/standings.html,live,4402
 live/strategy-lab.html,live,7932
 live/suggestions.html,live,4702
 live/team-stats.html,live,4390
-pages/availability.html,pages,386594
-pages/capture-system.html,pages,47783
+pages/availability.html,pages,385648
+pages/capture-system.html,pages,49974
 pages/changes.html,pages,8056
 pages/correlation.html,pages,9807
 pages/cross-check.html,pages,7857
@@ -540,7 +540,7 @@ pages/flagged.html,pages,24653
 pages/leaderboard.html,pages,12307
 pages/line-origination.html,pages,14483
 pages/next-decisions.html,pages,36641
-pages/readiness.html,pages,113552
+pages/readiness.html,pages,113555
 pages/requirements.html,pages,43765
 pages/review-queue.html,pages,29995
 pages/review.html,pages,12168
@@ -706,7 +706,7 @@ tools/official/verify_published.py,tools,8497
 tools/official/week10_reconcile.py,tools,14157
 tools/patch_site_543cdcb0.py,tools,31365
 tools/patch_site_next_decisions.py,tools,7742
-tools/rebuild_for_refresh.py,tools,11421
+tools/rebuild_for_refresh.py,tools,11794
 tools/record_price.py,tools,4098
 tools/spotcheck_injuries_r4.py,tools,5832
 tools/test_source_rule.py,tools,1738

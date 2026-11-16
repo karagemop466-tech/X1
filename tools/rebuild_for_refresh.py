@@ -126,7 +126,11 @@ VERIFY = [
     ["python3", "tools/build_next_decisions.py", "--check"],
 ]
 
-# Everything the builders above are allowed to write. Deliberately explicit, and deliberately not `.`:
+# What the builders are allowed to write, kept as documentation and as `--explain` output. The workflow
+# does NOT stage from this list - it stages the `data app lab pages index.html` allowlist prefix, because
+# an enumeration that must be kept in sync with 20 builders silently under-commits (it did: build_round3's
+# three registers were rebuilt, not staged, and the post-commit reproducibility check failed on a commit
+# that was in fact incomplete). Deliberately not `.`:
 # a refresh must never be able to commit `COORDINATION.md`, a workflow or a source file by accident.
 PATHS = [
     "data/pipeline", "data/captures", "data/nfl/availability_derived.tsv", "data/audit",
