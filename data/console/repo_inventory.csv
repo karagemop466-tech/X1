@@ -17,7 +17,7 @@ app/decisions.html,app,51987
 app/deficiency.html,app,653061
 app/depth.html,app,663321
 app/executive-summary.html,app,16605
-app/flagged.html,app,428233
+app/flagged.html,app,428263
 app/index.html,app,63286
 app/injuries.html,app,211191
 app/leaderboard.html,app,112704
@@ -27,7 +27,7 @@ app/price-history.html,app,34949
 app/prices.html,app,105782
 app/props.html,app,11156
 app/replacement-depth.html,app,54887
-app/repo-review.html,app,394841
+app/repo-review.html,app,394871
 app/requirements.html,app,47351
 app/results-feed.html,app,133716
 app/results.html,app,178894
@@ -139,7 +139,7 @@ data/capture/2026_w10/recapture_report.md,data,4434
 data/captures/config.json,data,9044
 data/captures/diffs/injuries__2026-11-14__2026-11-15.csv,data,1888
 data/captures/diffs/standings__2026-11-14__2026-11-16.csv,data,3892
-data/captures/index.jsonl,data,36673
+data/captures/index.jsonl,data,44927
 data/captures/payloads/deficiency/35/358caf415bb94257c97c68205b34062044449f4f6f964378da9fb897794d49e0.json,data,364259
 data/captures/payloads/deficiency/89/8984181ade43cc1fc1c7bde243963764c5b2447de34c23f11b0d938aaba046bb.json,data,363847
 data/captures/payloads/depth_charts/7e/7e3f42a3918465abae47ae8e185e0b23e8e985d7bc791f1c0e674e94faa3b560.json,data,389006
@@ -154,7 +154,7 @@ data/captures/payloads/team_stats/30/30310a42568258173fe6ed5f8f51a7707ad35833271
 data/captures/payloads/team_stats/ef/efb5e928e41c2ce3bf6053358fe1247124c4dcd3de60812a516bd7e834ffd497.json,data,206089
 data/captures/payloads/week_results/c9/c95d423beb27d8c18c05e23dd9e99323330daf07091077531f40a0d86c8bde53.json,data,6813
 data/captures/payloads/week_schedule/0e/0ec453ed4dd6f9e13b655e5e16a490ea58408ae433543f3e9190c84970410c90.json,data,8838
-data/captures/status.json,data,4315
+data/captures/status.json,data,4770
 data/console/correlations.csv,data,3431
 data/console/depth_parse.csv,data,14825
 data/console/depth_parse.json,data,30463
@@ -169,7 +169,7 @@ data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9046
 data/console/readiness.csv,data,29132
 data/console/readiness.json,data,52916
-data/console/repo_inventory.csv,data,31690
+data/console/repo_inventory.csv,data,31692
 data/console/results_feed.csv,data,1374469
 data/console/schedule_week10.csv,data,1805
 data/console/standings_2026.csv,data,3691
@@ -282,14 +282,14 @@ data/pipeline/injuries.json,data,259478
 data/pipeline/leaderboard.json,data,9202
 data/pipeline/market_lines.json,data,798
 data/pipeline/questions.json,data,26878
-data/pipeline/repo_review.json,data,409257
+data/pipeline/repo_review.json,data,409334
 data/pipeline/requirements.json,data,38243
 data/pipeline/standings.json,data,23735
 data/pipeline/strategies.json,data,10635
 data/pipeline/suggestions.json,data,19640
 data/pipeline/team_stats.json,data,326313
-data/preregistration/register.csv,data,1774
-data/preregistration/register.json,data,6193
+data/preregistration/register.csv,data,1741
+data/preregistration/register.json,data,6288
 data/price_snapshots.json,data,77397
 data/price_snapshots/market_index.csv,data,17105
 data/price_snapshots/snapshots.csv,data,24901
@@ -545,7 +545,7 @@ pages/requirements.html,pages,43765
 pages/review-queue.html,pages,29995
 pages/review.html,pages,12168
 pages/schedule.html,pages,12597
-pages/shadow-baseline.html,pages,62392
+pages/shadow-baseline.html,pages,62326
 pages/sources.html,pages,17675
 pages/standings.html,pages,21711
 pages/suggestions-board.html,pages,12087
