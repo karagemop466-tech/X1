@@ -6,7 +6,10 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
+M	app/deficiency.html
+M	app/depth.html
 M	app/flagged.html
+M	app/index.html
 M	app/repo-review.html
 M	console/archived-sites.html
 M	console/capture.html
@@ -36,14 +39,20 @@ M	console/standings.html
 M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
+M	data/audit/decision_questions.json
+M	data/audit/findings.json
+M	data/audit/full_depth_join.json
+M	data/audit/what_changed.json
 M	data/captures/index.jsonl
 M	data/captures/status.json
 M	data/console/payload.json
 M	data/console/price_snapshots.csv
 M	data/console/repo_inventory.csv
+M	data/depth/replacement_depth_summary.json
 M	data/next_decisions/round_2026_11_16.json
 M	data/pipeline/_probe.json
 M	data/pipeline/_run_report.json
+M	data/pipeline/_verification.json
 M	data/pipeline/club_registry.json
 M	data/pipeline/correlations.json
 M	data/pipeline/deficiency.json
@@ -52,28 +61,35 @@ M	data/pipeline/injuries.json
 M	data/pipeline/repo_review.json
 M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
-M	data/preregistration/register.csv
 M	data/preregistration/register.json
+M	data/readiness/decision_readiness.csv
 M	data/readiness/decision_readiness.json
 M	index.html
+M	pages/availability.html
 M	pages/capture-system.html
+M	pages/changes.html
+M	pages/decisions-critical.html
+M	pages/executive-brief.html
+M	pages/readiness.html
 M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-16T19:22:58Z official captures'
-[main 42517a2] ci: retain 2026-11-16T19:22:58Z official captures
- 2 files changed, 32 insertions(+), 14 deletions(-)
++ git commit -m 'ci: retain 2026-11-16T21:01:03Z official captures'
+[main e44b693] ci: retain 2026-11-16T21:01:03Z official captures
+ 4 files changed, 30714 insertions(+), 16 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/de/deeb4217df76f272e5c8d0885a097bce58bb654525900b9fdb9c4af4ca039399.json
+ create mode 100644 data/captures/payloads/depth_charts/a4/a4bc533bb4339c981d047aa61d07ed6039b77d925550705ebc36a832c8a918b4.json
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-16T19:22:58Z'
-[main 31d1186] data: refresh from official sources 2026-11-16T19:22:58Z
- 22 files changed, 24532 insertions(+), 24524 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-16T21:01:03Z'
+[main 33cb64c] data: refresh from official sources 2026-11-16T21:01:03Z
+ 36 files changed, 24730 insertions(+), 24749 deletions(-)
 + git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   7dffae4..31d1186  HEAD -> main
+   9e569f0..33cb64c  HEAD -> main
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -93,7 +109,7 @@ $ python3 tools/build_origination.py --check
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
     check: committed origination table matches a fresh build
 $ python3 tools/build_round3.py --check
-    replacement_depth_summary: 9 unit x depth rows, totals={'2': 671, 'none': 215, '3': 10}, gaps(on report, no replacement named)=16
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 671, 'none': 216, '3': 9}, gaps(on report, no replacement named)=16
     correlations_official_check: 1045 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
     check: committed round-3 registers match a fresh build
 $ python3 tools/build_preregistration.py --check
@@ -107,7 +123,7 @@ rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git -c rebase.autoStash=true rebase origin/main
-Created autostash: 0b1d22a
+Created autostash: d56fef4
 Current branch main is up to date.
 Applied autostash.
 + git push origin HEAD:main
