@@ -13,16 +13,16 @@
    "HOU"
   ],
   "injury_rows": 345,
-  "joined_rows": 253,
-  "unmatched_rows": 92,
-  "starters_listed_first_at_slot": 160,
-  "starters_ruled_out": 30,
+  "joined_rows": 254,
+  "unmatched_rows": 91,
+  "starters_listed_first_at_slot": 162,
+  "starters_ruled_out": 31,
   "backups_depth_2_to_4_out_or_doubtful": 17,
   "pilot_clubs_on_the_site_pages": 5,
   "starters_ruled_out_in_the_pilot": 6
  },
  "starter_by_position_group": {
-  "offense": 17,
+  "offense": 18,
   "defense": 13
  },
  "rows": [
@@ -44,7 +44,7 @@
    "player": "Treylon Burks",
    "position_printed": "WR",
    "position_on_chart": "WR",
-   "depth": "2",
+   "depth": "1",
    "unit": "Offense",
    "injury": "",
    "practice_status": "Did Not Participate In Practice",
@@ -88,6 +88,19 @@
    "injury": "",
    "practice_status": "Full Participation in Practice",
    "game_status": "",
+   "club_chart_url": "https://www.commanders.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "WAS",
+   "player": "Lucas Patrick",
+   "position_printed": "C",
+   "position_on_chart": "C",
+   "depth": "1",
+   "unit": "Offense",
+   "injury": "Concussion",
+   "practice_status": "Did Not Participate In Practice",
+   "game_status": "Out",
    "club_chart_url": "https://www.commanders.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3317,13 +3330,6 @@
   }
  ],
  "unmatched": [
-  {
-   "team": "WAS",
-   "player": "Lucas Patrick",
-   "position": "C",
-   "game_status": "Out",
-   "why": "player not listed on his club's depth chart"
-  },
   {
    "team": "NYG",
    "player": "Malik Harrison",

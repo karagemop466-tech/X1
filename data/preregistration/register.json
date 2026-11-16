@@ -1,12 +1,12 @@
 {
  "dataset": "preregistration",
  "title": "Pre-registration register: every rule, its window, and the commit that froze it",
- "generated_at": "2026-11-16T19:22:55Z",
+ "generated_at": "2026-11-16T21:00:59Z",
  "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
  "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says",
  "history_scope": {
   "shallow": true,
-  "oldest_visible_commit": "7dffae4a36b944dc602dd5e24ea310e3c51331bc",
+  "oldest_visible_commit": "9e569f027b9e6b71183ca745f9a31219d9be0e65",
   "consequence": "an anchor is either resolved from a commit this checkout can read, carried forward from a register built where history was visible, or left blank - never guessed from the boundary commit"
  },
  "columns": [
@@ -106,7 +106,7 @@
   }
  ],
  "limits": [
-  "This checkout is a shallow clone (oldest visible commit 7dffae4a36), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this checkout can read: they are cited as the prior's statement, not verified here.",
+  "This checkout is a shallow clone (oldest visible commit 9e569f027b), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this checkout can read: they are cited as the prior's statement, not verified here.",
   "The anchor is the first commit that touched the file on THIS branch. A squashed merge would rewrite it, and the site's own history contains squash merges, so the anchor is a strong convention, not a tamper-proof seal.",
   "docs/lab/control-baselines.md was registered by another session; this register indexes it rather than restating it, so the rule text a reader evaluates against is the only copy."
  ]

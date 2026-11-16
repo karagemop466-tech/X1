@@ -23,17 +23,17 @@
  "rows_count": 9,
  "totals": {
   "slots": 896,
-  "replacement_named": 681,
-  "no_replacement_named": 215,
+  "replacement_named": 680,
+  "no_replacement_named": 216,
   "starters_on_report_without_named_replacement": 16,
   "by_depth": {
    "2": 671,
-   "3": 10
+   "3": 9
   },
   "by_depth_all_slots": {
    "2": 671,
-   "none": 215,
-   "3": 10
+   "none": 216,
+   "3": 9
   }
  },
  "gaps": [
@@ -177,11 +177,11 @@
    "unit": "Defense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 315,
+   "slots": 317,
    "starters_out": 12,
    "starters_doubtful": 1,
    "starters_questionable": 15,
-   "replacement_named": 315,
+   "replacement_named": 317,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -189,11 +189,11 @@
    "unit": "Defense",
    "replacement_depth": "3",
    "depth_label": "3rd string",
-   "slots": 4,
+   "slots": 3,
    "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 0,
-   "replacement_named": 4,
+   "replacement_named": 3,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -201,7 +201,7 @@
    "unit": "Defense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 37,
+   "slots": 36,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 3,
@@ -213,11 +213,11 @@
    "unit": "Offense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 297,
-   "starters_out": 16,
+   "slots": 295,
+   "starters_out": 17,
    "starters_doubtful": 2,
    "starters_questionable": 10,
-   "replacement_named": 297,
+   "replacement_named": 295,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -237,7 +237,7 @@
    "unit": "Offense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 50,
+   "slots": 52,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,

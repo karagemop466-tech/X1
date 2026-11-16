@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T19:22:08+00:00",
+ "generated_at": "2026-11-16T20:59:56+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -12,7 +12,7 @@
   },
   "depth_charts": {
    "status": "written",
-   "rows": 1805
+   "rows": 1803
   },
   "team_stats": {
    "status": "written",
@@ -97,5 +97,5 @@
    "count": 32
   }
  ],
- "finished_at": "2026-11-16T19:22:24+00:00"
+ "finished_at": "2026-11-16T21:00:18+00:00"
 }

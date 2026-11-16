@@ -13,7 +13,7 @@
   {
    "what": "The five-club depth pilot quantified against the 31-club collection already in the repo",
    "before": "6 starters reported as ruled Out, presented as the count",
-   "after": "30 across 31 clubs; the pilot is now labelled a subset",
+   "after": "31 across 31 clubs; the pilot is now labelled a subset",
    "evidence": "data/audit/full_depth_join.json",
    "source": "https://www.packers.com/team/depth-chart"
   },
