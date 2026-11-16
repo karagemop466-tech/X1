@@ -1,13 +1,64 @@
 + git config user.name x1-bot
 + git config user.email x1-bot@users.noreply.github.com
-+ rm -rf _ci
-+ git fetch origin main
++ git checkout -- _ci
++ git fetch origin arena/543cdcb0-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git reset --mixed origin/main
+ * branch            arena/543cdcb0-x1 -> FETCH_HEAD
+   c4d3aa4..c9b80fc  arena/543cdcb0-x1 -> origin/arena/543cdcb0-x1
++ git reset --mixed origin/arena/543cdcb0-x1
 Unstaged changes after reset:
-D	_ci/commit.log
-D	_ci/pipeline.log
+M	.github/workflows/verify.yml
+M	app/correlation.html
+M	app/depth.html
+M	app/flagged.html
+M	app/index.html
+M	app/injuries.html
+M	app/repo-review.html
+M	app/standings.html
+M	app/team-stats.html
+M	console/archived-sites.html
+M	console/capture.html
+M	console/correlations.html
+M	console/deficiency.html
+M	console/depth-parse.html
+M	console/depth.html
+M	console/executive-summary.html
+M	console/flagged.html
+M	console/gates.html
+M	console/index.html
+M	console/injuries.html
+M	console/leaderboard.html
+M	console/lines.html
+M	console/luck.html
+M	console/official-flags.html
+M	console/prices.html
+M	console/props.html
+M	console/questions.html
+M	console/readiness.html
+M	console/repo-review.html
+M	console/requirements.html
+M	console/results.html
+M	console/schedule.html
+M	console/sources.html
+M	console/standings.html
+M	console/strategies.html
+M	console/suggestions.html
+M	console/verification.html
+M	data/audit/decision_questions.json
+M	data/audit/findings.json
+M	data/audit/full_depth_join.json
+M	data/audit/what_changed.json
+M	data/captures/index.jsonl
+M	data/captures/status.json
+M	data/console/depth_parse.csv
+M	data/console/depth_parse.json
+M	data/console/payload.json
+M	data/console/price_snapshots.csv
+M	data/console/readiness.csv
+M	data/console/readiness.json
+M	data/console/repo_inventory.csv
+M	data/correlations_official_check.json
+M	data/depth/replacement_depth_summary.json
 M	data/pipeline/_probe.json
 M	data/pipeline/_run_report.json
 M	data/pipeline/_verification.json
@@ -19,84 +70,45 @@ M	data/pipeline/injuries.json
 M	data/pipeline/repo_review.json
 M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
-+ git add data/pipeline
-+ git status --porcelain
- D _ci/commit.log
- D _ci/pipeline.log
-M  data/pipeline/_probe.json
-M  data/pipeline/_run_report.json
-M  data/pipeline/_verification.json
-M  data/pipeline/club_registry.json
-M  data/pipeline/correlations.json
-M  data/pipeline/deficiency.json
-M  data/pipeline/depth_charts.json
-M  data/pipeline/injuries.json
-M  data/pipeline/repo_review.json
-M  data/pipeline/standings.json
-M  data/pipeline/team_stats.json
+M	data/readiness/decision_readiness.json
+M	index.html
+M	pages/availability.html
+M	pages/capture-system.html
+M	pages/changes.html
+M	pages/decisions-critical.html
+M	pages/executive-brief.html
+M	tools/verify_2026_11_16.py
++ git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-15T23:23:01Z'
-[main 8317d05] data: refresh from official sources 2026-11-15T23:23:01Z
- 11 files changed, 25881 insertions(+), 21384 deletions(-)
++ git commit -m 'ci: retain 2026-11-16T19:03:29Z official captures'
+[arena/543cdcb0-x1 9b35076] ci: retain 2026-11-16T19:03:29Z official captures
+ 7 files changed, 46491 insertions(+), 23 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/89/8984181ade43cc1fc1c7bde243963764c5b2447de34c23f11b0d938aaba046bb.json
+ create mode 100644 data/captures/payloads/depth_charts/95/95eaf241e88dc2458386cfb3c44e278cd2a680cfcba8ebcc24ac5b54437706a1.json
+ create mode 100644 data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json
+ create mode 100644 data/captures/payloads/standings/f0/f0aa81e585cf41b19c93ad82a7286a4b84539d6260610706a1eacef2c8c64002.json
+ create mode 100644 data/captures/payloads/team_stats/30/30310a42568258173fe6ed5f8f51a7707ad358332713e8ba61171ded648f2a11.json
++ '[' 1 = 0 ']'
++ echo 'MARKER: derived artefacts withheld (rebuild/verify gate = unset)'
+MARKER: derived artefacts withheld (rebuild/verify gate = unset)
 + pushed=0
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/543cdcb0-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
-error: cannot rebase: You have unstaged changes.
-error: Please commit or stash them.
-+ git rebase --abort
-fatal: no rebase in progress
-+ true
-+ sleep 5
-+ for attempt in 1 2 3 4 5
-+ git fetch origin main
-From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
-error: cannot rebase: You have unstaged changes.
-error: Please commit or stash them.
-+ git rebase --abort
-fatal: no rebase in progress
-+ true
-+ sleep 10
-+ for attempt in 1 2 3 4 5
-+ git fetch origin main
-From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
-error: cannot rebase: You have unstaged changes.
-error: Please commit or stash them.
-+ git rebase --abort
-fatal: no rebase in progress
-+ true
-+ sleep 15
-+ for attempt in 1 2 3 4 5
-+ git fetch origin main
-From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
-error: cannot rebase: You have unstaged changes.
-error: Please commit or stash them.
-+ git rebase --abort
-fatal: no rebase in progress
-+ true
-+ sleep 20
-+ for attempt in 1 2 3 4 5
-+ git fetch origin main
-From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git rebase origin/main
-error: cannot rebase: You have unstaged changes.
-error: Please commit or stash them.
-+ git rebase --abort
-fatal: no rebase in progress
-+ true
-+ sleep 25
-+ '[' 0 = 1 ']'
-+ echo 'MARKER: PUSH FAILED after 5 attempts'
-MARKER: PUSH FAILED after 5 attempts
+ * branch            arena/543cdcb0-x1 -> FETCH_HEAD
++ git -c rebase.autoStash=true rebase origin/arena/543cdcb0-x1
+Created autostash: ee8f908
+Current branch arena/543cdcb0-x1 is up to date.
+Applied autostash.
++ git push origin HEAD:arena/543cdcb0-x1
+To https://github.com/karagemop466-tech/X1
+   c9b80fc..9b35076  HEAD -> arena/543cdcb0-x1
++ echo 'MARKER: pushed on attempt 1'
+MARKER: pushed on attempt 1
++ pushed=1
++ break
++ '[' 1 = 1 ']'
++ '[' 1 '!=' 1 ']'
 + echo 'MARKER: done'
 MARKER: done
