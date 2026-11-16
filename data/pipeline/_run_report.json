@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T17:02:17+00:00",
+ "generated_at": "2026-11-16T19:14:55+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -8,11 +8,11 @@
   },
   "injuries": {
    "status": "written",
-   "rows": 345
+   "rows": 347
   },
   "depth_charts": {
    "status": "written",
-   "rows": 1813
+   "rows": 1805
   },
   "team_stats": {
    "status": "written",
@@ -20,7 +20,7 @@
   },
   "deficiency": {
    "status": "written",
-   "rows": 897
+   "rows": 896
   },
   "model_correlation": {
    "status": "written"
@@ -97,5 +97,5 @@
    "count": 32
   }
  ],
- "finished_at": "2026-11-14T17:02:34+00:00"
+ "finished_at": "2026-11-16T19:15:15+00:00"
 }

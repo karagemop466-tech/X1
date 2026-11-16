@@ -1,12 +1,12 @@
 {
  "dataset": "preregistration",
  "title": "Pre-registration register: every rule, its window, and the commit that froze it",
- "generated_at": "2026-11-16T19:11:12Z",
+ "generated_at": "2026-11-16T19:15:54Z",
  "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
  "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says",
  "history_scope": {
   "shallow": true,
-  "oldest_visible_commit": "061d310cc692d76344745888ec9e37cdffe06d26",
+  "oldest_visible_commit": "1f7e666935d0931f1b5e823121aa4c23d14e07bc",
   "consequence": "an anchor is either resolved from a commit this checkout can read, carried forward from a register built where history was visible, or left blank - never guessed from the boundary commit"
  },
  "columns": [
@@ -41,14 +41,14 @@
    "rule_bytes": 6055,
    "rule_sha256": "902b43f6faf5ed5e7a417335d339aab902622b808e0e0eddaebdffc45a4494c0",
    "rule_hash_matches_this_checkout": "yes",
-   "content_hash_matches_registration": "yes",
+   "content_hash_matches_registration": "unresolved here: this checkout is shallow (rule text unchanged since the last build)",
    "rule_hash_stable_vs_last_build": "yes",
    "registered_rule_sha256": "902b43f6faf5ed5e7a417335d339aab902622b808e0e0eddaebdffc45a4494c0",
-   "state": "registered",
-   "registration_commit": "25221eb86244174d520b8c4d5feef9e1f750eb69",
-   "registered_at": "2026-11-16T18:51:29+00:00",
-   "registration_subject": "ci: make the collector's evidence land \u2014 capture retention, drift pins, refresh rebuild, PR-01/PR-02/PR-03 pre-registration",
-   "touches": 1,
+   "state": "unresolved-shallow-checkout",
+   "registration_commit": "",
+   "registered_at": "",
+   "registration_subject": "",
+   "touches": 0,
    "later_commits": [],
    "reproduce": "git log --reverse --format='%H %aI' -- docs/preregistration/PR-01-shadow-baseline.md",
    "anchor_carried_forward": "",
@@ -106,7 +106,7 @@
   }
  ],
  "limits": [
-  "This checkout is a shallow clone (oldest visible commit 061d310cc6), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this checkout can read: they are cited as the prior's statement, not verified here.",
+  "This checkout is a shallow clone (oldest visible commit 1f7e666935), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this checkout can read: they are cited as the prior's statement, not verified here.",
   "The anchor is the first commit that touched the file on THIS branch. A squashed merge would rewrite it, and the site's own history contains squash merges, so the anchor is a strong convention, not a tamper-proof seal.",
   "docs/lab/control-baselines.md was registered by another session; this register indexes it rather than restating it, so the rule text a reader evaluates against is the only copy."
  ]
