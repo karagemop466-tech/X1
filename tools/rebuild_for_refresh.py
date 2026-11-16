@@ -66,12 +66,15 @@ REBUILD = [
 # every `X --check` in VERIFY is executed as `X` then `X --check`. This exists because the first
 # version of this file listed `build_round3.py --check` in VERIFY and not `build_round3.py` in
 # REBUILD, and CI correctly reported the register as stale on a run whose inputs had just moved.
-# Two artefacts are checked but never rebuilt by a refresh, because re-writing them is the wrong
-# ownership:  data/shadow/forecasts_pre_kickoff.csv is a pre-kickoff record whose whole value is that
-# nobody regenerates it, and data/preregistration/register.json is a function of the repository's
-# commit history, which a CI checkout (actions/checkout default fetch-depth: 1) does not have.
-# Their --check steps still run, and each is written to pass on what a shallow checkout CAN verify.
-NEVER_REBUILD = {"tools/build_shadow_baseline.py", "tools/build_preregistration.py"}
+# One artefact is checked but never rebuilt by a refresh: data/shadow/forecasts_pre_kickoff.csv is a
+# pre-kickoff record whose entire value is that nobody regenerates it. The builder refuses to overwrite
+# it when the numbers would change, and a daily job must not be able to touch that.
+#
+# The pre-registration register is the opposite case and is deliberately rebuilt here: it is a function
+# of the repository's commit history, so a rebase or a squash legitimately moves its anchors. It failed
+# CI for exactly that reason once it was excluded (the committed register still named the pre-rebase
+# commit), and pinning it against a rebuild would have meant pinning it against the truth.
+NEVER_REBUILD = {"tools/build_shadow_baseline.py"}
 
 
 def pairs(verify: list[list[str]]) -> tuple[list[list[str]], list[list[str]]]:

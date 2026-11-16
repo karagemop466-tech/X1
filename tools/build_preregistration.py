@@ -110,12 +110,29 @@ def shallow() -> bool:
         return False
 
 
+def root_commit() -> str:
+    """The oldest commit this checkout can see. In a shallow clone that is the boundary, not history."""
+    try:
+        return git("rev-list", "--max-parents=0", "HEAD").splitlines()[-1]
+    except (SystemExit, IndexError):
+        return ""
+
+
 def anchor(relpath: str, is_shallow: bool = False) -> dict:
-    """The commit that first introduced this rule file, and every commit after it."""
+    """The commit that first introduced this rule file, and every commit after it.
+
+    A shallow checkout (this sandbox's clone is one: 13 commits, boundary 061d310) reports its BOUNDARY
+    commit as if it had introduced every file in the tree. That is not a missing answer, it is a wrong
+    one, and a register that printed it would claim a commit froze a rule that the commit never touched.
+    So when the only visible commit is the boundary, the anchor is recorded as UNRESOLVED here and the
+    previously resolved value is carried forward by build() - the register may keep a truth it cannot
+    re-see, and may not invent one.
+    """
     out = git("log", "--reverse", "--format=%H|%aI|%s", "--", relpath)
     commits = [ln.split("|", 2) for ln in out.splitlines() if ln.strip()]
-    if not commits:
-        return {"state": "history-unavailable" if is_shallow else "not-committed",
+    boundary = root_commit() if is_shallow else ""
+    if not commits or (is_shallow and len(commits) == 1 and commits[0][0] == boundary):
+        return {"state": "unresolved-shallow-checkout" if commits or is_shallow else "not-committed",
                 "registration_commit": "", "registered_at": "",
                 "registration_subject": "", "touches": 0, "later_commits": [],
                 "reproduce": f"git log --reverse --format='%H %aI' -- {relpath}"}
@@ -132,7 +149,27 @@ def anchor(relpath: str, is_shallow: bool = False) -> dict:
 
 
 def build() -> dict:
+    """Rebuild the register.
+
+    If a committed register exists and this checkout cannot see history, the anchor fields are carried
+    forward rather than flattened to "unresolved" - otherwise every CI run would delete the only evidence
+    of when a rule was frozen, because CI is exactly the place with a shallow clone.
+    """
     is_shallow = shallow()
+    prev_rows: dict = {}
+    prev_full_history = True   # a missing register has no prior claim to distrust
+    reg = os.path.join(OUT, "register.json")
+    if os.path.exists(reg):
+        try:
+            committed = json.load(open(reg, encoding="utf-8"))
+            prev_rows = {r["id"]: r for r in committed["rows"]}
+            # Only a register built where history was visible may be trusted for an anchor. The first
+            # version of this carry-forward rule had no such test and duly "carried" the bogus
+            # boundary-commit anchor it had itself written in a shallow checkout, which is precisely the
+            # kind of claim that looks verified because it is repeated.
+            prev_full_history = not committed.get("history_scope", {}).get("shallow", True)
+        except (OSError, ValueError, KeyError):
+            prev_rows, prev_full_history = {}, False
     entries = []
     for rule in RULES:
         path = rule["file"]
@@ -142,18 +179,39 @@ def build() -> dict:
             text = fh.read()
         a = anchor(path, is_shallow)
         digest = sha256_file(path)
+        prev_hash = prev_rows.get(rule["id"], {}).get("rule_sha256", "")
         frozen = a["state"] == "registered" and not a["later_commits"]
+        carried = ""
+        if a["state"] == "unresolved-shallow-checkout" and prev_rows and prev_full_history:
+            p = prev_rows.get(rule["id"], {})
+            if p.get("rule_sha256") == digest and p.get("registration_commit"):
+                # Same bytes, better history: the anchor recorded by a full-history build is still true.
+                carried = "carried from a full-history build"
+                a = {**a, "state": "registered", "registration_commit": p["registration_commit"],
+                     "registered_at": p.get("registered_at", ""),
+                     "registration_subject": p.get("registration_subject", ""),
+                     "touches": p.get("touches", 1), "later_commits": p.get("later_commits", [])}
+                frozen = not a["later_commits"]
         entries.append({
             **rule,
             "rule_bytes": len(text.encode()),
             "rule_sha256": digest,
             "rule_hash_matches_this_checkout": "yes" if digest == sha256_file(path) else "no",
-            "content_hash_matches_registration": "yes" if frozen else (
-                "unverifiable here (shallow clone)" if a["state"] == "history-unavailable" and digest else
-                ("no - edited after registration" if a["state"] == "registered" else "no")),
+            # Three answers, and the middle one must not read like the third. "no" is an accusation -
+            # the text on disk is not the text that was registered - and it is only available when a
+            # registration commit was actually seen.
+            "content_hash_matches_registration": (
+                "yes" if frozen else
+                "unresolved here: this checkout is shallow (rule text unchanged since the last build)"
+                if a["state"] == "unresolved-shallow-checkout" else
+                ("no - edited after registration" if a["state"] == "registered" else
+                 "no rule commit exists for this file")),
+            "rule_hash_stable_vs_last_build": ("yes" if prev_hash == digest else "no")
+            if prev_hash else "first build of this entry",
             "registered_rule_sha256": rule.get("registered_sha256", digest),
             "state": "frozen" if frozen else a["state"],
             **a,
+            "anchor_carried_forward": carried,
             "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild "
                                  "this register at any time: if the hash of the rule file no longer matches "
                                  "the text the entry says was frozen, the rule was edited after it saw data.",
@@ -165,11 +223,25 @@ def build() -> dict:
         "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
         "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is "
                 "not registered, whatever its README says",
+        "history_scope": {
+            "shallow": is_shallow,
+            "oldest_visible_commit": root_commit(),
+            "consequence": "an anchor is either resolved from a commit this checkout can read, carried "
+                           "forward from a register built where history was visible, or left blank - "
+                           "never guessed from the boundary commit",
+        },
         "columns": ["id", "name", "family", "markets", "window", "leaderboard_eligible", "gates",
                     "state", "registration_commit", "registered_at", "touches", "rule_sha256",
-                    "rule_hash_matches_this_checkout", "content_hash_matches_registration", "file"],
+                    "rule_hash_matches_this_checkout", "rule_hash_stable_vs_last_build",
+                    "anchor_carried_forward",
+                    "content_hash_matches_registration", "file"],
         "rows": entries,
         "limits": [
+            f"This checkout is a shallow clone (oldest visible commit {root_commit()[:10]}), so a rule "
+            "that predates it cannot have its anchor re-derived here; those rows carry the value recorded "
+            "by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records "
+            "PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this "
+            "checkout can read: they are cited as the prior's statement, not verified here.",
             "The anchor is the first commit that touched the file on THIS branch. A squashed merge would "
             "rewrite it, and the site's own history contains squash merges, so the anchor is a strong "
             "convention, not a tamper-proof seal.",
@@ -216,7 +288,7 @@ def main(argv=None) -> int:
         # fail a repository that is perfectly consistent, and an alarm that fires on a healthy repo is
         # an alarm people learn to ignore.
         if shallow():
-            print("anchor check SKIPPED: shallow checkout (actions/checkout default fetch-depth: 1). "
+            print("anchor check SKIPPED (and anchors carried forward, not flattened): shallow checkout (actions/checkout default fetch-depth: 1). "
                   "'which commit froze the rule' is answered in the full repository; the rule HASH "
                   "comparison above is the part that is decidable here, and it is the part that catches "
                   "an edit after registration.")
