@@ -3299,3 +3299,82 @@ discarding work: anything unique is re-delivered here or recorded as a flagged i
 **Rule 9 note:** this session is the final integration session for this round; shared outputs
 (registers, landing page, navigation) may change here, always through the committed generators so
 the CI staleness guards stay green.
+
+### Round-5 completion records (R5-1…R5-6, session `arena/dc96bc33-x1`) — 2026-11-17
+
+**R5-1 — 2026-11-17 live re-verification pack.** Read the official NFL by-week Week 10 schedule page
+and the league standings page live on 2026-11-17 (fetch tool, 22:45–22:52 UTC). Transcribed the 14
+Week 10 finals (all final, including the 2026-11-16 MNF) and the 32 standings rows to
+`data/verification/2026_11_17/` with per-row official URLs. `tools/verify_2026_11_17.py` re-derives
+five checks, all pass (96 standings identities + 32 cross-page records + corpus reconciliation +
+continuity):
+- **B1** standings identities (NET=PF−PA, PCT=(W+T/2)/GP, HOME+ROAD=W-L-T): 96/96 assertions.
+- **B2** league closure: ΣW=ΣL=149, ΣT=2, ΣPF=ΣPA=6,923, 150 games implied.
+- **B3** cross-page records: every club record printed beside the logos on the schedule page
+  (28 clubs) and in its bye block (4 clubs) equals the standings page W-L-T — 32/32.
+- **B5** continuity vs the 2026-11-16 pack: 13 of 13 previously-final scores unchanged; exactly one
+  Scheduled→Final flip (2026_10_LAC_BAL); only the two clubs that played it (LAC, BAL) moved in the
+  standings, every changed field exactly that game's arithmetic.
+- Sources: [Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10),
+  [league standings](https://www.nfl.com/standings/league/2026/REG).
+
+**R5-2 — Week 10 finals closure (S-22/Q-62 arithmetic).** Check **B4**: the 137-game official log
+(`data/results/_raw/reads.tsv`) plus the 13 Week 10 finals not in it reproduces **all 32 official
+standings rows exactly** (W, L, T, PF, PA), league PF=PA=6,923. The corpus is therefore complete and
+consistent; the remaining S-22 work (count pin 137→150, mirror re-pin, standings transcription swap)
+is mechanical and registered as **SG-14** with a recommendation; the pinned feed was deliberately NOT
+touched (pre-registration preservation, per SG-14 path B as the fallback). Published on the site:
+`console/w10-finals.html` (new page, 14 finals + 32-club reconciliation + the dated diff), built by
+`tools/official/build_pages_r5.py` through the console's own helpers (verify_console: 3,109/3,109
+rows sourced, all links resolve).
+
+**R5-3 — stale-PR reconciliation.** PRs #50, #53, #61, #66 (all `CONFLICTING`, no commits since
+2026-11-15, claims >60 min stale → takeover per rule 10) were re-verified line by line and their
+unique artifacts salvaged; nothing discarded. Each PR is closed with a handoff note on GitHub.
+
+| PR | Unique content salvaged | Line-by-line verification performed | Not salvaged (and why) |
+|---|---|---|---|
+| #50 `arena/c0461519-x1` | `data/ledger/injuries/ledger.jsonl` + 4 raw gzip captures (2026-11-15 18:21–18:46Z), `tools/snapshot_ledger.py`, `docs/methodology/snapshot-ledger.md`, `.github/workflows/injury-ledger.yml` | `python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries` → **chain intact; every stored page re-hashes to its ledger line** (4 lines, 4 captures, head `3894786e…`). The workflow's `build_app.py` import surface is stdlib-only (no dependency risk). | `app/injury-ledger.html` + `tools/build_app.py` regeneration — the app tree is generator-gated and has moved since; rendering is registered as SG-15 |
+| #53 `arena/29e011dc-x1` | `data/audit/schedule_announcement_2026.json`, `data/audit/irregularities_review.json` | The announcement was re-read live from the league's own media page ([2026 NFL Schedule Announced](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced), May 14, 2026): headline, dateline, subhead and the quoted "18-week, 272-game" sentence match the JSON exactly; the page also confirms NE@DET at "FC Bayern Munich Stadium" (Week 10) | readiness duplicates (superseded by the merged `data/readiness/decision_readiness.*`), `tools/build_readiness.py` (name collision I-4; superseded by `build_state_audit.py`), generated HTML |
+| #61 `arena/8c67ec75-x1` | `data/readiness/official_spotcheck_w10.tsv` (+coverage), `spotcheck_diffs.csv`, `spotcheck_result.json`, `flags_r4.json`, `requirements_r4.{csv,json}` | The spot-check is an **independent 2026-11-15 read** (347 rows, 28 clubs, session arena-8c67ec75-x1). Cross-checked against the other 2026-11-15 read (PR #66's lineage): **347 keys equal, 4 shared columns, 0 cell mismatches** (LAR/LA alias normalised — flags I-15/I-16) | `_ci/*.log`, a `.pyc`, regenerated console/hub HTML, its `data-refresh.yml` edit (superseded by the merged push-defect fix) |
+| #66 `arena/79598415-x1` | `data/nfl/snapshots/injuries_week10_2026-11-14.tsv` (345 rows) and `injuries_week10_2026-11-15.tsv` (347 rows), `tools/build_w10_snapshot.py` | Row counts, schema and per-row `player_url` checked; the 11-14→11-15 delta is exactly **2 added rows** (BAL Calais Campbell, BAL Ronnie Stanley) and 0 removals, matching the tool's docstring. The tool was then **run**: the Week 10 injury table is re-published to the 2026-11-15 read (**345→347 rows**) and the dated delta (32 changed cells, 2 added rows vs the 2026-11-14 transcription) is now published as a delta in `data/audit/verification_run.json` ("publish the delta, never the level") | `data/nfl/availability_derived.tsv` etc. (gated files — regenerated by their own tools instead of copied), its `verify_against_official.py` edit (superseded, see below) |
+
+**Consequential fix (same round):** with the published table on the 2026-11-15 read,
+`tools/verify_against_official.py`'s injuries check was comparing it against the 2026-11-14
+transcription and reporting real point-in-time differences as contradictions (32 cells). The check is
+now **date-aware**: the published table is compared against the independent same-day read (PR #61's
+spot-check, 347×4 cells, 0 mismatches), and the 11-14→11-15 change is published as a dated delta
+instead of a failure. Full suite re-run after the change: green.
+
+**R5-4 — register completeness vs the owner brief.** Every line of the owner's cumulative brief was
+checked against the 75-row decision-readiness register (`data/console/readiness.json`) term by term.
+Exactly one brief line had no row: *"Interactive Offense vs. Defense Matchup Deficiency Matrix
+(1st–4th String)"*. Added as **R-76** (category Deficiency, measured with the depth register:
+897 slots, 31 of 32 clubs; the matrix feature itself is not built). Register now 76 rows, rebuilt
+through its generator; landing page count updated. Suggestion board extended with **SG-14** (re-pin
+path for S-22) and **SG-15** (render the salvaged capture artifacts); flagged register with
+**X-09** (feed stops at the Week 10 Thursday game while the corpus is 150 games — measured),
+**X-10** (the stale-PR salvage record) and **X-11** (the `Refresh research data` workflow defect and
+its residual repo-setting dependency).
+
+**R5-5 — scheduled-workflow repair.** `Refresh research data` (`.github/workflows/pipeline.yml`) failed
+at its last step on every run ([run 44123337794](https://github.com/karagemop466-tech/X1/actions/runs/44123337794),
+2026-11-17T16:13Z): the annotation reads `Resource not accessible by integration`. Root cause: the
+workflow declares `permissions: contents: write`, and an explicit permissions block **replaces** the
+default token grants, so `peter-evans/create-pull-request` had no `pull-requests: write`. Fixed by
+adding it. **Residual dependency (owner check, X-11):** if the repository setting *“Allow GitHub
+Actions to create and approve pull requests”* is disabled, the fix alone will not suffice; this
+session's token cannot read that setting (403). Also noted (not blocking): Node-20 action deprecation
+warnings on `actions/checkout@v4`, `actions/setup-python@v5`, `peter-evans/create-pull-request@v6`
+(runners currently force them onto Node 24 and they work).
+
+**R5-6 — final integration.** Every `run:` step of `.github/workflows/verify.yml` (35) and
+`.github/workflows/pages.yml` (18) was executed locally on this branch against the YAML: **0 failures**,
+including all staleness gates (`git diff --exit-code` on the generated tables), the mutation test, the
+deployed-tree crawl (`_site` 33 MB), and the store contract. The combined tree re-verified line by
+line. PR → `main` merged without waiting; Pages deploy status recorded in the PR record below.
+
+**Irregularities found this round (all published on the Flagged page):** X-09, X-10, X-11 above;
+plus the pre-existing open rows unchanged (official prices 0 present, player-prop lines 0, Houston
+depth chart image-only, 2026-11-17-adjacent captures still thin). Nothing was inferred; every blank
+stays blank.
