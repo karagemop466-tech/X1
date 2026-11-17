@@ -63,7 +63,7 @@
   <div class="eyebrow">EXECUTED VERIFICATION</div>
   <h1>Live re-verification — 2026-11-17</h1>
   <p>The Week 10 injury report, the league standings, the final Week 10 slate and a Week 11 probe, read live
-  from nfl.com between 22:46 and 22:56 UTC and transcribed line by line. 18 checks: 14 pass,
+  from nfl.com between 22:46 and 22:56 UTC and transcribed line by line. 18 checks: 15 pass,
   3 findings published, 0 structural failures. Nothing on a published
   table was edited; every difference is dated, counted and linked.</p>
 </section>
@@ -96,7 +96,7 @@
 <tr><td><b>S3</b></td><td>Today&#x27;s standings vs the retained collector standings payload (read 2026-11-17T05:03:50Z): 32 clubs × 7 fields</td><td><span class="pill ok">PASS</span> clubs 32 · fields_per_club 7 · capture_rows 32</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/payloads/standings/e3/e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32.json" target="_blank" rel="noopener noreferrer">capture &amp;#8599;</a></td></tr>
 <tr><td><b>S4</b></td><td>Closure: the published 2026-11-14 standings plus the 13 Week 10 finals it had not seen must reproduce today&#x27;s W, L, PF and PA for every club</td><td><span class="pill ok">PASS</span> clubs 32 · assertions 128 · finals_added 13 · already_final_at_2026_11_14 1</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/results_promotions_2026_11_17.csv" target="_blank" rel="noopener noreferrer">promotions &amp;#8599;</a></td></tr>
 <tr><td><b>R3</b></td><td>Club records printed on today&#x27;s schedule page vs today&#x27;s standings page: 28 comparisons</td><td><span class="pill ok">PASS</span> comparisons 28</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
-<tr><td><b>X1</b></td><td>Cross-session corroboration vs session arena/2f95e652-x1&#x27;s independent 22:46Z read of the same standings and finals pages (PR #76, claim E-1): 12 shared fields × 32 clubs + 14 finals. In-session comparison against that open branch already ran at 0 differences over 384 standings cells and all 14 scores; the committed gate reports its verdict once that pack is present in the tree.</td><td><span class="pill muted-pill">SKIP</span> —</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/pull/76" target="_blank" rel="noopener noreferrer">PR #76 &amp;#8599;</a></td></tr>
+<tr><td><b>X1</b></td><td>Cross-session corroboration vs session arena/2f95e652-x1&#x27;s independent 22:46Z read of the same standings and finals pages (PR #76, claim E-1): 12 shared fields × 32 clubs + 14 finals. In-session comparison against that open branch already ran at 0 differences over 384 standings cells and all 14 scores; the committed gate reports its verdict once that pack is present in the tree.</td><td><span class="pill ok">PASS</span> standings_cells 384 · finals 14 · differences 0</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/pull/76" target="_blank" rel="noopener noreferrer">PR #76 &amp;#8599;</a></td></tr>
 </tbody></table></div>
   <div class="note"><b>Two unit notes, so the numbers cannot be mistaken for each other.</b>
   (1) PR #73's headline &ldquo;16 cells that differ&rdquo; counts <i>changed rows</i> (15 in LAC@BAL + Arden Key);

@@ -1,7 +1,7 @@
 {
  "dataset": "verification/2026_11_17",
  "title": "Live official re-verification - 2026-11-17",
- "generated_at": "2026-11-17T23:06:22Z",
+ "generated_at": "2026-11-17T23:13:41Z",
  "generated_by": "tools/verify_2026_11_17.py (session arena-01c263c4-x1)",
  "retrieved": "2026-11-17",
  "sources": [
@@ -202,10 +202,12 @@
   },
   {
    "id": "X1",
-   "name": "cross-session corroboration vs the evidence pack",
-   "verdict": "SKIP",
+   "name": "cross-session corroboration vs arena/2f95e652-x1's independent same-evening read (PR #76, claim E-1): 12 shared standings fields x 32 clubs + 14 finals",
+   "verdict": "PASS",
    "counts": {
-    "reason": "data/evidence/2026_11_17/ not present in this checkout (pending PR #76)"
+    "standings_cells": 384,
+    "finals": 14,
+    "differences": 0
    },
    "detail": ""
   },
@@ -221,7 +223,7 @@
  ],
  "counts": {
   "checks": 18,
-  "pass": 14,
+  "pass": 15,
   "findings": 3,
   "structural_failures": 0
  },
