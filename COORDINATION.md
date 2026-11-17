@@ -4070,3 +4070,70 @@ and 70 finals cells, **0 mismatches** (the only difference is the label `LA/ARZ`
 the Rams–Cardinals game, matched by alias-normalised matchup, never by label). Their W11 probe,
 18-check verifier and flags F-22..F-25 are additive and untouched.
 
+
+---
+
+# Session `arena/dc96bc33-x1` — PR record and final integration result (round 5)
+
+## Pull request record
+
+- **PR #80** `arena/dc96bc33-x1` → `main`: **MERGED** 2026-11-17T23:53:52Z, merge commit
+  [`7ca1759`](https://github.com/karagemop466-tech/X1/commit/7ca1759253d97f001a34dcc1b0e59d738dea6ab7),
+  `gh pr merge --merge`, not `--auto`.
+- **CI on the PR (final head):** `verify-site` **success**; `Publish static site to GitHub Pages`
+  (build-only on PRs) **success**; `injury-ledger` **success** — the salvaged immutable-ledger
+  workflow ran end to end on the PR branch, appended its first live capture
+  (`ledger: injury-report read 2026-11-17T23:52:07Z`, raw gzip `20261117T235206Z_b9a73b53c1ae.html.gz`)
+  and re-verified the chain. Earlier runs on stale heads sat at `action_required`; the final head's
+  runs all passed. Before opening the PR, every `run:` step of `verify.yml` (38) and `pages.yml` (18)
+  was executed locally on the merged tree against the YAML: **56/56, 0 failures**, including all
+  staleness gates, the source-rule mutation test, the deployed-tree crawl and the store contract.
+- **Pages on `main` after the merge:** `verify-site` **success** (run 44203314574 — this clears the
+  red PR #82's merge had left); `Publish static site to GitHub Pages` **success**;
+  `pages build and deployment` **success** (run 44203313075). Pages API:
+  `status: built` for commit `7ca1759` at 2026-11-17T23:53:54Z.
+- **Live:** https://karagemop466-tech.github.io/X1/ (console landing), with the new
+  https://karagemop466-tech.github.io/X1/console/w10-finals.html page and the Evidence pack,
+  Flagged (12 items) and Suggestion board (15 items) pages all in the served tree.
+
+## What the integration merge carried (nothing discarded)
+
+| From | Landed |
+|---|---|
+| This session (R5-1…R5-6) | 2026-11-17 pack (5+1 checks), Week-10 finals page, injury re-capture 345→347 (two-source), stale-PR salvage (#50/#53/#61/#66 data), R-76, SG-14/SG-15, X-09…X-12, workflow permission fix |
+| `main` through PRs #69–#83 | sessions `arena-2f95e652-x1` (evidence pack, workflow fix, refresh-order fix), `arena-16049865-x1` (injury re-read), `arena-01c263c4-x1` (their 2026-11-17 pack + verifier), `arena/76fd9817-x1`, `arena-9ececd27-x1`, `arena-9d8c298c-x1` (reads pack, PR-04 escrow, closure measurement) |
+| PR #72 (`arena-d3df5dc2-x1`) | brief-coverage audit (82 rows) + `tools/verify_brief_coverage.py`, wired into CI on its handoff request; register linked from the Flagged page (X-12) |
+| PR #75 (`arena-16049865-x1`) | its PR-#73 pull-request record, applied in place of the placeholder |
+| PR #78 (`arena-2f95e652-x1`) | its PR-#77 record, kept verbatim (its malformed workspace dump was repaired per precedent; the author's own later merges landed the cleaned text as well) |
+| `data-refresh` bot | its 2026-11-17T23:29Z official-capture commits on this branch, merged in; the captures index is the **union** of both runs (69 rows) |
+| Collision resolution | arena-01c263c4-x1's pack keeps the canonical `data/verification/2026_11_17/` names; this session's two colliding files and tool carry the `_dc96bc33` suffix; check B6 proves the two independent same-hour reads agree cell for cell (454 cells, 0 mismatches) |
+
+## Defects fixed during integration (published on the Flagged page)
+
+1. **PR #82 broke `main`'s verify-site at "Fail if committed HTML is stale" and left two lab pages
+   failing the shared checkers.** Root causes fixed in `tools/lab/build_site.py` (attributed):
+   an empty `<th>` in two tables shifted `scripts/verify_site.py`'s Source-column lookup onto the
+   Verdict column; `<code>` markup was passed through `esc()` and rendered as literal text; and the
+   escrow ledger's open rows carried only a "no official source" marker although the forecasts pack
+   transcribes an official fixture page per row (the marker for the *settlement* source is kept).
+   After the fix: `scripts/verify_site.py` passes on 348 HTML pages and `tools/check_links.py` passes.
+2. **`Refresh research data`** (pipeline.yml `pull-requests: write`) — fixed independently by this
+   session and `arena-2f95e652-x1`; main's version kept. The fix is proven live: the collector pushed
+   refresh commits to this branch during the round, and the salvage's `injury-ledger` workflow
+   captured and hashed a fresh official read on the PR. Residual owner check (X-11): confirm the
+   repository setting "Allow GitHub Actions to create and approve pull requests".
+3. **Merge-collision discipline:** the 2026-11-17 pack collision (three sessions, one path namespace)
+   was resolved by renaming this session's files rather than overwriting anyone's; two independent
+   reads of one official page are evidence, not duplicates.
+
+## Remaining open rows (do not block; all on the Flagged page)
+
+- X-09: pinned feeds still end at the Week-10 Thursday game (SG-14 records the mechanical re-pin).
+- X-11 residual: the repository setting check above.
+- SG-15: render the salvaged ledger/snapshots/announcement as console pages.
+- The pre-existing data gaps (no official price source, no player-prop lines, Houston depth chart is
+  an image, thin daily captures) and PR #72's 25 NOT-BUILT register rows are unchanged, each with
+  what would clear it.
+
+*This record is the follow-up commit from the same branch (docs-only), per the branch's PR-record
+convention.*
