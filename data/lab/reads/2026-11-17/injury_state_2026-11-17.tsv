@@ -1,0 +1,16 @@
+# INJURY / AVAILABILITY STATE — what the official pages print about availability right now, 2026-11-17.
+#
+# The owner brief: "Store every injury-hub read with its clock time and publish the delta, never the level";
+# "Snapshot the nfl.com injury report every Wed, Thu and Fri and keep a dated history"; "Treat the injury
+# report as a surprise, never a level". The first two need a series; the third needs the series to have
+# CHANGED. This file records the state of that machinery as an owner can check it: the reads, their clock
+# times, and the one number that decides whether a Week 11 injury signal is buildable at all.
+# The row-level capture comparison and the day-over-day delta are computed from the retained captures by
+# tools/lab/build_reads.py and published in report.json; nothing in this file restates them.
+read_id	subject	official_url	read_at_utc	printed_on_the_page	what_that_means	flag
+INJ-01	weekly injury report page	https://www.nfl.com/injuries/	2026-11-17T22:41Z	title: "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season"; the week selector lists WEEK 1 through WEEK 10	the newest report the league has published for the 2026 season is still the Week 10 report; no Week 11 report exists to capture at this clock time	no official Week 11 availability evidence exists yet - any Week 11 injury-adjusted line would be built on nothing
+INJ-02	Week 11 fixture page, Minnesota Vikings	https://www.nfl.com/games/vikings-at-49ers-2026-reg-11	2026-11-17T22:53Z	"Vikings’ Injury Report is not available at this time."	the fixture page itself prints no injury report for the club ahead of this Sunday	confirms INJ-01 from a second official page; the availability gate for Week 11 is not open
+INJ-03	Week 11 fixture page, San Francisco 49ers	https://www.nfl.com/games/vikings-at-49ers-2026-reg-11	2026-11-17T22:53Z	"49ers’ Injury Report is not available at this time."	same as INJ-02, other club	
+INJ-04	Week 11 fixture page, Indianapolis Colts	https://www.nfl.com/games/colts-at-texans-2026-reg-11	2026-11-17T22:53Z	"Colts’ Injury Report is not available at this time."	same, and this is the division-opening Thursday game the escrow covers	
+INJ-05	Week 11 fixture page, Houston Texans	https://www.nfl.com/games/colts-at-texans-2026-reg-11	2026-11-17T22:53Z	"Texans’ Injury Report is not available at this time."	same	
+INJ-06	collector capture series for this page	https://github.com/karagemop466-tech/X1/blob/main/data/captures/index.jsonl	2026-11-17T22:55Z	10 retained reads of the injuries dataset; distinct payloads: 3 (2026-11-14 345 rows, 2026-11-15 347 rows, 2026-11-16 347 rows); every read from 2026-11-16T19:02:14Z onward points at the SAME content hash	the capture series is running and deduplicating correctly, and the report has not changed on the wire since 2026-11-16T19:02:14Z - 9 reads, 1 distinct payload, all still the Week 10 report	the series satisfies "snapshot daily and keep a dated history" mechanically; it cannot yet show a Questionable->Out change because the page itself has not changed and no Week 11 report has been published

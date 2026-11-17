@@ -1,7 +1,7 @@
 {
  "dataset": "preregistration",
  "title": "Pre-registration register: every rule, its window, and the commit that froze it",
- "generated_at": "2026-11-17T23:36:22Z",
+ "generated_at": "2026-11-17T23:48:48Z",
  "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
  "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says",
  "history_scope": {
@@ -101,6 +101,31 @@
    "touches": 0,
    "later_commits": [],
    "reproduce": "git log --reverse --format='%H %aI' -- docs/methodology/results-feed.md",
+   "anchor_carried_forward": "",
+   "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data."
+  },
+  {
+   "id": "PR-04",
+   "name": "Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only",
+   "family": "escrow",
+   "file": "docs/preregistration/PR-04-week11-escrow.md",
+   "markets": "side, then total (published twice: total_A league floor, total_B two-club), then moneyline - the order is a build constraint in tools/lab/build_escrow.py",
+   "window": "2026 REG week 11, recorded 2026-11-17 before the first kickoff (2026-11-19 8:15 PM ET); ratings read from the 150-game official corpus, market line withheld (Q-02)",
+   "leaderboard_eligible": "no - a prospective record qualifies for the second stage; it is not ranked against a strategy competing for a reward, and no CLV or ROI is computed because there is no price source",
+   "gates": "G1 registered before the window opens; G2 chronology (the escrow rows' fixture must not have been played when the record was written, and the record's clock comes from the reads pack, not the build clock); G3 proper scores with n printed; G4 no multiplicity claim - one record, no variant search; G5 staking and CLV withheld (no price source)",
+   "rule_bytes": 9305,
+   "rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64",
+   "rule_hash_matches_this_checkout": "yes",
+   "content_hash_matches_registration": "unresolved here: this checkout is shallow (rule text unchanged since the last build)",
+   "rule_hash_stable_vs_last_build": "yes",
+   "registered_rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64",
+   "state": "unresolved-shallow-checkout",
+   "registration_commit": "",
+   "registered_at": "",
+   "registration_subject": "",
+   "touches": 0,
+   "later_commits": [],
+   "reproduce": "git log --reverse --format='%H %aI' -- docs/preregistration/PR-04-week11-escrow.md",
    "anchor_carried_forward": "",
    "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data."
   }

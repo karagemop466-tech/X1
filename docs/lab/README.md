@@ -70,3 +70,33 @@ python3 -c "import json;print(json.load(open('data/lab/prices/price_coverage.jso
 
 If the hashes differ from the committed `_pin.json`, the upstream moved and the numbers are a
 *different snapshot* rather than wrong; the pin file is what makes that distinction possible.
+
+## Added 2026-11-17 — session `arena-9d8c298c-x1` (the R1 round)
+
+Three pages, three builders, one pre-registration. All of them read files, none of them touch
+the network, and none of them writes outside `data/lab/reads/**`, `data/lab/escrow/**` and
+`tools/lab/**`.
+
+| Page | Builder | What it publishes |
+|---|---|---|
+| `lab/reads.html` | `tools/lab/build_reads.py` | the 2026-11-17 official read: 14 Week 10 finals, the 13-fixture Week 11 slate, the standings, venue evidence and the injury spot-check, with the ten checks that gate them re-run from the files |
+| `lab/escrow.html` | `tools/lab/build_escrow.py` | PR-04: 52 pre-kickoff forecast rows (side, both total estimators, moneyline), the settlement ledger, the luck panel, and the PR-01-vs-PR-04 delta on the same 13 fixtures |
+| `lab/closure.html` | `tools/lab/build_closure_measurement.py` | what still blocks Week 10 in `data/results`, counted by the feed's own gates, with the three ways out and their cost — measured, not fixed |
+
+The reads pack is transcribed from live official pages and the fetch tool returns parsed text, so
+`data/lab/reads/2026-11-17/manifest.json` hashes the *transcriptions*, not HTTP bytes, and says so.
+
+Reproduce any of it:
+
+```bash
+python3 tools/lab/build_reads.py --check                # the pack's ten checks, from the files
+python3 tools/lab/build_escrow.py --check               # pre-kickoff ordering + immutability guard
+python3 tools/lab/build_closure_measurement.py --check  # the closure numbers, from the committed builder
+python3 tools/lab/build_site.py                         # rebuild the pages, then --check the tree
+```
+
+Two limits of this round are worth stating before anyone reads a number off those pages. The price
+columns are blank on every escrow row, because no source with a book and a timestamp exists here —
+so there is no residual, no CLV and no ROI, and there will not be one until Q-02 is decided. And the
+settled ledger has `n = 1`: the mechanism for scoring a forecast against an official final works, and
+it has nothing to say.

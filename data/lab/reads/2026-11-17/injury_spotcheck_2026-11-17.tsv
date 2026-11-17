@@ -1,0 +1,64 @@
+# INJURY-REPORT SPOT-CHECK — 44 rows transcribed by hand from the official page on 2026-11-17T22:41Z.
+#
+# Source: https://www.nfl.com/injuries/ — page title as read: "Official Latest NFL Injury Report for Players
+#   - Week 10 of the 2026 Season"; the week selector on the page ends at "WEEK 10" (no Week 11 tab exists).
+#
+# CROSS-READ: every cell of this file is also compared against an independent read of the same page by
+# another session (data/evidence/2026_11_17, read 2026-11-17T22:46Z, a different column layout on
+# purpose) - check C11 in report.json. 698 comparable cells across the pack, 0 disagreements.
+# # What this file is for. The collector reads this page automatically and keeps a hash-addressed capture of
+# every read (data/captures/). A capture that nobody re-reads by eye can be a faithful picture of nothing.
+# So four club tables - Commanders, Giants, Patriots, Lions, 44 rows - were transcribed from the live page
+# by this session and are diffed cell by cell against the newest retained capture by tools/lab/build_reads.py.
+# Every field the capture holds is compared: position, injury text, practice designation, game designation
+# and the game label the row is printed under. The mismatch count is published; it is not averaged away.
+#
+# Why these four clubs. Two are the still-open Week 10 cards the published tables were built from, and two
+# (Lions) are the club whose three game-status cells the review queue says were published blank (VR-08, VR-12).
+# The live page prints "Out" for Kerby Joseph, Cade Mays and D.J. Reed, and so does the retained capture -
+# the result of that comparison against the published site table is in report.json, not decided here.
+team	player	position	injury	practice_status	game_status	game_label	source_url	read_at
+WAS	John Bates	TE		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Treylon Burks	WR		Did Not Participate In Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Jayden Daniels	QB		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Matt Gulbin	C		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Chig Okonkwo	TE		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Lucas Patrick	C	Concussion	Did Not Participate In Practice	Out	THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Amik Robertson	CB		Limited Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Shy Tuttle	DT		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+WAS	Colson Yankoff	TE	Knee	Did Not Participate In Practice	Out	THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Abdul Carter	LB		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Jermaine Eluemunor	T		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Malik Harrison	LB	Groin	Limited Participation in Practice	Questionable	THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Colton Hood	CB		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Theo Johnson	TE		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Charlie Jones	WR		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	J.J. McCarthy	QB		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Darnell Mooney	WR		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Malik Nabers	WR		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Cam Skattebo	RB		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NYG	Andrew Thomas	T		Full Participation in Practice		THURSDAY, NOVEMBER 12TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Ben Brown	C	Knee	Did Not Participate In Practice	Out	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	A.J. Brown	WR	Ankle, Knee	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Kevin Byard	S	Chest	Full Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Carlton Davis III	CB	Knee	Did Not Participate In Practice	Out	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Reggie Gilliam	FB	Knee	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	TreVeyon Henderson	RB	Illness	Did Not Participate In Practice	Out	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Hunter Henry	TE		Limited Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Cameron Latu	TE	Back	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Drake Maye	QB		Full Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Morgan Moses	T		Full Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Walter Rouse	T	Concussion	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Brenden Schooler	S	Hamstring	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Rhamondre Stevenson	RB	Knee	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Greg Van Roten	G	Hamstring	Full Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+NE	Charles Woods	CB	Hamstring	Full Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Brian Branch	S		Full Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Jared Goff	QB		Full Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Kerby Joseph	S	Knee	Did Not Participate In Practice	Out	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Cade Mays	C	Ankle	Did Not Participate In Practice	Out	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	D.J. Reed	CB	Hip	Did Not Participate In Practice	Out	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Jacob Saylors	RB		Full Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Amon-Ra St. Brown	WR	Rib	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	Sione Vaki	RB	Ankle	Limited Participation in Practice	Questionable	SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z
+DET	DJ Wonnum	DE		Full Participation in Practice		SUNDAY, NOVEMBER 15TH	https://www.nfl.com/injuries/	2026-11-17T22:41Z

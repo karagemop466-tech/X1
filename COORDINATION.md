@@ -3422,6 +3422,17 @@ Written at commit time. Work started before the claim was committed (a read-only
 
 | # | Task | Status | Files in scope |
 |---|---|---|---|
+**One irregularity is worth its own line, because it is the kind nobody looks for.** Three sessions read
+these pages inside five minutes of each other on 2026-11-17 (`data/evidence/2026_11_17`,
+`data/verification/2026_11_17`, and this pack) and the two cross-checks in `build_reads.py` compare
+1,384 cells across them with **0 value disagreements** — but the two packs spell one fixture's `game_id`
+differently (`2026_10_LA_ARZ` vs `2026_10_LAR_AZ`, both for `rams-at-cardinals-2026-reg-10`), so a join
+across those trees on `game_id` would drop the row silently. `C12` joins on the official fixture slug for
+that reason and flag `R1-08` publishes the divergence. The same collision also produced a near-miss: the
+`feed-closure-measurement` M5 scan originally counted *renderings* of the feed (every `lab/*.html` page),
+so its number moved every time a page was written; it now counts consumers only, which is why the number in
+this record (41) differs from the one in commit `d1dea85`'s message (55).
+
 | W-1 | Re-read the official Week 10 injury page (all 8 chunks) and transcribe every printed row | done | `data/capture/2026_w10_read_2026_11_17/official_nflcom_injuries_week10_2026-11-17.psv` (new) |
 | W-2 | Row-by-row comparison: published table vs 2026-11-17 read vs 2026-11-15 read vs the pipeline's stored 2026-11-16 capture | done | `tools/verify_w10_read_2026_11_17.py` (new), `data/capture/2026_w10_read_2026_11_17/recapture_2026_11_17.{json,md}` (generated) |
 | W-3 | Publish the 2026-11-17 read as a dated table (one source link per row). The published table `data/nfl/injuries_week10.tsv` is **not** overwritten | done | `data/capture/2026_w10_read_2026_11_17/injuries_week10_2026-11-17.tsv` (generated) |
@@ -3714,6 +3725,127 @@ numbers agree with this session's reads cell for cell.
 - Still open at the time of writing, left to their sessions: PRs **#75** (COORDINATION record for #73),
   **#72** (brief coverage register), **#66**, **#61**, **#53**, **#50** (all dated 11-15 and conflicting
   with squashed main — do not merge as-is).
+
+---
+
+# Session `arena-9d8c298c-x1` — Week 11 pre-kickoff escrow, dated official closure reads, Line Desk publication (this session)
+
+**Session ID:** `arena-9d8c298c-x1` · **Branch:** `arena/9d8c298c-x1` (branched from `main` @ `38816a62`,
+the current `origin/main` tip at claim time). **Started (UTC):** 2026-11-17 (claim written and pushed before any other work).
+
+## Why this session exists — three things `main` does not have, one of which expires in 41 hours
+
+1. **There is no pre-kickoff forecast record for the next game week.** `main` froze 14 Week 10 forecasts
+   (`data/shadow/forecasts_pre_kickoff.csv`, 2026-11-16) and those games are now final. The prospective
+   sample the brief demands — *"Two-Stage Skill Leaderboard (Proper-Score Qualification → Prospective
+   CLV/ROI Escrow)"*, *"Start with a singles-only shadow baseline … freeze versions and record forecasts
+   before kickoff"* — only accumulates if a forecast is written **before** the next kickoff. Week 11 opens
+   Thursday 2026-11-19 8:15 PM ET (IND at HOU, read from the official Week 11 schedule page). After that
+   clock no honest version of this record can be made for Week 11 at all. This is the only task on the board
+   with a hard expiry, so it is claimed first.
+2. **The Week 10 slate is still not closed in any published feed.** `data/results/_raw/reads.tsv` stops at
+   the 2026-11-12 Thursday game (137 rows); the 13 Sunday/Monday finals exist only inside
+   `data/verification/2026_11_16/**`, which the results feed, the origination ledger and the price store do
+   not read. Today (2026-11-17) every Week 10 game is final, so the closure is now readable from the
+   official pages in one pass. `arena-543cdcb0-x1` deliberately did **not** append those rows (recorded
+   S-22 / Q-62) because the append is a coordinated change across the row-count pin, the standings
+   baseline and the mirror re-pin. This session measures exactly what still blocks it, with the repo's own
+   builders, and publishes the measurement — it does **not** rewrite a frozen PR-01 input.
+3. **The injury-report series is being captured but never replayed as a decision surface.** The collector
+   is now healthy (this session verified: `data/pipeline/standings.json` and `injuries.json` both carry
+   `generated_at 2026-11-17T19:49:49+00:00`, and `data/captures/index.jsonl` holds 49 captures across
+   2026-11-14/15/16/17), which satisfies *"Snapshot … and keep a dated history"* mechanically. What is
+   missing is the *delta* the brief asks for — *"Store every injury-hub read with its clock time and
+   publish the delta, never the level"* — rendered for the week that is about to be bet.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| W-1 | **Dated official reads for 2026-11-17**, read live today: all 14 Week 10 games final (score, date, venue from the fixture's own official page), the Week 11 slate with the venue of every fixture transcribed from its game centre, today's standings, and the injury report as it stands now — each row with source URL and clock time, nothing inferred | **done** | `arena-9d8c298c-x1` | `data/lab/reads/2026-11-17/**` (new), `tools/lab/build_reads.py` (new) |
+| W-2 | **Measure the S-22/Q-62 blockers with the repo's own builder**, in a scratch copy, and publish the count of what still blocks closing Week 10 (pin, standings baseline, mirror coverage). No commit to `data/results/**`, `data/shadow/**` or any PR-01 input | **done** | `arena-9d8c298c-x1` | `data/lab/reads/2026-11-17/feed-closure-measurement.json` (new) |
+| W-3 | **Week 11 pre-kickoff forecast escrow**, pre-registered as PR-04 before any Week 11 result exists: side → total → moneyline fair line for all 13 fixtures, market line and residual blank-and-flagged (no price authority, Q-02), immutable content-hashed record written before kickoff, a two-sided "what would change our mind" field per entry, and no backtest number on any leaderboard | **done** | `arena-9d8c298c-x1` | `docs/preregistration/PR-04-week11-escrow.md` (new), `tools/lab/build_escrow.py` (new), `data/lab/escrow/**` (new), `tools/build_preregistration.py` (one additive RULES entry), `data/preregistration/register.{json,csv}` (regenerated by the committed generator) |
+| W-4 | **Publish all three in the Line Desk** (`lab/`), the one tree no other live session owns: one page per artefact, every row sourced, `--check` green, committed HTML regenerated by the committed generator | **done** | `arena-9d8c298c-x1` | `tools/lab/build_site.py` (additive: 3 `PAGES` entries + render functions), `tools/lab/build_all.py` (additive), `lab/*.html` (regenerated), `docs/methodology/prospective-escrow.md` (new) |
+| W-5 | **Integration for this session's artefacts only**: run the full committed verifier suite, PR → `main`, merge without waiting, confirm the Pages deploy, record sources / verification / irregularities here | **done** | `arena-9d8c298c-x1` | this file, PR |
+
+## Files this session will NOT touch (live claims and frozen inputs)
+
+* `index.html`, `pages/**`, `app/**`, `assets/site.css`, `tools/build_app.py`, `tools/build_site.py`,
+  `data/nfl/**`, `data/verify/*.psv`, `data/verification/**`, `data/questions.json`,
+  `data/pipeline/{questions,suggestions}.json`, `docs/EXECUTIVE-SUMMARY.md`, `tools/verify_*.py`,
+  `scripts/verify_*.py`, `tools/check_links.py` — claimed by `arena/76fd9817-x1` (PR #69, opened
+  2026-11-17T22:44Z, in progress). If PR #69 wants the Line Desk pages linked from the landing, that is its
+  call and its files; a request is logged at the bottom of this record instead of an edit here.
+* `data/results/**`, `data/shadow/**`, `docs/preregistration/PR-01-shadow-baseline.md`,
+  `data/results/_raw/reads.tsv` — PR-01's frozen inputs. `tools/build_shadow_baseline.py --check` passes on
+  the current bytes; changing an input of a frozen registration is how a pre-registration becomes a lie,
+  so the closure measurement in W-2 is run in a scratch copy and only its **result** is published.
+* `data/captures/**`, `pipeline/**`, `scripts/pipeline/**`, `.github/workflows/**` — capture store and
+  collector, owned by `arena-543cdcb0-x1` (done) and exercised by the live collector. This session reads
+  them, never writes them.
+* `console/**`, `hub/**`, `live/**`, `dashboard/**`, `research/**`, `site/**` — other page trees, untouched.
+
+**Rule 9 note.** `lab/**` is a self-contained section whose only writer since its integration is its own
+generator; the three shared files it needed (NAV entry in `tools/build_site.py`, copy + verify lines in the
+workflows) were added by its own round and are already merged, so this session adds pages by editing only
+`tools/lab/build_site.py` (additive) and re-running the committed generator.
+
+
+## Completion record — what shipped, what was checked, what was left alone
+
+PR **#82** (`arena/9d8c298c-x1` → `main`). Commits after the round's second rebase: `6585f48` (claim),
+`c698b4d` (reads pack + `build_reads.py`), `d1dea85` (closure measurement), `7758c86` (PR-04 + escrow
+builder), `c2b9e0e` (Line Desk publication), `eb3af2d` + the register rebuild, `b590bfd` (CI step),
+`4bd0879` (widened standings check), `db9247e` (venue-gap flag), plus the C11 second-reader check and this
+record. **The branch was rebased twice during the round** — `main` took PR #71 (`e2f42fb`), then PR #77 and
+PR #78 (`bfb2bf4`) while this work was in flight. `COORDINATION.md` conflicted on both rebases and was
+resolved by re-appending this session's own block; no other session's text was edited. The second rebase
+landed another session's work on the same subject (a 2026-11-17 read of the same official pages), which is
+why `C11` exists: the two reads are compared cell by cell instead of one of them being quietly rebased away.
+
+**Correction to this section's header:** the branch was written against `main @ 38816a62` and then rebased
+onto `origin/main @ e2f42fb` (merge of PR #71) before the claim landed, so the claim commit is `32e6ec6`.
+The claim text above still says `38816a62`; that is left as written rather than edited, because the board is
+a log. Also: commit `47eeeb6`'s message says "55 dependent artefacts" — the scan was tightened the same day
+to count *consumers* only (html renderings excluded, so the number cannot move when a page is written),
+which gives **41**; the artefact and the page are the authority, not the commit message.
+
+| Task | Official sources used | Verification performed | Irregularities |
+|---|---|---|---|
+| W-1 | https://www.nfl.com/schedules/2026/by-week/week-10 (chunks 0-1/2), …/week-11 (0-2/3), https://www.nfl.com/standings/league/2026/REG (0-1/2), https://www.nfl.com/injuries/ (chunk 0/8), plus two Game Center pages (`colts-at-texans-2026-reg-11`, `vikings-at-49ers-2026-reg-11`) | `tools/lab/build_reads.py` runs 12 checks from the transcriptions: slate completeness (32 clubs exactly once, both weeks), the standings page's own three identities per club, league closure (150 games implied = 150 shown; 6,923 points each side), 64 cross-page record comparisons, 512 cells against the collector's same-day read, cell-by-cell diffs against the 2026-11-16 pack (0 slate cells moved; the Monday final is the only game that changed), a 44-row / 220-cell injury spot-check against the retained capture (0 mismatches), the capture series' day-over-day delta, venue-evidence coverage, and `C11`: every cell of this pack against
+the independent 2026-11-17 read another session published in `data/evidence/2026_11_17` — 698 comparable
+cells, 0 disagreements, on layouts neither reader matched to the other. `--check` green, deterministic,
+offline | `R1-01` two official pages print different stadium names for Colts at Texans (NRG Stadium in the schedule page's link parameter vs `RELIANT STADIUM` in the fixture's Game Info); `R1-02` the Mexico City fixture carries the frozen 1.6-point home edge at a neutral venue; `R1-03` the published Week 10 injury table is 2 rows short of the capture the collector accepted (BAL: Campbell, Stanley — the same gap PR #66 exists to publish); `R1-04` no Week 11 injury report exists at all (the page's week selector ends at WEEK 10) and 8 consecutive reads see unchanged bytes; `R1-06` venue coverage is 2 of 27 fixtures; `R1-07` the 2026-11-15 capture was refused by the drift gate for printing `LAR` where the standings print `LA` |
+| W-2 | `tools/build_results_r3.py`, `data/results/_raw/reads.tsv`, `code/reference_data_2026_w10.py`, `data/raw/nflverse/games.csv` (the pinned mirror), the two reads packs | `tools/lab/build_closure_measurement.py` reads the committed builder rather than a copy: locates the row-count pins by line number (10 occurrences, 4 executable), replays the mirror row-diff gate over the 13 games (13 blocked, 0 settleable, and all 13 have a spread *and* a total in the mirror), replays the standings-closure check twice (today's table 32/32; the pinned 2026-11-14 baseline moved for 26 clubs), scans the consuming trees (41 artefacts), and reports the evaluation-corpus effect (105 → 118 scored games). Nothing was written outside `data/lab/reads/2026-11-17/` | the blocker is a gate design, not a data conflict: `signal_grade`'s own report says 137/137 rows agree with the mirror, which is true only because the mirror has those 137 rows. The recommendation (option B) is recorded and **not implemented** |
+| W-3 | the Week 11 slate file (itself W-1's read), `data/shadow/forecasts_pre_kickoff.csv`, `data/pipeline/standings.json`, PR-01's rule and implementation | `tools/lab/build_escrow.py` asserts the pre-kickoff ordering against the *read* clock rather than the build clock (3,025 minutes of slack published); imports PR-01's constants and `phi`/`american`/`rating_from` instead of retyping them; enforces market order 1/2/3; aborts if a rebuild would add or drop a row (guard demonstrated by deleting two committed rows → `ABORT`, restored); the ledger settles a row only from a transcribed official final with URL and read date. `tools/build_preregistration.py --check` now resolves PR-04 as `registered` at `1fc0cef043` with `rule_hash_stable_vs_last_build: "first build of this entry"` (the honest value for a row that has no
+previous build to be stable against). PR-04's anchor resolves as `registered` at the commit that added its
+rule file **on this branch** — and that hash moved twice as this round rebased, because a rebase rewrites
+commits. That is a real weakness of treating a commit hash as the freeze in a rebasing workflow, so it is
+stated plainly rather than smoothed over: what actually pins the registration is the rule file's SHA-256,
+which the rebases did not touch and which `build_preregistration.py` compares on every build. The anchor is
+worth reading as "the commit on `main` that first added this file" once the branch is merged, not before | the cross-registration delta is published, not hidden: one extra settled game moves `p` by up to 0.0337 (NYJ at LAC) and moves a fair line by half a point (BAL at CAR −4.5 → −4.0) — `n = 13`, and it is a fragility measurement, not an improvement. `mean |Δp| = 0.002824` |
+| W-4 | the artefacts above | `python3 tools/lab/build_site.py` regenerates 17 pages and its own `--check` passes: links resolve, no `<td>` without a source marker, balanced tags, unique ids. `lab/**` was rewritten **only** through its generator — including recovering from a mistake the generator makes easy: running `build_all.py --fast` rewrote the originated lines and leaderboard with a different ridge lambda, and the published numbers were restored from git. The `--fast` non-idempotence is now documented in `tools/lab/build_all.py` so the next round does not rediscover it | `docs/methodology/prospective-escrow.md` from the claim was **not** created: a second prose copy of PR-04 would drift from PR-04, so the rule file is the method and `lab/escrow.html` renders it. `docs/lab/sources.md` gained a dated section including a correction of its own "nfl.com blocked" conclusion — true of `curl`, false of the fetch tool, and three rounds of snapshot-only verification were built on that inference |
+| W-5 | the committed verifiers, listed in PR #82's body | full local suite green (14 commands, all `CHECK OK`/`PASS`), including after the second rebase; the capture gate now reports **0 published alarms** because the deficiency declared-columns drift was fixed on `main` in the meantime (59 captures, 29 distinct payloads); `tools/verify_console.py` 3,048/3,048 rows sourced; capture gate 0 build-failing problems, 1 published alarm; PR #82 opened and merged into `main` | two red checks are pre-existing and were reproduced in a clean `origin/main` worktree before being reported: `verify_official.py` (the 262 stale pin cells, measured as `C5b` here) and `verify_w10_recapture.py` (PR #66's subject). Two verifiers **write committed files when run** (`verify_2026_11_15.py`, `verify_official.py`); those writes were reverted here and are flagged so no one mistakes them for this branch's work. `verify.yml` gained one step at the tail; nothing else in that file was touched, which is why #53/#50/#66 do not conflict with it |
+
+**Standing brief requirements, and where this branch satisfies them.** Every row carries a source: the reads
+pack prints 132 data rows over six files and every one of them carries a source-URL column and a read-time
+column, named per file rather than averaged into a uniform schema: `source_url` + `read_at` on the two schedule
+reads, the standings and the injury spot-check; `schedule_page_url` + `game_centre_url` with `game_centre_read`
+on the venue file; `official_url` + `read_at_utc` on the availability file. The escrow record prints the
+official fixture and slate URLs on all 52 rows, and the site's own gate refuses a source-less row. Unsourced values are blank-and-flagged
+with the reason in the adjacent cell (venue for 11 fixtures, market line and residual on every escrow row,
+kickoff times for settled games). No backtest number appears on any leaderboard: nothing in this PR writes
+`data/lab/leaderboard.json`, and PR-04 states in its rule that it never enters that table. Correlations carry
+`n` because none were added here and the existing page is untouched. The price snapshot, results feed,
+originated-line and residual surfaces this round publishes are the escrow's: `our_fair_line`,
+`market_line` (blank), `residual` (blank), `rest_days` — the required columns exist and the two that cannot be
+sourced say so.
+
+**What the owner still has to decide, unchanged by this PR:** option B for the feed closure (S-22/Q-62); the
+price authority (Q-02), which is what keeps `residual`, CLV and ROI empty across the whole repository; and the
+reward rule (Q-07). One new decision is now concrete enough to schedule: whether a neutral-venue fixture keeps
+the frozen home edge, which has to be settled **before** the next registration is written, because
+`MIN at SF` on 2026-11-22 is the test case and the escrow already records the edge as a limit.
 
 ### Final state — session `arena-2f95e652-x1` (all work merged to `main`)
 
