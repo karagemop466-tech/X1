@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 21,
+  "flag": 26,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -245,6 +245,61 @@
    "unknown": "How long the 0-0 window lasts on each game, and whether the feed flips to a real score before or after the game is marked Final.",
    "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "source_label": "nfl.com Week 10 schedule (live, 2026-11-15)"
+  },
+  {
+   "id": "F-22",
+   "register": "data/flags.json",
+   "area": "Register disagreement",
+   "item": "The repository now holds two results feeds with different coverage, and the older one fails its own arithmetic gate.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Which feed the leaderboard's data gate and the ROI summary should read. The older feed's baseline is a dated 2026-11-14 transcription (data/nfl/schedule_week10.tsv) that this session deliberately did not rewrite, because another session owns those files and they are published as dated artefacts.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.json",
+   "source_label": "verified results feed (r3), built 2026-11-17"
+  },
+  {
+   "id": "F-23",
+   "register": "data/flags.json",
+   "area": "Coverage gap",
+   "item": "Depth coverage is 31 of 32 clubs, and the missing club is exactly the one the brief named: Houston publishes depth as an image.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether an authorised structured source exists for the Texans' depth chart. The brief rejects transcription by eye; no verified club-official structured source was found for HOU in this repository.",
+   "source": "https://www.nfl.com/teams/houston-texans",
+   "source_label": "official club page (the depth chart it publishes is an image, not a table)"
+  },
+  {
+   "id": "F-24",
+   "register": "data/flags.json",
+   "area": "Requirement not delivered",
+   "item": "'Record opening AND closing numbers for every market' is half-built: no closing capture exists, and the store has no job that would ever fill it.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether the owner wants a kickoff-time capture job (which needs a price source to be useful) or accepts that the closing half stays empty until the price policy is decided.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/price_snapshots.json",
+   "source_label": "price-snapshot store as published"
+  },
+  {
+   "id": "F-25",
+   "register": "data/flags.json",
+   "area": "Method hazard",
+   "item": "A registered rule whose window is a row count silently changes meaning when the corpus grows.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether the registration's window means 'the games played in weeks 3-10' (grows as results arrive) or 'the games available to the build that first scored the rule' (fixed at 117). Both are defensible; only one is registered.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/docs/preregistration/PR-01-shadow-baseline.md",
+   "source_label": "the registered rule text"
+  },
+  {
+   "id": "F-26",
+   "register": "data/flags.json",
+   "area": "Structure",
+   "item": "Five separate registers claim to hold 'the' decision-readiness / suggestions / question board, and the site renders all of them.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Which one the owner reads. Every additional register lowers the chance any of them is read, and each new session adds one rather than replacing one.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/COORDINATION.md",
+   "source_label": "the board's own duplicate-artefact declaration"
   },
   {
    "id": "Q-01",
