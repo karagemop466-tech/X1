@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-16T22:29:30Z",
- "captures": 39,
+ "generated_at": "2026-11-17T05:04:13Z",
+ "captures": 44,
  "datasets": [
   "injuries",
   "standings",
@@ -13,9 +13,9 @@
  "freshness": {
   "injuries": {
    "status": "ok",
-   "captures": 8,
+   "captures": 9,
    "distinct_payloads": 3,
-   "last_as_read_at": "2026-11-16T22:29:05+00:00",
+   "last_as_read_at": "2026-11-17T05:03:50+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 96,
@@ -23,9 +23,9 @@
   },
   "standings": {
    "status": "ok",
-   "captures": 8,
-   "distinct_payloads": 3,
-   "last_as_read_at": "2026-11-16T22:29:04+00:00",
+   "captures": 9,
+   "distinct_payloads": 4,
+   "last_as_read_at": "2026-11-17T05:03:50+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 96,
@@ -33,9 +33,9 @@
   },
   "depth_charts": {
    "status": "ok",
-   "captures": 7,
-   "distinct_payloads": 4,
-   "last_as_read_at": "2026-11-16T22:29:09+00:00",
+   "captures": 8,
+   "distinct_payloads": 5,
+   "last_as_read_at": "2026-11-17T05:03:54+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -43,9 +43,9 @@
   },
   "team_stats": {
    "status": "ok",
-   "captures": 7,
-   "distinct_payloads": 2,
-   "last_as_read_at": "2026-11-16T22:29:17+00:00",
+   "captures": 8,
+   "distinct_payloads": 3,
+   "last_as_read_at": "2026-11-17T05:04:00+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -53,9 +53,9 @@
   },
   "deficiency": {
    "status": "ok",
-   "captures": 7,
-   "distinct_payloads": 4,
-   "last_as_read_at": "2026-11-16T22:29:17+00:00",
+   "captures": 8,
+   "distinct_payloads": 5,
+   "last_as_read_at": "2026-11-17T05:04:00+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -66,7 +66,7 @@
    "captures": 1,
    "distinct_payloads": 1,
    "last_as_read_at": "2026-11-16T18:52:00Z",
-   "hours_since_last_read": 3.6,
+   "hours_since_last_read": 10.2,
    "clock_skew_hours": "",
    "max_age_hours": 336,
    "last_drift": "pass"
@@ -76,7 +76,7 @@
    "captures": 1,
    "distinct_payloads": 1,
    "last_as_read_at": "2026-11-16T18:44:00Z",
-   "hours_since_last_read": 3.8,
+   "hours_since_last_read": 10.3,
    "clock_skew_hours": "",
    "max_age_hours": 336,
    "last_drift": "pass"
@@ -186,6 +186,19 @@
     }
    ],
    "capture_id": "deficiency@20261116T222917+0000@644e6172f863"
+  },
+  {
+   "dataset": "deficiency",
+   "kind": "schema-or-count",
+   "at": "2026-11-17T05:04:00+00:00",
+   "detail": [
+    {
+     "detail": "the payload declares 12 columns and its rows carry 14 keys; undeclared in the rows: ['depth_listed', 'team_abbrev']; declared but not in the rows: none",
+     "field": "depth_listed+team_abbrev",
+     "kind": "declared-columns-mismatch"
+    }
+   ],
+   "capture_id": "deficiency@20261117T050400+0000@31698fabc3a8"
   }
  ],
  "verdict": "alarmed",
