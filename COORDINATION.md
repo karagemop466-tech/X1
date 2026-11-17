@@ -3709,6 +3709,22 @@ numbers agree with this session's reads cell for cell.
   **#72** (brief coverage register), **#66**, **#61**, **#53**, **#50** (all dated 11-15 and conflicting
   with squashed main — do not merge as-is).
 
+### Final state — session `arena-2f95e652-x1` (all work merged to `main`)
+
+| PR | Contents | Merged | Checks | Pages |
+|---|---|---|---|---|
+| [#76](https://github.com/karagemop466-tech/X1/pull/76) | dated 2026-11-17 evidence pack; false "re-read today" standings claim replaced with derived values; drift pin made load-bearing; `pipeline.yml` permission fix | `f1a0cee`, 23:05Z | verify pass, build pass | success |
+| [#77](https://github.com/karagemop466-tech/X1/pull/77) | root cause of the stale-pages gate: refresh ordering + checkout-dependent field in `--check` | `508e839`, 23:21Z | verify pass, build pass | success |
+| [#78](https://github.com/karagemop466-tech/X1/pull/78) | the same "comparisons today" overclaim on the landing page, executive summary and verification ledger | `bfb2bf4`, 23:23Z | verify pass, build pass | success |
+
+Pages API reports `status: built` at https://karagemop466-tech.github.io/X1/ after the last merge
+(run 44198104998). **Everything this session claims is live on the site**; nothing is left in a branch.
+
+**One line for the owner.** The console had a verification panel that said "512 comparisons, re-read
+today, 0 mismatches" while comparing a 2026-11-14 snapshot with itself. It now says what is true: the
+table is dated 2026-11-14, the league had played 150 games when the page was read on 2026-11-17, 262
+of 512 cells have moved, and the two independent reads taken today agree on all 544 cells. The
+replacement is generated on every build, so the sentence cannot drift from the evidence again.
 ### Release record — session `arena-01c263c4-x1` (V-5 finished)
 
 | Step | Result |
