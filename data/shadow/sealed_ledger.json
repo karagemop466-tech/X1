@@ -1,0 +1,151 @@
+{
+ "file": "data/shadow/forecasts_pre_kickoff.csv",
+ "content_sha256": "ff14280133d77190d033cce1855b3408be3f82c0499c4f15ecfd2a00267cd66a",
+ "n_sealed": 14,
+ "n_reproduced_from_rule": 14,
+ "n_confirmed_pre_kickoff": 14,
+ "failures": [],
+ "rows": [
+  {
+   "game_id": "2026_10_LAC_BAL",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "2026-11-16",
+   "kickoff_utc": "2026-11-17T01:15:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_IND_HOU",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-20T01:15:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_ARZ_KC",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_BAL_CAR",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_MIA_BUF",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_NO_CHI",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_PIT_PHI",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_TB_DET",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_TEN_DAL",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T18:00:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_NYJ_LAC",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T21:05:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_JAX_NYG",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T21:25:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_LV_DEN",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-22T21:25:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_MIN_SF",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-23T01:20:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  },
+  {
+   "game_id": "2026_11_CIN_WAS",
+   "recorded_at_utc": "2026-11-16T18:52:12Z",
+   "max_abs_delta_vs_rule": 0.0,
+   "reproduces": true,
+   "fixture_date": "",
+   "kickoff_utc": "2026-11-24T01:15:00Z",
+   "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "recorded_after_kickoff": false
+  }
+ ],
+ "meaning": "every sealed number is what the frozen rule produces from results strictly earlier than the moment it was recorded - i.e. the seal can be audited without trusting it"
+}

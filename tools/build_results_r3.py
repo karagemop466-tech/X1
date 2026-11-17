@@ -5,22 +5,26 @@ Session `arena/600e6009-x1`.
 
 What this produces
 ------------------
-  data/results/verified_results.json   137 completed 2026 regular-season games
+  data/results/verified_results.json   every completed 2026 regular-season game (150 after the
+                                      2026-11-17 read, i.e. weeks 1-10 inclusive of Week 10)
   data/results/verified_results_2026_r3.csv    same rows, flat
   data/results/signal_grade.json       price-independent signal metric (S4/S5 input)
 
 Where the numbers come from (three independent checks, none of them inferred)
 ---------------------------------------------------------------------------
   1. DIRECT OFFICIAL READ. Every row was transcribed from the NFL.com by-week
-     schedule page for its week on 2026-11-14 (chunks 0-1 of each page). The
-     transcription lives in data/results/_raw/reads.tsv and each published row
-     carries the URL it was read from.
-  2. TWO-SOURCE ROW DIFF. The same 137 games exist in the fingerprinted
+     schedule page for its week — weeks 1-9 and the 2026-11-12 fixture on 2026-11-14
+     (chunks 0-1 of each page), the remaining 13 Week 10 finals on 2026-11-17. The
+     transcription lives in data/results/_raw/reads.tsv with a per-row `read_at`, and
+     each published row carries the URL it was read from and the date it was read.
+  2. TWO-SOURCE ROW DIFF. The same games exist in the fingerprinted
      nflverse/nfldata mirror (data/raw/nflverse/games.csv). The published feed
      is emitted only after every row matches that mirror on teams, scores and
      date. The mirror is a cross-check, never the published source.
-  3. STANDINGS ARITHMETIC. Summing the 137 published results reproduces every
-     one of the 32 official NFL.com standings rows (W-L-T, PF, PA) exactly.
+  3. STANDINGS ARITHMETIC. Summing the published results reproduces every one of
+     the 32 official NFL.com standings rows (W-L-T, PF, PA) exactly, against the
+     standings transcription dated on or after the last game in the corpus
+     (data/verification/2026_11_17/official_standings_2026_11_17.tsv).
 
 A row that fails any check aborts the build. Nothing is filled in: the feed
 contains only scores the official page printed.
@@ -34,6 +38,7 @@ Usage
 from __future__ import annotations
 
 import csv
+import io
 import json
 import os
 import subprocess
@@ -42,8 +47,19 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, "data", "results", "_raw")
 OUT = os.path.join(ROOT, "data", "results")
-SNAPSHOT = "2026-11-14"
+SNAPSHOT = "2026-11-17"          # date of the newest read the corpus is allowed to contain
 SEASON = 2026
+
+# Pinned per-week row counts, read off the official pages (16,16,16,16,15,14,14,14,15,14 = 150).
+# A corpus that silently gains or loses a fixture must fail the build rather than publish a
+# smaller league with no explanation — same philosophy as the capture drift alarm.
+EXPECTED_WEEK_ROWS = {1: 16, 2: 16, 3: 16, 4: 16, 5: 15, 6: 14, 7: 14, 8: 14, 9: 15, 10: 14}
+EXPECTED_ROWS = sum(EXPECTED_WEEK_ROWS.values())
+
+# Dated official standings transcription used as the arithmetic baseline. It must be a read
+# taken AFTER the last game in the corpus, or the sums cannot close.
+STANDINGS_PACK = os.path.join(ROOT, "data", "verification", "2026_11_17",
+                              "official_standings_2026_11_17.tsv")
 
 # Alias handling: NFL.com prints AZ / LA; nflverse writes ARI / LAR (flags I-15, I-16).
 TEAM_ALIAS = {"ARI": "AZ", "LAR": "LA"}
@@ -84,8 +100,26 @@ def load_candidates() -> dict:
     return cands
 
 
-def load_official_standings() -> list[tuple]:
-    """The 32 standings rows transcribed from nfl.com (code/reference_data_2026_w10.py)."""
+def load_official_standings() -> tuple[list[tuple], dict]:
+    """The 32 standings rows transcribed from nfl.com, with the provenance of that read.
+
+    Prefers the dated verification pack (read 2026-11-17, after every Week 10 game); falls
+    back to the 2026-11-14 transcription in code/reference_data_2026_w10.py so the build
+    still runs in a tree that has not received the pack yet.
+    """
+    if os.path.exists(STANDINGS_PACK):
+        with open(STANDINGS_PACK, encoding="utf-8") as fh:
+            lines = [ln for ln in fh.read().split("\n")
+                     if ln.strip() and not ln.lstrip().startswith("#")]
+        rows = list(csv.DictReader(io.StringIO("\n".join(lines)), delimiter="\t"))
+        out = [(r["team_name"], r["abbr"], "", "", 0, int(r["w"]), int(r["l"]), int(r["t"]),
+                int(r["pf"]), int(r["pa"]), r["home"], r["road"], r["div"], r["conf"],
+                r["strk"], r["last5"]) for r in rows]
+        return out, {"file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv",
+                     "read_at": "2026-11-17",
+                     "url": "https://www.nfl.com/standings/league/2026/REG",
+                     "rows": len(out)}
+
     import importlib.util
 
     spec = importlib.util.spec_from_file_location(
@@ -93,7 +127,9 @@ def load_official_standings() -> list[tuple]:
     )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    return list(mod.STANDINGS)
+    return list(mod.STANDINGS), {"file": "code/reference_data_2026_w10.py", "read_at": "2026-11-14",
+                                 "url": "https://www.nfl.com/standings/division/2026/REG",
+                                 "rows": len(mod.STANDINGS)}
 
 
 def schedule_url(week: int) -> str:
@@ -106,8 +142,13 @@ def game_url(slug: str) -> str:
 
 def build() -> tuple[dict, dict]:
     reads = read_official_rows()
-    if len(reads) != 137:
-        raise SystemExit(f"FAIL: expected 137 official rows, found {len(reads)}")
+    if len(reads) != EXPECTED_ROWS:
+        raise SystemExit(f"FAIL: expected {EXPECTED_ROWS} official rows, found {len(reads)}")
+    seen_week: dict[int, int] = {}
+    for r in reads:
+        seen_week[int(r["week"])] = seen_week.get(int(r["week"]), 0) + 1
+    if seen_week != EXPECTED_WEEK_ROWS:
+        raise SystemExit(f"FAIL: per-week row counts {seen_week} != pinned {EXPECTED_WEEK_ROWS}")
 
     names = nickname_to_abbr()
     cands = load_candidates()
@@ -166,7 +207,7 @@ def build() -> tuple[dict, dict]:
             "game_url": game_url(r["game_slug"]),
             "source_label": f"NFL.com Week {week} schedule (by week) — score read line by line",
             "source_org": "NFL",
-            "retrieved_at": SNAPSHOT,
+            "retrieved_at": (r.get("read_at") or "2026-11-14").strip() or SNAPSHOT,
             "verification": "direct official read + row diff vs mirror + standings arithmetic",
         }
         rows.append(row)
@@ -174,11 +215,12 @@ def build() -> tuple[dict, dict]:
 
     if errors:
         raise SystemExit("FAIL:\n  " + "\n  ".join(errors))
-    if len(rows) != 137:
-        raise SystemExit(f"FAIL: built {len(rows)} rows, expected 137")
+    if len(rows) != EXPECTED_ROWS:
+        raise SystemExit(f"FAIL: built {len(rows)} rows, expected {EXPECTED_ROWS}")
 
     # ---- check 3: standings arithmetic -----------------------------------
-    W, L, T, PF, PA = ({t[1]: 0 for t in load_official_standings()} for _ in range(5))
+    standings, standings_src = load_official_standings()
+    W, L, T, PF, PA = ({t[1]: 0 for t in standings} for _ in range(5))
     for row in rows:
         a, h = row["away_team"], row["home_team"]
         for t in (a, h):
@@ -194,7 +236,7 @@ def build() -> tuple[dict, dict]:
             W[h] += 1; L[a] += 1
 
     standings_fails = []
-    for s in load_official_standings():
+    for s in standings:
         team, abbr = s[0], s[1]
         expected = (s[5], s[6], s[7], s[8], s[9])          # W, L, T, PF, PA
         got = (W.get(abbr, 0), L.get(abbr, 0), T.get(abbr, 0),
@@ -216,6 +258,12 @@ def build() -> tuple[dict, dict]:
         "generated_at": SNAPSHOT,
         "season": SEASON,
         "rows_count": len(rows),
+        "corpus_reads": {
+            "weeks": sorted(seen_week),
+            "per_week_rows": seen_week,
+            "read_dates": sorted({(r.get("read_at") or "2026-11-14").strip() for r in reads}),
+            "standings_baseline": standings_src,
+        },
         "columns": [
             "game_id", "week", "gameday", "away_team", "home_team", "away_score",
             "home_score", "winner", "margin", "total_points", "is_tie",
@@ -225,15 +273,18 @@ def build() -> tuple[dict, dict]:
             "url": schedule_url(1),
             "label": "NFL.com by-week schedules, weeks 1-10 of the 2026 season",
             "org": "NFL",
+            "per_row_urls": "every row carries source_url (the by-week page) and game_url (the fixture)",
         },
         "method": [
-            "Every score transcribed line by line from the official NFL.com by-week schedule "
-            "page for its week (retrieved 2026-11-14, chunks 0-1 of each page).",
-            "Each row then diffed against the fingerprinted nflverse/nfldata mirror: teams, "
-            "scores and date must agree exactly (137 of 137 agree; the mirror is a cross-check "
-            "only and is never the published source).",
-            "Summing the feed reproduces all 32 official NFL.com standings rows (W-L-T, PF, PA) "
-            "exactly; league points for equal points against (6,291).",
+            "Every score transcribed line by line from the official NFL.com by-week schedule page "
+            "for its week: weeks 1-9 and the Thursday fixture retrieved 2026-11-14, the remaining "
+            "13 Week 10 finals retrieved 2026-11-17 (chunks 0-1 of each page).",
+            f"Each row then diffed against the fingerprinted nflverse/nfldata mirror: teams, scores "
+            f"and date must agree exactly ({len(rows)} of {len(rows)} agree; the mirror is a "
+            f"cross-check only and is never the published source).",
+            f"Summing the feed reproduces all 32 official NFL.com standings rows (W-L-T, PF, PA) "
+            f"exactly, against the standings transcription read {standings_src['read_at']}; league "
+            f"points for equal points against ({sum(r['total_points'] for r in rows) // 2}).",
         ],
         "why_it_exists": (
             "Backtests and ROI need graded outcomes. Before this feed the repository held no "
@@ -243,8 +294,10 @@ def build() -> tuple[dict, dict]:
         ),
         "coverage": {
             "completed_games_in_season_to_date": len(rows),
-            "weeks": "1-10 (Week 10: Thursday final only; Sunday and Monday not yet played)",
-            "not_included": "postseason; games not yet played",
+            "weeks": "1-10 inclusive (Week 10 closed by the 2026-11-17 read: 14 of 14 games final)",
+            "not_included": "postseason; games not yet played (Week 11 opens 2026-11-19)",
+            "opened_by": "session arena-e1436334-x1 with tools/promote_w10_2026_11_17.py; "
+                         "closes the gap recorded as S-22 / Q-62 by session arena-543cdcb0-x1",
         },
         "verification": {
             "rows": len(rows),
@@ -286,8 +339,9 @@ def build_signal_grade(feed_rows: list[dict]) -> dict:
 
     off = {r["game_id"]: r for r in feed_rows}
     matched = sorted(set(off) & set(picks))
-    if len(matched) != 137:
-        raise SystemExit(f"FAIL: signal join matched {len(matched)} of 137 games")
+    if len(matched) != len(feed_rows):
+        raise SystemExit(f"FAIL: signal join matched {len(matched)} of {len(feed_rows)} games "
+                         f"(every graded game must have a model row, or the join is silently dropping fixtures)")
 
     wins = losses = ties = no_pick = 0
     grades = []
@@ -347,11 +401,14 @@ def build_signal_grade(feed_rows: list[dict]) -> dict:
         "model_source": "data/processed/games_modeled.csv (walk-forward model, research lab)",
         "outcome_source": "data/results/verified_results.json (official NFL.com reads)",
         "caveats": [
-            "Excludes 1 tie (NYG 27, WAS 27, Week 5) and 3 games where the model line is "
-            "exactly 0.0 and therefore names no side.",
+            f"Excludes {ties} tie{'s' if ties != 1 else ''} and {no_pick} games where the model line is "
+            f"blank or exactly 0.0 and therefore names no side. The blank ones are games the model "
+            f"file has no walk-forward line for; a line is NOT backfilled after the result is known, "
+            f"because a retro-prediction is the leak the point-in-time ledger exists to prevent.",
             "The 0.5 baseline is a coin flip, not a book's break-even: without an official "
             "price there is no break-even to measure against (Q-02).",
             "Model refit cadence is documented by the research lab, not re-verified here.",
+            "This grade is a BACKTEST metric. Under PR-01 it can never enter the leaderboard.",
         ],
         "grades": grades,
     }

@@ -1,24 +1,25 @@
 {
  "dataset": "signal_grade",
  "title": "Signal-only grade: model side pick vs official result, 2026 season",
- "generated_at": "2026-11-14",
+ "generated_at": "2026-11-17",
  "rule": "Outcome-only statistic. It uses the official result and the model's own line and nothing else: no price, no stake, no payout. It is therefore immune to staking luck by construction, which is exactly what the leaderboard split (S5) requires. It is NOT a betting return and NOT measured against the break-even implied by a price.",
  "baseline": 0.5,
- "n_matched_games": 137,
+ "n_matched_games": 150,
  "n_decided": 133,
  "n_wins": 84,
  "n_losses": 49,
  "n_ties_excluded": 1,
- "n_no_pick_excluded": 3,
+ "n_no_pick_excluded": 16,
  "hit_rate": 0.6316,
  "z_vs_50pct": 3.035,
  "p_two_sided": 0.0024,
  "model_source": "data/processed/games_modeled.csv (walk-forward model, research lab)",
  "outcome_source": "data/results/verified_results.json (official NFL.com reads)",
  "caveats": [
-  "Excludes 1 tie (NYG 27, WAS 27, Week 5) and 3 games where the model line is exactly 0.0 and therefore names no side.",
+  "Excludes 1 tie and 16 games where the model line is blank or exactly 0.0 and therefore names no side. The blank ones are games the model file has no walk-forward line for; a line is NOT backfilled after the result is known, because a retro-prediction is the leak the point-in-time ledger exists to prevent.",
   "The 0.5 baseline is a coin flip, not a book's break-even: without an official price there is no break-even to measure against (Q-02).",
-  "Model refit cadence is documented by the research lab, not re-verified here."
+  "Model refit cadence is documented by the research lab, not re-verified here.",
+  "This grade is a BACKTEST metric. Under PR-01 it can never enter the leaderboard."
  ],
  "grades": [
   {

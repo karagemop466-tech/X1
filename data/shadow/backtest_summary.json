@@ -1,8 +1,8 @@
 {
  "dataset": "shadow_baseline_PR-01",
  "title": "PR-01 singles-only shadow baseline: pre-registered rule, walk-forward score, and the pre-kickoff record",
- "generated_at": "2026-11-16T18:52:12Z",
- "generated_by": "tools/build_shadow_baseline.py (session arena-543cdcb0-x1)",
+ "generated_at": "2026-11-17T22:55:21Z",
+ "generated_by": "tools/build_shadow_baseline.py (created by session arena-543cdcb0-x1; the sealed ledger, its reproduction check and its resolution were added by arena-e1436334-x1)",
  "registration": {
   "rule_file": "docs/preregistration/PR-01-shadow-baseline.md",
   "rule_sha256": "902b43f6faf5ed5e7a417335d339aab902622b808e0e0eddaebdffc45a4494c0",
@@ -18,7 +18,7 @@
   "note": "These are the values in the rule file. Changing one here without changing the rule file makes the register's hash check fail, which is the point."
  },
  "inputs": {
-  "games": 149,
+  "games": 150,
   "weeks": [
    1,
    2,
@@ -31,17 +31,17 @@
    9,
    10
   ],
-  "league_average_total_points": 46.174,
+  "league_average_total_points": 46.153,
   "inputs": {
    "docs/preregistration/PR-01-shadow-baseline.md": "902b43f6faf5ed5e7a417335d339aab902622b808e0e0eddaebdffc45a4494c0",
-   "data/results/_raw/reads.tsv": "684d0f01e4bbd6956c2399f3f392a17392783927053dcef9830a69528795a2d4",
+   "data/results/_raw/reads.tsv": "484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312",
    "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv": "4545f9d49c3a1c4a4e3608d72050f0716271b6b58405f82ec36c1e8e41d63861",
    "data/verification/2026_11_16/official_w11_schedule_2026_11_16.tsv": "ce2bccc31c4c4fda03dd26c01d0d263764adb31125c1152ffec93514793607c8",
-   "data/pipeline/standings.json": "3cafead27884afc58d13d77efda8405af1f4314db17729eb6de9f5d59e05f618"
+   "data/pipeline/standings.json": "2236c73a6a2866cacf022f3edacf0c776030d583683952a01c2d4d6addb6785d"
   }
  },
  "corpus": {
-  "games_ingested": 149,
+  "games_ingested": 150,
   "weeks": [
    1,
    2,
@@ -58,22 +58,22 @@
   "eligibility": "BACKTEST. Not leaderboard-eligible (PR rule: no backtest number is ranked)."
  },
  "backtest": {
-  "n_games": 117,
-  "brier": 0.224242,
-  "brier_home_baseline": 0.253782,
-  "brier_coin_baseline": 0.247863,
-  "brier_skill_vs_home_baseline": 0.116401,
-  "brier_skill_vs_coin": 0.095301,
-  "log_loss": 0.641481,
-  "log_loss_home_baseline": 0.705033,
-  "log_skill_vs_home_baseline": 0.09014,
-  "hit_rate_model_side": 0.641026,
-  "mae_expected_margin_points": 9.6681,
+  "n_games": 118,
+  "brier": 0.226508,
+  "brier_home_baseline": 0.254195,
+  "brier_coin_baseline": 0.247881,
+  "brier_skill_vs_home_baseline": 0.108919,
+  "brier_skill_vs_coin": 0.086223,
+  "log_loss": 0.646283,
+  "log_loss_home_baseline": 0.705825,
+  "log_skill_vs_home_baseline": 0.084358,
+  "hit_rate_model_side": 0.635593,
+  "mae_expected_margin_points": 9.672,
   "luck_panel": {
    "realised_wins_on_model_side": 75,
-   "expected_wins_same_bets": 76.057,
-   "sd_of_the_difference": 5.042,
-   "z_luck_adjusted": -0.21,
+   "expected_wins_same_bets": 76.758,
+   "sd_of_the_difference": 5.063,
+   "z_luck_adjusted": -0.347,
    "reading": "inside one standard deviation: this record is not evidence of skill or of failure, it is what a coin would do"
   },
   "calibration": [
@@ -100,9 +100,9 @@
    },
    {
     "bin": "0.6-0.8 (probability of the side picked)",
-    "n": 57,
-    "mean_p": 0.6917,
-    "win_rate": 0.6316,
+    "n": 58,
+    "mean_p": 0.6919,
+    "win_rate": 0.6207,
     "too_small_to_read": "no"
    },
    {
@@ -119,12 +119,12 @@
    "unit": "game (each game is one cluster)",
    "bonferroni_alpha": 0.05,
    "n_trials": 1,
-   "brier_mean_of_resamples": 0.224268,
+   "brier_mean_of_resamples": 0.226556,
    "skill_home_baseline_ci": [
-    0.0021,
-    0.2302
+    -0.0052,
+    0.2191
    ],
-   "skill_home_baseline_lower_bound": 0.0021
+   "skill_home_baseline_lower_bound": -0.0052
   }
  },
  "columns_scored": [
@@ -3335,8 +3335,8 @@
    "picked_won": 1,
    "picked_p": 0.655174,
    "source_url": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3365,8 +3365,8 @@
    "picked_won": 1,
    "picked_p": 0.748152,
    "source_url": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3395,8 +3395,8 @@
    "picked_won": 1,
    "picked_p": 0.710282,
    "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3425,8 +3425,8 @@
    "picked_won": 1,
    "picked_p": 0.590549,
    "source_url": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3455,8 +3455,8 @@
    "picked_won": 1,
    "picked_p": 0.861899,
    "source_url": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3485,8 +3485,8 @@
    "picked_won": 0,
    "picked_p": 0.514772,
    "source_url": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3515,8 +3515,8 @@
    "picked_won": 1,
    "picked_p": 0.631575,
    "source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3545,8 +3545,8 @@
    "picked_won": 1,
    "picked_p": 0.733102,
    "source_url": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3575,8 +3575,8 @@
    "picked_won": 1,
    "picked_p": 0.637904,
    "source_url": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3605,8 +3605,8 @@
    "picked_won": 1,
    "picked_p": 0.630559,
    "source_url": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3635,8 +3635,8 @@
    "picked_won": 0,
    "picked_p": 0.596035,
    "source_url": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3665,16 +3665,499 @@
    "picked_won": 0,
    "picked_p": 0.525772,
    "source_url": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
+  },
+  {
+   "date": "2026-11-16",
+   "week": 10,
+   "game_id": "10_chargers-at-ravens-2026-reg-10",
+   "away": "LAC",
+   "home": "BAL",
+   "rating_home": -4.2727,
+   "rating_away": -9.8,
+   "expected_margin_home": 7.1273,
+   "p_home": 0.701232,
+   "fair_line_home": -7.0,
+   "fair_total": 46.2,
+   "market_line": "",
+   "residual": "",
+   "american_home": "235",
+   "american_away": "-235",
+   "away_score": 23,
+   "home_score": 20,
+   "outcome_home": 0.0,
+   "brier": 0.491726,
+   "log_loss": 1.208087,
+   "brier_base_half": 0.25,
+   "brier_base_home": 0.3025,
+   "picked": "home",
+   "picked_won": 0,
+   "picked_p": 0.701232,
+   "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   }
  ],
  "forward": {
-  "recorded_at_utc": "2026-11-16T18:52:12Z",
+  "recorded_at_utc": "2026-11-17T22:55:21Z",
   "games_recorded": 14,
   "content_sha256": "37fe5d5427d9ac996acb23112fd481fdb2c3a430d1cd1176972f0577a3eb8602",
-  "immutability": "the CSV is written once; a second run that would change any forecast number aborts the build (the recorded clock is excluded from the fingerprint)",
-  "file": "data/shadow/forecasts_pre_kickoff.csv"
+  "immutability": "append-only ledger: existing rows are never rewritten, so a forecast cannot be edited after kickoff; the build re-derives each row from the frozen rule at its own record time and aborts if a number does not reproduce",
+  "file": "data/shadow/forecasts_pre_kickoff.csv",
+  "ledger_check": {
+   "n_sealed": 14,
+   "n_reproduced": 14,
+   "n_pre_kickoff_confirmed": 14,
+   "pre_kickoff_basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+   "failures": [],
+   "note": "Reproduction tolerance is 5e-6 on every scored field, i.e. the rounding the artefact itself uses. Anything larger means the file was edited after it was written, or the rule's constants moved; either way the seal is broken and the number is not publishable."
+  }
+ },
+ "sealed_ledger": {
+  "file": "data/shadow/forecasts_pre_kickoff.csv",
+  "content_sha256": "ff14280133d77190d033cce1855b3408be3f82c0499c4f15ecfd2a00267cd66a",
+  "n_sealed": 14,
+  "n_reproduced_from_rule": 14,
+  "n_confirmed_pre_kickoff": 14,
+  "failures": [],
+  "rows": [
+   {
+    "game_id": "2026_10_LAC_BAL",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "2026-11-16",
+    "kickoff_utc": "2026-11-17T01:15:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_IND_HOU",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-20T01:15:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_ARZ_KC",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_BAL_CAR",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_MIA_BUF",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_NO_CHI",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_PIT_PHI",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_TB_DET",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_TEN_DAL",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_NYJ_LAC",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T21:05:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_JAX_NYG",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T21:25:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_LV_DEN",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-22T21:25:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_MIN_SF",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-23T01:20:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   },
+   {
+    "game_id": "2026_11_CIN_WAS",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "max_abs_delta_vs_rule": 0.0,
+    "reproduces": true,
+    "fixture_date": "",
+    "kickoff_utc": "2026-11-24T01:15:00Z",
+    "basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
+    "recorded_after_kickoff": false
+   }
+  ],
+  "meaning": "every sealed number is what the frozen rule produces from results strictly earlier than the moment it was recorded - i.e. the seal can be audited without trusting it"
+ },
+ "prospective_resolution": {
+  "n_sealed": 14,
+  "n_resolved": 1,
+  "n_pending": 13,
+  "first_resolved_at": "",
+  "mean_brier": 0.491726,
+  "mean_brier_coin_0.50": 0.25,
+  "mean_brier_home_baseline_0.55": 0.3025,
+  "brier_skill_vs_0.55": -0.62554,
+  "mean_margin_error_points": 10.1273,
+  "side_record": "0-1",
+  "mean_log_loss": 1.208088,
+  "file": "data/shadow/sealed_record_resolution.csv",
+  "scoring": "Brier and log loss on the home-win indicator; ties score 0.5; benchmarks are the 0.50 coin and the frozen 0.55 home baseline. Skill is benchmark-relative by construction: 1 - model/0.55-baseline.",
+  "why_it_matters": "This is the only part of PR-01 that was not chosen after seeing data: the prediction was written, hashed and committed before kickoff. It is also the smallest sample in the repository, and it is labelled as such.",
+  "honesty": "n = 1 resolved. One game is one game: there is no interval here, no ranking, and no claim about skill in either direction. A resolved prospective record becomes evidence only when it is wide enough to survive the game-cluster bootstrap, which needs >=100 games (PR-01 promotion clause).",
+  "rows": [
+   {
+    "game_id": "2026_10_LAC_BAL",
+    "week": "10",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-16 8:15 PM",
+    "away": "LAC",
+    "home": "BAL",
+    "p_home": "0.701232",
+    "model_side": "home",
+    "expected_margin_home": "7.1273",
+    "fair_line_home": "-7.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "final (official)",
+    "kickoff_utc": "2026-11-17T01:15:00Z",
+    "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+    "away_score": 23,
+    "home_score": 20,
+    "actual_margin_home": -3,
+    "margin_error_points": 10.1273,
+    "side_hit": "no",
+    "brier_home_win": 0.491726,
+    "brier_coin_0.50": 0.25,
+    "brier_home_baseline_0.55": 0.3025,
+    "brier_skill_vs_0.55": -0.625542,
+    "log_loss": 1.208088,
+    "log_loss_baseline_0.55": 0.798508,
+    "outcome_source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+    "outcome_read_on": "2026-11-14"
+   },
+   {
+    "game_id": "2026_11_IND_HOU",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-19 8:15 PM",
+    "away": "IND",
+    "home": "HOU",
+    "p_home": "0.726308",
+    "model_side": "home",
+    "expected_margin_home": "8.1227",
+    "fair_line_home": "-8.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-20T01:15:00Z",
+    "source_url": "https://www.nfl.com/games/colts-at-texans-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_ARZ_KC",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "AZ",
+    "home": "KC",
+    "p_home": "0.90526",
+    "model_side": "home",
+    "expected_margin_home": "17.7136",
+    "fair_line_home": "-17.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_BAL_CAR",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "BAL",
+    "home": "CAR",
+    "p_home": "0.62572",
+    "model_side": "home",
+    "expected_margin_home": "4.3273",
+    "fair_line_home": "-4.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/ravens-at-panthers-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_MIA_BUF",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "MIA",
+    "home": "BUF",
+    "p_home": "0.889315",
+    "model_side": "home",
+    "expected_margin_home": "16.5091",
+    "fair_line_home": "-16.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/dolphins-at-bills-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_NO_CHI",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "NO",
+    "home": "CHI",
+    "p_home": "0.767706",
+    "model_side": "home",
+    "expected_margin_home": "9.8727",
+    "fair_line_home": "-10.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/saints-at-bears-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_PIT_PHI",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "PIT",
+    "home": "PHI",
+    "p_home": "0.315326",
+    "model_side": "away",
+    "expected_margin_home": "-6.4909",
+    "fair_line_home": "6.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/steelers-at-eagles-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_TB_DET",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "TB",
+    "home": "DET",
+    "p_home": "0.635883",
+    "model_side": "home",
+    "expected_margin_home": "4.6909",
+    "fair_line_home": "-4.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_TEN_DAL",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 1:00 PM",
+    "away": "TEN",
+    "home": "DAL",
+    "p_home": "0.735017",
+    "model_side": "home",
+    "expected_margin_home": "8.4788",
+    "fair_line_home": "-8.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T18:00:00Z",
+    "source_url": "https://www.nfl.com/games/titans-at-cowboys-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_NYJ_LAC",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 4:05 PM",
+    "away": "NYJ",
+    "home": "LAC",
+    "p_home": "0.406314",
+    "model_side": "away",
+    "expected_margin_home": "-3.2",
+    "fair_line_home": "3.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T21:05:00Z",
+    "source_url": "https://www.nfl.com/games/jets-at-chargers-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_JAX_NYG",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 4:25 PM",
+    "away": "JAX",
+    "home": "NYG",
+    "p_home": "0.24949",
+    "model_side": "away",
+    "expected_margin_home": "-9.1273",
+    "fair_line_home": "9.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T21:25:00Z",
+    "source_url": "https://www.nfl.com/games/jaguars-at-giants-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_LV_DEN",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 4:25 PM",
+    "away": "LV",
+    "home": "DEN",
+    "p_home": "0.667817",
+    "model_side": "home",
+    "expected_margin_home": "5.8576",
+    "fair_line_home": "-6.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-22T21:25:00Z",
+    "source_url": "https://www.nfl.com/games/raiders-at-broncos-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_MIN_SF",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-22 8:20 PM",
+    "away": "MIN",
+    "home": "SF",
+    "p_home": "0.638409",
+    "model_side": "home",
+    "expected_margin_home": "4.7818",
+    "fair_line_home": "-5.0",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-23T01:20:00Z",
+    "source_url": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11"
+   },
+   {
+    "game_id": "2026_11_CIN_WAS",
+    "week": "11",
+    "recorded_at_utc": "2026-11-16T18:52:12Z",
+    "kickoff_et": "2026-11-23 8:15 PM",
+    "away": "CIN",
+    "home": "WAS",
+    "p_home": "0.262489",
+    "model_side": "away",
+    "expected_margin_home": "-8.5818",
+    "fair_line_home": "8.5",
+    "market_line": "",
+    "residual": "",
+    "clv_points": "",
+    "status": "pending \u2014 not yet played or not yet read",
+    "kickoff_utc": "2026-11-24T01:15:00Z",
+    "source_url": "https://www.nfl.com/games/bengals-at-commanders-2026-reg-11"
+   }
+  ]
+ },
+ "sealing_cadence": {
+  "slate_read": "data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv",
+  "slate_games": 13,
+  "sealed_already": 13,
+  "unsealed_and_unplayed": [],
+  "first_kickoff_et": "2026-11-19 8:15 PM",
+  "last_kickoff_et": "2026-11-23 8:15 PM",
+  "rule": "seal week W in the window that opens once week W-1's last game is final and closes at week W's first kickoff. Today the Week 11 slate is fully sealed, so there is nothing to write; sealing Week 12 must wait for Week 11's final result. A build that sealed Week 12 now would use ratings that are one week stale, and would say so in the row's clock time.",
+  "next_window": "opens after the last final of the current slate; closes at the next slate's first kickoff (both printed by the official by-week pages, not by this tool)"
  },
  "blank_by_policy": {
   "market_line": "no official price source in this repository - open question Q-02",
@@ -3683,7 +4166,7 @@
   "total_fair_line": "the model is a margin model; its total is the league-average total, published as a floor and labelled as one, not as an estimate of the total"
  },
  "limits": [
-  "n = 117 games, one season, one conference-independent sample; the interval, not the point estimate, is the result",
+  "n = 118 games, one season, one conference-independent sample; the interval, not the point estimate, is the result",
   "the model has no personnel, availability, rest or venue feature - it is the baseline those features have to beat, not a proposal",
   "ratings use points scored and allowed vs whoever; schedule strength is not adjusted, so BUF's and NYJ's ratings are not comparable in the way an opponent-adjusted model's would be",
   "one season cannot test calibration at the tails; the 0.8-1.0 bin is printed with its count"
