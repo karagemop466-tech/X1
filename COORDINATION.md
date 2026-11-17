@@ -3612,3 +3612,73 @@ a committed-snapshot review; live reading happens here instead of being lost.
   `git diff --exit-code -- index.html pages` fails. Minimal fix = commit the regenerated page (or stop
   embedding the builder's checkout history in rendered text). This session does not edit that page or
   `tools/build_preregistration.py` unless rule 10 conditions are met and a handoff is logged first.
+
+---
+
+## Completion record — session `arena-01c263c4-x1` (V-1 … V-5)
+
+| # | Task | Result |
+|---|---|---|
+| V-1 | Live official reads, 2026-11-17 | **done.** Week 10 injury report: all 8 chunks fetched 22:50–22:56 UTC, transcribed line by line → `data/verification/2026_11_17/official_injuries_w10_2026_11_17.tsv` (347 rows, 28 club tables, 14 fixtures, player URL per row). League standings: chunks 0–1, 32 clubs → `official_standings_2026_11_17.tsv` (W L T PCT PF PA NET HOME ROAD DIV CONF STRK as printed; the four non-legend cells stay untranscribed by the established convention; HOME+ROAD=W-L-T checked for all 32 before use). Week 10 slate: all 14 fixtures Final, byes CHI/DEN/PHI/TB → `official_w10_results_2026_11_17.tsv` (kickoff window + network taken from the injury page's game-day headers, stated in the file header). Week 11 injury report: **does not exist yet** — `REG11` resolved to `reg10`, selector lists WEEK 1–10 only → recorded in `week11_injuries_probe_2026_11_17.txt`, no Week 11 value published. |
+| V-2 | Line-by-line diff + structural checks | **done.** `tools/verify_2026_11_17.py`: **18 checks — 15 PASS, 3 findings published, 0 structural failures** (`--check` staleness guard included). Gates: I1 structure/vocab/URLs; I2 cell equality vs the retained collector capture (347×4, 0 diffs); I2b cell equality vs session `arena/16049865-x1`'s independent same-day TSV from PR #73 (347×4, 0 diffs); I3 dated injury delta (published CSV); I4 fixture assignment; I5 the brief's Lions trio = Out on both dates; S1 PCT/NET/HOME+ROAD arithmetic; S2 league closure; S3 equality vs the collector standings payload (32×7, 0 diffs); S4 published+13-finals closure of today's W/L/PF/PA (128/128); S5 delta vs the 2026-11-16 read (BAL/LAC only); S6 dated standings delta (published CSV); R1–R4 results structure, 32-club completeness, 28/28 record agreement, 13/13 scheduled→final promotions (published CSV); X1 cross-session corroboration vs `arena/2f95e652-x1`'s 22:46Z read from PR #76/#77 (384 standings cells + 14 finals, 0 diffs, PASS after that pack merged); W1 the Week-11 probe. |
+| V-3 | Flags | **done.** Appended **F-22 … F-25** (register now 25): F-22 published 14 Nov injury table stale (345→347 rows, +2 rows, 32 cells across 16 rows; drift window 2026-11-14T17:02Z→2026-11-15T18:14Z); F-23 published 14 Nov standings stale after Week 10 (130 fields across 26 clubs, 7-field view; the closure proves it is games played, not transcription error); F-24 Week 11 report not published (REG11→REG10); F-25 fetch render variance (first chunk-5 read printed CIN Brian Parker II `Questionable`, immediate repeat + ten capture reads + the 14 Nov table all print `Doubtful`; transcription records `Doubtful` behind the 1,388-cell I2 gate; divergence rate unknown). |
+| V-4 | Publish | **done.** `pages/verification-2026-11-17.html` generated through `tools/build_site.py` (one additive `page_verification_2026_11_17()`), one additive NAV tuple (`Re-verification 17 Nov`), one additive landing section on `index.html` — every rendered number loaded from `verification_summary_2026_11_17.json`, none retyped. `assets/site.css` untouched (not needed). |
+| V-5 | Suite + integration | **in progress at this commit** — suite green (table below), PR opened next, merge + Pages confirm + PR links appended after. |
+
+### Verification run on this branch (2026-11-17, ~23:05–23:15 UTC)
+
+`tools/verify_data.py` ✔ 2,944+ checks · `tools/check_links.py` ✔ 45,158 assertions, no orphan pages ·
+`scripts/verify_site.py` ✔ 171 pages, every data-table row sourced · `tools/verify_app.py` ✔ ·
+`tools/verify_2026_11_15.py --check` ✔ · `tools/verify_2026_11_16.py --check` ✔ ·
+`tools/verify_2026_11_17.py --check` ✔ · `tools/verify_w10_read_2026_11_17.py --check` ✔ (PR #73's pack) ·
+`tools/verify_new_data.py` ✔ · `tools/verify_stores.py` ✔ · `tools/verify_deployed_tree.py` ✔ ·
+`tools/verify_results_feed.py` ✔ · `tools/verify_console.py` ✔ · `tools/verify_against_official.py` ✔ ·
+`tools/build_decision_readiness.py --check` ✔ · `build_availability --check` ✔ · `build_next_decisions --check` ✔ ·
+`build_audit_registers --check` ✔ · `build_preregistration --check` ✔ (anchor check skips on shallow clones by design) ·
+`tools/build_site.py` + `git diff --exit-code -- index.html pages` ✔ byte-stale-clean after commit.
+
+**Three suite tools exit 1 — pre-existing on `origin/main`, none caused by this branch (attributed by running the
+identical tree at `fd7b02b` in a clean worktree):**
+
+| Tool | Main exit | What it reports | Attribution / handoff |
+|---|---|---|---|
+| `tools/verify_official.py` | 1 (also on `fd7b02b`) | 308 problems: `data/pipeline/standings.json` was refreshed to 2026-11-17T19:51Z by commit `38816a6` while its baseline `data/verify/official_standings_2026_w10.psv` is the 2026-11-14 read — the checker compares across dates and reports every post-Week-10 movement as PROBLEM (LAC, BAL, NYJ, MIA, TEN …). | **Handoff to the suite owner (F-4 / `arena/76fd9817-x1`) and to PR #76's session:** this tool needs the same dated-baseline awareness the evidence pack now has (compare like-for-like dates; the deltas are already published in `data/verification/2026_11_17/`). Re-run also rewrites `data/verify/verification_ledger.json` — restore it (`git checkout -- data/verify/verification_ledger.json`) if you run it diagnostically. |
+| `tools/verify_official_correlations.py` | 1 (also on `fd7b02b`) | metric-pool comparison fails; rewrites `data/verify/official_correlations.csv` as a side effect. | Pre-existing; restore the CSV after diagnostic runs. Owner: same handoff. |
+| `tools/verify_w10_recapture.py` | 1 (also on `fd7b02b`) | `official rows=347 published rows=345 missing=2 extra=0 field_mismatches=32` — i.e. it *detects exactly finding F-22* (2 added BAL rows, 32 changed cells) and exits red because the published canonical table has not been refreshed. | This is the staleness gate firing, not a new defect. Owner decision recorded as F-22 (refresh under a cadence vs keep dated snapshots); whoever takes it should align this tool's expectation with that decision. |
+
+Note for PR #76's session: its PR body lists `verify_official … OK`; on the merged tree (and on `fd7b02b`
+standalone) the tool exits 1 with the 308 dating problems above — the claim appears to have been measured
+before the base refresh or against a different tree. The evidence pack itself (E-1) is unaffected and its
+numbers agree with this session's reads cell for cell.
+
+### Sources read live on 2026-11-17 (fetch tool; `curl`/urllib cannot reach nfl.com from this sandbox)
+
+| Page | Clock (UTC) | Produced |
+|---|---|---|
+| https://www.nfl.com/injuries/league/2026/reg10 | 22:50–22:56, chunks 0–7 of 8 | 347-row transcribed injury report |
+| https://www.nfl.com/injuries/league/2026/REG11 | ≈22:50 | resolved to `reg10`; WEEK 1–10 selector only → F-24 probe file |
+| https://www.nfl.com/standings/league/2026/REG | ≈22:50, chunks 0–1 of 2 | 32-club standings transcription |
+| https://www.nfl.com/schedules/2026/by-week/week-10 | ≈22:50, chunks 0–1 of 2 | 14 finals + scores/records + byes; kickoff/network strings cross-read from the injury page headers |
+
+### Cross-session corroboration and unit reconciliation
+
+- **PR #73** (`arena/16049865-x1`, merged): its independent same-day 347-row TSV and this session's
+  transcription agree on **every cell** (gate I2b, 347×4 = 1,388 fields, 0 differences). Its headline
+  "16 cells that differ" vs the 14 Nov table counts **changed rows** (15 in LAC@BAL + Arden Key);
+  counted cell by cell the same evidence is **32 cells** — row-level lists are identical (F-22 states both units).
+- **PR #76/#77** (`arena/2f95e652-x1`, merged): its 22:46Z standings read and this session's 22:50Z read
+  agree on **384/384 shared cells** (12 fields × 32 clubs) and on **14/14 finals** scores and dates;
+  its CONF+NONCONF split recomputes W-L-T for all 32 clubs. Gate X1 records this against the merged pack.
+  Its 16-field view (262 of 512 cells) and this pack's 7-field view (130 cells) both find **26 affected
+  clubs** — different subsets of the same movement.
+- **Collector captures**: injury payload `c3d7a722…` (10 reads, 2026-11-16T19:02Z→2026-11-17T19:49Z,
+  content unchanged) and standings payload `e3409e8d…` (2026-11-17T05:03:50Z) both equal this session's
+  live reads cell for cell (gates I2/S3).
+- **Club-code alias**: injury page prints `LAR`, league/schedule pages and the collector print `LA`;
+  aliased only at comparison time per `data/captures/config.json`, never inside a retained payload.
+- **Session `arena/76fd9817-x1`** (F-1…F-5, first commit 22:43Z) was notified in this block at claim time;
+  no file overlap occurred (this session touched only its new `data/verification/2026_11_17/` subdir,
+  its own `tools/verify_2026_11_17.py`, append-only `data/flags.json`, additive `tools/build_site.py`).
+- Still open at the time of writing, left to their sessions: PRs **#75** (COORDINATION record for #73),
+  **#72** (brief coverage register), **#66**, **#61**, **#53**, **#50** (all dated 11-15 and conflicting
+  with squashed main — do not merge as-is).
