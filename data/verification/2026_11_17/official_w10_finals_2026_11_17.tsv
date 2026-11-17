@@ -1,0 +1,36 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-10  (page title: "NFL Schedules: Games, Times, Matchups & Tickets"; the same Week 10 page is also served at https://www.nfl.com/schedules/2026/REG/week/10, which is the URL this read was made against)
+# Read via the fetch tool, chunks 0-1 of 2, on 2026-11-17 between 22:45 and 22:48 UTC. Transcribed by session arena/dc96bc33-x1.
+# One row per fixture as PRINTED by the official page on 2026-11-17. All 14 Week 10 games were FINAL at
+# retrieval (the Monday night game, Chargers 23 - Ravens 20 on 2026-11-16, completed after the
+# 2026-11-16 pack was read and is the only new final since it).
+# away_record / home_record are the club records printed beside each club logo on THIS page, and every
+# one of the 32 club records is cross-checked against the separate official standings page
+# (data/verification/2026_11_17/official_standings_2026_11_17.tsv) by tools/verify_2026_11_17.py.
+# time_et blank = the page prints "Final / Nov 15" (etc.) for a completed game and does not reprint the
+# kickoff time in the text this read captures. Blank is not "unknown and filled in"; it is not printed.
+# network blank = this read did not capture a network string. The 2026-11-16 pack transcribed network
+# values from its own read of the same page (data/verification/2026_11_16/official_w10_results_2026_11_16.tsv);
+# values are not carried across reads. Blank is not an inference.
+# venue is NOT a column: the weekly schedule page prints a venue only for the Munich international game
+# (printed here in the note). Venues for the other fixtures are printed only by each game's own Game
+# Center page (one fetch per fixture), so they are left out rather than guessed.
+# Every score below was re-read on 2026-11-17 and is also diffed against the 2026-11-16 pack by
+# tools/verify_2026_11_17.py (check B5): 13 of 13 previously-final scores must be unchanged.
+# TEAMS ON BYE printed by the same page (record as printed): CHI 7-2, DEN 7-2, PHI 2-7, TB 3-6
+# Ties printed this week: none (the page prints no tied final).
+# Games on the page: 14. Finals: 14. Scheduled: 0. New since the 2026-11-16 pack: 1 (2026_10_LAC_BAL).
+game_id	date_et	time_et	network	note	away	away_score	away_record	home	home_score	home_record	status	game_url	source_url
+2026_10_WAS_NYG	2026-11-12			Thursday Night Football	WAS	24	3-5-1	NYG	21	5-3-1	Final	https://www.nfl.com/games/commanders-at-giants-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_NE_DET	2026-11-15			International Game, November 15th (Munich)	NE	10	5-5	DET	35	7-2	Final	https://www.nfl.com/games/patriots-at-lions-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_KC_ATL	2026-11-15				KC	35	7-2	ATL	13	3-7	Final	https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_HOU_CLE	2026-11-15				HOU	24	3-6	CLE	27	6-4	Final	https://www.nfl.com/games/texans-at-browns-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_MIN_GB	2026-11-15				MIN	30	7-2	GB	10	6-4	Final	https://www.nfl.com/games/vikings-at-packers-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_MIA_IND	2026-11-15				MIA	22	1-8	IND	24	3-7	Final	https://www.nfl.com/games/dolphins-at-colts-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_CAR_NO	2026-11-15				CAR	20	4-5	NO	17	3-6	Final	https://www.nfl.com/games/panthers-at-saints-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_BUF_NYJ	2026-11-15				BUF	31	8-1	NYJ	12	2-8	Final	https://www.nfl.com/games/bills-at-jets-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_JAX_TEN	2026-11-15				JAX	40	7-2	TEN	23	1-8	Final	https://www.nfl.com/games/jaguars-at-titans-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_LA_ARZ	2026-11-15				LA	34	6-4	AZ	6	3-7	Final	https://www.nfl.com/games/rams-at-cardinals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_SEA_LV	2026-11-15				SEA	21	6-4	LV	13	4-6	Final	https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_SF_DAL	2026-11-15				SF	46	8-1	DAL	40	4-6	Final	https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_PIT_CIN	2026-11-15			Sunday Night Football	PIT	18	6-3	CIN	38	7-2	Final	https://www.nfl.com/games/steelers-at-bengals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_LAC_BAL	2026-11-16			Monday Night Football	LAC	23	1-8	BAL	20	4-6	Final	https://www.nfl.com/games/chargers-at-ravens-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
