@@ -74,6 +74,7 @@ PRIOR_W10 = "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv"
 PRIOR_W11 = "data/verification/2026_11_16/official_w11_schedule_2026_11_16.tsv"
 RESULTS_LOG = "data/results/_raw/reads.tsv"
 COLLECTOR_STANDINGS = "data/pipeline/standings.json"
+PINNED_STANDINGS = "data/verify/official_standings_2026_w10.psv"
 CAPTURE_INDEX = "data/captures/index.jsonl"
 PUBLISHED_INJURY_TABLE = "data/console/injuries_week10.csv"
 
@@ -243,7 +244,17 @@ def main() -> int:
                  "page read separately; a transcription slip in either read shows up here"),
     })
 
-    # ---- C5 independent re-read of the standings ---------------------------------
+    # ---- C5 independent re-read of the standings, and the stale pin ---------------
+    # The whole printed row is compared, not only the six numeric fields: HOME/ROAD/DIV/CONF/STRK are
+    # printed strings and they are the columns a reader is most likely to take on trust. Spacing is
+    # normalised away because the two sources print "1 - 4 - 0" and "1-4-0" for the same string.
+    def flat(v: Any) -> str:
+        return str(v if v is not None else "").replace(" ", "").strip()
+
+    FIELDS = [("w", "W"), ("l", "L"), ("t", "T"), ("pct", "PCT"), ("pf", "PF"), ("pa", "PA"),
+              ("net", "NET_PTS"), ("home", "HOME"), ("road", "ROAD"), ("div", "DIV"),
+              ("div_pct", "DIV_PCT"), ("conf", "CONF"), ("conf_pct", "CONF_PCT"),
+              ("non_conf", "NON_CONF"), ("strk", "STRK"), ("last5", "LAST_5")]
     coll = json.load(open(os.path.join(ROOT, COLLECTOR_STANDINGS), encoding="utf-8"))
     coll_rows = {r["team_abbrev"]: r for r in coll["rows"]}
     diffs = []
@@ -252,17 +263,50 @@ def main() -> int:
         if not c:
             diffs.append({"club": r["team_abbrev"], "problem": "not in the collector read"})
             continue
-        pairs = (("w", "W"), ("l", "L"), ("t", "T"), ("pf", "PF"), ("pa", "PA"), ("net", "NET_PTS"))
-        for mine, theirs in pairs:
-            if str(r[mine]).strip() != str(c.get(theirs, "")).strip():
-                diffs.append({"club": r["team_abbrev"], "field": mine, "this_read": r[mine], "collector_read": c.get(theirs)})
+        for mine, theirs in FIELDS:
+            if flat(r[mine]) != flat(c.get(theirs, "")):
+                diffs.append({"club": r["team_abbrev"], "field": mine, "this_read": r[mine],
+                              "collector_read": c.get(theirs)})
     done("C5_independent_standings_reread", {
-        "clubs": len(st), "fields_per_club": 6, "assertions": len(st) * 6, "differing_cells": len(diffs),
-        "detail": diffs[:20],
+        "clubs": len(st), "fields_per_club": len(FIELDS), "assertions": len(st) * len(FIELDS),
+        "differing_cells": len(diffs), "detail": diffs[:20],
         "collector_read_at": coll.get("generated_at"),
+        "collector_source": coll.get("source", {}).get("url"),
         "verdict": "pass" if not diffs else "review",
-        "note": ("two reads of one official page by different code three hours apart. A pass means the "
-                 "collector and this transcription see the same table; it does not mean the page is right."),
+        "note": ("two reads of one official page by different code three hours apart, compared on all 16 "
+                 "printed columns. A pass means the collector and this transcription see the same table; it "
+                 "does not mean the page is right."),
+    })
+
+    # The repository's own independent re-verification (tools/verify_official.py) is red, and this is why:
+    # its reference file is the 2026-11-14 transcription, while the published pipeline table is the
+    # collector's 2026-11-17 read. Measured here so the red is attributed instead of argued about.
+    with open(os.path.join(ROOT, PINNED_STANDINGS), encoding="utf-8") as fh:
+        pin_rows = {r["TEAM"]: r for r in csv.DictReader(fh, delimiter="|")}
+    pin_fields = [("w", "W"), ("l", "L"), ("t", "T"), ("pct", "PCT"), ("pf", "PF"), ("pa", "PA"),
+                  ("net", "NET"), ("home", "HOME"), ("road", "ROAD"), ("div", "DIV"),
+                  ("div_pct", "DIVPCT"), ("conf", "CONF"), ("conf_pct", "CONFPCT"),
+                  ("non_conf", "NONCONF"), ("strk", "STRK"), ("last5", "LAST5")]
+    pin_diffs, clubs_moved = [], set()
+    for r in st:
+        p = pin_rows.get(r["team_abbrev"])
+        if not p:
+            continue
+        for mine, theirs in pin_fields:
+            if flat(r[mine]) != flat(p.get(theirs, "")):
+                pin_diffs.append({"club": r["team_abbrev"], "field": mine, "this_read": r[mine],
+                                  "pinned_2026_11_14": p.get(theirs)})
+                clubs_moved.add(r["team_abbrev"])
+    done("C5b_pinned_reference_is_stale", {
+        "pinned_file": PINNED_STANDINGS, "pinned_snapshot_date": "2026-11-14",
+        "cells_compared": len(st) * len(pin_fields), "differing_cells": len(pin_diffs),
+        "clubs_that_moved": len(clubs_moved), "detail": pin_diffs[:20],
+        "verdict": "measured",
+        "note": ("tools/verify_official.py fails on these cells and it is meant to: it compares a published "
+                 "table against a reference transcription three days older, and the league table moved in "
+                 "between. The 2026-11-17 read agrees with the collector on every cell (C5), so the "
+                 "disagreement is the pin's age, not a wrong published value. The pin belongs to another "
+                 "round's tree and is not refreshed here."),
     })
 
     # ---- C6 dated deltas ---------------------------------------------------------
@@ -360,8 +404,19 @@ def main() -> int:
             if k[0] == t and k not in mine_keys:
                 cap_only.append({"team": t, "player": k[1]})
     spot_fails.extend({"problem": "row in the capture, not in the page read", **x} for x in cap_only)
+    cap_clubs = {k[0] for k in cap_rows}
+    cap_club_rows = {c: sum(1 for k in cap_rows if k[0] == c) for c in cap_clubs}
+    rows_in_covered_clubs = sum(cap_club_rows[c] for c in clubs if c in cap_club_rows)
     done("C8_injury_spotcheck_vs_capture", {
         "rows_transcribed": len(spot), "clubs_covered": clubs, "rows_compared": spot_ok,
+        "coverage": {"clubs": f"{len(clubs)} of 32", "rows": f"{len(spot)} of {len(cap_rows)} captured rows",
+                     "rows_in_those_clubs": f"{len(spot)} of {rows_in_covered_clubs} rows the capture holds "
+                                           f"for these {len(clubs)} clubs",
+                     "note": ("four clubs were transcribed by hand, chosen because two are the Week 10 cards "
+                              "the published tables were built from and two are the clubs the review queue "
+                              "flags. The remaining 28 clubs are NOT re-read by eye, and this artefact does "
+                              "not claim they were: the machine hash covers all 347 rows, this check covers "
+                              "the 44 a human read.")},
         "cells_compared": len(spot) * 5, "mismatches": len(spot_fails), "detail": spot_fails[:20],
         "capture": {"as_read_at": newest["as_read_at"], "content_sha256": newest["content_sha256"],
                     "rows": newest["rows"], "payload": newest["payload"]},
@@ -491,6 +546,8 @@ def main() -> int:
         "published_injury_table_mismatches": len(pub_fails),
         "published_injury_rows_vs_capture": len(not_published) + len(published_but_not_captured),
         "injury_reads_since_last_content_change": report["checks"]["C9_injury_capture_series"]["reads_since_last_content_change"],
+        "standings_cells_agreeing_with_the_collector": len(st) * len(FIELDS) - len(diffs),
+        "standings_cells_stale_in_the_pinned_reference": len(pin_diffs),
         "venue_direct_rows": len(direct),
         "venue_name_conflicts": len(name_conflicts),
     }

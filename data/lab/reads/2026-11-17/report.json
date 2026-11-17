@@ -56,14 +56,146 @@
    "verdict": "pass"
   },
   "C5_independent_standings_reread": {
-   "assertions": 192,
+   "assertions": 512,
    "clubs": 32,
    "collector_read_at": "2026-11-17T19:49:49+00:00",
+   "collector_source": "https://www.nfl.com/standings/league/2026/REG",
    "detail": [],
    "differing_cells": 0,
-   "fields_per_club": 6,
-   "note": "two reads of one official page by different code three hours apart. A pass means the collector and this transcription see the same table; it does not mean the page is right.",
+   "fields_per_club": 16,
+   "note": "two reads of one official page by different code three hours apart, compared on all 16 printed columns. A pass means the collector and this transcription see the same table; it does not mean the page is right.",
    "verdict": "pass"
+  },
+  "C5b_pinned_reference_is_stale": {
+   "cells_compared": 512,
+   "clubs_that_moved": 26,
+   "detail": [
+    {
+     "club": "BUF",
+     "field": "w",
+     "pinned_2026_11_14": "7",
+     "this_read": "8"
+    },
+    {
+     "club": "BUF",
+     "field": "pct",
+     "pinned_2026_11_14": "0.875",
+     "this_read": "0.889"
+    },
+    {
+     "club": "BUF",
+     "field": "pf",
+     "pinned_2026_11_14": "256",
+     "this_read": "287"
+    },
+    {
+     "club": "BUF",
+     "field": "pa",
+     "pinned_2026_11_14": "187",
+     "this_read": "199"
+    },
+    {
+     "club": "BUF",
+     "field": "net",
+     "pinned_2026_11_14": "69",
+     "this_read": "88"
+    },
+    {
+     "club": "BUF",
+     "field": "road",
+     "pinned_2026_11_14": "4-0-0",
+     "this_read": "5 - 0 - 0"
+    },
+    {
+     "club": "BUF",
+     "field": "div",
+     "pinned_2026_11_14": "0-1-0",
+     "this_read": "1 - 1 - 0"
+    },
+    {
+     "club": "BUF",
+     "field": "div_pct",
+     "pinned_2026_11_14": "0.000",
+     "this_read": "0.500"
+    },
+    {
+     "club": "BUF",
+     "field": "conf",
+     "pinned_2026_11_14": "4-1-0",
+     "this_read": "5 - 1 - 0"
+    },
+    {
+     "club": "BUF",
+     "field": "conf_pct",
+     "pinned_2026_11_14": "0.800",
+     "this_read": "0.833"
+    },
+    {
+     "club": "BUF",
+     "field": "strk",
+     "pinned_2026_11_14": "4W",
+     "this_read": "5W"
+    },
+    {
+     "club": "BUF",
+     "field": "last5",
+     "pinned_2026_11_14": "4-1-0",
+     "this_read": "5 - 0 - 0"
+    },
+    {
+     "club": "SF",
+     "field": "w",
+     "pinned_2026_11_14": "7",
+     "this_read": "8"
+    },
+    {
+     "club": "SF",
+     "field": "pct",
+     "pinned_2026_11_14": "0.875",
+     "this_read": "0.889"
+    },
+    {
+     "club": "SF",
+     "field": "pf",
+     "pinned_2026_11_14": "235",
+     "this_read": "281"
+    },
+    {
+     "club": "SF",
+     "field": "pa",
+     "pinned_2026_11_14": "156",
+     "this_read": "196"
+    },
+    {
+     "club": "SF",
+     "field": "net",
+     "pinned_2026_11_14": "79",
+     "this_read": "85"
+    },
+    {
+     "club": "SF",
+     "field": "road",
+     "pinned_2026_11_14": "2-1-0",
+     "this_read": "3 - 1 - 0"
+    },
+    {
+     "club": "SF",
+     "field": "conf",
+     "pinned_2026_11_14": "4-1-0",
+     "this_read": "5 - 1 - 0"
+    },
+    {
+     "club": "SF",
+     "field": "conf_pct",
+     "pinned_2026_11_14": "0.800",
+     "this_read": "0.833"
+    }
+   ],
+   "differing_cells": 262,
+   "note": "tools/verify_official.py fails on these cells and it is meant to: it compares a published table against a reference transcription three days older, and the league table moved in between. The 2026-11-17 read agrees with the collector on every cell (C5), so the disagreement is the pin's age, not a wrong published value. The pin belongs to another round's tree and is not refreshed here.",
+   "pinned_file": "data/verify/official_standings_2026_w10.psv",
+   "pinned_snapshot_date": "2026-11-14",
+   "verdict": "measured"
   },
   "C6a_week11_slate_delta_vs_2026_11_16": {
    "cells_moved": 0,
@@ -148,6 +280,12 @@
     "NYG",
     "WAS"
    ],
+   "coverage": {
+    "clubs": "4 of 32",
+    "note": "four clubs were transcribed by hand, chosen because two are the Week 10 cards the published tables were built from and two are the clubs the review queue flags. The remaining 28 clubs are NOT re-read by eye, and this artefact does not claim they were: the machine hash covers all 347 rows, this check covers the 44 a human read.",
+    "rows": "44 of 347 captured rows",
+    "rows_in_those_clubs": "44 of 44 rows the capture holds for these 4 clubs"
+   },
    "detail": [],
    "mismatches": 0,
    "note": "a machine capture re-read by eye, cell by cell: position, injury text, practice designation, game designation and the game label the row is printed under",
@@ -297,7 +435,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-17T23:13:56+00:00",
+ "generated_at": "2026-11-17T23:19:22+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "injury_reads_since_last_content_change": 8,
@@ -306,6 +444,8 @@
   "league_points_each_side": 6923,
   "published_injury_rows_vs_capture": 2,
   "published_injury_table_mismatches": 0,
+  "standings_cells_agreeing_with_the_collector": 512,
+  "standings_cells_stale_in_the_pinned_reference": 262,
   "standings_clubs": 32,
   "venue_direct_rows": 2,
   "venue_name_conflicts": 1,

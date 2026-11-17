@@ -1571,12 +1571,19 @@ def p_reads() -> str:
          badge("0", "ok"), src(f"{GITHUB}/{READS_PACK}/report.json", "report.json")],
         [esc("standings cells this read disagrees with the collector's own read of the same page"),
          esc(chk["C5_independent_standings_reread"]["differing_cells"]), esc("of"),
-         esc(f"{chk['C5_independent_standings_reread']['clubs'] * 6} cells"),
+         esc(f"{chk['C5_independent_standings_reread']['assertions']} cells "
+             f"({chk['C5_independent_standings_reread']['fields_per_club']} printed columns &times; "
+             f"{chk['C5_independent_standings_reread']['clubs']} clubs)"),
          badge("0", "ok"), src(f"{GITHUB}/data/pipeline/standings.json", "standings.json")],
+        [esc("cells of the repository's pinned 2026-11-14 standings reference that the league has since "
+             "moved past"),
+         esc(chk["C5b_pinned_reference_is_stale"]["differing_cells"]), esc("across"),
+         esc(f"{chk['C5b_pinned_reference_is_stale']['clubs_that_moved']} clubs"),
+         badge("stale pin", "warn"), src(f"{GITHUB}/data/verify/official_standings_2026_w10.psv", "the pin")],
     ]
     closure = table(["Closure assertion", "Value", "", "Value", "Verdict", "Source"], closure_rows,
                     numeric=(1, 3),
-                    note="These five lines are why the Week 10 slate can be called complete: the league's own "
+                    note="These lines are why the Week 10 slate can be called complete: the league's own "
                          "table says 150 games were played, this repository can show 150, and the points add up "
                          "on both sides. A missing fixture or a transposed score breaks one of them.")
 
@@ -1610,7 +1617,9 @@ def p_reads() -> str:
     injuries = table(["Read", "Subject", "What the page prints", "What that means", "Flag", "Source"], inj_rows,
                      note=f"The row-level comparison is check C8: {num['injury_rows_spot_checked']} rows "
                           f"transcribed by hand across four clubs, five fields each, against the newest retained "
-                          f"capture &mdash; {num['injury_spot_check_mismatches']} mismatches. The same rows against "
+                          f"capture &mdash; {num['injury_spot_check_mismatches']} mismatches, over "
+                          f"{chk['C8_injury_spotcheck_vs_capture']['coverage']['clubs']} clubs and "
+                          f"{chk['C8_injury_spotcheck_vs_capture']['coverage']['rows']}. The same rows against "
                           f"the table the site publishes: {num['published_injury_table_mismatches']} mismatches, so "
                           f"the three Lions game-status cells carried in the review queue no longer reproduce. What "
                           f"the site table is missing is on the Flagged page.")
@@ -1654,7 +1663,13 @@ history is in report.json, and it is why a capture is kept per read rather than 
 closing line, no book, no timestamp on a number
 <a href="{PRIOR}" target="_blank" rel="noopener">the 2026-11-16 pack</a> could not see either, and the
 13 Week 10 games it printed as settled are still absent from the results feed &mdash; that gap is measured
-on <a href="closure.html">Feed closure</a> and it is not fixed here. The Week 11 injury report does not
+on <a href="closure.html">Feed closure</a> and it is not fixed here. The repository's own independent
+re-verification (<code>tools/verify_official.py</code>) is red, and the second row of the closure table above
+is the reason: it compares a published table against a reference transcription three days older, and the
+league table moved in between &mdash;
+{num['standings_cells_stale_in_the_pinned_reference']} cells of that pin are stale, while this read agrees
+with the collector on all {chk['C5_independent_standings_reread']['assertions']}. The pin belongs to another
+round's tree and was left alone. The Week 11 injury report does not
 exist yet (the page's own week selector ends at Week 10), so no Week 11 availability delta can be
 published by anyone. And the two fixtures with a Game Center venue row are the only venue evidence this
 round produced.</div>
@@ -1711,7 +1726,7 @@ def p_escrow() -> str:
             src(side["official_fixture_url"], "fixture page"),
         ])
     fc = table(["Fixture", "Kickoff (ET)", "Matchup", "Side fair line", "p(home)", "total A", "total B",
-                "B &minus; A gap", "moneyline (zero-vig)", "Market line", "Residual", "Pre-kickoff", "Source"],
+                "B − A gap", "moneyline (zero-vig)", "Market line", "Residual", "Pre-kickoff", "Source"],
                fc_rows, numeric=(3, 4, 5, 6, 7),
                note="Side first, then the total, then the moneyline: the order the brief requires is a build "
                     "constraint, and the market order column is in the artefact. <b>Both totals are published "
@@ -1860,7 +1875,7 @@ def p_closure() -> str:
             vcell(b.get("mirror_spread_line", ""), "the mirror prints no line here"),
             vcell(b.get("mirror_total_line", ""), "the mirror prints no line here"),
             badge("line, no score", "warn") if has_line else badge("nothing", "grey"),
-            src(f"https://www.nfl.com/games/{b['slug']}", "official final"),
+            src(f"https://www.nfl.com/games/{b['slug']}", "official fixture page"),
         ])
     blocked = table(["Mirror key", "Official fixture", "Why the gate refuses it", "Mirror spread",
                      "Mirror total", "Shape", "Source"], blocked_rows, numeric=(3, 4),
