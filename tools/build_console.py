@@ -499,9 +499,11 @@ is typed by hand &mdash; each is produced by a measurement in
 <div class="cards">{''.join(cards)}</div>
 
 <h2>Where the numbers come from</h2>
-<p>Official league pages are re-read at build time and compared cell by cell &mdash;
-{ctx['verify_total']:,} comparisons in the current <a href="verification.html">verification
-ledger</a>. Everything else is a fingerprinted third-party mirror of league data and is labelled
+<p>Every official-source register is compared cell by cell against a dated transcription that is
+re-derived on each build &mdash; {ctx['verify_total']:,} comparisons in the current
+<a href="verification.html">verification ledger</a>, and the ledger states the date of each read.
+One difference is published rather than passed: the 2026 standings table is a 2026-11-14 snapshot
+that the league has moved past by <a href="standings.html">262 of 512 cells</a>. Everything else is a fingerprinted third-party mirror of league data and is labelled
 <code>mirror</code> wherever it appears. Nothing is quoted from memory.</p>
 """
     pages["index.html"] = page(
@@ -510,7 +512,10 @@ ledger</a>. Everything else is a fingerprinted third-party mirror of league data
         [("Strategies evaluated", str(len(lab_res["results"])), "walk-forward, out of sample", ""),
          ("Promoted", str(len(promoted)), "all eight gates must pass", "bad" if not promoted else "good"),
          ("Settled games in the feed", f"{ctx['feed']['games_settled']:,}", "1999-2026", ""),
-         ("Official comparisons today", f"{ctx['verify_total']:,}", "0 mismatches", "good"),
+         # "Official comparisons today" was a false claim for the same reason as the standings
+         # page: the registers are dated transcriptions re-derived per build, not reads of today.
+         ("Official-source comparisons", f"{ctx['verify_total']:,}",
+          "dated reads, re-derived", "good"),
          ("Price-store rows", f"{ctx['price']['rows']:,}", f"{ctx['price']['with_both']:,} with both ends", "")])
 
     # ---------------- executive summary ----------------
@@ -557,9 +562,11 @@ even and returns less at every book.</p>
 <h3>3. The data underneath is sound</h3>
 <p>{ctx['feed']['games_settled']:,} settled games reconcile
 {ctx['reconcile']['matches']}/{ctx['reconcile']['checks']} with the league's own standings table.
-The official pages were re-read today: {ctx['verify_total']:,} comparisons,
-{ctx['verify_mismatch']} mismatches — all of them on the one register whose table is a dated
-snapshot rather than a re-read (see <a href="standings.html">standings</a>). The market's own moneylines imply its own spreads to within
+The official-source registers are compared cell by cell with dated transcriptions on every
+build: {ctx['verify_total']:,} comparisons, {ctx['verify_mismatch']} mismatches on the
+re-derived registers. Separately, {ctx['verify_differences']} cells of the 2026 standings table now
+differ from the league, because that table is a 2026-11-14 snapshot &mdash; published rather than
+smoothed over (see <a href="standings.html">standings</a>). The market's own moneylines imply its own spreads to within
 {ctx['market_sigma']['best']['mean_abs']} points (n={ctx['market_sigma']['best']['n']:,}).
 The benchmark we are failing is a real one.</p>
 
@@ -1395,8 +1402,12 @@ def build_pages_7(ctx, pages):
     pages["verification.html"] = page(
         "Verification ledger", "Governance", body,
         "Every published value, the source it was checked against, and the result.",
-        [("Comparisons", f"{ctx['verify_total']:,}", "re-read on the build date", "good"),
-         ("Mismatches", str(ctx["verify_mismatch"]), "across all datasets", "good"),
+        # "re-read on the build date" was true of the register, not of the page: each row is a
+        # comparison against a transcription whose date the ledger itself prints.
+        [("Comparisons", f"{ctx['verify_total']:,}", "vs dated transcriptions", "good"),
+         ("Differences published", str(ctx["verify_differences"]),
+          "2026 standings vs the league today",
+          "mid" if ctx["verify_differences"] else "good"),
          ("Results-feed checks", f"{ctx['reconcile']['checks']}", "vs the league's standings", "good"),
          ("Market consistency", f"{ctx['market_sigma']['best']['n']:,}", "spread vs moneyline", "good")])
 
@@ -1696,6 +1707,9 @@ def main():
     # "official comparisons today".
     verify_total = sum(c["comparisons"] for c in verify_checks if not c.get("informational"))
     verify_mismatch = sum(c["mismatches"] for c in verify_checks if not c.get("informational"))
+    # A published difference is not a failed check. Kept as its own number so prose can name it
+    # without claiming the pass/fail registers disagree somewhere.
+    verify_differences = sum(c["mismatches"] for c in verify_checks if c.get("informational"))
 
     deficiency = json.load(open(os.path.join(ROOT, "data", "verify",
                                              "deficiency_recomputed.json"), encoding="utf-8"))
@@ -1738,6 +1752,7 @@ def main():
         "parlay": {"bets": parlay_entry["metrics"]["bets"], "roi": parlay_entry["metrics"]["roi_flat"]},
         "signal_staking_example": signal_staking_example,
         "verify_checks": verify_checks, "verify_total": verify_total,
+        "verify_differences": verify_differences,
         "verify_mismatch": verify_mismatch,
         "inventory": repo_inventory(),
         "questions": [],
