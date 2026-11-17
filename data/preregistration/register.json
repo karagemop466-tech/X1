@@ -1,7 +1,7 @@
 {
  "dataset": "preregistration",
  "title": "Pre-registration register: every rule, its window, and the commit that froze it",
- "generated_at": "2026-11-17T23:23:10Z",
+ "generated_at": "2026-11-17T23:33:30Z",
  "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
  "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says",
  "history_scope": {
@@ -91,15 +91,17 @@
    "rule_bytes": 8124,
    "rule_sha256": "b571816538b9ab0e802e42d259105a68ae80a17d5c030e496d560ed83b82b656",
    "rule_hash_matches_this_checkout": "yes",
-   "content_hash_matches_registration": "unresolved here: this checkout is shallow (rule text unchanged since the last build)",
+   "content_hash_matches_registration": "no - edited after registration",
    "rule_hash_stable_vs_last_build": "yes",
    "registered_rule_sha256": "b571816538b9ab0e802e42d259105a68ae80a17d5c030e496d560ed83b82b656",
-   "state": "unresolved-shallow-checkout",
-   "registration_commit": "",
-   "registered_at": "",
-   "registration_subject": "",
-   "touches": 0,
-   "later_commits": [],
+   "state": "registered",
+   "registration_commit": "38816a6200fdedadaa5f95541d4313b78d7cd25b",
+   "registered_at": "2026-11-17T19:51:04+00:00",
+   "registration_subject": "ci: diagnostics pipeline 2026-11-17T19:51:03Z",
+   "touches": 2,
+   "later_commits": [
+    "0c3e1e31d4 N-4: price-data policy decided and wired; feeds, prose and CI now agree on 150 games"
+   ],
    "reproduce": "git log --reverse --format='%H %aI' -- docs/methodology/results-feed.md",
    "anchor_carried_forward": "",
    "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data."

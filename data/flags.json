@@ -3,7 +3,7 @@
   "title": "Flagged for Review",
   "retrieved_at": "2026-11-14",
   "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-  "counts": 21,
+  "counts": 26,
   "resolution_log": [
    {
     "id": "I-17",
@@ -42,7 +42,7 @@
     "reproduce": "python3 tools/check_links.py"
    }
   ],
-  "last_appended_by": "session arena-73e6cbac-x1, 2026-11-15 (F-20, F-21)"
+  "last_appended_by": "session arena-473e08d5-x1, 2026-11-17 (F-22..F-26, the Week 10 closure)"
  },
  "flags": [
   {
@@ -316,6 +316,71 @@
    "source_label": "nfl.com Week 10 schedule (live, 2026-11-15)",
    "league_source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
    "league_source_label": "Game Center with Game Book link"
+  },
+  {
+   "id": "F-22",
+   "severity": "high",
+   "category": "Provenance hazard",
+   "item": "The third-party mirror's bytes moved between two fetches 21 minutes apart, so a cross-check is only meaningful against a named fingerprint.",
+   "verified": "On 2026-11-17 the same URL (api.github.com/repos/nflverse/nfldata/contents/data/games.csv) returned 2 190 571 B / sha256 0c643fd014305eeb at 22:44:27Z with no score for the six Sunday Week 10 games, and 2 190 568 B / sha256 5a61d3121f2178ce at 23:05:12Z with all 14 Week 10 scores. The first fetch would have made the closure look like a 13-of-14 mirror agreement.",
+   "unknown": "How long the upstream lags the league after a game ends, and whether it ever revises a score after publishing it.",
+   "settles_it": "tools/verify_2026_11_17.py V9 fails if the file on disk stops matching data/raw_manifest.json, and tools/build_snapshots.py refuses to build prices from unpinned bytes. A lag measurement needs the collector to fetch on a schedule and record both hashes.",
+   "source_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "source_label": "nflverse/nfldata games.csv (the same bytes, fetched via api.github.com twice on 2026-11-17)",
+   "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "league_source_label": "league page ↗"
+  },
+  {
+   "id": "F-23",
+   "severity": "medium",
+   "category": "Source render instability",
+   "item": "Two reads of the same official page on consecutive days printed different sets of columns, so 'the page did not say' is not the same as 'the value is unknown'.",
+   "verified": "The 2026-11-16 read of the Week 10 schedule page printed a kickoff time and a network for each game; the 2026-11-17 read printed neither, while both reads agree on every score, date and club record. The 11-17 pack therefore leaves time_et and network blank instead of copying them from the older render.",
+   "unknown": "Whether the field is absent from the fetch tool's extraction for that render, or genuinely not in the HTML that day.",
+   "settles_it": "A byte capture with an ETag (the capture store's design) would distinguish 'not printed' from 'not extracted'. Until then dated reads are diffed, never merged, and the blank is published.",
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "NFL.com Week 10 schedule, 2026-11-17 read",
+   "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "league_source_label": "same page, 2026-11-16 read ↗"
+  },
+  {
+   "id": "F-24",
+   "severity": "medium",
+   "category": "Derived-data lag",
+   "item": "Published ROI and model-accuracy figures still describe a 137-game window although the verified feed holds 150 games.",
+   "verified": "data/processed/games_modeled.csv carries a model line for 137 of the 272 modelled 2026 fixtures: the 13 Week 10 games closed on 2026-11-17 have blank model_spread, so tools/grade_roi.py reports '137 modeled of 150 verified games' and every n in data/results/roi_summary.csv is 137-based. The numbers themselves did not move when the grader was re-pointed at the current feed.",
+   "unknown": "Whether the collector's next refresh recomputes the walk-forward ratings through Week 10 (its cron runs scripts/run_pipeline.py, which re-ingests from upstream rather than from the re-pinned file).",
+   "settles_it": "One collector refresh, or a decision to rebuild data/processed/games_modeled.csv from the pinned bytes in-session. The grader names the feed file on every output row so the window a figure describes is never implicit.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/processed/games_modeled.csv",
+   "source_label": "data/processed/games_modeled.csv (derived store)",
+   "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "league_source_label": "league page ↗"
+  },
+  {
+   "id": "F-25",
+   "severity": "low",
+   "category": "Artefact self-reference",
+   "item": "One published console artefact counts the repository's own tracked files, so it is stale in the commit that writes it.",
+   "verified": "console/repo-review.html states the tracked-file count (750 after the last build) and the per-file hashes; committing the closure added files, and the next build reported 751. No staleness guard can ever be satisfied by such an artefact: its input includes its own output.",
+   "unknown": "Whether the inventory should exclude generated pages, or state its date and be labelled 'as of the previous commit'.",
+   "settles_it": "An owner choice about the inventory's contract. It is deliberately excluded from the git-diff guards, and this flag records that the exclusion is a design consequence, not an oversight.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/console/repo-review.html",
+   "source_label": "console/repo-review.html",
+   "league_source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_console.py",
+   "league_source_label": "builder ↗"
+  },
+  {
+   "id": "F-26",
+   "severity": "medium",
+   "category": "Data availability",
+   "item": "The venue requirement cannot be met from the weekly schedule page, because that page prints no venue field.",
+   "verified": "The brief asks that the venue of every fixture be transcribed from the official game centre. The Week 10 fixture list read on 2026-11-17 prints matchup, score, date, club records and byes, and no stadium; the Chargers-at-Ravens Game Center page does print 'M&T BANK STADIUM / BALTIMORE, MD'. 13 of the 14 Week 10 rows therefore have a blank venue, and only the fixture re-read at its own page has one.",
+   "unknown": "Whether the other 13 game centres print a stadium string reachable by the fetch tool (they are separate page reads, one per fixture).",
+   "settles_it": "Suggestion S-31 on the Suggestions & questions page: one Game Center read per fixture, appended to the week's evidence pack. Filling the blanks from the mirror's stadium column is rejected: the mirror is not an official source.",
+   "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "source_label": "NFL.com Game Center (the one fixture this round re-read)",
+   "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "league_source_label": "weekly schedule page ↗"
   }
  ]
 }
