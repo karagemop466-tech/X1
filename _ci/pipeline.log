@@ -1,7 +1,7 @@
 correlations: 1034 pairs
-repo_review: 750 files, 461 flagged
+repo_review: 759 files, 467 flagged
 {
- "generated_at": "2026-11-17T22:53:31+00:00",
+ "generated_at": "2026-11-17T23:05:17+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -99,12 +99,12 @@ repo_review: 750 files, 461 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-17T22:53:56+00:00"
+ "finished_at": "2026-11-17T23:05:42+00:00"
 }
 exit=0
 ===== captures.log =====
 capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-  54 captures retained; 27 distinct payloads
+  59 captures retained; 29 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 35
@@ -148,7 +148,7 @@ $ python3 tools/official/readiness.py
     [readiness] 75 requirements, categories: {'Programme': 6, 'Prices': 3, 'Results': 1, 'Origination': 5, 'Leaderboard': 7, 'Availability': 27, 'Correlation': 1, 'Governance': 9, 'Modelling': 10, 'Schedu
 $ python3 tools/build_audit_registers.py
     wrote data/audit/: requirements_assessed.json, full_depth_join.json, findings.json, decision_questions.json, suggestion_board.json, review_queue.json, what_changed.json
-    full join: 256 rows, 30 starters out across 31 clubs (pilot subset: 6)
+    full join: 255 rows, 30 starters out across 31 clubs (pilot subset: 6)
 $ python3 tools/build_state_audit.py
     wrote data/audit/readiness.json: 60 rows; register {'met': 42, 'partly met': 7, 'in progress': 2, 'open': 2, 'not in register': 7}; round 4 {'met': 33, 'partly met': 16, 'in progress': 2, 'open': 9}; 
 $ python3 tools/build_decision_readiness.py
@@ -156,19 +156,19 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (409,359 bytes)
+    wrote app/repo-review.html (415,183 bytes)
     wrote app/stores.html (132,709 bytes)
     29 pages written
 $ python3 tools/build_console.py
     [console] writing data files
     [console] building pages
-    [console]   28 pages written to /home/runner/work/X1/X1/console
+    [console]   29 pages written to /home/runner/work/X1/X1/console
 $ python3 tools/lab/build_site.py
     wrote lab/sources.html (10,834 bytes)
     wrote lab/flagged.html (18,961 bytes)
     lab site verification passed: 14 pages, links resolve, every data row sourced
 $ python3 tools/build_site.py
-    wrote index.html + 24 pages
+    wrote index.html + 25 pages
 $ python3 tools/build_preregistration.py
     PR-01  unresolved-shallow-checkout   singles-only shadow baseline (team strength, no market)
     PR-02  unresolved-shallow-checkout   control baselines: random picks, favourites only
@@ -200,11 +200,11 @@ $ python3 tools/cross_check.py
     injury rows compared     : 345  cells: 1380
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
-    files checked : 168
-    assertions    : 44272
+    files checked : 170
+    assertions    : 45421
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
-    Site verification passed: 168 HTML pages; local links resolve; every data-table row has an official source link.
+    Site verification passed: 170 HTML pages; local links resolve; every data-table row has an official source link.
 $ python3 scripts/pipeline/verify_site.py
       suggestions      rows=20     without_source=0
       team_stats       rows=288    without_source=0
@@ -212,7 +212,7 @@ $ python3 scripts/pipeline/verify_site.py
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
     note: freshness not gated here (a PR build cannot fix a missed collector run); data-refresh.yml gates it after it collects
     capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-      54 captures retained; 27 distinct payloads
+      59 captures retained; 29 distinct payloads
 rebuild_for_refresh --pre-commit: ok (0 step(s) failed)
 ===== postcommit.log =====
 $ python3 tools/build_state_audit.py --check
