@@ -1,13 +1,11 @@
 + git config user.name x1-bot
 + git config user.email x1-bot@users.noreply.github.com
 + git checkout -- _ci
-+ git fetch origin arena/01c263c4-x1
++ git fetch origin arena/dc96bc33-x1
 From https://github.com/karagemop466-tech/X1
- * branch            arena/01c263c4-x1 -> FETCH_HEAD
-   def67e3..25b5d1d  arena/01c263c4-x1 -> origin/arena/01c263c4-x1
-+ git reset --mixed origin/arena/01c263c4-x1
+ * branch            arena/dc96bc33-x1 -> FETCH_HEAD
++ git reset --mixed origin/arena/dc96bc33-x1
 Unstaged changes after reset:
-M	COORDINATION.md
 M	app/flagged.html
 M	app/repo-review.html
 M	console/archived-sites.html
@@ -38,8 +36,7 @@ M	console/standings.html
 M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
-M	data/audit/findings.json
-M	data/audit/review_queue.json
+M	console/w10-finals.html
 M	data/captures/index.jsonl
 M	data/captures/status.json
 M	data/console/payload.json
@@ -61,26 +58,23 @@ M	data/preregistration/register.json
 M	data/readiness/decision_readiness.json
 M	index.html
 M	pages/capture-system.html
-M	pages/changes.html
-M	pages/executive-brief.html
-M	pages/review-queue.html
 M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-17T23:15:08Z official captures'
-[arena/01c263c4-x1 83f7a5f] ci: retain 2026-11-17T23:15:08Z official captures
++ git commit -m 'ci: retain 2026-11-17T23:29:33Z official captures'
+[arena/dc96bc33-x1 da15c5d] ci: retain 2026-11-17T23:29:33Z official captures
  2 files changed, 19 insertions(+), 14 deletions(-)
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-17T23:15:08Z'
-[arena/01c263c4-x1 a7374ed] data: refresh from official sources 2026-11-17T23:15:08Z
- 27 files changed, 24907 insertions(+), 24640 deletions(-)
-+ git push origin HEAD:arena/01c263c4-x1
++ git commit -m 'data: refresh from official sources 2026-11-17T23:29:33Z'
+[arena/dc96bc33-x1 7ac89cb] data: refresh from official sources 2026-11-17T23:29:33Z
+ 22 files changed, 25183 insertions(+), 24993 deletions(-)
++ git push origin HEAD:arena/dc96bc33-x1
 To https://github.com/karagemop466-tech/X1
-   25b5d1d..a7374ed  HEAD -> arena/01c263c4-x1
+   99e0357..7ac89cb  HEAD -> arena/dc96bc33-x1
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -110,14 +104,14 @@ $ python3 tools/build_next_decisions.py --check
 rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 + pushed=0
 + for attempt in 1 2 3 4 5
-+ git fetch origin arena/01c263c4-x1
++ git fetch origin arena/dc96bc33-x1
 From https://github.com/karagemop466-tech/X1
- * branch            arena/01c263c4-x1 -> FETCH_HEAD
-+ git -c rebase.autoStash=true rebase origin/arena/01c263c4-x1
-Created autostash: 3dd214e
-Current branch arena/01c263c4-x1 is up to date.
+ * branch            arena/dc96bc33-x1 -> FETCH_HEAD
++ git -c rebase.autoStash=true rebase origin/arena/dc96bc33-x1
+Created autostash: fe6199e
+Current branch arena/dc96bc33-x1 is up to date.
 Applied autostash.
-+ git push origin HEAD:arena/01c263c4-x1
++ git push origin HEAD:arena/dc96bc33-x1
 Everything up-to-date
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1

@@ -1,7 +1,7 @@
 correlations: 1034 pairs
-repo_review: 772 files, 471 flagged
+repo_review: 792 files, 485 flagged
 {
- "generated_at": "2026-11-17T23:14:06+00:00",
+ "generated_at": "2026-11-17T23:28:40+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -99,7 +99,7 @@ repo_review: 772 files, 471 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-17T23:14:25+00:00"
+ "finished_at": "2026-11-17T23:28:58+00:00"
 }
 exit=0
 ===== captures.log =====
@@ -107,7 +107,7 @@ capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
   64 captures retained; 29 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
-      listed starters with a Week 10 designation : 35
+      listed starters with a Week 10 designation : 37
       listed 2nd-string (backups) with designation: 14
       injured players absent from their club chart: 10
 $ python3 tools/build_results_feed_907c.py
@@ -137,18 +137,18 @@ $ python3 tools/lab/build_controls.py
     break-even     : 0.5238
     wrote data/lab/controls/control_baselines.{json,csv}
 $ python3 tools/official/week10_reconcile.py
-    [reconcile] console table vs published table: 0 differing of 345
+    [reconcile] console table vs published table: 0 differing of 347
     [reconcile] status counts live: {'(none)': 176, 'Out': 70, 'Questionable': 90, 'Doubtful': 11}
-    [reconcile] status counts published: {'(none)': 185, 'Out': 66, 'Questionable': 84, 'Doubtful': 10}
+    [reconcile] status counts published: {'(none)': 176, 'Out': 70, 'Questionable': 90, 'Doubtful': 11}
 $ python3 tools/official/depth_parse.py
     [depth-parse] recovered: ['Aaron Banks', 'Bo Melton', 'Javon Bullard', 'Josh Jacobs', 'Kevin Zeitler', 'Lukas Van Ness', 'Savion Williams', 'Sean Rhyan', 'Travis Glover', 'Trey Smack', "Ty'Ron Hopper"
     [depth-parse] still unjoined: ['Chris Brooks', 'Josh Whyle', 'Micah Parsons', 'Skyy Moore']
     [depth-parse] Texans: 0 slots, image source, not transcribed
 $ python3 tools/official/readiness.py
-    [readiness] 75 requirements, categories: {'Programme': 6, 'Prices': 3, 'Results': 1, 'Origination': 5, 'Leaderboard': 7, 'Availability': 27, 'Correlation': 1, 'Governance': 9, 'Modelling': 10, 'Schedu
+    [readiness] 76 requirements, categories: {'Programme': 6, 'Prices': 3, 'Results': 1, 'Origination': 5, 'Leaderboard': 7, 'Availability': 27, 'Correlation': 1, 'Governance': 9, 'Modelling': 10, 'Schedu
 $ python3 tools/build_audit_registers.py
     wrote data/audit/: requirements_assessed.json, full_depth_join.json, findings.json, decision_questions.json, suggestion_board.json, review_queue.json, what_changed.json
-    full join: 255 rows, 30 starters out across 31 clubs (pilot subset: 6)
+    full join: 257 rows, 31 starters out across 31 clubs (pilot subset: 7)
 $ python3 tools/build_state_audit.py
     wrote data/audit/readiness.json: 60 rows; register {'met': 42, 'partly met': 7, 'in progress': 2, 'open': 2, 'not in register': 7}; round 4 {'met': 33, 'partly met': 16, 'in progress': 2, 'open': 9}; 
 $ python3 tools/build_decision_readiness.py
@@ -156,13 +156,13 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (423,411 bytes)
+    wrote app/repo-review.html (434,233 bytes)
     wrote app/stores.html (132,709 bytes)
     29 pages written
 $ python3 tools/build_console.py
     [console] writing data files
     [console] building pages
-    [console]   29 pages written to /home/runner/work/X1/X1/console
+    [console]   30 pages written to /home/runner/work/X1/X1/console
 $ python3 tools/build_preregistration.py
     PR-01  unresolved-shallow-checkout   singles-only shadow baseline (team strength, no market)
     PR-02  unresolved-shallow-checkout   control baselines: random picks, favourites only
@@ -174,10 +174,10 @@ $ python3 tools/lab/build_site.py
     wrote lab/flagged.html (18,961 bytes)
     lab site verification passed: 14 pages, links resolve, every data row sourced
 $ python3 tools/build_site.py
-    wrote index.html + 26 pages
+    wrote index.html + 25 pages
 $ python3 tools/verify_data.py
-    checks passed : 2944
-    INFO listed starters ruled OUT in week 10: 8 (DET Cade Mays, DET D.J. Reed, GB Josh Jacobs, GB Sean Rhyan, SEA Charles Cross, SEA Sam Darnold, SEA Quenton Nelson, SEA Leonard Williams)
+    checks passed : 2960
+    INFO listed starters ruled OUT in week 10: 9 (DET Cade Mays, DET D.J. Reed, GB Josh Jacobs, GB Sean Rhyan, SEA Charles Cross, SEA Sam Darnold, SEA Quenton Nelson, SEA Leonard Williams, BAL Jaylinn Haw
     all integrity checks passed
 $ python3 tools/verify_app.py
       flagged no-source  : 24
@@ -192,16 +192,16 @@ $ python3 tools/official/verify_published.py
     PASS  the live row count on the page is the row count in the file             347 vs 347 vs 347
     9 of 9 checks passed
 $ python3 tools/verify_against_official.py
-    PASS  injuries       published=345  this-read=345  cells=1725  mismatches=0 unmatched=0
-    cells compared: 2183   mismatches: 0   unmatched rows: 0
+    PASS  injuries       published=347  this-read=347  cells=1388  mismatches=0 unmatched=0
+    cells compared: 1846   mismatches: 0   unmatched rows: 0
     every published Week 10 cell agrees with the official page
 $ python3 tools/cross_check.py
     standings clubs compared : 32  fields: 224
-    injury rows compared     : 345  cells: 1380
+    injury rows compared     : 347  cells: 1388
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
     files checked : 171
-    assertions    : 45649
+    assertions    : 45761
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
     Site verification passed: 171 HTML pages; local links resolve; every data-table row has an official source link.
