@@ -14,8 +14,14 @@ on:
     - cron: "23 6 * * FRI"
   workflow_dispatch:
 
+# `contents: write` alone is not enough for the review-PR step below: peter-evans/create-pull-request
+# opens a pull request, which needs `pull-requests: write`. Without it every scheduled run since the
+# workflow landed failed at that step with "Resource not accessible by integration"
+# (run 44123337794, 2026-11-17 06:23Z) *after* re-running the pipeline successfully — so the refreshed
+# artefacts were produced and then thrown away. Fixed by session arena-2f95e652-x1.
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   refresh:

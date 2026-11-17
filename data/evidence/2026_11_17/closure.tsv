@@ -1,0 +1,13 @@
+# Arithmetic closure of the 2026-11-17 read
+# SOURCE: https://www.nfl.com/standings/league/2026/REG
+# READ:   2026-11-17T22:46Z (UTC), single direct read of the official page, transcribed row by row
+# NOTE:   Every check is applied to the NEW read before it is used to accuse an older table of being wrong. A mis-transcribed row breaks one of these, which is the point.
+check|value|ok
+wins == losses|149 vs 149|True
+ties even|2|True
+points for == points against|6923 vs 6923|True
+net points sum to zero|0|True
+PCT and NET recompute from the printed W/L/T/PF/PA|all 32 rows|True
+home + road, conf + non-conf, div <= conf, streak and last-5 shapes|all 32 rows|True
+14 finals added to the 2026-11-14 table reproduce all 32 clubs x 5 fields|160 comparisons, 0 mismatches|True
+games played implied by the league's own W/L/T|150|True
