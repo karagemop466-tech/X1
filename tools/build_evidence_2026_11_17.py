@@ -140,6 +140,24 @@ def page_html(b: dict) -> str:
     drift = b["drift"]
     closure = b["closure"]
 
+    # Row-level provenance. The console's contract (tools/verify_console.py) requires every data
+    # row to carry a source in the row; a note above the table is not enough, because a row read on
+    # its own must still say where it came from. Two markers, each linking the official page.
+    def src(url, label):
+        return (f'<a class="src" href="{esc(url)}" target="_blank" rel="noopener">{esc(label)}</a>'
+                f' <span class="pill mut">official</span>')
+
+    STAND = src(E.STANDINGS_URL, "nfl.com standings")
+    SCHED = src(E.SCHEDULE_URL, "nfl.com week 10")
+    DERIVED = ('<span class="src mut">re-derived by '
+               '<code>tools/verify_evidence_2026_11_17.py</code></span>')
+    CAPS = ('<span class="src mut">data/captures/status.json '
+            '(collector clock time)</span>')
+    PRICE = ('<span class="src mut">data/console/price_snapshots.csv '
+             '(computed from the fingerprinted mirror)</span>')
+    MIRROR = ('<span class="src mut">data/raw/nflverse/games.csv '
+              '(fingerprinted mirror)</span>')
+
     def kpi(label, val, sub, kind=""):
         return (f'<div class="kpi {kind}"><div class="lab">{esc(label)}</div>'
                 f'<div class="val">{val}</div><div class="sub">{esc(sub)}</div></div>')
@@ -160,7 +178,8 @@ def page_html(b: dict) -> str:
     # closure table
     crows = "".join(
         f'<tr><td>{esc(c["check"])}</td><td>{esc(c["value"])}</td>'
-        f'<td>{"pass" if c["ok"] == "True" else "FAIL"}</td></tr>' for c in closure)
+        f'<td>{"pass" if c["ok"] == "True" else "FAIL"}</td><td>{DERIVED}</td></tr>'
+        for c in closure)
 
     # standings table: this read, with the published value beside it where they differ
     withheld_cols = set(b["publishable_fields"]["withheld_fields"])
@@ -175,30 +194,33 @@ def page_html(b: dict) -> str:
                 return f"<td>{esc(mine)}</td>"
             return (f'<td><b>{esc(mine)}</b><br><span class="mut">was {esc(theirs)}</span></td>')
         srows.append("<tr>" + "".join([f'<td>{esc(r["TEAM"])}</td>'] +
-                                      [cell(f) for f in shown_cols[1:]]) + "</tr>")
-    shead = "".join(f"<th>{esc(c)}</th>" for c in shown_cols)
+                                      [cell(f) for f in shown_cols[1:]] +
+                                      [f"<td>{STAND}</td>"]) + "</tr>")
+    shead = "".join(f"<th>{esc(c)}</th>" for c in shown_cols) + "<th>source</th>"
 
     wrows = "".join(
         f'<tr><td>{esc(g["game_id"])}</td><td>{esc(g["date_et"])}</td><td>{esc(g["window"])}</td>'
         f'<td>{esc(g["away"])} {esc(g["away_score"])}</td>'
         f'<td>{esc(g["home"])} {esc(g["home_score"])}</td>'
-        f'<td>{esc(g.get("in_2026_11_14_snapshot", ""))}</td></tr>' for g in b["week10"])
+        f'<td>{esc(g.get("in_2026_11_14_snapshot", ""))}</td><td>{SCHED}</td></tr>'
+        for g in b["week10"])
 
     pvrows = "".join(
         f'<tr><td>{esc(d["key"])}</td><td>{esc(d["field"])}</td>'
-        f'<td>{esc(d["other"])}</td><td>{esc(d["mine"])}</td></tr>'
+        f'<td>{esc(d["other"])}</td><td>{esc(d["mine"])}</td><td>{STAND}</td></tr>'
         for d in pv["detail"][:60])
 
     drows = "".join(
         f'<tr><td>{esc(k)}</td><td>{esc(v["last_drift"])}</td>'
         f'<td>{esc(v["last_as_read_at"])}</td><td>{esc(v["captures"])}</td>'
-        f'<td>{esc(v["distinct_payloads"])}</td></tr>'
+        f'<td>{esc(v["distinct_payloads"])}</td><td>{CAPS}</td></tr>'
         for k, v in sorted(drift.get("datasets", {}).items()))
 
     mirror_settled = mirror.get("settled", 0)
     mirror_total = len(mirror.get("rows", []))
     price_by_step = "".join(
-        f'<tr><td>{esc(k)}</td><td>{esc(v["rows"])}</td><td>{esc(v["both"])}</td></tr>'
+        f'<tr><td>{esc(k)}</td><td>{esc(v["rows"])}</td><td>{esc(v["both"])}</td>'
+        f'<td>{PRICE}</td></tr>'
         for k, v in sorted(price.get("by_step", {}).items()))
 
     return f"""<!doctype html>
@@ -208,10 +230,21 @@ def page_html(b: dict) -> str:
 <link rel="stylesheet" href="assets/console.css">
 </head><body><div class="layout">
 <aside><div class="brand"><b>X1 LINE CONSOLE</b><span>NFL origination &amp; strategy lab</span></div>
-<nav><div class="grp">Official data</div>
+<nav><div class="grp">Overview</div>
+<a class="item" href="index.html">Overview</a>
+<a class="item" href="executive-summary.html">Executive summary</a>
+<div class="grp">Official data</div>
 <a class="item" href="standings.html">Standings<span class="tag">32</span></a>
 <a class="item" href="schedule.html">Week 10 slate</a>
 <a class="item" href="results.html">Verified results feed</a>
+<a class="item" href="capture.html">Week 10 re-capture</a>
+<div class="grp">Markets</div>
+<a class="item" href="prices.html">Price-snapshot store</a>
+<a class="item" href="lines.html">Originated lines</a>
+<div class="grp">Governance</div>
+<a class="item" href="verification.html">Verification ledger</a>
+<a class="item" href="sources.html">Source registry</a>
+<a class="item" href="flagged.html">Flagged for review<span class="tag">8</span></a>
 </nav></aside>
 <main>
 <header class="page"><h1>Evidence pack &mdash; 2026-11-17</h1>
@@ -234,8 +267,8 @@ Method: {esc(b['read_method'])}</p>
 <h2>1. Arithmetic closure of this read</h2>
 <p>Applied to the <em>new</em> read before it is used to accuse an older table. A mis-transcribed row
 breaks one of these.</p>
-<div class="wrap"><table><thead><tr><th>check</th><th>value</th><th>result</th></tr></thead>
-<tbody>{crows}</tbody></table></div>
+<div class="wrap"><table><thead><tr><th>check</th><th>value</th><th>result</th>
+<th>source</th></tr></thead><tbody>{crows}</tbody></table></div>
 <p class="mut">The 14 finals are added to the 2026-11-14 table and must reproduce today's table for
 every club. <b>{w['checks']}</b> comparisons over 32 clubs, <b>{w['mismatches']}</b> mismatches.
 One game (WAS&ndash;NYG, {esc('2026-11-12')}) was already inside the 2026-11-14 table, so adding all
@@ -243,7 +276,8 @@ One game (WAS&ndash;NYG, {esc('2026-11-12')}) was already inside the 2026-11-14 
 
 <h2>2. The 14 Week 10 finals</h2>
 <div class="wrap"><table><thead><tr><th>game</th><th>date</th><th>window</th><th>away</th>
-<th>home</th><th>already in the 11-14 table</th></tr></thead><tbody>{wrows}</tbody></table></div>
+<th>home</th><th>already in the 11-14 table</th><th>source</th></tr></thead>
+<tbody>{wrows}</tbody></table></div>
 
 <h2>3. The read, club by club</h2>
 <p>Every cell is from the page read today. Where the published 2026-11-14 table prints something
@@ -255,7 +289,7 @@ different, the published value is shown beneath as <span class="mut">was &hellip
 ({esc(', '.join(pv['clubs']))}). The differences are games played, not transcription errors: the
 2026-11-14 table was correct when it was taken.</p>
 <div class="wrap"><table><thead><tr><th>club</th><th>field</th>
-<th>published 2026-11-14</th><th>league 2026-11-17</th></tr></thead>
+<th>published 2026-11-14</th><th>league 2026-11-17</th><th>source</th></tr></thead>
 <tbody>{pvrows}</tbody></table></div>
 <p class="mut">First 60 differences shown; all {pv['mismatches']} are in
 <code>data/evidence/2026_11_17/mismatches.csv</code>.</p>
@@ -267,33 +301,37 @@ differ. Two independent extraction paths agreeing on every cell is what promotes
 &ldquo;one person&rsquo;s transcription&rdquo; to verified.</p>
 
 <h2>6. What this read cannot support yet</h2>
-<table><thead><tr><th>question</th><th>measured answer</th><th>why it matters</th></tr></thead><tbody>
+<table><thead><tr><th>question</th><th>measured answer</th><th>why it matters</th>
+<th>source</th></tr></thead><tbody>
 <tr><td>Has the mirror behind the results feed published the Week 10 finals?</td>
 <td><b>{mirror_settled}</b> of {mirror_total} Week 10 rows carry a score in
 <code>{esc(mirror.get('path', ''))}</code></td>
 <td>The results feed is built from that file. Until it publishes the scores, the feed cannot
 settle Week 10, so neither the 2026 ROI nor the shadow baseline can move on. This is a source
-limitation, not something a pull request can fix.</td></tr>
+limitation, not something a pull request can fix.</td><td>{MIRROR}</td></tr>
 <tr><td>Can 2026 lines be re-originated against a closing price?</td>
 <td><b>{price.get('both', 0)}</b> of {price.get('rows', 0)} 2026 price-store rows carry both an
 opening and a closing number</td>
 <td>Origination is pre-kickoff by definition. A 2026 market originated today can only carry the
 opening number; the closing number needs a read taken at kickoff, which is why the store records a
-clock time with every row.</td></tr>
+clock time with every row.</td><td>{PRICE}</td></tr>
 <tr><td>Are the club-level tables current?</td>
 <td>Drift state below, from <code>data/captures/status.json</code></td>
 <td>A table rebuilt from a stale capture reads like a live table. The capture clock time is the
-only thing that distinguishes them.</td></tr>
+only thing that distinguishes them.</td><td>{CAPS}</td></tr>
 </tbody></table>
 <p>2026 price-store rows by origination step:</p>
-<div class="wrap"><table><thead><tr><th>step</th><th>rows</th><th>both ends</th></tr></thead>
-<tbody>{price_by_step or '<tr><td colspan="3">no 2026 rows</td></tr>'}</tbody></table></div>
+<div class="wrap"><table><thead><tr><th>step</th><th>rows</th><th>both ends</th>
+<th>source</th></tr></thead>
+<tbody>{price_by_step or f'<tr><td colspan="3">no 2026 rows</td><td>{PRICE}</td></tr>'}
+</tbody></table></div>
 
 <h2>7. Capture freshness and drift, as the gate sees it</h2>
 <p>Status written <b>{esc(drift.get('generated_at', ''))}</b>; {esc(drift.get('captures', ''))}
 captures retained. Alarms outstanding: <b>{esc(', '.join(drift.get('alarms', [])) or 'none')}</b>.</p>
 <div class="wrap"><table><thead><tr><th>dataset</th><th>last drift</th><th>last read (UTC)</th>
-<th>captures</th><th>distinct payloads</th></tr></thead><tbody>{drows}</tbody></table></div>
+<th>captures</th><th>distinct payloads</th><th>source</th></tr></thead>
+<tbody>{drows}</tbody></table></div>
 <p class="mut">The <code>deficiency</code> alarm is a real producer defect &mdash;
 <code>data/pipeline/deficiency.json</code> declared 12 columns while its rows carried 14 &mdash; now
 fixed at the producer, and the capture gate fails the build if a committed header disagrees with its
