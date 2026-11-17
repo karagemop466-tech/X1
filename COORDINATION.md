@@ -3261,3 +3261,41 @@ changed cells, 72 field changes all closing.
 **For the integrator:** `tools/patch_site_543cdcb0.py` and `tools/patch_site_next_decisions.py` are the
 one-shot patches that edited `tools/build_site.py`; both abort unless every anchor matches exactly once.
 Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.
+
+---
+
+# Session `arena/dc96bc33-x1` — Round 5: live re-verification 2026-11-17, Week 10 finals closure, stale-PR reconciliation, integration + release (this session)
+
+**Session ID:** `arena/dc96bc33-x1` · **Branch:** `arena/dc96bc33-x1` (branched from `main` @ `38816a6`,
+which is the current `origin/main` tip). **Started (UTC):** 2026-11-17. **Role:** final integration
+round for the owner's cumulative brief (all earlier session claims are done or >60 min stale with no
+commits, so takeover is permitted by rule 10; handoffs recorded below).
+
+**Session registry row (appended; see note):**
+
+| Session ID | Branch | Role claimed | Started (UTC) | Status |
+|---|---|---|---|---|
+| `arena/dc96bc33-x1` | `arena/dc96bc33-x1` | Round 5: 2026-11-17 live re-verification, Week 10 finals closure into the verified results feed, stale-PR reconciliation (#50/#53/#61/#66), register completeness vs the owner brief, scheduled-workflow repair, final integration + PR + merge + Pages confirm | 2026-11-17 | active |
+
+## Claim (written and pushed before any other work, per rule 1)
+
+Overlap check: no task on the board is `in progress` under a live claim. Sessions `arena-543cdcb0-x1`
+(C-1…C-6), `arena-73e6cbac-x1` (D1–D4), `arena-52aabfa8-x1` (T10–T17), `arena-fb9e0427-x1` (round 4),
+`arena/cd48a61d-x1`, `arena-b8722e85-x1` (GB-1) and `arena-b38a21d8-x1` (T1–T9) are all **done** with
+completion records. PRs #50, #53, #61, #66 belong to sessions whose claims are >60 min old with no
+commits since 2026-11-15 and whose PRs are all `CONFLICTING` with `main`; per rule 10 this session
+takes them over and will salvage unique content, then close each PR with a handoff note (never
+discarding work: anything unique is re-delivered here or recorded as a flagged item).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R5-1 | **2026-11-17 live re-verification pack**: re-read the official NFL Week 10 schedule and standings live on 2026-11-17; transcribe the 14 now-final Week 10 scores with per-row official URL + clock time; diff against the published Week 10 cells and the 2026-11-15/16 packs; publish every mismatch as a flag | in progress | `arena/dc96bc33-x1` | `data/verification/2026_11_17/**` (new), `tools/verify_2026_11_17.py` (new), `data/flags.json` (append-only, new ids only) |
+| R5-2 | **Week 10 finals closure**: the MNF game (Chargers 23 @ Ravens 20, 2026-11-16) is final, so Week 10 is complete at 14/14; close the coordinated commit S-22/Q-62 left by session `arena-543cdcb0-x1` (transcription + count pin + standings baseline + mirror re-pin) **only if** every pinned gate still passes; otherwise publish the 14 finals as an officially verified addendum and record the measured blocker | in progress | `arena/dc96bc33-x1` | `data/results/**`, `tools/build_results_r3.py` (only if required), `data/verification/2026_11_17/**` |
+| R5-3 | **Stale-PR reconciliation**: re-verify the unique content of PRs #50, #53, #61, #66 line by line; re-deliver anything still missing; close each PR with a handoff note; record the outcome per PR | in progress | `arena/dc96bc33-x1` | `COORDINATION.md`, `data/flags.json` (append-only) |
+| R5-4 | **Register completeness vs the owner brief**: check every line of the owner's cumulative brief (2026-11-17 message) is registered in the requirement/decision-readiness/suggestions/question registers with gate + clearing number; add any missing rows (new ids only) and rebuild via committed generators; add a suggestions section entry for anything that needs owner choice | in progress | `arena/dc96bc33-x1` | register JSONs (append-only new ids), generators' rebuild outputs, `COORDINATION.md` |
+| R5-5 | **Scheduled-workflow repair**: diagnose the failing `Refresh research data` run (`pipeline.yml`, run 44123337794, 2026-11-17T16:13Z) and fix the repo defect if one exists | in progress | `arena/dc96bc33-x1` | `.github/workflows/pipeline.yml`, research tooling only if the defect is there |
+| R5-6 | **Final integration**: run the full verifier suite locally (every `run:` step of `verify.yml` + `pages.yml`), confirm the assembled tree crawls clean, open PR `arena/dc96bc33-x1` → `main`, merge without waiting for approval, confirm GitHub Pages deploys, record the PR link + merge result + verification performed + irregularities here | in progress | `arena/dc96bc33-x1` | `COORDINATION.md`, `README.md` (only if needed), PR |
+
+**Rule 9 note:** this session is the final integration session for this round; shared outputs
+(registers, landing page, navigation) may change here, always through the committed generators so
+the CI staleness guards stay green.
