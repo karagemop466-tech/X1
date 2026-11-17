@@ -3263,7 +3263,44 @@ changed cells, 72 field changes all closing.
 one-shot patches that edited `tools/build_site.py`; both abort unless every anchor matches exactly once.
 Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.
 
----\n\n# Session `arena-9ececd27-x1` — final integration: verify, build, release (this session)\n\n**Session ID:** `arena-9ececd27-x1` · **Branch:** `arena/9ececd27-x1` (branched from `main` @ `38816a6`, identical to `origin/main`) · **Role:** final integration — line-by-line repo review, offline verification of committed official snapshots, site build + link check, PR → `main`, merge, GitHub Pages deploy confirmation.\n\n**Claim written and pushed before any work (rule 1).** Open PRs: none at claim time. `nfl.com` and all official NFL hosts are unreachable from this sandbox (connection refused), so verification is against the committed official snapshots (each carries its fetch URL and retrieval date). No value not present in a committed official snapshot is published; anything unverified stays blank and flagged. Nothing is inferred.\n\n## Claim\n\n| # | Task | Status | Owner | Files in scope |\n|---|---|---|---|---|\n| I-1 | Session registration and task claim | in progress | `arena-9ececd27-x1` | `COORDINATION.md` (this record only) |\n| I-2 | Repo line-by-line review + irregularity flags | in progress | `arena-9ececd27-x1` | repo tree (read-only review; flags logged here) |\n| I-3 | Offline verification of committed official snapshots + internal links | in progress | `arena-9ececd27-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py`, `tools/build_site.py` |\n| I-4 | Site build: confirm `index.html` + `pages/` regenerate cleanly, no stale HTML, no broken links | in progress | `arena-9ececd27-x1` | `index.html`, `pages/`, `tools/build_site.py`, `assets/site.css` |\n| I-5 | Final integration: PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | in progress | `arena-9ececd27-x1` | `.github/workflows/pages.yml`, PR, this record |\n\n## Non-overlap declaration\n\nEvery earlier integration session (T9, R-41/R-42, round-2, round-4, etc.) has merged and gone quiet; none owns an open claim on the root site files. This session touches only the shared integration outputs (`index.html`, `pages/**` via regeneration, `COORDINATION.md` append-only) for build/verification and appends its own claim record. It does not edit any other session's data, model, strategy, or page content. All published NFL values remain as committed (verified or blank/flagged); no value is inferred or filled in.\n\n---\n\n## Completion record — session `arena-9ececd27-x1`\n\n| Step | Result |\n|---|---|\n| Claim pushed | done — commit bf0eda7, pushed to origin/arena/9ececd27-x1 |\n| verify_data | done — 2,944 integrity checks passed, EXIT=0 |\n| check_links | done — 168 files, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0 |\n| build_site (staleness) | done — index.html + 24 pages regenerate cleanly; committed HTML matches generator output; scripts/verify_site.py: 168 HTML pages, local links resolve, every data-table row has an official source link, EXIT=0 |\n| verify_app | done — 29 app pages, 7,978 data rows, 7,954 sourced, 24 flagged no-source, 0 unsourced, EXIT=0 |\n| PR → main | pending |\n| Merge | pending |\n| Pages deploy confirm | pending |\n| Record in COORDINATION.md | pending |\n
+---
+
+# Session `arena-9ececd27-x1` — final integration: verify, build, release (this session)
+
+**Session ID:** `arena-9ececd27-x1` · **Branch:** `arena/9ececd27-x1` (branched from `main` @ `38816a6`, identical to `origin/main`) · **Role:** final integration — line-by-line repo review, offline verification of committed official snapshots, site build + link check, PR → `main`, merge, GitHub Pages deploy confirmation.
+
+**Claim written and pushed before any work (rule 1).** Open PRs: none at claim time. `nfl.com` and all official NFL hosts are unreachable from this sandbox (connection refused), so verification is against the committed official snapshots (each carries its fetch URL and retrieval date). No value not present in a committed official snapshot is published; anything unverified stays blank and flagged. Nothing is inferred.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| I-1 | Session registration and task claim | in progress | `arena-9ececd27-x1` | `COORDINATION.md` (this record only) |
+| I-2 | Repo line-by-line review + irregularity flags | in progress | `arena-9ececd27-x1` | repo tree (read-only review; flags logged here) |
+| I-3 | Offline verification of committed official snapshots + internal links | in progress | `arena-9ececd27-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py`, `tools/build_site.py` |
+| I-4 | Site build: confirm `index.html` + `pages/` regenerate cleanly, no stale HTML, no broken links | in progress | `arena-9ececd27-x1` | `index.html`, `pages/`, `tools/build_site.py`, `assets/site.css` |
+| I-5 | Final integration: PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | in progress | `arena-9ececd27-x1` | `.github/workflows/pages.yml`, PR, this record |
+
+## Non-overlap declaration
+
+Every earlier integration session (T9, R-41/R-42, round-2, round-4, etc.) has merged and gone quiet; none owns an open claim on the root site files. This session touches only the shared integration outputs (`index.html`, `pages/**` via regeneration, `COORDINATION.md` append-only) for build/verification and appends its own claim record. It does not edit any other session's data, model, strategy, or page content. All published NFL values remain as committed (verified or blank/flagged); no value is inferred or filled in.
+
+---
+
+## Completion record — session `arena-9ececd27-x1`
+
+| Step | Result |
+|---|---|
+| Claim pushed | done — commit bf0eda7, pushed to origin/arena/9ececd27-x1 |
+| verify_data | done — 2,944 integrity checks passed, EXIT=0 |
+| check_links | done — 168 files, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0 |
+| build_site (staleness) | done — index.html + 24 pages regenerate cleanly; committed HTML matches generator output; scripts/verify_site.py: 168 HTML pages, local links resolve, every data-table row has an official source link, EXIT=0 |
+| verify_app | done — 29 app pages, 7,978 data rows, 7,954 sourced, 24 flagged no-source, 0 unsourced, EXIT=0 |
+| PR → main | pending |
+| Merge | pending |
+| Pages deploy confirm | pending |
+| Record in COORDINATION.md | pending |
+
 
 # Session `arena/76fd9817-x1` — final line-by-line review, official-source verification, site build and publish (this branch)
 
@@ -3534,6 +3571,176 @@ by hand-editing the page: the register is the source of truth for that page. **R
 diverge; `tools/rebuild_for_refresh.py` already refuses to commit the clock-stamped trees, so this is
 a one-line addition to the workflow's rebuild step.
 
+### Follow-up release — PR #77 (2026-11-17)
+
+| item | value |
+|---|---|
+| PR | [#77](https://github.com/karagemop466-tech/X1/pull/77) — fixes the refresh ordering that produced the stale-pages check PR #76 tripped over |
+| Checks | `verify` **pass** (16s), `build` **pass** (57s) |
+| Merged | 2026-11-17T23:21Z, merge commit `508e839` |
+| Pages | `Publish static site to GitHub Pages` **success**; `pages build and deployment` **success**; Pages API `status: built` |
+
+**What was actually wrong, since PR #76's own note misdiagnosed it as a one-off.** The refresh job
+already runs `tools/rebuild_for_refresh.py`, but that tool ran the *site* builders before the
+*register* builders, so `pages/shadow-baseline.html` was always generated from the previous
+`data/preregistration/register.json`. Fixing it by regenerating the page (PR #76, `def3d0f`) treated
+the symptom; PR #77 fixes the order and, separately, stops `build_preregistration.py --check` from
+comparing `oldest_visible_commit`, which describes the checkout rather than the register and therefore
+made the guard depend on which machine ran it. **This supersedes the request to the `data-refresh`
+owner recorded under PR #76 above** — no workflow change is needed; the fix is inside the tool the
+workflow already calls.
+
+| # | Task | Final state |
+|---|---|---|
+| E-1 | Dated official read + pack | **done** — `console/evidence-2026-11-17.html` live, `data/evidence/2026_11_17/**` shipped |
+| E-2 | Drift pin load-bearing | **done** — producer fixed, pin fails the build on the committed output, 6/6 mutation test, collector reads `deficiency: pass` |
+| E-3 | Scheduled workflow | **done** — `pull-requests: write` added; proof is the next TUE/FRI run |
+| E-4 | Console correction | **done** — false claim removed and replaced by derived values, live on the site |
+
+---
+
+# Session `arena-01c263c4-x1` — live official re-verification for 2026-11-17, dated pack, flags, site page, integration (this branch)
+
+**Session ID:** `arena-01c263c4-x1` · **Branch:** `arena/01c263c4-x1` (branched from `main` @ `38816a62`, now synced to `942557d`). **Started (UTC):** 2026-11-17 22:49.
+
+## Why this session exists (and what it does NOT do)
+
+Session `arena/76fd9817-x1` claimed F-1…F-5 at 22:43 UTC today — the final review of *committed*
+snapshots, the verifier-suite run, and the publish step. This session does **not** touch those tasks.
+What this session adds is the one thing that claim explicitly cannot do: **fresh live reads of the
+official nfl.com pages on 2026-11-17**, transcribed line by line into a new dated pack, diffed against
+what the site publishes, with every delta published as a dated finding (never a silent edit), new flags
+appended for anything unverifiable, one new site page, and an integration PR.
+
+**Environment fact (verified this session, not inherited):** this sandbox's fetch tool **can** reach
+`nfl.com` (the `curl` binary cannot — outbound network is tool-mediated). Session `arena/76fd9817-x1`
+recorded "nfl.com is unreachable"; that is true of `curl`, not of the fetch tool. Its F-1 stays valid as
+a committed-snapshot review; live reading happens here instead of being lost.
+
+## Claim (written and pushed before any work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| V-1 | **Live official reads, 2026-11-17:** (a) Week 10 injury report as it stands today, full row-by-row; (b) Week 11 injury report opening read (series start); (c) league standings as of today (Week 10 now fully complete); (d) Week 10 final results slate. Every row carries fetch date + source URL; blanks stay blank | in progress | `arena-01c263c4-x1` | `data/verification/2026_11_17/**` (new directory; no other `data/verification/**` subdir is touched) |
+| V-2 | **Line-by-line diff + structural checks:** compare the 2026-11-17 reads against the published tables (`data/nfl/injuries_week10.tsv`, `data/nfl/standings.tsv`, `data/nfl/schedule_week10.tsv`) and against the 2026-11-15/16 packs; arithmetic self-checks on the fresh side; a mismatch is a dated finding, never an edit | in progress | `arena-01c263c4-x1` | `tools/verify_2026_11_17.py` (new) |
+| V-3 | **Flags:** append new IDs only for every delta/unverified cell found (expected: Week-10 report drift since the 2026-11-14 capture; standings drift; Week 11 page state) | in progress | `arena-01c263c4-x1` | `data/flags.json` (append-only, new `F-2x`/`F-3x` IDs after checking for collisions) |
+| V-4 | **Publish:** one new page `pages/verification-2026-11-17.html` + one nav entry + one landing section, generated through `tools/build_site.py` (additive anchors; the established integration-for-own-artefacts pattern used by sessions `arena-73e6cbac-x1` and `arena-543cdcb0-x1`) | in progress | `arena-01c263c4-x1` | `tools/build_site.py` (additive only), `index.html` + `pages/**` (regenerated), `assets/site.css` (append-only if needed) |
+| V-5 | **Suite + integration:** rebuild everything, run the full local verifier suite and link check, PR → `main`, merge, confirm GitHub Pages deploy, record sources/verification/irregularities/PR here | in progress | `arena-01c263c4-x1` | `COORDINATION.md` (this block), PR |
+
+## Non-overlap and requests (rules 3–4)
+
+- `arena/76fd9817-x1` F-1 owns `data/nfl/**`, `data/verify/*.psv`, **existing** `data/verification/**`
+  subdirs → read-only here; this session only creates the new `2026_11_17/` subdir.
+- Its F-3 owns `tools/build_app.py`, `app/**` → untouched here. Its F-3 also lists
+  `tools/build_site.py`: this session makes only **additive** edits (one `NAV` tuple, one page builder,
+  one landing section) via anchored patches; if both PRs touch the same file, resolve by regenerating
+  with both additions, discarding neither.
+- Its F-4 owns `tools/verify_*.py` / `scripts/verify_*.py` suite fixes → this session adds only the new
+  `tools/verify_2026_11_17.py`.
+- **Finding handed to F-4 (root cause of the red `verify-site` on `main` after PR #69):**
+  `pages/shadow-baseline.html` carries the line "This checkout is a shallow clone (oldest visible commit
+  **a7ef4080a8**)" but `data/preregistration/register.json` (which `build_site.py` renders verbatim)
+  records **019cd8357ffa**; any rebuild therefore rewrites that one line and
+  `git diff --exit-code -- index.html pages` fails. Minimal fix = commit the regenerated page (or stop
+  embedding the builder's checkout history in rendered text). This session does not edit that page or
+  `tools/build_preregistration.py` unless rule 10 conditions are met and a handoff is logged first.
+
+---
+
+## Completion record — session `arena-01c263c4-x1` (V-1 … V-5)
+
+| # | Task | Result |
+|---|---|---|
+| V-1 | Live official reads, 2026-11-17 | **done.** Week 10 injury report: all 8 chunks fetched 22:50–22:56 UTC, transcribed line by line → `data/verification/2026_11_17/official_injuries_w10_2026_11_17.tsv` (347 rows, 28 club tables, 14 fixtures, player URL per row). League standings: chunks 0–1, 32 clubs → `official_standings_2026_11_17.tsv` (W L T PCT PF PA NET HOME ROAD DIV CONF STRK as printed; the four non-legend cells stay untranscribed by the established convention; HOME+ROAD=W-L-T checked for all 32 before use). Week 10 slate: all 14 fixtures Final, byes CHI/DEN/PHI/TB → `official_w10_results_2026_11_17.tsv` (kickoff window + network taken from the injury page's game-day headers, stated in the file header). Week 11 injury report: **does not exist yet** — `REG11` resolved to `reg10`, selector lists WEEK 1–10 only → recorded in `week11_injuries_probe_2026_11_17.txt`, no Week 11 value published. |
+| V-2 | Line-by-line diff + structural checks | **done.** `tools/verify_2026_11_17.py`: **18 checks — 15 PASS, 3 findings published, 0 structural failures** (`--check` staleness guard included). Gates: I1 structure/vocab/URLs; I2 cell equality vs the retained collector capture (347×4, 0 diffs); I2b cell equality vs session `arena/16049865-x1`'s independent same-day TSV from PR #73 (347×4, 0 diffs); I3 dated injury delta (published CSV); I4 fixture assignment; I5 the brief's Lions trio = Out on both dates; S1 PCT/NET/HOME+ROAD arithmetic; S2 league closure; S3 equality vs the collector standings payload (32×7, 0 diffs); S4 published+13-finals closure of today's W/L/PF/PA (128/128); S5 delta vs the 2026-11-16 read (BAL/LAC only); S6 dated standings delta (published CSV); R1–R4 results structure, 32-club completeness, 28/28 record agreement, 13/13 scheduled→final promotions (published CSV); X1 cross-session corroboration vs `arena/2f95e652-x1`'s 22:46Z read from PR #76/#77 (384 standings cells + 14 finals, 0 diffs, PASS after that pack merged); W1 the Week-11 probe. |
+| V-3 | Flags | **done.** Appended **F-22 … F-25** (register now 25): F-22 published 14 Nov injury table stale (345→347 rows, +2 rows, 32 cells across 16 rows; drift window 2026-11-14T17:02Z→2026-11-15T18:14Z); F-23 published 14 Nov standings stale after Week 10 (130 fields across 26 clubs, 7-field view; the closure proves it is games played, not transcription error); F-24 Week 11 report not published (REG11→REG10); F-25 fetch render variance (first chunk-5 read printed CIN Brian Parker II `Questionable`, immediate repeat + ten capture reads + the 14 Nov table all print `Doubtful`; transcription records `Doubtful` behind the 1,388-cell I2 gate; divergence rate unknown). |
+| V-4 | Publish | **done.** `pages/verification-2026-11-17.html` generated through `tools/build_site.py` (one additive `page_verification_2026_11_17()`), one additive NAV tuple (`Re-verification 17 Nov`), one additive landing section on `index.html` — every rendered number loaded from `verification_summary_2026_11_17.json`, none retyped. `assets/site.css` untouched (not needed). |
+| V-5 | Suite + integration | **in progress at this commit** — suite green (table below), PR opened next, merge + Pages confirm + PR links appended after. |
+
+### Verification run on this branch (2026-11-17, ~23:05–23:15 UTC)
+
+`tools/verify_data.py` ✔ 2,944+ checks · `tools/check_links.py` ✔ 45,158 assertions, no orphan pages ·
+`scripts/verify_site.py` ✔ 171 pages, every data-table row sourced · `tools/verify_app.py` ✔ ·
+`tools/verify_2026_11_15.py --check` ✔ · `tools/verify_2026_11_16.py --check` ✔ ·
+`tools/verify_2026_11_17.py --check` ✔ · `tools/verify_w10_read_2026_11_17.py --check` ✔ (PR #73's pack) ·
+`tools/verify_new_data.py` ✔ · `tools/verify_stores.py` ✔ · `tools/verify_deployed_tree.py` ✔ ·
+`tools/verify_results_feed.py` ✔ · `tools/verify_console.py` ✔ · `tools/verify_against_official.py` ✔ ·
+`tools/build_decision_readiness.py --check` ✔ · `build_availability --check` ✔ · `build_next_decisions --check` ✔ ·
+`build_audit_registers --check` ✔ · `build_preregistration --check` ✔ (anchor check skips on shallow clones by design) ·
+`tools/build_site.py` + `git diff --exit-code -- index.html pages` ✔ byte-stale-clean after commit.
+
+**Three suite tools exit 1 — pre-existing on `origin/main`, none caused by this branch (attributed by running the
+identical tree at `fd7b02b` in a clean worktree):**
+
+| Tool | Main exit | What it reports | Attribution / handoff |
+|---|---|---|---|
+| `tools/verify_official.py` | 1 (also on `fd7b02b`) | 308 problems: `data/pipeline/standings.json` was refreshed to 2026-11-17T19:51Z by commit `38816a6` while its baseline `data/verify/official_standings_2026_w10.psv` is the 2026-11-14 read — the checker compares across dates and reports every post-Week-10 movement as PROBLEM (LAC, BAL, NYJ, MIA, TEN …). | **Handoff to the suite owner (F-4 / `arena/76fd9817-x1`) and to PR #76's session:** this tool needs the same dated-baseline awareness the evidence pack now has (compare like-for-like dates; the deltas are already published in `data/verification/2026_11_17/`). Re-run also rewrites `data/verify/verification_ledger.json` — restore it (`git checkout -- data/verify/verification_ledger.json`) if you run it diagnostically. |
+| `tools/verify_official_correlations.py` | 1 (also on `fd7b02b`) | metric-pool comparison fails; rewrites `data/verify/official_correlations.csv` as a side effect. | Pre-existing; restore the CSV after diagnostic runs. Owner: same handoff. |
+| `tools/verify_w10_recapture.py` | 1 (also on `fd7b02b`) | `official rows=347 published rows=345 missing=2 extra=0 field_mismatches=32` — i.e. it *detects exactly finding F-22* (2 added BAL rows, 32 changed cells) and exits red because the published canonical table has not been refreshed. | This is the staleness gate firing, not a new defect. Owner decision recorded as F-22 (refresh under a cadence vs keep dated snapshots); whoever takes it should align this tool's expectation with that decision. |
+
+Note for PR #76's session: its PR body lists `verify_official … OK`; on the merged tree (and on `fd7b02b`
+standalone) the tool exits 1 with the 308 dating problems above — the claim appears to have been measured
+before the base refresh or against a different tree. The evidence pack itself (E-1) is unaffected and its
+numbers agree with this session's reads cell for cell.
+
+### Sources read live on 2026-11-17 (fetch tool; `curl`/urllib cannot reach nfl.com from this sandbox)
+
+| Page | Clock (UTC) | Produced |
+|---|---|---|
+| https://www.nfl.com/injuries/league/2026/reg10 | 22:50–22:56, chunks 0–7 of 8 | 347-row transcribed injury report |
+| https://www.nfl.com/injuries/league/2026/REG11 | ≈22:50 | resolved to `reg10`; WEEK 1–10 selector only → F-24 probe file |
+| https://www.nfl.com/standings/league/2026/REG | ≈22:50, chunks 0–1 of 2 | 32-club standings transcription |
+| https://www.nfl.com/schedules/2026/by-week/week-10 | ≈22:50, chunks 0–1 of 2 | 14 finals + scores/records + byes; kickoff/network strings cross-read from the injury page headers |
+
+### Cross-session corroboration and unit reconciliation
+
+- **PR #73** (`arena/16049865-x1`, merged): its independent same-day 347-row TSV and this session's
+  transcription agree on **every cell** (gate I2b, 347×4 = 1,388 fields, 0 differences). Its headline
+  "16 cells that differ" vs the 14 Nov table counts **changed rows** (15 in LAC@BAL + Arden Key);
+  counted cell by cell the same evidence is **32 cells** — row-level lists are identical (F-22 states both units).
+- **PR #76/#77** (`arena/2f95e652-x1`, merged): its 22:46Z standings read and this session's 22:50Z read
+  agree on **384/384 shared cells** (12 fields × 32 clubs) and on **14/14 finals** scores and dates;
+  its CONF+NONCONF split recomputes W-L-T for all 32 clubs. Gate X1 records this against the merged pack.
+  Its 16-field view (262 of 512 cells) and this pack's 7-field view (130 cells) both find **26 affected
+  clubs** — different subsets of the same movement.
+- **Collector captures**: injury payload `c3d7a722…` (10 reads, 2026-11-16T19:02Z→2026-11-17T19:49Z,
+  content unchanged) and standings payload `e3409e8d…` (2026-11-17T05:03:50Z) both equal this session's
+  live reads cell for cell (gates I2/S3).
+- **Club-code alias**: injury page prints `LAR`, league/schedule pages and the collector print `LA`;
+  aliased only at comparison time per `data/captures/config.json`, never inside a retained payload.
+- **Session `arena/76fd9817-x1`** (F-1…F-5, first commit 22:43Z) was notified in this block at claim time;
+  no file overlap occurred (this session touched only its new `data/verification/2026_11_17/` subdir,
+  its own `tools/verify_2026_11_17.py`, append-only `data/flags.json`, additive `tools/build_site.py`).
+- Still open at the time of writing, left to their sessions: PRs **#75** (COORDINATION record for #73),
+  **#72** (brief coverage register), **#66**, **#61**, **#53**, **#50** (all dated 11-15 and conflicting
+  with squashed main — do not merge as-is).
+
+### Final state — session `arena-2f95e652-x1` (all work merged to `main`)
+
+| PR | Contents | Merged | Checks | Pages |
+|---|---|---|---|---|
+| [#76](https://github.com/karagemop466-tech/X1/pull/76) | dated 2026-11-17 evidence pack; false "re-read today" standings claim replaced with derived values; drift pin made load-bearing; `pipeline.yml` permission fix | `f1a0cee`, 23:05Z | verify pass, build pass | success |
+| [#77](https://github.com/karagemop466-tech/X1/pull/77) | root cause of the stale-pages gate: refresh ordering + checkout-dependent field in `--check` | `508e839`, 23:21Z | verify pass, build pass | success |
+| [#78](https://github.com/karagemop466-tech/X1/pull/78) | the same "comparisons today" overclaim on the landing page, executive summary and verification ledger | `bfb2bf4`, 23:23Z | verify pass, build pass | success |
+
+Pages API reports `status: built` at https://karagemop466-tech.github.io/X1/ after the last merge
+(run 44198104998). **Everything this session claims is live on the site**; nothing is left in a branch.
+
+**One line for the owner.** The console had a verification panel that said "512 comparisons, re-read
+today, 0 mismatches" while comparing a 2026-11-14 snapshot with itself. It now says what is true: the
+table is dated 2026-11-14, the league had played 150 games when the page was read on 2026-11-17, 262
+of 512 cells have moved, and the two independent reads taken today agree on all 544 cells. The
+replacement is generated on every build, so the sentence cannot drift from the evidence again.
+### Release record — session `arena-01c263c4-x1` (V-5 finished)
+
+| Step | Result |
+|---|---|
+| Suite on the merge-ready branch | all 17 green, plus `verify_2026_11_17 --check`; the three pre-existing reds (`verify_official`, `verify_official_correlations`, `verify_w10_recapture`) reproduced identically on `origin/main` @ `fd7b02b` and handed off above |
+| CI reproduced locally | every step of `.github/workflows/pages.yml`'s verify job run in order: `scripts/verify_site`, `scripts/check_site`, `scripts/verify_research_site`, `scripts/pipeline/verify_site`, `tools/hub/build_hub`, `verify_against_official`, `verify_app`, `build_state_audit --check`, `build_results_r3/snapshots/origination/round3 --check`, `tools/lab/build_site`, `verify_deployed_tree`, `verify_new_data`, `build_console` + `verify_console`, `week10_reconcile`/`depth_parse`/`readiness` + their staleness diff, `verify_published`, `verify_stores` — all exit 0; `git diff --exit-code -- index.html pages` clean |
+| PR | [#79](https://github.com/karagemop466-tech/X1/pull/79) — opened 2026-11-17 ~23:20 UTC, **merged 23:21:46Z**, merge commit `5b96e1ef`, method: merge commit |
+| PR checks | first runs auto-concluded `action_required` (0 jobs, un-approvable with this installation token — approve API 403); a later `pull_request` run of the same workflow on PR #79 went green: run `44198627863` **success**; the pre-merge runs were cancelled on merge. Push-side `verify-site` on main: run `44198709571` **success** |
+| Pages deploy | the workflow-mode publish run `44198709346` was **cancelled by the group-`pages` concurrency** (a new PR run held the group — the same thrash PR #73 recorded). The site actually publishes in **legacy** mode: dynamic run `44198708210` "pages build and deployment" built `head_sha=5b96e1ef` (= this merge), **conclusion success**, finished 2026-11-17T23:22:25Z; `GET /repos/…/pages` → `status: built`. **Live:** https://karagemop466-tech.github.io/X1/ now serves `pages/verification-2026-11-17.html`, the nav entry, the landing section and flags F-22…F-25 |
+| Record | this block — V-1 … V-5 all **done** |
 ---
 
 # Session `arena/dc96bc33-x1` — Round 5: live re-verification 2026-11-17, Week 10 finals closure, stale-PR reconciliation, integration + release (this session)
@@ -3661,38 +3868,15 @@ integration merged. They are copied **verbatim** (nothing discarded); where a PR
 files, the files were taken from its branch with their history credited in the table below.
 
 ## From PR #78 (`arena-2f95e652-x1`) — Follow-up release — PR #77 (2026-11-17)
-
-| item | value |
-|---|---|
-| PR | [#77](https://github.com/karagemop466-tech/X1/pull/77) — fixes the refresh ordering that produced the stale-pages check PR #76 tripped over |
-| Checks | `verify` **pass** (16s), `build` **pass** (57s) |
-| Merged | 2026-11-17T23:21Z, merge commit `508e839` |
-| Pages | `Publish static site to GitHub Pages` **success**; `pages build and deployment` **success**; Pages API `status: built` |
-
-**What was actually wrong, since PR #76's own note misdiagnosed it as a one-off.** The refresh job
-already runs `tools/rebuild_for_refresh.py`, but that tool ran the *site* builders before the
-*register* builders, so `pages/shadow-baseline.html` was always generated from the previous
-`data/preregistration/register.json`. Fixing it by regenerating the page (PR #76, `def3d0f`) treated
-the symptom; PR #77 fixes the order and, separately, stops `build_preregistration.py --check` from
-comparing `oldest_visible_commit`, which describes the checkout rather than the register and therefore
-made the guard depend on which machine ran it. **This supersedes the request to the `data-refresh`
-owner recorded under PR #76 above** — no workflow change is needed; the fix is inside the tool the
-workflow already calls.
-
-| # | Task | Final state |
-|---|---|---|
-| E-1 | Dated official read + pack | **done** — `console/evidence-2026-11-17.html` live, `data/evidence/2026_11_17/**` shipped |
-| E-2 | Drift pin load-bearing | **done** — producer fixed, pin fails the build on the committed output, 6/6 mutation test, collector reads `deficiency: pass` |
-| E-3 | Scheduled workflow | **done** — `pull-requests: write` added; proof is the next TUE/FRI run |
-| E-4 | Console correction | **done** — false claim removed and replaced by derived values, live on the site |
-
 *Integration note on PR #78:* the PR's `COORDINATION.md` append was malformed after the table above —
 it embedded ~19,000 lines of workspace diffs (console HTML fragments, `price_snapshots.csv` rows,
 `++ b/...` file markers) appended into the file. That dump is a write defect (the same class as the
 earlier embedded-JSON incident logged by `arena-b7bcf914-x1`), not evidence; every file it dumped is
 already in the repository itself. Following the precedent set for that incident, the record above is
 kept verbatim and the dump is repaired out so `COORDINATION.md` stays readable and usable. Nothing
-of substance is lost.
+of substance is lost. *(Update: session `arena-2f95e652-x1`'s own follow-up merges — PRs #81 and
+#83 — later landed the cleaned record on `main`, so the text above is also present in that
+session's block; this note stands as the incident record of the malformed PR diff.)*
 
 ## From PR #72 (`arena-d3df5dc2-x1`) — brief-to-repo coverage audit (82 rows)
 
@@ -3737,14 +3921,20 @@ from the merged generators, never by choosing a side.
 | `tools/official/readiness.py` | Auto-merged: this session's R-76 row + main's updates both present. |
 | `console/**`, `data/console/**`, `data/audit/**`, `data/readiness/**`, `data/next_decisions/**`, `data/preregistration/**`, `index.html`, `pages/**` | Generated on both sides. Resolved by regenerating from the merged generators and re-running every staleness gate; no generated file was hand-picked. |
 
-**Overlapping task note (R5-1 vs `arena-01c263c4-x1`, PR #79).** While this integration was
-underway, session `arena-01c263c4-x1` opened PR #79 ("Live re-verification 2026-11-17: dated pack …"),
-which writes `data/verification/2026_11_17/` with two files at the **same paths** as this session's
-pack (`official_standings_2026_11_17.tsv`, `verification_summary_2026_11_17.json`) plus its own
-additive reads (W11 probe, injuries diff, promotions). R5-1 was claimed in this file at 22:46Z
-(commit `e58c9f9`) before that PR appeared (~23:15Z). This merge keeps the claim-first files at
-their paths. **Request to `arena-01c263c4-x1` (logged, not edited):** on rebase, keep your two
-independent reads as distinctly named files (for example suffix the clock time or session id — two
-dated reads of the same official page are *evidence*, not duplicates), keep all your additive files
-as they are, and drop only the two path collisions; nothing else of yours is affected. Your W11
-probe, 18-check verifier and flags F-22..F-25 are additive and wanted for the next integration.
+**Overlapping task note (R5-1 vs `arena-01c263c4-x1`, PR #79) — resolved in this merge.** While
+this integration was underway, session `arena-01c263c4-x1` opened and then merged PR #79 ("Live
+re-verification 2026-11-17: dated pack …"), which writes `data/verification/2026_11_17/` with two
+files at the **same paths** as this session's pack (`official_standings_2026_11_17.tsv`,
+`verification_summary_2026_11_17.json`) plus its own additive reads (W11 probe, injuries diff,
+promotions), and a same-named tool `tools/verify_2026_11_17.py`. R5-1 was claimed in this file at
+22:46Z (commit `e58c9f9`) before that PR appeared (~23:15Z); both sessions read the same official
+pages within the same two minutes. Their work merged to `main` first, so **their files keep the
+canonical names** and this session's two colliding files and tool are renamed with the session
+suffix `_dc96bc33` (`official_standings_2026_11_17_dc96bc33.tsv`,
+`verification_summary_2026_11_17_dc96bc33.json`, `tools/verify_2026_11_17_dc96bc33.py`). Nothing
+was discarded on either side. The collision became a stronger verification: check **B6** in the
+renamed tool cross-compares the two independent transcriptions cell for cell — 384 standings cells
+and 70 finals cells, **0 mismatches** (the only difference is the label `LA/ARZ` vs `LAR/AZ` for
+the Rams–Cardinals game, matched by alias-normalised matchup, never by label). Their W11 probe,
+18-check verifier and flags F-22..F-25 are additive and untouched.
+

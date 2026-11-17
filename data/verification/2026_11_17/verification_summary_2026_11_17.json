@@ -1,262 +1,231 @@
 {
- "checks": {
-  "B1_standings_identities": {
-   "assertions": 96,
-   "clubs": 32,
-   "failures": [],
-   "note": "NET = PF - PA; PCT = (W + T/2)/GP; HOME + ROAD = W-L-T.",
-   "verdict": "pass"
+ "dataset": "verification/2026_11_17",
+ "title": "Live official re-verification - 2026-11-17",
+ "generated_at": "2026-11-17T23:13:41Z",
+ "generated_by": "tools/verify_2026_11_17.py (session arena-01c263c4-x1)",
+ "retrieved": "2026-11-17",
+ "sources": [
+  {
+   "url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "what": "Week 10 injury report, chunks 0-7 of 8, read ~22:50-22:56 UTC"
   },
-  "B2_league_closure": {
-   "failures": [],
-   "games_implied": 150,
-   "total_losses": 149,
-   "total_points_against": 6923,
-   "total_points_for": 6923,
-   "total_ties": 2,
-   "total_wins": 149,
-   "verdict": "pass"
+  {
+   "url": "https://www.nfl.com/standings/league/2026/REG",
+   "what": "league standings, chunks 0-1 of 2, read ~22:50 UTC"
   },
-  "B3_cross_page_records": {
-   "failures": [],
-   "matched": 32,
-   "note": "Every club record printed on the by-week schedule page (14 fixtures x 2 clubs + 4 bye clubs) against the league standings page. Two official pages, one value set.",
-   "records_compared": 32,
-   "rows": [
-    {
-     "club": "WAS",
-     "match": true,
-     "schedule_page": "3-5-1",
-     "standings_page": "3-5-1"
-    },
-    {
-     "club": "NYG",
-     "match": true,
-     "schedule_page": "5-3-1",
-     "standings_page": "5-3-1"
-    },
-    {
-     "club": "NE",
-     "match": true,
-     "schedule_page": "5-5",
-     "standings_page": "5-5-0"
-    },
-    {
-     "club": "DET",
-     "match": true,
-     "schedule_page": "7-2",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "KC",
-     "match": true,
-     "schedule_page": "7-2",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "ATL",
-     "match": true,
-     "schedule_page": "3-7",
-     "standings_page": "3-7-0"
-    },
-    {
-     "club": "HOU",
-     "match": true,
-     "schedule_page": "3-6",
-     "standings_page": "3-6-0"
-    },
-    {
-     "club": "CLE",
-     "match": true,
-     "schedule_page": "6-4",
-     "standings_page": "6-4-0"
-    },
-    {
-     "club": "MIN",
-     "match": true,
-     "schedule_page": "7-2",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "GB",
-     "match": true,
-     "schedule_page": "6-4",
-     "standings_page": "6-4-0"
-    },
-    {
-     "club": "MIA",
-     "match": true,
-     "schedule_page": "1-8",
-     "standings_page": "1-8-0"
-    },
-    {
-     "club": "IND",
-     "match": true,
-     "schedule_page": "3-7",
-     "standings_page": "3-7-0"
-    },
-    {
-     "club": "CAR",
-     "match": true,
-     "schedule_page": "4-5",
-     "standings_page": "4-5-0"
-    },
-    {
-     "club": "NO",
-     "match": true,
-     "schedule_page": "3-6",
-     "standings_page": "3-6-0"
-    },
-    {
-     "club": "BUF",
-     "match": true,
-     "schedule_page": "8-1",
-     "standings_page": "8-1-0"
-    },
-    {
-     "club": "NYJ",
-     "match": true,
-     "schedule_page": "2-8",
-     "standings_page": "2-8-0"
-    },
-    {
-     "club": "JAX",
-     "match": true,
-     "schedule_page": "7-2",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "TEN",
-     "match": true,
-     "schedule_page": "1-8",
-     "standings_page": "1-8-0"
-    },
-    {
-     "club": "LA",
-     "match": true,
-     "schedule_page": "6-4",
-     "standings_page": "6-4-0"
-    },
-    {
-     "club": "AZ",
-     "match": true,
-     "schedule_page": "3-7",
-     "standings_page": "3-7-0"
-    },
-    {
-     "club": "SEA",
-     "match": true,
-     "schedule_page": "6-4",
-     "standings_page": "6-4-0"
-    },
-    {
-     "club": "LV",
-     "match": true,
-     "schedule_page": "4-6",
-     "standings_page": "4-6-0"
-    },
-    {
-     "club": "SF",
-     "match": true,
-     "schedule_page": "8-1",
-     "standings_page": "8-1-0"
-    },
-    {
-     "club": "DAL",
-     "match": true,
-     "schedule_page": "4-6",
-     "standings_page": "4-6-0"
-    },
-    {
-     "club": "PIT",
-     "match": true,
-     "schedule_page": "6-3",
-     "standings_page": "6-3-0"
-    },
-    {
-     "club": "CIN",
-     "match": true,
-     "schedule_page": "7-2",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "LAC",
-     "match": true,
-     "schedule_page": "1-8",
-     "standings_page": "1-8-0"
-    },
-    {
-     "club": "BAL",
-     "match": true,
-     "schedule_page": "4-6",
-     "standings_page": "4-6-0"
-    },
-    {
-     "club": "CHI",
-     "match": true,
-     "schedule_page": "7-2-0",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "DEN",
-     "match": true,
-     "schedule_page": "7-2-0",
-     "standings_page": "7-2-0"
-    },
-    {
-     "club": "PHI",
-     "match": true,
-     "schedule_page": "2-7-0",
-     "standings_page": "2-7-0"
-    },
-    {
-     "club": "TB",
-     "match": true,
-     "schedule_page": "3-6-0",
-     "standings_page": "3-6-0"
-    }
-   ],
-   "verdict": "pass"
+  {
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "what": "Week 10 schedule, chunks 0-1 of 2, read ~22:50 UTC"
   },
-  "B4_corpus_reconciliation": {
-   "clubs_reconciled": 32,
-   "failures": [],
-   "finals_added_from_2026_11_17_pack": 13,
-   "games_in_reads_tsv": 137,
-   "games_total": 150,
-   "note": "The 137-game official log plus the 13 Week 10 finals reproduces all 32 official standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. This is the arithmetic that closes suggestion S-22 / question Q-62: the corpus is complete and consistent; what remains for the pinned feed is the mechanical re-pin (count pin, mirror re-pin, standings transcription swap), recorded as SG-14.",
-   "verdict": "pass"
-  },
-  "B5_continuity_vs_2026_11_16": {
-   "failures": [],
-   "finals_unchanged": 13,
-   "note": "13 of 13 previously-final scores unchanged; the Monday night game is the only new final; only the two clubs that played it moved in the standings, and every changed field is exactly that game's arithmetic.",
-   "scheduled_to_final": [
-    "2026_10_LAC_BAL"
-   ],
-   "scores_changed": [],
-   "standings_rows_moved": [
-    "BAL",
-    "LAC"
-   ],
-   "verdict": "pass"
+  {
+   "url": "https://www.nfl.com/injuries/league/2026/REG11",
+   "what": "Week 11 probe, read ~22:50 UTC (resolved to reg10)"
   }
+ ],
+ "checks": [
+  {
+   "id": "I1",
+   "name": "injury transcription structure (347 rows, 28 clubs, 14 fixtures, vocabularies, urls)",
+   "verdict": "PASS",
+   "counts": {
+    "rows": 347,
+    "clubs": 28,
+    "fixtures": 14
+   },
+   "detail": ""
+  },
+  {
+   "id": "I2",
+   "name": "independent-read equality: transcription vs retained official collector capture",
+   "verdict": "PASS",
+   "counts": {
+    "transcription_rows": 347,
+    "capture_rows": 347,
+    "capture_as_read_at": "2026-11-16T19:02:14+00:00",
+    "key_diffs": 0,
+    "cell_diffs": 0
+   },
+   "detail": "capture read 2026-11-16T19:02:14+00:00 (content unchanged at the 2026-11-17T19:49:49Z re-read)"
+  },
+  {
+   "id": "I2b",
+   "name": "same-day cross-read: this transcription vs session arena/16049865-x1's independent 2026-11-17 TSV (PR #73)",
+   "verdict": "PASS",
+   "counts": {
+    "their_rows": 347,
+    "our_rows": 347,
+    "differences": 0
+   },
+   "detail": ""
+  },
+  {
+   "id": "I3",
+   "name": "dated delta: published table (2026-11-14) vs official page (2026-11-17)",
+   "verdict": "FINDINGS-PUBLISHED",
+   "counts": {
+    "published_rows": 345,
+    "official_rows": 347,
+    "rows_added": 2,
+    "rows_removed": 0,
+    "cells_changed": 32
+   },
+   "detail": "see injuries_diff_vs_published_2026_11_17.csv"
+  },
+  {
+   "id": "I4",
+   "name": "game assignment: each club appears in exactly one fixture; club set = 32 minus byes",
+   "verdict": "PASS",
+   "counts": {
+    "clubs": 28,
+    "byes_absent": true
+   },
+   "detail": "{}"
+  },
+  {
+   "id": "I5",
+   "name": "brief item: Lions Kerby Joseph / Cade Mays / D.J. Reed game-status cells = Out, both dates",
+   "verdict": "PASS",
+   "counts": {
+    "rows": 3
+   },
+   "detail": "[{\"player\": \"Kerby Joseph\", \"published_2026_11_14\": \"Out\", \"official_2026_11_17\": \"Out\"}, {\"player\": \"Cade Mays\", \"published_2026_11_14\": \"Out\", \"official_2026_11_17\": \"Out\"}, {\"player\": \"D.J. Reed\", \"published_2026_11_14\": \"Out\", \"official_2026_11_17\": \"Out\"}]"
+  },
+  {
+   "id": "S1",
+   "name": "standings structure and arithmetic: PCT, NET, HOME+ROAD=W-L-T (32 clubs)",
+   "verdict": "PASS",
+   "counts": {
+    "clubs": 32,
+    "assertions": 96
+   },
+   "detail": ""
+  },
+  {
+   "id": "S2",
+   "name": "league closure: total wins = total losses, ties even",
+   "verdict": "PASS",
+   "counts": {
+    "total_wins": 149,
+    "total_losses": 149,
+    "total_ties": 2
+   },
+   "detail": ""
+  },
+  {
+   "id": "S3",
+   "name": "cross-read equality: today's standings vs retained collector standings payload (2026-11-17T05:03:50Z)",
+   "verdict": "PASS",
+   "counts": {
+    "clubs": 32,
+    "fields_per_club": 7,
+    "capture_rows": 32
+   },
+   "detail": ""
+  },
+  {
+   "id": "S4",
+   "name": "dated closure: published 2026-11-14 standings + 13 scheduled->final results = today's W/L/PF/PA",
+   "verdict": "PASS",
+   "counts": {
+    "clubs": 32,
+    "assertions": 128,
+    "finals_added": 13,
+    "already_final_at_2026_11_14": 1
+   },
+   "detail": "[]"
+  },
+  {
+   "id": "S5",
+   "name": "delta vs the 2026-11-16 dated read (expected: the Monday-night game's two clubs)",
+   "verdict": "FINDINGS-PUBLISHED",
+   "counts": {
+    "clubs_changed": 2,
+    "field_changes": 16
+   },
+   "detail": "[\"BAL\", \"LAC\"]"
+  },
+  {
+   "id": "S6",
+   "name": "dated delta: published standings (2026-11-14) vs official page (2026-11-17)",
+   "verdict": "FINDINGS-PUBLISHED",
+   "counts": {
+    "clubs_changed": 26,
+    "field_changes": 130
+   },
+   "detail": "see standings_diff_vs_published_2026_11_17.csv"
+  },
+  {
+   "id": "R1",
+   "name": "results structure: 14 fixtures, all Final, integer scores, no ties",
+   "verdict": "PASS",
+   "counts": {
+    "fixtures": 14
+   },
+   "detail": ""
+  },
+  {
+   "id": "R2",
+   "name": "slate completeness: 28 clubs exactly once across the 14 finals; 4 byes disjoint; union = 32",
+   "verdict": "PASS",
+   "counts": {
+    "playing_clubs": 28,
+    "byes": [
+     "CHI",
+     "DEN",
+     "PHI",
+     "TB"
+    ],
+    "union_size": 32
+   },
+   "detail": ""
+  },
+  {
+   "id": "R3",
+   "name": "record agreement: club records printed on the schedule page vs the standings page (28 comparisons)",
+   "verdict": "PASS",
+   "counts": {
+    "comparisons": 28
+   },
+   "detail": ""
+  },
+  {
+   "id": "R4",
+   "name": "promotion accounting: the 13 fixtures printed 'scheduled' on 2026-11-14 are Final today; the 1 already-final fixture kept its score",
+   "verdict": "PASS",
+   "counts": {
+    "scheduled_2026_11_14": 13,
+    "already_final_2026_11_14": 1,
+    "promoted": 13,
+    "still_open": []
+   },
+   "detail": ""
+  },
+  {
+   "id": "X1",
+   "name": "cross-session corroboration vs arena/2f95e652-x1's independent same-evening read (PR #76, claim E-1): 12 shared standings fields x 32 clubs + 14 finals",
+   "verdict": "PASS",
+   "counts": {
+    "standings_cells": 384,
+    "finals": 14,
+    "differences": 0
+   },
+   "detail": ""
+  },
+  {
+   "id": "W1",
+   "name": "Week 11 injury report probe: REG11 resolved to the Week 10 page; selector lists WEEK 1..WEEK 10",
+   "verdict": "PASS",
+   "counts": {
+    "probe_file": "week11_injuries_probe_2026_11_17.txt"
+   },
+   "detail": ""
+  }
+ ],
+ "counts": {
+  "checks": 18,
+  "pass": 15,
+  "findings": 3,
+  "structural_failures": 0
  },
- "generated_at": "2026-11-17T23:25:22Z",
- "pack": "nfl-official-2026-11-17",
- "read_by": "session arena/dc96bc33-x1, via the fetch tool; no value recalled from memory",
- "retrieved_at_utc": "2026-11-17T22:45Z-22:48Z (Week 10 results) / 2026-11-17T22:48Z-22:52Z (standings)",
- "sources": {
-  "official_log": "data/results/_raw/reads.tsv",
-  "prior_pack": "data/verification/2026_11_16/",
-  "standings": "https://www.nfl.com/standings/league/2026/REG",
-  "week10_results": "https://www.nfl.com/schedules/2026/by-week/week-10",
-  "week10_results_read_url": "https://www.nfl.com/schedules/2026/REG/week/10"
- },
- "totals": {
-  "assertions": 174,
-  "checks_passed": 5,
-  "checks_total": 5
- },
- "verdict": "pass"
+ "policy": "Dated evidence: differences between reads are published as findings with two dates and two source URLs, never applied to a published table by this tool."
 }

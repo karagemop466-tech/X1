@@ -1,13 +1,11 @@
 # SOURCE: https://www.nfl.com/standings/league/2026/REG  (page title: "2026 NFL League Standings")
-# Read via the fetch tool, chunks 0-1 of 2, on 2026-11-17 at 22:48-22:52 UTC. Transcribed by session arena/dc96bc33-x1.
+# Read via the fetch tool, chunks 0-1 of 2, on 2026-11-17 at approximately 22:50 UTC. Transcribed by session arena-01c263c4-x1.
 # Columns printed BY the official page and defined in its LEGEND: W L T PCT PF PA NET PTS HOME ROAD DIV CONF STRK.
-# The page also prints two record triples and two win-percentage columns whose meaning is NOT in the
-# LEGEND (positions after DIV/CONF and before STRK, plus the final triple). Following the site rule
-# ("columns whose meaning is not defined in the LEGEND are intentionally NOT transcribed") they are omitted.
-# Column identity is not assumed: HOME + ROAD is checked to equal W-L-T for all 32 clubs by
-# tools/verify_2026_11_17.py, which is what makes this assignment a measurement rather than a guess.
-# Every club record printed beside the logos on the Week 10 schedule page (the 14 rows of
-# official_w10_finals_2026_11_17.tsv, plus the four bye clubs) is cross-checked against this table (check B3).
+# Following the established convention (data/verification/2026_11_16/official_standings_2026_11_16.tsv), the two
+# record triples and two win-percentage columns whose meaning is NOT in the LEGEND (positions after DIV/CONF and
+# before STRK, plus the final triple) are intentionally NOT transcribed.
+# Column identity is not assumed: HOME + ROAD is checked to equal W-L-T for all 32 clubs by tools/verify_2026_11_17.py,
+# which is what makes this assignment a measurement rather than a guess.
 # Empty value = not confirmed by the page. Values are never inferred.
 abbr	w	l	t	pct	pf	pa	net	home	road	div_record	conf_record	streak	source_url
 BUF	8	1	0	0.889	287	199	88	3-1-0	5-0-0	1-1-0	5-1-0	5W	https://www.nfl.com/standings/league/2026/REG

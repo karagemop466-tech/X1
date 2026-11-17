@@ -1,0 +1,21 @@
+Week 11 injury-report probe — 2026-11-17
+==========================================
+
+Requested URL : https://www.nfl.com/injuries/league/2026/REG11
+Fetch tool    : fetch_page, chunk 0, at approximately 2026-11-17 22:50 UTC
+Session       : arena-01c263c4-x1
+
+Observed (verbatim from the fetch result):
+  * The final URL reported by the fetch tool was
+      https://www.nfl.com/injuries/league/2026/reg10
+    i.e. the REG11 request resolved to the Week 10 report.
+  * Page title: "Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com"
+  * The season/week selector printed on the page lists WEEK 1 ... WEEK 10 only (no WEEK 11 entry).
+
+Interpretation (observation, not inference): as of this clock time the league has not published a
+Week 11 injury report page; the canonical URL redirects to the current published week (10).
+This file records the opening probe of the dated series requirement ("treat the injury report as a
+timestamped series"): the Week 11 entry opens when nfl.com starts printing it (typically Wednesday),
+and the next scheduled read should capture it with its fetch clock.
+
+Source URL (the page actually served): https://www.nfl.com/injuries/league/2026/reg10

@@ -6,11 +6,11 @@ through `tools/build_console.py`'s own helpers (same nav, stylesheet and
 source-cell rules), and writes only what it owns:
 
     console/w10-finals.html                     the published page
-    data/console/w10_finals_2026_11_17.csv      the 14 finals, flat
-    data/console/w10_reconciliation_2026_11_17.csv  32-club reconciliation
+    data/console/w10_finals_2026_11_17_dc96bc33.csv      the 14 finals, flat
+    data/console/w10_reconciliation_2026_11_17_dc96bc33.csv  32-club reconciliation
 
 Every value comes from the 2026-11-17 official pack
-(`data/verification/2026_11_17/`), which `tools/verify_2026_11_17.py` re-derives
+(`data/verification/2026_11_17/`), which `tools/verify_2026_11_17_dc96bc33.py` re-derives
 and gates. Nothing on this page is typed by hand.
 """
 
@@ -51,8 +51,8 @@ def build(cfg):
     esc, table, pill, src_link, page = (cfg["esc"], cfg["table"], cfg["pill"],
                                         cfg["src_link"], cfg["page"])
     finals = _rows("official_w10_finals_2026_11_17.tsv")
-    std = _rows("official_standings_2026_11_17.tsv")
-    summary = json.load(open(os.path.join(PACK, "verification_summary_2026_11_17.json"),
+    std = _rows("official_standings_2026_11_17_dc96bc33.tsv")
+    summary = json.load(open(os.path.join(PACK, "verification_summary_2026_11_17_dc96bc33.json"),
                              encoding="utf-8"))
     checks = summary["checks"]
     b4 = checks["B4_corpus_reconciliation"]
@@ -60,7 +60,7 @@ def build(cfg):
 
     # ---------------- CSV exports (published with the tree) -----------------
     _write_csv(
-        "w10_finals_2026_11_17.csv",
+        "w10_finals_2026_11_17_dc96bc33.csv",
         ["game_id", "date_et", "note", "away", "away_score", "away_record",
          "home", "home_score", "home_record", "status", "game_url", "source_url"],
         [[r["game_id"], r["date_et"], r["note"], r["away"], r["away_score"], r["away_record"],
@@ -106,7 +106,7 @@ def build(cfg):
             src_link(STANDINGS_URL, "standings"),
         ])
         csv_recon.append([ab, r["w"], r["l"], r["t"], r["pf"], r["pa"], "match"])
-    _write_csv("w10_reconciliation_2026_11_17.csv",
+    _write_csv("w10_reconciliation_2026_11_17_dc96bc33.csv",
                ["abbr", "w", "l", "t", "pf", "pa", "corpus_match"], csv_recon)
 
     # ---------------- table C: what changed since 2026-11-16 ---------------
@@ -171,10 +171,14 @@ def build(cfg):
         'read 2026-11-17 22:45&ndash;22:48 UTC, chunks 0-1 of 2.</li>'
         f'<li><b>Standings.</b> {src_link(STANDINGS_URL, "NFL.com league standings")}, '
         'read 2026-11-17 22:48&ndash;22:52 UTC, chunks 0-1 of 2.</li>'
-        '<li><b>Checks.</b> <code>tools/verify_2026_11_17.py</code> &mdash; five checks, '
+        '<li><b>Checks.</b> <code>tools/verify_2026_11_17_dc96bc33.py</code> &mdash; five checks, '
         f'{summary["totals"]["checks_passed"]}/{summary["totals"]["checks_total"]} pass: standings '
-        'identities, league closure, cross-page records, corpus reconciliation, and continuity '
-        'against the 2026-11-16 pack. The tool exits non-zero if any number drifts.</li>'
+        'identities, league closure, cross-page records, corpus reconciliation, continuity '
+        'against the 2026-11-16 pack, and a cross-read against the independent same-hour '
+        'transcription by session arena-01c263c4-x1 (every standings cell and every score '
+        'cell agrees &mdash; see its own pack on '
+        '<a href="evidence-2026-11-17.html">Evidence pack 2026-11-17</a>). The tool exits '
+        'non-zero if any number drifts.</li>'
         '</ul>'
         '<h3>What is deliberately not here</h3>'
         '<div class="note warn"><b>Venues</b> are not published on this page except the Munich '
@@ -184,8 +188,8 @@ def build(cfg):
         'the 2026-11-16 pack transcribes its own read of the same page and is linked row by row. '
         'Nothing is filled in from memory.</div>'
         '<div class="note"><b>Downloads.</b> '
-        '<a href="../data/console/w10_finals_2026_11_17.csv">w10_finals_2026_11_17.csv</a> &middot; '
-        '<a href="../data/console/w10_reconciliation_2026_11_17.csv">w10_reconciliation_2026_11_17.csv</a> '
+        '<a href="../data/console/w10_finals_2026_11_17_dc96bc33.csv">w10_finals_2026_11_17_dc96bc33.csv</a> &middot; '
+        '<a href="../data/console/w10_reconciliation_2026_11_17_dc96bc33.csv">w10_reconciliation_2026_11_17_dc96bc33.csv</a> '
         '&middot; raw pack: <code>data/verification/2026_11_17/</code>.</div>'
     )
 
