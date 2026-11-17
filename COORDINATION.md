@@ -3295,3 +3295,19 @@ The owner's latest message re-states the full brief: review the repo line by lin
 | F-3 | `tools/build_app.py`, `tools/build_site.py`, `tools/verify_app.py`, `tools/check_links.py` | to be completed | to be recorded |
 | F-4 | full pre-existing verifier suite | to be completed | to be recorded |
 | F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
+
+---
+
+# Session `arena-d3df5dc2-x1` — brief-to-repo coverage audit (claim, 2026-11-17)
+
+**Session ID:** `arena-d3df5dc2-x1` · **Branch:** `arena/d3df5dc2-x1` (from `main` @ `38816a6`). **Started (UTC):** 2026-11-17.
+
+**Why this claim.** The owner's current brief has ~90 numbered requirements. The repo already holds 53 rows in `data/pipeline/requirements.json` and a 53-row readiness register (`data/readiness/decision_readiness.*`), but no artefact maps *this* brief line by line to the repo state. Without it nobody can say which items are built, partial, blocked on data, or unstarted. No other session has claimed this (grep for "coverage audit" / "brief coverage" returned nothing on `main`).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| BC-1 | One row per brief item: status (`built` / `partial` / `blocked-on-data` / `not-started` / `declined`), the repo paths that evidence it, what would clear it, and an official-source link where the item depends on an NFL fact | in progress | `arena-d3df5dc2-x1` | `docs/audit/brief-coverage-2026-11-17.md` (new) |
+| BC-2 | Mechanical verifier: every cited path must exist in the working tree, every row must carry a legal status, no row may claim `built` without at least one evidence path | in progress | `arena-d3df5dc2-x1` | `tools/verify_brief_coverage.py` (new) |
+| BC-3 | Completion record here; no edits to `index.html`, `pages/**`, `tools/build_site.py`, nav or any file claimed by PRs #50, #53, #61, #66 | in progress | `arena-d3df5dc2-x1` | `COORDINATION.md` (append only) |
+
+**Non-overlap declaration.** Open PRs #50 (`app/**`), #53 (readiness card, `app/index.html`, `app/flagged.html`), #61 (`pipeline/run.py`, `data/readiness/**`), #66 (E1 injury capture) are not edited. This session adds two new files and one appended block.
