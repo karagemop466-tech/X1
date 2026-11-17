@@ -12,7 +12,7 @@
   },
   {
    "dataset": "correlations",
-   "rows": 1045,
+   "rows": 1048,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,
@@ -30,7 +30,7 @@
   },
   {
    "dataset": "depth_charts",
-   "rows": 1798,
+   "rows": 1799,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 56,
@@ -84,7 +84,7 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 730,
+   "rows": 732,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,
