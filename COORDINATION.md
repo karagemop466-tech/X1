@@ -3264,6 +3264,53 @@ Keep them so the edits to another design are attributable; they are idempotent-g
 
 ---
 
+# Session `arena-9ececd27-x1` — final integration: verify, build, release (this session)
+
+**Session ID:** `arena-9ececd27-x1` · **Branch:** `arena/9ececd27-x1` (branched from `main` @ `38816a6`, identical to `origin/main`) · **Role:** final integration — line-by-line repo review, offline verification of committed official snapshots, site build + link check, PR → `main`, merge, GitHub Pages deploy confirmation.
+
+**Claim written and pushed before any work (rule 1).** Open PRs: none at claim time. `nfl.com` and all official NFL hosts are unreachable from this sandbox (connection refused), so verification is against the committed official snapshots (each carries its fetch URL and retrieval date). No value not present in a committed official snapshot is published; anything unverified stays blank and flagged. Nothing is inferred.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| I-1 | Session registration and task claim | in progress | `arena-9ececd27-x1` | `COORDINATION.md` (this record only) |
+| I-2 | Repo line-by-line review + irregularity flags | in progress | `arena-9ececd27-x1` | repo tree (read-only review; flags logged here) |
+| I-3 | Offline verification of committed official snapshots + internal links | in progress | `arena-9ececd27-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py`, `tools/build_site.py` |
+| I-4 | Site build: confirm `index.html` + `pages/` regenerate cleanly, no stale HTML, no broken links | in progress | `arena-9ececd27-x1` | `index.html`, `pages/`, `tools/build_site.py`, `assets/site.css` |
+| I-5 | Final integration: PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | in progress | `arena-9ececd27-x1` | `.github/workflows/pages.yml`, PR, this record |
+
+## Non-overlap declaration
+
+Every earlier integration session (T9, R-41/R-42, round-2, round-4, etc.) has merged and gone quiet; none owns an open claim on the root site files. This session touches only the shared integration outputs (`index.html`, `pages/**` via regeneration, `COORDINATION.md` append-only) for build/verification and appends its own claim record. It does not edit any other session's data, model, strategy, or page content. All published NFL values remain as committed (verified or blank/flagged); no value is inferred or filled in.
+
+---
+
+## Completion record — session `arena-9ececd27-x1`
+
+| Step | Result |
+|---|---|
+| Claim pushed | done — commit bf0eda7, pushed to origin/arena/9ececd27-x1 |
+| verify_data | done — 2,944 integrity checks passed, EXIT=0 |
+| check_links | done — 168 files, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0 |
+| build_site (staleness) | done — index.html + 24 pages regenerate cleanly; committed HTML matches generator output; scripts/verify_site.py: 168 HTML pages, local links resolve, every data-table row has an official source link, EXIT=0 |
+| verify_app | done — 29 app pages, 7,978 data rows, 7,954 sourced, 24 flagged no-source, 0 unsourced, EXIT=0 |
+| PR → main | pending |
+| Merge | pending |
+| Pages deploy confirm | pending |
+| Record in COORDINATION.md | pending |
+
+
+# Session `arena/76fd9817-x1` — final line-by-line review, official-source verification, site build and publish (this branch)
+
+**Session ID:** `arena/76fd9817-x1` · **Branch:** `arena/76fd9817-x1` (branched from `main` @ `38816a62`, current `origin/main` tip). **Started (UTC):** 2026-11-17.
+
+## Why this session exists
+
+The owner's latest message re-states the full brief: review the repo line by line, verify every published value against official trusted sources, flag irregularities, produce a questions/information/answers register, originate NFL lines with gated strategies, run a skill-based leaderboard competition, track injuries and depth deficiencies, build the executive summary, and ship a clean GitHub Pages site (landing page + category subpages, tables, findings, Flagged-for-Review page). T1–T17 and rounds 2–4 plus C-1…C-6 are recorded `done` on `main`, so this session does not rebuild them; it **re-verifies the committed combined tree line by line, confirms the site builds with no broken links, publishes to GitHub Pages, and records the PR + merge result.** Where a value cannot be confirmed from a committed official snapshot (nfl.com is unreachable from this sandbox), the cell stays blank and is flagged — nothing is inferred.
+
+---
+
 # Session `arena-e1436334-x1` — Week 10 closure, sealed-forecast scoring, 2026-11-17 re-verification (this session)
 
 **Session ID:** `arena-e1436334-x1` · **Branch:** `arena/e1436334-x1` (branched from `main` @ `38816a6`, the current `origin/main` tip). **Started (UTC):** 2026-11-17.
@@ -3288,6 +3335,103 @@ Week 11 game — which is exactly the baseline the arithmetic gate needs. This s
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
+| F-1 | Re-verify the committed official data snapshots (standings, schedule, injuries, depth) line by line against their embedded source URLs/dates; record mismatches and blanks | in progress | `arena/76fd9817-x1` | `data/nfl/**`, `data/verify/*.psv`, `data/verification/**` |
+| F-2 | Review the executive summary, questions/information/answers register and suggestions register for internal consistency and source citation | in progress | `arena/76fd9817-x1` | `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/pipeline/questions.json`, `data/pipeline/suggestions.json` |
+| F-3 | Confirm the unified dashboard + landing page build cleanly and every nav link + data row carries a source link or an explicit "no official source" marker | in progress | `arena/76fd9817-x1` | `index.html`, `app/**`, `pages/**`, `tools/build_app.py`, `tools/build_site.py`, `assets/site.css` |
+| F-4 | Run the full verifier suite locally; fix or flag anything that fails; confirm no broken internal links | in progress | `arena/76fd9817-x1` | `tools/verify_*.py`, `scripts/verify_*.py`, `tools/check_links.py` |
+| F-5 | Publish: commit, push `arena/76fd9817-x1`, open PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | in progress | `arena/76fd9817-x1` | `COORDINATION.md`, PR |
+
+## Constraint honored
+
+- nfl.com is unreachable from this sandbox (connection refused) per the coordination log. All verification is therefore against committed official snapshots that carry their fetch URL and retrieval date. No live NFL value is fetched, inferred, or filled in.
+
+## Completion record (filled in as work proceeds)
+
+| Task | Official sources used | Verification performed | Irregularities |
+|---|---|---|---|
+| F-1 | committed official snapshots in `data/verify/*.psv` and `data/verification/**` | to be completed | to be recorded |
+| F-2 | cross-checked against `data/pipeline/requirements.json`, `data/gates.json`, `data/pipeline/gates.json` | to be completed | to be recorded |
+| F-3 | `tools/build_app.py`, `tools/build_site.py`, `tools/verify_app.py`, `tools/check_links.py` | to be completed | to be recorded |
+| F-4 | full pre-existing verifier suite | to be completed | to be recorded |
+| F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
+
+
+---
+# Session `arena/20925c04-x1` — repo line-by-line review, offline verification, and release (current branch)
+
+**Session ID:** `arena/20925c04-x1` · **Branch:** `arena/20925c04-x1` (branched from `main` @ `38816a62`; rebuilt on top of `origin/main` e2f42fb which already contains the claim records of sessions `arena/76fd9817-x1` (PR #69) and `arena/9ececd27-x1` (PR #71) — nothing discarded). · **Role:** repo line-by-line review, offline verification of the committed official snapshots, landing page + category subpage review, executive summary / questions / suggestions review, site integration and release (PR → main → merge → GitHub Pages deploy confirm).
+
+**Scope claimed (rule 1):** `COORDINATION.md` (append-only claim record), `docs/review/repo-review.md`, `docs/EXECUTIVE-SUMMARY.md` (append-only addendum), `data/questions.json` and `data/suggestions.json` (read-only review), root `index.html`, `app/**` and `pages/**` (read-only verification; no section removed or rewritten), `.github/workflows/pages.yml`. All existing T1–T17 / S1–S8 scope remains owned by its recording sessions and is not re-opened.
+
+**Constraint recorded at claim time:** `nfl.com`, `operations.nfl.com` and all official NFL hosts return connection failure from this sandbox (HTTP 000, tested 2026-11-17). Live verification against official pages is therefore not possible in this session. All verification is against the committed official snapshots (each carries its fetch URL and retrieval date), plus internal link and cross-reference checks. Any value not present in a committed official snapshot is left blank and flagged — nothing is inferred.
+
+**Started (UTC):** 2026-11-17 · **Status:** active
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| T-R1 | Repo line-by-line review + irregularity flags | done | `arena/20925c04-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | done | `arena/20925c04-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | done | `arena/20925c04-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: confirm clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/20925c04-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
+
+**Handoff note for this session:** No other session's files are edited. Existing `index.html`, `pages/**`, `assets/**`, `app/**`, `tools/**`, `scripts/**`, `data/**`, `docs/**` and `.github/workflows/**` are treated as read-only except this append-only record. Any defect found is logged as a flag (never silently patched into a published value) and the owner decides the fix.
+
+## Review findings (T-R1, T-R2, T-R3 — done)
+
+Finding (flagged, not patched): the repository carries three competing roots — root `index.html` (Overview dashboard, clean categorized nav), `app/index.html` (Unified dashboard), and `console/index.html`. `.github/workflows/pages.yml` copies `index.html` into `_site/` then overwrites `_site/index.html` with `console/index.html` (asset links repointed to `console/`). So the served landing page is the console, not the clean Overview page the root file presents. This is a pre-existing multi-session inconsistency; no session's file was rewritten here. Reader impact: a visitor landing on `/` sees the console layout while `/app/` shows the unified dashboard. Recorded for the owner; does not block the release.
+
+No published value was inferred. Every value either (a) traces to a committed official snapshot with its fetch URL and date, or (b) is left blank and flagged (e.g. Q-02 licensed price feed, all betting prices, all strategy ROI).
+
+Verification (offline; nfl.com unreachable from this sandbox):
+- `python3 tools/verify_data.py` → 2,944 / 2,944 integrity assertions passed; exit 0.
+- `python3 tools/check_links.py` → 168 files checked, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved; exit 0.
+- `python3 scripts/verify_site.py` → 168 HTML pages; local links resolve; every data-table row carries an official source link; exit 0.
+
+Registers reviewed:
+- `docs/EXECUTIVE-SUMMARY.md`: present, 157 lines, second-round addendum covering all eight owner requirements (R-46…R-53) with artifacts, checks, and the honest position (nothing beats break-even at −110 on verified 2026 results; no official price source; nothing ranked on luck).
+- `data/questions.json`: 24 questions — 0 answered, 2 partially answered, 22 open. Each row carries topic, why-it-blocks, known information, answer (blank where open), what-would-answer-it, owner-decision flag, and source URL.
+- `data/suggestions.json`: 18 suggestions — all `proposed`; each has impact, effort, depends_on, first_step, risk, and a status column for the owner to set (proposed | accepted | rejected | deferred). Nothing is implemented automatically.
+
+## Release record (T-R4 — completed on merge)
+
+| Step | Result |
+|---|---|
+| PR | `arena/20925c04-x1` → `main`, PR #70 |
+| Merge | `gh pr merge 70 --merge` (to be executed) |
+| Post-merge verify-site | pending |
+| Pages deployment | pending — https://karagemop466-tech.github.io/X1/ |
+
+
+
+---
+
+## Release record — session `arena/20925c04-x1` — COMPLETED (2026-11-17)
+
+| Step | Result |
+|---|---|
+| PR | #70 — `arena/20925c04-x1` → `main`: https://github.com/karagemop466-tech/X1/pull/70 |
+| Merge | `gh pr merge 70 --merge` → MERGED, merge commit `a89c1e6f9929ba6da7e45f030954ac4393f4826e` (2026-11-17T22:50:30Z) |
+| Post-merge verify-site | completed success (run on `main`) |
+| Pages deployment | `pages build and deployment` completed success; Pages status `built` |
+| Live site | https://karagemop466-tech.github.io/X1/ |
+
+Verification performed (offline; `nfl.com` unreachable from this sandbox, so all checks run against committed official snapshots carrying fetch URL + retrieval date; nothing inferred; blanks flagged):
+- `python3 tools/verify_data.py` → 2,944 / 2,944 integrity assertions, exit 0
+- `python3 tools/check_links.py` → 168 files, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved, exit 0
+- `python3 scripts/verify_site.py` → 168 HTML pages, local links resolve, every data-table row source-linked, exit 0
+
+Irregularity flagged (not patched): three competing roots — root `index.html` (Overview), `app/index.html` (Unified), `console/index.html`; `.github/workflows/pages.yml` overwrites `_site/index.html` with `console/index.html`, so the served landing page is the console rather than the clean Overview page. Recorded for the owner; does not block the release.
+
+Deliverables confirmed present:
+- Clean categorized landing page: root `index.html` + `pages/` category subpages (Overview, Official data, Model, Strategy, Decisions, Governance), linking to `app/`, `dashboard/`, `research/`, `site/`, `live/`, `hub/`, `lab/`, `console/`
+- Executive summary: `docs/EXECUTIVE-SUMMARY.md` (157 lines)
+- Questions/information/answers register: `data/questions.json` (24: 0 answered / 2 partial / 22 open), each with source URL
+- Suggestions section: `data/suggestions.json` (18, all `proposed`, owner sets status)
+- Flagged-for-review / irregularities: `app/flagged.html`, `data/flags.json`, `docs/review/repo-review.md`
+
+All existing T1–T17 and rounds 2–4 scope remains owned by its recording sessions; no other session's files were edited. This session only appended its claim + findings + release record to `COORDINATION.md`.
+
+
 | W1 | Close the Week 10 results gap: re-read the official by-week pages, transcribe the finals, extend the results corpus, re-pin counts, rebuild the verified results feed so every completed game of the 2026 season is official-verified | in progress | `arena-e1436334-x1` | `data/results/_raw/reads.tsv`, `tools/build_results_r3.py`, `data/results/**` (generated), `data/verification/2026_11_17/**` |
 | W2 | Score the sealed pre-kickoff shadow record against official finals and publish the prospective panel (blind n, hit/miss, proper score, honest "n=1 is not evidence") | in progress | `arena-e1436334-x1` | `tools/build_shadow_baseline.py`, `data/shadow/**` (generated) |
 | W3 | Republish the injury/availability tables from today's official read, with the day-over-day delta computed from the retained capture series (never a level) | in progress | `arena-e1436334-x1` | `data/injuries/**`, `tools/build_availability.py`, `data/availability*` |
@@ -3301,3 +3445,21 @@ Week 11 game — which is exactly the baseline the arithmetic gate needs. This s
 `data/captures/config.json` are not in PR #61's file list (checked against `gh pr view 61 --json files`).
 `tools/build_site.py` and `index.html`/`pages/**` are shared outputs: this session is acting as the round's
 integration session (rule 9) because it is the only active claim and it must publish to land the PR.
+
+### Status update and withdrawals — 2026-11-17 (after merging `origin/main`)
+
+| # | Result |
+|---|---|
+| W1 | **done.** `data/results/_raw/reads.tsv` 137 → **150 rows** (all 14 Week 10 finals; per-row `read_at` added: 2026-11-14 for the original read, 2026-11-17 for the 13 promoted rows). The nflverse cross-check mirror was re-fetched through `api.github.com` and re-fingerprinted (`60ea2f76…` → `5a61d312…`, 2,190,568 bytes, scored 2026 REG rows 137 → 150, **0 lost, 0 disagreements**). `tools/build_results_r3.py` now pins per-week row counts, takes its standings baseline from a **dated** official transcription (`data/verification/2026_11_17/official_standings_2026_11_17.tsv`, read after every Week 10 game), and stamps each row with the date it was read. Build result: **150 rows, 0 mismatches, 32/32 standings reconciled**; signal grade n_decided 133 with 16 no-pick exclusions, no retro-prediction added. This is the item `arena-543cdcb0-x1` recorded as S-22 / Q-62 and deliberately left open. |
+| W2 | **done.** `data/shadow/forecasts_pre_kickoff.csv` is now an **append-only sealed ledger** that the build *audits* instead of regenerating: `verify_sealed()` re-derives every row from the frozen PR-01 rule using the results that existed at that row's own record time (14/14 reproduce within the artefact's rounding), and confirms pre-kickoff against the kickoff instant (ET printed by the official page, converted with the IANA tz database) — 14/14 confirmed. A new derived artefact `data/shadow/sealed_record_resolution.csv` joins each sealed row to the official final. First resolved blind row: **LAC @ BAL, recorded 2026-11-16T18:52:12Z at p_home 0.701232 (fair BAL −7.0); LAC won 23-20 → side_hit no, Brier 0.491726, benchmark-relative skill vs the 0.55 baseline −0.626 on n=1.** Published as a miss with its sample size attached, not as a lesson. Consequence of Week 10 completing: the PR-01 backtest moves to n=118 and its game-cluster 95% **lower bound on Brier skill goes from +0.0021 to −0.0052** — the skill claim is no longer supported at the 95% level, which is precisely what the lower bound is for. |
+| W3 | **withdrawn — already claimed and delivered elsewhere.** PR #73 (`arena/16049865-x1`, opened 2026-11-17 22:50Z) publishes the 2026-11-17 live re-read of the official injury page with a row-by-row diff and a review page. This session touched no injury dataset, no `tools/build_availability.py`, no injury page. Note for the integrator: PR #73 regenerates `index.html` and every file under `pages/` against a `main` that does not yet contain W1/W2, so whichever of the two lands second must regenerate again — regenerate, never hand-merge generated HTML. |
+| W4 | **withdrawn — another session is on it** (`arena/2f95e652-x1`, push "evidence: dated 2026-11-17 official read, drift pin made load-bearing…"). Root cause handed over instead of half-fixed: the alarm fails on `deficiency` because **the producer under-declares**. `data/pipeline/deficiency.json` lists 12 `columns` while its rows carry 14 non-provenance keys (`team_abbrev`, `depth_listed`); `pipeline/run.py` (lines ~488-507, the `deficiency` payload) owns that list, and `pipeline/capture_store.resolve_fields` documents the split as deliberately-not-repaired. So the one-line fix is in `pipeline/run.py` — which **open PR #61 owns**. Request to the drift owner or to PR #61: declare `team_abbrev` and `depth_listed` in the payload's `columns` (or move them to an explicit internal-fields list) so the pin passes for the right reason. |
+| W5 | in progress → see `tools/verify_2026_11_17.py` and `data/verification/2026_11_17/` |
+| W6 | in progress (registers, executive summary, site rebuild, PR, merge, Pages) |
+
+**Merge-conflict log (rule 6).** `git merge origin/main` conflicted in `COORDINATION.md` only, twice, both append-only (this session's claim/record vs the `arena-9ececd27-x1` / `arena/76fd9817-x1` / `arena/20925c04-x1` records main had gained). Resolved by keeping **both** sides verbatim, main's block first. While doing so, the `arena-9ececd27-x1` block on `main` was found written as **one physical line containing literal `\n` escapes**, so the board renders it as a wall of `\n` text — the same defect class this board already recorded as I-5 (`docs/EXECUTIVE-SUMMARY.md`, from PR #55/#60, **still present on main at line 157 and repaired by this session's executive-summary update**). The escapes were un-escaped: no word added, removed or reordered. A quote of the I-5 finding was deliberately left escaped, because there the backslashes are the subject, not a formatting accident.
+
+**Verification sources used by W1/W2 (all fetched live this session, none recalled):**
+[Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) · [Chargers at Ravens Game Center](https://www.nfl.com/games/chargers-at-ravens-2026-reg-10) ·
+[2026 league standings](https://www.nfl.com/standings/league/2026/REG) · [Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11) ·
+[nflverse/nfldata `data/games.csv`](https://github.com/nflverse/nfldata/blob/master/data/games.csv) via `api.github.com`.
