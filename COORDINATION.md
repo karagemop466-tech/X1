@@ -3344,3 +3344,94 @@ should be re-run so the `137`-game prose on `app/results.html`, `app/index.html`
 `lab/*.html` picks up the new count from the feed metadata, and PR #50/#53/#61/#66 should be reconciled
 against the new `data/results/**` baseline rather than merged blind (their transcriptions predate
 Week 10 closure).
+
+
+---
+
+## Session `arena-473e08d5-x1` — completion record (2026-11-17, N-1 … N-5)
+
+Week 10 closure: the verified results feed moved from 137 games to 150, its baseline moved with it, and
+the price-data policy the brief required before any published backtest was decided and wired.
+
+| # | Task | Status | Evidence |
+|---|---|---|---|
+| N-1 | Week 10 finals re-transcribed live from the official by-week page (14 games) plus the post-Week-10 standings read, every row with its official URL and the read window | **done** | `data/verification/2026_11_17/official_w10_results_2026_11_17.tsv` (14 rows, all `Final`, 0 scheduled), `official_standings_2026_11_17.tsv` (32 clubs, legend columns only), `official_gamecentre_LAC_BAL_2026_11_17.txt`, `mirror_w10_results_2026_11_17.tsv` (labelled third-party on every row) |
+| N-2 | Move the four coupled baselines in one change | **done** | `tools/promote_week10_2026_11_17.py` (derives every append from the pack; idempotent; `--check`), `data/results/_raw/reads.tsv` 137→150 with a new per-row `read_at`, `data/results/raw/official_results_2026_week10.psv` 1→14, `data/verify/raw/nfl_scores_2026_official_promotions_2026_11_17.psv` (dated overlay, older read untouched), `data/raw/nflverse/games.csv` + `data/raw_manifest.json` re-pinned, `tools/build_results_r3.py` (`N_EXPECT`, dated standings baseline, `len(feed_rows)` join pin), `tools/build_results_feed_907c.py`, `tools/build_results_feed_907c.py` reads the baseline by column name |
+| N-3 | Rebuild every consumer; re-measure the pre-registered shadow baseline with no rule-text change | **done** | `data/results/**`, `data/results_feed.json`, `data/shadow/**` regenerated; `tools/build_shadow_baseline.py` pin/behaviour only (frozen constants untouched); `tools/verify_2026_11_17.py` V1–V9 all pass |
+| N-4 | Price-data policy decided and implemented | **done** | `docs/methodology/price-snapshots.md` (five numbered rules), `tools/build_snapshots.py` (labelled `mirror_*` channel + `residual_vs_mirror_close`, 84/84 priced, 0 openings), `data/price_snapshots/provenance.json`, `tools/grade_roi.py` names its feed file per row |
+| N-5 | Publish: closure page, flags, register, PR, merge, Pages | **done** | `pages/results-closure.html` (+ NAV entry, index link, `tools/build_site.py` additive), `data/flags.json` F-22…F-26, `data/next_decisions/**` (S-22/Q-61/Q-62 answered, S-31 added), this record |
+
+### Sources used (all read this session, nothing recalled)
+
+* <https://www.nfl.com/schedules/2026/by-week/week-10> — 14 fixtures, all `Final`, plus the four byes
+  (CHI 7-2, DEN 7-2, PHI 2-7, TB 3-6); this render printed no kickoff time and no network per game.
+* <https://www.nfl.com/standings/league/2026/REG> — 32 clubs, legend-defined columns only.
+* <https://www.nfl.com/games/chargers-at-ravens-2026-reg-10> — LAC 23, BAL 20, quarter splits 10/7/3/3 vs
+  0/10/3/7, `M&T BANK STADIUM`, `BALTIMORE, MD`, in-page AFC West block.
+* <https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv> — third-party mirror, fetched
+  twice (22:44:27Z and 23:05:12Z); the 23:05 bytes are what `data/raw_manifest.json` pins
+  (sha256 `5a61d3121f2178ce…`, 2 190 568 B).
+
+### Verification performed
+
+* `python3 tools/verify_2026_11_17.py` → V1 read integrity, V2 agreement with the 2026-11-16 read
+  (13 of 13), V3 mirror score diff (14 of 14), V4 cross-page records (32 of 32), V5 standings arithmetic
+  (NET, PCT, HOME+ROAD = W-L-T, ΣW = ΣL, ΣPF = ΣPA), V6 collector parse vs hand read (32×6 fields),
+  V7 feed closure (150 games → 160 assertions, 32/32 clubs), V8 promotion accounting, V9 mirror file =
+  manifest pin = derived rows. 0 failures; `--check` reproduces the pack; both added to CI.
+* `python3 tools/build_results_r3.py` → 150 rows, 0 mismatches, 32/32 reconciled; signal grade
+  84-49 (63.16 %), z = 3.035, p = 0.0024, n = 133 — regenerated, not edited.
+* `python3 tools/build_results_feed_907c.py` → 150 final, 0 scheduled, 32/32 standings, 150/150 mirror.
+* `python3 tools/build_results.py` → 150 games, 32 × 5 values, ΣPF = ΣPA = 6 923.
+* `python3 tools/build_shadow_baseline.py --check` → n = 118 scored games, frozen pre-kickoff record
+  intact (sha256 `37fe5d5427d9…` as registered).
+* `bash /tmp/runsuite.sh` (48 local gates) → 48 PASS, 0 FAIL, including the three `git diff` staleness
+  guards on `index.html`/`pages`, `app` and `data/console`.
+* `python3 tools/promote_week10_2026_11_17.py --check` → 150 + 0, 14 + 0, 13 promotions: the appends are
+  exactly what the dated pack derives, and a re-run writes nothing.
+
+### Irregularities found (all published, none blocks the merge)
+
+* **F-22** the mirror's bytes changed between two fetches 21 minutes apart — the first lacked the Sunday
+  scores, so a cross-check cited by URL alone would have reported a 13-of-14 agreement for a complete week.
+* **F-23** the 2026-11-17 render of the Week 10 page printed no kickoff time and no network, where the
+  2026-11-16 render printed both. Dated reads are diffed, never merged; the blanks stay blank.
+* **F-24** published ROI and model-accuracy figures still describe 137 modelled games (the pipeline's
+  `model_spread` is blank for the 13 new finals), so `n` moved for settlement counts but not for ROI.
+* **F-25** `console/repo-review.html` counts tracked files, so it is stale in the commit that writes it —
+  an artefact no staleness guard can ever satisfy.
+* **F-26** the venue requirement cannot be met from the weekly page at all; 13 of 14 rows carry a blank
+  venue by rule. Suggestion S-31 is the path.
+* Shadow-baseline consequence, published not smoothed: with the corpus at 118 scored games the Brier skill
+  point estimate survives (+0.108919 vs the 0.55 home baseline) but its game-cluster 95 % lower bound is
+  now **−0.0052** — the model's edge is no longer distinguishable from zero at that bound.
+* Two bug classes found while doing the work and fixed here: `tools/build_site.py`'s `ref()` returns a bare
+  anchor, so a source column silently vanished from a page that used it as a cell; and 12 source links in
+  `tools/build_next_decisions.py` carried a doubled `blob/main/` path.
+
+### Overlap notes for other sessions
+
+* PR **#71** (`arena/9ececd27-x1`) edits `pages/shadow-baseline.html`. This session did **not** hand-edit
+  that file; it was regenerated by `tools/build_site.py` from `data/shadow/**`, whose numbers moved because
+  the corpus grew. If #71 changes the page's generator-side prose, expect a conflict in the generated HTML
+  only — resolve by re-running `python3 tools/build_site.py` on the merged tree, not by picking a side.
+* `.github/workflows/verify.yml`: two steps added (`verify_2026_11_17.py --check`,
+  `promote_week10_2026_11_17.py --check`), inserted after the 2026-11-16 pack step. Sessions #51/#53
+  historically conflicted here; the addition is additive and touches no existing step.
+* `data/flags.json`, `data/next_decisions/**`, `tools/build_next_decisions.py`, `tools/build_site.py`,
+  `tools/build_app.py`, `tools/build_shadow_baseline.py`, `tools/build_snapshots.py`, `tools/grade_roi.py`,
+  `tools/build_results*.py`, `data/results/**`, `data/shadow/**`, `data/snapshots/**`,
+  `data/price_snapshots/**`, `data/raw/**`, `data/verification/2026_11_17/**` — all written by this session.
+
+### Updated request to the final integrator (supersedes the one in the claim block above)
+
+1. The `137` prose on `app/results.html`, `app/index.html`, `console/*.html` and `lab/*.html` has already
+   been regenerated from the feed (and `tools/verify_app.py` now fails if the results page states a
+   settled-game count that differs from the feed it renders). `lab/**` was **not** touched: if it carries
+   its own `137`, re-run `python3 tools/lab/build_site.py` after merge.
+2. `pages/**` + `index.html` and `data/**` table changes in this PR are all *builder output* — re-run
+   `python3 tools/rebuild_for_refresh.py --pre-commit` on the merged tree instead of resolving HTML by
+   hand. One NAV entry and one index link were added for the closure page (`tools/build_site.py`); if the
+   integrator owns navigation, move that entry rather than deleting the page.
+3. Reconcile PR #50/#53/#61/#66 against the new 150-game baseline; their transcriptions predate the
+   closure, and `tools/verify_2026_11_17.py` V7 is the check they must now pass.
