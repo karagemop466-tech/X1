@@ -3268,6 +3268,6 @@ Keep them so the edits to another design are attributable; they are idempotent-g
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
-| X1-1 | Run existing site/data verification and publish a concise evidence-versus-gaps review without changing shared site/data outputs | in progress | `arena/9b01b075-x1` | `docs/repo-state-review-2026-11-17.md`, this coordination entry |
+| X1-1 | Run existing site/data verification and publish a concise evidence-versus-gaps review without changing shared site/data outputs | done | `arena/9b01b075-x1` | `docs/repo-state-review-2026-11-17.md`, this coordination entry |
 
-Claim recorded 2026-11-17 UTC. Existing suggestion and readiness pages already cover the requested decision board; this task adds a dated local verification summary and clearly limits what local checks establish. No other session's task or shared table/site generator is modified.
+Claim recorded 2026-11-17 UTC. Existing suggestion and readiness pages already cover the requested decision board; this task adds a dated local verification summary and clearly limits what local checks establish. Verification: `python3 scripts/verify_site.py` passed (168 HTML pages, local links, every data-table row has official source link); `python3 tools/check_links.py` passed (168 files, 44,192 assertions); `python3 scripts/verify_data.py` passed (345 injury rows across 14 games, hard checks). No other session's task or shared table/site generator was modified. Scope limitation: these checks do not freshly verify each underlying value against official NFL pages, as documented in the review.
