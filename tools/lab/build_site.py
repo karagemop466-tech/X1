@@ -1609,8 +1609,8 @@ def p_reads() -> str:
          esc(chk["C12_third_reader_agreement"]["mismatches"]), esc("of"),
          esc(f"{chk['C12_third_reader_agreement']['cells_compared']} comparable cells"),
          badge("0", "ok"), src(f"{GITHUB}/data/verification/2026_11_17", "third read")],
-        [esc("Week 10 fixtures whose <code>game_id</code> the two packs spell differently while every "
-             "printed value agrees"),
+        [esc("Week 10 fixtures whose") + " <code>game_id</code> " + esc("the two packs spell differently "
+             "while every printed value agrees"),
          esc(chk["C12_third_reader_agreement"]["game_id_conventions_diverge"]), esc("of"),
          esc(f"{len(w10)} fixtures"),
          badge("FLAGGED", "bad"), src(f"{GITHUB}/tools/lab/build_reads.py", "C12")],
@@ -1620,7 +1620,7 @@ def p_reads() -> str:
          esc(f"{chk['C5b_pinned_reference_is_stale']['clubs_that_moved']} clubs"),
          badge("stale pin", "warn"), src(f"{GITHUB}/data/verify/official_standings_2026_w10.psv", "the pin")],
     ]
-    closure = table(["Closure assertion", "Value", "", "Value", "Verdict", "Source"], closure_rows,
+    closure = table(["Closure assertion", "Value", "basis", "Value", "Verdict", "Source"], closure_rows,
                     numeric=(1, 3),
                     note="These lines are why the Week 10 slate can be called complete: the league's own "
                          "table says 150 games were played, this repository can show 150, and the points add up "
@@ -1807,6 +1807,12 @@ def p_escrow() -> str:
                        f"is to a single score, which is the number a reader needs before calling either record "
                        f"a signal.")
 
+    # Every ledger row names a fixture; the fixture's official page is transcribed in the
+    # forecasts pack. Open rows carry that official link and a second, explicit marker saying
+    # the SETTLEMENT source (the official final) is still pending - integration fix by session
+    # arena/dc96bc33-x1: the site rule wants a source link on every data row, and a row whose
+    # subject is an officially listed fixture has one even while its result does not exist yet.
+    fixture_urls = {r["game_id"]: r["official_fixture_url"] for r in rows}
     led_rows = []
     for r in led:
         if r["settled"] != "yes" and r["market"] != "side":
@@ -1820,7 +1826,8 @@ def p_escrow() -> str:
             vcell(r["fair_line_error_points"], "not settled yet"),
             esc(r["flags"]),
             src(r["settlement_source_url"], "official final") if r["settlement_source_url"]
-            else '<span class="src blank">no official source</span>',
+            else (src(fixture_urls.get(r["game_id"], ""), "fixture")
+                  + ' <span class="src blank">settlement source pending</span>'),
         ])
     ledger = table(["Ledger row", "Record", "Market", "Kickoff (ET)", "State", "Final", "Our line", "p",
                     "Brier", "Skill vs 0.55", "Line error (pts)", "Note", "Source"], led_rows,
@@ -1952,7 +1959,7 @@ def p_closure() -> str:
     opt_rows = [[esc(o["id"]), esc(o["name"]), esc(o["what_it_costs"]), esc(o["risk"]),
                  src(f"{GITHUB}/{READS_PACK}/feed-closure-measurement.json", "measurement")]
                 for o in d["options"]]
-    options = table(["", "The path", "What it costs", "What it risks", "Artefact"], opt_rows)
+    options = table(["Path id", "The path", "What it costs", "What it risks", "Artefact"], opt_rows)
 
     body = f"""
 <div class="note warn"><b>This page measures a blocker. It does not fix it.</b> Week 10 is closed on the

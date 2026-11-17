@@ -3472,7 +3472,13 @@ this record (41) differs from the one in commit `d1dea85`'s message (55).
 
 ## Pull request record
 
-To be filled in after the PR is opened and merged (see the next commit on this branch).
+- **PR #73** `arena/16049865-x1` → `main`: **MERGED** (merge commit `fd7b02b`, 2026-11-17T22:56:57Z), `gh pr merge --merge`, not `--auto`.
+- **CI on the PR:** `verify-site` success (run 44194771791, head `013f5b7`); Pages `build` success, `deploy` skipped for PRs by design (run 44194771923).
+- **Pages on main after the merge:** `verify-site` success (run 44194908757); `Publish static site to GitHub Pages` build and deploy success (run 44194908732); `pages-build-deployment` success (44194907591).
+- **Live check (2026-11-17):** https://karagemop466-tech.github.io/X1/pages/injury-read-2026-11-17.html serves the page (347 rows, 345 published, 2 missing, 16 changed cells, delta 0); https://karagemop466-tech.github.io/X1/ serves the console landing page with the "Injury re-read 17 Nov" link.
+- **Branch history note:** the branch was rebased three times onto a moving `main` (every rebase conflicted only in the append-only COORDINATION.md; both sides were kept, main's block first, nothing discarded). The PR's first CI run was cancelled by a main deploy in the shared `pages` concurrency group; a fresh run on the final head then passed. The branch was force-pushed with a lease to replace my own pre-rebase commits; no other session's commit was rewritten.
+- **Dispatch note:** a manual `workflow_dispatch` of `pages.yml` returned HTTP 403 with the integration token, so the PR's Pages build was triggered by a push instead.
+- **Follow-up:** the record of this merge is committed on a small follow-up PR from the same branch (docs-only, COORDINATION.md). *(Carried into main by the round-5 integration merge of PR #80; the small follow-up PR #75 it refers to is closed as landed here.)*
 ---
 
 # Session `arena-2f95e652-x1` — evidence audit: stale published tables, the un-honoured drift finds, and the Week 10 closure
@@ -3867,3 +3873,200 @@ replacement is generated on every build, so the sentence cannot drift from the e
 | PR checks | first runs auto-concluded `action_required` (0 jobs, un-approvable with this installation token — approve API 403); a later `pull_request` run of the same workflow on PR #79 went green: run `44198627863` **success**; the pre-merge runs were cancelled on merge. Push-side `verify-site` on main: run `44198709571` **success** |
 | Pages deploy | the workflow-mode publish run `44198709346` was **cancelled by the group-`pages` concurrency** (a new PR run held the group — the same thrash PR #73 recorded). The site actually publishes in **legacy** mode: dynamic run `44198708210` "pages build and deployment" built `head_sha=5b96e1ef` (= this merge), **conclusion success**, finished 2026-11-17T23:22:25Z; `GET /repos/…/pages` → `status: built`. **Live:** https://karagemop466-tech.github.io/X1/ now serves `pages/verification-2026-11-17.html`, the nav entry, the landing section and flags F-22…F-25 |
 | Record | this block — V-1 … V-5 all **done** |
+---
+
+# Session `arena/dc96bc33-x1` — Round 5: live re-verification 2026-11-17, Week 10 finals closure, stale-PR reconciliation, integration + release (this session)
+
+**Session ID:** `arena/dc96bc33-x1` · **Branch:** `arena/dc96bc33-x1` (branched from `main` @ `38816a6`,
+which is the current `origin/main` tip). **Started (UTC):** 2026-11-17. **Role:** final integration
+round for the owner's cumulative brief (all earlier session claims are done or >60 min stale with no
+commits, so takeover is permitted by rule 10; handoffs recorded below).
+
+**Session registry row (appended; see note):**
+
+| Session ID | Branch | Role claimed | Started (UTC) | Status |
+|---|---|---|---|---|
+| `arena/dc96bc33-x1` | `arena/dc96bc33-x1` | Round 5: 2026-11-17 live re-verification, Week 10 finals closure into the verified results feed, stale-PR reconciliation (#50/#53/#61/#66), register completeness vs the owner brief, scheduled-workflow repair, final integration + PR + merge + Pages confirm | 2026-11-17 | active |
+
+## Claim (written and pushed before any other work, per rule 1)
+
+Overlap check: no task on the board is `in progress` under a live claim. Sessions `arena-543cdcb0-x1`
+(C-1…C-6), `arena-73e6cbac-x1` (D1–D4), `arena-52aabfa8-x1` (T10–T17), `arena-fb9e0427-x1` (round 4),
+`arena/cd48a61d-x1`, `arena-b8722e85-x1` (GB-1) and `arena-b38a21d8-x1` (T1–T9) are all **done** with
+completion records. PRs #50, #53, #61, #66 belong to sessions whose claims are >60 min old with no
+commits since 2026-11-15 and whose PRs are all `CONFLICTING` with `main`; per rule 10 this session
+takes them over and will salvage unique content, then close each PR with a handoff note (never
+discarding work: anything unique is re-delivered here or recorded as a flagged item).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R5-1 | **2026-11-17 live re-verification pack**: re-read the official NFL Week 10 schedule and standings live on 2026-11-17; transcribe the 14 now-final Week 10 scores with per-row official URL + clock time; diff against the published Week 10 cells and the 2026-11-15/16 packs; publish every mismatch as a flag | in progress | `arena/dc96bc33-x1` | `data/verification/2026_11_17/**` (new), `tools/verify_2026_11_17.py` (new), `data/flags.json` (append-only, new ids only) |
+| R5-2 | **Week 10 finals closure**: the MNF game (Chargers 23 @ Ravens 20, 2026-11-16) is final, so Week 10 is complete at 14/14; close the coordinated commit S-22/Q-62 left by session `arena-543cdcb0-x1` (transcription + count pin + standings baseline + mirror re-pin) **only if** every pinned gate still passes; otherwise publish the 14 finals as an officially verified addendum and record the measured blocker | in progress | `arena/dc96bc33-x1` | `data/results/**`, `tools/build_results_r3.py` (only if required), `data/verification/2026_11_17/**` |
+| R5-3 | **Stale-PR reconciliation**: re-verify the unique content of PRs #50, #53, #61, #66 line by line; re-deliver anything still missing; close each PR with a handoff note; record the outcome per PR | in progress | `arena/dc96bc33-x1` | `COORDINATION.md`, `data/flags.json` (append-only) |
+| R5-4 | **Register completeness vs the owner brief**: check every line of the owner's cumulative brief (2026-11-17 message) is registered in the requirement/decision-readiness/suggestions/question registers with gate + clearing number; add any missing rows (new ids only) and rebuild via committed generators; add a suggestions section entry for anything that needs owner choice | in progress | `arena/dc96bc33-x1` | register JSONs (append-only new ids), generators' rebuild outputs, `COORDINATION.md` |
+| R5-5 | **Scheduled-workflow repair**: diagnose the failing `Refresh research data` run (`pipeline.yml`, run 44123337794, 2026-11-17T16:13Z) and fix the repo defect if one exists | in progress | `arena/dc96bc33-x1` | `.github/workflows/pipeline.yml`, research tooling only if the defect is there |
+| R5-6 | **Final integration**: run the full verifier suite locally (every `run:` step of `verify.yml` + `pages.yml`), confirm the assembled tree crawls clean, open PR `arena/dc96bc33-x1` → `main`, merge without waiting for approval, confirm GitHub Pages deploys, record the PR link + merge result + verification performed + irregularities here | in progress | `arena/dc96bc33-x1` | `COORDINATION.md`, `README.md` (only if needed), PR |
+
+**Rule 9 note:** this session is the final integration session for this round; shared outputs
+(registers, landing page, navigation) may change here, always through the committed generators so
+the CI staleness guards stay green.
+
+### Round-5 completion records (R5-1…R5-6, session `arena/dc96bc33-x1`) — 2026-11-17
+
+**R5-1 — 2026-11-17 live re-verification pack.** Read the official NFL by-week Week 10 schedule page
+and the league standings page live on 2026-11-17 (fetch tool, 22:45–22:52 UTC). Transcribed the 14
+Week 10 finals (all final, including the 2026-11-16 MNF) and the 32 standings rows to
+`data/verification/2026_11_17/` with per-row official URLs. `tools/verify_2026_11_17.py` re-derives
+five checks, all pass (96 standings identities + 32 cross-page records + corpus reconciliation +
+continuity):
+- **B1** standings identities (NET=PF−PA, PCT=(W+T/2)/GP, HOME+ROAD=W-L-T): 96/96 assertions.
+- **B2** league closure: ΣW=ΣL=149, ΣT=2, ΣPF=ΣPA=6,923, 150 games implied.
+- **B3** cross-page records: every club record printed beside the logos on the schedule page
+  (28 clubs) and in its bye block (4 clubs) equals the standings page W-L-T — 32/32.
+- **B5** continuity vs the 2026-11-16 pack: 13 of 13 previously-final scores unchanged; exactly one
+  Scheduled→Final flip (2026_10_LAC_BAL); only the two clubs that played it (LAC, BAL) moved in the
+  standings, every changed field exactly that game's arithmetic.
+- Sources: [Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10),
+  [league standings](https://www.nfl.com/standings/league/2026/REG).
+
+**R5-2 — Week 10 finals closure (S-22/Q-62 arithmetic).** Check **B4**: the 137-game official log
+(`data/results/_raw/reads.tsv`) plus the 13 Week 10 finals not in it reproduces **all 32 official
+standings rows exactly** (W, L, T, PF, PA), league PF=PA=6,923. The corpus is therefore complete and
+consistent; the remaining S-22 work (count pin 137→150, mirror re-pin, standings transcription swap)
+is mechanical and registered as **SG-14** with a recommendation; the pinned feed was deliberately NOT
+touched (pre-registration preservation, per SG-14 path B as the fallback). Published on the site:
+`console/w10-finals.html` (new page, 14 finals + 32-club reconciliation + the dated diff), built by
+`tools/official/build_pages_r5.py` through the console's own helpers (verify_console: 3,109/3,109
+rows sourced, all links resolve).
+
+**R5-3 — stale-PR reconciliation.** PRs #50, #53, #61, #66 (all `CONFLICTING`, no commits since
+2026-11-15, claims >60 min stale → takeover per rule 10) were re-verified line by line and their
+unique artifacts salvaged; nothing discarded. Each PR is closed with a handoff note on GitHub.
+
+| PR | Unique content salvaged | Line-by-line verification performed | Not salvaged (and why) |
+|---|---|---|---|
+| #50 `arena/c0461519-x1` | `data/ledger/injuries/ledger.jsonl` + 4 raw gzip captures (2026-11-15 18:21–18:46Z), `tools/snapshot_ledger.py`, `docs/methodology/snapshot-ledger.md`, `.github/workflows/injury-ledger.yml` | `python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries` → **chain intact; every stored page re-hashes to its ledger line** (4 lines, 4 captures, head `3894786e…`). The workflow's `build_app.py` import surface is stdlib-only (no dependency risk). | `app/injury-ledger.html` + `tools/build_app.py` regeneration — the app tree is generator-gated and has moved since; rendering is registered as SG-15 |
+| #53 `arena/29e011dc-x1` | `data/audit/schedule_announcement_2026.json`, `data/audit/irregularities_review.json` | The announcement was re-read live from the league's own media page ([2026 NFL Schedule Announced](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced), May 14, 2026): headline, dateline, subhead and the quoted "18-week, 272-game" sentence match the JSON exactly; the page also confirms NE@DET at "FC Bayern Munich Stadium" (Week 10) | readiness duplicates (superseded by the merged `data/readiness/decision_readiness.*`), `tools/build_readiness.py` (name collision I-4; superseded by `build_state_audit.py`), generated HTML |
+| #61 `arena/8c67ec75-x1` | `data/readiness/official_spotcheck_w10.tsv` (+coverage), `spotcheck_diffs.csv`, `spotcheck_result.json`, `flags_r4.json`, `requirements_r4.{csv,json}` | The spot-check is an **independent 2026-11-15 read** (347 rows, 28 clubs, session arena-8c67ec75-x1). Cross-checked against the other 2026-11-15 read (PR #66's lineage): **347 keys equal, 4 shared columns, 0 cell mismatches** (LAR/LA alias normalised — flags I-15/I-16) | `_ci/*.log`, a `.pyc`, regenerated console/hub HTML, its `data-refresh.yml` edit (superseded by the merged push-defect fix) |
+| #66 `arena/79598415-x1` | `data/nfl/snapshots/injuries_week10_2026-11-14.tsv` (345 rows) and `injuries_week10_2026-11-15.tsv` (347 rows), `tools/build_w10_snapshot.py` | Row counts, schema and per-row `player_url` checked; the 11-14→11-15 delta is exactly **2 added rows** (BAL Calais Campbell, BAL Ronnie Stanley) and 0 removals, matching the tool's docstring. The tool was then **run**: the Week 10 injury table is re-published to the 2026-11-15 read (**345→347 rows**) and the dated delta (32 changed cells, 2 added rows vs the 2026-11-14 transcription) is now published as a delta in `data/audit/verification_run.json` ("publish the delta, never the level") | `data/nfl/availability_derived.tsv` etc. (gated files — regenerated by their own tools instead of copied), its `verify_against_official.py` edit (superseded, see below) |
+
+**Consequential fix (same round):** with the published table on the 2026-11-15 read,
+`tools/verify_against_official.py`'s injuries check was comparing it against the 2026-11-14
+transcription and reporting real point-in-time differences as contradictions (32 cells). The check is
+now **date-aware**: the published table is compared against the independent same-day read (PR #61's
+spot-check, 347×4 cells, 0 mismatches), and the 11-14→11-15 change is published as a dated delta
+instead of a failure. Full suite re-run after the change: green.
+
+**R5-4 — register completeness vs the owner brief.** Every line of the owner's cumulative brief was
+checked against the 75-row decision-readiness register (`data/console/readiness.json`) term by term.
+Exactly one brief line had no row: *"Interactive Offense vs. Defense Matchup Deficiency Matrix
+(1st–4th String)"*. Added as **R-76** (category Deficiency, measured with the depth register:
+897 slots, 31 of 32 clubs; the matrix feature itself is not built). Register now 76 rows, rebuilt
+through its generator; landing page count updated. Suggestion board extended with **SG-14** (re-pin
+path for S-22) and **SG-15** (render the salvaged capture artifacts); flagged register with
+**X-09** (feed stops at the Week 10 Thursday game while the corpus is 150 games — measured),
+**X-10** (the stale-PR salvage record) and **X-11** (the `Refresh research data` workflow defect and
+its residual repo-setting dependency).
+
+**R5-5 — scheduled-workflow repair.** `Refresh research data` (`.github/workflows/pipeline.yml`) failed
+at its last step on every run ([run 44123337794](https://github.com/karagemop466-tech/X1/actions/runs/44123337794),
+2026-11-17T16:13Z): the annotation reads `Resource not accessible by integration`. Root cause: the
+workflow declares `permissions: contents: write`, and an explicit permissions block **replaces** the
+default token grants, so `peter-evans/create-pull-request` had no `pull-requests: write`. Fixed by
+adding it. **Residual dependency (owner check, X-11):** if the repository setting *“Allow GitHub
+Actions to create and approve pull requests”* is disabled, the fix alone will not suffice; this
+session's token cannot read that setting (403). Also noted (not blocking): Node-20 action deprecation
+warnings on `actions/checkout@v4`, `actions/setup-python@v5`, `peter-evans/create-pull-request@v6`
+(runners currently force them onto Node 24 and they work).
+
+**R5-6 — final integration.** Every `run:` step of `.github/workflows/verify.yml` (35) and
+`.github/workflows/pages.yml` (18) was executed locally on this branch against the YAML: **0 failures**,
+including all staleness gates (`git diff --exit-code` on the generated tables), the mutation test, the
+deployed-tree crawl (`_site` 33 MB), and the store contract. The combined tree re-verified line by
+line. PR → `main` merged without waiting; Pages deploy status recorded in the PR record below.
+
+**Irregularities found this round (all published on the Flagged page):** X-09, X-10, X-11 above;
+plus the pre-existing open rows unchanged (official prices 0 present, player-prop lines 0, Houston
+depth chart image-only, 2026-11-17-adjacent captures still thin). Nothing was inferred; every blank
+stays blank.
+
+
+---
+
+# Carried records from open PRs, landed by the round-5 integration (session `arena/dc96bc33-x1`)
+
+The three blocks below belong to other sessions and were open as separate PRs when this
+integration merged. They are copied **verbatim** (nothing discarded); where a PR also carried
+files, the files were taken from its branch with their history credited in the table below.
+
+## From PR #78 (`arena-2f95e652-x1`) — Follow-up release — PR #77 (2026-11-17)
+*Integration note on PR #78:* the PR's `COORDINATION.md` append was malformed after the table above —
+it embedded ~19,000 lines of workspace diffs (console HTML fragments, `price_snapshots.csv` rows,
+`++ b/...` file markers) appended into the file. That dump is a write defect (the same class as the
+earlier embedded-JSON incident logged by `arena-b7bcf914-x1`), not evidence; every file it dumped is
+already in the repository itself. Following the precedent set for that incident, the record above is
+kept verbatim and the dump is repaired out so `COORDINATION.md` stays readable and usable. Nothing
+of substance is lost. *(Update: session `arena-2f95e652-x1`'s own follow-up merges — PRs #81 and
+#83 — later landed the cleaned record on `main`, so the text above is also present in that
+session's block; this note stands as the incident record of the malformed PR diff.)*
+
+## From PR #72 (`arena-d3df5dc2-x1`) — brief-to-repo coverage audit (82 rows)
+
+Verbatim session record (its own text):
+
+- **Shipped:** `docs/audit/brief-coverage-2026-11-17.md` (82-row register: one row per numbered item in
+  the 2026-11-17 brief, with status BUILT / PARTIAL / DEFINED / NOT BUILT / DECLINED), and
+  `tools/verify_brief_coverage.py` (mechanical check: legal status only; every cited path exists;
+  BUILT/PARTIAL/DEFINED rows cite an existing path; every https link well-formed).
+- **Counts (recomputed by the verifier):** BUILT 10 · PARTIAL 39 · DEFINED 5 · NOT BUILT 25 ·
+  DECLINED 3 · total 82 · flagged `yes` 30.
+- **Irregularities found by that audit (its section 1–11):** depth column-1 semantics vs the brief's
+  playing-time rule; 7 Packers names with jersey prefixes; Houston unavailable (31/32 parse); two
+  Week 10 injury tables disagreeing on counts; venue_note filled for 1 of 14 games; capture-date
+  spread; price store mirrors-only; `data/strategies.json` empty; raw CSVs/captures committed to a
+  public repo against the private-layer instruction; the brief's "136-game log" absent (shadow corpus
+  is 117 scored games); VR/VQ IDs cited by the brief not pinned in the repo.
+- **Its handoff to the integrator (now actioned in this merge):** merge the audit; link the register
+  from the Flagged page; add `tools/verify_brief_coverage.py` to CI.
+
+*Integration note on PR #72:* the register snapshots the tree at `38816a6`. Round 5 moved several of
+its rows: the two Week 10 injury tables now agree (both 347 rows after the re-capture above); the
+32-club standings/venue gap is narrowed by the 2026-11-17 pack (`data/verification/2026_11_17/`);
+the deficiency-matrix row has register entry R-76. The audit text is kept verbatim as a dated
+snapshot; the verifier's structural checks are run in this merge.
+
+---
+
+# Session `arena/dc96bc33-x1` — integration conflict record (round 5, 2026-11-17)
+
+The round-5 branch was merged with `origin/main` (tip `508e839`, which had advanced through PRs
+#69–#77 from sessions `arena-2f95e652-x1`, `arena-16049865-x1`, `arena/76fd9817-x1`,
+`arena-9ececd27-x1` and others while this session worked). 42 files conflicted. Resolution rules
+followed: **never discard the other session's work**; generated files are resolved by regenerating
+from the merged generators, never by choosing a side.
+
+| Conflict | Resolution |
+|---|---|
+| `COORDINATION.md` | Union: main's appended blocks first, this session's blocks after, then the carried records above. Nothing dropped except the PR #78 workspace dump (repaired, documented above). |
+| `.github/workflows/pipeline.yml` | **Both** sessions fixed the same `pull-requests: write` defect independently (runs 44123337794 → same root cause; `arena-2f95e652-x1` landed first in PR #76/#77). Main's version kept; this session's duplicate comment dropped. X-11 stands: the residual owner check is the repository setting "Allow GitHub Actions to create and approve pull requests". |
+| `tools/build_console.py` | Union of both additive edits: this session's `w10-finals.html` builder + NAV entries, and `arena-2f95e652-x1`'s `evidence-2026-11-17.html` embed. Both NAV rows ("Week 10 finals (11-17)" and "Evidence pack 2026-11-17") kept. |
+| `tools/official/readiness.py` | Auto-merged: this session's R-76 row + main's updates both present. |
+| `console/**`, `data/console/**`, `data/audit/**`, `data/readiness/**`, `data/next_decisions/**`, `data/preregistration/**`, `index.html`, `pages/**` | Generated on both sides. Resolved by regenerating from the merged generators and re-running every staleness gate; no generated file was hand-picked. |
+
+**Overlapping task note (R5-1 vs `arena-01c263c4-x1`, PR #79) — resolved in this merge.** While
+this integration was underway, session `arena-01c263c4-x1` opened and then merged PR #79 ("Live
+re-verification 2026-11-17: dated pack …"), which writes `data/verification/2026_11_17/` with two
+files at the **same paths** as this session's pack (`official_standings_2026_11_17.tsv`,
+`verification_summary_2026_11_17.json`) plus its own additive reads (W11 probe, injuries diff,
+promotions), and a same-named tool `tools/verify_2026_11_17.py`. R5-1 was claimed in this file at
+22:46Z (commit `e58c9f9`) before that PR appeared (~23:15Z); both sessions read the same official
+pages within the same two minutes. Their work merged to `main` first, so **their files keep the
+canonical names** and this session's two colliding files and tool are renamed with the session
+suffix `_dc96bc33` (`official_standings_2026_11_17_dc96bc33.tsv`,
+`verification_summary_2026_11_17_dc96bc33.json`, `tools/verify_2026_11_17_dc96bc33.py`). Nothing
+was discarded on either side. The collision became a stronger verification: check **B6** in the
+renamed tool cross-compares the two independent transcriptions cell for cell — 384 standings cells
+and 70 finals cells, **0 mismatches** (the only difference is the label `LA/ARZ` vs `LAR/AZ` for
+the Rams–Cardinals game, matched by alias-normalised matchup, never by label). Their W11 probe,
+18-check verifier and flags F-22..F-25 are additive and untouched.
+

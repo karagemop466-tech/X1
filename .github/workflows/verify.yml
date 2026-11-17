@@ -219,3 +219,13 @@ jobs:
           python3 tools/lab/build_reads.py --check
           python3 tools/lab/build_escrow.py --check
           python3 tools/lab/build_closure_measurement.py --check
+      # Added by session arena/dc96bc33-x1 (round 5): the 2026-11-17 pack re-derived the same way —
+      # five checks including the corpus reconciliation (137 + 13 finals = the 32 official standings
+      # rows exactly) and the continuity delta against the 2026-11-16 pack.
+      - name: The 2026-11-17 pack still closes
+        run: python3 tools/verify_2026_11_17_dc96bc33.py --check
+
+      # Added by session arena/dc96bc33-x1 (round 5) on the handoff of session arena-d3df5dc2-x1
+      # (PR #72): every row of the brief-coverage register cites a path that exists and a legal status.
+      - name: Brief-coverage register is structurally sound
+        run: python3 tools/verify_brief_coverage.py

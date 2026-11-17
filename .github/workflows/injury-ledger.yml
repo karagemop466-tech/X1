@@ -1,0 +1,83 @@
+# Immutable injury-report ledger (session arena-c0461519-x1).
+#
+# Every run performs a real read of the official NFL.com injury page on the GitHub
+# runner, verifies the whole hash chain, regenerates the dashboard page that shows
+# it, and commits the result (append-only; raw bytes only when the page changes).
+#
+#   pull_request (same-repo branch) : PROBE + commit to that PR branch, so the first
+#                                     live capture is in git where it can be re-hashed.
+#   pull_request (fork)             : read and verify only; nothing is committed.
+#   schedule / workflow_dispatch    : CAPTURE on the default branch; a fatal flag
+#                                     (fetch failure, empty page, schema drift) fails
+#                                     the run after the failed read is recorded.
+name: injury-ledger
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"   # every 4 hours UTC: the report is read daily, Wed through kickoff
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "tools/snapshot_ledger.py"
+      - "tools/build_app.py"
+      - ".github/workflows/injury-ledger.yml"
+      - "data/ledger/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: injury-ledger
+  cancel-in-progress: false
+
+jobs:
+  ledger:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Read the official injury page and append one ledger line
+        id: capture
+        continue-on-error: true
+        run: python3 tools/snapshot_ledger.py capture --out data/ledger/injuries
+
+      - name: Verify the whole ledger (chain and raw bytes)
+        run: python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries
+
+      - name: Regenerate the ledger page
+        run: python3 tools/build_app.py
+
+      - name: Commit the new ledger lines and the page (append-only)
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        run: |
+          set -e
+          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+          git config user.name "x1-bot"
+          git config user.email "x1-bot@users.noreply.github.com"
+          git add data/ledger/injuries app
+          if git diff --cached --quiet; then
+            echo "nothing new to commit"
+            exit 0
+          fi
+          git commit -m "ledger: injury-report read $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for attempt in 1 2 3; do
+            if git pull --rebase -q origin "$BRANCH" && git push -q origin "HEAD:$BRANCH"; then
+              echo "pushed to $BRANCH"; exit 0
+            fi
+            echo "push attempt ${attempt} failed; retrying"; sleep $((attempt * 5))
+          done
+          echo "could not push the ledger"; exit 1
+
+      - name: Alarm — fail the run when the read hit a fatal flag
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo "::error::Injury-report read failed or the page schema changed. The ledger line records the flags."
+          exit 1

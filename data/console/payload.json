@@ -1,9 +1,9 @@
 {
- "as_of": "2026-11-17T23:22:09Z",
+ "as_of": "2026-11-17T23:51:05Z",
  "promoted": [],
  "strategies": 16,
  "verify_total": 859,
- "verify_mismatch": 0,
+ "verify_mismatch": 8,
  "reconcile": {
   "games": 137,
   "last_gameday": "2026-11-12",

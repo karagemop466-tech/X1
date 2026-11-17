@@ -1,0 +1,141 @@
+[
+ {
+  "id": "R4-F01",
+  "severity": "high",
+  "title": "Chargers (LAC) and Ravens (BAL) rows in the published injury table have blank designations",
+  "detail": "Field differences against the official page read on 2026-11-15: LAC 26, BAL 6 (two Ravens rows, Calais Campbell and Ronnie Stanley, are absent; Jaylinn Hawkins has no injury and no game status where the page shows Knee and Out). On the Chargers the injury descriptions and game statuses are blank where the page prints them. The pipeline marked all 345 rows verified, with zero flags.",
+  "links": [
+   "https://www.nfl.com/injuries/",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/injuries/injuries_2026_week10.csv",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/spotcheck_diffs.csv"
+  ]
+ },
+ {
+  "id": "R4-F02",
+  "severity": "medium",
+  "title": "Verification checks presence of a link, not that the value matches the official page",
+  "detail": "tools/verify_console.py passes on 2026-11-15 (every link resolves, every row sourced), while the injury table it reads differs from the official page in 34 field values (R4-F01). Source presence is checked; source values are not.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_console.py",
+   "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_app.py",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/readiness/spotcheck_diffs.csv"
+  ]
+ },
+ {
+  "id": "R4-F03",
+  "severity": "high",
+  "title": "The leaderboard publishes backtest and forward ROI columns",
+  "detail": "The brief forbids backtest numbers on the leaderboard. data/strategy_leaderboard.csv has holdout_bets, holdout_win_pct, holdout_ci95, holdout_roi_110, holdout_p_raw, holdout_p_bonf, forward_2026_bets, forward_2026_win_pct, forward_2026_roi_110, holdout_positive_seasons.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  ]
+ },
+ {
+  "id": "R4-F04",
+  "severity": "high",
+  "title": "The G1 sample-size gate is defined three ways",
+  "detail": "gates.json: 500 singles bets and 300 two-leg tickets; README: 100 bets; leaderboard column G1_sample_ge_300. One definition must be ratified.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json",
+   "https://github.com/karagemop466-tech/X1/blob/main/README.md",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_leaderboard.csv"
+  ]
+ },
+ {
+  "id": "R4-F05",
+  "severity": "high",
+  "title": "The strategy registry lists fewer strategies than the site reports",
+  "detail": "data/strategy_registry.csv has 10 strategies; the site reports 16 strategies.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/strategy_registry.csv",
+   "https://github.com/karagemop466-tech/X1/blob/main/console/index.html"
+  ]
+ },
+ {
+  "id": "R4-F06",
+  "severity": "medium",
+  "title": "Pre-registration is recorded as a date, not as a commit hash",
+  "detail": "data/gates.json records registered_at as a date. The brief requires the commit hash to be the registration.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/gates.json"
+  ]
+ },
+ {
+  "id": "R4-F07",
+  "severity": "low",
+  "title": "The owner brief's game-log count (136) differs from the repository's 2026 feed (137 rows)",
+  "detail": "137 rows in verified_results_2026_r3.csv. The brief figure is quoted, not re-verified. The difference needs reconciling before the corpus is frozen.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results_2026_r3.csv"
+  ]
+ },
+ {
+  "id": "R4-F08",
+  "severity": "medium",
+  "title": "Injury counts in the brief are superseded by the official page",
+  "detail": "The brief cites 254 and 279 rows and 4 Cincinnati players (quoted, not re-verified). On the 2026-11-15 read the page lists 347 rows and 9 Cincinnati players. Each figure is kept with its date.",
+  "links": [
+   "https://www.nfl.com/injuries/"
+  ]
+ },
+ {
+  "id": "R4-F09",
+  "severity": "medium",
+  "title": "Texans (HOU) depth chart not parsed",
+  "detail": "The houstontexans.com depth-chart URL returned HTTP 200 with a page title and no parsed tables in data/pipeline/_run_report.json, and a later attempt returned 404. No authorised structured source is recorded, so HOU is left blank, not transcribed by eye.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/_run_report.json"
+  ]
+ },
+ {
+  "id": "R4-F10",
+  "severity": "medium",
+  "title": "Only 1 of 14 Week 10 fixtures carries a venue",
+  "detail": "The venue of each fixture must come from the official game centre. The game-centre pages have not been captured.",
+  "links": [
+   "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/nfl/schedule_2026_week10.csv"
+  ]
+ },
+ {
+  "id": "R4-F11",
+  "severity": "high",
+  "title": "The injury archive has not yet written an entry",
+  "detail": "pipeline/archive.py and its workflow step are merged in this round. The archive's first entry is created by the first scheduled run; until then no multi-day history exists.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/pipeline/archive.py",
+   "https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/data-refresh.yml"
+  ]
+ },
+ {
+  "id": "R4-F12",
+  "severity": "medium",
+  "title": "Reserve moves are in official news, not in the injury report",
+  "detail": "The Dolphins' QB Malik Willis moved to injured reserve, and the Patriots placed RB TreVeyon Henderson on injured reserve, per official news links. The report does not show reserve status, so 'not listed' is not 'available'.",
+  "links": [
+   "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+   "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14"
+  ]
+ },
+ {
+  "id": "R4-F13",
+  "severity": "high",
+  "title": "The price store stamps every row with the build time, not a capture time",
+  "detail": "src/console/feed.py build_price_snapshots writes one build timestamp into captured_at_utc, open_captured_at_utc and close_captured_at_utc. The committed rows read 2026-11-14T20:48:22Z. A rebuild on 2026-11-15 rewrites all 18,902 rows to 2026-11-15T18:20:14Z, and the row order changes. The mirror publishes no capture time (its own note says so), so these fields must not be presented as capture times. Found during the R4-1 console rebuild, which was not committed.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/src/console/feed.py",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/console/price_snapshots.csv"
+  ]
+ },
+ {
+  "id": "R4-F14",
+  "severity": "medium",
+  "title": "Replacement-depth coverage does not reconcile with the 31-club and 897-slot figures on the landing page",
+  "detail": "data/depth/replacement_depth.csv has 78 rows across 20 clubs. data/depth/replacement_depth_summary.json reports 897 slots from data/pipeline/depth_charts.json, which lists 31 clubs (all except Houston, see R4-F09). The club count in the replacement file is not explained by the depth charts. Not reconciled this round.",
+  "links": [
+   "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth.csv",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/depth/replacement_depth_summary.json",
+   "https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/depth_charts.json"
+  ]
+ }
+]

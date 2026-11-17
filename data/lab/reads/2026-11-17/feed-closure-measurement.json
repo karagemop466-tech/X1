@@ -19,12 +19,12 @@
  },
  "dataset": "feed-closure-measurement",
  "decision_for_the_owner": "B is the recommended path and it is small: one gate edit, a re-pinned baseline, the row-count pins, and a regeneration of the artefacts in M5. What it is not is a data problem - M3 shows the closure reproduces the league table exactly. No session should make that call, because it changes what 'verified' means for every row already published; that is why it is recorded here as a decision and not implemented as a change.",
- "generated_at": "2026-11-17T23:28:58+00:00",
+ "generated_at": "2026-11-17T23:50:40+00:00",
  "generated_by": "tools/lab/build_closure_measurement.py (session arena-9d8c298c-x1)",
  "inputs": {
   "code/reference_data_2026_w10.py": "08a3caa73aac9c53a1a57fda2ad38abc4285dee7ea98747837567b10c1bfd167",
   "data/lab/reads/2026-11-17/week10_finals.tsv": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703",
-  "data/pipeline/standings.json": "528fc0abb510fe5f5be2977461f787a12eb09551772154d4bcf95b2dc4479ded",
+  "data/pipeline/standings.json": "58fd1f78f308fffd09b278c58e55ea3e29500b0872b0bc8f10e368c752cadf9c",
   "data/results/_raw/reads.tsv": "684d0f01e4bbd6956c2399f3f392a17392783927053dcef9830a69528795a2d4",
   "tools/build_results_r3.py": "7fa0c274ab5e2057685168857a3612258d0f7c0b71f240ae30b51f8cd6da822b"
  },
@@ -686,9 +686,9 @@
   "M5_blast_radius": {
    "by_kind": {
     "build_results_r3": 9,
-    "reads.tsv": 11,
+    "reads.tsv": 14,
     "signal_grade": 12,
-    "verified_results": 28
+    "verified_results": 32
    },
    "files": {
     ".github/workflows/pages.yml": [
@@ -742,6 +742,15 @@
     "data/questions.json": [
      "signal_grade"
     ],
+    "data/readiness/flags_r4.json": [
+     "verified_results"
+    ],
+    "data/readiness/requirements_r4.csv": [
+     "verified_results"
+    ],
+    "data/readiness/requirements_r4.json": [
+     "verified_results"
+    ],
     "data/results/graded_bets.csv": [
      "verified_results"
     ],
@@ -767,10 +776,16 @@
     "data/shadow/games_scored.csv": [
      "reads.tsv"
     ],
+    "data/verification/2026_11_17/verification_summary_2026_11_17_dc96bc33.json": [
+     "reads.tsv"
+    ],
     "docs/EXECUTIVE-SUMMARY.md": [
      "reads.tsv",
      "verified_results",
      "build_results_r3"
+    ],
+    "docs/audit/brief-coverage-2026-11-17.md": [
+     "verified_results"
     ],
     "docs/methodology/results-feed-all-seasons.md": [
      "verified_results"
@@ -823,6 +838,9 @@
     "tools/grade_roi.py": [
      "verified_results"
     ],
+    "tools/official/build_pages_r5.py": [
+     "reads.tsv"
+    ],
     "tools/patch_site_543cdcb0.py": [
      "reads.tsv"
     ],
@@ -830,11 +848,14 @@
      "verified_results",
      "build_results_r3"
     ],
+    "tools/verify_2026_11_17_dc96bc33.py": [
+     "reads.tsv"
+    ],
     "tools/verify_results_feed.py": [
      "verified_results"
     ]
    },
-   "files_naming_the_results_log_or_the_feed": 41,
+   "files_naming_the_results_log_or_the_feed": 48,
    "reading": "a closure is not one file: this is the list of artefacts that name the log or the feed and would have to be regenerated and re-verified in the same commit. Frozen inputs (PR-01's) are deliberately excluded from 'just do it' by that fact. Renderings are excluded too, so the count is the cost of the change and not a function of how many pages happen to describe it.",
    "scan_scope": "tools, scripts, code, docs, data, .github; html and this pack's own output excluded"
   },

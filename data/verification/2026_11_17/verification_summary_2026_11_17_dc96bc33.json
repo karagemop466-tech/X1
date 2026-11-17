@@ -1,0 +1,269 @@
+{
+ "checks": {
+  "B1_standings_identities": {
+   "assertions": 96,
+   "clubs": 32,
+   "failures": [],
+   "note": "NET = PF - PA; PCT = (W + T/2)/GP; HOME + ROAD = W-L-T.",
+   "verdict": "pass"
+  },
+  "B2_league_closure": {
+   "failures": [],
+   "games_implied": 150,
+   "total_losses": 149,
+   "total_points_against": 6923,
+   "total_points_for": 6923,
+   "total_ties": 2,
+   "total_wins": 149,
+   "verdict": "pass"
+  },
+  "B3_cross_page_records": {
+   "failures": [],
+   "matched": 32,
+   "note": "Every club record printed on the by-week schedule page (14 fixtures x 2 clubs + 4 bye clubs) against the league standings page. Two official pages, one value set.",
+   "records_compared": 32,
+   "rows": [
+    {
+     "club": "WAS",
+     "match": true,
+     "schedule_page": "3-5-1",
+     "standings_page": "3-5-1"
+    },
+    {
+     "club": "NYG",
+     "match": true,
+     "schedule_page": "5-3-1",
+     "standings_page": "5-3-1"
+    },
+    {
+     "club": "NE",
+     "match": true,
+     "schedule_page": "5-5",
+     "standings_page": "5-5-0"
+    },
+    {
+     "club": "DET",
+     "match": true,
+     "schedule_page": "7-2",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "KC",
+     "match": true,
+     "schedule_page": "7-2",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "ATL",
+     "match": true,
+     "schedule_page": "3-7",
+     "standings_page": "3-7-0"
+    },
+    {
+     "club": "HOU",
+     "match": true,
+     "schedule_page": "3-6",
+     "standings_page": "3-6-0"
+    },
+    {
+     "club": "CLE",
+     "match": true,
+     "schedule_page": "6-4",
+     "standings_page": "6-4-0"
+    },
+    {
+     "club": "MIN",
+     "match": true,
+     "schedule_page": "7-2",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "GB",
+     "match": true,
+     "schedule_page": "6-4",
+     "standings_page": "6-4-0"
+    },
+    {
+     "club": "MIA",
+     "match": true,
+     "schedule_page": "1-8",
+     "standings_page": "1-8-0"
+    },
+    {
+     "club": "IND",
+     "match": true,
+     "schedule_page": "3-7",
+     "standings_page": "3-7-0"
+    },
+    {
+     "club": "CAR",
+     "match": true,
+     "schedule_page": "4-5",
+     "standings_page": "4-5-0"
+    },
+    {
+     "club": "NO",
+     "match": true,
+     "schedule_page": "3-6",
+     "standings_page": "3-6-0"
+    },
+    {
+     "club": "BUF",
+     "match": true,
+     "schedule_page": "8-1",
+     "standings_page": "8-1-0"
+    },
+    {
+     "club": "NYJ",
+     "match": true,
+     "schedule_page": "2-8",
+     "standings_page": "2-8-0"
+    },
+    {
+     "club": "JAX",
+     "match": true,
+     "schedule_page": "7-2",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "TEN",
+     "match": true,
+     "schedule_page": "1-8",
+     "standings_page": "1-8-0"
+    },
+    {
+     "club": "LA",
+     "match": true,
+     "schedule_page": "6-4",
+     "standings_page": "6-4-0"
+    },
+    {
+     "club": "AZ",
+     "match": true,
+     "schedule_page": "3-7",
+     "standings_page": "3-7-0"
+    },
+    {
+     "club": "SEA",
+     "match": true,
+     "schedule_page": "6-4",
+     "standings_page": "6-4-0"
+    },
+    {
+     "club": "LV",
+     "match": true,
+     "schedule_page": "4-6",
+     "standings_page": "4-6-0"
+    },
+    {
+     "club": "SF",
+     "match": true,
+     "schedule_page": "8-1",
+     "standings_page": "8-1-0"
+    },
+    {
+     "club": "DAL",
+     "match": true,
+     "schedule_page": "4-6",
+     "standings_page": "4-6-0"
+    },
+    {
+     "club": "PIT",
+     "match": true,
+     "schedule_page": "6-3",
+     "standings_page": "6-3-0"
+    },
+    {
+     "club": "CIN",
+     "match": true,
+     "schedule_page": "7-2",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "LAC",
+     "match": true,
+     "schedule_page": "1-8",
+     "standings_page": "1-8-0"
+    },
+    {
+     "club": "BAL",
+     "match": true,
+     "schedule_page": "4-6",
+     "standings_page": "4-6-0"
+    },
+    {
+     "club": "CHI",
+     "match": true,
+     "schedule_page": "7-2-0",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "DEN",
+     "match": true,
+     "schedule_page": "7-2-0",
+     "standings_page": "7-2-0"
+    },
+    {
+     "club": "PHI",
+     "match": true,
+     "schedule_page": "2-7-0",
+     "standings_page": "2-7-0"
+    },
+    {
+     "club": "TB",
+     "match": true,
+     "schedule_page": "3-6-0",
+     "standings_page": "3-6-0"
+    }
+   ],
+   "verdict": "pass"
+  },
+  "B4_corpus_reconciliation": {
+   "clubs_reconciled": 32,
+   "failures": [],
+   "finals_added_from_2026_11_17_pack": 13,
+   "games_in_reads_tsv": 137,
+   "games_total": 150,
+   "note": "The 137-game official log plus the 13 Week 10 finals reproduces all 32 official standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. This is the arithmetic that closes suggestion S-22 / question Q-62: the corpus is complete and consistent; what remains for the pinned feed is the mechanical re-pin (count pin, mirror re-pin, standings transcription swap), recorded as SG-14.",
+   "verdict": "pass"
+  },
+  "B5_continuity_vs_2026_11_16": {
+   "failures": [],
+   "finals_unchanged": 13,
+   "note": "13 of 13 previously-final scores unchanged; the Monday night game is the only new final; only the two clubs that played it moved in the standings, and every changed field is exactly that game's arithmetic.",
+   "scheduled_to_final": [
+    "2026_10_LAC_BAL"
+   ],
+   "scores_changed": [],
+   "standings_rows_moved": [
+    "BAL",
+    "LAC"
+   ],
+   "verdict": "pass"
+  },
+  "B6_cross_read_vs_arena_01c263c4_x1": {
+   "failures": [],
+   "finals_cells_compared": 70,
+   "note": "Session arena-01c263c4-x1 read the same official pages at the same hour (~22:50 UTC vs this read 22:45-22:52 UTC) and transcribed them independently. Every standings cell and every final score/record cell must agree exactly. Two independent reads of one official source agreeing is the strongest form of the verification this repository can do.",
+   "standings_cells_compared": 384,
+   "verdict": "pass"
+  }
+ },
+ "generated_at": "2026-11-17T23:50:55Z",
+ "pack": "nfl-official-2026-11-17",
+ "read_by": "session arena/dc96bc33-x1, via the fetch tool; no value recalled from memory",
+ "retrieved_at_utc": "2026-11-17T22:45Z-22:48Z (Week 10 results) / 2026-11-17T22:48Z-22:52Z (standings)",
+ "sources": {
+  "official_log": "data/results/_raw/reads.tsv",
+  "prior_pack": "data/verification/2026_11_16/",
+  "standings": "https://www.nfl.com/standings/league/2026/REG",
+  "week10_results": "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "week10_results_read_url": "https://www.nfl.com/schedules/2026/REG/week/10"
+ },
+ "totals": {
+  "assertions": 174,
+  "checks_passed": 6,
+  "checks_total": 6
+ },
+ "verdict": "pass"
+}

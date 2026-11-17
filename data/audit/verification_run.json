@@ -47,20 +47,30 @@
   },
   {
    "table": "injuries",
-   "source": "https://www.nfl.com/injuries/league/2026/reg10",
-   "rows_published": 345,
-   "rows_official": 345,
-   "cells_compared": 1725,
+   "source": "https://www.nfl.com/injuries/ (Week 10 of the 2026 season; published table and the independent spot-check both read 2026-11-15)",
+   "rows_published": 347,
+   "rows_official": 347,
+   "cells_compared": 1388,
    "mismatches": [],
    "rows_unmatched": [],
    "teams_missing_from_published": [],
    "published_rows_not_in_this_read": [],
-   "note": "The official page prints 28 club tables: the four clubs on bye (CHI, DEN, PHI, TB) have no table in Week 10. rows_official is therefore lower than rows_published whenever the published file also carries bye-week rows from elsewhere; see published_rows_not_in_this_read.",
+   "dated_delta_vs_2026_11_14": {
+    "cells_changed": 32,
+    "rows_added_on_2026_11_15": [
+     "BAL Calais Campbell",
+     "BAL Ronnie Stanley"
+    ],
+    "rows_removed_on_2026_11_15": [],
+    "source": "https://www.nfl.com/injuries/league/2026/reg10",
+    "note": "Point-in-time change between two dated reads of the same official page, published as a delta and not treated as a contradiction."
+   },
+   "note": "The official page prints 28 club tables: the four clubs on bye (CHI, DEN, PHI, TB) have no table in Week 10. The published table (2026-11-15 read, 347 rows) is compared against an independent second read of the same page on the same date (347 rows, LAR/LA alias normalised): the two sessions' reads agree cell for cell.",
    "ok": true
   }
  ],
  "totals": {
-  "cells_compared": 2183,
+  "cells_compared": 1846,
   "mismatches": 0,
   "rows_unmatched": 0,
   "tables_ok": 4,

@@ -28,11 +28,11 @@
    "kind": "live"
   },
   "published_2026_11_14": {
-   "rows": 345,
+   "rows": 347,
    "clubs": 28,
    "games": 14,
    "duplicates": [],
-   "sha256": "573e19bae2d4eefe5d8c444c1d34cc898155c0ceef6da2b46be898dc748b8942",
+   "sha256": "c454339180adb4e01ca2332f17fe8db0ff9ddf9641f2697a1a9591c3cf513066",
    "label": "The published 2026-11-14 table",
    "path": "data/nfl/injuries_week10.tsv",
    "captured": "2026-11-14",
@@ -47,10 +47,10 @@
    "Doubtful": 11
   },
   "published_2026_11_14": {
-   "(none)": 185,
-   "Out": 66,
-   "Questionable": 84,
-   "Doubtful": 10
+   "(none)": 176,
+   "Out": 70,
+   "Questionable": 90,
+   "Doubtful": 11
   }
  },
  "presence": {
@@ -59,407 +59,19 @@
    "extra": []
   },
   "published_2026_11_14": {
-   "missing": [
-    {
-     "team": "BAL",
-     "player": "Calais Campbell",
-     "game": "LAC@BAL",
-     "pos": "DT",
-     "injury": "",
-     "practice": "Did Not Participate In Practice",
-     "status": ""
-    },
-    {
-     "team": "BAL",
-     "player": "Ronnie Stanley",
-     "game": "LAC@BAL",
-     "pos": "T",
-     "injury": "",
-     "practice": "Did Not Participate In Practice",
-     "status": ""
-    }
-   ],
+   "missing": [],
    "extra": []
   }
  },
- "cells": [
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "BAL",
-   "player": "Adam Randall",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Neck, Hamstring",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "BAL",
-   "player": "Adam Randall",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "BAL",
-   "player": "Jaylinn Hawkins",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Knee",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "BAL",
-   "player": "Jaylinn Hawkins",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Out",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "IND",
-   "player": "Arden Key",
-   "game": "MIA@IND",
-   "field": "injury",
-   "live_value": "",
-   "other_value": "Hamstring"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "IND",
-   "player": "Arden Key",
-   "game": "MIA@IND",
-   "field": "status",
-   "live_value": "",
-   "other_value": "Questionable"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Branson Taylor",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Ankle",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Branson Taylor",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Out",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Brenen Thompson",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Hamstring",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Brenen Thompson",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Doubtful",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Bud Dupree",
-   "game": "LAC@BAL",
-   "field": "practice",
-   "live_value": "Full Participation in Practice",
-   "other_value": "Did Not Participate In Practice"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "David Njoku",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Fibula",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "David Njoku",
-   "game": "LAC@BAL",
-   "field": "practice",
-   "live_value": "Full Participation in Practice",
-   "other_value": "Limited Participation in Practice"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "David Njoku",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Denzel Perryman",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Pectoral",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Denzel Perryman",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Isas Waxter",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Ankle",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Isas Waxter",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Out",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Justin Eboigbe",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Ankle",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Justin Eboigbe",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Kayode Awosika",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Fibula",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Kayode Awosika",
-   "game": "LAC@BAL",
-   "field": "practice",
-   "live_value": "Full Participation in Practice",
-   "other_value": "Limited Participation in Practice"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Kayode Awosika",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Keaton Mitchell",
-   "game": "LAC@BAL",
-   "field": "practice",
-   "live_value": "Full Participation in Practice",
-   "other_value": "Limited Participation in Practice"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Kendall Williamson",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Calf",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Kendall Williamson",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Out",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Ladd McConkey",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Back",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Ladd McConkey",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Rodney Shelley",
-   "game": "LAC@BAL",
-   "field": "practice",
-   "live_value": "Full Participation in Practice",
-   "other_value": "Limited Participation in Practice"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Trey Pipkins",
-   "game": "LAC@BAL",
-   "field": "injury",
-   "live_value": "Not injury related - personal matter, Knee",
-   "other_value": ""
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Trey Pipkins",
-   "game": "LAC@BAL",
-   "field": "practice",
-   "live_value": "Limited Participation in Practice",
-   "other_value": "Did Not Participate In Practice"
-  },
-  {
-   "capture": "published_2026_11_14",
-   "captured": "2026-11-14",
-   "kind": "published",
-   "team": "LAC",
-   "player": "Trey Pipkins",
-   "game": "LAC@BAL",
-   "field": "status",
-   "live_value": "Questionable",
-   "other_value": ""
-  }
- ],
+ "cells": [],
  "conflicts": [],
  "console_vs_published": {
-  "rows": 345,
+  "rows": 347,
   "differing": 0
  },
  "findings": [
   {
    "id": "R10-01",
-   "severity": "amber",
-   "area": "Injury report rows",
-   "finding": "The published 2026-11-14 table is missing 2 row(s) that the live page prints: BAL Calais Campbell; BAL Ronnie Stanley.",
-   "effect": "A player absent from the table cannot be joined to a depth slot, so a real replacement at those slots is invisible to the availability model.",
-   "source": "https://www.nfl.com/injuries/league/2026/reg10"
-  },
-  {
-   "id": "R10-02",
-   "severity": "amber",
-   "area": "Injury report cells",
-   "finding": "32 cell(s) differ between the published 2026-11-14 table and the live page across 16 player(s).",
-   "effect": "Either the designations changed between the two dates (expected: the report is a daily series) or the 11-14 read carries transcription errors. The two cannot be told apart from the data alone \u2014 which is why the dated capture matters more than the row count.",
-   "source": "https://www.nfl.com/injuries/league/2026/reg10"
-  },
-  {
-   "id": "R10-03",
    "severity": "green",
    "area": "Read conflict",
    "finding": "This session's read and session ed8c600d's read of the same page on the same day agree on every cell, every row and every club.",
@@ -467,7 +79,7 @@
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
   },
   {
-   "id": "R10-04",
+   "id": "R10-02",
    "severity": "amber",
    "area": "Provenance",
    "finding": "No raw response bytes are retained for any injury-report read in this repository: nfl.com is unreachable over TLS from the sandbox's bash (curl exit 35), so every capture is a transcription made through a text-extraction tool.",

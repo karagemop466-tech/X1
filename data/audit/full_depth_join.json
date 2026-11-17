@@ -12,18 +12,18 @@
   "clubs_without_a_chart": [
    "HOU"
   ],
-  "injury_rows": 345,
-  "joined_rows": 255,
+  "injury_rows": 347,
+  "joined_rows": 257,
   "unmatched_rows": 90,
-  "starters_listed_first_at_slot": 162,
-  "starters_ruled_out": 30,
-  "backups_depth_2_to_4_out_or_doubtful": 15,
+  "starters_listed_first_at_slot": 164,
+  "starters_ruled_out": 31,
+  "backups_depth_2_to_4_out_or_doubtful": 18,
   "pilot_clubs_on_the_site_pages": 5,
-  "starters_ruled_out_in_the_pilot": 6
+  "starters_ruled_out_in_the_pilot": 7
  },
  "starter_by_position_group": {
   "offense": 18,
-  "defense": 12
+  "defense": 13
  },
  "rows": [
   {
@@ -1619,9 +1619,9 @@
    "position_on_chart": "DE",
    "depth": "1",
    "unit": "Defense",
-   "injury": "Hamstring",
+   "injury": "",
    "practice_status": "Full Participation in Practice",
-   "game_status": "Questionable",
+   "game_status": "",
    "club_chart_url": "https://www.colts.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3101,9 +3101,9 @@
    "position_on_chart": "LG",
    "depth": "1",
    "unit": "Offense",
-   "injury": "",
-   "practice_status": "Limited Participation in Practice",
-   "game_status": "",
+   "injury": "Fibula",
+   "practice_status": "Full Participation in Practice",
+   "game_status": "Questionable",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3115,7 +3115,7 @@
    "depth": "2",
    "unit": "Defense",
    "injury": "",
-   "practice_status": "Did Not Participate In Practice",
+   "practice_status": "Full Participation in Practice",
    "game_status": "",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -3127,9 +3127,9 @@
    "position_on_chart": "DL",
    "depth": "2",
    "unit": "Defense",
-   "injury": "",
+   "injury": "Ankle",
    "practice_status": "Limited Participation in Practice",
-   "game_status": "",
+   "game_status": "Questionable",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3205,9 +3205,9 @@
    "position_on_chart": "WR",
    "depth": "1",
    "unit": "Offense",
-   "injury": "",
+   "injury": "Back",
    "practice_status": "Did Not Participate In Practice",
-   "game_status": "",
+   "game_status": "Questionable",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3219,7 +3219,7 @@
    "depth": "2",
    "unit": "Offense",
    "injury": "",
-   "practice_status": "Limited Participation in Practice",
+   "practice_status": "Full Participation in Practice",
    "game_status": "",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -3232,7 +3232,7 @@
    "depth": "3",
    "unit": "Defense",
    "injury": "",
-   "practice_status": "Limited Participation in Practice",
+   "practice_status": "Full Participation in Practice",
    "game_status": "",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -3244,9 +3244,9 @@
    "position_on_chart": "LT",
    "depth": "2",
    "unit": "Offense",
-   "injury": "",
+   "injury": "Ankle",
    "practice_status": "Did Not Participate In Practice",
-   "game_status": "",
+   "game_status": "Out",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3257,9 +3257,9 @@
    "position_on_chart": "WR",
    "depth": "2",
    "unit": "Offense",
-   "injury": "",
+   "injury": "Hamstring",
    "practice_status": "Did Not Participate In Practice",
-   "game_status": "",
+   "game_status": "Doubtful",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3270,9 +3270,9 @@
    "position_on_chart": "S",
    "depth": "3",
    "unit": "Defense",
-   "injury": "",
+   "injury": "Calf",
    "practice_status": "Did Not Participate In Practice",
-   "game_status": "",
+   "game_status": "Out",
    "club_chart_url": "https://www.chargers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3304,6 +3304,19 @@
   },
   {
    "team": "BAL",
+   "player": "Calais Campbell",
+   "position_printed": "DT",
+   "position_on_chart": "DE",
+   "depth": "1",
+   "unit": "Defense",
+   "injury": "",
+   "practice_status": "Did Not Participate In Practice",
+   "game_status": "",
+   "club_chart_url": "https://www.baltimoreravens.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "BAL",
    "player": "Kyle Hamilton",
    "position_printed": "S",
    "position_on_chart": "DB",
@@ -3322,8 +3335,21 @@
    "position_on_chart": "SS",
    "depth": "1",
    "unit": "Defense",
-   "injury": "",
+   "injury": "Knee",
    "practice_status": "Limited Participation in Practice",
+   "game_status": "Out",
+   "club_chart_url": "https://www.baltimoreravens.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "BAL",
+   "player": "Ronnie Stanley",
+   "position_printed": "T",
+   "position_on_chart": "LT",
+   "depth": "1",
+   "unit": "Offense",
+   "injury": "",
+   "practice_status": "Did Not Participate In Practice",
    "game_status": "",
    "club_chart_url": "https://www.baltimoreravens.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -3928,28 +3954,28 @@
    "team": "LAC",
    "player": "David Njoku",
    "position": "TE",
-   "game_status": "",
+   "game_status": "Questionable",
    "why": "player not listed on his club's depth chart"
   },
   {
    "team": "LAC",
    "player": "Denzel Perryman",
    "position": "LB",
-   "game_status": "",
+   "game_status": "Questionable",
    "why": "player not listed on his club's depth chart"
   },
   {
    "team": "LAC",
    "player": "Trey Pipkins",
    "position": "T",
-   "game_status": "",
+   "game_status": "Questionable",
    "why": "player not listed on his club's depth chart"
   },
   {
    "team": "LAC",
    "player": "Isas Waxter",
    "position": "CB",
-   "game_status": "",
+   "game_status": "Out",
    "why": "player not listed on his club's depth chart"
   },
   {
@@ -3970,7 +3996,7 @@
    "team": "BAL",
    "player": "Adam Randall",
    "position": "RB",
-   "game_status": "",
+   "game_status": "Questionable",
    "why": "player not listed on his club's depth chart"
   }
  ]

@@ -159,7 +159,7 @@ IND,CJ Allen,LB,,Full,,https://www.nfl.com/injuries/
 IND,Jaylon Carlies,LB,Neck,DNP,Out,https://www.nfl.com/injuries/
 IND,Akeem Davis-Gaither,LB,Knee,DNP,Out,https://www.nfl.com/injuries/
 IND,A.J. Haulcy,S,,Full,,https://www.nfl.com/injuries/
-IND,Arden Key,DE,Hamstring,Full,Questionable,https://www.nfl.com/injuries/
+IND,Arden Key,DE,,Full,,https://www.nfl.com/injuries/
 IND,Will Mallory,TE,Hamstring,Limited,Questionable,https://www.nfl.com/injuries/
 IND,Luke Rhodes,LS,Hamstring,DNP,Out,https://www.nfl.com/injuries/
 IND,Grover Stewart,DT,,Full,,https://www.nfl.com/injuries/
@@ -317,30 +317,32 @@ CIN,Andrei Iosivas,WR,Thumb,Full,Doubtful,https://www.nfl.com/injuries/
 CIN,Dexter Lawrence,DT,,DNP,,https://www.nfl.com/injuries/
 CIN,Brian Parker II,G,Knee,Full,Doubtful,https://www.nfl.com/injuries/
 CIN,DJ Turner II,CB,,Full,,https://www.nfl.com/injuries/
-LAC,Kayode Awosika,G,,Limited,,https://www.nfl.com/injuries/
-LAC,Bud Dupree,DE,,DNP,,https://www.nfl.com/injuries/
-LAC,Justin Eboigbe,DE,,Limited,,https://www.nfl.com/injuries/
+LAC,Kayode Awosika,G,Fibula,Full,Questionable,https://www.nfl.com/injuries/
+LAC,Bud Dupree,DE,,Full,,https://www.nfl.com/injuries/
+LAC,Justin Eboigbe,DE,Ankle,Limited,Questionable,https://www.nfl.com/injuries/
 LAC,Alex Harkey,G,,Full,,https://www.nfl.com/injuries/
 LAC,Tre Harris,WR,,Full,,https://www.nfl.com/injuries/
 LAC,Cam Hart,CB,,Full,,https://www.nfl.com/injuries/
 LAC,Daiyan Henley,LB,,Full,,https://www.nfl.com/injuries/
 LAC,Deane Leonard,CB,,Full,,https://www.nfl.com/injuries/
 LAC,Khalil Mack,LB,,Full,,https://www.nfl.com/injuries/
-LAC,Ladd McConkey,WR,,DNP,,https://www.nfl.com/injuries/
-LAC,Keaton Mitchell,RB,,Limited,,https://www.nfl.com/injuries/
-LAC,David Njoku,TE,,Limited,,https://www.nfl.com/injuries/
-LAC,Denzel Perryman,LB,,Full,,https://www.nfl.com/injuries/
-LAC,Trey Pipkins,T,,DNP,,https://www.nfl.com/injuries/
-LAC,Rodney Shelley,CB,,Limited,,https://www.nfl.com/injuries/
-LAC,Branson Taylor,G,,DNP,,https://www.nfl.com/injuries/
-LAC,Brenen Thompson,WR,,DNP,,https://www.nfl.com/injuries/
-LAC,Isas Waxter,CB,,DNP,,https://www.nfl.com/injuries/
-LAC,Kendall Williamson,S,,DNP,,https://www.nfl.com/injuries/
+LAC,Ladd McConkey,WR,Back,DNP,Questionable,https://www.nfl.com/injuries/
+LAC,Keaton Mitchell,RB,,Full,,https://www.nfl.com/injuries/
+LAC,David Njoku,TE,Fibula,Full,Questionable,https://www.nfl.com/injuries/
+LAC,Denzel Perryman,LB,Pectoral,Full,Questionable,https://www.nfl.com/injuries/
+LAC,Trey Pipkins,T,"Not injury related - personal matter, Knee",Limited,Questionable,https://www.nfl.com/injuries/
+LAC,Rodney Shelley,CB,,Full,,https://www.nfl.com/injuries/
+LAC,Branson Taylor,G,Ankle,DNP,Out,https://www.nfl.com/injuries/
+LAC,Brenen Thompson,WR,Hamstring,DNP,Doubtful,https://www.nfl.com/injuries/
+LAC,Isas Waxter,CB,Ankle,DNP,Out,https://www.nfl.com/injuries/
+LAC,Kendall Williamson,S,Calf,DNP,Out,https://www.nfl.com/injuries/
 BAL,Rasheen Ali,RB,,Full,,https://www.nfl.com/injuries/
 BAL,Rashod Bateman,WR,,Full,,https://www.nfl.com/injuries/
+BAL,Calais Campbell,DT,,DNP,,https://www.nfl.com/injuries/
 BAL,Kyle Hamilton,S,,Full,,https://www.nfl.com/injuries/
-BAL,Jaylinn Hawkins,S,,Limited,,https://www.nfl.com/injuries/
+BAL,Jaylinn Hawkins,S,Knee,Limited,Out,https://www.nfl.com/injuries/
 BAL,Matthew Hibner,TE,,Full,,https://www.nfl.com/injuries/
 BAL,Olaivavega Ioane,G,,Full,,https://www.nfl.com/injuries/
-BAL,Adam Randall,RB,,Full,,https://www.nfl.com/injuries/
+BAL,Adam Randall,RB,"Neck, Hamstring",Full,Questionable,https://www.nfl.com/injuries/
+BAL,Ronnie Stanley,T,,DNP,,https://www.nfl.com/injuries/
 BAL,Nate Wiggins,CB,,Full,,https://www.nfl.com/injuries/

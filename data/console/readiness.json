@@ -2,7 +2,7 @@
  "generated": "2026-11-15",
  "rule": "One row per requirement. 'Gate' is the check that fails today; 'needs' is the number that would clear it; 'today' is that number as measured, with the file it was read from. Nothing in the 'today' column is typed by hand.",
  "counts": {
-  "total": 75,
+  "total": 76,
   "by_category": {
    "Programme": 6,
    "Prices": 3,
@@ -14,7 +14,8 @@
    "Governance": 9,
    "Modelling": 10,
    "Schedule": 2,
-   "Competition": 4
+   "Competition": 4,
+   "Deficiency": 1
   }
  },
  "rows": [
@@ -194,7 +195,7 @@
    "quote": "Run the 32-team roster/IR sweep before any team-level model is trusted",
    "gate": "Every club's roster and reserve list captured on one date.",
    "needs": "32 of 32 clubs with a dated roster + reserve list",
-   "today": "0 of 345 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
+   "today": "0 of 347 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
    "measurement": 0,
    "provenance": "https://www.nfl.com/injuries/league/2026/reg10",
    "clears": "A roster/reserve endpoint that is not a news article per club.",
@@ -311,8 +312,8 @@
    "quote": "Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it",
    "gate": "This page, on the landing page, rebuilt with the site.",
    "needs": "This page, with every gate stated",
-   "today": "75 requirement rows, 11 categories, each with a gate and a clearing number",
-   "measurement": 75,
+   "today": "76 requirement rows, 12 categories, each with a gate and a clearing number",
+   "measurement": 76,
    "provenance": "data/console/readiness.json (this page)",
    "clears": "Done \u2014 this table. Its own measurement is the standings re-read as a build check.",
    "source": "https://www.nfl.com/standings/league/2026/REG"
@@ -441,7 +442,7 @@
    "quote": "Treat roster turnover as a first-class data event",
    "gate": "Depth, availability and lineup evidence versioned against the last roster event.",
    "needs": "100% of depth rows carrying the roster-event date they follow",
-   "today": "0 of 345 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
+   "today": "0 of 347 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
    "measurement": 0,
    "provenance": "https://www.nfl.com/injuries/league/2026/reg10",
    "clears": "A dated transactions log parsed into a versioned roster.",
@@ -571,8 +572,8 @@
    "quote": "Calibrate what 'Questionable' means empirically instead of using old percentages",
    "gate": "Play rate per designation with an interval, from joined seasons.",
    "needs": "Per-designation play rate with 95% CI",
-   "today": "published table holds 345 rows against 347 printed today; 2 rows missing, 32 cells differ; two same-day reads agree: yes",
-   "measurement": 345,
+   "today": "published table holds 347 rows against 347 printed today; 0 rows missing, 0 cells differ; two same-day reads agree: yes",
+   "measurement": 347,
    "provenance": "data/console/week10_reconcile.json (nfl.com injury report, read 2026-11-15)",
    "clears": "Several seasons of designations joined to inactives.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -584,7 +585,7 @@
    "quote": "Baltimore still publishes Lamar Jackson and Tyler Huntley at QB after both went on injured reserve",
    "gate": "Every depth row checked against the latest transactions.",
    "needs": "0 depth rows naming a player who is on reserve",
-   "today": "0 of 345 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
+   "today": "0 of 347 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
    "measurement": 0,
    "provenance": "https://www.nfl.com/injuries/league/2026/reg10",
    "clears": "This claim does not reproduce today: the Ravens chart lists Brissett/Fagnano/Slovis. See the flag.",
@@ -610,8 +611,8 @@
    "quote": "Kerby Joseph, Cade Mays and D.J. Reed are published with a blank game-status cell",
    "gate": "Every printed designation present in the published table.",
    "needs": "0 printed designations missing",
-   "today": "published table holds 345 rows against 347 printed today; 2 rows missing, 32 cells differ; two same-day reads agree: yes",
-   "measurement": 345,
+   "today": "published table holds 347 rows against 347 printed today; 0 rows missing, 0 cells differ; two same-day reads agree: yes",
+   "measurement": 347,
    "provenance": "data/console/week10_reconcile.json (nfl.com injury report, read 2026-11-15)",
    "clears": "Done for these three: all print Out on today's page and Out in the table. Two Ravens rows are the real gap.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -623,8 +624,8 @@
    "quote": "Published counts are stale: 254 rows and 4 no-injury sections versus 279 rows and 2 sections live",
    "gate": "A dated re-capture, published beside the older one, never overwritten.",
    "needs": "The live row count published with its clock time",
-   "today": "published table holds 345 rows against 347 printed today; 2 rows missing, 32 cells differ; two same-day reads agree: yes",
-   "measurement": 345,
+   "today": "published table holds 347 rows against 347 printed today; 0 rows missing, 0 cells differ; two same-day reads agree: yes",
+   "measurement": 347,
    "provenance": "data/console/week10_reconcile.json (nfl.com injury report, read 2026-11-15)",
    "clears": "Done in this session: 347 rows, 2026-11-15T18:14Z, published beside the 345-row 11-14 table.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
@@ -818,7 +819,7 @@
    "quote": "Malik Willis is absent from the weekly report because he is on injured reserve",
    "gate": "A reserve list per club, captured and published.",
    "needs": "32 of 32 clubs with a reserve list",
-   "today": "0 of 345 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
+   "today": "0 of 347 rows are reserve-list rows; the report has no reserve column; 0 row(s) mention reserve in the injury text",
    "measurement": 0,
    "provenance": "https://www.nfl.com/injuries/league/2026/reg10",
    "clears": "A roster/reserve endpoint per club.",
@@ -987,10 +988,23 @@
    "quote": "Create an executive summary outlining important details",
    "gate": "One page: what holds, what does not, what is blocked.",
    "needs": "1 page, every claim sourced",
-   "today": "75 requirement rows, 11 categories, each with a gate and a clearing number",
-   "measurement": 75,
+   "today": "76 requirement rows, 12 categories, each with a gate and a clearing number",
+   "measurement": 76,
    "provenance": "data/console/readiness.json (this page)",
    "clears": "Written this session, in the site's executive summary.",
+   "source": "https://www.nfl.com/"
+  },
+  {
+   "id": "R-76",
+   "category": "Deficiency",
+   "requirement": "Interactive offense vs. defense matchup deficiency matrix (1st-4th string)",
+   "quote": "Interactive Offense vs. Defense Matchup Deficiency Matrix (1st-4th String)",
+   "gate": "Both sides of every matchup must carry the replacing player's verified string (2nd/3rd/4th) on a joined table, so a WR1-vs-promoted-CB mismatch is a measured cell, not a guess.",
+   "needs": "32 of 32 clubs x both units with the replacing string named",
+   "today": "897 slots, 31 of 32 clubs; 55 of 55 Packers rows carry a jersey number in the name field; Houston: 0 slots (chart is an image)",
+   "measurement": 31,
+   "provenance": "data/console/depth_replacement.csv + data/console/depth_parse.json",
+   "clears": "The matrix itself is not built; the join it would run on exists (R-07: the replacement-depth register). Added by session arena/dc96bc33-x1 after a line-by-line check of the owner brief found this one requirement with no register row.",
    "source": "https://www.nfl.com/"
   }
  ]

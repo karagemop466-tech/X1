@@ -1,0 +1,35 @@
+team,player,field,official,published,category
+BAL,Adam Randall,injuries,"Neck, Hamstring",,injuries differs (timing or transcription; see row)
+BAL,Adam Randall,game_status,Questionable,,designation blank in published table
+BAL,Calais Campbell,row,present,absent,missing from published table
+BAL,Jaylinn Hawkins,injuries,Knee,,injuries differs (timing or transcription; see row)
+BAL,Jaylinn Hawkins,game_status,Out,,designation blank in published table
+BAL,Ronnie Stanley,row,present,absent,missing from published table
+IND,Arden Key,injuries,,Hamstring,injuries differs (timing or transcription; see row)
+IND,Arden Key,game_status,,Questionable,designation removed since 2026-11-14 capture (timing)
+LAC,Branson Taylor,injuries,Ankle,,injuries differs (timing or transcription; see row)
+LAC,Branson Taylor,game_status,Out,,designation blank in published table
+LAC,Brenen Thompson,injuries,Hamstring,,injuries differs (timing or transcription; see row)
+LAC,Brenen Thompson,game_status,Doubtful,,designation blank in published table
+LAC,Bud Dupree,practice_status,Full Participation in Practice,Did Not Participate In Practice,practice_status differs (timing or transcription; see row)
+LAC,David Njoku,injuries,Fibula,,injuries differs (timing or transcription; see row)
+LAC,David Njoku,practice_status,Full Participation in Practice,Limited Participation in Practice,practice_status differs (timing or transcription; see row)
+LAC,David Njoku,game_status,Questionable,,designation blank in published table
+LAC,Denzel Perryman,injuries,Pectoral,,injuries differs (timing or transcription; see row)
+LAC,Denzel Perryman,game_status,Questionable,,designation blank in published table
+LAC,Isas Waxter,injuries,Ankle,,injuries differs (timing or transcription; see row)
+LAC,Isas Waxter,game_status,Out,,designation blank in published table
+LAC,Justin Eboigbe,injuries,Ankle,,injuries differs (timing or transcription; see row)
+LAC,Justin Eboigbe,game_status,Questionable,,designation blank in published table
+LAC,Kayode Awosika,injuries,Fibula,,injuries differs (timing or transcription; see row)
+LAC,Kayode Awosika,practice_status,Full Participation in Practice,Limited Participation in Practice,practice_status differs (timing or transcription; see row)
+LAC,Kayode Awosika,game_status,Questionable,,designation blank in published table
+LAC,Keaton Mitchell,practice_status,Full Participation in Practice,Limited Participation in Practice,practice_status differs (timing or transcription; see row)
+LAC,Kendall Williamson,injuries,Calf,,injuries differs (timing or transcription; see row)
+LAC,Kendall Williamson,game_status,Out,,designation blank in published table
+LAC,Ladd McConkey,injuries,Back,,injuries differs (timing or transcription; see row)
+LAC,Ladd McConkey,game_status,Questionable,,designation blank in published table
+LAC,Rodney Shelley,practice_status,Full Participation in Practice,Limited Participation in Practice,practice_status differs (timing or transcription; see row)
+LAC,Trey Pipkins,injuries,"Not injury related - personal matter, Knee",,injuries differs (timing or transcription; see row)
+LAC,Trey Pipkins,practice_status,Limited Participation in Practice,Did Not Participate In Practice,practice_status differs (timing or transcription; see row)
+LAC,Trey Pipkins,game_status,Questionable,,designation blank in published table

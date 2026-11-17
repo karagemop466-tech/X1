@@ -483,7 +483,7 @@ def suggestions():
 
         dict(id="SG-13", title="Record the owner's decisions on this board",
              area="Governance", unlocks="A decision trail",
-             problem="Thirteen suggestions sit here with a recommendation and no recorded decision, so the same questions get re-litigated every session.",
+             problem="Suggestions sit here with a recommendation and no recorded decision, so the same questions get re-litigated every session.",
              paths=[
                  dict(label="A. Owner picks a path per suggestion and the choice is recorded here",
                       description="Each suggestion gets a decided path, a date and a note. Only then is it built.",
@@ -495,6 +495,50 @@ def suggestions():
                       unlocks="Nothing new."),
              ],
              recommendation="Path A. This is the one item on the board that costs nothing but a decision.",
+             decision_status="proposed"),
+
+        dict(id="SG-14", title="Re-pin the results feed to the completed Week 10 corpus",
+             area="Results", unlocks="Q-62 / S-22, and every backtest that should see Week 10",
+             problem=("Every results feed in the repository stops at the Week 10 Thursday game "
+                      "(137 rows). The official corpus is 150 games as of 2026-11-17: the 13 "
+                      "remaining Week 10 finals are now read, and the 150-game corpus reproduces "
+                      "all 32 official standings rows exactly (tools/verify_2026_11_17.py, check "
+                      "B4). Closing the pinned feed is therefore mechanical, not an open question."),
+             paths=[
+                 dict(label="A. Coordinated re-pin at the next data refresh",
+                      description="Swap the standings transcription to the 2026-11-17 table, re-pin the mirror to a games.csv carrying the 13 finals, move the row-count pin 137 to 150, and rebuild every derived register in one commit.",
+                      cost="Free", effort="One coordinated commit", risk="Low: the arithmetic is already proven 32/32",
+                      unlocks="Backtests and signal grades that include the completed Week 10 slate."),
+                 dict(label="B. Keep the pinned feed frozen; score against the dated packs",
+                      description="Leave the 137-row feed exactly as pre-registered and let evaluations consume data/verification/2026_11_16 and 2026_11_17 packs as dated outcome sources.",
+                      cost="Free", effort="Low", risk="Two result sources must be kept consistent",
+                      unlocks="Preserves the frozen corpus byte-for-byte; slightly more wiring in each evaluator."),
+                 dict(label="C. Leave as-is",
+                      description="Nothing moves; Week 10 finals stay outside every feed.",
+                      cost="Free", effort="None", risk="Backtests silently end one week early",
+                      unlocks="Nothing."),
+             ],
+             recommendation="Path A at the next scheduled data refresh, once (not before) the pre-registered PR-01 evaluation for 2026-11-16 is treated as closed and archived. Path B if the owner wants the frozen corpus preserved exactly.",
+             decision_status="proposed"),
+
+        dict(id="SG-15", title="Render the salvaged capture artifacts in the console",
+             area="Availability", unlocks="R-29, R-45, R-25 and the injury-timeline views",
+             problem=("The salvaged artifacts (the hashed raw-byte ledger in data/ledger/, the "
+                      "dated injury snapshots in data/nfl/snapshots/, the league's schedule "
+                      "announcement in data/audit/, the independent injury spot-check in "
+                      "data/readiness/) are in the repository and verified, but no console page "
+                      "renders them yet."),
+             paths=[
+                 dict(label="A. Dedicated console pages",
+                      description="A ledger-timeline page (capture times, hashes, content deltas), a dated-snapshot page (11-14 vs 11-15 cell deltas), and the schedule announcement rendered beside the live schedule page.",
+                      cost="Free", effort="One generator module in the established pattern", risk="Low",
+                      unlocks="The injury report becomes a readable timestamped series on the site, not just files in git."),
+                 dict(label="B. Keep them as data with flagged links",
+                      description="Current state after the salvage: the flagged page links each artifact on GitHub.",
+                      cost="Free", effort="None", risk="The series is invisible to a reader who does not open GitHub",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A. The owner's brief explicitly asks for the dated history to be published, and every artifact already passes its verifier.",
              decision_status="proposed"),
     ]
 
@@ -545,4 +589,56 @@ def irregularities(ctx):
              effect="The console is the landing page. Every earlier tree stays reachable from one archived-sites page and nothing is deleted.",
              source="",
              status="mitigated - see SG-11"),
+        dict(id="X-09", severity="amber", area="Results",
+             finding=("Every results feed stops at the Week 10 Thursday game (137 rows) while the "
+                      "official corpus is 150 games as of 2026-11-17."),
+             effect=("Backtests built on the pinned feed end one week early. The 2026-11-17 pack "
+                     "proves the 150-game corpus reconciles 32/32 with the league's own standings "
+                     "table, so closing the gap is a mechanical re-pin (SG-14), not an open "
+                     "question. Until then the completed finals are published as a dated pack "
+                     "rather than folded into the pinned feed."),
+             source="https://www.nfl.com/schedules/2026/by-week/week-10",
+             status="measured and published - see SG-14 and the Week 10 finals page"),
+        dict(id="X-10", severity="grey", area="Coordination",
+             finding=("Four pull requests (#50, #53, #61, #66) sat conflicting and stale since "
+                      "2026-11-15, each holding unique official-capture artifacts that never "
+                      "reached main: a hashed raw-byte injury ledger (4 captures), dated injury "
+                      "snapshots for 11-14 and 11-15, the league's dated schedule announcement, "
+                      "and an independent 347-row injury spot-check."),
+             effect=("The data has been salvaged line by line into this repository and "
+                     "re-verified: the ledger hash chain passes (tools/snapshot_ledger.py "
+                     "verify), the two independent 2026-11-15 injury reads agree cell for cell "
+                     "(347 rows x 4 columns, 0 mismatches), and the schedule announcement "
+                     "matches the league's own media page. The Week 10 injury table was "
+                     "re-published to the 2026-11-15 read (345 &rarr; 347 rows) and the "
+                     "11-14 &rarr; 11-15 delta (32 cells, 2 added rows) is published as a "
+                     "dated delta. The PRs' page wiring was not salvaged (it predates later "
+                     "generator changes); rendering it is SG-15."),
+             source="https://github.com/karagemop466-tech/X1/pull/50",
+             status="salvaged and verified 2026-11-17; PRs closed with handoff notes"),
+        dict(id="X-11", severity="amber", area="Automation",
+             finding=("The scheduled 'Refresh research data' workflow failed at its final step "
+                      "with 'Resource not accessible by integration': the workflow granted the "
+                      "token only contents: write, and an explicit permissions block replaces "
+                      "the default grants, so the pull-request step had no pull-requests: write."),
+             effect=("Every scheduled run re-downloaded and rebuilt the research pipeline and "
+                     "then threw the result away. Fixed in .github/workflows/pipeline.yml "
+                     "(pull-requests: write added). Residual dependency: if the repository "
+                     "setting 'Allow GitHub Actions to create and approve pull requests' is "
+                     "disabled, the fix alone will not suffice - the owner should confirm that "
+                     "setting, which this session's token cannot read."),
+             source="https://github.com/karagemop466-tech/X1/actions/runs/44123337794",
+             status="fixed in this repository; one owner check remains"),
+        dict(id="X-12", severity="grey", area="Programme",
+             finding=("The brief-to-repo coverage register (82 rows, one per numbered item of the "
+                      "owner brief) records what is built, partial, defined, not built or declined, "
+                      "with the repo path that evidences each row."),
+             effect=("30 rows carry flags and 25 items are NOT BUILT; each names what would clear "
+                     "it. The register is a dated snapshot of the tree before round 5 (round 5 "
+                     "narrowed several rows: the Week 10 injury tables now agree at 347 rows, the "
+                     "deficiency matrix has register row R-76, and the 2026-11-17 pack closes the "
+                     "standings arithmetic). It is linked here per the audit session's handoff to "
+                     "the integrator."),
+             source="https://github.com/karagemop466-tech/X1/blob/main/docs/audit/brief-coverage-2026-11-17.md",
+             status="published for review"),
     ]
