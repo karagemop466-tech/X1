@@ -3261,3 +3261,13 @@ changed cells, 72 field changes all closing.
 **For the integrator:** `tools/patch_site_543cdcb0.py` and `tools/patch_site_next_decisions.py` are the
 one-shot patches that edited `tools/build_site.py`; both abort unless every anchor matches exactly once.
 Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.
+
+---
+
+# Session `arena/9b01b075-x1` — repository verification and decision-readiness review
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| X1-1 | Run existing site/data verification and publish a concise evidence-versus-gaps review without changing shared site/data outputs | in progress | `arena/9b01b075-x1` | `docs/repo-state-review-2026-11-17.md`, this coordination entry |
+
+Claim recorded 2026-11-17 UTC. Existing suggestion and readiness pages already cover the requested decision board; this task adds a dated local verification summary and clearly limits what local checks establish. No other session's task or shared table/site generator is modified.
