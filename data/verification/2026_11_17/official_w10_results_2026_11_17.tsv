@@ -1,0 +1,25 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-10  (page title: "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets")
+# Secondary SOURCE for kickoff window and network: the game-day headers printed on
+# https://www.nfl.com/injuries/league/2026/reg10 (the schedule page does not reprint kickoff times for finals).
+# Read via the fetch tool, chunks 0-1 of 2, on 2026-11-17 at approximately 22:50 UTC. Transcribed by session arena-01c263c4-x1.
+# One row per fixture as PRINTED by the official page. All 14 Week 10 fixtures print status "Final" on this date.
+# away_record / home_record are the club records printed beside each club logo on the schedule page and are
+# cross-checked against the standings page read at the same time (official_standings_2026_11_17.tsv).
+# time_et / network are printed by the injury-report page's game-day headers for the same fixture (stated above);
+# blank = not printed by either read. Values are never inferred.
+# venue is not printed by either read for these fixtures; blank = not printed (never inferred).
+game_id	date_et	time_et	network	note	away	away_score	away_record	home	home_score	home_record	status	game_url	source_url
+2026_10_WAS_NYG	2026-11-12	8:15 PM	Prime Video	Thursday Night Football, November 12th	WAS	24	3-5-1	NYG	21	5-3-1	Final	https://www.nfl.com/games/commanders-at-giants-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_NE_DET	2026-11-15	9:30 AM	FOX, FOX DEPORTES	International Game, November 15th (page prints the "Munich 2026" event logo)	NE	10	5-5	DET	35	7-2	Final	https://www.nfl.com/games/patriots-at-lions-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_KC_ATL	2026-11-15	1:00 PM	CBS	Sunday 1:00 window	KC	35	7-2	ATL	13	3-7	Final	https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_HOU_CLE	2026-11-15	1:00 PM	FOX	Sunday 1:00 window	HOU	24	3-6	CLE	27	6-4	Final	https://www.nfl.com/games/texans-at-browns-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_MIN_GB	2026-11-15	1:00 PM	FOX	Sunday 1:00 window	MIN	30	7-2	GB	10	6-4	Final	https://www.nfl.com/games/vikings-at-packers-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_MIA_IND	2026-11-15	1:00 PM	CBS	Sunday 1:00 window	MIA	22	1-8	IND	24	3-7	Final	https://www.nfl.com/games/dolphins-at-colts-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_CAR_NO	2026-11-15	1:00 PM	FOX	Sunday 1:00 window	CAR	20	4-5	NO	17	3-6	Final	https://www.nfl.com/games/panthers-at-saints-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_BUF_NYJ	2026-11-15	1:00 PM	CBS	Sunday 1:00 window	BUF	31	8-1	NYJ	12	2-8	Final	https://www.nfl.com/games/bills-at-jets-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_JAX_TEN	2026-11-15	1:00 PM	FOX	Sunday 1:00 window	JAX	40	7-2	TEN	23	1-8	Final	https://www.nfl.com/games/jaguars-at-titans-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_LAR_AZ	2026-11-15	4:05 PM	CBS	Sunday 4:05 window	LA	34	6-4	AZ	6	3-7	Final	https://www.nfl.com/games/rams-at-cardinals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_SEA_LV	2026-11-15	4:05 PM	CBS	Sunday 4:05 window	SEA	21	6-4	LV	13	4-6	Final	https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_SF_DAL	2026-11-15	4:25 PM	FOX, FOX DEPORTES	Sunday 4:25 window	SF	46	8-1	DAL	40	4-6	Final	https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_PIT_CIN	2026-11-15	8:20 PM	NBC, UNIVERSO	Sunday Night Football, November 15th	PIT	18	6-3	CIN	38	7-2	Final	https://www.nfl.com/games/steelers-at-bengals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+2026_10_LAC_BAL	2026-11-16	8:15 PM	ESPN, ABC, ESPN2, ESPN DEPORTES	Monday Night Football, November 16th	LAC	23	1-8	BAL	20	4-6	Final	https://www.nfl.com/games/chargers-at-ravens-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
