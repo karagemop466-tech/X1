@@ -1,31 +1,31 @@
 {
  "files": {
   "injury_spotcheck_2026-11-17.tsv": {
-   "bytes": 7267,
-   "sha256": "133a913675e40575a95646430fb5a6c71fdb5bc01dc704d1f42baee38ac435d2"
+   "bytes": 7564,
+   "sha256": "510ba642b2d24f0eaeb98a42da771ccfb82bc29860eba4dcf17f53f0e9cff070"
   },
   "injury_state_2026-11-17.tsv": {
    "bytes": 3103,
    "sha256": "7cff00ba72267a0aafad79facbda0316859d63496619a2fde590b20c289f6a67"
   },
   "standings_2026-11-17.tsv": {
-   "bytes": 6943,
-   "sha256": "189da326382e58cbc4293590dcf3de2768e676dcb9840f186e6b156d1f60f09b"
+   "bytes": 7240,
+   "sha256": "19a5c594fee2532e771ae16e6ee76afe0cd479a6027170c5e544c0acbb911065"
   },
   "venue_evidence_2026-11-17.tsv": {
    "bytes": 5401,
    "sha256": "86d1abb95301baf2f000181eaecd8455f4e38b41596f5b8aa081b5d67b32f27a"
   },
   "week10_finals.tsv": {
-   "bytes": 5723,
-   "sha256": "9f74ed9bccad29719a014bf3e004e0345867d181f011cd6e20e107a38ccab177"
+   "bytes": 6020,
+   "sha256": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703"
   },
   "week11_slate_2026-11-17.tsv": {
    "bytes": 5674,
    "sha256": "3ced9a56f45365b834b4eddfb7b6e3f1f80c0c45184c7057e0f08d6c869b7891"
   }
  },
- "generated_at": "2026-11-17T23:19:22+00:00",
+ "generated_at": "2026-11-17T23:23:50+00:00",
  "official_urls": [
   "https://www.nfl.com/schedules/2026/by-week/week-10",
   "https://www.nfl.com/schedules/2026/by-week/week-11",

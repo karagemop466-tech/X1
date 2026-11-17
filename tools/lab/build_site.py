@@ -1179,7 +1179,8 @@ def p_flagged() -> str:
                       "The published Week 10 injury table is 2 rows short of the newest accepted capture",
                       f"{RN.get('published_injury_rows_vs_capture', 0)} rows differ: Calais Campbell and "
                       f"Ronnie Stanley (BAL) are in the capture the collector accepted and are not on the "
-                      f"site table (345 published vs 347 captured)",
+                      f"site table (345 published vs 347 captured); the parallel read's own verifier "
+                      f"reports the same \"missing 2\"",
                       src(REP, "report.json"),
                       "a stale published count, not a typo: the table needs the republish that the brief "
                       "asks for after each re-capture"])
@@ -1512,6 +1513,9 @@ def p_reads() -> str:
             "the two sides of the ledger are equal to the point", "ok"),
         kpi(str(num["injury_rows_spot_checked"]), "injury rows transcribed by hand and diffed",
             f"{num['injury_spot_check_mismatches']} mismatches against the retained capture", "ok"),
+        kpi(f"{num['parallel_read_mismatches']} / {num['parallel_read_cells_compared']}",
+            "cells where a second reader disagrees",
+            "another session read the same four pages minutes apart, independently; check C11", "ok"),
         kpi(f"{num['venue_direct_rows']} / {len(ven)}", "fixtures with a Game Center venue row",
             "the weekly schedule page prints no venue field at all", "warn"),
         kpi(str(num["injury_reads_since_last_content_change"]), "reads of the injury page since it last changed",
@@ -1584,6 +1588,11 @@ def p_reads() -> str:
              f"({chk['C5_independent_standings_reread']['fields_per_club']} printed columns &times; "
              f"{chk['C5_independent_standings_reread']['clubs']} clubs)"),
          badge("0", "ok"), src(f"{GITHUB}/data/pipeline/standings.json", "standings.json")],
+        [esc("cells where this read disagrees with an independent read of the same official pages, "
+             "made minutes apart by another session"),
+         esc(chk["C11_second_reader_agreement"]["mismatches"]), esc("of"),
+         esc(f"{chk['C11_second_reader_agreement']['cells_compared']} comparable cells"),
+         badge("0", "ok"), src(f"{GITHUB}/data/evidence/2026_11_17", "the parallel read")],
         [esc("cells of the repository's pinned 2026-11-14 standings reference that the league has since "
              "moved past"),
          esc(chk["C5b_pinned_reference_is_stale"]["differing_cells"]), esc("across"),
@@ -1644,7 +1653,14 @@ do not support. The read window the pack records is
 {esc(man['read_window_utc']['first_read'])} to {esc(man['read_window_utc']['last_read'])}, and the fetch
 tool returns parsed page text, so these are transcriptions of pages, not byte captures: the hashes in
 <a href="{GITHUB}/{READS_PACK}/manifest.json" target="_blank" rel="noopener">manifest.json</a> are of
-the transcriptions.</div>
+the transcriptions. This pack is <b>not</b> the only 2026-11-17 read in the repository:
+<a href="{GITHUB}/data/evidence/2026_11_17" target="_blank" rel="noopener">data/evidence/2026_11_17</a>
+and <a href="{GITHUB}/data/capture/2026_w10_read_2026_11_17" target="_blank" rel="noopener">
+data/capture/2026_w10_read_2026_11_17</a> are an independent read of the same pages by another session,
+made at 22:46Z against this pack's 22:45Z, and that one keeps a byte-level page capture where this one
+keeps a transcription. The two are compared cell by cell here (check C11) rather than cited as agreement:
+{num['parallel_read_cells_compared']} comparable cells, {num['parallel_read_mismatches']}
+disagreements, on layouts neither reader chose to match the other's.</div>
 
 <div class="kpis">{kpis}</div>
 

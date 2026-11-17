@@ -1,12 +1,12 @@
 {
  "dataset": "preregistration",
  "title": "Pre-registration register: every rule, its window, and the commit that froze it",
- "generated_at": "2026-11-17T23:15:04Z",
+ "generated_at": "2026-11-17T23:24:00Z",
  "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
  "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says",
  "history_scope": {
   "shallow": true,
-  "oldest_visible_commit": "def67e3cfb80f1899fd54615dbee31adf0dce7a7",
+  "oldest_visible_commit": "38816a6200fdedadaa5f95541d4313b78d7cd25b",
   "consequence": "an anchor is either resolved from a commit this checkout can read, carried forward from a register built where history was visible, or left blank - never guessed from the boundary commit"
  },
  "columns": [
@@ -103,10 +103,35 @@
    "reproduce": "git log --reverse --format='%H %aI' -- docs/methodology/results-feed.md",
    "anchor_carried_forward": "",
    "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data."
+  },
+  {
+   "id": "PR-04",
+   "name": "Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only",
+   "family": "escrow",
+   "file": "docs/preregistration/PR-04-week11-escrow.md",
+   "markets": "side, then total (published twice: total_A league floor, total_B two-club), then moneyline - the order is a build constraint in tools/lab/build_escrow.py",
+   "window": "2026 REG week 11, recorded 2026-11-17 before the first kickoff (2026-11-19 8:15 PM ET); ratings read from the 150-game official corpus, market line withheld (Q-02)",
+   "leaderboard_eligible": "no - a prospective record qualifies for the second stage; it is not ranked against a strategy competing for a reward, and no CLV or ROI is computed because there is no price source",
+   "gates": "G1 registered before the window opens; G2 chronology (the escrow rows' fixture must not have been played when the record was written, and the record's clock comes from the reads pack, not the build clock); G3 proper scores with n printed; G4 no multiplicity claim - one record, no variant search; G5 staking and CLV withheld (no price source)",
+   "rule_bytes": 9305,
+   "rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64",
+   "rule_hash_matches_this_checkout": "yes",
+   "content_hash_matches_registration": "yes",
+   "rule_hash_stable_vs_last_build": "first build of this entry",
+   "registered_rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64",
+   "state": "registered",
+   "registration_commit": "7758c86109422427555c3a5f4779351a694b1d12",
+   "registered_at": "2026-11-17T23:10:49+00:00",
+   "registration_subject": "PR-04: Week 11 pre-kickoff escrow - rule file, builder, 52 forecast rows (side/total_A/total_B/moneyline, market line withheld on Q-02) and the settlement ledger that scores PR-01's own record from official finals (W-3)",
+   "touches": 1,
+   "later_commits": [],
+   "reproduce": "git log --reverse --format='%H %aI' -- docs/preregistration/PR-04-week11-escrow.md",
+   "anchor_carried_forward": "",
+   "verification_note": "The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data."
   }
  ],
  "limits": [
-  "This checkout is a shallow clone (oldest visible commit def67e3cfb), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this checkout can read: they are cited as the prior's statement, not verified here.",
+  "This checkout is a shallow clone (oldest visible commit 38816a6200), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02's rule as registered by commit 0747005 and PR-01's by 25221eb, neither of which this checkout can read: they are cited as the prior's statement, not verified here.",
   "The anchor is the first commit that touched the file on THIS branch. A squashed merge would rewrite it, and the site's own history contains squash merges, so the anchor is a strong convention, not a tamper-proof seal.",
   "docs/lab/control-baselines.md was registered by another session; this register indexes it rather than restating it, so the rule text a reader evaluates against is the only copy."
  ]

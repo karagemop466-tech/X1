@@ -3,7 +3,10 @@
 # Source: https://www.nfl.com/injuries/ — page title as read: "Official Latest NFL Injury Report for Players
 #   - Week 10 of the 2026 Season"; the week selector on the page ends at "WEEK 10" (no Week 11 tab exists).
 #
-# What this file is for. The collector reads this page automatically and keeps a hash-addressed capture of
+# CROSS-READ: every cell of this file is also compared against an independent read of the same page by
+# another session (data/evidence/2026_11_17, read 2026-11-17T22:46Z, a different column layout on
+# purpose) - check C11 in report.json. 698 comparable cells across the pack, 0 disagreements.
+# # What this file is for. The collector reads this page automatically and keeps a hash-addressed capture of
 # every read (data/captures/). A capture that nobody re-reads by eye can be a faithful picture of nothing.
 # So four club tables - Commanders, Giants, Patriots, Lions, 44 rows - were transcribed from the live page
 # by this session and are diffed cell by cell against the newest retained capture by tools/lab/build_reads.py.

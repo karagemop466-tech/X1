@@ -10,6 +10,21 @@
    "venue_transcribed_from_the_game_centre": 2,
    "verdict": "measured"
   },
+  "C11_second_reader_agreement": {
+   "cells_compared": 698,
+   "detail": [],
+   "mismatches": 0,
+   "note": "the strongest check in this pack. Two transcriptions of the same four official pages, made independently minutes apart by different sessions with different column layouts, agreeing on every comparable cell - including 64 cells of a hand-typed injury spot-check against a full-page read neither one knew the other was making",
+   "present": true,
+   "sources": [
+    "data/evidence/2026_11_17/week10_finals.tsv",
+    "data/evidence/2026_11_17/byes_week10.tsv",
+    "data/evidence/2026_11_17/standings.tsv",
+    "data/capture/2026_w10_read_2026_11_17/official_nflcom_injuries_week10_2026-11-17.psv"
+   ],
+   "verdict": "pass",
+   "what_the_parallel_read_withholds": "its standings file omits DIV PCT and CONF PCT because that read could not separate them from the adjacent cell; this pack prints both, so those two columns are cross-checked against the collector read (C5) and not against this reader"
+  },
   "C1_slate_completeness_week10": {
    "byes": 4,
    "clubs_appearing": 32,
@@ -58,7 +73,7 @@
   "C5_independent_standings_reread": {
    "assertions": 512,
    "clubs": 32,
-   "collector_read_at": "2026-11-17T19:49:49+00:00",
+   "collector_read_at": "2026-11-17T23:05:18+00:00",
    "collector_source": "https://www.nfl.com/standings/league/2026/REG",
    "detail": [],
    "differing_cells": 0,
@@ -268,7 +283,7 @@
   },
   "C8_injury_spotcheck_vs_capture": {
    "capture": {
-    "as_read_at": "2026-11-17T19:49:49+00:00",
+    "as_read_at": "2026-11-17T23:05:19+00:00",
     "content_sha256": "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33",
     "payload": "data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json",
     "rows": 347
@@ -324,12 +339,12 @@
    "delta_last_two_reads": {
     "cells_changed": 0,
     "newer": {
-     "as_read_at": "2026-11-17T19:49:49+00:00",
+     "as_read_at": "2026-11-17T23:05:19+00:00",
      "content_sha256": "c3d7a7224dfc8105",
      "rows": 347
     },
     "older": {
-     "as_read_at": "2026-11-17T05:03:50+00:00",
+     "as_read_at": "2026-11-17T22:53:32+00:00",
      "content_sha256": "c3d7a7224dfc8105",
      "rows": 347
     },
@@ -423,25 +438,43 @@
      "rows": 347,
      "status": "unchanged",
      "violations": []
+    },
+    {
+     "as_read_at": "2026-11-17T22:53:32+00:00",
+     "content_sha256": "c3d7a7224dfc8105",
+     "drift": "pass",
+     "rows": 347,
+     "status": "unchanged",
+     "violations": []
+    },
+    {
+     "as_read_at": "2026-11-17T23:05:19+00:00",
+     "content_sha256": "c3d7a7224dfc8105",
+     "drift": "pass",
+     "rows": 347,
+     "status": "unchanged",
+     "violations": []
     }
    ],
    "first_read": "2026-11-14T17:02:18+00:00",
-   "last_read": "2026-11-17T19:49:49+00:00",
+   "last_read": "2026-11-17T23:05:19+00:00",
    "note": "the delta, not the level: the last two accepted reads differ in these cells, and the count of reads since the content last changed is what tells the owner whether the page has moved.",
-   "reads": 10,
-   "reads_since_last_content_change": 8,
+   "reads": 12,
+   "reads_since_last_content_change": 10,
    "verdict": "measured"
   }
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-17T23:19:22+00:00",
+ "generated_at": "2026-11-17T23:23:50+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
-  "injury_reads_since_last_content_change": 8,
+  "injury_reads_since_last_content_change": 10,
   "injury_rows_spot_checked": 44,
   "injury_spot_check_mismatches": 0,
   "league_points_each_side": 6923,
+  "parallel_read_cells_compared": 698,
+  "parallel_read_mismatches": 0,
   "published_injury_rows_vs_capture": 2,
   "published_injury_table_mismatches": 0,
   "standings_cells_agreeing_with_the_collector": 512,

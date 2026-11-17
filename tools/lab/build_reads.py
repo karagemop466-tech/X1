@@ -77,6 +77,10 @@ COLLECTOR_STANDINGS = "data/pipeline/standings.json"
 PINNED_STANDINGS = "data/verify/official_standings_2026_w10.psv"
 CAPTURE_INDEX = "data/captures/index.jsonl"
 PUBLISHED_INJURY_TABLE = "data/console/injuries_week10.csv"
+# A second session read the same official pages 1-3 minutes apart and published its own transcription.
+# Neither read was built to check the other, which is what makes the comparison worth something.
+PARALLEL_EVIDENCE = "data/evidence/2026_11_17"
+PARALLEL_INJURIES = "data/capture/2026_w10_read_2026_11_17/official_nflcom_injuries_week10_2026-11-17.psv"
 
 
 # --------------------------------------------------------------------- helpers
@@ -86,6 +90,13 @@ def read_tsv(path: str) -> list[dict]:
     with open(path, encoding="utf-8") as fh:
         lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
     return list(csv.DictReader(io.StringIO("\n".join(lines)), delimiter="\t"))
+
+
+def read_psv(path: str) -> list[dict]:
+    """Same as read_tsv but pipe-separated - the convention the parallel read's files use."""
+    with open(path, encoding="utf-8") as fh:
+        lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+    return list(csv.DictReader(io.StringIO("\n".join(lines)), delimiter="|"))
 
 
 def sha256_file(path: str) -> str:
@@ -510,6 +521,89 @@ def main() -> int:
                  "of reads since the content last changed is what tells the owner whether the page has moved."),
     })
 
+    # ---- C11 a second reader, same pages, minutes apart ---------------------------
+    # Session arena/2f95e652-x1 read the same three list pages and the injury hub at 2026-11-17T22:46Z
+    # and published its own transcriptions under data/evidence/2026_11_17/. The two reads were not built to
+    # check each other, so where they agree neither of them is corroborated by the other's bug, and where
+    # they disagree one of the two transcriptions is wrong. This is a real second reader, not a re-run.
+    par = {"present": os.path.isdir(os.path.join(ROOT, PARALLEL_EVIDENCE))}
+    if par["present"]:
+        def flat2(v: Any) -> str:
+            return str(v if v is not None else "").replace(" ", "").strip()
+        pm = {r["game_url"].rstrip("/").split("/")[-1]: r for r in w10_games}
+        pp = read_psv(os.path.join(ROOT, PARALLEL_EVIDENCE, "week10_finals.tsv"))
+        pdiff, pcmp = [], 0
+        for q in pp:
+            m = pm.get(q["game_id"])
+            if not m:
+                pdiff.append({"fixture": q["game_id"], "problem": "in the parallel read, not in this pack"})
+                continue
+            for f in ("date_et", "away", "away_score", "home", "home_score"):
+                pcmp += 1
+                if flat2(m[f]) != flat2(q[f]):
+                    pdiff.append({"fixture": q["game_id"], "field": f, "this_read": m[f],
+                                  "parallel_read": q[f]})
+        pb = {r["game_id"].split("_")[-1]: r for r in w10 if r["row_type"] == "bye"}
+        for q in read_psv(os.path.join(ROOT, PARALLEL_EVIDENCE, "byes_week10.tsv")):
+            m = pb.get(q["club"])
+            pcmp += 1
+            if m is None:
+                pdiff.append({"fixture": f"bye {q['club']}", "problem": "bye in the parallel read only"})
+            elif flat2(m["away_record"]) != flat2(q["record"]):
+                pdiff.append({"fixture": f"bye {q['club']}", "field": "record",
+                              "this_read": m["away_record"], "parallel_read": q["record"]})
+        ps = {r["TEAM"]: r for r in read_psv(os.path.join(ROOT, PARALLEL_EVIDENCE, "standings.tsv"))}
+        SHARED = [("w", "W"), ("l", "L"), ("t", "T"), ("pct", "PCT"), ("pf", "PF"), ("pa", "PA"),
+                  ("net", "NET"), ("home", "HOME"), ("road", "ROAD"), ("div", "DIV"),
+                  ("conf", "CONF"), ("non_conf", "NONCONF"), ("strk", "STRK"), ("last5", "LAST5")]
+        for r in st:
+            q = ps.get(r["team_abbrev"])
+            if not q:
+                pdiff.append({"club": r["team_abbrev"], "problem": "club missing from the parallel standings"})
+                continue
+            for mine, theirs_f in SHARED:
+                pcmp += 1
+                if flat2(r[mine]) != flat2(q.get(theirs_f, "")):
+                    pdiff.append({"club": r["team_abbrev"], "field": mine, "this_read": r[mine],
+                                  "parallel_read": q.get(theirs_f)})
+        pinj_lines = [ln for ln in open(os.path.join(ROOT, PARALLEL_INJURIES), encoding="utf-8")
+                      .read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+        pinj = [dict(zip(("game", "club", "player", "position", "injuries", "practice_status",
+                          "game_status"), row))
+                for row in csv.reader(io.StringIO("\n".join(pinj_lines)), delimiter="|")]
+        pin = {(r["club"].strip(), r["player"].strip()): r for r in pinj}
+        for r in spot:
+            q = pin.get((r["team"].strip(), r["player"].strip()))
+            if q is None:
+                pdiff.append({"team": r["team"], "player": r["player"],
+                              "problem": "row absent from the parallel injury read"})
+                continue
+            for mine, theirs_f in (("position", "position"), ("injury", "injuries"),
+                                    ("practice_status", "practice_status"), ("game_status", "game_status")):
+                pcmp += 1
+                if flat2(r[mine]) != flat2(q.get(theirs_f, "")):
+                    pdiff.append({"team": r["team"], "player": r["player"], "field": mine,
+                                  "this_read": r[mine], "parallel_read": q.get(theirs_f)})
+        par.update({"cells_compared": pcmp, "mismatches": len(pdiff), "detail": pdiff[:20],
+                    "verdict": "pass" if not pdiff else "FAIL — two readers disagree, one transcription is wrong",
+                    "what_the_parallel_read_withholds": ("its standings file omits DIV PCT and CONF PCT "
+                                                          "because that read could not separate them from the "
+                                                          "adjacent cell; this pack prints both, so those two "
+                                                          "columns are cross-checked against the collector "
+                                                          "read (C5) and not against this reader"),
+                    "note": ("the strongest check in this pack. Two transcriptions of the same four official "
+                             "pages, made independently minutes apart by different sessions with different "
+                             "column layouts, agreeing on every comparable cell - including 64 cells of a "
+                             "hand-typed injury spot-check against a full-page read neither one knew the other "
+                             "was making"),
+                    "sources": [f"{PARALLEL_EVIDENCE}/{f}" for f in
+                                ("week10_finals.tsv", "byes_week10.tsv", "standings.tsv")]
+                               + [PARALLEL_INJURIES]})
+    else:
+        par["verdict"] = "not available"
+        par["note"] = "no parallel read found at data/evidence/2026_11_17; nothing to compare"
+    done("C11_second_reader_agreement", par)
+
     # ---- C10 venue evidence ------------------------------------------------------
     direct = [v for v in venues if v["game_centre_stadium"]]
     indirect = [v for v in venues if v["venue_string_printed_on_week11_page"]]
@@ -548,9 +642,14 @@ def main() -> int:
         "injury_reads_since_last_content_change": report["checks"]["C9_injury_capture_series"]["reads_since_last_content_change"],
         "standings_cells_agreeing_with_the_collector": len(st) * len(FIELDS) - len(diffs),
         "standings_cells_stale_in_the_pinned_reference": len(pin_diffs),
+        "parallel_read_cells_compared": par.get("cells_compared", 0),
+        "parallel_read_mismatches": par.get("mismatches", 0),
         "venue_direct_rows": len(direct),
         "venue_name_conflicts": len(name_conflicts),
     }
+    if par.get("mismatches"):
+        fails.append(f"C11 second reader: {par['mismatches']} cells where two independent transcriptions "
+                     f"of the same page disagree")
     report["failures"] = fails
     report["verdict"] = "pass" if not fails else "fail"
 

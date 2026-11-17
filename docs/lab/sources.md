@@ -80,6 +80,14 @@ fixture pages. What is recorded here is exactly what the read produced and what 
 | Injury hub | https://www.nfl.com/injuries/ | the week selector ending at **WEEK 10** (no Week 11 report published), and four club tables transcribed by hand | `injury_spotcheck_2026-11-17.tsv`, diffed cell by cell against the newest retained capture |
 | Game Center, one fixture per read | https://www.nfl.com/games/colts-at-texans-2026-reg-11 · https://www.nfl.com/games/vikings-at-49ers-2026-reg-11 | `Location` and `Stadium` fields, and the injury-report availability line each club prints | `venue_evidence_2026-11-17.tsv` |
 
+The two reads corroborate each other and neither was made to: this pack and
+`data/evidence/2026_11_17` (session `arena/2f95e652-x1`, 22:46Z) are independent transcriptions of the same
+pages in different column layouts, and `tools/lab/build_reads.py` check C11 compares them cell by cell —
+698 comparable cells, 0 disagreements. That parallel read keeps a byte-level capture of one page
+(`data/capture/2026_w10_read_2026_11_17/page.html`), which this pack does not, and this pack carries the
+Week 11 slate, the venue evidence, the standings' DIV PCT and CONF PCT columns and the escrow, which that
+one does not. Neither is a superset; the union is what a reader should cite.
+
 Two things this does **not** change:
 
 * **No price source.** Not one of those pages publishes a spread, a total, a moneyline, a book or a
