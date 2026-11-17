@@ -3506,3 +3506,24 @@ re-verifying.
 `docs/audit/staleness-2026-11-17.md` §5 — the mirror behind the results feed carries 1 of 14 Week 10
 scores, and 0 of 704 2026 price-store rows carry both ends. Neither is a repair item for this
 session; both block the 2026 ROI and the shadow baseline from advancing.
+
+### Release record — PR #76 (2026-11-17)
+
+| item | value |
+|---|---|
+| PR | [#76](https://github.com/karagemop466-tech/X1/pull/76) — base `main`, head `arena/2f95e652-x1` |
+| Checks | `verify` **pass** (16s), `build` **pass** (46s) — [run 44195844501](https://github.com/karagemop466-tech/X1/actions/runs/44195844501), [run 44195844696](https://github.com/karagemop466-tech/X1/actions/runs/44195844696) |
+| Merged | 2026-11-17T23:05:07Z, merge commit `f1a0cee` |
+| Pages | `Publish static site to GitHub Pages` **success**; `pages build and deployment` **success** (run 44196399530); Pages API reports `status: built` at https://karagemop466-tech.github.io/X1/ |
+| Live check | https://karagemop466-tech.github.io/X1/console/standings.html now states the 2026-11-14 transcription date and the 262/512 movement; https://karagemop466-tech.github.io/X1/console/evidence-2026-11-17.html serves the pack |
+
+**One blocked check, fixed before merge.** `verify` first failed at `Fail if committed HTML is stale`:
+the collector's own 2026-11-17 refresh rewrote `data/preregistration/register.json` (its
+`oldest_visible_commit` moved) without rebuilding `pages/shadow-baseline.html`. That is a defect in
+the collector's commit step, not in this session's work, but it would have failed any PR touching
+`pages/`. Fixed by regenerating the pages from the committed register (commit `def3d0f`) rather than
+by hand-editing the page: the register is the source of truth for that page. **Request to the
+`data-refresh` owner:** the refresh commit should run `tools/build_site.py` (and
+`tools/rebuild_for_refresh.py`, which exists for exactly this) so `data/**` and `pages/**` cannot
+diverge; `tools/rebuild_for_refresh.py` already refuses to commit the clock-stamped trees, so this is
+a one-line addition to the workflow's rebuild step.
