@@ -9,9 +9,9 @@
   "org": "NFL"
  },
  "verification": {
-  "pairs": 1048,
-  "pairs_with_n": 1048,
-  "pairs_with_p_value": 1048,
+  "pairs": 1034,
+  "pairs_with_n": 1034,
+  "pairs_with_p_value": 1034,
   "n_min": 32,
   "n_max": 32,
   "n_median": 32.0,
@@ -37,60 +37,6 @@
    "source_url": "https://www.nfl.com/standings/league/2026/REG"
   },
   {
-   "pair": "Defense \u2014 Downs: Rush 1st  vs  Defense \u2014 Rushing: Rush 1st",
-   "r": 0.988,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Defense \u2014 Downs",
-   "source_b": "Defense \u2014 Rushing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Receiving: Rec 1st",
-   "r": 0.988,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Downs",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Receiving: Rec 1st",
-   "r": 0.988,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: Pass Yds  vs  Offense \u2014 Receiving: Yds",
-   "r": 0.986,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: Cmp  vs  Offense \u2014 Receiving: Rec",
-   "r": 0.98,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Defense \u2014 Downs: Rec 1st  vs  Defense \u2014 Passing: 1st",
-   "r": 0.97,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Defense \u2014 Downs",
-   "source_b": "Defense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
-  },
-  {
    "pair": "L  vs  W",
    "r": -0.966,
    "n": 32,
@@ -101,7 +47,7 @@
   },
   {
    "pair": "Offense \u2014 Scoring: Tot TD  vs  PF",
-   "r": 0.95,
+   "r": 0.951,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Scoring",
@@ -109,17 +55,8 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all"
   },
   {
-   "pair": "Offense \u2014 Passing: Att  vs  Offense \u2014 Passing: Cmp",
-   "r": 0.934,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
    "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Passing: Pass Yds",
-   "r": 0.932,
+   "r": 0.929,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Downs",
@@ -127,12 +64,57 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
   },
   {
+   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Receiving: Yds",
+   "r": 0.929,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Downs",
+   "source_b": "Offense \u2014 Receiving",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+  },
+  {
    "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Passing: Pass Yds",
-   "r": 0.932,
+   "r": 0.929,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Passing",
    "source_b": "Offense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Receiving: Yds",
+   "r": 0.929,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Receiving",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: Att  vs  Offense \u2014 Passing: Cmp",
+   "r": 0.929,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: Att  vs  Offense \u2014 Receiving: Rec",
+   "r": 0.929,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Receiving",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: Pass Yds  vs  Offense \u2014 Receiving: Rec 1st",
+   "r": 0.929,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Receiving",
    "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
   },
   {
@@ -145,26 +127,8 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/receiving/2026/reg/all"
   },
   {
-   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Receiving: Yds",
-   "r": 0.922,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Downs",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Receiving: Yds",
-   "r": 0.922,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
    "pair": "Offense \u2014 Downs: Rec 1st%  vs  Offense \u2014 Passing: 1st%",
-   "r": 0.92,
+   "r": 0.919,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Downs",
@@ -173,39 +137,12 @@
   },
   {
    "pair": "Offense \u2014 Passing: 1st%  vs  Offense \u2014 Receiving: Rec 1st%",
-   "r": 0.918,
+   "r": 0.919,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Passing",
    "source_b": "Offense \u2014 Receiving",
    "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Defense \u2014 Downs: Rush 1st  vs  Defense \u2014 Rushing: Att",
-   "r": 0.914,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Defense \u2014 Downs",
-   "source_b": "Defense \u2014 Rushing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: Pass Yds  vs  Offense \u2014 Receiving: Rec 1st",
-   "r": 0.913,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Defense \u2014 Rushing: Att  vs  Defense \u2014 Rushing: Rush 1st",
-   "r": 0.909,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Defense \u2014 Rushing",
-   "source_b": "Defense \u2014 Rushing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all"
   },
   {
    "pair": "Offense \u2014 Passing: Sck  vs  Offense \u2014 Passing: SckY",
@@ -217,8 +154,26 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
   },
   {
+   "pair": "Defense \u2014 Downs: Rush 1st  vs  Defense \u2014 Rushing: Att",
+   "r": 0.904,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Defense \u2014 Downs",
+   "source_b": "Defense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Defense \u2014 Rushing: Att  vs  Defense \u2014 Rushing: Rush 1st",
+   "r": 0.904,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Defense \u2014 Rushing",
+   "source_b": "Defense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all"
+  },
+  {
    "pair": "Offense \u2014 Passing: Yds/Att  vs  Offense \u2014 Receiving: Yds/Rec",
-   "r": 0.9,
+   "r": 0.903,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Passing",
@@ -226,17 +181,17 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
   },
   {
-   "pair": "Offense \u2014 Passing: Att  vs  Offense \u2014 Receiving: Rec",
-   "r": 0.897,
+   "pair": "Defense \u2014 Downs: Rush 1st  vs  Defense \u2014 Rushing: Rush Yds",
+   "r": 0.895,
    "n": 32,
    "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+   "source_a": "Defense \u2014 Downs",
+   "source_b": "Defense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
   },
   {
    "pair": "Defense \u2014 Rushing: Rush 1st  vs  Defense \u2014 Rushing: Rush Yds",
-   "r": 0.894,
+   "r": 0.895,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Defense \u2014 Rushing",
@@ -253,15 +208,6 @@
    "source_url": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
   },
   {
-   "pair": "Defense \u2014 Downs: Rush 1st  vs  Defense \u2014 Rushing: Rush Yds",
-   "r": 0.883,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Defense \u2014 Downs",
-   "source_b": "Defense \u2014 Rushing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
-  },
-  {
    "pair": "L  vs  NET_PTS",
    "r": -0.883,
    "n": 32,
@@ -269,15 +215,6 @@
    "source_a": "Standings",
    "source_b": "Standings",
    "source_url": "https://www.nfl.com/standings/league/2026/REG"
-  },
-  {
-   "pair": "Defense \u2014 Rushing: Att  vs  Defense \u2014 Rushing: Rush Yds",
-   "r": 0.881,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Defense \u2014 Rushing",
-   "source_b": "Defense \u2014 Rushing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all"
   },
   {
    "pair": "Offense \u2014 Passing: 1st%  vs  Offense \u2014 Passing: Rate",
@@ -298,40 +235,22 @@
    "source_url": "https://www.nfl.com/standings/league/2026/REG"
   },
   {
-   "pair": "Defense \u2014 Passing: Att  vs  Defense \u2014 Passing: Cmp",
+   "pair": "Defense \u2014 Rushing: Att  vs  Defense \u2014 Rushing: Rush Yds",
    "r": 0.872,
    "n": 32,
    "p_value": 0.0,
-   "source_a": "Defense \u2014 Passing",
-   "source_b": "Defense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+   "source_a": "Defense \u2014 Rushing",
+   "source_b": "Defense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all"
   },
   {
-   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Passing: Cmp",
+   "pair": "Offense \u2014 Downs: Rush 1st  vs  Offense \u2014 Rushing: Rush Yds",
    "r": 0.871,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Downs",
-   "source_b": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Rushing",
    "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Passing: Cmp",
-   "r": 0.871,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 1st%  vs  Offense \u2014 Passing: Yds/Att",
-   "r": 0.871,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
   },
   {
    "pair": "Offense \u2014 Rushing: Rush 1st  vs  Offense \u2014 Rushing: Rush Yds",
@@ -343,13 +262,58 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all"
   },
   {
-   "pair": "Defense \u2014 Passing: 1st  vs  Defense \u2014 Passing: Yds",
-   "r": 0.87,
+   "pair": "Offense \u2014 Passing: 1st%  vs  Offense \u2014 Passing: Yds/Att",
+   "r": 0.869,
    "n": 32,
    "p_value": 0.0,
-   "source_a": "Defense \u2014 Passing",
-   "source_b": "Defense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Passing: Cmp",
+   "r": 0.866,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Downs",
+   "source_b": "Offense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Receiving: Rec",
+   "r": 0.866,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Downs",
+   "source_b": "Offense \u2014 Receiving",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Passing: Cmp",
+   "r": 0.866,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Receiving: Rec",
+   "r": 0.866,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Receiving",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: Cmp  vs  Offense \u2014 Receiving: Rec 1st",
+   "r": 0.866,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Receiving",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
   },
   {
    "pair": "Offense \u2014 Receiving: Rec  vs  Offense \u2014 Receiving: Rec 1st",
@@ -361,6 +325,24 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/receiving/2026/reg/all"
   },
   {
+   "pair": "Defense \u2014 Downs: Rec 1st  vs  Defense \u2014 Passing: Yds",
+   "r": 0.861,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Defense \u2014 Downs",
+   "source_b": "Defense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Defense \u2014 Passing: 1st  vs  Defense \u2014 Passing: Yds",
+   "r": 0.861,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Defense \u2014 Passing",
+   "source_b": "Defense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+  },
+  {
    "pair": "NET_PTS  vs  W",
    "r": 0.86,
    "n": 32,
@@ -370,17 +352,35 @@
    "source_url": "https://www.nfl.com/standings/league/2026/REG"
   },
   {
-   "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Receiving: Rec",
-   "r": 0.859,
+   "pair": "Defense \u2014 Passing: Att  vs  Defense \u2014 Passing: Cmp",
+   "r": 0.844,
    "n": 32,
    "p_value": 0.0,
-   "source_a": "Offense \u2014 Downs",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+   "source_a": "Defense \u2014 Passing",
+   "source_b": "Defense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
   },
   {
-   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Receiving: Rec",
-   "r": 0.859,
+   "pair": "Offense \u2014 Rushing: Rush Yds  vs  Offense \u2014 Rushing: YPC",
+   "r": 0.844,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Rushing",
+   "source_b": "Offense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: Rate  vs  Offense \u2014 Passing: TD",
+   "r": 0.843,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Passing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Passing: Rate  vs  Offense \u2014 Receiving: TD",
+   "r": 0.843,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Passing",
@@ -388,8 +388,62 @@
    "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
   },
   {
+   "pair": "Offense \u2014 Passing: Rate  vs  Offense \u2014 Scoring: Rec TD",
+   "r": 0.843,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Passing",
+   "source_b": "Offense \u2014 Scoring",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Defense \u2014 Passing: Rate  vs  PA",
+   "r": 0.839,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Defense \u2014 Passing",
+   "source_b": "Standings",
+   "source_url": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Downs: Rush 1st  vs  Offense \u2014 Downs: Rush 1st%",
+   "r": 0.839,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Downs",
+   "source_b": "Offense \u2014 Downs",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Downs: Rush 1st  vs  Offense \u2014 Rushing: Rush 1st%",
+   "r": 0.839,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Downs",
+   "source_b": "Offense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Downs: Rush 1st%  vs  Offense \u2014 Rushing: Rush 1st",
+   "r": 0.839,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Downs",
+   "source_b": "Offense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+  },
+  {
+   "pair": "Offense \u2014 Rushing: Rush 1st  vs  Offense \u2014 Rushing: Rush 1st%",
+   "r": 0.839,
+   "n": 32,
+   "p_value": 0.0,
+   "source_a": "Offense \u2014 Rushing",
+   "source_b": "Offense \u2014 Rushing",
+   "source_url": "https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all"
+  },
+  {
    "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Passing: TD",
-   "r": 0.854,
+   "r": 0.837,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Downs",
@@ -398,7 +452,7 @@
   },
   {
    "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Receiving: TD",
-   "r": 0.854,
+   "r": 0.837,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Downs",
@@ -407,70 +461,16 @@
   },
   {
    "pair": "Offense \u2014 Downs: Rec 1st  vs  Offense \u2014 Scoring: Rec TD",
-   "r": 0.854,
+   "r": 0.837,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Downs",
    "source_b": "Offense \u2014 Scoring",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Downs: Rush 1st  vs  Offense \u2014 Downs: Rush 1st%",
-   "r": 0.854,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Downs",
-   "source_b": "Offense \u2014 Downs",
    "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
   },
   {
    "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Passing: TD",
-   "r": 0.854,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Passing",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Receiving: TD",
-   "r": 0.854,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 1st  vs  Offense \u2014 Scoring: Rec TD",
-   "r": 0.854,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Scoring",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Downs: Rush 1st  vs  Offense \u2014 Rushing: Rush 1st%",
-   "r": 0.853,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Downs",
-   "source_b": "Offense \u2014 Rushing",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: Cmp  vs  Offense \u2014 Receiving: Rec 1st",
-   "r": 0.847,
-   "n": 32,
-   "p_value": 0.0,
-   "source_a": "Offense \u2014 Passing",
-   "source_b": "Offense \u2014 Receiving",
-   "source_url": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
-  },
-  {
-   "pair": "Offense \u2014 Passing: 20+  vs  Offense \u2014 Passing: Pass Yds",
-   "r": 0.844,
+   "r": 0.837,
    "n": 32,
    "p_value": 0.0,
    "source_a": "Offense \u2014 Passing",

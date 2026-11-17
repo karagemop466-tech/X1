@@ -13,8 +13,8 @@
    "HOU"
   ],
   "injury_rows": 345,
-  "joined_rows": 253,
-  "unmatched_rows": 92,
+  "joined_rows": 254,
+  "unmatched_rows": 91,
   "starters_listed_first_at_slot": 163,
   "starters_ruled_out": 30,
   "backups_depth_2_to_4_out_or_doubtful": 16,
@@ -2277,6 +2277,19 @@
   },
   {
    "team": "AZ",
+   "player": "Hunter Long",
+   "position_printed": "TE",
+   "position_on_chart": "TE",
+   "depth": "2",
+   "unit": "Offense",
+   "injury": "Knee",
+   "practice_status": "Limited Participation in Practice",
+   "game_status": "Questionable",
+   "club_chart_url": "https://www.azcardinals.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "AZ",
    "player": "Roy Lopez",
    "position_printed": "DT",
    "position_on_chart": "NT",
@@ -3784,13 +3797,6 @@
    "player": "Zachary Carter",
    "position": "DT",
    "game_status": "Out",
-   "why": "player not listed on his club's depth chart"
-  },
-  {
-   "team": "AZ",
-   "player": "Hunter Long",
-   "position": "TE",
-   "game_status": "Questionable",
    "why": "player not listed on his club's depth chart"
   },
   {

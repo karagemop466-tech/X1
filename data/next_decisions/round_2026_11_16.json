@@ -2,7 +2,7 @@
  "dataset": "next_decisions",
  "title": "Suggestions and open questions for the owner to choose between, with the evidence that produced each",
  "read_on": "2026-11-16",
- "generated_at": "2026-11-17T05:05:01Z",
+ "generated_at": "2026-11-17T19:50:52Z",
  "generated_by": "tools/build_next_decisions.py (session arena-543cdcb0-x1)",
  "rule": "nothing on this page is implemented by the tool that writes it; decision_status is set only by a human commit, so a suggestion cannot approve itself",
  "impact_effort_note": "impact, effort and risk are this session's estimates, not measurements.",
