@@ -1,15 +1,14 @@
 + git config user.name x1-bot
 + git config user.email x1-bot@users.noreply.github.com
 + git checkout -- _ci
-+ git fetch origin arena/2f95e652-x1
++ git fetch origin main
 From https://github.com/karagemop466-tech/X1
- * branch            arena/2f95e652-x1 -> FETCH_HEAD
-+ git reset --mixed origin/arena/2f95e652-x1
+ * branch            main       -> FETCH_HEAD
++ git reset --mixed origin/main
 Unstaged changes after reset:
 M	app/deficiency.html
 M	app/depth.html
 M	app/flagged.html
-M	app/index.html
 M	app/repo-review.html
 M	console/archived-sites.html
 M	console/capture.html
@@ -17,6 +16,7 @@ M	console/correlations.html
 M	console/deficiency.html
 M	console/depth-parse.html
 M	console/depth.html
+M	console/evidence-2026-11-17.html
 M	console/executive-summary.html
 M	console/flagged.html
 M	console/gates.html
@@ -39,7 +39,6 @@ M	console/standings.html
 M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
-M	data/audit/decision_questions.json
 M	data/audit/findings.json
 M	data/audit/full_depth_join.json
 M	data/captures/index.jsonl
@@ -61,31 +60,28 @@ M	data/pipeline/repo_review.json
 M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
 M	data/preregistration/register.json
-M	data/readiness/decision_readiness.csv
 M	data/readiness/decision_readiness.json
 M	index.html
 M	pages/availability.html
 M	pages/capture-system.html
-M	pages/decisions-critical.html
-M	pages/readiness.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-17T22:54:50Z official captures'
-[arena/2f95e652-x1 0dcf667] ci: retain 2026-11-17T22:54:50Z official captures
- 4 files changed, 30738 insertions(+), 17 deletions(-)
- create mode 100644 data/captures/payloads/deficiency/55/5565fbcd9cbd369f5b3cb829bfc28b1ece4215f94f5d41a5267ebdbfb975b243.json
- create mode 100644 data/captures/payloads/depth_charts/e9/e985f9eb2dfe23e86e5cfcbf5b4a64f5ba568760f720c4731398ad815d51d54b.json
++ git commit -m 'ci: retain 2026-11-17T23:06:35Z official captures'
+[main 94ace37] ci: retain 2026-11-17T23:06:35Z official captures
+ 4 files changed, 30737 insertions(+), 16 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/c3/c30382b3d4c6ec37afa37bc91355fda3d1bd28a2bd41a7dbde71f118012ef1fa.json
+ create mode 100644 data/captures/payloads/depth_charts/84/845bd953fb3aa9c68fafdf92febb6d565ecc275637b470ee0be26bd0fa86e606.json
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-17T22:54:50Z'
-[arena/2f95e652-x1 d8b6406] data: refresh from official sources 2026-11-17T22:54:50Z
- 32 files changed, 25194 insertions(+), 24831 deletions(-)
-+ git push origin HEAD:arena/2f95e652-x1
++ git commit -m 'data: refresh from official sources 2026-11-17T23:06:35Z'
+[main 757c8f4] data: refresh from official sources 2026-11-17T23:06:35Z
+ 27 files changed, 24920 insertions(+), 24775 deletions(-)
++ git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   74b6f3b..d8b6406  HEAD -> arena/2f95e652-x1
+   f1a0cee..757c8f4  HEAD -> main
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -115,14 +111,14 @@ $ python3 tools/build_next_decisions.py --check
 rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 + pushed=0
 + for attempt in 1 2 3 4 5
-+ git fetch origin arena/2f95e652-x1
++ git fetch origin main
 From https://github.com/karagemop466-tech/X1
- * branch            arena/2f95e652-x1 -> FETCH_HEAD
-+ git -c rebase.autoStash=true rebase origin/arena/2f95e652-x1
-Created autostash: aad79c4
-Current branch arena/2f95e652-x1 is up to date.
+ * branch            main       -> FETCH_HEAD
++ git -c rebase.autoStash=true rebase origin/main
+Created autostash: faa72e0
+Current branch main is up to date.
 Applied autostash.
-+ git push origin HEAD:arena/2f95e652-x1
++ git push origin HEAD:main
 Everything up-to-date
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1
