@@ -3,7 +3,7 @@
   "title": "Flagged for Review",
   "retrieved_at": "2026-11-14",
   "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-  "counts": 21,
+  "counts": 25,
   "resolution_log": [
    {
     "id": "I-17",
@@ -316,6 +316,58 @@
    "source_label": "nfl.com Week 10 schedule (live, 2026-11-15)",
    "league_source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
    "league_source_label": "Game Center with Game Book link"
+  },
+  {
+   "id": "F-22",
+   "severity": "high",
+   "category": "Stale data",
+   "item": "The published 2026-11-14 Week 10 injury table is stale against the official page: 345 rows published vs 347 on 2026-11-17, with 34 line-level differences.",
+   "verified": "A live re-read of https://www.nfl.com/injuries/league/2026/reg10 on 2026-11-17 (22:50-22:56 UTC, chunks 0-7 of 8) transcribed 347 rows and matches the retained collector capture cell for cell (347 rows x 4 fields, 0 differences; capture read 2026-11-16T19:02:14Z, content unchanged at the 2026-11-17T19:49:49Z re-read). It also matches, cell for cell, the independent same-day transcription published in PR #73 (session arena/16049865-x1; check I2b, 0 differences). Versus the published data/nfl/injuries_week10.tsv (retrieved 2026-11-14T17:02Z, 345 rows): 2 rows added (BAL Calais Campbell, BAL Ronnie Stanley) and 32 cells changed across 16 rows - BAL 4 cells (Adam Randall, Jaylinn Hawkins), IND 2 cells (Arden Key), LAC 26 cells. The whole difference was already present in the 2026-11-15T18:14Z capture (PR #73 reports the 2026-11-15 and 2026-11-17 reads identical), so the drift window is 2026-11-14T17:02Z to 2026-11-15T18:14Z - the game-status designation deadline around the first Sunday slate - not a moving target since. NOTE on units: PR #73's headline '16 cells that differ' counts CHANGED ROWS (15 in LAC@BAL + Arden Key); counted cell by cell the same evidence is 32 cells. Row by row: data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv.",
+   "unknown": "Whether the site should republish a refreshed main table or keep serving the dated 2026-11-14 snapshot with dated packs beside it. That is a serving decision, not a data one; the snapshot itself is correctly labelled.",
+   "settles_it": "The dated 2026-11-17 pack, the 34-cell diff, and the two-session cell-for-cell agreement are already published. The remaining choice is the owner's: refresh data/nfl/injuries_week10.tsv through the collector under a stated cadence, or keep dated snapshots as the source of truth (which keeps F-22 open by design).",
+   "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "source_label": "nfl.com Week 10 injury report (live, 2026-11-17)",
+   "league_source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "league_source_label": "the official page this pack transcribed"
+  },
+  {
+   "id": "F-23",
+   "severity": "high",
+   "category": "Stale data",
+   "item": "With Week 10 complete, the published 2026-11-14 standings differ from the official page in 130 fields across 26 of 32 clubs (F-20 measured 2 clubs on 2026-11-15; this is the same staleness after the rest of the week).",
+   "verified": "The official league standings page read live on 2026-11-17 (~22:50 UTC) transcribes all 32 clubs with passing arithmetic (PCT, NET, HOME+ROAD=W-L-T) and equals the retained collector standings payload from 2026-11-17T05:03:50Z (256+96 assertions, 0 differences). Versus published data/nfl/standings.tsv (2026-11-14): 130 field changes - w x13, l x13, pct x26, pf x26, pa x26, streak x26 - affecting every club that played in Week 10 except WAS and NYG (their Thursday final was already in the 2026-11-14 table). The closure published+13 finals = today's W/L/PF/PA passes for all 32 clubs (128 assertions). Versus the previous dated read (2026-11-16): only BAL and LAC, 16 fields - the Monday-night game. Files: data/verification/2026_11_17/standings_diff_vs_published_2026_11_17.csv and standings_diff_vs_2026_11_16.csv. Independent corroboration: session arena/2f95e652-x1 re-read the same page at 2026-11-17T22:46Z (its claim E-1, PR #76); comparison of the 12 shared fields x 32 clubs (384 cells) against this pack shows 0 differences, and the closure arithmetic agrees (its CONF+NONCONF split recomputes W-L-T for all 32 clubs).",
+   "unknown": "Same open product decision as F-20: serve a dated snapshot (current, correctly labelled) or track the live page. F-20 asked this when 2 clubs were affected; the number that has changed is now 26 clubs / 130 fields.",
+   "settles_it": "Owner picks the serving model. Evidence for that choice is published: two dated deltas (11-16 and 11-17) plus a closure proof that the drift is exactly the played games, not transcription error.",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG",
+   "source_label": "nfl.com 2026 league standings (live, 2026-11-17)",
+   "league_source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "league_source_label": "Game Center: the Monday-night final that closed Week 10"
+  },
+  {
+   "id": "F-24",
+   "severity": "medium",
+   "category": "Coverage gap",
+   "item": "The Week 11 injury report does not exist yet: on 2026-11-17 the Week 11 URL resolved to the Week 10 page, so no Week 11 availability value can be verified today.",
+   "verified": "Probe at approximately 2026-11-17 22:50 UTC: a fetch of https://www.nfl.com/injuries/league/2026/REG11 returned the fetch tool's final URL as https://www.nfl.com/injuries/league/2026/reg10 with the Week 10 title, and the printed season selector on that page lists WEEK 1 through WEEK 10 only. Record: data/verification/2026_11_17/week11_injuries_probe_2026_11_17.txt.",
+   "unknown": "The exact moment the league starts printing Week 11 designations (the report has historically opened during the Wednesday practice window), and what its first contents will be. Any Week 11 practice-status or game-status value claimed before then is unverifiable.",
+   "settles_it": "Re-run the probe on the next scheduled collector read; the injuries dataset's freshness budget (96 hours, data/captures/config.json) does not expire before the report is expected. The first capture that returns a WEEK 11 selector entry opens the dated series for Week 11.",
+   "source_url": "https://www.nfl.com/injuries/league/2026/REG11",
+   "source_label": "Week 11 injury-report URL (probe, 2026-11-17; resolved to Week 10)",
+   "league_source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "league_source_label": "the page actually served: Week 10 report"
+  },
+  {
+   "id": "F-25",
+   "severity": "medium",
+   "category": "Method hazard",
+   "item": "A single fetch of the injury page can return a cell that the immediately repeated fetch contradicts; publishing from one read would publish the divergence.",
+   "verified": "During this session's 2026-11-17 transcription, the FIRST fetch of chunk 5 of the Week 10 injury report printed CIN Brian Parker II with game_status 'Questionable'; an immediate repeat fetch of the same chunk printed 'Doubtful'. 'Doubtful' is also printed by the retained collector capture at ten read times (2026-11-16T19:02:14Z through 2026-11-17T19:49:49Z, content hash c3d7a722...) and by the published 2026-11-14 table. The transcription records 'Doubtful' and the pack's I2 gate (347 rows x 4 fields against the capture) passes with zero differences; the divergence is recorded in the TSV header, not smoothed away silently.",
+   "unknown": "How often the rendered page diverges between two fetches minutes apart, why (edge cache vs live render), and whether an undetected divergence has ever reached a published table in an earlier session.",
+   "settles_it": "Never publish from a single fetch: require an immediate repeat read plus equality against the retained capture before a row reaches a page (gate I2 does this for this pack), and sample a chunk twice per scheduled run to measure the divergence rate over a season.",
+   "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "source_label": "nfl.com Week 10 injury report (two fetches, 2026-11-17)",
+   "league_source_url": "https://www.nfl.com/players/brian-parker-ii/",
+   "league_source_label": "the player row the two fetches disagreed on"
   }
  ]
 }

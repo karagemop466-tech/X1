@@ -1,0 +1,42 @@
+# SOURCE: https://www.nfl.com/standings/league/2026/REG  (page title: "2026 NFL League Standings")
+# Read via the fetch tool, chunks 0-1 of 2, on 2026-11-17 at approximately 22:50 UTC. Transcribed by session arena-01c263c4-x1.
+# Columns printed BY the official page and defined in its LEGEND: W L T PCT PF PA NET PTS HOME ROAD DIV CONF STRK.
+# Following the established convention (data/verification/2026_11_16/official_standings_2026_11_16.tsv), the two
+# record triples and two win-percentage columns whose meaning is NOT in the LEGEND (positions after DIV/CONF and
+# before STRK, plus the final triple) are intentionally NOT transcribed.
+# Column identity is not assumed: HOME + ROAD is checked to equal W-L-T for all 32 clubs by tools/verify_2026_11_17.py,
+# which is what makes this assignment a measurement rather than a guess.
+# Empty value = not confirmed by the page. Values are never inferred.
+abbr	w	l	t	pct	pf	pa	net	home	road	div_record	conf_record	streak	source_url
+BUF	8	1	0	0.889	287	199	88	3-1-0	5-0-0	1-1-0	5-1-0	5W	https://www.nfl.com/standings/league/2026/REG
+SF	8	1	0	0.889	281	196	85	5-0-0	3-1-0	3-0-0	5-1-0	2W	https://www.nfl.com/standings/league/2026/REG
+CHI	7	2	0	0.778	241	184	57	4-1-0	3-1-0	0-2-0	5-2-0	4W	https://www.nfl.com/standings/league/2026/REG
+CIN	7	2	0	0.778	278	193	85	3-1-0	4-1-0	2-1-0	5-2-0	5W	https://www.nfl.com/standings/league/2026/REG
+DEN	7	2	0	0.778	198	186	12	4-0-0	3-2-0	2-1-0	3-1-0	5W	https://www.nfl.com/standings/league/2026/REG
+DET	7	2	0	0.778	257	199	58	5-0-0	2-2-0	2-0-0	4-1-0	5W	https://www.nfl.com/standings/league/2026/REG
+JAX	7	2	0	0.778	269	144	125	4-1-0	3-1-0	2-1-0	6-2-0	3W	https://www.nfl.com/standings/league/2026/REG
+KC	7	2	0	0.778	237	156	81	4-0-0	3-2-0	3-1-0	6-1-0	2W	https://www.nfl.com/standings/league/2026/REG
+MIN	7	2	0	0.778	176	126	50	3-1-0	4-1-0	3-1-0	5-1-0	1W	https://www.nfl.com/standings/league/2026/REG
+PIT	6	3	0	0.667	198	182	16	4-0-0	2-3-0	2-2-0	3-3-0	1L	https://www.nfl.com/standings/league/2026/REG
+NYG	5	3	1	0.611	203	196	7	3-2-0	2-1-1	2-1-1	3-3-1	1L	https://www.nfl.com/standings/league/2026/REG
+CLE	6	4	0	0.600	188	220	-32	4-0-0	2-4-0	2-1-0	4-3-0	1W	https://www.nfl.com/standings/league/2026/REG
+GB	6	4	0	0.600	226	221	5	3-2-0	3-2-0	1-3-0	4-4-0	1L	https://www.nfl.com/standings/league/2026/REG
+LA	6	4	0	0.600	248	187	61	2-3-0	4-1-0	1-2-0	4-2-0	4W	https://www.nfl.com/standings/league/2026/REG
+SEA	6	4	0	0.600	223	175	48	4-2-0	2-2-0	2-1-0	2-3-0	2W	https://www.nfl.com/standings/league/2026/REG
+NE	5	5	0	0.500	221	242	-21	3-1-0	2-4-0	3-0-0	5-1-0	2L	https://www.nfl.com/standings/league/2026/REG
+CAR	4	5	0	0.444	219	236	-17	1-3-0	3-2-0	2-1-0	4-3-0	1W	https://www.nfl.com/standings/league/2026/REG
+BAL	4	6	0	0.400	209	259	-50	1-4-0	3-2-0	0-2-0	2-5-0	5L	https://www.nfl.com/standings/league/2026/REG
+DAL	4	6	0	0.400	286	282	4	1-4-0	3-2-0	2-1-0	2-5-0	1L	https://www.nfl.com/standings/league/2026/REG
+LV	4	6	0	0.400	251	289	-38	1-4-0	3-2-0	1-1-0	3-3-0	2L	https://www.nfl.com/standings/league/2026/REG
+WAS	3	5	1	0.389	196	223	-27	2-2-1	1-3-0	2-2-1	3-4-1	1W	https://www.nfl.com/standings/league/2026/REG
+HOU	3	6	0	0.333	233	219	14	0-4-0	3-2-0	2-1-0	3-4-0	1L	https://www.nfl.com/standings/league/2026/REG
+NO	3	6	0	0.333	202	236	-34	1-5-0	2-1-0	0-2-0	1-4-0	1L	https://www.nfl.com/standings/league/2026/REG
+TB	3	6	0	0.333	202	178	24	1-4-0	2-2-0	2-0-0	3-3-0	1L	https://www.nfl.com/standings/league/2026/REG
+AZ	3	7	0	0.300	184	289	-105	0-4-0	3-3-0	1-4-0	2-6-0	2L	https://www.nfl.com/standings/league/2026/REG
+ATL	3	7	0	0.300	201	258	-57	1-5-0	2-2-0	1-2-0	3-3-0	3L	https://www.nfl.com/standings/league/2026/REG
+IND	3	7	0	0.300	208	271	-63	2-3-0	1-4-0	1-2-0	2-5-0	1W	https://www.nfl.com/standings/league/2026/REG
+PHI	2	7	0	0.222	148	221	-73	1-4-0	1-3-0	1-3-0	1-6-0	7L	https://www.nfl.com/standings/league/2026/REG
+NYJ	2	8	0	0.200	194	254	-60	1-4-0	1-4-0	0-3-0	2-5-0	5L	https://www.nfl.com/standings/league/2026/REG
+LAC	1	8	0	0.111	144	239	-95	0-4-0	1-4-0	0-3-0	1-5-0	1W	https://www.nfl.com/standings/league/2026/REG
+MIA	1	8	0	0.111	148	224	-76	0-4-0	1-4-0	1-1-0	1-5-0	3L	https://www.nfl.com/standings/league/2026/REG
+TEN	1	8	0	0.111	167	239	-72	0-5-0	1-3-0	1-2-0	1-6-0	3L	https://www.nfl.com/standings/league/2026/REG
