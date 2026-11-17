@@ -1,0 +1,45 @@
+{
+ "files": {
+  "injury_spotcheck_2026-11-17.tsv": {
+   "bytes": 7564,
+   "sha256": "510ba642b2d24f0eaeb98a42da771ccfb82bc29860eba4dcf17f53f0e9cff070"
+  },
+  "injury_state_2026-11-17.tsv": {
+   "bytes": 3103,
+   "sha256": "7cff00ba72267a0aafad79facbda0316859d63496619a2fde590b20c289f6a67"
+  },
+  "standings_2026-11-17.tsv": {
+   "bytes": 7240,
+   "sha256": "19a5c594fee2532e771ae16e6ee76afe0cd479a6027170c5e544c0acbb911065"
+  },
+  "venue_evidence_2026-11-17.tsv": {
+   "bytes": 5401,
+   "sha256": "86d1abb95301baf2f000181eaecd8455f4e38b41596f5b8aa081b5d67b32f27a"
+  },
+  "week10_finals.tsv": {
+   "bytes": 6020,
+   "sha256": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703"
+  },
+  "week11_slate_2026-11-17.tsv": {
+   "bytes": 5674,
+   "sha256": "3ced9a56f45365b834b4eddfb7b6e3f1f80c0c45184c7057e0f08d6c869b7891"
+  }
+ },
+ "generated_at": "2026-11-17T23:28:58+00:00",
+ "official_urls": [
+  "https://www.nfl.com/schedules/2026/by-week/week-10",
+  "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "https://www.nfl.com/standings/league/2026/REG",
+  "https://www.nfl.com/injuries/",
+  "https://www.nfl.com/games/colts-at-texans-2026-reg-11",
+  "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11"
+ ],
+ "pack": "data/lab/reads/2026-11-17",
+ "read_by": "session arena-9d8c298c-x1, through the fetch tool",
+ "read_on": "2026-11-17",
+ "read_window_utc": {
+  "first_read": "2026-11-17T22:41Z",
+  "last_read": "2026-11-17T22:53Z",
+  "note": "clock times are this session's wall clock at the moment of each fetch, recorded to the minute; they are not the pages' publication times. The fetch tool returns parsed page text, so these files are transcriptions and the hashes below are hashes of the transcriptions, not of HTTP bytes."
+ }
+}

@@ -1,0 +1,870 @@
+{
+ "corpus": {
+  "corpus_after_the_append": 150,
+  "games_the_append_would_add": 13,
+  "rows_in_the_published_results_log": 137,
+  "week10_games_in_the_2026_11_17_pack": 14,
+  "weeks": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ]
+ },
+ "dataset": "feed-closure-measurement",
+ "decision_for_the_owner": "B is the recommended path and it is small: one gate edit, a re-pinned baseline, the row-count pins, and a regeneration of the artefacts in M5. What it is not is a data problem - M3 shows the closure reproduces the league table exactly. No session should make that call, because it changes what 'verified' means for every row already published; that is why it is recorded here as a decision and not implemented as a change.",
+ "generated_at": "2026-11-17T23:28:58+00:00",
+ "generated_by": "tools/lab/build_closure_measurement.py (session arena-9d8c298c-x1)",
+ "inputs": {
+  "code/reference_data_2026_w10.py": "08a3caa73aac9c53a1a57fda2ad38abc4285dee7ea98747837567b10c1bfd167",
+  "data/lab/reads/2026-11-17/week10_finals.tsv": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703",
+  "data/pipeline/standings.json": "528fc0abb510fe5f5be2977461f787a12eb09551772154d4bcf95b2dc4479ded",
+  "data/results/_raw/reads.tsv": "684d0f01e4bbd6956c2399f3f392a17392783927053dcef9830a69528795a2d4",
+  "tools/build_results_r3.py": "7fa0c274ab5e2057685168857a3612258d0f7c0b71f240ae30b51f8cd6da822b"
+ },
+ "measures": {
+  "M1_row_count_pins": {
+   "code_lines": [
+    109,
+    110,
+    177,
+    178,
+    289,
+    290
+   ],
+   "code_lines_that_assert_the_count": 6,
+   "file": "tools/build_results_r3.py",
+   "lines": [
+    {
+     "kind": "prose",
+     "line": 8,
+     "text": "data/results/verified_results.json   137 completed 2026 regular-season games"
+    },
+    {
+     "kind": "prose",
+     "line": 18,
+     "text": "2. TWO-SOURCE ROW DIFF. The same 137 games exist in the fingerprinted"
+    },
+    {
+     "kind": "prose",
+     "line": 22,
+     "text": "3. STANDINGS ARITHMETIC. Summing the 137 published results reproduces every"
+    },
+    {
+     "kind": "code",
+     "line": 109,
+     "text": "if len(reads) != 137:"
+    },
+    {
+     "kind": "code",
+     "line": 110,
+     "text": "raise SystemExit(f\"FAIL: expected 137 official rows, found {len(reads)}\")"
+    },
+    {
+     "kind": "code",
+     "line": 177,
+     "text": "if len(rows) != 137:"
+    },
+    {
+     "kind": "code",
+     "line": 178,
+     "text": "raise SystemExit(f\"FAIL: built {len(rows)} rows, expected 137\")"
+    },
+    {
+     "kind": "prose",
+     "line": 233,
+     "text": "\"scores and date must agree exactly (137 of 137 agree; the mirror is a cross-check \""
+    },
+    {
+     "kind": "code",
+     "line": 289,
+     "text": "if len(matched) != 137:"
+    },
+    {
+     "kind": "code",
+     "line": 290,
+     "text": "raise SystemExit(f\"FAIL: signal join matched {len(matched)} of 137 games\")"
+    }
+   ],
+   "occurrences": 10,
+   "reading": "6 executable lines in one file assert the count, plus 4 prose lines that repeat it. Every one has to move with the append; a single-line change would leave the builder asserting a number it no longer holds."
+  },
+  "M2_mirror_row_diff_gate": {
+   "blocked": [
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_NE_DET",
+     "mirror_spread_line": "2.5",
+     "mirror_total_line": "49.5",
+     "slug": "patriots-at-lions-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_KC_ATL",
+     "mirror_spread_line": "-3",
+     "mirror_total_line": "47.5",
+     "slug": "chiefs-at-falcons-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_HOU_CLE",
+     "mirror_spread_line": "-4.5",
+     "mirror_total_line": "40.5",
+     "slug": "texans-at-browns-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_MIN_GB",
+     "mirror_spread_line": "2.5",
+     "mirror_total_line": "42.5",
+     "slug": "vikings-at-packers-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_MIA_IND",
+     "mirror_spread_line": "3.5",
+     "mirror_total_line": "38.5",
+     "slug": "dolphins-at-colts-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_CAR_NO",
+     "mirror_spread_line": "2.5",
+     "mirror_total_line": "48.5",
+     "slug": "panthers-at-saints-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_BUF_NYJ",
+     "mirror_spread_line": "-8.5",
+     "mirror_total_line": "50.5",
+     "slug": "bills-at-jets-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_JAX_TEN",
+     "mirror_spread_line": "-10.5",
+     "mirror_total_line": "46.5",
+     "slug": "jaguars-at-titans-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_LA_AZ",
+     "mirror_spread_line": "-9.5",
+     "mirror_total_line": "39.5",
+     "slug": "rams-at-cardinals-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_SEA_LV",
+     "mirror_spread_line": "-6.5",
+     "mirror_total_line": "40.5",
+     "slug": "seahawks-at-raiders-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_SF_DAL",
+     "mirror_spread_line": "-4.5",
+     "mirror_total_line": "55.5",
+     "slug": "49ers-at-cowboys-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_PIT_CIN",
+     "mirror_spread_line": "3.5",
+     "mirror_total_line": "49.5",
+     "slug": "steelers-at-bengals-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    },
+    {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
+     "mirror_id": "2026_10_LAC_BAL",
+     "mirror_spread_line": "4.5",
+     "mirror_total_line": "38.5",
+     "slug": "chargers-at-ravens-2026-reg-10",
+     "why": "the mirror has the row but prints no score for it"
+    }
+   ],
+   "games_the_append_would_add": 13,
+   "gate": "tools/build_results_r3.py: load_candidates() -> a published row is emitted only after it matches the mirror",
+   "mirror_file": "data/raw/nflverse/games.csv",
+   "mirror_sha256": "60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8",
+   "of_the_blocked_rows_the_mirror_does_print_a_spread_and_total_for": 13,
+   "of_those_the_mirror_carries_a_score_for": 0,
+   "of_those_the_mirror_prints_no_score_for": 13,
+   "reading": "this is the binding blocker. A third party's update cadence currently holds veto over an official score that is printed, dated and independently cross-checked by the standings arithmetic. It is not a data conflict; it is a gate design. Note the shape of it: for every blocked game the mirror DOES print a spread and a total line and does NOT print a score - the prices nobody is authorised to use are the part that is there."
+  },
+  "M3_closure_against_todays_official_standings": {
+   "clubs": 32,
+   "clubs_disagreeing": 0,
+   "corpus_used": 150,
+   "detail": [],
+   "reading": "the 150-game closure corpus reproduces all 32 official standings rows exactly - W, L, T, PF and PA. If the append ever produced a wrong score, this is where it would show. It does not: the closure is arithmetically complete against the league's own table.",
+   "verdict": "pass"
+  },
+  "M4_closure_against_the_pinned_baseline": {
+   "baseline_file": "code/reference_data_2026_w10.py",
+   "baseline_snapshot_date": "2026-11-14",
+   "clubs_in_the_baseline": 32,
+   "clubs_that_would_move": 26,
+   "detail": [
+    {
+     "club": "BUF",
+     "from_the_150_game_corpus": [
+      8,
+      1,
+      0,
+      287,
+      199
+     ],
+     "pinned_2026_11_14": [
+      7,
+      1,
+      0,
+      256,
+      187
+     ]
+    },
+    {
+     "club": "NE",
+     "from_the_150_game_corpus": [
+      5,
+      5,
+      0,
+      221,
+      242
+     ],
+     "pinned_2026_11_14": [
+      5,
+      4,
+      0,
+      211,
+      207
+     ]
+    },
+    {
+     "club": "NYJ",
+     "from_the_150_game_corpus": [
+      2,
+      8,
+      0,
+      194,
+      254
+     ],
+     "pinned_2026_11_14": [
+      2,
+      7,
+      0,
+      182,
+      223
+     ]
+    },
+    {
+     "club": "MIA",
+     "from_the_150_game_corpus": [
+      1,
+      8,
+      0,
+      148,
+      224
+     ],
+     "pinned_2026_11_14": [
+      1,
+      7,
+      0,
+      126,
+      200
+     ]
+    },
+    {
+     "club": "PIT",
+     "from_the_150_game_corpus": [
+      6,
+      3,
+      0,
+      198,
+      182
+     ],
+     "pinned_2026_11_14": [
+      6,
+      2,
+      0,
+      180,
+      144
+     ]
+    },
+    {
+     "club": "CIN",
+     "from_the_150_game_corpus": [
+      7,
+      2,
+      0,
+      278,
+      193
+     ],
+     "pinned_2026_11_14": [
+      6,
+      2,
+      0,
+      240,
+      175
+     ]
+    },
+    {
+     "club": "CLE",
+     "from_the_150_game_corpus": [
+      6,
+      4,
+      0,
+      188,
+      220
+     ],
+     "pinned_2026_11_14": [
+      5,
+      4,
+      0,
+      161,
+      196
+     ]
+    },
+    {
+     "club": "BAL",
+     "from_the_150_game_corpus": [
+      4,
+      6,
+      0,
+      209,
+      259
+     ],
+     "pinned_2026_11_14": [
+      4,
+      5,
+      0,
+      189,
+      236
+     ]
+    },
+    {
+     "club": "JAX",
+     "from_the_150_game_corpus": [
+      7,
+      2,
+      0,
+      269,
+      144
+     ],
+     "pinned_2026_11_14": [
+      6,
+      2,
+      0,
+      229,
+      121
+     ]
+    },
+    {
+     "club": "HOU",
+     "from_the_150_game_corpus": [
+      3,
+      6,
+      0,
+      233,
+      219
+     ],
+     "pinned_2026_11_14": [
+      3,
+      5,
+      0,
+      209,
+      192
+     ]
+    },
+    {
+     "club": "IND",
+     "from_the_150_game_corpus": [
+      3,
+      7,
+      0,
+      208,
+      271
+     ],
+     "pinned_2026_11_14": [
+      2,
+      7,
+      0,
+      184,
+      249
+     ]
+    },
+    {
+     "club": "TEN",
+     "from_the_150_game_corpus": [
+      1,
+      8,
+      0,
+      167,
+      239
+     ],
+     "pinned_2026_11_14": [
+      1,
+      7,
+      0,
+      144,
+      199
+     ]
+    },
+    {
+     "club": "KC",
+     "from_the_150_game_corpus": [
+      7,
+      2,
+      0,
+      237,
+      156
+     ],
+     "pinned_2026_11_14": [
+      6,
+      2,
+      0,
+      202,
+      143
+     ]
+    },
+    {
+     "club": "LV",
+     "from_the_150_game_corpus": [
+      4,
+      6,
+      0,
+      251,
+      289
+     ],
+     "pinned_2026_11_14": [
+      4,
+      5,
+      0,
+      238,
+      268
+     ]
+    },
+    {
+     "club": "LAC",
+     "from_the_150_game_corpus": [
+      1,
+      8,
+      0,
+      144,
+      239
+     ],
+     "pinned_2026_11_14": [
+      0,
+      8,
+      0,
+      121,
+      219
+     ]
+    },
+    {
+     "club": "DAL",
+     "from_the_150_game_corpus": [
+      4,
+      6,
+      0,
+      286,
+      282
+     ],
+     "pinned_2026_11_14": [
+      4,
+      5,
+      0,
+      246,
+      236
+     ]
+    },
+    {
+     "club": "DET",
+     "from_the_150_game_corpus": [
+      7,
+      2,
+      0,
+      257,
+      199
+     ],
+     "pinned_2026_11_14": [
+      6,
+      2,
+      0,
+      222,
+      189
+     ]
+    },
+    {
+     "club": "MIN",
+     "from_the_150_game_corpus": [
+      7,
+      2,
+      0,
+      176,
+      126
+     ],
+     "pinned_2026_11_14": [
+      6,
+      2,
+      0,
+      146,
+      116
+     ]
+    },
+    {
+     "club": "GB",
+     "from_the_150_game_corpus": [
+      6,
+      4,
+      0,
+      226,
+      221
+     ],
+     "pinned_2026_11_14": [
+      6,
+      3,
+      0,
+      216,
+      191
+     ]
+    },
+    {
+     "club": "CAR",
+     "from_the_150_game_corpus": [
+      4,
+      5,
+      0,
+      219,
+      236
+     ],
+     "pinned_2026_11_14": [
+      3,
+      5,
+      0,
+      199,
+      219
+     ]
+    },
+    {
+     "club": "NO",
+     "from_the_150_game_corpus": [
+      3,
+      6,
+      0,
+      202,
+      236
+     ],
+     "pinned_2026_11_14": [
+      3,
+      5,
+      0,
+      185,
+      216
+     ]
+    },
+    {
+     "club": "ATL",
+     "from_the_150_game_corpus": [
+      3,
+      7,
+      0,
+      201,
+      258
+     ],
+     "pinned_2026_11_14": [
+      3,
+      6,
+      0,
+      188,
+      223
+     ]
+    },
+    {
+     "club": "SF",
+     "from_the_150_game_corpus": [
+      8,
+      1,
+      0,
+      281,
+      196
+     ],
+     "pinned_2026_11_14": [
+      7,
+      1,
+      0,
+      235,
+      156
+     ]
+    },
+    {
+     "club": "SEA",
+     "from_the_150_game_corpus": [
+      6,
+      4,
+      0,
+      223,
+      175
+     ],
+     "pinned_2026_11_14": [
+      5,
+      4,
+      0,
+      202,
+      162
+     ]
+    },
+    {
+     "club": "LA",
+     "from_the_150_game_corpus": [
+      6,
+      4,
+      0,
+      248,
+      187
+     ],
+     "pinned_2026_11_14": [
+      5,
+      4,
+      0,
+      214,
+      181
+     ]
+    },
+    {
+     "club": "AZ",
+     "from_the_150_game_corpus": [
+      3,
+      7,
+      0,
+      184,
+      289
+     ],
+     "pinned_2026_11_14": [
+      3,
+      6,
+      0,
+      178,
+      255
+     ]
+    }
+   ],
+   "reading": "the append breaks the pinned baseline for these clubs by design - the baseline is the 137-game table. Re-pinning it to a dated official read is part of the change set, which is why this was never a one-line edit."
+  },
+  "M5_blast_radius": {
+   "by_kind": {
+    "build_results_r3": 9,
+    "reads.tsv": 11,
+    "signal_grade": 12,
+    "verified_results": 28
+   },
+   "files": {
+    ".github/workflows/pages.yml": [
+     "build_results_r3"
+    ],
+    ".github/workflows/verify.yml": [
+     "build_results_r3"
+    ],
+    "COORDINATION.md": [
+     "reads.tsv",
+     "verified_results",
+     "build_results_r3",
+     "signal_grade"
+    ],
+    "data/audit/readiness.json": [
+     "verified_results"
+    ],
+    "data/audit/readiness_gates.json": [
+     "verified_results"
+    ],
+    "data/audit/requirements_assessed.json": [
+     "verified_results"
+    ],
+    "data/audit/review_queue.json": [
+     "signal_grade"
+    ],
+    "data/console/repo_inventory.csv": [
+     "reads.tsv",
+     "verified_results",
+     "build_results_r3",
+     "signal_grade"
+    ],
+    "data/flags.json": [
+     "signal_grade"
+    ],
+    "data/leaderboard_split.json": [
+     "signal_grade"
+    ],
+    "data/origin/decisions_taken.json": [
+     "verified_results"
+    ],
+    "data/pipeline/repo_review.json": [
+     "reads.tsv",
+     "verified_results",
+     "build_results_r3",
+     "signal_grade"
+    ],
+    "data/pipeline/requirements.json": [
+     "verified_results"
+    ],
+    "data/questions.json": [
+     "signal_grade"
+    ],
+    "data/results/graded_bets.csv": [
+     "verified_results"
+    ],
+    "data/results/results_feed.json": [
+     "verified_results"
+    ],
+    "data/results/results_feed_meta.json": [
+     "verified_results"
+    ],
+    "data/results/results_verification.json": [
+     "verified_results"
+    ],
+    "data/results/signal_grade.json": [
+     "verified_results",
+     "signal_grade"
+    ],
+    "data/results/verified_results.json": [
+     "verified_results"
+    ],
+    "data/shadow/backtest_summary.json": [
+     "reads.tsv"
+    ],
+    "data/shadow/games_scored.csv": [
+     "reads.tsv"
+    ],
+    "docs/EXECUTIVE-SUMMARY.md": [
+     "reads.tsv",
+     "verified_results",
+     "build_results_r3"
+    ],
+    "docs/methodology/results-feed-all-seasons.md": [
+     "verified_results"
+    ],
+    "docs/methodology/results-feed.md": [
+     "verified_results"
+    ],
+    "docs/preregistration/PR-04-week11-escrow.md": [
+     "reads.tsv",
+     "build_results_r3",
+     "signal_grade"
+    ],
+    "tools/build_app.py": [
+     "verified_results",
+     "build_results_r3",
+     "signal_grade"
+    ],
+    "tools/build_audit_registers.py": [
+     "verified_results"
+    ],
+    "tools/build_price_history.py": [
+     "verified_results"
+    ],
+    "tools/build_results.py": [
+     "verified_results"
+    ],
+    "tools/build_results_feed.py": [
+     "verified_results"
+    ],
+    "tools/build_results_feed_all_seasons.py": [
+     "verified_results"
+    ],
+    "tools/build_results_r3.py": [
+     "reads.tsv",
+     "verified_results",
+     "signal_grade"
+    ],
+    "tools/build_round3.py": [
+     "signal_grade"
+    ],
+    "tools/build_shadow_baseline.py": [
+     "reads.tsv"
+    ],
+    "tools/build_site.py": [
+     "reads.tsv"
+    ],
+    "tools/build_state_audit.py": [
+     "verified_results"
+    ],
+    "tools/grade_roi.py": [
+     "verified_results"
+    ],
+    "tools/patch_site_543cdcb0.py": [
+     "reads.tsv"
+    ],
+    "tools/rebuild_for_refresh.py": [
+     "verified_results",
+     "build_results_r3"
+    ],
+    "tools/verify_results_feed.py": [
+     "verified_results"
+    ]
+   },
+   "files_naming_the_results_log_or_the_feed": 41,
+   "reading": "a closure is not one file: this is the list of artefacts that name the log or the feed and would have to be regenerated and re-verified in the same commit. Frozen inputs (PR-01's) are deliberately excluded from 'just do it' by that fact. Renderings are excluded too, so the count is the cost of the change and not a function of how many pages happen to describe it.",
+   "scan_scope": "tools, scripts, code, docs, data, .github; html and this pack's own output excluded"
+  },
+  "M6_evaluation_corpus_effect": {
+   "added": 13,
+   "games_excluding_the_two_week_warmup_after": 118,
+   "games_excluding_the_warmup_before": 105,
+   "note": "PR-01's walk-forward score already reads the 2026-11-16 finals pack directly, so the model side is not the thing that changes; what changes is that the FEED - the object the price store, the origination ledger and every leaderboard read - would cover the closed week."
+  }
+ },
+ "options": [
+  {
+   "id": "A",
+   "name": "wait for the mirror",
+   "risk": "the official score is already printed and cross-checked; waiting buys nothing but delay",
+   "what_it_costs": "13 games stay unsettled in the feed for an unknown period; no gate changes"
+  },
+  {
+   "id": "B",
+   "name": "let an official read settle a row when the mirror has no row, and flag it",
+   "risk": "the row is then verified by one official page plus arithmetic rather than by two sources; the artefact must say so on every row",
+   "what_it_costs": "a change in tools/build_results_r3.py: the mirror becomes a cross-check where present instead of a veto; the M3 standings closure stays mandatory"
+  },
+  {
+   "id": "C",
+   "name": "promote the arithmetic closure to the primary gate",
+   "risk": "a whole-round transcription error could still close arithmetically if it is self-consistent; the row-level second source is what B and C give up",
+   "what_it_costs": "the 32/32 standings closure becomes required for every row and the mirror becomes advisory everywhere, not only where it is missing"
+  }
+ ],
+ "read_on": "2026-11-17",
+ "title": "What closing Week 10 in the verified-results feed costs, measured by the feed's own gates"
+}
