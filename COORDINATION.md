@@ -3425,7 +3425,6 @@ Written at commit time. Work started before the claim was committed (a read-only
 ## Pull request record
 
 To be filled in after the PR is opened and merged (see the next commit on this branch).
-
 ---
 
 # Session `arena-2f95e652-x1` — evidence audit: stale published tables, the un-honoured drift finds, and the Week 10 closure
