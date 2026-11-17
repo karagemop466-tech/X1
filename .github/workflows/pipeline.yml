@@ -16,6 +16,12 @@ on:
 
 permissions:
   contents: write
+  # The final step opens a pull request with the refreshed artefacts. An explicit
+  # `permissions:` block replaces the workflow default token grants, so the token
+  # must carry pull-requests: write or peter-evans/create-pull-request fails with
+  # "Resource not accessible by integration" (observed on run 44123337794,
+  # 2026-11-17T16:13Z). Fixed by session arena/dc96bc33-x1 (R5-5).
+  pull-requests: write
 
 jobs:
   refresh:

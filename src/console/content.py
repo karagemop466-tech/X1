@@ -483,7 +483,7 @@ def suggestions():
 
         dict(id="SG-13", title="Record the owner's decisions on this board",
              area="Governance", unlocks="A decision trail",
-             problem="Thirteen suggestions sit here with a recommendation and no recorded decision, so the same questions get re-litigated every session.",
+             problem="Suggestions sit here with a recommendation and no recorded decision, so the same questions get re-litigated every session.",
              paths=[
                  dict(label="A. Owner picks a path per suggestion and the choice is recorded here",
                       description="Each suggestion gets a decided path, a date and a note. Only then is it built.",
@@ -495,6 +495,30 @@ def suggestions():
                       unlocks="Nothing new."),
              ],
              recommendation="Path A. This is the one item on the board that costs nothing but a decision.",
+             decision_status="proposed"),
+
+        dict(id="SG-14", title="Re-pin the results feed to the completed Week 10 corpus",
+             area="Results", unlocks="Q-62 / S-22, and every backtest that should see Week 10",
+             problem=("Every results feed in the repository stops at the Week 10 Thursday game "
+                      "(137 rows). The official corpus is 150 games as of 2026-11-17: the 13 "
+                      "remaining Week 10 finals are now read, and the 150-game corpus reproduces "
+                      "all 32 official standings rows exactly (tools/verify_2026_11_17.py, check "
+                      "B4). Closing the pinned feed is therefore mechanical, not an open question."),
+             paths=[
+                 dict(label="A. Coordinated re-pin at the next data refresh",
+                      description="Swap the standings transcription to the 2026-11-17 table, re-pin the mirror to a games.csv carrying the 13 finals, move the row-count pin 137 to 150, and rebuild every derived register in one commit.",
+                      cost="Free", effort="One coordinated commit", risk="Low: the arithmetic is already proven 32/32",
+                      unlocks="Backtests and signal grades that include the completed Week 10 slate."),
+                 dict(label="B. Keep the pinned feed frozen; score against the dated packs",
+                      description="Leave the 137-row feed exactly as pre-registered and let evaluations consume data/verification/2026_11_16 and 2026_11_17 packs as dated outcome sources.",
+                      cost="Free", effort="Low", risk="Two result sources must be kept consistent",
+                      unlocks="Preserves the frozen corpus byte-for-byte; slightly more wiring in each evaluator."),
+                 dict(label="C. Leave as-is",
+                      description="Nothing moves; Week 10 finals stay outside every feed.",
+                      cost="Free", effort="None", risk="Backtests silently end one week early",
+                      unlocks="Nothing."),
+             ],
+             recommendation="Path A at the next scheduled data refresh, once (not before) the pre-registered PR-01 evaluation for 2026-11-16 is treated as closed and archived. Path B if the owner wants the frozen corpus preserved exactly.",
              decision_status="proposed"),
     ]
 
@@ -545,4 +569,14 @@ def irregularities(ctx):
              effect="The console is the landing page. Every earlier tree stays reachable from one archived-sites page and nothing is deleted.",
              source="",
              status="mitigated - see SG-11"),
+        dict(id="X-09", severity="amber", area="Results",
+             finding=("Every results feed stops at the Week 10 Thursday game (137 rows) while the "
+                      "official corpus is 150 games as of 2026-11-17."),
+             effect=("Backtests built on the pinned feed end one week early. The 2026-11-17 pack "
+                     "proves the 150-game corpus reconciles 32/32 with the league's own standings "
+                     "table, so closing the gap is a mechanical re-pin (SG-14), not an open "
+                     "question. Until then the completed finals are published as a dated pack "
+                     "rather than folded into the pinned feed."),
+             source="https://www.nfl.com/schedules/2026/by-week/week-10",
+             status="measured and published - see SG-14 and the Week 10 finals page"),
     ]

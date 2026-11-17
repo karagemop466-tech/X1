@@ -2,7 +2,7 @@
  "generated": "2026-11-15",
  "rule": "One row per requirement. 'Gate' is the check that fails today; 'needs' is the number that would clear it; 'today' is that number as measured, with the file it was read from. Nothing in the 'today' column is typed by hand.",
  "counts": {
-  "total": 75,
+  "total": 76,
   "by_category": {
    "Programme": 6,
    "Prices": 3,
@@ -14,7 +14,8 @@
    "Governance": 9,
    "Modelling": 10,
    "Schedule": 2,
-   "Competition": 4
+   "Competition": 4,
+   "Deficiency": 1
   }
  },
  "rows": [
@@ -311,8 +312,8 @@
    "quote": "Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it",
    "gate": "This page, on the landing page, rebuilt with the site.",
    "needs": "This page, with every gate stated",
-   "today": "75 requirement rows, 11 categories, each with a gate and a clearing number",
-   "measurement": 75,
+   "today": "76 requirement rows, 12 categories, each with a gate and a clearing number",
+   "measurement": 76,
    "provenance": "data/console/readiness.json (this page)",
    "clears": "Done \u2014 this table. Its own measurement is the standings re-read as a build check.",
    "source": "https://www.nfl.com/standings/league/2026/REG"
@@ -987,10 +988,23 @@
    "quote": "Create an executive summary outlining important details",
    "gate": "One page: what holds, what does not, what is blocked.",
    "needs": "1 page, every claim sourced",
-   "today": "75 requirement rows, 11 categories, each with a gate and a clearing number",
-   "measurement": 75,
+   "today": "76 requirement rows, 12 categories, each with a gate and a clearing number",
+   "measurement": 76,
    "provenance": "data/console/readiness.json (this page)",
    "clears": "Written this session, in the site's executive summary.",
+   "source": "https://www.nfl.com/"
+  },
+  {
+   "id": "R-76",
+   "category": "Deficiency",
+   "requirement": "Interactive offense vs. defense matchup deficiency matrix (1st-4th string)",
+   "quote": "Interactive Offense vs. Defense Matchup Deficiency Matrix (1st-4th String)",
+   "gate": "Both sides of every matchup must carry the replacing player's verified string (2nd/3rd/4th) on a joined table, so a WR1-vs-promoted-CB mismatch is a measured cell, not a guess.",
+   "needs": "32 of 32 clubs x both units with the replacing string named",
+   "today": "897 slots, 31 of 32 clubs; 55 of 55 Packers rows carry a jersey number in the name field; Houston: 0 slots (chart is an image)",
+   "measurement": 31,
+   "provenance": "data/console/depth_replacement.csv + data/console/depth_parse.json",
+   "clears": "The matrix itself is not built; the join it would run on exists (R-07: the replacement-depth register). Added by session arena/dc96bc33-x1 after a line-by-line check of the owner brief found this one requirement with no register row.",
    "source": "https://www.nfl.com/"
   }
  ]

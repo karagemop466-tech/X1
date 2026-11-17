@@ -650,6 +650,14 @@ ROWS = [
   "Programme", "One page: what holds, what does not, what is blocked.",
   "1 page, every claim sourced", "self",
   "Written this session, in the site's executive summary.", NFL),
+ ("R-76", "Interactive offense vs. defense matchup deficiency matrix (1st-4th string)",
+  "Interactive Offense vs. Defense Matchup Deficiency Matrix (1st-4th String)",
+  "Deficiency", "Both sides of every matchup must carry the replacing player's verified string "
+  "(2nd/3rd/4th) on a joined table, so a WR1-vs-promoted-CB mismatch is a measured cell, not a guess.",
+  "32 of 32 clubs x both units with the replacing string named", "depth",
+  "The matrix itself is not built; the join it would run on exists (R-07: the replacement-depth "
+  "register). Added by session arena/dc96bc33-x1 after a line-by-line check of the owner brief "
+  "found this one requirement with no register row.", NFL),
 ]
 
 
