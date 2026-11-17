@@ -13,11 +13,11 @@
    "HOU"
   ],
   "injury_rows": 345,
-  "joined_rows": 254,
-  "unmatched_rows": 91,
-  "starters_listed_first_at_slot": 163,
+  "joined_rows": 256,
+  "unmatched_rows": 89,
+  "starters_listed_first_at_slot": 164,
   "starters_ruled_out": 30,
-  "backups_depth_2_to_4_out_or_doubtful": 16,
+  "backups_depth_2_to_4_out_or_doubtful": 15,
   "pilot_clubs_on_the_site_pages": 5,
   "starters_ruled_out_in_the_pilot": 6
  },
@@ -1783,6 +1783,19 @@
   },
   {
    "team": "CAR",
+   "player": "Xavier Legette",
+   "position_printed": "WR",
+   "position_on_chart": "WR",
+   "depth": "2",
+   "unit": "Offense",
+   "injury": "Knee",
+   "practice_status": "Full Participation in Practice",
+   "game_status": "Questionable",
+   "club_chart_url": "https://www.panthers.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "CAR",
    "player": "Damien Lewis",
    "position_printed": "G",
    "position_on_chart": "LG",
@@ -2771,6 +2784,19 @@
   },
   {
    "team": "DAL",
+   "player": "Jonathan Bullard",
+   "position_printed": "DT",
+   "position_on_chart": "DT",
+   "depth": "2",
+   "unit": "Defense",
+   "injury": "Calf",
+   "practice_status": "Full Participation in Practice",
+   "game_status": "Questionable",
+   "club_chart_url": "https://www.dallascowboys.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "DAL",
    "player": "Alijah Clark",
    "position_printed": "S",
    "position_on_chart": "S",
@@ -2790,19 +2816,6 @@
    "depth": "1",
    "unit": "Defense",
    "injury": "Ankle",
-   "practice_status": "Did Not Participate In Practice",
-   "game_status": "Out",
-   "club_chart_url": "https://www.dallascowboys.com/team/depth-chart",
-   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
-  },
-  {
-   "team": "DAL",
-   "player": "Tyler Goodson",
-   "position_printed": "RB",
-   "position_on_chart": "RB",
-   "depth": "2",
-   "unit": "Offense",
-   "injury": "Ankle, Knee",
    "practice_status": "Did Not Participate In Practice",
    "game_status": "Out",
    "club_chart_url": "https://www.dallascowboys.com/team/depth-chart",
@@ -2961,6 +2974,19 @@
    "injury": "",
    "practice_status": "Full Participation in Practice",
    "game_status": "",
+   "club_chart_url": "https://www.steelers.com/team/depth-chart",
+   "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "team": "PIT",
+   "player": "Derrick Harmon",
+   "position_printed": "DT",
+   "position_on_chart": "DE",
+   "depth": "1",
+   "unit": "Defense",
+   "injury": "Foot",
+   "practice_status": "Full Participation in Practice",
+   "game_status": "Questionable",
    "club_chart_url": "https://www.steelers.com/team/depth-chart",
    "official_injury_url": "https://www.nfl.com/injuries/league/2026/reg10"
   },
@@ -3618,13 +3644,6 @@
    "why": "player not listed on his club's depth chart"
   },
   {
-   "team": "CAR",
-   "player": "Xavier Legette",
-   "position": "WR",
-   "game_status": "Questionable",
-   "why": "player not listed on his club's depth chart"
-  },
-  {
    "team": "NO",
    "player": "Martin Emerson",
    "position": "CB",
@@ -3836,15 +3855,15 @@
   },
   {
    "team": "DAL",
-   "player": "Jonathan Bullard",
-   "position": "DT",
-   "game_status": "Questionable",
+   "player": "Jake Ferguson",
+   "position": "TE",
+   "game_status": "Out",
    "why": "player not listed on his club's depth chart"
   },
   {
    "team": "DAL",
-   "player": "Jake Ferguson",
-   "position": "TE",
+   "player": "Tyler Goodson",
+   "position": "RB",
    "game_status": "Out",
    "why": "player not listed on his club's depth chart"
   },
@@ -3867,13 +3886,6 @@
    "player": "Brevyn Spann-Ford",
    "position": "TE",
    "game_status": "",
-   "why": "player not listed on his club's depth chart"
-  },
-  {
-   "team": "PIT",
-   "player": "Derrick Harmon",
-   "position": "DT",
-   "game_status": "Questionable",
    "why": "player not listed on his club's depth chart"
   },
   {

@@ -1,0 +1,1892 @@
+{
+ "byes_week10": [
+  {
+   "club": "CHI",
+   "record": "7-2"
+  },
+  {
+   "club": "DEN",
+   "record": "7-2"
+  },
+  {
+   "club": "PHI",
+   "record": "2-7"
+  },
+  {
+   "club": "TB",
+   "record": "3-6"
+  }
+ ],
+ "closure": [
+  {
+   "check": "wins == losses",
+   "ok": "True",
+   "value": "149 vs 149"
+  },
+  {
+   "check": "ties even",
+   "ok": "True",
+   "value": "2"
+  },
+  {
+   "check": "points for == points against",
+   "ok": "True",
+   "value": "6923 vs 6923"
+  },
+  {
+   "check": "net points sum to zero",
+   "ok": "True",
+   "value": "0"
+  },
+  {
+   "check": "PCT and NET recompute from the printed W/L/T/PF/PA",
+   "ok": "True",
+   "value": "all 32 rows"
+  },
+  {
+   "check": "home + road, conf + non-conf, div <= conf, streak and last-5 shapes",
+   "ok": "True",
+   "value": "all 32 rows"
+  }
+ ],
+ "collector_vs_league": {
+  "available": true,
+  "clubs": [],
+  "comparisons": 544,
+  "detail": [],
+  "matches": 544,
+  "mismatches": 0
+ },
+ "drift": {
+  "alarms": [],
+  "available": true,
+  "captures": 54,
+  "datasets": {
+   "deficiency": {
+    "captures": 10,
+    "distinct_payloads": 7,
+    "hours_since_last_read": 0.0,
+    "last_as_read_at": "2026-11-17T22:53:43+00:00",
+    "last_drift": "pass"
+   },
+   "depth_charts": {
+    "captures": 10,
+    "distinct_payloads": 7,
+    "hours_since_last_read": 0.0,
+    "last_as_read_at": "2026-11-17T22:53:35+00:00",
+    "last_drift": "pass"
+   },
+   "injuries": {
+    "captures": 11,
+    "distinct_payloads": 3,
+    "hours_since_last_read": 0.0,
+    "last_as_read_at": "2026-11-17T22:53:32+00:00",
+    "last_drift": "pass"
+   },
+   "standings": {
+    "captures": 11,
+    "distinct_payloads": 4,
+    "hours_since_last_read": 0.0,
+    "last_as_read_at": "2026-11-17T22:53:31+00:00",
+    "last_drift": "pass"
+   },
+   "team_stats": {
+    "captures": 10,
+    "distinct_payloads": 4,
+    "hours_since_last_read": 0.0,
+    "last_as_read_at": "2026-11-17T22:53:43+00:00",
+    "last_drift": "pass"
+   },
+   "week_results": {
+    "captures": 1,
+    "distinct_payloads": 1,
+    "hours_since_last_read": 28.2,
+    "last_as_read_at": "2026-11-16T18:44:00Z",
+    "last_drift": "pass"
+   },
+   "week_schedule": {
+    "captures": 1,
+    "distinct_payloads": 1,
+    "hours_since_last_read": 28.0,
+    "last_as_read_at": "2026-11-16T18:52:00Z",
+    "last_drift": "pass"
+   }
+  },
+  "generated_at": "2026-11-17T22:53:57Z"
+ },
+ "games_played_implied": 150,
+ "mirror_week10": {
+  "available": true,
+  "path": "data/raw/nflverse/games.csv",
+  "rows": [
+   {
+    "away": "WAS",
+    "away_score": "24",
+    "game_id": "2026_10_WAS_NYG",
+    "home": "NYG",
+    "home_score": "21"
+   },
+   {
+    "away": "NE",
+    "away_score": "",
+    "game_id": "2026_10_NE_DET",
+    "home": "DET",
+    "home_score": ""
+   },
+   {
+    "away": "KC",
+    "away_score": "",
+    "game_id": "2026_10_KC_ATL",
+    "home": "ATL",
+    "home_score": ""
+   },
+   {
+    "away": "HOU",
+    "away_score": "",
+    "game_id": "2026_10_HOU_CLE",
+    "home": "CLE",
+    "home_score": ""
+   },
+   {
+    "away": "MIN",
+    "away_score": "",
+    "game_id": "2026_10_MIN_GB",
+    "home": "GB",
+    "home_score": ""
+   },
+   {
+    "away": "MIA",
+    "away_score": "",
+    "game_id": "2026_10_MIA_IND",
+    "home": "IND",
+    "home_score": ""
+   },
+   {
+    "away": "CAR",
+    "away_score": "",
+    "game_id": "2026_10_CAR_NO",
+    "home": "NO",
+    "home_score": ""
+   },
+   {
+    "away": "BUF",
+    "away_score": "",
+    "game_id": "2026_10_BUF_NYJ",
+    "home": "NYJ",
+    "home_score": ""
+   },
+   {
+    "away": "JAX",
+    "away_score": "",
+    "game_id": "2026_10_JAX_TEN",
+    "home": "TEN",
+    "home_score": ""
+   },
+   {
+    "away": "LA",
+    "away_score": "",
+    "game_id": "2026_10_LA_ARI",
+    "home": "ARI",
+    "home_score": ""
+   },
+   {
+    "away": "SEA",
+    "away_score": "",
+    "game_id": "2026_10_SEA_LV",
+    "home": "LV",
+    "home_score": ""
+   },
+   {
+    "away": "SF",
+    "away_score": "",
+    "game_id": "2026_10_SF_DAL",
+    "home": "DAL",
+    "home_score": ""
+   },
+   {
+    "away": "PIT",
+    "away_score": "",
+    "game_id": "2026_10_PIT_CIN",
+    "home": "CIN",
+    "home_score": ""
+   },
+   {
+    "away": "LAC",
+    "away_score": "",
+    "game_id": "2026_10_LAC_BAL",
+    "home": "BAL",
+    "home_score": ""
+   }
+  ],
+  "settled": 1,
+  "unsettled": 13
+ },
+ "price_2026": {
+  "available": true,
+  "both": 0,
+  "by_step": {
+   "1": {
+    "both": 0,
+    "rows": 189
+   },
+   "2": {
+    "both": 0,
+    "rows": 189
+   },
+   "3": {
+    "both": 0,
+    "rows": 326
+   }
+  },
+  "rows": 704
+ },
+ "publishable_fields": {
+  "publishable_fields": [
+   "TEAM",
+   "W",
+   "L",
+   "T",
+   "PCT",
+   "PF",
+   "PA",
+   "NET",
+   "HOME",
+   "ROAD",
+   "DIV",
+   "CONF",
+   "NONCONF",
+   "STRK",
+   "LAST5"
+  ],
+  "withheld_fields": [
+   "DIVPCT",
+   "CONFPCT"
+  ],
+  "withheld_reasons": {
+   "CONFPCT": "same as DIVPCT, for the conference percentage",
+   "DIVPCT": "the page prints it, but this read could not separate it from the adjacent division-record cell; not inferred from W/L/T"
+  }
+ },
+ "published_vs_league": {
+  "clubs": [
+   "ATL",
+   "AZ",
+   "BAL",
+   "BUF",
+   "CAR",
+   "CIN",
+   "CLE",
+   "DAL",
+   "DET",
+   "GB",
+   "HOU",
+   "IND",
+   "JAX",
+   "KC",
+   "LA",
+   "LAC",
+   "LV",
+   "MIA",
+   "MIN",
+   "NE",
+   "NO",
+   "NYJ",
+   "PIT",
+   "SEA",
+   "SF",
+   "TEN"
+  ],
+  "comparisons": 512,
+  "detail": [
+   {
+    "field": "W",
+    "key": "BUF",
+    "mine": "8",
+    "other": "7"
+   },
+   {
+    "field": "PCT",
+    "key": "BUF",
+    "mine": "0.889",
+    "other": "0.875"
+   },
+   {
+    "field": "PF",
+    "key": "BUF",
+    "mine": "287",
+    "other": "256"
+   },
+   {
+    "field": "PA",
+    "key": "BUF",
+    "mine": "199",
+    "other": "187"
+   },
+   {
+    "field": "NET",
+    "key": "BUF",
+    "mine": "88",
+    "other": "69"
+   },
+   {
+    "field": "ROAD",
+    "key": "BUF",
+    "mine": "5-0-0",
+    "other": "4-0-0"
+   },
+   {
+    "field": "DIV",
+    "key": "BUF",
+    "mine": "1-1-0",
+    "other": "0-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "BUF",
+    "mine": "0.500",
+    "other": "0.000"
+   },
+   {
+    "field": "CONF",
+    "key": "BUF",
+    "mine": "5-1-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "BUF",
+    "mine": "0.833",
+    "other": "0.800"
+   },
+   {
+    "field": "STRK",
+    "key": "BUF",
+    "mine": "5W",
+    "other": "4W"
+   },
+   {
+    "field": "LAST5",
+    "key": "BUF",
+    "mine": "5-0-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "W",
+    "key": "SF",
+    "mine": "8",
+    "other": "7"
+   },
+   {
+    "field": "PCT",
+    "key": "SF",
+    "mine": "0.889",
+    "other": "0.875"
+   },
+   {
+    "field": "PF",
+    "key": "SF",
+    "mine": "281",
+    "other": "235"
+   },
+   {
+    "field": "PA",
+    "key": "SF",
+    "mine": "196",
+    "other": "156"
+   },
+   {
+    "field": "NET",
+    "key": "SF",
+    "mine": "85",
+    "other": "79"
+   },
+   {
+    "field": "ROAD",
+    "key": "SF",
+    "mine": "3-1-0",
+    "other": "2-1-0"
+   },
+   {
+    "field": "CONF",
+    "key": "SF",
+    "mine": "5-1-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "SF",
+    "mine": "0.833",
+    "other": "0.800"
+   },
+   {
+    "field": "STRK",
+    "key": "SF",
+    "mine": "2W",
+    "other": "1W"
+   },
+   {
+    "field": "W",
+    "key": "CIN",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "CIN",
+    "mine": "0.778",
+    "other": "0.750"
+   },
+   {
+    "field": "PF",
+    "key": "CIN",
+    "mine": "278",
+    "other": "240"
+   },
+   {
+    "field": "PA",
+    "key": "CIN",
+    "mine": "193",
+    "other": "175"
+   },
+   {
+    "field": "NET",
+    "key": "CIN",
+    "mine": "85",
+    "other": "65"
+   },
+   {
+    "field": "HOME",
+    "key": "CIN",
+    "mine": "3-1-0",
+    "other": "2-1-0"
+   },
+   {
+    "field": "DIV",
+    "key": "CIN",
+    "mine": "2-1-0",
+    "other": "1-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "CIN",
+    "mine": "0.667",
+    "other": "0.500"
+   },
+   {
+    "field": "CONF",
+    "key": "CIN",
+    "mine": "5-2-0",
+    "other": "4-2-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "CIN",
+    "mine": "0.714",
+    "other": "0.667"
+   },
+   {
+    "field": "STRK",
+    "key": "CIN",
+    "mine": "5W",
+    "other": "4W"
+   },
+   {
+    "field": "LAST5",
+    "key": "CIN",
+    "mine": "5-0-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "W",
+    "key": "DET",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "DET",
+    "mine": "0.778",
+    "other": "0.750"
+   },
+   {
+    "field": "PF",
+    "key": "DET",
+    "mine": "257",
+    "other": "222"
+   },
+   {
+    "field": "PA",
+    "key": "DET",
+    "mine": "199",
+    "other": "189"
+   },
+   {
+    "field": "NET",
+    "key": "DET",
+    "mine": "58",
+    "other": "33"
+   },
+   {
+    "field": "HOME",
+    "key": "DET",
+    "mine": "5-0-0",
+    "other": "4-0-0"
+   },
+   {
+    "field": "NONCONF",
+    "key": "DET",
+    "mine": "3-1-0",
+    "other": "2-1-0"
+   },
+   {
+    "field": "STRK",
+    "key": "DET",
+    "mine": "5W",
+    "other": "4W"
+   },
+   {
+    "field": "LAST5",
+    "key": "DET",
+    "mine": "5-0-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "W",
+    "key": "JAX",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "JAX",
+    "mine": "0.778",
+    "other": "0.750"
+   },
+   {
+    "field": "PF",
+    "key": "JAX",
+    "mine": "269",
+    "other": "229"
+   },
+   {
+    "field": "PA",
+    "key": "JAX",
+    "mine": "144",
+    "other": "121"
+   },
+   {
+    "field": "NET",
+    "key": "JAX",
+    "mine": "125",
+    "other": "108"
+   },
+   {
+    "field": "ROAD",
+    "key": "JAX",
+    "mine": "3-1-0",
+    "other": "2-1-0"
+   },
+   {
+    "field": "DIV",
+    "key": "JAX",
+    "mine": "2-1-0",
+    "other": "1-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "JAX",
+    "mine": "0.667",
+    "other": "0.500"
+   },
+   {
+    "field": "CONF",
+    "key": "JAX",
+    "mine": "6-2-0",
+    "other": "5-2-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "JAX",
+    "mine": "0.750",
+    "other": "0.714"
+   },
+   {
+    "field": "STRK",
+    "key": "JAX",
+    "mine": "3W",
+    "other": "2W"
+   },
+   {
+    "field": "W",
+    "key": "KC",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "KC",
+    "mine": "0.778",
+    "other": "0.750"
+   },
+   {
+    "field": "PF",
+    "key": "KC",
+    "mine": "237",
+    "other": "202"
+   },
+   {
+    "field": "PA",
+    "key": "KC",
+    "mine": "156",
+    "other": "143"
+   },
+   {
+    "field": "NET",
+    "key": "KC",
+    "mine": "81",
+    "other": "59"
+   },
+   {
+    "field": "ROAD",
+    "key": "KC",
+    "mine": "3-2-0",
+    "other": "2-2-0"
+   },
+   {
+    "field": "NONCONF",
+    "key": "KC",
+    "mine": "1-1-0",
+    "other": "0-1-0"
+   },
+   {
+    "field": "STRK",
+    "key": "KC",
+    "mine": "2W",
+    "other": "1W"
+   },
+   {
+    "field": "W",
+    "key": "MIN",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "MIN",
+    "mine": "0.778",
+    "other": "0.750"
+   },
+   {
+    "field": "PF",
+    "key": "MIN",
+    "mine": "176",
+    "other": "146"
+   },
+   {
+    "field": "PA",
+    "key": "MIN",
+    "mine": "126",
+    "other": "116"
+   },
+   {
+    "field": "NET",
+    "key": "MIN",
+    "mine": "50",
+    "other": "30"
+   },
+   {
+    "field": "ROAD",
+    "key": "MIN",
+    "mine": "4-1-0",
+    "other": "3-1-0"
+   },
+   {
+    "field": "DIV",
+    "key": "MIN",
+    "mine": "3-1-0",
+    "other": "2-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "MIN",
+    "mine": "0.750",
+    "other": "0.667"
+   },
+   {
+    "field": "CONF",
+    "key": "MIN",
+    "mine": "5-1-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "MIN",
+    "mine": "0.833",
+    "other": "0.800"
+   },
+   {
+    "field": "STRK",
+    "key": "MIN",
+    "mine": "1W",
+    "other": "2L"
+   },
+   {
+    "field": "L",
+    "key": "PIT",
+    "mine": "3",
+    "other": "2"
+   },
+   {
+    "field": "PCT",
+    "key": "PIT",
+    "mine": "0.667",
+    "other": "0.750"
+   },
+   {
+    "field": "PF",
+    "key": "PIT",
+    "mine": "198",
+    "other": "180"
+   },
+   {
+    "field": "PA",
+    "key": "PIT",
+    "mine": "182",
+    "other": "144"
+   },
+   {
+    "field": "NET",
+    "key": "PIT",
+    "mine": "16",
+    "other": "36"
+   },
+   {
+    "field": "ROAD",
+    "key": "PIT",
+    "mine": "2-3-0",
+    "other": "2-2-0"
+   },
+   {
+    "field": "DIV",
+    "key": "PIT",
+    "mine": "2-2-0",
+    "other": "2-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "PIT",
+    "mine": "0.500",
+    "other": "0.667"
+   },
+   {
+    "field": "CONF",
+    "key": "PIT",
+    "mine": "3-3-0",
+    "other": "3-2-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "PIT",
+    "mine": "0.500",
+    "other": "0.600"
+   },
+   {
+    "field": "STRK",
+    "key": "PIT",
+    "mine": "1L",
+    "other": "4W"
+   },
+   {
+    "field": "W",
+    "key": "CLE",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "CLE",
+    "mine": "0.600",
+    "other": "0.556"
+   },
+   {
+    "field": "PF",
+    "key": "CLE",
+    "mine": "188",
+    "other": "161"
+   },
+   {
+    "field": "PA",
+    "key": "CLE",
+    "mine": "220",
+    "other": "196"
+   },
+   {
+    "field": "NET",
+    "key": "CLE",
+    "mine": "-32",
+    "other": "-35"
+   },
+   {
+    "field": "HOME",
+    "key": "CLE",
+    "mine": "4-0-0",
+    "other": "3-0-0"
+   },
+   {
+    "field": "CONF",
+    "key": "CLE",
+    "mine": "4-3-0",
+    "other": "3-3-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "CLE",
+    "mine": "0.571",
+    "other": "0.500"
+   },
+   {
+    "field": "STRK",
+    "key": "CLE",
+    "mine": "1W",
+    "other": "2L"
+   },
+   {
+    "field": "LAST5",
+    "key": "CLE",
+    "mine": "3-2-0",
+    "other": "2-3-0"
+   },
+   {
+    "field": "L",
+    "key": "GB",
+    "mine": "4",
+    "other": "3"
+   },
+   {
+    "field": "PCT",
+    "key": "GB",
+    "mine": "0.600",
+    "other": "0.667"
+   },
+   {
+    "field": "PF",
+    "key": "GB",
+    "mine": "226",
+    "other": "216"
+   },
+   {
+    "field": "PA",
+    "key": "GB",
+    "mine": "221",
+    "other": "191"
+   },
+   {
+    "field": "NET",
+    "key": "GB",
+    "mine": "5",
+    "other": "25"
+   },
+   {
+    "field": "HOME",
+    "key": "GB",
+    "mine": "3-2-0",
+    "other": "3-1-0"
+   },
+   {
+    "field": "DIV",
+    "key": "GB",
+    "mine": "1-3-0",
+    "other": "1-2-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "GB",
+    "mine": "0.250",
+    "other": "0.333"
+   },
+   {
+    "field": "CONF",
+    "key": "GB",
+    "mine": "4-4-0",
+    "other": "4-3-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "GB",
+    "mine": "0.500",
+    "other": "0.571"
+   },
+   {
+    "field": "STRK",
+    "key": "GB",
+    "mine": "1L",
+    "other": "2W"
+   },
+   {
+    "field": "LAST5",
+    "key": "GB",
+    "mine": "3-2-0",
+    "other": "4-1-0"
+   },
+   {
+    "field": "W",
+    "key": "LA",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "LA",
+    "mine": "0.600",
+    "other": "0.556"
+   },
+   {
+    "field": "PF",
+    "key": "LA",
+    "mine": "248",
+    "other": "214"
+   },
+   {
+    "field": "PA",
+    "key": "LA",
+    "mine": "187",
+    "other": "181"
+   },
+   {
+    "field": "NET",
+    "key": "LA",
+    "mine": "61",
+    "other": "33"
+   },
+   {
+    "field": "ROAD",
+    "key": "LA",
+    "mine": "4-1-0",
+    "other": "3-1-0"
+   },
+   {
+    "field": "DIV",
+    "key": "LA",
+    "mine": "1-2-0",
+    "other": "0-2-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "LA",
+    "mine": "0.333",
+    "other": "0.000"
+   },
+   {
+    "field": "CONF",
+    "key": "LA",
+    "mine": "4-2-0",
+    "other": "3-2-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "LA",
+    "mine": "0.667",
+    "other": "0.600"
+   },
+   {
+    "field": "STRK",
+    "key": "LA",
+    "mine": "4W",
+    "other": "3W"
+   },
+   {
+    "field": "LAST5",
+    "key": "LA",
+    "mine": "4-1-0",
+    "other": "3-2-0"
+   },
+   {
+    "field": "W",
+    "key": "SEA",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "SEA",
+    "mine": "0.600",
+    "other": "0.556"
+   },
+   {
+    "field": "PF",
+    "key": "SEA",
+    "mine": "223",
+    "other": "202"
+   },
+   {
+    "field": "PA",
+    "key": "SEA",
+    "mine": "175",
+    "other": "162"
+   },
+   {
+    "field": "NET",
+    "key": "SEA",
+    "mine": "48",
+    "other": "40"
+   },
+   {
+    "field": "ROAD",
+    "key": "SEA",
+    "mine": "2-2-0",
+    "other": "1-2-0"
+   },
+   {
+    "field": "NONCONF",
+    "key": "SEA",
+    "mine": "4-1-0",
+    "other": "3-1-0"
+   },
+   {
+    "field": "STRK",
+    "key": "SEA",
+    "mine": "2W",
+    "other": "1W"
+   },
+   {
+    "field": "LAST5",
+    "key": "SEA",
+    "mine": "3-2-0",
+    "other": "2-3-0"
+   },
+   {
+    "field": "L",
+    "key": "NE",
+    "mine": "5",
+    "other": "4"
+   },
+   {
+    "field": "PCT",
+    "key": "NE",
+    "mine": "0.500",
+    "other": "0.556"
+   },
+   {
+    "field": "PF",
+    "key": "NE",
+    "mine": "221",
+    "other": "211"
+   },
+   {
+    "field": "PA",
+    "key": "NE",
+    "mine": "242",
+    "other": "207"
+   },
+   {
+    "field": "NET",
+    "key": "NE",
+    "mine": "-21",
+    "other": "4"
+   },
+   {
+    "field": "ROAD",
+    "key": "NE",
+    "mine": "2-4-0",
+    "other": "2-3-0"
+   },
+   {
+    "field": "NONCONF",
+    "key": "NE",
+    "mine": "0-4-0",
+    "other": "0-3-0"
+   },
+   {
+    "field": "STRK",
+    "key": "NE",
+    "mine": "2L",
+    "other": "1L"
+   },
+   {
+    "field": "LAST5",
+    "key": "NE",
+    "mine": "2-3-0",
+    "other": "3-2-0"
+   },
+   {
+    "field": "W",
+    "key": "CAR",
+    "mine": "4",
+    "other": "3"
+   },
+   {
+    "field": "PCT",
+    "key": "CAR",
+    "mine": "0.444",
+    "other": "0.375"
+   },
+   {
+    "field": "PF",
+    "key": "CAR",
+    "mine": "219",
+    "other": "199"
+   },
+   {
+    "field": "PA",
+    "key": "CAR",
+    "mine": "236",
+    "other": "219"
+   },
+   {
+    "field": "NET",
+    "key": "CAR",
+    "mine": "-17",
+    "other": "-20"
+   },
+   {
+    "field": "ROAD",
+    "key": "CAR",
+    "mine": "3-2-0",
+    "other": "2-2-0"
+   },
+   {
+    "field": "DIV",
+    "key": "CAR",
+    "mine": "2-1-0",
+    "other": "1-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "CAR",
+    "mine": "0.667",
+    "other": "0.500"
+   },
+   {
+    "field": "CONF",
+    "key": "CAR",
+    "mine": "4-3-0",
+    "other": "3-3-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "CAR",
+    "mine": "0.571",
+    "other": "0.500"
+   },
+   {
+    "field": "STRK",
+    "key": "CAR",
+    "mine": "1W",
+    "other": "3L"
+   },
+   {
+    "field": "L",
+    "key": "BAL",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "BAL",
+    "mine": "0.400",
+    "other": "0.444"
+   },
+   {
+    "field": "PF",
+    "key": "BAL",
+    "mine": "209",
+    "other": "189"
+   },
+   {
+    "field": "PA",
+    "key": "BAL",
+    "mine": "259",
+    "other": "236"
+   },
+   {
+    "field": "NET",
+    "key": "BAL",
+    "mine": "-50",
+    "other": "-47"
+   },
+   {
+    "field": "HOME",
+    "key": "BAL",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "CONF",
+    "key": "BAL",
+    "mine": "2-5-0",
+    "other": "2-4-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "BAL",
+    "mine": "0.286",
+    "other": "0.333"
+   },
+   {
+    "field": "STRK",
+    "key": "BAL",
+    "mine": "5L",
+    "other": "4L"
+   },
+   {
+    "field": "LAST5",
+    "key": "BAL",
+    "mine": "0-5-0",
+    "other": "1-4-0"
+   },
+   {
+    "field": "L",
+    "key": "DAL",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "DAL",
+    "mine": "0.400",
+    "other": "0.444"
+   },
+   {
+    "field": "PF",
+    "key": "DAL",
+    "mine": "286",
+    "other": "246"
+   },
+   {
+    "field": "PA",
+    "key": "DAL",
+    "mine": "282",
+    "other": "236"
+   },
+   {
+    "field": "NET",
+    "key": "DAL",
+    "mine": "4",
+    "other": "10"
+   },
+   {
+    "field": "HOME",
+    "key": "DAL",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "CONF",
+    "key": "DAL",
+    "mine": "2-5-0",
+    "other": "2-4-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "DAL",
+    "mine": "0.286",
+    "other": "0.333"
+   },
+   {
+    "field": "STRK",
+    "key": "DAL",
+    "mine": "1L",
+    "other": "1W"
+   },
+   {
+    "field": "L",
+    "key": "LV",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "LV",
+    "mine": "0.400",
+    "other": "0.444"
+   },
+   {
+    "field": "PF",
+    "key": "LV",
+    "mine": "251",
+    "other": "238"
+   },
+   {
+    "field": "PA",
+    "key": "LV",
+    "mine": "289",
+    "other": "268"
+   },
+   {
+    "field": "NET",
+    "key": "LV",
+    "mine": "-38",
+    "other": "-30"
+   },
+   {
+    "field": "HOME",
+    "key": "LV",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "NONCONF",
+    "key": "LV",
+    "mine": "1-3-0",
+    "other": "1-2-0"
+   },
+   {
+    "field": "STRK",
+    "key": "LV",
+    "mine": "2L",
+    "other": "1L"
+   },
+   {
+    "field": "L",
+    "key": "HOU",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "HOU",
+    "mine": "0.333",
+    "other": "0.375"
+   },
+   {
+    "field": "PF",
+    "key": "HOU",
+    "mine": "233",
+    "other": "209"
+   },
+   {
+    "field": "PA",
+    "key": "HOU",
+    "mine": "219",
+    "other": "192"
+   },
+   {
+    "field": "NET",
+    "key": "HOU",
+    "mine": "14",
+    "other": "17"
+   },
+   {
+    "field": "ROAD",
+    "key": "HOU",
+    "mine": "3-2-0",
+    "other": "3-1-0"
+   },
+   {
+    "field": "CONF",
+    "key": "HOU",
+    "mine": "3-4-0",
+    "other": "3-3-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "HOU",
+    "mine": "0.429",
+    "other": "0.500"
+   },
+   {
+    "field": "STRK",
+    "key": "HOU",
+    "mine": "1L",
+    "other": "1W"
+   },
+   {
+    "field": "L",
+    "key": "NO",
+    "mine": "6",
+    "other": "5"
+   },
+   {
+    "field": "PCT",
+    "key": "NO",
+    "mine": "0.333",
+    "other": "0.375"
+   },
+   {
+    "field": "PF",
+    "key": "NO",
+    "mine": "202",
+    "other": "185"
+   },
+   {
+    "field": "PA",
+    "key": "NO",
+    "mine": "236",
+    "other": "216"
+   },
+   {
+    "field": "NET",
+    "key": "NO",
+    "mine": "-34",
+    "other": "-31"
+   },
+   {
+    "field": "HOME",
+    "key": "NO",
+    "mine": "1-5-0",
+    "other": "1-4-0"
+   },
+   {
+    "field": "DIV",
+    "key": "NO",
+    "mine": "0-2-0",
+    "other": "0-1-0"
+   },
+   {
+    "field": "CONF",
+    "key": "NO",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "NO",
+    "mine": "0.200",
+    "other": "0.250"
+   },
+   {
+    "field": "STRK",
+    "key": "NO",
+    "mine": "1L",
+    "other": "1W"
+   },
+   {
+    "field": "L",
+    "key": "AZ",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "AZ",
+    "mine": "0.300",
+    "other": "0.333"
+   },
+   {
+    "field": "PF",
+    "key": "AZ",
+    "mine": "184",
+    "other": "178"
+   },
+   {
+    "field": "PA",
+    "key": "AZ",
+    "mine": "289",
+    "other": "255"
+   },
+   {
+    "field": "NET",
+    "key": "AZ",
+    "mine": "-105",
+    "other": "-77"
+   },
+   {
+    "field": "HOME",
+    "key": "AZ",
+    "mine": "0-4-0",
+    "other": "0-3-0"
+   },
+   {
+    "field": "DIV",
+    "key": "AZ",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "AZ",
+    "mine": "0.200",
+    "other": "0.250"
+   },
+   {
+    "field": "CONF",
+    "key": "AZ",
+    "mine": "2-6-0",
+    "other": "2-5-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "AZ",
+    "mine": "0.250",
+    "other": "0.286"
+   },
+   {
+    "field": "STRK",
+    "key": "AZ",
+    "mine": "2L",
+    "other": "1L"
+   },
+   {
+    "field": "L",
+    "key": "ATL",
+    "mine": "7",
+    "other": "6"
+   },
+   {
+    "field": "PCT",
+    "key": "ATL",
+    "mine": "0.300",
+    "other": "0.333"
+   },
+   {
+    "field": "PF",
+    "key": "ATL",
+    "mine": "201",
+    "other": "188"
+   },
+   {
+    "field": "PA",
+    "key": "ATL",
+    "mine": "258",
+    "other": "223"
+   },
+   {
+    "field": "NET",
+    "key": "ATL",
+    "mine": "-57",
+    "other": "-35"
+   },
+   {
+    "field": "HOME",
+    "key": "ATL",
+    "mine": "1-5-0",
+    "other": "1-4-0"
+   },
+   {
+    "field": "NONCONF",
+    "key": "ATL",
+    "mine": "0-4-0",
+    "other": "0-3-0"
+   },
+   {
+    "field": "STRK",
+    "key": "ATL",
+    "mine": "3L",
+    "other": "2L"
+   },
+   {
+    "field": "W",
+    "key": "IND",
+    "mine": "3",
+    "other": "2"
+   },
+   {
+    "field": "PCT",
+    "key": "IND",
+    "mine": "0.300",
+    "other": "0.222"
+   },
+   {
+    "field": "PF",
+    "key": "IND",
+    "mine": "208",
+    "other": "184"
+   },
+   {
+    "field": "PA",
+    "key": "IND",
+    "mine": "271",
+    "other": "249"
+   },
+   {
+    "field": "NET",
+    "key": "IND",
+    "mine": "-63",
+    "other": "-65"
+   },
+   {
+    "field": "HOME",
+    "key": "IND",
+    "mine": "2-3-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "CONF",
+    "key": "IND",
+    "mine": "2-5-0",
+    "other": "1-5-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "IND",
+    "mine": "0.286",
+    "other": "0.167"
+   },
+   {
+    "field": "STRK",
+    "key": "IND",
+    "mine": "1W",
+    "other": "5L"
+   },
+   {
+    "field": "LAST5",
+    "key": "IND",
+    "mine": "1-4-0",
+    "other": "0-5-0"
+   },
+   {
+    "field": "L",
+    "key": "NYJ",
+    "mine": "8",
+    "other": "7"
+   },
+   {
+    "field": "PCT",
+    "key": "NYJ",
+    "mine": "0.200",
+    "other": "0.222"
+   },
+   {
+    "field": "PF",
+    "key": "NYJ",
+    "mine": "194",
+    "other": "182"
+   },
+   {
+    "field": "PA",
+    "key": "NYJ",
+    "mine": "254",
+    "other": "223"
+   },
+   {
+    "field": "NET",
+    "key": "NYJ",
+    "mine": "-60",
+    "other": "-41"
+   },
+   {
+    "field": "HOME",
+    "key": "NYJ",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "DIV",
+    "key": "NYJ",
+    "mine": "0-3-0",
+    "other": "0-2-0"
+   },
+   {
+    "field": "CONF",
+    "key": "NYJ",
+    "mine": "2-5-0",
+    "other": "2-4-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "NYJ",
+    "mine": "0.286",
+    "other": "0.333"
+   },
+   {
+    "field": "STRK",
+    "key": "NYJ",
+    "mine": "5L",
+    "other": "4L"
+   },
+   {
+    "field": "LAST5",
+    "key": "NYJ",
+    "mine": "0-5-0",
+    "other": "1-4-0"
+   },
+   {
+    "field": "W",
+    "key": "LAC",
+    "mine": "1",
+    "other": "0"
+   },
+   {
+    "field": "PCT",
+    "key": "LAC",
+    "mine": "0.111",
+    "other": "0.000"
+   },
+   {
+    "field": "PF",
+    "key": "LAC",
+    "mine": "144",
+    "other": "121"
+   },
+   {
+    "field": "PA",
+    "key": "LAC",
+    "mine": "239",
+    "other": "219"
+   },
+   {
+    "field": "NET",
+    "key": "LAC",
+    "mine": "-95",
+    "other": "-98"
+   },
+   {
+    "field": "ROAD",
+    "key": "LAC",
+    "mine": "1-4-0",
+    "other": "0-4-0"
+   },
+   {
+    "field": "CONF",
+    "key": "LAC",
+    "mine": "1-5-0",
+    "other": "0-5-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "LAC",
+    "mine": "0.167",
+    "other": "0.000"
+   },
+   {
+    "field": "STRK",
+    "key": "LAC",
+    "mine": "1W",
+    "other": "8L"
+   },
+   {
+    "field": "LAST5",
+    "key": "LAC",
+    "mine": "1-4-0",
+    "other": "0-5-0"
+   },
+   {
+    "field": "L",
+    "key": "MIA",
+    "mine": "8",
+    "other": "7"
+   },
+   {
+    "field": "PCT",
+    "key": "MIA",
+    "mine": "0.111",
+    "other": "0.125"
+   },
+   {
+    "field": "PF",
+    "key": "MIA",
+    "mine": "148",
+    "other": "126"
+   },
+   {
+    "field": "PA",
+    "key": "MIA",
+    "mine": "224",
+    "other": "200"
+   },
+   {
+    "field": "NET",
+    "key": "MIA",
+    "mine": "-76",
+    "other": "-74"
+   },
+   {
+    "field": "ROAD",
+    "key": "MIA",
+    "mine": "1-4-0",
+    "other": "1-3-0"
+   },
+   {
+    "field": "CONF",
+    "key": "MIA",
+    "mine": "1-5-0",
+    "other": "1-4-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "MIA",
+    "mine": "0.167",
+    "other": "0.200"
+   },
+   {
+    "field": "STRK",
+    "key": "MIA",
+    "mine": "3L",
+    "other": "2L"
+   },
+   {
+    "field": "L",
+    "key": "TEN",
+    "mine": "8",
+    "other": "7"
+   },
+   {
+    "field": "PCT",
+    "key": "TEN",
+    "mine": "0.111",
+    "other": "0.125"
+   },
+   {
+    "field": "PF",
+    "key": "TEN",
+    "mine": "167",
+    "other": "144"
+   },
+   {
+    "field": "PA",
+    "key": "TEN",
+    "mine": "239",
+    "other": "199"
+   },
+   {
+    "field": "NET",
+    "key": "TEN",
+    "mine": "-72",
+    "other": "-55"
+   },
+   {
+    "field": "HOME",
+    "key": "TEN",
+    "mine": "0-5-0",
+    "other": "0-4-0"
+   },
+   {
+    "field": "DIV",
+    "key": "TEN",
+    "mine": "1-2-0",
+    "other": "1-1-0"
+   },
+   {
+    "field": "DIVPCT",
+    "key": "TEN",
+    "mine": "0.333",
+    "other": "0.500"
+   },
+   {
+    "field": "CONF",
+    "key": "TEN",
+    "mine": "1-6-0",
+    "other": "1-5-0"
+   },
+   {
+    "field": "CONFPCT",
+    "key": "TEN",
+    "mine": "0.143",
+    "other": "0.167"
+   },
+   {
+    "field": "STRK",
+    "key": "TEN",
+    "mine": "3L",
+    "other": "2L"
+   }
+  ],
+  "matches": 250,
+  "mismatches": 262
+ },
+ "read_method": "Direct read of the official page, transcribed by hand row by row, then machine-diffed against the collector payload (data/pipeline/*.json, read 2026-11-17T19:49Z) and the 2026-11-14 PSV transcription already in the repository. Where this read and the collector's parser agree, the cell is double-entered; where they disagree, the cell is flagged and neither value is published as verified.",
+ "read_utc": "2026-11-17T22:46Z",
+ "sources": {
+  "standings": "https://www.nfl.com/standings/league/2026/REG",
+  "week10": "https://www.nfl.com/schedules/2026/REG/week/10",
+  "week11": "https://www.nfl.com/schedules/2026/REG/week/11"
+ },
+ "week10_vs_standings": {
+  "checks": 160,
+  "clubs": 32,
+  "detail": [],
+  "games_played_implied": 150,
+  "mismatches": 0,
+  "scores_games": 14
+ }
+}

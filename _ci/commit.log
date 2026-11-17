@@ -1,18 +1,16 @@
 + git config user.name x1-bot
 + git config user.email x1-bot@users.noreply.github.com
 + git checkout -- _ci
-+ git fetch origin main
++ git fetch origin arena/2f95e652-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git reset --mixed origin/main
+ * branch            arena/2f95e652-x1 -> FETCH_HEAD
++ git reset --mixed origin/arena/2f95e652-x1
 Unstaged changes after reset:
-M	app/correlation.html
 M	app/deficiency.html
 M	app/depth.html
 M	app/flagged.html
 M	app/index.html
 M	app/repo-review.html
-M	app/team-stats.html
 M	console/archived-sites.html
 M	console/capture.html
 M	console/correlations.html
@@ -49,7 +47,6 @@ M	data/captures/status.json
 M	data/console/payload.json
 M	data/console/price_snapshots.csv
 M	data/console/repo_inventory.csv
-M	data/correlations_official_check.json
 M	data/depth/replacement_depth_summary.json
 M	data/next_decisions/round_2026_11_16.json
 M	data/pipeline/_probe.json
@@ -71,26 +68,24 @@ M	pages/availability.html
 M	pages/capture-system.html
 M	pages/decisions-critical.html
 M	pages/readiness.html
-M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-17T19:50:56Z official captures'
-[main 73bd010] ci: retain 2026-11-17T19:50:56Z official captures
- 5 files changed, 42851 insertions(+), 17 deletions(-)
- create mode 100644 data/captures/payloads/deficiency/6f/6f159834383f0064dfb5ec7586699a6ce1f90edef920f1c40b9c63923e12d594.json
- create mode 100644 data/captures/payloads/depth_charts/42/42c51ed52b66dcbffd8256689534654cf82f6cb37021e43f3390304a22abfc1d.json
- create mode 100644 data/captures/payloads/team_stats/79/79385fd9001965650cc8d48d16d1cedd26c4eee1ed6f39cb0d0185ab8cee72f6.json
++ git commit -m 'ci: retain 2026-11-17T22:54:50Z official captures'
+[arena/2f95e652-x1 0dcf667] ci: retain 2026-11-17T22:54:50Z official captures
+ 4 files changed, 30738 insertions(+), 17 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/55/5565fbcd9cbd369f5b3cb829bfc28b1ece4215f94f5d41a5267ebdbfb975b243.json
+ create mode 100644 data/captures/payloads/depth_charts/e9/e985f9eb2dfe23e86e5cfcbf5b4a64f5ba568760f720c4731398ad815d51d54b.json
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-17T19:50:56Z'
-[main fb11466] data: refresh from official sources 2026-11-17T19:50:56Z
- 36 files changed, 33440 insertions(+), 33647 deletions(-)
-+ git push origin HEAD:main
++ git commit -m 'data: refresh from official sources 2026-11-17T22:54:50Z'
+[arena/2f95e652-x1 d8b6406] data: refresh from official sources 2026-11-17T22:54:50Z
+ 32 files changed, 25194 insertions(+), 24831 deletions(-)
++ git push origin HEAD:arena/2f95e652-x1
 To https://github.com/karagemop466-tech/X1
-   019cd83..fb11466  HEAD -> main
+   74b6f3b..d8b6406  HEAD -> arena/2f95e652-x1
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -110,7 +105,7 @@ $ python3 tools/build_origination.py --check
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
     check: committed origination table matches a fresh build
 $ python3 tools/build_round3.py --check
-    replacement_depth_summary: 9 unit x depth rows, totals={'2': 676, 'none': 211, '3': 8}, gaps(on report, no replacement named)=17
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 678, 'none': 209, '3': 9}, gaps(on report, no replacement named)=16
     correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
     check: committed round-3 registers match a fresh build
 $ python3 tools/build_preregistration.py --check
@@ -120,14 +115,14 @@ $ python3 tools/build_next_decisions.py --check
 rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 + pushed=0
 + for attempt in 1 2 3 4 5
-+ git fetch origin main
++ git fetch origin arena/2f95e652-x1
 From https://github.com/karagemop466-tech/X1
- * branch            main       -> FETCH_HEAD
-+ git -c rebase.autoStash=true rebase origin/main
-Created autostash: d7ff2e7
-Current branch main is up to date.
+ * branch            arena/2f95e652-x1 -> FETCH_HEAD
++ git -c rebase.autoStash=true rebase origin/arena/2f95e652-x1
+Created autostash: aad79c4
+Current branch arena/2f95e652-x1 is up to date.
 Applied autostash.
-+ git push origin HEAD:main
++ git push origin HEAD:arena/2f95e652-x1
 Everything up-to-date
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1

@@ -1,7 +1,7 @@
 correlations: 1034 pairs
-repo_review: 736 files, 453 flagged
+repo_review: 750 files, 461 flagged
 {
- "generated_at": "2026-11-17T19:49:48+00:00",
+ "generated_at": "2026-11-17T22:53:31+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -14,7 +14,7 @@ repo_review: 736 files, 453 flagged
   },
   "depth_charts": {
    "status": "written",
-   "rows": 1802
+   "rows": 1807
   },
   "team_stats": {
    "status": "written",
@@ -22,7 +22,7 @@ repo_review: 736 files, 453 flagged
   },
   "deficiency": {
    "status": "written",
-   "rows": 895
+   "rows": 896
   },
   "model_correlation": {
    "status": "written"
@@ -99,13 +99,12 @@ repo_review: 736 files, 453 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-17T19:50:13+00:00"
+ "finished_at": "2026-11-17T22:53:56+00:00"
 }
 exit=0
 ===== captures.log =====
-capture gate: 0 build-failing problem(s), 1 published alarm(s)
-  alarm deficiency: [declared-columns-mismatch] the payload declares 12 columns and its rows carry 14 keys; undeclared in the rows: ['depth_listed', 'team_abbrev']; declared but not in the rows: none
-  49 captures retained; 25 distinct payloads
+capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
+  54 captures retained; 27 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 35
@@ -131,7 +130,7 @@ $ python3 tools/build_origination.py
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
 $ python3 tools/build_round3.py
     leaderboard_signal_staking: 11 rows, signal populated on 1, staking values published=0
-    replacement_depth_summary: 9 unit x depth rows, totals={'2': 676, 'none': 211, '3': 8}, gaps(on report, no replacement named)=17
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 678, 'none': 209, '3': 9}, gaps(on report, no replacement named)=16
     correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
 $ python3 tools/lab/build_controls.py
     random ATS     : mean 0.5003  band [0.4776, 0.5213]  reps >= favourites 0.943
@@ -149,7 +148,7 @@ $ python3 tools/official/readiness.py
     [readiness] 75 requirements, categories: {'Programme': 6, 'Prices': 3, 'Results': 1, 'Origination': 5, 'Leaderboard': 7, 'Availability': 27, 'Correlation': 1, 'Governance': 9, 'Modelling': 10, 'Schedu
 $ python3 tools/build_audit_registers.py
     wrote data/audit/: requirements_assessed.json, full_depth_join.json, findings.json, decision_questions.json, suggestion_board.json, review_queue.json, what_changed.json
-    full join: 254 rows, 30 starters out across 31 clubs (pilot subset: 6)
+    full join: 256 rows, 30 starters out across 31 clubs (pilot subset: 6)
 $ python3 tools/build_state_audit.py
     wrote data/audit/readiness.json: 60 rows; register {'met': 42, 'partly met': 7, 'in progress': 2, 'open': 2, 'not in register': 7}; round 4 {'met': 33, 'partly met': 16, 'in progress': 2, 'open': 9}; 
 $ python3 tools/build_decision_readiness.py
@@ -157,7 +156,7 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (400,962 bytes)
+    wrote app/repo-review.html (409,359 bytes)
     wrote app/stores.html (132,709 bytes)
     29 pages written
 $ python3 tools/build_console.py
@@ -202,7 +201,7 @@ $ python3 tools/cross_check.py
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
     files checked : 168
-    assertions    : 44190
+    assertions    : 44272
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
     Site verification passed: 168 HTML pages; local links resolve; every data-table row has an official source link.
@@ -211,9 +210,9 @@ $ python3 scripts/pipeline/verify_site.py
       team_stats       rows=288    without_source=0
     verify_site: OK
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
-    capture gate: 0 build-failing problem(s), 1 published alarm(s)
-      alarm deficiency: [declared-columns-mismatch] the payload declares 12 columns and its rows carry 14 keys; undeclared in the rows: ['depth_listed', 'team_abbrev']; declared but not in the rows: none
-      49 captures retained; 25 distinct payloads
+    note: freshness not gated here (a PR build cannot fix a missed collector run); data-refresh.yml gates it after it collects
+    capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
+      54 captures retained; 27 distinct payloads
 rebuild_for_refresh --pre-commit: ok (0 step(s) failed)
 ===== postcommit.log =====
 $ python3 tools/build_state_audit.py --check
@@ -231,7 +230,7 @@ $ python3 tools/build_origination.py --check
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
     check: committed origination table matches a fresh build
 $ python3 tools/build_round3.py --check
-    replacement_depth_summary: 9 unit x depth rows, totals={'2': 676, 'none': 211, '3': 8}, gaps(on report, no replacement named)=17
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 678, 'none': 209, '3': 9}, gaps(on report, no replacement named)=16
     correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
     check: committed round-3 registers match a fresh build
 $ python3 tools/build_preregistration.py --check

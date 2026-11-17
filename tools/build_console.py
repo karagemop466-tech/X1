@@ -55,6 +55,9 @@ NAV = [
                        ("depth.html", "Replacement depth", "897"),
                        ("deficiency.html", "Deficiency register", "897"),
                        # Added by session arena/b03ced7c-x1 (additive only)
+                       # Added by session arena-2f95e652-x1: the dated read that replaced the
+                       # false "re-read today" claim on the standings page.
+                       ("evidence-2026-11-17.html", "Evidence pack 2026-11-17", ""),
                        ("capture.html", "Week 10 re-capture", ""),
                        # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the
                        # official Week 10 injury page, compared row by row with the published table.
@@ -230,10 +233,15 @@ INJURY_LIVE = {
     'SEA': (15, 4, 0, 0), 'LV': (5, 0, 0, 2), 'SF': (12, 1, 0, 7), 'DAL': (19, 5, 1, 5),
     'PIT': (8, 0, 0, 1), 'CIN': (9, 1, 3, 0), 'LAC': (19, 0, 0, 0), 'BAL': (8, 0, 0, 0),
 }
-# The 32 standings rows were re-read from the official page on the build date and
-# matched the transcription in data/verify/official_standings_2026_w10.psv on all
-# 32 rows x 16 fields.
-STANDINGS_RECHECK = {"rows": 32, "fields": 16, "comparisons": 512, "mismatches": 0}
+# The standings verification is NOT a constant. It used to be: this space held
+# `STANDINGS_RECHECK = {"rows": 32, "fields": 16, "comparisons": 512, "mismatches": 0}`,
+# rendered as "512 comparisons - re-read today, 0 mismatches", and no comparison happened at
+# build time. The table being rendered is `data/verify/official_standings_2026_w10.psv`, dated
+# 2026-11-14, so the page was a snapshot compared with itself and then described as a read of
+# today. Replaced by session arena-2f95e652-x1 with the value derived below from the dated
+# read in src/console/evidence_2026_11_17.py, which also states how far the published table
+# has moved since (262 of 448 cells across 26 clubs on 2026-11-17).
+from src.console import evidence_2026_11_17 as ODDS  # noqa: E402
 
 
 def verify_depth(rows_by_team):
@@ -273,11 +281,30 @@ def verify_official():
                        "comparisons": comparisons, "matches": matches,
                        "mismatches": comparisons - matches, "detail": detail})
 
-    add("Standings 2026", "https://www.nfl.com/standings/league/2026/REG",
-        "32 clubs x 16 fields re-read from the league's own standings table",
-        STANDINGS_RECHECK["comparisons"],
-        STANDINGS_RECHECK["comparisons"] - STANDINGS_RECHECK["mismatches"],
-        "W, L, T, PCT, PF, PA, NET, HOME, ROAD, DIV, DIVPCT, CONF, CONFPCT, NONCONF, STRK, LAST5")
+    # Two entries, because two different things are true. The first is a real comparison
+    # between two independently extracted reads of the same page (hand transcription vs the
+    # collector's parser): 544 cells, and it is re-derived on every build. The second states
+    # the movement since the published table was taken, which is a finding, not a pass.
+    odds = ODDS.build()
+    cv = odds["collector_vs_league"]
+    add("Standings 2026 (today's read vs the collector)", ODDS.STANDINGS_URL,
+        f"{ODDS.READ_UTC} hand transcription compared cell by cell with the collector's "
+        f"independent read of the same page",
+        cv["comparisons"], cv["matches"],
+        f"W, L, T, PCT, PF, PA, NET, HOME, ROAD, DIV, DIVPCT, CONF, CONFPCT, NONCONF, STRK, "
+        f"LAST5; {cv['mismatches']} mismatches")
+    pv = odds["published_vs_league"]
+    checks.append({
+        "dataset": "Standings 2026 (published table vs today)",
+        "url": ODDS.STANDINGS_URL,
+        "label": f"the 2026-11-14 table this page publishes, compared with the {ODDS.READ_UTC} "
+                 f"read",
+        "comparisons": pv["comparisons"], "matches": pv["matches"],
+        "mismatches": pv["mismatches"],
+        "detail": f"{len(pv['clubs'])} clubs differ; the difference is games played since "
+                  f"2026-11-14, not a transcription error. Listed on evidence-2026-11-17.html",
+        "informational": True,
+    })
 
     # schedule
     pub = {}
@@ -531,7 +558,8 @@ even and returns less at every book.</p>
 <p>{ctx['feed']['games_settled']:,} settled games reconcile
 {ctx['reconcile']['matches']}/{ctx['reconcile']['checks']} with the league's own standings table.
 The official pages were re-read today: {ctx['verify_total']:,} comparisons,
-{ctx['verify_mismatch']} mismatches. The market's own moneylines imply its own spreads to within
+{ctx['verify_mismatch']} mismatches — all of them on the one register whose table is a dated
+snapshot rather than a re-read (see <a href="standings.html">standings</a>). The market's own moneylines imply its own spreads to within
 {ctx['market_sigma']['best']['mean_abs']} points (n={ctx['market_sigma']['best']['n']:,}).
 The benchmark we are failing is a real one.</p>
 
@@ -643,16 +671,37 @@ def build_pages_2(ctx, pages):
               [[r["TEAM"], r["W"], r["L"], r["T"], r["PCT"], r["PF"], r["PA"], r["NET"], r["HOME"],
                 r["ROAD"], r["DIV"], r["CONF"], r["NONCONF"], r["STRK"], r["LAST5"],
                 sources.url("nfl_standings")] for r in st_rows])
-    body = ('<div class="note">All 32 clubs and all 16 fields were re-read from the league\'s own '
-            'standings table on the build date and matched the published table with no mismatches. '
-            'The 2026 season is in progress; this is a dated snapshot, not a live feed.</div>'
+    # The wording below replaces "All 32 clubs and all 16 fields were re-read from the league's
+    # own standings table on the build date and matched the published table with no mismatches",
+    # which was not true: nothing was re-read at build time. Every number is derived from the
+    # dated pack, so the sentence cannot drift from the evidence again.
+    _odds = ODDS.build()
+    _pv = _odds["published_vs_league"]
+    _cv = _odds["collector_vs_league"]
+    body = ('<div class="note"><b>This table is the official transcription dated 2026-11-14, and '
+            'the league\'s table has moved since.</b> Read again at '
+            f'{esc(_odds["read_utc"])}, the league prints <b>{_odds["games_played_implied"]}</b> '
+            'games played; this table covers <b>137</b>. '
+            f'<b>{_pv["mismatches"]}</b> of {_pv["comparisons"]} cells now differ, across '
+            f'<b>{len(_pv["clubs"])}</b> clubs. The difference is games played since the '
+            'transcription, not a mis-read value. Every differing cell is listed, beside the '
+            'current league table, on <a href="evidence-2026-11-17.html">the 2026-11-17 '
+            'evidence pack</a>.</div>'
+            '<div class="note">What <em>is</em> re-derived on every build: the '
+            f'{esc(_odds["read_utc"])} hand transcription of the same page is compared cell by '
+            f'cell with the collector\'s independent extraction — <b>{_cv["comparisons"]}</b> '
+            f'cells, <b>{_cv["matches"]}</b> agree, <b>{_cv["mismatches"]}</b> differ.</div>'
             + table(hdr, trs, "standings", filter_col=0))
     pages["standings.html"] = page(
         "Standings", "Official data", body,
-        "2026 NFL league standings as printed by the league, through the Week 10 Thursday game.",
-        [("Clubs", "32", "16 fields each", ""),
-         ("Comparisons", "512", "re-read today, 0 mismatches", "good"),
-         ("Games played", str(ctx["feed"]["games_2026"]), "through 2026-11-12", "")])
+        "2026 NFL league standings as the league printed them on 2026-11-14, through the Week 10 "
+        "Thursday game. A dated snapshot; the movement since is measured on the evidence page.",
+        [("Clubs", "32", "17 fields read, 15 published", ""),
+         ("Games played here", str(ctx["feed"]["games_2026"]), "through 2026-11-12", ""),
+         ("Games played today", str(_odds["games_played_implied"]),
+          f'league table, {_odds["read_utc"]}', ""),
+         ("Cells now different", str(_pv["mismatches"]),
+          f'of {_pv["comparisons"]}, {len(_pv["clubs"])} clubs', "bad" if _pv["mismatches"] else "good")])
 
     # ---------------- schedule ----------------
     sch = feed.read_psv(feed.SCHEDULE_PSV)
@@ -1641,8 +1690,12 @@ def main():
                                   "separation cannot be illustrated with a pair today.")
 
     verify_checks = verify_official()
-    verify_total = sum(c["comparisons"] for c in verify_checks)
-    verify_mismatch = sum(c["mismatches"] for c in verify_checks)
+    # Registers marked `informational` state a measured difference rather than pass/fail, so
+    # they are excluded from the "comparisons, N mismatches" headline. The old constant added
+    # 512 of them to the total, which is how a snapshot-vs-itself comparison became 827
+    # "official comparisons today".
+    verify_total = sum(c["comparisons"] for c in verify_checks if not c.get("informational"))
+    verify_mismatch = sum(c["mismatches"] for c in verify_checks if not c.get("informational"))
 
     deficiency = json.load(open(os.path.join(ROOT, "data", "verify",
                                              "deficiency_recomputed.json"), encoding="utf-8"))
@@ -1732,6 +1785,13 @@ def main():
     import build_pages as official_pages  # noqa: E402
     p.update(official_pages.build(dict(esc=esc, table=table, pill=pill, src_link=src_link,
                                        page=page, sources=sources)))
+    # Added by session arena-2f95e652-x1: the 2026-11-17 evidence pack page is generated by
+    # its own builder (data/evidence/2026_11_17/page.html) and copied here, so the pack's data
+    # files and the page describing them are written by one command and cannot disagree.
+    _ev = os.path.join(ROOT, "data", "evidence", "2026_11_17", "page.html")
+    if os.path.exists(_ev):
+        with open(_ev, encoding="utf-8") as fh:
+            p["evidence-2026-11-17.html"] = fh.read()
     for name, html_text in p.items():
         with open(os.path.join(OUT_SITE, name), "w", encoding="utf-8") as fh:
             fh.write(html_text)
