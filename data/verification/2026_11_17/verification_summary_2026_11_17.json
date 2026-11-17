@@ -1,0 +1,239 @@
+{
+ "dataset": "official_reverification_2026_11_17",
+ "title": "Line-by-line re-verification of the 2026-11-17 official reads against the published corpus",
+ "generated_at": "2026-11-17T23:01:15Z",
+ "generated_by": "tools/verify_2026_11_17.py (session arena-e1436334-x1)",
+ "reads": [
+  {
+   "page": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "file": "data/verification/2026_11_17/official_w10_results_2026_11_17.tsv",
+   "rows": 14,
+   "read_at": "2026-11-17 ~22:45 UTC"
+  },
+  {
+   "page": "https://www.nfl.com/standings/league/2026/REG",
+   "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv",
+   "rows": 32,
+   "read_at": "2026-11-17 ~22:48 UTC"
+  },
+  {
+   "page": "https://www.nfl.com/schedules/2026/by-week/week-11",
+   "file": "data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv",
+   "rows": 19,
+   "read_at": "2026-11-17 ~22:52 UTC"
+  }
+ ],
+ "second_official_read": {
+  "fixture": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+  "why": "the only fixture whose state changed between the 2026-11-16 and 2026-11-17 reads, so it is the one row worth reading on a second official page (Game Center, with quarter scores and the printed venue)"
+ },
+ "transcription_hashes": {
+  "official_w10_results_2026_11_17.tsv": "9aca9707ab26ae702f9d0f1f2c415a800951d8915eca48b91eb7185e2654bafb",
+  "official_standings_2026_11_17.tsv": "b9f290b1c7a52aa8c5787fa65121263dcc0fff152229e009cd62e73cadc724fd",
+  "official_w11_slate_2026_11_17.tsv": "c9cb519b83340fa2b8c5de2183fcbbab53caf2f4dff350da74d613abe4cdbfe8",
+  "reads.tsv": "484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312",
+  "mirror_games.csv": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01"
+ },
+ "checks": {
+  "B1 standings internal consistency": {
+   "verdict": "PASS",
+   "clubs": 32,
+   "assertions": 96,
+   "failures": []
+  },
+  "B2 league closure": {
+   "verdict": "PASS",
+   "league_wins": 149,
+   "league_losses": 149,
+   "league_ties": 2,
+   "games_in_corpus": 150,
+   "league_points_each_side": 6923,
+   "failures": []
+  },
+  "B3 three-page record agreement": {
+   "verdict": "PASS",
+   "clubs_checked": 32,
+   "clubs_in_standings": 32,
+   "failures": []
+  },
+  "B4 corpus admission": {
+   "verdict": "PASS",
+   "corpus_rows": 150,
+   "official_w10_finals": 14,
+   "finals_missing_from_corpus": [],
+   "score_disagreements": [],
+   "per_week_rows": {
+    "1": 16,
+    "2": 16,
+    "3": 16,
+    "4": 16,
+    "5": 15,
+    "6": 14,
+    "7": 14,
+    "8": 14,
+    "9": 15,
+    "10": 14
+   },
+   "read_dates_in_corpus": [
+    "2026-11-14",
+    "2026-11-17"
+   ],
+   "failures": []
+  },
+  "B5 standings arithmetic": {
+   "verdict": "PASS",
+   "clubs": 32,
+   "games_summed": 150,
+   "assertions": 160,
+   "unmapped_club_names": [],
+   "mismatches": 0,
+   "failures": []
+  },
+  "B6 mirror cross-check": {
+   "verdict": "PASS",
+   "corpus_rows": 150,
+   "mirror_agreements": 150,
+   "mirror_scored_2026_rows": 150,
+   "mirror_role": "cross-check only; never a published source",
+   "manifest": [
+    {
+     "name": "games.csv",
+     "repo": "nflverse/nfldata",
+     "path": "data/games.csv",
+     "source_key": "nfldata_games",
+     "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv",
+     "bytes": 2190568,
+     "sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+     "status": "refreshed",
+     "retrieved_at": "2026-11-17",
+     "previous_sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+     "rows": 7548
+    }
+   ],
+   "failures": []
+  },
+  "B7 capture freshness": {
+   "verdict": "PASS",
+   "datasets": 7,
+   "over_36h": [],
+   "drift_not_pass": [
+    "deficiency"
+   ],
+   "latest": [
+    {
+     "dataset": "deficiency",
+     "as_read_at": "2026-11-17T19:50:01+00:00",
+     "rows": 895,
+     "drift": "fail",
+     "status": "new",
+     "hours_since_read": 3.19,
+     "content_sha256": "6f159834383f0064dfb5ec7586699a6ce1f90edef920f1c40b9c63923e12d594"
+    },
+    {
+     "dataset": "depth_charts",
+     "as_read_at": "2026-11-17T19:49:53+00:00",
+     "rows": 1802,
+     "drift": "pass",
+     "status": "new",
+     "hours_since_read": 3.19,
+     "content_sha256": "42c51ed52b66dcbffd8256689534654cf82f6cb37021e43f3390304a22abfc1d"
+    },
+    {
+     "dataset": "injuries",
+     "as_read_at": "2026-11-17T19:49:49+00:00",
+     "rows": 347,
+     "drift": "pass",
+     "status": "unchanged",
+     "hours_since_read": 3.19,
+     "content_sha256": "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33"
+    },
+    {
+     "dataset": "standings",
+     "as_read_at": "2026-11-17T19:49:49+00:00",
+     "rows": 32,
+     "drift": "pass",
+     "status": "unchanged",
+     "hours_since_read": 3.19,
+     "content_sha256": "e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32"
+    },
+    {
+     "dataset": "team_stats",
+     "as_read_at": "2026-11-17T19:50:01+00:00",
+     "rows": 288,
+     "drift": "pass",
+     "status": "new",
+     "hours_since_read": 3.19,
+     "content_sha256": "79385fd9001965650cc8d48d16d1cedd26c4eee1ed6f39cb0d0185ab8cee72f6"
+    },
+    {
+     "dataset": "week_results",
+     "as_read_at": "2026-11-16T18:44:00Z",
+     "rows": 14,
+     "drift": "pass",
+     "status": "new",
+     "hours_since_read": 28.29,
+     "content_sha256": "c95d423beb27d8c18c05e23dd9e99323330daf07091077531f40a0d86c8bde53"
+    },
+    {
+     "dataset": "week_schedule",
+     "as_read_at": "2026-11-16T18:52:00Z",
+     "rows": 19,
+     "drift": "pass",
+     "status": "new",
+     "hours_since_read": 28.15,
+     "content_sha256": "0ec453ed4dd6f9e13b655e5e16a490ea58408ae433543f3e9190c84970410c90"
+    }
+   ],
+   "note": "Reported, not repaired: the capture store and its pins belong to the collector (and, for the deficiency pin, to PR #61). A permanently-red alarm is an ignored alarm, so the drift verdicts are published here every run."
+  },
+  "B8 sealed ledger": {
+   "verdict": "PASS",
+   "n_sealed": 14,
+   "n_reproduce_from_rule": 14,
+   "n_confirmed_pre_kickoff": 14,
+   "n_resolved": 1,
+   "n_pending": 13,
+   "resolved_rows": [
+    {
+     "game_id": "2026_10_LAC_BAL",
+     "p_home": 0.701232,
+     "actual_margin_home": -3,
+     "brier": 0.491726,
+     "brier_baseline_0.55": 0.3025,
+     "skill_vs_0.55": -0.62554,
+     "side": "home",
+     "side_hit": "no"
+    }
+   ],
+   "failures": [],
+   "independent_of": "recomputed here from reads.tsv and the PR-01 constants, not from data/shadow/*, so the published resolution has a second arithmetic path"
+  },
+  "B9 price discipline": {
+   "verdict": "PASS",
+   "rows_scanned": {
+    "price_snapshots": 56,
+    "origination": 42,
+    "sealed_forecasts": 14
+   },
+   "our_own_prices_published": 0,
+   "policy": "no price policy ratified (Q-02) \u2192 every MARKET value stays blank and flagged; the project's OWN originated line is published, because it is the thing under test",
+   "failures": []
+  },
+  "B10 forward slate": {
+   "verdict": "PASS",
+   "fixtures": 13,
+   "byes": 6,
+   "clubs_covered": 32,
+   "slate_games_unsealed": [],
+   "failures": []
+  }
+ },
+ "verdict": "PASS",
+ "hard_failures": [],
+ "not_checked_here": [
+  "injury / availability / depth tables and their day-over-day deltas \u2014 published by PR #73 (arena/16049865-x1) on the same date; this session deliberately did not touch that scope",
+  "the deficiency dataset's declared-column drift alarm \u2014 root cause handed to the drift owner and to PR #61 in COORDINATION.md (pipeline/run.py owns the payload's columns list)",
+  "player-level game books, snap counts and inactive lists \u2014 no licensed source in this repository",
+  "any price, closing line or ROI in dollars \u2014 no ratified price policy (Q-02)"
+ ]
+}
