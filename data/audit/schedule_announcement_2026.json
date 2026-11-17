@@ -1,0 +1,47 @@
+{
+  "dataset": "schedule_announcement_2026",
+  "title": "League's dated 2026 schedule announcement (official NFL media page)",
+  "retrieved_at": "2026-11-15",
+  "retrieved_by": "session arena/29e011dc-x1 (fetch_page on the official URL below; text quoted, not paraphrased)",
+  "publisher": "NFL Football Communications (media.nfl.com)",
+  "official_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+  "announced_date": "2026-05-14",
+  "dateline": "NEW YORK — May 14, 2026",
+  "headline": "2026 NFL Schedule Announced",
+  "subhead": "Complete 18-Week, 272-Game Regular-Season Schedule Available on NFL.com",
+  "live_schedule_pages": [
+    "https://www.nfl.com/schedules/2026/by-week/week-10"
+  ],
+  "facts": [
+    {
+      "label": "Regular-season length",
+      "quote": "The NFL announced its 18-week, 272-game regular-season schedule for 2026",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced"
+    },
+    {
+      "label": "Kickoff game",
+      "quote": "kicks off on Wednesday night, September 9, in Seattle",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced"
+    },
+    {
+      "label": "Final week",
+      "quote": "concludes with 16 division games in Week 18 – three on Saturday, January 9, and 13 on Sunday, January 10",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced"
+    },
+    {
+      "label": "Games per club",
+      "quote": "each team playing 17 regular-season games and three preseason games",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced"
+    },
+    {
+      "label": "International games",
+      "quote": "The NFL schedule features nine international games, the most-ever in a season",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced"
+    }
+  ],
+  "limits": [
+    "The announcement text does not list every game; the full slate is on the official by-week PDF linked from the announcement and on the NFL.com schedule pages.",
+    "The by-week PDF is linked from the announcement but was not fetched in this session; the Week 10 slate on schedule.html is still read from the NFL.com Week 10 page, as before."
+  ],
+  "unverified": []
+}

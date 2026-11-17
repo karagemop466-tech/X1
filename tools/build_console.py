@@ -69,11 +69,11 @@ NAV = [
                   ("luck.html", "Removing luck", ""),
                   ("props.html", "Props and parlays", "")]),
     ("Decisions", [("questions.html", "Decision register", "15"),
-                   ("suggestions.html", "Suggestion review board", "14")]),
+                   ("suggestions.html", "Suggestion review board", "15")]),
     ("Governance", [("verification.html", "Verification ledger", ""),
                     ("sources.html", "Source registry", ""),
                     ("repo-review.html", "Repository review", ""),
-                    ("flagged.html", "Flagged for review", "9"),
+                    ("flagged.html", "Flagged for review", "11"),
                     ("archived-sites.html", "Archived sites", "9")]),
 ]
 

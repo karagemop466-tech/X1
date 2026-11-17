@@ -520,6 +520,26 @@ def suggestions():
              ],
              recommendation="Path A at the next scheduled data refresh, once (not before) the pre-registered PR-01 evaluation for 2026-11-16 is treated as closed and archived. Path B if the owner wants the frozen corpus preserved exactly.",
              decision_status="proposed"),
+
+        dict(id="SG-15", title="Render the salvaged capture artifacts in the console",
+             area="Availability", unlocks="R-29, R-45, R-25 and the injury-timeline views",
+             problem=("The salvaged artifacts (the hashed raw-byte ledger in data/ledger/, the "
+                      "dated injury snapshots in data/nfl/snapshots/, the league's schedule "
+                      "announcement in data/audit/, the independent injury spot-check in "
+                      "data/readiness/) are in the repository and verified, but no console page "
+                      "renders them yet."),
+             paths=[
+                 dict(label="A. Dedicated console pages",
+                      description="A ledger-timeline page (capture times, hashes, content deltas), a dated-snapshot page (11-14 vs 11-15 cell deltas), and the schedule announcement rendered beside the live schedule page.",
+                      cost="Free", effort="One generator module in the established pattern", risk="Low",
+                      unlocks="The injury report becomes a readable timestamped series on the site, not just files in git."),
+                 dict(label="B. Keep them as data with flagged links",
+                      description="Current state after the salvage: the flagged page links each artifact on GitHub.",
+                      cost="Free", effort="None", risk="The series is invisible to a reader who does not open GitHub",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A. The owner's brief explicitly asks for the dated history to be published, and every artifact already passes its verifier.",
+             decision_status="proposed"),
     ]
 
 
@@ -579,4 +599,34 @@ def irregularities(ctx):
                      "rather than folded into the pinned feed."),
              source="https://www.nfl.com/schedules/2026/by-week/week-10",
              status="measured and published - see SG-14 and the Week 10 finals page"),
+        dict(id="X-10", severity="grey", area="Coordination",
+             finding=("Four pull requests (#50, #53, #61, #66) sat conflicting and stale since "
+                      "2026-11-15, each holding unique official-capture artifacts that never "
+                      "reached main: a hashed raw-byte injury ledger (4 captures), dated injury "
+                      "snapshots for 11-14 and 11-15, the league's dated schedule announcement, "
+                      "and an independent 347-row injury spot-check."),
+             effect=("The data has been salvaged line by line into this repository and "
+                     "re-verified: the ledger hash chain passes (tools/snapshot_ledger.py "
+                     "verify), the two independent 2026-11-15 injury reads agree cell for cell "
+                     "(347 rows x 4 columns, 0 mismatches), and the schedule announcement "
+                     "matches the league's own media page. The Week 10 injury table was "
+                     "re-published to the 2026-11-15 read (345 &rarr; 347 rows) and the "
+                     "11-14 &rarr; 11-15 delta (32 cells, 2 added rows) is published as a "
+                     "dated delta. The PRs' page wiring was not salvaged (it predates later "
+                     "generator changes); rendering it is SG-15."),
+             source="https://github.com/karagemop466-tech/X1/pull/50",
+             status="salvaged and verified 2026-11-17; PRs closed with handoff notes"),
+        dict(id="X-11", severity="amber", area="Automation",
+             finding=("The scheduled 'Refresh research data' workflow failed at its final step "
+                      "with 'Resource not accessible by integration': the workflow granted the "
+                      "token only contents: write, and an explicit permissions block replaces "
+                      "the default grants, so the pull-request step had no pull-requests: write."),
+             effect=("Every scheduled run re-downloaded and rebuilt the research pipeline and "
+                     "then threw the result away. Fixed in .github/workflows/pipeline.yml "
+                     "(pull-requests: write added). Residual dependency: if the repository "
+                     "setting 'Allow GitHub Actions to create and approve pull requests' is "
+                     "disabled, the fix alone will not suffice - the owner should confirm that "
+                     "setting, which this session's token cannot read."),
+             source="https://github.com/karagemop466-tech/X1/actions/runs/44123337794",
+             status="fixed in this repository; one owner check remains"),
     ]

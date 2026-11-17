@@ -6,14 +6,14 @@
   {
    "what": "Every published Week 10 table re-read from the official pages and diffed cell by cell",
    "before": "301 of 345 injury rows never re-checked (flag I-17)",
-   "after": "2,183 cells compared, 0 mismatches",
+   "after": "1,846 cells compared, 0 mismatches",
    "evidence": "data/audit/verification_run.json",
    "source": "https://www.nfl.com/injuries/league/2026/reg10"
   },
   {
    "what": "The five-club depth pilot quantified against the 31-club collection already in the repo",
-   "before": "6 starters reported as ruled Out, presented as the count",
-   "after": "30 across 31 clubs; the pilot is now labelled a subset",
+   "before": "7 starters reported as ruled Out, presented as the count",
+   "after": "31 across 31 clubs; the pilot is now labelled a subset",
    "evidence": "data/audit/full_depth_join.json",
    "source": "https://www.packers.com/team/depth-chart"
   },

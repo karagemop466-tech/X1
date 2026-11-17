@@ -159,7 +159,7 @@ MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,CJ Allen,LB,,Full Participation in 
 MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Jaylon Carlies,LB,Neck,Did Not Participate In Practice,Out,https://www.nfl.com/players/jaylon-carlies/,https://www.nfl.com/injuries/,
 MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Akeem Davis-Gaither,LB,Knee,Did Not Participate In Practice,Out,https://www.nfl.com/players/akeem-davis-gaither/,https://www.nfl.com/injuries/,
 MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,A.J. Haulcy,S,,Full Participation in Practice,,https://www.nfl.com/players/a-j-haulcy/,https://www.nfl.com/injuries/,
-MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Arden Key,DE,Hamstring,Full Participation in Practice,Questionable,https://www.nfl.com/players/arden-key/,https://www.nfl.com/injuries/,
+MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Arden Key,DE,,Full Participation in Practice,,https://www.nfl.com/players/arden-key/,https://www.nfl.com/injuries/,
 MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Will Mallory,TE,Hamstring,Limited Participation in Practice,Questionable,https://www.nfl.com/players/will-mallory/,https://www.nfl.com/injuries/,
 MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Luke Rhodes,LS,Hamstring,Did Not Participate In Practice,Out,https://www.nfl.com/players/luke-rhodes/,https://www.nfl.com/injuries/,
 MIA at IND,Sunday 2026-11-15,1:00 PM,CBS,IND,Grover Stewart,DT,,Full Participation in Practice,,https://www.nfl.com/players/grover-stewart/,https://www.nfl.com/injuries/,
@@ -317,30 +317,32 @@ PIT at CIN,Sunday 2026-11-15,8:20 PM,NBC,CIN,Andrei Iosivas,WR,Thumb,Full Partic
 PIT at CIN,Sunday 2026-11-15,8:20 PM,NBC,CIN,Dexter Lawrence,DT,,Did Not Participate In Practice,,https://www.nfl.com/players/dexter-lawrence/,https://www.nfl.com/injuries/,I-06
 PIT at CIN,Sunday 2026-11-15,8:20 PM,NBC,CIN,Brian Parker II,G,Knee,Full Participation in Practice,Doubtful,https://www.nfl.com/players/brian-parker-ii/,https://www.nfl.com/injuries/,
 PIT at CIN,Sunday 2026-11-15,8:20 PM,NBC,CIN,DJ Turner II,CB,,Full Participation in Practice,,https://www.nfl.com/players/dj-turner-2/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Kayode Awosika,G,,Limited Participation in Practice,,https://www.nfl.com/players/kayode-awosika/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Bud Dupree,DE,,Did Not Participate In Practice,,https://www.nfl.com/players/bud-dupree/,https://www.nfl.com/injuries/,I-06
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Justin Eboigbe,DE,,Limited Participation in Practice,,https://www.nfl.com/players/justin-eboigbe/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Kayode Awosika,G,Fibula,Full Participation in Practice,Questionable,https://www.nfl.com/players/kayode-awosika/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Bud Dupree,DE,,Full Participation in Practice,,https://www.nfl.com/players/bud-dupree/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Justin Eboigbe,DE,Ankle,Limited Participation in Practice,Questionable,https://www.nfl.com/players/justin-eboigbe/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Alex Harkey,G,,Full Participation in Practice,,https://www.nfl.com/players/alex-harkey/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Tre Harris,WR,,Full Participation in Practice,,https://www.nfl.com/players/tre-harris/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Cam Hart,CB,,Full Participation in Practice,,https://www.nfl.com/players/cam-hart/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Daiyan Henley,LB,,Full Participation in Practice,,https://www.nfl.com/players/daiyan-henley/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Deane Leonard,CB,,Full Participation in Practice,,https://www.nfl.com/players/deane-leonard/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Khalil Mack,LB,,Full Participation in Practice,,https://www.nfl.com/players/khalil-mack/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Ladd McConkey,WR,,Did Not Participate In Practice,,https://www.nfl.com/players/ladd-mcconkey/,https://www.nfl.com/injuries/,I-06
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Keaton Mitchell,RB,,Limited Participation in Practice,,https://www.nfl.com/players/keaton-mitchell/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,David Njoku,TE,,Limited Participation in Practice,,https://www.nfl.com/players/david-njoku/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Denzel Perryman,LB,,Full Participation in Practice,,https://www.nfl.com/players/denzel-perryman/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Trey Pipkins,T,,Did Not Participate In Practice,,https://www.nfl.com/players/trey-pipkins/,https://www.nfl.com/injuries/,I-06
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Rodney Shelley,CB,,Limited Participation in Practice,,https://www.nfl.com/players/rodney-shelley/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Branson Taylor,G,,Did Not Participate In Practice,,https://www.nfl.com/players/branson-taylor/,https://www.nfl.com/injuries/,I-06
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Brenen Thompson,WR,,Did Not Participate In Practice,,https://www.nfl.com/players/brenen-thompson/,https://www.nfl.com/injuries/,I-06
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Isas Waxter,CB,,Did Not Participate In Practice,,https://www.nfl.com/players/isas-waxter/,https://www.nfl.com/injuries/,I-06
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Kendall Williamson,S,,Did Not Participate In Practice,,https://www.nfl.com/players/kendall-williamson/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Ladd McConkey,WR,Back,Did Not Participate In Practice,Questionable,https://www.nfl.com/players/ladd-mcconkey/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Keaton Mitchell,RB,,Full Participation in Practice,,https://www.nfl.com/players/keaton-mitchell/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,David Njoku,TE,Fibula,Full Participation in Practice,Questionable,https://www.nfl.com/players/david-njoku/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Denzel Perryman,LB,Pectoral,Full Participation in Practice,Questionable,https://www.nfl.com/players/denzel-perryman/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Trey Pipkins,T,"Not injury related - personal matter, Knee",Limited Participation in Practice,Questionable,https://www.nfl.com/players/trey-pipkins/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Rodney Shelley,CB,,Full Participation in Practice,,https://www.nfl.com/players/rodney-shelley/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Branson Taylor,G,Ankle,Did Not Participate In Practice,Out,https://www.nfl.com/players/branson-taylor/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Brenen Thompson,WR,Hamstring,Did Not Participate In Practice,Doubtful,https://www.nfl.com/players/brenen-thompson/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Isas Waxter,CB,Ankle,Did Not Participate In Practice,Out,https://www.nfl.com/players/isas-waxter/,https://www.nfl.com/injuries/,I-06
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,LAC,Kendall Williamson,S,Calf,Did Not Participate In Practice,Out,https://www.nfl.com/players/kendall-williamson/,https://www.nfl.com/injuries/,I-06
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Rasheen Ali,RB,,Full Participation in Practice,,https://www.nfl.com/players/rasheen-ali/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Rashod Bateman,WR,,Full Participation in Practice,,https://www.nfl.com/players/rashod-bateman/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Calais Campbell,DT,,Did Not Participate In Practice,,https://www.nfl.com/players/calais-campbell/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Kyle Hamilton,S,,Full Participation in Practice,,https://www.nfl.com/players/kyle-hamilton/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Jaylinn Hawkins,S,,Limited Participation in Practice,,https://www.nfl.com/players/jaylinn-hawkins/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Jaylinn Hawkins,S,Knee,Limited Participation in Practice,Out,https://www.nfl.com/players/jaylinn-hawkins/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Matthew Hibner,TE,,Full Participation in Practice,,https://www.nfl.com/players/matthew-hibner/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Olaivavega Ioane,G,,Full Participation in Practice,,https://www.nfl.com/players/olaivavega-ioane/,https://www.nfl.com/injuries/,
-LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Adam Randall,RB,,Full Participation in Practice,,https://www.nfl.com/players/adam-randall/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Adam Randall,RB,"Neck, Hamstring",Full Participation in Practice,Questionable,https://www.nfl.com/players/adam-randall/,https://www.nfl.com/injuries/,
+LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Ronnie Stanley,T,,Did Not Participate In Practice,,https://www.nfl.com/players/ronnie-stanley/,https://www.nfl.com/injuries/,
 LAC at BAL,Monday 2026-11-16,8:15 PM,ESPN,BAL,Nate Wiggins,CB,,Full Participation in Practice,,https://www.nfl.com/players/nate-wiggins/,https://www.nfl.com/injuries/,
