@@ -603,11 +603,11 @@ data/lab/prices/price_coverage.json,data,12531
 data/lab/prices/price_snapshots.csv,data,1520997
 data/lab/prices/price_snapshots.json,data,17371731
 data/lab/questions.json,data,8958
-data/lab/reads/2026-11-17/feed-closure-measurement.json,data,19855
+data/lab/reads/2026-11-17/feed-closure-measurement.json,data,20398
 data/lab/reads/2026-11-17/injury_spotcheck_2026-11-17.tsv,data,7564
 data/lab/reads/2026-11-17/injury_state_2026-11-17.tsv,data,3103
 data/lab/reads/2026-11-17/manifest.json,data,1752
-data/lab/reads/2026-11-17/report.json,data,18421
+data/lab/reads/2026-11-17/report.json,data,18477
 data/lab/reads/2026-11-17/standings_2026-11-17.tsv,data,7240
 data/lab/reads/2026-11-17/venue_evidence_2026-11-17.tsv,data,5401
 data/lab/reads/2026-11-17/week10_finals.tsv,data,6020
@@ -946,7 +946,7 @@ lab/leaderboard.html,lab,17246
 lab/lines.html,lab,19515
 lab/prices.html,lab,24908
 lab/questions.html,lab,14525
-lab/reads.html,lab,45186
+lab/reads.html,lab,45180
 lab/results.html,lab,26229
 lab/sources.html,lab,15780
 lab/suggestions.html,lab,15079
