@@ -42,6 +42,9 @@ NAV = [
     ("pages/decisions.html", "Decision register"),
     ("pages/suggestions.html", "Suggestions"),
     ("pages/flagged.html", "Flagged for review"),
+    # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the official
+    # Week 10 injury page, compared row by row with the published table.
+    ("pages/injury-read-2026-11-17.html", "Injury re-read 17 Nov"),
     ("pages/cross-check.html", "Cross-check"),
     ("pages/sources.html", "Sources"),
     ("pages/decisions-critical.html", "Decisions to make"),

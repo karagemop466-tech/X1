@@ -56,6 +56,9 @@ NAV = [
                        ("deficiency.html", "Deficiency register", "897"),
                        # Added by session arena/b03ced7c-x1 (additive only)
                        ("capture.html", "Week 10 re-capture", ""),
+                       # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the
+                       # official Week 10 injury page, compared row by row with the published table.
+                       ("../pages/injury-read-2026-11-17.html", "Injury re-read 17 Nov", "347"),
                        ("depth-parse.html", "Depth parse defects", "")]),
     ("Markets", [("results.html", "Verified results feed", "7,548"),
                  ("prices.html", "Price-snapshot store", "18.8k"),
