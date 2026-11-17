@@ -1,5 +1,6 @@
 DATASET,LABEL,COMPARISONS,MATCHES,MISMATCHES,SOURCE
-Standings 2026,32 clubs x 16 fields re-read from the league's own standings table,512,512,0,https://www.nfl.com/standings/league/2026/REG
+Standings 2026 (today's read vs the collector),2026-11-17T22:46Z hand transcription compared cell by cell with the collector's independent read of the same page,544,544,0,https://www.nfl.com/standings/league/2026/REG
+Standings 2026 (published table vs today),"the 2026-11-14 table this page publishes, compared with the 2026-11-17T22:46Z read",512,250,262,https://www.nfl.com/standings/league/2026/REG
 Week 10 schedule,"14 games x 8 fields, plus the league's own 'Teams on Bye' list",116,116,0,https://www.nfl.com/schedules/2026/by-week/week-10
 Week 10 injury report,"28 clubs x (row count, Out, Doubtful, Questionable)",113,113,0,https://www.nfl.com/injuries/
 Replacement depth,"ATL, BUF and CHI depth charts re-read on 2026-11-14 and compared cell by cell",86,86,0,https://www.atlantafalcons.com/team/depth-chart

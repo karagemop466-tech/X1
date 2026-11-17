@@ -6,19 +6,17 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
-M	app/correlation.html
 M	app/deficiency.html
 M	app/depth.html
 M	app/flagged.html
-M	app/index.html
 M	app/repo-review.html
-M	app/team-stats.html
 M	console/archived-sites.html
 M	console/capture.html
 M	console/correlations.html
 M	console/deficiency.html
 M	console/depth-parse.html
 M	console/depth.html
+M	console/evidence-2026-11-17.html
 M	console/executive-summary.html
 M	console/flagged.html
 M	console/gates.html
@@ -41,7 +39,6 @@ M	console/standings.html
 M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
-M	data/audit/decision_questions.json
 M	data/audit/findings.json
 M	data/audit/full_depth_join.json
 M	data/captures/index.jsonl
@@ -49,7 +46,6 @@ M	data/captures/status.json
 M	data/console/payload.json
 M	data/console/price_snapshots.csv
 M	data/console/repo_inventory.csv
-M	data/correlations_official_check.json
 M	data/depth/replacement_depth_summary.json
 M	data/next_decisions/round_2026_11_16.json
 M	data/pipeline/_probe.json
@@ -64,33 +60,28 @@ M	data/pipeline/repo_review.json
 M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
 M	data/preregistration/register.json
-M	data/readiness/decision_readiness.csv
 M	data/readiness/decision_readiness.json
 M	index.html
 M	pages/availability.html
 M	pages/capture-system.html
-M	pages/decisions-critical.html
-M	pages/readiness.html
-M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-17T19:50:56Z official captures'
-[main 73bd010] ci: retain 2026-11-17T19:50:56Z official captures
- 5 files changed, 42851 insertions(+), 17 deletions(-)
- create mode 100644 data/captures/payloads/deficiency/6f/6f159834383f0064dfb5ec7586699a6ce1f90edef920f1c40b9c63923e12d594.json
- create mode 100644 data/captures/payloads/depth_charts/42/42c51ed52b66dcbffd8256689534654cf82f6cb37021e43f3390304a22abfc1d.json
- create mode 100644 data/captures/payloads/team_stats/79/79385fd9001965650cc8d48d16d1cedd26c4eee1ed6f39cb0d0185ab8cee72f6.json
++ git commit -m 'ci: retain 2026-11-17T23:06:35Z official captures'
+[main 94ace37] ci: retain 2026-11-17T23:06:35Z official captures
+ 4 files changed, 30737 insertions(+), 16 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/c3/c30382b3d4c6ec37afa37bc91355fda3d1bd28a2bd41a7dbde71f118012ef1fa.json
+ create mode 100644 data/captures/payloads/depth_charts/84/845bd953fb3aa9c68fafdf92febb6d565ecc275637b470ee0be26bd0fa86e606.json
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-17T19:50:56Z'
-[main fb11466] data: refresh from official sources 2026-11-17T19:50:56Z
- 36 files changed, 33440 insertions(+), 33647 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-17T23:06:35Z'
+[main 757c8f4] data: refresh from official sources 2026-11-17T23:06:35Z
+ 27 files changed, 24920 insertions(+), 24775 deletions(-)
 + git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   019cd83..fb11466  HEAD -> main
+   f1a0cee..757c8f4  HEAD -> main
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -110,7 +101,7 @@ $ python3 tools/build_origination.py --check
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
     check: committed origination table matches a fresh build
 $ python3 tools/build_round3.py --check
-    replacement_depth_summary: 9 unit x depth rows, totals={'2': 676, 'none': 211, '3': 8}, gaps(on report, no replacement named)=17
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 678, 'none': 209, '3': 9}, gaps(on report, no replacement named)=16
     correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
     check: committed round-3 registers match a fresh build
 $ python3 tools/build_preregistration.py --check
@@ -124,7 +115,7 @@ rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git -c rebase.autoStash=true rebase origin/main
-Created autostash: d7ff2e7
+Created autostash: faa72e0
 Current branch main is up to date.
 Applied autostash.
 + git push origin HEAD:main

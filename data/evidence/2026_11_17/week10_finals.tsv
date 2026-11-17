@@ -1,0 +1,19 @@
+# 2026 Week 10 results, all 14 games final
+# SOURCE: https://www.nfl.com/schedules/2026/REG/week/10
+# READ:   2026-11-17T22:46Z (UTC), single direct read of the official page, transcribed row by row
+# NOTE:   in_2026_11_14_snapshot=yes means the 2026-11-14 transcription already counted this game; the arithmetic in closure.tsv adds only the rows marked no, otherwise the Thursday game is counted twice.
+game_id|date_et|window|away|away_score|home|home_score|in_2026_11_14_snapshot
+commanders-at-giants-2026-reg-10|2026-11-12|Thursday Night Football|WAS|24|NYG|21|yes
+patriots-at-lions-2026-reg-10|2026-11-15|International (Munich)|NE|10|DET|35|no
+chiefs-at-falcons-2026-reg-10|2026-11-15|Sunday 1:00 PM|KC|35|ATL|13|no
+texans-at-browns-2026-reg-10|2026-11-15|Sunday 1:00 PM|HOU|24|CLE|27|no
+vikings-at-packers-2026-reg-10|2026-11-15|Sunday 1:00 PM|MIN|30|GB|10|no
+dolphins-at-colts-2026-reg-10|2026-11-15|Sunday 1:00 PM|MIA|22|IND|24|no
+panthers-at-saints-2026-reg-10|2026-11-15|Sunday 1:00 PM|CAR|20|NO|17|no
+bills-at-jets-2026-reg-10|2026-11-15|Sunday 1:00 PM|BUF|31|NYJ|12|no
+jaguars-at-titans-2026-reg-10|2026-11-15|Sunday 1:00 PM|JAX|40|TEN|23|no
+rams-at-cardinals-2026-reg-10|2026-11-15|Sunday 4:05 PM|LA|34|AZ|6|no
+seahawks-at-raiders-2026-reg-10|2026-11-15|Sunday 4:05 PM|SEA|21|LV|13|no
+49ers-at-cowboys-2026-reg-10|2026-11-15|Sunday 4:25 PM|SF|46|DAL|40|no
+steelers-at-bengals-2026-reg-10|2026-11-15|Sunday Night Football|PIT|18|CIN|38|no
+chargers-at-ravens-2026-reg-10|2026-11-16|Monday Night Football|LAC|23|BAL|20|no

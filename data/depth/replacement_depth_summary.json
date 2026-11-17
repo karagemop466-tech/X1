@@ -22,18 +22,18 @@
  ],
  "rows_count": 9,
  "totals": {
-  "slots": 895,
-  "replacement_named": 684,
-  "no_replacement_named": 211,
-  "starters_on_report_without_named_replacement": 17,
+  "slots": 896,
+  "replacement_named": 687,
+  "no_replacement_named": 209,
+  "starters_on_report_without_named_replacement": 16,
   "by_depth": {
-   "2": 676,
-   "3": 8
+   "2": 678,
+   "3": 9
   },
   "by_depth_all_slots": {
-   "2": 676,
-   "none": 211,
-   "3": 8
+   "2": 678,
+   "none": 209,
+   "3": 9
   }
  },
  "gaps": [
@@ -60,14 +60,6 @@
    "starter": "Peter Skoronski",
    "game_status": "Out",
    "source_url": "https://www.tennesseetitans.com/team/depth-chart"
-  },
-  {
-   "team": "CAR",
-   "unit": "Defense",
-   "position": "CB",
-   "starter": "Will Lee III",
-   "game_status": "Questionable",
-   "source_url": "https://www.panthers.com/team/depth-chart"
   },
   {
    "team": "LA",
@@ -175,7 +167,7 @@
   }
  ],
  "verification": {
-  "rows": 895,
+  "rows": 896,
   "depth_values_valid": true,
   "violations": 0,
   "note": "depth 4 exists in the schema and the charts; no slot needs a 4th string today"
@@ -185,11 +177,11 @@
    "unit": "Defense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 318,
+   "slots": 322,
    "starters_out": 11,
    "starters_doubtful": 1,
    "starters_questionable": 15,
-   "replacement_named": 318,
+   "replacement_named": 322,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -209,10 +201,10 @@
    "unit": "Defense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 33,
+   "slots": 29,
    "starters_out": 1,
    "starters_doubtful": 0,
-   "starters_questionable": 3,
+   "starters_questionable": 2,
    "replacement_named": 0,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
@@ -221,11 +213,11 @@
    "unit": "Offense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 299,
+   "slots": 298,
    "starters_out": 17,
    "starters_doubtful": 2,
    "starters_questionable": 10,
-   "replacement_named": 299,
+   "replacement_named": 298,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -245,7 +237,7 @@
    "unit": "Offense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 49,
+   "slots": 50,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,
@@ -257,11 +249,11 @@
    "unit": "Special Teams",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 59,
+   "slots": 58,
    "starters_out": 3,
    "starters_doubtful": 0,
    "starters_questionable": 0,
-   "replacement_named": 59,
+   "replacement_named": 58,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -269,11 +261,11 @@
    "unit": "Special Teams",
    "replacement_depth": "3",
    "depth_label": "3rd string",
-   "slots": 2,
+   "slots": 3,
    "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 0,
-   "replacement_named": 2,
+   "replacement_named": 3,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -281,7 +273,7 @@
    "unit": "Special Teams",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 129,
+   "slots": 130,
    "starters_out": 1,
    "starters_doubtful": 0,
    "starters_questionable": 1,
@@ -314,14 +306,6 @@
    "starter": "Peter Skoronski",
    "game_status": "Out",
    "source_url": "https://www.tennesseetitans.com/team/depth-chart"
-  },
-  {
-   "team": "CAR",
-   "unit": "Defense",
-   "position": "CB",
-   "starter": "Will Lee III",
-   "game_status": "Questionable",
-   "source_url": "https://www.panthers.com/team/depth-chart"
   },
   {
    "team": "LA",
