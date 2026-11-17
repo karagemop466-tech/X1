@@ -1,0 +1,105 @@
+{
+ "corpus_read": {
+  "added_by_the_2026_11_17_read": [
+   "chargers-at-ravens-2026-reg-10"
+  ],
+  "games": 150,
+  "league_average_total_points": 46.153,
+  "league_points_per_team_per_game": 23.077,
+  "note": "the corpus this record reads, not a corpus this registration owns: weeks 1-9 plus the Week 10 games settled by official reads. PR-01's own 137/149-game figures are unchanged by anything here",
+  "pr01_registration_corpus_games": 149,
+  "weeks": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ]
+ },
+ "cross_registration_delta_vs_pr01": {
+  "fixtures_compared": 0,
+  "largest_move": {
+   "abs_delta": 0,
+   "game_id": ""
+  },
+  "mean_abs_delta": "",
+  "rows": [],
+  "what_it_measures": "the same rule, the same code path, one extra settled game in the corpus. It is not a score and it is not an improvement - it is how sensitive this model is to a single result, which is the thing to know before anyone calls either record a signal"
+ },
+ "dataset": "week11-escrow-PR-04",
+ "fails": [],
+ "first_kickoff_utc": "2026-11-20T01:15:00Z",
+ "fixtures": 13,
+ "forecast_rows": 52,
+ "generated_at": "2026-11-17T23:10:31+00:00",
+ "inherited_constants": {
+  "H_home_points": 1.6,
+  "K_prior_games": 2.0,
+  "SIGMA_points": 13.5,
+  "home_baseline_p": 0.55,
+  "source": "tools/build_shadow_baseline.py (PR-01): imported, not retyped"
+ },
+ "inputs": {
+  "data/lab/reads/2026-11-17/week10_finals.tsv": "9f74ed9bccad29719a014bf3e004e0345867d181f011cd6e20e107a38ccab177",
+  "data/lab/reads/2026-11-17/week11_slate_2026-11-17.tsv": "3ced9a56f45365b834b4eddfb7b6e3f1f80c0c45184c7057e0f08d6c869b7891",
+  "data/shadow/forecasts_pre_kickoff.csv": "ff14280133d77190d033cce1855b3408be3f82c0499c4f15ecfd2a00267cd66a",
+  "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv": "4545f9d49c3a1c4a4e3608d72050f0716271b6b58405f82ec36c1e8e41d63861",
+  "docs/preregistration/PR-04-week11-escrow.md": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64"
+ },
+ "kickoff_offset_applied": "US Eastern on standard time for this whole window, i.e. UTC = local + 5h",
+ "ledger_rows": 66,
+ "ledger_rows_hash": "e3e0a436d64f34153b13bfab608b87d213539d421fa0740da52544d7da52bebc",
+ "limits": [
+  "margin model: no opponent adjustment, personnel, venue, rest or weather inside the rating",
+  "total_A is the league average by construction; publishing it is the floor total_B has to beat, not an estimate of any particular game",
+  "the Mexico City fixture (Vikings at 49ers) receives the frozen 1.6-point home edge although the official fixture page prints Location MEXICO CITY and Stadium ESTADIO BANORTE; the rule is frozen for this window, so the edge is published as the rule states it and the venue is recorded as a limit, for the next registration to decide on",
+  "rest_days columns are published context derived from official schedule dates; the model does not use them in this registration",
+  "the settled aggregate has n = 1 and is a demonstration of the mechanism, not a result"
+ ],
+ "market_order": {
+  "moneyline": 3,
+  "side": 1,
+  "total_A": 2,
+  "total_B": 2
+ },
+ "markets": [
+  "side",
+  "total_A",
+  "total_B",
+  "moneyline"
+ ],
+ "read_clock_precision": "the reads pack stamps its clock to the minute, so this record could be up to a minute earlier or later than the stamp says. The slack field above is what that uncertainty has to be small against; it is negligible here only because the nearest kickoff is days away, and a record written inside a kickoff minute would have to change this line",
+ "recorded_at_utc": "2026-11-17T22:50:00Z",
+ "recorded_before_first_kickoff": "yes",
+ "recorded_before_first_kickoff_minutes_of_slack": 3025.0,
+ "registration": {
+  "how_to_verify": "python3 tools/build_preregistration.py --check",
+  "rule_file": "docs/preregistration/PR-04-week11-escrow.md",
+  "rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64"
+ },
+ "rows_hash": "9050d41f36de779ef26cf3633235537b19b6bde7f594de70c377a9cf86ec453f",
+ "settled": {
+  "brier_skill_vs_home_baseline": -0.62554,
+  "expected_wins_on_model_side": 0.7012,
+  "mean_brier": 0.491726,
+  "mean_brier_home_baseline": 0.3025,
+  "mean_fair_line_error_points": 10.13,
+  "model_side_hits": 0,
+  "n_pr01_records": 14,
+  "n_pr04_rows_open": 65,
+  "n_settled_side_rows": 1,
+  "reading": "n = 1 is not evidence of anything, in either direction. The ledger exists so the number is computed the day an official page prints a final, from the record that was written before it, instead of being reconstructed afterwards.",
+  "sd_of_wins": 0.4577
+ },
+ "title": "Week 11 pre-kickoff escrow record, and the settlement ledger for every forecast on file",
+ "withheld": {
+  "clv_and_roi": "no price, no settlement price, so no CLV and no ROI - stated on every row",
+  "market_line": "no licensed price source for 2026 (open question Q-02)",
+  "residual": "follows from the blank market line"
+ }
+}

@@ -79,6 +79,23 @@ RULES = [
         "leaderboard_eligible": "n/a",
         "gates": "G0 (the feed is what every other gate reads)",
     },
+    {
+        "id": "PR-04",
+        "name": "Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only",
+        "family": "escrow",
+        "file": "docs/preregistration/PR-04-week11-escrow.md",
+        "markets": "side, then total (published twice: total_A league floor, total_B two-club), then "
+                   "moneyline - the order is a build constraint in tools/lab/build_escrow.py",
+        "window": "2026 REG week 11, recorded 2026-11-17 before the first kickoff (2026-11-19 8:15 PM ET); "
+                  "ratings read from the 150-game official corpus, market line withheld (Q-02)",
+        "leaderboard_eligible": "no - a prospective record qualifies for the second stage; it is not "
+                                 "ranked against a strategy competing for a reward, and no CLV or ROI is "
+                                 "computed because there is no price source",
+        "gates": "G1 registered before the window opens; G2 chronology (the escrow rows' fixture must not "
+                 "have been played when the record was written, and the record's clock comes from the reads "
+                 "pack, not the build clock); G3 proper scores with n printed; G4 no multiplicity claim - one "
+                 "record, no variant search; G5 staking and CLV withheld (no price source)",
+    },
 ]
 
 # Added by session arena-2f95e652-x1: `oldest_visible_commit` is a property of the CHECKOUT, not of
