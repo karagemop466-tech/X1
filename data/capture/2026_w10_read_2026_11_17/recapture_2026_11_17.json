@@ -1,0 +1,715 @@
+{
+  "dataset": "nfl.com Week 10 injury page: three dated reads compared row by row",
+  "pipeline_payload_cross_check": {
+    "payload_file": "data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json",
+    "payload_captured_at": "2026-11-16T19:02:37Z",
+    "payload_rows": 347,
+    "read_rows": 347,
+    "rows_only_in_payload_after_LA_to_LAR": 0,
+    "rows_only_in_2026_11_17_read": 0,
+    "normalisation": "payload team 'LA' read as 'LAR' (the code printed on the page); no other change"
+  },
+  "source": "https://www.nfl.com/injuries/",
+  "reads": {
+    "published_table": {
+      "file": "data/nfl/injuries_week10.tsv",
+      "read_on": "2026-11-14 (per file header)",
+      "counts": {
+        "rows": 345,
+        "Out": 66,
+        "Doubtful": 10,
+        "Questionable": 84,
+        "blank_game_status": 185,
+        "blank_injury": 185,
+        "clubs": 28,
+        "games": 14
+      }
+    },
+    "read_2026_11_15": {
+      "file": "data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv",
+      "read_on": "2026-11-15 (per its README)",
+      "counts": {
+        "rows": 347,
+        "Out": 70,
+        "Doubtful": 11,
+        "Questionable": 90,
+        "blank_game_status": 176,
+        "blank_injury": 176,
+        "clubs": 28,
+        "games": 14
+      }
+    },
+    "read_2026_11_17": {
+      "file": "data/capture/2026_w10_read_2026_11_17/official_nflcom_injuries_week10_2026-11-17.psv",
+      "read_on": "2026-11-17",
+      "counts": {
+        "rows": 347,
+        "Out": 70,
+        "Doubtful": 11,
+        "Questionable": 90,
+        "blank_game_status": 176,
+        "blank_injury": 176,
+        "clubs": 28,
+        "games": 14
+      }
+    }
+  },
+  "rows_per_club_read_2026_11_17": {
+    "ATL": 11,
+    "AZ": 15,
+    "BAL": 10,
+    "BUF": 14,
+    "CAR": 12,
+    "CIN": 9,
+    "CLE": 12,
+    "DAL": 19,
+    "DET": 9,
+    "GB": 17,
+    "HOU": 16,
+    "IND": 14,
+    "JAX": 11,
+    "KC": 13,
+    "LAC": 19,
+    "LAR": 14,
+    "LV": 5,
+    "MIA": 11,
+    "MIN": 13,
+    "NE": 15,
+    "NO": 12,
+    "NYG": 11,
+    "NYJ": 9,
+    "PIT": 8,
+    "SEA": 15,
+    "SF": 12,
+    "TEN": 12,
+    "WAS": 9
+  },
+  "published_vs_2026_11_17": {
+    "missing_from_published": [
+      {
+        "game": "LAC@BAL",
+        "team": "BAL",
+        "player": "Calais Campbell",
+        "official_row": {
+          "game": "LAC@BAL",
+          "team": "BAL",
+          "player": "Calais Campbell",
+          "position": "DT",
+          "injury": "",
+          "practice_status": "Did Not Participate In Practice",
+          "game_status": ""
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "BAL",
+        "player": "Ronnie Stanley",
+        "official_row": {
+          "game": "LAC@BAL",
+          "team": "BAL",
+          "player": "Ronnie Stanley",
+          "position": "T",
+          "injury": "",
+          "practice_status": "Did Not Participate In Practice",
+          "game_status": ""
+        }
+      }
+    ],
+    "published_but_not_on_page": [],
+    "field_changes": [
+      {
+        "game": "LAC@BAL",
+        "team": "BAL",
+        "player": "Adam Randall",
+        "changes": {
+          "injury": [
+            "",
+            "Neck, Hamstring"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "BAL",
+        "player": "Jaylinn Hawkins",
+        "changes": {
+          "injury": [
+            "",
+            "Knee"
+          ],
+          "game_status": [
+            "",
+            "Out"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Branson Taylor",
+        "changes": {
+          "injury": [
+            "",
+            "Ankle"
+          ],
+          "game_status": [
+            "",
+            "Out"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Brenen Thompson",
+        "changes": {
+          "injury": [
+            "",
+            "Hamstring"
+          ],
+          "game_status": [
+            "",
+            "Doubtful"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Bud Dupree",
+        "changes": {
+          "practice_status": [
+            "Did Not Participate In Practice",
+            "Full Participation in Practice"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "David Njoku",
+        "changes": {
+          "injury": [
+            "",
+            "Fibula"
+          ],
+          "practice_status": [
+            "Limited Participation in Practice",
+            "Full Participation in Practice"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Denzel Perryman",
+        "changes": {
+          "injury": [
+            "",
+            "Pectoral"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Isas Waxter",
+        "changes": {
+          "injury": [
+            "",
+            "Ankle"
+          ],
+          "game_status": [
+            "",
+            "Out"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Justin Eboigbe",
+        "changes": {
+          "injury": [
+            "",
+            "Ankle"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Kayode Awosika",
+        "changes": {
+          "injury": [
+            "",
+            "Fibula"
+          ],
+          "practice_status": [
+            "Limited Participation in Practice",
+            "Full Participation in Practice"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Keaton Mitchell",
+        "changes": {
+          "practice_status": [
+            "Limited Participation in Practice",
+            "Full Participation in Practice"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Kendall Williamson",
+        "changes": {
+          "injury": [
+            "",
+            "Calf"
+          ],
+          "game_status": [
+            "",
+            "Out"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Ladd McConkey",
+        "changes": {
+          "injury": [
+            "",
+            "Back"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Rodney Shelley",
+        "changes": {
+          "practice_status": [
+            "Limited Participation in Practice",
+            "Full Participation in Practice"
+          ]
+        }
+      },
+      {
+        "game": "LAC@BAL",
+        "team": "LAC",
+        "player": "Trey Pipkins",
+        "changes": {
+          "injury": [
+            "",
+            "Not injury related - personal matter, Knee"
+          ],
+          "practice_status": [
+            "Did Not Participate In Practice",
+            "Limited Participation in Practice"
+          ],
+          "game_status": [
+            "",
+            "Questionable"
+          ]
+        }
+      },
+      {
+        "game": "MIA@IND",
+        "team": "IND",
+        "player": "Arden Key",
+        "changes": {
+          "injury": [
+            "Hamstring",
+            ""
+          ],
+          "game_status": [
+            "Questionable",
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  "delta_2026_11_15_to_2026_11_17": {
+    "only_on_2026_11_15": [],
+    "only_on_2026_11_17": [],
+    "field_changes": []
+  },
+  "published_url_by_key": {
+    "BUF@NYJ|BUF|Alec Anderson": "https://www.nfl.com/players/alec-anderson-2/",
+    "BUF@NYJ|BUF|Ar'maj Reed-Adams": "https://www.nfl.com/players/ar-maj-reed-adams/",
+    "BUF@NYJ|BUF|Christian Benford": "https://www.nfl.com/players/christian-benford/",
+    "BUF@NYJ|BUF|Connor McGovern": "https://www.nfl.com/players/connor-mcgovern-2/",
+    "BUF@NYJ|BUF|Dalton Kincaid": "https://www.nfl.com/players/dalton-kincaid/",
+    "BUF@NYJ|BUF|Dion Dawkins": "https://www.nfl.com/players/dion-dawkins/",
+    "BUF@NYJ|BUF|Ed Oliver": "https://www.nfl.com/players/ed-oliver/",
+    "BUF@NYJ|BUF|Greg Gaines": "https://www.nfl.com/players/greg-gaines/",
+    "BUF@NYJ|BUF|Jordan Hancock": "https://www.nfl.com/players/jordan-hancock/",
+    "BUF@NYJ|BUF|Sam Franklin Jr.": "https://www.nfl.com/players/sam-franklin/",
+    "BUF@NYJ|BUF|Spencer Brown": "https://www.nfl.com/players/spencer-brown/",
+    "BUF@NYJ|BUF|T.J. Sanders": "https://www.nfl.com/players/t-j-sanders/",
+    "BUF@NYJ|BUF|Terrel Bernard": "https://www.nfl.com/players/terrel-bernard/",
+    "BUF@NYJ|BUF|Tyrell Shavers": "https://www.nfl.com/players/tyrell-shavers/",
+    "BUF@NYJ|NYJ|Adonai Mitchell": "https://www.nfl.com/players/adonai-mitchell/",
+    "BUF@NYJ|NYJ|Garrett Wilson": "https://www.nfl.com/players/garrett-wilson/",
+    "BUF@NYJ|NYJ|Harrison Phillips": "https://www.nfl.com/players/harrison-phillips/",
+    "BUF@NYJ|NYJ|Jarvis Brownlee Jr.": "https://www.nfl.com/players/jarvis-brownlee-jr/",
+    "BUF@NYJ|NYJ|Joseph Ossai": "https://www.nfl.com/players/joseph-ossai/",
+    "BUF@NYJ|NYJ|Nahshon Wright": "https://www.nfl.com/players/nahshon-wright/",
+    "BUF@NYJ|NYJ|Omar Cooper Jr.": "https://www.nfl.com/players/omar-cooper-jr/",
+    "BUF@NYJ|NYJ|Trevin Wallace": "https://www.nfl.com/players/trevin-wallace/",
+    "BUF@NYJ|NYJ|VJ Payne": "https://www.nfl.com/players/vj-payne/",
+    "CAR@NO|CAR|Bobby Okereke": "https://www.nfl.com/players/bobby-okereke/",
+    "CAR@NO|CAR|Brady Christensen": "https://www.nfl.com/players/brady-christensen/",
+    "CAR@NO|CAR|Chuba Hubbard": "https://www.nfl.com/players/chuba-hubbard/",
+    "CAR@NO|CAR|Damien Lewis": "https://www.nfl.com/players/damien-lewis/",
+    "CAR@NO|CAR|Jaelan Phillips": "https://www.nfl.com/players/jaelan-phillips/",
+    "CAR@NO|CAR|Jonathon Brooks": "https://www.nfl.com/players/jonathon-brooks/",
+    "CAR@NO|CAR|Lee Hunter": "https://www.nfl.com/players/lee-hunter/",
+    "CAR@NO|CAR|Mike Jackson": "https://www.nfl.com/players/mike-jackson/",
+    "CAR@NO|CAR|Torricelli Simpkins III": "https://www.nfl.com/players/torricelli-simpkins-iii/",
+    "CAR@NO|CAR|Trevor Etienne": "https://www.nfl.com/players/trevor-etienne/",
+    "CAR@NO|CAR|Will Lee III": "https://www.nfl.com/players/will-lee-iii/",
+    "CAR@NO|CAR|Xavier Legette": "https://www.nfl.com/players/xavier-legette/",
+    "CAR@NO|NO|Alvin Kamara": "https://www.nfl.com/players/alvin-kamara/",
+    "CAR@NO|NO|Asim Richards": "https://www.nfl.com/players/asim-richards/",
+    "CAR@NO|NO|CJ Donaldson": "https://www.nfl.com/players/cj-donaldson/",
+    "CAR@NO|NO|Christen Miller": "https://www.nfl.com/players/christen-miller/",
+    "CAR@NO|NO|David Edwards": "https://www.nfl.com/players/david-edwards-x1290/",
+    "CAR@NO|NO|Erik McCoy": "https://www.nfl.com/players/erik-mccoy/",
+    "CAR@NO|NO|Kelvin Banks Jr.": "https://www.nfl.com/players/kelvin-banks-jr/",
+    "CAR@NO|NO|Martin Emerson": "https://www.nfl.com/players/martin-emerson/",
+    "CAR@NO|NO|Noah Fant": "https://www.nfl.com/players/noah-fant-x4946/",
+    "CAR@NO|NO|Quincy Riley": "https://www.nfl.com/players/quincy-riley/",
+    "CAR@NO|NO|Taliese Fuaga": "https://www.nfl.com/players/taliese-fuaga/",
+    "CAR@NO|NO|Travis Etienne": "https://www.nfl.com/players/travis-etienne/",
+    "HOU@CLE|CLE|Austin Barber": "https://www.nfl.com/players/austin-barber/",
+    "HOU@CLE|CLE|Carson Schwesinger": "https://www.nfl.com/players/carson-schwesinger/",
+    "HOU@CLE|CLE|Denzel Boston": "https://www.nfl.com/players/denzel-boston/",
+    "HOU@CLE|CLE|Denzel Ward": "https://www.nfl.com/players/denzel-ward/",
+    "HOU@CLE|CLE|Donovan McMillon": "https://www.nfl.com/players/donovan-mcmillon-2/",
+    "HOU@CLE|CLE|Elgton Jenkins": "https://www.nfl.com/players/elgton-jenkins/",
+    "HOU@CLE|CLE|Harold Fannin Jr.": "https://www.nfl.com/players/harold-fannin-jr/",
+    "HOU@CLE|CLE|Maliek Collins": "https://www.nfl.com/players/maliek-collins/",
+    "HOU@CLE|CLE|Michael Burton": "https://www.nfl.com/players/michael-burton/",
+    "HOU@CLE|CLE|Quincy Williams": "https://www.nfl.com/players/quincy-williams/",
+    "HOU@CLE|CLE|Ronnie Hickman Jr.": "https://www.nfl.com/players/ronnie-hickman-jr/",
+    "HOU@CLE|CLE|Tytus Howard": "https://www.nfl.com/players/tytus-howard-x1979/",
+    "HOU@CLE|HOU|Azeez Al-Shaair": "https://www.nfl.com/players/azeez-al-shaair/",
+    "HOU@CLE|HOU|Blake Fisher": "https://www.nfl.com/players/blake-fisher/",
+    "HOU@CLE|HOU|Brevin Jordan": "https://www.nfl.com/players/brevin-jordan/",
+    "HOU@CLE|HOU|Danielle Hunter": "https://www.nfl.com/players/danielle-hunter/",
+    "HOU@CLE|HOU|David Montgomery": "https://www.nfl.com/players/david-montgomery/",
+    "HOU@CLE|HOU|Jacob Hummel": "https://www.nfl.com/players/jake-hummel/",
+    "HOU@CLE|HOU|Jaylin Smith": "https://www.nfl.com/players/jaylin-smith/",
+    "HOU@CLE|HOU|Keylan Rutledge": "https://www.nfl.com/players/keylan-rutledge/",
+    "HOU@CLE|HOU|Marvin Harrison Jr.": "https://www.nfl.com/players/marvin-harrison-jr/",
+    "HOU@CLE|HOU|Reed Blankenship": "https://www.nfl.com/players/reed-blankenship/",
+    "HOU@CLE|HOU|Tank Dell": "https://www.nfl.com/players/tank-dell/",
+    "HOU@CLE|HOU|Tommy Togiai": "https://www.nfl.com/players/tommy-togiai/",
+    "HOU@CLE|HOU|Trent Brown": "https://www.nfl.com/players/trent-brown/",
+    "HOU@CLE|HOU|Will Anderson Jr.": "https://www.nfl.com/players/will-anderson-jr/",
+    "HOU@CLE|HOU|Woody Marks": "https://www.nfl.com/players/woody-marks/",
+    "HOU@CLE|HOU|Wyatt Teller": "https://www.nfl.com/players/wyatt-teller/",
+    "JAX@TEN|JAX|Antonio Johnson": "https://www.nfl.com/players/antonio-johnson-3/",
+    "JAX@TEN|JAX|BJ Green II": "https://www.nfl.com/players/bj-green-ii/",
+    "JAX@TEN|JAX|Bhayshul Tuten": "https://www.nfl.com/players/bhayshul-tuten/",
+    "JAX@TEN|JAX|Branson Combs": "https://www.nfl.com/players/branson-combs/",
+    "JAX@TEN|JAX|Chris Rodriguez Jr.": "https://www.nfl.com/players/chris-rodriguez-jr/",
+    "JAX@TEN|JAX|Ezra Cleveland": "https://www.nfl.com/players/ezra-cleveland/",
+    "JAX@TEN|JAX|Jakobi Meyers": "https://www.nfl.com/players/jakobi-meyers/",
+    "JAX@TEN|JAX|Jessie Bates": "https://www.nfl.com/players/jessie-bates/",
+    "JAX@TEN|JAX|Jordan Davis": "https://www.nfl.com/players/jordan-davis/",
+    "JAX@TEN|JAX|Robert Hainsey": "https://www.nfl.com/players/robert-hainsey/",
+    "JAX@TEN|JAX|Travon Walker": "https://www.nfl.com/players/travon-walker/",
+    "JAX@TEN|TEN|Anthony Hill Jr.": "https://www.nfl.com/players/anthony-hill-jr/",
+    "JAX@TEN|TEN|Carnell Tate": "https://www.nfl.com/players/carnell-tate/",
+    "JAX@TEN|TEN|Cody Barton": "https://www.nfl.com/players/cody-barton/",
+    "JAX@TEN|TEN|JC Latham": "https://www.nfl.com/players/jc-latham/",
+    "JAX@TEN|TEN|Jaylon Jones": "https://www.nfl.com/players/jaylon-jones-2/",
+    "JAX@TEN|TEN|John Franklin-Myers": "https://www.nfl.com/players/john-franklin-myers/",
+    "JAX@TEN|TEN|Kevin Winston Jr.": "https://www.nfl.com/players/kevin-winston-jr/",
+    "JAX@TEN|TEN|Marcus Harris": "https://www.nfl.com/players/marcus-harris-4/",
+    "JAX@TEN|TEN|Peter Skoronski": "https://www.nfl.com/players/peter-skoronski/",
+    "JAX@TEN|TEN|Tommy Townsend": "https://www.nfl.com/players/tommy-townsend/",
+    "JAX@TEN|TEN|Tony Pollard": "https://www.nfl.com/players/tony-pollard/",
+    "JAX@TEN|TEN|Tyjae Spears": "https://www.nfl.com/players/tyjae-spears/",
+    "KC@ATL|ATL|Cameron Thomas": "https://www.nfl.com/players/cameron-thomas/",
+    "KC@ATL|ATL|Divine Deablo": "https://www.nfl.com/players/divine-deablo/",
+    "KC@ATL|ATL|Gervon Dexter Sr.": "https://www.nfl.com/players/gervon-dexter/",
+    "KC@ATL|ATL|Jake Matthews": "https://www.nfl.com/players/jake-matthews/",
+    "KC@ATL|ATL|James Pearce Jr.": "https://www.nfl.com/players/james-pearce-jr/",
+    "KC@ATL|ATL|Jawaan Taylor": "https://www.nfl.com/players/jawaan-taylor/",
+    "KC@ATL|ATL|Josh Woods": "https://www.nfl.com/players/josh-woods/",
+    "KC@ATL|ATL|Kendal Daniels": "https://www.nfl.com/players/kendal-daniels/",
+    "KC@ATL|ATL|Liam McCullough": "https://www.nfl.com/players/liam-mccullough/",
+    "KC@ATL|ATL|Za'Darius Smith": "https://www.nfl.com/players/za-darius-smith/",
+    "KC@ATL|ATL|Zachariah Branch": "https://www.nfl.com/players/zachariah-branch/",
+    "KC@ATL|KC|Jaden Hicks": "https://www.nfl.com/players/jaden-hicks/",
+    "KC@ATL|KC|Jaydn Ott": "https://www.nfl.com/players/jaydn-ott/",
+    "KC@ATL|KC|Jaylon Moore": "https://www.nfl.com/players/jaylon-moore-2/",
+    "KC@ATL|KC|Jeffrey Bassa": "https://www.nfl.com/players/jeffrey-bassa/",
+    "KC@ATL|KC|Justin Fields": "https://www.nfl.com/players/justin-fields/",
+    "KC@ATL|KC|Kenneth Walker III": "https://www.nfl.com/players/kenneth-walker-iii/",
+    "KC@ATL|KC|Mansoor Delane": "https://www.nfl.com/players/mansoor-delane/",
+    "KC@ATL|KC|Omarr Norman-Lott": "https://www.nfl.com/players/omarr-norman-lott/",
+    "KC@ATL|KC|Patrick Mahomes": "https://www.nfl.com/players/patrick-mahomes/",
+    "KC@ATL|KC|Peter Woods": "https://www.nfl.com/players/peter-woods/",
+    "KC@ATL|KC|Rashee Rice": "https://www.nfl.com/players/rashee-rice/",
+    "KC@ATL|KC|Travis Kelce": "https://www.nfl.com/players/travis-kelce/",
+    "KC@ATL|KC|Xavier Worthy": "https://www.nfl.com/players/xavier-worthy/",
+    "LAC@BAL|BAL|Adam Randall": "https://www.nfl.com/players/adam-randall/",
+    "LAC@BAL|BAL|Jaylinn Hawkins": "https://www.nfl.com/players/jaylinn-hawkins/",
+    "LAC@BAL|BAL|Kyle Hamilton": "https://www.nfl.com/players/kyle-hamilton/",
+    "LAC@BAL|BAL|Matthew Hibner": "https://www.nfl.com/players/matthew-hibner/",
+    "LAC@BAL|BAL|Nate Wiggins": "https://www.nfl.com/players/nate-wiggins/",
+    "LAC@BAL|BAL|Olaivavega Ioane": "https://www.nfl.com/players/olaivavega-ioane/",
+    "LAC@BAL|BAL|Rasheen Ali": "https://www.nfl.com/players/rasheen-ali/",
+    "LAC@BAL|BAL|Rashod Bateman": "https://www.nfl.com/players/rashod-bateman/",
+    "LAC@BAL|LAC|Alex Harkey": "https://www.nfl.com/players/alex-harkey/",
+    "LAC@BAL|LAC|Branson Taylor": "https://www.nfl.com/players/branson-taylor/",
+    "LAC@BAL|LAC|Brenen Thompson": "https://www.nfl.com/players/brenen-thompson/",
+    "LAC@BAL|LAC|Bud Dupree": "https://www.nfl.com/players/bud-dupree/",
+    "LAC@BAL|LAC|Cam Hart": "https://www.nfl.com/players/cam-hart/",
+    "LAC@BAL|LAC|Daiyan Henley": "https://www.nfl.com/players/daiyan-henley/",
+    "LAC@BAL|LAC|David Njoku": "https://www.nfl.com/players/david-njoku/",
+    "LAC@BAL|LAC|Deane Leonard": "https://www.nfl.com/players/deane-leonard/",
+    "LAC@BAL|LAC|Denzel Perryman": "https://www.nfl.com/players/denzel-perryman/",
+    "LAC@BAL|LAC|Isas Waxter": "https://www.nfl.com/players/isas-waxter/",
+    "LAC@BAL|LAC|Justin Eboigbe": "https://www.nfl.com/players/justin-eboigbe/",
+    "LAC@BAL|LAC|Kayode Awosika": "https://www.nfl.com/players/kayode-awosika/",
+    "LAC@BAL|LAC|Keaton Mitchell": "https://www.nfl.com/players/keaton-mitchell/",
+    "LAC@BAL|LAC|Kendall Williamson": "https://www.nfl.com/players/kendall-williamson/",
+    "LAC@BAL|LAC|Khalil Mack": "https://www.nfl.com/players/khalil-mack/",
+    "LAC@BAL|LAC|Ladd McConkey": "https://www.nfl.com/players/ladd-mcconkey/",
+    "LAC@BAL|LAC|Rodney Shelley": "https://www.nfl.com/players/rodney-shelley/",
+    "LAC@BAL|LAC|Tre Harris": "https://www.nfl.com/players/tre-harris/",
+    "LAC@BAL|LAC|Trey Pipkins": "https://www.nfl.com/players/trey-pipkins/",
+    "LAR@AZ|AZ|Andrew Wingard": "https://www.nfl.com/players/andrew-wingard/",
+    "LAR@AZ|AZ|Bam Knight": "https://www.nfl.com/players/bam-knight/",
+    "LAR@AZ|AZ|Budda Baker": "https://www.nfl.com/players/budda-baker/",
+    "LAR@AZ|AZ|Dante Stills": "https://www.nfl.com/players/dante-stills/",
+    "LAR@AZ|AZ|Darius Robinson": "https://www.nfl.com/players/darius-robinson-2/",
+    "LAR@AZ|AZ|Hjalte Froholdt": "https://www.nfl.com/players/hjalte-froholdt/",
+    "LAR@AZ|AZ|Hunter Long": "https://www.nfl.com/players/hunter-long/",
+    "LAR@AZ|AZ|Isaac Seumalo": "https://www.nfl.com/players/isaac-seumalo/",
+    "LAR@AZ|AZ|Jayden Williams": "https://www.nfl.com/players/jayden-williams/",
+    "LAR@AZ|AZ|Jon Gaines II": "https://www.nfl.com/players/jon-gaines-ii/",
+    "LAR@AZ|AZ|Josh Sweat": "https://www.nfl.com/players/josh-sweat/",
+    "LAR@AZ|AZ|Mack Wilson": "https://www.nfl.com/players/mack-wilson/",
+    "LAR@AZ|AZ|Max Melton": "https://www.nfl.com/players/max-melton/",
+    "LAR@AZ|AZ|Roy Lopez": "https://www.nfl.com/players/roy-lopez/",
+    "LAR@AZ|AZ|Zachary Carter": "https://www.nfl.com/players/zachary-carter-x9168/",
+    "LAR@AZ|LAR|Aaron Donald": "https://www.nfl.com/players/aaron-donald/",
+    "LAR@AZ|LAR|Braden Fiske": "https://www.nfl.com/players/braden-fiske/",
+    "LAR@AZ|LAR|Byron Young": "https://www.nfl.com/players/byron-young-2/",
+    "LAR@AZ|LAR|Colby Parkinson": "https://www.nfl.com/players/colby-parkinson/",
+    "LAR@AZ|LAR|Davis Allen": "https://www.nfl.com/players/davis-allen/",
+    "LAR@AZ|LAR|Joe Cardona": "https://www.nfl.com/players/joe-cardona/",
+    "LAR@AZ|LAR|Kam Curl": "https://www.nfl.com/players/kamren-curl/",
+    "LAR@AZ|LAR|Matthew Stafford": "https://www.nfl.com/players/matthew-stafford/",
+    "LAR@AZ|LAR|Myles Garrett": "https://www.nfl.com/players/myles-garrett/",
+    "LAR@AZ|LAR|Puka Nacua": "https://www.nfl.com/players/puka-nacua/",
+    "LAR@AZ|LAR|Steve Avila": "https://www.nfl.com/players/steve-avila/",
+    "LAR@AZ|LAR|Terrance Ferguson": "https://www.nfl.com/players/terrance-ferguson-2/",
+    "LAR@AZ|LAR|Trent McDuffie": "https://www.nfl.com/players/trent-mcduffie/",
+    "LAR@AZ|LAR|Tyler Higbee": "https://www.nfl.com/players/tyler-higbee/",
+    "MIA@IND|IND|A.J. Haulcy": "https://www.nfl.com/players/a-j-haulcy/",
+    "MIA@IND|IND|Akeem Davis-Gaither": "https://www.nfl.com/players/akeem-davis-gaither/",
+    "MIA@IND|IND|Arden Key": "https://www.nfl.com/players/arden-key/",
+    "MIA@IND|IND|CJ Allen": "https://www.nfl.com/players/cj-allen/",
+    "MIA@IND|IND|Charvarius Ward": "https://www.nfl.com/players/charvarius-ward/",
+    "MIA@IND|IND|Grover Stewart": "https://www.nfl.com/players/grover-stewart/",
+    "MIA@IND|IND|Jalen Travis": "https://www.nfl.com/players/jalen-travis/",
+    "MIA@IND|IND|Jaylon Carlies": "https://www.nfl.com/players/jaylon-carlies/",
+    "MIA@IND|IND|Jerry Tillery": "https://www.nfl.com/players/jerry-tillery/",
+    "MIA@IND|IND|Jonathan Taylor": "https://www.nfl.com/players/jonathan-taylor/",
+    "MIA@IND|IND|Justin Walley": "https://www.nfl.com/players/justin-walley/",
+    "MIA@IND|IND|Luke Rhodes": "https://www.nfl.com/players/luke-rhodes/",
+    "MIA@IND|IND|Mo Alie-Cox": "https://www.nfl.com/players/mo-alie-cox/",
+    "MIA@IND|IND|Will Mallory": "https://www.nfl.com/players/will-mallory/",
+    "MIA@IND|MIA|Aaron Brewer": "https://www.nfl.com/players/aaron-brewer-2/",
+    "MIA@IND|MIA|Chris Bell": "https://www.nfl.com/players/chris-bell-2/",
+    "MIA@IND|MIA|Dante Trader Jr.": "https://www.nfl.com/players/dante-trader-jr/",
+    "MIA@IND|MIA|Darrell Baker Jr.": "https://www.nfl.com/players/darrell-baker-jr/",
+    "MIA@IND|MIA|Jared Wayne": "https://www.nfl.com/players/jared-wayne/",
+    "MIA@IND|MIA|Jaylen Wright": "https://www.nfl.com/players/jaylen-wright/",
+    "MIA@IND|MIA|Kaytron Allen": "https://www.nfl.com/players/kaytron-allen/",
+    "MIA@IND|MIA|Malik Herring": "https://www.nfl.com/players/malik-herring/",
+    "MIA@IND|MIA|Michael Taaffe": "https://www.nfl.com/players/michael-taaffe/",
+    "MIA@IND|MIA|Tucker Addington": "https://www.nfl.com/players/tucker-addington/",
+    "MIA@IND|MIA|Will Kacmarek": "https://www.nfl.com/players/will-kacmarek/",
+    "MIN@GB|GB|Aaron Banks": "https://www.nfl.com/players/aaron-banks/",
+    "MIN@GB|GB|Bo Melton": "https://www.nfl.com/players/bo-melton/",
+    "MIN@GB|GB|Chris Brooks": "https://www.nfl.com/players/christopher-brooks/",
+    "MIN@GB|GB|Javon Bullard": "https://www.nfl.com/players/javon-bullard/",
+    "MIN@GB|GB|Josh Jacobs": "https://www.nfl.com/players/josh-jacobs-x3315/",
+    "MIN@GB|GB|Josh Whyle": "https://www.nfl.com/players/josh-whyle/",
+    "MIN@GB|GB|Kevin Zeitler": "https://www.nfl.com/players/kevin-zeitler/",
+    "MIN@GB|GB|Lukas Van Ness": "https://www.nfl.com/players/lukas-van-ness/",
+    "MIN@GB|GB|Micah Parsons": "https://www.nfl.com/players/micah-parsons/",
+    "MIN@GB|GB|Savion Williams": "https://www.nfl.com/players/savion-williams/",
+    "MIN@GB|GB|Sean Rhyan": "https://www.nfl.com/players/sean-rhyan/",
+    "MIN@GB|GB|Skyy Moore": "https://www.nfl.com/players/skyy-moore/",
+    "MIN@GB|GB|Travis Glover": "https://www.nfl.com/players/travis-glover/",
+    "MIN@GB|GB|Trey Smack": "https://www.nfl.com/players/trey-smack/",
+    "MIN@GB|GB|Ty'Ron Hopper": "https://www.nfl.com/players/ty-ron-hopper/",
+    "MIN@GB|GB|Xavier McKinney": "https://www.nfl.com/players/xavier-mckinney/",
+    "MIN@GB|GB|Zaire Franklin": "https://www.nfl.com/players/zaire-franklin/",
+    "MIN@GB|MIN|Blake Cashman": "https://www.nfl.com/players/blake-cashman/",
+    "MIN@GB|MIN|Carson Wentz": "https://www.nfl.com/players/carson-wentz/",
+    "MIN@GB|MIN|Christian Darrisaw": "https://www.nfl.com/players/christian-darrisaw/",
+    "MIN@GB|MIN|Harrison Smith": "https://www.nfl.com/players/harrison-smith/",
+    "MIN@GB|MIN|Jauan Jennings": "https://www.nfl.com/players/jauan-jennings/",
+    "MIN@GB|MIN|Jay Ward": "https://www.nfl.com/players/jay-ward/",
+    "MIN@GB|MIN|Jordan Addison": "https://www.nfl.com/players/jordan-addison/",
+    "MIN@GB|MIN|Josh Metellus": "https://www.nfl.com/players/josh-metellus/",
+    "MIN@GB|MIN|Kyle Van Noy": "https://www.nfl.com/players/kyle-van-noy/",
+    "MIN@GB|MIN|Kyler Murray": "https://www.nfl.com/players/kyler-murray/",
+    "MIN@GB|MIN|T.J. Hockenson": "https://www.nfl.com/players/t-j-hockenson/",
+    "MIN@GB|MIN|Theo Jackson": "https://www.nfl.com/players/theo-jackson/",
+    "MIN@GB|MIN|Tyrion Ingram-Dawkins": "https://www.nfl.com/players/tyrion-ingram-dawkins/",
+    "NE@DET|DET|Amon-Ra St. Brown": "https://www.nfl.com/players/amon-ra-st-brown/",
+    "NE@DET|DET|Brian Branch": "https://www.nfl.com/players/brian-branch/",
+    "NE@DET|DET|Cade Mays": "https://www.nfl.com/players/cade-mays/",
+    "NE@DET|DET|D.J. Reed": "https://www.nfl.com/players/d-j-reed/",
+    "NE@DET|DET|DJ Wonnum": "https://www.nfl.com/players/d-j-wonnum/",
+    "NE@DET|DET|Jacob Saylors": "https://www.nfl.com/players/jacob-saylors/",
+    "NE@DET|DET|Jared Goff": "https://www.nfl.com/players/jared-goff/",
+    "NE@DET|DET|Kerby Joseph": "https://www.nfl.com/players/kerby-joseph/",
+    "NE@DET|DET|Sione Vaki": "https://www.nfl.com/players/sione-vaki/",
+    "NE@DET|NE|A.J. Brown": "https://www.nfl.com/players/a-j-brown/",
+    "NE@DET|NE|Ben Brown": "https://www.nfl.com/players/ben-brown-2/",
+    "NE@DET|NE|Brenden Schooler": "https://www.nfl.com/players/brenden-schooler/",
+    "NE@DET|NE|Cameron Latu": "https://www.nfl.com/players/cameron-latu/",
+    "NE@DET|NE|Carlton Davis III": "https://www.nfl.com/players/carlton-davis/",
+    "NE@DET|NE|Charles Woods": "https://www.nfl.com/players/charles-woods/",
+    "NE@DET|NE|Drake Maye": "https://www.nfl.com/players/drake-maye/",
+    "NE@DET|NE|Greg Van Roten": "https://www.nfl.com/players/greg-van-roten/",
+    "NE@DET|NE|Hunter Henry": "https://www.nfl.com/players/hunter-henry/",
+    "NE@DET|NE|Kevin Byard": "https://www.nfl.com/players/kevin-byard/",
+    "NE@DET|NE|Morgan Moses": "https://www.nfl.com/players/morgan-moses/",
+    "NE@DET|NE|Reggie Gilliam": "https://www.nfl.com/players/reggie-gilliam/",
+    "NE@DET|NE|Rhamondre Stevenson": "https://www.nfl.com/players/rhamondre-stevenson/",
+    "NE@DET|NE|TreVeyon Henderson": "https://www.nfl.com/players/treveyon-henderson/",
+    "NE@DET|NE|Walter Rouse": "https://www.nfl.com/players/walter-rouse/",
+    "PIT@CIN|CIN|Andrei Iosivas": "https://www.nfl.com/players/andrei-iosivas/",
+    "PIT@CIN|CIN|B.J. Hill": "https://www.nfl.com/players/b-j-hill/",
+    "PIT@CIN|CIN|Brian Parker II": "https://www.nfl.com/players/brian-parker-ii/",
+    "PIT@CIN|CIN|DJ Turner II": "https://www.nfl.com/players/dj-turner-2/",
+    "PIT@CIN|CIN|Dexter Lawrence": "https://www.nfl.com/players/dexter-lawrence/",
+    "PIT@CIN|CIN|Dylan Fairchild": "https://www.nfl.com/players/dylan-fairchild/",
+    "PIT@CIN|CIN|Jalen Davis": "https://www.nfl.com/players/jalen-davis/",
+    "PIT@CIN|CIN|Jonathan Allen": "https://www.nfl.com/players/jonathan-allen/",
+    "PIT@CIN|CIN|Kyle Dugger": "https://www.nfl.com/players/kyle-dugger/",
+    "PIT@CIN|PIT|Ben Skowronek": "https://www.nfl.com/players/ben-skowronek/",
+    "PIT@CIN|PIT|Brandin Echols": "https://www.nfl.com/players/brandin-echols/",
+    "PIT@CIN|PIT|Cameron Heyward": "https://www.nfl.com/players/cameron-heyward/",
+    "PIT@CIN|PIT|Darnell Washington": "https://www.nfl.com/players/darnell-washington/",
+    "PIT@CIN|PIT|DeShon Elliott": "https://www.nfl.com/players/deshon-elliott/",
+    "PIT@CIN|PIT|Derrick Harmon": "https://www.nfl.com/players/derrick-harmon-2/",
+    "PIT@CIN|PIT|Doneiko Slaughter": "https://www.nfl.com/players/doneiko-slaughter/",
+    "PIT@CIN|PIT|T.J. Watt": "https://www.nfl.com/players/t-j-watt/",
+    "SEA@LV|LV|Dont'e Thornton Jr.": "https://www.nfl.com/players/dont-e-thornton-jr/",
+    "SEA@LV|LV|Foley Fatukasi": "https://www.nfl.com/players/foley-fatukasi/",
+    "SEA@LV|LV|Ian Thomas": "https://www.nfl.com/players/ian-thomas/",
+    "SEA@LV|LV|Thomas Booker": "https://www.nfl.com/players/thomas-booker/",
+    "SEA@LV|LV|Trey Zuhn III": "https://www.nfl.com/players/trey-zuhn-iii/",
+    "SEA@LV|SEA|AJ Barner": "https://www.nfl.com/players/aj-barner/",
+    "SEA@LV|SEA|Anthony Bradford": "https://www.nfl.com/players/anthony-bradford/",
+    "SEA@LV|SEA|Brandon Pili": "https://www.nfl.com/players/brandon-pili/",
+    "SEA@LV|SEA|Charles Cross": "https://www.nfl.com/players/charles-cross-2/",
+    "SEA@LV|SEA|Connor O'Toole": "https://www.nfl.com/players/connor-o-toole/",
+    "SEA@LV|SEA|Derick Hall": "https://www.nfl.com/players/derick-hall/",
+    "SEA@LV|SEA|Drew Lock": "https://www.nfl.com/players/drew-lock/",
+    "SEA@LV|SEA|Jarran Reed": "https://www.nfl.com/players/jarran-reed/",
+    "SEA@LV|SEA|Jaxon Smith-Njigba": "https://www.nfl.com/players/jaxon-smith-njigba/",
+    "SEA@LV|SEA|Leonard Williams": "https://www.nfl.com/players/leonard-williams/",
+    "SEA@LV|SEA|Patrick O'Connell": "https://www.nfl.com/players/patrick-o-connell/",
+    "SEA@LV|SEA|Quenton Nelson": "https://www.nfl.com/players/quenton-nelson/",
+    "SEA@LV|SEA|Rashid Shaheed": "https://www.nfl.com/players/rashid-shaheed/",
+    "SEA@LV|SEA|Sam Darnold": "https://www.nfl.com/players/sam-darnold/",
+    "SEA@LV|SEA|Uchenna Nwosu": "https://www.nfl.com/players/uchenna-nwosu/",
+    "SF@DAL|DAL|Alijah Clark": "https://www.nfl.com/players/alijah-clark/",
+    "SF@DAL|DAL|Brevyn Spann-Ford": "https://www.nfl.com/players/brevyn-spann-ford/",
+    "SF@DAL|DAL|DaRon Bland": "https://www.nfl.com/players/daron-bland/",
+    "SF@DAL|DAL|DeMarvion Overshown": "https://www.nfl.com/players/demarvion-overshown/",
+    "SF@DAL|DAL|Devin Moore": "https://www.nfl.com/players/devin-moore-2/",
+    "SF@DAL|DAL|Donovan Ezeiruaku": "https://www.nfl.com/players/donovan-ezeiruaku/",
+    "SF@DAL|DAL|George Pickens": "https://www.nfl.com/players/george-pickens/",
+    "SF@DAL|DAL|Jake Ferguson": "https://www.nfl.com/players/jake-ferguson/",
+    "SF@DAL|DAL|Joey Porter Jr.": "https://www.nfl.com/players/joey-porter-jr/",
+    "SF@DAL|DAL|Jonathan Bullard": "https://www.nfl.com/players/jonathan-bullard/",
+    "SF@DAL|DAL|Jonathan Mingo": "https://www.nfl.com/players/jonathan-mingo/",
+    "SF@DAL|DAL|Juanyeh Thomas": "https://www.nfl.com/players/juanyeh-thomas/",
+    "SF@DAL|DAL|KaVontae Turpin": "https://www.nfl.com/players/kavontae-turpin/",
+    "SF@DAL|DAL|Luke Schoonmaker": "https://www.nfl.com/players/luke-schoonmaker/",
+    "SF@DAL|DAL|Malik Hooker": "https://www.nfl.com/players/malik-hooker/",
+    "SF@DAL|DAL|Marist Liufau": "https://www.nfl.com/players/marist-liufau/",
+    "SF@DAL|DAL|P.J. Locke": "https://www.nfl.com/players/p-j-locke/",
+    "SF@DAL|DAL|Tyler Goodson": "https://www.nfl.com/players/tyler-goodson/",
+    "SF@DAL|DAL|Von Miller": "https://www.nfl.com/players/von-miller/",
+    "SF@DAL|SF|C.J. West": "https://www.nfl.com/players/cj-west/",
+    "SF@DAL|SF|Christian McCaffrey": "https://www.nfl.com/players/christian-mccaffrey/",
+    "SF@DAL|SF|Deebo Samuel Sr.": "https://www.nfl.com/players/deebo-samuel/",
+    "SF@DAL|SF|Demarcus Robinson": "https://www.nfl.com/players/demarcus-robinson/",
+    "SF@DAL|SF|Deommodore Lenoir": "https://www.nfl.com/players/deommodore-lenoir/",
+    "SF@DAL|SF|Dre Greenlaw": "https://www.nfl.com/players/dre-greenlaw-x9042/",
+    "SF@DAL|SF|Mike Evans": "https://www.nfl.com/players/mike-evans/",
+    "SF@DAL|SF|Nate Hobbs": "https://www.nfl.com/players/nate-hobbs/",
+    "SF@DAL|SF|Renardo Green": "https://www.nfl.com/players/renardo-green/",
+    "SF@DAL|SF|Siran Neal": "https://www.nfl.com/players/siran-neal/",
+    "SF@DAL|SF|Trent Williams": "https://www.nfl.com/players/trent-williams/",
+    "SF@DAL|SF|Upton Stout": "https://www.nfl.com/players/upton-stout/",
+    "WAS@NYG|NYG|Abdul Carter": "https://www.nfl.com/players/abdul-carter/",
+    "WAS@NYG|NYG|Andrew Thomas": "https://www.nfl.com/players/andrew-thomas/",
+    "WAS@NYG|NYG|Cam Skattebo": "https://www.nfl.com/players/cam-skattebo/",
+    "WAS@NYG|NYG|Charlie Jones": "https://www.nfl.com/players/charlie-jones-3/",
+    "WAS@NYG|NYG|Colton Hood": "https://www.nfl.com/players/colton-hood/",
+    "WAS@NYG|NYG|Darnell Mooney": "https://www.nfl.com/players/darnell-mooney/",
+    "WAS@NYG|NYG|J.J. McCarthy": "https://www.nfl.com/players/j-j-mccarthy/",
+    "WAS@NYG|NYG|Jermaine Eluemunor": "https://www.nfl.com/players/jermaine-eluemunor/",
+    "WAS@NYG|NYG|Malik Harrison": "https://www.nfl.com/players/malik-harrison/",
+    "WAS@NYG|NYG|Malik Nabers": "https://www.nfl.com/players/malik-nabers/",
+    "WAS@NYG|NYG|Theo Johnson": "https://www.nfl.com/players/theo-johnson/",
+    "WAS@NYG|WAS|Amik Robertson": "https://www.nfl.com/players/amik-robertson/",
+    "WAS@NYG|WAS|Chig Okonkwo": "https://www.nfl.com/players/chigoziem-okonkwo/",
+    "WAS@NYG|WAS|Colson Yankoff": "https://www.nfl.com/players/colson-yankoff/",
+    "WAS@NYG|WAS|Jayden Daniels": "https://www.nfl.com/players/jayden-daniels/",
+    "WAS@NYG|WAS|John Bates": "https://www.nfl.com/players/john-bates/",
+    "WAS@NYG|WAS|Lucas Patrick": "https://www.nfl.com/players/lucas-patrick/",
+    "WAS@NYG|WAS|Matt Gulbin": "https://www.nfl.com/players/matt-gulbin/",
+    "WAS@NYG|WAS|Shy Tuttle": "https://www.nfl.com/players/shy-tuttle/",
+    "WAS@NYG|WAS|Treylon Burks": "https://www.nfl.com/players/treylon-burks/"
+  },
+  "method": "Rows matched on (game, team, player). Only printed text is compared; blank means blank. The 2026-11-17 read is a manual transcription of the eight fetch chunks, one line per printed row; the file hash is of the transcription, not of the HTTP response bytes."
+}

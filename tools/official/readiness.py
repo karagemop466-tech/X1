@@ -116,7 +116,11 @@ def m_corr():
 def m_standings():
     rows = _rows("standings_2026.csv")
     played = sum(int(r["W"]) + int(r["L"]) + int(r["T"]) for r in rows)
-    return (f"{len(rows)} clubs, {played // 2} games played, all 16 fields re-read from the league",
+    # "all 16 fields re-read from the league" was the same overclaim the standings page carried:
+    # what exists is a transcription dated 2026-11-14, and the league's table has moved on since.
+    # Reworded by session arena-2f95e652-x1 to say which date and how far it has moved.
+    return (f"{len(rows)} clubs, {played // 2} games played, transcribed from the league on "
+            f"2026-11-14 (the league printed 150 games played on 2026-11-17)",
             played // 2, STD)
 
 

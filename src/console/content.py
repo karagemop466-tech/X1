@@ -629,4 +629,16 @@ def irregularities(ctx):
                      "setting, which this session's token cannot read."),
              source="https://github.com/karagemop466-tech/X1/actions/runs/44123337794",
              status="fixed in this repository; one owner check remains"),
+        dict(id="X-12", severity="grey", area="Programme",
+             finding=("The brief-to-repo coverage register (82 rows, one per numbered item of the "
+                      "owner brief) records what is built, partial, defined, not built or declined, "
+                      "with the repo path that evidences each row."),
+             effect=("30 rows carry flags and 25 items are NOT BUILT; each names what would clear "
+                     "it. The register is a dated snapshot of the tree before round 5 (round 5 "
+                     "narrowed several rows: the Week 10 injury tables now agree at 347 rows, the "
+                     "deficiency matrix has register row R-76, and the 2026-11-17 pack closes the "
+                     "standings arithmetic). It is linked here per the audit session's handoff to "
+                     "the integrator."),
+             source="https://github.com/karagemop466-tech/X1/blob/main/docs/audit/brief-coverage-2026-11-17.md",
+             status="published for review"),
     ]

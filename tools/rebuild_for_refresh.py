@@ -56,6 +56,15 @@ REBUILD = [
     ["python3", "tools/build_decision_readiness.py"],
     ["python3", "tools/build_app.py"],
     ["python3", "tools/build_console.py"],
+    # ORDER MATTERS, and it was wrong. The register builders must run BEFORE the site builders:
+    # data/preregistration/register.json records the oldest commit a checkout can see, which moves
+    # whenever the refresh commits, and pages/shadow-baseline.html renders that value. With the site
+    # built first, the refresh committed a new register beside a page generated from the old one, so
+    # `git diff --exit-code -- index.html pages` failed for every subsequent pull request (observed
+    # 2026-11-17: page said 019cd8357f, register said 74b6f3b64d). Rebuilt first, the pages are
+    # generated from the register this same commit ships.
+    ["python3", "tools/build_preregistration.py"],
+    ["python3", "tools/build_next_decisions.py"],
     ["python3", "tools/lab/build_site.py"],
     ["python3", "tools/build_site.py"],
 ]

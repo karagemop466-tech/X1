@@ -81,7 +81,13 @@ RULES = [
     },
 ]
 
-VOLATILE = ("generated_at", "built_at", "checked_at")
+# Added by session arena-2f95e652-x1: `oldest_visible_commit` is a property of the CHECKOUT, not of
+# the register. A CI clone with fetch-depth 1 sees only the commit it was built from; a local sandbox
+# clone sees its boundary commit. Comparing it made `--check` depend on which machine ran it, which is
+# how pages/shadow-baseline.html (which renders this value) could pass on CI and fail locally, or the
+# reverse. Excluded from the freshness comparison only - the value is still reported, and the anchors
+# derived from it are still compared in a full clone.
+VOLATILE = ("generated_at", "built_at", "checked_at", "oldest_visible_commit")
 
 
 def git(*args: str) -> str:

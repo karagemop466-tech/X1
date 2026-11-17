@@ -21,16 +21,16 @@
   },
   {
    "dataset": "deficiency",
-   "rows": 895,
+   "rows": 896,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 2835,
+   "null_cells": 2834,
    "problems": [],
    "ok": true
   },
   {
    "dataset": "depth_charts",
-   "rows": 1802,
+   "rows": 1807,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 56,
@@ -84,7 +84,7 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 736,
+   "rows": 759,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,

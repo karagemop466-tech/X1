@@ -171,6 +171,11 @@ jobs:
           # originated markets, decision registers). Additive only — nothing
           # above is modified or removed.
           cp -r data/results _site/data/results
+          # Added by session arena-2f95e652-x1: the 2026-11-17 evidence pack (the dated official
+          # read behind console/evidence-2026-11-17.html). Additive only.
+          mkdir -p _site/data/evidence/2026_11_17
+          cp data/evidence/2026_11_17/*.tsv data/evidence/2026_11_17/*.csv \
+             data/evidence/2026_11_17/summary.json _site/data/evidence/2026_11_17/
           cp -r data/prices _site/data/prices
           cp -r data/depth _site/data/depth
           cp -r data/correlations _site/data/correlations

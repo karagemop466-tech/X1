@@ -127,6 +127,12 @@ def html_files():
         # auditing it here double-counts pages and audits them against the wrong stylesheet.
         if any(p in base for p in (".git", "node_modules", "tools", ".arena", "archive", os.sep + "_site")):
             continue
+        # Added by session arena-2f95e652-x1: data/evidence/**/page.html is a generated
+        # artefact staged for the console, not a served page. It carries the console's own
+        # asset paths so the integrator can copy it in one step; its links become this
+        # checker's business the moment it lands in console/ (tools/verify_console.py).
+        if os.sep + "data" + os.sep + "evidence" in base:
+            continue
         for f in files:
             if f.endswith(".html"):
                 out.append(os.path.join(base, f))
