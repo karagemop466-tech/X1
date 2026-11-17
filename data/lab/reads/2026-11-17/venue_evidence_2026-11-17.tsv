@@ -1,0 +1,31 @@
+# VENUE EVIDENCE — WEEK 11, 2026-11-17. What the official pages print, row by row.
+#
+# The owner brief says: "Transcribe the venue of every fixture from the official game centre and publish it".
+# This file records exactly what is on the pages, and is honest about which page it came from:
+#   * the weekly schedule page prints NO venue field. It prints, under some cards, a hotel-search link whose
+#     URL carries destinationAddress.location=<Stadium name>. That is an official-page string, but it is a
+#     link parameter, so it is labelled "link parameter only" and never presented as a venue field.
+#   * each fixture page (Game Center) prints a "Game Info" block with Location and Stadium fields. Two of
+#     the thirteen were read this round (the two shown with a clock time); the other eleven are blank with
+#     "not read this round", which is a measured gap, not a missing value to be filled in by inference.
+# FINDING (flagged): for Colts at Texans the two official pages disagree on the stadium name - the schedule
+#   page link parameter says NRG Stadium and the fixture page prints RELIANT STADIUM. Any feature that keys
+#   a stadium lookup (roof, surface) on the venue NAME will silently fail on that fixture. See the Flagged page.
+# FINDING (flagged): Vikings at 49ers is printed with a "Mexico City" event chip on the schedule page and
+#   ESTADIO BANORTE / MEXICO CITY on the fixture page, while the model of record (PR-01) adds a 1.6-point
+#   home edge to the nominal home club. The rule is frozen for this window, so the edge is published as the
+#   rule states it and the venue conflict is recorded as a limit of the rule, for the next registration.
+game_id	fixture	venue_string_printed_on_week11_page	venue_field_class	game_centre_stadium	game_centre_location	game_centre_read	evidence_class	conflict_flag	schedule_page_url	game_centre_url
+2026_11_IND_HOU	Colts at Texans	NRG Stadium	link parameter: the page prints a hotel-search URL carrying destinationAddress.location=NRG+Stadium; the page prints no venue field	RELIANT STADIUM	HOUSTON, TX	2026-11-17T22:53Z	indirect (schedule page) + direct (Game Center "Stadium"/"Location" fields)	venue-name conflict: the two official pages print different stadium names for the same fixture	https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/colts-at-texans-2026-reg-11
+2026_11_MIA_BUF	Dolphins at Bills	Highmark Stadium	link parameter only			not read this round	indirect only (schedule page link parameter); no Game Center row transcribed		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+2026_11_BAL_CAR	Ravens at Panthers	Bank of America Stadium	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/ravens-at-panthers-2026-reg-11
+2026_11_NO_CHI	Saints at Bears	Soldier Field	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/saints-at-bears-2026-reg-11
+2026_11_TEN_DAL	Titans at Cowboys	AT&T Stadium	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/titans-at-cowboys-2026-reg-11
+2026_11_TB_DET	Buccaneers at Lions	Ford Field	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+2026_11_ARZ_KC	Cardinals at Chiefs	GEHA Field at Arrowhead Stadium	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11
+2026_11_PIT_PHI	Steelers at Eagles	Lincoln Financial Field	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/steelers-at-eagles-2026-reg-11
+2026_11_NYJ_LAC	Jets at Chargers	SoFi Stadium	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/jets-at-chargers-2026-reg-11
+2026_11_JAX_NYG	Jaguars at Giants	MetLife Stadium	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/jaguars-at-giants-2026-reg-11
+2026_11_LV_DEN	Raiders at Broncos	Empower Field at Mile High	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/raiders-at-broncos-2026-reg-11
+2026_11_MIN_SF	Vikings at 49ers		no link parameter captured in the parsed read of the SNF card, and no venue field on the page	ESTADIO BANORTE	MEXICO CITY	2026-11-17T22:53Z	direct (Game Center "Stadium"/"Location" fields)	not a venue-name conflict: the fixture is printed with a "Mexico City" event chip on the schedule page and the Game Center prints the matching location; the away club is not playing at its own stadium while the model still applies a home-venue edge	https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/vikings-at-49ers-2026-reg-11
+2026_11_CIN_WAS	Bengals at Commanders	FedEx Field	link parameter only			not read this round	indirect only		https://www.nfl.com/schedules/2026/by-week/week-11	https://www.nfl.com/games/bengals-at-commanders-2026-reg-11
