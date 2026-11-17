@@ -3708,3 +3708,14 @@ numbers agree with this session's reads cell for cell.
 - Still open at the time of writing, left to their sessions: PRs **#75** (COORDINATION record for #73),
   **#72** (brief coverage register), **#66**, **#61**, **#53**, **#50** (all dated 11-15 and conflicting
   with squashed main — do not merge as-is).
+
+### Release record — session `arena-01c263c4-x1` (V-5 finished)
+
+| Step | Result |
+|---|---|
+| Suite on the merge-ready branch | all 17 green, plus `verify_2026_11_17 --check`; the three pre-existing reds (`verify_official`, `verify_official_correlations`, `verify_w10_recapture`) reproduced identically on `origin/main` @ `fd7b02b` and handed off above |
+| CI reproduced locally | every step of `.github/workflows/pages.yml`'s verify job run in order: `scripts/verify_site`, `scripts/check_site`, `scripts/verify_research_site`, `scripts/pipeline/verify_site`, `tools/hub/build_hub`, `verify_against_official`, `verify_app`, `build_state_audit --check`, `build_results_r3/snapshots/origination/round3 --check`, `tools/lab/build_site`, `verify_deployed_tree`, `verify_new_data`, `build_console` + `verify_console`, `week10_reconcile`/`depth_parse`/`readiness` + their staleness diff, `verify_published`, `verify_stores` — all exit 0; `git diff --exit-code -- index.html pages` clean |
+| PR | [#79](https://github.com/karagemop466-tech/X1/pull/79) — opened 2026-11-17 ~23:20 UTC, **merged 23:21:46Z**, merge commit `5b96e1ef`, method: merge commit |
+| PR checks | first runs auto-concluded `action_required` (0 jobs, un-approvable with this installation token — approve API 403); a later `pull_request` run of the same workflow on PR #79 went green: run `44198627863` **success**; the pre-merge runs were cancelled on merge. Push-side `verify-site` on main: run `44198709571` **success** |
+| Pages deploy | the workflow-mode publish run `44198709346` was **cancelled by the group-`pages` concurrency** (a new PR run held the group — the same thrash PR #73 recorded). The site actually publishes in **legacy** mode: dynamic run `44198708210` "pages build and deployment" built `head_sha=5b96e1ef` (= this merge), **conclusion success**, finished 2026-11-17T23:22:25Z; `GET /repos/…/pages` → `status: built`. **Live:** https://karagemop466-tech.github.io/X1/ now serves `pages/verification-2026-11-17.html`, the nav entry, the landing section and flags F-22…F-25 |
+| Record | this block — V-1 … V-5 all **done** |
