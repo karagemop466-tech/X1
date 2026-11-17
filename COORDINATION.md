@@ -3275,11 +3275,11 @@ The owner's latest message re-states the full brief: review the repo line by lin
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
-| F-1 | Re-verify the committed official data snapshots (standings, schedule, injuries, depth) line by line against their embedded source URLs/dates; record mismatches and blanks | in progress | `arena/76fd9817-x1` | `data/nfl/**`, `data/verify/*.psv`, `data/verification/**` |
-| F-2 | Review the executive summary, questions/information/answers register and suggestions register for internal consistency and source citation | in progress | `arena/76fd9817-x1` | `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/pipeline/questions.json`, `data/pipeline/suggestions.json` |
-| F-3 | Confirm the unified dashboard + landing page build cleanly and every nav link + data row carries a source link or an explicit "no official source" marker | in progress | `arena/76fd9817-x1` | `index.html`, `app/**`, `pages/**`, `tools/build_app.py`, `tools/build_site.py`, `assets/site.css` |
-| F-4 | Run the full verifier suite locally; fix or flag anything that fails; confirm no broken internal links | in progress | `arena/76fd9817-x1` | `tools/verify_*.py`, `scripts/verify_*.py`, `tools/check_links.py` |
-| F-5 | Publish: commit, push `arena/76fd9817-x1`, open PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | in progress | `arena/76fd9817-x1` | `COORDINATION.md`, PR |
+| F-1 | Re-verify the committed official data snapshots (standings, schedule, injuries, depth) line by line against their embedded source URLs/dates; record mismatches and blanks | done | `arena/76fd9817-x1` | `data/nfl/**`, `data/verify/*.psv`, `data/verification/**` |
+| F-2 | Review the executive summary, questions/information/answers register and suggestions register for internal consistency and source citation | done | `arena/76fd9817-x1` | `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/pipeline/questions.json`, `data/pipeline/suggestions.json` |
+| F-3 | Confirm the unified dashboard + landing page build cleanly and every nav link + data row carries a source link or an explicit "no official source" marker | done | `arena/76fd9817-x1` | `index.html`, `app/**`, `pages/**`, `tools/build_app.py`, `tools/build_site.py`, `assets/site.css` |
+| F-4 | Run the full verifier suite locally; fix or flag anything that fails; confirm no broken internal links | done | `arena/76fd9817-x1` | `tools/verify_*.py`, `scripts/verify_*.py`, `tools/check_links.py` |
+| F-5 | Publish: commit, push `arena/76fd9817-x1`, open PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | done | `arena/76fd9817-x1` | `COORDINATION.md`, PR |
 
 ## Constraint honored
 
@@ -3289,9 +3289,9 @@ The owner's latest message re-states the full brief: review the repo line by lin
 
 | Task | Official sources used | Verification performed | Irregularities |
 |---|---|---|---|
-| F-1 | committed official snapshots in `data/verify/*.psv` and `data/verification/**` | to be completed | to be recorded |
-| F-2 | cross-checked against `data/pipeline/requirements.json`, `data/gates.json`, `data/pipeline/gates.json` | to be completed | to be recorded |
-| F-3 | `tools/build_app.py`, `tools/build_site.py`, `tools/verify_app.py`, `tools/check_links.py` | to be completed | to be recorded |
-| F-4 | full pre-existing verifier suite | to be completed | to be recorded |
-| F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
+| F-1 | committed official snapshots in `data/verify/*.psv` and `data/verification/**` (standings nfl.com/standings, schedule nfl.com/schedules/2026/REG/week/10, injuries nfl.com/injuries) | `tools/verify_against_official.py` — 2,183 published Week 10 cells vs official page: 0 mismatches, 0 unmatched (standings 384, schedule 70, byes 4, injuries 1,725); `tools/verify_data.py` — 2,944 integrity checks passed | none new; existing flags F-10…F-21 on Flagged-for-Review page (none blocking) |
+| F-2 | `data/pipeline/requirements.json`, `data/gates.json`, `data/pipeline/gates.json`, `docs/EXECUTIVE-SUMMARY.md` | reviewed executive summary (rounds 1–4 addenda), questions register (dataset/title/columns/rows/verification/counts) and readiness register (states/counts/measurements/rows/flags) for internal consistency and source citation | none |
+| F-3 | committed `index.html`, `app/**`, `pages/**` | `tools/build_app.py` — 29 pages written, byte-identical to committed `app/`; `tools/build_site.py` — index.html + 24 pages byte-identical; `tools/verify_app.py` — 29 pages, 1,089 internal links, 7,978 data rows (7,954 sourced, 24 flagged no-source, 0 unsourced); `tools/check_links.py` — 44,192 assertions, all resolve | none |
+| F-4 | full pre-existing verifier suite | verify_data 2,944; check_links 44,192; verify_app 0 unsourced; verify_against_official 2,183 cells 0 mismatches; build_site & build_app in sync (no stale HTML) | none |
+| F-5 | PR #69 `arena/76fd9817-x1` → `main` | opened PR #69, body rewritten via REST API, merged without waiting as merge commit `942557d5`; GitHub Pages `built` for commit 942557d5 (error: null), site live at https://karagemop466-tech.github.io/X1/ | none |
 
