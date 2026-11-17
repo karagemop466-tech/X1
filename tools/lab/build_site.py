@@ -1200,7 +1200,16 @@ def p_flagged() -> str:
                       src(f"{GITHUB}/{READS_PACK}/feed-closure-measurement.json", "closure measurement"),
                       "measured, not fixed: the append would move the frozen PR-01 input and the pinned "
                       "standings baseline, so it is the owner's call (see the Feed closure page)"])
-        flags.append(["R1", "R1-06", "low",
+        flags.append(["R1", "R1-06", "medium",
+                      "Venue transcription covers 2 of the 27 fixtures this round could have read",
+                      f"the brief asks for the venue of every fixture from the official game centre; "
+                      f"{RN['venue_direct_rows']} Game Center pages were read (Colts at Texans, Vikings at "
+                      f"49ers), the weekly schedule page prints no venue field for any of the other 25, and "
+                      f"the 2026-11-16 pack documents the same limit for Week 10",
+                      src(f"{GITHUB}/{READS_PACK}/venue_evidence_2026-11-17.tsv", "venue evidence"),
+                      "left as a measured gap rather than filled from memory: a stadium name typed from recall "
+                      "is indistinguishable in the artefact from one read off the page"])
+        flags.append(["R1", "R1-07", "low",
                       "One injury-page capture was refused by the drift gate for a club-code spelling",
                       "the 2026-11-15 read prints LAR where the standings page prints LA; a join on it "
                       "would silently drop 14 rows",
