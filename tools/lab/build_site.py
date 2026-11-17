@@ -1210,6 +1210,16 @@ def p_flagged() -> str:
                       src(f"{GITHUB}/{READS_PACK}/venue_evidence_2026-11-17.tsv", "venue evidence"),
                       "left as a measured gap rather than filled from memory: a stadium name typed from recall "
                       "is indistinguishable in the artefact from one read off the page"])
+        flags.append(["R1", "R1-08", "high",
+                      "Two dated packs in this repository key the same fixture with different game_ids",
+                      "Rams at Cardinals: this pack writes 2026_10_LA_ARZ, the 2026-11-17 read in "
+                      "data/verification/2026_11_17 writes 2026_10_LAR_AZ for the identical game, while its "
+                      "own value columns print LA and AZ; 1 of 14 fixtures diverges and every value agrees",
+                      src(f"{GITHUB}/data/verification/2026_11_17/official_w10_results_2026_11_17.tsv",
+                          "the other pack's read"),
+                      "a join across the two trees on game_id silently drops a row. Check C12 joins on the "
+                      "official fixture slug for that reason; anything written later should do the same, and "
+                      "one of the two conventions should be retired rather than reconciled row by row"])
         flags.append(["R1", "R1-07", "low",
                       "One injury-page capture was refused by the drift gate for a club-code spelling",
                       "the 2026-11-15 read prints LAR where the standings page prints LA; a join on it "
@@ -1513,9 +1523,11 @@ def p_reads() -> str:
             "the two sides of the ledger are equal to the point", "ok"),
         kpi(str(num["injury_rows_spot_checked"]), "injury rows transcribed by hand and diffed",
             f"{num['injury_spot_check_mismatches']} mismatches against the retained capture", "ok"),
-        kpi(f"{num['parallel_read_mismatches']} / {num['parallel_read_cells_compared']}",
-            "cells where a second reader disagrees",
-            "another session read the same four pages minutes apart, independently; check C11", "ok"),
+        kpi(f"{num['parallel_read_mismatches'] + num['third_read_mismatches']} / "
+            f"{num['parallel_read_cells_compared'] + num['third_read_cells_compared']}",
+            "cells where an independent reader disagrees",
+            "two other sessions read the same four pages within minutes, on their own layouts; checks "
+            "C11 and C12", "ok"),
         kpi(f"{num['venue_direct_rows']} / {len(ven)}", "fixtures with a Game Center venue row",
             "the weekly schedule page prints no venue field at all", "warn"),
         kpi(str(num["injury_reads_since_last_content_change"]), "reads of the injury page since it last changed",
@@ -1588,11 +1600,20 @@ def p_reads() -> str:
              f"({chk['C5_independent_standings_reread']['fields_per_club']} printed columns &times; "
              f"{chk['C5_independent_standings_reread']['clubs']} clubs)"),
          badge("0", "ok"), src(f"{GITHUB}/data/pipeline/standings.json", "standings.json")],
-        [esc("cells where this read disagrees with an independent read of the same official pages, "
-             "made minutes apart by another session"),
+        [esc("cells where this read disagrees with a second session's independent read of the same pages"),
          esc(chk["C11_second_reader_agreement"]["mismatches"]), esc("of"),
          esc(f"{chk['C11_second_reader_agreement']['cells_compared']} comparable cells"),
-         badge("0", "ok"), src(f"{GITHUB}/data/evidence/2026_11_17", "the parallel read")],
+         badge("0", "ok"), src(f"{GITHUB}/data/evidence/2026_11_17", "second read")],
+        [esc("cells where this read disagrees with a third session's independent read, which also "
+             "transcribed the whole injury page"),
+         esc(chk["C12_third_reader_agreement"]["mismatches"]), esc("of"),
+         esc(f"{chk['C12_third_reader_agreement']['cells_compared']} comparable cells"),
+         badge("0", "ok"), src(f"{GITHUB}/data/verification/2026_11_17", "third read")],
+        [esc("Week 10 fixtures whose <code>game_id</code> the two packs spell differently while every "
+             "printed value agrees"),
+         esc(chk["C12_third_reader_agreement"]["game_id_conventions_diverge"]), esc("of"),
+         esc(f"{len(w10)} fixtures"),
+         badge("FLAGGED", "bad"), src(f"{GITHUB}/tools/lab/build_reads.py", "C12")],
         [esc("cells of the repository's pinned 2026-11-14 standings reference that the league has since "
              "moved past"),
          esc(chk["C5b_pinned_reference_is_stale"]["differing_cells"]), esc("across"),
@@ -1653,14 +1674,21 @@ do not support. The read window the pack records is
 {esc(man['read_window_utc']['first_read'])} to {esc(man['read_window_utc']['last_read'])}, and the fetch
 tool returns parsed page text, so these are transcriptions of pages, not byte captures: the hashes in
 <a href="{GITHUB}/{READS_PACK}/manifest.json" target="_blank" rel="noopener">manifest.json</a> are of
-the transcriptions. This pack is <b>not</b> the only 2026-11-17 read in the repository:
+the transcriptions. This pack is <b>not</b> the only 2026-11-17 read in the repository. Three sessions
+read the same pages inside a five-minute window: this one at 22:45-22:53Z,
 <a href="{GITHUB}/data/evidence/2026_11_17" target="_blank" rel="noopener">data/evidence/2026_11_17</a>
-and <a href="{GITHUB}/data/capture/2026_w10_read_2026_11_17" target="_blank" rel="noopener">
-data/capture/2026_w10_read_2026_11_17</a> are an independent read of the same pages by another session,
-made at 22:46Z against this pack's 22:45Z, and that one keeps a byte-level page capture where this one
-keeps a transcription. The two are compared cell by cell here (check C11) rather than cited as agreement:
-{num['parallel_read_cells_compared']} comparable cells, {num['parallel_read_mismatches']}
-disagreements, on layouts neither reader chose to match the other's.</div>
+at 22:46Z &mdash; which keeps a byte-level capture of one page, where this pack keeps a transcription
+&mdash; and <a href="{GITHUB}/data/verification/2026_11_17" target="_blank" rel="noopener">
+data/verification/2026_11_17</a> at about 22:50Z, which transcribed the whole injury report instead of the
+four clubs this pack typed by hand. None of the three was built to check another and the column layouts
+differ, so they are compared cell by cell here (checks C11 and C12) rather than cited as agreement:
+<b>{num['parallel_read_cells_compared'] + num['third_read_cells_compared']:,} comparable cells,
+{num['parallel_read_mismatches'] + num['third_read_mismatches']} disagreements</b>. The one thing they did
+not agree on is an identifier and not a value &mdash; the two packs spell one fixture's
+<code>game_id</code> differently, which is flag <a href="flagged.html">R1-08</a> and the reason C12 joins
+on the official fixture slug. And where the third read prints a kickoff time for a finished game while this
+pack leaves the cell blank, that is a stated difference in what each reader allowed itself to cite (the
+schedule page does not reprint times for games already played), not a hole in this table.</div>
 
 <div class="kpis">{kpis}</div>
 

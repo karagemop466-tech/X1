@@ -80,13 +80,19 @@ fixture pages. What is recorded here is exactly what the read produced and what 
 | Injury hub | https://www.nfl.com/injuries/ | the week selector ending at **WEEK 10** (no Week 11 report published), and four club tables transcribed by hand | `injury_spotcheck_2026-11-17.tsv`, diffed cell by cell against the newest retained capture |
 | Game Center, one fixture per read | https://www.nfl.com/games/colts-at-texans-2026-reg-11 · https://www.nfl.com/games/vikings-at-49ers-2026-reg-11 | `Location` and `Stadium` fields, and the injury-report availability line each club prints | `venue_evidence_2026-11-17.tsv` |
 
-The two reads corroborate each other and neither was made to: this pack and
-`data/evidence/2026_11_17` (session `arena/2f95e652-x1`, 22:46Z) are independent transcriptions of the same
-pages in different column layouts, and `tools/lab/build_reads.py` check C11 compares them cell by cell —
-698 comparable cells, 0 disagreements. That parallel read keeps a byte-level capture of one page
-(`data/capture/2026_w10_read_2026_11_17/page.html`), which this pack does not, and this pack carries the
-Week 11 slate, the venue evidence, the standings' DIV PCT and CONF PCT columns and the escrow, which that
-one does not. Neither is a superset; the union is what a reader should cite.
+Three sessions read these pages inside a five-minute window on 2026-11-17, and none of the three was
+built to check another. `tools/lab/build_reads.py` compares them cell by cell rather than citing them as
+agreement: against `data/evidence/2026_11_17` (session `arena/2f95e652-x1`, 22:46Z) 698 cells, and against
+`data/verification/2026_11_17` (session `arena-01c263c4-x1`, ~22:50Z, which transcribed the whole injury
+report and not four clubs) 686 cells — **1,384 comparable cells, 0 disagreements**. The single divergence is
+an identifier, not a value: the two packs key Rams at Cardinals as `2026_10_LA_ARZ` and `2026_10_LAR_AZ`,
+so a join across the trees has to go through the fixture slug (flag `R1-08`, and the reason `C12` joins the
+way it does). What each read also says about itself differs and is worth knowing before citing one: that
+second pack keeps a byte-level capture of one page where this one keeps a transcription; the third sourced
+kickoff windows and networks for finished games from the injury hub's game-day headers, where this pack
+leaves the cell blank because the schedule page does not reprint it; and that second pack omits DIV PCT and
+CONF PCT because its reader could not separate them from the adjacent cell, while this pack prints both. The
+union is what a reader should cite, not the most convenient member.
 
 Two things this does **not** change:
 

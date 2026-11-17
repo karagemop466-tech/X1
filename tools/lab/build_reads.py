@@ -81,6 +81,9 @@ PUBLISHED_INJURY_TABLE = "data/console/injuries_week10.csv"
 # Neither read was built to check the other, which is what makes the comparison worth something.
 PARALLEL_EVIDENCE = "data/evidence/2026_11_17"
 PARALLEL_INJURIES = "data/capture/2026_w10_read_2026_11_17/official_nflcom_injuries_week10_2026-11-17.psv"
+# A third read of the same pages, same minute, by session arena-01c263c4-x1 (PR #79), which also
+# transcribed the WHOLE injury report rather than four clubs - so it can check the spot-check itself.
+PARALLEL2 = "data/verification/2026_11_17"
 
 
 # --------------------------------------------------------------------- helpers
@@ -604,6 +607,84 @@ def main() -> int:
         par["note"] = "no parallel read found at data/evidence/2026_11_17; nothing to compare"
     done("C11_second_reader_agreement", par)
 
+    # ---- C12 a third reader, which also re-read the rows this pack spot-checked ----
+    p2 = {"present": os.path.isdir(os.path.join(ROOT, PARALLEL2))}
+    if p2["present"]:
+        c2, d2 = 0, []
+        r2 = read_tsv(os.path.join(ROOT, PARALLEL2, "official_w10_results_2026_11_17.tsv"))
+        # Joined on the official fixture slug, not on game_id. The reason turned out to be the finding:
+        # this pack keys the Rams-Cardinals game 2026_10_LA_ARZ (the abbreviations the page prints) and the
+        # third read keys the same fixture 2026_10_LAR_AZ, so a join on game_id across the two trees would
+        # drop a row in silence. The slug is the only identifier the two conventions share.
+        slug_of = lambda u: u.rstrip("/").split("/")[-1]
+        pr = {slug_of(r["game_url"]): r for r in r2}
+        id_diverge = []
+        for r in w10_games:
+            q = pr.get(slug_of(r["game_url"]))
+            if q is None:
+                d2.append({"game_id": r["game_id"], "problem": "fixture absent from the third read"})
+                continue
+            if r["game_id"] != q.get("game_id"):
+                id_diverge.append({"fixture_slug": slug_of(r["game_url"]), "this_pack": r["game_id"],
+                                   "third_read": q.get("game_id")})
+            for f in ("date_et", "away", "away_score", "away_record", "home", "home_score",
+                       "home_record", "status", "game_url"):
+                c2 += 1
+                if flat2(r[f]) != flat2(q.get(f, "")):
+                    d2.append({"game_id": r["game_id"], "field": f, "this_read": r[f], "third_read": q.get(f)})
+        st3 = {r["abbr"]: r for r in read_tsv(os.path.join(ROOT, PARALLEL2, "official_standings_2026_11_17.tsv"))}
+        for r in st:
+            q = st3.get(r["team_abbrev"])
+            if q is None:
+                d2.append({"club": r["team_abbrev"], "problem": "club absent from the third read"})
+                continue
+            for mine, theirs_f in (("w", "w"), ("l", "l"), ("t", "t"), ("pct", "pct"), ("pf", "pf"),
+                                   ("pa", "pa"), ("net", "net"), ("home", "home"), ("road", "road"),
+                                   ("div", "div_record"), ("conf", "conf_record"), ("strk", "streak")):
+                c2 += 1
+                if flat2(r[mine]) != flat2(q.get(theirs_f, "")):
+                    d2.append({"club": r["team_abbrev"], "field": mine, "this_read": r[mine],
+                               "third_read": q.get(theirs_f)})
+        inj3 = {}
+        for r in read_tsv(os.path.join(ROOT, PARALLEL2, "official_injuries_w10_2026_11_17.tsv")):
+            inj3[(r["team"].strip(), r["player"].strip())] = r
+        for r in spot:
+            q = inj3.get((r["team"].strip(), r["player"].strip()))
+            if q is None:
+                d2.append({"team": r["team"], "player": r["player"],
+                           "problem": "row absent from the third read of the full injury page"})
+                continue
+            for f in ("position", "injury", "practice_status", "game_status"):
+                c2 += 1
+                if flat2(r[f]) != flat2(q.get(f, "")):
+                    d2.append({"team": r["team"], "player": r["player"], "field": f, "this_read": r[f],
+                               "third_read": q.get(f)})
+        extra = len(inj3) - len(spot)
+        p2.update({"cells_compared": c2, "mismatches": len(d2), "detail": d2[:20],
+                   "game_id_conventions_diverge": len(id_diverge), "diverging_ids": id_diverge,
+                   "identifier_finding": ("the values agree on every cell; the identifiers do not. This pack "
+                                          "spells the two clubs as the page prints them (LA, AZ) and the third "
+                                          "read uses the nflverse-style codes (LAR, ARI) in its game_id while "
+                                          "keeping LA/AZ in its own value columns. Any future join between "
+                                          "these two trees must go through the fixture slug, not game_id, and "
+                                          "the flag R1-08 exists to keep that from being discovered the hard way"),
+                   "injury_rows_their_read_has": len(inj3),
+                   "injury_rows_this_pack_checked": len(spot),
+                   "coverage_note": (f"the third reader transcribed all {len(inj3)} injury rows on the page, "
+                                     f"against this pack's {len(spot)} hand-typed spot-check rows; the "
+                                     f"comparison covers the intersection, and the remaining {extra} rows are "
+                                     "checked against the retained capture by C8 rather than against a human"),
+                   "kickoff_times_note": ("this pack prints time_et blank for a final because the schedule page "
+                                          "does not reprint it; the third read sourced kickoff windows and "
+                                          "networks for the same games from the injury hub's game-day headers, "
+                                          "which is a different official page for the same fact - recorded here "
+                                          "so the two packs' apparent disagreement on a blank is not read as one "
+                                          "of them being incomplete"),
+                   "verdict": "pass" if not d2 else "FAIL — two readers disagree, one transcription is wrong"})
+    else:
+        p2["verdict"] = "not available"
+    done("C12_third_reader_agreement", p2)
+
     # ---- C10 venue evidence ------------------------------------------------------
     direct = [v for v in venues if v["game_centre_stadium"]]
     indirect = [v for v in venues if v["venue_string_printed_on_week11_page"]]
@@ -644,9 +725,15 @@ def main() -> int:
         "standings_cells_stale_in_the_pinned_reference": len(pin_diffs),
         "parallel_read_cells_compared": par.get("cells_compared", 0),
         "parallel_read_mismatches": par.get("mismatches", 0),
+        "third_read_cells_compared": p2.get("cells_compared", 0),
+        "third_read_mismatches": p2.get("mismatches", 0),
+        "independent_reads_compared_to_this_pack": sum(1 for x in (par, p2) if x.get("present")),
         "venue_direct_rows": len(direct),
         "venue_name_conflicts": len(name_conflicts),
     }
+    if p2.get("mismatches"):
+        fails.append(f"C12 third reader: {p2['mismatches']} cells where an independent transcription of the "
+                     f"same page disagrees")
     if par.get("mismatches"):
         fails.append(f"C11 second reader: {par['mismatches']} cells where two independent transcriptions "
                      f"of the same page disagree")

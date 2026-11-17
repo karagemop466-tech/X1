@@ -19,12 +19,12 @@
  },
  "dataset": "feed-closure-measurement",
  "decision_for_the_owner": "B is the recommended path and it is small: one gate edit, a re-pinned baseline, the row-count pins, and a regeneration of the artefacts in M5. What it is not is a data problem - M3 shows the closure reproduces the league table exactly. No session should make that call, because it changes what 'verified' means for every row already published; that is why it is recorded here as a decision and not implemented as a change.",
- "generated_at": "2026-11-17T23:23:55+00:00",
+ "generated_at": "2026-11-17T23:27:41+00:00",
  "generated_by": "tools/lab/build_closure_measurement.py (session arena-9d8c298c-x1)",
  "inputs": {
   "code/reference_data_2026_w10.py": "08a3caa73aac9c53a1a57fda2ad38abc4285dee7ea98747837567b10c1bfd167",
   "data/lab/reads/2026-11-17/week10_finals.tsv": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703",
-  "data/pipeline/standings.json": "6fa17a4ebea513d46d23c6af26c56baa0b4276dd744cf4fc0f72cbaef10a536f",
+  "data/pipeline/standings.json": "528fc0abb510fe5f5be2977461f787a12eb09551772154d4bcf95b2dc4479ded",
   "data/results/_raw/reads.tsv": "684d0f01e4bbd6956c2399f3f392a17392783927053dcef9830a69528795a2d4",
   "tools/build_results_r3.py": "7fa0c274ab5e2057685168857a3612258d0f7c0b71f240ae30b51f8cd6da822b"
  },
