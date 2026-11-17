@@ -3295,3 +3295,52 @@ The owner's latest message re-states the full brief: review the repo line by lin
 | F-4 | full pre-existing verifier suite | to be completed | to be recorded |
 | F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
 
+---
+
+# Session `arena-473e08d5-x1` — close S-22/Q-62: results-feed re-baseline, mirror re-pin, price-policy decision (this session)
+
+**Session ID:** `arena-473e08d5-x1` · **Branch:** `arena/473e08d5-x1` (branched from `main` @ `38816a6`, the current `origin/main` tip). **Started (UTC):** 2026-11-17.
+
+## Why this session exists
+
+Two owner requirements in the brief are still not satisfiable, and both were left explicitly open by the
+previous session (`arena-543cdcb0-x1`, done 2026-11-16) as the single coordinated change they require:
+
+> "Add a verified results feed so backtests and ROI can be computed at all"
+> "Decide the price-data policy before any backtest is published"
+
+* **S-22 / Q-62** — the published feed stops at 137 games (weeks 1–9 plus the Week 10 Thursday game).
+  The official page now prints all 14 Week 10 games as Final (the LAC@BAL Monday game finished
+  2026-11-16). Closing it needs four coupled artefacts moved together: the transcription, the row-count
+  pin, the standings baseline and the pinned mirror. Four independent `137` pins and one hand-written
+  2026-11-14 standings baseline are the reason a partial append breaks the arithmetic gate.
+* **Q-61** — the residual (model fair line − market line) is blank everywhere because no *official* price
+  source exists. The owner's brief forbids waiting on a decision ("no manual input on my part"), so this
+  session records the decision the register asked for — publish the mirror-derived price with an explicit
+  `mirror-derived, not official` label, never as an official number — and implements the opening/closing
+  price store that decision unblocks, keeping the label on every row.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| N-1 | Week 10 finals re-transcribed live from the official by-week schedule page (14 games, with clock time), plus the post-Week-10 official standings read; every row with its official URL | in progress | `arena-473e08d5-x1` | `data/verification/2026_11_17/**` (new), `tools/verify_2026_11_17.py` (new) |
+| N-2 | Move the four coupled baselines in ONE commit: append the 13 Week 10 finals to the raw transcriptions, re-pin the nflverse mirror to today's bytes (sha256 recorded), move the standings baseline to a dated post-Week-10 file, and change every `137` count pin in the same diff | in progress | `arena-473e08d5-x1` | `data/results/_raw/reads.tsv`, `data/results/raw/official_results_2026_week10.psv`, `data/results/raw/week_10.md`, `code/reference_data_2026_postw10.py` (new), `tools/build_results_r3.py`, `tools/build_results_feed_907c.py`, `tools/build_results.py`, `data/raw/nflverse/games.csv`, `data/raw_manifest.json` |
+| N-3 | Rebuild every consumer of the feed and re-run the whole verify suite; publish the recomputed backtest on the pre-registered shadow baseline (no rule text changes — only the frozen model meets the enlarged corpus) | in progress | `arena-473e08d5-x1` | `data/results/**` (regenerated), `data/shadow/**` (regenerated), `tools/build_shadow_baseline.py` (pin only) |
+| N-4 | Price-data policy decision recorded and implemented: opening + closing snapshot store per originated market from the re-pinned mirror, every row labelled by tier, residual computed and published with the label, and the "no official price source" caveat kept | in progress | `arena-473e08d5-x1` | `docs/methodology/price-data-policy.md` (new), `data/prices/**`, `tools/build_price_snapshots.py` (if the store needs the new pin) |
+| N-5 | Publish: a dated results-closure page + landing/executive/next-decisions updates via the committed generators, new flags for every irregularity found this round, PR → `main`, merge, Pages deploy confirmation | in progress | `arena-473e08d5-x1` | `pages/**` + `index.html` (via `tools/build_site.py`, additive), `tools/build_site.py` (additive), `data/flags.json` (append-only), `data/next_decisions/**`, `tools/build_next_decisions.py`, `COORDINATION.md` |
+
+**Not claimed / overlap check (rules 3–4).** Open PRs #50 (`app/**`, `tools/build_app.py`), #53
+(`app/index.html`, `app/flagged.html`, `data/readiness/**`), #61 (`pipeline/run.py`,
+`scripts/pipeline/verify_archive.py`, `data/readiness/**`) and #66 (Week 10 injury capture) are all
+untouched here. This session therefore **does not edit `app/**`, `tools/build_app.py`, `pipeline/run.py`
+or `data/readiness/**`**. The `137` prose that those files print will go stale with respect to the feed;
+that is logged below as an **integration request**, not silently edited here. `lab/**` and `console/**`
+are likewise left alone; their builders are re-run only if a committed generator regenerates them without
+hand edits.
+
+**Request to the final integrator:** after this PR merges, `tools/build_app.py` and `tools/build_console.py`
+should be re-run so the `137`-game prose on `app/results.html`, `app/index.html`, `console/*.html` and
+`lab/*.html` picks up the new count from the feed metadata, and PR #50/#53/#61/#66 should be reconciled
+against the new `data/results/**` baseline rather than merged blind (their transcriptions predate
+Week 10 closure).
