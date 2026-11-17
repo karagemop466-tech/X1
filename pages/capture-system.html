@@ -70,7 +70,7 @@
 
 <section class="content">
   <div class="statrow">
-    <div class="stat"><strong>54</strong><span>captures retained</span><span class="statnote">27 distinct payloads</span></div>
+    <div class="stat"><strong>59</strong><span>captures retained</span><span class="statnote">29 distinct payloads</span></div>
     <div class="stat"><strong>7</strong><span>datasets pinned</span><span class="statnote">freshness measured against the league&#x27;s own publishing gap</span></div>
     <div class="stat"><strong>10</strong><span>live alarms</span><span class="statnote">published, not silenced</span></div>
     <div class="stat"><strong>60</strong><span>club records cross-checked</span><span class="statnote">three official pages, 0 mismatches</span></div>
@@ -145,6 +145,11 @@
 <tr><td><b>depth_charts</b></td><td>2026-11-17T22:53:35+00:00</td><td>1807</td><td><span class="pill ok">new</span></td><td><span class="pill ok">pass</span></td><td>e985f9eb2dfe23e8</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
 <tr><td><b>team_stats</b></td><td>2026-11-17T22:53:43+00:00</td><td>288</td><td><span class="pill muted-pill">unchanged</span></td><td><span class="pill ok">pass</span></td><td>79385fd900196565</td><td><a class="src-link" href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
 <tr><td><b>deficiency</b></td><td>2026-11-17T22:53:43+00:00</td><td>896</td><td><span class="pill ok">new</span></td><td><span class="pill ok">pass</span></td><td>5565fbcd9cbd369f</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><b>injuries</b></td><td>2026-11-17T23:05:19+00:00</td><td>347</td><td><span class="pill muted-pill">unchanged</span></td><td><span class="pill ok">pass</span></td><td>c3d7a7224dfc8105</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><b>standings</b></td><td>2026-11-17T23:05:18+00:00</td><td>32</td><td><span class="pill muted-pill">unchanged</span></td><td><span class="pill ok">pass</span></td><td>e3409e8d36ea7d57</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><b>depth_charts</b></td><td>2026-11-17T23:05:22+00:00</td><td>1807</td><td><span class="pill ok">new</span></td><td><span class="pill ok">pass</span></td><td>845bd953fb3aa9c6</td><td><a class="src-link" href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><b>team_stats</b></td><td>2026-11-17T23:05:30+00:00</td><td>288</td><td><span class="pill muted-pill">unchanged</span></td><td><span class="pill ok">pass</span></td><td>79385fd900196565</td><td><a class="src-link" href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><b>deficiency</b></td><td>2026-11-17T23:05:30+00:00</td><td>896</td><td><span class="pill ok">new</span></td><td><span class="pill ok">pass</span></td><td>c30382b3d4c6ec37</td><td><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
 </tbody></table></div>
   <p class="muted"><b>New</b> means the content hash had not been seen before; <b>unchanged</b> means this
   run read the same page and got the same bytes. An unchanged day is recorded rather than skipped, because
@@ -152,19 +157,19 @@
 
   <h2>Freshness, against a budget the league can actually meet</h2>
   <p class="muted">The hours below were computed when <code>data/captures/status.json</code> was last
-  written by an explicit <code>capture_store status</code> run (2026-11-17T22:53:57Z), not
+  written by an explicit <code>capture_store status</code> run (2026-11-17T23:05:43Z), not
   when this page was built: a published page must be a function of committed files only, and an
   elapsed-time figure recomputed at build time makes the site permanently, correctly &ldquo;stale&rdquo;.
   The collector rewrites the file in the same commit as the data it just retained, so the pair moves
   together.</p>
   <div class="tablewrap"><table class="" data-table><caption>Freshness per dataset</caption><thead><tr><th>Dataset</th><th>Captures</th><th>Last read</th><th>Hours since</th><th>Budget</th><th>Status</th><th>Pin</th></tr></thead><tbody>
-<tr><td><b>deficiency</b></td><td>10 (7 distinct)</td><td>2026-11-17T22:53:43+00:00</td><td>0.0</td><td>168 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
-<tr><td><b>depth_charts</b></td><td>10 (7 distinct)</td><td>2026-11-17T22:53:35+00:00</td><td>0.0</td><td>168 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
-<tr><td><b>injuries</b></td><td>11 (3 distinct)</td><td>2026-11-17T22:53:32+00:00</td><td>0.0</td><td>96 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
-<tr><td><b>standings</b></td><td>11 (4 distinct)</td><td>2026-11-17T22:53:31+00:00</td><td>0.0</td><td>96 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
-<tr><td><b>team_stats</b></td><td>10 (4 distinct)</td><td>2026-11-17T22:53:43+00:00</td><td>0.0</td><td>168 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
-<tr><td><b>week_results</b></td><td>1 (1 distinct)</td><td>2026-11-16T18:44:00Z</td><td>28.2</td><td>336 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
-<tr><td><b>week_schedule</b></td><td>1 (1 distinct)</td><td>2026-11-16T18:52:00Z</td><td>28.0</td><td>336 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>deficiency</b></td><td>11 (8 distinct)</td><td>2026-11-17T23:05:30+00:00</td><td>0.0</td><td>168 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>depth_charts</b></td><td>11 (8 distinct)</td><td>2026-11-17T23:05:22+00:00</td><td>0.0</td><td>168 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>injuries</b></td><td>12 (3 distinct)</td><td>2026-11-17T23:05:19+00:00</td><td>0.0</td><td>96 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>standings</b></td><td>12 (4 distinct)</td><td>2026-11-17T23:05:18+00:00</td><td>0.0</td><td>96 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>team_stats</b></td><td>11 (4 distinct)</td><td>2026-11-17T23:05:30+00:00</td><td>0.0</td><td>168 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>week_results</b></td><td>1 (1 distinct)</td><td>2026-11-16T18:44:00Z</td><td>28.4</td><td>336 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
+<tr><td><b>week_schedule</b></td><td>1 (1 distinct)</td><td>2026-11-16T18:52:00Z</td><td>28.2</td><td>336 h</td><td><span class="pill ok">ok</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json" target="_blank" rel="noopener noreferrer">pin ↗</a></td></tr>
 </tbody></table></div>
   <p class="muted">Budgets are the longest interval the LEAGUE can leave the source empty, not a preference. The injury report has no Monday or Saturday edition, so a Sunday-evening read of a Monday-evening schedule is inside budget at 96h; a Tuesday afternoon read with nothing new is a real alarm. Week-level schedule/results reads are per game week, hence 336h.</p>
 
