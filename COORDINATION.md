@@ -3311,3 +3311,45 @@ The owner's latest message re-states the full brief: review the repo line by lin
 | BC-3 | Completion record here; no edits to `index.html`, `pages/**`, `tools/build_site.py`, nav or any file claimed by PRs #50, #53, #61, #66 | in progress | `arena-d3df5dc2-x1` | `COORDINATION.md` (append only) |
 
 **Non-overlap declaration.** Open PRs #50 (`app/**`), #53 (readiness card, `app/index.html`, `app/flagged.html`), #61 (`pipeline/run.py`, `data/readiness/**`), #66 (E1 injury capture) are not edited. This session adds two new files and one appended block.
+
+### Completion record — BC-1 to BC-3 (session `arena-d3df5dc2-x1`, 2026-11-17)
+
+**Status: done for its own scope. The full owner brief is NOT complete; see the status counts below.**
+
+**Shipped (this session only):**
+
+| Artefact | What it is |
+|---|---|
+| `docs/audit/brief-coverage-2026-11-17.md` | 82-row register: one row per numbered item in the 2026-11-17 brief, with status (BUILT / PARTIAL / DEFINED / NOT BUILT / DECLINED), repo evidence paths, what would clear each item, an official link where one exists in the repo, and a Flag column |
+| `tools/verify_brief_coverage.py` | Mechanical check: legal status only; every cited path exists; BUILT / PARTIAL / DEFINED rows cite an existing path; every https link is on an allow-list (nfl.com, the two club hosts, github.com, this project's Pages) |
+| `COORDINATION.md` | This record (append only) |
+
+**Counts (recomputed by `tools/verify_brief_coverage.py`):** BUILT 10 · PARTIAL 39 · DEFINED 5 · NOT BUILT 25 · DECLINED 3 · total 82 · flagged `yes` 30.
+
+**Sources.** Every path cited in the register was opened or grepped in the working tree at `38816a6`. Official links are only those the repo already cites: nfl.com injury league page (Week 10), nfl.com 2026 Week 10 schedule, nfl.com 2026 standings, the Patriots at Lions Game Center page, the Falcons and Packers depth-chart pages, and the Kerby Joseph / D.J. Reed player pages. **No value was re-read live from nfl.com on 2026-11-17 in this session.** No official transactions log, inactive list, snap-count source, reserve list, or weather/roof source is pinned anywhere in the repo, so those rows carry no link.
+
+**Verification performed.** `tools/verify_brief_coverage.py` (exit 0, 82 rows). Re-run this session: `tools/verify_data.py` (2,944 checks), `tools/build_preregistration.py --check` (rule hash matches; anchor skipped in shallow checkout), `tools/verify_2026_11_16.py` (0 failures), `python3 -m pipeline.capture_store verify` (exit 0), `scripts/pipeline/verify_captures.py --self-test` (5/5), `tools/build_decision_readiness.py --check` (53 rows match), `scripts/verify_site.py` (168 pages), `tools/check_links.py` (44,192 assertions).
+
+**Irregularities found (all listed in the audit's last section; none changed in this session):**
+
+1. `data/pipeline/depth_charts.json` note and `data/depth/replacement_depth_summary.json` method both define column 1 as "the starter". The brief rejects that where it fabricates a starter. Measured: 156 of 695 (club, unit, position) groups have more than one depth-1 player (the brief cites 149; not reproduced with the `depth` field).
+2. 7 Packers starter names still carry jersey-number prefixes in `data/depth/replacement_depth.csv` (for example `81 Josh Whyle`).
+3. Houston (HOU) is `unavailable` in `data/pipeline/depth_charts.json`; 31 of 32 clubs parse.
+4. Two Week 10 injury tables disagree: `data/injuries/injuries_2026_week10.csv` has 345 data rows; `data/nfl/injuries_week10.tsv` has 351 non-header lines (comments included).
+5. Venue transcription: `data/nfl/schedule_2026_week10.csv` `venue_note` is filled for 1 of 14 games.
+6. Injury captures in `data/captures/index.jsonl` fall on 2026-11-14 (5), 11-15 (1), 11-16 (33), 11-17 (10) across all datasets. The workflow cron is every 6 hours plus Sun/Mon/Thu game-day passes, not a Wed/Thu/Fri rule.
+7. Price store (`data/prices/price_store_meta.json`): third-party mirrors only; no official price source exists per the file's own tier note.
+8. Strategy register: `data/strategies.json` has 0 strategies and says "NO STRATEGIES REGISTERED YET"; `data/strategy_registry.csv` lists 10 unfrozen candidates.
+9. Raw nflverse CSVs (`data/raw/nflverse/*`, 11 tracked files) and capture payloads are committed to this public repository, against the brief's private-layer instruction.
+10. The brief's "136-game log" is not in the repo. The shadow corpus is 117 scored games (weeks 3–10).
+11. The brief cites VR-24, VR-25, VR-17, VR-26, VQ-05 and VQ-07; those IDs do not appear in the repo, so their underlying sources are not pinned.
+
+**Not done, deliberately (other sessions' scopes or shared outputs):**
+
+- The audit is **not linked from the site**. `index.html`, `pages/**` and nav are shared outputs, changed only by the final integration session (board rule 9). Request to the integrator: add a link from the Flagged-for-Review page and the readiness page.
+- `tools/verify_brief_coverage.py` is **not wired into CI**. `.github/workflows/verify.yml` is claimed by PR #51. Request to the integrator: add one `run:` step.
+- No file in `data/`, `pipeline/`, `tools/official/` or `.github/workflows/` was edited.
+
+**Pull request.** Branch `arena/d3df5dc2-x1` is pushed. A PR to `main` is **not merged** in this session: the brief is not complete (25 items NOT BUILT, 39 PARTIAL), and merges to `main` are reserved for the final integration session under rule 9. The integrator should merge this docs-and-verifier change with the audit, with its flags listed as above.
+
+**Handoff.** Rows marked NOT BUILT that need owner or follow-up work: 12, 20, 25, 28, 29, 32, 35, 42, 45, 46, 54, 57, 59, 60, 61, 63, 65, 67, 69, 71. Each row names what would clear it.
