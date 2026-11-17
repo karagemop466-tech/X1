@@ -3295,3 +3295,50 @@ The owner's latest message re-states the full brief: review the repo line by lin
 | F-3 | `tools/build_app.py`, `tools/build_site.py`, `tools/verify_app.py`, `tools/check_links.py` | to be completed | to be recorded |
 | F-4 | full pre-existing verifier suite | to be completed | to be recorded |
 | F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
+
+
+---
+# Session `arena/20925c04-x1` — repo line-by-line review, offline verification, and release (current branch)
+
+**Session ID:** `arena/20925c04-x1` · **Branch:** `arena/20925c04-x1` (branched from `main` @ `38816a62`; rebuilt on top of `origin/main` e2f42fb which already contains the claim records of sessions `arena/76fd9817-x1` (PR #69) and `arena/9ececd27-x1` (PR #71) — nothing discarded). · **Role:** repo line-by-line review, offline verification of the committed official snapshots, landing page + category subpage review, executive summary / questions / suggestions review, site integration and release (PR → main → merge → GitHub Pages deploy confirm).
+
+**Scope claimed (rule 1):** `COORDINATION.md` (append-only claim record), `docs/review/repo-review.md`, `docs/EXECUTIVE-SUMMARY.md` (append-only addendum), `data/questions.json` and `data/suggestions.json` (read-only review), root `index.html`, `app/**` and `pages/**` (read-only verification; no section removed or rewritten), `.github/workflows/pages.yml`. All existing T1–T17 / S1–S8 scope remains owned by its recording sessions and is not re-opened.
+
+**Constraint recorded at claim time:** `nfl.com`, `operations.nfl.com` and all official NFL hosts return connection failure from this sandbox (HTTP 000, tested 2026-11-17). Live verification against official pages is therefore not possible in this session. All verification is against the committed official snapshots (each carries its fetch URL and retrieval date), plus internal link and cross-reference checks. Any value not present in a committed official snapshot is left blank and flagged — nothing is inferred.
+
+**Started (UTC):** 2026-11-17 · **Status:** active
+
+| # | Task | Status | Owner session | Files in scope |
+|---|---|---|---|---|
+| T-R1 | Repo line-by-line review + irregularity flags | done | `arena/20925c04-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | done | `arena/20925c04-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | done | `arena/20925c04-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: confirm clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/20925c04-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
+
+**Handoff note for this session:** No other session's files are edited. Existing `index.html`, `pages/**`, `assets/**`, `app/**`, `tools/**`, `scripts/**`, `data/**`, `docs/**` and `.github/workflows/**` are treated as read-only except this append-only record. Any defect found is logged as a flag (never silently patched into a published value) and the owner decides the fix.
+
+## Review findings (T-R1, T-R2, T-R3 — done)
+
+Finding (flagged, not patched): the repository carries three competing roots — root `index.html` (Overview dashboard, clean categorized nav), `app/index.html` (Unified dashboard), and `console/index.html`. `.github/workflows/pages.yml` copies `index.html` into `_site/` then overwrites `_site/index.html` with `console/index.html` (asset links repointed to `console/`). So the served landing page is the console, not the clean Overview page the root file presents. This is a pre-existing multi-session inconsistency; no session's file was rewritten here. Reader impact: a visitor landing on `/` sees the console layout while `/app/` shows the unified dashboard. Recorded for the owner; does not block the release.
+
+No published value was inferred. Every value either (a) traces to a committed official snapshot with its fetch URL and date, or (b) is left blank and flagged (e.g. Q-02 licensed price feed, all betting prices, all strategy ROI).
+
+Verification (offline; nfl.com unreachable from this sandbox):
+- `python3 tools/verify_data.py` → 2,944 / 2,944 integrity assertions passed; exit 0.
+- `python3 tools/check_links.py` → 168 files checked, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved; exit 0.
+- `python3 scripts/verify_site.py` → 168 HTML pages; local links resolve; every data-table row carries an official source link; exit 0.
+
+Registers reviewed:
+- `docs/EXECUTIVE-SUMMARY.md`: present, 157 lines, second-round addendum covering all eight owner requirements (R-46…R-53) with artifacts, checks, and the honest position (nothing beats break-even at −110 on verified 2026 results; no official price source; nothing ranked on luck).
+- `data/questions.json`: 24 questions — 0 answered, 2 partially answered, 22 open. Each row carries topic, why-it-blocks, known information, answer (blank where open), what-would-answer-it, owner-decision flag, and source URL.
+- `data/suggestions.json`: 18 suggestions — all `proposed`; each has impact, effort, depends_on, first_step, risk, and a status column for the owner to set (proposed | accepted | rejected | deferred). Nothing is implemented automatically.
+
+## Release record (T-R4 — completed on merge)
+
+| Step | Result |
+|---|---|
+| PR | `arena/20925c04-x1` → `main`, PR #70 |
+| Merge | `gh pr merge 70 --merge` (to be executed) |
+| Post-merge verify-site | pending |
+| Pages deployment | pending — https://karagemop466-tech.github.io/X1/ |
+
