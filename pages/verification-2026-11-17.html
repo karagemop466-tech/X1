@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live re-verification 17 Nov (2026-11-17) — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="injury-read-2026-11-17.html">Injury re-read 17 Nov</a>
+      <a class="active" href="verification-2026-11-17.html">Re-verification 17 Nov</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="decisions-critical.html">Decisions to make</a>
+      <a href="suggestions-board.html">Suggestions board</a>
+      <a href="review-queue.html">Review queue</a>
+      <a href="changes.html">What changed</a>
+      <a href="requirements.html">Requirements &amp;amp; status</a>
+      <a href="readiness.html">Decision readiness</a>
+      <a href="capture-system.html">Capture system</a>
+      <a href="shadow-baseline.html">Shadow baseline</a>
+      <a href="next-decisions.html">Suggestions &amp; questions</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+      <a href="../live/index.html">Live pipeline</a>
+      <a href="../hub/index.html">Section index</a>
+      <a href="../lab/index.html">Line desk</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ LIVE RE-VERIFICATION 17 NOV (2026-11-17)</i></span>
+    <span class="asof">READ LIVE 2026-11-17 22:46–22:56 UTC</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">EXECUTED VERIFICATION</div>
+  <h1>Live re-verification — 2026-11-17</h1>
+  <p>The Week 10 injury report, the league standings, the final Week 10 slate and a Week 11 probe, read live
+  from nfl.com between 22:46 and 22:56 UTC and transcribed line by line. 18 checks: 14 pass,
+  3 findings published, 0 structural failures. Nothing on a published
+  table was edited; every difference is dated, counted and linked.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Why this page exists.</b> The site's published tables carry snapshot dates (2026-11-14)
+  because a snapshot is verifiable and a moving target is not. This page is the other half of that contract:
+  re-read the same official pages today, gate the new reading against everything the repository already retained,
+  and publish each delta beside the table it concerns — with two dates, two sources, and no silent overwrite.
+  Three of this evening's gates compare <i>independent sessions' readings of the same pages</i>, which is the
+  strongest check a hand transcription can get without the league publishing machine-readable rows.</div>
+  <div class="statrow">
+    <div class="stat"><strong>347</strong><span>injury rows re-read</span><span class="statnote">chunks 0–7 of 8, every club table</span></div>
+    <div class="stat"><strong>1,388</strong><span>cells gated against the retained capture</span><span class="statnote">plus the same count against PR #73&#x27;s independent read</span></div>
+    <div class="stat"><strong>128</strong><span>closure assertions</span><span class="statnote">published 14 Nov + unseen finals = today&#x27;s standings</span></div>
+    <div class="stat"><strong>13</strong><span>scheduled → final promotions</span><span class="statnote">the 14 Nov schedule read, tracked not overwritten</span></div>
+  </div>
+
+  <h2>What was read, when, and from where</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>Four reads, one clock, one transcription each</caption><thead><tr><th>Official page</th><th>Read</th><th>What it produced</th><th>Clock (UTC)</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>Week 10 injury report</b> <small>injuries/league/2026/reg10</small></td><td>all 8 chunks, fetched in sequence</td><td>347 rows across 28 club tables, 14 fixtures — practice status, game status, injury text verbatim, player link per row</td><td>22:50–22:56</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>League standings</b> <small>standings/league/2026/REG</small></td><td>chunks 0–1 of 2</td><td>32 clubs; W L T PCT PF PA NET HOME ROAD DIV CONF STRK as printed; HOME+ROAD = W-L-T checked for all 32 before any comparison</td><td>≈22:50</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>Week 10 schedule</b> <small>schedules/2026/by-week/week-10</small></td><td>chunks 0–1 of 2</td><td>all 14 fixtures Final with scores and post-game records beside the logos; byes CHI, DEN, PHI, TB</td><td>≈22:50</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>Week 11 injury-report URL</b> <small>injuries/league/2026/REG11</small></td><td>probe, chunk 0</td><td>resolved to the Week 10 page; selector prints WEEK 1–10 only — recorded as the opening probe of the dated series, with what is unknown kept blank</td><td>≈22:50</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG11" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+</tbody></table></div>
+
+  <h2>The gates: what today's reading had to agree with</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>tools/verify_2026_11_17.py — a disagreement fails the pack, it never edits a published table</caption><thead><tr><th>Gate</th><th>Comparison</th><th>Verdict and counts</th><th>Artifact</th></tr></thead><tbody>
+<tr><td><b>I2</b></td><td>This transcription vs the repository&#x27;s retained official collector capture (read 2026-11-16T19:02:14Z, unchanged through 2026-11-17T19:49:49Z): 347 rows × 4 fields</td><td><span class="pill ok">PASS</span> transcription_rows 347 · capture_rows 347 · key_diffs 0 · cell_diffs 0</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json" target="_blank" rel="noopener noreferrer">capture &amp;#8599;</a></td></tr>
+<tr><td><b>I2b</b></td><td>This transcription vs session arena/16049865-x1&#x27;s independent same-day transcription of the same page (PR #73): 347 rows × 4 fields</td><td><span class="pill ok">PASS</span> their_rows 347 · our_rows 347 · differences 0</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/pull/73" target="_blank" rel="noopener noreferrer">PR #73 &amp;#8599;</a></td></tr>
+<tr><td><b>S3</b></td><td>Today&#x27;s standings vs the retained collector standings payload (read 2026-11-17T05:03:50Z): 32 clubs × 7 fields</td><td><span class="pill ok">PASS</span> clubs 32 · fields_per_club 7 · capture_rows 32</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/payloads/standings/e3/e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32.json" target="_blank" rel="noopener noreferrer">capture &amp;#8599;</a></td></tr>
+<tr><td><b>S4</b></td><td>Closure: the published 2026-11-14 standings plus the 13 Week 10 finals it had not seen must reproduce today&#x27;s W, L, PF and PA for every club</td><td><span class="pill ok">PASS</span> clubs 32 · assertions 128 · finals_added 13 · already_final_at_2026_11_14 1</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/results_promotions_2026_11_17.csv" target="_blank" rel="noopener noreferrer">promotions &amp;#8599;</a></td></tr>
+<tr><td><b>R3</b></td><td>Club records printed on today&#x27;s schedule page vs today&#x27;s standings page: 28 comparisons</td><td><span class="pill ok">PASS</span> comparisons 28</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>X1</b></td><td>Cross-session corroboration vs session arena/2f95e652-x1&#x27;s independent 22:46Z read of the same standings and finals pages (PR #76, claim E-1): 12 shared fields × 32 clubs + 14 finals. In-session comparison against that open branch already ran at 0 differences over 384 standings cells and all 14 scores; the committed gate reports its verdict once that pack is present in the tree.</td><td><span class="pill muted-pill">SKIP</span> —</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/pull/76" target="_blank" rel="noopener noreferrer">PR #76 &amp;#8599;</a></td></tr>
+</tbody></table></div>
+  <div class="note"><b>Two unit notes, so the numbers cannot be mistaken for each other.</b>
+  (1) PR #73's headline &ldquo;16 cells that differ&rdquo; counts <i>changed rows</i> (15 in LAC@BAL + Arden Key);
+  counted cell by cell the same evidence is <b>32 cells</b> — the row-level
+  lists are identical. (2) This pack's 130 standing-field delta covers seven
+  fields (w, l, t, pct, pf, pa, streak); PR #76's sixteen-field view of the same page reports 262 of 512 cells.
+  Both count <b>26 affected clubs</b> — the subsets differ, the finding is the same: the snapshot is dated and
+  the games have been played. <a href="https://github.com/karagemop466-tech/X1/pull/73" target="_blank" rel="noopener noreferrer">PR #73 &#8599;</a>
+  · <a href="https://github.com/karagemop466-tech/X1/pull/76" target="_blank" rel="noopener noreferrer">PR #76 &#8599;</a></div>
+
+  <h2>Findings — published beside the tables, never applied to them</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>Dated deltas from this evening&#x27;s reads</caption><thead><tr><th>Flag</th><th>Finding</th><th>What was measured</th><th>Row-by-row evidence</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>F-22</b></td><td><b>The published 2026-11-14 injury table is stale.</b></td><td>+2 rows (BAL: Calais Campbell, Ronnie Stanley) and 32 cells changed across 16 rows (BAL 4, IND 2, LAC 26); the whole delta appeared between 2026-11-14T17:02Z and 2026-11-15T18:14Z and has not moved since</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv" target="_blank" rel="noopener noreferrer">row-by-row diff &amp;#8599;</a></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>F-23</b></td><td><b>The published 2026-11-14 standings are stale now that Week 10 has closed.</b></td><td>130 field changes across 26 of 32 clubs (w ×13, l ×13, pct ×26, pf ×26, pa ×26, streak ×26); every club that played except WAS and NYG, whose Thursday final was already in the snapshot. The drift is exactly the games played — the 128-assertion closure passes</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/standings_diff_vs_published_2026_11_17.csv" target="_blank" rel="noopener noreferrer">field-by-field diff &amp;#8599;</a></td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td>&mdash;</td><td><b>Day-over-day since the 2026-11-16 read:</b> only the Monday-night game's two clubs moved.</td><td>BAL and LAC, 16 fields (L: 5→6, streak 4L→5L; W: 0→1, streak 8L→1W) — the LAC 23–20 at BAL final, read before kickoff yesterday and closed today</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/standings_diff_vs_2026_11_16.csv" target="_blank" rel="noopener noreferrer">delta vs 16 Nov &amp;#8599;</a></td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener noreferrer">game center &amp;#8599;</a></td></tr>
+<tr><td><b>F-24</b></td><td><b>There is no Week 11 injury report yet.</b></td><td>The REG11 URL resolved to the Week 10 page (final URL reg10, title &quot;Week 10&quot;, selector lists WEEK 1–10 only) at approximately 22:50 UTC — a blank a flag, not a fill</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/week11_injuries_probe_2026_11_17.txt" target="_blank" rel="noopener noreferrer">probe record &amp;#8599;</a></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG11" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>F-25</b></td><td><b>One fetch contradicted its own immediate repeat.</b></td><td>The first read of injury chunk 5 printed CIN Brian Parker II as &quot;Questionable&quot;; the repeat minutes later printed &quot;Doubtful&quot; — matching ten collector read times and the 14 Nov table. The pack records the repeated value behind the 1,388-cell capture gate, never the single-read value; how often the page diverges is unmeasured</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/official_injuries_w10_2026_11_17.tsv" target="_blank" rel="noopener noreferrer">transcription header note &amp;#8599;</a></td><td><a class="src-link" href="https://www.nfl.com/players/brian-parker-ii/" target="_blank" rel="noopener noreferrer">player row &amp;#8599;</a></td></tr>
+</tbody></table></div>
+  <div class="note"><b>Club-code note.</b> The injury page prints the Rams as <code>LAR</code>; the standings and
+  schedule pages print <code>LA</code> in their logo URLs, and the collector stores <code>LA</code>. The alias is
+  declared in <code>data/captures/config.json</code> and applied only when two reads are matched, never inside a
+  retained payload — without it the same 14 players appear to vanish and reappear between dated files
+  (drift alarm <i>club-code-outside-register</i>, on the <a href="capture-system.html">capture system page</a>).
+  </div>
+
+  <h2>What stays unknown here</h2>
+  <div class="note">
+    <ul class="findings">
+      <li><b>The moment Week 11's report opens</b> — historically the Wednesday practice window. Until a read
+      returns a WEEK 11 selector entry, no Week 11 practice or game status is verifiable, so none is published
+      (<a href="flagged.html">F-24</a>, probe file above).</li>
+      <li><b>Whether the site should serve refreshed main tables or keep serving dated snapshots</b> — an owner
+      decision, not a data one. Both staleness flags describe exactly what refresh would move
+      (<a href="flagged.html">F-22</a>, <a href="flagged.html">F-23</a>).</li>
+      <li><b>How often a fetched page disagrees with its own immediate repeat</b> — one divergence was caught this
+      session by reading chunk 5 twice; the rate is unmeasured, and the mitigation (never publish from a single
+      fetch; gate every row against the retained capture) is now part of this pack's checks
+      (<a href="flagged.html">F-25</a>).</li>
+      <li><b>Gate X1's committed verdict</b> — it reports SKIP until session arena/2f95e652-x1's evidence pack
+      lands in the tree; the in-session comparison against that branch already ran at zero differences.</li>
+    </ul>
+  </div>
+
+  <p class="muted">Pack: <code>data/verification/2026_11_17/</code> · checker:
+  <code>tools/verify_2026_11_17.py</code> (its <code>--check</code> mode is the staleness guard) ·
+  flags: <a href="flagged.html">F-22 … F-25</a> · companion pages:
+  <a href="injury-read-2026-11-17.html">PR #73's injury re-read</a>,
+  <a href="capture-system.html">the capture system</a>,
+  <a href="changes.html">what changed</a>.</p>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

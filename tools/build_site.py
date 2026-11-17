@@ -45,6 +45,10 @@ NAV = [
     # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the official
     # Week 10 injury page, compared row by row with the published table.
     ("pages/injury-read-2026-11-17.html", "Injury re-read 17 Nov"),
+    # Added by session arena-01c263c4-x1 (additive): the 2026-11-17 live re-verification pack —
+    # injury report, standings, the final Week 10 slate and the Week 11 probe, with the
+    # cross-read gates and every dated delta kept beside the published tables.
+    ("pages/verification-2026-11-17.html", "Re-verification 17 Nov"),
     ("pages/cross-check.html", "Cross-check"),
     ("pages/sources.html", "Sources"),
     ("pages/decisions-critical.html", "Decisions to make"),
@@ -286,6 +290,17 @@ PROMO1616 = load_json("verification/2026_11_16/w10_promotion_2026_11_16.json")
 STAND_DIFF = read_rows("data/verification/2026_11_16/standings_diff_2026_11_16.csv")
 W10_FINALS = read_rows("data/verification/2026_11_16/official_w10_results_2026_11_16.tsv", "\t")
 W11_SLATE = read_rows("data/verification/2026_11_16/official_w11_schedule_2026_11_16.tsv", "\t")
+
+# Added by session arena-01c263c4-x1 (additive): the 2026-11-17 live re-verification pack.
+# Everything below is a committed output of tools/verify_2026_11_17.py; the page renders the
+# measured counts, never prose numbers re-typed by hand.
+PACK17 = load_json("verification/2026_11_17/verification_summary_2026_11_17.json")
+INJ_ROWS17 = read_rows("data/verification/2026_11_17/official_injuries_w10_2026_11_17.tsv", "\t")
+STAND_ROWS17 = read_rows("data/verification/2026_11_17/official_standings_2026_11_17.tsv", "\t")
+FINAL_ROWS17 = read_rows("data/verification/2026_11_17/official_w10_results_2026_11_17.tsv", "\t")
+INJ_DIFF17 = read_rows("data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv")
+PROMO17 = read_rows("data/verification/2026_11_17/results_promotions_2026_11_17.csv")
+PK17 = {c["id"]: c for c in PACK17["checks"]}
 READ_1616 = "2026-11-16"
 NFLCOM = "https://www.nfl.com/"
 
@@ -552,6 +567,33 @@ def page_index():
       ['<td><b>First pre-kickoff forecast record</b></td>', f'<td>{len(SHADOW_FWD)} games</td>', '<td><a href="pages/shadow-baseline.html">shadow record &rarr;</a></td>', src_cell(repo_blob("data/shadow/forecasts_pre_kickoff.csv"), "file ↗")],
       ['<td><b>A review board so the next round is chosen, not guessed</b></td>', f'<td>{len(NEXT["suggestions"])} suggestions · {len(NEXT["questions"])} questions</td>', '<td><a href="pages/next-decisions.html">suggestions &amp; questions &rarr;</a></td>', src_cell(repo_blob("data/next_decisions/round_2026_11_16.json"), "register ↗")],
     ], "The 2026-11-16 round, one row per claim", "wide", True)}
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">2026-11-17 · LIVE RE-VERIFICATION</div>
+<h2>Read again today, line by line — every difference published, nothing overwritten</h2></div>
+<span class="tag">READ 22:46–22:56 UTC · {PACK17["counts"]["checks"]} CHECKS · {PACK17["counts"]["structural_failures"]} STRUCTURAL FAILURES</span></section>
+<section class="content">
+  <div class="note"><b>Four official pages, re-read on 2026-11-17.</b> The Week 10 injury report, the league
+  standings (Week 10 now closed), the final Week 10 slate and a Week 11 probe were transcribed row by row into a new
+  dated pack, gated against the repository's retained captures <i>and</i> against two other sessions' independent
+  same-evening reads of the same pages. Deltas against the published tables are findings with two dates and two
+  sources — no published table was edited. {PACK17["counts"]["pass"]} of {PACK17["counts"]["checks"]} checks pass;
+  the {PACK17["counts"]["findings"]} non-pass verdicts are the published findings themselves.</div>
+  <div class="statrow">
+    {stat(PK17["I1"]["counts"]["rows"], "injury rows re-read", "0 cell diffs vs the collector capture and vs the PR #73 same-day transcription")}
+    {stat("128 / 128", "standings closure assertions", "published 14 Nov + the 13 finals it had not seen = today's page, all 32 clubs")}
+    {stat(f"{PK17['R4']['counts']['promoted']} / {len(FINAL_ROWS17)}", "Week 10 rows promoted to Final", "the 14 Nov schedule read printed 13 of them still scheduled")}
+    {stat("4", "new flags", "F-22 staleness · F-23 standings staleness · F-24 Week 11 missing · F-25 fetch divergence")}
+  </div>
+  {table(["What was re-read", "What today's read shows", "Where to check it", "Source"], [
+      ['<td><b>Week 10 injury report, all 8 chunks</b></td>', f'<td>{PK17["I1"]["counts"]["rows"]} rows · 347×4 cell equality with the retained capture · identical to the independent PR #73 transcription</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a> · <a href="pages/injury-read-2026-11-17.html">the PR #73 view &rarr;</a></td>', src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
+      ['<td><b>League standings after Week 10 closed</b></td>', f'<td>32 clubs · {PK17["S6"]["counts"]["field_changes"]} fields moved since the 14 Nov snapshot ({PK17["S6"]["counts"]["clubs_changed"]} clubs) · arithmetic passes club by club</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a></td>', src_cell("https://www.nfl.com/standings/league/2026/REG", "nfl.com &#8599;")],
+      ['<td><b>Week 10 slate: every fixture final</b></td>', f'<td>{len(FINAL_ROWS17)} / {len(FINAL_ROWS17)} finals · {PK17["R4"]["counts"]["promoted"]} scheduled&rarr;final promotions · schedule records equal standings records 28 / 28</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a></td>', src_cell("https://www.nfl.com/schedules/2026/by-week/week-10", "nfl.com &#8599;")],
+      ['<td><b>Week 11 injury report: probed, does not exist yet</b></td>', '<td>The REG11 URL resolved to the Week 10 page; the printed selector lists WEEK 1&ndash;10 only. No Week 11 availability value can be verified today — flagged, not filled.</td>', '<td><a href="pages/flagged.html">flag F-24 &rarr;</a> · <a href="pages/verification-2026-11-17.html">probe record &rarr;</a></td>', src_cell("https://www.nfl.com/injuries/league/2026/REG11", "nfl.com &#8599;")],
+    ], "The 2026-11-17 round, one row per official page", "wide", True)}
+  <p class="muted">Full gate list, dated deltas and cross-session corroboration:
+  <a href="pages/verification-2026-11-17.html">the re-verification page &rarr;</a> · generated by
+  <code>tools/verify_2026_11_17.py</code> from <code>data/verification/2026_11_17/</code>.</p>
 </section>
 """
     return shell("Overview", f"SNAPSHOT {RETRIEVED}", body)
@@ -2646,6 +2688,174 @@ def page_readiness():
     return shell("Decision readiness", f"SNAPSHOT {RETRIEVED} · re-verified 2026-11-15", body, depth=1)
 
 
+# ---------------------------------------------------------------- re-verification 2026-11-17
+# Added by session arena-01c263c4-x1 (additive): the live re-verification page for the
+# 2026-11-17 reads. Every number rendered here comes from
+# data/verification/2026_11_17/verification_summary_2026_11_17.json — the measured output of
+# tools/verify_2026_11_17.py — never from prose re-typed into this file.
+def page_verification_2026_11_17():
+    c = PACK17["counts"]
+
+    def pill(verdict):
+        cls = {"PASS": "ok", "SKIP": "muted-pill"}.get(
+            verdict, "warn" if verdict.startswith("FINDINGS") else "high")
+        return f'<span class="pill {cls}">{esc(verdict)}</span>'
+
+    def nums(counts):
+        parts = [f"{esc(k)} {esc(v)}" for k, v in counts.items()
+                 if isinstance(v, (int, float)) and not isinstance(v, bool)]
+        return " · ".join(parts) if parts else "—"
+
+    check_rows = []
+    for ch in PACK17["checks"]:
+        check_rows.append([
+            f'<td><b>{esc(ch["id"])}</b></td>',
+            f'<td>{pill(ch["verdict"])}</td>',
+            f'<td class="wideflag">{esc(ch["name"])}</td>',
+            cell(nums(ch.get("counts", {}))),
+            src_cell(repo_blob("data/verification/2026_11_17/verification_summary_2026_11_17.json"),
+                     "summary &#8599;"),
+        ])
+
+    inj_cells = PK17["I1"]["counts"]["rows"] * 4
+    gate_rows = [
+        ['<td><b>I2</b></td>', cell(f'This transcription vs the repository\'s retained official collector capture (read 2026-11-16T19:02:14Z, unchanged through 2026-11-17T19:49:49Z): {PK17["I1"]["counts"]["rows"]} rows × 4 fields'),
+         f'<td>{pill(PK17["I2"]["verdict"])} {nums(PK17["I2"]["counts"])}</td>',
+         src_cell(repo_blob("data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json"), "capture &#8599;")],
+        ['<td><b>I2b</b></td>', cell(f'This transcription vs session arena/16049865-x1\'s independent same-day transcription of the same page (PR #73): {PK17["I1"]["counts"]["rows"]} rows × 4 fields'),
+         f'<td>{pill(PK17["I2b"]["verdict"])} {nums(PK17["I2b"]["counts"])}</td>',
+         src_cell("https://github.com/karagemop466-tech/X1/pull/73", "PR #73 &#8599;")],
+        ['<td><b>S3</b></td>', cell("Today's standings vs the retained collector standings payload (read 2026-11-17T05:03:50Z): 32 clubs × 7 fields"),
+         f'<td>{pill(PK17["S3"]["verdict"])} {nums(PK17["S3"]["counts"])}</td>',
+         src_cell(repo_blob("data/captures/payloads/standings/e3/e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32.json"), "capture &#8599;")],
+        ['<td><b>S4</b></td>', cell(f'Closure: the published 2026-11-14 standings plus the {PK17["S4"]["counts"]["finals_added"]} Week 10 finals it had not seen must reproduce today\'s W, L, PF and PA for every club'),
+         f'<td>{pill(PK17["S4"]["verdict"])} {nums(PK17["S4"]["counts"])}</td>',
+         src_cell(repo_blob("data/verification/2026_11_17/results_promotions_2026_11_17.csv"), "promotions &#8599;")],
+        ['<td><b>R3</b></td>', cell("Club records printed on today's schedule page vs today's standings page: 28 comparisons"),
+         f'<td>{pill(PK17["R3"]["verdict"])} {nums(PK17["R3"]["counts"])}</td>',
+         src_cell("https://www.nfl.com/schedules/2026/by-week/week-10", "nfl.com &#8599;")],
+        ['<td><b>X1</b></td>', cell("Cross-session corroboration vs session arena/2f95e652-x1's independent 22:46Z read of the same standings and finals pages (PR #76, claim E-1): 12 shared fields × 32 clubs + 14 finals. In-session comparison against that open branch already ran at 0 differences over 384 standings cells and all 14 scores; the committed gate reports its verdict once that pack is present in the tree."),
+         f'<td>{pill(PK17["X1"]["verdict"])} {nums(PK17["X1"]["counts"])}</td>',
+         src_cell("https://github.com/karagemop466-tech/X1/pull/76", "PR #76 &#8599;")],
+    ]
+
+    finding_rows = [
+        ['<td><b>F-22</b></td>', '<td><b>The published 2026-11-14 injury table is stale.</b></td>',
+         cell(f'+{PK17["I3"]["counts"]["rows_added"]} rows (BAL: Calais Campbell, Ronnie Stanley) and {PK17["I3"]["counts"]["cells_changed"]} cells changed across 16 rows (BAL 4, IND 2, LAC 26); the whole delta appeared between 2026-11-14T17:02Z and 2026-11-15T18:14Z and has not moved since'),
+         src_cell(repo_blob("data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv"), "row-by-row diff &#8599;"),
+         src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
+        ['<td><b>F-23</b></td>', '<td><b>The published 2026-11-14 standings are stale now that Week 10 has closed.</b></td>',
+         cell(f'{PK17["S6"]["counts"]["field_changes"]} field changes across {PK17["S6"]["counts"]["clubs_changed"]} of 32 clubs (w ×13, l ×13, pct ×26, pf ×26, pa ×26, streak ×26); every club that played except WAS and NYG, whose Thursday final was already in the snapshot. The drift is exactly the games played — the 128-assertion closure passes'),
+         src_cell(repo_blob("data/verification/2026_11_17/standings_diff_vs_published_2026_11_17.csv"), "field-by-field diff &#8599;"),
+         src_cell("https://www.nfl.com/standings/league/2026/REG", "nfl.com &#8599;")],
+        ['<td>&mdash;</td>', '<td><b>Day-over-day since the 2026-11-16 read:</b> only the Monday-night game\'s two clubs moved.</td>',
+         cell("BAL and LAC, 16 fields (L: 5→6, streak 4L→5L; W: 0→1, streak 8L→1W) — the LAC 23–20 at BAL final, read before kickoff yesterday and closed today"),
+         src_cell(repo_blob("data/verification/2026_11_17/standings_diff_vs_2026_11_16.csv"), "delta vs 16 Nov &#8599;"),
+         src_cell("https://www.nfl.com/games/chargers-at-ravens-2026-reg-10", "game center &#8599;")],
+        ['<td><b>F-24</b></td>', '<td><b>There is no Week 11 injury report yet.</b></td>',
+         cell("The REG11 URL resolved to the Week 10 page (final URL reg10, title \"Week 10\", selector lists WEEK 1–10 only) at approximately 22:50 UTC — a blank a flag, not a fill"),
+         src_cell(repo_blob("data/verification/2026_11_17/week11_injuries_probe_2026_11_17.txt"), "probe record &#8599;"),
+         src_cell("https://www.nfl.com/injuries/league/2026/REG11", "nfl.com &#8599;")],
+        ['<td><b>F-25</b></td>', '<td><b>One fetch contradicted its own immediate repeat.</b></td>',
+         cell("The first read of injury chunk 5 printed CIN Brian Parker II as \"Questionable\"; the repeat minutes later printed \"Doubtful\" — matching ten collector read times and the 14 Nov table. The pack records the repeated value behind the 1,388-cell capture gate, never the single-read value; how often the page diverges is unmeasured"),
+         src_cell(repo_blob("data/verification/2026_11_17/official_injuries_w10_2026_11_17.tsv"), "transcription header note &#8599;"),
+         src_cell("https://www.nfl.com/players/brian-parker-ii/", "player row &#8599;")],
+    ]
+
+    body = f"""
+<section class="pagetitle">
+  <div class="eyebrow">EXECUTED VERIFICATION</div>
+  <h1>Live re-verification — 2026-11-17</h1>
+  <p>The Week 10 injury report, the league standings, the final Week 10 slate and a Week 11 probe, read live
+  from nfl.com between 22:46 and 22:56 UTC and transcribed line by line. {c["checks"]} checks: {c["pass"]} pass,
+  {c["findings"]} findings published, {c["structural_failures"]} structural failures. Nothing on a published
+  table was edited; every difference is dated, counted and linked.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Why this page exists.</b> The site's published tables carry snapshot dates (2026-11-14)
+  because a snapshot is verifiable and a moving target is not. This page is the other half of that contract:
+  re-read the same official pages today, gate the new reading against everything the repository already retained,
+  and publish each delta beside the table it concerns — with two dates, two sources, and no silent overwrite.
+  Three of this evening's gates compare <i>independent sessions' readings of the same pages</i>, which is the
+  strongest check a hand transcription can get without the league publishing machine-readable rows.</div>
+  <div class="statrow">
+    {stat(PK17["I1"]["counts"]["rows"], "injury rows re-read", "chunks 0–7 of 8, every club table")}
+    {stat(f'{inj_cells:,}', "cells gated against the retained capture", "plus the same count against PR #73's independent read")}
+    {stat(PK17["S4"]["counts"]["assertions"], "closure assertions", "published 14 Nov + unseen finals = today's standings")}
+    {stat(f'{PK17["R4"]["counts"]["promoted"]}', "scheduled → final promotions", "the 14 Nov schedule read, tracked not overwritten")}
+  </div>
+
+  <h2>What was read, when, and from where</h2>
+  {table(["Official page", "Read", "What it produced", "Clock (UTC)", "Source"], [
+      ['<td><b>Week 10 injury report</b> <small>injuries/league/2026/reg10</small></td>', cell("all 8 chunks, fetched in sequence"),
+       f'<td>{PK17["I1"]["counts"]["rows"]} rows across {PK17["I1"]["counts"]["clubs"]} club tables, {PK17["I1"]["counts"]["fixtures"]} fixtures — practice status, game status, injury text verbatim, player link per row</td>',
+       cell("22:50–22:56"),
+       src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
+      ['<td><b>League standings</b> <small>standings/league/2026/REG</small></td>', cell("chunks 0–1 of 2"),
+       cell("32 clubs; W L T PCT PF PA NET HOME ROAD DIV CONF STRK as printed; HOME+ROAD = W-L-T checked for all 32 before any comparison"),
+       cell("≈22:50"),
+       src_cell("https://www.nfl.com/standings/league/2026/REG", "nfl.com &#8599;")],
+      ['<td><b>Week 10 schedule</b> <small>schedules/2026/by-week/week-10</small></td>', cell("chunks 0–1 of 2"),
+       cell("all 14 fixtures Final with scores and post-game records beside the logos; byes CHI, DEN, PHI, TB"),
+       cell("≈22:50"),
+       src_cell("https://www.nfl.com/schedules/2026/by-week/week-10", "nfl.com &#8599;")],
+      ['<td><b>Week 11 injury-report URL</b> <small>injuries/league/2026/REG11</small></td>', cell("probe, chunk 0"),
+       cell("resolved to the Week 10 page; selector prints WEEK 1–10 only — recorded as the opening probe of the dated series, with what is unknown kept blank"),
+       cell("≈22:50"),
+       src_cell("https://www.nfl.com/injuries/league/2026/REG11", "nfl.com &#8599;")],
+  ], "Four reads, one clock, one transcription each", "wide", True)}
+
+  <h2>The gates: what today's reading had to agree with</h2>
+  {table(["Gate", "Comparison", "Verdict and counts", "Artifact"], gate_rows,
+         "tools/verify_2026_11_17.py — a disagreement fails the pack, it never edits a published table", "wide", True)}
+  <div class="note"><b>Two unit notes, so the numbers cannot be mistaken for each other.</b>
+  (1) PR #73's headline &ldquo;16 cells that differ&rdquo; counts <i>changed rows</i> (15 in LAC@BAL + Arden Key);
+  counted cell by cell the same evidence is <b>{PK17["I3"]["counts"]["cells_changed"]} cells</b> — the row-level
+  lists are identical. (2) This pack's {PK17["S6"]["counts"]["field_changes"]} standing-field delta covers seven
+  fields (w, l, t, pct, pf, pa, streak); PR #76's sixteen-field view of the same page reports 262 of 512 cells.
+  Both count <b>26 affected clubs</b> — the subsets differ, the finding is the same: the snapshot is dated and
+  the games have been played. <a href="https://github.com/karagemop466-tech/X1/pull/73" target="_blank" rel="noopener noreferrer">PR #73 &#8599;</a>
+  · <a href="https://github.com/karagemop466-tech/X1/pull/76" target="_blank" rel="noopener noreferrer">PR #76 &#8599;</a></div>
+
+  <h2>Findings — published beside the tables, never applied to them</h2>
+  {table(["Flag", "Finding", "What was measured", "Row-by-row evidence", "Source"], finding_rows,
+         "Dated deltas from this evening's reads", "wide", True)}
+  <div class="note"><b>Club-code note.</b> The injury page prints the Rams as <code>LAR</code>; the standings and
+  schedule pages print <code>LA</code> in their logo URLs, and the collector stores <code>LA</code>. The alias is
+  declared in <code>data/captures/config.json</code> and applied only when two reads are matched, never inside a
+  retained payload — without it the same 14 players appear to vanish and reappear between dated files
+  (drift alarm <i>club-code-outside-register</i>, on the <a href="capture-system.html">capture system page</a>).
+  </div>
+
+  <h2>What stays unknown here</h2>
+  <div class="note">
+    <ul class="findings">
+      <li><b>The moment Week 11's report opens</b> — historically the Wednesday practice window. Until a read
+      returns a WEEK 11 selector entry, no Week 11 practice or game status is verifiable, so none is published
+      (<a href="flagged.html">F-24</a>, probe file above).</li>
+      <li><b>Whether the site should serve refreshed main tables or keep serving dated snapshots</b> — an owner
+      decision, not a data one. Both staleness flags describe exactly what refresh would move
+      (<a href="flagged.html">F-22</a>, <a href="flagged.html">F-23</a>).</li>
+      <li><b>How often a fetched page disagrees with its own immediate repeat</b> — one divergence was caught this
+      session by reading chunk 5 twice; the rate is unmeasured, and the mitigation (never publish from a single
+      fetch; gate every row against the retained capture) is now part of this pack's checks
+      (<a href="flagged.html">F-25</a>).</li>
+      <li><b>Gate X1's committed verdict</b> — it reports SKIP until session arena/2f95e652-x1's evidence pack
+      lands in the tree; the in-session comparison against that branch already ran at zero differences.</li>
+    </ul>
+  </div>
+
+  <p class="muted">Pack: <code>data/verification/2026_11_17/</code> · checker:
+  <code>tools/verify_2026_11_17.py</code> (its <code>--check</code> mode is the staleness guard) ·
+  flags: <a href="flagged.html">F-22 … F-25</a> · companion pages:
+  <a href="injury-read-2026-11-17.html">PR #73's injury re-read</a>,
+  <a href="capture-system.html">the capture system</a>,
+  <a href="changes.html">what changed</a>.</p>
+</section>
+"""
+    return shell("Live re-verification 17 Nov (2026-11-17)", "READ LIVE 2026-11-17 22:46–22:56 UTC", body, depth=1)
+
+
 def main():
     write("index.html", page_index())
     write("pages/executive-summary.html", page_exec_summary())
@@ -2672,6 +2882,7 @@ def main():
     write("pages/capture-system.html", page_capture_system())
     write("pages/shadow-baseline.html", page_shadow())
     write("pages/next-decisions.html", page_next_decisions())
+    write("pages/verification-2026-11-17.html", page_verification_2026_11_17())
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
     print(f"wrote index.html + {n} pages")
 

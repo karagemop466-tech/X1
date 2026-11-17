@@ -25,6 +25,7 @@
       <a href="pages/suggestions.html">Suggestions</a>
       <a href="pages/flagged.html">Flagged for review</a>
       <a href="pages/injury-read-2026-11-17.html">Injury re-read 17 Nov</a>
+      <a href="pages/verification-2026-11-17.html">Re-verification 17 Nov</a>
       <a href="pages/cross-check.html">Cross-check</a>
       <a href="pages/sources.html">Sources</a>
       <a href="pages/decisions-critical.html">Decisions to make</a>
@@ -254,6 +255,33 @@
 <tr><td><b>First pre-kickoff forecast record</b></td><td>14 games</td><td><a href="pages/shadow-baseline.html">shadow record &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/forecasts_pre_kickoff.csv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
 <tr><td><b>A review board so the next round is chosen, not guessed</b></td><td>10 suggestions · 10 questions</td><td><a href="pages/next-decisions.html">suggestions &amp; questions &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/next_decisions/round_2026_11_16.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
 </tbody></table></div>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">2026-11-17 · LIVE RE-VERIFICATION</div>
+<h2>Read again today, line by line — every difference published, nothing overwritten</h2></div>
+<span class="tag">READ 22:46–22:56 UTC · 18 CHECKS · 0 STRUCTURAL FAILURES</span></section>
+<section class="content">
+  <div class="note"><b>Four official pages, re-read on 2026-11-17.</b> The Week 10 injury report, the league
+  standings (Week 10 now closed), the final Week 10 slate and a Week 11 probe were transcribed row by row into a new
+  dated pack, gated against the repository's retained captures <i>and</i> against two other sessions' independent
+  same-evening reads of the same pages. Deltas against the published tables are findings with two dates and two
+  sources — no published table was edited. 14 of 18 checks pass;
+  the 3 non-pass verdicts are the published findings themselves.</div>
+  <div class="statrow">
+    <div class="stat"><strong>347</strong><span>injury rows re-read</span><span class="statnote">0 cell diffs vs the collector capture and vs the PR #73 same-day transcription</span></div>
+    <div class="stat"><strong>128 / 128</strong><span>standings closure assertions</span><span class="statnote">published 14 Nov + the 13 finals it had not seen = today&#x27;s page, all 32 clubs</span></div>
+    <div class="stat"><strong>13 / 14</strong><span>Week 10 rows promoted to Final</span><span class="statnote">the 14 Nov schedule read printed 13 of them still scheduled</span></div>
+    <div class="stat"><strong>4</strong><span>new flags</span><span class="statnote">F-22 staleness · F-23 standings staleness · F-24 Week 11 missing · F-25 fetch divergence</span></div>
+  </div>
+  <div class="tablewrap"><table class="wide" data-table><caption>The 2026-11-17 round, one row per official page</caption><thead><tr><th>What was re-read</th><th>What today&#x27;s read shows</th><th>Where to check it</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>Week 10 injury report, all 8 chunks</b></td><td>347 rows · 347×4 cell equality with the retained capture · identical to the independent PR #73 transcription</td><td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a> · <a href="pages/injury-read-2026-11-17.html">the PR #73 view &rarr;</a></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>League standings after Week 10 closed</b></td><td>32 clubs · 130 fields moved since the 14 Nov snapshot (26 clubs) · arithmetic passes club by club</td><td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a></td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>Week 10 slate: every fixture final</b></td><td>14 / 14 finals · 13 scheduled&rarr;final promotions · schedule records equal standings records 28 / 28</td><td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+<tr><td><b>Week 11 injury report: probed, does not exist yet</b></td><td>The REG11 URL resolved to the Week 10 page; the printed selector lists WEEK 1&ndash;10 only. No Week 11 availability value can be verified today — flagged, not filled.</td><td><a href="pages/flagged.html">flag F-24 &rarr;</a> · <a href="pages/verification-2026-11-17.html">probe record &rarr;</a></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG11" target="_blank" rel="noopener noreferrer">nfl.com &amp;#8599;</a></td></tr>
+</tbody></table></div>
+  <p class="muted">Full gate list, dated deltas and cross-session corroboration:
+  <a href="pages/verification-2026-11-17.html">the re-verification page &rarr;</a> · generated by
+  <code>tools/verify_2026_11_17.py</code> from <code>data/verification/2026_11_17/</code>.</p>
 </section>
 
   <footer class="mainfoot">
