@@ -488,9 +488,15 @@ def build_deficiency(report, depth_payload, injury_payload, team_index):
         "deficiency",
         "Lineup deficiency watch: starters down, backup who has to replace them",
         rows,
-        ["team_name", "unit", "position", "slot", "starter", "starter_on_report",
-         "starter_game_status", "starter_practice_status", "replacement",
-         "replacement_depth", "replacement_game_status", "severity"],
+        # The declared list must equal the keys the rows carry, key for key and in the
+        # order `values` builds them. It was two short (`team_abbrev`, `depth_listed`), and
+        # the capture store correctly reported that as a `declared-columns-mismatch` alarm
+        # on every read from 2026-11-17 onward. Fixed here rather than silenced: the rows
+        # were always right, the header was wrong, and a header that disagrees with its rows
+        # is exactly what the pin exists to catch.
+        ["team_abbrev", "team_name", "unit", "position", "slot", "starter",
+         "starter_on_report", "starter_game_status", "starter_practice_status", "replacement",
+         "replacement_depth", "replacement_game_status", "depth_listed", "severity"],
         {
             "url": S.INJURIES_URL,
             "label": "Derived from official club depth charts + NFL.com injury report",

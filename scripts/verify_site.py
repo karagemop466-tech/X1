@@ -27,6 +27,13 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP_DIRS = {"archive", ".git", "node_modules", "__pycache__"}
+# Added by session arena-2f95e652-x1: data/evidence/**/page.html is a *generated artefact*
+# that is not served from this tree. It is written with the console's own asset paths so the
+# integrator can copy it into console/ in one step; until that copy happens it is a source
+# file, not a page, and the served-tree link rules do not apply to it. Its own verifier
+# (tools/verify_evidence_2026_11_17.py) checks its claims, and tools/verify_console.py will
+# check its links the moment it lands in console/.
+SKIP_PREFIXES = {"data/evidence"}
 # Amended 2026-11-14 by session arena/9cc1eaac-x1: the previous list was NFL-family only,
 # plus github.com. That rejected a club's OWN website, which is the primary source for the
 # only depth chart that exists (the league publishes none — see data/flags.json F-01). The
@@ -141,6 +148,8 @@ def html_files() -> list[Path]:
     for path in sorted(ROOT.rglob("*.html")):
         rel = path.relative_to(ROOT)
         if any(part in SKIP_DIRS for part in rel.parts):
+            continue
+        if "/".join(rel.parts[:2]) in SKIP_PREFIXES:
             continue
         out.append(path)
     return out

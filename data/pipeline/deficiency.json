@@ -8,6 +8,7 @@
   "org": "Derived"
  },
  "columns": [
+  "team_abbrev",
   "team_name",
   "unit",
   "position",
@@ -19,6 +20,7 @@
   "replacement",
   "replacement_depth",
   "replacement_game_status",
+  "depth_listed",
   "severity"
  ],
  "rows": [
