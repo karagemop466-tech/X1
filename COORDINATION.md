@@ -3342,3 +3342,33 @@ Registers reviewed:
 | Post-merge verify-site | pending |
 | Pages deployment | pending — https://karagemop466-tech.github.io/X1/ |
 
+
+
+---
+
+## Release record — session `arena/20925c04-x1` — COMPLETED (2026-11-17)
+
+| Step | Result |
+|---|---|
+| PR | #70 — `arena/20925c04-x1` → `main`: https://github.com/karagemop466-tech/X1/pull/70 |
+| Merge | `gh pr merge 70 --merge` → MERGED, merge commit `a89c1e6f9929ba6da7e45f030954ac4393f4826e` (2026-11-17T22:50:30Z) |
+| Post-merge verify-site | completed success (run on `main`) |
+| Pages deployment | `pages build and deployment` completed success; Pages status `built` |
+| Live site | https://karagemop466-tech.github.io/X1/ |
+
+Verification performed (offline; `nfl.com` unreachable from this sandbox, so all checks run against committed official snapshots carrying fetch URL + retrieval date; nothing inferred; blanks flagged):
+- `python3 tools/verify_data.py` → 2,944 / 2,944 integrity assertions, exit 0
+- `python3 tools/check_links.py` → 168 files, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved, exit 0
+- `python3 scripts/verify_site.py` → 168 HTML pages, local links resolve, every data-table row source-linked, exit 0
+
+Irregularity flagged (not patched): three competing roots — root `index.html` (Overview), `app/index.html` (Unified), `console/index.html`; `.github/workflows/pages.yml` overwrites `_site/index.html` with `console/index.html`, so the served landing page is the console rather than the clean Overview page. Recorded for the owner; does not block the release.
+
+Deliverables confirmed present:
+- Clean categorized landing page: root `index.html` + `pages/` category subpages (Overview, Official data, Model, Strategy, Decisions, Governance), linking to `app/`, `dashboard/`, `research/`, `site/`, `live/`, `hub/`, `lab/`, `console/`
+- Executive summary: `docs/EXECUTIVE-SUMMARY.md` (157 lines)
+- Questions/information/answers register: `data/questions.json` (24: 0 answered / 2 partial / 22 open), each with source URL
+- Suggestions section: `data/suggestions.json` (18, all `proposed`, owner sets status)
+- Flagged-for-review / irregularities: `app/flagged.html`, `data/flags.json`, `docs/review/repo-review.md`
+
+All existing T1–T17 and rounds 2–4 scope remains owned by its recording sessions; no other session's files were edited. This session only appended its claim + findings + release record to `COORDINATION.md`.
+
