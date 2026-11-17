@@ -3295,3 +3295,50 @@ The owner's latest message re-states the full brief: review the repo line by lin
 | F-4 | full pre-existing verifier suite | to be completed | to be recorded |
 | F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
 
+
+
+# Session `arena-01c263c4-x1` — live official re-verification for 2026-11-17, dated pack, flags, site page, integration (this branch)
+
+**Session ID:** `arena-01c263c4-x1` · **Branch:** `arena/01c263c4-x1` (branched from `main` @ `38816a62`, now synced to `942557d`). **Started (UTC):** 2026-11-17 22:49.
+
+## Why this session exists (and what it does NOT do)
+
+Session `arena/76fd9817-x1` claimed F-1…F-5 at 22:43 UTC today — the final review of *committed*
+snapshots, the verifier-suite run, and the publish step. This session does **not** touch those tasks.
+What this session adds is the one thing that claim explicitly cannot do: **fresh live reads of the
+official nfl.com pages on 2026-11-17**, transcribed line by line into a new dated pack, diffed against
+what the site publishes, with every delta published as a dated finding (never a silent edit), new flags
+appended for anything unverifiable, one new site page, and an integration PR.
+
+**Environment fact (verified this session, not inherited):** this sandbox's fetch tool **can** reach
+`nfl.com` (the `curl` binary cannot — outbound network is tool-mediated). Session `arena/76fd9817-x1`
+recorded "nfl.com is unreachable"; that is true of `curl`, not of the fetch tool. Its F-1 stays valid as
+a committed-snapshot review; live reading happens here instead of being lost.
+
+## Claim (written and pushed before any work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| V-1 | **Live official reads, 2026-11-17:** (a) Week 10 injury report as it stands today, full row-by-row; (b) Week 11 injury report opening read (series start); (c) league standings as of today (Week 10 now fully complete); (d) Week 10 final results slate. Every row carries fetch date + source URL; blanks stay blank | in progress | `arena-01c263c4-x1` | `data/verification/2026_11_17/**` (new directory; no other `data/verification/**` subdir is touched) |
+| V-2 | **Line-by-line diff + structural checks:** compare the 2026-11-17 reads against the published tables (`data/nfl/injuries_week10.tsv`, `data/nfl/standings.tsv`, `data/nfl/schedule_week10.tsv`) and against the 2026-11-15/16 packs; arithmetic self-checks on the fresh side; a mismatch is a dated finding, never an edit | in progress | `arena-01c263c4-x1` | `tools/verify_2026_11_17.py` (new) |
+| V-3 | **Flags:** append new IDs only for every delta/unverified cell found (expected: Week-10 report drift since the 2026-11-14 capture; standings drift; Week 11 page state) | in progress | `arena-01c263c4-x1` | `data/flags.json` (append-only, new `F-2x`/`F-3x` IDs after checking for collisions) |
+| V-4 | **Publish:** one new page `pages/verification-2026-11-17.html` + one nav entry + one landing section, generated through `tools/build_site.py` (additive anchors; the established integration-for-own-artefacts pattern used by sessions `arena-73e6cbac-x1` and `arena-543cdcb0-x1`) | in progress | `arena-01c263c4-x1` | `tools/build_site.py` (additive only), `index.html` + `pages/**` (regenerated), `assets/site.css` (append-only if needed) |
+| V-5 | **Suite + integration:** rebuild everything, run the full local verifier suite and link check, PR → `main`, merge, confirm GitHub Pages deploy, record sources/verification/irregularities/PR here | in progress | `arena-01c263c4-x1` | `COORDINATION.md` (this block), PR |
+
+## Non-overlap and requests (rules 3–4)
+
+- `arena/76fd9817-x1` F-1 owns `data/nfl/**`, `data/verify/*.psv`, **existing** `data/verification/**`
+  subdirs → read-only here; this session only creates the new `2026_11_17/` subdir.
+- Its F-3 owns `tools/build_app.py`, `app/**` → untouched here. Its F-3 also lists
+  `tools/build_site.py`: this session makes only **additive** edits (one `NAV` tuple, one page builder,
+  one landing section) via anchored patches; if both PRs touch the same file, resolve by regenerating
+  with both additions, discarding neither.
+- Its F-4 owns `tools/verify_*.py` / `scripts/verify_*.py` suite fixes → this session adds only the new
+  `tools/verify_2026_11_17.py`.
+- **Finding handed to F-4 (root cause of the red `verify-site` on `main` after PR #69):**
+  `pages/shadow-baseline.html` carries the line "This checkout is a shallow clone (oldest visible commit
+  **a7ef4080a8**)" but `data/preregistration/register.json` (which `build_site.py` renders verbatim)
+  records **019cd8357ffa**; any rebuild therefore rewrites that one line and
+  `git diff --exit-code -- index.html pages` fails. Minimal fix = commit the regenerated page (or stop
+  embedding the builder's checkout history in rendered text). This session does not edit that page or
+  `tools/build_preregistration.py` unless rule 10 conditions are met and a handoff is logged first.
