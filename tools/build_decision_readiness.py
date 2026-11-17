@@ -330,6 +330,29 @@ def measure():
     # ---- results feed
     rm = read_json("data/results/results_feed_meta.json")
     rc = rm.get("counts", {})
+    # Added by session arena-e1436334-x1: the 2026-only feed built from dated official reads is the one
+    # that answers "has every completed game of this season been verified?", so the register measures that
+    # file rather than the all-season mirror-derived one, whose 2026 subset cannot be current.
+    try:
+        vr = read_json("data/results/verified_results.json")
+        vv = vr.get("verification", {})
+        put(
+            "verified_results_2026",
+            vv.get("direct_official_reads"),
+            "games of 2026",
+            "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.json",
+            f"{vv.get('direct_official_reads')}/{vv.get('rows')} rows read from an official nfl.com page "
+            f"and diffed against the fingerprinted mirror ({vv.get('two_source_diffs_passed')} diffs "
+            f"passed, {vv.get('mismatches')} mismatches); standings arithmetic reconciled "
+            f"{vv.get('standings_rows_reconciled')}/32 with {vv.get('standings_mismatches')} mismatches; "
+            f"coverage: {vr.get('coverage', {}).get('weeks', '')}",
+            n=vv.get("rows"),
+            as_of=vr.get("generated_at"),
+        )
+    except (OSError, ValueError):
+        put("verified_results_2026", None, "games of 2026",
+            "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.json",
+            "the 2026 verified feed is not present in the tree", n=None, as_of=None)
     put(
         "results_rows",
         rc.get("rows"),
@@ -735,9 +758,10 @@ CLEAR_FOR = {
     "R-46": ("price_complete_both_ends",
              "every originated market has an opening and a closing number",
              "complete rows = market rows (currently 0 of 20,336)"),
-    "R-47": ("results_rows",
+    "R-47": ("verified_results_2026",
              "every final game in every season settles ROI",
-             "final rows = all rows minus scheduled"),
+             "final rows = all rows minus scheduled; the 2026 season is the only one an official page "
+             "has been read for, and it closed at 150 of 150 on 2026-11-17"),
     "R-48": ("originated_rows",
              "origination order field reads side < total < moneyline on every game",
              "order audit = 0 violations"),
@@ -769,9 +793,14 @@ STATUS_NOTE = {
     "R-46": "The price store holds 20,088 rows and its meta reports opening values on 816 and "
             "closing on 8,492; the parallel lab store reports 0 rows with both ends on the same row "
             "and 0 rows with a timestamp. Both facts are published; neither is rounded up.",
-    "R-47": "The feed is complete for games the publisher scored, but 2,218 of 2,232 rows are "
-            "mirror-only. 'Verified' here means the market line is reproducible, not that the "
-            "NFL published it.",
+    "R-47": "Two feeds exist. The register now measures the 2026 one, because that is the one an "
+            "official page has actually been read for: 150 of 150 completed games, each transcribed from "
+            "an nfl.com page, diffed against the fingerprinted mirror, and closed against a dated "
+            "standings arithmetic (0 mismatches, 32/32 clubs). The all-seasons feed still reports 2,232 "
+            "rows of which 2,218 are mirror-only, and its own official_verified field is pinned to the "
+            "2026-11-14 snapshot (1 of 14 Week 10 games) - 'verified' there means the market line is "
+            "reproducible, not that the NFL published it. The disagreement between the two is published "
+            "as flag F-22 with a one-commit path (S-31 / Q-71); neither feed's number is quietly restated.",
     "R-52": "988 official pairs exist and every one publishes n=32, all source_tier official_nfl.com. "
             "That is 32 clubs in one season: n is published and small, and is not claimed significant.",
     "R-07": "Requirement is marked 'partially implemented — needs a market price feed'. Every "

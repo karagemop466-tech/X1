@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Re-verification 2026-11-17 — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="decisions-critical.html">Decisions to make</a>
+      <a href="suggestions-board.html">Suggestions board</a>
+      <a href="review-queue.html">Review queue</a>
+      <a href="changes.html">What changed</a>
+      <a href="requirements.html">Requirements &amp;amp; status</a>
+      <a href="readiness.html">Decision readiness</a>
+      <a href="capture-system.html">Capture system</a>
+      <a href="shadow-baseline.html">Shadow baseline</a>
+      <a href="next-decisions.html">Suggestions &amp; questions</a>
+      <a href="verification-2026-11-17.html">Re-verification 11-17</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+      <a href="../live/index.html">Live pipeline</a>
+      <a href="../hub/index.html">Section index</a>
+      <a href="../lab/index.html">Line desk</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ RE-VERIFICATION 2026-11-17</i></span>
+    <span class="asof">OFFICIAL READS + CHECKS</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">VERIFICATION &middot; READ 2026-11-17</div>
+  <h1>The 2026-11-17 re-verification: three official pages, 11 checks, one verdict each</h1>
+  <p>Week 10 closed on this date, so every published number that keys off the 2026 corpus had to be
+  re-derived rather than extended. This page is the re-derivation: the dated transcriptions, the arithmetic
+  <code>tools/verify_2026_11_17.py</code> runs over them, and the list of what that command deliberately
+  does <b>not</b> check. A pack nothing executes is a file, not a check, so the same tool is a CI gate
+  (<code>--check</code>), and its committed summary is reproducible from the reads alone &mdash; it holds no
+  wall-clock field.</p>
+</section>
+
+<section class="content">
+  <div class="statrow">
+    <div class="stat"><strong>11</strong><span>checks run</span><span class="statnote">each one arithmetic over a printed value</span></div>
+    <div class="stat"><strong>11/11</strong><span>checks passed</span><span class="statnote">overall verdict PASS</span></div>
+    <div class="stat"><strong>32</strong><span>clubs transcribed</span><span class="statnote">the standings page, in the page&#x27;s own order</span></div>
+    <div class="stat"><strong>14</strong><span>Week 10 fixtures</span><span class="statnote">every one printed Final on this read</span></div>
+  </div>
+
+  <h2>The three reads</h2>
+  <div class="tablewrap"><table class="" data-table><caption>hand transcriptions; the page reader stamps no timestamp, hence the last column</caption><thead><tr><th>Official page</th><th>Committed transcription</th><th>Rows</th><th>Reader&#x27;s own clock note</th><th>Source</th></tr></thead><tbody>
+<tr><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">https://www.nfl.com/schedules/2026/by-week/week-10</a></td><td><code>data/verification/2026_11_17/official_w10_results_2026_11_17.tsv</code></td><td>14</td><td>2026-11-17 22:45 UTC</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">https://www.nfl.com/standings/league/2026/REG</a></td><td><code>data/verification/2026_11_17/official_standings_2026_11_17.tsv</code></td><td>32</td><td>2026-11-17 22:48 UTC</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+<tr><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">https://www.nfl.com/schedules/2026/by-week/week-11</a></td><td><code>data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv</code></td><td>19</td><td>2026-11-17 22:52 UTC</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">official page ↗</a></td></tr>
+</tbody></table></div>
+  <div class="note"><b>On the two clocks.</b> Two clocks, and the difference between them is stated rather than smoothed. Each pack header carries a minute (22:45 / 22:48 / 22:52 UTC) that the READER wrote into the file at transcription time; the page reader itself returns content with no retrieval timestamp, so those minutes are a self-report, accurate to the order and the hour, not an instrument. The automated capture&#x27;s stamp for the same standings page IS an instrument reading (2026-11-17T19:49:49Z, content sha256 in the header), and check B11 compares the two reads. The feed&#x27;s arithmetic gate is validated against the dated pack; the capture is its second opinion. Where the brief asks for reads &#x27;with a clock time&#x27;, that is what the collector provides and what a hand read can only claim to the minute it noted itself.</div>
+
+  <h2>Checks</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>tools/verify_2026_11_17.py over data/verification/2026_11_17/</caption><thead><tr><th>Check</th><th>Verdict</th><th>Counts it publishes</th><th>First failure</th><th>Code</th></tr></thead><tbody>
+<tr><td><b>B1 standings internal consistency</b></td><td><span class="pill ok">PASS</span></td><td>assertions=96; clubs=32</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B2 league closure</b></td><td><span class="pill ok">PASS</span></td><td>games_in_corpus=150; league_losses=149; league_points_each_side=6923; league_ties=2; league_wins=149</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B3 three-page record agreement</b></td><td><span class="pill ok">PASS</span></td><td>clubs_checked=32; clubs_in_standings=32</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B4 corpus admission</b></td><td><span class="pill ok">PASS</span></td><td>corpus_rows=150; official_w10_finals=14</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B5 standings arithmetic</b></td><td><span class="pill ok">PASS</span></td><td>assertions=160; clubs=32; games_summed=150; mismatches=0</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B6 mirror cross-check</b></td><td><span class="pill ok">PASS</span></td><td>corpus_rows=150; mirror_agreements=150; mirror_scored_2026_rows=150</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B7 capture freshness</b></td><td><span class="pill ok">PASS</span></td><td>datasets=7</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B8 sealed ledger</b></td><td><span class="pill ok">PASS</span></td><td>n_confirmed_pre_kickoff=14; n_pending=13; n_reproduce_from_rule=14; n_resolved=1; n_sealed=14</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B9 price discipline</b></td><td><span class="pill ok">PASS</span></td><td>our_own_prices_published=0</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B10 forward slate</b></td><td><span class="pill ok">PASS</span></td><td>byes=6; clubs_covered=32; fixtures=13</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+<tr><td><b>B11 two independent standings reads</b></td><td><span class="pill ok">PASS</span></td><td>cells_compared=512; clubs=32</td><td>none</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_17.py" target="_blank" rel="noopener noreferrer">check code ↗</a></td></tr>
+</tbody></table></div>
+  <p class="muted">Every check is arithmetic on a value an official page printed: standings identities
+  (NET = PF &minus; PA, PCT = (W + T/2)/GP, HOME + ROAD = W&ndash;L&ndash;T), league closure, three-page
+  record agreement, corpus admission, the fingerprinted mirror as a cross-check, the sealed ledger re-derived
+  at its own record time, the price-discipline rule, the forward slate's 13 + 6 = 32, and a second
+  independent read of the standings page. No check reads a model output, so no model can validate itself.</p>
+
+  <h2>What this pack does not check</h2>
+  <ul>
+      <li>injury / availability / depth tables and their day-over-day deltas — published by PR #73 (arena/16049865-x1) on the same date; this session deliberately did not touch that scope</li>
+    <li>the deficiency dataset&#x27;s declared-column drift alarm — root cause handed to the drift owner and to PR #61 in COORDINATION.md (pipeline/run.py owns the payload&#x27;s columns list)</li>
+    <li>player-level game books, snap counts and inactive lists — no licensed source in this repository</li>
+    <li>any price, closing line or ROI in dollars — no ratified price policy (Q-02)</li>
+  </ul>
+
+  <h2>League standings, as printed (2026-11-17)</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>32 clubs in the order the page prints; the split columns are the ones no earlier round had diffed (check B11 compares them with the automated capture, 512 cells, 0 disagreements)</caption><thead><tr><th>#</th><th>Club</th><th>W-L-T</th><th>PCT</th><th>PF</th><th>PA</th><th>NET</th><th>Home</th><th>Road</th><th>Div</th><th>Conf</th><th>Streak</th><th>Last 5</th><th>Source</th></tr></thead><tbody>
+<tr><td>1</td><td><b>Buffalo Bills</b> <span class="muted">BUF</span></td><td>8-1</td><td>0.889</td><td>287</td><td>199</td><td>88</td><td>3 - 1 - 0</td><td>5 - 0 - 0</td><td>1 - 1 - 0</td><td>5 - 1 - 0</td><td>5W</td><td>5 - 0 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>2</td><td><b>San Francisco 49ers</b> <span class="muted">SF</span></td><td>8-1</td><td>0.889</td><td>281</td><td>196</td><td>85</td><td>5 - 0 - 0</td><td>3 - 1 - 0</td><td>3 - 0 - 0</td><td>5 - 1 - 0</td><td>2W</td><td>4 - 1 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>3</td><td><b>Chicago Bears</b> <span class="muted">CHI</span></td><td>7-2</td><td>0.778</td><td>241</td><td>184</td><td>57</td><td>4 - 1 - 0</td><td>3 - 1 - 0</td><td>0 - 2 - 0</td><td>5 - 2 - 0</td><td>4W</td><td>4 - 1 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>4</td><td><b>Cincinnati Bengals</b> <span class="muted">CIN</span></td><td>7-2</td><td>0.778</td><td>278</td><td>193</td><td>85</td><td>3 - 1 - 0</td><td>4 - 1 - 0</td><td>2 - 1 - 0</td><td>5 - 2 - 0</td><td>5W</td><td>5 - 0 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>5</td><td><b>Denver Broncos</b> <span class="muted">DEN</span></td><td>7-2</td><td>0.778</td><td>198</td><td>186</td><td>12</td><td>4 - 0 - 0</td><td>3 - 2 - 0</td><td>2 - 1 - 0</td><td>3 - 1 - 0</td><td>5W</td><td>5 - 0 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>6</td><td><b>Detroit Lions</b> <span class="muted">DET</span></td><td>7-2</td><td>0.778</td><td>257</td><td>199</td><td>58</td><td>5 - 0 - 0</td><td>2 - 2 - 0</td><td>2 - 0 - 0</td><td>4 - 1 - 0</td><td>5W</td><td>5 - 0 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>7</td><td><b>Jacksonville Jaguars</b> <span class="muted">JAX</span></td><td>7-2</td><td>0.778</td><td>269</td><td>144</td><td>125</td><td>4 - 1 - 0</td><td>3 - 1 - 0</td><td>2 - 1 - 0</td><td>6 - 2 - 0</td><td>3W</td><td>4 - 1 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>8</td><td><b>Kansas City Chiefs</b> <span class="muted">KC</span></td><td>7-2</td><td>0.778</td><td>237</td><td>156</td><td>81</td><td>4 - 0 - 0</td><td>3 - 2 - 0</td><td>3 - 1 - 0</td><td>6 - 1 - 0</td><td>2W</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>9</td><td><b>Minnesota Vikings</b> <span class="muted">MIN</span></td><td>7-2</td><td>0.778</td><td>176</td><td>126</td><td>50</td><td>3 - 1 - 0</td><td>4 - 1 - 0</td><td>3 - 1 - 0</td><td>5 - 1 - 0</td><td>1W</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>10</td><td><b>Pittsburgh Steelers</b> <span class="muted">PIT</span></td><td>6-3</td><td>0.667</td><td>198</td><td>182</td><td>16</td><td>4 - 0 - 0</td><td>2 - 3 - 0</td><td>2 - 2 - 0</td><td>3 - 3 - 0</td><td>1L</td><td>4 - 1 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>11</td><td><b>New York Giants</b> <span class="muted">NYG</span></td><td>5-3-1</td><td>0.611</td><td>203</td><td>196</td><td>7</td><td>3 - 2 - 0</td><td>2 - 1 - 1</td><td>2 - 1 - 1</td><td>3 - 3 - 1</td><td>1L</td><td>2 - 2 - 1</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>12</td><td><b>Cleveland Browns</b> <span class="muted">CLE</span></td><td>6-4</td><td>0.600</td><td>188</td><td>220</td><td>-32</td><td>4 - 0 - 0</td><td>2 - 4 - 0</td><td>2 - 1 - 0</td><td>4 - 3 - 0</td><td>1W</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>13</td><td><b>Green Bay Packers</b> <span class="muted">GB</span></td><td>6-4</td><td>0.600</td><td>226</td><td>221</td><td>5</td><td>3 - 2 - 0</td><td>3 - 2 - 0</td><td>1 - 3 - 0</td><td>4 - 4 - 0</td><td>1L</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>14</td><td><b>Los Angeles Rams</b> <span class="muted">LA</span></td><td>6-4</td><td>0.600</td><td>248</td><td>187</td><td>61</td><td>2 - 3 - 0</td><td>4 - 1 - 0</td><td>1 - 2 - 0</td><td>4 - 2 - 0</td><td>4W</td><td>4 - 1 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>15</td><td><b>Seattle Seahawks</b> <span class="muted">SEA</span></td><td>6-4</td><td>0.600</td><td>223</td><td>175</td><td>48</td><td>4 - 2 - 0</td><td>2 - 2 - 0</td><td>2 - 1 - 0</td><td>2 - 3 - 0</td><td>2W</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>16</td><td><b>New England Patriots</b> <span class="muted">NE</span></td><td>5-5</td><td>0.500</td><td>221</td><td>242</td><td>-21</td><td>3 - 1 - 0</td><td>2 - 4 - 0</td><td>3 - 0 - 0</td><td>5 - 1 - 0</td><td>2L</td><td>2 - 3 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>17</td><td><b>Carolina Panthers</b> <span class="muted">CAR</span></td><td>4-5</td><td>0.444</td><td>219</td><td>236</td><td>-17</td><td>1 - 3 - 0</td><td>3 - 2 - 0</td><td>2 - 1 - 0</td><td>4 - 3 - 0</td><td>1W</td><td>2 - 3 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>18</td><td><b>Baltimore Ravens</b> <span class="muted">BAL</span></td><td>4-6</td><td>0.400</td><td>209</td><td>259</td><td>-50</td><td>1 - 4 - 0</td><td>3 - 2 - 0</td><td>0 - 2 - 0</td><td>2 - 5 - 0</td><td>5L</td><td>0 - 5 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>19</td><td><b>Dallas Cowboys</b> <span class="muted">DAL</span></td><td>4-6</td><td>0.400</td><td>286</td><td>282</td><td>4</td><td>1 - 4 - 0</td><td>3 - 2 - 0</td><td>2 - 1 - 0</td><td>2 - 5 - 0</td><td>1L</td><td>2 - 3 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>20</td><td><b>Las Vegas Raiders</b> <span class="muted">LV</span></td><td>4-6</td><td>0.400</td><td>251</td><td>289</td><td>-38</td><td>1 - 4 - 0</td><td>3 - 2 - 0</td><td>1 - 1 - 0</td><td>3 - 3 - 0</td><td>2L</td><td>1 - 4 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>21</td><td><b>Washington Commanders</b> <span class="muted">WAS</span></td><td>3-5-1</td><td>0.389</td><td>196</td><td>223</td><td>-27</td><td>2 - 2 - 1</td><td>1 - 3 - 0</td><td>2 - 2 - 1</td><td>3 - 4 - 1</td><td>1W</td><td>2 - 2 - 1</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>22</td><td><b>Houston Texans</b> <span class="muted">HOU</span></td><td>3-6</td><td>0.333</td><td>233</td><td>219</td><td>14</td><td>0 - 4 - 0</td><td>3 - 2 - 0</td><td>2 - 1 - 0</td><td>3 - 4 - 0</td><td>1L</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>23</td><td><b>New Orleans Saints</b> <span class="muted">NO</span></td><td>3-6</td><td>0.333</td><td>202</td><td>236</td><td>-34</td><td>1 - 5 - 0</td><td>2 - 1 - 0</td><td>0 - 2 - 0</td><td>1 - 4 - 0</td><td>1L</td><td>2 - 3 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>24</td><td><b>Tampa Bay Buccaneers</b> <span class="muted">TB</span></td><td>3-6</td><td>0.333</td><td>202</td><td>178</td><td>24</td><td>1 - 4 - 0</td><td>2 - 2 - 0</td><td>2 - 0 - 0</td><td>3 - 3 - 0</td><td>1L</td><td>3 - 2 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>25</td><td><b>Arizona Cardinals</b> <span class="muted">AZ</span></td><td>3-7</td><td>0.300</td><td>184</td><td>289</td><td>-105</td><td>0 - 4 - 0</td><td>3 - 3 - 0</td><td>1 - 4 - 0</td><td>2 - 6 - 0</td><td>2L</td><td>2 - 3 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>26</td><td><b>Atlanta Falcons</b> <span class="muted">ATL</span></td><td>3-7</td><td>0.300</td><td>201</td><td>258</td><td>-57</td><td>1 - 5 - 0</td><td>2 - 2 - 0</td><td>1 - 2 - 0</td><td>3 - 3 - 0</td><td>3L</td><td>1 - 4 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>27</td><td><b>Indianapolis Colts</b> <span class="muted">IND</span></td><td>3-7</td><td>0.300</td><td>208</td><td>271</td><td>-63</td><td>2 - 3 - 0</td><td>1 - 4 - 0</td><td>1 - 2 - 0</td><td>2 - 5 - 0</td><td>1W</td><td>1 - 4 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>28</td><td><b>Philadelphia Eagles</b> <span class="muted">PHI</span></td><td>2-7</td><td>0.222</td><td>148</td><td>221</td><td>-73</td><td>1 - 4 - 0</td><td>1 - 3 - 0</td><td>1 - 3 - 0</td><td>1 - 6 - 0</td><td>7L</td><td>0 - 5 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>29</td><td><b>New York Jets</b> <span class="muted">NYJ</span></td><td>2-8</td><td>0.200</td><td>194</td><td>254</td><td>-60</td><td>1 - 4 - 0</td><td>1 - 4 - 0</td><td>0 - 3 - 0</td><td>2 - 5 - 0</td><td>5L</td><td>0 - 5 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>30</td><td><b>Los Angeles Chargers</b> <span class="muted">LAC</span></td><td>1-8</td><td>0.111</td><td>144</td><td>239</td><td>-95</td><td>0 - 4 - 0</td><td>1 - 4 - 0</td><td>0 - 3 - 0</td><td>1 - 5 - 0</td><td>1W</td><td>1 - 4 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>31</td><td><b>Miami Dolphins</b> <span class="muted">MIA</span></td><td>1-8</td><td>0.111</td><td>148</td><td>224</td><td>-76</td><td>0 - 4 - 0</td><td>1 - 4 - 0</td><td>1 - 1 - 0</td><td>1 - 5 - 0</td><td>3L</td><td>1 - 4 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+<tr><td>32</td><td><b>Tennessee Titans</b> <span class="muted">TEN</span></td><td>1-8</td><td>0.111</td><td>167</td><td>239</td><td>-72</td><td>0 - 5 - 0</td><td>1 - 3 - 0</td><td>1 - 2 - 0</td><td>1 - 6 - 0</td><td>3L</td><td>1 - 4 - 0</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">standings page ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Week 10, as printed</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>transcribed exactly as the by-week page prints them</caption><thead><tr><th>Game</th><th>Date (ET)</th><th>Kickoff (ET)</th><th>Network</th><th>Label</th><th>Score (records as printed)</th><th>Status</th><th>Source</th></tr></thead><tbody>
+<tr><td>2026_10_WAS_NYG</td><td>2026-11-12</td><td>8:15 PM</td><td>Prime Video</td><td>Thursday Night Football</td><td><b>WAS 24</b> <span class="muted">(3-5-1)</span> at <b>NYG 21</b> <span class="muted">(5-3-1)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_NE_DET</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>FOX</td><td>International Game, November 15th (Munich)</td><td><b>NE 10</b> <span class="muted">(5-5)</span> at <b>DET 35</b> <span class="muted">(7-2)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_KC_ATL</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>CBS</td><td class="blank" title="no label printed">—</td><td><b>KC 35</b> <span class="muted">(7-2)</span> at <b>ATL 13</b> <span class="muted">(3-7)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_HOU_CLE</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>FOX</td><td class="blank" title="no label printed">—</td><td><b>HOU 24</b> <span class="muted">(3-6)</span> at <b>CLE 27</b> <span class="muted">(6-4)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_MIN_GB</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>FOX</td><td class="blank" title="no label printed">—</td><td><b>MIN 30</b> <span class="muted">(7-2)</span> at <b>GB 10</b> <span class="muted">(6-4)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_MIA_IND</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>CBS</td><td class="blank" title="no label printed">—</td><td><b>MIA 22</b> <span class="muted">(1-8)</span> at <b>IND 24</b> <span class="muted">(3-7)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_CAR_NO</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>FOX</td><td class="blank" title="no label printed">—</td><td><b>CAR 20</b> <span class="muted">(4-5)</span> at <b>NO 17</b> <span class="muted">(3-6)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_BUF_NYJ</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>CBS</td><td class="blank" title="no label printed">—</td><td><b>BUF 31</b> <span class="muted">(8-1)</span> at <b>NYJ 12</b> <span class="muted">(2-8)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_JAX_TEN</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>FOX</td><td class="blank" title="no label printed">—</td><td><b>JAX 40</b> <span class="muted">(7-2)</span> at <b>TEN 23</b> <span class="muted">(1-8)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_LA_ARZ</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>CBS</td><td class="blank" title="no label printed">—</td><td><b>LA 34</b> <span class="muted">(6-4)</span> at <b>AZ 6</b> <span class="muted">(3-7)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_SEA_LV</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>CBS</td><td class="blank" title="no label printed">—</td><td><b>SEA 21</b> <span class="muted">(6-4)</span> at <b>LV 13</b> <span class="muted">(4-6)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_SF_DAL</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>FOX</td><td class="blank" title="no label printed">—</td><td><b>SF 46</b> <span class="muted">(8-1)</span> at <b>DAL 40</b> <span class="muted">(4-6)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_PIT_CIN</td><td>2026-11-15</td><td class="blank" title="not printed on a Final row">—</td><td>NBC</td><td>Sunday Night Football, November 15th</td><td><b>PIT 18</b> <span class="muted">(6-3)</span> at <b>CIN 38</b> <span class="muted">(7-2)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+<tr><td>2026_10_LAC_BAL</td><td>2026-11-16</td><td>8:15 PM</td><td>ESPN</td><td>Monday Night Football, November 16th</td><td><b>LAC 23</b> <span class="muted">(1-8)</span> at <b>BAL 20</b> <span class="muted">(4-6)</span></td><td><span class="pill ok">Final</span></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">Week 10 page ↗</a></td></tr>
+</tbody></table></div>
+  <p class="muted"><b>Venue is not on this table, because it is not on that page.</b> The weekly schedule
+  page prints no venue for any fixture, so a venue column would be blank 14 times over &mdash; which is a
+  fact about the page, not about the games. The one venue this session read is recorded in the pack's header
+  and on the fixture's own Game Center page:
+  <a href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener">
+  M&amp;T Bank Stadium, Baltimore MD ↗</a> &mdash; printed there, and it is the venue of the Monday-night
+  game that closed the week.</p>
+
+  <h2>Week 11 slate, as printed</h2>
+  <div class="tablewrap"><table class="wide" data-table><caption>13 fixtures + 6 byes: 32 clubs exactly once, and no score printed for any of them</caption><thead><tr><th>Game</th><th>Date &amp;amp; kickoff (ET)</th><th>Network</th><th>Matchup (printed records)</th><th>Status</th><th>Label</th><th>Source</th></tr></thead><tbody>
+<tr><td>2026_11_IND_HOU</td><td>2026-11-19 8:15 PM</td><td>PRIME</td><td><b>IND</b> (3-7) at <b>HOU</b> (3-6)</td><td>Scheduled</td><td>Thursday Night Football, November 19th</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_MIA_BUF</td><td>2026-11-22 1:00 PM</td><td>CBS</td><td><b>MIA</b> (1-8) at <b>BUF</b> (8-1)</td><td>Scheduled</td><td>COVERED ON NFL REDZONE</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BAL_CAR</td><td>2026-11-22 1:00 PM</td><td>FOX</td><td><b>BAL</b> (4-6) at <b>CAR</b> (4-5)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_NO_CHI</td><td>2026-11-22 1:00 PM</td><td>FOX</td><td><b>NO</b> (3-6) at <b>CHI</b> (7-2)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_TEN_DAL</td><td>2026-11-22 1:00 PM</td><td>FOX</td><td><b>TEN</b> (1-8) at <b>DAL</b> (4-6)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_TB_DET</td><td>2026-11-22 1:00 PM</td><td>FOX</td><td><b>TB</b> (3-6) at <b>DET</b> (7-2)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_ARZ_KC</td><td>2026-11-22 1:00 PM</td><td>CBS</td><td><b>AZ</b> (3-7) at <b>KC</b> (7-2)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_PIT_PHI</td><td>2026-11-22 1:00 PM</td><td>CBS</td><td><b>PIT</b> (6-3) at <b>PHI</b> (2-7)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_NYJ_LAC</td><td>2026-11-22 4:05 PM</td><td>FOX</td><td><b>NYJ</b> (2-8) at <b>LAC</b> (1-8)</td><td>Scheduled</td><td>COVERED ON NFL REDZONE</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_JAX_NYG</td><td>2026-11-22 4:25 PM</td><td>CBS</td><td><b>JAX</b> (7-2) at <b>NYG</b> (5-3-1)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_LV_DEN</td><td>2026-11-22 4:25 PM</td><td>CBS</td><td><b>LV</b> (4-6) at <b>DEN</b> (7-2)</td><td>Scheduled</td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_MIN_SF</td><td>2026-11-22 8:20 PM</td><td>NBC</td><td><b>MIN</b> (7-2) at <b>SF</b> (8-1)</td><td>Scheduled</td><td>Sunday Night Football, November 22th - Mexico City (the page prints the Mexico City 2026 event logo and &quot;Mexico City&quot;)</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_CIN_WAS</td><td>2026-11-23 8:15 PM</td><td>ESPN</td><td><b>CIN</b> (7-2) at <b>WAS</b> (3-5-1)</td><td>Scheduled</td><td>Monday Night Football, November 23rd</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BYE_ATL</td><td class="blank" title="not printed by the source">—</td><td class="blank" title="not printed by the source">—</td><td><b>ATL</b> on bye (3-7)</td><td></td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BYE_CLE</td><td class="blank" title="not printed by the source">—</td><td class="blank" title="not printed by the source">—</td><td><b>CLE</b> on bye (6-4)</td><td></td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BYE_GB</td><td class="blank" title="not printed by the source">—</td><td class="blank" title="not printed by the source">—</td><td><b>GB</b> on bye (6-4)</td><td></td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BYE_LA</td><td class="blank" title="not printed by the source">—</td><td class="blank" title="not printed by the source">—</td><td><b>LA</b> on bye (6-4)</td><td></td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BYE_NE</td><td class="blank" title="not printed by the source">—</td><td class="blank" title="not printed by the source">—</td><td><b>NE</b> on bye (5-5)</td><td></td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+<tr><td>2026_11_BYE_SEA</td><td class="blank" title="not printed by the source">—</td><td class="blank" title="not printed by the source">—</td><td><b>SEA</b> on bye (6-4)</td><td></td><td class="blank" title="no label printed">—</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">Week 11 page ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Fingerprints</h2>
+  <div class="tablewrap"><table class="" data-table><caption>so the pack a reader audits is provably the pack that was checked</caption><thead><tr><th>File</th><th>sha256</th><th>Why it is published</th><th>Source</th></tr></thead><tbody>
+<tr><td><code>official_w10_results_2026_11_17.tsv</code></td><td><code>9aca9707ab26ae702f9d0f1f2c415a800951d8915eca48b91eb7185e2654bafb</code></td><td>sha256 of the committed bytes, so a reader diffing the pack diffs these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/official_w10_results_2026_11_17.tsv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
+<tr><td><code>official_standings_2026_11_17.tsv</code></td><td><code>51f3ef1c414fd61bbf455d00299d11f57b5408db9ee2c595914c7659035f5661</code></td><td>sha256 of the committed bytes, so a reader diffing the pack diffs these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/official_standings_2026_11_17.tsv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
+<tr><td><code>official_w11_slate_2026_11_17.tsv</code></td><td><code>570aeb4adf8cb65b8710b286622a063927aef184cc78a4f980c6851af54cc0ca</code></td><td>sha256 of the committed bytes, so a reader diffing the pack diffs these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
+<tr><td><code>reads.tsv</code></td><td><code>484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312</code></td><td>sha256 of the committed bytes, so a reader diffing the pack diffs these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/_raw/reads.tsv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
+<tr><td><code>mirror_games.csv</code></td><td><code>5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01</code></td><td>sha256 of the committed bytes, so a reader diffing the pack diffs these</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/raw/nflverse/games.csv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
+</tbody></table></div>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

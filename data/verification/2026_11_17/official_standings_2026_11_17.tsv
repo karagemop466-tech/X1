@@ -7,7 +7,10 @@
 # baseline; the older file stays in the tree as the dated evidence it is.
 # Cross-checked against the automated capture of the same page (data/captures/payloads/standings/e3/e3409e8d36ea...json,
 # as_read_at 2026-11-17T19:49:49+00:00, content_sha256 e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32)
-# by tools/verify_2026_11_17.py check A4 (32 clubs x 6 fields).
+# by tools/verify_2026_11_17.py check B11: 32 clubs x 16 printed fields = 512 cells compared after removing
+# spaces only, and all 512 agree — including HOME/ROAD/DIV/DIV_PCT/CONF/CONF_PCT/NON_CONF/STRK/LAST_5, the
+# nine columns no earlier round had diffed. A disagreement there would have been published as a flag, not
+# corrected by picking whichever read looked likelier.
 rank	team_name	abbr	w	l	t	pct	pf	pa	net_pts	home	road	div	div_pct	conf	conf_pct	non_conf	strk	last5
 1	Buffalo Bills	BUF	8	1	0	0.889	287	199	88	3 - 1 - 0	5 - 0 - 0	1 - 1 - 0	0.500	5 - 1 - 0	0.833	3 - 0 - 0	5W	5 - 0 - 0
 2	San Francisco 49ers	SF	8	1	0	0.889	281	196	85	5 - 0 - 0	3 - 1 - 0	3 - 0 - 0	1.000	5 - 1 - 0	0.833	3 - 0 - 0	2W	4 - 1 - 0

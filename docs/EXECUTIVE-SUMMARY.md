@@ -154,4 +154,105 @@ official results (2,232 rows, now 14); daily injury captures (5 per game week, n
 charts (now 31); a reward rule set (Q-07, not decided); a joint-probability calibration per combo family (3
 families, now 0 files); and one G1 sample threshold that both registers state (they state 100 and 500 today).
 
----\n\n# Executive Summary — fourth round: session `arena/1aa2b47f-x1` review and release (2026-11-15)\n\nThis session took over the integrated branch (`arena/1aa2b47f-x1`, identical to `main` at `51d6e32`) and ran the offline verification the build cannot do against live official pages, because `nfl.com` and `operations.nfl.com` return connection failure from this sandbox (HTTP 000). No value was inferred and nothing was published that is not already in a committed official snapshot.\n\n## What this session verified (offline)\n\n| Check | Result |\n|---|---|\n| `tools/verify_data.py` | 2,944 integrity assertions — all pass |\n| `tools/check_links.py` | 159 files, 40,653 assertions — all links resolve, no orphans, every external host approved |\n| `scripts/verify_site.py` | 159 HTML pages — local links resolve, every data-table row carries an official source link |\n| Live official sources | `nfl.com`, `operations.nfl.com` unreachable (HTTP 000) — verification is against committed snapshots only |\n\n## Standing honest position (unchanged)\n\n1. **No official source publishes betting prices.** Every price, CLV, difference and ROI cell is blank and flagged (Q-02 / F-06). Q-02 is the single highest-leverage open decision.\n2. **Nothing is ranked on luck.** Signal is separated from staking; G8 demotes live→paper mechanically; the board is honestly empty of promotable strategies.\n3. **Depth is club self-report.** No league-wide official depth chart exists; several clubs print 'unofficial' (Q-05 / F-01).\n\n## Irregularities carried forward (none block release)\n\nFlags F-01…F-19 and defects D-01…D-03 remain on the Flagged for Review page with source links. Highest-signal open items: Q-02 (licensed price feed), Q-04 (licensed snap counts), Q-07 (reward funding/legality), R-02 (no LICENSE file). No new irregularity was introduced this session; no published value was changed.\n\n## Recommended owner actions (suggestions board, unchanged)\n\n- **S-13** — name the price feed (unblocks Q-19/Q-02 and every market column).\n- **S-17** — schedule the results-feed refresh (unblocks Q-24).\n- **S-16** — ratify the G8 demotion thresholds (Q-21).\n- **S-10** — second independent transcription pass on standings and injuries.\n- Add a `LICENSE` (R-02) before republishing any ingested NFL data.
+---
+
+# Executive Summary — fourth round: session `arena/1aa2b47f-x1` review and release (2026-11-15)
+
+This session took over the integrated branch (`arena/1aa2b47f-x1`, identical to `main` at `51d6e32`) and ran the offline verification the build cannot do against live official pages, because `nfl.com` and `operations.nfl.com` return connection failure from this sandbox (HTTP 000). No value was inferred and nothing was published that is not already in a committed official snapshot.
+
+## What this session verified (offline)
+
+| Check | Result |
+|---|---|
+| `tools/verify_data.py` | 2,944 integrity assertions — all pass |
+| `tools/check_links.py` | 159 files, 40,653 assertions — all links resolve, no orphans, every external host approved |
+| `scripts/verify_site.py` | 159 HTML pages — local links resolve, every data-table row carries an official source link |
+| Live official sources | `nfl.com`, `operations.nfl.com` unreachable (HTTP 000) — verification is against committed snapshots only |
+
+## Standing honest position (unchanged)
+
+1. **No official source publishes betting prices.** Every price, CLV, difference and ROI cell is blank and flagged (Q-02 / F-06). Q-02 is the single highest-leverage open decision.
+2. **Nothing is ranked on luck.** Signal is separated from staking; G8 demotes live→paper mechanically; the board is honestly empty of promotable strategies.
+3. **Depth is club self-report.** No league-wide official depth chart exists; several clubs print 'unofficial' (Q-05 / F-01).
+
+## Irregularities carried forward (none block release)
+
+Flags F-01…F-19 and defects D-01…D-03 remain on the Flagged for Review page with source links. Highest-signal open items: Q-02 (licensed price feed), Q-04 (licensed snap counts), Q-07 (reward funding/legality), R-02 (no LICENSE file). No new irregularity was introduced this session; no published value was changed.
+
+## Recommended owner actions (suggestions board, unchanged)
+
+- **S-13** — name the price feed (unblocks Q-19/Q-02 and every market column).
+- **S-17** — schedule the results-feed refresh (unblocks Q-24).
+- **S-16** — ratify the G8 demotion thresholds (Q-21).
+- **S-10** — second independent transcription pass on standings and injuries.
+- Add a `LICENSE` (R-02) before republishing any ingested NFL data.
+
+---
+
+# Executive Summary — fifth round: Week 10 closed, the first blind forecast scored (session `arena-e1436334-x1`, 2026-11-17)
+
+**One sentence.** The results corpus is now every game the league has finished — 150 of 150, each row read
+from an official nfl.com page and closed against the standings — and the project's first genuinely blind
+prediction has been scored: it missed, and that miss is now on the site with its sample size attached.
+
+## What changed, and the number that shows it
+
+| Claim | Number | Where it is checkable |
+|---|---|---|
+| Week 10 is closed in the verified feed | 137 → **150 rows**; 14 of 14 games `Final`; **0** mirror mismatches; **32/32** clubs reconciled on W-L-T/PF/PA | `data/results/verified_results.json`, `tools/build_results_r3.py --check` |
+| The append was guarded, not typed in | one-shot promotion re-fetches the mirror and **aborts** on a lost or disagreed scored row; 13 rows appended, 1 already-present row skipped by slug | `tools/promote_w10_2026_11_17.py` |
+| Every published number in the pack was re-derived today | **B1–B10 all PASS**, including 160 standings-arithmetic assertions and a three-page record agreement across the standings, Week 10 and Week 11 pages | `tools/verify_2026_11_17.py`, `data/verification/2026_11_17/verification_summary_2026_11_17.json` |
+| The pre-kickoff file is now auditable, not just append-only | **14/14** sealed rows reproduce from the frozen PR-01 rule at their own record time; **14/14** confirmed strictly before kickoff at minute granularity | `data/shadow/sealed_ledger.json` |
+| The first blind forecast, scored | LAC @ BAL sealed 2026-11-16T18:52:12Z at p(BAL) **0.701232** (fair −7.0); LAC won 23-20 → **side wrong**, Brier **0.491726**, benchmark-relative skill **−0.626**, **n = 1** | `data/shadow/sealed_record_resolution.csv` |
+| One more game of data broke the skill claim | backtest n 117 → **118**; Brier skill **+0.116 → +0.109**; game-cluster 95% lower bound **+0.0021 → −0.0052** (crosses zero) | `data/shadow/backtest_summary.json` |
+| The signal grade did *not* gain hits | **84-49 (63.16%)**, z = 3.035, p = 0.0024 on n_decided **133**, with **16** no-pick exclusions (3 exact-zero lines, 13 games the model never priced) | `data/results/signal_grade.json` |
+| Integrity suite after the change | **2,944** checks pass; the 8 listed starters ruled out in Week 10 remain an INFO, not an error | `tools/verify_data.py` |
+
+## What the owner should read as the round's finding
+
+1. **A one-row extension of a corpus moved a headline verdict from "supported" to "not supported".** That is
+   the lower bound doing its job, and it is why the site now prints the bound's *sign* rather than prose about
+   clearing zero. Nothing was edited after registration; what was ambiguous was the registration's *window*
+   ("weeks 3-10" is a row count in disguise). **S-33 / F-25** propose a one-paragraph amendment committed as a
+   new registration, so the next extension re-scores openly instead of flipping a verdict silently.
+2. **`n = 1` is published as `n = 1`.** The sealed row is the only prospective, blind, pre-kickoff result this
+   project has. It is negative, it is one game, and it is labelled "not evidence in either direction". The
+   promotion clause (≥100 sealed games) is untouched by this result — the point of a clause is that it does not
+   bend for the first datapoint.
+3. **Two results feeds now disagree, and the register measures the right one.** `data/results_feed.json`
+   (all-seasons, generated 2026-11-14 from a 2026-11-14 standings baseline) still reports 137 scored rows and
+   fails its own standings arithmetic against today's table (IND PF 184 vs 208, JAX W 6 vs 7). This session did
+   **not** rewrite that dated artefact or the files that feed it, because another session owns them; the
+   decision-readiness row for R-47 now measures the 2026 feed instead, and the disagreement is published as
+   **F-22** with a one-commit path (**S-31 / Q-71**). A stale baseline is a *date* problem, and the fix is to
+   date it, not to edit history.
+4. **Coverage gaps that survive a green build.** Depth capture holds 1,802 rows for **31** clubs — HOU has zero,
+   and the missing club is the one the brief names (the Texans publish an image). The capture's own drift pin
+   passes because it pins a total row count, not per-club completeness. Flag **F-23**, question **Q-72**: either
+   a per-club completeness assertion or a published "31 of 32" on every depth-derived page. Do not let a
+   1,802-row table imply 32 clubs.
+5. **The closing half of the price requirement is unbuilt.** 56 snapshot rows, `our_close_line` populated on
+   **0**, 52 rows still labelled "close capture due at kickoff" on games that finished days ago, and no
+   scheduled job anywhere in `.github/workflows/` that would ever fill them. Flag **F-24**, suggestion
+   **S-32**: either a kickoff-time close capture of our own line (no licence needed, and the only route to any
+   CLV number), or say plainly that the closing snapshot is blocked on the price decision. "Pending" forever is
+   the one label that is worse than either.
+
+## What this session deliberately did not do
+
+- **No injury, availability, depth or capture-config file was edited.** Week 11's injury re-cut belongs to
+  **PR #73** (`arena/16049865-x1`, live re-read of the official Week 10 injury page, opened 2026-11-17T22:50Z),
+  and the failing `deficiency` drift pin to `arena/2f95e652-x1`; W3 and W4 were withdrawn on the board rather
+  than duplicated. The drift-pin root cause was handed over in writing: `pipeline/run.py` (~lines 488-507)
+  under-declares `data/pipeline/deficiency.json`'s columns (12 declared, 14 carried: `team_abbrev`,
+  `depth_listed`) — and PR #61 owns that file.
+- **No price, ROI or CLV figure was published.** `market_line`, `residual` and `our_close_line` stay blank on
+  every artefact this session touched, and `tools/verify_2026_11_17.py` check **B9** fails the build if a
+  market value ever appears without a ratified policy (Q-61).
+- **No retro-prediction.** The 13 newly promoted Week 10 games have no walk-forward model line, so they enter
+  the corpus as *results* and stay outside the *decided* count. Widening the corpus and widening the hit-rate
+  sample are different acts; only the first was needed to close S-22 / Q-62.
+- **No sealed row was rewritten.** Grading is a derived artefact (`sealed_record_resolution.csv`,
+  `sealed_ledger.json`); `forecasts_pre_kickoff.csv` gained no edit, and the build refuses to seal a Week 12
+  row today because the ratings state would be a week stale — the cadence rule is published on the page, not
+  worked around.

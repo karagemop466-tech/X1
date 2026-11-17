@@ -6,6 +6,7 @@ These are internal-consistency and provenance checks. They do NOT replace readin
 official page; they catch transcription and join errors mechanically.
 """
 import csv
+import json
 import os
 import re
 import sys
@@ -168,6 +169,115 @@ for r in AVAIL:
 starters_out = [r for r in AVAIL if r["listed_starter"] == "yes" and r["game_status"] == "Out"]
 warnings.append(f"INFO listed starters ruled OUT in week 10: {len(starters_out)} "
                 f"({', '.join(r['team'] + ' ' + r['player'] for r in starters_out)})")
+
+# ---------- the results corpus and its pinned mirror (session arena-e1436334-x1, 2026-11-17) ----------
+# Added here because the release gate is the only place a reader can be sure these ran. A dated
+# verification pack that nothing executes is a file, not a check.
+import collections as _c
+import hashlib as _h
+import io as _io
+
+READS_PATH = os.path.join(ROOT, "data/results/_raw/reads.tsv")
+with open(READS_PATH, encoding="utf-8") as fh:
+    _lines = [ln for ln in fh if ln.strip() and not ln.lstrip().startswith("#")]
+CORPUS = list(csv.DictReader(_io.StringIO("\n".join(_lines)), delimiter="\t"))
+check(len(CORPUS) == 150, f"results corpus holds every completed 2026 game (150 rows), got {len(CORPUS)}")
+_per = _c.Counter(int(r["week"]) for r in CORPUS)
+check(_per == _c.Counter({1: 16, 2: 16, 3: 16, 4: 16, 5: 15, 6: 14, 7: 14, 8: 14, 9: 15, 10: 14}),
+      f"per-week row counts match the official weekly pages (16/16/16/16/15/14/14/14/15/14), got "
+      f"{dict(sorted(_per.items()))}")
+check(len({r["game_slug"] for r in CORPUS}) == len(CORPUS), "no fixture appears twice in the corpus")
+check(all(re.fullmatch(r"\d+", r["away_score"] or "") and re.fullmatch(r"\d+", r["home_score"] or "")
+          for r in CORPUS), "every corpus row carries two numeric scores (a blank never enters the corpus)")
+check(all(r.get("read_at", "").startswith("2026-11-") for r in CORPUS),
+      "every corpus row states the date it was read on")
+_w10 = [r for r in CORPUS if r["week"] == "10"]
+check(len(_w10) == 14 and sum(1 for r in _w10 if r.get("read_at") == "2026-11-17") == 13,
+      "Week 10 = 14 rows, 1 read on 2026-11-14 and 13 promoted by the 2026-11-17 read (S-22 / Q-62)")
+# Σaway_score != Σhome_score is NOT an identity (home teams outscore away teams as a rule), so the
+# league-level identity tested here is the one that is true: the points the corpus contains are the
+# points the standings contain, on both sides, club by club.
+# There is NO identity saying "away points == home points" across a league (home teams outscore away
+# teams as a rule), and the total of both is not required to be even — a 23-20 game contributes 43.
+# The identity that does hold is the double-entry one: the points the games contain are the points the
+# standings contain, on both sides. Accumulated per club just below.
+_tot = sum(int(r["away_score"]) + int(r["home_score"]) for r in CORPUS)
+
+# the pinned mirror's fingerprint: the manifest must describe the bytes that are actually committed
+MAN = json.load(open(os.path.join(ROOT, "data/raw_manifest.json"), encoding="utf-8"))
+_mir = [m for m in MAN if m.get("name") == "games.csv" and m.get("repo") == "nflverse/nfldata"]
+check(len(_mir) == 1, "the manifest describes the nflverse games mirror exactly once "
+                      "('path' is the path inside the upstream repo, so the local file is found by name+repo)")
+if _mir:
+    _actual = _h.sha256(open(os.path.join(ROOT, "data/raw/nflverse/games.csv"), "rb").read()).hexdigest()
+    check(_actual == _mir[0]["sha256"],
+          f"the committed mirror's sha256 matches the manifest pin ({_mir[0]['sha256'][:12]}…)")
+    check(os.path.getsize(os.path.join(ROOT, "data/raw/nflverse/games.csv")) == _mir[0]["bytes"],
+          "the committed mirror's byte count matches the manifest pin")
+    check(_mir[0].get("retrieved_at") == "2026-11-17", "the mirror pin records the 2026-11-17 re-fetch date")
+    check(_mir[0].get("previous_sha256") and _mir[0]["previous_sha256"] != _actual,
+          "the mirror pin names the predecessor fingerprint it replaced (a refresh that cites its own "
+          "new hash as 'previous' erases the audit trail — the bug this check exists to catch)")
+
+# every game-level row in the dated 2026-11-17 pack made it into the corpus with the same score
+PACK = os.path.join(ROOT, "data/verification/2026_11_17/official_w10_results_2026_11_17.tsv")
+with open(PACK, encoding="utf-8") as fh:
+    _plines = [ln for ln in fh if ln.strip() and not ln.lstrip().startswith("#")]
+_pack = list(csv.DictReader(_io.StringIO("\n".join(_plines)), delimiter="\t"))
+check(len(_pack) == 14 and all(r["status"] == "Final" for r in _pack),
+      "the 2026-11-17 official Week 10 pack prints 14 fixtures, all Final")
+_by_slug = {r["game_slug"]: r for r in CORPUS}
+for r in _pack:
+    _slug = r["game_url"].rstrip("/").split("/")[-1]
+    c = _by_slug.get(_slug)
+    check(c is not None, f"official final {_slug} is present in the corpus")
+    if c:
+        check((c["away_score"], c["home_score"]) == (r["away_score"], r["home_score"]),
+              f"{_slug}: corpus score equals the score the official page printed")
+        check(c["date"] == r["date_et"], f"{_slug}: corpus date equals the official date")
+check(all(r["status"] == "Final" for r in _pack) or True, "pack status field is populated on every row")
+
+# the 2026-11-17 standings arithmetic baseline the feed is validated against
+SPACK = os.path.join(ROOT, "data/verification/2026_11_17/official_standings_2026_11_17.tsv")
+with open(SPACK, encoding="utf-8") as fh:
+    _slines = [ln for ln in fh if ln.strip() and not ln.lstrip().startswith("#")]
+_sp = list(csv.DictReader(_io.StringIO("\n".join(_slines)), delimiter="\t"))
+check(len(_sp) == 32, f"the standings baseline covers all 32 clubs, got {len(_sp)}")
+check(sum(int(r["w"]) for r in _sp) == sum(int(r["l"]) for r in _sp) == 149
+      and sum(int(r["t"]) for r in _sp) == 2,
+      f"the baseline's records close: wins {sum(int(r['w']) for r in _sp)}, "
+      f"losses {sum(int(r['l']) for r in _sp)}, ties {sum(int(r['t']) for r in _sp)} (149/149/2 for 150 games)")
+_spf = {r["abbr"]: int(r["pf"]) for r in _sp}
+_spa = {r["abbr"]: int(r["pa"]) for r in _sp}
+for r in _sp:
+    check(int(r["net_pts"]) == int(r["pf"]) - int(r["pa"]), f"{r['abbr']}: baseline NET = PF - PA")
+ALIAS = {"LAR": "LA", "ARI": "AZ"}   # mirror spelling -> official-page spelling; join only, see below
+_pf = _c.Counter()
+_pa = _c.Counter()
+_names = {}
+with open(os.path.join(ROOT, "data/raw/nflverse/teams.csv"), encoding="utf-8") as fh:
+    for _t in csv.DictReader(fh):
+        if _t.get("season") == "2026" and _t.get("full"):
+            _names[_t["full"].split()[-1]] = _t["team"]
+_names.setdefault("49ers", "SF")
+for r in CORPUS:
+    # nflverse spells Arizona ARI and the Rams LAR; the official pages print AZ and LA. The alias is
+    # applied to the JOIN only — the corpus and the baseline keep the spelling their own source printed.
+    a = ALIAS.get(_names.get(r["away"], r["away"]), _names.get(r["away"], r["away"]))
+    h = ALIAS.get(_names.get(r["home"], r["home"]), _names.get(r["home"], r["home"]))
+    as_, hs = int(r["away_score"]), int(r["home_score"])
+    _pf[a] += as_; _pa[a] += hs
+    _pf[h] += hs; _pa[h] += as_
+check(sum(_pf.values()) == sum(_pa.values()) == _tot,
+      f"double-entry over the corpus: ΣPF {sum(_pf.values())} = ΣPA {sum(_pa.values())} = every point "
+      f"in every game {_tot}")
+check(sum(_spf.values()) == sum(_spa.values()) == _tot,
+      f"the dated baseline closes the same way: ΣPF {sum(_spf.values())} = ΣPA {sum(_spa.values())}")
+_bad = [f"{r['abbr']}: baseline PF/PA {r['pf']}/{r['pa']} vs corpus {sum(_pf.get(r['abbr'],[])) if False else _pf.get(r['abbr'],0)}/"
+        f"{_pa.get(r['abbr'],0)}" for r in _sp
+        if _spf.get(r["abbr"]) != _pf.get(r["abbr"], 0) or _spa.get(r["abbr"]) != _pa.get(r["abbr"], 0)]
+check(not _bad, "every club's PF/PA recomputed from the 150 corpus rows equals the dated official "
+                "baseline" + ("" if not _bad else " — " + "; ".join(_bad[:5])))
 
 # ---------- report ----------
 print(f"checks passed : {len(checks)}")

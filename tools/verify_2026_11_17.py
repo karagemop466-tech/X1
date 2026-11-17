@@ -276,12 +276,22 @@ def b6_mirror(reads: list[dict]) -> dict:
     return {"verdict": "PASS" if not fails else "FAIL", "corpus_rows": len(reads),
             "mirror_agreements": agree, "mirror_scored_2026_rows": len(scored),
             "mirror_role": "cross-check only; never a published source",
-            "manifest": json.load(open(os.path.join(ROOT, "data", "raw_manifest.json"),
-                                       encoding="utf-8"))[0:1],
+            # only the fields this check consumes — the whole record would couple the pack to another
+            # session's manifest edits and make this artefact churn for reasons unrelated to the read
+            "manifest_pin": {k: v for k, v in
+                             next((m for m in json.load(open(os.path.join(
+                                 ROOT, "data", "raw_manifest.json"), encoding="utf-8"))
+                                  if m.get("name") == "games.csv"), {}).items()
+                             if k in ("bytes", "sha256", "previous_sha256", "retrieved_at", "status", "rows")},
             "failures": fails}
 
 
-def b7_freshness() -> dict:
+def b7_freshness(live: bool = False) -> dict:
+    """`live=True` adds an hours-since-read figure. It is OFF in the committed artefact on purpose: this
+    file is guarded by a `--check` that diffs the committed JSON against a fresh build, and a field derived
+    from the wall clock would make that gate unpassable (the same defect `scripts/pipeline/verify_captures.py`
+    records for the capture page). The timestamp itself is committed, so a reader can subtract.
+    """
     latest: dict[str, dict] = {}
     with open(CAP_INDEX, encoding="utf-8") as fh:
         for ln in fh:
@@ -293,18 +303,20 @@ def b7_freshness() -> dict:
             prev = latest.get(d)
             if prev is None or e["as_read_at"] > prev["as_read_at"]:
                 latest[d] = e
-    now = datetime.now(timezone.utc)
     rows = []
     for d, e in sorted(latest.items()):
-        try:
-            ts = datetime.fromisoformat(e["as_read_at"])
-            hours = round((now - ts).total_seconds() / 3600.0, 2)
-        except ValueError:
-            hours = None
-        rows.append({"dataset": d, "as_read_at": e["as_read_at"], "rows": e.get("rows"),
-                     "drift": e.get("drift"), "status": e.get("status"),
-                     "hours_since_read": hours, "content_sha256": e.get("content_sha256")})
-    stale = [r["dataset"] for r in rows if r["hours_since_read"] is not None and r["hours_since_read"] > 36]
+        rec = {"dataset": d, "as_read_at": e["as_read_at"], "rows": e.get("rows"),
+               "drift": e.get("drift"), "status": e.get("status"),
+               "content_sha256": e.get("content_sha256")}
+        if live:
+            try:
+                ts = datetime.fromisoformat(e["as_read_at"])
+                rec["hours_since_read"] = round(
+                    (datetime.now(timezone.utc) - ts).total_seconds() / 3600.0, 2)
+            except ValueError:
+                rec["hours_since_read"] = None
+        rows.append(rec)
+    stale = [r["dataset"] for r in rows if r.get("hours_since_read") is not None and r["hours_since_read"] > 36]
     alarms = [r["dataset"] for r in rows if r["drift"] != "pass"]
     return {"verdict": "PASS", "datasets": len(rows), "over_36h": stale,
             "drift_not_pass": alarms, "latest": rows,
@@ -454,9 +466,47 @@ def b10_slate(w11: list[dict], standings: list[dict]) -> dict:
             "clubs_covered": len(set(clubs)), "slate_games_unsealed": unsealed, "failures": fails}
 
 
+def b11_two_independent_reads(standings: list[dict]) -> dict:
+    """The pack header claims this comparison; it is the only thing that makes a hand transcription more
+    than a single reader's word. The automated collector read the same page ~3 hours earlier through a
+    different code path, so a match on all 18 printed fields is a second transcription, not a restatement.
+    """
+    cap = json.load(open(os.path.join(ROOT, "data", "pipeline", "standings.json"), encoding="utf-8"))
+    rows = {r["team_abbrev"]: r for r in cap.get("rows", [])}
+    FIELDS = [("w", "W"), ("l", "L"), ("t", "T"), ("pct", "PCT"), ("pf", "PF"), ("pa", "PA"),
+              ("net_pts", "NET_PTS"), ("home", "HOME"), ("road", "ROAD"), ("div", "DIV"),
+              ("div_pct", "DIV_PCT"), ("conf", "CONF"), ("conf_pct", "CONF_PCT"),
+              ("non_conf", "NON_CONF"), ("strk", "STRK"), ("last5", "LAST_5")]
+    fails, cells, name_diff = [], 0, []
+    for r in standings:
+        ab = canon(r["abbr"])
+        c = rows.get(ab)
+        if c is None:
+            fails.append(f"{ab}: not in the automated capture")
+            continue
+        if (c.get("team_name") or "").strip() != (r.get("team_name") or "").strip():
+            name_diff.append(f"{ab}: capture prints {c.get('team_name')!r}, pack prints {r.get('team_name')!r}")
+        for mine, theirs in FIELDS:
+            a = re.sub(r"\s+", "", str(r.get(mine, "")))
+            b = re.sub(r"\s+", "", str(c.get(theirs, "")))
+            cells += 1
+            if a != b:
+                fails.append(f"{ab}.{mine}: hand read {a!r} vs automated capture {b!r}")
+    return {"verdict": "PASS" if not (fails or name_diff) else "FAIL",
+            "clubs": len(standings), "cells_compared": cells,
+            "capture": {"file": "data/pipeline/standings.json",
+                        "as_read_at": cap.get("rows", [{}])[0].get("_retrieved_at"),
+                        "content_sha256": sha256(os.path.join(ROOT, "data", "pipeline", "standings.json")),
+                        "source_url": "https://www.nfl.com/standings/league/2026/REG"},
+            "team_name_differences": name_diff,
+            "normalisation": "spaces only ('3 - 1 - 0' == '3-1-0'); no other mapping, so a real "
+                             "disagreement cannot be normalised away",
+            "failures": fails}
+
+
 # -------------------------------------------------------------------------------------------------
 
-def build_summary() -> dict:
+def build_summary(live: bool = False) -> dict:
     st = pack_rows("official_standings_2026_11_17.tsv")
     w10 = pack_rows("official_w10_results_2026_11_17.tsv")
     w11 = pack_rows("official_w11_slate_2026_11_17.tsv")
@@ -468,10 +518,11 @@ def build_summary() -> dict:
         "B4 corpus admission": b4_corpus_admission(w10, reads),
         "B5 standings arithmetic": b5_standings_arithmetic(st, reads),
         "B6 mirror cross-check": b6_mirror(reads),
-        "B7 capture freshness": b7_freshness(),
+        "B7 capture freshness": b7_freshness(live),
         "B8 sealed ledger": b8_sealed(),
         "B9 price discipline": b9_price_discipline(),
         "B10 forward slate": b10_slate(w11, st),
+        "B11 two independent standings reads": b11_two_independent_reads(st),
     }
     hard = [k for k, v in checks.items() if v["verdict"] == "FAIL" and not k.startswith("B7")]
     return {
@@ -481,12 +532,22 @@ def build_summary() -> dict:
         "generated_by": "tools/verify_2026_11_17.py (session arena-e1436334-x1)",
         "reads": [
             {"page": W10_URL, "file": "data/verification/2026_11_17/official_w10_results_2026_11_17.tsv",
-             "rows": len(w10), "read_at": f"{RETRIEVED} ~22:45 UTC"},
+             "rows": len(w10), "read_on": RETRIEVED, "clock_noted_by_reader": f"{RETRIEVED} 22:45 UTC"},
             {"page": STANDINGS_URL, "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv",
-             "rows": len(st), "read_at": f"{RETRIEVED} ~22:48 UTC"},
+             "rows": len(st), "read_on": RETRIEVED, "clock_noted_by_reader": f"{RETRIEVED} 22:48 UTC"},
             {"page": W11_URL, "file": "data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv",
-             "rows": len(w11), "read_at": f"{RETRIEVED} ~22:52 UTC"},
+             "rows": len(w11), "read_on": RETRIEVED, "clock_noted_by_reader": f"{RETRIEVED} 22:52 UTC"},
         ],
+        "read_clock_note": (
+            "Two clocks, and the difference between them is stated rather than smoothed. Each pack header "
+            "carries a minute (22:45 / 22:48 / 22:52 UTC) that the READER wrote into the file at "
+            "transcription time; the page reader itself returns content with no retrieval timestamp, so "
+            "those minutes are a self-report, accurate to the order and the hour, not an instrument. The "
+            "automated capture's stamp for the same standings page IS an instrument reading "
+            "(2026-11-17T19:49:49Z, content sha256 in the header), and check B11 compares the two reads. "
+            "The feed's arithmetic gate is validated against the dated pack; the capture is its second "
+            "opinion. Where the brief asks for reads 'with a clock time', that is what the collector "
+            "provides and what a hand read can only claim to the minute it noted itself."),
         "second_official_read": {
             "fixture": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
             "why": "the only fixture whose state changed between the 2026-11-16 and 2026-11-17 reads, so it "
@@ -518,8 +579,10 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--live", action="store_true",
+                    help="add the wall-clock freshness figure (never committed: it is not reproducible)")
     args = ap.parse_args(argv)
-    payload = build_summary()
+    payload = build_summary(args.live)
     text = json.dumps(payload, indent=1) + "\n"
     if args.check:
         got = open(os.path.join(VDIR, SUMMARY), encoding="utf-8").read()
@@ -528,6 +591,10 @@ def main(argv=None) -> int:
         print("CHECK OK: the 2026-11-17 pack matches a fresh build of the same reads"
               if ok else "STALE: verification_summary_2026_11_17.json differs from a fresh build")
         return 0 if ok else 1
+    if args.write and args.live:
+        print("REFUSING to write: --write with --live would commit a wall-clock number into a "
+              "re-derivable artefact. Run --write alone, or --live alone to look.")
+        return 2
     if args.write:
         with open(os.path.join(VDIR, SUMMARY), "w", encoding="utf-8") as fh:
             fh.write(text)

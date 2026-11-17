@@ -4,6 +4,7 @@
  "n_sealed": 14,
  "n_reproduced_from_rule": 14,
  "n_confirmed_pre_kickoff": 14,
+ "pre_kickoff_basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
  "failures": [],
  "rows": [
   {

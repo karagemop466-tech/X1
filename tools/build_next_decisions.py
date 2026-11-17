@@ -31,7 +31,9 @@ from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTDIR = os.path.join(ROOT, "data", "next_decisions")
-READ = "2026-11-16"
+# The register is round-keyed: each read date writes its own file and no round rewrites a
+# published one, so a reader can always see what was known when a suggestion was made.
+READ = "2026-11-17"
 REPO = "https://github.com/karagemop466-tech/X1/blob/main/"
 
 # -------------------------------------------------------------------------------------- suggestions
@@ -56,6 +58,29 @@ SUGGESTIONS = [
                                 "exactly the log nobody opened this time.",
         "evidence_file": "_ci/commit.log",
         "source_url": REPO + "actions/workflows/data-refresh.yml",
+    },
+    {
+        "id": "S-31", "area": "Trust", "impact": "High", "effort": "Low", "risk": "Low",
+        "title": "Name one results feed as the source of record, and label the other",
+        "why": "The site publishes two counts for the same season: `data/results/verified_results.json` "
+               "says 150 games official-verified (built 2026-11-17, 0 mismatches, 32/32 standings "
+               "reconciled), while `data/results_feed.json` (built 2026-11-14) still carries 150 rows of "
+               "which only 137 have scores, and `python3 tools/build_results.py` now fails its own "
+               "standings arithmetic (IND PF 184 vs 208, JAX W 6 vs 7, KC W 6 vs 7). The failure is not a "
+               "bug in the arithmetic: it is a 2026-11-14 baseline being compared with 2026-11-17 reality. "
+               "A reader who sees '137' on one page and '150' on another has no way to know which is stale.",
+        "path_a": "A: point the site and the gates at the r3 feed; retitle the older feed 'N2 cross-check, "
+                  "read 2026-11-14' and print its date on the page next to its numbers.",
+        "path_b": "B: re-date the older builder the same way (dated standings transcription + per-week "
+                  "row pins + mirror re-pin), so both pass independently.",
+        "path_c": "C: delete the older feed and its page section.",
+        "recommended": "A",
+        "recommended_because": "(A) is one title, one link and no arithmetic risk; the second feed earns "
+                               "its keep as an independent transcription, so (B) duplicates the maintenance "
+                               "burden of the same claim and (C) throws away the cross-check that caught "
+                               "three earlier transcription errors. Flagged as F-22.",
+        "evidence_file": "data/flags.json (F-22)",
+        "source_url": REPO + "blob/main/data/results/verified_results.json",
     },
     {
         "id": "S-22", "area": "Data integrity", "impact": "High", "effort": "Medium", "risk": "Medium",
@@ -212,6 +237,70 @@ SUGGESTIONS = [
                                "the rest of this repo is built on.",
         "evidence_file": "data/captures/config.json",
         "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+    },
+    {
+        "id": "S-32", "area": "Prices", "impact": "High", "effort": "Medium", "risk": "Low",
+        "title": "Decide what a closing snapshot is when there is no market to close against",
+        "why": "`data/price_snapshots.json` has 56 rows and 0 `our_close_line` values; 52 of them still "
+               "read 'close capture due at kickoff' on games that finished days ago, and the parallel "
+               "store built by tools/build_snapshots.py reports 39 of 84 records as 'pending_kickoff'. "
+               "No scheduled job in `.github/workflows/` captures a close at kickoff for either store, so "
+               "these rows will sit 'pending' forever. The requirement 'record opening AND closing numbers "
+               "for every market' cannot be met by waiting — it needs either a capture job or an honest "
+               "restatement of what the store holds.",
+        "path_a": "A: add a close-capture step to the refresh workflow that, at kickoff, freezes the "
+                  "model's own line (and the mirror's, if Q-61 permits) and stamps `closed_at`; a missed "
+                  "capture is recorded as missed, never back-filled — the store's own policy already says so.",
+        "path_b": "B: declare the closing half blocked on Q-61 in the page text and stop rendering "
+                  "'pending' on finished games (print 'close not captured: store created after kickoff').",
+        "path_c": "C: do nothing and let the count of pending rows grow.",
+        "recommended": "A",
+        "recommended_because": "the model's own closing line is ours to publish and costs no licence; "
+                                "without a close there is no CLV, and without CLV the two-stage skill "
+                                "leaderboard can never qualify anything on its second stage. (B) is "
+                                "acceptable only as a stated, dated decision. Flagged as F-24.",
+        "evidence_file": "data/price_snapshots.json",
+        "source_url": REPO + "blob/main/data/price_snapshots/store_index.json",
+    },
+    {
+        "id": "S-33", "area": "Governance", "impact": "High", "effort": "Low", "risk": "Medium",
+        "title": "Freeze the *window*, not just the rule, in every registration",
+        "why": "PR-01 froze 'weeks 3-10'. When Week 10 closed on 2026-11-17 the window gained a game "
+               "(117 to 118), Brier skill moved +0.116 to +0.109 and its game-cluster 95% lower bound "
+               "crossed zero (+0.0021 to -0.0052). Nothing was edited after registration and nothing was "
+               "cheated — but a verdict flipped on the definition of a word, which is the cheapest "
+               "ambiguity in the whole pre-registration scheme to remove.",
+        "path_a": "A: commit an amendment as a new registration (new hash) stating that a corpus extension "
+                  "re-scores the backtest, and that the sealed ledger is unaffected either way; pages cite "
+                  "the amendment hash instead of restating the window in prose.",
+        "path_b": "B: re-register the backtest as 'the 117 games available at the first scoring run' and "
+                  "make any later extension a separate registered run.",
+        "path_c": "C: leave it; the numbers are recomputable either way.",
+        "recommended": "A",
+        "recommended_because": "(A) keeps one continuous backtest and makes the corpus's growth visible; "
+                                "(B) creates two rules that differ only in a date and invites a reader to "
+                                "pick the flattering one. (C) is what produced the flag: F-25.",
+        "evidence_file": "docs/preregistration/PR-01-shadow-baseline.md",
+        "source_url": REPO + "blob/main/data/shadow/backtest_summary.json",
+    },
+    {
+        "id": "S-34", "area": "Presentation", "impact": "Medium", "effort": "Medium", "risk": "Low",
+        "title": "Give every board a lineage line, and stop adding new ones",
+        "why": "decision readiness now exists three times, suggestions four times, questions four times. "
+               "The board records the duplication as intentional, and it is defensible as an audit trail of "
+               "independent attempts — but each new session adds a register rather than replacing one, and "
+               "a reader cannot tell which to act on. Five registers with 10 rows each are read less often "
+               "than one register with 50.",
+        "path_a": "A: keep all registers; add a generated 'canonical for / generated by / inputs' header to "
+                  "each page and a one-line owner decision naming the board to act on.",
+        "path_b": "B: merge into one board, with the losing registers' rows kept and marked superseded.",
+        "path_c": "C: keep adding registers each round, as now.",
+        "recommended": "A",
+        "recommended_because": "(B) is destructive in the one way this repo forbids — it rewrites another "
+                                "session's published artefact; (A) costs a header and makes the next round "
+                                "edit a board rather than invent one. Flagged as F-26.",
+        "evidence_file": "data/flags.json (F-26)",
+        "source_url": REPO + "blob/main/data/next_decisions/",
     },
     {
         "id": "S-30", "area": "Sources", "impact": "Medium", "effort": "Low", "risk": "Medium",
@@ -411,6 +500,49 @@ QUESTIONS = [
         "default_if_unanswered": "keep the generous allowance, alarm-only, with the reason on the page",
         "source_url": REPO + "blob/main/data/captures/config.json",
     },
+    {
+        "id": "Q-71", "question": "Is the 2026-11-14 results feed (N2) a second opinion to keep in sync, "
+                                  "or a dated artefact that stops being updated?",
+        "known": "Both feeds are built from independent transcriptions of the same official pages. The r3 "
+                 "feed now carries 150 verified rows and passes three checks (row diff vs the mirror, "
+                 "32/32 standings arithmetic, source-URL audit). The N2 feed's arithmetic fails only "
+                 "because its baseline is a 2026-11-14 standings transcription; its builder is untouched "
+                 "and its generator runs unchanged in CI. The 2026-11-17 dated re-verification pack "
+                 "(tools/verify_2026_11_17.py, B1-B10 all PASS) covers the r3 feed, not N2.",
+        "missing": "Which feed the gates, the leaderboard and the ROI summary read, and whether N2 owes "
+                   "its own dated re-read or is allowed to age.",
+        "how_to_find_out": "Nothing external: read `data/results_feed.json` and `data/results/verified_results.json` "
+                           "side by side (they differ by 13 scored rows and the read date), then decide. "
+                           "S-31 implements either answer in one commit.",
+        "unblocks": "the 'one number for games verified' claim on the landing page, and F-22",
+        "blocking": "any page that prints a games-verified count without a date",
+        "default_if_unanswered": "the r3 feed is the source of record; every other count on the site is read "
+                                 "with its date beside it (this session's pages do exactly that)",
+        "source_url": REPO + "blob/main/tools/verify_2026_11_17.py",
+    },
+    {
+        "id": "Q-72", "question": "Does the depth requirement mean '32 clubs or explain the gap', and who "
+                                  "owns the Houston image?",
+        "known": "Today's automated depth capture holds 1,802 rows for 31 clubs. HOU has zero rows because "
+                 "the club publishes its depth chart as an image; the brief explicitly rejects transcribing "
+                 "by eye and names this exact failure. The capture's own drift pin passes, because it pins "
+                 "a total row count and a blank fraction, not per-club completeness — so a whole missing "
+                 "club is invisible to the alarm.",
+        "missing": "Whether to publish '31 of 32' on every depth-derived page (cheap, honest, no new data) "
+                   "or to find an authorised structured source for HOU first (better, unknown cost). Also "
+                   "whether the pin framework should grow a completeness assertion.",
+        "how_to_find_out": "Two checks, both cheap: (a) grep the capture store for any HOU-specific source "
+                           "label to see whether an earlier round found a structured endpoint; (b) add a "
+                           "per-club completeness assertion to the depth pin and let CI prove it fires on "
+                           "HOU today. Neither needs a new licence.",
+        "unblocks": "the depth-from-playing-time and backup-deficiency requirements being stated as met "
+                    "rather than partially met",
+        "blocking": "any team-level model that consumes depth for all 32 clubs, and the 'roster/IR sweep "
+                    "before team-level models are trusted' gate",
+        "default_if_unanswered": "publish 31/32 with the reason, keep the gap flagged (F-23), and do not "
+                                 "claim coverage the capture does not have",
+        "source_url": "https://www.nfl.com/teams/houston-texans",
+    },
 ]
 
 
@@ -455,6 +587,28 @@ def build() -> dict:
              "detail": "Closing that gap means moving the transcription, the row-count pin, the standings "
                        "baseline and the mirror pin in one commit; appending in isolation breaks 23 of 32 "
                        "clubs against the baseline the feed is validated by. That is S-22 and Q-62."},
+            {"what": "That gap is now closed: the feed carries every game the league has finished.",
+             "detail": "150 rows, Week 10 complete at 14 of 14, 0 mismatches, 32/32 standings reconciled "
+                       "against a dated 2026-11-17 official read, mirror re-fetched and re-fingerprinted "
+                       "(60ea2f76 → 5a61d312) with 0 lost and 0 disagreed rows. The one-shot promotion is "
+                       "committed as tools/promote_w10_2026_11_17.py so the append is reproducible, and "
+                       "tools/verify_2026_11_17.py re-runs ten checks over the dated pack. S-22 / Q-62 "
+                       "close here."},
+            {"what": "The first blind forecast was scored, and it missed.",
+             "detail": "LAC @ BAL was sealed pre-kickoff on 2026-11-16 at p(BAL home win) 0.701232, fair "
+                       "line BAL -7.0; LAC won 23-20. Brier 0.491726 against the 0.55 baseline's 0.3025 — "
+                       "benchmark-relative skill -0.626 on n = 1. The pre-kickoff file became an audited "
+                       "append-only ledger (14/14 rows reproduce from the frozen rule at their own record "
+                       "time, 14/14 confirmed pre-kickoff at minute granularity) and the grading lives in a "
+                       "separate artefact, because a ledger that rewrites itself to look better is not "
+                       "evidence of anything."},
+            {"what": "One more game of data was enough to break the skill claim.",
+             "detail": "Week 10's Monday result moved PR-01's backtest from 117 to 118 games, Brier skill "
+                       "from +0.116 to +0.109, and the game-cluster 95% lower bound from +0.0021 to "
+                       "-0.0052: the verdict 'beats a no-information forecast' is no longer supported at "
+                       "95%. Nothing was edited after registration — the registration's window was a row "
+                       "count. That is S-33 and F-25, and the site now prints the bound's sign rather "
+                       "than prose about clearing zero."},
         ],
     }
 

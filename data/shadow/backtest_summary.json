@@ -1,7 +1,7 @@
 {
  "dataset": "shadow_baseline_PR-01",
  "title": "PR-01 singles-only shadow baseline: pre-registered rule, walk-forward score, and the pre-kickoff record",
- "generated_at": "2026-11-17T22:55:21Z",
+ "generated_at": "2026-11-17T23:02:27Z",
  "generated_by": "tools/build_shadow_baseline.py (created by session arena-543cdcb0-x1; the sealed ledger, its reproduction check and its resolution were added by arena-e1436334-x1)",
  "registration": {
   "rule_file": "docs/preregistration/PR-01-shadow-baseline.md",
@@ -3700,7 +3700,7 @@
   }
  ],
  "forward": {
-  "recorded_at_utc": "2026-11-17T22:55:21Z",
+  "recorded_at_utc": "2026-11-17T23:02:27Z",
   "games_recorded": 14,
   "content_sha256": "37fe5d5427d9ac996acb23112fd481fdb2c3a430d1cd1176972f0577a3eb8602",
   "immutability": "append-only ledger: existing rows are never rewritten, so a forecast cannot be edited after kickoff; the build re-derives each row from the frozen rule at its own record time and aborts if a number does not reproduce",
@@ -3720,6 +3720,7 @@
   "n_sealed": 14,
   "n_reproduced_from_rule": 14,
   "n_confirmed_pre_kickoff": 14,
+  "pre_kickoff_basis": "kickoff instant (ET printed by the official page, converted with the IANA tz database)",
   "failures": [],
   "rows": [
    {

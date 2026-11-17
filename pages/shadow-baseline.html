@@ -35,6 +35,7 @@
       <a href="capture-system.html">Capture system</a>
       <a class="active" href="shadow-baseline.html">Shadow baseline</a>
       <a href="next-decisions.html">Suggestions &amp; questions</a>
+      <a href="verification-2026-11-17.html">Re-verification 11-17</a>
       <a href="../dashboard/lab-index.html">Analytics lab</a>
       <a href="review.html">Repo review</a>
       <a href="../research/index.html">Research lab</a>
@@ -68,18 +69,18 @@
 
 <section class="content">
   <div class="statrow">
-    <div class="stat"><strong>117</strong><span>games scored</span><span class="statnote">weeks 3-10 of 2026, chronological holdout</span></div>
-    <div class="stat"><strong>+0.116</strong><span>Brier skill vs the 0.55 home baseline</span><span class="statnote">benchmark-relative, so raw accuracy cannot flatter it</span></div>
-    <div class="stat"><strong>+0.002</strong><span>95% lower bound</span><span class="statnote">the number a claim has to clear; it clears zero by a hair</span></div>
-    <div class="stat"><strong>14</strong><span>games recorded pre-kickoff</span><span class="statnote">2026-11-16T18:52:12Z</span></div>
+    <div class="stat"><strong>118</strong><span>games scored</span><span class="statnote">weeks 3-10 of 2026, chronological holdout</span></div>
+    <div class="stat"><strong>+0.109</strong><span>Brier skill vs the 0.55 home baseline</span><span class="statnote">benchmark-relative, so raw accuracy cannot flatter it</span></div>
+    <div class="stat"><strong>-0.005</strong><span>95% lower bound</span><span class="statnote">the number a claim has to clear; IT DOES NOT CLEAR ZERO — the skill claim is not supported at 95% on this window</span></div>
+    <div class="stat"><strong>14</strong><span>games sealed pre-kickoff</span><span class="statnote">1 resolved, 13 still open</span></div>
   </div>
 
   <div class="note"><b>Read the lower bound, not the point estimate.</b> Skill of
-  +0.116 with a 95% interval of
-  [+0.002, +0.230] on
-  117 games means the baseline is <em>probably</em> better than a no-information forecast and
-  <em>only just</em> provably so. A single season of 117 games cannot support more than that sentence, and
-  anything stronger on this page would be a fabrication. Multiplicity is disclosed:
+  +0.109 with a 95% interval of
+  [-0.005, +0.219] on
+  118 games. That interval contains zero, so on this window the model is NOT demonstrably better than the no-information forecast. The window also grew by one game (Week 10's Monday-night final) and the bound crossed zero on it, which is exactly the failure mode a lower bound exists to expose: a point estimate that moved from +0.116 to +0.109 still looks like skill, the interval does not.
+  A single season of 118 games cannot support more than that sentence, and anything stronger on
+  this page would be a fabrication. Multiplicity is disclosed:
   n_trials = 1, so the Bonferroni factor is 0.05 &mdash; which is
   honest only while nobody scores a second variant on this window without registering it first.</div>
 
@@ -100,24 +101,24 @@
 
   <h2>How it scored</h2>
   <div class="tablewrap"><table class="wide" data-table><caption>Walk-forward backtest, weeks 3-10</caption><thead><tr><th>Measure</th><th>Value</th><th>What it means</th><th>Artefact</th></tr></thead><tbody>
-<tr><td><b>games read from official pages</b></td><td>149</td><td>weeks 1-10, every row transcribed from an nfl.com page</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/_raw/reads.tsv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>games scored</b></td><td>117</td><td>weeks 3-10, each predicted only from strictly earlier games</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier score</b></td><td>0.224242</td><td>lower is better; a proper score, so a hedge costs the forecaster rather than buying them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier of the coin (0.5)</b></td><td>0.247863</td><td>the floor any model has to beat</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier of the home baseline (0.55)</b></td><td>0.253782</td><td>the no-information forecast that already knows home teams win more often</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier skill vs home baseline</b></td><td>0.116401</td><td>benchmark-relative, not raw accuracy</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>&hellip; game-cluster 95% lower bound</b></td><td>0.0021</td><td>10,000 bootstrap resamples of whole games, seed 20261116; a point estimate is not a result</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Log-loss skill vs home baseline</b></td><td>0.09014</td><td>the second proper score, so the ranking does not depend on one metric</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Hit rate on the model's side</b></td><td>0.641026</td><td>printed beside the proper scores, never instead of them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Mean absolute error of the originable margin</b></td><td>9.6681</td><td>points; the fair line is this margin negated</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>games read from official pages</b></td><td>150</td><td>weeks 1-10, every row transcribed from an nfl.com page</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/_raw/reads.tsv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>games scored</b></td><td>118</td><td>weeks 3-10, each predicted only from strictly earlier games</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier score</b></td><td>0.226508</td><td>lower is better; a proper score, so a hedge costs the forecaster rather than buying them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier of the coin (0.5)</b></td><td>0.247881</td><td>the floor any model has to beat</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier of the home baseline (0.55)</b></td><td>0.254195</td><td>the no-information forecast that already knows home teams win more often</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier skill vs home baseline</b></td><td>0.108919</td><td>benchmark-relative, not raw accuracy</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>&hellip; game-cluster 95% lower bound</b></td><td>-0.0052</td><td>10,000 bootstrap resamples of whole games, seed 20261116; a point estimate is not a result</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Log-loss skill vs home baseline</b></td><td>0.084358</td><td>the second proper score, so the ranking does not depend on one metric</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Hit rate on the model's side</b></td><td>0.635593</td><td>printed beside the proper scores, never instead of them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Mean absolute error of the originable margin</b></td><td>9.672</td><td>points; the fair line is this margin negated</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>The removal-of-luck panel</h2>
   <div class="note"><p>A bettor who always takes the model&rsquo;s side went
-  <b>75&ndash;42</b> where
-  its own probabilities expected <b>76.057</b> wins. The standard deviation of that
-  difference is <b>5.042</b> wins, so the gap is
-  <b>-0.21</b> standard deviations &mdash; inside one standard deviation: this record is not evidence of skill or of failure, it is what a coin would do. Win totals are luck until
+  <b>75&ndash;43</b> where
+  its own probabilities expected <b>76.758</b> wins. The standard deviation of that
+  difference is <b>5.063</b> wins, so the gap is
+  <b>-0.347</b> standard deviations &mdash; inside one standard deviation: this record is not evidence of skill or of failure, it is what a coin would do. Win totals are luck until
   they are compared with the sum of the probabilities behind them; that comparison is this panel, and it is
   the reason the leaderboard separates <em>signal</em> from <em>staking</em>.</p></div>
 
@@ -126,7 +127,7 @@
 <tr><td>0.0-0.2 (probability of the side picked)</td><td>0</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td><span class="pill warn">yes</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 <tr><td>0.2-0.4 (probability of the side picked)</td><td>0</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td><span class="pill warn">yes</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 <tr><td>0.4-0.6 (probability of the side picked)</td><td>49</td><td>0.5572</td><td>0.5918</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td>0.6-0.8 (probability of the side picked)</td><td>57</td><td>0.6917</td><td>0.6316</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td>0.6-0.8 (probability of the side picked)</td><td>58</td><td>0.6919</td><td>0.6207</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 <tr><td>0.8-1.0 (probability of the side picked)</td><td>11</td><td>0.848</td><td>0.9091</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 </tbody></table></div>
 
@@ -138,7 +139,7 @@
 <tr><td><b>total_fair_line</b></td><td>the model is a margin model; its total is the league-average total, published as a floor and labelled as one, not as an estimate of the total</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/preregistration/PR-01-shadow-baseline.md" target="_blank" rel="noopener noreferrer">rule ↗</a></td></tr>
 </tbody></table></div>
 
-  <h2>Pre-kickoff shadow record &mdash; written 2026-11-16T18:52:12Z</h2>
+  <h2>Pre-kickoff shadow record &mdash; written 2026-11-17T23:02:27Z</h2>
   <div class="tablewrap"><table class="wide" data-table><caption>14 games recorded before kickoff; immutable by build</caption><thead><tr><th>Week · Game</th><th>Kickoff (ET)</th><th>Matchup</th><th>p(home)</th><th>Model side</th><th>Fair line (home)</th><th>Market line</th><th>Residual</th><th>Recorded at</th><th>Source</th></tr></thead><tbody>
 <tr><td>10 · 2026_10_LAC_BAL</td><td>2026-11-16 8:15 PM</td><td><b>LAC</b> at <b>BAL</b></td><td>0.701232</td><td><b>home</b></td><td>-7.0</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
 <tr><td>11 · 2026_11_IND_HOU</td><td>2026-11-19 8:15 PM</td><td><b>IND</b> at <b>HOU</b></td><td>0.726308</td><td><b>home</b></td><td>-8.0</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/colts-at-texans-2026-reg-11" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
@@ -155,9 +156,59 @@
 <tr><td>11 · 2026_11_MIN_SF</td><td>2026-11-22 8:20 PM</td><td><b>MIN</b> at <b>SF</b></td><td>0.638409</td><td><b>home</b></td><td>-5.0</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
 <tr><td>11 · 2026_11_CIN_WAS</td><td>2026-11-23 8:15 PM</td><td><b>CIN</b> at <b>WAS</b></td><td>0.262489</td><td><b>away</b></td><td>8.5</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/bengals-at-commanders-2026-reg-11" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
 </tbody></table></div>
-  <p class="muted">the CSV is written once; a second run that would change any forecast number aborts the build (the recorded clock is excluded from the fingerprint) Fingerprint
+  <p class="muted">append-only ledger: existing rows are never rewritten, so a forecast cannot be edited after kickoff; the build re-derives each row from the frozen rule at its own record time and aborts if a number does not reproduce Fingerprint
   <code>37fe5d5427d9ac99&hellip;</code> ·
   <a href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/forecasts_pre_kickoff.csv">the file ↗</a></p>
+
+  <h2>The sealed ledger, audited</h2>
+  <div class="note"><p>An append-only ledger is only worth what its audit is worth. append-only ledger: existing rows are never rewritten, so a forecast cannot be edited after kickoff; the build re-derives each row from the frozen rule at its own record time and aborts if a number does not reproduce</p>
+  <p><b>Re-derivation:</b> 14 of 14 sealed rows
+  reproduce, field by field, from the frozen PR-01 rule applied to the results that existed at that row's
+  own record time. <b>Pre-kickoff:</b> 14 of
+  14 rows were written strictly before their kickoff, measured against
+  kickoff instant (ET printed by the official page, converted with the IANA tz database).
+  every sealed number is what the frozen rule produces from results strictly earlier than the moment it was recorded - i.e. the seal can be audited without trusting it
+  No seal failure.</p></div>
+
+  <h2>The prospective record, resolved as far as the league has decided</h2>
+  <div class="note"><b>n = 1 resolved. One game is one game: there is no interval here, no ranking, and no claim about skill in either direction. A resolved prospective record becomes evidence only when it is wide enough to survive the game-cluster bootstrap, which needs &gt;=100 games (PR-01 promotion clause).</b> This is the only part of PR-01 that was not chosen after seeing data: the prediction was written, hashed and committed before kickoff. It is also the smallest sample in the repository, and it is labelled as such.
+  Resolved 1 of 14 sealed rows;
+  13 pending. Mean Brier 0.491726,
+  side record 0-1, margin error
+  10.1273 points, benchmark-relative skill
+  -0.62554. There is no interval on this and there cannot be: an
+  interval needs a sample. What the resolved row does carry is the discipline the brief asked for — a
+  prediction written, hashed and committed before kickoff, graded against the league's own final, and
+  published whether or not it flatters the model.</div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Every sealed forecast, with its outcome or an explicit pending</caption><thead><tr><th>Week · Game</th><th>Matchup</th><th>Sealed at (UTC)</th><th>Kickoff (UTC)</th><th>p(home)</th><th>Model side</th><th>Fair line</th><th>Official final</th><th>Actual margin (home)</th><th>Side</th><th>Brier</th><th>Skill vs 0.55</th><th>Margin error (pts)</th><th>Status</th><th>Source</th></tr></thead><tbody>
+<tr><td>10 · 2026_10_LAC_BAL</td><td><b>LAC</b> at <b>BAL</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-17T01:15:00Z</td><td>0.701232</td><td><b>home</b></td><td>-7.0</td><td><b>23&ndash;20</b></td><td>-3</td><td><span class="pill warn">no</span></td><td>0.491726</td><td>-0.625542</td><td>10.1273</td><td>final (official)</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_IND_HOU</td><td><b>IND</b> at <b>HOU</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-20T01:15:00Z</td><td>0.726308</td><td><b>home</b></td><td>-8.0</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/colts-at-texans-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_ARZ_KC</td><td><b>AZ</b> at <b>KC</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.90526</td><td><b>home</b></td><td>-17.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_BAL_CAR</td><td><b>BAL</b> at <b>CAR</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.62572</td><td><b>home</b></td><td>-4.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/ravens-at-panthers-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_MIA_BUF</td><td><b>MIA</b> at <b>BUF</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.889315</td><td><b>home</b></td><td>-16.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/dolphins-at-bills-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_NO_CHI</td><td><b>NO</b> at <b>CHI</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.767706</td><td><b>home</b></td><td>-10.0</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/saints-at-bears-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_PIT_PHI</td><td><b>PIT</b> at <b>PHI</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.315326</td><td><b>away</b></td><td>6.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/steelers-at-eagles-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_TB_DET</td><td><b>TB</b> at <b>DET</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.635883</td><td><b>home</b></td><td>-4.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_TEN_DAL</td><td><b>TEN</b> at <b>DAL</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T18:00:00Z</td><td>0.735017</td><td><b>home</b></td><td>-8.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/titans-at-cowboys-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_NYJ_LAC</td><td><b>NYJ</b> at <b>LAC</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T21:05:00Z</td><td>0.406314</td><td><b>away</b></td><td>3.0</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/jets-at-chargers-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_JAX_NYG</td><td><b>JAX</b> at <b>NYG</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T21:25:00Z</td><td>0.24949</td><td><b>away</b></td><td>9.0</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/jaguars-at-giants-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_LV_DEN</td><td><b>LV</b> at <b>DEN</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-22T21:25:00Z</td><td>0.667817</td><td><b>home</b></td><td>-6.0</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/raiders-at-broncos-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_MIN_SF</td><td><b>MIN</b> at <b>SF</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-23T01:20:00Z</td><td>0.638409</td><td><b>home</b></td><td>-5.0</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+<tr><td>11 · 2026_11_CIN_WAS</td><td><b>CIN</b> at <b>WAS</b></td><td class="muted">2026-11-16T18:52:12Z</td><td>2026-11-24T01:15:00Z</td><td>0.262489</td><td><b>away</b></td><td>8.5</td><td class="blank" title="not yet played">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="open">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td>pending — not yet played or not yet read</td><td><a class="src-link" href="https://www.nfl.com/games/bengals-at-commanders-2026-reg-11" target="_blank" rel="noopener noreferrer">official ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>Sealing cadence — when the next rows may be written</h2>
+  <div class="note"><p>seal week W in the window that opens once week W-1&#x27;s last game is final and closes at week W&#x27;s first kickoff. Today the Week 11 slate is fully sealed, so there is nothing to write; sealing Week 12 must wait for Week 11&#x27;s final result. A build that sealed Week 12 now would use ratings that are one week stale, and would say so in the row&#x27;s clock time.</p>
+  <p>Slate read from <code>data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv</code>:
+  13 fixtures, 13 already sealed,
+  0 unsealed and unplayed
+  (none).
+  First kickoff on the slate <b>2026-11-19 8:15 PM ET</b>, last
+  <b>2026-11-23 8:15 PM ET</b>. opens after the last final of the current slate; closes at the next slate&#x27;s first kickoff (both printed by the official by-week pages, not by this tool)</p>
+  <p class="muted">Why the cadence is a rule and not a convenience: a forecast for Week 12 written today
+  would use ratings that are a week stale, and the row's own clock time would show it. The ledger therefore
+  refuses work it cannot do honestly, and the site publishes the next window instead of pretending the
+  backlog is progress.</p></div>
 
   <h2>Every scored game</h2>
   <div class="tablewrap"><table class="wide" data-table><caption>One row per game, each with its official fixture page</caption><thead><tr><th>Wk</th><th>Date</th><th>Matchup (rating)</th><th>Score</th><th>p(home)</th><th>Fair line</th><th>Brier</th><th>Log loss</th><th>Source</th></tr></thead><tbody>
@@ -278,10 +329,11 @@
 <tr><td>10</td><td>2026-11-15</td><td><b>PIT (3.6)</b> at <b>CIN (6.5)</b></td><td>18&ndash;38</td><td>0.630559</td><td>-4.5</td><td>0.136487</td><td>0.461149</td><td><a class="src-link" href="https://www.nfl.com/games/steelers-at-bengals-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
 <tr><td>10</td><td>2026-11-15</td><td><b>HOU (1.7)</b> at <b>CLE (-3.1818)</b></td><td>24&ndash;27</td><td>0.403965</td><td>3.5</td><td>0.355258</td><td>0.906427</td><td><a class="src-link" href="https://www.nfl.com/games/texans-at-browns-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
 <tr><td>10</td><td>2026-11-15</td><td><b>MIN (3.0)</b> at <b>GB (2.2727)</b></td><td>30&ndash;10</td><td>0.525772</td><td>-1.0</td><td>0.276436</td><td>0.746068</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-packers-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
+<tr><td>10</td><td>2026-11-16</td><td><b>LAC (-9.8)</b> at <b>BAL (-4.2727)</b></td><td>23&ndash;20</td><td>0.701232</td><td>-7.0</td><td>0.491726</td><td>1.208087</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
 </tbody></table></div>
 
   <div class="note"><b>Limits.</b><ul>
-  <li>n = 117 games, one season, one conference-independent sample; the interval, not the point estimate, is the result</li><li>the model has no personnel, availability, rest or venue feature - it is the baseline those features have to beat, not a proposal</li><li>ratings use points scored and allowed vs whoever; schedule strength is not adjusted, so BUF&#x27;s and NYJ&#x27;s ratings are not comparable in the way an opponent-adjusted model&#x27;s would be</li><li>one season cannot test calibration at the tails; the 0.8-1.0 bin is printed with its count</li>
+  <li>n = 118 games, one season, one conference-independent sample; the interval, not the point estimate, is the result</li><li>the model has no personnel, availability, rest or venue feature - it is the baseline those features have to beat, not a proposal</li><li>ratings use points scored and allowed vs whoever; schedule strength is not adjusted, so BUF&#x27;s and NYJ&#x27;s ratings are not comparable in the way an opponent-adjusted model&#x27;s would be</li><li>one season cannot test calibration at the tails; the 0.8-1.0 bin is printed with its count</li>
   </ul></div>
 </section>
 

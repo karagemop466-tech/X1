@@ -1,36 +1,40 @@
 {
  "dataset": "official_reverification_2026_11_17",
  "title": "Line-by-line re-verification of the 2026-11-17 official reads against the published corpus",
- "generated_at": "2026-11-17T23:01:15Z",
+ "generated_at": "2026-11-17T23:16:41Z",
  "generated_by": "tools/verify_2026_11_17.py (session arena-e1436334-x1)",
  "reads": [
   {
    "page": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "file": "data/verification/2026_11_17/official_w10_results_2026_11_17.tsv",
    "rows": 14,
-   "read_at": "2026-11-17 ~22:45 UTC"
+   "read_on": "2026-11-17",
+   "clock_noted_by_reader": "2026-11-17 22:45 UTC"
   },
   {
    "page": "https://www.nfl.com/standings/league/2026/REG",
    "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv",
    "rows": 32,
-   "read_at": "2026-11-17 ~22:48 UTC"
+   "read_on": "2026-11-17",
+   "clock_noted_by_reader": "2026-11-17 22:48 UTC"
   },
   {
    "page": "https://www.nfl.com/schedules/2026/by-week/week-11",
    "file": "data/verification/2026_11_17/official_w11_slate_2026_11_17.tsv",
    "rows": 19,
-   "read_at": "2026-11-17 ~22:52 UTC"
+   "read_on": "2026-11-17",
+   "clock_noted_by_reader": "2026-11-17 22:52 UTC"
   }
  ],
+ "read_clock_note": "Two clocks, and the difference between them is stated rather than smoothed. Each pack header carries a minute (22:45 / 22:48 / 22:52 UTC) that the READER wrote into the file at transcription time; the page reader itself returns content with no retrieval timestamp, so those minutes are a self-report, accurate to the order and the hour, not an instrument. The automated capture's stamp for the same standings page IS an instrument reading (2026-11-17T19:49:49Z, content sha256 in the header), and check B11 compares the two reads. The feed's arithmetic gate is validated against the dated pack; the capture is its second opinion. Where the brief asks for reads 'with a clock time', that is what the collector provides and what a hand read can only claim to the minute it noted itself.",
  "second_official_read": {
   "fixture": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
   "why": "the only fixture whose state changed between the 2026-11-16 and 2026-11-17 reads, so it is the one row worth reading on a second official page (Game Center, with quarter scores and the printed venue)"
  },
  "transcription_hashes": {
   "official_w10_results_2026_11_17.tsv": "9aca9707ab26ae702f9d0f1f2c415a800951d8915eca48b91eb7185e2654bafb",
-  "official_standings_2026_11_17.tsv": "b9f290b1c7a52aa8c5787fa65121263dcc0fff152229e009cd62e73cadc724fd",
-  "official_w11_slate_2026_11_17.tsv": "c9cb519b83340fa2b8c5de2183fcbbab53caf2f4dff350da74d613abe4cdbfe8",
+  "official_standings_2026_11_17.tsv": "51f3ef1c414fd61bbf455d00299d11f57b5408db9ee2c595914c7659035f5661",
+  "official_w11_slate_2026_11_17.tsv": "570aeb4adf8cb65b8710b286622a063927aef184cc78a4f980c6851af54cc0ca",
   "reads.tsv": "484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312",
   "mirror_games.csv": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01"
  },
@@ -95,21 +99,14 @@
    "mirror_agreements": 150,
    "mirror_scored_2026_rows": 150,
    "mirror_role": "cross-check only; never a published source",
-   "manifest": [
-    {
-     "name": "games.csv",
-     "repo": "nflverse/nfldata",
-     "path": "data/games.csv",
-     "source_key": "nfldata_games",
-     "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv",
-     "bytes": 2190568,
-     "sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
-     "status": "refreshed",
-     "retrieved_at": "2026-11-17",
-     "previous_sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
-     "rows": 7548
-    }
-   ],
+   "manifest_pin": {
+    "bytes": 2190568,
+    "sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+    "status": "refreshed",
+    "retrieved_at": "2026-11-17",
+    "previous_sha256": "60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8",
+    "rows": 7548
+   },
    "failures": []
   },
   "B7 capture freshness": {
@@ -126,7 +123,6 @@
      "rows": 895,
      "drift": "fail",
      "status": "new",
-     "hours_since_read": 3.19,
      "content_sha256": "6f159834383f0064dfb5ec7586699a6ce1f90edef920f1c40b9c63923e12d594"
     },
     {
@@ -135,7 +131,6 @@
      "rows": 1802,
      "drift": "pass",
      "status": "new",
-     "hours_since_read": 3.19,
      "content_sha256": "42c51ed52b66dcbffd8256689534654cf82f6cb37021e43f3390304a22abfc1d"
     },
     {
@@ -144,7 +139,6 @@
      "rows": 347,
      "drift": "pass",
      "status": "unchanged",
-     "hours_since_read": 3.19,
      "content_sha256": "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33"
     },
     {
@@ -153,7 +147,6 @@
      "rows": 32,
      "drift": "pass",
      "status": "unchanged",
-     "hours_since_read": 3.19,
      "content_sha256": "e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32"
     },
     {
@@ -162,7 +155,6 @@
      "rows": 288,
      "drift": "pass",
      "status": "new",
-     "hours_since_read": 3.19,
      "content_sha256": "79385fd9001965650cc8d48d16d1cedd26c4eee1ed6f39cb0d0185ab8cee72f6"
     },
     {
@@ -171,7 +163,6 @@
      "rows": 14,
      "drift": "pass",
      "status": "new",
-     "hours_since_read": 28.29,
      "content_sha256": "c95d423beb27d8c18c05e23dd9e99323330daf07091077531f40a0d86c8bde53"
     },
     {
@@ -180,7 +171,6 @@
      "rows": 19,
      "drift": "pass",
      "status": "new",
-     "hours_since_read": 28.15,
      "content_sha256": "0ec453ed4dd6f9e13b655e5e16a490ea58408ae433543f3e9190c84970410c90"
     }
    ],
@@ -225,6 +215,20 @@
    "byes": 6,
    "clubs_covered": 32,
    "slate_games_unsealed": [],
+   "failures": []
+  },
+  "B11 two independent standings reads": {
+   "verdict": "PASS",
+   "clubs": 32,
+   "cells_compared": 512,
+   "capture": {
+    "file": "data/pipeline/standings.json",
+    "as_read_at": "2026-11-17T19:49:49+00:00",
+    "content_sha256": "2236c73a6a2866cacf022f3edacf0c776030d583683952a01c2d4d6addb6785d",
+    "source_url": "https://www.nfl.com/standings/league/2026/REG"
+   },
+   "team_name_differences": [],
+   "normalisation": "spaces only ('3 - 1 - 0' == '3-1-0'); no other mapping, so a real disagreement cannot be normalised away",
    "failures": []
   }
  },

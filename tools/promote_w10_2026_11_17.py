@@ -193,11 +193,19 @@ def main(argv=None) -> int:
     man = json.load(open(MANIFEST, encoding="utf-8"))
     for e in man:
         if e.get("name") == "games.csv":
+            # `previous_sha256` means "the pin THIS run replaced", so it is read from the manifest, not
+            # recomputed from the file: a re-run of this script over an already-refreshed tree would
+            # otherwise record the new sha as its own predecessor and erase the audit trail (it did exactly
+            # that on 2026-11-17, and the manifest had to be corrected by hand). The recompute stays as the
+            # integrity check it is: the bytes on disk must have matched the pin before they were replaced.
+            if e.get("sha256") != old_sha:
+                print(f"NOTE: the file on disk ({old_sha[:12]}…) did not match its manifest pin "
+                      f"({(e.get('sha256') or '')[:12]}…) before the refresh — the pin was already stale.")
             e["bytes"] = new_bytes
             e["sha256"] = new_sha
             e["status"] = "refreshed"
             e["retrieved_at"] = READ_AT
-            e["previous_sha256"] = old_sha
+            e["previous_sha256"] = e.get("sha256") or old_sha
             e["url"] = MIRROR_URL
             e["rows"] = len(rows)
     with open(MANIFEST, "w", encoding="utf-8") as fh:

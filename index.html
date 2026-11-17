@@ -35,6 +35,7 @@
       <a href="pages/capture-system.html">Capture system</a>
       <a href="pages/shadow-baseline.html">Shadow baseline</a>
       <a href="pages/next-decisions.html">Suggestions &amp; questions</a>
+      <a href="pages/verification-2026-11-17.html">Re-verification 11-17</a>
       <a href="dashboard/lab-index.html">Analytics lab</a>
       <a href="pages/review.html">Repo review</a>
       <a href="research/index.html">Research lab</a>
@@ -90,7 +91,8 @@
   repository are now joined and published beside it, and the originated lines and strategy results in this dashboard's own pages are
   <strong>computed</strong> from a third-party benchmark, not league-published.</p>
   <a href="pages/changes.html">What changed, line by line →</a> &nbsp;·&nbsp;
-  <a href="pages/cross-check.html">Independent cross-check →</a>
+  <a href="pages/cross-check.html">Independent cross-check →</a> &nbsp;·&nbsp;
+  <a href="pages/verification-2026-11-17.html">This round&#39;s re-verification →</a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">START HERE</div><h2>The decisions waiting on you</h2></div><span class="tag">SNAPSHOT 2026-11-14</span></section>
@@ -221,7 +223,7 @@
 <tr><td><b>R-44</b></td><td>P0</td><td class="wideflag">Publish flagged items on a clearly labelled Flagged for Review page with source links</td><td><b>G-01</b> <small>Source gate</small></td><td>every flag appears on the Flagged for Review page with a source link</td><td><span class="pill warn" title="not computable from files currently in the repository; no official source was fetched for this row in this session, so the cell is left blank">blank</span></td><td><span class="pill warn">not measurable</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/requirements.json" target="_blank" rel="noopener noreferrer">brief &amp;amp; register ↗</a></td></tr>
 <tr><td><b>R-45</b></td><td>P0</td><td class="wideflag">If the build, a check or the deploy fails, fix and retry until the site is live; never merge a broken site</td><td><b>—</b> <small>no gate: release step</small></td><td>0 failing checks at merge time</td><td><span class="pill warn" title="not computable from files currently in the repository; no official source was fetched for this row in this session, so the cell is left blank">blank</span></td><td><span class="pill muted-pill">no gate</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/pipeline/requirements.json" target="_blank" rel="noopener noreferrer">brief &amp;amp; register ↗</a></td></tr>
 <tr><td><b>R-46</b></td><td>P0</td><td class="wideflag">Add a price-snapshot store that records opening and closing numbers for every market we originate</td><td><b>G-11</b> <small>Closing line value gate</small></td><td>every originated market has an opening and a closing number</td><td><b>0</b> <small>rows</small></td><td><span class="pill high">gate not met</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/prices/price_coverage.json" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
-<tr><td><b>R-47</b></td><td>P0</td><td class="wideflag">Add a verified results feed so backtests and ROI can be computed at all</td><td><b>G3</b> <small>Calibration</small></td><td>every final game in every season settles ROI</td><td><b>2232</b> <small>games</small></td><td><span class="pill warn">stale — see note</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/results_feed_meta.json" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
+<tr><td><b>R-47</b></td><td>P0</td><td class="wideflag">Add a verified results feed so backtests and ROI can be computed at all</td><td><b>G3</b> <small>Calibration</small></td><td>every final game in every season settles ROI</td><td><b>150</b> <small>games of 2026</small></td><td><span class="pill warn">stale — see note</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.json" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
 <tr><td><b>R-48</b></td><td>P0</td><td class="wideflag">Originate the side first, then the total, then the moneyline</td><td><b>G-11</b> <small>Closing line value gate</small></td><td>origination order field reads side &lt; total &lt; moneyline on every game</td><td><b>56</b> <small>market rows</small></td><td><span class="pill high">gate not met</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
 <tr><td><b>R-49</b></td><td>P0</td><td class="wideflag">Publish the model&#x27;s fair line, the market line, and the difference as separate columns</td><td><b>G-11</b> <small>Closing line value gate</small></td><td>three columns per market: model_fair_line, market_line, difference</td><td><b>8.011</b> <small>points</small></td><td><span class="pill high">gate not met</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/lines/originated_markets_2026_week10.csv" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
 <tr><td><b>R-50</b></td><td>P0</td><td class="wideflag">Separate &#x27;signal&#x27; from &#x27;staking&#x27; in the leaderboard so a lucky staking run cannot mask a bad signal</td><td><b>G2</b> <small>Skill above variance</small></td><td>signal gate and staking gate are reported separately and can disagree</td><td><b>0</b> <small>of 8 strategies</small></td><td><span class="pill high">gate not met</span></td><td>met</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/gates.json" target="_blank" rel="noopener noreferrer">source ↗</a></td></tr>
@@ -236,22 +238,22 @@
 
 <section class="sectionhead"><div><div class="eyebrow">2026-11-16 · EVIDENCE AND BASELINE</div>
 <h2>The collector was running green and publishing nothing &mdash; and what landed instead</h2></div>
-<span class="tag">49 CAPTURES · 72 STANDING CELLS MOVED · 117 GAMES SCORED</span></section>
+<span class="tag">49 CAPTURES · 72 STANDING CELLS MOVED · 118 GAMES SCORED</span></section>
 <section class="content">
   <div class="statrow">
     <div class="stat"><strong>13 / 14</strong><span>Week 10 games officially final</span><span class="statnote">the Monday-night game was still unplayed at read time</span></div>
     <div class="stat"><strong>12</strong><span>rows promoted scheduled &amp;rarr; final</span><span class="statnote">with both dates published, nothing overwritten</span></div>
     <div class="stat"><strong>160</strong><span>standings assertions</span><span class="statnote">0 failures: the delta closes exactly</span></div>
-    <div class="stat"><strong>+0.116</strong><span>baseline Brier skill</span><span class="statnote">95% lower bound +0.002 on 117 games</span></div>
+    <div class="stat"><strong>+0.109</strong><span>baseline Brier skill</span><span class="statnote">95% lower bound -0.005 on 117 games</span></div>
   </div>
   <div class="tablewrap"><table class="wide" data-table><caption>The 2026-11-16 round, one row per claim</caption><thead><tr><th>What happened</th><th>Number</th><th>Where to check it</th><th>Source</th></tr></thead><tbody>
 <tr><td><b>The scheduled collector never pushed its captures</b></td><td>49 captures now retained</td><td><a href="pages/capture-system.html">capture system &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/_ci/commit.log" target="_blank" rel="noopener noreferrer">log ↗</a></td></tr>
 <tr><td><b>Week 10 re-read from the official page</b></td><td>14 fixtures, 13 final</td><td><a href="pages/capture-system.html">Week 10 table &rarr;</a></td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Standings re-read and diffed, not overwritten</b></td><td>72 field changes, all closing</td><td><a href="pages/capture-system.html">delta &rarr;</a></td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
 <tr><td><b>Day-over-day injury movement, first time measured</b></td><td>34 changed cells</td><td><a href="pages/capture-system.html">diff &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/captures/diffs/injuries__2026-11-14__2026-11-15.csv" target="_blank" rel="noopener noreferrer">diff ↗</a></td></tr>
-<tr><td><b>PR-01 shadow baseline registered and scored</b></td><td>skill +0.116, n=117</td><td><a href="pages/shadow-baseline.html">shadow baseline &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/preregistration/PR-01-shadow-baseline.md" target="_blank" rel="noopener noreferrer">rule ↗</a></td></tr>
+<tr><td><b>PR-01 shadow baseline registered and scored</b></td><td>skill +0.109, n=118</td><td><a href="pages/shadow-baseline.html">shadow baseline &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/preregistration/PR-01-shadow-baseline.md" target="_blank" rel="noopener noreferrer">rule ↗</a></td></tr>
 <tr><td><b>First pre-kickoff forecast record</b></td><td>14 games</td><td><a href="pages/shadow-baseline.html">shadow record &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/forecasts_pre_kickoff.csv" target="_blank" rel="noopener noreferrer">file ↗</a></td></tr>
-<tr><td><b>A review board so the next round is chosen, not guessed</b></td><td>10 suggestions · 10 questions</td><td><a href="pages/next-decisions.html">suggestions &amp; questions &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/next_decisions/round_2026_11_16.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
+<tr><td><b>A review board so the next round is chosen, not guessed</b></td><td>14 suggestions · 12 questions</td><td><a href="pages/next-decisions.html">suggestions &amp; questions &rarr;</a></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/next_decisions/round_2026_11_16.json" target="_blank" rel="noopener noreferrer">register ↗</a></td></tr>
 </tbody></table></div>
 </section>
 

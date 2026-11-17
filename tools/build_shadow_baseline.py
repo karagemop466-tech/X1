@@ -682,6 +682,7 @@ def build() -> dict:
             "n_sealed": seal["n_sealed"],
             "n_reproduced_from_rule": seal["n_reproduced"],
             "n_confirmed_pre_kickoff": seal["n_pre_kickoff_confirmed"],
+            "pre_kickoff_basis": seal.get("pre_kickoff_basis", ""),
             "failures": seal["failures"],
             "rows": seal["rows"],
             "meaning": "every sealed number is what the frozen rule produces from results strictly earlier "

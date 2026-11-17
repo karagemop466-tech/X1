@@ -4,7 +4,7 @@
 # and home_score are blank in every row. Blank = the official page did not print a number, not "0" and not
 # "unknown, filled in from a model".
 # away_record / home_record are the club records printed beside each club logo on THIS page (post-Week 10).
-# They are checked against the separate standings page by tools/verify_2026_11_17.py (check A3): 26 clubs appear
+# They are checked against the separate standings page by tools/verify_2026_11_17.py (check B3): 26 clubs appear
 # in a fixture, 6 appear on the bye list, 32 in the standings table, and every record agrees.
 # row_type "game" for the 13 fixtures, "bye" for the 6 clubs the page lists under "Teams on Bye".
 # time_et is the kickoff time in ET as printed; network is the broadcaster logo the page prints for that game.
