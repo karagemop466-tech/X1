@@ -1,9 +1,9 @@
 {
  "dataset": "results_closure_2026_11_17",
  "title": "Week 10 closure and results-feed re-baseline: dated official reads, 2026-11-17",
- "generated_at": "2026-11-17T23:08:04+00:00",
+ "generated_at": "2026-11-17T23:25:06+00:00",
  "generated_by": "tools/verify_2026_11_17.py (session arena-473e08d5-x1)",
- "read_window_utc": "2026-11-17T22:44Z..22:51Z (sandbox wall clock; the fetch tool prints no clock)",
+ "read_window_utc": "2026-11-17T22:44Z..23:06Z (sandbox wall clock; the fetch tool prints no clock of its own, so these bound the calls rather than timestamp them). The official pages were read 22:45-22:51Z; the mirror was fetched twice, at 22:44:27Z and again at 23:05:12Z, because the first fetch did not yet carry the Sunday scores - see V9.",
  "sources": [
   {
    "label": "NFL.com Week 10 schedule (14 finals)",

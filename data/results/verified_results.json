@@ -72,6 +72,7 @@
    "game_url": "https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-09",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -94,6 +95,7 @@
    "game_url": "https://www.nfl.com/games/49ers-at-rams-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-10",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -116,6 +118,7 @@
    "game_url": "https://www.nfl.com/games/bears-at-panthers-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -138,6 +141,7 @@
    "game_url": "https://www.nfl.com/games/buccaneers-at-bengals-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -160,6 +164,7 @@
    "game_url": "https://www.nfl.com/games/saints-at-lions-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -182,6 +187,7 @@
    "game_url": "https://www.nfl.com/games/bills-at-texans-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -204,6 +210,7 @@
    "game_url": "https://www.nfl.com/games/ravens-at-colts-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -226,6 +233,7 @@
    "game_url": "https://www.nfl.com/games/browns-at-jaguars-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -248,6 +256,7 @@
    "game_url": "https://www.nfl.com/games/falcons-at-steelers-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -270,6 +279,7 @@
    "game_url": "https://www.nfl.com/games/jets-at-titans-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -292,6 +302,7 @@
    "game_url": "https://www.nfl.com/games/cardinals-at-chargers-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -314,6 +325,7 @@
    "game_url": "https://www.nfl.com/games/dolphins-at-raiders-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -336,6 +348,7 @@
    "game_url": "https://www.nfl.com/games/lions-at-bills-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-17",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -358,6 +371,7 @@
    "game_url": "https://www.nfl.com/games/panthers-at-falcons-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -380,6 +394,7 @@
    "game_url": "https://www.nfl.com/games/saints-at-ravens-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -402,6 +417,7 @@
    "game_url": "https://www.nfl.com/games/vikings-at-bears-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -424,6 +440,7 @@
    "game_url": "https://www.nfl.com/games/bengals-at-texans-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -446,6 +463,7 @@
    "game_url": "https://www.nfl.com/games/steelers-at-patriots-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -468,6 +486,7 @@
    "game_url": "https://www.nfl.com/games/packers-at-jets-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -490,6 +509,7 @@
    "game_url": "https://www.nfl.com/games/browns-at-buccaneers-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -512,6 +532,7 @@
    "game_url": "https://www.nfl.com/games/eagles-at-titans-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -534,6 +555,7 @@
    "game_url": "https://www.nfl.com/games/jaguars-at-broncos-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -556,6 +578,7 @@
    "game_url": "https://www.nfl.com/games/raiders-at-chargers-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -578,6 +601,7 @@
    "game_url": "https://www.nfl.com/games/seahawks-at-cardinals-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -600,6 +624,7 @@
    "game_url": "https://www.nfl.com/games/commanders-at-cowboys-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -622,6 +647,7 @@
    "game_url": "https://www.nfl.com/games/packers-at-vikings-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -644,6 +670,7 @@
    "game_url": "https://www.nfl.com/games/commanders-at-eagles-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -666,6 +693,7 @@
    "game_url": "https://www.nfl.com/games/cowboys-at-giants-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-13",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -688,6 +716,7 @@
    "game_url": "https://www.nfl.com/games/broncos-at-chiefs-2026-reg-1",
    "source_label": "NFL.com Week 1 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-14",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -710,6 +739,7 @@
    "game_url": "https://www.nfl.com/games/dolphins-at-49ers-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -732,6 +762,7 @@
    "game_url": "https://www.nfl.com/games/colts-at-chiefs-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-20",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -754,6 +785,7 @@
    "game_url": "https://www.nfl.com/games/giants-at-rams-2026-reg-2",
    "source_label": "NFL.com Week 2 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-21",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -776,6 +808,7 @@
    "game_url": "https://www.nfl.com/games/falcons-at-packers-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-24",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -798,6 +831,7 @@
    "game_url": "https://www.nfl.com/games/chargers-at-bills-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -820,6 +854,7 @@
    "game_url": "https://www.nfl.com/games/panthers-at-browns-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -842,6 +877,7 @@
    "game_url": "https://www.nfl.com/games/jets-at-lions-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -864,6 +900,7 @@
    "game_url": "https://www.nfl.com/games/texans-at-colts-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -886,6 +923,7 @@
    "game_url": "https://www.nfl.com/games/patriots-at-jaguars-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -908,6 +946,7 @@
    "game_url": "https://www.nfl.com/games/chiefs-at-dolphins-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -930,6 +969,7 @@
    "game_url": "https://www.nfl.com/games/titans-at-giants-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -952,6 +992,7 @@
    "game_url": "https://www.nfl.com/games/bengals-at-steelers-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -974,6 +1015,7 @@
    "game_url": "https://www.nfl.com/games/seahawks-at-commanders-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -996,6 +1038,7 @@
    "game_url": "https://www.nfl.com/games/cardinals-at-49ers-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1018,6 +1061,7 @@
    "game_url": "https://www.nfl.com/games/vikings-at-buccaneers-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1040,6 +1084,7 @@
    "game_url": "https://www.nfl.com/games/steelers-at-browns-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1062,6 +1107,7 @@
    "game_url": "https://www.nfl.com/games/colts-at-commanders-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1084,6 +1130,7 @@
    "game_url": "https://www.nfl.com/games/titans-at-ravens-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1106,6 +1153,7 @@
    "game_url": "https://www.nfl.com/games/patriots-at-bills-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1128,6 +1176,7 @@
    "game_url": "https://www.nfl.com/games/jets-at-bears-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1150,6 +1199,7 @@
    "game_url": "https://www.nfl.com/games/jaguars-at-bengals-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1172,6 +1222,7 @@
    "game_url": "https://www.nfl.com/games/cowboys-at-texans-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1194,6 +1245,7 @@
    "game_url": "https://www.nfl.com/games/cardinals-at-giants-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1216,6 +1268,7 @@
    "game_url": "https://www.nfl.com/games/rams-at-eagles-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1238,6 +1291,7 @@
    "game_url": "https://www.nfl.com/games/packers-at-buccaneers-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1260,6 +1314,7 @@
    "game_url": "https://www.nfl.com/games/dolphins-at-vikings-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1282,6 +1337,7 @@
    "game_url": "https://www.nfl.com/games/chiefs-at-raiders-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1304,6 +1360,7 @@
    "game_url": "https://www.nfl.com/games/raiders-at-saints-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1326,6 +1383,7 @@
    "game_url": "https://www.nfl.com/games/ravens-at-cowboys-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1348,6 +1406,7 @@
    "game_url": "https://www.nfl.com/games/rams-at-broncos-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-27",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1370,6 +1429,7 @@
    "game_url": "https://www.nfl.com/games/eagles-at-bears-2026-reg-3",
    "source_label": "NFL.com Week 3 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-09-28",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1392,6 +1452,7 @@
    "game_url": "https://www.nfl.com/games/chargers-at-seahawks-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1414,6 +1475,7 @@
    "game_url": "https://www.nfl.com/games/broncos-at-49ers-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1436,6 +1498,7 @@
    "game_url": "https://www.nfl.com/games/lions-at-panthers-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-04",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1458,6 +1521,7 @@
    "game_url": "https://www.nfl.com/games/falcons-at-saints-2026-reg-4",
    "source_label": "NFL.com Week 4 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-05",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1480,6 +1544,7 @@
    "game_url": "https://www.nfl.com/games/buccaneers-at-cowboys-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1502,6 +1567,7 @@
    "game_url": "https://www.nfl.com/games/eagles-at-jaguars-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1524,6 +1590,7 @@
    "game_url": "https://www.nfl.com/games/bengals-at-dolphins-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1546,6 +1613,7 @@
    "game_url": "https://www.nfl.com/games/raiders-at-patriots-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1568,6 +1636,7 @@
    "game_url": "https://www.nfl.com/games/vikings-at-saints-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1590,6 +1659,7 @@
    "game_url": "https://www.nfl.com/games/browns-at-jets-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1612,6 +1682,7 @@
    "game_url": "https://www.nfl.com/games/colts-at-steelers-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1634,6 +1705,7 @@
    "game_url": "https://www.nfl.com/games/texans-at-titans-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1656,6 +1728,7 @@
    "game_url": "https://www.nfl.com/games/giants-at-commanders-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1678,6 +1751,7 @@
    "game_url": "https://www.nfl.com/games/bears-at-packers-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1700,6 +1774,7 @@
    "game_url": "https://www.nfl.com/games/broncos-at-chargers-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1722,6 +1797,7 @@
    "game_url": "https://www.nfl.com/games/lions-at-cardinals-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1744,6 +1820,7 @@
    "game_url": "https://www.nfl.com/games/49ers-at-seahawks-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1766,6 +1843,7 @@
    "game_url": "https://www.nfl.com/games/ravens-at-falcons-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-11",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1788,6 +1866,7 @@
    "game_url": "https://www.nfl.com/games/bills-at-rams-2026-reg-5",
    "source_label": "NFL.com Week 5 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-12",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1810,6 +1889,7 @@
    "game_url": "https://www.nfl.com/games/seahawks-at-broncos-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-15",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1832,6 +1912,7 @@
    "game_url": "https://www.nfl.com/games/texans-at-jaguars-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1854,6 +1935,7 @@
    "game_url": "https://www.nfl.com/games/bears-at-falcons-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1876,6 +1958,7 @@
    "game_url": "https://www.nfl.com/games/ravens-at-browns-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1898,6 +1981,7 @@
    "game_url": "https://www.nfl.com/games/titans-at-colts-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1920,6 +2004,7 @@
    "game_url": "https://www.nfl.com/games/jets-at-patriots-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1942,6 +2027,7 @@
    "game_url": "https://www.nfl.com/games/saints-at-giants-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1964,6 +2050,7 @@
    "game_url": "https://www.nfl.com/games/panthers-at-eagles-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -1986,6 +2073,7 @@
    "game_url": "https://www.nfl.com/games/steelers-at-buccaneers-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2008,6 +2096,7 @@
    "game_url": "https://www.nfl.com/games/cardinals-at-rams-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2030,6 +2119,7 @@
    "game_url": "https://www.nfl.com/games/chargers-at-chiefs-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2052,6 +2142,7 @@
    "game_url": "https://www.nfl.com/games/bills-at-raiders-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2074,6 +2165,7 @@
    "game_url": "https://www.nfl.com/games/cowboys-at-packers-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-18",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2096,6 +2188,7 @@
    "game_url": "https://www.nfl.com/games/commanders-at-49ers-2026-reg-6",
    "source_label": "NFL.com Week 6 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-19",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2118,6 +2211,7 @@
    "game_url": "https://www.nfl.com/games/patriots-at-bears-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-22",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2140,6 +2234,7 @@
    "game_url": "https://www.nfl.com/games/steelers-at-saints-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2162,6 +2257,7 @@
    "game_url": "https://www.nfl.com/games/49ers-at-falcons-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2184,6 +2280,7 @@
    "game_url": "https://www.nfl.com/games/bengals-at-ravens-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2206,6 +2303,7 @@
    "game_url": "https://www.nfl.com/games/buccaneers-at-panthers-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2228,6 +2326,7 @@
    "game_url": "https://www.nfl.com/games/giants-at-texans-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2250,6 +2349,7 @@
    "game_url": "https://www.nfl.com/games/colts-at-vikings-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2272,6 +2372,7 @@
    "game_url": "https://www.nfl.com/games/dolphins-at-jets-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2294,6 +2395,7 @@
    "game_url": "https://www.nfl.com/games/browns-at-titans-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2316,6 +2418,7 @@
    "game_url": "https://www.nfl.com/games/broncos-at-cardinals-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2338,6 +2441,7 @@
    "game_url": "https://www.nfl.com/games/packers-at-lions-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2360,6 +2464,7 @@
    "game_url": "https://www.nfl.com/games/rams-at-raiders-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2382,6 +2487,7 @@
    "game_url": "https://www.nfl.com/games/chiefs-at-seahawks-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-25",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2404,6 +2510,7 @@
    "game_url": "https://www.nfl.com/games/cowboys-at-eagles-2026-reg-7",
    "source_label": "NFL.com Week 7 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-26",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2426,6 +2533,7 @@
    "game_url": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-10-29",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2448,6 +2556,7 @@
    "game_url": "https://www.nfl.com/games/ravens-at-bills-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2470,6 +2579,7 @@
    "game_url": "https://www.nfl.com/games/titans-at-bengals-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2492,6 +2602,7 @@
    "game_url": "https://www.nfl.com/games/cardinals-at-cowboys-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2514,6 +2625,7 @@
    "game_url": "https://www.nfl.com/games/vikings-at-lions-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2536,6 +2648,7 @@
    "game_url": "https://www.nfl.com/games/colts-at-jaguars-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2558,6 +2671,7 @@
    "game_url": "https://www.nfl.com/games/raiders-at-jets-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2580,6 +2694,7 @@
    "game_url": "https://www.nfl.com/games/browns-at-steelers-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2602,6 +2717,7 @@
    "game_url": "https://www.nfl.com/games/falcons-at-buccaneers-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2624,6 +2740,7 @@
    "game_url": "https://www.nfl.com/games/chargers-at-rams-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2646,6 +2763,7 @@
    "game_url": "https://www.nfl.com/games/chiefs-at-broncos-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2668,6 +2786,7 @@
    "game_url": "https://www.nfl.com/games/patriots-at-dolphins-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2690,6 +2809,7 @@
    "game_url": "https://www.nfl.com/games/eagles-at-commanders-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-01",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2712,6 +2832,7 @@
    "game_url": "https://www.nfl.com/games/bears-at-seahawks-2026-reg-8",
    "source_label": "NFL.com Week 8 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-02",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2734,6 +2855,7 @@
    "game_url": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-05",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2756,6 +2878,7 @@
    "game_url": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2778,6 +2901,7 @@
    "game_url": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2800,6 +2924,7 @@
    "game_url": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2822,6 +2947,7 @@
    "game_url": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2844,6 +2970,7 @@
    "game_url": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2866,6 +2993,7 @@
    "game_url": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2888,6 +3016,7 @@
    "game_url": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2910,6 +3039,7 @@
    "game_url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2932,6 +3062,7 @@
    "game_url": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2954,6 +3085,7 @@
    "game_url": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2976,6 +3108,7 @@
    "game_url": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -2998,6 +3131,7 @@
    "game_url": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3020,6 +3154,7 @@
    "game_url": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-08",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3042,6 +3177,7 @@
    "game_url": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
    "source_label": "NFL.com Week 9 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-09",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3064,6 +3200,7 @@
    "game_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-12",
    "retrieved_at": "2026-11-14",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3086,6 +3223,7 @@
    "game_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3108,6 +3246,7 @@
    "game_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3130,6 +3269,7 @@
    "game_url": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3152,6 +3292,7 @@
    "game_url": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3174,6 +3315,7 @@
    "game_url": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3196,6 +3338,7 @@
    "game_url": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3218,6 +3361,7 @@
    "game_url": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3240,6 +3384,7 @@
    "game_url": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3262,6 +3407,7 @@
    "game_url": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3284,6 +3430,7 @@
    "game_url": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3306,6 +3453,7 @@
    "game_url": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3328,6 +3476,7 @@
    "game_url": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-15",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   },
@@ -3350,6 +3499,7 @@
    "game_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
    "source_label": "NFL.com Week 10 schedule (by week) \u2014 score read line by line",
    "source_org": "NFL",
+   "date_iso": "2026-11-16",
    "retrieved_at": "2026-11-17",
    "verification": "direct official read + row diff vs mirror + standings arithmetic"
   }

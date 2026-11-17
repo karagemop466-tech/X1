@@ -88,5 +88,16 @@
   "games_compared": 137,
   "disagreements": [],
   "note": "Reference only. The mirror never changes a published value."
+ },
+ "coverage_scope": {
+  "evidence_captured": "2026-11-14",
+  "rows_in_this_artefact": 137,
+  "current_feed_rows": 150,
+  "current_feed_files": [
+   "data/results/verified_results_2026_r3.csv",
+   "data/results/verified_results_2026_n2.csv",
+   "data/results/verified_results.json"
+  ],
+  "why_not_extended": "this builder reads only the verbatim anchor captures in data/results/raw/; the 2026-11-17 Week 10 read is a named-column transcription, not an anchor capture, and inventing anchors would fabricate the one property this file exists to preserve"
  }
 }

@@ -207,3 +207,16 @@ jobs:
       # dated-delta closure and the Week 10 promotion accounting. Read-only by design (see --write).
       - name: The dated official pack still closes
         run: python3 tools/verify_2026_11_16.py --check
+
+      # The 2026-11-17 Week 10 closure: 14 finals read from the official page, the standings baseline the
+      # feed is reconciled against, the mirror cross-check, and the 150-game arithmetic that must reproduce
+      # W-L-T/PF/PA for all 32 clubs. `--check` also fails if the committed pack stops matching a fresh
+      # build of the same reads, so the closure cannot drift from its evidence.
+      - name: The Week 10 closure still reconciles
+        run: python3 tools/verify_2026_11_17.py --check
+
+      # The appends into the three transcription inputs are derived from that pack, not typed into it:
+      # re-running the promotion tool must be a no-op. This is the guard against a hand edit to
+      # reads.tsv or a week PSV that no longer matches the official read it came from.
+      - name: The promoted rows still derive from the dated pack
+        run: python3 tools/promote_week10_2026_11_17.py --check

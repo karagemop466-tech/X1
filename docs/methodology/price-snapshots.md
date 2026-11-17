@@ -37,6 +37,31 @@
   `tools/grade_roi.py` (labelled `assumed_-110` everywhere it appears).
 * The G6 economic gate ("edge survives using only release-time best quote") becomes testable.
 
+## The price-data policy decision (N-4, 2026-11-17)
+
+The brief requires a decision on price data **before any backtest is published**. Decided as follows,
+and implemented in both price artefacts:
+
+1. **No official price exists, so `market_line` stays blank.** Not "blank until convenient" — the build
+   *fails* if a mirror number is ever copied into it (`tools/build_snapshots.py` invariant).
+2. **A third-party price may be published, in a channel that names itself.** The snapshot store now
+   carries `mirror_close_line`, `mirror_close_source_type=third-party-mirror`,
+   `mirror_close_verification=unverified-third-party`, `mirror_close_bytes_sha256` and
+   `residual_vs_mirror_close`. 84 of 84 records are priced and labelled; 0 opening captures exist.
+3. **The residual is not CLV, and the column says so in words.** No wager was placed at either price, so
+   "closing line value" would borrow an authority the data does not have. What is published is the
+   arithmetic difference against a named, fingerprinted third-party number.
+4. **No opening is ever back-filled from a closing file.** The mirror carries one price set per market;
+   a second stage invented from it would be the most flattering cell on the page.
+5. **Every price cites bytes, not a URL.** `data/price_snapshots/provenance.json` records the sha256 of
+   the pinned mirror file the prices derive from, and `tools/build_snapshots.py` refuses to build when
+   the file on disk and `data/raw_manifest.json` disagree — the same rule the results feed now follows
+   after the mirror was observed changing between two fetches 21 minutes apart.
+
+Consequence for the backtest published alongside it: the shadow baseline keeps `market_line` and
+`residual` blank and is scored on outcomes only (PR-01, unchanged); the residual above is published on
+the labelled basis and is never used to rank a strategy.
+
 ## Open items (published on Flagged for Review)
 
 * **Q-02** — no licensed price feed. Without one, opening numbers stay blank and CLV cannot be

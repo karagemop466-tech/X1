@@ -187,6 +187,10 @@ def build() -> tuple[dict, dict]:
             "game_url": game_url(r["game_slug"]),
             "source_label": f"NFL.com Week {week} schedule (by week) — score read line by line",
             "source_org": "NFL",
+            # `date_iso` is the flat-file alias of `gameday`: the site's results table and the ROI
+            # grader both read that name, and the 2026-11-14 view exports it, so the current feed
+            # exports it too instead of making every consumer learn a second spelling.
+            "date_iso": r["date"],
             "retrieved_at": r.get("read_at") or SNAPSHOT,
             "verification": "direct official read + row diff vs mirror + standings arithmetic",
         }
@@ -393,8 +397,8 @@ def main() -> int:
         json.dump(feed, fh, indent=1)
         fh.write("\n")
 
-    cols = ["game_id", "week", "gameday", "away_team", "home_team", "away_score",
-            "home_score", "winner", "margin", "total_points", "is_tie",
+    cols = ["game_id", "week", "gameday", "date_iso", "away_team", "home_team", "away_score",
+            "home_score", "winner", "margin", "total_points", "is_tie", "retrieved_at",
             "source_url", "game_url"]
     with open(os.path.join(OUT, "verified_results_2026_r3.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore")
