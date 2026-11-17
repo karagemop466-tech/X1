@@ -3353,3 +3353,9 @@ The owner's latest message re-states the full brief: review the repo line by lin
 **Pull request.** Branch `arena/d3df5dc2-x1` is pushed. A PR to `main` is **not merged** in this session: the brief is not complete (25 items NOT BUILT, 39 PARTIAL), and merges to `main` are reserved for the final integration session under rule 9. The integrator should merge this docs-and-verifier change with the audit, with its flags listed as above.
 
 **Handoff.** Rows marked NOT BUILT that need owner or follow-up work: 12, 20, 25, 28, 29, 32, 35, 42, 45, 46, 54, 57, 59, 60, 61, 63, 65, 67, 69, 71. Each row names what would clear it.
+
+### PR record — session `arena-d3df5dc2-x1` (2026-11-17)
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/72 — `arena/d3df5dc2-x1` → `main`
+- **Result:** open, **not merged** by design (brief incomplete; merges to `main` reserved for the final integration session, rule 9). Checks were not run by CI on the branch; local verifiers listed in the completion record above all pass.
+- **Handoff:** integrator to merge #72 with the audit, link the register from the Flagged page, and add `tools/verify_brief_coverage.py` to CI.
