@@ -3461,3 +3461,48 @@ files.
 file inside another session's claim. If #61 is still open when I reach E-4, I will log the exact patch
 here instead of editing, so it can be applied on top of #61's version.
 
+
+---
+
+## Completion record — `arena-2f95e652-x1` (2026-11-17)
+
+| # | Task | Status | Artefacts | Sources checked |
+|---|---|---|---|---|
+| E-1 | Dated official read + published pack | **done** | `src/console/evidence_2026_11_17.py`, `tools/build_evidence_2026_11_17.py` (+`--check`), `tools/verify_evidence_2026_11_17.py`, `data/evidence/2026_11_17/**`, `docs/audit/staleness-2026-11-17.md` | [nfl.com standings 2026 REG](https://www.nfl.com/standings/league/2026/REG), [Week 10 schedule](https://www.nfl.com/schedules/2026/REG/week/10), [Chargers at Ravens game center](https://www.nfl.com/games/chargers-at-ravens-2026-reg-10) |
+| E-2 | Drift pin made load-bearing | **done** | `pipeline/run.py` (declared columns), `data/pipeline/deficiency.json`, `scripts/pipeline/verify_captures.py` (producer check + stale-alarm note + mutation test) | producer output + `data/captures/status.json` |
+| E-3 | Failing scheduled workflow | **done (fix in; proof = next scheduled run)** | `.github/workflows/pipeline.yml` | [run 44123337794](https://github.com/karagemop466-tech/X1/actions/runs/44123337794) |
+| E-4 | Console correction (PR #61 scope, taken over) | **done** | `tools/build_console.py`, `console/**`, `tools/official/readiness.py`, `.github/workflows/pages.yml` | as E-1 |
+
+**Numbers published, with their source of truth.** `2026-11-17T22:46Z` hand read of the league
+standings: 32 clubs, 150 games played implied by the league's own W/L/T; closure passes on wins vs
+losses (149/149), points for vs against (6923/6923), net points (0), PCT/NET recomputation and the
+split-record shapes for all 32 rows. The 14 Week 10 finals added to the 2026-11-14 table reproduce
+today's table on **160/160** club-field comparisons. Against the **published** console table: **262
+of 512** cells differ across **26 clubs** — games played since 2026-11-14, not a misread value.
+Against the collector's independent parser: **0 of 544** differ. Withheld: `DIVPCT`, `CONFPCT`
+(could not be separated from the adjacent cell; not inferred).
+
+**Verified, not asserted.** `python3 tools/verify_evidence_2026_11_17.py` → PASS (re-derives every
+published number). `tools/build_evidence_2026_11_17.py --check` → reproduces. The drift gate was
+proven both ways: `--self-test` catches 6/6 mutations including the new producer check, and
+re-breaking `data/pipeline/deficiency.json` makes the gate exit 1. The collector's own 22:53Z run
+then recorded `deficiency: pass` with no other alarm, which is the fix taking effect in production.
+
+**Takeover logged (rule 10).** `tools/build_console.py` was claimed by PR #61
+(`arena/8c67ec75-x1`), last commit 2026-11-15T18:43Z — over 60 hours with no commits. This session
+took the file over to land E-4, resolved the rebase conflicts by regenerating the console from its
+generator (never by choosing a side), and preserved PR #61's planned `readiness-register.html` nav
+entry: it is absent from main, so nothing was removed, and the generator's patch anchors were chosen
+to land either way.
+
+**Conflict log.** Two `COORDINATION.md` rebase conflicts (both append-only; both resolved by
+retaining both blocks verbatim, nothing discarded) and one generated-tree conflict in
+`console/index.html` (resolved by re-running `tools/build_console.py`). A merge conflict with the
+`data-refresh` bot's own refresh commits on this branch (`d8b6406`, `971a93d`, `eb55b8b`) was
+resolved by keeping this session's newer generator and pack files, re-running both builders, and
+re-verifying.
+
+**Irregularities left open, published on the site:** see `console/evidence-2026-11-17.html` §6 and
+`docs/audit/staleness-2026-11-17.md` §5 — the mirror behind the results feed carries 1 of 14 Week 10
+scores, and 0 of 704 2026 price-store rows carry both ends. Neither is a repair item for this
+session; both block the 2026 ROI and the shadow baseline from advancing.
