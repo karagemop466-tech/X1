@@ -1,7 +1,7 @@
 {
  "dataset": "preregistration",
  "title": "Pre-registration register: every rule, its window, and the commit that froze it",
- "generated_at": "2026-11-17T23:24:00Z",
+ "generated_at": "2026-11-17T23:28:59Z",
  "generated_by": "tools/build_preregistration.py (session arena-543cdcb0-x1)",
  "rule": "no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says",
  "history_scope": {
@@ -117,10 +117,10 @@
    "rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64",
    "rule_hash_matches_this_checkout": "yes",
    "content_hash_matches_registration": "yes",
-   "rule_hash_stable_vs_last_build": "first build of this entry",
+   "rule_hash_stable_vs_last_build": "yes",
    "registered_rule_sha256": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64",
    "state": "registered",
-   "registration_commit": "7758c86109422427555c3a5f4779351a694b1d12",
+   "registration_commit": "7bd7a4889c8f8feceaf951d92a9768669db1db9a",
    "registered_at": "2026-11-17T23:10:49+00:00",
    "registration_subject": "PR-04: Week 11 pre-kickoff escrow - rule file, builder, 52 forecast rows (side/total_A/total_B/moneyline, market line withheld on Q-02) and the settlement ledger that scores PR-01's own record from official finals (W-3)",
    "touches": 1,

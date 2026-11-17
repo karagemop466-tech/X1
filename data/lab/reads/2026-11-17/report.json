@@ -303,7 +303,7 @@
   },
   "C8_injury_spotcheck_vs_capture": {
    "capture": {
-    "as_read_at": "2026-11-17T23:14:07+00:00",
+    "as_read_at": "2026-11-17T23:25:03+00:00",
     "content_sha256": "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33",
     "payload": "data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json",
     "rows": 347
@@ -359,7 +359,7 @@
    "delta_last_two_reads": {
     "cells_changed": 0,
     "newer": {
-     "as_read_at": "2026-11-17T23:14:07+00:00",
+     "as_read_at": "2026-11-17T23:25:03+00:00",
      "content_sha256": "c3d7a7224dfc8105",
      "rows": 347
     },
@@ -476,7 +476,7 @@
      "violations": []
     },
     {
-     "as_read_at": "2026-11-17T23:14:07+00:00",
+     "as_read_at": "2026-11-17T23:25:03+00:00",
      "content_sha256": "c3d7a7224dfc8105",
      "drift": "pass",
      "rows": 347,
@@ -485,7 +485,7 @@
     }
    ],
    "first_read": "2026-11-14T17:02:18+00:00",
-   "last_read": "2026-11-17T23:14:07+00:00",
+   "last_read": "2026-11-17T23:25:03+00:00",
    "note": "the delta, not the level: the last two accepted reads differ in these cells, and the count of reads since the content last changed is what tells the owner whether the page has moved.",
    "reads": 13,
    "reads_since_last_content_change": 11,
@@ -494,7 +494,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-17T23:28:10+00:00",
+ "generated_at": "2026-11-17T23:28:58+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,
