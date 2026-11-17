@@ -1,0 +1,25 @@
+# THIRD-PARTY MIRROR, NOT AN OFFICIAL SOURCE. Labelled as such on every row; the mirror is used as a
+# cross-check only, never as the published source (repo source rule).
+# Bytes: nflverse/nfldata data/games.csv, fetched 2026-11-17T23:05:12Z (sandbox wall clock of the
+#   download) from https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv
+#   sha256=5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01  bytes=2190568  pinned in data/raw_manifest.json
+# This file is DERIVED from the pinned bytes by the same session that pinned them: every row below is
+# what the pinned file contains for that fixture. tools/verify_2026_11_17.py V9 re-derives it and
+# fails if the bytes on disk, the manifest pin and these rows stop agreeing.
+# The 14 rows are the Week 10 finals; tools/verify_2026_11_17.py V3 diffs each against the official
+# read in official_w10_results_2026_11_17.tsv.
+game_id	gameday	away	away_score	home	home_score	total_line	spread_line	away_moneyline	home_moneyline	over_odds	under_odds	result	overtime	mirror_file	mirror_sha256_prefix
+2026_10_WAS_NYG	2026-11-12	WAS	24	NYG	21	40.5	1.5	102	-122	-115	-105	-3	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_BUF_NYJ	2026-11-15	BUF	31	NYJ	12	50.5	-8.5	-485	370	-115	-105	-19	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_CAR_NO	2026-11-15	CAR	20	NO	17	48.5	1.5	-110	-110	-118	-102	-3	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_HOU_CLE	2026-11-15	HOU	24	CLE	27	40.5	-4.5	-198	164	-118	-102	3	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_JAX_TEN	2026-11-15	JAX	40	TEN	23	45.5	-10.5	-650	470	-112	-108	-17	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_KC_ATL	2026-11-15	KC	35	ATL	13	47.5	-3	-175	145	-105	-115	-22	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_LA_ARI	2026-11-15	LA	34	ARI	6	38.5	-10	-550	410	-108	-112	-28	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_MIA_IND	2026-11-15	MIA	22	IND	24	37.5	4.5	185	-225	-110	-110	2	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_MIN_GB	2026-11-15	MIN	30	GB	10	42.5	2.5	124	-148	-108	-112	-20	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_NE_DET	2026-11-15	NE	10	DET	35	50.5	2.5	124	-148	-115	-105	25	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_PIT_CIN	2026-11-15	PIT	18	CIN	38	49.5	4.5	180	-218	-110	-110	20	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_SEA_LV	2026-11-15	SEA	21	LV	13	40.5	-6.5	-298	240	-108	-112	-8	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_SF_DAL	2026-11-15	SF	46	DAL	40	55.5	-3.5	-205	170	-118	-102	-6	0	data/raw/nflverse/games.csv	5a61d3121f2178ce
+2026_10_LAC_BAL	2026-11-16	LAC	23	BAL	20	39.5	4.5	185	-225	-108	-112	-3	0	data/raw/nflverse/games.csv	5a61d3121f2178ce

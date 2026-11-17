@@ -1,0 +1,49 @@
+Official Game Center evidence — the one fixture that was still open at the previous read
+================================================================================================
+
+Read with the platform fetch tool on 2026-11-17 at ~22:50 UTC (sandbox wall clock), chunk 0 of 2.
+URL: https://www.nfl.com/games/chargers-at-ravens-2026-reg-10   (title: "Los Angeles Chargers at
+Baltimore Ravens 2026 REG 10 - Game Center")
+
+Why this page was read separately
+---------------------------------
+The Week 10 fixture `2026_10_LAC_BAL` is the game that turned the week from 13 finals into 14. It was
+still `Scheduled` at the 2026-11-16 read (the previous pack records it as
+"LAC _ BAL _, kickoff 2026-11-16 8:15 PM ET - not played at retrieval"). It is the single row whose
+promotion from scheduled to final changes the results feed's coverage claim, so it is verified at the
+fixture's own official page, not only on the weekly schedule page.
+
+Strings printed by the page, verbatim, and what each one evidences
+-------------------------------------------------------------------
+  "LAC ... 23 ... 23 points ... Winner Indicator"     -> away_score = 23, away won
+  "BAL ... 20 ... 20 points"                            -> home_score = 20
+  "Final"                                               -> status = Final
+  "WEEK 10"                                             -> week = 10
+  "Nov 16"                                              -> game date = 2026-11-16
+  "1ST QUARTER ... 7 0" / "10 0"                        -> quarter table: LAC 10 / 7 / 3 / 3
+  "2ND QUARTER ... 10 7" -> "17 7"                      -> BAL 0 / 10 / 3 / 7
+  "3RD QUARTER ... 20 10" -> "20 13"
+  "4TH QUARTER ... 23 13" -> "23 20"
+  "TOTAL ... 23 ... 20"                                 -> the quarter rows sum to the final score
+  "LocationLOCATIONBALTIMORE, MD"                        -> venue city as printed
+  "StadiumSTADIUMM&T BANK STADIUM"                       -> stadium as printed
+  "Standings ... CHARGERS 1 11 wins 8 8 losses 0 0 ties 0.111" -> LAC 1-8-0 (agrees with the
+        standings page read in the same window and with the weekly schedule page)
+  "Download Game Book (PDF)" -> https://static.www.nfl.com/image/upload/v1794916121/gamecenter/ab78ad5a-4feb-11f1-abca-2c54536568a9.pdf
+        (the official game book link is recorded as a pointer; its contents are not transcribed here -
+        see docs/audit/official-gamebook-source-review.md for the data-rights position)
+
+Checks derived from this read (all recomputed by tools/verify_2026_11_17.py)
+-----------------------------------------------------------------------------
+  1. quarter rows sum to the printed final:      10+7+3+3 = 23 (LAC), 0+10+3+7 = 20 (BAL)
+  2. the Game Center score equals the weekly-schedule score for the same fixture   (23-20 = 23-20)
+  3. the Game Center score equals the third-party mirror row for the same fixture   (23-20 = 23-20)
+  4. the club record printed on the Game Center standings block equals the record
+     printed beside the club on the weekly schedule page (LAC 1-8-0 in both)
+
+Venue / stadium note: the brief asks that the venue of every fixture be transcribed from the official
+game centre. Only this one fixture's game centre was read in this round, so the venue is published for
+this fixture only. Filling the other 13 by inference from the schedule page would violate the
+no-inference rule, and the previous round's pack already records the same limit ("venue blank = the
+weekly schedule page does not print a venue field"). It is logged as suggestion S-31 on the
+Next-decisions page rather than guessed here.
