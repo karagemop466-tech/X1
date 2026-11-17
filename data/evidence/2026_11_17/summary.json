@@ -58,63 +58,61 @@
   "mismatches": 0
  },
  "drift": {
-  "alarms": [
-   "deficiency"
-  ],
+  "alarms": [],
   "available": true,
-  "captures": 49,
+  "captures": 54,
   "datasets": {
    "deficiency": {
-    "captures": 9,
-    "distinct_payloads": 6,
+    "captures": 10,
+    "distinct_payloads": 7,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T19:50:01+00:00",
-    "last_drift": "fail"
+    "last_as_read_at": "2026-11-17T22:53:43+00:00",
+    "last_drift": "pass"
    },
    "depth_charts": {
-    "captures": 9,
-    "distinct_payloads": 6,
+    "captures": 10,
+    "distinct_payloads": 7,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T19:49:53+00:00",
+    "last_as_read_at": "2026-11-17T22:53:35+00:00",
     "last_drift": "pass"
    },
    "injuries": {
-    "captures": 10,
+    "captures": 11,
     "distinct_payloads": 3,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T19:49:49+00:00",
+    "last_as_read_at": "2026-11-17T22:53:32+00:00",
     "last_drift": "pass"
    },
    "standings": {
-    "captures": 10,
+    "captures": 11,
     "distinct_payloads": 4,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T19:49:49+00:00",
+    "last_as_read_at": "2026-11-17T22:53:31+00:00",
     "last_drift": "pass"
    },
    "team_stats": {
-    "captures": 9,
+    "captures": 10,
     "distinct_payloads": 4,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T19:50:01+00:00",
+    "last_as_read_at": "2026-11-17T22:53:43+00:00",
     "last_drift": "pass"
    },
    "week_results": {
     "captures": 1,
     "distinct_payloads": 1,
-    "hours_since_last_read": 25.1,
+    "hours_since_last_read": 28.2,
     "last_as_read_at": "2026-11-16T18:44:00Z",
     "last_drift": "pass"
    },
    "week_schedule": {
     "captures": 1,
     "distinct_payloads": 1,
-    "hours_since_last_read": 25.0,
+    "hours_since_last_read": 28.0,
     "last_as_read_at": "2026-11-16T18:52:00Z",
     "last_drift": "pass"
    }
   },
-  "generated_at": "2026-11-17T19:50:13Z"
+  "generated_at": "2026-11-17T22:53:57Z"
  },
  "games_played_implied": 150,
  "mirror_week10": {
