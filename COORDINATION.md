@@ -3424,5 +3424,11 @@ Written at commit time. Work started before the claim was committed (a read-only
 
 ## Pull request record
 
-To be filled in after the PR is opened and merged (see the next commit on this branch).
+- **PR #73** `arena/16049865-x1` → `main`: **MERGED** (merge commit `fd7b02b`, 2026-11-17T22:56:57Z), `gh pr merge --merge`, not `--auto`.
+- **CI on the PR:** `verify-site` success (run 44194771791, head `013f5b7`); Pages `build` success, `deploy` skipped for PRs by design (run 44194771923).
+- **Pages on main after the merge:** `verify-site` success (run 44194908757); `Publish static site to GitHub Pages` build and deploy success (run 44194908732); `pages-build-deployment` success (44194907591).
+- **Live check (2026-11-17):** https://karagemop466-tech.github.io/X1/pages/injury-read-2026-11-17.html serves the page (347 rows, 345 published, 2 missing, 16 changed cells, delta 0); https://karagemop466-tech.github.io/X1/ serves the console landing page with the "Injury re-read 17 Nov" link.
+- **Branch history note:** the branch was rebased three times onto a moving `main` (every rebase conflicted only in the append-only COORDINATION.md; both sides were kept, main's block first, nothing discarded). The PR's first CI run was cancelled by a main deploy in the shared `pages` concurrency group; a fresh run on the final head then passed. The branch was force-pushed with a lease to replace my own pre-rebase commits; no other session's commit was rewritten.
+- **Dispatch note:** a manual `workflow_dispatch` of `pages.yml` returned HTTP 403 with the integration token, so the PR's Pages build was triggered by a push instead.
+- **Follow-up:** the record of this merge is committed on a small follow-up PR from the same branch (docs-only, COORDINATION.md).
 
