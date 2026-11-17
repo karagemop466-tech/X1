@@ -76,6 +76,7 @@ RAW = os.path.join(ROOT, "data", "results", "raw")
 
 RETRIEVED = "2026-11-17"
 PRIOR_RETRIEVED = "2026-11-16"
+PRIOR_PRIOR_READ = "2026-11-14"
 
 STAND_URL = "https://www.nfl.com/standings/league/2026/REG"
 W10_URL = "https://www.nfl.com/schedules/2026/by-week/week-10"
@@ -340,8 +341,13 @@ def build() -> tuple[dict, str, str]:
 
     # ------------------------------------------------------------------ V8 promotion
     prior_status = {key(r): r["status"] for r in prior}
+    # "new to the feed" is measured against the feed as it stood BEFORE this read - i.e. the rows whose
+    # own `retrieved` date is 2026-11-14 - so the check stays true after the append and while it is
+    # pending. Deriving it from the data, not from a constant, is what keeps it honest either way.
     feed_week10 = {(ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"]))
                    for r in feed if int(r["week"]) == 10}
+    feed_week10_at_prior_read = {(ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"]))
+                                 for r in feed if int(r["week"]) == 10 and r.get("retrieved") == PRIOR_PRIOR_READ}
     promoted, already, new_to_feed = [], [], []
     for r in w10:
         was = prior_status.get(key(r))
@@ -354,19 +360,20 @@ def build() -> tuple[dict, str, str]:
                  "game_url": r["game_url"], "source_url": W10_URL,
                  "read_at": RETRIEVED}
         (promoted if was == "Scheduled" else already).append(entry)
-        if key(r) not in feed_week10:
+        if key(r) not in feed_week10_at_prior_read:
             new_to_feed.append(entry)
     v8 = {"promoted_scheduled_to_final_since_the_2026_11_16_read": len(promoted),
           "final_in_both_reads": len(already),
           "rows_new_to_the_published_feed": len(new_to_feed),
-          "week10_rows_in_feed_after_this_change": len(feed_week10) + len(new_to_feed),
+          "week10_rows_in_feed_now": len(feed_week10),
           "rows_overwritten": 0,
-          "note": ("the published feed had 1 Week 10 row (the 2026-11-14 read, TNF); 13 finals are new "
-                   "to it from this read; 1 row (LAC@BAL) is new to the league's own print since "
-                   "2026-11-16. Nothing is overwritten - the 1 existing row is identical in both reads "
-                   "(checked by V2)."),
+          "note": ("the feed carried 1 Week 10 row from the 2026-11-14 read (the TNF game); 13 finals "
+                   "arrive with this read; 1 of those 13 (LAC@BAL) is new to the league's own print "
+                   "since 2026-11-16, the other 12 were played but not yet transcribed. Nothing is "
+                   "overwritten - the 1 existing row is identical in both reads (V2), and every promoted "
+                   "row keeps its own read date rather than inheriting the file's."),
           "verdict": "PASS" if len(promoted) == 1 and len(new_to_feed) == 13
-          and len(feed_week10) + len(new_to_feed) == 14 else "FAIL"}
+          and len(feed_week10) == 14 else "FAIL"}
     if v8["verdict"] == "FAIL":
         failures.append("V8 promotion accounting failed: " + json.dumps(v8)[:300])
     checks["V8 promotion accounting"] = v8

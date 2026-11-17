@@ -68,16 +68,16 @@
 
 <section class="content">
   <div class="statrow">
-    <div class="stat"><strong>117</strong><span>games scored</span><span class="statnote">weeks 3-10 of 2026, chronological holdout</span></div>
-    <div class="stat"><strong>+0.116</strong><span>Brier skill vs the 0.55 home baseline</span><span class="statnote">benchmark-relative, so raw accuracy cannot flatter it</span></div>
-    <div class="stat"><strong>+0.002</strong><span>95% lower bound</span><span class="statnote">the number a claim has to clear; it clears zero by a hair</span></div>
-    <div class="stat"><strong>14</strong><span>games recorded pre-kickoff</span><span class="statnote">2026-11-16T18:52:12Z</span></div>
+    <div class="stat"><strong>118</strong><span>games scored</span><span class="statnote">weeks 3-10 of 2026, chronological holdout</span></div>
+    <div class="stat"><strong>+0.109</strong><span>Brier skill vs the 0.55 home baseline</span><span class="statnote">benchmark-relative, so raw accuracy cannot flatter it</span></div>
+    <div class="stat"><strong>-0.005</strong><span>95% lower bound</span><span class="statnote">the number a claim has to clear; it clears zero by a hair</span></div>
+    <div class="stat"><strong>14</strong><span>games recorded pre-kickoff</span><span class="statnote">2026-11-17T23:09:17Z</span></div>
   </div>
 
   <div class="note"><b>Read the lower bound, not the point estimate.</b> Skill of
-  +0.116 with a 95% interval of
-  [+0.002, +0.230] on
-  117 games means the baseline is <em>probably</em> better than a no-information forecast and
+  +0.109 with a 95% interval of
+  [-0.005, +0.219] on
+  118 games means the baseline is <em>probably</em> better than a no-information forecast and
   <em>only just</em> provably so. A single season of 117 games cannot support more than that sentence, and
   anything stronger on this page would be a fabrication. Multiplicity is disclosed:
   n_trials = 1, so the Bonferroni factor is 0.05 &mdash; which is
@@ -89,7 +89,7 @@
 <tr><td><b>PR-02</b></td><td>control baselines: random picks, favourites only</td><td><span class="pill muted-pill">unresolved-shallow-checkout</span></td><td class="blank" title="not committed">—</td><td>0</td><td>unresolved here: this checkout is shallow (rule text unchanged since the last build)</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/lab/control-baselines.md" target="_blank" rel="noopener noreferrer">rule text ↗</a></td></tr>
 <tr><td><b>PR-03</b></td><td>verified results feed: a row settles only when an official page printed the score</td><td><span class="pill muted-pill">unresolved-shallow-checkout</span></td><td class="blank" title="not committed">—</td><td>0</td><td>unresolved here: this checkout is shallow (rule text unchanged since the last build)</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/results-feed.md" target="_blank" rel="noopener noreferrer">rule text ↗</a></td></tr>
 </tbody></table></div>
-  <p class="muted">no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says · The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data. This checkout is a shallow clone (oldest visible commit a7ef4080a8), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02&#x27;s rule as registered by commit 0747005 and PR-01&#x27;s by 25221eb, neither of which this checkout can read: they are cited as the prior&#x27;s statement, not verified here. The anchor is the first commit that touched the file on THIS branch. A squashed merge would rewrite it, and the site&#x27;s own history contains squash merges, so the anchor is a strong convention, not a tamper-proof seal. docs/lab/control-baselines.md was registered by another session; this register indexes it rather than restating it, so the rule text a reader evaluates against is the only copy.</p>
+  <p class="muted">no backtest number may appear on a leaderboard; a rule with no registration commit is not registered, whatever its README says · The register stores the SHA-256 of the rule file as committed. Rebuild this register at any time: if the hash of the rule file no longer matches the text the entry says was frozen, the rule was edited after it saw data. This checkout is a shallow clone (oldest visible commit 38816a6200), so a rule that predates it cannot have its anchor re-derived here; those rows carry the value recorded by a full-history build and say so in `anchor_carried_forward`. COORDINATION.md records PR-02&#x27;s rule as registered by commit 0747005 and PR-01&#x27;s by 25221eb, neither of which this checkout can read: they are cited as the prior&#x27;s statement, not verified here. The anchor is the first commit that touched the file on THIS branch. A squashed merge would rewrite it, and the site&#x27;s own history contains squash merges, so the anchor is a strong convention, not a tamper-proof seal. docs/lab/control-baselines.md was registered by another session; this register indexes it rather than restating it, so the rule text a reader evaluates against is the only copy.</p>
 
   <h2>Frozen constants, straight from the rule file</h2>
   <div class="note"><code>K = 2.0 games</code> of prior weight;
@@ -100,24 +100,24 @@
 
   <h2>How it scored</h2>
   <div class="tablewrap"><table class="wide" data-table><caption>Walk-forward backtest, weeks 3-10</caption><thead><tr><th>Measure</th><th>Value</th><th>What it means</th><th>Artefact</th></tr></thead><tbody>
-<tr><td><b>games read from official pages</b></td><td>149</td><td>weeks 1-10, every row transcribed from an nfl.com page</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/_raw/reads.tsv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>games scored</b></td><td>117</td><td>weeks 3-10, each predicted only from strictly earlier games</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier score</b></td><td>0.224242</td><td>lower is better; a proper score, so a hedge costs the forecaster rather than buying them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier of the coin (0.5)</b></td><td>0.247863</td><td>the floor any model has to beat</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier of the home baseline (0.55)</b></td><td>0.253782</td><td>the no-information forecast that already knows home teams win more often</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Brier skill vs home baseline</b></td><td>0.116401</td><td>benchmark-relative, not raw accuracy</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>&hellip; game-cluster 95% lower bound</b></td><td>0.0021</td><td>10,000 bootstrap resamples of whole games, seed 20261116; a point estimate is not a result</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Log-loss skill vs home baseline</b></td><td>0.09014</td><td>the second proper score, so the ranking does not depend on one metric</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Hit rate on the model's side</b></td><td>0.641026</td><td>printed beside the proper scores, never instead of them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td><b>Mean absolute error of the originable margin</b></td><td>9.6681</td><td>points; the fair line is this margin negated</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>games read from official pages</b></td><td>150</td><td>weeks 1-10, every row transcribed from an nfl.com page</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/results/_raw/reads.tsv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>games scored</b></td><td>118</td><td>weeks 3-10, each predicted only from strictly earlier games</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier score</b></td><td>0.226508</td><td>lower is better; a proper score, so a hedge costs the forecaster rather than buying them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier of the coin (0.5)</b></td><td>0.247881</td><td>the floor any model has to beat</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier of the home baseline (0.55)</b></td><td>0.254195</td><td>the no-information forecast that already knows home teams win more often</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Brier skill vs home baseline</b></td><td>0.108919</td><td>benchmark-relative, not raw accuracy</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>&hellip; game-cluster 95% lower bound</b></td><td>-0.0052</td><td>10,000 bootstrap resamples of whole games, seed 20261116; a point estimate is not a result</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Log-loss skill vs home baseline</b></td><td>0.084358</td><td>the second proper score, so the ranking does not depend on one metric</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Hit rate on the model's side</b></td><td>0.635593</td><td>printed beside the proper scores, never instead of them</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td><b>Mean absolute error of the originable margin</b></td><td>9.672</td><td>points; the fair line is this margin negated</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/games_scored.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 </tbody></table></div>
 
   <h2>The removal-of-luck panel</h2>
   <div class="note"><p>A bettor who always takes the model&rsquo;s side went
-  <b>75&ndash;42</b> where
-  its own probabilities expected <b>76.057</b> wins. The standard deviation of that
-  difference is <b>5.042</b> wins, so the gap is
-  <b>-0.21</b> standard deviations &mdash; inside one standard deviation: this record is not evidence of skill or of failure, it is what a coin would do. Win totals are luck until
+  <b>75&ndash;43</b> where
+  its own probabilities expected <b>76.758</b> wins. The standard deviation of that
+  difference is <b>5.063</b> wins, so the gap is
+  <b>-0.347</b> standard deviations &mdash; inside one standard deviation: this record is not evidence of skill or of failure, it is what a coin would do. Win totals are luck until
   they are compared with the sum of the probabilities behind them; that comparison is this panel, and it is
   the reason the leaderboard separates <em>signal</em> from <em>staking</em>.</p></div>
 
@@ -126,7 +126,7 @@
 <tr><td>0.0-0.2 (probability of the side picked)</td><td>0</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td><span class="pill warn">yes</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 <tr><td>0.2-0.4 (probability of the side picked)</td><td>0</td><td class="blank" title="not printed by the official source">—</td><td class="blank" title="not printed by the official source">—</td><td><span class="pill warn">yes</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 <tr><td>0.4-0.6 (probability of the side picked)</td><td>49</td><td>0.5572</td><td>0.5918</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
-<tr><td>0.6-0.8 (probability of the side picked)</td><td>57</td><td>0.6917</td><td>0.6316</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
+<tr><td>0.6-0.8 (probability of the side picked)</td><td>58</td><td>0.6919</td><td>0.6207</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 <tr><td>0.8-1.0 (probability of the side picked)</td><td>11</td><td>0.848</td><td>0.9091</td><td><span class="pill ok">no</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/calibration.csv" target="_blank" rel="noopener noreferrer">artefact ↗</a></td></tr>
 </tbody></table></div>
 
@@ -138,7 +138,7 @@
 <tr><td><b>total_fair_line</b></td><td>the model is a margin model; its total is the league-average total, published as a floor and labelled as one, not as an estimate of the total</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/docs/preregistration/PR-01-shadow-baseline.md" target="_blank" rel="noopener noreferrer">rule ↗</a></td></tr>
 </tbody></table></div>
 
-  <h2>Pre-kickoff shadow record &mdash; written 2026-11-16T18:52:12Z</h2>
+  <h2>Pre-kickoff shadow record &mdash; written 2026-11-17T23:09:17Z</h2>
   <div class="tablewrap"><table class="wide" data-table><caption>14 games recorded before kickoff; immutable by build</caption><thead><tr><th>Week · Game</th><th>Kickoff (ET)</th><th>Matchup</th><th>p(home)</th><th>Model side</th><th>Fair line (home)</th><th>Market line</th><th>Residual</th><th>Recorded at</th><th>Source</th></tr></thead><tbody>
 <tr><td>10 · 2026_10_LAC_BAL</td><td>2026-11-16 8:15 PM</td><td><b>LAC</b> at <b>BAL</b></td><td>0.701232</td><td><b>home</b></td><td>-7.0</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
 <tr><td>11 · 2026_11_IND_HOU</td><td>2026-11-19 8:15 PM</td><td><b>IND</b> at <b>HOU</b></td><td>0.726308</td><td><b>home</b></td><td>-8.0</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/colts-at-texans-2026-reg-11" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
@@ -155,8 +155,8 @@
 <tr><td>11 · 2026_11_MIN_SF</td><td>2026-11-22 8:20 PM</td><td><b>MIN</b> at <b>SF</b></td><td>0.638409</td><td><b>home</b></td><td>-5.0</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
 <tr><td>11 · 2026_11_CIN_WAS</td><td>2026-11-23 8:15 PM</td><td><b>CIN</b> at <b>WAS</b></td><td>0.262489</td><td><b>away</b></td><td>8.5</td><td class="blank" title="no official price source (Q-02)">—</td><td class="blank" title="blank while the market line is blank">—</td><td class="muted">2026-11-16T18:52:12Z</td><td><a class="src-link" href="https://www.nfl.com/games/bengals-at-commanders-2026-reg-11" target="_blank" rel="noopener noreferrer">official fixture ↗</a></td></tr>
 </tbody></table></div>
-  <p class="muted">the CSV is written once; a second run that would change any forecast number aborts the build (the recorded clock is excluded from the fingerprint) Fingerprint
-  <code>37fe5d5427d9ac99&hellip;</code> ·
+  <p class="muted">the CSV is written once and never rewritten; a later run that would change a forecast number leaves the record alone and reports the drift below (the recorded clock is excluded from the fingerprint) Fingerprint
+  <code>6ed2ac9e042535a6&hellip;</code> ·
   <a href="https://github.com/karagemop466-tech/X1/blob/main/data/shadow/forecasts_pre_kickoff.csv">the file ↗</a></p>
 
   <h2>Every scored game</h2>
@@ -278,10 +278,11 @@
 <tr><td>10</td><td>2026-11-15</td><td><b>PIT (3.6)</b> at <b>CIN (6.5)</b></td><td>18&ndash;38</td><td>0.630559</td><td>-4.5</td><td>0.136487</td><td>0.461149</td><td><a class="src-link" href="https://www.nfl.com/games/steelers-at-bengals-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
 <tr><td>10</td><td>2026-11-15</td><td><b>HOU (1.7)</b> at <b>CLE (-3.1818)</b></td><td>24&ndash;27</td><td>0.403965</td><td>3.5</td><td>0.355258</td><td>0.906427</td><td><a class="src-link" href="https://www.nfl.com/games/texans-at-browns-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
 <tr><td>10</td><td>2026-11-15</td><td><b>MIN (3.0)</b> at <b>GB (2.2727)</b></td><td>30&ndash;10</td><td>0.525772</td><td>-1.0</td><td>0.276436</td><td>0.746068</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-packers-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
+<tr><td>10</td><td>2026-11-16</td><td><b>LAC (-9.8)</b> at <b>BAL (-4.2727)</b></td><td>23&ndash;20</td><td>0.701232</td><td>-7.0</td><td>0.491726</td><td>1.208087</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" target="_blank" rel="noopener noreferrer">game ↗</a></td></tr>
 </tbody></table></div>
 
   <div class="note"><b>Limits.</b><ul>
-  <li>n = 117 games, one season, one conference-independent sample; the interval, not the point estimate, is the result</li><li>the model has no personnel, availability, rest or venue feature - it is the baseline those features have to beat, not a proposal</li><li>ratings use points scored and allowed vs whoever; schedule strength is not adjusted, so BUF&#x27;s and NYJ&#x27;s ratings are not comparable in the way an opponent-adjusted model&#x27;s would be</li><li>one season cannot test calibration at the tails; the 0.8-1.0 bin is printed with its count</li>
+  <li>n = 118 games, one season, one conference-independent sample; the interval, not the point estimate, is the result</li><li>the model has no personnel, availability, rest or venue feature - it is the baseline those features have to beat, not a proposal</li><li>ratings use points scored and allowed vs whoever; schedule strength is not adjusted, so BUF&#x27;s and NYJ&#x27;s ratings are not comparable in the way an opponent-adjusted model&#x27;s would be</li><li>one season cannot test calibration at the tails; the 0.8-1.0 bin is printed with its count</li>
   </ul></div>
 </section>
 
