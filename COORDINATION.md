@@ -3565,6 +3565,32 @@ by hand-editing the page: the register is the source of truth for that page. **R
 diverge; `tools/rebuild_for_refresh.py` already refuses to commit the clock-stamped trees, so this is
 a one-line addition to the workflow's rebuild step.
 
+### Follow-up release — PR #77 (2026-11-17)
+
+| item | value |
+|---|---|
+| PR | [#77](https://github.com/karagemop466-tech/X1/pull/77) — fixes the refresh ordering that produced the stale-pages check PR #76 tripped over |
+| Checks | `verify` **pass** (16s), `build` **pass** (57s) |
+| Merged | 2026-11-17T23:21Z, merge commit `508e839` |
+| Pages | `Publish static site to GitHub Pages` **success**; `pages build and deployment` **success**; Pages API `status: built` |
+
+**What was actually wrong, since PR #76's own note misdiagnosed it as a one-off.** The refresh job
+already runs `tools/rebuild_for_refresh.py`, but that tool ran the *site* builders before the
+*register* builders, so `pages/shadow-baseline.html` was always generated from the previous
+`data/preregistration/register.json`. Fixing it by regenerating the page (PR #76, `def3d0f`) treated
+the symptom; PR #77 fixes the order and, separately, stops `build_preregistration.py --check` from
+comparing `oldest_visible_commit`, which describes the checkout rather than the register and therefore
+made the guard depend on which machine ran it. **This supersedes the request to the `data-refresh`
+owner recorded under PR #76 above** — no workflow change is needed; the fix is inside the tool the
+workflow already calls.
+
+| # | Task | Final state |
+|---|---|---|
+| E-1 | Dated official read + pack | **done** — `console/evidence-2026-11-17.html` live, `data/evidence/2026_11_17/**` shipped |
+| E-2 | Drift pin load-bearing | **done** — producer fixed, pin fails the build on the committed output, 6/6 mutation test, collector reads `deficiency: pass` |
+| E-3 | Scheduled workflow | **done** — `pull-requests: write` added; proof is the next TUE/FRI run |
+| E-4 | Console correction | **done** — false claim removed and replaced by derived values, live on the site |
+
 ---
 
 # Session `arena-01c263c4-x1` — live official re-verification for 2026-11-17, dated pack, flags, site page, integration (this branch)
