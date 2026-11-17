@@ -3263,3 +3263,35 @@ one-shot patches that edited `tools/build_site.py`; both abort unless every anch
 Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.
 
 ---\n\n# Session `arena-9ececd27-x1` — final integration: verify, build, release (this session)\n\n**Session ID:** `arena-9ececd27-x1` · **Branch:** `arena/9ececd27-x1` (branched from `main` @ `38816a6`, identical to `origin/main`) · **Role:** final integration — line-by-line repo review, offline verification of committed official snapshots, site build + link check, PR → `main`, merge, GitHub Pages deploy confirmation.\n\n**Claim written and pushed before any work (rule 1).** Open PRs: none at claim time. `nfl.com` and all official NFL hosts are unreachable from this sandbox (connection refused), so verification is against the committed official snapshots (each carries its fetch URL and retrieval date). No value not present in a committed official snapshot is published; anything unverified stays blank and flagged. Nothing is inferred.\n\n## Claim\n\n| # | Task | Status | Owner | Files in scope |\n|---|---|---|---|---|\n| I-1 | Session registration and task claim | in progress | `arena-9ececd27-x1` | `COORDINATION.md` (this record only) |\n| I-2 | Repo line-by-line review + irregularity flags | in progress | `arena-9ececd27-x1` | repo tree (read-only review; flags logged here) |\n| I-3 | Offline verification of committed official snapshots + internal links | in progress | `arena-9ececd27-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py`, `tools/build_site.py` |\n| I-4 | Site build: confirm `index.html` + `pages/` regenerate cleanly, no stale HTML, no broken links | in progress | `arena-9ececd27-x1` | `index.html`, `pages/`, `tools/build_site.py`, `assets/site.css` |\n| I-5 | Final integration: PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link and merge result | in progress | `arena-9ececd27-x1` | `.github/workflows/pages.yml`, PR, this record |\n\n## Non-overlap declaration\n\nEvery earlier integration session (T9, R-41/R-42, round-2, round-4, etc.) has merged and gone quiet; none owns an open claim on the root site files. This session touches only the shared integration outputs (`index.html`, `pages/**` via regeneration, `COORDINATION.md` append-only) for build/verification and appends its own claim record. It does not edit any other session's data, model, strategy, or page content. All published NFL values remain as committed (verified or blank/flagged); no value is inferred or filled in.\n\n---\n\n## Completion record — session `arena-9ececd27-x1`\n\n| Step | Result |\n|---|---|\n| Claim pushed | done — commit bf0eda7, pushed to origin/arena/9ececd27-x1 |\n| verify_data | done — 2,944 integrity checks passed, EXIT=0 |\n| check_links | done — 168 files, 44,192 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0 |\n| build_site (staleness) | done — index.html + 24 pages regenerate cleanly; committed HTML matches generator output; scripts/verify_site.py: 168 HTML pages, local links resolve, every data-table row has an official source link, EXIT=0 |\n| verify_app | done — 29 app pages, 7,978 data rows, 7,954 sourced, 24 flagged no-source, 0 unsourced, EXIT=0 |\n| PR → main | pending |\n| Merge | pending |\n| Pages deploy confirm | pending |\n| Record in COORDINATION.md | pending |\n
+
+# Session `arena/76fd9817-x1` — final line-by-line review, official-source verification, site build and publish (this branch)
+
+**Session ID:** `arena/76fd9817-x1` · **Branch:** `arena/76fd9817-x1` (branched from `main` @ `38816a62`, current `origin/main` tip). **Started (UTC):** 2026-11-17.
+
+## Why this session exists
+
+The owner's latest message re-states the full brief: review the repo line by line, verify every published value against official trusted sources, flag irregularities, produce a questions/information/answers register, originate NFL lines with gated strategies, run a skill-based leaderboard competition, track injuries and depth deficiencies, build the executive summary, and ship a clean GitHub Pages site (landing page + category subpages, tables, findings, Flagged-for-Review page). T1–T17 and rounds 2–4 plus C-1…C-6 are recorded `done` on `main`, so this session does not rebuild them; it **re-verifies the committed combined tree line by line, confirms the site builds with no broken links, publishes to GitHub Pages, and records the PR + merge result.** Where a value cannot be confirmed from a committed official snapshot (nfl.com is unreachable from this sandbox), the cell stays blank and is flagged — nothing is inferred.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| F-1 | Re-verify the committed official data snapshots (standings, schedule, injuries, depth) line by line against their embedded source URLs/dates; record mismatches and blanks | in progress | `arena/76fd9817-x1` | `data/nfl/**`, `data/verify/*.psv`, `data/verification/**` |
+| F-2 | Review the executive summary, questions/information/answers register and suggestions register for internal consistency and source citation | in progress | `arena/76fd9817-x1` | `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/pipeline/questions.json`, `data/pipeline/suggestions.json` |
+| F-3 | Confirm the unified dashboard + landing page build cleanly and every nav link + data row carries a source link or an explicit "no official source" marker | in progress | `arena/76fd9817-x1` | `index.html`, `app/**`, `pages/**`, `tools/build_app.py`, `tools/build_site.py`, `assets/site.css` |
+| F-4 | Run the full verifier suite locally; fix or flag anything that fails; confirm no broken internal links | in progress | `arena/76fd9817-x1` | `tools/verify_*.py`, `scripts/verify_*.py`, `tools/check_links.py` |
+| F-5 | Publish: commit, push `arena/76fd9817-x1`, open PR → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | in progress | `arena/76fd9817-x1` | `COORDINATION.md`, PR |
+
+## Constraint honored
+
+- nfl.com is unreachable from this sandbox (connection refused) per the coordination log. All verification is therefore against committed official snapshots that carry their fetch URL and retrieval date. No live NFL value is fetched, inferred, or filled in.
+
+## Completion record (filled in as work proceeds)
+
+| Task | Official sources used | Verification performed | Irregularities |
+|---|---|---|---|
+| F-1 | committed official snapshots in `data/verify/*.psv` and `data/verification/**` | to be completed | to be recorded |
+| F-2 | cross-checked against `data/pipeline/requirements.json`, `data/gates.json`, `data/pipeline/gates.json` | to be completed | to be recorded |
+| F-3 | `tools/build_app.py`, `tools/build_site.py`, `tools/verify_app.py`, `tools/check_links.py` | to be completed | to be recorded |
+| F-4 | full pre-existing verifier suite | to be completed | to be recorded |
+| F-5 | PR → `main` merge + GitHub Pages deploy | to be completed | to be recorded |
