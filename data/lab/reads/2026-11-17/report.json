@@ -297,7 +297,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-17T23:01:30+00:00",
+ "generated_at": "2026-11-17T23:13:56+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "injury_reads_since_last_content_change": 8,

@@ -19,7 +19,7 @@
  },
  "dataset": "feed-closure-measurement",
  "decision_for_the_owner": "B is the recommended path and it is small: one gate edit, a re-pinned baseline, the row-count pins, and a regeneration of the artefacts in M5. What it is not is a data problem - M3 shows the closure reproduces the league table exactly. No session should make that call, because it changes what 'verified' means for every row already published; that is why it is recorded here as a decision and not implemented as a change.",
- "generated_at": "2026-11-17T23:04:05+00:00",
+ "generated_at": "2026-11-17T23:13:56+00:00",
  "generated_by": "tools/lab/build_closure_measurement.py (session arena-9d8c298c-x1)",
  "inputs": {
   "code/reference_data_2026_w10.py": "08a3caa73aac9c53a1a57fda2ad38abc4285dee7ea98747837567b10c1bfd167",
@@ -98,67 +98,119 @@
   "M2_mirror_row_diff_gate": {
    "blocked": [
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_NE_DET",
+     "mirror_spread_line": "2.5",
+     "mirror_total_line": "49.5",
      "slug": "patriots-at-lions-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_KC_ATL",
+     "mirror_spread_line": "-3",
+     "mirror_total_line": "47.5",
      "slug": "chiefs-at-falcons-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_HOU_CLE",
+     "mirror_spread_line": "-4.5",
+     "mirror_total_line": "40.5",
      "slug": "texans-at-browns-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_MIN_GB",
+     "mirror_spread_line": "2.5",
+     "mirror_total_line": "42.5",
      "slug": "vikings-at-packers-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_MIA_IND",
+     "mirror_spread_line": "3.5",
+     "mirror_total_line": "38.5",
      "slug": "dolphins-at-colts-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_CAR_NO",
+     "mirror_spread_line": "2.5",
+     "mirror_total_line": "48.5",
      "slug": "panthers-at-saints-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_BUF_NYJ",
+     "mirror_spread_line": "-8.5",
+     "mirror_total_line": "50.5",
      "slug": "bills-at-jets-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_JAX_TEN",
+     "mirror_spread_line": "-10.5",
+     "mirror_total_line": "46.5",
      "slug": "jaguars-at-titans-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_LA_AZ",
+     "mirror_spread_line": "-9.5",
+     "mirror_total_line": "39.5",
      "slug": "rams-at-cardinals-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_SEA_LV",
+     "mirror_spread_line": "-6.5",
+     "mirror_total_line": "40.5",
      "slug": "seahawks-at-raiders-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_SF_DAL",
+     "mirror_spread_line": "-4.5",
+     "mirror_total_line": "55.5",
      "slug": "49ers-at-cowboys-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_PIT_CIN",
+     "mirror_spread_line": "3.5",
+     "mirror_total_line": "49.5",
      "slug": "steelers-at-bengals-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     },
     {
+     "mirror_game_date": "",
+     "mirror_has_line_but_no_score": true,
      "mirror_id": "2026_10_LAC_BAL",
+     "mirror_spread_line": "4.5",
+     "mirror_total_line": "38.5",
      "slug": "chargers-at-ravens-2026-reg-10",
      "why": "the mirror has the row but prints no score for it"
     }
@@ -633,10 +685,10 @@
   },
   "M5_blast_radius": {
    "by_kind": {
-    "build_results_r3": 11,
-    "reads.tsv": 14,
-    "signal_grade": 17,
-    "verified_results": 37
+    "build_results_r3": 9,
+    "reads.tsv": 11,
+    "signal_grade": 11,
+    "verified_results": 28
    },
    "files": {
     ".github/workflows/pages.yml": [
@@ -649,38 +701,6 @@
      "reads.tsv",
      "verified_results",
      "build_results_r3"
-    ],
-    "app/decisions.html": [
-     "signal_grade"
-    ],
-    "app/flagged.html": [
-     "reads.tsv",
-     "verified_results",
-     "build_results_r3",
-     "signal_grade"
-    ],
-    "app/index.html": [
-     "verified_results"
-    ],
-    "app/repo-review.html": [
-     "reads.tsv",
-     "verified_results",
-     "build_results_r3",
-     "signal_grade"
-    ],
-    "app/requirements.html": [
-     "verified_results"
-    ],
-    "app/results-feed.html": [
-     "verified_results"
-    ],
-    "app/results.html": [
-     "verified_results",
-     "build_results_r3",
-     "signal_grade"
-    ],
-    "app/suggestions.html": [
-     "verified_results"
     ],
     "data/audit/readiness.json": [
      "verified_results"
@@ -757,23 +777,10 @@
     "docs/methodology/results-feed.md": [
      "verified_results"
     ],
-    "pages/decisions.html": [
+    "docs/preregistration/PR-04-week11-escrow.md": [
+     "reads.tsv",
+     "build_results_r3",
      "signal_grade"
-    ],
-    "pages/flagged.html": [
-     "signal_grade"
-    ],
-    "pages/readiness.html": [
-     "verified_results"
-    ],
-    "pages/requirements.html": [
-     "verified_results"
-    ],
-    "pages/review-queue.html": [
-     "signal_grade"
-    ],
-    "pages/shadow-baseline.html": [
-     "reads.tsv"
     ],
     "tools/build_app.py": [
      "verified_results",
@@ -815,9 +822,6 @@
     "tools/grade_roi.py": [
      "verified_results"
     ],
-    "tools/lab/build_reads.py": [
-     "reads.tsv"
-    ],
     "tools/patch_site_543cdcb0.py": [
      "reads.tsv"
     ],
@@ -829,8 +833,9 @@
      "verified_results"
     ]
    },
-   "files_naming_the_results_log_or_the_feed": 55,
-   "reading": "a closure is not one file: this is the list of artefacts that name the log or the feed and would have to be regenerated and re-verified in the same commit. Frozen inputs (PR-01's) are deliberately excluded from 'just do it' by that fact."
+   "files_naming_the_results_log_or_the_feed": 41,
+   "reading": "a closure is not one file: this is the list of artefacts that name the log or the feed and would have to be regenerated and re-verified in the same commit. Frozen inputs (PR-01's) are deliberately excluded from 'just do it' by that fact. Renderings are excluded too, so the count is the cost of the change and not a function of how many pages happen to describe it.",
+   "scan_scope": "tools, scripts, code, docs, data, .github; html and this pack's own output excluded"
   },
   "M6_evaluation_corpus_effect": {
    "added": 13,

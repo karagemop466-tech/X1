@@ -51,9 +51,17 @@ PAGES: list[tuple[str, str, str, str]] = [
     ("validation.html", "Demotion gate", "When a strategy goes back to paper", "T8 · gate"),
     ("questions.html", "Questions", "What we know, what we don't", "Decision support"),
     ("suggestions.html", "Suggestions", "Choose a path before building", "Decision support"),
+    ("reads.html", "Official reads", "The dated official read", "R1 · 2026-11-17"),
+    ("escrow.html", "Week 11 escrow", "Recorded before kickoff", "R1 · PR-04"),
+    ("closure.html", "Feed closure", "What Week 10 still needs", "R1 · measured"),
     ("sources.html", "Sources & limits", "Every source, and every limit", "Provenance"),
     ("flagged.html", "Flagged for review", "Flagged for review", "Never filled in"),
 ]
+
+# The reads pack lives beside the data it transcribes; every number on the three pages below is
+# computed by tools/lab/build_reads.py / build_escrow.py / build_closure_measurement.py and read here.
+READS_PACK = "data/lab/reads/2026-11-17"
+ESCROW_DIR = "data/lab/escrow"
 
 
 # ------------------------------------------------------------------ helpers
@@ -229,6 +237,14 @@ def p_index() -> str:
              "closes each one"),
             ("suggestions.html", "Suggestions", "—", "Every path with its cost, what it unlocks "
              "and its risk — pick one"),
+            ("reads.html", "Official reads", "R1", "The 2026-11-17 dated read: Week 10 closure, the "
+             "Week 11 slate, the standings, venue evidence and the injury spot-check, with every check "
+             "re-run from the files"),
+            ("escrow.html", "Week 11 escrow", "R1", "Forecasts recorded before kickoff in the required "
+             "order — side, both total estimators, moneyline — with the price columns withheld and the "
+             "settlement ledger beside them"),
+            ("closure.html", "Feed closure", "R1", "What still blocks Week 10 in the results feed, counted "
+             "by the feed's own gates, with the three ways out and what each one costs"),
             ("sources.html", "Sources & limits", "—", "Every URL used, and every limit of this "
              "round's environment"),
             ("flagged.html", "Flagged for review", "—", "Defects, unsourced values and coverage "
@@ -989,6 +1005,26 @@ def p_sources() -> str:
          "31 clubs; each row links its own club page",
          src("https://www.nfl.com/teams/", "nfl.com/teams")],
     ]
+    # R1 (session arena-9d8c298c-x1): the four official pages read live on 2026-11-17, plus the two
+    # fixture pages read for venue evidence. Transcriptions and hashes are in the pack's manifest.
+    for label, url, what in [
+        ("nfl.com Week 10 schedule page (live read 2026-11-17)",
+         "https://www.nfl.com/schedules/2026/by-week/week-10",
+         "the 14 Week 10 finals, the four clubs on bye, and the records printed beside each club"),
+        ("nfl.com Week 11 schedule page (live read 2026-11-17)",
+         "https://www.nfl.com/schedules/2026/by-week/week-11",
+         "the 13 Week 11 fixtures, dates, ET kickoffs, networks, six byes, and the event labels"),
+        ("nfl.com league standings (live read 2026-11-17)",
+         "https://www.nfl.com/standings/league/2026/REG",
+         "32 clubs &times; W-L-T, PCT, PF, PA, net, home, road, div, conf, streak, last five"),
+        ("nfl.com injury hub (live read 2026-11-17)", "https://www.nfl.com/injuries/",
+         "44 rows transcribed by hand across four clubs and diffed against the retained capture"),
+        ("nfl.com Game Center, Colts at Texans", "https://www.nfl.com/games/colts-at-texans-2026-reg-11",
+         "the Game Info Location and Stadium fields for one Week 11 fixture"),
+        ("nfl.com Game Center, Vikings at 49ers", "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11",
+         "the same two fields for the Mexico City fixture, which is where the venue conflict shows up"),
+    ]:
+        src_rows.append([label, "&mdash;", what, src(url, "official page")])
     limits = [[esc(x), badge("BLOCKED", "bad"),
                src(f"{GITHUB}/data/lab/upstream/_pin.json", "upstream/_pin.json")]
               for x in pin["limitations"]]
@@ -1008,6 +1044,31 @@ def p_sources() -> str:
   <p class="legend">This is why the price store has no book and no timestamp: the upstream has
   none, and the sources that do are not reachable here. It is also why no injury row was
   re-verified by this session — the league page could not be fetched.</p>
+</div>
+
+<div class="card">
+  <h2>Corrections to this page, dated</h2>
+  {table(["Statement above", "Status after 2026-11-17", "Evidence"],
+         [["&ldquo;the league page could not be fetched&rdquo;",
+           "superseded. nfl.com was fetched live on 2026-11-17 from this environment: four list pages "
+           "and two fixture pages, transcribed into a dated pack",
+           src(f"{GITHUB}/{READS_PACK}/manifest.json", "reads manifest")],
+          ["&ldquo;no injury row was re-verified by this session&rdquo;",
+           "superseded for 44 rows: four club tables transcribed by hand and diffed cell by cell against "
+           "the newest accepted capture, " + str(jload(f"{READS_PACK}/report.json")["numbers"]["injury_spot_check_mismatches"]) +
+           " mismatches over 220 cells",
+           src(f"{GITHUB}/{READS_PACK}/injury_spotcheck_2026-11-17.tsv", "spot-check")],
+          ["&ldquo;the sources that do [carry a book and a timestamp] are not reachable here&rdquo;",
+           "unchanged. No price source with a named book and a timestamp has been reached, so the price "
+           "store still has no book, and the market line and residual stay blank on every escrow row",
+           src(f"{GITHUB}/docs/methodology/availability.md", "availability")],
+          ["the snapshot date in the page furniture, " + SNAPSHOT,
+           "unchanged and still correct for the artefacts built on it: the reads below are dated in their "
+           "own pack rather than re-stamping this round's snapshot",
+           src(f"{GITHUB}/tools/lab/build_site.py", "build_site.py")]],
+         note="The rows above are left as the round that wrote them published them. A correction is "
+              "dated and placed beside the claim instead of editing it away, because the claim was true "
+              "when it was written and the reader needs to know which of the two it is reading.")}
 </div>
 
 <div class="card">
@@ -1089,6 +1150,63 @@ def p_flagged() -> str:
                               r["why"], src(f"{GITHUB}/data/lab/correlations.json"),
                               r.get("what_would_close_it", "")])
 
+    # R1 (session arena-9d8c298c-x1, 2026-11-17): irregularities found while reading the official
+    # pages. Each one is a measured state of the source, not a guess about it - the numbers come from
+    # the reads-pack report so a re-read that resolves the item makes the row disappear by itself.
+    try:
+        rep = jload(f"{READS_PACK}/report.json")
+    except (OSError, ValueError):
+        rep = None
+    if rep:
+        RN, RC = rep["numbers"], rep["checks"]
+        VEN = f"{GITHUB}/{READS_PACK}/venue_evidence_2026-11-17.tsv"
+        REP = f"{GITHUB}/{READS_PACK}/report.json"
+        flags.append(["R1", "R1-01", "medium",
+                      "Two official pages print different stadium names for the same fixture",
+                      f"Colts at Texans: the schedule page's link parameter says NRG Stadium, the fixture "
+                      f"page's Game Info block prints RELIANT STADIUM. Both are the NFL's own text.",
+                      src(VEN, "venue evidence"),
+                      "a venue-keyed lookup (roof, surface) fails silently on this fixture; key on the "
+                      "club, not the stadium name"])
+        flags.append(["R1", "R1-02", "medium",
+                      "The Mexico City fixture receives a home-field edge at a neutral venue",
+                      "Vikings at 49ers prints Location MEXICO CITY, Stadium ESTADIO BANORTE; PR-01 and "
+                      "PR-04 add 1.6 points to the nominal home club because the frozen rule says so",
+                      src(f"{GITHUB}/{READS_PACK}/week11_slate_2026-11-17.tsv", "Week 11 slate"),
+                      "not corrected: the constants are frozen for this window. Recorded for the next "
+                      "registration, which can decide whether a neutral venue voids the edge"])
+        flags.append(["R1", "R1-03", "medium",
+                      "The published Week 10 injury table is 2 rows short of the newest accepted capture",
+                      f"{RN.get('published_injury_rows_vs_capture', 0)} rows differ: Calais Campbell and "
+                      f"Ronnie Stanley (BAL) are in the capture the collector accepted and are not on the "
+                      f"site table (345 published vs 347 captured)",
+                      src(REP, "report.json"),
+                      "a stale published count, not a typo: the table needs the republish that the brief "
+                      "asks for after each re-capture"])
+        flags.append(["R1", "R1-04", "info",
+                      "No Week 11 injury report exists yet, so no Week 11 availability delta can be published",
+                      "the injury page's own week selector ends at WEEK 10, and all four Week 11 fixture "
+                      "pages read this round print \"Injury Report is not available at this time\"; the "
+                      "capture series has taken 10 reads with "
+                      f"{RN['injury_reads_since_last_content_change']} of them seeing unchanged content",
+                      src("https://www.nfl.com/injuries/", "injury hub"),
+                      "the machinery is running and the source is empty; nobody can build a Week 11 "
+                      "personnel signal today"])
+        flags.append(["R1", "R1-05", "medium",
+                      "The results feed is 13 games short of the corpus the standings imply",
+                      f"{RC['C7_results_log_gap']['week10_games_absent_from_the_published_log']} Week 10 "
+                      f"finals are read and cross-checked but not in data/results; the mirror row-diff gate "
+                      f"blocks all 13, and 4 executable lines pin the builder to 137 rows",
+                      src(f"{GITHUB}/{READS_PACK}/feed-closure-measurement.json", "closure measurement"),
+                      "measured, not fixed: the append would move the frozen PR-01 input and the pinned "
+                      "standings baseline, so it is the owner's call (see the Feed closure page)"])
+        flags.append(["R1", "R1-06", "low",
+                      "One injury-page capture was refused by the drift gate for a club-code spelling",
+                      "the 2026-11-15 read prints LAR where the standings page prints LA; a join on it "
+                      "would silently drop 14 rows",
+                      src(f"{GITHUB}/data/captures/index.jsonl", "capture index"),
+                      "the capture is kept and the read is refused, which is the behaviour the gate is for"])
+
     body = f"""
 <div class="note warn"><b>Nothing on this page blocks anything.</b> These are the values that
 could not be sourced, the defects found in this round's own work, and the coverage gaps. They
@@ -1100,7 +1218,8 @@ are here so you can review them after the rest of the site is live. Every row ca
          [[esc(a), esc(b_), badge(c_, "bad" if c_ == "high" else "warn" if c_ in ("medium", "info") else "grey"),
            esc(d_), esc(e_), f_, esc(g_)] for a, b_, c_, d_, e_, f_, g_ in flags],
          note="Kind: P = price-store provenance, L = line model, B = leaderboard, X = coverage "
-              "finding, C = correlation pair that could not be computed from sourced numbers.")}
+              "finding, C = correlation pair that could not be computed from sourced numbers, "
+              "R1 = the 2026-11-17 official read.")}
 </div>
 
 <div class="card">
@@ -1335,6 +1454,476 @@ Universe: {fav["games"]:,} regular-season games, 2019–2025, with a spread on r
     return page("controls.html", "Control baselines", "C1 · controls", body, lede=lede)
 
 
+# ------------------------------------------------------- R1 pages (session arena-9d8c298c-x1)
+def tload(rel: str) -> list[dict]:
+    """Read a tab-separated file whose leading '#' lines are comments."""
+    import csv as _csv
+    import io as _io
+    with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
+        lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+    return list(_csv.DictReader(_io.StringIO("\n".join(lines)), delimiter="\t"))
+
+
+def cload(rel: str) -> list[dict]:
+    """Read a CSV, skipping the comment lines the shadow and escrow artefacts put above the header."""
+    import csv as _csv
+    import io as _io
+    with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
+        lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+    return list(_csv.DictReader(_io.StringIO("\n".join(lines))))
+
+
+def vcell(v: Any, reason: str = "the source prints nothing here") -> str:
+    """A published cell: a value, or an em dash with the reason. Never a blank, never a zero."""
+    if v is None or (isinstance(v, str) and not v.strip()):
+        return dash(reason)
+    return esc(v)
+
+
+def p_reads() -> str:
+    """The 2026-11-17 official reads: what was read, what it proves, what it cannot."""
+    rep = jload(f"{READS_PACK}/report.json")
+    man = jload(f"{READS_PACK}/manifest.json")
+    num = rep["numbers"]
+    chk = rep["checks"]
+    w10 = [r for r in tload(f"{READS_PACK}/week10_finals.tsv") if r["row_type"] == "game"]
+    w11 = [r for r in tload(f"{READS_PACK}/week11_slate_2026-11-17.tsv") if r["row_type"] == "game"]
+    byes = [r for r in tload(f"{READS_PACK}/week11_slate_2026-11-17.tsv") if r["row_type"] == "bye"]
+    st = tload(f"{READS_PACK}/standings_2026-11-17.tsv")
+    ven = tload(f"{READS_PACK}/venue_evidence_2026-11-17.tsv")
+    ist = tload(f"{READS_PACK}/injury_state_2026-11-17.tsv")
+    PRIOR = "https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_16"
+
+    kpis = "".join([
+        kpi(str(num["week10_finals_published"]), "Week 10 games read Final on the official page",
+            "the 2026-11-16 read could only see 13; the 14th settled Monday night", "ok"),
+        kpi(f"{num['games_implied_by_standings']}", "games the official standings imply",
+            f"137 in the results feed + {num['week10_games_missing_from_the_results_log']} in this read", "ok"),
+        kpi(f"{num['league_points_each_side']:,}", "league points for, and against",
+            "the two sides of the ledger are equal to the point", "ok"),
+        kpi(str(num["injury_rows_spot_checked"]), "injury rows transcribed by hand and diffed",
+            f"{num['injury_spot_check_mismatches']} mismatches against the retained capture", "ok"),
+        kpi(f"{num['venue_direct_rows']} / {len(ven)}", "fixtures with a Game Center venue row",
+            "the weekly schedule page prints no venue field at all", "warn"),
+        kpi(str(num["injury_reads_since_last_content_change"]), "reads of the injury page since it last changed",
+            "the series is running; the report itself has not moved since 2026-11-16", "warn"),
+    ])
+
+    gate_rows = []
+    for key in sorted(chk):
+        c = chk[key]
+        gate_rows.append([
+            esc(key), badge(c.get("verdict", "?"), "ok" if c.get("verdict") == "pass"
+                            else "grey" if c.get("verdict") in ("measured", "review") else "bad"),
+            esc(c.get("note", "")),
+            src(f"{GITHUB}/{READS_PACK}/report.json", "report.json"),
+        ])
+    gates = table(["Check", "Verdict", "What it asserts", "Artefact"], gate_rows)
+
+    final_rows = []
+    for r in w10:
+        final_rows.append([
+            esc(r["game_id"].split("_", 2)[2].replace("_", " at ").upper()), esc(r["date_et"]),
+            f"{esc(r['away'])} {esc(r['away_score'])} &ndash; {esc(r['home_score'])} {esc(r['home'])}",
+            f"{esc(r['away_record'])} / {esc(r['home_record'])}",
+            badge(r["status"], "ok"),
+            vcell(r.get("note", ""), "the page prints no event label for this card"),
+            src(r["game_url"], "fixture page"),
+        ])
+    finals = table(["Fixture", "Date (ET)", "Score as printed", "Records printed beside the clubs",
+                    "Status", "Page section / note", "Source"], final_rows, numeric=(2,),
+                   note="Scores and records are the numbers on the page, in the page's own order. The record "
+                        "column is the POST-game record the schedule page prints under each club, and it is "
+                        "required to equal the standings page read separately (check C4) &mdash; 48 records "
+                        "compared across the two weeks, 0 disagreements.")
+
+    slate_rows = []
+    for r in w11:
+        slate_rows.append([
+            esc(r["game_id"].split("_", 2)[2].replace("_", " at ").upper()),
+            f"{esc(r['date_et'])} {esc(r['time_et'])}", esc(r["network"]),
+            f"{esc(r['away_record'])} / {esc(r['home_record'])}", badge(r["status"], "grey"),
+            esc(chk["C6a_week11_slate_delta_vs_2026_11_16"]["cells_moved"]) + " cells moved since 2026-11-16",
+            src(r["game_url"], "fixture page"),
+        ])
+    slate = table(["Fixture", "Kickoff (ET)", "Network", "Records", "Status", "Slate delta", "Source"],
+                  slate_rows,
+                  note=f"13 fixtures and {len(byes)} clubs on bye = 32 clubs, each exactly once. The slate-delta "
+                       f"column is the diff of this read against the 2026-11-16 read of the same page: dates, "
+                       f"times, networks, clubs and statuses compared cell by cell, "
+                       f"{chk['C6a_week11_slate_delta_vs_2026_11_16']['cells_moved']} moved. The records were "
+                       f"deliberately excluded from that tuple because they are the cells expected to move when "
+                       f"a game closes.")
+
+    clo = chk["C3_league_closure"]
+    closure_rows = [
+        [esc("sum of wins"), esc(f"{clo['sum_wins']}"), esc("equals"), esc(f"{clo['sum_losses']} losses"),
+         badge("equal", "ok"), src(f"{GITHUB}/{READS_PACK}/standings_2026-11-17.tsv", "standings.tsv")],
+        [esc("league points for"), esc(f"{clo['sum_points_for']:,}"), esc("equals"),
+         esc(f"{clo['sum_points_against']:,} against"), badge("equal", "ok"),
+         src(f"{GITHUB}/{READS_PACK}/standings_2026-11-17.tsv", "standings.tsv")],
+        [esc("games implied by the standings"), esc(f"{clo['games_implied_by_standings']}"), esc("equals"),
+         esc(f"{clo['games_in_the_completed_corpus']} in the completed corpus"),
+         badge("equal", "ok"), src(f"{GITHUB}/{READS_PACK}/report.json", "report.json")],
+        [esc("clubs whose printed record disagrees with the standings page"),
+         esc(chk["C4_cross_page_records"]["mismatches"]), esc("of"),
+         esc(f"{chk['C4_cross_page_records']['records_compared']} records compared"),
+         badge("0", "ok"), src(f"{GITHUB}/{READS_PACK}/report.json", "report.json")],
+        [esc("standings cells this read disagrees with the collector's own read of the same page"),
+         esc(chk["C5_independent_standings_reread"]["differing_cells"]), esc("of"),
+         esc(f"{chk['C5_independent_standings_reread']['clubs'] * 6} cells"),
+         badge("0", "ok"), src(f"{GITHUB}/data/pipeline/standings.json", "standings.json")],
+    ]
+    closure = table(["Closure assertion", "Value", "", "Value", "Verdict", "Source"], closure_rows,
+                    numeric=(1, 3),
+                    note="These five lines are why the Week 10 slate can be called complete: the league's own "
+                         "table says 150 games were played, this repository can show 150, and the points add up "
+                         "on both sides. A missing fixture or a transposed score breaks one of them.")
+
+    ven_rows = []
+    for v in ven:
+        ven_rows.append([
+            esc(v["game_id"].split("_", 2)[2].replace("_", " at ").upper()),
+            vcell(v["venue_string_printed_on_week11_page"], "the schedule page prints no venue and no link "
+                  "parameter carrying one for this card"),
+            vcell(v["game_centre_stadium"], "not read this round"),
+            vcell(v["evidence_class"], "no evidence class recorded"),
+            badge("FLAGGED", "bad") if (v["conflict_flag"] or "").strip() else badge("none", "grey"),
+            src(v["game_centre_url"], "Game Center"),
+        ])
+    venues = table(["Fixture", "What the schedule page prints", "Game Center stadium", "Evidence class",
+                    "Conflict", "Source"], ven_rows,
+                   note="The weekly schedule page prints no venue field. What it prints, on some cards, is a "
+                        "hotel-search link whose URL carries <code>destinationAddress.location=&lt;Stadium&gt;</code> "
+                        "&mdash; an official string, but a link parameter, so it is labelled as one and never "
+                        "presented as a venue read. Two fixture pages were read for this round; the other eleven "
+                        "say <em>not read this round</em>, which is a measured gap and not a value to guess.")
+
+    inj_rows = []
+    for r in ist:
+        inj_rows.append([
+            esc(r["read_id"]), esc(r["subject"]), esc(r["printed_on_the_page"]),
+            esc(r["what_that_means"]),
+            badge("FLAGGED", "bad") if (r.get("flag") or "").strip() else badge("note", "grey"),
+            src(r["official_url"], "official page"),
+        ])
+    injuries = table(["Read", "Subject", "What the page prints", "What that means", "Flag", "Source"], inj_rows,
+                     note=f"The row-level comparison is check C8: {num['injury_rows_spot_checked']} rows "
+                          f"transcribed by hand across four clubs, five fields each, against the newest retained "
+                          f"capture &mdash; {num['injury_spot_check_mismatches']} mismatches. The same rows against "
+                          f"the table the site publishes: {num['published_injury_table_mismatches']} mismatches, so "
+                          f"the three Lions game-status cells carried in the review queue no longer reproduce. What "
+                          f"the site table is missing is on the Flagged page.")
+
+    body = f"""
+<div class="note"><b>What this page is.</b> On 2026-11-17 this session read four official NFL pages
+live and transcribed them into a dated pack
+(<a href="{GITHUB}/{READS_PACK}" target="_blank" rel="noopener">data/lab/reads/2026-11-17</a>). Every
+number below is recomputed from those files by
+<a href="{GITHUB}/tools/lab/build_reads.py" target="_blank" rel="noopener">tools/lab/build_reads.py</a>
+&mdash; nothing on this page is typed in, and the build fails rather than publishing a number the files
+do not support. The read window the pack records is
+{esc(man['read_window_utc']['first_read'])} to {esc(man['read_window_utc']['last_read'])}, and the fetch
+tool returns parsed page text, so these are transcriptions of pages, not byte captures: the hashes in
+<a href="{GITHUB}/{READS_PACK}/manifest.json" target="_blank" rel="noopener">manifest.json</a> are of
+the transcriptions.</div>
+
+<div class="kpis">{kpis}</div>
+
+<div class="card"><h2>The ten checks that gate this page</h2>{gates}</div>
+
+<div class="card"><h2>Week 10, all 14 games, all Final</h2>{finals}</div>
+
+<div class="card"><h2>The closure arithmetic, five assertions</h2>{closure}</div>
+
+<div class="card"><h2>Week 11, the slate as it stands before kickoff</h2>{slate}</div>
+
+<div class="card"><h2>Venue evidence, and what the schedule page does not print</h2>{venues}</div>
+
+<div class="card"><h2>Availability: the state of the injury machinery</h2>{injuries}
+<p class="legend">Day-over-day delta, the thing the brief asks for instead of the level: the last two
+accepted reads of the injury page differ in
+{chk['C9_injury_capture_series']['delta_last_two_reads']['cells_changed']} cells across
+{chk['C9_injury_capture_series']['reads']} reads and
+{chk['C9_injury_capture_series']['distinct_payloads']} distinct payloads. The 2026-11-15 read was refused
+by the drift gate for printing <code>LAR</code> where the standings page prints <code>LA</code>; the
+history is in report.json, and it is why a capture is kept per read rather than overwriting one another.</p>
+</div>
+
+<div class="note warn"><b>What this page cannot show you.</b> There is no price here: no opening line, no
+closing line, no book, no timestamp on a number
+<a href="{PRIOR}" target="_blank" rel="noopener">the 2026-11-16 pack</a> could not see either, and the
+13 Week 10 games it printed as settled are still absent from the results feed &mdash; that gap is measured
+on <a href="closure.html">Feed closure</a> and it is not fixed here. The Week 11 injury report does not
+exist yet (the page's own week selector ends at Week 10), so no Week 11 availability delta can be
+published by anyone. And the two fixtures with a Game Center venue row are the only venue evidence this
+round produced.</div>
+"""
+    return page("reads.html", "The 2026-11-17 official read", "R1 · dated live reads", body,
+                lede="Week 10 closure, the Week 11 slate, the standings, the venue evidence and the "
+                     "availability state &mdash; transcribed from nfl.com on 2026-11-17 and re-derived "
+                     "from the files, cell by cell, by the build.")
+
+
+def p_escrow() -> str:
+    """PR-04: the Week 11 forecasts recorded before kickoff, and the ledger that settles them."""
+    m = jload(f"{ESCROW_DIR}/escrow_meta.json")
+    rows = cload(f"{ESCROW_DIR}/week11_forecasts_2026-11-17.csv")
+    led = cload(f"{ESCROW_DIR}/settlement_ledger.csv")
+    by_game: dict[str, dict] = {}
+    for r in rows:
+        by_game.setdefault(r["game_id"], {})[r["market"]] = r
+    settled = [r for r in led if r["settled"] == "yes"]
+    open_rows = [r for r in led if r["settled"] != "yes"]
+
+    kpis = "".join([
+        kpi(str(len(by_game)), "fixtures recorded before kickoff",
+            f"{len(rows)} rows, {len(m['markets'])} markets, in the required order", "ok"),
+        kpi(m["recorded_at_utc"].replace("T", " ").replace("Z", ""), "recorded at (UTC)",
+            f"first kickoff {m['first_kickoff_utc'].replace('T', ' ').replace('Z', '')} UTC", ""),
+        kpi(f"{m['recorded_before_first_kickoff_minutes_of_slack'] / 60:.1f} h",
+            "margin between the record and the first kickoff",
+            "the pack stamps its clock to the minute; that rounding is what this slack has to be big against",
+            "ok"),
+        kpi(str(len(settled)), "rows settled by an official final",
+            f"{len(open_rows)} still open; a row settles only when an official page printed the score", "warn"),
+        kpi("0", "market lines, residuals, CLV or ROI",
+            "withheld: no licensed price source for 2026 (Q-02)", "warn"),
+        kpi(str(m["cross_registration_delta_vs_pr01"]["fixtures_compared"]),
+            "fixtures also forecast by PR-01 on 2026-11-16",
+            f"mean |Δp| {m['cross_registration_delta_vs_pr01']['mean_abs_delta']}, "
+            f"largest {m['cross_registration_delta_vs_pr01']['largest_move']['abs_delta']}", ""),
+    ])
+
+    fc_rows = []
+    for gid in sorted(by_game):
+        g = by_game[gid]
+        side, ta, tb, ml = g["side"], g["total_A"], g["total_B"], g["moneyline"]
+        fc_rows.append([
+            esc(gid.split("_", 2)[2].replace("_", " at ").upper()), esc(side["kickoff_et"]),
+            esc(f"{side['away']} at {side['home']}"),
+            esc(side["our_fair_line"]), pct(float(side["our_probability"])),
+            esc(ta["our_fair_line"]), esc(tb["our_fair_line"]),
+            esc(tb["our_probability"]), esc(ml["our_fair_line"]),
+            dash("no licensed price source for 2026 (open question Q-02)"),
+            dash("follows from the blank market line"),
+            badge("yes", "ok") if side["recorded_before_kickoff"] == "yes" else badge("NO", "bad"),
+            src(side["official_fixture_url"], "fixture page"),
+        ])
+    fc = table(["Fixture", "Kickoff (ET)", "Matchup", "Side fair line", "p(home)", "total A", "total B",
+                "B &minus; A gap", "moneyline (zero-vig)", "Market line", "Residual", "Pre-kickoff", "Source"],
+               fc_rows, numeric=(3, 4, 5, 6, 7),
+               note="Side first, then the total, then the moneyline: the order the brief requires is a build "
+                    "constraint, and the market order column is in the artefact. <b>Both totals are published "
+                    "because neither has won yet.</b> A is the league-average total &mdash; the floor a margin "
+                    "model has, published as the floor and not as an estimate of the game. B is two clubs' "
+                    "shrunk scoring and allowed points. The gap column is the whole comparison; the walk-forward "
+                    "settlement decides it, and one settled week is not enough to collapse them.")
+
+    delta_rows = []
+    for d in m["cross_registration_delta_vs_pr01"]["rows"]:
+        delta_rows.append([
+            esc(d["game_id"].split("_", 2)[2].replace("_", " at ").upper()),
+            esc(f"{d['p_pr01_2026_11_16']:.6f}"), esc(f"{d['p_pr04_2026_11_17']:.6f}"),
+            esc(f"{d['delta']:+.6f}"), esc(f"{d['fair_line_pr01']} &rarr; {d['fair_line_pr04']}"),
+            src(f"{GITHUB}/{ESCROW_DIR}/escrow_meta.json", "escrow_meta.json"),
+        ])
+    delta = table(["Fixture", "p recorded 2026-11-16 (PR-01)", "p recorded 2026-11-17 (PR-04)",
+                   "Change", "Fair line, then", "Artefact"], delta_rows, numeric=(1, 2, 3),
+                  note=f"n = {len(delta_rows)} fixtures. Same rule, same code path, one extra settled game in "
+                       f"the corpus: PR-01 read 149 games, this record reads "
+                       f"{m['corpus_read']['games']}. The largest move is "
+                       f"{m['cross_registration_delta_vs_pr01']['largest_move']['abs_delta']} in probability on "
+                       f"<code>{esc(m['cross_registration_delta_vs_pr01']['largest_move']['game_id'])}</code>. "
+                       f"That is not a result and it is not an improvement &mdash; it is how fragile this model "
+                       f"is to a single score, which is the number a reader needs before calling either record "
+                       f"a signal.")
+
+    led_rows = []
+    for r in led:
+        if r["settled"] != "yes" and r["market"] != "side":
+            continue
+        led_rows.append([
+            esc(r["ledger_id"]), esc(r["origin_record"]), esc(r["market"]), esc(r["kickoff_et"]),
+            badge("settled", "ok") if r["settled"] == "yes" else badge("open", "grey"),
+            vcell(r["away_score"]) + "&ndash;" + vcell(r["home_score"]),
+            vcell(r["our_fair_line"]), vcell(r["our_probability"]),
+            vcell(r["brier"]), vcell(r["skill_vs_home_baseline"]),
+            vcell(r["fair_line_error_points"], "not settled yet"),
+            esc(r["flags"]),
+            src(r["settlement_source_url"], "official final") if r["settlement_source_url"]
+            else '<span class="src blank">no official source</span>',
+        ])
+    ledger = table(["Ledger row", "Record", "Market", "Kickoff (ET)", "State", "Final", "Our line", "p",
+                    "Brier", "Skill vs 0.55", "Line error (pts)", "Note", "Source"], led_rows,
+                   numeric=(6, 7, 8, 9, 10),
+                   note=f"{len(settled)} settled row, {len(open_rows)} open. The settled row is PR-01's "
+                        f"Monday-night forecast: the model took BAL &minus;7.0 at p = 0.701232, LAC won 23&ndash;20, "
+                        f"Brier {settled[0]['brier'] if settled else '—'} against the 0.55 baseline's "
+                        f"{settled[0]['brier_vs_home_baseline_0_55'] if settled else '—'}. "
+                        f"n = 1 is not evidence in either direction, and the page says so rather than the "
+                        f"arithmetic saying it for us.")
+
+    s = m["settled"]
+    luck = f"""
+<div class="card"><h2>The luck panel, printed with the score</h2>
+{table(["Quantity", "Value", "Reading", "Artefact"], [
+    ["Settled side rows", esc(str(s["n_settled_side_rows"])), "one", src(f"{GITHUB}/{ESCROW_DIR}/escrow_meta.json", "escrow_meta.json")],
+    ["Model-side hits", esc(f"{s['model_side_hits']} of {s['n_settled_side_rows']}"), "the record, not the rate", src(f"{GITHUB}/{ESCROW_DIR}/settlement_ledger.csv", "settlement_ledger.csv")],
+    ["Mean Brier", esc(str(s["mean_brier"])), "lower is better", src(f"{GITHUB}/{ESCROW_DIR}/escrow_meta.json", "escrow_meta.json")],
+    ["Mean Brier of the 0.55 home baseline", esc(str(s["mean_brier_home_baseline"])), "the benchmark", src(f"{GITHUB}/docs/preregistration/PR-01-shadow-baseline.md", "PR-01")],
+    ["Brier skill against that baseline", esc(str(s["brier_skill_vs_home_baseline"])), "negative on one game means nothing and proves nothing", src(f"{GITHUB}/{ESCROW_DIR}/escrow_meta.json", "escrow_meta.json")],
+    ["Expected wins on the model side", esc(f"{s['expected_wins_on_model_side']} (sd {s['sd_of_wins']})"), "the realised-minus-expected gap is the luck question", src(f"{GITHUB}/{ESCROW_DIR}/escrow_meta.json", "escrow_meta.json")],
+    ["Mean fair-line error", esc(f"{s['mean_fair_line_error_points']} points"), "the line was 10 points away on the one settled game", src(f"{GITHUB}/{ESCROW_DIR}/settlement_ledger.csv", "settlement_ledger.csv")],
+])}
+</div>"""
+
+    body = f"""
+<div class="note"><b>Recorded before the games, and it refuses to be edited after them.</b>
+The rule is <a href="{GITHUB}/docs/preregistration/PR-04-week11-escrow.md" target="_blank"
+rel="noopener">docs/preregistration/PR-04-week11-escrow.md</a>; the artefacts are
+<a href="{GITHUB}/{ESCROW_DIR}/week11_forecasts_2026-11-17.csv" target="_blank" rel="noopener">week11_forecasts_2026-11-17.csv</a>,
+<a href="{GITHUB}/{ESCROW_DIR}/settlement_ledger.csv" target="_blank" rel="noopener">settlement_ledger.csv</a>
+and <a href="{GITHUB}/{ESCROW_DIR}/escrow_meta.json" target="_blank" rel="noopener">escrow_meta.json</a>,
+built by <a href="{GITHUB}/tools/lab/build_escrow.py" target="_blank" rel="noopener">tools/lab/build_escrow.py</a>.
+The builder aborts unless every fixture's kickoff is strictly later than the clock time of the official
+read the record is built from, and it aborts if a rebuild would add or drop a row from a record that has
+already been written: <code>ABORT: the committed forecast record would change shape.</code> The hash of
+the rows is in the meta file, and the constants are imported from PR-01's implementation, not retyped, so
+the two records cannot drift apart by accident.</div>
+
+<div class="kpis">{kpis}</div>
+
+<div class="card"><h2>The escrow: three markets, in order, per fixture</h2>{fc}</div>
+
+<div class="card"><h2>The same 13 fixtures, one day and one game apart</h2>{delta}</div>
+
+<div class="card"><h2>The settlement ledger</h2>{ledger}</div>
+{luck}
+
+<div class="note warn"><b>What is withheld, and why it stays withheld.</b> <code>market_line</code> and
+<code>residual</code> are empty on all {len(rows)} rows and <code>CLV</code> and <code>ROI</code> are not
+computed at all. This repository has no licensed price source for 2026 &mdash; open question Q-02, and the
+pinned third-party mirror prints a spread and a total for these fixtures and prints no score for any of
+them, which is measured on <a href="closure.html">Feed closure</a>. The fair line is published because the
+model produced it before kickoff; the residual is the number an origination programme is actually judged
+on, and publishing it from data the owner has not agreed to use would rank a strategy on a source nobody
+has cleared. When a price policy is decided the residual fills retroactively, because the fair line was
+recorded first &mdash; that is the entire purpose of an escrow.</div>
+
+<p class="legend">Limits, from the artefact, not softened: {"; ".join(esc(x) for x in m["limits"])}.</p>
+"""
+    return page("escrow.html", "Week 11 escrow", "R1 · PR-04, recorded pre-kickoff", body,
+                lede="Thirteen fixtures forecast in the required order &mdash; side, both total "
+                     "estimators, moneyline &mdash; written before kickoff on 2026-11-17, priced "
+                     "nothing, and scored only where an official page has since printed a final.")
+
+
+def p_closure() -> str:
+    """What still blocks Week 10 in the results feed, counted by the feed's own gates."""
+    d = jload(f"{READS_PACK}/feed-closure-measurement.json")
+    M = d["measures"]
+    m1, m2 = M["M1_row_count_pins"], M["M2_mirror_row_diff_gate"]
+    m3 = M["M3_closure_against_todays_official_standings"]
+    m4 = M["M4_closure_against_the_pinned_baseline"]
+    m5 = M["M5_blast_radius"]
+    m6 = M["M6_evaluation_corpus_effect"]
+
+    kpis = "".join([
+        kpi(f"{d['corpus']['rows_in_the_published_results_log']} &rarr; {d['corpus']['corpus_after_the_append']}",
+            "games in the results feed, and after the append",
+            f"{d['corpus']['games_the_append_would_add']} Week 10 games the feed does not hold", "warn"),
+        kpi(str(m2["of_those_the_mirror_prints_no_score_for"]), "games blocked by the mirror gate",
+            f"of {d['corpus']['games_the_append_would_add']} the append would add &mdash; every one", "bad"),
+        kpi(f"{m3['clubs'] - m3['clubs_disagreeing']}/{m3['clubs']}", "standings rows the closure reproduces",
+            "against today's official table, W-L-T, PF and PA", "ok"),
+        kpi(str(m1["code_lines_that_assert_the_count"]), "executable lines pinning the row count",
+            f"in {m1['file']}, plus {m1['occurrences'] - m1['code_lines_that_assert_the_count']} prose lines "
+            f"that repeat it", "warn"),
+        kpi(str(m5["files_naming_the_results_log_or_the_feed"]), "artefacts naming the log or the feed",
+            "each regenerated and re-verified in the same commit", "warn"),
+        kpi(f"+{m6['added']}", "games the append adds to the scored window",
+            f"{m6['games_excluding_the_warmup_before']} &rarr; {m6['games_excluding_the_two_week_warmup_after']} "
+            f"after the two-week warmup", ""),
+    ])
+
+    pin_rows = [[esc(f"line {p['line']}"), badge(p["kind"], "bad" if p["kind"] == "code" else "grey"),
+                 f"<code>{esc(p['text'])}</code>", src(f"{GITHUB}/{m1['file']}", m1["file"].rsplit("/", 1)[-1])]
+                for p in m1["lines"]]
+    pins = table(["Where", "Kind", "What it asserts", "Source"], pin_rows)
+
+    blocked_rows = []
+    for b in m2["blocked"]:
+        has_line = b.get("mirror_has_line_but_no_score")
+        blocked_rows.append([
+            esc(b["mirror_id"]), esc(b["slug"]), esc(b["why"]),
+            vcell(b.get("mirror_spread_line", ""), "the mirror prints no line here"),
+            vcell(b.get("mirror_total_line", ""), "the mirror prints no line here"),
+            badge("line, no score", "warn") if has_line else badge("nothing", "grey"),
+            src(f"https://www.nfl.com/games/{b['slug']}", "official final"),
+        ])
+    blocked = table(["Mirror key", "Official fixture", "Why the gate refuses it", "Mirror spread",
+                     "Mirror total", "Shape", "Source"], blocked_rows, numeric=(3, 4),
+                    note=f"{m2['of_the_blocked_rows_the_mirror_does_print_a_spread_and_total_for']} of "
+                         f"{m2['games_the_append_would_add']} blocked games have a spread and a total in the "
+                         f"mirror and no score. The prices nobody is authorised to use are present; the score "
+                         f"the NFL has printed is the part the gate will not accept. That is the shape of the "
+                         f"blocker, and it is why this is a decision rather than a bug.")
+
+    base_rows = [[esc(x["club"]), esc("-".join(str(v) for v in x["pinned_2026_11_14"])),
+                  esc("-".join(str(v) for v in x["from_the_150_game_corpus"])),
+                  src(f"{GITHUB}/code/reference_data_2026_w10.py", "the pinned baseline")]
+                 for x in m4["detail"][:32]]
+    baseline = table(["Club", "Pinned 2026-11-14 (W-L-T-PF-PA)", "From the 150-game corpus", "Source"],
+                     base_rows,
+                     note=f"{m4['clubs_that_would_move']} of {m4['clubs_in_the_baseline']} clubs move against "
+                          f"the pinned baseline, by design: that file is the 137-game table. Re-pinning it to a "
+                          f"dated official read is part of the change set. This page lists the moves so the cost "
+                          f"is visible; it does not make them.")
+
+    opt_rows = [[esc(o["id"]), esc(o["name"]), esc(o["what_it_costs"]), esc(o["risk"]),
+                 src(f"{GITHUB}/{READS_PACK}/feed-closure-measurement.json", "measurement")]
+                for o in d["options"]]
+    options = table(["", "The path", "What it costs", "What it risks", "Artefact"], opt_rows)
+
+    body = f"""
+<div class="note warn"><b>This page measures a blocker. It does not fix it.</b> Week 10 is closed on the
+official page &mdash; 14 finals, read and cross-checked on <a href="reads.html">the reads page</a> &mdash;
+and the results feed still holds 137 games, because <code>tools/build_results_r3.py</code> refuses to emit
+a row the third-party mirror has no score for, and pins its output to exactly 137 rows in four executable
+lines. Appending the 13 games would also move the standings baseline the feed is arithmetic-checked against
+and every artefact that reads the feed. All of that is measured below from the committed builder, and
+<code>data/results/**</code> and PR-01's frozen inputs are untouched by this session:
+<a href="{GITHUB}/tools/lab/build_closure_measurement.py" target="_blank" rel="noopener">tools/lab/build_closure_measurement.py</a>
+writes <a href="{GITHUB}/{READS_PACK}/feed-closure-measurement.json" target="_blank"
+rel="noopener">feed-closure-measurement.json</a>, which is what this page renders.</div>
+
+<div class="kpis">{kpis}</div>
+
+<div class="card"><h2>The four executable pins, and the prose that repeats them</h2>{pins}</div>
+
+<div class="card"><h2>The 13 games, one row each, and why the gate stops them</h2>{blocked}</div>
+
+<div class="card"><h2>What the append moves in the standings baseline</h2>{baseline}</div>
+
+<div class="card"><h2>The three paths, with their cost</h2>{options}
+<p class="legend">{esc(d['decision_for_the_owner'])}</p></div>
+
+<div class="note"><b>What is already true, and is not usually said out loud.</b> The closure arithmetic
+passes: the 150 games this repository can show reproduce all {m3['clubs']} official standings rows exactly
+&mdash; wins, losses, ties, points for and points against, for every club, against the league table read on
+{esc(d['read_on'])}. So this is not a question of whether the Week 10 scores are right. It is a question of
+what the word <em>verified</em> is allowed to mean for a row: two independent sources, or one official page
+plus the arithmetic that only closes if every row is present. That is the owner's call, and it is the one
+this round recorded instead of taking.</div>
+"""
+    return page("closure.html", "Feed closure: what Week 10 still needs", "R1 · measured, not fixed", body,
+                lede="The Week 10 slate is complete on the official page and incomplete in the results "
+                     "feed. Here is the gap, counted by the feed's own gates, with the three ways out and "
+                     "the price of each.")
+
+
+
 def main() -> int:
     if "--check" in sys.argv:
         return check()
@@ -1352,6 +1941,9 @@ def main() -> int:
         "validation.html": p_validation,
         "questions.html": p_questions,
         "suggestions.html": p_suggestions,
+        "reads.html": p_reads,
+        "escrow.html": p_escrow,
+        "closure.html": p_closure,
         "sources.html": p_sources,
         "flagged.html": p_flagged,
     }

@@ -66,3 +66,33 @@ Consequences, all published on the site:
 A price row is tier B, not tier A. That is the single most important sentence in this
 document: **no official source publishes a betting price**, and the line desk does not pretend
 otherwise.
+
+## Live official reads — 2026-11-17, session `arena-9d8c298c-x1`
+
+The four nfl.com URLs listed as **blocked** above were read live on 2026-11-17, together with two
+fixture pages. What is recorded here is exactly what the read produced and what it did not.
+
+| Source | URL | What it provided | How it is pinned |
+|---|---|---|---|
+| Week 10 schedule, by week | https://www.nfl.com/schedules/2026/by-week/week-10 | 14 fixtures printed `Final` with both scores, the post-game record beside each club, four clubs on bye, one event label (Munich) | transcription in `data/lab/reads/2026-11-17/week10_finals.tsv`; SHA-256 in that pack's `manifest.json` |
+| Week 11 schedule, by week | https://www.nfl.com/schedules/2026/by-week/week-11 | 13 fixtures with dates, ET kickoff times, networks, six clubs on bye, the Mexico City event chip, one `Weather Clearnight` string | `week11_slate_2026-11-17.tsv` |
+| League standings | https://www.nfl.com/standings/league/2026/REG | 32 clubs × W-L-T, PCT, PF, PA, net, home, road, div, div PCT, conf, conf PCT, streak, last five | `standings_2026-11-17.tsv`, re-derived by `tools/lab/build_reads.py` |
+| Injury hub | https://www.nfl.com/injuries/ | the week selector ending at **WEEK 10** (no Week 11 report published), and four club tables transcribed by hand | `injury_spotcheck_2026-11-17.tsv`, diffed cell by cell against the newest retained capture |
+| Game Center, one fixture per read | https://www.nfl.com/games/colts-at-texans-2026-reg-11 · https://www.nfl.com/games/vikings-at-49ers-2026-reg-11 | `Location` and `Stadium` fields, and the injury-report availability line each club prints | `venue_evidence_2026-11-17.tsv` |
+
+Two things this does **not** change:
+
+* **No price source.** Not one of those pages publishes a spread, a total, a moneyline, a book or a
+  timestamp on a price. The withheld columns on `lab/escrow.html` are withheld for the same reason they
+  were withheld in November's other rounds.
+* **Transcriptions, not captures.** The fetch tool returns the parsed page, so the hashes in the pack's
+  `manifest.json` are hashes of what was written down, not of HTTP bytes. The files say so in their own
+  headers, and `tools/lab/build_reads.py` re-derives every published number from them.
+
+**Correction to the `Blocked` table above.** `000` was a `curl` result, and it is still a `curl` result:
+this sandbox has no route to nfl.com through the shell. It was recorded as a statement about the source,
+and three rounds after it, that reading is what kept a whole class of verification off the table — the
+official pages were readable through the platform's fetch tool the entire time. The rows above are left
+as written, because the measurement they report is real; what is wrong is the inference drawn from them.
+`scripts/pipeline/` still cannot reach nfl.com, so the collector remains as blocked as it was — see
+`docs/methodology/availability.md`.

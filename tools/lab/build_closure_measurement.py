@@ -162,9 +162,13 @@ def build() -> dict:
         if m is None:
             missing.append({"slug": g["slug"], "mirror_id": gid, "why": "no row in the mirror at all"})
         elif gid not in scored:
-            missing.append({"slug": g["slug"], "mirror_id": gid,
+            spread = (m.get("spread_line") or "").strip()
+            total = (m.get("total_line") or "").strip()
+            missing.append({"slug": g["slug"], "mirror_id": gid, "mirror_game_date": (m.get("game_date") or "").strip(),
+                            "mirror_spread_line": spread, "mirror_total_line": total,
+                            "mirror_has_line_but_no_score": bool(spread and total),
                             "why": "the mirror has the row but prints no score for it"})
-            if (m.get("spread_line") or "").strip() and (m.get("total_line") or "").strip():
+            if spread and total:
                 with_lines += 1
         else:
             agree = (str(m.get("away_score")) == str(g["as_"]) and str(m.get("home_score")) == str(g["hs"]))
@@ -237,11 +241,20 @@ def build() -> dict:
     }
 
     # ---- M5: blast radius ----------------------------------------------------------
+    # Consumers only. A published page is a RENDERING of the feed, not a thing that reads it,
+    # and counting renderings makes this measure depend on how many pages happen to describe it -
+    # the number would move every time a page was written and never settle. So *.html is skipped,
+    # as is this pack's own output directory, and the scan is limited to the trees that consume data.
     touched = {}
+    SCAN = ("tools", "scripts", "code", "docs", "data", ".github")
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in {".git", "__pycache__", "_site", "node_modules"}]
+        dirnames[:] = [d for d in dirnames if d not in {".git", "__pycache__", "_site", "node_modules", "lab"}]
+        rel_dir = os.path.relpath(dirpath, ROOT)
+        if rel_dir != "." and not rel_dir.startswith(SCAN):
+            dirnames[:] = []
+            continue
         for fn in filenames:
-            if not fn.endswith((".py", ".json", ".csv", ".md", ".html", ".yml")):
+            if not fn.endswith((".py", ".json", ".csv", ".md", ".yml")):
                 continue
             rel = os.path.relpath(os.path.join(dirpath, fn), ROOT)
             if rel.startswith(("data/lab/reads/", "tools/lab/build_closure_measurement.py")):
@@ -261,9 +274,12 @@ def build() -> dict:
         "by_kind": {k: sum(1 for v in touched.values() if k in v) for k in
                     ("reads.tsv", "verified_results", "build_results_r3", "signal_grade")},
         "files": dict(sorted(touched.items())),
+        "scan_scope": "tools, scripts, code, docs, data, .github; html and this pack's own output excluded",
         "reading": ("a closure is not one file: this is the list of artefacts that name the log or the feed "
                     "and would have to be regenerated and re-verified in the same commit. Frozen inputs "
-                    "(PR-01's) are deliberately excluded from 'just do it' by that fact."),
+                    "(PR-01's) are deliberately excluded from 'just do it' by that fact. Renderings are "
+                    "excluded too, so the count is the cost of the change and not a function of how many "
+                    "pages happen to describe it."),
     }
 
     # ---- M6: what the append buys --------------------------------------------------
