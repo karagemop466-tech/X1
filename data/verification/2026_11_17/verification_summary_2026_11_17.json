@@ -1,7 +1,7 @@
 {
  "dataset": "verification/2026_11_17",
  "title": "Live official re-verification - 2026-11-17",
- "generated_at": "2026-11-17T22:59:21Z",
+ "generated_at": "2026-11-17T23:06:22Z",
  "generated_by": "tools/verify_2026_11_17.py (session arena-01c263c4-x1)",
  "retrieved": "2026-11-17",
  "sources": [
@@ -46,6 +46,17 @@
     "cell_diffs": 0
    },
    "detail": "capture read 2026-11-16T19:02:14+00:00 (content unchanged at the 2026-11-17T19:49:49Z re-read)"
+  },
+  {
+   "id": "I2b",
+   "name": "same-day cross-read: this transcription vs session arena/16049865-x1's independent 2026-11-17 TSV (PR #73)",
+   "verdict": "PASS",
+   "counts": {
+    "their_rows": 347,
+    "our_rows": 347,
+    "differences": 0
+   },
+   "detail": ""
   },
   {
    "id": "I3",
@@ -190,6 +201,15 @@
    "detail": ""
   },
   {
+   "id": "X1",
+   "name": "cross-session corroboration vs the evidence pack",
+   "verdict": "SKIP",
+   "counts": {
+    "reason": "data/evidence/2026_11_17/ not present in this checkout (pending PR #76)"
+   },
+   "detail": ""
+  },
+  {
    "id": "W1",
    "name": "Week 11 injury report probe: REG11 resolved to the Week 10 page; selector lists WEEK 1..WEEK 10",
    "verdict": "PASS",
@@ -200,8 +220,8 @@
   }
  ],
  "counts": {
-  "checks": 16,
-  "pass": 13,
+  "checks": 18,
+  "pass": 14,
   "findings": 3,
   "structural_failures": 0
  },

@@ -244,6 +244,29 @@ def build(outdir):
         json.dumps({"keys": key_diffs, "cells": cell_diffs[:20]}, ensure_ascii=False) if not i2_ok
         else f"capture read {cap_inj.get('as_read_at')} (content unchanged at the 2026-11-17T19:49:49Z re-read)")
 
+    # ---------------- I2b independent same-day cross-read (session arena/16049865-x1, PR #73) ----------------
+    # A DIFFERENT session transcribed the same page independently on the same date; its dated TSV
+    # merged to main in PR #73. Agreement between two sessions' transcriptions is a corroboration
+    # gate, not a coincidence: either side could have made an error the other did not.
+    x73 = os.path.join(ROOT, "data", "capture", "2026_w10_read_2026_11_17", "injuries_week10_2026-11-17.tsv")
+    if os.path.exists(x73):
+        theirs = read_tsv(x73)
+        tm = {ikey(r, alias=True): r for r in theirs}
+        xdiffs = []
+        if set(m) != set(tm):
+            xdiffs.append(f"key sets differ: {len(set(m) ^ set(tm))} keys")
+        for k in sorted(set(m) & set(tm)):
+            for f in ("position", "injury", "practice_status", "game_status"):
+                if m[k][f] != tm[k][f]:
+                    xdiffs.append(f"{k[0]}/{k[1]}.{f}: {m[k][f]!r} vs {tm[k][f]!r}")
+        add("I2b", "same-day cross-read: this transcription vs session arena/16049865-x1's independent 2026-11-17 TSV (PR #73)",
+            "PASS" if not xdiffs else "FAIL-STRUCTURAL",
+            {"their_rows": len(theirs), "our_rows": len(inj), "differences": len(xdiffs)},
+            "; ".join(xdiffs[:10]))
+    else:
+        add("I2b", "same-day cross-read vs PR #73 TSV", "SKIP",
+            {"reason": "data/capture/2026_w10_read_2026_11_17/ not present in this checkout"})
+
     # ---------------- I3 dated delta vs published ----------------
     # Both sides keyed by canonical club label: the published table prints the Rams as "LAR",
     # today's page prints "LAR" too, while other official pages print "LA" - aliased, not merged.
@@ -514,6 +537,52 @@ def build(outdir):
         "PASS" if ok else "FAIL-STRUCTURAL",
         {"scheduled_2026_11_14": len(scheduled), "already_final_2026_11_14": len(final_alreadY),
          "promoted": len(promotions), "still_open": still_sched})
+
+    # ---------------- X1 cross-session corroboration (session arena/2f95e652-x1, PR #76) ----------------
+    # Another session independently re-read standings and the Week 10 finals the same evening
+    # (data/evidence/2026_11_17/, its claim E-1). Its branch may merge before or after this one,
+    # so the check reports SKIP when the pack is absent rather than failing the build; when the
+    # pack is present, every shared cell must agree - two sessions reading the same page within
+    # minutes cannot legitimately disagree.
+    ev_dir = os.path.join(ROOT, "data", "evidence", "2026_11_17")
+    ev_std = os.path.join(ev_dir, "standings.tsv")
+    ev_fin = os.path.join(ev_dir, "week10_finals.tsv")
+    if os.path.exists(ev_std) and os.path.exists(ev_fin):
+        lines = [ln for ln in open(ev_std, encoding="utf-8") if ln.strip() and not ln.lstrip().startswith("#")]
+        evh = lines[0].rstrip("\n").split("|")
+        evr = [dict(zip(evh, ln.rstrip("\n").split("|"))) for ln in lines[1:]]
+        evm = {CLUB_ALIAS.get(r["TEAM"], r["TEAM"]): r for r in evr}
+        pairs = [("W", "w"), ("L", "l"), ("T", "t"), ("PCT", "pct"), ("PF", "pf"), ("PA", "pa"),
+                 ("NET", "net"), ("HOME", "home"), ("ROAD", "road"),
+                 ("DIV", "div_record"), ("CONF", "conf_record"), ("STRK", "streak")]
+        xdiffs = []
+        for r in stand:
+            a = CLUB_ALIAS.get(r["abbr"], r["abbr"])
+            er = evm.get(a)
+            if not er:
+                xdiffs.append(f"{a}: absent from the evidence pack")
+                continue
+            for a_f, b_f in pairs:
+                if er[a_f] != r[b_f]:
+                    xdiffs.append(f"{a}.{b_f}: evidence pack {er[a_f]!r} vs this read {r[b_f]!r}")
+        fin = [ln for ln in open(ev_fin, encoding="utf-8") if ln.strip() and not ln.lstrip().startswith("#")]
+        fn = list(csv.DictReader(fin, delimiter="|"))
+        fm = {(canon(r["away"]), canon(r["home"])): r for r in fn}
+        for r in res:
+            k = (canon(r["away"]), canon(r["home"]))
+            fr = fm.get(k)
+            if not fr:
+                xdiffs.append(f"{k}: fixture absent from the evidence pack")
+                continue
+            if fr["away_score"] != r["away_score"] or fr["home_score"] != r["home_score"] or fr["date_et"] != r["date_et"]:
+                xdiffs.append(f"{k}: score/date {fr['away_score']}-{fr['home_score']} {fr['date_et']} vs {r['away_score']}-{r['home_score']} {r['date_et']}")
+        add("X1", "cross-session corroboration vs arena/2f95e652-x1's independent same-evening read (PR #76, claim E-1): 12 shared standings fields x 32 clubs + 14 finals",
+            "PASS" if not xdiffs else "FAIL-STRUCTURAL",
+            {"standings_cells": len(stand) * len(pairs), "finals": len(res), "differences": len(xdiffs)},
+            "; ".join(xdiffs[:10]))
+    else:
+        add("X1", "cross-session corroboration vs the evidence pack", "SKIP",
+            {"reason": "data/evidence/2026_11_17/ not present in this checkout (pending PR #76)"})
 
     # ---------------- W1 week 11 probe ----------------
     with open(W11_PROBE, encoding="utf-8") as fh:
