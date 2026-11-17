@@ -60,59 +60,59 @@
  "drift": {
   "alarms": [],
   "available": true,
-  "captures": 54,
+  "captures": 59,
   "datasets": {
    "deficiency": {
-    "captures": 10,
-    "distinct_payloads": 7,
+    "captures": 11,
+    "distinct_payloads": 8,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T22:53:43+00:00",
+    "last_as_read_at": "2026-11-17T23:05:30+00:00",
     "last_drift": "pass"
    },
    "depth_charts": {
-    "captures": 10,
-    "distinct_payloads": 7,
+    "captures": 11,
+    "distinct_payloads": 8,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T22:53:35+00:00",
+    "last_as_read_at": "2026-11-17T23:05:22+00:00",
     "last_drift": "pass"
    },
    "injuries": {
-    "captures": 11,
+    "captures": 12,
     "distinct_payloads": 3,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T22:53:32+00:00",
+    "last_as_read_at": "2026-11-17T23:05:19+00:00",
     "last_drift": "pass"
    },
    "standings": {
-    "captures": 11,
+    "captures": 12,
     "distinct_payloads": 4,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T22:53:31+00:00",
+    "last_as_read_at": "2026-11-17T23:05:18+00:00",
     "last_drift": "pass"
    },
    "team_stats": {
-    "captures": 10,
+    "captures": 11,
     "distinct_payloads": 4,
     "hours_since_last_read": 0.0,
-    "last_as_read_at": "2026-11-17T22:53:43+00:00",
+    "last_as_read_at": "2026-11-17T23:05:30+00:00",
     "last_drift": "pass"
    },
    "week_results": {
     "captures": 1,
     "distinct_payloads": 1,
-    "hours_since_last_read": 28.2,
+    "hours_since_last_read": 28.4,
     "last_as_read_at": "2026-11-16T18:44:00Z",
     "last_drift": "pass"
    },
    "week_schedule": {
     "captures": 1,
     "distinct_payloads": 1,
-    "hours_since_last_read": 28.0,
+    "hours_since_last_read": 28.2,
     "last_as_read_at": "2026-11-16T18:52:00Z",
     "last_drift": "pass"
    }
   },
-  "generated_at": "2026-11-17T22:53:57Z"
+  "generated_at": "2026-11-17T23:05:43Z"
  },
  "games_played_implied": 150,
  "mirror_week10": {
