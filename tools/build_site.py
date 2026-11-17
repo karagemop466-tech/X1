@@ -168,7 +168,9 @@ def shell(title, subtitle, body, depth=0):
       {nav_html}
   </nav>
   <div class="railnote">
-    <span class="dot"></span> Data snapshot <strong>{RETRIEVED}</strong>
+    <span class="dot"></span> Data snapshot <strong>{RETRIEVED}</strong> &middot; results, standings and the
+    sealed ledger re-read <strong>2026-11-17</strong>, injury/availability/depth tables still the
+    <strong>{RETRIEVED}</strong> read
     <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
     results - which need a documented third-party line - are published separately in the
     research lab, where the benchmark is named and fingerprinted on every row.</p>
