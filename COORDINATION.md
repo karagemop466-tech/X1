@@ -3261,3 +3261,43 @@ changed cells, 72 field changes all closing.
 **For the integrator:** `tools/patch_site_543cdcb0.py` and `tools/patch_site_next_decisions.py` are the
 one-shot patches that edited `tools/build_site.py`; both abort unless every anchor matches exactly once.
 Keep them so the edits to another design are attributable; they are idempotent-guarded, not idempotent.
+
+---
+
+# Session `arena-e1436334-x1` — Week 10 closure, sealed-forecast scoring, 2026-11-17 re-verification (this session)
+
+**Session ID:** `arena-e1436334-x1` · **Branch:** `arena/e1436334-x1` (branched from `main` @ `38816a6`, the current `origin/main` tip). **Started (UTC):** 2026-11-17.
+
+**Why this session exists — read from the board, not assumed.** The previous session (`arena-543cdcb0-x1`)
+deliberately left three things open and recorded them as **S-22 / Q-62**:
+1. `data/results/_raw/reads.tsv` stops at 137 rows (136 games through Week 9 + one Week 10 row), so the
+   verified results feed still reports `official_verified: 1` for Week 10 and the backtest corpus is
+   136 games, not every game played.
+2. `data/shadow/forecasts_pre_kickoff.csv` froze 14 pre-kickoff forecasts on 2026-11-16, one of which is
+   `2026_10_LAC_BAL` (recorded 18:52Z, kickoff 00:15Z on 2026-11-17). The game has now been played, so the
+   sealed prediction can be scored against an official final — the first genuinely prospective, blind
+   out-of-sample record this project has.
+3. The Week 10 injury tables published on the site (254/279 rows) disagree with the live report; the
+   automated capture store now holds a dated series (injuries 347 rows, read 2026-11-17T05:03Z and
+   2026-11-17T19:49Z), so the "re-capture and republish" requirement can be met from retained evidence.
+The stated blockers to closing (1) were a stale standings baseline plus hard count pins. `main` has since
+received a dated `standings` capture read 2026-11-17T19:49:49Z, after every Week 10 game and before any
+Week 11 game — which is exactly the baseline the arithmetic gate needs. This session re-measures that.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| W1 | Close the Week 10 results gap: re-read the official by-week pages, transcribe the finals, extend the results corpus, re-pin counts, rebuild the verified results feed so every completed game of the 2026 season is official-verified | in progress | `arena-e1436334-x1` | `data/results/_raw/reads.tsv`, `tools/build_results_r3.py`, `data/results/**` (generated), `data/verification/2026_11_17/**` |
+| W2 | Score the sealed pre-kickoff shadow record against official finals and publish the prospective panel (blind n, hit/miss, proper score, honest "n=1 is not evidence") | in progress | `arena-e1436334-x1` | `tools/build_shadow_baseline.py`, `data/shadow/**` (generated) |
+| W3 | Republish the injury/availability tables from today's official read, with the day-over-day delta computed from the retained capture series (never a level) | in progress | `arena-e1436334-x1` | `data/injuries/**`, `tools/build_availability.py`, `data/availability*` |
+| W4 | Fix the drift alarm that is failing on the `deficiency` dataset (payload declares 12 columns, rows carry 14) so the alarm is green and keeps its teeth | in progress | `arena-e1436334-x1` | `pipeline/drift.py`, `data/captures/config.json` |
+| W5 | Line-by-line re-verification of everything published, dated 2026-11-17, with official URLs and clock times; irregularities flagged, not fixed by inference | in progress | `arena-e1436334-x1` | `tools/verify_2026_11_17.py`, `data/verification/2026_11_17/**` |
+| W6 | Suggestions board + decision questions: add what this session learned, keep the "choose the path before implementing" framing, refresh the executive summary, rebuild the site, PR → merge → Pages confirmation | in progress | `arena-e1436334-x1` | `data/suggestions.json`, `data/questions.json`, `data/next_decisions/**`, `docs/EXECUTIVE-SUMMARY.md`, `index.html`, `pages/**`, `tools/build_site.py` (additive), `COORDINATION.md` |
+
+**Overlap check (rules 3/4).** Open PRs #50 (`app/**`, injury ledger), #51 (merged), #53 (`data/audit/decision_readiness*`,
+`tools/build_readiness.py`, `app/**`), #61 (`pipeline/run.py`, `scripts/pipeline/verify_archive.py`, `data/readiness/**`,
+`.github/workflows/data-refresh.yml`) — this session edits **none** of those paths. `pipeline/drift.py` and
+`data/captures/config.json` are not in PR #61's file list (checked against `gh pr view 61 --json files`).
+`tools/build_site.py` and `index.html`/`pages/**` are shared outputs: this session is acting as the round's
+integration session (rule 9) because it is the only active claim and it must publish to land the PR.
