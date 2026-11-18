@@ -4146,6 +4146,20 @@ Scope of this session, stated plainly: the 2026-11-18 owner brief has ~80 items.
 
 | # | Task | Status | Owner | Files in scope |
 |---|---|---|---|---|
-| VEN-1 | Brief row 24: transcribe the venue of each Week 10 fixture (14 games) from the official NFL Game Centre "Game Info" block, one link per row; flag non-matching labels | in progress | `arena/5433abad-x1` | `data/nfl/venues_2026_week10.csv` (new), `tools/verify_venues_w10.py` (new), `docs/audit/brief-coverage-2026-11-17.md` (row 24 only), `COORDINATION.md` (this record only) |
+| VEN-1 | Brief row 24: transcribe the venue of each Week 10 fixture (14 games) from the official NFL Game Centre "Game Info" block, one link per row; flag non-matching labels | done (see completion record below) | `arena/5433abad-x1` | `data/nfl/venues_2026_week10.csv` (new), `tools/verify_venues_w10.py` (new), `docs/audit/brief-coverage-2026-11-17.md` (row 24 only), `COORDINATION.md` (this record only) |
 
 Verification plan: every value is copied from a Game Centre page fetched with `fetch_page` on 2026-11-18; the verifier checks that each of the 14 schedule rows in `data/nfl/schedule_2026_week10.csv` has exactly one venue row, that every link is an official `nfl.com/games/...` URL, and that no venue is inferred.
+
+### Completion record — VEN-1 (session `arena/5433abad-x1`, 2026-11-18)
+
+- **Status:** done. Brief row 24 moves NOT BUILT → **PARTIAL** (Week 10 only, 14 of 272 fixtures). It is not BUILT, because 258 fixtures are not transcribed.
+- **Sources (all fetched 2026-11-18 with the fetch tool, none recalled):** the 14 official NFL Game Centre pages, each read at the `Game Info` block: e.g. [Patriots @ Lions, Week 10](https://www.nfl.com/games/patriots-at-lions-2026-reg-10), [Steelers @ Bengals](https://www.nfl.com/games/steelers-at-bengals-2026-reg-10), [Chargers @ Ravens](https://www.nfl.com/games/chargers-at-ravens-2026-reg-10); the [NFL 2026 Week 10 by-week schedule](https://www.nfl.com/schedules/2026/by-week/week-10) for finals and fixture list; the [NFL 2026 schedule announcement](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced) for the 272-game count.
+- **Files:** `data/nfl/venues_2026_week10.csv` (new, 14 rows), `docs/audit/venues-week10.md` (new, table with a source link on every row and the flags), `tools/verify_venues_w10.py` (new), `docs/audit/brief-coverage-2026-11-17.md` (row 24 and its count table only), `.github/workflows/verify.yml` (one additive step at the end, logged here per rule 4).
+- **Verification performed:** `python3 tools/verify_venues_w10.py` → PASS (14/14 fixtures matched on date and away/home pair; every URL is an nfl.com Game Centre link whose slug matches the pair; the one schedule-file final that exists (WAS 24–NYG 21) agrees; label checks recomputed). `tools/verify_brief_coverage.py` passes; `tools/check_links.py`, `scripts/check_site.py`, `scripts/verify_site.py` pass.
+- **Irregularities (for review; none blocking):**
+  1. Label difference, NE @ DET: Game Centre `FC BAYERN MUNICH STADIUM`; schedule CSV `FC Bayern Munich Arena, Munich, Germany`. Both recorded as printed; not reconciled.
+  2. `data/nfl/schedule_2026_week10.csv`: 13 of 14 `venue_note` cells blank. Not edited (shared file, not this session's scope).
+  3. `data/nfl/schedule_2026_week10.csv`: `result` filled for one game only (WAS @ NYG). Each of the 14 Game Centre pages shows `Final`.
+  4. Scope: Week 10 only; 258 fixtures untranscribed.
+- **Requests to the integration owner (logged, not actioned):** (a) link `docs/audit/venues-week10.md` from the site's Week 10 schedule page and the Flagged-for-Review page; (b) fill or reconcile schedule-CSV `venue_note` and `result` from `data/nfl/venues_2026_week10.csv`; (c) add the label difference in item 1 to the Flagged-for-Review page with its two source links.
+- **Not done in this session (the rest of the brief is still open):** the other 24 NOT BUILT rows, including the per-team view, snap counts, inactive lists, reserve list, roof/weather overlay, season split, and the 136-game corpus. These need sources or decisions that this session did not have, and each stays in the register with its gap.
