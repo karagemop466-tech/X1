@@ -321,12 +321,18 @@ def build_signal_grade(feed_rows: list[dict]) -> dict:
         raise SystemExit(f"FAIL: signal join matched {len(matched)} of {len(feed_rows)} games")
 
     wins = losses = ties = no_pick = 0
+    unpriced = []          # games the feed has settled but the model never priced
     grades = []
     for gid in matched:
         res, mod = off[gid], picks[gid]
         ms = mod.get("model_spread")
         if ms in ("", None):
-            no_pick += 1
+            # A blank is NOT "the model declined a side" — it is "no walk-forward line was
+            # produced for this game". The two used to be counted in the same bucket, which let a
+            # grow-the-corpus append quietly shrink the graded sample (13 Week 10 games arrived
+            # settled with no line, and the grade reported n=133 as if that were the whole story).
+            # They are now separated and the unpriced games are named in the published output.
+            unpriced.append(gid)
             continue
         ms = float(ms)
         if ms == 0.0:
@@ -351,6 +357,13 @@ def build_signal_grade(feed_rows: list[dict]) -> dict:
         })
 
     decided = wins + losses
+    # The published counts must close. If they ever stop closing, the grade is describing a
+    # different sample than the one it names, and that is a build failure, not a footnote.
+    accounted = len(matched) - len(unpriced) - no_pick - ties
+    if accounted != decided:
+        raise SystemExit(f"FAIL: signal-grade accounting does not close: "
+                         f"matched {len(matched)} - unpriced {len(unpriced)} - no_pick {no_pick} "
+                         f"- ties {ties} = {accounted}, but decided = {decided}")
     p = wins / decided
     z = (p - 0.5) / math.sqrt(0.25 / decided)
     p_two = erfc(abs(z) / math.sqrt(2))
@@ -372,14 +385,28 @@ def build_signal_grade(feed_rows: list[dict]) -> dict:
         "n_losses": losses,
         "n_ties_excluded": ties,
         "n_no_pick_excluded": no_pick,
+        "n_unpriced_excluded": len(unpriced),
+        "unpriced_game_ids": unpriced,
+        "n_scored_universe": len(feed_rows),
+        "coverage_rule": (
+            "n_matched_games counts every settled game that joined to a model row; n_decided counts "
+            "only games the model priced AND did not push AND did not call a tie. The gap is "
+            "published, never smoothed: n_scored_universe - n_matched_games - n_unpriced_excluded "
+            "- n_no_pick_excluded - n_ties_excluded must equal n_decided."
+        ),
         "hit_rate": round(p, 4),
         "z_vs_50pct": round(z, 3),
         "p_two_sided": round(p_two, 4),
         "model_source": "data/processed/games_modeled.csv (walk-forward model, research lab)",
         "outcome_source": "data/results/verified_results.json (official NFL.com reads)",
         "caveats": [
-            "Excludes 1 tie (NYG 27, WAS 27, Week 5) and 3 games where the model line is "
-            "exactly 0.0 and therefore names no side.",
+            f"Excludes {len(unpriced)} settled games for which no walk-forward model line exists "
+            "(named in unpriced_game_ids) and games where the model line is exactly 0.0 and "
+            "therefore names no side. The graded sample is a subset of the settled corpus, and the "
+            "size of that subset is published rather than implied.",
+            "A tie (e.g. NYG 27, WAS 27, Week 5) is excluded from the side grade: a tie is "
+            "neither a win nor a loss against a spread of 0, so scoring it as either would inflate "
+            "or deflate the hit rate.",
             "The 0.5 baseline is a coin flip, not a book's break-even: without an official "
             "price there is no break-even to measure against (Q-02).",
             "Model refit cadence is documented by the research lab, not re-verified here.",
