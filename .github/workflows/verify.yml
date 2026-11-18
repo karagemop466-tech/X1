@@ -154,11 +154,15 @@ jobs:
           set -euo pipefail
           python3 tools/official/week10_reconcile.py
           python3 tools/official/depth_parse.py
+          # Added by session arena/91656714-x1 (round 6): the R-76 matchup matrix is rebuilt
+          # BEFORE readiness.py, because readiness measures it. Built after, the register would
+          # publish last build's numbers.
+          python3 tools/build_deficiency_matrix.py
           python3 tools/official/readiness.py
 
       - name: Fail if the re-capture, depth parse or readiness files are stale
         run: |
-          git diff --exit-code -- data/console/week10_reconcile.json data/console/week10_reconcile.csv data/console/depth_parse.json data/console/depth_parse.csv data/console/readiness.json data/console/readiness.csv
+          git diff --exit-code -- data/console/week10_reconcile.json data/console/week10_reconcile.csv data/console/depth_parse.json data/console/depth_parse.csv data/console/readiness.json data/console/readiness.csv data/deficiency/matchup_matrix.json data/deficiency/matchup_matrix.csv
 
       - name: Verify every published number against the fresh capture
         run: python3 tools/official/verify_published.py

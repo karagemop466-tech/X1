@@ -54,6 +54,34 @@ def _feed_count_note() -> str:
 
 
 FEED_COUNT_NOTE = _feed_count_note()
+
+
+def _matrix_note() -> str:
+    """R-76's 'measured now' cell, computed from the matrix that now exists.
+
+    Built in round 6 by tools/build_deficiency_matrix.py. It joins each club's own depth chart to
+    the official injury report. The honest published number is the JOINABLE row count and the
+    incomplete-fixture count, not a claim that the matrix covers the league: Houston publishes an
+    image, many clubs publish no structured chart for a given group, and a slot with several
+    rank-1 names has no named starter to look up.
+    """
+    import json as _json
+    import os as _os
+    path = _os.path.join(ROOT, "data", "deficiency", "matchup_matrix.json")
+    if not _os.path.exists(path):
+        return "The matrix is not built."
+    with open(path, encoding="utf-8") as fh:
+        m = _json.load(fh)
+    c = m["counts"]
+    return (f"The matrix is built and published (Matchup matrix, R-76): {c['rows']} joinable rows "
+            f"over {c['fixtures_covered']} of 14 fixtures, {c['clubs_with_offence_depth']} clubs "
+            f"with structured offence depth; {c['rows_with_a_defender_deficiency']} cells show a "
+            f"2nd-4th-string defender expected to start and {c['rows_with_an_out_offensive_starter']} "
+            f"show an offensive starter ruled Out; {c['fixtures_incomplete']} fixture is incomplete "
+            f"because Houston publishes its chart as an image.")
+
+
+MATRIX_NOTE = _matrix_note()
 D = os.path.join(ROOT, "data")
 OUT = os.path.join(D, "console")
 
@@ -118,6 +146,23 @@ def m_depth():
             f"{s['published_rows']} Packers rows carry a jersey number in the name field; "
             f"Houston: {dp['texans']['slots_in_store']} slots (chart is an image)",
             len(clubs), "data/console/depth_replacement.csv + data/console/depth_parse.json")
+
+
+def m_matrix():
+    """R-76: the matchup matrix, measured from the matrix that round 6 actually built."""
+    path = os.path.join(ROOT, "data", "deficiency", "matchup_matrix.json")
+    if not os.path.exists(path):
+        return ("The matrix is not built.", 0, "data/deficiency/matchup_matrix.json")
+    with open(path, encoding="utf-8") as fh:
+        m = json.load(fh)
+    c = m["counts"]
+    return (f"{c['rows']} joinable rows over {c['fixtures_covered']} of 14 fixtures, "
+            f"{c['clubs_with_offence_depth']} clubs with structured offence depth; "
+            f"{c['rows_with_a_defender_deficiency']} cell(s) show a 2nd-4th-string defender "
+            f"expected to start, {c['rows_with_an_out_offensive_starter']} show an offensive "
+            f"starter ruled Out; {c['fixtures_incomplete']} fixture incomplete (Houston chart is "
+            f"an image)", c["clubs_with_offence_depth"],
+            "data/deficiency/matchup_matrix.json + tools/build_deficiency_matrix.py")
 
 
 def m_strategies():
@@ -294,6 +339,7 @@ def m_availability_snapshot():
 
 MEAS = dict(results=m_results, orig=m_orig_order, self=m_readiness_self, prices=m_prices, injuries=m_injuries, depth=m_depth,
             strategies=m_strategies, corr=m_corr, standings=m_standings, shared=m_shared_slots,
+            matrix=m_matrix,
             ir=m_ir, snap=m_snap, gamebook=m_gamebook, parse=m_parse_anomalies,
             fixture=m_fixture, luck=m_luck, preprint=m_preprint, inactive=m_inactive,
             snapshot=m_availability_snapshot)
@@ -681,10 +727,8 @@ ROWS = [
   "Interactive Offense vs. Defense Matchup Deficiency Matrix (1st-4th String)",
   "Deficiency", "Both sides of every matchup must carry the replacing player's verified string "
   "(2nd/3rd/4th) on a joined table, so a WR1-vs-promoted-CB mismatch is a measured cell, not a guess.",
-  "32 of 32 clubs x both units with the replacing string named", "depth",
-  "The matrix itself is not built; the join it would run on exists (R-07: the replacement-depth "
-  "register). Added by session arena/dc96bc33-x1 after a line-by-line check of the owner brief "
-  "found this one requirement with no register row.", NFL),
+  "32 of 32 clubs x both units with the replacing string named", "matrix",
+  MATRIX_NOTE, NFL),
 ]
 
 

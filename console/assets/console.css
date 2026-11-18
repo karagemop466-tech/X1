@@ -104,3 +104,10 @@ ul.tight li{margin:3px 0;color:var(--dim);font-size:13.5px}
     border-right:none;border-bottom:1px solid var(--line)}
   main{padding:18px 16px 60px} .qa dl{grid-template-columns:1fr} .toc{columns:1}
 }
+
+/* Added by session arena/91656714-x1 (round 6) for the R-76 matchup-matrix page.
+   .pill.high marks a player the official report lists as Out or otherwise unavailable — the
+   strongest severity the page can show. .blank marks a cell the club or league did not publish;
+   it is deliberately visible rather than empty, so an absent value can never read as a zero. */
+.pill.high{color:var(--bad);border-color:#5a2320;background:#2a0f0e}
+.blank{color:var(--faint);opacity:.75;font-style:italic}

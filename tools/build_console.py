@@ -56,6 +56,10 @@ NAV = [
                        ("injuries.html", "Injury report", "345"),
                        ("depth.html", "Replacement depth", "897"),
                        ("deficiency.html", "Deficiency register", "897"),
+                       # Added by session arena/91656714-x1 (round 6): requirement R-76, the
+                       # offence-vs-defence matchup matrix, which joins the depth register to the
+                       # official injury report. Tagged with its joinable-row count, not a claim.
+                       ("matchups.html", "Matchup matrix (R-76)", "38"),
                        # Added by session arena/b03ced7c-x1 (additive only)
                        # Added by session arena-2f95e652-x1: the dated read that replaced the
                        # false "re-read today" claim on the standings page.
@@ -869,6 +873,50 @@ def build_pages_2(ctx, pages):
          ("Starters Out", str(dd["summary"]["starters_out"]), "on offence and defence", ""),
          ("Doubtful", str(dd["summary"]["starters_doubtful"]), "", ""),
          ("Questionable", str(dd["summary"]["starters_questionable"]), "", "")])
+    # ---------------- matchup matrix (R-76) ----------------
+    mx = ctx.get("matrix")
+    if mx:
+        c = mx["counts"]
+        head = ("<section class=\"card\"><h2>What this page is</h2><p>" + esc(mx["method"]) +
+                "</p><p class=\"note\"><b>The one assumption, stated:</b> " +
+                esc(mx["assumption_stated"]) + "</p>"
+                "<ul class=\"tight\">" + "".join(f"<li>{esc(x)}</li>" for x in mx["limits"]) +
+                "</ul></section>")
+        trs = []
+        for r in mx["rows"]:
+            off = esc(r["off_starter"]) + (
+                f' <span class="pill high">{esc(r["off_starter_status"])}</span>'
+                if r["off_starter_status"] else "")
+            dfn = (esc(r["def_starter"]) if r["def_starter"] else
+                   '<span class="blank" title="the club published no structured chart '
+                   'for this group">&mdash;</span>')
+            exp = esc(r["def_expected_depth_word"]) if r["def_expected_depth_word"] else "&mdash;"
+            trs.append([esc(r["fixture"]), esc(r["offence_team"]), esc(r["off_position"]), off,
+                        esc(r["defence_team"]), esc(r["def_position"]), dfn, exp,
+                        esc(r["mismatch"]), src_link(r["off_source"] or r["game_url"], "depth chart")])
+        tbl = table([("Fixture", 0), ("Offence", 0), ("Pos", 0), ("Listed starter", 0),
+                     ("Defence", 0), ("vs", 0), ("Defender", 0), ("Exp. depth", 1),
+                     ("Verdict", 0), ("Source", 0)], trs, "t-matchups",
+                    note="One row per joinable offensive slot. 'Exp. depth' is the depth rank of the "
+                         "defender actually expected to start: 1 unless his club's listed starter is "
+                         "Out, in which case it is the club's next listed name. A dash in the "
+                         "Defender column means that club publishes no structured chart for the group "
+                         "— it is not a blank to be filled. No missing starter is priced in points.")
+        inc = ""
+        if mx["incomplete"]:
+            inc = ("<section class=\"card\"><h2>Fixtures that are incomplete, and why</h2><ul class=\"tight\">"
+                   + "".join(f"<li><b>{esc(i['fixture'])}</b> — {esc(i['team'])}: {esc(i['reason'])}</li>"
+                             for i in mx["incomplete"]) + "</ul></section>")
+        pages["matchups.html"] = page(
+            "Matchup matrix (R-76)", "Official data", head + tbl + inc,
+            "Offence vs defence, 1st through 4th string: which listed starter is down and how deep "
+            "his club has to reach.",
+            [("Joinable rows", str(c["rows"]), "offence slot vs a named defender group", ""),
+             ("Fixtures covered", str(c["fixtures_covered"]), "of 14", ""),
+             ("Defender deficiencies", str(c["rows_with_a_defender_deficiency"]),
+              "2nd-4th string expected to start", "warn" if c["rows_with_a_defender_deficiency"] else ""),
+             ("Offensive starters Out", str(c["rows_with_an_out_offensive_starter"]),
+              "on the official report", "warn" if c["rows_with_an_out_offensive_starter"] else "")])
     return pages
 
 
@@ -1733,7 +1781,16 @@ def main():
     verify_mismatch += d_bad
     log(f"  depth re-check: {d_checks} slots, {d_bad} mismatches")
 
+    # Added by session arena/91656714-x1 (round 6): the R-76 matchup matrix. Absent file = absent
+    # page, never an empty table presented as a measurement.
+    matrix_path = os.path.join(ROOT, "data", "deficiency", "matchup_matrix.json")
+    matrix = None
+    if os.path.exists(matrix_path):
+        with open(matrix_path, encoding="utf-8") as fh:
+            matrix = json.load(fh)
+
     ctx = {
+        "matrix": matrix,
         "games": games, "rows": rows, "feed_rows": feed_rows, "price_rows": price_rows,
         "lab": lab_res, "correlations": corrs, "convergence": convergence,
         "parlay_pricing": parlay_pricing, "market_sigma": market_sigma,

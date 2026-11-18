@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 25,
+  "flag": 30,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -289,6 +289,61 @@
    "unknown": "How often the rendered page diverges between two fetches minutes apart, why (edge cache vs live render), and whether an undetected divergence has ever reached a published table in an earlier session.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10",
    "source_label": "nfl.com Week 10 injury report (two fetches, 2026-11-17)"
+  },
+  {
+   "id": "X-13",
+   "register": "data/flags.json",
+   "area": "Evidence retention",
+   "item": "The official pages the results feed is settled against are retained as transcriptions, not as hashed bytes. Only the third-party mirror has a byte-level pin.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether an nfl.com page's rendered bytes stay stable between fetches long enough for a hash to be a meaningful pin. A 2026-11-17 observation in this repository recorded the nflverse mirror returning different bytes 21 minutes apart, so byte stability cannot be assumed for any source here.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "official Week 10 schedule page (transcribed, not byte-captured)"
+  },
+  {
+   "id": "X-14",
+   "register": "data/flags.json",
+   "area": "Coverage gap, measured",
+   "item": "13 of the 14 Week 10 games have no model line, so the published 63.2% signal grade rests on 133 of 150 settled games, not on the whole settled corpus.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Why the research lab's walk-forward model produced a line for only one of the 14 Week 10 games. The model file records the blank, not the reason; no log of the run was retained.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "official Week 10 schedule page (the 13 unpriced games, as settled)"
+  },
+  {
+   "id": "X-15",
+   "register": "data/flags.json",
+   "area": "Skill claim, published as computed",
+   "item": "The pre-registered shadow baseline's game-cluster 95% lower bound on Brier skill crosses zero. The point estimate is positive; the interval does not exclude no skill.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether the point estimate is real skill or one season's noise. The interval cannot separate the two, which is exactly what it reports.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "official Week 10 schedule page (the scored corpus)"
+  },
+  {
+   "id": "X-16",
+   "register": "data/flags.json",
+   "area": "Provenance defect, fixed and gated",
+   "item": "The published shadow baseline attributed all 13 promoted Week 10 scores to the 2026-11-14 read, which predates the games. Fixed in round 6; the gate that catches it is proven by mutation.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Nothing outstanding. Recorded so the defect and its fix stay auditable.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "official Week 10 schedule page (the 13 promoted scores)"
+  },
+  {
+   "id": "X-17",
+   "register": "data/flags.json",
+   "area": "Coordination",
+   "item": "Two different verifier programs were committed under the same filename, and one overwrote the other during round 6 salvage before the collision was detected.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Whether any other duplicate basenames exist among the 64 tools in tools/. Not audited in round 6.",
+   "source": "",
+   "source_label": ""
   },
   {
    "id": "Q-01",

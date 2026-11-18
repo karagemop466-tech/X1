@@ -1001,10 +1001,10 @@
    "quote": "Interactive Offense vs. Defense Matchup Deficiency Matrix (1st-4th String)",
    "gate": "Both sides of every matchup must carry the replacing player's verified string (2nd/3rd/4th) on a joined table, so a WR1-vs-promoted-CB mismatch is a measured cell, not a guess.",
    "needs": "32 of 32 clubs x both units with the replacing string named",
-   "today": "897 slots, 31 of 32 clubs; 55 of 55 Packers rows carry a jersey number in the name field; Houston: 0 slots (chart is an image)",
-   "measurement": 31,
-   "provenance": "data/console/depth_replacement.csv + data/console/depth_parse.json",
-   "clears": "The matrix itself is not built; the join it would run on exists (R-07: the replacement-depth register). Added by session arena/dc96bc33-x1 after a line-by-line check of the owner brief found this one requirement with no register row.",
+   "today": "38 joinable rows over 14 of 14 fixtures, 22 clubs with structured offence depth; 0 cell(s) show a 2nd-4th-string defender expected to start, 1 show an offensive starter ruled Out; 1 fixture incomplete (Houston chart is an image)",
+   "measurement": 22,
+   "provenance": "data/deficiency/matchup_matrix.json + tools/build_deficiency_matrix.py",
+   "clears": "The matrix is built and published (Matchup matrix, R-76): 38 joinable rows over 14 of 14 fixtures, 22 clubs with structured offence depth; 0 cells show a 2nd-4th-string defender expected to start and 1 show an offensive starter ruled Out; 1 fixture is incomplete because Houston publishes its chart as an image.",
    "source": "https://www.nfl.com/"
   }
  ]
