@@ -1,0 +1,56 @@
+{
+  "pack": "data/verification/2026_11_18",
+  "generated_by": "tools/verify_2026_11_18.py (session arena/a02e9816-x1, round 6)",
+  "read_at": "2026-11-18T03:30Z (fetch tool; sandbox clock, the source prints no per-call time)",
+  "sources": {
+    "standings": "https://www.nfl.com/standings/league/2026/REG",
+    "slate": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  },
+  "counts": {
+    "checks": 5,
+    "pass": 5,
+    "failures": 0,
+    "standings_rows": 32,
+    "finals_rows": 14
+  },
+  "checks": {
+    "A1_standings_identities": {
+      "assertions": 96,
+      "failures": [],
+      "verdict": "pass",
+      "note": "NET = PF - PA, PCT = (W + T/2)/GP printed to 3 dp, and HOME + ROAD = W-L-T for all 32 clubs as read on 2026-11-18."
+    },
+    "A2_league_closure": {
+      "sum_w": 149,
+      "sum_l": 149,
+      "sum_t": 2,
+      "sum_pf": 6923,
+      "sum_pa": 6923,
+      "games_implied": 150,
+      "failures": [],
+      "verdict": "pass",
+      "note": "The league has played 150 games; unchanged since the Week 10 close (MNF 2026-11-16)."
+    },
+    "A3_cross_page_records": {
+      "records_matched": 32,
+      "assertions": 32,
+      "failures": [],
+      "verdict": "pass",
+      "note": "Every club record printed on the Week 10 schedule page on 2026-11-18 (28 game blocks + 4 bye blocks) equals the same-day league standings page W-L-T; the slate is 14 finals + 4 byes covering all 32 clubs exactly once. Records matched by fixture slug to the 2026-11-17 pack's abbr rows (same slugs, same fixtures)."
+    },
+    "A4_continuity_vs_2026_11_17": {
+      "cells_compared": 384,
+      "failures": [],
+      "verdict": "pass",
+      "note": "Today's standings equal the 2026-11-17 pack on every field for all 32 clubs. Two independent reads on different days (different sessions, different fetches) agree cell for cell: 384 cells, 0 mismatches."
+    },
+    "A5_finals_continuity": {
+      "scores_matched_vs_2026_11_17": 14,
+      "scores_matched_vs_feed": 14,
+      "failures": [],
+      "verdict": "pass",
+      "note": "Today's 14 finals agree with the 2026-11-17 pack (scores and both printed records) and with the closed 150-row results feed's Week 10 rows, matched by official game slug. Three independent reads (2026-11-17 x2, 2026-11-18) agree on all 14 scores."
+    }
+  },
+  "generated_at": "2026-11-18T03:29:12Z"
+}
