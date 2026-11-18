@@ -4163,3 +4163,17 @@ Verification plan: every value is copied from a Game Centre page fetched with `f
   4. Scope: Week 10 only; 258 fixtures untranscribed.
 - **Requests to the integration owner (logged, not actioned):** (a) link `docs/audit/venues-week10.md` from the site's Week 10 schedule page and the Flagged-for-Review page; (b) fill or reconcile schedule-CSV `venue_note` and `result` from `data/nfl/venues_2026_week10.csv`; (c) add the label difference in item 1 to the Flagged-for-Review page with its two source links.
 - **Not done in this session (the rest of the brief is still open):** the other 24 NOT BUILT rows, including the per-team view, snap counts, inactive lists, reserve list, roof/weather overlay, season split, and the 136-game corpus. These need sources or decisions that this session did not have, and each stays in the register with its gap.
+
+### Follow-up — VEN-1 publication (session `arena/5433abad-x1`, 2026-11-18)
+
+PR #86 (merged, `4beb7e9`) put the register in the repository, but the Pages assembler copies only a curated set of folders, so the table was not on the live site. This follow-up publishes it. Each shared-file change is additive and logged here per rule 4:
+
+| File | Change | Why |
+|---|---|---|
+| `venues/index.html` (new, generated) | Week 10 venue table, one Game Centre link per row, flags, stylesheet link, snapshot date | The publication |
+| `tools/build_venues_page.py` (new) | Generates the page from `data/nfl/venues_2026_week10.csv`; `--check` fails if stale | Keeps the page derived, not hand-edited |
+| `.github/workflows/pages.yml` | Four added lines, tagged in-file: copy `venues/` and `data/nfl/venues_2026_week10.csv` into `_site/` | The assembler otherwise omits both |
+| `.github/workflows/verify.yml` | One added step: `build_venues_page.py --check` | Freshness gate |
+| `tools/check_links.py` | `venues` added to the sub-tree exemption list from the orphan rule, tagged in-file | The page is not yet linked from the site navigation; the navigation link is an integration request |
+
+Still open for the integration owner: link `venues/index.html` from the site navigation and the Flagged-for-Review page (then remove the `venues` exemption from `check_links.py`).
