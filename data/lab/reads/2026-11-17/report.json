@@ -280,25 +280,11 @@
    "verdict": "pass"
   },
   "C7_results_log_gap": {
-   "absent_game_slugs": [
-    "patriots-at-lions-2026-reg-10",
-    "chiefs-at-falcons-2026-reg-10",
-    "texans-at-browns-2026-reg-10",
-    "vikings-at-packers-2026-reg-10",
-    "dolphins-at-colts-2026-reg-10",
-    "panthers-at-saints-2026-reg-10",
-    "bills-at-jets-2026-reg-10",
-    "jaguars-at-titans-2026-reg-10",
-    "rams-at-cardinals-2026-reg-10",
-    "seahawks-at-raiders-2026-reg-10",
-    "49ers-at-cowboys-2026-reg-10",
-    "steelers-at-bengals-2026-reg-10",
-    "chargers-at-ravens-2026-reg-10"
-   ],
+   "absent_game_slugs": [],
    "note": "the published results log stops at the 2026-11-12 Thursday game. The 13 games listed here are what the verified-results feed, the origination ledger and the price store are missing. Appending them is measured in feed-closure-measurement.json, and it is NOT done here: that file is a frozen input of the PR-01 pre-registration.",
-   "rows_in_published_results_log": 137,
+   "rows_in_published_results_log": 150,
    "verdict": "measured",
-   "week10_games_absent_from_the_published_log": 13,
+   "week10_games_absent_from_the_published_log": 0,
    "week10_games_in_this_pack": 14
   },
   "C8_injury_spotcheck_vs_capture": {
@@ -493,7 +479,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-17T23:50:25+00:00",
+ "generated_at": "2026-11-18T03:14:40+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,
@@ -513,7 +499,7 @@
   "venue_direct_rows": 2,
   "venue_name_conflicts": 1,
   "week10_finals_published": 14,
-  "week10_games_missing_from_the_results_log": 13,
+  "week10_games_missing_from_the_results_log": 0,
   "week11_byes": 6,
   "week11_fixtures": 13,
   "week11_slate_cells_moved_since_2026_11_16": 0

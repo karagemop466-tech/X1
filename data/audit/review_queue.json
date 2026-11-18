@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 25,
+  "flag": 30,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -289,6 +289,61 @@
    "unknown": "How often the rendered page diverges between two fetches minutes apart, why (edge cache vs live render), and whether an undetected divergence has ever reached a published table in an earlier session.",
    "source": "https://www.nfl.com/injuries/league/2026/reg10",
    "source_label": "nfl.com Week 10 injury report (two fetches, 2026-11-17)"
+  },
+  {
+   "id": "F-27",
+   "register": "data/flags.json",
+   "area": "Provenance hazard",
+   "item": "The third-party mirror's bytes moved between two fetches 21 minutes apart, so a cross-check is only meaningful against a named fingerprint.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "How long the upstream lags the league after a game ends, and whether it ever revises a score after publishing it.",
+   "source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv",
+   "source_label": "nflverse/nfldata games.csv (the same bytes, fetched via api.github.com twice on 2026-11-17)"
+  },
+  {
+   "id": "F-28",
+   "register": "data/flags.json",
+   "area": "Source render instability",
+   "item": "Two reads of the same official page on consecutive days printed different sets of columns, so 'the page did not say' is not the same as 'the value is unknown'.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether the field is absent from the fetch tool's extraction for that render, or genuinely not in the HTML that day.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "NFL.com Week 10 schedule, 2026-11-17 read"
+  },
+  {
+   "id": "F-29",
+   "register": "data/flags.json",
+   "area": "Derived-data lag",
+   "item": "Published ROI and model-accuracy figures still describe a 137-game window although the verified feed holds 150 games.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether the collector's next refresh recomputes the walk-forward ratings through Week 10 (its cron runs scripts/run_pipeline.py, which re-ingests from upstream rather than from the re-pinned file).",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/processed/games_modeled.csv",
+   "source_label": "data/processed/games_modeled.csv (derived store)"
+  },
+  {
+   "id": "F-30",
+   "register": "data/flags.json",
+   "area": "Artefact self-reference",
+   "item": "One published console artefact counts the repository's own tracked files, so it is stale in the commit that writes it.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Whether the inventory should exclude generated pages, or state its date and be labelled 'as of the previous commit'.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/console/repo-review.html",
+   "source_label": "console/repo-review.html"
+  },
+  {
+   "id": "F-26",
+   "register": "data/flags.json",
+   "area": "Data availability",
+   "item": "The venue requirement cannot be met from the weekly schedule page, because that page prints no venue field.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether the other 13 game centres print a stadium string reachable by the fetch tool (they are separate page reads, one per fixture).",
+   "source": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "source_label": "NFL.com Game Center (the one fixture this round re-read)"
   },
   {
    "id": "Q-01",

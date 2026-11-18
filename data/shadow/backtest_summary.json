@@ -1,7 +1,7 @@
 {
  "dataset": "shadow_baseline_PR-01",
  "title": "PR-01 singles-only shadow baseline: pre-registered rule, walk-forward score, and the pre-kickoff record",
- "generated_at": "2026-11-16T18:52:12Z",
+ "generated_at": "2026-11-17T23:09:17Z",
  "generated_by": "tools/build_shadow_baseline.py (session arena-543cdcb0-x1)",
  "registration": {
   "rule_file": "docs/preregistration/PR-01-shadow-baseline.md",
@@ -18,7 +18,7 @@
   "note": "These are the values in the rule file. Changing one here without changing the rule file makes the register's hash check fail, which is the point."
  },
  "inputs": {
-  "games": 149,
+  "games": 150,
   "weeks": [
    1,
    2,
@@ -31,17 +31,17 @@
    9,
    10
   ],
-  "league_average_total_points": 46.174,
+  "league_average_total_points": 46.153,
   "inputs": {
    "docs/preregistration/PR-01-shadow-baseline.md": "902b43f6faf5ed5e7a417335d339aab902622b808e0e0eddaebdffc45a4494c0",
-   "data/results/_raw/reads.tsv": "684d0f01e4bbd6956c2399f3f392a17392783927053dcef9830a69528795a2d4",
+   "data/results/_raw/reads.tsv": "484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312",
    "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv": "4545f9d49c3a1c4a4e3608d72050f0716271b6b58405f82ec36c1e8e41d63861",
    "data/verification/2026_11_16/official_w11_schedule_2026_11_16.tsv": "ce2bccc31c4c4fda03dd26c01d0d263764adb31125c1152ffec93514793607c8",
-   "data/pipeline/standings.json": "3cafead27884afc58d13d77efda8405af1f4314db17729eb6de9f5d59e05f618"
+   "data/pipeline/standings.json": "2236c73a6a2866cacf022f3edacf0c776030d583683952a01c2d4d6addb6785d"
   }
  },
  "corpus": {
-  "games_ingested": 149,
+  "games_ingested": 150,
   "weeks": [
    1,
    2,
@@ -58,22 +58,22 @@
   "eligibility": "BACKTEST. Not leaderboard-eligible (PR rule: no backtest number is ranked)."
  },
  "backtest": {
-  "n_games": 117,
-  "brier": 0.224242,
-  "brier_home_baseline": 0.253782,
-  "brier_coin_baseline": 0.247863,
-  "brier_skill_vs_home_baseline": 0.116401,
-  "brier_skill_vs_coin": 0.095301,
-  "log_loss": 0.641481,
-  "log_loss_home_baseline": 0.705033,
-  "log_skill_vs_home_baseline": 0.09014,
-  "hit_rate_model_side": 0.641026,
-  "mae_expected_margin_points": 9.6681,
+  "n_games": 118,
+  "brier": 0.226508,
+  "brier_home_baseline": 0.254195,
+  "brier_coin_baseline": 0.247881,
+  "brier_skill_vs_home_baseline": 0.108919,
+  "brier_skill_vs_coin": 0.086223,
+  "log_loss": 0.646283,
+  "log_loss_home_baseline": 0.705825,
+  "log_skill_vs_home_baseline": 0.084358,
+  "hit_rate_model_side": 0.635593,
+  "mae_expected_margin_points": 9.672,
   "luck_panel": {
    "realised_wins_on_model_side": 75,
-   "expected_wins_same_bets": 76.057,
-   "sd_of_the_difference": 5.042,
-   "z_luck_adjusted": -0.21,
+   "expected_wins_same_bets": 76.758,
+   "sd_of_the_difference": 5.063,
+   "z_luck_adjusted": -0.347,
    "reading": "inside one standard deviation: this record is not evidence of skill or of failure, it is what a coin would do"
   },
   "calibration": [
@@ -100,9 +100,9 @@
    },
    {
     "bin": "0.6-0.8 (probability of the side picked)",
-    "n": 57,
-    "mean_p": 0.6917,
-    "win_rate": 0.6316,
+    "n": 58,
+    "mean_p": 0.6919,
+    "win_rate": 0.6207,
     "too_small_to_read": "no"
    },
    {
@@ -119,12 +119,12 @@
    "unit": "game (each game is one cluster)",
    "bonferroni_alpha": 0.05,
    "n_trials": 1,
-   "brier_mean_of_resamples": 0.224268,
+   "brier_mean_of_resamples": 0.226556,
    "skill_home_baseline_ci": [
-    0.0021,
-    0.2302
+    -0.0052,
+    0.2191
    ],
-   "skill_home_baseline_lower_bound": 0.0021
+   "skill_home_baseline_lower_bound": -0.0052
   }
  },
  "columns_scored": [
@@ -3335,8 +3335,8 @@
    "picked_won": 1,
    "picked_p": 0.655174,
    "source_url": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3365,8 +3365,8 @@
    "picked_won": 1,
    "picked_p": 0.748152,
    "source_url": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3395,8 +3395,8 @@
    "picked_won": 1,
    "picked_p": 0.710282,
    "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3425,8 +3425,8 @@
    "picked_won": 1,
    "picked_p": 0.590549,
    "source_url": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3455,8 +3455,8 @@
    "picked_won": 1,
    "picked_p": 0.861899,
    "source_url": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3485,8 +3485,8 @@
    "picked_won": 0,
    "picked_p": 0.514772,
    "source_url": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3515,8 +3515,8 @@
    "picked_won": 1,
    "picked_p": 0.631575,
    "source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3545,8 +3545,8 @@
    "picked_won": 1,
    "picked_p": 0.733102,
    "source_url": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3575,8 +3575,8 @@
    "picked_won": 1,
    "picked_p": 0.637904,
    "source_url": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3605,8 +3605,8 @@
    "picked_won": 1,
    "picked_p": 0.630559,
    "source_url": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3635,8 +3635,8 @@
    "picked_won": 0,
    "picked_p": 0.596035,
    "source_url": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   },
   {
    "date": "2026-11-15",
@@ -3665,16 +3665,56 @@
    "picked_won": 0,
    "picked_p": 0.525772,
    "source_url": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
-   "source_file": "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv",
-   "read_on": "2026-11-16"
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
+  },
+  {
+   "date": "2026-11-16",
+   "week": 10,
+   "game_id": "10_chargers-at-ravens-2026-reg-10",
+   "away": "LAC",
+   "home": "BAL",
+   "rating_home": -4.2727,
+   "rating_away": -9.8,
+   "expected_margin_home": 7.1273,
+   "p_home": 0.701232,
+   "fair_line_home": -7.0,
+   "fair_total": 46.2,
+   "market_line": "",
+   "residual": "",
+   "american_home": "235",
+   "american_away": "-235",
+   "away_score": 23,
+   "home_score": 20,
+   "outcome_home": 0.0,
+   "brier": 0.491726,
+   "log_loss": 1.208087,
+   "brier_base_half": 0.25,
+   "brier_base_home": 0.3025,
+   "picked": "home",
+   "picked_won": 0,
+   "picked_p": 0.701232,
+   "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "source_file": "data/results/_raw/reads.tsv",
+   "read_on": "2026-11-14"
   }
  ],
  "forward": {
-  "recorded_at_utc": "2026-11-16T18:52:12Z",
+  "recorded_at_utc": "2026-11-17T23:09:17Z",
   "games_recorded": 14,
-  "content_sha256": "37fe5d5427d9ac996acb23112fd481fdb2c3a430d1cd1176972f0577a3eb8602",
-  "immutability": "the CSV is written once; a second run that would change any forecast number aborts the build (the recorded clock is excluded from the fingerprint)",
-  "file": "data/shadow/forecasts_pre_kickoff.csv"
+  "content_sha256": "6ed2ac9e042535a609fef93e3cccb7e0c4b480d0d0d0d96abe60a5bcfa17870a",
+  "immutability": "the CSV is written once and never rewritten; a later run that would change a forecast number leaves the record alone and reports the drift below (the recorded clock is excluded from the fingerprint)",
+  "file": "data/shadow/forecasts_pre_kickoff.csv",
+  "status": "frozen record on disk (graded, not regenerated)",
+  "recorded_at_utc_on_disk": "2026-11-16T18:52:12Z",
+  "games_recorded_on_disk": 14,
+  "content_sha256_on_disk": "37fe5d5427d9ac996acb23112fd481fdb2c3a430d1cd1176972f0577a3eb8602",
+  "record_drift": {
+   "reproduces_from_today_model_state": false,
+   "games_on_disk_not_in_today_slate": [],
+   "games_in_today_slate_not_on_disk": [],
+   "why": "the record is a snapshot of what had not kicked off when it was written; the corpus has since grown (Week 10 closed on 2026-11-17), so the slate that WOULD be recorded today is a different list. Both are true: the record is what was forecast, the slate is what a forecast today would cover. The record is graded and never overwritten."
+  }
  },
  "blank_by_policy": {
   "market_line": "no official price source in this repository - open question Q-02",
@@ -3683,7 +3723,7 @@
   "total_fair_line": "the model is a margin model; its total is the league-average total, published as a floor and labelled as one, not as an estimate of the total"
  },
  "limits": [
-  "n = 117 games, one season, one conference-independent sample; the interval, not the point estimate, is the result",
+  "n = 118 games, one season, one conference-independent sample; the interval, not the point estimate, is the result",
   "the model has no personnel, availability, rest or venue feature - it is the baseline those features have to beat, not a proposal",
   "ratings use points scored and allowed vs whoever; schedule strength is not adjusted, so BUF's and NYJ's ratings are not comparable in the way an opponent-adjusted model's would be",
   "one season cannot test calibration at the tails; the 0.8-1.0 bin is printed with its count"

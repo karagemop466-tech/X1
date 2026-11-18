@@ -14,6 +14,13 @@ verified results feed, then runs double-entry cross-checks:
      schedule_2026.json) — disagreements are reported, never used to change a
      value. The mirror is not an official source.
 
+SCOPE (read before quoting the row count): this artefact is the 2026-11-14 view —
+weeks 1-9 plus the Week 10 Thursday game — because that is what its evidence files
+captured and that is the standings snapshot it reconciles against. It is not the
+current feed. The current feed is 150 rows through Week 10, published by
+tools/build_results_r3.py and closed by tools/verify_2026_11_17.py; see
+`coverage_scope` in the report and docs/methodology/results-feed.md.
+
 Every row published in the feed carries the official game-page URL as its
 source. Nothing is inferred: date_iso is derived from the anchor's printed
 month/day with year 2026 (the page is the 2026 schedule) and is cross-checked
@@ -100,7 +107,27 @@ def parse_week(week: int) -> list[dict]:
 def main() -> int:
     os.makedirs(OUT_DIR, exist_ok=True)
     feed: list[dict] = []
-    report: dict = {"generated_at": RETRIEVED_AT, "weeks": {}, "checks": {}, "mirror_reference": {}}
+    report: dict = {"generated_at": RETRIEVED_AT, "weeks": {}, "checks": {}, "mirror_reference": {},
+        # Read-this-first scope. The evidence files this tool parses are the 2026-11-14 verbatim
+        # captures, and it validates against the standings captured the same day, so 137 rows here is
+        # correct FOR THAT DATE and is not a stale view of today. Week 10 was completed on
+        # 2026-11-15/16; those 14 games are in the current feed
+        # (`data/results/verified_results_2026_r3.csv`, 150 rows), which reconciles against the dated
+        # standings transcription in `data/verification/2026_11_17/` and is checked by
+        # `tools/verify_2026_11_17.py`. Extending this artefact past its own evidence would mean
+        # writing page text this tool never captured, so it is left as the dated view it is.
+        "coverage_scope": {
+            "evidence_captured": RETRIEVED_AT,
+            "rows_in_this_artefact": 137,
+            "current_feed_rows": 150,
+            "current_feed_files": ["data/results/verified_results_2026_r3.csv",
+                                   "data/results/verified_results_2026_n2.csv",
+                                   "data/results/verified_results.json"],
+            "why_not_extended": "this builder reads only the verbatim anchor captures in "
+                                "data/results/raw/; the 2026-11-17 Week 10 read is a named-column "
+                                "transcription, not an anchor capture, and inventing anchors would "
+                                "fabricate the one property this file exists to preserve",
+        }}
 
     for week in range(1, 11):
         rows = parse_week(week)

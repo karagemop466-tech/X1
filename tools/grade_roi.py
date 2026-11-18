@@ -3,8 +3,17 @@
 
 Session `arena-1d3600f8-x1` (T16). This is the "backtests and ROI can be
 computed at all" piece: every outcome is settled from the official verified
-results feed (data/results/verified_results_2026.csv, each row sourced to its
-nfl.com game page), and every graded bet row carries the game's official URL.
+results feed (each row sourced to its nfl.com game page), and every graded bet
+row carries the game's official URL.
+
+Which feed file, and why it is a choice worth stating
+-----------------------------------------------------
+The grader reads `data/results/verified_results_2026_r3.csv` when it exists (the current feed, 150
+games through Week 10 as read 2026-11-14/17) and falls back to `verified_results_2026.csv` (the
+2026-11-14 dated view, 137 games). The file actually used is written into every output row's
+`results_feed` field, because an ROI computed on a feed that moved underneath it is the one number on
+this repository that a reader might act on, and "past its date" is invisible unless the artefact names
+its own source.
 
 Provenance rules (nothing is hidden):
   * outcomes  -> official (verified results feed)
@@ -61,10 +70,20 @@ def main() -> int:
     def norm_gid(gid: str) -> str:
         return gid.replace("_LAR", "_LA").replace("_ARI", "_AZ")
 
+    feeds = [("data/results/verified_results_2026_r3.csv", "current"),
+             ("data/results/verified_results_2026.csv", "dated 2026-11-14 view")]
+    feed_rel, feed_kind = feeds[0]
+    if not os.path.exists(os.path.join(ROOT, feed_rel)):
+        feed_rel, feed_kind = feeds[1]
     results = {}
-    with open(os.path.join(OUT, "verified_results_2026.csv"), encoding="utf-8") as fh:
+    with open(os.path.join(ROOT, feed_rel), encoding="utf-8") as fh:
         for r in csv.DictReader(fh):
+            # the current feed prints the date as `gameday`, the dated view as `date_iso`; same value,
+            # different column name. Everything else this grader needs is named identically in both.
+            r.setdefault("date_iso", r.get("date_iso") or r.get("gameday", ""))
+            r.setdefault("source_url", r.get("source_url") or r.get("game_url", ""))
             results[norm_gid(r["game_id"])] = r
+    print(f"results feed    : {feed_rel} ({feed_kind}, {len(results)} settled games)")
 
     modeled = []
     with open(os.path.join(ROOT, "data", "processed", "games_modeled.csv"), encoding="utf-8") as fh:
@@ -107,7 +126,7 @@ def main() -> int:
             "price": "-110", "price_source": PRICE_NOTE,
             "line_source": MODEL_NOTE if strategy.startswith("MODEL") else MIRROR_NOTE,
             "outcome_source": res["source_url"],
-            "results_feed": "data/results/verified_results_2026.csv",
+            "results_feed": feed_rel,
         })
 
     for m in modeled:

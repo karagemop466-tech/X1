@@ -60,6 +60,9 @@ NAV = [
     # Added by session arena-543cdcb0-x1 (additive): the evidence layer the collector writes,
     # and the pre-registered model that scores against it.
     ("pages/capture-system.html", "Capture system"),
+    # Added by session arena-473e08d5-x1 (additive): the dated closure of Week 10 and the re-baselined
+    # results feed, published as evidence rather than as a silent overwrite of the numbers.
+    ("pages/results-closure.html", "Week 10 closure"),
     ("pages/shadow-baseline.html", "Shadow baseline"),
     ("pages/next-decisions.html", "Suggestions & questions"),
     ("dashboard/lab-index.html", "Analytics lab"),
@@ -302,6 +305,18 @@ INJ_DIFF17 = read_rows("data/verification/2026_11_17/injuries_diff_vs_published_
 PROMO17 = read_rows("data/verification/2026_11_17/results_promotions_2026_11_17.csv")
 PK17 = {c["id"]: c for c in PACK17["checks"]}
 READ_1616 = "2026-11-16"
+# --- the 2026-11-17 Week 10 closure (session arena-473e08d5-x1) ------------------------------------
+# The Week 10 closure pack is session arena-473e08d5-x1's own independent read; its three files
+# collided with the canonical 2026-11-17 pack on merge and were renamed with the session suffix
+# (round-5 precedent: first session to main keeps the canonical path, the later landing is suffixed).
+CLOSURE_PACK = load_json("verification/2026_11_17/verification_summary_2026_11_17_473e08d5.json")
+CLOSURE_PROMO = load_json("verification/2026_11_17/w10_promotion_2026_11_17.json")
+W10_17 = read_rows("data/verification/2026_11_17/official_w10_results_2026_11_17_473e08d5.tsv", "\t")
+STAND17 = read_rows("data/verification/2026_11_17/official_standings_2026_11_17_473e08d5.tsv", "\t")
+CLOSURE17 = read_rows("data/verification/2026_11_17/feed_closure_2026_11_17.csv")
+MIRROR17 = read_rows("data/verification/2026_11_17/mirror_w10_results_2026_11_17.tsv", "\t")
+READ_17 = "2026-11-17"
+STAND17_BY = {r["abbr"]: r for r in STAND17}
 NFLCOM = "https://www.nfl.com/"
 
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
@@ -457,6 +472,7 @@ def page_index():
   <strong>five-club</strong> depth pilot, while the club charts for <strong>31 clubs</strong> that already sat in the
   repository are now joined and published beside it, and the originated lines and strategy results in this dashboard's own pages are
   <strong>computed</strong> from a third-party benchmark, not league-published.</p>
+  <a href="pages/results-closure.html">Week 10 closure, line by line →</a> &nbsp;·&nbsp;
   <a href="pages/changes.html">What changed, line by line →</a> &nbsp;·&nbsp;
   <a href="pages/cross-check.html">Independent cross-check →</a>
 </section>
@@ -2016,6 +2032,157 @@ def page_changes():
     return shell("What changed", f"SNAPSHOT {RETRIEVED}", body, depth=1)
 
 
+# ------------------------------------------------------------------ results closure
+def page_results_closure():
+    """The dated evidence for closing Week 10 and re-baselining the results feed (N-1..N-3)."""
+    checks = CLOSURE_PACK["checks"]
+    crows = []
+    for name, v in checks.items():
+        detail = []
+        for k, x in v.items():
+            if k in ("verdict", "note", "label", "standings_baseline", "why", "file"):
+                continue
+            if isinstance(x, dict):
+                detail.append(f"{k}: " + " ".join(
+                    f"{a}={b}" for a, b in x.items() if not isinstance(b, (list, dict))))
+            elif isinstance(x, (int, float, bool)) or x in ("", None):
+                detail.append(f"{k}={x}")
+            elif isinstance(x, list):
+                detail.append(f"{k}: {len(x)} item(s)")
+        findings = v.get("diffs") or v.get("mismatch") or v.get("bad") or []
+        n_find = len(findings) if isinstance(findings, list) else 0
+        pill = {"PASS": "ok", "FAIL": "high"}.get(v["verdict"], "muted-pill")
+        crows.append([
+            f'<td><b>{esc(name)}</b></td>',
+            f'<td><span class="pill {pill}">{esc(v["verdict"])}</span></td>',
+            cell("; ".join(detail) or "see the summary file"),
+            f'<td>{n_find}</td>',
+            # ref() returns a bare anchor (it is used inside other cells elsewhere in this file), so it
+            # needs its own <td> here - without one the column silently disappears and the row loses its
+            # source cell.
+            f'<td>{ref("tools/verify_2026_11_17_473e08d5.py", "verifier")}</td>',
+        ])
+
+    grows = []
+    for r in W10_17:
+        score = (f'<b>{esc(r["away"])}</b> {esc(r["away_score"])}'
+                 f' <span class="muted">({esc(r["away_record"])})</span> @'
+                 f' <b>{esc(r["home"])}</b> {esc(r["home_score"])}'
+                 f' <span class="muted">({esc(r["home_record"])})</span>')
+        grows.append([
+            f'<td><b>{esc(r["game_id"])}</b></td>',
+            cell(r["date_et"]),
+            raw(score),
+            cell(r["status"]),
+            cell(r.get("time_et", ""), "this render printed no kickoff time (flag F-28)"),
+            cell(r.get("network", ""), "this render printed no network (flag F-28)"),
+            cell(r.get("venue", ""), "the weekly schedule page prints no venue field (flag F-26)"),
+            cell(r.get("note", "")),
+            src_cell(r["game_url"], "game page"),
+        ])
+
+    lrows = []
+    for r in CLOSURE_PROMO["promoted_rows"] + CLOSURE_PROMO["already_final_rows"]:
+        lrows.append([
+            f'<td><b>{esc(r["game_id"])}</b></td>',
+            cell(r["status_2026_11_16_read"]),
+            cell(r["status_2026_11_17_read"]),
+            cell(r.get("in_the_published_feed_before_this_read", "")),
+            cell(r["read_at"]),
+            src_cell(r["game_url"], "game page"),
+        ])
+
+    frows = []
+    for r in CLOSURE17:
+        ok = r["verdict"] == "pass"
+        frows.append([
+            f'<td><b>{esc(r["team"])}</b></td>',
+            f'<td>{esc(r["feed_W"])}-{esc(r["feed_L"])}-{esc(r["feed_T"])}</td>',
+            f'<td>{esc(r["standings_W"])}-{esc(r["standings_L"])}-{esc(r["standings_T"])}</td>',
+            f'<td>{esc(r["feed_PF"])}:{esc(r["feed_PA"])}</td>',
+            f'<td>{esc(r["standings_PF"])}:{esc(r["standings_PA"])}</td>',
+            f'<td><span class="pill {"ok" if ok else "high"}">'
+            f'{"match" if ok else "MISMATCH"}</span></td>',
+            src_cell(r["source_url"], "standings"),
+        ])
+
+    mrows = []
+    pinned = repo_blob("data/raw/nflverse/games.csv")
+    for r in MIRROR17:
+        score = f'{esc(r["away"])} {esc(r["away_score"])} @ {esc(r["home"])} {esc(r["home_score"])}'
+        mrows.append([
+            f'<td><b>{esc(r["game_id"])}</b></td>',
+            cell(r["gameday"]),
+            raw(score),
+            cell(r.get("total_line", ""), "the mirror prints no total for this fixture"),
+            cell(r.get("spread_line", ""), "the mirror prints no spread for this fixture"),
+            raw(f'{esc(r.get("away_moneyline", ""))} / {esc(r.get("home_moneyline", ""))}'),
+            cell("unverified", ""),
+            src_cell(pinned, "pinned bytes"),
+        ])
+
+    n_final = sum(1 for r in W10_17 if r["status"] == "Final")
+    n_checks = len(checks)
+    n_pass = sum(1 for v in checks.values() if v["verdict"] == "PASS")
+    n_assert = len(CLOSURE17) * 5
+    n_promo = len(CLOSURE_PROMO["promoted_rows"])
+    body = f'''
+<section class="pagetitle">
+  <div class="eyebrow">CLOSURE RECORD &middot; READ {READ_17}</div>
+  <h1>Week 10 closed, and the results feed moved its own baseline</h1>
+  <p>The verified results feed stopped at 137 games because that is all the official page had printed when
+  it was transcribed on 2026-11-14. This page is the closure: a fresh official read of all 14 Week 10
+  fixtures, the standings page it has to reconcile against, the checks that tie them together, and the
+  promotion ledger that says exactly which rows are new evidence. Nothing here overwrote anything: the
+  2026-11-14 reads stay on disk as the dated record they are, and every appended row carries the date it
+  was read on.</p>
+</section>
+<section class="content">
+  <div class="statrow">
+    {stat(n_final, "Week 10 fixtures printed Final", f"{len(W10_17)} read on " + READ_17)}
+    {stat(n_assert, "feed-closure assertions", "32 clubs &times; W, L, T, PF, PA")}
+    {stat(f"{n_pass}/{n_checks}", "closure checks passing", "tools/verify_2026_11_17_473e08d5.py")}
+    {stat(n_promo, "row promoted scheduled &rarr; final", "the Monday-night game, unread a day later")}
+  </div>
+  <div class="note"><b>Why this is a page and not just a commit.</b> A feed that grows silently is a feed
+  nobody can audit, and the count of verified games is the claim every backtest rests on. Every row below
+  comes from <code>data/verification/2026_11_17/</code>, and
+  <code>python3 tools/verify_2026_11_17_473e08d5.py --check</code> re-derives this page's inputs from the
+  transcription and fails if they stop agreeing &mdash; it runs in CI, so the closure cannot drift.</div>
+  {table(["Fixture", "Date", "Final score (club records as printed)", "Status", "Kickoff time", "Network", "Venue", "Note", "Source"],
+         grows, f"Week 10 as the official page printed it on {READ_17}: 14 fixtures, no blank invented", "wide", True)}
+  {table(["Check", "Verdict", "What it counted", "Findings", "Code"],
+         crows, "The closure checks in tools/verify_2026_11_17.py", "wide", True)}
+  {table(["Club", "Feed W-L-T", "Official W-L-T", "Feed PF:PA", "Official PF:PA", "Result", "Source"],
+         frows, "Feed closure: summing all 150 settled games must reproduce the league's own table", "wide", True)}
+  {table(["Fixture", "Status on the 2026-11-16 read", "Status on the 2026-11-17 read", "Already in the published feed?", "Read at", "Source"],
+         lrows, "Promotion ledger: what moved, and what was already published", "wide", True)}
+  {table(["Mirror fixture", "Date", "Score", "Total", "Spread", "Moneylines (away/home)", "Verification", "Source"],
+         mrows, "Third-party mirror cross-check: it corroborates, it never amends (labelled on every row)",
+         "wide", True)}
+  <div class="note"><b>What did not change, deliberately.</b><ul>
+    <li><code>data/verify/raw/nfl_scores_2026_official.psv</code> still prints 12 Week 10 games as
+    SCHEDULED with blank scores, because that is what the official page said on 2026-11-14. The scores
+    arrive in a dated overlay
+    (<code>data/verify/raw/nfl_scores_2026_official_promotions_2026_11_17.psv</code>) so a backtest can
+    join "what was printed" to "when it was read".</li>
+    <li><code>data/shadow/forecasts_pre_kickoff.csv</code> is untouched. The scorer now reports the drift
+    between the frozen record and today's model state instead of aborting the build that measures it.</li>
+    <li><code>data/results/verified_results_2026.csv</code> remains the 137-row dated view: its builder
+    reads only the verbatim anchor captures, and inventing newer anchors would destroy the property those
+    files exist to have.</li>
+    <li>Published ROI still describes 137 modelled games, because the pipeline's model lines stop there
+    (flag <code>F-29</code>, renumbered from PR #84's F-24 at integration). The grader now names the feed file it used on every row.</li>
+  </ul></div>
+  <div class="note"><b>How to reproduce the whole closure.</b> <code>python3
+  tools/promote_week10_2026_11_17.py --check</code> proves the appended rows still derive from this pack
+  and that a re-run is a no-op; <code>python3 tools/build_results_r3.py</code> rebuilds the 150-game feed
+  and its standings arithmetic; <code>python3 tools/verify_2026_11_17_473e08d5.py</code> prints the nine checks.</div>
+</section>
+'''
+    return shell("Week 10 closure", f"READ {READ_17} &middot; FEED 150 GAMES", body, depth=1)
+
+
 # ---------------------------------------------------------------- executive brief
 def page_exec_brief():
     v = AUDIT["verification"]
@@ -2740,8 +2907,9 @@ def page_verification_2026_11_17():
     ]
 
     finding_rows = [
-        ['<td><b>F-22</b></td>', '<td><b>The published 2026-11-14 injury table is stale.</b></td>',
-         cell(f'+{PK17["I3"]["counts"]["rows_added"]} rows (BAL: Calais Campbell, Ronnie Stanley) and {PK17["I3"]["counts"]["cells_changed"]} cells changed across 16 rows (BAL 4, IND 2, LAC 26); the whole delta appeared between 2026-11-14T17:02Z and 2026-11-15T18:14Z and has not moved since'),
+        ['<td><b>F-22</b> <span class="pill muted-pill">resolved at source</span></td>',
+         '<td><b>The published injury table was stale against the official page; the published table has since been refreshed.</b></td>',
+         cell(f'Against the 2026-11-14 snapshot (345 rows) the 2026-11-17 official read differed by 2 rows (BAL: Calais Campbell, Ronnie Stanley) and 32 cells across 16 rows (BAL 4, IND 2, LAC 26). data/nfl/injuries_week10.tsv now holds the refreshed 347-row table (retrieved 2026-11-15), so this pack\'s diff of the CURRENT published table against the same official read measures {PK17["I3"]["counts"]["rows_added"]} added rows and {PK17["I3"]["counts"]["cells_changed"]} changed cells &mdash; agreeing with tools/verify_against_official.py (1,846 cells, 0 mismatches). Both numbers are dated; neither was edited.'),
          src_cell(repo_blob("data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv"), "row-by-row diff &#8599;"),
          src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
         ['<td><b>F-23</b></td>', '<td><b>The published 2026-11-14 standings are stale now that Week 10 has closed.</b></td>',
@@ -2809,9 +2977,11 @@ def page_verification_2026_11_17():
   {table(["Gate", "Comparison", "Verdict and counts", "Artifact"], gate_rows,
          "tools/verify_2026_11_17.py — a disagreement fails the pack, it never edits a published table", "wide", True)}
   <div class="note"><b>Two unit notes, so the numbers cannot be mistaken for each other.</b>
-  (1) PR #73's headline &ldquo;16 cells that differ&rdquo; counts <i>changed rows</i> (15 in LAC@BAL + Arden Key);
-  counted cell by cell the same evidence is <b>{PK17["I3"]["counts"]["cells_changed"]} cells</b> — the row-level
-  lists are identical. (2) This pack's {PK17["S6"]["counts"]["field_changes"]} standing-field delta covers seven
+  (1) The injury delta is measured against whatever <code>data/nfl/injuries_week10.tsv</code> holds when the
+  pack runs: against the 2026-11-14 snapshot PR #73's headline &ldquo;16 rows that differ&rdquo; counted 32
+  changed cells row by row; since the published table was refreshed (347 rows, retrieved 2026-11-15) the same
+  gate measures <b>{PK17["I3"]["counts"]["cells_changed"]} changed cells</b> and
+  <b>{PK17["I3"]["counts"]["rows_added"]} added rows</b> &mdash; 0 and 0 today, both numbers dated, neither edited. (2) This pack's {PK17["S6"]["counts"]["field_changes"]} standing-field delta covers seven
   fields (w, l, t, pct, pf, pa, streak); PR #76's sixteen-field view of the same page reports 262 of 512 cells.
   Both count <b>26 affected clubs</b> — the subsets differ, the finding is the same: the snapshot is dated and
   the games have been played. <a href="https://github.com/karagemop466-tech/X1/pull/73" target="_blank" rel="noopener noreferrer">PR #73 &#8599;</a>
@@ -2883,6 +3053,7 @@ def main():
     write("pages/shadow-baseline.html", page_shadow())
     write("pages/next-decisions.html", page_next_decisions())
     write("pages/verification-2026-11-17.html", page_verification_2026_11_17())
+    write("pages/results-closure.html", page_results_closure())
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
     print(f"wrote index.html + {n} pages")
 

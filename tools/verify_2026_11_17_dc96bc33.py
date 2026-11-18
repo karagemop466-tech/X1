@@ -25,13 +25,13 @@ number in the 2026-11-17 pack from its inputs:
   B3  cross-page records        every club record printed beside the logos on the
                                 Week 10 schedule page (28 clubs) and in its bye block
                                 (4 clubs) equals the W-L-T on the standings page.
-  B4  corpus reconciliation    the 137-game official log (data/results/_raw/reads.tsv)
-                                plus the 13 Week 10 finals it does not yet contain
-                                (official_w10_finals_2026_11_17.tsv) reproduces every
-                                one of the 32 standings rows (W, L, T, PF, PA) exactly.
-                                This is the arithmetic S-22 asked for: it proves the
-                                150-game corpus closes against the league's own table
-                                without touching the pinned 137-row feed.
+  B4  corpus reconciliation    the 150-game official log (data/results/_raw/reads.tsv,
+                                closed from 137 to 150 when PR #84 promoted the 13
+                                remaining Week 10 finals) reproduces every one of the
+                                32 standings rows (W, L, T, PF, PA) exactly. This is
+                                the arithmetic S-22/Q-62 asked for: the corpus closes
+                                against the league's own table, and after PR #84 the
+                                pinned feed itself carries all 150 rows.
   B5  continuity vs 2026-11-16  the 13 previously-final scores are unchanged, exactly
                                 one game flipped Scheduled -> Final (MNF), and the only
                                 standings rows that moved are LAC and BAL, every changed
@@ -39,9 +39,9 @@ number in the 2026-11-17 pack from its inputs:
 
 Usage
 -----
-  python3 tools/verify_2026_11_17.py            # build + verify (exit 1 on violation)
-  python3 tools/verify_2026_11_17.py --check    # build, compare to committed summary
-                                                # (ignoring generated_at), exit 1 on drift
+  python3 tools/verify_2026_11_17_dc96bc33.py            # build + verify (exit 1 on violation)
+  python3 tools/verify_2026_11_17_dc96bc33.py --check    # build, compare to committed summary
+                                                        # (ignoring generated_at), exit 1 on drift
 """
 
 from __future__ import annotations
@@ -118,8 +118,8 @@ def build() -> dict:
         raise SystemExit(f"FAIL: expected 14 Week 10 rows, found {len(finals)}")
     if len(std) != 32:
         raise SystemExit(f"FAIL: expected 32 standings rows, found {len(std)}")
-    if len(reads) != 137:
-        raise SystemExit(f"FAIL: expected 137 official read rows, found {len(reads)}")
+    if len(reads) != 150:
+        raise SystemExit(f"FAIL: expected 150 official read rows (feed closed by PR #84), found {len(reads)}")
     if len(f16) != 14 or len(s16) != 32:
         raise SystemExit("FAIL: the 2026-11-16 pack is not 14 + 32 rows")
 
@@ -217,8 +217,9 @@ def build() -> dict:
         added += 1
         games.append((norm(r["away"]), norm(r["home"]),
                       int(r["away_score"]), int(r["home_score"]), "2026-11-17 pack"))
-    if added != 13:
-        raise SystemExit(f"FAIL: expected 13 finals not in reads.tsv, found {added}")
+    if added != 0:
+        raise SystemExit(f"FAIL: the closed 150-row feed should contain every Week 10 final; "
+                         f"{added} final(s) missing from reads.tsv")
 
     Wc = {a: 0 for a in std_by}
     Lc, Tc, PFc, PAc = dict(Wc), dict(Wc), dict(Wc), dict(Wc)
@@ -241,17 +242,19 @@ def build() -> dict:
             b4_fail.append(f"{abbr}: standings {want} vs corpus recomputation {got}")
     failing_clubs = {x.split(":")[0] for x in b4_fail}
     checks["B4_corpus_reconciliation"] = {
-        "games_in_reads_tsv": 137,
+        "games_in_reads_tsv": 150,
         "finals_added_from_2026_11_17_pack": added,
         "games_total": len(games),
         "clubs_reconciled": 32 - len(failing_clubs),
         "verdict": "pass" if not b4_fail else "fail",
         "failures": b4_fail,
-        "note": ("The 137-game official log plus the 13 Week 10 finals reproduces all 32 official "
-                 "standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. This is the "
-                 "arithmetic that closes suggestion S-22 / question Q-62: the corpus is complete "
-                 "and consistent; what remains for the pinned feed is the mechanical re-pin "
-                 "(count pin, mirror re-pin, standings transcription swap), recorded as SG-14."),
+        "note": ("The 150-game official log reproduces all 32 official standings rows "
+                 "(W, L, T, PF, PA) exactly as printed on 2026-11-17: the corpus is complete "
+                 "and consistent. PR #84 (session arena-473e08d5-x1) closed the feed from 137 "
+                 "to 150 games and performed the mechanical re-pin (count pins, mirror re-pin, "
+                 "dated standings baseline) that SG-14 recorded as remaining, so this check now "
+                 "runs against the closed feed itself rather than against a 137-row log plus 13 "
+                 "pending finals."),
     }
 
     # ---- B5: continuity vs the 2026-11-16 pack -----------------------------
@@ -441,7 +444,7 @@ def main(argv=None) -> int:
         fresh.pop("generated_at", None)
         if committed != fresh:
             print("FAIL: committed verification_summary_2026_11_17_dc96bc33.json is stale; "
-                  "re-run tools/verify_2026_11_17.py")
+                  "re-run tools/verify_2026_11_17_dc96bc33.py")
             return 1
         print("check: committed summary matches a fresh build")
     return 0 if summary["verdict"] == "pass" else 1
