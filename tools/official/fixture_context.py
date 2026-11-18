@@ -63,7 +63,7 @@ COLUMNS = (
     "away_bye_prior_week", "home_bye_prior_week",
     "away_prev_venue", "home_prev_venue", "venue_city_this_week", "venue_same_city_as_prev",
     "stadium", "stadium_source", "roof", "surface",
-    "prime_time", "international", "slate_source_url", "slate_read_at", "flags",
+    "prime_time", "window_label", "international", "slate_source_url", "slate_read_at", "flags",
 )
 
 
@@ -246,14 +246,21 @@ def build() -> tuple[list[dict], dict]:
             "prime_time": "", "international": "", "slate_source_url": slate11["source_url"],
             "slate_read_at": slate11["as_read_at"], "flags": "",
         }
-        ko = (row["kickoff_et"] or "")
-        try:
-            d11 = dt.date.fromisoformat(date11) if date11 else None
-        except ValueError:
-            d11 = None
-        if d11 is not None:
-            row["prime_time"] = ("yes" if (d11.weekday() in (3,) or (d11.weekday() == 6
-                                 and ko.startswith(("8", "4:25", "4:05")))) else "no")
+        # "Prime time" is only a fact when the page labels the window. The slate prints a window
+        # string per fixture ("Thursday Night Football, November 19th"), so the flag is read from
+        # that label and never inferred from the kickoff clock: 4:25 PM games are not labelled
+        # prime time by the league, and a model that decided they were would be inventing a
+        # broadcast effect the schedule does not claim.
+        note = (r.get("note") or "").strip()
+        row["window_label"] = note
+        low = note.lower()
+        if any(w in low for w in ("thursday night", "sunday night", "monday night",
+                                  "prime time", "international")):
+            row["prime_time"] = "yes"
+        elif note:
+            row["prime_time"] = "no"
+        else:
+            row["prime_time"] = ""
         loc = (row["venue_city_this_week"] or "").upper()
         if loc:
             foreign = any(c in loc for c in (", ON", "MEXICO", "GERMANY", ", BC", "LONDON", "MUNICH", "BRAZIL", "SPAIN"))
