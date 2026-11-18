@@ -93,7 +93,7 @@
   "C5_independent_standings_reread": {
    "assertions": 512,
    "clubs": 32,
-   "collector_read_at": "2026-11-17T23:28:40+00:00",
+   "collector_read_at": "2026-11-18T04:15:33+00:00",
    "collector_source": "https://www.nfl.com/standings/league/2026/REG",
    "detail": [],
    "differing_cells": 0,
@@ -289,7 +289,7 @@
   },
   "C8_injury_spotcheck_vs_capture": {
    "capture": {
-    "as_read_at": "2026-11-17T23:28:41+00:00",
+    "as_read_at": "2026-11-18T04:15:34+00:00",
     "content_sha256": "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33",
     "payload": "data/captures/payloads/injuries/c3/c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json",
     "rows": 347
@@ -336,12 +336,12 @@
    "delta_last_two_reads": {
     "cells_changed": 0,
     "newer": {
-     "as_read_at": "2026-11-17T23:28:41+00:00",
+     "as_read_at": "2026-11-18T04:15:34+00:00",
      "content_sha256": "c3d7a7224dfc8105",
      "rows": 347
     },
     "older": {
-     "as_read_at": "2026-11-17T23:25:03+00:00",
+     "as_read_at": "2026-11-17T23:28:41+00:00",
      "content_sha256": "c3d7a7224dfc8105",
      "rows": 347
     },
@@ -467,23 +467,31 @@
      "rows": 347,
      "status": "unchanged",
      "violations": []
+    },
+    {
+     "as_read_at": "2026-11-18T04:15:34+00:00",
+     "content_sha256": "c3d7a7224dfc8105",
+     "drift": "pass",
+     "rows": 347,
+     "status": "unchanged",
+     "violations": []
     }
    ],
    "first_read": "2026-11-14T17:02:18+00:00",
-   "last_read": "2026-11-17T23:28:41+00:00",
+   "last_read": "2026-11-18T04:15:34+00:00",
    "note": "the delta, not the level: the last two accepted reads differ in these cells, and the count of reads since the content last changed is what tells the owner whether the page has moved.",
-   "reads": 14,
-   "reads_since_last_content_change": 12,
+   "reads": 15,
+   "reads_since_last_content_change": 13,
    "verdict": "measured"
   }
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-18T04:12:28+00:00",
+ "generated_at": "2026-11-18T04:26:50+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,
-  "injury_reads_since_last_content_change": 12,
+  "injury_reads_since_last_content_change": 13,
   "injury_rows_spot_checked": 44,
   "injury_spot_check_mismatches": 0,
   "league_points_each_side": 6923,
