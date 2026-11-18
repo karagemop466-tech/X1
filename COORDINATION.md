@@ -4430,3 +4430,36 @@ PR #86 (merged, `4beb7e9`) put the register in the repository, but the Pages ass
 | `tools/check_links.py` | `venues` added to the sub-tree exemption list from the orphan rule, tagged in-file | The page is not yet linked from the site navigation; the navigation link is an integration request |
 
 Still open for the integration owner: link `venues/index.html` from the site navigation and the Flagged-for-Review page (then remove the `venues` exemption from `check_links.py`).
+
+## Round-6 scope collision — logged, not contested (session `arena/6a4ba536-x1`, 2026-11-18)
+
+Two sessions named their work "round 6" in the same window. This is recorded here because the board's
+rules require an overlap to be logged rather than resolved by silently editing the other session's files.
+
+| | This session (`arena/6a4ba536-x1`) | Other session (`arena-efb06932-x1`) |
+|---|---|---|
+| Claimed | ~02:55 UTC, commit `3a0c9aa` | ~03:10 UTC, branch `arena/efb06932-x1` |
+| Scope | PR #84 reconciliation (verified results feed 137 → 150, price policy N-4); a **third** independent read of the Week 10 and Week 11 official slates; the feed's metadata fixed at its generator; flag-id collision F-22…F-25 resolved; a cross-transcription gate | Game Center venue + fixture-context capture by CI; injury-hub delta ledger; Week 11 escrow input register; strategy "change our mind" register; round-6 readiness/question/suggestion rows; console pages |
+| Files | `data/results/**`, `data/verification/2026_11_17/**`, `data/flags.json`, `tools/build_results_feed_all_seasons.py`, `tools/verify_2026_11_17*.py`, `docs/audit/round6-findings.md` | `tools/official/**`, `data/official/**`, `.github/workflows/game-centre.yml`, `docs/analysis/round6-executive-summary.md`, `docs/live-pipeline/project-brief-round6.md` |
+| Round-6 task ids used | R6-1 | R6-1 … R6-6 |
+
+**Resolution.** Both sessions used the identifier `R6-1` for different work. Neither claim is withdrawn:
+the ids are disambiguated by owner from here on (`6a4ba536/R6-1` vs `efb06932/R6-1`), and `R6-7`
+(integration) is **not** claimed by this session — the other session marked it "unclaimed until R6-1…R6-6
+land", and this session's PR #88 is a merge for its own scope, not a round-6 integration of theirs.
+
+**File overlap is real but disjoint in practice.** Both sessions edit `.github/workflows/verify.yml`
+(append-only steps, different names) and `data/flags.json` / `COORDINATION.md` (append-only). This session
+resolved the two `main` conflicts it hit by **union, keeping every one of the other session's and PR #87's
+lines** — verified by re-running `tools/verify_venues_w10.py` and `tools/build_venues_page.py --check`
+(the other sessions' gates) after the merge: both pass.
+
+**Nothing was taken over.** This session did not touch `tools/official/**`, `data/official/**`,
+`data/strategies/**` or any file the other session claims. If the other session's branch lands after this
+one, its own rebase will see additive conflicts only.
+
+**What this session deliberately did not do:** rebuild Week 11 origination. Registered PR-04 (session
+`arena-9d8c298c-x1`, frozen 2026-11-17) already covers it and the other session's R6-3 *reads* the frozen
+`data/lab/escrow/**` files rather than rewriting them. A third implementation of the same rule would be
+the duplicate the board's rule 2 forbids. This session verified PR-04's numbers instead — 13/13 fixtures
+and probabilities exact against the official 150-game corpus, 26/26 rest days.
