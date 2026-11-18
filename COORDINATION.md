@@ -4505,3 +4505,15 @@ SG-15, the data gaps) unchanged.
 **PR record.** PR #84 (`arena/473e08d5-x1`) is closed — its content landed on `main` via round 6
 (PR #88). This branch's integration PR carries this completion record and merges onto `main`.
 GitHub Pages deploy is confirmed via the `pages.yml` build on `main`.
+
+**PR #89 — merge result (final).** Merged into `main` as commit `ef234fc` on 2026-11-18T03:37:51Z
+(merge commit `ef234fc5445eb9f084ae4b5bf86c06a6083007cd`). The branch delta at merge time was the
+I-1..I-6 completion record plus one site fix: the round-6 venue register (`venues/index.html`) had
+been written without a nav link, leaving it an unreachable orphan flagged by
+`verify_deployed_tree.py --strict`; it is now linked in `NAV` ("Venues") and the console pages
+regenerated. Post-merge verification on the reconciled tree: `rebuild_for_refresh.py` 0 steps failed,
+`check_links` all resolve, `verify_app` every data row sourced, `verify_stores` contract OK, the
+2026-11-17 verifiers (reads, dc96bc33, cross-transcription 473e08d5) all PASS, and
+`verify_deployed_tree.py --strict` passed (venues orphan resolved; only the 4 pre-existing
+non-failing orphans remain). GitHub Pages deployment run
+`44231772502` **completed: success** — the live site republished with the venue page reachable.
