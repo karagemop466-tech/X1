@@ -48,6 +48,8 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import urllib.error
+import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT_DEFAULT = os.path.join(ROOT, "data", "official", "gamecentre")
@@ -264,6 +266,61 @@ def parse_game_centre(html: str, lines: list[str] | None = None) -> dict:
     return out
 
 
+def _fetch_pipeline(url: str):
+    """The pipeline's own nfl.com client — the one the scheduled collector already uses from CI."""
+    if ROOT not in sys.path:
+        sys.path.insert(0, ROOT)
+    from pipeline.http import fetch as pfetch
+    r = pfetch(url)
+    return (int(getattr(r, "status", 0) or 0), getattr(r, "body", "") or "",
+            getattr(r, "final_url", url) or url, getattr(r, "error", None))
+
+
+def fetch(url: str, timeout: float = 45.0, retries: int = 3):
+    """GET a page. Returns (status, body, final_url, error). Never raises.
+
+    The pipeline helper goes first because it is the client that already reads nfl.com from a CI
+    runner every day; the urllib path is the fallback for a checkout where that module is not
+    importable. Both are recorded: `capture` writes the status and byte count of every attempt into
+    its report, so a run that read nothing says why in the repository instead of in a log tab.
+    """
+    import time
+    err = None
+    try:
+        status, body, final_url, perr = _fetch_pipeline(url)
+        if body:
+            return status, body, final_url, perr
+        err = perr or "pipeline.http returned an empty body"
+    except Exception as exc:  # noqa: BLE001 - an unavailable client is a diagnostic, not a crash
+        err = f"pipeline.http unavailable: {type(exc).__name__}: {exc}"
+    last_err = err
+    for attempt in range(1, retries + 1):
+        req = urllib.request.Request(url, headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip",
+            "Cache-Control": "no-cache",
+        })
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:  # noqa: S310 (allow-listed host)
+                raw = r.read()
+                enc = (r.headers.get("Content-Encoding") or "").lower()
+                if enc == "gzip" or raw[:2] == b"\x1f\x8b":
+                    try:
+                        raw = gzip.decompress(raw)
+                    except OSError:
+                        pass
+                return r.status, raw.decode("utf-8", "replace"), r.geturl(), None
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as exc:
+            last_err = f"{type(exc).__name__}: {exc}"
+            if isinstance(exc, urllib.error.HTTPError) and exc.code in (403, 404):
+                break
+        if attempt < retries:
+            time.sleep(2.0 * attempt)
+    return 0, "", url, last_err
+
+
 # --------------------------------------------------------------------------- capture
 
 def read_slate(week: int, report: dict) -> list[str]:
@@ -315,6 +372,8 @@ def cmd_capture(args) -> int:
         for slug in slugs:
             url = f"{NFL}/games/{slug}-2026-reg-{week}"
             status, body, final_url, err = fetch(url)
+            report.setdefault("attempts", []).append({"url": url, "http_status": status,
+                                                      "bytes": len(body or ""), "error": err})
             if not body:
                 report["fetch_errors"].append({"slug": slug, "url": url, "error": err or "empty body",
                                                "http_status": status})
@@ -376,6 +435,7 @@ def cmd_capture(args) -> int:
     with open(os.path.join(outdir, "fixtures.json"), "w", encoding="utf-8") as fh:
         json.dump({**fixtures, "slate_urls": report["slate_urls"]}, fh, indent=1)
     report["output"] = os.path.relpath(dated, ROOT)
+    report["rows_expected"] = sum(EXPECTED_FIXTURES.get(w, 0) for w in weeks)
     report["fixtures_recorded"] = len(fixtures["fixtures"])
     with open(os.path.join(outdir, "venue_report.json"), "w", encoding="utf-8") as fh:
         json.dump(report, fh, indent=1, sort_keys=True)

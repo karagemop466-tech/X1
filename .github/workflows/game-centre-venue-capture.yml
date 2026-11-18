@@ -75,7 +75,22 @@ jobs:
           { python3 tools/official/gamecentre.py capture --weeks "$WEEKS" \
               --drift-exit-code 1; echo "capture_exit=$?"; } 2>&1 | tee /tmp/gc/capture.log
 
+      # The log goes into the data tree it describes: a run that read nothing must still leave a
+      # readable trace in git, which is the difference between "the collector is quiet" and
+      # "the collector is broken".
+      - name: Record the run diagnostics beside the capture
+        if: always()
+        run: |
+          mkdir -p data/official/gamecentre
+          {
+            echo "run: ${{ github.run_id }}  attempt: ${{ github.run_attempt }}"
+            echo "ref: ${{ github.ref_name }}  event: ${{ github.event_name }}"
+            echo "--- capture output ---"
+            tail -c 20000 /tmp/gc/capture.log 2>/dev/null || echo "(no capture log)"
+          } > data/official/gamecentre/capture_log.txt
+
       - name: Re-derive the published table from the retained bytes
+        continue-on-error: true
         run: python3 tools/official/gamecentre.py verify
 
       - name: Cross-read the venue register against the hand transcription
@@ -97,6 +112,7 @@ jobs:
           git fetch origin "${GITHUB_REF_NAME}" -q
           git reset --mixed "origin/${GITHUB_REF_NAME}" -q
           git add -A data/official/gamecentre data/official/fixture_context 2>/dev/null || true
+          git add -A data/official/fixture_context 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "MARKER: no new venue capture"
           else
