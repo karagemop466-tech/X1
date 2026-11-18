@@ -4182,3 +4182,71 @@ page shows Final must not still be 'scheduled'") forbids.
 
 **Not in scope:** no other session holds an open PR; no open branch is being edited. Generated trees
 (`app/`, `console/`, `pages/`, `lab/`, `hub/`, `index.html`) are rebuilt from their builders, never hand-edited.
+
+---
+
+# Session `arena/91656714-x1` — ROUND 6 COMPLETION RECORD (2026-11-18)
+
+Claim written at 03:15Z, before any work was done. Branch `arena/91656714-x1` from `d80c5b3`.
+This session is the final integration session for round 6.
+
+## The takeover, and why it was legitimate (rule 10)
+
+PR **#84** (`arena/473e08d5-x1`) was open, `CONFLICTING`, and its last commit `47afd2d` was dated
+2026-11-17T23:36:58Z — **3.5 hours** with no commits when this session started. Rule 10 makes the
+claim takeable. **Nothing was discarded:** every unique artefact was salvaged and re-verified below.
+PR #84 is closed with a handoff note pointing at the merged result.
+
+## What this round fixed, with the numbers that prove it
+
+The defect was a **live contradiction between the published site and its own data**, and no
+existing gate could see it because the HTML matched its builder and the builder matched the data.
+
+| Measure | Before | After |
+|---|---|---|
+| `data/results_feed.json` rows marked `FINAL` | 137 of 150 | **150 of 150** |
+| Week 10 games `SCHEDULED` though nfl.com printed `Final` | 13 | **0** |
+| Clubs reconciling to the official standings (feed recomputation) | 6 of 32 | **32 of 32** |
+| Landing page "settled games" | 137 (wrong) | derived from the feed |
+| Readiness register R-20 "today" | typed "137... not 136" | derived from the feed |
+| Gate suite | 35 of 40 passing | **40 of 40** |
+| Deployed-tree crawl | — | 184 pages, all local links resolve |
+
+## Task board — final state
+
+| # | Task | Status | Owner | Files in scope | Verified |
+|---|---|---|---|---|---|
+| R6-1 | Independent 2026-11-18 official read + verifier | **done** | `arena/91656714-x1` | `data/verification/2026_11_18/**`, `tools/verify_2026_11_18.py` | 33 checks; 3-way read agreement cell for cell |
+| R6-2 | Settle the feed from the dated read, point-in-time preserved | **done** | `arena/91656714-x1` | `tools/promote_week10_2026_11_17.py`, `data/results/**`, `data/results_feed.json`, mirror pin | 14/14 fixtures, 28/28 scores vs an independent read |
+| R6-2b | Signal grade names its unpriced games; accounting is an assertion | **done** | `arena/91656714-x1` | `tools/build_results_r3.py` | 150 − 13 − 3 − 1 = 133, asserted |
+| R6-3 | Point-in-time provenance fix in the shadow baseline | **done** | `arena/91656714-x1` | `tools/build_shadow_baseline.py` | mutation test proves the check fails on the defect |
+| R6-4 | Salvage PR #84, re-verify every line | **done** | `arena/91656714-x1` | `data/verification/2026_11_17/**`, `tools/verify_2026_11_17_closure.py` | each file checked against this session's own read before adoption |
+| R6-5 | Derive every published count; add the drift gate | **done** | `arena/91656714-x1` | `tools/build_app.py`, `tools/verify_app.py`, `tools/official/readiness.py` | gate caught 3 more live 137s on first run |
+| R6-6 | Round-6 flags with sources; CI wiring | **done** | `arena/91656714-x1` | `data/flags.json`, `.github/workflows/{verify,pages}.yml` | 30 flags, all source-linked; 40 + 19 CI steps |
+| R6-7 | Build the R-76 matchup deficiency matrix | **done** | `arena/91656714-x1` | `tools/build_deficiency_matrix.py`, `data/deficiency/**`, `console/matchups.html` | 2 football errors found and fixed before publishing |
+| R6-8 | Final integration, PR, merge, Pages confirm | **done** (see PR record) | `arena/91656714-x1` | `COORDINATION.md`, PR | every CI step replayed locally |
+
+## Irregularities found this round (all published on the Flagged page)
+
+| ID | Severity | What it is |
+|---|---|---|
+| X-13 | medium | Official pages are transcribed, not byte-captured; only the third-party mirror has a sha256 pin. The LAC@BAL Game Book PDF was not fetched, so it has no hash. |
+| X-14 | **high** | 13 of 14 Week 10 games have **no model line**, so the 63.2% signal grade rests on 133 of 150 settled games. Named row by row; not back-filled, because pricing them now would be lookahead. |
+| X-15 | **high** | The shadow baseline's Brier skill is +0.1089 but its **game-cluster 95% lower bound is −0.0052 — it crosses zero.** The luck panel agrees (z = −0.347). Published as computed. |
+| X-16 | medium | A lookahead defect: the shadow baseline attributed 13 promoted Week 10 scores to the 2026-11-14 read, which predates them. Fixed, and the gate is mutation-tested. |
+| X-17 | low | Two different verifier programs shared the filename `tools/verify_2026_11_17.py`. Caught when `build_site.py` failed on a schema mismatch; main's copy restored verbatim, the other kept as `..._closure.py`. Nothing lost on either side. |
+
+## Collisions resolved without discarding either side
+
+| Collision | Resolution |
+|---|---|
+| `tools/verify_2026_11_17.py` — two different programs, one name | main's (18-check reads pack) restored verbatim from `d80c5b3`; PR #84's (9-check closure verifier) kept as `tools/verify_2026_11_17_closure.py` |
+| `data/verification/2026_11_17/verification_summary_2026_11_17.json` — two schemas | main's restored; the closure verifier writes its own alongside |
+| `official_w10_results_2026_11_17.tsv` — two transcriptions | PR #84's adopted **only after** it agreed with this session's independent read on 14/14 fixtures and 28/28 scores; the adoption is annotated inside the file; the prior version stays reachable in git history at `d80c5b3` |
+| `injuries_diff_vs_published_2026_11_17.csv` — became empty | Empty **by construction**: round 5 had already republished the table to the 11-17 read, so both sides are the same read (347 rows, 0 cell differences). The generator now writes that explanation itself so the bytes reproduce; the 11-14 → 11-17 delta remains in `data/audit/verification_run.json` |
+
+## Files this session did NOT touch
+
+No other session held an open branch or PR at the start of this round, so the scope was
+non-overlapping by construction. `docs/EXECUTIVE-SUMMARY.md` was extended (append-only, every
+earlier addendum kept verbatim). Generated trees were rebuilt from their builders, never hand-edited.

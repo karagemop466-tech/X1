@@ -155,3 +155,90 @@ charts (now 31); a reward rule set (Q-07, not decided); a joint-probability cali
 families, now 0 files); and one G1 sample threshold that both registers state (they state 100 and 500 today).
 
 ---\n\n# Executive Summary — fourth round: session `arena/1aa2b47f-x1` review and release (2026-11-15)\n\nThis session took over the integrated branch (`arena/1aa2b47f-x1`, identical to `main` at `51d6e32`) and ran the offline verification the build cannot do against live official pages, because `nfl.com` and `operations.nfl.com` return connection failure from this sandbox (HTTP 000). No value was inferred and nothing was published that is not already in a committed official snapshot.\n\n## What this session verified (offline)\n\n| Check | Result |\n|---|---|\n| `tools/verify_data.py` | 2,944 integrity assertions — all pass |\n| `tools/check_links.py` | 159 files, 40,653 assertions — all links resolve, no orphans, every external host approved |\n| `scripts/verify_site.py` | 159 HTML pages — local links resolve, every data-table row carries an official source link |\n| Live official sources | `nfl.com`, `operations.nfl.com` unreachable (HTTP 000) — verification is against committed snapshots only |\n\n## Standing honest position (unchanged)\n\n1. **No official source publishes betting prices.** Every price, CLV, difference and ROI cell is blank and flagged (Q-02 / F-06). Q-02 is the single highest-leverage open decision.\n2. **Nothing is ranked on luck.** Signal is separated from staking; G8 demotes live→paper mechanically; the board is honestly empty of promotable strategies.\n3. **Depth is club self-report.** No league-wide official depth chart exists; several clubs print 'unofficial' (Q-05 / F-01).\n\n## Irregularities carried forward (none block release)\n\nFlags F-01…F-19 and defects D-01…D-03 remain on the Flagged for Review page with source links. Highest-signal open items: Q-02 (licensed price feed), Q-04 (licensed snap counts), Q-07 (reward funding/legality), R-02 (no LICENSE file). No new irregularity was introduced this session; no published value was changed.\n\n## Recommended owner actions (suggestions board, unchanged)\n\n- **S-13** — name the price feed (unblocks Q-19/Q-02 and every market column).\n- **S-17** — schedule the results-feed refresh (unblocks Q-24).\n- **S-16** — ratify the G8 demotion thresholds (Q-21).\n- **S-10** — second independent transcription pass on standings and injuries.\n- Add a `LICENSE` (R-02) before republishing any ingested NFL data.
+
+---
+
+# Executive Summary — round 6 addendum (2026-11-18, session `arena/91656714-x1`)
+
+Every earlier addendum above is preserved verbatim, including its numbers. Those numbers were true
+on their own dates and are the record of those dates. This section states what is true now, and
+what a reader should no longer take from the earlier sections.
+
+## The one thing that was broken, and is now fixed
+
+**The published site contradicted its own data.** The verified results feed contained 150 rows but
+only 137 of them were marked settled: Week 10's Sunday and Monday games were frozen at
+`SCHEDULED` because the feed's input was a 2026-11-14 transcription taken before they were played.
+The landing page, the results page and the readiness register all said "137 settled games".
+
+That is the defect class the brief asked to be impossible ("a game whose official page shows Final
+must not still be 'scheduled'"). It is now fixed at the source, not in the output:
+
+| | Before (2026-11-18 03:00Z) | After |
+|---|---|---|
+| Feed rows marked settled | 137 of 150 | **150 of 150** |
+| Week 10 games marked `SCHEDULED` though the league printed `Final` | 13 | **0** |
+| Clubs whose W-L-T/PF/PA reproduce from the feed vs the official standings | 6 of 32 | **32 of 32** |
+| Landing page settled-game count | 137 (contradicted its own feed) | **derived from the feed** |
+
+## How it was verified, and by whom
+
+A **third independent read** of the two official pages was made on 2026-11-18 (`data/verification/
+2026_11_18/`), not copied from the two reads already in the repository. It agrees with them:
+
+* 14 of 14 Week 10 fixtures, 28 of 28 scores — **0 mismatches** against the 2026-11-17 read.
+* 32 clubs × 10 standings columns — **0 cell mismatches** against the 2026-11-17 read.
+* Against the 2026-11-16 read, only BAL and LAC differ, only in the cells the Monday-night result
+  touches. That is correct point-in-time behaviour, not a conflict.
+* The Monday game itself (LAC 23 – BAL 20) was re-read live at its own Game Center page: `Final`,
+  M&T Bank Stadium, quarter splits 10/7/3/3 and 0/10/3/7 which sum to the printed totals.
+
+`tools/verify_2026_11_18.py` runs **33 checks** and is wired into both CI workflows. Its strongest
+check recomputes all 32 clubs' W-L-T/PF/PA **from the published feed** and requires the official
+standings table to match — 160 cells. A wrong promoted score moves a club's points-for and fails it.
+
+## Three defects found while verifying, all published rather than smoothed
+
+1. **A lookahead leak in the point-in-time ledger.** The shadow baseline stamped every score with
+   `read_on = '2026-11-14'`. Once Week 10 was promoted from the 2026-11-17 read, 13 scores were
+   attributed to a read taken *before those games were played*. Fixed to read each row's own
+   `read_at`; a row without one now aborts the build. A mutation test re-introduces the defect and
+   confirms the check catches it. (`X-16`)
+
+2. **A hidden coverage gap.** The signal grade's join check proved every settled game matched a
+   model *row*, but 13 of the 14 Week 10 games have a **blank** model line — no walk-forward price
+   was ever produced for them. Those were counted in the same bucket as "the model declined a side".
+   The grade is 84–49 (63.16%, z = 3.035) on **133 of 150** settled games, not on 133 of 133, and
+   the 13 unpriced games are now named row by row. (`X-14`)
+
+3. **A skill claim that does not clear its own interval.** The pre-registered shadow baseline's
+   Brier skill is **+0.1089** but its game-cluster 95% lower bound is **−0.0052**. The point
+   estimate is positive; the interval does not exclude no skill. The luck panel (75 realised wins
+   vs 76.758 expected, z = −0.347) says the same thing. Published as computed. (`X-15`)
+
+## A requested feature that had no artefact, now built
+
+Requirement **R-76** — the interactive offence-vs-defence matchup deficiency matrix — had a
+register row and no implementation. It is now built (`console/matchups.html`) from each club's own
+depth chart joined to the official injury report: 38 joinable rows across all 14 fixtures, 22 clubs
+with structured offensive depth, 8 matchups where both sides are named.
+
+It refuses four shortcuts the brief explicitly forbids: it does not invent a starter for an empty
+or shared slot, does not derive depth from jersey number or salary, does not convert a missing
+starter into points, and does not transcribe Houston's image-based chart. Houston appears in no row
+and its fixture is published as **incomplete** rather than filled by eye.
+
+## What is still not true
+
+Stated plainly, because these are the things a reader should not assume from this document:
+
+* **No official or licensed price source exists.** Every market column stays blank and flagged.
+  Opening prices are absent, not estimated. Backtest ROI is computed only where a price exists.
+* **No closing-line value, no recorded-price ROI, no price-dependent gate can be evaluated.**
+* **The FedEx/weather/roof overlay is not built** — no forecast capture and no roof designation is
+  held.
+* **Inactive lists and snap counts are not captured**, so a backup replacing a starter is
+  *suspected* from the depth chart and injury report, never *confirmed* from participation.
+* **The official pages are transcribed, not byte-captured.** Only the third-party mirror has a
+  sha256 pin. (`X-13`)
+* **One season, one sample.** Every interval in this repository is wide, and several cross zero.
