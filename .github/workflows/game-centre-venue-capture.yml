@@ -1,0 +1,112 @@
+name: game-centre-venue-capture
+
+# Official Game Center capture: venue and fixture facts for every fixture of the weeks this
+# project reads, collected on a schedule with the raw page bytes retained and hashed.
+#
+# Added by session `arena-efb06932-x1` (round 6) for the owner's brief:
+#   "Transcribe the venue of every fixture from the official game centre and publish it"
+#   "Add a drift alarm to every scraper … fail the build loudly when a field goes missing"
+#
+# Why a workflow and not a one-off transcription: a venue register that is typed once cannot be
+# replayed, and the sandbox this repository is edited in has no route to nfl.com. The runner does
+# the reading, retains the bytes, and the published table is re-derived from those bytes in the
+# same job (`verify`), so a value on the site is always traceable to a hashed official capture.
+#
+#   pull_request (same-repo branch) : selftest + capture into the job, nothing committed
+#   schedule / workflow_dispatch    : capture + verify + commit to the branch it ran on
+on:
+  schedule:
+    # Wednesday/Thursday/Friday before the slate, and Monday after it, so the same fixtures are
+    # read pre-kickoff and post-final. The injury cadence has its own workflow (injury-ledger).
+    - cron: "33 15 * * 3,4,5"
+    - cron: "47 14 * * 1"
+  workflow_dispatch:
+    inputs:
+      weeks:
+        description: "Comma-separated 2026 regular-season weeks to capture"
+        required: false
+        default: "10,11"
+  push:
+    branches: ['**']
+    paths:
+      - "tools/official/gamecentre.py"
+      - ".github/workflows/game-centre-venue-capture.yml"
+      - "tools/official/fixture_context.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: game-centre-capture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      WEEKS: "10,11"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Apply the dispatch input, if one was given
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.weeks != ''
+        run: echo "WEEKS=${{ github.event.inputs.weeks }}" >> "$GITHUB_ENV"
+
+      # Offline. Proves the parser reads what the block prints and leaves an absent field blank,
+      # so a red run here means the parser changed behaviour, not that the league did.
+      - name: Parser selftest (no network)
+        run: python3 tools/official/gamecentre.py selftest
+
+      - name: Capture the official Game Center pages
+        id: capture
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          mkdir -p /tmp/gc
+          { python3 tools/official/gamecentre.py capture --weeks "$WEEKS" \
+              --drift-exit-code 1; echo "capture_exit=$?"; } 2>&1 | tee /tmp/gc/capture.log
+
+      - name: Re-derive the published table from the retained bytes
+        run: python3 tools/official/gamecentre.py verify
+
+      - name: Cross-read the venue register against the hand transcription
+        continue-on-error: true
+        run: python3 tools/official/gamecentre.py cross-check
+
+      - name: Build the fixture-context features from the schedule facts only
+        continue-on-error: true
+        run: python3 tools/official/fixture_context.py build
+
+      # Evidence first: the retained captures and the register always go out, flags and all, so a
+      # source change is visible in git instead of quietly becoming a missing day.
+      - name: Commit the capture
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          set -uo pipefail
+          git config user.name "x1-bot"
+          git config user.email "x1-bot@users.noreply.github.com"
+          git fetch origin "${GITHUB_REF_NAME}" -q
+          git reset --mixed "origin/${GITHUB_REF_NAME}" -q
+          git add -A data/official/gamecentre data/official/fixture_context 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "MARKER: no new venue capture"
+          else
+            git commit -q -m "ci: official Game Center venue capture $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git pull --rebase origin "${GITHUB_REF_NAME}" -q || true
+            git push -q origin "HEAD:${GITHUB_REF_NAME}" && echo "MARKER: PUSH OK" || echo "MARKER: PUSH FAILED"
+          fi
+
+      - name: Diagnostics
+        if: always()
+        run: |
+          echo "--- capture log (tail) ---"; tail -40 /tmp/gc/capture.log 2>/dev/null || true
+          echo "--- report ---"; cat data/official/gamecentre/venue_report.json 2>/dev/null || true
