@@ -246,6 +246,13 @@ jobs:
       - name: The two independent 2026-11-17 transcriptions still agree
         run: python3 tools/verify_2026_11_17_473e08d5.py
 
+      # Added by session arena/a02e9816-x1 (round 6): the 2026-11-18 official re-verification pack —
+      # a fresh same-day read of the league standings page and the Week 10 slate, 5 checks (A1-A5)
+      # including the 384-cell continuity agreement with the two independent 2026-11-17 reads and the
+      # closed 150-row feed. `--check` fails if the committed pack stops matching a fresh build.
+      - name: The 2026-11-18 re-verification pack still closes
+        run: python3 tools/verify_2026_11_18.py --check
+
       # The appends into the three transcription inputs are derived from that pack, not typed into it:
       # re-running the promotion tool must be a no-op. This is the guard against a hand edit to
       # reads.tsv or a week PSV that no longer matches the official read it came from.
