@@ -125,8 +125,11 @@ def latest_slate(week: int) -> dict | None:
 
 
 def slug_of(url: str) -> str:
+    """The fixture slug, with the season/week suffix removed so a slug from the slate page and a
+    slug from the venue capture are the same key. The suffix carries no information the row does
+    not already have: week and season are columns of both files."""
     m = re.search(r"/games/([a-z0-9\-]+)$", (url or "").rstrip("/"))
-    return m.group(1) if m else ""
+    return re.sub(r"-\d{4}-reg-\d+$", "", m.group(1)) if m else ""
 
 
 def days_between(a: str, b: str):
@@ -143,7 +146,7 @@ def load_venue_lookup() -> dict:
     for the closed week, the dated hand register. Blank when neither printed a venue."""
     look: dict[str, dict] = {}
     for r in read_tsv(os.path.join(GC, "venue_register_latest.tsv")):
-        slug = r.get("slug", "")
+        slug = re.sub(r"-\d{4}-reg-\d+$", "", r.get("slug", ""))
         if not slug:
             continue
         look[slug] = {"stadium": r.get("stadium", ""), "location": r.get("location", ""),
@@ -151,7 +154,7 @@ def load_venue_lookup() -> dict:
                       "source": r.get("game_url", ""),
                       "method": r.get("venue_method", "")}
     for r in read_csv(VENUES_W10):
-        slug = r.get("game_center_slug", "")
+        slug = re.sub(r"-\d{4}-reg-\d+$", "", r.get("game_center_slug", ""))
         if slug and slug not in look:
             look[slug] = {"stadium": r.get("stadium_as_printed", ""),
                           "location": r.get("location_as_printed", ""),
@@ -193,7 +196,8 @@ def build() -> tuple[list[dict], dict]:
     # prior fixture per club, from the Week 10 slate: date + venue city, as the slate printed them
     prev: dict[str, dict] = {}
     if slate10:
-        w10_hand = {(r.get("game_center_slug") or ""): r for r in read_csv(VENUES_W10)}
+        w10_hand = {re.sub(r"-\d{4}-reg-\d+$", "", (r.get("game_center_slug") or "")): r
+                    for r in read_csv(VENUES_W10)}
         for r in slate10["rows"]:
             if r.get("row_type") not in (None, "", "game") and r.get("row_type") != "game":
                 continue

@@ -1,0 +1,26 @@
+{
+ "bootstrap": {
+  "cluster": "game",
+  "draws": 10000,
+  "seed": 20261118
+ },
+ "controls": {
+  "favourites_only": "every pick replaced by the market favourite",
+  "random_picks": "every pick replaced by a coin flip on the same games",
+  "state": "the control baselines are registered as PR-02 and run with every leaderboard pass; on a settled sample of 1 game they cannot separate anything, which is the point of publishing n"
+ },
+ "dataset": "luck-removal-panel",
+ "generated_by": "tools/official/escrow_provenance.py score",
+ "groups": 1,
+ "ledger_rows": 66,
+ "limits": [
+  "one settled side row exists across both frozen records, so every aggregate here is a demonstration that the arithmetic runs, not evidence of skill",
+  "settlement waits on official finals; the Week 11 slate has not been played as of this build",
+  "no market number is stored, so closing-line value cannot be computed at all yet (open question Q-02)"
+ ],
+ "rule": "skill is measured against two benchmarks (a coin and the 0.55 home baseline) with a game-cluster bootstrap; a win rate or a short-run ROI is not on this page because neither can separate skill from variance",
+ "settled_rows": 1,
+ "title": "Removal of luck: proper scores, benchmark-relative skill, game-cluster uncertainty, and the sample the gate needs",
+ "unsettled_rows": 65,
+ "week11_settled": 0
+}

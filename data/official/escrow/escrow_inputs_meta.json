@@ -1,0 +1,35 @@
+{
+ "constants": {
+  "HOME_BASELINE_P": 0.55,
+  "H_HOME_POINTS": 1.6,
+  "K_PRIOR_GAMES": 2.0,
+  "SIGMA_POINTS": 13.5,
+  "source": "tools/build_shadow_baseline.py (PR-01), imported not retyped"
+ },
+ "corpus_games": 150,
+ "dataset": "escrow-inputs",
+ "frozen_record": "data/lab/escrow/week11_forecasts_2026-11-17.csv",
+ "frozen_record_sha256": "9050d41f36de779ef26cf3633235537b19b6bde7f594de70c377a9cf86ec453f",
+ "generated_by": "tools/official/escrow_provenance.py inputs",
+ "input_file_hashes": {
+  "data/lab/reads/2026-11-17/week10_finals.tsv": "9f74ed9bccad29719a014bf3e004e0345867d181f011cd6e20e107a38ccab177",
+  "data/lab/reads/2026-11-17/week11_slate_2026-11-17.tsv": "3ced9a56f45365b834b4eddfb7b6e3f1f80c0c45184c7057e0f08d6c869b7891",
+  "data/shadow/forecasts_pre_kickoff.csv": "ff14280133d77190d033cce1855b3408be3f82c0499c4f15ecfd2a00267cd66a",
+  "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv": "4545f9d49c3a1c4a4e3608d72050f0716271b6b58405f82ec36c1e8e41d63861",
+  "docs/preregistration/PR-04-week11-escrow.md": "46229398b70d48bf39f8696a571b2d6ef1ed9343e8a943c1e4282266de495d64"
+ },
+ "limits": [
+  "the total markets publish a line, not a probability, so their re-derivation compares the published line with the corpus league average",
+  "no market line is stored: the price policy keeps that column blank (Q-02)"
+ ],
+ "out_of_scope_reason": "total rows publish a line, not a margin probability; the re-derivation for a total compares its published line with the corpus league average instead (total_A) or with the points estimator's inputs carried on the same row (total_B)",
+ "problems": [],
+ "registration": "docs/preregistration/PR-04-week11-escrow.md",
+ "rows": 52,
+ "rows_in_rederive_scope": 26,
+ "rows_out_of_rederive_scope": 26,
+ "rows_rederived_ok": 26,
+ "rows_with_probability": 39,
+ "rule": "a stored forecast is a probability plus its inputs; the re-derivation is the proof that the inputs are the ones that were used",
+ "title": "Every frozen probability with the inputs that produced it, re-derived from those inputs"
+}
