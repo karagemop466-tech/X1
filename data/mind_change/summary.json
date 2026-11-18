@@ -23,12 +23,12 @@
   "rule_rows": 4,
   "both_sides_published": 24,
   "already_had_one_side": 12,
-  "undecided": 13,
+  "undecided": 14,
   "adopt_eligible": 0,
   "abandon_eligible": 7,
   "no_sample": 1,
-  "interval_methods_disagree": 3,
-  "adoption_unreachable_at_observed_rate": 20
+  "interval_methods_disagree": 2,
+  "adoption_unreachable_at_observed_rate": 19
  },
  "caveats": [
   "This register publishes only the mind-change fields. Promotion still requires the eight validation gates; nothing here moves a strategy's status, and no entry on this board is promoted.",
