@@ -6,7 +6,7 @@ PATH,TOP,BYTES
 .github/workflows/verify.yml,.github,14634
 .gitignore,.gitignore,1143
 .nojekyll,.nojekyll,0
-COORDINATION.md,COORDINATION.md,456425
+COORDINATION.md,COORDINATION.md,456794
 README.md,README.md,18710
 _ci/commit.log,_ci,2964
 _ci/pipeline.log,_ci,8931
@@ -16,9 +16,9 @@ app/assets/site.css,app,7261
 app/correlation.html,app,259067
 app/decisions.html,app,51987
 app/deficiency.html,app,653095
-app/depth.html,app,664193
+app/depth.html,app,664550
 app/executive-summary.html,app,17016
-app/flagged.html,app,483464
+app/flagged.html,app,519293
 app/index.html,app,63371
 app/injuries.html,app,211191
 app/leaderboard.html,app,112705
@@ -28,7 +28,7 @@ app/price-history.html,app,34949
 app/prices.html,app,105731
 app/props.html,app,11156
 app/replacement-depth.html,app,54887
-app/repo-review.html,app,434298
+app/repo-review.html,app,470127
 app/requirements.html,app,47351
 app/results-feed.html,app,135846
 app/results.html,app,223284
@@ -148,7 +148,8 @@ data/capture/2026_w10_read_2026_11_17/recapture_2026_11_17.md,data,4342
 data/captures/config.json,data,9044
 data/captures/diffs/injuries__2026-11-14__2026-11-15.csv,data,1888
 data/captures/diffs/standings__2026-11-14__2026-11-16.csv,data,3892
-data/captures/index.jsonl,data,109913
+data/captures/index.jsonl,data,117916
+data/captures/payloads/deficiency/1b/1b4777e27786059aebe99415a4188bcfaf3108ad71bc81a4506c81830a33f221.json,data,364035
 data/captures/payloads/deficiency/31/31698fabc3a8fa059fd929c0d126aac603620b215c03465185f8a9e7b3f4d7cc.json,data,363890
 data/captures/payloads/deficiency/35/358caf415bb94257c97c68205b34062044449f4f6f964378da9fb897794d49e0.json,data,364259
 data/captures/payloads/deficiency/55/5565fbcd9cbd369f5b3cb829bfc28b1ece4215f94f5d41a5267ebdbfb975b243.json,data,364107
@@ -160,6 +161,7 @@ data/captures/payloads/deficiency/de/deeb4217df76f272e5c8d0885a097bce58bb6545259
 data/captures/payloads/depth_charts/0e/0e8f5a9f6c31387300733be3e4dc492e51202f40cf41df1086a0e21c099f06e8.json,data,386217
 data/captures/payloads/depth_charts/42/42c51ed52b66dcbffd8256689534654cf82f6cb37021e43f3390304a22abfc1d.json,data,386901
 data/captures/payloads/depth_charts/54/54bdde6245ac277f4baa039d61ed88f971171192d7107d9c9be22ee182d9be15.json,data,385974
+data/captures/payloads/depth_charts/6c/6c6700a7a74dba3120cc71e912b0109c2a83c95fc78bb23e4480441eb39ee21f.json,data,388214
 data/captures/payloads/depth_charts/7e/7e3f42a3918465abae47ae8e185e0b23e8e985d7bc791f1c0e674e94faa3b560.json,data,389006
 data/captures/payloads/depth_charts/84/845bd953fb3aa9c68fafdf92febb6d565ecc275637b470ee0be26bd0fa86e606.json,data,388002
 data/captures/payloads/depth_charts/95/95eaf241e88dc2458386cfb3c44e278cd2a680cfcba8ebcc24ac5b54437706a1.json,data,387502
@@ -336,13 +338,13 @@ data/pipeline/_verification.json,data,2606
 data/pipeline/club_registry.json,data,14244
 data/pipeline/correlations.json,data,842244
 data/pipeline/deficiency.json,data,869669
-data/pipeline/depth_charts.json,data,1025950
+data/pipeline/depth_charts.json,data,1026501
 data/pipeline/gates.json,data,10760
 data/pipeline/injuries.json,data,259478
 data/pipeline/leaderboard.json,data,9202
 data/pipeline/market_lines.json,data,798
 data/pipeline/questions.json,data,26878
-data/pipeline/repo_review.json,data,450530
+data/pipeline/repo_review.json,data,487614
 data/pipeline/requirements.json,data,38243
 data/pipeline/standings.json,data,23735
 data/pipeline/strategies.json,data,10635
