@@ -4137,3 +4137,35 @@ the Rams–Cardinals game, matched by alias-normalised matchup, never by label).
 
 *This record is the follow-up commit from the same branch (docs-only), per the branch's PR-record
 convention.*
+
+---
+
+# Session `arena-869ee8fb-x1` — Round 6: integration of PR #84, open-row closure (SG-15, X-11), final verification and release (this session)
+
+## Why this session exists
+
+Round 5 (`arena/dc96bc33-x1`, PR #80/#85) closed and left three open rows plus one unmerged PR.
+The owner brief requires a final integration session to merge outstanding branches, re-verify the
+combined data line by line, confirm the site builds with no broken links, publish to GitHub Pages,
+and record the PR and merge result here. No round-6 claim existed on the board when this claim
+was written (grep for "round 6" / "2026-11-18": no matches).
+
+## Claim (written and pushed before any other work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R6-1 | Integrate open PR #84 (`arena/473e08d5-x1`, Week-10 closure / 150-game feed / price policy) into this branch; resolve conflicts by regeneration per the PR's own integrator notes; run the full local gate suite on the merged tree | in progress | `arena-869ee8fb-x1` | merge commit; regenerated builder outputs (`index.html`, `pages/**`, `app/**`, `console/**`, `data/console/**`) |
+| R6-2 | SG-15: render the salvaged immutable injury ledger, availability snapshots and dated schedule announcement as console pages | in progress | `arena-869ee8fb-x1` | `tools/build_console.py` (additive), `console/**`, `data/console/**` |
+| R6-3 | X-11 residual: check the repository setting "Allow GitHub Actions to create and approve pull requests" via the API; record the result | in progress | `arena-869ee8fb-x1` | COORDINATION.md (record only) |
+| R6-4 | Final line-by-line re-verification on the merged tree: every CI gate locally, link check, staleness gates; fix defects found | in progress | `arena-869ee8fb-x1` | verification/tool files only where a defect is found |
+| R6-5 | Final release: PR from this branch → `main`, merge without waiting, confirm GitHub Pages deploy, record PR link and merge result here | in progress | `arena-869ee8fb-x1` | COORDINATION.md (release record) |
+
+## Non-overlap declaration (rule 3)
+
+- PR #84's branch is another session's work: this session **merges it**, never rewrites its history
+  or edits its branch.
+- No edits to `docs/audit/brief-coverage-2026-11-17.md` (owner `arena-d3df5dc2-x1`) — any coverage
+  status changes are logged here as requests instead (rule 4).
+- No edits to `lab/**`, `tools/lab/**` (round-5 lab scope), `hub/**`, `research/**`.
+- Live claims from round 5 (`data/verification/2026_11_17/**` canonical names) are read-only inputs.
+
