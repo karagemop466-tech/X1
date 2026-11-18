@@ -63,6 +63,11 @@ NAV = [
     # Added by session arena-473e08d5-x1 (additive): the dated closure of Week 10 and the re-baselined
     # results feed, published as evidence rather than as a silent overwrite of the numbers.
     ("pages/results-closure.html", "Week 10 closure"),
+    # Added by the final integration session arena/717d11d1-x1: the round-6 venue register
+    # (venues/index.html) was written but never linked from the served root, leaving it an
+    # unreachable orphan. Venue context (roof/surface, official game centre) is a first-class
+    # requirement, so the page is linked here to make it reachable.
+    ("venues/index.html", "Venues"),
     ("pages/shadow-baseline.html", "Shadow baseline"),
     ("pages/next-decisions.html", "Suggestions & questions"),
     ("dashboard/lab-index.html", "Analytics lab"),
