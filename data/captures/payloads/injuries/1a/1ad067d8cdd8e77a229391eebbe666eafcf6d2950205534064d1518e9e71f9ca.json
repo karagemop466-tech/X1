@@ -1,0 +1,258 @@
+{
+ "as_read_at": "2026-11-18T19:23:30+00:00",
+ "captured_at": "2026-11-18T19:23:51Z",
+ "content_sha256": "1ad067d8cdd8e77a229391eebbe666eafcf6d2950205534064d1518e9e71f9ca",
+ "dataset": "injuries",
+ "note": "",
+ "rows": [
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Azeez Al-Shaair",
+   "position": "LB",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Blake Fisher",
+   "position": "T",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Brevin Jordan",
+   "position": "TE",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Danielle Hunter",
+   "position": "DE",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "David Montgomery",
+   "position": "RB",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Febechi Nwaiwu",
+   "position": "G",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Jacob Hummel",
+   "position": "LB",
+   "practice_status": "Limited Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Jaylin Smith",
+   "position": "CB",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Kamari Lassiter",
+   "position": "CB",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Keylan Rutledge",
+   "position": "G",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Marvin Harrison Jr.",
+   "position": "WR",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Reed Blankenship",
+   "position": "S",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Tank Dell",
+   "position": "WR",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Woody Marks",
+   "position": "RB",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Wyatt Teller",
+   "position": "G",
+   "practice_status": "Full Participation in Practice",
+   "team": "HOU"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Anthony Gould",
+   "position": "WR",
+   "practice_status": "Limited Participation in Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Bernhard Raimann",
+   "position": "T",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Charlie Heck",
+   "position": "T",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Charvarius Ward",
+   "position": "CB",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Dalton Tucker",
+   "position": "G",
+   "practice_status": "Full Participation in Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Jalen Travis",
+   "position": "T",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Jaylon Carlies",
+   "position": "LB",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Jerry Tillery",
+   "position": "DT",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Luke Rhodes",
+   "position": "LS",
+   "practice_status": "Limited Participation in Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Sauce Gardner",
+   "position": "CB",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  },
+  {
+   "game_label": "THURSDAY, NOVEMBER 19TH",
+   "game_status": "",
+   "injury": "",
+   "player": "Will Mallory",
+   "position": "TE",
+   "practice_status": "Did Not Participate In Practice",
+   "team": "IND"
+  }
+ ],
+ "schema": [
+  "game_label",
+  "game_status",
+  "injury",
+  "player",
+  "position",
+  "practice_status",
+  "team"
+ ],
+ "source_files": [
+  "data/pipeline/injuries.json"
+ ],
+ "sources": [
+  "https://www.nfl.com/injuries/"
+ ]
+}

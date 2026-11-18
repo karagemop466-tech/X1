@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-18T04:15:58Z",
- "captures": 74,
+ "generated_at": "2026-11-18T19:23:51Z",
+ "captures": 79,
  "datasets": [
   "injuries",
   "standings",
@@ -13,19 +13,19 @@
  "freshness": {
   "injuries": {
    "status": "ok",
-   "captures": 15,
-   "distinct_payloads": 3,
-   "last_as_read_at": "2026-11-18T04:15:34+00:00",
+   "captures": 16,
+   "distinct_payloads": 4,
+   "last_as_read_at": "2026-11-18T19:23:30+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 96,
-   "last_drift": "pass"
+   "last_drift": "fail"
   },
   "standings": {
    "status": "ok",
-   "captures": 15,
+   "captures": 16,
    "distinct_payloads": 4,
-   "last_as_read_at": "2026-11-18T04:15:33+00:00",
+   "last_as_read_at": "2026-11-18T19:23:30+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 96,
@@ -33,9 +33,9 @@
   },
   "depth_charts": {
    "status": "ok",
-   "captures": 14,
-   "distinct_payloads": 9,
-   "last_as_read_at": "2026-11-18T04:15:37+00:00",
+   "captures": 15,
+   "distinct_payloads": 10,
+   "last_as_read_at": "2026-11-18T19:23:34+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -43,9 +43,9 @@
   },
   "team_stats": {
    "status": "ok",
-   "captures": 14,
+   "captures": 15,
    "distinct_payloads": 4,
-   "last_as_read_at": "2026-11-18T04:15:47+00:00",
+   "last_as_read_at": "2026-11-18T19:23:40+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -53,9 +53,9 @@
   },
   "deficiency": {
    "status": "ok",
-   "captures": 14,
-   "distinct_payloads": 9,
-   "last_as_read_at": "2026-11-18T04:15:47+00:00",
+   "captures": 15,
+   "distinct_payloads": 10,
+   "last_as_read_at": "2026-11-18T19:23:40+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -66,7 +66,7 @@
    "captures": 1,
    "distinct_payloads": 1,
    "last_as_read_at": "2026-11-16T18:52:00Z",
-   "hours_since_last_read": 33.4,
+   "hours_since_last_read": 48.5,
    "clock_skew_hours": "",
    "max_age_hours": 336,
    "last_drift": "pass"
@@ -76,7 +76,7 @@
    "captures": 1,
    "distinct_payloads": 1,
    "last_as_read_at": "2026-11-16T18:44:00Z",
-   "hours_since_last_read": 33.5,
+   "hours_since_last_read": 48.7,
    "clock_skew_hours": "",
    "max_age_hours": 336,
    "last_drift": "pass"
@@ -212,6 +212,24 @@
     }
    ],
    "capture_id": "deficiency@20261117T195001+0000@6f159834383f"
+  },
+  {
+   "dataset": "injuries",
+   "kind": "schema-or-count",
+   "at": "2026-11-18T19:23:30+00:00",
+   "detail": [
+    {
+     "detail": "26 rows, minimum pinned 150",
+     "field": "*",
+     "kind": "row-count-out-of-range"
+    },
+    {
+     "detail": "26/26 blank = 1.000, allowance 0.95",
+     "field": "game_status",
+     "kind": "blank-over-allowance"
+    }
+   ],
+   "capture_id": "injuries@20261118T192330+0000@1ad067d8cdd8"
   }
  ],
  "verdict": "alarmed",
