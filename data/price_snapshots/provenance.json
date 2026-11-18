@@ -1,0 +1,25 @@
+{
+ "dataset": "price_snapshot_provenance",
+ "written_by": "tools/build_price_snapshots.py",
+ "decision": "price-data policy, 2026-11-17 (N-4): third-party mirror prices are stored and published as labelled third-party captures and never as an official price; the opening stage stays blank until a licensed feed exists",
+ "pinned_mirror": {
+  "file": "data/raw/nflverse/games.csv",
+  "sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+  "bytes": 2190568,
+  "sha256_in_manifest": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+  "manifest_matches_file": true,
+  "retrieved_at": "2026-11-17T23:05:12Z",
+  "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv"
+ },
+ "prices_read_from": {
+  "file": "data/processed/schedule_2026.json",
+  "note": "a derived file, kept as this tool's input so the store's history is reproducible; the pinned bytes above are what a reader should re-derive the same numbers from"
+ },
+ "counts": {
+  "captures": 112,
+  "markets": 56,
+  "with_opening": 0,
+  "with_closing": 56
+ },
+ "opening_stage": "blank by policy, not by omission \u2014 see Q-02/Q-03 and tools/record_price.py"
+}

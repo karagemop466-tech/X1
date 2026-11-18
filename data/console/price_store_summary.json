@@ -1,18 +1,18 @@
 {
- "rows": 18902,
- "with_open": 1228,
- "with_close": 18746,
+ "rows": 18972,
+ "with_open": 1246,
+ "with_close": 18798,
  "with_both": 1072,
- "originated_now": 156,
- "settled_rows": 18746,
+ "originated_now": 174,
+ "settled_rows": 18798,
  "by_market": {
-  "SIDE": 4237,
-  "TOTAL": 4253,
-  "MONEYLINE": 10412
+  "SIDE": 4256,
+  "TOTAL": 4272,
+  "MONEYLINE": 10444
  },
  "by_step": {
-  "1": 4237,
-  "2": 4253,
-  "3": 10412
+  "1": 4256,
+  "2": 4272,
+  "3": 10444
  }
 }

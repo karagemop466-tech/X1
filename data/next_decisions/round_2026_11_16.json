@@ -2,7 +2,7 @@
  "dataset": "next_decisions",
  "title": "Suggestions and open questions for the owner to choose between, with the evidence that produced each",
  "read_on": "2026-11-16",
- "generated_at": "2026-11-17T23:48:48Z",
+ "generated_at": "2026-11-18T03:35:24Z",
  "generated_by": "tools/build_next_decisions.py (session arena-543cdcb0-x1)",
  "rule": "nothing on this page is implemented by the tool that writes it; decision_status is set only by a human commit, so a suggestion cannot approve itself",
  "impact_effort_note": "impact, effort and risk are this session's estimates, not measurements.",
@@ -59,12 +59,12 @@
    "effort": "Medium",
    "risk": "Medium",
    "title": "Move the results feed's four coupled baselines in one commit, or leave the feed alone",
-   "why": "The feed says 1 of 14 Week 10 games is officially verified; the official page now prints 13 finals, and this session transcribed them (with the standings cross-checked three ways). The feed cannot simply absorb them: appending those 13 rows to the published feed makes 23 of 32 clubs disagree with the standings baseline the feed is *validated against*, and the row-count pin and the pinned mirror have scores for only 1 of the 13. Four artefacts \u2014 the transcription, the count pin, the standings baseline, the mirror re-pin \u2014 are one change or none. Today it is none, deliberately, and the discrepancy is published instead of hidden.",
+   "why": "The feed says 1 of 14 Week 10 games is officially verified; the official page now prints 13 finals, and this session transcribed them (with the standings cross-checked three ways). The feed cannot simply absorb them: appending those 13 rows to the published feed makes 23 of 32 clubs disagree with the standings baseline the feed is *validated against*, and the row-count pin and the pinned mirror have scores for only 1 of the 13. Four artefacts \u2014 the transcription, the count pin, the standings baseline, the mirror re-pin \u2014 are one change or none. On 2026-11-17 path A was executed: all four moved in one commit chain, the feed is 150 games with 32/32 clubs reproducing the dated standings page, and tools/verify_2026_11_17.py (V1..V9) is the closure evidence. Nothing was appended in isolation, so no gate was relaxed to let one through.",
    "path_a": "A: one PR that moves all four together and re-runs every results gate, reviewed as a single diff.",
    "path_b": "B: keep the 2026-11-14 feed frozen as a dated artefact and publish the newer read only on the capture page (this round's choice).",
    "path_c": "C: append the finals without re-baselining (rejected: it breaks the arithmetic gate that exists to catch exactly this).",
-   "recommended": "A, next round",
-   "recommended_because": "(B) is safe but understates verified coverage on a page owners read as 'the feed'; (A) is a contained change if it is one commit with the gates in the same diff.",
+   "recommended": "A \u2014 done for Week 10 on 2026-11-17",
+   "recommended_because": "(A) proved contained: the four moves plus the consumers fit in two commits and every results gate passed unchanged. It stays the rule for Week 11 onward, because the same four-way coupling is what makes a half-moved feed fail rather than lie.",
    "evidence_file": "data/results/raw/official_results_2026_week10.psv",
    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "decision_status": "Proposed \u2014 awaiting the owner's choice"
@@ -117,7 +117,7 @@
    "recommended": "A",
    "recommended_because": "the window is defined by game weeks, not by how many captures happen to exist, and (B) invites the temptation to tune on the accumulated days.",
    "evidence_file": "docs/preregistration/PR-01-shadow-baseline.md",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/docs/methodology/demotion-gate.md",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/demotion-gate.md",
    "decision_status": "Proposed \u2014 awaiting the owner's choice"
   },
   {
@@ -134,7 +134,7 @@
    "recommended": "A",
    "recommended_because": "a gate that fires on the next page somebody writes is cheaper than an audit of the twenty already written.",
    "evidence_file": "scripts/verify_site.py",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/tools/build_site.py",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_site.py",
    "decision_status": "Proposed \u2014 awaiting the owner's choice"
   },
   {
@@ -151,7 +151,7 @@
    "recommended": "A",
    "recommended_because": "archiving keeps the audit trail (the brief values that) while telling the reader where to look, which is the part that is missing now.",
    "evidence_file": "docs/analysis/open-questions.md",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/tools/build_site.py",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_site.py",
    "decision_status": "Proposed \u2014 awaiting the owner's choice"
   },
   {
@@ -168,7 +168,7 @@
    "recommended": "A",
    "recommended_because": "the reason has to live next to the data it excuses, and be diffable; the store already carries `alarm_only` versus `fail_the_build`, so this is the same shape with a human answer in it.",
    "evidence_file": "data/captures/status.json",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/data/captures/config.json",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json",
    "decision_status": "Proposed \u2014 awaiting the owner's choice"
   },
   {
@@ -204,6 +204,23 @@
    "evidence_file": "docs/audit/official-gamebook-source-review.md",
    "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
    "decision_status": "Proposed \u2014 awaiting the owner's choice"
+  },
+  {
+   "id": "S-31",
+   "area": "Sources",
+   "impact": "Medium",
+   "effort": "High",
+   "risk": "Low",
+   "title": "Read each fixture's venue from its own official Game Center page, one page per game",
+   "why": "The brief requires the venue to be transcribed from the official game centre. The Week 10 schedule page prints no venue field at all, so the closure pack leaves venue blank on 13 of its 14 rows and reads the 14th \u2014 LAC at BAL \u2014 at its own Game Center page, which does print `M&T BANK STADIUM / BALTIMORE, MD` beside the quarter scores. That asymmetry is correct under the no-inference rule and wrong as a dataset: a fixture-context feature cannot work on one game. 14 page reads a week is the cost, and the same reads would also capture the quarter table and the in-page division block.",
+   "path_a": "A: one Game Center read per fixture on the morning after, appended to the week's evidence pack; venue, stadium, location and the quarter split become first-class columns with a per-row source URL.",
+   "path_b": "B: keep venue out of the weekly read and fill it only for fixtures a feature actually needs (roof/surface overlay, travel), reading the game centre on demand.",
+   "path_c": "C: take stadium from the schedule's own venue-less rows plus the mirror's `stadium` field (rejected: the mirror is not an official source, and this is the field the requirement exists to keep official).",
+   "recommended": "A, bounded at one slate per refresh",
+   "recommended_because": "(A) is the only path that satisfies the requirement as written, and it reuses the fetch that already verifies the score; (B) leaves the stadium and roof features blocked on a read nobody scheduled.",
+   "evidence_file": "data/verification/2026_11_17/official_gamecentre_LAC_BAL_2026_11_17.txt",
+   "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "decision_status": "Proposed \u2014 awaiting the owner's choice"
   }
  ],
  "questions": [
@@ -211,23 +228,23 @@
    "id": "Q-61",
    "question": "Which price data may the site use for a market line, and is a third-party mirror acceptable for that?",
    "known": "The repository has no official price source. A fingerprinted nflverse mirror carries spread/moneyline/total prices for the 2026 games (all labelled `mirror`), and the shadow baseline deliberately publishes its fair line with `market_line` and `residual` blank.",
-   "missing": "A decision on whether a mirror price may stand in for 'the market' in a published residual, and if so, whose book, at what timestamp, and with what label.",
+   "missing": "A decision on whether a mirror price may stand in for 'the market' in a published residual, and if so, whose book, at what timestamp, and with what label. Answered on 2026-11-17 in the direction the two stores already leaned: a mirror price is a *labelled* capture, never 'the market'. tools/build_snapshots.py now publishes `mirror_close_line`, `mirror_close_source_type=third-party-mirror`, `mirror_close_verification=unverified-third-party`, the sha256 of the pinned file the value came from, and `residual_vs_mirror_close` \u2014 with `market_line` still blank, the invariant that fails the build if a mirror number is ever copied into it, and with no opening value back-filled from a closing file. Whose book and what timestamp the mirror cannot say, so the residual is published as an unverified comparison and not as closing line value.",
    "how_to_find_out": "Owner decision, one line. Nothing external is required: the two candidate labels ('mirror-derived, not official' versus 'no residual published') are both implementable today, and the mirror's own pin already fixes which bytes a number came from.",
    "unblocks": "the residual column, the CLV component of scoring, every ROI figure, and gates G5/G6 on the leaderboard",
    "blocking": "market line and residual on pages/line-origination.html and pages/shadow-baseline.html",
-   "default_if_unanswered": "keep the columns blank (current state)",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/data/shadow/backtest_summary.json"
+   "default_if_unanswered": "keep the OFFICIAL market_line column blank whatever else is published beside it (still the rule; the labelled channel is not a substitute for it)",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/shadow/backtest_summary.json"
   },
   {
    "id": "Q-62",
    "question": "Is the results feed's closure baseline the 2026-11-14 standings snapshot or the live standings register?",
-   "known": "The feed is validated by reproducing W-L-T/PF/PA of the standings as read 2026-11-14, and that equality is what limits it to 137 rows. The 2026-11-16 official standings are transcribed, cross-checked against two other official pages (60 records, 0 mismatches) and proven to close against the delta (160 assertions, 0 failures).",
+   "known": "Answered in code on 2026-11-17: the feed is validated against a DATED, frozen standings transcription, never against the rolling collector file. The baseline moved from the 2026-11-14 hand copy to `data/verification/2026_11_17/official_standings_2026_11_17.tsv` and the feed is now 150 games with 32/32 clubs reproducing that page (V7, 160 assertions); `data/pipeline/standings.json` is used only as a second parse of the same page to catch a transcription slip (V6), which is the role a rolling file can honestly play. 'Verified' therefore means 'reproduces the league's numbers as printed on a named date', and the date is published in the artefact.",
    "missing": "Which of the two the leaderboard's data gate should read, since a rolling baseline makes the feed self-fulfilling and a frozen one freezes coverage.",
    "how_to_find_out": "No new data needed \u2014 it is a policy choice about whether 'verified' is relative to a date. One line in docs/methodology, then S-22 executes it.",
    "unblocks": "S-22; the `official_verified` count going from 1 to 14 for Week 10",
    "blocking": "the results feed's coverage claim on pages/validation.html",
    "default_if_unanswered": "frozen baseline; newer reads published as dated evidence only",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/tools/build_results.py"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_results.py"
   },
   {
    "id": "Q-63",
@@ -238,7 +255,7 @@
    "unblocks": "which file any future checker is allowed to read, and whether the register may be re-baselined without a review",
    "blocking": "every 'as of' date on the site, which is currently inherited from whichever file a given page happened to read",
    "default_if_unanswered": "dated files canonical; register treated as a cache",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/pipeline/capture_store.py"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/pipeline/capture_store.py"
   },
   {
    "id": "Q-64",
@@ -249,7 +266,7 @@
    "unblocks": "how the verification pages label rows, and whether 'official_verified' needs a tier",
    "blocking": "the wording of every verified/unverified label on pages/validation.html",
    "default_if_unanswered": "label hand transcriptions as `transcribed` beside `parsed`, both official-sourced",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/data/verification/2026_11_16/verification_summary_2026_11_16.json"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_16/verification_summary_2026_11_16.json"
   },
   {
    "id": "Q-65",
@@ -260,7 +277,7 @@
    "unblocks": "the leaderboard's economic columns and the reward mechanics",
    "blocking": "every ROI, bankroll and drawdown column on pages/leaderboard.html",
    "default_if_unanswered": "signal only; staking columns stay absent, not zero",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/docs/methodology/signal-vs-staking.md"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/signal-vs-staking.md"
   },
   {
    "id": "Q-66",
@@ -271,7 +288,7 @@
    "unblocks": "R-10 in the readiness register, and any claim that the leaderboard has stakes",
    "blocking": "pages/decisions-critical.html Q-20",
    "default_if_unanswered": "the leaderboard stays a ranking with no payout",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/pages/decisions-critical.html"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/pages/decisions-critical.html"
   },
   {
    "id": "Q-67",
@@ -293,7 +310,7 @@
    "unblocks": "S-24, PR-04's evaluation window, and any 'movement' column on the availability page",
    "blocking": "the injury-movement claim on pages/availability.html",
    "default_if_unanswered": "publish every delta with its n and its two dates, no rolling averages",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/data/captures/diffs/injuries__2026-11-14__2026-11-15.csv"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/captures/diffs/injuries__2026-11-14__2026-11-15.csv"
   },
   {
    "id": "Q-69",
@@ -315,7 +332,7 @@
    "unblocks": "tightening `blank-over-allowance` from an alarm to a gate without firing on Wednesdays",
    "blocking": "the strength of the injury-drift gate",
    "default_if_unanswered": "keep the generous allowance, alarm-only, with the reason on the page",
-   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/blob/main/data/captures/config.json"
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/captures/config.json"
   }
  ],
  "executive_summary": [

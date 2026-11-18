@@ -65,7 +65,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/verify_availability_series.py
-          python3 tools/verify_2026_11_18.py
+          python3 tools/verify_2026_11_18_55c364b6.py
 
       # Added by session arena-55c364b6-x1 (round 6, additive only). The two-sided mind-change
       # register (brief row 18) is a view over the two published strategy tables, recomputed per
@@ -237,6 +237,7 @@ jobs:
       - name: The dated official pack still closes
         run: python3 tools/verify_2026_11_16.py --check
 
+
       # Added by session arena-9d8c298c-x1 (additive only). The 2026-11-17 official reads pack, the
       # PR-04 Week 11 escrow and the feed-closure measurement each rebuild from their inputs and have to
       # reproduce: the reads checks (slate completeness, the standings page's own identities, records
@@ -259,7 +260,37 @@ jobs:
       - name: Brief-coverage register is structurally sound
         run: python3 tools/verify_brief_coverage.py
 
+      # The 2026-11-17 Week 10 closure: 14 finals read from the official page, the standings baseline the
+      # feed is reconciled against, the mirror cross-check, and the 150-game arithmetic that must reproduce
+      # W-L-T/PF/PA for all 32 clubs. `--check` also fails if the committed pack stops matching a fresh
+      # build of the same reads, so the closure cannot drift from its evidence.
+      - name: The Week 10 closure still reconciles
+        run: python3 tools/verify_2026_11_17.py --check
+
+      # Added by session arena/6a4ba536-x1 (round 6, additive only). Two sessions read the same
+      # 2026-11-17 official pages minutes apart and merged into the same paths; main's transcription
+      # keeps the canonical name and the other keeps its own bytes under a suffix. This gates that the
+      # two INDEPENDENT reads still agree cell for cell (384 standings cells + 98 Week 10 cells), so a
+      # divergence - one of the two being wrong - stops the build instead of shipping quietly.
+      - name: The two independent 2026-11-17 transcriptions still agree
+        run: python3 tools/verify_2026_11_17_473e08d5.py
+
+      # Added by session arena/a02e9816-x1 (round 6): the 2026-11-18 official re-verification pack —
+      # a fresh same-day read of the league standings page and the Week 10 slate, 5 checks (A1-A5)
+      # including the 384-cell continuity agreement with the two independent 2026-11-17 reads and the
+      # closed 150-row feed. `--check` fails if the committed pack stops matching a fresh build.
+      - name: The 2026-11-18 re-verification pack still closes
+        run: python3 tools/verify_2026_11_18.py --check
+
+      # The appends into the three transcription inputs are derived from that pack, not typed into it:
+      # re-running the promotion tool must be a no-op. This is the guard against a hand edit to
+      # reads.tsv or a week PSV that no longer matches the official read it came from.
+      - name: The promoted rows still derive from the dated pack
+        run: python3 tools/promote_week10_2026_11_17.py --check
+
       # Added by session arena/5433abad-x1 (additive only). Brief row 24: one official Game Centre
       # venue per Week 10 fixture, each row linked to nfl.com/games and checked against the schedule file.
       - name: Week 10 official venue register (brief row 24)
         run: python3 tools/verify_venues_w10.py
+      - name: Week 10 venue page is current (brief row 24)
+        run: python3 tools/build_venues_page.py --check

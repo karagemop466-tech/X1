@@ -120,7 +120,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/verify_availability_series.py
-          python3 tools/verify_2026_11_18.py
+          python3 tools/verify_2026_11_18_55c364b6.py
 
       # Added by session arena-55c364b6-x1 (round 6, additive only). The two-sided mind-change
       # register (brief row 18) is a view over the two published strategy tables, recomputed per
@@ -222,6 +222,10 @@ jobs:
           cp -r data/origin _site/data/origin
           mkdir -p _site/data/lines
           cp data/lines/originated_markets_2026_week10.csv _site/data/lines/
+          # Added by session arena/5433abad-x1 (additive only): brief row 24 venue register page + its CSV.
+          cp -r venues _site/
+          mkdir -p _site/data/nfl
+          cp data/nfl/venues_2026_week10.csv _site/data/nfl/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site

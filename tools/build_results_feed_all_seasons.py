@@ -59,6 +59,15 @@ OFFICIAL_W10 = os.path.join(ROOT, "data", "verification", "raw",
                             "nfl_schedule_2026_week10.md")
 OFFICIAL_STANDINGS = os.path.join(ROOT, "data", "verify",
                                   "official_standings_2026_w10.psv")
+# The dated 2026-11-17 pack: the Week 10 finals as the league printed them once the
+# week closed, and the league standings read in the same window. Folded in on
+# 2026-11-18 (session arena/6a4ba536-x1) so this feed stops describing only the
+# 2026-11-14 render. The 11-14 files above are KEPT as the earlier read — the two
+# are cross-checked against each other rather than one replacing the other.
+PACK_1117 = os.path.join(ROOT, "data", "verification", "2026_11_17")
+OFFICIAL_W10_1117 = os.path.join(PACK_1117, "official_w10_results_2026_11_17.tsv")
+OFFICIAL_STANDINGS_1117 = os.path.join(PACK_1117, "official_standings_2026_11_17.tsv")
+PACK_1117_DATE = "2026-11-17"
 OUT_DIR = os.path.join(ROOT, "data", "results")
 MANIFEST = os.path.join(ROOT, "data", "raw_manifest.json")
 
@@ -117,6 +126,18 @@ def load_mirror() -> list[dict]:
     return rows
 
 
+PACK_CODES = {"ARI", "AZ", "LA", "LAR"}
+
+
+def pack_spell(code: str) -> str:
+    """Mirror club code -> the spelling the official pages print.
+
+    The mirror prints ARI and LAR; the official pages print AZ and LA. Every other
+    club code is identical. Used only to join; each file keeps its own spelling.
+    """
+    return {"ARI": "AZ", "LAR": "LA"}.get(code, code)
+
+
 def off_key(away: str, home: str) -> str:
     """Join key in the official pages' spelling (AZ, not ARI)."""
     return f"{TEAM_CODE_MAP.get(away, away)}@{TEAM_CODE_MAP.get(home, home)}"
@@ -152,7 +173,45 @@ def load_official_w10() -> dict:
     return games
 
 
-def load_official_standings() -> dict[str, dict]:
+def load_official_w10_1117() -> dict[str, dict]:
+    """Parse the dated 2026-11-17 Week 10 pack (commented TSV, named columns).
+
+    Returns one record per fixture keyed `AWAY@HOME` in the pack's own spelling.
+    Every value used here is read from a named column; nothing is positional.
+    """
+    games: dict[str, dict] = {}
+    with open(OFFICIAL_W10_1117, encoding="utf-8", newline="") as fh:
+        rows = [ln for ln in fh if ln.strip() and not ln.lstrip().startswith("#")]
+    rdr = csv.DictReader(rows, delimiter="\t")
+    for r in rdr:
+        rec = {
+            "date": (r.get("date_et") or "").strip(),
+            "away": (r.get("away") or "").strip(),
+            "home": (r.get("home") or "").strip(),
+            "status": (r.get("status") or "").strip(),
+            "away_score": (r.get("away_score") or "").strip(),
+            "home_score": (r.get("home_score") or "").strip(),
+            "game_url": (r.get("game_url") or "").strip(),
+        }
+        games[f'{rec["away"]}@{rec["home"]}'] = rec
+    if len(games) != 14:
+        fail(f"2026-11-17 Week 10 pack parsed {len(games)} games, expected 14")
+    return games
+
+
+def load_official_standings_1117() -> dict[str, dict]:
+    """Parse the dated 2026-11-17 league standings transcription."""
+    rows: dict[str, dict] = {}
+    with open(OFFICIAL_STANDINGS_1117, encoding="utf-8", newline="") as fh:
+        body = [ln for ln in fh if ln.strip() and not ln.lstrip().startswith("#")]
+    for r in csv.DictReader(body, delimiter="\t"):
+        rows[(r["abbr"] or "").strip()] = r
+    if len(rows) != 32:
+        fail(f"2026-11-17 standings pack has {len(rows)} clubs, expected 32")
+    return rows
+
+
+def load_official_standings_1114() -> dict[str, dict]:
     rows: dict[str, dict] = {}
     with open(OFFICIAL_STANDINGS, newline="", encoding="utf-8") as fh:
         for r in csv.DictReader(fh, delimiter="|"):
@@ -166,11 +225,15 @@ def main() -> int:
     fingerprint = load_manifest_key()
     mirror = load_mirror()
     official_w10 = load_official_w10()
-    official_st = load_official_standings()
+    official_st = load_official_standings_1114()
+    pack_w10 = load_official_w10_1117()
+    pack_st = load_official_standings_1117()
 
     checks: list[dict] = []
     out_rows: list[dict] = []
     cross_agree = {"agree": 0, "disagree": 0, "not_applicable": 0}
+    two_read_agree = 0
+    two_read_superseded: list[str] = []
 
     for g in mirror:
         season = int(g["season"])
@@ -188,39 +251,54 @@ def main() -> int:
                  "no official page for this game is committed in the repo "
                  "(open question Q-04)")
 
-        # Week 10 2026 is the one slate with a committed official snapshot.
+        # Week 10 2026 is the one slate with committed official snapshots: the
+        # 2026-11-14 render (which printed only the Thursday game as final) and the
+        # dated 2026-11-17 pack (which prints the whole week final). Both are read.
+        # The 11-17 pack supplies the result; the 11-14 read is not discarded but
+        # required to AGREE wherever both printed a score, so the two reads verify
+        # each other. The 11-14 "Scheduled" status is a statement about 11-14, and
+        # when the later read is final it is recorded as superseded — never treated
+        # as a contradiction of today's page.
         if season == 2026 and week == 10:
             key = off_key(away, home)
             off = official_w10.get(key)
             if off is None:
-                fail(f"Week 10 game {key} missing from official snapshot")
-            official_url = OFFICIAL_SCHEDULE_URL
-            if off["status"].upper() == "FINAL":
-                if not played:
-                    fail(f"{key}: official FINAL but mirror has no score")
-                if (off["away_score"], off["home_score"]) != (away_s, home_s):
-                    cross_agree["disagree"] += 1
-                    fail(f"{key}: official {off['away_score']}-{off['home_score']} "
-                         f"!= mirror {away_s}-{home_s}")
-                cross_agree["agree"] += 1
-                official_verified = "yes"
-                agrees = "yes"
-                verification = "official_verified"
-                flags = ("score read from the committed official nfl.com "
-                         "schedule snapshot and matched against the mirror")
-            elif off["status"].lower() == "scheduled":
-                if played:
-                    cross_agree["disagree"] += 1
-                    fail(f"{key}: official Scheduled but mirror has a score")
-                cross_agree["agree"] += 1
-                official_verified = "yes"
-                agrees = "yes"
-                verification = "scheduled_official"
-                flags = ("official snapshot confirms the game had not been "
-                         "played at fetch time; score cells blank because no "
-                         "score exists")
+                fail(f"Week 10 game {key} missing from the 2026-11-14 snapshot")
+            early_final = off["status"].upper() == "FINAL"
+
+            late = pack_w10.get(f"{pack_spell(away)}@{pack_spell(home)}")
+            if late is None:
+                fail(f"Week 10 game {key}: no row in the 2026-11-17 pack")
+            if late["status"].lower() != "final":
+                fail(f"{key}: the 2026-11-17 pack prints status {late['status']!r}; "
+                     f"Week 10 is closed on that read")
+            if not played:
+                fail(f"{key}: the 2026-11-17 pack says final but the mirror has no score")
+            if (late["away_score"], late["home_score"]) != (away_s, home_s):
+                fail(f"{key}: 2026-11-17 official {late['away_score']}-{late['home_score']} "
+                     f"!= mirror {away_s}-{home_s}")
+
+            if early_final:
+                if (off["away_score"], off["home_score"]) != (late["away_score"], late["home_score"]):
+                    fail(f"{key}: 2026-11-14 read {off['away_score']}-{off['home_score']} "
+                         f"!= 2026-11-17 read {late['away_score']}-{late['home_score']}")
+                two_read_agree += 1
+                flags = ("score read from the dated official nfl.com transcription "
+                         f"({PACK_1117_DATE}) and matched against the mirror; the "
+                         "earlier 2026-11-14 read prints the same score")
             else:
-                fail(f"{key}: unrecognised official status {off['status']!r}")
+                two_read_superseded.append(key)
+                flags = ("score read from the dated official nfl.com transcription "
+                         f"({PACK_1117_DATE}) and matched against the mirror; the "
+                         "2026-11-14 read of the same page was taken before kickoff "
+                         "and printed this fixture as Scheduled, which that earlier "
+                         "read was correct to say")
+
+            cross_agree["agree"] += 1
+            official_url = late.get("game_url") or OFFICIAL_SCHEDULE_URL
+            official_verified = "yes"
+            agrees = "yes"
+            verification = "official_verified"
         else:
             cross_agree["not_applicable"] += 1
 
@@ -276,36 +354,43 @@ def main() -> int:
             else:
                 slot["L"] += 1
 
+    # C4 — reconcile the feed against the CURRENT dated baseline (2026-11-17).
+    # The 2026-11-14 baseline is a different date and is no longer the yardstick;
+    # it is compared too, but its differences are EXPECTED (the week was unplayed
+    # then) and are reported as a dated delta rather than an error.
     standings_diffs = []
+    for team, off in sorted(pack_st.items()):
+        # official spelling (AZ) -> mirror spelling (ARI) for the lookup only
+        got = recomputed.get(TEAM_CODE_MAP.get(team, team), {"W": 0, "L": 0, "T": 0})
+        want = {"W": int(off["w"]), "L": int(off["l"]), "T": int(off["t"])}
+        if got != want:
+            standings_diffs.append({"team": team, "feed": got, "official_standings": want})
+    if standings_diffs:
+        fail("feed does not reproduce the 2026-11-17 standings baseline for: "
+             + ", ".join(d["team"] for d in standings_diffs))
+
+    early_diffs = []
     for team, off in sorted(official_st.items()):
-        # official spelling (AZ) -> mirror spelling (ARI) for the lookup
-        got = recomputed.get(TEAM_CODE_MAP.get(team, team),
-                            {"W": 0, "L": 0, "T": 0})
+        got = recomputed.get(TEAM_CODE_MAP.get(team, team), {"W": 0, "L": 0, "T": 0})
         want = {"W": int(off["W"]), "L": int(off["L"]), "T": int(off["T"])}
         if got != want:
-            standings_diffs.append({"team": team, "feed": got,
-                                    "official_standings": want})
-    # The only permitted difference class: the Thursday game present in the
-    # feed but predating the standings snapshot (recorded, not hidden).
-    allowed = {"WAS", "NYG"}
-    unexpected = [d["team"] for d in standings_diffs if d["team"] not in allowed]
-    if unexpected:
-        fail(f"unexpected standings differences for: {unexpected}")
-    if {d["team"] for d in standings_diffs} - allowed:
-        fail("standings differences do not match the known Thursday-game lag")
+            early_diffs.append(team)
 
     checks.append({
         "id": "C1",
-        "what": "official Week 10 FINAL score vs mirror score",
-        "result": "pass" if cross_agree["agree"] else "fail",
-        "detail": "WAS 24 @ NYG 21 — official snapshot and mirror agree",
+        "what": "2026-11-17 official Week 10 finals vs the fingerprinted mirror, 14/14",
+        "result": "pass",
+        "detail": "14 fixtures; every score in the dated pack equals the mirror's score for the same club pair",
         "source": OFFICIAL_SCHEDULE_URL,
     })
     checks.append({
         "id": "C2",
-        "what": "official 'Scheduled' status vs mirror status, other 13 games",
+        "what": "the two official reads of Week 10 agree where both printed a score",
         "result": "pass",
-        "detail": "13/13 agree; scores blank on both sides",
+        "detail": (f"{two_read_agree} fixture(s) final in both the 2026-11-14 and 2026-11-17 reads "
+                   f"with identical scores; {len(two_read_superseded)} final only on 2026-11-17 "
+                   f"(the earlier read was taken before kickoff: "
+                   + ", ".join(two_read_superseded) + ")"),
         "source": OFFICIAL_SCHEDULE_URL,
     })
     checks.append({
@@ -317,18 +402,18 @@ def main() -> int:
     })
     checks.append({
         "id": "C4",
-        "what": "2026 W/L/T recomputed from this feed vs official standings snapshot",
-        "result": "pass_with_known_difference",
-        "detail": (f"{len(standings_diffs)} difference(s): "
-                   + "; ".join(f"{d['team']} feed {d['feed']['W']}-"
-                               f"{d['feed']['L']}-{d['feed']['T']} vs official "
-                               f"{d['official_standings']['W']}-"
-                               f"{d['official_standings']['L']}-"
-                               f"{d['official_standings']['T']}"
-                               for d in standings_diffs)
-                   + " — the standings snapshot predates the Thursday "
-                     "Night game that this feed carries; informational flag "
-                     "F-12, not an error in the feed"),
+        "what": "2026 W/L/T recomputed from this feed vs the dated 2026-11-17 official standings",
+        "result": "pass",
+        "detail": f"32/32 clubs reproduce the 2026-11-17 baseline exactly ({len(standings_diffs)} differences)",
+        "source": OFFICIAL_STANDINGS_URL,
+    })
+    checks.append({
+        "id": "C5",
+        "what": "dated delta: the 2026-11-14 standings baseline vs today's feed",
+        "result": "informational",
+        "detail": (f"{len(early_diffs)} of 32 clubs differ, as expected: that baseline was read "
+                   f"before the Week 10 Sunday and Monday games. Reported, not corrected — the "
+                   f"2026-11-14 transcription is kept as the dated artefact it is."),
         "source": OFFICIAL_STANDINGS_URL,
     })
 
@@ -350,18 +435,32 @@ def main() -> int:
         "dataset": "verified_results",
         "title": "Verified results feed (backtest and ROI input)",
         "generated_at": datetime.datetime.utcnow().isoformat() + "Z",
-        "generated_by": "tools/build_results_feed_all_seasons.py (session arena-52aabfa8-x1, T11)",
+        "generated_by": ("tools/build_results_feed_all_seasons.py (session arena-52aabfa8-x1, T11; "
+                         "extended to ingest the dated 2026-11-17 official pack by session "
+                         "arena/6a4ba536-x1, 2026-11-18)"),
+        # Two dates matter and they are not interchangeable: the mirror's fetch date, and
+        # the date the official pack was read. `snapshot_date` is the OLDER of the two, so
+        # no reader can mistake this file for a 2026-11-14-only view.
         "snapshot_date": SNAPSHOT_DATE,
+        "official_pack_date": PACK_1117_DATE,
         "columns": FIELDS,
         "sources": [
             {"key": "official_schedule_w10", "url": OFFICIAL_SCHEDULE_URL,
              "label": "NFL.com Week 10 schedule (committed transcription)",
              "org": "NFL", "retrieved_at": SNAPSHOT_DATE,
              "file": "data/verification/raw/nfl_schedule_2026_week10.md"},
-            {"key": "official_standings", "url": OFFICIAL_STANDINGS_URL,
-             "label": "NFL.com league standings (committed transcription)",
+            {"key": "official_standings_1114", "url": OFFICIAL_STANDINGS_URL,
+             "label": "NFL.com league standings (committed transcription, 2026-11-14; kept as a dated artefact)",
              "org": "NFL", "retrieved_at": SNAPSHOT_DATE,
              "file": "data/verify/official_standings_2026_w10.psv"},
+            {"key": "official_w10_1117", "url": OFFICIAL_SCHEDULE_URL,
+             "label": "NFL.com Week 10 results as printed 2026-11-17 (14 finals); two independent transcriptions cross-compared with 0 mismatches",
+             "org": "NFL", "retrieved_at": PACK_1117_DATE,
+             "file": "data/verification/2026_11_17/official_w10_results_2026_11_17.tsv"},
+            {"key": "official_standings_1117", "url": OFFICIAL_STANDINGS_URL,
+             "label": "NFL.com league standings as printed 2026-11-17 — the reconciliation baseline",
+             "org": "NFL", "retrieved_at": PACK_1117_DATE,
+             "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv"},
             {"key": MIRROR_KEY, "url": MIRROR_URL,
              "label": "nflverse/nfldata games.csv — third-party mirror",
              "org": "nflverse (not the NFL)", "retrieved_at": SNAPSHOT_DATE,
@@ -393,6 +492,9 @@ def main() -> int:
             "source's own spelling is preserved in its own file.",
         ],
         "known_limitations": [
+            "Official verification covers Week 10 only (14 rows). The other "
+            "2,096 finals — every 2019-2025 game and 2026 Weeks 1-9 — are "
+            "mirror_only: usable for backtests, never labelled official.",
             "Historical finals (2019-2025 and 2026 Weeks 1-9) have no "
             "committed official page in this repository, so they are "
             "mirror_only — usable for backtests, labelled not official "

@@ -6,7 +6,7 @@
 
 The manifest is what makes the pack auditable after the fact: each retained read is a transcription
 of one rendered fetch of one official URL at one clock time, and the SHA-256 is over the bytes of the
-file as committed. Anyone can re-hash it; tools/verify_2026_11_18.py check A does exactly that, so a
+file as committed. Anyone can re-hash it; tools/verify_2026_11_18_55c364b6.py check A does exactly that, so a
 later edit to a read file is a build failure rather than a silent rewrite of history.
 """
 from __future__ import annotations
@@ -23,7 +23,12 @@ READ_UTC = "2026-11-18T03:05Z"
 METHOD = ("rendered read of the live official page through the agent's fetch tool; not raw HTTP "
           "bytes. The raw-bytes path in this repository is the CI ledger "
           "(.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped "
-          "responses. Both are recorded as what they are.")
+          "responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also "
+          "carries the whole-report comparison against those retained bytes "
+          "(injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by "
+          "tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only "
+          "evidence that the published table matches the page - they remain the evidence for the "
+          "Week 11 slate, which the ledger does not fetch.")
 
 FILES = [
     dict(path="data/verification/2026_11_18/week11_slate_2026-11-18.tsv",
@@ -57,7 +62,7 @@ def main() -> int:
         title="Retained official reads behind the 2026-11-18 pack",
         generated_by="tools/build_2026_11_18_manifest.py",
         rule=("A read file in this pack is immutable history. This manifest is the fingerprint; "
-              "tools/verify_2026_11_18.py re-hashes every file against it on every build."),
+              "tools/verify_2026_11_18_55c364b6.py re-hashes every file against it on every build."),
         files=entries), indent=1) + "\n"
     out = os.path.join(PACK, "MANIFEST.json")
     if "--check" in sys.argv:

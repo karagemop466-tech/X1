@@ -2,7 +2,7 @@
  "dataset": "round6_reads",
  "title": "Retained official reads behind the 2026-11-18 pack",
  "generated_by": "tools/build_2026_11_18_manifest.py",
- "rule": "A read file in this pack is immutable history. This manifest is the fingerprint; tools/verify_2026_11_18.py re-hashes every file against it on every build.",
+ "rule": "A read file in this pack is immutable history. This manifest is the fingerprint; tools/verify_2026_11_18_55c364b6.py re-hashes every file against it on every build.",
  "files": [
   {
    "path": "data/verification/2026_11_18/week11_slate_2026-11-18.tsv",
@@ -13,7 +13,7 @@
    "bytes": 4221,
    "lines": 40,
    "read_utc": "2026-11-18T03:05Z",
-   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are."
+   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also carries the whole-report comparison against those retained bytes (injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only evidence that the published table matches the page - they remain the evidence for the Week 11 slate, which the ledger does not fetch."
   },
   {
    "path": "data/verification/2026_11_18/week10_rows_reread_2026-11-18.tsv",
@@ -24,7 +24,7 @@
    "bytes": 6327,
    "lines": 59,
    "read_utc": "2026-11-18T03:05Z",
-   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are."
+   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also carries the whole-report comparison against those retained bytes (injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only evidence that the published table matches the page - they remain the evidence for the Week 11 slate, which the ledger does not fetch."
   },
   {
    "path": "data/verification/2026_11_18/injury_probe_2026-11-18.tsv",
@@ -35,7 +35,7 @@
    "bytes": 1820,
    "lines": 12,
    "read_utc": "2026-11-18T03:05Z",
-   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are."
+   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also carries the whole-report comparison against those retained bytes (injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only evidence that the published table matches the page - they remain the evidence for the Week 11 slate, which the ledger does not fetch."
   }
  ]
 }

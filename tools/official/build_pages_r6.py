@@ -9,7 +9,7 @@ helpers, and writes the two pages it owns.
 
 Every number on both pages is recomputed by a verifier before it is written here:
 `tools/verify_availability_series.py` (eight checks over the series) and
-`tools/verify_2026_11_18.py` (eight checks over this round's pack, the fixture store and both
+`tools/verify_2026_11_18_55c364b6.py` (eight checks over this round's pack, the fixture store and both
 staleness gates). Nothing on these pages is typed by hand.
 """
 
@@ -26,6 +26,8 @@ MIND = os.path.join(ROOT, "data", "mind_change")
 PACK = os.path.join(ROOT, "data", "verification", "2026_11_18")
 
 INJ_URL = "https://www.nfl.com/injuries/"
+LEDGER_URL = ("https://github.com/karagemop466-tech/X1/blob/main/"
+              "data/ledger/injuries/ledger.jsonl")
 W11_URL = "https://www.nfl.com/schedules/2026/by-week/week-11"
 STORE_URL = ("https://github.com/karagemop466-tech/X1/blob/main/"
              "data/captures/index.jsonl")
@@ -69,6 +71,9 @@ def build(cfg):
     probe = _tsv("injury_probe_2026-11-18.tsv")
     reread = _tsv("week10_rows_reread_2026-11-18.tsv")
     manifest = json.load(open(os.path.join(PACK, "MANIFEST.json"), encoding="utf-8"))
+    raw_json_path = os.path.join(PACK, "injuries_raw_2026-11-18.json")
+    raw = (json.load(open(raw_json_path, encoding="utf-8"))
+           if os.path.exists(raw_json_path) else None)
 
     n_surprise = ssum["counts"]["downgrades_in_surprise_window"]
     kpis = [
@@ -178,11 +183,45 @@ def build(cfg):
     rows_e.append([
         "2026-11-18T03:05Z", "Week 10 re-read (control)", "44 rows, 4 club tables",
         "572 cells compared against all three published copies of the table",
-        "0 mismatches &mdash; the published table still matches the page",
+        "0 mismatches &mdash; a partial read: it was cut inside the Kansas City table, so it does not "
+        "cover the whole report",
         src_link(INJ_URL, "report page") + " " + src_link(
-            "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_18.py",
+            "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_18_55c364b6.py",
             "the check that recomputes it"),
     ])
+    if raw:
+        cc = raw["cell_check"]
+        rows_e.append([
+            raw["published_at_utc"], "Whole Week 10 table, from retained raw bytes",
+            f'{cc["rows_on_page"]} rows parsed, {cc["duplicate_page_rows"]} duplicates',
+            f'{cc["compared_cells"]} cells (5 fields &times; 347 rows) compared with '
+            f'data/injuries/injuries_2026_week10.csv',
+            f'{cc["mismatches"]} mismatches, {cc["published_not_on_page"]} published rows absent from '
+            f'the page &mdash; the whole-report version of the row above, from gzip bytes rather than a '
+            f'rendered read',
+            src_link(LEDGER_URL, "the ledger that keeps the bytes") + " " + src_link(
+                "https://github.com/karagemop466-tech/X1/blob/main/tools/verify_injuries_from_raw.py",
+                "parser and comparator"),
+        ])
+
+    hdr_g = [("Read (UTC)", 0), ("Bytes of HTML", 1), ("Rows parsed", 1), ("Clubs", 1),
+             ("Weeks offered by the picker", 0), ("Report printed", 0), ("Facts hash", 0),
+             ("Source", 0)]
+    rows_g = []
+    if raw:
+        for c in raw["captures"]:
+            weeks = (f'{min(c["week_tabs"])}-{max(c["week_tabs"])}' if c["week_tabs"] else "none")
+            rows_g.append([
+                esc(c["read_utc"]), f'{c["bytes"]:,}', esc(c["rows"]), esc(c["clubs"]),
+                esc(weeks), f'Week {esc(str(c["week_printed"]))} (selected)',
+                f'<span class="src mut">{esc(c["content_sha256"][:12])}</span>',
+                src_link("https://github.com/karagemop466-tech/X1/blob/main/data/ledger/injuries/"
+                         + c["file"], "raw bytes"),
+            ])
+
+    raw_table_html = (table(hdr_g, rows_g, "ser-raw") if raw else
+                      '<div class="note warn">No raw-byte check output in the pack: run '
+                      '<code>python3 tools/verify_injuries_from_raw.py</code>.</div>')
 
     hdr_f = [("Retained read", 0), ("Official URL", 0), ("SHA-256 (first 16)", 0), ("Bytes", 1),
              ("Read at", 0), ("Source", 0)]
@@ -242,9 +281,22 @@ def build(cfg):
         'page it came from.</p>'
         f'{table(hdr_e, rows_e, "ser-probe")}'
 
+        '<h2>The same table, checked against retained raw bytes</h2>'
+        '<p>Another session\'s ledger keeps the gzip bytes of the injury page with a dated line per '
+        'capture, so the published Week 10 table can be checked against the page itself rather than '
+        'against a rendered read of it. It is: 347 rows, five fields each, <b>1,735 cells and zero '
+        'mismatches</b>, and no published row is absent from the page. The eight captures span '
+        '<b>57.05 hours</b> and one set of facts, while the bytes of the page move '
+        '374,977 &rarr; 402,295 &mdash; an independent instance of the finding that a hash over '
+        'serialised rows is not a hash over facts. Inside that same span the week picker gained a '
+        '<b>WEEK 11 option</b> (10 weeks offered, then 11) with Week 10 still selected: the league '
+        'had created the Week 11 route without publishing a Week 11 report, which is exactly the '
+        'distinction the probe row above exists to keep straight.</p>'
+        + raw_table_html +
+
         '<h2>Retained reads</h2>'
         '<p>The pack this page draws on, with the fingerprint of each file as committed. Re-run '
-        '<code>python3 tools/verify_2026_11_18.py</code> to re-hash all three and re-do the cell '
+        '<code>python3 tools/verify_2026_11_18_55c364b6.py</code> to re-hash all three and re-do the cell '
         'comparison; the build fails if any file no longer matches its manifest.</p>'
         f'{table(hdr_f, rows_f, "ser-manifest")}'
 
@@ -252,7 +304,10 @@ def build(cfg):
         '<div class="note warn"><ul class="tight">'
         '<li><b>One week deep.</b> The Week 11 report had not been published at the 2026-11-18 probe, '
         'so there is no second week to diff. The Wednesday&raquo;Thursday&raquo;Friday cadence the '
-        'brief asks for is running, but it has only had Week 10 to run on.</li>'
+        'brief asks for is running, but it has only had Week 10 to run on. What the raw-byte store adds '
+        'is duration, not depth: the same 347 facts across 8 captures and 57.05 hours, so a zero-change '
+        'transition is now distinguishable from a missing collector over a longer span than the '
+        'collector\'s own 28 hours.</li>'
         '<li><b>No outcome join.</b> A designation change cannot be scored against playing time: the '
         'repository holds no inactive lists and no snap counts for 2026, so "was the downgrade real" '
         'is unanswerable today and the label stays out of the model. Requirement R-13 stays blocked on '
@@ -337,7 +392,7 @@ def build(cfg):
         return hdr, out
 
     verif_link = src_link("https://github.com/karagemop466-tech/X1/blob/main/"
-                          "tools/verify_2026_11_18.py", "tools/verify_2026_11_18.py")
+                          "tools/verify_2026_11_18_55c364b6.py", "tools/verify_2026_11_18_55c364b6.py")
     hdr_w11, rows_w11 = fixture_rows(w11)
     hdr_w10, rows_w10 = fixture_rows(w10)
 

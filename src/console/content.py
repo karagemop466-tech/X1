@@ -242,7 +242,10 @@ def questions(ctx):
              information_missing=(
                  "One week is one sample. The Week 11 report had not been published at the 2026-11-18 "
                  "probe, so there is no second week to compare the movement shape against, and the "
-                 "Sunday/Tuesday pattern is unmeasured."),
+                 "Sunday/Tuesday pattern is unmeasured. An independent raw-byte store extends the "
+                 "no-movement window to 57.05 h (8 captures, 1,735 cells, 0 mismatches against the "
+                 "published table), so the zero-change transition is not a missing collector - but it "
+                 "is still one week."),
              answer="",
              how_to_discover="Let the scheduled capture run: three dated reads per week for four weeks "
                              "gives a movement-by-slot table with n on each cell. No new tooling is "
@@ -607,7 +610,10 @@ def suggestions():
              problem=("Two retained states of the Week 10 report differ in content hash while zero "
                       "cells differ: the hash covers the serialised rows, including the game_label "
                       "format, so a parser change reads as a revision of the league's report. A "
-                      "reader of the series sees 'revised' where the fact is 'unchanged'."),
+                      "reader of the series sees 'revised' where the fact is 'unchanged'. The second "
+                      "store has the same property, visible without a parser: the ledger's 8 raw "
+                      "captures of nfl.com/injuries/ span 374,977 to 402,295 bytes and every flag "
+                      "'revised', while the 347 parsed rows hash identically for all 57.05 hours."),
              paths=[
                  dict(label="A. Add a facts_sha256 beside content_sha256",
                       description="Hash the rows with the format-only fields removed; report both, and alarm only when the facts hash moves.",
@@ -773,10 +779,15 @@ def irregularities(ctx):
         dict(id="X-14", severity="grey", area="Availability",
              finding=("The Week 11 injury report did not exist when the 2026-11-18 read was taken: the "
                       "week-specific URL resolves to Week 10 and the page still prints the Week 10 "
-                      "report 46.2 hours before the week's first kickoff."),
+                      "report 46.2 hours before the week's first kickoff. Corroborated at byte level "
+                      "by the retained captures: the week picker gains a WEEK 11 <option> between "
+                      "2026-11-17T23:52Z and 2026-11-18T03:19Z (10 weeks offered, then 11) while "
+                      "reg10 stays selected and the table keeps its 347 Week 10 rows."),
              effect=("Recorded as a probe row rather than a fetch failure, because 'no rows' and 'no "
                      "report yet' are different facts and the freshness alarm depends on the "
-                     "difference. Consequence for the site: the delta series is one week deep and the "
+                     "difference. An <option> in a <select> is a route, not a publication: a reader who "
+                     "counts tabs would date the Week 11 report 3 hours before any Week 11 row exists. "
+                     "Consequence for the site: the delta series is one week deep and the "
                      "Wednesday-to-Friday cadence cannot be demonstrated for Week 11 until the report "
                      "exists. This is the source's timing, not a gap in the capture plan."),
              source="https://www.nfl.com/injuries/league/2026/REG11",

@@ -1,22 +1,569 @@
 {
- "as_of": "2026-11-18T03:48:37Z",
+ "as_of": "2026-11-18T03:59:20Z",
  "promoted": [],
  "strategies": 16,
  "verify_total": 859,
  "verify_mismatch": 8,
  "reconcile": {
-  "games": 137,
-  "last_gameday": "2026-11-12",
+  "games": 150,
+  "last_gameday": "2026-11-16",
   "checks": 160,
-  "matches": 160,
-  "mismatches": [],
+  "matches": 82,
+  "mismatches": [
+   {
+    "team": "LAC",
+    "field": "W",
+    "official": 0,
+    "feed": 1,
+    "ok": false
+   },
+   {
+    "team": "LAC",
+    "field": "PF",
+    "official": 121,
+    "feed": 144,
+    "ok": false
+   },
+   {
+    "team": "LAC",
+    "field": "PA",
+    "official": 219,
+    "feed": 239,
+    "ok": false
+   },
+   {
+    "team": "MIA",
+    "field": "L",
+    "official": 7,
+    "feed": 8,
+    "ok": false
+   },
+   {
+    "team": "MIA",
+    "field": "PF",
+    "official": 126,
+    "feed": 148,
+    "ok": false
+   },
+   {
+    "team": "MIA",
+    "field": "PA",
+    "official": 200,
+    "feed": 224,
+    "ok": false
+   },
+   {
+    "team": "TEN",
+    "field": "L",
+    "official": 7,
+    "feed": 8,
+    "ok": false
+   },
+   {
+    "team": "TEN",
+    "field": "PF",
+    "official": 144,
+    "feed": 167,
+    "ok": false
+   },
+   {
+    "team": "TEN",
+    "field": "PA",
+    "official": 199,
+    "feed": 239,
+    "ok": false
+   },
+   {
+    "team": "IND",
+    "field": "W",
+    "official": 2,
+    "feed": 3,
+    "ok": false
+   },
+   {
+    "team": "IND",
+    "field": "PF",
+    "official": 184,
+    "feed": 208,
+    "ok": false
+   },
+   {
+    "team": "IND",
+    "field": "PA",
+    "official": 249,
+    "feed": 271,
+    "ok": false
+   },
+   {
+    "team": "NYJ",
+    "field": "L",
+    "official": 7,
+    "feed": 8,
+    "ok": false
+   },
+   {
+    "team": "NYJ",
+    "field": "PF",
+    "official": 182,
+    "feed": 194,
+    "ok": false
+   },
+   {
+    "team": "NYJ",
+    "field": "PA",
+    "official": 223,
+    "feed": 254,
+    "ok": false
+   },
+   {
+    "team": "AZ",
+    "field": "L",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "AZ",
+    "field": "PF",
+    "official": 178,
+    "feed": 184,
+    "ok": false
+   },
+   {
+    "team": "AZ",
+    "field": "PA",
+    "official": 255,
+    "feed": 289,
+    "ok": false
+   },
+   {
+    "team": "ATL",
+    "field": "L",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "ATL",
+    "field": "PF",
+    "official": 188,
+    "feed": 201,
+    "ok": false
+   },
+   {
+    "team": "ATL",
+    "field": "PA",
+    "official": 223,
+    "feed": 258,
+    "ok": false
+   },
+   {
+    "team": "CAR",
+    "field": "W",
+    "official": 3,
+    "feed": 4,
+    "ok": false
+   },
+   {
+    "team": "CAR",
+    "field": "PF",
+    "official": 199,
+    "feed": 219,
+    "ok": false
+   },
+   {
+    "team": "CAR",
+    "field": "PA",
+    "official": 219,
+    "feed": 236,
+    "ok": false
+   },
+   {
+    "team": "HOU",
+    "field": "L",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "HOU",
+    "field": "PF",
+    "official": 209,
+    "feed": 233,
+    "ok": false
+   },
+   {
+    "team": "HOU",
+    "field": "PA",
+    "official": 192,
+    "feed": 219,
+    "ok": false
+   },
+   {
+    "team": "NO",
+    "field": "L",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "NO",
+    "field": "PF",
+    "official": 185,
+    "feed": 202,
+    "ok": false
+   },
+   {
+    "team": "NO",
+    "field": "PA",
+    "official": 216,
+    "feed": 236,
+    "ok": false
+   },
+   {
+    "team": "BAL",
+    "field": "L",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "BAL",
+    "field": "PF",
+    "official": 189,
+    "feed": 209,
+    "ok": false
+   },
+   {
+    "team": "BAL",
+    "field": "PA",
+    "official": 236,
+    "feed": 259,
+    "ok": false
+   },
+   {
+    "team": "DAL",
+    "field": "L",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "DAL",
+    "field": "PF",
+    "official": 246,
+    "feed": 286,
+    "ok": false
+   },
+   {
+    "team": "DAL",
+    "field": "PA",
+    "official": 236,
+    "feed": 282,
+    "ok": false
+   },
+   {
+    "team": "LV",
+    "field": "L",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "LV",
+    "field": "PF",
+    "official": 238,
+    "feed": 251,
+    "ok": false
+   },
+   {
+    "team": "LV",
+    "field": "PA",
+    "official": 268,
+    "feed": 289,
+    "ok": false
+   },
+   {
+    "team": "CLE",
+    "field": "W",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "CLE",
+    "field": "PF",
+    "official": 161,
+    "feed": 188,
+    "ok": false
+   },
+   {
+    "team": "CLE",
+    "field": "PA",
+    "official": 196,
+    "feed": 220,
+    "ok": false
+   },
+   {
+    "team": "LA",
+    "field": "W",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "LA",
+    "field": "PF",
+    "official": 214,
+    "feed": 248,
+    "ok": false
+   },
+   {
+    "team": "LA",
+    "field": "PA",
+    "official": 181,
+    "feed": 187,
+    "ok": false
+   },
+   {
+    "team": "NE",
+    "field": "L",
+    "official": 4,
+    "feed": 5,
+    "ok": false
+   },
+   {
+    "team": "NE",
+    "field": "PF",
+    "official": 211,
+    "feed": 221,
+    "ok": false
+   },
+   {
+    "team": "NE",
+    "field": "PA",
+    "official": 207,
+    "feed": 242,
+    "ok": false
+   },
+   {
+    "team": "SEA",
+    "field": "W",
+    "official": 5,
+    "feed": 6,
+    "ok": false
+   },
+   {
+    "team": "SEA",
+    "field": "PF",
+    "official": 202,
+    "feed": 223,
+    "ok": false
+   },
+   {
+    "team": "SEA",
+    "field": "PA",
+    "official": 162,
+    "feed": 175,
+    "ok": false
+   },
+   {
+    "team": "CIN",
+    "field": "W",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "CIN",
+    "field": "PF",
+    "official": 240,
+    "feed": 278,
+    "ok": false
+   },
+   {
+    "team": "CIN",
+    "field": "PA",
+    "official": 175,
+    "feed": 193,
+    "ok": false
+   },
+   {
+    "team": "DET",
+    "field": "W",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "DET",
+    "field": "PF",
+    "official": 222,
+    "feed": 257,
+    "ok": false
+   },
+   {
+    "team": "DET",
+    "field": "PA",
+    "official": 189,
+    "feed": 199,
+    "ok": false
+   },
+   {
+    "team": "GB",
+    "field": "L",
+    "official": 3,
+    "feed": 4,
+    "ok": false
+   },
+   {
+    "team": "GB",
+    "field": "PF",
+    "official": 216,
+    "feed": 226,
+    "ok": false
+   },
+   {
+    "team": "GB",
+    "field": "PA",
+    "official": 191,
+    "feed": 221,
+    "ok": false
+   },
+   {
+    "team": "JAX",
+    "field": "W",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "JAX",
+    "field": "PF",
+    "official": 229,
+    "feed": 269,
+    "ok": false
+   },
+   {
+    "team": "JAX",
+    "field": "PA",
+    "official": 121,
+    "feed": 144,
+    "ok": false
+   },
+   {
+    "team": "KC",
+    "field": "W",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "KC",
+    "field": "PF",
+    "official": 202,
+    "feed": 237,
+    "ok": false
+   },
+   {
+    "team": "KC",
+    "field": "PA",
+    "official": 143,
+    "feed": 156,
+    "ok": false
+   },
+   {
+    "team": "MIN",
+    "field": "W",
+    "official": 6,
+    "feed": 7,
+    "ok": false
+   },
+   {
+    "team": "MIN",
+    "field": "PF",
+    "official": 146,
+    "feed": 176,
+    "ok": false
+   },
+   {
+    "team": "MIN",
+    "field": "PA",
+    "official": 116,
+    "feed": 126,
+    "ok": false
+   },
+   {
+    "team": "PIT",
+    "field": "L",
+    "official": 2,
+    "feed": 3,
+    "ok": false
+   },
+   {
+    "team": "PIT",
+    "field": "PF",
+    "official": 180,
+    "feed": 198,
+    "ok": false
+   },
+   {
+    "team": "PIT",
+    "field": "PA",
+    "official": 144,
+    "feed": 182,
+    "ok": false
+   },
+   {
+    "team": "BUF",
+    "field": "W",
+    "official": 7,
+    "feed": 8,
+    "ok": false
+   },
+   {
+    "team": "BUF",
+    "field": "PF",
+    "official": 256,
+    "feed": 287,
+    "ok": false
+   },
+   {
+    "team": "BUF",
+    "field": "PA",
+    "official": 187,
+    "feed": 199,
+    "ok": false
+   },
+   {
+    "team": "SF",
+    "field": "W",
+    "official": 7,
+    "feed": 8,
+    "ok": false
+   },
+   {
+    "team": "SF",
+    "field": "PF",
+    "official": 235,
+    "feed": 281,
+    "ok": false
+   },
+   {
+    "team": "SF",
+    "field": "PA",
+    "official": 156,
+    "feed": 196,
+    "ok": false
+   }
+  ],
   "detail": [
    {
     "team": "LAC",
     "field": "W",
     "official": 0,
-    "feed": 0,
-    "ok": true
+    "feed": 1,
+    "ok": false
    },
    {
     "team": "LAC",
@@ -36,15 +583,15 @@
     "team": "LAC",
     "field": "PF",
     "official": 121,
-    "feed": 121,
-    "ok": true
+    "feed": 144,
+    "ok": false
    },
    {
     "team": "LAC",
     "field": "PA",
     "official": 219,
-    "feed": 219,
-    "ok": true
+    "feed": 239,
+    "ok": false
    },
    {
     "team": "MIA",
@@ -57,8 +604,8 @@
     "team": "MIA",
     "field": "L",
     "official": 7,
-    "feed": 7,
-    "ok": true
+    "feed": 8,
+    "ok": false
    },
    {
     "team": "MIA",
@@ -71,15 +618,15 @@
     "team": "MIA",
     "field": "PF",
     "official": 126,
-    "feed": 126,
-    "ok": true
+    "feed": 148,
+    "ok": false
    },
    {
     "team": "MIA",
     "field": "PA",
     "official": 200,
-    "feed": 200,
-    "ok": true
+    "feed": 224,
+    "ok": false
    },
    {
     "team": "TEN",
@@ -92,8 +639,8 @@
     "team": "TEN",
     "field": "L",
     "official": 7,
-    "feed": 7,
-    "ok": true
+    "feed": 8,
+    "ok": false
    },
    {
     "team": "TEN",
@@ -106,22 +653,22 @@
     "team": "TEN",
     "field": "PF",
     "official": 144,
-    "feed": 144,
-    "ok": true
+    "feed": 167,
+    "ok": false
    },
    {
     "team": "TEN",
     "field": "PA",
     "official": 199,
-    "feed": 199,
-    "ok": true
+    "feed": 239,
+    "ok": false
    },
    {
     "team": "IND",
     "field": "W",
     "official": 2,
-    "feed": 2,
-    "ok": true
+    "feed": 3,
+    "ok": false
    },
    {
     "team": "IND",
@@ -141,15 +688,15 @@
     "team": "IND",
     "field": "PF",
     "official": 184,
-    "feed": 184,
-    "ok": true
+    "feed": 208,
+    "ok": false
    },
    {
     "team": "IND",
     "field": "PA",
     "official": 249,
-    "feed": 249,
-    "ok": true
+    "feed": 271,
+    "ok": false
    },
    {
     "team": "NYJ",
@@ -162,8 +709,8 @@
     "team": "NYJ",
     "field": "L",
     "official": 7,
-    "feed": 7,
-    "ok": true
+    "feed": 8,
+    "ok": false
    },
    {
     "team": "NYJ",
@@ -176,15 +723,15 @@
     "team": "NYJ",
     "field": "PF",
     "official": 182,
-    "feed": 182,
-    "ok": true
+    "feed": 194,
+    "ok": false
    },
    {
     "team": "NYJ",
     "field": "PA",
     "official": 223,
-    "feed": 223,
-    "ok": true
+    "feed": 254,
+    "ok": false
    },
    {
     "team": "PHI",
@@ -232,8 +779,8 @@
     "team": "AZ",
     "field": "L",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "AZ",
@@ -246,15 +793,15 @@
     "team": "AZ",
     "field": "PF",
     "official": 178,
-    "feed": 178,
-    "ok": true
+    "feed": 184,
+    "ok": false
    },
    {
     "team": "AZ",
     "field": "PA",
     "official": 255,
-    "feed": 255,
-    "ok": true
+    "feed": 289,
+    "ok": false
    },
    {
     "team": "ATL",
@@ -267,8 +814,8 @@
     "team": "ATL",
     "field": "L",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "ATL",
@@ -281,22 +828,22 @@
     "team": "ATL",
     "field": "PF",
     "official": 188,
-    "feed": 188,
-    "ok": true
+    "feed": 201,
+    "ok": false
    },
    {
     "team": "ATL",
     "field": "PA",
     "official": 223,
-    "feed": 223,
-    "ok": true
+    "feed": 258,
+    "ok": false
    },
    {
     "team": "CAR",
     "field": "W",
     "official": 3,
-    "feed": 3,
-    "ok": true
+    "feed": 4,
+    "ok": false
    },
    {
     "team": "CAR",
@@ -316,15 +863,15 @@
     "team": "CAR",
     "field": "PF",
     "official": 199,
-    "feed": 199,
-    "ok": true
+    "feed": 219,
+    "ok": false
    },
    {
     "team": "CAR",
     "field": "PA",
     "official": 219,
-    "feed": 219,
-    "ok": true
+    "feed": 236,
+    "ok": false
    },
    {
     "team": "HOU",
@@ -337,8 +884,8 @@
     "team": "HOU",
     "field": "L",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "HOU",
@@ -351,15 +898,15 @@
     "team": "HOU",
     "field": "PF",
     "official": 209,
-    "feed": 209,
-    "ok": true
+    "feed": 233,
+    "ok": false
    },
    {
     "team": "HOU",
     "field": "PA",
     "official": 192,
-    "feed": 192,
-    "ok": true
+    "feed": 219,
+    "ok": false
    },
    {
     "team": "NO",
@@ -372,8 +919,8 @@
     "team": "NO",
     "field": "L",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "NO",
@@ -386,15 +933,15 @@
     "team": "NO",
     "field": "PF",
     "official": 185,
-    "feed": 185,
-    "ok": true
+    "feed": 202,
+    "ok": false
    },
    {
     "team": "NO",
     "field": "PA",
     "official": 216,
-    "feed": 216,
-    "ok": true
+    "feed": 236,
+    "ok": false
    },
    {
     "team": "TB",
@@ -477,8 +1024,8 @@
     "team": "BAL",
     "field": "L",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "BAL",
@@ -491,15 +1038,15 @@
     "team": "BAL",
     "field": "PF",
     "official": 189,
-    "feed": 189,
-    "ok": true
+    "feed": 209,
+    "ok": false
    },
    {
     "team": "BAL",
     "field": "PA",
     "official": 236,
-    "feed": 236,
-    "ok": true
+    "feed": 259,
+    "ok": false
    },
    {
     "team": "DAL",
@@ -512,8 +1059,8 @@
     "team": "DAL",
     "field": "L",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "DAL",
@@ -526,15 +1073,15 @@
     "team": "DAL",
     "field": "PF",
     "official": 246,
-    "feed": 246,
-    "ok": true
+    "feed": 286,
+    "ok": false
    },
    {
     "team": "DAL",
     "field": "PA",
     "official": 236,
-    "feed": 236,
-    "ok": true
+    "feed": 282,
+    "ok": false
    },
    {
     "team": "LV",
@@ -547,8 +1094,8 @@
     "team": "LV",
     "field": "L",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "LV",
@@ -561,22 +1108,22 @@
     "team": "LV",
     "field": "PF",
     "official": 238,
-    "feed": 238,
-    "ok": true
+    "feed": 251,
+    "ok": false
    },
    {
     "team": "LV",
     "field": "PA",
     "official": 268,
-    "feed": 268,
-    "ok": true
+    "feed": 289,
+    "ok": false
    },
    {
     "team": "CLE",
     "field": "W",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "CLE",
@@ -596,22 +1143,22 @@
     "team": "CLE",
     "field": "PF",
     "official": 161,
-    "feed": 161,
-    "ok": true
+    "feed": 188,
+    "ok": false
    },
    {
     "team": "CLE",
     "field": "PA",
     "official": 196,
-    "feed": 196,
-    "ok": true
+    "feed": 220,
+    "ok": false
    },
    {
     "team": "LA",
     "field": "W",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "LA",
@@ -631,15 +1178,15 @@
     "team": "LA",
     "field": "PF",
     "official": 214,
-    "feed": 214,
-    "ok": true
+    "feed": 248,
+    "ok": false
    },
    {
     "team": "LA",
     "field": "PA",
     "official": 181,
-    "feed": 181,
-    "ok": true
+    "feed": 187,
+    "ok": false
    },
    {
     "team": "NE",
@@ -652,8 +1199,8 @@
     "team": "NE",
     "field": "L",
     "official": 4,
-    "feed": 4,
-    "ok": true
+    "feed": 5,
+    "ok": false
    },
    {
     "team": "NE",
@@ -666,15 +1213,15 @@
     "team": "NE",
     "field": "PF",
     "official": 211,
-    "feed": 211,
-    "ok": true
+    "feed": 221,
+    "ok": false
    },
    {
     "team": "NE",
     "field": "PA",
     "official": 207,
-    "feed": 207,
-    "ok": true
+    "feed": 242,
+    "ok": false
    },
    {
     "team": "NYG",
@@ -715,8 +1262,8 @@
     "team": "SEA",
     "field": "W",
     "official": 5,
-    "feed": 5,
-    "ok": true
+    "feed": 6,
+    "ok": false
    },
    {
     "team": "SEA",
@@ -736,22 +1283,22 @@
     "team": "SEA",
     "field": "PF",
     "official": 202,
-    "feed": 202,
-    "ok": true
+    "feed": 223,
+    "ok": false
    },
    {
     "team": "SEA",
     "field": "PA",
     "official": 162,
-    "feed": 162,
-    "ok": true
+    "feed": 175,
+    "ok": false
    },
    {
     "team": "CIN",
     "field": "W",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "CIN",
@@ -771,22 +1318,22 @@
     "team": "CIN",
     "field": "PF",
     "official": 240,
-    "feed": 240,
-    "ok": true
+    "feed": 278,
+    "ok": false
    },
    {
     "team": "CIN",
     "field": "PA",
     "official": 175,
-    "feed": 175,
-    "ok": true
+    "feed": 193,
+    "ok": false
    },
    {
     "team": "DET",
     "field": "W",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "DET",
@@ -806,15 +1353,15 @@
     "team": "DET",
     "field": "PF",
     "official": 222,
-    "feed": 222,
-    "ok": true
+    "feed": 257,
+    "ok": false
    },
    {
     "team": "DET",
     "field": "PA",
     "official": 189,
-    "feed": 189,
-    "ok": true
+    "feed": 199,
+    "ok": false
    },
    {
     "team": "GB",
@@ -827,8 +1374,8 @@
     "team": "GB",
     "field": "L",
     "official": 3,
-    "feed": 3,
-    "ok": true
+    "feed": 4,
+    "ok": false
    },
    {
     "team": "GB",
@@ -841,22 +1388,22 @@
     "team": "GB",
     "field": "PF",
     "official": 216,
-    "feed": 216,
-    "ok": true
+    "feed": 226,
+    "ok": false
    },
    {
     "team": "GB",
     "field": "PA",
     "official": 191,
-    "feed": 191,
-    "ok": true
+    "feed": 221,
+    "ok": false
    },
    {
     "team": "JAX",
     "field": "W",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "JAX",
@@ -876,22 +1423,22 @@
     "team": "JAX",
     "field": "PF",
     "official": 229,
-    "feed": 229,
-    "ok": true
+    "feed": 269,
+    "ok": false
    },
    {
     "team": "JAX",
     "field": "PA",
     "official": 121,
-    "feed": 121,
-    "ok": true
+    "feed": 144,
+    "ok": false
    },
    {
     "team": "KC",
     "field": "W",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "KC",
@@ -911,22 +1458,22 @@
     "team": "KC",
     "field": "PF",
     "official": 202,
-    "feed": 202,
-    "ok": true
+    "feed": 237,
+    "ok": false
    },
    {
     "team": "KC",
     "field": "PA",
     "official": 143,
-    "feed": 143,
-    "ok": true
+    "feed": 156,
+    "ok": false
    },
    {
     "team": "MIN",
     "field": "W",
     "official": 6,
-    "feed": 6,
-    "ok": true
+    "feed": 7,
+    "ok": false
    },
    {
     "team": "MIN",
@@ -946,15 +1493,15 @@
     "team": "MIN",
     "field": "PF",
     "official": 146,
-    "feed": 146,
-    "ok": true
+    "feed": 176,
+    "ok": false
    },
    {
     "team": "MIN",
     "field": "PA",
     "official": 116,
-    "feed": 116,
-    "ok": true
+    "feed": 126,
+    "ok": false
    },
    {
     "team": "PIT",
@@ -967,8 +1514,8 @@
     "team": "PIT",
     "field": "L",
     "official": 2,
-    "feed": 2,
-    "ok": true
+    "feed": 3,
+    "ok": false
    },
    {
     "team": "PIT",
@@ -981,22 +1528,22 @@
     "team": "PIT",
     "field": "PF",
     "official": 180,
-    "feed": 180,
-    "ok": true
+    "feed": 198,
+    "ok": false
    },
    {
     "team": "PIT",
     "field": "PA",
     "official": 144,
-    "feed": 144,
-    "ok": true
+    "feed": 182,
+    "ok": false
    },
    {
     "team": "BUF",
     "field": "W",
     "official": 7,
-    "feed": 7,
-    "ok": true
+    "feed": 8,
+    "ok": false
    },
    {
     "team": "BUF",
@@ -1016,15 +1563,15 @@
     "team": "BUF",
     "field": "PF",
     "official": 256,
-    "feed": 256,
-    "ok": true
+    "feed": 287,
+    "ok": false
    },
    {
     "team": "BUF",
     "field": "PA",
     "official": 187,
-    "feed": 187,
-    "ok": true
+    "feed": 199,
+    "ok": false
    },
    {
     "team": "CHI",
@@ -1100,8 +1647,8 @@
     "team": "SF",
     "field": "W",
     "official": 7,
-    "feed": 7,
-    "ok": true
+    "feed": 8,
+    "ok": false
    },
    {
     "team": "SF",
@@ -1121,15 +1668,15 @@
     "team": "SF",
     "field": "PF",
     "official": 235,
-    "feed": 235,
-    "ok": true
+    "feed": 281,
+    "ok": false
    },
    {
     "team": "SF",
     "field": "PA",
     "official": 156,
-    "feed": 156,
-    "ok": true
+    "feed": 196,
+    "ok": false
    }
   ],
   "source_official": {
@@ -1149,37 +1696,37 @@
   }
  },
  "price": {
-  "rows": 18902,
-  "with_open": 1228,
-  "with_close": 18746,
+  "rows": 18972,
+  "with_open": 1246,
+  "with_close": 18798,
   "with_both": 1072,
-  "originated_now": 156,
-  "settled_rows": 18746,
+  "originated_now": 174,
+  "settled_rows": 18798,
   "by_market": {
-   "SIDE": 4237,
-   "TOTAL": 4253,
-   "MONEYLINE": 10412
+   "SIDE": 4256,
+   "TOTAL": 4272,
+   "MONEYLINE": 10444
   },
   "by_step": {
-   "1": 4237,
-   "2": 4253,
-   "3": 10412
+   "1": 4256,
+   "2": 4272,
+   "3": 10444
   }
  },
  "rmse": {
-  "side_model": 14.198,
-  "side_market": 13.14,
-  "total_model": 13.909,
-  "total_market": 13.335
+  "side_model": 14.199,
+  "side_market": 13.139,
+  "total_model": 13.906,
+  "total_market": 13.331
  },
  "correlations": [
   {
    "name": "Spread result vs total result, same game",
    "question": "If the home team covers, is the over more or less likely?",
-   "value": 0.0199,
-   "n": 6102,
-   "ci_low": -0.0052,
-   "ci_high": 0.0449,
+   "value": 0.0197,
+   "n": 6115,
+   "ci_low": -0.0054,
+   "ci_high": 0.0447,
    "unit": "correlation",
    "source_key": "nfldata_games",
    "note": "Phi coefficient on two indicators. This is the number that decides whether a same-game side/total parlay is mispriced by the product of the legs' prices."
@@ -1187,10 +1734,10 @@
   {
    "name": "Home margin vs total points, same game",
    "question": "Do blowouts score more?",
-   "value": 0.0213,
-   "n": 6102,
-   "ci_low": -0.0038,
-   "ci_high": 0.0464,
+   "value": 0.0212,
+   "n": 6115,
+   "ci_low": -0.0039,
+   "ci_high": 0.0462,
    "unit": "correlation",
    "source_key": "nfldata_games",
    "note": ""
@@ -1198,10 +1745,10 @@
   {
    "name": "Market spread vs actual home margin",
    "question": "How much of the result does the closing spread already know?",
-   "value": 0.434,
-   "n": 6102,
-   "ci_low": 0.4134,
-   "ci_high": 0.4542,
+   "value": 0.4349,
+   "n": 6115,
+   "ci_low": 0.4143,
+   "ci_high": 0.455,
    "unit": "correlation",
    "source_key": "nfldata_games",
    "note": "The benchmark every model in this repository has to beat."
@@ -1209,10 +1756,10 @@
   {
    "name": "Model fair spread vs actual home margin",
    "question": "How much of the result does our own model know?",
-   "value": 0.2332,
-   "n": 6102,
-   "ci_low": 0.2093,
-   "ci_high": 0.2568,
+   "value": 0.2344,
+   "n": 6115,
+   "ci_low": 0.2105,
+   "ci_high": 0.2579,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": ""
@@ -1221,9 +1768,9 @@
    "name": "Spread error vs total error, same game",
    "question": "If the favourite covers by more than the spread, is the total also high?",
    "value": 0.0252,
-   "n": 6102,
-   "ci_low": 0.0002,
-   "ci_high": 0.0503,
+   "n": 6115,
+   "ci_low": 0.0001,
+   "ci_high": 0.0502,
    "unit": "correlation",
    "source_key": "nfldata_games",
    "note": "Positive means the two legs move together, which is exactly what a same-game parlay needs and what books price against."
@@ -1231,10 +1778,10 @@
   {
    "name": "A team's ATS result vs its next ATS result",
    "question": "Is there any momentum in covering the spread?",
-   "value": -0.0111,
-   "n": 12172,
-   "ci_low": -0.0289,
-   "ci_high": 0.0067,
+   "value": -0.0108,
+   "n": 12198,
+   "ci_low": -0.0285,
+   "ci_high": 0.007,
    "unit": "correlation",
    "source_key": "nfldata_games",
    "note": "Lag-1 autocorrelation within a team across consecutive games."
@@ -1242,10 +1789,10 @@
   {
    "name": "Edge size vs bet result - ST-SIDE-3",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0101,
-   "n": 3436,
-   "ci_low": -0.0435,
-   "ci_high": 0.0233,
+   "value": -0.0104,
+   "n": 3440,
+   "ci_low": -0.0438,
+   "ci_high": 0.023,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1253,10 +1800,10 @@
   {
    "name": "Edge size vs bet result - ST-SIDE-5",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0199,
-   "n": 2119,
-   "ci_low": -0.0624,
-   "ci_high": 0.0227,
+   "value": -0.02,
+   "n": 2121,
+   "ci_low": -0.0625,
+   "ci_high": 0.0226,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1264,10 +1811,10 @@
   {
    "name": "Edge size vs bet result - ST-SIDE-7",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0685,
-   "n": 1170,
-   "ci_low": -0.1253,
-   "ci_high": -0.0112,
+   "value": -0.0688,
+   "n": 1171,
+   "ci_low": -0.1256,
+   "ci_high": -0.0116,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1275,10 +1822,10 @@
   {
    "name": "Edge size vs bet result - ST-TOT-3",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0138,
-   "n": 2781,
-   "ci_low": -0.051,
-   "ci_high": 0.0234,
+   "value": -0.0117,
+   "n": 2789,
+   "ci_low": -0.0488,
+   "ci_high": 0.0255,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1286,10 +1833,10 @@
   {
    "name": "Edge size vs bet result - ST-TOT-5",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0353,
-   "n": 1378,
-   "ci_low": -0.088,
-   "ci_high": 0.0175,
+   "value": -0.0343,
+   "n": 1382,
+   "ci_low": -0.0869,
+   "ci_high": 0.0185,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1297,10 +1844,10 @@
   {
    "name": "Edge size vs bet result - ST-TOT-7",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0538,
-   "n": 588,
-   "ci_low": -0.1341,
-   "ci_high": 0.0272,
+   "value": -0.0525,
+   "n": 590,
+   "ci_low": -0.1326,
+   "ci_high": 0.0284,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1308,10 +1855,10 @@
   {
    "name": "Edge size vs bet result - ST-HOMEDOG",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": 0.0037,
-   "n": 1777,
-   "ci_low": -0.0428,
-   "ci_high": 0.0502,
+   "value": 0.0052,
+   "n": 1784,
+   "ci_low": -0.0412,
+   "ci_high": 0.0516,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1319,10 +1866,10 @@
   {
    "name": "Edge size vs bet result - ST-ROADFAV",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": 0.0016,
-   "n": 1777,
-   "ci_low": -0.0449,
-   "ci_high": 0.0481,
+   "value": -0.0001,
+   "n": 1784,
+   "ci_low": -0.0465,
+   "ci_high": 0.0463,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1330,9 +1877,9 @@
   {
    "name": "Edge size vs bet result - ST-UNDER48",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": 0.0033,
-   "n": 1308,
-   "ci_low": -0.0509,
+   "value": 0.0034,
+   "n": 1313,
+   "ci_low": -0.0507,
    "ci_high": 0.0575,
    "unit": "correlation",
    "source_key": "computed_model",
@@ -1341,10 +1888,10 @@
   {
    "name": "Edge size vs bet result - ST-OVER40",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0013,
-   "n": 1193,
-   "ci_low": -0.0581,
-   "ci_high": 0.0554,
+   "value": 0.0025,
+   "n": 1196,
+   "ci_low": -0.0542,
+   "ci_high": 0.0592,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1352,10 +1899,10 @@
   {
    "name": "Edge size vs bet result - ST-DIVDOG",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": -0.0377,
-   "n": 2184,
-   "ci_low": -0.0795,
-   "ci_high": 0.0042,
+   "value": -0.0382,
+   "n": 2190,
+   "ci_low": -0.0799,
+   "ci_high": 0.0037,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1363,10 +1910,10 @@
   {
    "name": "Edge size vs bet result - ST-REST2",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": 0.0195,
-   "n": 633,
-   "ci_low": -0.0585,
-   "ci_high": 0.0973,
+   "value": 0.0187,
+   "n": 635,
+   "ci_low": -0.0592,
+   "ci_high": 0.0963,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1374,10 +1921,10 @@
   {
    "name": "Edge size vs bet result - ST-BOTH-3",
    "question": "Does a bigger disagreement with the market actually win more often?",
-   "value": 0.0215,
-   "n": 3204,
-   "ci_low": -0.0131,
-   "ci_high": 0.0561,
+   "value": 0.0214,
+   "n": 3210,
+   "ci_low": -0.0132,
+   "ci_high": 0.056,
    "unit": "correlation",
    "source_key": "computed_model",
    "note": "Point-biserial. A signal worth staking has a positive value here; zero means the edge size carries no information."
@@ -1385,10 +1932,10 @@
   {
    "name": "Rest differential vs home margin",
    "question": "Is a rest advantage worth points?",
-   "value": 0.0431,
-   "n": 6102,
-   "ci_low": 0.0181,
-   "ci_high": 0.0682,
+   "value": 0.0419,
+   "n": 6115,
+   "ci_low": 0.0168,
+   "ci_high": 0.0669,
    "unit": "correlation",
    "source_key": "nfldata_games",
    "note": ""
@@ -1415,69 +1962,69 @@
   "rows": [
    {
     "sigma": 10.0,
-    "n": 5432,
+    "n": 5445,
     "mean": -0.294,
-    "mean_abs": 0.858,
-    "sd": 1.109
+    "mean_abs": 0.857,
+    "sd": 1.108
    },
    {
     "sigma": 11.0,
-    "n": 5432,
-    "mean": -0.109,
+    "n": 5445,
+    "mean": -0.11,
     "mean_abs": 0.559,
     "sd": 0.768
    },
    {
     "sigma": 11.5,
-    "n": 5432,
-    "mean": -0.017,
+    "n": 5445,
+    "mean": -0.018,
     "mean_abs": 0.516,
     "sd": 0.684
    },
    {
     "sigma": 12.0,
-    "n": 5432,
-    "mean": 0.076,
+    "n": 5445,
+    "mean": 0.074,
     "mean_abs": 0.557,
     "sd": 0.691
    },
    {
     "sigma": 12.5,
-    "n": 5432,
-    "mean": 0.168,
-    "mean_abs": 0.663,
-    "sd": 0.786
+    "n": 5445,
+    "mean": 0.167,
+    "mean_abs": 0.664,
+    "sd": 0.787
    },
    {
     "sigma": 13.0,
-    "n": 5432,
-    "mean": 0.261,
+    "n": 5445,
+    "mean": 0.259,
     "mean_abs": 0.817,
-    "sd": 0.943
+    "sd": 0.945
    },
    {
     "sigma": 13.5,
-    "n": 5432,
-    "mean": 0.353,
+    "n": 5445,
+    "mean": 0.351,
     "mean_abs": 0.999,
-    "sd": 1.137
+    "sd": 1.139
    },
    {
     "sigma": 14.0,
-    "n": 5432,
-    "mean": 0.446,
-    "mean_abs": 1.195,
-    "sd": 1.352
+    "n": 5445,
+    "mean": 0.443,
+    "mean_abs": 1.196,
+    "sd": 1.354
    }
   ],
   "best": {
    "sigma": 11.5,
-   "n": 5432,
-   "mean": -0.017,
+   "n": 5445,
+   "mean": -0.018,
    "mean_abs": 0.516,
    "sd": 0.684
   },
-  "games": 5432
+  "games": 5445
  },
  "sigma_trace": [
   {
