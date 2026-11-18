@@ -1,0 +1,11 @@
+# TITLE:  Week 11 injury-report availability probe - was there a Week 11 report to read?
+# SOURCE: https://www.nfl.com/injuries/league/2026/REG11 (attempted) and https://www.nfl.com/injuries/ (default)
+# READ:   2026-11-18T03:05Z (UTC) = Tuesday 2026-11-17 22:05 ET
+# RULE:   A probe is recorded whether or not a report exists. "No rows" and "no report yet" are
+#         different facts and must never be stored as the same thing, because the freshness alarm
+#         depends on the difference. This file is the first row of that series.
+# SITE GATE (ours, not the league's): the capture plan reads the page four times a day. The alarm
+#         fires when a week's first report has not appeared by 48 h before that week's first kickoff.
+probe_utc	week_attempted	url_attempted	url_resolved	page_title_as_printed	week_printed	rows_in_this_read	first_fixture_of_week	first_kickoff_utc	hours_from_probe_to_first_kickoff	verdict	source_url
+2026-11-18T03:05Z	2026 REG Week 11	https://www.nfl.com/injuries/league/2026/REG11	https://www.nfl.com/injuries/league/2026/reg10	Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com	WEEK 10	44 read to completion (chunk 0 of 8; the page holds the whole Week 10 report)	Indianapolis Colts at Houston Texans	2026-11-20T01:15Z	46.2	no Week 11 report published at probe time: the requested week resolves to Week 10	https://www.nfl.com/injuries/
+2026-11-18T03:05Z	2026 REG Week 10 (control)	https://www.nfl.com/injuries/	https://www.nfl.com/injuries/	Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com	WEEK 10	8 club tables fully read in chunk 0 (WAS, NYG, NE, DET plus the start of KC)	-	-	-	control read: the same page answers, so the REG11 resolution above is a content fact, not a fetch failure	https://www.nfl.com/injuries/
