@@ -4317,3 +4317,78 @@ the price-data policy the brief required before any published backtest was decid
    integrator owns navigation, move that entry rather than deleting the page.
 3. Reconcile PR #50/#53/#61/#66 against the new 150-game baseline; their transcriptions predate the
    closure, and `tools/verify_2026_11_17.py` V7 is the check they must now pass.
+
+---
+
+# Session `arena/6a4ba536-x1` — Round 6 completion record (2026-11-18)
+
+## Tasks claimed and their state
+
+| # | Task | Status | Outcome |
+|---|---|---|---|
+| R6-1 | Reconcile and land PR #84 | **done** | merged into this branch; PR closed as landed by the round-6 integration |
+| R6-2 | Week 11 pre-kickoff origination | **done — by verification, not duplication** | PR-04 already registers it; every number re-derived from the official corpus, 13/13 exact |
+| R6-3 | Integration: rebuild, gates, PR → main, merge, Pages | **done** | see the PR record below |
+| R6-4 | Round-6 defects logged | **done** | `docs/audit/round6-findings.md` + F-32 |
+
+## What this round actually did
+
+1. **Unblocked `main`'s open, conflicting PR #84** (Week 10 closure: 137 → 150 verified games, price policy
+   N-4) by merging it into this branch and resolving every conflict without discarding either side. The
+   board's rule — generated files are resolved by regenerating, never by picking a side — was followed for
+   every one of the ~100 generated files.
+2. **Fixed the feed's own metadata at the generator.** `data/results/results_feed_meta.json` still declared
+   `official_verified: 1, scheduled: 135, generated 2026-11-14` while the CSV beside it held 14 verified
+   rows; no gate compared them. `tools/build_results_feed_all_seasons.py` now ingests the dated 2026-11-17
+   official pack, runs five checks (C1–C5) and reconciles against the **dated** standings baseline 32/32.
+   The meta now matches the data it describes.
+3. **Restored a finding that a fix had erased.** `tools/verify_2026_11_17.py` I3 measured the 2026-11-14 →
+   2026-11-17 injury delta against the *live* table, so once the collector republished that table the delta
+   read as zero and the 345 → 347 / 32-cell finding vanished. The 2026-11-14 transcription is now frozen at
+   `data/nfl/injuries_week10_2026_11_14.tsv` (extracted from commit `ad1add5`) and I3 measures against it.
+4. **Resolved a flag-id collision** by renumbering PR #84's five findings to F-27…F-31 with content
+   unchanged and the renumbering recorded on each row.
+5. **Added a cross-transcription checker** (`tools/verify_2026_11_17_473e08d5.py`): 384 standings cells and
+   98 Week 10 cells compared between two independent transcriptions of the same official pages, 0
+   mismatches. Two reads of one page are evidence, not duplication.
+6. **Verified PR-04 rather than rebuilding it.** Slate 13/13, byes 6/6, model arithmetic 13/13 exact,
+   rest days 26/26 correct, pre-kickoff ordering holds. One comment added where the rest-day time frame
+   was unstated; the registered rule text is untouched, so the hash still matches.
+
+## Defects published (Flagged page, non-blocking)
+
+* **F-32** — `data/results/results_feed_meta.json` described a superseded window for a day while every gate
+  stayed green, because no check compared a meta file's counts to the rows of the file it describes. The
+  fix is in, but the *class* remains open: only this one meta file got a cross-check this round.
+
+## Numbers that moved
+
+| Figure | Before | After | Where |
+|---|---|---|---|
+| verified results feed, 2026 finals | 137 | **150** | `data/results/verified_results.csv` |
+| official-verified rows (all seasons) | 1 | **14** | same |
+| meta `official_verified` / `scheduled` | 1 / 135 | **14 / 122** | `data/results/results_feed_meta.json` |
+| injury-table delta (345 → 347) | reported as 0 rows added | **restored: 2 added, 32 cells** | `data/verification/2026_11_17/` |
+| flags published | 26 → | **31** (renumbered) + F-32 | `data/flags.json` |
+| shadow baseline scored weeks | n = 118 | n = 118 (unchanged) | `data/shadow/backtest_summary.json` |
+
+The shadow baseline's Brier skill vs the 0.55 home baseline remains **+0.1089 with a 95 % game-cluster
+lower bound of −0.0052** — the point estimate survives and the lower bound still crosses zero. Published
+as it is, not smoothed.
+
+## Sources used this round (all official)
+
+| Read | URL | Date |
+|---|---|---|
+| Week 10 slate, 14 finals | https://www.nfl.com/schedules/2026/by-week/week-10 | 2026-11-18 |
+| Week 11 slate, 13 fixtures | https://www.nfl.com/schedules/2026/by-week/week-11 | 2026-11-18 |
+| Week 11 injury report probe | https://www.nfl.com/injuries/league/2026/reg11 → served reg10 | 2026-11-18 |
+
+## Ownership notes
+
+* No file owned by the open PR-04 escrow scope (`docs/lab/**`, `lab/**`, `tools/lab/**`) was changed except
+  one comment in `tools/lab/build_escrow.py` that states a time frame without altering the rule — the
+  registration hash is unchanged and `build_preregistration.py --check` passes.
+* This session did not edit `pipeline/**` or `.github/workflows/data-refresh.yml`.
+* X-11 (the repository setting "Allow GitHub Actions to create and approve pull requests") is still an
+  owner-side check and is unchanged by this round.
