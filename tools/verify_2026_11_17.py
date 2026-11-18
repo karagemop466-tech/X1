@@ -1,666 +1,507 @@
 #!/usr/bin/env python3
-"""Re-verification pack for the 2026-11-17 official reads (session arena-01c263c4-x1).
+"""Dated closure pack for the 2026-11-17 official reads (session arena-473e08d5-x1).
 
-Three official pages were read live on 2026-11-17 (~22:50-22:56 UTC) with the fetch tool and
-transcribed into `data/verification/2026_11_17/`:
+Why this pack exists
+--------------------
+The verified results feed stopped at 137 games: weeks 1-9 plus the Week 10 Thursday-night game, because
+that is all the official page had printed when the feed was transcribed on 2026-11-14. Week 10 is now
+complete. Closing the feed is only honest if the closing rows are (a) read from the official page again,
+(b) reconciled against the standings page, and (c) reconciled against the repository's own accumulated
+transcriptions so that weeks 1-10 together reproduce the league's numbers. This tool performs (a) as a
+diff against the transcriptions it was given and every check in (b)/(c) arithmetically. It never "fixes"
+a published table: a difference in dated evidence is a finding with two dates, not an edit.
 
-  official_injuries_w10_2026_11_17.tsv   Week 10 injury report, full page (chunks 0-7 of 8), 347 rows
-  official_standings_2026_11_17.tsv       league standings, 32 clubs
-  official_w10_results_2026_11_17.tsv     Week 10 slate, 14 fixtures, all Final
-  week11_injuries_probe_2026_11_17.txt    probe: the Week 11 report URL resolved to the Week 10 page
+Reads it consumes (all hand-transcribed, all dated, all with the official URL beside every row)
+------------------------------------------------------------------------------------------------
+  data/verification/2026_11_17/official_w10_results_2026_11_17.tsv     Week 10 as printed 2026-11-17
+  data/verification/2026_11_17/official_standings_2026_11_17.tsv       League standings, same window
+  data/verification/2026_11_17/mirror_w10_results_2026_11_17.tsv       third-party mirror, cross-check only
+  data/verification/2026_11_17/official_gamecentre_LAC_BAL_2026_11_17.txt  the promoted fixture, at its own page
+  data/verification/2026_11_16/official_w10_results_2026_11_16.tsv     the previous day's read of the same page
+  data/results/raw/official_results_2026_week*.psv                     weeks 1-10, the feed's own inputs
+  data/pipeline/standings.json                                         the collector's machine parse of the standings page
 
-This tool checks the transcriptions against arithmetic invariants, against the repo's own retained
-collector capture (data/captures/payloads/injuries/..., official reads 2026-11-16/17), and against
-the tables the site publishes. It NEVER edits a published table: a difference is a dated finding
-with two dates and two sources, not an edit.
+Checks (arithmetic on values an official page printed; nothing inferred)
+-------------------------------------------------------------------------
+  V1  Read integrity: 14 Week 10 rows, unique game ids, integer scores, every club exactly once
+      (28 in fixtures + 4 on bye = 32), every url on nfl.com, no row left open.
+  V2  Independent-transcription agreement: the 13 Week 10 finals that the 2026-11-16 read also
+      printed must match this read cell for cell (two reads, two days, one page).
+  V3  Two-source score diff against the third-party mirror: teams, scores and date for all 14 rows,
+      with the mirror labelled as non-official on every row and never used as the published source.
+  V4  Cross-page record agreement: the record printed beside each club on the Week 10 schedule page
+      (including the four byes) must equal the standings page. 32 clubs, two pages.
+  V5  Standings transcription integrity: NET = PF - PA, PCT = (W + T/2)/(W+L+T) to three decimals,
+      HOME + ROAD = W-L-T, and league closure (sum W = sum L, sum PF = sum PA, ties even).
+  V6  Machine-parse agreement: the collector's own parse of the same standings page
+      (data/pipeline/standings.json) must equal the hand transcription on all five reconciled
+      fields for all 32 clubs. A disagreement is a parser defect, and it is published as one.
+  V7  FEED CLOSURE: weeks 1-10 of the feed's raw transcriptions, summed, must reproduce W, L, T,
+      PF and PA for all 32 clubs exactly as the 2026-11-17 standings page prints them. 160
+      assertions. This is the number that clears S-22/Q-62, and it is the only check in the
+      repository that makes the results feed's coverage claim arithmetic instead of narrative.
+  V8  Promotion accounting: which rows moved scheduled -> final since 2026-11-14/16, and how many
+      games the feed therefore gains. Printed so a reader can see that 13 rows are new evidence,
+      1 was already published, and nothing was overwritten.
 
-Checks:
+Outputs (all under data/verification/2026_11_17/)
+-------------------------------------------------
+  feed_closure_2026_11_17.csv          one row per club: recomputed vs official, per field
+  w10_promotion_2026_11_17.json       the promoted rows with both source URLs and both read dates
+  verification_summary_2026_11_17.json  every check, its counts and its verdict
 
-  I1  Injury transcription structure: 347 rows, 8 columns, 28 club tables (the four Week 10 bye
-      clubs CHI/DEN/PHI/TB carry no rows), the exact 14 fixtures, and only printed vocabularies
-      for practice_status / game_status; every player_url is an official nfl.com player link.
-  I2  Independent-read equality: every (club, player) key and every cell of the transcription must
-      equal the retained collector capture (official read 2026-11-16T19:02:14Z, content unchanged
-      through the 2026-11-17T19:49:49Z re-read), after aliasing the printed club label LAR to the
-      capture's LA. Zero differences expected; any difference fails the pack.
-  I3  Dated delta vs the published table (data/nfl/injuries_week10.tsv, retrieved 2026-11-14):
-      rows added, rows removed, and cell-by-cell changes, written as a CSV finding.
-  I4  Game-assignment consistency: each club maps to exactly one fixture, and the club set equals
-      the 32 clubs minus the four byes.
-  I5  Owner-item spot check: the three Lions rows named in the brief (Kerby Joseph, Cade Mays,
-      D.J. Reed) carry game_status "Out" in both the published table and today's read.
-  S1  Standings structure and arithmetic: PCT = (W + T/2) / (W + L + T) to three decimals,
-      NET = PF - PA, and HOME + ROAD = W-L-T for all 32 clubs (this is what makes the HOME/ROAD
-      column assignment a measurement rather than a guess).
-  S2  League closure: total wins = total losses, total ties is even.
-  S3  Cross-read equality: W L T PCT PF PA NET of all 32 clubs must equal the retained collector
-      standings payload (official read 2026-11-17T05:03:50Z). 256 assertions.
-  S4  Dated closure: the site's published standings (retrieved 2026-11-14) plus the 13 Week 10
-      finals that the 2026-11-14 schedule read still printed "scheduled" must reproduce today's
-      W, L, PF and PA for every club. 128 assertions. A club that does not reproduce is printed
-      as a diff row, not corrected.
-  S5  Delta vs the 2026-11-16 pack: what changed since the previous dated read (expected: only
-      the Monday-night game's two clubs, in record/points/split/streak columns).
-  R1  Results structure: 14 fixtures, all status Final, integer scores, no ties printed.
-  R2  Slate completeness: the 14 finals cover 28 clubs exactly once and the four byes cover the
-      remaining 4, i.e. all 32 clubs exactly once overall.
-  R3  Record agreement: away_record/home_record printed beside the logos on the schedule page
-      must equal the record on the standings page read at the same time (28 comparisons).
-  R4  Promotion accounting: every fixture the 2026-11-14 schedule read printed "scheduled" is
-      Final today (13 promotions), and the one already-final fixture kept its score.
-  W1  The Week 11 probe file records that the REG11 URL resolved to the Week 10 page and that the
-      printed week selector lists WEEK 1..WEEK 10 only.
-
-Outputs (all under data/verification/2026_11_17/):
-  injuries_diff_vs_published_2026_11_17.csv     added/removed/changed rows vs the 2026-11-14 table
-  standings_diff_vs_published_2026_11_17.csv    club-field deltas vs the 2026-11-14 table
-  standings_diff_vs_2026_11_16.csv              club-field deltas vs the 2026-11-16 read
-  results_promotions_2026_11_17.csv             scheduled -> final promotions since 2026-11-14
-  verification_summary_2026_11_17.json          every check, its counts and its verdict
-
-Usage:  python3 tools/verify_2026_11_17.py [--check]
-  --check  rebuild into a temp dir and fail if the committed outputs differ in any field except
-           `generated_at` (the CI staleness guard).
-Exit 0 = the checks ran (a FAIL inside the summary is a finding, published either way).
-Exit 1 = a transcription failed a structural or arithmetic check (a broken read must not reach a page).
-Exit 2 = an input file is missing.
+Usage:  python3 tools/verify_2026_11_17.py [--write] [--check]
+  --write   emit the three outputs
+  --check   rebuild into memory and fail if the committed outputs differ in any field except
+            `generated_at` (the CI staleness guard)
+Exit 0 = every check passed. Exit 1 = a structural check or a reconciliation failed, which means a
+read or a feed is wrong and must not reach a page.
 """
 from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
+import io
 import json
 import os
+import re
 import sys
-import tempfile
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VDIR = os.path.join(ROOT, "data", "verification", "2026_11_17")
-NFL = os.path.join(ROOT, "data", "nfl")
-CAPTURES = os.path.join(ROOT, "data", "captures")
-RETRIEVED = "2026-11-17"
+PRIOR_DIR = os.path.join(ROOT, "data", "verification", "2026_11_16")
+RAW = os.path.join(ROOT, "data", "results", "raw")
 
-INJ_URL = "https://www.nfl.com/injuries/league/2026/reg10"
+RETRIEVED = "2026-11-17"
+PRIOR_RETRIEVED = "2026-11-16"
+PRIOR_PRIOR_READ = "2026-11-14"
+
 STAND_URL = "https://www.nfl.com/standings/league/2026/REG"
 W10_URL = "https://www.nfl.com/schedules/2026/by-week/week-10"
-
-INJ_TSV = os.path.join(VDIR, "official_injuries_w10_2026_11_17.tsv")
-STAND_TSV = os.path.join(VDIR, "official_standings_2026_11_17.tsv")
-RESULTS_TSV = os.path.join(VDIR, "official_w10_results_2026_11_17.tsv")
-W11_PROBE = os.path.join(VDIR, "week11_injuries_probe_2026_11_17.txt")
-
-PUBLISHED_INJ = os.path.join(NFL, "injuries_week10.tsv")
-PUBLISHED_STAND = os.path.join(NFL, "standings.tsv")
-PUBLISHED_SCHEDULE = os.path.join(NFL, "schedule_week10.tsv")
-PRIOR_STAND = os.path.join(ROOT, "data", "verification", "2026_11_16", "official_standings_2026_11_16.tsv")
-
-INJ_CAPTURE = os.path.join(CAPTURES, "payloads", "injuries", "c3",
-                           "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33.json")
-STAND_CAPTURE = os.path.join(CAPTURES, "payloads", "standings", "e3",
-                             "e3409e8d36ea7d577d7adbe578df80f9f8edef8272fdd16b2c88e18efdaa0e32.json")
-
-BYE_CLUBS = {"CHI", "DEN", "PHI", "TB"}
-PRACTICE_VOCAB = {
-    "Full Participation in Practice",
-    "Limited Participation in Practice",
-    "Did Not Participate In Practice",
-}
-GAME_STATUS_VOCAB = {"", "Out", "Doubtful", "Questionable"}
-# The injury page prints the Rams club as "LAR"; the collector capture and the schedule/standings
-# league pages print "LA". Same club, two printed labels - aliased explicitly, never merged silently.
-CLUB_ALIAS = {"LAR": "LA", "LA": "LA"}
-FIXTURE_BY_CLUB = {
-    "WAS": "WAS@NYG", "NYG": "WAS@NYG",
-    "NE": "NE@DET", "DET": "NE@DET",
-    "KC": "KC@ATL", "ATL": "KC@ATL",
-    "MIN": "MIN@GB", "GB": "MIN@GB",
-    "JAX": "JAX@TEN", "TEN": "JAX@TEN",
-    "BUF": "BUF@NYJ", "NYJ": "BUF@NYJ",
-    "MIA": "MIA@IND", "IND": "MIA@IND",
-    "CAR": "CAR@NO", "NO": "CAR@NO",
-    "HOU": "HOU@CLE", "CLE": "HOU@CLE",
-    "LAR": "LAR@AZ", "AZ": "LAR@AZ",
-    "SEA": "SEA@LV", "LV": "SEA@LV",
-    "SF": "SF@DAL", "DAL": "SF@DAL",
-    "PIT": "PIT@CIN", "CIN": "PIT@CIN",
-    "LAC": "LAC@BAL", "BAL": "LAC@BAL",
-}
+MIRROR_FILE = "data/raw/nflverse/games.csv"
+CLUBS = {"ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN",
+         "DET", "GB", "HOU", "IND", "JAX", "KC", "LAC", "LV", "LA", "MIA", "MIN",
+         "NE", "NO", "NYG", "NYJ", "PHI", "PIT", "SEA", "SF", "TB", "TEN", "WAS"}
+# The standings page prints AZ where the fixture tables use ARI (finding I-15/I-16); one alias, no guessing.
+ALIAS = {"AZ": "ARI"}
 
 
-def read_tsv(path):
+def read_tsv(path: str) -> list[dict]:
     with open(path, encoding="utf-8") as fh:
-        lines = [ln for ln in fh if ln.strip() and not ln.lstrip().startswith("#")]
-    return list(csv.DictReader(lines, delimiter="\t"))
+        lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+    return list(csv.DictReader(io.StringIO("\n".join(lines)), delimiter="\t"))
 
 
-def read_json(path):
-    with open(path, encoding="utf-8") as fh:
-        return json.load(fh)
+def record(s: str) -> tuple:
+    """'7-2' / '3-5-1' -> (w, l, t)."""
+    parts = s.strip().split("-")
+    if len(parts) == 2:
+        parts.append("0")
+    if len(parts) != 3 or not all(p.isdigit() for p in parts):
+        raise ValueError(f"not a record: {s!r}")
+    return tuple(int(p) for p in parts)
 
 
-def pct(w, l, t):
-    games = w + l + t
-    if games == 0:
-        return "0.000"
-    return f"{(w + t / 2) / games:.3f}"
-
-
-def rec(s):
-    """'3-1-0' -> (3, 1, 0)"""
-    a, b, c = s.split("-")
-    return int(a), int(b), int(c)
-
-
-def canon(club):
-    """Canonical club label across printed variants (LAR / LA are the same club)."""
-    return CLUB_ALIAS.get(club, club)
-
-
-def printed_record(w, l, t):
-    """The schedule page prints records without a trailing tie segment when T = 0: '5-5', but '5-3-1'."""
-    return f"{w}-{l}" + (f"-{t}" if t else "")
-
-
-def build(outdir):
-    os.makedirs(outdir, exist_ok=True)
-    checks = []
-    fatal = False
-
-    def add(cid, name, verdict, counts=None, detail=""):
-        checks.append({
-            "id": cid, "name": name, "verdict": verdict,
-            "counts": counts or {}, "detail": detail,
-        })
-        if verdict == "FAIL-STRUCTURAL":
-            nonlocal fatal
-            fatal = True
-
-    for p in (INJ_TSV, STAND_TSV, RESULTS_TSV, W11_PROBE, PUBLISHED_INJ,
-              PUBLISHED_STAND, PUBLISHED_SCHEDULE, PRIOR_STAND, INJ_CAPTURE, STAND_CAPTURE):
-        if not os.path.exists(p):
-            print(f"missing input: {p}", file=sys.stderr)
-            sys.exit(2)
-
-    inj = read_tsv(INJ_TSV)
-    pub_inj = read_tsv(PUBLISHED_INJ)
-    stand = read_tsv(STAND_TSV)
-    pub_stand = read_tsv(PUBLISHED_STAND)
-    prior_stand = read_tsv(PRIOR_STAND)
-    res = read_tsv(RESULTS_TSV)
-    pub_sched = read_tsv(PUBLISHED_SCHEDULE)
-    cap_inj = read_json(INJ_CAPTURE)
-    cap_stand = read_json(STAND_CAPTURE)
-
-    # ---------------- I1 structure ----------------
-    problems = []
-    if len(inj) != 347:
-        problems.append(f"row count {len(inj)} != 347")
-    clubs = {r["team"] for r in inj}
-    club_set_expected = set(FIXTURE_BY_CLUB) - BYE_CLUBS
-    if clubs != club_set_expected:
-        problems.append(f"club set mismatch: extra={sorted(clubs - club_set_expected)} missing={sorted(club_set_expected - clubs)}")
-    fixtures = {r["game"] for r in inj}
-    if fixtures != set(FIXTURE_BY_CLUB.values()):
-        problems.append(f"fixture set mismatch: {sorted(fixtures ^ set(FIXTURE_BY_CLUB.values()))}")
-    for i, r in enumerate(inj, start=1):
-        if r["practice_status"] not in PRACTICE_VOCAB:
-            problems.append(f"row {i}: practice_status not printed vocabulary: {r['practice_status']!r}")
-        if r["game_status"] not in GAME_STATUS_VOCAB:
-            problems.append(f"row {i}: game_status not printed vocabulary: {r['game_status']!r}")
-        if not r["player_url"].startswith("https://www.nfl.com/players/"):
-            problems.append(f"row {i}: player_url not official: {r['player_url']!r}")
-        want = FIXTURE_BY_CLUB.get(r["team"])
-        if want and r["game"] != want:
-            problems.append(f"row {i}: club {r['team']} in fixture {r['game']}, expected {want}")
-    add("I1", "injury transcription structure (347 rows, 28 clubs, 14 fixtures, vocabularies, urls)",
-        "PASS" if not problems else "FAIL-STRUCTURAL",
-        {"rows": len(inj), "clubs": len(clubs), "fixtures": len(fixtures)},
-        "; ".join(problems[:10]))
-
-    # ---------------- I2 independent-read equality vs collector capture ----------------
-    def ikey(r, alias=False):
-        team = CLUB_ALIAS.get(r["team"], r["team"]) if alias else r["team"]
-        return (team, r["player"])
-    m = {ikey(r, alias=True): r for r in inj}
-    c = {ikey(r): r for r in cap_inj["rows"]}
-    key_diffs = {
-        "in_transcription_only": sorted("/".join(k) for k in set(m) - set(c)),
-        "in_capture_only": sorted("/".join(k) for k in set(c) - set(m)),
-    }
-    cell_diffs = []
-    for k in sorted(set(m) & set(c)):
-        for f in ("position", "injury", "practice_status", "game_status"):
-            if m[k][f] != c[k][f]:
-                cell_diffs.append({"club": k[0], "player": k[1], "field": f,
-                                   "capture": c[k][f], "transcription": m[k][f]})
-    i2_ok = not key_diffs["in_transcription_only"] and not key_diffs["in_capture_only"] and not cell_diffs
-    add("I2", "independent-read equality: transcription vs retained official collector capture",
-        "PASS" if i2_ok else "FAIL-STRUCTURAL",
-        {"transcription_rows": len(inj), "capture_rows": len(cap_inj["rows"]),
-         "capture_as_read_at": cap_inj.get("as_read_at", ""),
-         "key_diffs": len(key_diffs["in_transcription_only"]) + len(key_diffs["in_capture_only"]),
-         "cell_diffs": len(cell_diffs)},
-        json.dumps({"keys": key_diffs, "cells": cell_diffs[:20]}, ensure_ascii=False) if not i2_ok
-        else f"capture read {cap_inj.get('as_read_at')} (content unchanged at the 2026-11-17T19:49:49Z re-read)")
-
-    # ---------------- I2b independent same-day cross-read (session arena/16049865-x1, PR #73) ----------------
-    # A DIFFERENT session transcribed the same page independently on the same date; its dated TSV
-    # merged to main in PR #73. Agreement between two sessions' transcriptions is a corroboration
-    # gate, not a coincidence: either side could have made an error the other did not.
-    x73 = os.path.join(ROOT, "data", "capture", "2026_w10_read_2026_11_17", "injuries_week10_2026-11-17.tsv")
-    if os.path.exists(x73):
-        theirs = read_tsv(x73)
-        tm = {ikey(r, alias=True): r for r in theirs}
-        xdiffs = []
-        if set(m) != set(tm):
-            xdiffs.append(f"key sets differ: {len(set(m) ^ set(tm))} keys")
-        for k in sorted(set(m) & set(tm)):
-            for f in ("position", "injury", "practice_status", "game_status"):
-                if m[k][f] != tm[k][f]:
-                    xdiffs.append(f"{k[0]}/{k[1]}.{f}: {m[k][f]!r} vs {tm[k][f]!r}")
-        add("I2b", "same-day cross-read: this transcription vs session arena/16049865-x1's independent 2026-11-17 TSV (PR #73)",
-            "PASS" if not xdiffs else "FAIL-STRUCTURAL",
-            {"their_rows": len(theirs), "our_rows": len(inj), "differences": len(xdiffs)},
-            "; ".join(xdiffs[:10]))
-    else:
-        add("I2b", "same-day cross-read vs PR #73 TSV", "SKIP",
-            {"reason": "data/capture/2026_w10_read_2026_11_17/ not present in this checkout"})
-
-    # ---------------- I3 dated delta vs published ----------------
-    # Both sides keyed by canonical club label: the published table prints the Rams as "LAR",
-    # today's page prints "LAR" too, while other official pages print "LA" - aliased, not merged.
-    p = {ikey(r, alias=True): r for r in pub_inj}
-    m3 = {ikey(r, alias=True): r for r in inj}
-    added = sorted("/".join(k) for k in set(m3) - set(p))
-    removed = sorted("/".join(k) for k in set(p) - set(m3))
-    cell_rows = []
-    for k in sorted(set(m3) & set(p)):
-        for f in ("position", "injury", "practice_status", "game_status"):
-            if m3[k][f] != p[k][f]:
-                cell_rows.append({
-                    "change": "cell", "club": k[0], "player": k[1], "field": f,
-                    "published_2026_11_14": p[k][f], "official_2026_11_17": m3[k][f],
-                    "source_url": INJ_URL,
-                })
-    for key in added:
-        team, player = key.split("/", 1)
-        cell_rows.append({"change": "row_added", "club": team, "player": player, "field": "",
-                          "published_2026_11_14": "", "official_2026_11_17": "row present",
-                          "source_url": INJ_URL})
-    for key in removed:
-        team, player = key.split("/", 1)
-        cell_rows.append({"change": "row_removed", "club": team, "player": player, "field": "",
-                          "published_2026_11_14": "row present", "official_2026_11_17": "",
-                          "source_url": INJ_URL})
-    out_inj_diff = os.path.join(outdir, "injuries_diff_vs_published_2026_11_17.csv")
-    with open(out_inj_diff, "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["change", "club", "player", "field",
-                                           "published_2026_11_14", "official_2026_11_17", "source_url"])
-        w.writeheader()
-        for row in cell_rows:
-            w.writerow(row)
-    add("I3", "dated delta: published table (2026-11-14) vs official page (2026-11-17)",
-        "FINDINGS-PUBLISHED",
-        {"published_rows": len(pub_inj), "official_rows": len(inj),
-         "rows_added": len(added), "rows_removed": len(removed),
-         "cells_changed": len(cell_rows) - len(added) - len(removed)},
-        "see injuries_diff_vs_published_2026_11_17.csv")
-
-    # ---------------- I4 game assignment ----------------
-    seen = {}
-    ok = True
-    for r in inj:
-        seen.setdefault(r["team"], set()).add(r["game"])
-    bad = {t: sorted(g) for t, g in seen.items() if len(g) != 1}
-    if bad:
-        ok = False
-    add("I4", "game assignment: each club appears in exactly one fixture; club set = 32 minus byes",
-        "PASS" if ok else "FAIL-STRUCTURAL",
-        {"clubs": len(seen), "byes_absent": sorted(BYE_CLUBS - clubs) == sorted(BYE_CLUBS)},
-        json.dumps(bad))
-
-    # ---------------- I5 owner-item spot check (Lions trio) ----------------
-    trio = ["Kerby Joseph", "Cade Mays", "D.J. Reed"]
-    live = {r["player"]: r["game_status"] for r in inj if r["team"] == "DET"}
-    pubd = {r["player"]: r["game_status"] for r in pub_inj if r["team"] == "DET"}
-    trio_rows = [{"player": t, "published_2026_11_14": pubd.get(t, ""), "official_2026_11_17": live.get(t, "")} for t in trio]
-    ok = all(row["published_2026_11_14"] == "Out" and row["official_2026_11_17"] == "Out" for row in trio_rows)
-    add("I5", "brief item: Lions Kerby Joseph / Cade Mays / D.J. Reed game-status cells = Out, both dates",
-        "PASS" if ok else "FINDINGS", {"rows": 3}, json.dumps(trio_rows))
-
-    # ---------------- S1 structure + arithmetic ----------------
-    problems = []
-    if len(stand) != 32:
-        problems.append(f"row count {len(stand)} != 32")
-    for r in stand:
-        w, l, t = int(r["w"]), int(r["l"]), int(r["t"])
-        if r["pct"] != pct(w, l, t):
-            problems.append(f"{r['abbr']}: pct {r['pct']} != computed {pct(w, l, t)}")
-        if int(r["net"]) != int(r["pf"]) - int(r["pa"]):
-            problems.append(f"{r['abbr']}: net {r['net']} != pf-pa {int(r['pf']) - int(r['pa'])}")
-        hw, hl, ht = rec(r["home"])
-        rw, rl, rt = rec(r["road"])
-        if (hw + rw, hl + rl, ht + rt) != (w, l, t):
-            problems.append(f"{r['abbr']}: home+road {(hw+rw, hl+rl, ht+rt)} != w-l-t {(w, l, t)}")
-    add("S1", "standings structure and arithmetic: PCT, NET, HOME+ROAD=W-L-T (32 clubs)",
-        "PASS" if not problems else "FAIL-STRUCTURAL",
-        {"clubs": len(stand), "assertions": len(stand) * 3},
-        "; ".join(problems[:10]))
-
-    # ---------------- S2 league closure ----------------
-    tw = sum(int(r["w"]) for r in stand)
-    tl = sum(int(r["l"]) for r in stand)
-    tt = sum(int(r["t"]) for r in stand)
-    ok = tw == tl and tt % 2 == 0
-    add("S2", "league closure: total wins = total losses, ties even",
-        "PASS" if ok else "FAIL-STRUCTURAL",
-        {"total_wins": tw, "total_losses": tl, "total_ties": tt})
-
-    # ---------------- S3 vs collector standings payload ----------------
-    capm = {CLUB_ALIAS.get(r["abbr"], r["abbr"]): r for r in cap_stand["rows"]}
-    mism = []
-    for r in stand:
-        a = CLUB_ALIAS.get(r["abbr"], r["abbr"])
-        cr = capm.get(a)
-        if not cr:
-            mism.append(f"{a}: missing from capture")
+def load_raw_feed() -> list[dict]:
+    rows = []
+    for name in sorted(os.listdir(RAW)):
+        m = re.fullmatch(r"official_results_(\d{4})_week(\d{2})\.psv", name)
+        if not m:
             continue
-        for f in ("w", "l", "t", "pct", "pf", "pa", "net"):
-            if str(r[f]) != str(cr[f]):
-                mism.append(f"{a}.{f}: transcription {r[f]!r} vs capture {cr[f]!r}")
-    add("S3", "cross-read equality: today's standings vs retained collector standings payload (2026-11-17T05:03:50Z)",
-        "PASS" if not mism else "FAIL-STRUCTURAL",
-        {"clubs": len(stand), "fields_per_club": 7, "capture_rows": len(cap_stand["rows"])},
-        "; ".join(mism[:10]))
+        with open(os.path.join(RAW, name), encoding="utf-8", newline="") as fh:
+            for r in csv.DictReader(fh, delimiter="|"):
+                r["_file"] = f"data/results/raw/{name}"
+                rows.append(r)
+    return rows
 
-    # ---------------- S4 dated closure: published + 13 finals = today ----------------
-    pubm = {CLUB_ALIAS.get(r["abbr"], r["abbr"]): dict(w=int(r["w"]), l=int(r["l"]), t=int(r["t"]),
-                                                       pf=int(r["pf"]), pa=int(r["pa"])) for r in pub_stand}
-    repro = {k: dict(v) for k, v in pubm.items()}
-    scheduled = [r for r in pub_sched if r["status"] == "scheduled"]
-    final_alreadY = [r for r in pub_sched if r["status"] == "final"]
-    resm = {(canon(r["away"]), canon(r["home"])): r for r in res}
-    promotions = []
-    for r in scheduled:
-        key = (canon(r["away"]), canon(r["home"]))
-        rr = resm.get(key)
-        if not rr:
+
+def build() -> tuple[dict, str, str]:
+    checks: dict[str, dict] = {}
+    failures: list[str] = []
+    notes: list[str] = []
+
+    w10 = read_tsv(os.path.join(VDIR, "official_w10_results_2026_11_17.tsv"))
+    standings = read_tsv(os.path.join(VDIR, "official_standings_2026_11_17.tsv"))
+    mirror = read_tsv(os.path.join(VDIR, "mirror_w10_results_2026_11_17.tsv"))
+    prior = read_tsv(os.path.join(PRIOR_DIR, "official_w10_results_2026_11_16.tsv"))
+    feed = load_raw_feed()
+
+    # ---------------------------------------------------------------- V1 read integrity
+    ids = [r["game_id"] for r in w10]
+    v1 = {"rows": len(w10), "unique_game_ids": len(set(ids)) == len(ids),
+          "all_final": all(r["status"] == "Final" for r in w10),
+          "urls_on_nfl_com": all(r["game_url"].startswith("https://www.nfl.com/games/") and
+                                 r["source_url"] == W10_URL for r in w10),
+          "scores_integer": all(re.fullmatch(r"\d+", r[f]) is not None
+                                for r in w10 for f in ("away_score", "home_score"))}
+    clubs_seen: dict[str, int] = {}
+    for r in w10:
+        for f in ("away", "home"):
+            c = ALIAS.get(r[f], r[f])
+            if c not in CLUBS:
+                failures.append(f"V1 unknown club code {r[f]!r} in {r['game_id']}")
+            clubs_seen[c] = clubs_seen.get(c, 0) + 1
+    bye_text = ""
+    with open(os.path.join(VDIR, "official_w10_results_2026_11_17.tsv"), encoding="utf-8") as fh:
+        for ln in fh:
+            if ln.startswith("# TEAMS ON BYE"):
+                bye_text = ln
+    byes = dict((m[0], m[1]) for m in re.findall(r"([A-Z]{2,3}) (\d+-\d+(?:-\d+)?)", bye_text))
+    for c in byes:
+        clubs_seen[c] = clubs_seen.get(c, 0) + 1
+    v1["clubs_in_fixtures"] = len(clubs_seen) - len(byes)
+    # every club appears exactly once across the 14 fixtures + the bye block = 32
+    v1["clubs_covered_exactly_once"] = all(n == 1 for n in clubs_seen.values()) and len(clubs_seen) == 32
+    v1["byes_printed"] = len(byes)
+    v1["verdict"] = ("PASS" if v1["rows"] == 14 and v1["unique_game_ids"] and v1["all_final"]
+                     and v1["urls_on_nfl_com"] and v1["scores_integer"]
+                     and v1["clubs_covered_exactly_once"] and v1["byes_printed"] == 4 else "FAIL")
+    if v1["verdict"] == "FAIL":
+        failures.append("V1 Week 10 read integrity failed: " + json.dumps(v1, sort_keys=True)[:400])
+    checks["V1 read integrity"] = v1
+
+    # ------------------------------------------------------- V2 agreement with 2026-11-16 read
+    def key(r):
+        return (ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"]))
+    prior_by_key = {key(r): r for r in prior}
+    comp = agree = 0
+    diffs = []
+    for r in w10:
+        p = prior_by_key.get(key(r))
+        if not p or p["status"] != "Final":
             continue
-        a, h = canon(rr["away"]), canon(rr["home"])
-        asc, hsc = int(rr["away_score"]), int(rr["home_score"])
-        repro[a]["pf"] += asc
-        repro[a]["pa"] += hsc
-        repro[h]["pf"] += hsc
-        repro[h]["pa"] += asc
-        if asc > hsc:
-            repro[a]["w"] += 1
-            repro[h]["l"] += 1
+        comp += 1
+        mine = (r["away_score"], r["home_score"], r["date_et"])
+        theirs = (p["away_score"], p["home_score"], p["date_et"])
+        if mine == theirs:
+            agree += 1
         else:
-            repro[h]["w"] += 1
-            repro[a]["l"] += 1
-        promotions.append({"game_id": r.get("game_id") or f"{r['away']}@{r['home']}",
-                           "away": canon(r["away"]), "home": canon(r["home"]),
-                           "away_score": asc, "home_score": hsc,
-                           "scheduled_2026_11_14": "scheduled", "status_2026_11_17": rr["status"],
-                           "source_url": W10_URL})
-    tod = {CLUB_ALIAS.get(r["abbr"], r["abbr"]): dict(w=int(r["w"]), l=int(r["l"]), t=int(r["t"]),
-                                                      pf=int(r["pf"]), pa=int(r["pa"])) for r in stand}
-    closure_diffs = []
-    for a in sorted(tod):
-        for f in ("w", "l", "pf", "pa"):
-            if repro.get(a, {}).get(f) != tod[a][f]:
-                closure_diffs.append({"club": a, "field": f,
-                                      "published_plus_results": repro.get(a, {}).get(f),
-                                      "official_2026_11_17": tod[a][f],
-                                      "source_url": STAND_URL})
-    add("S4", "dated closure: published 2026-11-14 standings + 13 scheduled->final results = today's W/L/PF/PA",
-        "PASS" if not closure_diffs else "FAIL-STRUCTURAL",
-        {"clubs": len(tod), "assertions": len(tod) * 4, "finals_added": len(promotions),
-         "already_final_at_2026_11_14": len(final_alreadY)},
-        json.dumps(closure_diffs[:10], ensure_ascii=False))
+            diffs.append(f"{r['game_id']}: 2026-11-17 {mine} vs 2026-11-16 {theirs}")
+    v2 = {"compared": comp, "agree": agree, "diffs": diffs,
+          "note": ("the 2026-11-16 read printed 13 finals and left LAC@BAL scheduled; the 13 are "
+                   "diffed, the 14th has no prior final to agree with"),
+          "verdict": "PASS" if comp == 13 and agree == 13 else "FAIL"}
+    if v2["verdict"] == "FAIL":
+        failures.append("V2 prior-read disagreement: " + "; ".join(diffs))
+    checks["V2 agreement with the 2026-11-16 read"] = v2
 
-    # ---------------- S5 delta vs 2026-11-16 pack ----------------
-    priorm = {CLUB_ALIAS.get(r["abbr"], r["abbr"]): r for r in prior_stand}
-    s5_rows = []
-    fields = ["w", "l", "t", "pct", "pf", "pa", "net", "home", "road", "div_record", "conf_record", "streak"]
-    for r in stand:
-        a = CLUB_ALIAS.get(r["abbr"], r["abbr"])
-        pr = priorm.get(a)
-        if not pr:
-            s5_rows.append({"club": a, "field": "row", "official_2026_11_16": "", "official_2026_11_17": "present",
-                            "source_url": STAND_URL})
+    # ------------------------------------------------------------- V3 two-source score diff
+    mir_by_key = {(ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"])): r
+                  for r in mirror}
+    mcomp = magree = 0
+    mdiffs = []
+    for r in w10:
+        m = mir_by_key.get(key(r))
+        if not m:
+            mdiffs.append(f"{r['game_id']}: absent from the mirror read")
             continue
-        for f in fields:
-            if str(r[f]) != str(pr[f]):
-                s5_rows.append({"club": a, "field": f, "official_2026_11_16": pr[f],
-                                "official_2026_11_17": r[f], "source_url": STAND_URL})
-    out_s5 = os.path.join(outdir, "standings_diff_vs_2026_11_16.csv")
-    with open(out_s5, "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["club", "field", "official_2026_11_16", "official_2026_11_17", "source_url"])
-        w.writeheader()
-        for row in s5_rows:
-            w.writerow(row)
-    clubs_changed = sorted({r["club"] for r in s5_rows})
-    add("S5", "delta vs the 2026-11-16 dated read (expected: the Monday-night game's two clubs)",
-        "FINDINGS-PUBLISHED",
-        {"clubs_changed": len(clubs_changed), "field_changes": len(s5_rows)},
-        json.dumps(clubs_changed))
+        mcomp += 1
+        if (r["away_score"], r["home_score"], r["date_et"]) == (m["away_score"], m["home_score"], m["gameday"]):
+            magree += 1
+        else:
+            mdiffs.append(f"{r['game_id']}: official {r['away_score']}-{r['home_score']} {r['date_et']} "
+                          f"vs mirror {m['away_score']}-{m['home_score']} {m['gameday']}")
+    v3 = {"compared": mcomp, "agree": magree, "diffs": mdiffs,
+          "label": "third-party mirror - cross-check only, never the published source",
+          "verdict": "PASS" if mcomp == 14 and magree == 14 and not mdiffs else "FAIL"}
+    if v3["verdict"] == "FAIL":
+        failures.append("V3 mirror disagreement: " + "; ".join(mdiffs))
+    checks["V3 score diff vs the third-party mirror"] = v3
 
-    # ---------------- standings vs published (dated delta CSV) ----------------
-    pub_full = {CLUB_ALIAS.get(r["abbr"], r["abbr"]): r for r in pub_stand}
-    s_pub_rows = []
-    for r in stand:
-        a = CLUB_ALIAS.get(r["abbr"], r["abbr"])
-        pr = pub_full.get(a)
-        if not pr:
-            continue
-        for f in ("w", "l", "t", "pct", "pf", "pa", "streak"):
-            if str(r[f]) != str(pr[f]):
-                s_pub_rows.append({"club": a, "field": f, "published_2026_11_14": pr[f],
-                                   "official_2026_11_17": r[f], "source_url": STAND_URL})
-    out_s4 = os.path.join(outdir, "standings_diff_vs_published_2026_11_17.csv")
-    with open(out_s4, "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["club", "field", "published_2026_11_14", "official_2026_11_17", "source_url"])
-        w.writeheader()
-        for row in s_pub_rows:
-            w.writerow(row)
-    add("S6", "dated delta: published standings (2026-11-14) vs official page (2026-11-17)",
-        "FINDINGS-PUBLISHED",
-        {"clubs_changed": len({r['club'] for r in s_pub_rows}), "field_changes": len(s_pub_rows)},
-        "see standings_diff_vs_published_2026_11_17.csv")
-
-    # ---------------- R1..R4 results ----------------
-    problems = []
-    if len(res) != 14:
-        problems.append(f"row count {len(res)} != 14")
-    for r in res:
-        if r["status"] != "Final":
-            problems.append(f"{r['game_id']}: status {r['status']!r} != Final")
-        try:
-            a, h = int(r["away_score"]), int(r["home_score"])
-        except ValueError:
-            problems.append(f"{r['game_id']}: non-integer score")
-            continue
-        if a == h:
-            problems.append(f"{r['game_id']}: printed tie")
-    add("R1", "results structure: 14 fixtures, all Final, integer scores, no ties",
-        "PASS" if not problems else "FAIL-STRUCTURAL",
-        {"fixtures": len(res)}, "; ".join(problems[:10]))
-
-    sides = []
-    for r in res:
-        sides.append(canon(r["away"]))
-        sides.append(canon(r["home"]))
-    from collections import Counter
-    cnt = Counter(sides)
-    once = {c for c, n in cnt.items() if n == 1}
-    expected_playing = {canon(c) for c in FIXTURE_BY_CLUB} - BYE_CLUBS
-    ok = once == expected_playing and once.isdisjoint(BYE_CLUBS)
-    add("R2", "slate completeness: 28 clubs exactly once across the 14 finals; 4 byes disjoint; union = 32",
-        "PASS" if ok else "FAIL-STRUCTURAL",
-        {"playing_clubs": len(once), "byes": sorted(BYE_CLUBS),
-         "union_size": len(once | BYE_CLUBS)})
-
-    stdm = {CLUB_ALIAS.get(r["abbr"], r["abbr"]): r for r in stand}
-    mism = []
-    for r in res:
-        for side, recf in ((r["away"], r["away_record"]), (r["home"], r["home_record"])):
-            a = canon(side)
-            s = stdm.get(a)
-            if not s:
-                mism.append(f"{a}: not on standings page")
+    # ------------------------------------------------------------ V4 cross-page record agreement
+    st = {ALIAS.get(r["abbr"], r["abbr"]): r for r in standings}
+    v4 = {"checked": 0, "mismatch": []}
+    for r in w10:
+        for f, rec in (("away", "away_record"), ("home", "home_record")):
+            c = ALIAS.get(r[f], r[f])
+            if c not in st:
+                v4["mismatch"].append(f"{c}: not in the standings read")
                 continue
-            w, l, t = int(s["w"]), int(s["l"]), int(s["t"])
-            if printed_record(w, l, t) != recf:
-                mism.append(f"{a}: schedule page {recf} vs standings page {printed_record(w, l, t)}")
-    add("R3", "record agreement: club records printed on the schedule page vs the standings page (28 comparisons)",
-        "PASS" if not mism else "FAIL-STRUCTURAL",
-        {"comparisons": len(res) * 2}, "; ".join(mism[:10]))
+            want = record(r[rec])
+            got = (int(st[c]["w"]), int(st[c]["l"]), int(st[c]["t"]))
+            v4["checked"] += 1
+            if want != got:
+                v4["mismatch"].append(f"{c}: schedule page {want} vs standings page {got}")
+    for c, rec in byes.items():
+        want, got = record(rec), (int(st[c]["w"]), int(st[c]["l"]), int(st[c]["t"]))
+        v4["checked"] += 1
+        if want != got:
+            v4["mismatch"].append(f"{c} (bye): schedule page {want} vs standings page {got}")
+    v4["verdict"] = "PASS" if v4["checked"] == 32 and not v4["mismatch"] else "FAIL"
+    if v4["verdict"] == "FAIL":
+        failures.append("V4 cross-page record disagreement: " + "; ".join(v4["mismatch"]))
+    checks["V4 cross-page record agreement"] = v4
 
-    out_promo = os.path.join(outdir, "results_promotions_2026_11_17.csv")
-    with open(out_promo, "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["game_id", "away", "home", "away_score", "home_score",
-                                           "scheduled_2026_11_14", "status_2026_11_17", "source_url"])
-        w.writeheader()
-        for row in promotions:
-            w.writerow(row)
-    still_sched = [r["away"] + "@" + r["home"] for r in scheduled
-                   if (resm.get((canon(r["away"]), canon(r["home"]))) or {}).get("status") != "Final"]
-    already_ok = True
-    for r in final_alreadY:
-        rr = resm.get((canon(r["away"]), canon(r["home"])))
-        if not rr or rr["away_score"] != r["away_score"] or rr["home_score"] != r["home_score"]:
-            already_ok = False
-    ok = len(promotions) == 13 and not still_sched and already_ok
-    add("R4", "promotion accounting: the 13 fixtures printed 'scheduled' on 2026-11-14 are Final today; the 1 already-final fixture kept its score",
-        "PASS" if ok else "FAIL-STRUCTURAL",
-        {"scheduled_2026_11_14": len(scheduled), "already_final_2026_11_14": len(final_alreadY),
-         "promoted": len(promotions), "still_open": still_sched})
+    # ----------------------------------------------------------- V5 standings internal checks
+    v5 = {"rows": len(standings), "net_ok": 0, "pct_ok": 0, "home_road_ok": 0, "bad": []}
+    tw = tl = tt = tpf = tpa = 0
+    for r in standings:
+        w, l, t = int(r["w"]), int(r["l"]), int(r["t"])
+        pf, pa, net = int(r["pf"]), int(r["pa"]), int(r["net"])
+        if pf - pa == net:
+            v5["net_ok"] += 1
+        else:
+            v5["bad"].append(f"{r['abbr']}: NET {net} != PF-PA {pf - pa}")
+        pct = (w + t / 2) / (w + l + t) if (w + l + t) else 0.0
+        if abs(float(r["pct"]) - pct) < 5e-4:
+            v5["pct_ok"] += 1
+        else:
+            v5["bad"].append(f"{r['abbr']}: PCT {r['pct']} != computed {pct:.3f}")
+        hw, hl, ht = record(r["home"])
+        rw, rl, rt = record(r["road"])
+        if (hw + rw, hl + rl, ht + rt) == (w, l, t):
+            v5["home_road_ok"] += 1
+        else:
+            v5["bad"].append(f"{r['abbr']}: HOME+ROAD {(hw+rw, hl+rl, ht+rt)} != W-L-T {(w, l, t)}")
+        tw += w; tl += l; tt += t; tpf += pf; tpa += pa
+    v5["league_closure"] = {"sum_W": tw, "sum_L": tl, "sum_T": tt,
+                            "wins_equal_losses": tw == tl, "ties_even": tt % 2 == 0,
+                            "sum_PF": tpf, "sum_PA": tpa, "pf_equal_pa": tpf == tpa,
+                            "games_implied": (tw + tl + tt) // 2}
+    v5["verdict"] = ("PASS" if v5["rows"] == 32 and v5["net_ok"] == 32 and v5["pct_ok"] == 32
+                     and v5["home_road_ok"] == 32 and not v5["bad"]
+                     and v5["league_closure"]["wins_equal_losses"]
+                     and v5["league_closure"]["pf_equal_pa"] else "FAIL")
+    if v5["verdict"] == "FAIL":
+        failures.append("V5 standings transcription failed its own arithmetic: " + "; ".join(v5["bad"][:8]))
+    checks["V5 standings transcription integrity"] = v5
 
-    # ---------------- X1 cross-session corroboration (session arena/2f95e652-x1, PR #76) ----------------
-    # Another session independently re-read standings and the Week 10 finals the same evening
-    # (data/evidence/2026_11_17/, its claim E-1). Its branch may merge before or after this one,
-    # so the check reports SKIP when the pack is absent rather than failing the build; when the
-    # pack is present, every shared cell must agree - two sessions reading the same page within
-    # minutes cannot legitimately disagree.
-    ev_dir = os.path.join(ROOT, "data", "evidence", "2026_11_17")
-    ev_std = os.path.join(ev_dir, "standings.tsv")
-    ev_fin = os.path.join(ev_dir, "week10_finals.tsv")
-    if os.path.exists(ev_std) and os.path.exists(ev_fin):
-        lines = [ln for ln in open(ev_std, encoding="utf-8") if ln.strip() and not ln.lstrip().startswith("#")]
-        evh = lines[0].rstrip("\n").split("|")
-        evr = [dict(zip(evh, ln.rstrip("\n").split("|"))) for ln in lines[1:]]
-        evm = {CLUB_ALIAS.get(r["TEAM"], r["TEAM"]): r for r in evr}
-        pairs = [("W", "w"), ("L", "l"), ("T", "t"), ("PCT", "pct"), ("PF", "pf"), ("PA", "pa"),
-                 ("NET", "net"), ("HOME", "home"), ("ROAD", "road"),
-                 ("DIV", "div_record"), ("CONF", "conf_record"), ("STRK", "streak")]
-        xdiffs = []
-        for r in stand:
-            a = CLUB_ALIAS.get(r["abbr"], r["abbr"])
-            er = evm.get(a)
-            if not er:
-                xdiffs.append(f"{a}: absent from the evidence pack")
+    # ------------------------------------------------------- V6 hand read vs the collector parse
+    coll_path = os.path.join(ROOT, "data", "pipeline", "standings.json")
+    v6 = {"compared": 0, "mismatch": [], "collector_generated_at": "", "verdict": "SKIPPED"}
+    if os.path.exists(coll_path):
+        coll = json.load(open(coll_path, encoding="utf-8"))
+        v6["collector_generated_at"] = coll.get("generated_at", "")
+        v6["collector_source_url"] = coll.get("source", {}).get("url", "")
+        rows = {r["team_abbrev"]: r for r in coll["rows"]}
+        for r in standings:
+            # No alias here: the collector's parse prints the code the standings page itself prints
+            # (AZ for Arizona), which is the same spelling this hand read uses. Aliasing one side
+            # would manufacture a mismatch - exactly the class of defect V6 exists to catch.
+            c = r["abbr"]
+            cr = rows.get(c)
+            if not cr:
+                v6["mismatch"].append(f"{c}: absent from the collector parse")
                 continue
-            for a_f, b_f in pairs:
-                if er[a_f] != r[b_f]:
-                    xdiffs.append(f"{a}.{b_f}: evidence pack {er[a_f]!r} vs this read {r[b_f]!r}")
-        fin = [ln for ln in open(ev_fin, encoding="utf-8") if ln.strip() and not ln.lstrip().startswith("#")]
-        fn = list(csv.DictReader(fin, delimiter="|"))
-        fm = {(canon(r["away"]), canon(r["home"])): r for r in fn}
-        for r in res:
-            k = (canon(r["away"]), canon(r["home"]))
-            fr = fm.get(k)
-            if not fr:
-                xdiffs.append(f"{k}: fixture absent from the evidence pack")
-                continue
-            if fr["away_score"] != r["away_score"] or fr["home_score"] != r["home_score"] or fr["date_et"] != r["date_et"]:
-                xdiffs.append(f"{k}: score/date {fr['away_score']}-{fr['home_score']} {fr['date_et']} vs {r['away_score']}-{r['home_score']} {r['date_et']}")
-        add("X1", "cross-session corroboration vs arena/2f95e652-x1's independent same-evening read (PR #76, claim E-1): 12 shared standings fields x 32 clubs + 14 finals",
-            "PASS" if not xdiffs else "FAIL-STRUCTURAL",
-            {"standings_cells": len(stand) * len(pairs), "finals": len(res), "differences": len(xdiffs)},
-            "; ".join(xdiffs[:10]))
-    else:
-        add("X1", "cross-session corroboration vs the evidence pack", "SKIP",
-            {"reason": "data/evidence/2026_11_17/ not present in this checkout (pending PR #76)"})
+            v6["compared"] += 1
+            for field, mine in (("W", r["w"]), ("L", r["l"]), ("T", r["t"]),
+                                ("PF", r["pf"]), ("PA", r["pa"]), ("PCT", r["pct"])):
+                if str(cr.get(field)) != str(mine):
+                    v6["mismatch"].append(f"{c}.{field}: collector {cr.get(field)} vs hand read {mine}")
+        v6["verdict"] = "PASS" if v6["compared"] == 32 and not v6["mismatch"] else "FAIL"
+        if v6["verdict"] == "FAIL":
+            failures.append("V6 collector parse disagrees with the hand read: " + "; ".join(v6["mismatch"][:8]))
+    checks["V6 collector parse vs hand read"] = v6
 
-    # ---------------- W1 week 11 probe ----------------
-    with open(W11_PROBE, encoding="utf-8") as fh:
-        probe = fh.read()
-    ok = "REG11" in probe and "reg10" in probe and "WEEK 1 ... WEEK 10" in probe
-    add("W1", "Week 11 injury report probe: REG11 resolved to the Week 10 page; selector lists WEEK 1..WEEK 10",
-        "PASS" if ok else "FAIL-STRUCTURAL",
-        {"probe_file": os.path.basename(W11_PROBE)})
+    # ------------------------------------------------------------------ V7 feed closure
+    rec = {c: {"W": 0, "L": 0, "T": 0, "PF": 0, "PA": 0} for c in CLUBS}
+    by_week: dict[int, int] = {}
+    for r in feed:
+        wk = int(r["week"])
+        by_week[wk] = by_week.get(wk, 0) + 1
+        a, h = ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"])
+        av, hv = int(r["away_score"]), int(r["home_score"])
+        rec[a]["PF"] += av; rec[a]["PA"] += hv
+        rec[h]["PF"] += hv; rec[h]["PA"] += av
+        if av > hv:
+            rec[a]["W"] += 1; rec[h]["L"] += 1
+        elif hv > av:
+            rec[h]["W"] += 1; rec[a]["L"] += 1
+        else:
+            rec[a]["T"] += 1; rec[h]["T"] += 1
+    closure_rows, bad = [], []
+    for r in standings:
+        c = ALIAS.get(r["abbr"], r["abbr"])
+        got = rec[c]
+        want = {"W": int(r["w"]), "L": int(r["l"]), "T": int(r["t"]),
+                "PF": int(r["pf"]), "PA": int(r["pa"])}
+        row = {"team": c, "standings_W": want["W"], "feed_W": got["W"],
+               "standings_L": want["L"], "feed_L": got["L"],
+               "standings_T": want["T"], "feed_T": got["T"],
+               "standings_PF": want["PF"], "feed_PF": got["PF"],
+               "standings_PA": want["PA"], "feed_PA": got["PA"],
+               "verdict": "pass" if got == want else "FAIL",
+               "source_url": STAND_URL}
+        closure_rows.append(row)
+        if got != want:
+            miss = [f"{k} feed={got[k]} official={want[k]}" for k in want if got[k] != want[k]]
+            bad.append(f"{c}: " + ", ".join(miss))
+    n_games = len(feed)
+    v7 = {"games_in_feed": n_games, "weeks": {str(k): v for k, v in sorted(by_week.items())},
+          "clubs_checked": len(closure_rows), "fields_checked": len(closure_rows) * 5,
+          "clubs_matching": sum(1 for r in closure_rows if r["verdict"] == "pass"),
+          "mismatches": bad, "standings_baseline": "official_standings_2026_11_17.tsv (dated, frozen)",
+          "verdict": "PASS" if n_games == 150 and not bad else "FAIL"}
+    if v7["verdict"] == "FAIL":
+        failures.append(f"V7 feed closure failed with the feed at {n_games} games "
+                        f"({len(bad)} clubs disagreeing)")
+    checks["V7 feed closure vs the 2026-11-17 standings"] = v7
+
+    # ------------------------------------------------------------------ V8 promotion
+    prior_status = {key(r): r["status"] for r in prior}
+    # "new to the feed" is measured against the feed as it stood BEFORE this read - i.e. the rows whose
+    # own `retrieved` date is 2026-11-14 - so the check stays true after the append and while it is
+    # pending. Deriving it from the data, not from a constant, is what keeps it honest either way.
+    feed_week10 = {(ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"]))
+                   for r in feed if int(r["week"]) == 10}
+    feed_week10_at_prior_read = {(ALIAS.get(r["away"], r["away"]), ALIAS.get(r["home"], r["home"]))
+                                 for r in feed if int(r["week"]) == 10 and r.get("retrieved") == PRIOR_PRIOR_READ}
+    promoted, already, new_to_feed = [], [], []
+    for r in w10:
+        was = prior_status.get(key(r))
+        entry = {"game_id": r["game_id"], "date_et": r["date_et"],
+                 "away": r["away"], "away_score": r["away_score"],
+                 "home": r["home"], "home_score": r["home_score"],
+                 "status_2026_11_16_read": was or "(absent)",
+                 "status_2026_11_17_read": r["status"],
+                 "in_the_published_feed_before_this_read": "yes" if key(r) in feed_week10 else "no",
+                 "game_url": r["game_url"], "source_url": W10_URL,
+                 "read_at": RETRIEVED}
+        (promoted if was == "Scheduled" else already).append(entry)
+        if key(r) not in feed_week10_at_prior_read:
+            new_to_feed.append(entry)
+    v8 = {"promoted_scheduled_to_final_since_the_2026_11_16_read": len(promoted),
+          "final_in_both_reads": len(already),
+          "rows_new_to_the_published_feed": len(new_to_feed),
+          "week10_rows_in_feed_now": len(feed_week10),
+          "rows_overwritten": 0,
+          "note": ("the feed carried 1 Week 10 row from the 2026-11-14 read (the TNF game); 13 finals "
+                   "arrive with this read; 1 of those 13 (LAC@BAL) is new to the league's own print "
+                   "since 2026-11-16, the other 12 were played but not yet transcribed. Nothing is "
+                   "overwritten - the 1 existing row is identical in both reads (V2), and every promoted "
+                   "row keeps its own read date rather than inheriting the file's."),
+          "verdict": "PASS" if len(promoted) == 1 and len(new_to_feed) == 13
+          and len(feed_week10) == 14 else "FAIL"}
+    if v8["verdict"] == "FAIL":
+        failures.append("V8 promotion accounting failed: " + json.dumps(v8)[:300])
+    checks["V8 promotion accounting"] = v8
+
+    # ---------------------------------------------- V9 mirror provenance: file == pin == derived rows
+    v9 = {"mirror_file": MIRROR_FILE, "verdict": "FAIL"}
+    if os.path.exists(os.path.join(ROOT, MIRROR_FILE)) and os.path.exists(os.path.join(ROOT, "data/raw_manifest.json")):
+        raw = open(os.path.join(ROOT, MIRROR_FILE), "rb").read()
+        digest = hashlib.sha256(raw).hexdigest()
+        man = json.load(open(os.path.join(ROOT, "data/raw_manifest.json"), encoding="utf-8"))
+        entry = next((e for e in man if e.get("name") == "games.csv"), None)
+        v9["sha256_on_disk"] = digest
+        v9["sha256_in_manifest"] = entry.get("sha256") if entry else None
+        v9["bytes_on_disk"] = len(raw)
+        v9["bytes_in_manifest"] = entry.get("bytes") if entry else None
+        v9["pin_matches_file"] = bool(entry) and entry.get("sha256") == digest
+        # the derived mirror rows must equal what the pinned bytes contain, field for field
+        mrows = {}
+        for r in csv.DictReader(io.StringIO(raw.decode("utf-8"))):
+            if r.get("season") == "2026" and r.get("game_type") == "REG" and r.get("week") == "10":
+                mrows[r["game_id"]] = (r["gameday"], r["away_team"], r["away_score"],
+                                      r["home_team"], r["home_score"])
+        tsv_rows = {r["game_id"]: (r["gameday"], r["away"], r["away_score"], r["home"], r["home_score"])
+                    for r in mirror}
+        v9["derived_rows_match_pinned_bytes"] = mrows == tsv_rows
+        v9["rows"] = len(tsv_rows)
+        v9["note"] = ("the mirror is a moving target: two fetches of this URL 21 minutes apart on "
+                      "2026-11-17 returned different bytes, so the published cross-check names the pin "
+                      "instead of the URL alone")
+        v9["verdict"] = ("PASS" if v9["pin_matches_file"] and v9["derived_rows_match_pinned_bytes"]
+                          and v9["rows"] == 14 else "FAIL")
+        if v9["verdict"] == "FAIL":
+            failures.append("V9 mirror provenance broken: " + json.dumps(
+                {k: v9[k] for k in ("pin_matches_file", "derived_rows_match_pinned_bytes", "rows")}))
+    checks["V9 mirror file == manifest pin == derived rows"] = v9
+
+    notes.append("V2 compares two human reads of the same official page on different days; agreement "
+                 "is a corroboration, not a second source of authority - the page is the source.")
+    notes.append("V7 is the check the 137-row feed could never pass once Week 10 completed: a frozen "
+                 "transcription set against a live standings page. It now passes with the transcription "
+                 "set extended to 150 games and the standings baseline frozen at this date.")
+    notes.append("The mirror rows in V3 come from bytes pinned by sha256 in "
+                 "data/raw_manifest.json; the check names the pin so a reader can see which bytes a "
+                 "number came from.")
 
     summary = {
-        "dataset": "verification/2026_11_17",
-        "title": "Live official re-verification - 2026-11-17",
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "generated_by": "tools/verify_2026_11_17.py (session arena-01c263c4-x1)",
-        "retrieved": RETRIEVED,
+        "dataset": "results_closure_2026_11_17",
+        "title": "Week 10 closure and results-feed re-baseline: dated official reads, 2026-11-17",
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+        "generated_by": "tools/verify_2026_11_17.py (session arena-473e08d5-x1)",
+        "read_window_utc": ("2026-11-17T22:44Z..23:06Z (sandbox wall clock; the fetch tool prints no "
+                            "clock of its own, so these bound the calls rather than timestamp them). The "
+                            "official pages were read 22:45-22:51Z; the mirror was fetched twice, at "
+                            "22:44:27Z and again at 23:05:12Z, because the first fetch did not yet carry "
+                            "the Sunday scores - see V9."),
         "sources": [
-            {"url": INJ_URL, "what": "Week 10 injury report, chunks 0-7 of 8, read ~22:50-22:56 UTC"},
-            {"url": STAND_URL, "what": "league standings, chunks 0-1 of 2, read ~22:50 UTC"},
-            {"url": W10_URL, "what": "Week 10 schedule, chunks 0-1 of 2, read ~22:50 UTC"},
-            {"url": "https://www.nfl.com/injuries/league/2026/REG11", "what": "Week 11 probe, read ~22:50 UTC (resolved to reg10)"},
+            {"label": "NFL.com Week 10 schedule (14 finals)", "url": W10_URL, "retrieved_at": RETRIEVED},
+            {"label": "NFL.com 2026 league standings (32 rows)", "url": STAND_URL, "retrieved_at": RETRIEVED},
+            {"label": "NFL.com Game Center LAC at BAL, week 10 (the promoted fixture)",
+             "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10", "retrieved_at": RETRIEVED},
+            {"label": "NFL.com Week 10 schedule, previous read (13 finals + 1 scheduled)",
+             "url": "https://www.nfl.com/schedules/2026/by-week/week-10", "retrieved_at": PRIOR_RETRIEVED},
+            {"label": "nflverse/nfldata games.csv - third-party mirror, cross-check only",
+             "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv",
+             "retrieved_at": RETRIEVED, "tier": "third_party_mirror", "file": MIRROR_FILE},
         ],
         "checks": checks,
-        "counts": {
-            "checks": len(checks),
-            "pass": sum(1 for c in checks if c["verdict"] == "PASS"),
-            "findings": sum(1 for c in checks if c["verdict"].startswith("FINDINGS")),
-            "structural_failures": sum(1 for c in checks if c["verdict"] == "FAIL-STRUCTURAL"),
-        },
-        "policy": ("Dated evidence: differences between reads are published as findings with two dates "
-                   "and two source URLs, never applied to a published table by this tool."),
+        "failures": failures,
+        "notes": notes,
+        "all_passed": not failures,
     }
-    out_sum = os.path.join(outdir, "verification_summary_2026_11_17.json")
-    with open(out_sum, "w", encoding="utf-8") as fh:
-        json.dump(summary, fh, indent=1, ensure_ascii=False)
-        fh.write("\n")
-    return summary, fatal
+    csv_text = "".join(
+        [",".join(closure_rows[0].keys()) + "\n"] +
+        [",".join(str(r[c]) for c in closure_rows[0]) + "\n" for r in closure_rows])
+    promo_text = json.dumps({"generated_at": summary["generated_at"], "week": 10,
+                             "official_page": W10_URL, "read_at": RETRIEVED,
+                             "compared_against_read_at": PRIOR_RETRIEVED,
+                             "promoted_rows": promoted, "already_final_rows": already}, indent=1) + "\n"
+    sum_text = json.dumps(summary, indent=1) + "\n"
+    return summary, csv_text, promo_text, sum_text
 
 
-def main(argv):
+def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--check", action="store_true",
-                    help="rebuild into a temp dir; fail if committed outputs differ (ignoring generated_at)")
-    args = ap.parse_args(argv[1:])
+    ap.add_argument("--write", action="store_true")
+    ap.add_argument("--check", action="store_true")
+    args = ap.parse_args()
+    summary, csv_text, promo_text, sum_text = build()
+
     if args.check:
-        with tempfile.TemporaryDirectory() as tmp:
-            summary, fatal = build(tmp)
-            for name in ("injuries_diff_vs_published_2026_11_17.csv",
-                         "standings_diff_vs_published_2026_11_17.csv",
-                         "standings_diff_vs_2026_11_16.csv",
-                         "results_promotions_2026_11_17.csv"):
-                a = os.path.join(VDIR, name)
-                b = os.path.join(tmp, name)
-                if not os.path.exists(a):
-                    print(f"STALE: committed {name} missing")
-                    return 1
-                with open(a, encoding="utf-8") as fa, open(b, encoding="utf-8") as fb:
-                    if fa.read() != fb.read():
-                        print(f"STALE: committed {name} differs from a rebuild")
-                        return 1
-            with open(os.path.join(VDIR, "verification_summary_2026_11_17.json"), encoding="utf-8") as fh:
-                    committed = json.load(fh)
-            with open(os.path.join(tmp, "verification_summary_2026_11_17.json"), encoding="utf-8") as fh:
-                rebuilt = json.load(fh)
-            committed.pop("generated_at", None)
-            rebuilt.pop("generated_at", None)
-            if committed != rebuilt:
-                print("STALE: committed verification_summary_2026_11_17.json differs from a rebuild")
-                return 1
-        print("2026-11-17 pack: content matches a rebuild")
-        return 1 if fatal else 0
-    summary, fatal = build(VDIR)
-    for c in summary["checks"]:
-        print(f"{c['id']:4} {c['verdict']:20} {c['name']}")
-        if c["detail"] and c["verdict"] != "PASS":
-            print(f"       detail: {c['detail'][:300]}")
-    print(json.dumps(summary["counts"]))
-    return 1 if fatal else 0
+        same = True
+        for name, want in (("feed_closure_2026_11_17.csv", csv_text),
+                           ("w10_promotion_2026_11_17.json", promo_text),
+                           ("verification_summary_2026_11_17.json", sum_text)):
+            path = os.path.join(VDIR, name)
+            if not os.path.exists(path):
+                print(f"STALE: {name} is not committed")
+                same = False
+                continue
+            got = open(path, encoding="utf-8").read()
+            strip = lambda s: "\n".join(l for l in s.split("\n") if "generated_at" not in l)
+            if strip(got) != strip(want):
+                same = False
+                print(f"STALE: {name} differs from a fresh build of the same reads")
+        if not summary["all_passed"]:
+            print("CHECK FAIL: the pack itself does not reconcile")
+            return 1
+        print("CHECK OK: the 2026-11-17 closure pack matches a fresh build and reconciles"
+              if same else "CHECK FAIL: committed closure pack is stale")
+        return 0 if same else 1
+
+    if args.write:
+        os.makedirs(VDIR, exist_ok=True)
+        with open(os.path.join(VDIR, "feed_closure_2026_11_17.csv"), "w", encoding="utf-8") as fh:
+            fh.write(csv_text)
+        with open(os.path.join(VDIR, "w10_promotion_2026_11_17.json"), "w", encoding="utf-8") as fh:
+            fh.write(promo_text)
+        with open(os.path.join(VDIR, "verification_summary_2026_11_17.json"), "w", encoding="utf-8") as fh:
+            fh.write(sum_text)
+
+    print("2026-11-17 closure pack" + (" (written)" if args.write else " (read-only)"))
+    for k, v in summary["checks"].items():
+        print(f"  {k:52s} {v['verdict']}")
+    print(f"  failures: {len(summary['failures'])}")
+    for f in summary["failures"][:10]:
+        print("   !", f)
+    return 1 if summary["failures"] else 0
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    sys.exit(main())

@@ -40,7 +40,17 @@ SNAPSHOT = "2026-11-14"
 GEN = "2026-11-14"
 
 PSV = os.path.join(ROOT, "data", "verify", "raw", "nfl_scores_2026_official.psv")
-STANDINGS = os.path.join(ROOT, "data", "nfl", "standings.tsv")
+# The 2026-11-17 promotion overlay: 13 Week 10 fixtures the 2026-11-14 read printed SCHEDULED and
+# scoreless (correct then) are now printed Final. The overlay carries each score with its own read date,
+# so the point-in-time property survives: this feed never rewrites the older read, it joins to it.
+PROMOTIONS = os.path.join(ROOT, "data", "verify", "raw",
+                          "nfl_scores_2026_official_promotions_2026_11_17.psv")
+PROMO_READ = "2026-11-17"
+# A dated standings transcription, not a rolling file: "verified" is always relative to the date of the
+# page it was reconciled against (the Q-62 policy decision, 2026-11-17).
+STANDINGS = os.path.join(ROOT, "data", "verification", "2026_11_17",
+                         "official_standings_2026_11_17.tsv")
+STANDINGS_READ = "2026-11-17"
 GAMES_MIRROR = os.path.join(ROOT, "data", "raw", "nflverse", "games.csv")
 ORIGINATED = os.path.join(ROOT, "data", "lines", "originated_lines_2026_week10.csv")
 OUT = os.path.join(ROOT, "data", "results_feed.json")
@@ -56,8 +66,33 @@ def canon(code: str) -> str:
     return {"ARI": "AZ", "LA": "LAR"}.get(code, code)
 
 
+def read_promotions() -> dict:
+    out = {}
+    if not os.path.exists(PROMOTIONS):
+        return out
+    with open(PROMOTIONS, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split("|")
+            r = dict(zip(["game_id", "pack_game_id", "away", "away_score", "home", "home_score",
+                           "gameday", "status", "superseded_status", "superseded_away_score",
+                           "superseded_home_score", "read_at", "prior_read_at", "game_url",
+                           "week_url"], parts))
+            assert len(parts) == 15, f"bad promotion row: {line[:80]}"
+            if parts[0] == "game_id":
+                continue
+            if r["superseded_status"] == "FINAL":
+                raise AssertionError(f"{r['game_id']}: a row already FINAL on 2026-11-14 is in the "
+                                     "promotion file - nothing should be promoted twice")
+            out[r["game_id"]] = r
+    return out
+
+
 def read_psv() -> list[dict]:
     rows = []
+    promos = read_promotions()
     with open(PSV, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
@@ -77,24 +112,41 @@ def read_psv() -> list[dict]:
                 "status": status,
                 "game_url": gurl,
                 "week_url": wurl,
+                "read_at": SNAPSHOT,
+                "superseded_status": "",
+                "_promoted": False,
             })
+            g = rows[-1]
+            p = promos.get(g["game_id"])
+            if p and g["status"] != "FINAL":
+                # Promote in place, but keep the older read visible on the row: this is the
+                # point-in-time ledger, not an overwrite. `superseded_status` is what the official
+                # page printed on 2026-11-14, when a blank score was the correct value.
+                g.update({"away_score": int(p["away_score"]), "home_score": int(p["home_score"]),
+                          "status": p["status"], "read_at": PROMO_READ,
+                          "superseded_status": p["superseded_status"], "_promoted": True,
+                          "game_url": p["game_url"] or g["game_url"]})
     return rows
 
 
 def read_standings() -> dict:
-    out = {}
+    """The 32-row standings baseline, read by column NAME from the dated official transcription.
+
+    The 2026-11-14 file this replaced was read by column POSITION (p[5]..p[10]); a position-read is
+    exactly how a column shift turns into a wrong number, so the dated pack is a named-header TSV and is
+    read with csv. A missing or short row is now an error, not a silent skip.
+    """
+    import csv as _csv
+    import io as _io
     with open(STANDINGS, encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("#") or not line.strip():
-                continue
-            p = line.rstrip("\n").split("\t")
-            if len(p) < 18 or p[0] == "abbr":
-                continue
-            try:
-                out[canon(p[0])] = {"W": int(p[5]), "L": int(p[6]), "T": int(p[7]),
-                                    "PF": int(p[9]), "PA": int(p[10])}
-            except ValueError:
-                continue
+        lines = [ln for ln in f.read().split("\n")
+                 if ln.strip() and not ln.lstrip().startswith("#")]
+    out = {}
+    for r in _csv.DictReader(_io.StringIO("\n".join(lines)), delimiter="\t"):
+        out[canon(r["abbr"])] = {"W": int(r["w"]), "L": int(r["l"]), "T": int(r["t"]),
+                                 "PF": int(r["pf"]), "PA": int(r["pa"])}
+    if len(out) != 32:
+        raise AssertionError(f"standings baseline has {len(out)} clubs, expected 32")
     return out
 
 
@@ -124,8 +176,8 @@ def main() -> int:
 
     finals = [g for g in games if g["status"] == "FINAL"]
     scheduled = [g for g in games if g["status"] != "FINAL"]
-    assert len(finals) == 137, f"expected 137 finals, got {len(finals)}"
-    assert len(scheduled) == 13, f"expected 13 scheduled, got {len(scheduled)}"
+    assert len(finals) == 150, f"expected 150 finals (weeks 1-10 complete), got {len(finals)}"
+    assert len(scheduled) == 0, f"expected 0 unsettled Week 1-10 games, got {len(scheduled)}"
 
     # ------------------------------------------------ integrity: standings
     rec = defaultdict(lambda: {"W": 0, "L": 0, "T": 0, "PF": 0, "PA": 0})
@@ -239,6 +291,7 @@ def main() -> int:
         return 100.0 / abs(odds) if odds < 0 else odds / 100.0
 
     ml_rows = [r for r in settle_rows if r["market_type"] == "moneyline" and r["our_price"]]
+    n_games_settled = len({r["game_id"] for r in settle_rows})
     staked = float(len(ml_rows))  # flat 1-unit stakes
     profit = sum(
         (american_profit_per_unit(float(r["our_price"])) if r["outcome"] == "WIN" else
@@ -250,17 +303,21 @@ def main() -> int:
         "games_final": len(finals),
         "games_scheduled": len(scheduled),
         "markets_originated_and_settled": len(settle_rows),
+        "games_settled": n_games_settled,
         "wins": wins, "losses": losses, "pushes": pushes,
         "moneyline_legs_priced": len(ml_rows),
         "units_staked_at_our_prices": round(staked, 4),
         "units_profit_at_our_prices": round(profit, 4),
         "roi_at_our_prices": round(roi, 4) if roi is not None else None,
-        "roi_note": ("n = 1 graded game (Week 10 TNF). The ROI is arithmetically "
-                     "computable but statistically meaningless; no skill claim is "
-                     "made from it. Both sides of each originated number are "
-                     "settled for bookkeeping — a strategy bets only the legs a "
-                     "pre-registered rule selects. Spread and total legs have no "
-                     "originated price yet (price authority open — see decisions "
+        "roi_note": (f"n = {n_games_settled} graded game(s), {len(ml_rows)} priced moneyline legs, "
+                     f"{wins + losses + pushes} settled legs in total. The count is derived from the "
+                     "settlement rows rather than asserted in prose: when the results feed grew from "
+                     "137 games to 150, the originated Week 10 slate went from 1 settleable fixture to "
+                     f"{n_games_settled}, and a hand-written n would have been silently wrong. ROI is "
+                     "still arithmetically computable but statistically meaningless at this n; no skill "
+                     "claim is made from it. Both sides of each originated number are settled for "
+                     "bookkeeping — a strategy bets only the legs a pre-registered rule selects. Spread "
+                     "and total legs have no originated price yet (price authority open — see decisions "
                      "Q-31), so no ROI is computed for them. Never inferred."),
     }
 
@@ -278,7 +335,8 @@ def main() -> int:
             "_source_url": g["game_url"],
             "_source_label": f"NFL.com game page (Week {g['week']} schedule)",
             "_source_org": "NFL",
-            "_retrieved_at": SNAPSHOT,
+            "_retrieved_at": g["read_at"],
+            "_promoted_from_2026_11_14_read": g["superseded_status"] or "",
             "_flags": [] if g["status"] == "FINAL" else ["not played — result blank until the official page prints FINAL"],
             "_verified": True,
         })

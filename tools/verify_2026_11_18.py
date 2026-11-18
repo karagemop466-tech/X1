@@ -313,18 +313,21 @@ def main() -> int:
 
     # ---- B8 ------------------------------------------------------------------
     print("\nB8  no fixture printed Final is still 'SCHEDULED' in the feed")
-    by_id = {r["game_id"]: r for r in feed["rows"]}
+    # Join on the (week, away, home) team pair after alias normalisation, never on the
+    # game_id string: the official fixture IDs spell the Rams/Cardinals game LA_ARZ while the
+    # repository's older feeds spell it LA_ARI / LAR_ARI (flags I-15/I-16). A string-keyed join
+    # reports a phantom "absent from feed" for a game that is present and correct.
+    by_pair = {}
+    for r in feed["rows"]:
+        by_pair[(str(r.get("week")), canon(r["away"]), canon(r["home"]))] = r
     frozen = []
     for r in finals:
-        gid = r["game_id"]
-        cand = None
-        for k in (gid, gid.replace("ARZ", "ARI"), gid.replace("LA_", "LAR_")):
-            if k in by_id:
-                cand = by_id[k]; break
+        key = ("10", canon(r["away"]), canon(r["home"]))
+        cand = by_pair.get(key)
         if cand is None:
-            frozen.append((gid, "absent from feed"))
+            frozen.append((r["game_id"], "absent from feed"))
         elif cand.get("status") != "FINAL":
-            frozen.append((gid, f"feed status={cand.get('status')}"))
+            frozen.append((r["game_id"], f"feed status={cand.get('status')}"))
     rep.check("B8.1 all 14 official Week 10 finals are FINAL in the feed", not frozen,
               f"{len(frozen)} frozen: {frozen[:4]}")
 
