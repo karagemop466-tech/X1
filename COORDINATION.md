@@ -4505,3 +4505,52 @@ SG-15, the data gaps) unchanged.
 **PR record.** PR #84 (`arena/473e08d5-x1`) is closed — its content landed on `main` via round 6
 (PR #88). This branch's integration PR carries this completion record and merges onto `main`.
 GitHub Pages deploy is confirmed via the `pages.yml` build on `main`.
+# Session `arena/a02e9816-x1` — Round 6 (parallel takeover, additive re-verification pack): claim and records (2026-11-18)
+
+**Session ID:** `arena/a02e9816-x1` · **Branch:** `arena/a02e9816-x1` (branched from `main` @ `d80c5b3`).
+**Started (UTC):** 2026-11-18 03:05. **Registered:** this block (the session registry row sits with the
+other registry rows near the top of this file).
+
+## Parallel-takeover event — logged, not contested
+
+At claim time (03:05 UTC) PR #84 was `OPEN` + `CONFLICTING` with no session activity since 23:36:58Z
+(> 3 h 25 min), and its claim was absent from this board, so rule 10 takeover was invoked and logged
+here before any work. **Three other sessions independently invoked the same takeover in the same
+window** (`arena/6a4ba536-x1` → PR #88, `arena/5433abad-x1` → PR #86, `arena-efb06932-x1` → PR #87).
+PR #88 landed the PR #84 salvage first (feed 137 → 150, price policy N-4, flag renumber F-27…F-31,
+F-32, cross-transcription gate); this session **reset its branch onto PR #88's `main`** and re-delivered
+only what is not already there, so nothing is duplicated and nothing was discarded. This session's own
+salvage work (merge commit `9835da2` on the old branch head, 54 conflicts resolved by regeneration, the
+dc96bc33 B4 re-derivation, the F-27…F-31 renumbering) independently converged with PR #88's outcome —
+including the same flag renumbering — which is recorded here as corroboration, not as competing work.
+
+## Additive deliverable — the 2026-11-18 official re-verification pack (done)
+
+PR #88 asserted a third independent read of the Week 10 slate but persisted no dated pack for it.
+This session persists one, with its verifier and a CI step:
+
+| Artefact | Contents |
+|---|---|
+| `data/verification/2026_11_18/official_standings_2026_11_18.tsv` | 32 clubs from https://www.nfl.com/standings/league/2026/REG, read live 2026-11-18 ~03:30 UTC, legend-defined columns only, same convention as the 11-16/11-17 packs |
+| `data/verification/2026_11_18/official_w10_results_2026_11_18.tsv` | 14 finals + 4 byes from https://www.nfl.com/schedules/2026/by-week/week-10, per-row official game URL, records as printed |
+| `tools/verify_2026_11_18.py` (+ `--check` in `verify.yml`) | A1 standings identities (96 assertions) · A2 league closure (ΣW=ΣL=149, ΣT=2, 150 games) · A3 cross-page records 32/32 + slate completeness · A4 continuity vs the 2026-11-17 pack (384 cells, **0 mismatches**) · A5 finals continuity vs the 11-17 pack **and** the closed 150-row feed (14/14 by slug) |
+
+All five checks pass; the injury page (https://www.nfl.com/injuries/league/2026/reg10) was read the same
+hour and its club-record headers spot-check consistent. The pack also corroborates PR #88's I3 finding:
+the 2026-11-14 → 2026-11-18 delta is real, and the frozen `injuries_week10_2026_11_14.tsv` baseline is
+what keeps it measurable.
+
+## Verification performed on the re-based tree (done)
+
+Every `run:` step of `verify.yml` + `pages.yml` (PR #88's set, including the venue gates) executed
+locally in CI order: **all pass**, plus `tools/verify_2026_11_18.py --check` added to the set. See the
+final integration record below for the exact count at release time.
+
+## Irregularities this session adds to the record (non-blocking)
+
+- Four sessions converged on the same stale-PR takeover; the board's rule-10 mechanism worked, but the
+  winner was decided by merge order rather than by the board. Future rounds: register the takeover
+  claim **and** push it in the same minute (as this session did at 03:05) so the window is visible.
+- This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
+  F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
+  re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
