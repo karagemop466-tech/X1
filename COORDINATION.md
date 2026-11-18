@@ -4463,3 +4463,38 @@ one, its own rebase will see additive conflicts only.
 `data/lab/escrow/**` files rather than rewriting them. A third implementation of the same rule would be
 the duplicate the board's rule 2 forbids. This session verified PR-04's numbers instead — 13/13 fixtures
 and probabilities exact against the official 150-game corpus, 26/26 rest days.
+
+## PR record and release result — session `arena/6a4ba536-x1` (2026-11-18)
+
+* **PR #88** `arena/6a4ba536-x1` → `main`: **MERGED** 2026-11-18T03:27:04Z, merge commit
+  [`7761e0d`](https://github.com/karagemop466-tech/X1/commit/7761e0da3aed310ed1fc599921d0cc296d3289e7),
+  `gh pr merge --merge`, not `--auto`.
+* **CI on the final pre-merge head** (`74ef09c`): `verify-site` **success**, `Publish static site to
+  GitHub Pages` **success**, `injury-ledger` **success**. (A later bot commit `f08842e` on the same branch
+  is an append-only ledger capture — one `ledger.jsonl` line and one hashed raw HTML — and its runs sit at
+  `action_required` like every bot-triggered run this repository has seen; it changes no derived artefact.)
+* **Pages on `main` after the merge:** `verify-site` **success** (run 44230505750), `Publish static site to
+  GitHub Pages` **success** with build **and** deploy jobs green (run 44230505753),
+  `pages-build-deployment` **success**. Pages API reports `status: built` for commit `7761e0da` at
+  2026-11-18T03:27:05Z.
+* **Deployed-tree spot check** (read back from `main`, which is the tree Pages serves): `app/flagged.html`
+  carries the renumbered **F-30, F-31, F-32**; `pages/results-closure.html` carries 15 references to
+  F-29/F-31; and `data/results/results_feed_meta.json` now reports
+  `official_verified: 14, final: 2110, scheduled: 122` instead of the superseded `1 / 2097 / 135`.
+
+### What a reviewer should look at first
+
+1. `docs/audit/round6-findings.md` — every defect this round found, the fix, and what remains unverified.
+2. `data/results/results_feed_meta.json` C1–C5 — the five checks now standing between a metadata file and
+   the rows it describes.
+3. `tools/verify_2026_11_17_473e08d5.py` — the cross-transcription gate: two independent readings of one
+   official page, 384 + 98 cells, 0 mismatches.
+4. The **Flagged for Review** page for F-32 and the five renumbered F-27…F-31 items.
+
+### Open rows that do not block (unchanged by this round)
+
+X-09 (pinned feeds end at the Week-10 Thursday game — now partly overtaken, since the 13 remaining finals
+were promoted), X-11 (the repository setting "Allow GitHub Actions to create and approve pull requests"),
+SG-15, plus the standing data gaps: no official price source, no snap counts or inactive lists, Houston's
+depth chart is an image, and the Week 11 injury report has not been printed by the league as of this read
+(confirmed twice, 2026-11-17 and 2026-11-18).
