@@ -4573,3 +4573,14 @@ final integration record below for the exact count at release time.
   release tree and passed (55/55 including the build-side steps), so the tree is buildable; this
   docs-only follow-up commit re-triggers the pages-group runs to get a clean build signal before
   merge, per the owner's "do not merge a broken site" rule.
+
+### PR #90 merge result (recorded post-merge, docs-only follow-up)
+
+| Step | Result |
+|---|---|
+| Merge | PR #90 `arena/a02e9816-x1` → `main` **MERGED** 2026-11-18T03:43:34Z, merge commit [`775fa18`](https://github.com/karagemop466-tech/X1/commit/775fa18df) (merged by the app identity in the parallel-session window; recorded here on discovery) |
+| CI on the PR head | `verify-site` **success** (run 44232393001 — the full verifier suite); `Publish static site to GitHub Pages` on the PR was **cancelled** by the `group: pages, cancel-in-progress: true` concurrency (thrash documented by PRs #73/#79/#90-records), re-triggered by the follow-up commit, then **success** on `main` |
+| CI on `main` after merge | `verify-site` **success**; `Publish static site to GitHub Pages` **success**; `pages-build-deployment` **success** (run for `775fa18`) |
+| Pages API | `status: built` for `main` @ `775fa18`, https://karagemop466-tech.github.io/X1/ |
+| Local verification | 55/55 workflow `run:` steps green on the release tree, plus `verify_2026_11_18.py --check` (5/5 checks) |
+| Verdict | Site live and green; round 6 (this session's additive share: the 2026-11-18 persisted pack + verifier + CI gate + board records) is **done** |
