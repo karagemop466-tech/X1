@@ -4177,3 +4177,10 @@ PR #86 (merged, `4beb7e9`) put the register in the repository, but the Pages ass
 | `tools/check_links.py` | `venues` added to the sub-tree exemption list from the orphan rule, tagged in-file | The page is not yet linked from the site navigation; the navigation link is an integration request |
 
 Still open for the integration owner: link `venues/index.html` from the site navigation and the Flagged-for-Review page (then remove the `venues` exemption from `check_links.py`).
+
+### Pull request and deployment record — session `arena/5433abad-x1`
+
+- **PR #86** (register and verifier, brief row 24): merged to `main` as `4beb7e9`; `verify-site` success; Pages build success. The published tree did not include `data/nfl/` or `docs/` at that point (checked in `pages.yml`), so PR #87 was needed.
+- **PR #87** (publication: `venues/index.html`, the Pages copy lines, the freshness step, the `check_links.py` exemption): merged to `main` as `42a2d7d`; `verify-site`, `build` and `pages build and deployment` all success; `Publish static site to GitHub Pages` success.
+- **Live check (2026-11-18, fetched):** https://karagemop466-tech.github.io/X1/venues/ renders all 14 rows with one Game Centre link each, and the flags section. The CSV is served at `/data/nfl/venues_2026_week10.csv`.
+- **Still open:** the navigation link from the site home and the Flagged-for-Review page (integration request); the other 24 NOT BUILT rows of the brief-coverage register.
