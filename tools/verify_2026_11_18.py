@@ -18,6 +18,7 @@ Checks
   F  the probe file states a verdict for the week it probed
   G  both round-6 stores are exactly what their builders write (staleness), and the delta series
      passes its own eight-check gate
+  I  the landing page's nav counts match the registers they advertise (Q, SG and X entries)
 """
 from __future__ import annotations
 
@@ -283,6 +284,25 @@ def main() -> int:
                 fails.append(f"F: probe says {r['hours_from_probe_to_first_kickoff']} h to kickoff, "
                              f"recomputed {hours}")
     notes.append(f"F: {len(probe)} probe row(s); {hours} h from probe to the week's first kickoff")
+
+    # ---- I: the landing-page nav counts match the registers they advertise --
+    src_txt = open(os.path.join(ROOT, "src", "console", "content.py"), encoding="utf-8").read()
+    nav_txt = open(os.path.join(ROOT, "tools", "build_console.py"), encoding="utf-8").read()
+    want = {"Q": len(re.findall(r'dict\(id="Q-', src_txt)),
+            "SG": len(re.findall(r'dict\(id="SG-', src_txt)),
+            "X": len(re.findall(r'dict\(id="X-', src_txt))}
+    nav_pat = {"Q": r'\"questions\.html\", \"Decision register\", \"(\d+)\"',
+               "SG": r'\"suggestions\.html\", \"Suggestion review board\", \"(\d+)\"',
+               "X": r'\"flagged\.html\", \"Flagged for review\", \"(\d+)\"'}
+    for k, pat in nav_pat.items():
+        m = re.search(pat, nav_txt)
+        if not m:
+            fails.append(f"I: no count tag found on the {k} nav entry")
+        elif int(m.group(1)) != want[k]:
+            fails.append(f"I: the nav advertises {m.group(1)} {k}-entries while content.py holds "
+                         f"{want[k]} (the tag is static; update it with the register)")
+    notes.append(f"I: nav tags agree with the registers - {want['Q']} questions, {want['SG']} "
+                 f"suggestions, {want['X']} flags")
 
     # ---- G: staleness of both stores + the series gate ----------------------
     for cmd in (["python3", "tools/build_fixture_context.py", "--check"],
