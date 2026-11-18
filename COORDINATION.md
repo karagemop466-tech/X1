@@ -4137,3 +4137,15 @@ the Rams–Cardinals game, matched by alias-normalised matchup, never by label).
 
 *This record is the follow-up commit from the same branch (docs-only), per the branch's PR-record
 convention.*
+
+---
+
+## Claim — session `arena/5433abad-x1` (2026-11-18, branch `arena/5433abad-x1` from `d80c5b3`)
+
+Scope of this session, stated plainly: the 2026-11-18 owner brief has ~80 items. The repo's own register (`docs/audit/brief-coverage-2026-11-17.md`, 82 rows: 10 BUILT, 39 PARTIAL, 5 DEFINED, 25 NOT BUILT, 3 DECLINED) is the status source of truth. This session completes one NOT BUILT row end to end and makes no other status change.
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| VEN-1 | Brief row 24: transcribe the venue of each Week 10 fixture (14 games) from the official NFL Game Centre "Game Info" block, one link per row; flag non-matching labels | in progress | `arena/5433abad-x1` | `data/nfl/venues_2026_week10.csv` (new), `tools/verify_venues_w10.py` (new), `docs/audit/brief-coverage-2026-11-17.md` (row 24 only), `COORDINATION.md` (this record only) |
+
+Verification plan: every value is copied from a Game Centre page fetched with `fetch_page` on 2026-11-18; the verifier checks that each of the 14 schedule rows in `data/nfl/schedule_2026_week10.csv` has exactly one venue row, that every link is an official `nfl.com/games/...` URL, and that no venue is inferred.
