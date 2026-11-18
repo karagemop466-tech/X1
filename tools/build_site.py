@@ -2062,7 +2062,7 @@ def page_results_closure():
             # ref() returns a bare anchor (it is used inside other cells elsewhere in this file), so it
             # needs its own <td> here - without one the column silently disappears and the row loses its
             # source cell.
-            f'<td>{ref("tools/verify_2026_11_17.py", "verifier")}</td>',
+            f'<td>{ref("tools/verify_2026_11_17_closure_473e08d5.py", "verifier")}</td>',
         ])
 
     grows = []
@@ -2143,13 +2143,13 @@ def page_results_closure():
   <div class="statrow">
     {stat(n_final, "Week 10 fixtures printed Final", f"{len(CLOSEW10)} read on " + CLOSEREAD_17)}
     {stat(n_assert, "feed-closure assertions", "32 clubs &times; W, L, T, PF, PA")}
-    {stat(f"{n_pass}/{n_checks}", "closure checks passing", "tools/verify_2026_11_17.py")}
+    {stat(f"{n_pass}/{n_checks}", "closure checks passing", "tools/verify_2026_11_17_closure_473e08d5.py")}
     {stat(n_promo, "row promoted scheduled &rarr; final", "the Monday-night game, unread a day later")}
   </div>
   <div class="note"><b>Why this is a page and not just a commit.</b> A feed that grows silently is a feed
   nobody can audit, and the count of verified games is the claim every backtest rests on. Every row below
   comes from <code>data/verification/2026_11_17/</code>, and
-  <code>python3 tools/verify_2026_11_17.py --check</code> re-derives this page's inputs from the
+  <code>python3 tools/verify_2026_11_17_closure_473e08d5.py --check</code> re-derives this page's inputs from the
   transcription and fails if they stop agreeing &mdash; it runs in CI, so the closure cannot drift.</div>
   {table(["Fixture", "Date", "Final score (club records as printed)", "Status", "Kickoff time", "Network", "Venue", "Note", "Source"],
          grows, f"Week 10 as the official page printed it on {CLOSEREAD_17}: 14 fixtures, no blank invented", "wide", True)}
@@ -2174,12 +2174,12 @@ def page_results_closure():
     reads only the verbatim anchor captures, and inventing newer anchors would destroy the property those
     files exist to have.</li>
     <li>Published ROI still describes 137 modelled games, because the pipeline's model lines stop there
-    (flag <code>F-29</code>). The grader now names the feed file it used on every row.</li>
+    (flag <code>F-29</code>, renumbered from PR #84's F-24 at integration). The grader now names the feed file it used on every row.</li>
   </ul></div>
   <div class="note"><b>How to reproduce the whole closure.</b> <code>python3
   tools/promote_week10_2026_11_17.py --check</code> proves the appended rows still derive from this pack
   and that a re-run is a no-op; <code>python3 tools/build_results_r3.py</code> rebuilds the 150-game feed
-  and its standings arithmetic; <code>python3 tools/verify_2026_11_17.py</code> prints the nine checks.</div>
+  and its standings arithmetic; <code>python3 tools/verify_2026_11_17_closure_473e08d5.py</code> prints the nine checks.</div>
 </section>
 '''
     return shell("Week 10 closure", f"READ {CLOSEREAD_17} &middot; FEED 150 GAMES", body, depth=1)
@@ -2909,8 +2909,9 @@ def page_verification_2026_11_17():
     ]
 
     finding_rows = [
-        ['<td><b>F-22</b></td>', '<td><b>The published 2026-11-14 injury table is stale.</b></td>',
-         cell(f'+{PK17["I3"]["counts"]["rows_added"]} rows (BAL: Calais Campbell, Ronnie Stanley) and {PK17["I3"]["counts"]["cells_changed"]} cells changed across 16 rows (BAL 4, IND 2, LAC 26); the whole delta appeared between 2026-11-14T17:02Z and 2026-11-15T18:14Z and has not moved since'),
+        ['<td><b>F-22</b> <span class="pill muted-pill">resolved at source</span></td>',
+         '<td><b>The published injury table was stale against the official page; the published table has since been refreshed.</b></td>',
+         cell(f'Against the 2026-11-14 snapshot (345 rows) the 2026-11-17 official read differed by 2 rows (BAL: Calais Campbell, Ronnie Stanley) and 32 cells across 16 rows (BAL 4, IND 2, LAC 26). data/nfl/injuries_week10.tsv now holds the refreshed 347-row table (retrieved 2026-11-15), so this pack\'s diff of the CURRENT published table against the same official read measures {PK17["I3"]["counts"]["rows_added"]} added rows and {PK17["I3"]["counts"]["cells_changed"]} changed cells &mdash; agreeing with tools/verify_against_official.py (1,846 cells, 0 mismatches). Both numbers are dated; neither was edited.'),
          src_cell(repo_blob("data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv"), "row-by-row diff &#8599;"),
          src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
         ['<td><b>F-23</b></td>', '<td><b>The published 2026-11-14 standings are stale now that Week 10 has closed.</b></td>',
@@ -2978,9 +2979,11 @@ def page_verification_2026_11_17():
   {table(["Gate", "Comparison", "Verdict and counts", "Artifact"], gate_rows,
          "tools/verify_2026_11_17.py — a disagreement fails the pack, it never edits a published table", "wide", True)}
   <div class="note"><b>Two unit notes, so the numbers cannot be mistaken for each other.</b>
-  (1) PR #73's headline &ldquo;16 cells that differ&rdquo; counts <i>changed rows</i> (15 in LAC@BAL + Arden Key);
-  counted cell by cell the same evidence is <b>{PK17["I3"]["counts"]["cells_changed"]} cells</b> — the row-level
-  lists are identical. (2) This pack's {PK17["S6"]["counts"]["field_changes"]} standing-field delta covers seven
+  (1) The injury delta is measured against whatever <code>data/nfl/injuries_week10.tsv</code> holds when the
+  pack runs: against the 2026-11-14 snapshot PR #73's headline &ldquo;16 rows that differ&rdquo; counted 32
+  changed cells row by row; since the published table was refreshed (347 rows, retrieved 2026-11-15) the same
+  gate measures <b>{PK17["I3"]["counts"]["cells_changed"]} changed cells</b> and
+  <b>{PK17["I3"]["counts"]["rows_added"]} added rows</b> &mdash; 0 and 0 today, both numbers dated, neither edited. (2) This pack's {PK17["S6"]["counts"]["field_changes"]} standing-field delta covers seven
   fields (w, l, t, pct, pf, pa, streak); PR #76's sixteen-field view of the same page reports 262 of 512 cells.
   Both count <b>26 affected clubs</b> — the subsets differ, the finding is the same: the snapshot is dated and
   the games have been played. <a href="https://github.com/karagemop466-tech/X1/pull/73" target="_blank" rel="noopener noreferrer">PR #73 &#8599;</a>

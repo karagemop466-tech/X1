@@ -1,7 +1,7 @@
 {
  "dataset": "verification/2026_11_17",
  "title": "Live official re-verification - 2026-11-17",
- "generated_at": "2026-11-18T03:12:35Z",
+ "generated_at": "2026-11-18T04:12:28Z",
  "generated_by": "tools/verify_2026_11_17.py (session arena-01c263c4-x1)",
  "retrieved": "2026-11-17",
  "sources": [

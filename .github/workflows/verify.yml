@@ -208,7 +208,6 @@ jobs:
       - name: The dated official pack still closes
         run: python3 tools/verify_2026_11_16.py --check
 
-
       # Added by session arena-9d8c298c-x1 (additive only). The 2026-11-17 official reads pack, the
       # PR-04 Week 11 escrow and the feed-closure measurement each rebuild from their inputs and have to
       # reproduce: the reads checks (slate completeness, the standings page's own identities, records
@@ -235,7 +234,14 @@ jobs:
       # feed is reconciled against, the mirror cross-check, and the 150-game arithmetic that must reproduce
       # W-L-T/PF/PA for all 32 clubs. `--check` also fails if the committed pack stops matching a fresh
       # build of the same reads, so the closure cannot drift from its evidence.
+      # Path note (round-6 integration): two sessions shipped different tools at
+      # tools/verify_2026_11_17_473e08d5.py — arena-473e08d5-x1's closure pack (via PR #84) and
+      # arena/6a4ba536-x1's read cross-compare (via PR #88). The cross-compare keeps the shared
+      # path main's CI already runs; the closure pack is re-homed, unchanged, under _closure_.
       - name: The Week 10 closure still reconciles
+        run: python3 tools/verify_2026_11_17_closure_473e08d5.py --check
+
+      - name: The canonical 2026-11-17 pack still closes
         run: python3 tools/verify_2026_11_17.py --check
 
       # Added by session arena/6a4ba536-x1 (round 6, additive only). Two sessions read the same

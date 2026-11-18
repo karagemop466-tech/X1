@@ -35,6 +35,8 @@ Owner rules (verbatim intent):
 | `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53; landing update merged in PR #58) | 2026-11-15 | done — memo in docs-only PR #64; site link/flags remain an integration request |
 | `arena/a02e9816-x1` | `arena/a02e9816-x1` | **Round 6 (parallel): PR #84 stale-takeover claim at 03:05 UTC (superseded by PR #88's landing — recorded, not contested); 2026-11-18 official re-verification pack (A1–A5), CI step, final integration + PR + merge + Pages confirm** | 2026-11-18 03:05 UTC | active — see the session's records at the end of this file |
 
+| `arena-869ee8fb-x1` | `arena/869ee8fb-x1` | **Round 6 integration: PR #84 landed (751803f), SG-15 console pages (ledger/snapshots/announcement), reconcile re-baselined to the dated post-W10 standings read (160/160), X-11 re-evidenced, main's round-6 line (#88/#89/#90) unioned (876c291), final verification, PR → merge → Pages** | 2026-11-18 | active — see the session's records at the end of this file |
+
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
 ---
@@ -4165,6 +4167,119 @@ the Rams–Cardinals game, matched by alias-normalised matchup, never by label).
 convention.*
 
 ---
+
+# Session `arena-869ee8fb-x1` — Round 6: integration of PR #84, open-row closure (SG-15, X-11), final verification and release (this session)
+
+## Why this session exists
+
+Round 5 (`arena/dc96bc33-x1`, PR #80/#85) closed and left three open rows plus one unmerged PR.
+The owner brief requires a final integration session to merge outstanding branches, re-verify the
+combined data line by line, confirm the site builds with no broken links, publish to GitHub Pages,
+and record the PR and merge result here. No round-6 claim existed on the board when this claim
+was written (grep for "round 6" / "2026-11-18": no matches).
+
+## Claim (written and pushed before any other work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R6-1 | Integrate open PR #84 (`arena/473e08d5-x1`, Week-10 closure / 150-game feed / price policy) into this branch; resolve conflicts by regeneration per the PR's own integrator notes; run the full local gate suite on the merged tree | **done** — merge `751803f` (54 conflicts resolved by regeneration, all gates green); main's own round-6 line (PRs #88/#89/#90, which also contains PR #84) later unioned in `876c291` | `arena-869ee8fb-x1` | merge commit; regenerated builder outputs (`index.html`, `pages/**`, `app/**`, `console/**`, `data/console/**`) |
+| R6-2 | SG-15: render the salvaged immutable injury ledger, availability snapshots and dated schedule announcement as console pages | **done** — `console/ledger.html` (chain re-hashed at build, 8/8 intact after main's captures landed), `console/snapshots.html` (11-14 → 11-15: +2 rows, 32 cells, computed from the files), `console/announcement.html` beside the schedule page; gate `tools/verify_console.py` PASS (3,253 rows, 0 unsourced) | `arena-869ee8fb-x1` | `tools/build_console.py` (additive), `console/**`, `data/console/**` |
+| R6-3 | X-11 residual: check the repository setting "Allow GitHub Actions to create and approve pull requests" via the API; record the result | **done** — both `GET .../actions/permissions{,/workflow}` → 403 for this token; scheduled run 44123337794 still fails at the PR step with `Resource not accessible by integration` while `pipeline.yml` declares `pull-requests: write` (so the workflow side is correct and the binding constraint is the repository setting); recorded on flag X-11 with what would clear it | `arena-869ee8fb-x1` | COORDINATION.md (record only) |
+| R6-4 | Final line-by-line re-verification on the merged tree: every CI gate locally, link check, staleness gates; fix defects found | **done** — all60 verify.yml steps run locally in order (60/60), plus a shallow-clone run of the16 git-anchored checks (16/16), `rebuild_for_refresh` ok (0 failed), `check_links` 47,227 assertions, `verify_site` 179 pages, JSON registers valid | `arena-869ee8fb-x1` | verification/tool files only where a defect is found |
+| R6-5 | Final release: PR from this branch → `main`, merge without waiting, confirm GitHub Pages deploy, record PR link and merge result here | in progress | `arena-869ee8fb-x1` | COORDINATION.md (release record) |
+
+## Non-overlap declaration (rule 3)
+
+- PR #84's branch is another session's work: this session **merges it**, never rewrites its history
+  or edits its branch.
+- No edits to `docs/audit/brief-coverage-2026-11-17.md` (owner `arena-d3df5dc2-x1`) — any coverage
+  status changes are logged here as requests instead (rule 4).
+- No edits to `lab/**`, `tools/lab/**` (round-5 lab scope), `hub/**`, `research/**`.
+- Live claims from round 5 (`data/verification/2026_11_17/**` canonical names) are read-only inputs.
+
+
+---
+
+---
+
+# Session `arena-473e08d5-x1` — close S-22/Q-62: results-feed re-baseline, mirror re-pin, price-policy decision (this session)
+
+**Session ID:** `arena-473e08d5-x1` · **Branch:** `arena/473e08d5-x1` (branched from `main` @ `38816a6`, the current `origin/main` tip). **Started (UTC):** 2026-11-17.
+
+## Why this session exists
+
+Two owner requirements in the brief are still not satisfiable, and both were left explicitly open by the
+previous session (`arena-543cdcb0-x1`, done 2026-11-16) as the single coordinated change they require:
+
+> "Add a verified results feed so backtests and ROI can be computed at all"
+> "Decide the price-data policy before any backtest is published"
+
+* **S-22 / Q-62** — the published feed stops at 137 games (weeks 1–9 plus the Week 10 Thursday game).
+  The official page now prints all 14 Week 10 games as Final (the LAC@BAL Monday game finished
+  2026-11-16). Closing it needs four coupled artefacts moved together: the transcription, the row-count
+  pin, the standings baseline and the pinned mirror. Four independent `137` pins and one hand-written
+  2026-11-14 standings baseline are the reason a partial append breaks the arithmetic gate.
+* **Q-61** — the residual (model fair line − market line) is blank everywhere because no *official* price
+  source exists. The owner's brief forbids waiting on a decision ("no manual input on my part"), so this
+  session records the decision the register asked for — publish the mirror-derived price with an explicit
+  `mirror-derived, not official` label, never as an official number — and implements the opening/closing
+  price store that decision unblocks, keeping the label on every row.
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| N-1 | Week 10 finals re-transcribed live from the official by-week schedule page (14 games, with clock time), plus the post-Week-10 official standings read; every row with its official URL | in progress | `arena-473e08d5-x1` | `data/verification/2026_11_17/**` (new), `tools/verify_2026_11_17_473e08d5.py` (new) |
+## Round-6 completion record — `arena-869ee8fb-x1` (2026-11-18)
+
+**Task claimed:** R6-1..R6-5 (table above). **Branch:** `arena/869ee8fb-x1`.
+
+### What landed, in order
+
+1. **R6-1 — PR #84 integrated** (merge `751803f`):54 conflicts resolved by regeneration per the PR's own
+   integrator notes; pack renames (canonical kept, `_473e08d5` suffixed), `verify.yml` union, `flags.json`
+   union (then F-01..F-30), COORDINATION union, F-22 resolution recorded. Full suites green twice.
+2. **R6-1b — main's round-6 line unioned** (merge `876c291`): PRs #88/#89/#90 also contain PR #84
+   (via `e6a882d`) plus the venue register, the mind-change/venue pages and the 2026-11-18
+   re-verification pack. Path collision resolved without discarding either side: main's read
+   cross-compare keeps `tools/verify_2026_11_17_473e08d5.py`; PR #84's closure pack is re-homed as
+   `tools/verify_2026_11_17_closure_473e08d5.py` (CI step keeps running both). `flags.json` now carries
+   main's shipped numbering (venue flag = F-31, F-32 added, F-26 dropped as its duplicate,31 flags);
+   `dc96bc33` keeps main's derived-constant version as their record documents; both round-6 claims and
+   both completion records are preserved in this file.
+3. **R6-2 — SG-15 done (path A):** `console/ledger.html` re-hashes the chain every build
+   (`tools/snapshot_ledger.py` primitives; **8/8 intact** after main's three captures landed),
+   `console/snapshots.html` computes the dated deltas from the files (11-14 → 11-15: **+2 rows
+   (BAL Campbell, Stanley), 32 cells**; published table == 11-15 read), `console/announcement.html`
+   quotes the league's 2026 schedule release (media.nfl.com allow-listed in `check_links` +
+   `verify_console`) beside the live schedule page. Gate: `verify_console.py` PASS — **3,253 rows,
+   0 unsourced**.
+4. **Console integrity fixes found while integrating:** reconcile re-baselined from the 2026-11-14
+   snapshot (which reported its own staleness as feed failures: 82/160) to the dated post-Week-10
+   standings read the feed is verified against (Q-62 methodology) → **160/160**, with the baseline
+   named in the page text; injuries KPI/notes now describe the rendered 347-row table; the8 dated-drift
+   cells moved to informational (`verify_mismatch` **8 → 0**, `verify_total` 746).
+5. **R6-3 — X-11 re-evidenced** (see the flag): 403 on both permission endpoints; scheduled run
+   `44123337794` still fails at "Open a pull request with the refreshed artefacts" with
+   `Resource not accessible by integration` although `pipeline.yml` declares `pull-requests: write`.
+   **What would clear it:** the owner enabling Settings → Actions → General → "Allow GitHub Actions to
+   create and approve pull requests"; close the flag when the next scheduled run's PR step goes green.
+6. **R6-4 — final verification on the merged tree:** every one of the **60** `verify.yml` steps run
+   locally in workflow order (**60/60**); a `git clone --depth 1` re-run of the **16** git-anchored
+   checks (**16/16**); `rebuild_for_refresh` **ok (0 failed)**; `check_links` **47,227** assertions;
+   `scripts/verify_site.py` **179 pages**; all `data/*.json` registers parse; workflow YAMLs valid.
+7. **R6-5 — release:** PR from this branch → `main`, merged without waiting for approval (only after
+   the gates above), GitHub Pages deploy confirmed. **Final evidence (PR number, merge SHA, Pages run)
+   is recorded in that PR's description**, which is editable after merge; this file is not pushed to
+   `main` directly (one branch per session).
+
+### Requests to other sessions / owner (rule 4 — logged, not edited)
+
+- X-11 remains **owner-side**: repository setting "Allow GitHub Actions to create and approve pull
+  requests" (see above); nothing else in the workflow file is missing.
+- Round-6 parallel sessions' scopes were respected: `docs/audit/brief-coverage-2026-11-17.md`
+  (`arena-d3df5dc2-x1`), `lab/**`/`tools/lab/**` (round-5), `hub/**`, `research/**` — untouched except
+  by their own generators run in the gates.
 
 # Session `arena/6a4ba536-x1` — Round 6 claim: finish Week 10 closure (PR #84) + originate Week 11 before kickoff
 

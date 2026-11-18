@@ -1,7 +1,7 @@
 {
  "dataset": "shadow_baseline_PR-01",
  "title": "PR-01 singles-only shadow baseline: pre-registered rule, walk-forward score, and the pre-kickoff record",
- "generated_at": "2026-11-18T03:08:46Z",
+ "generated_at": "2026-11-18T04:12:28Z",
  "generated_by": "tools/build_shadow_baseline.py (session arena-543cdcb0-x1)",
  "registration": {
   "rule_file": "docs/preregistration/PR-01-shadow-baseline.md",
@@ -3700,7 +3700,7 @@
   }
  ],
  "forward": {
-  "recorded_at_utc": "2026-11-18T03:08:46Z",
+  "recorded_at_utc": "2026-11-18T04:12:28Z",
   "games_recorded": 14,
   "content_sha256": "6ed2ac9e042535a609fef93e3cccb7e0c4b480d0d0d0d96abe60a5bcfa17870a",
   "immutability": "the CSV is written once and never rewritten; a later run that would change a forecast number leaves the record alone and reports the drift below (the recorded clock is excluded from the fingerprint)",

@@ -30,6 +30,10 @@ APPROVED = {
     # static.www.nfl.com serves the official NFL Game Book PDFs (added for the verified
     # results feed; already in RESEARCH_APPROVED below for the same reason).
     "static.www.nfl.com",
+    # media.nfl.com is the league's own newsroom (NFL Football Communications) — the
+    # console's schedule-announcement page quotes its official release (session
+    # arena-869ee8fb-x1, round 6 SG-15; already in RESEARCH_APPROVED below).
+    "media.nfl.com",
 }
 # The research tree cites the league's document and tracking hosts as well.
 RESEARCH_APPROVED = {

@@ -5,7 +5,7 @@ read. Session arena-473e08d5-x1, closing S-22 / Q-62.
 Why a generator and not a hand edit
 -----------------------------------
 The Week 10 finals were transcribed ONCE, by hand, from the official page, into
-`data/verification/2026_11_17/official_w10_results_2026_11_17.tsv`. This tool derives every downstream
+`data/verification/2026_11_17/official_w10_results_2026_11_17_473e08d5.tsv`. This tool derives every downstream
 append from that one transcription, so three copies of the same number cannot disagree by typing. It is
 idempotent: run it again and it writes nothing new.
 
@@ -90,7 +90,7 @@ def main() -> int:
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
 
-    pack = read_tsv(os.path.join(PACK, "official_w10_results_2026_11_17.tsv"))
+    pack = read_tsv(os.path.join(PACK, "official_w10_results_2026_11_17_473e08d5.tsv"))
     if len(pack) != 14:
         raise SystemExit(f"ABORT: the 2026-11-17 pack has {len(pack)} rows, expected 14")
     finals = [r for r in pack if r["status"] == "Final"]

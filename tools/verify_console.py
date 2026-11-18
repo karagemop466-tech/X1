@@ -30,6 +30,10 @@ DATA = os.path.join(ROOT, "data", "console")
 ALLOWED_HOSTS = {
     "www.nfl.com", "nfl.com", "operations.nfl.com", "www.nflfootballops.com",
     "github.com", "raw.githubusercontent.com", "api.github.com",
+    # Added by session arena-869ee8fb-x1 (round 6): NFL Football Communications is the
+    # league's own publisher — the schedule-announcement page quotes media.nfl.com
+    # (already allow-listed in tools/check_links.py). Official or it does not ship.
+    "media.nfl.com",
 }
 CLUB_HOSTS = set()
 _club = os.path.join(ROOT, "data", "verify", "official_club_sites_2026.psv")

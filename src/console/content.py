@@ -539,7 +539,10 @@ def suggestions():
                       unlocks="Nothing new."),
              ],
              recommendation="Path A. The owner's brief explicitly asks for the dated history to be published, and every artifact already passes its verifier.",
-             decision_status="proposed"),
+             decision_status=("done 2026-11-18 (path A) — console/ledger.html re-hashes the chain "
+                              "at every build, console/snapshots.html computes the 11-14 vs "
+                              "11-15 deltas from the files, console/announcement.html sits beside "
+                              "the schedule page; gate tools/verify_console.py")),
     ]
 
 
@@ -613,9 +616,12 @@ def irregularities(ctx):
                      "re-published to the 2026-11-15 read (345 &rarr; 347 rows) and the "
                      "11-14 &rarr; 11-15 delta (32 cells, 2 added rows) is published as a "
                      "dated delta. The PRs' page wiring was not salvaged (it predates later "
-                     "generator changes); rendering it is SG-15."),
+                     "generator changes); rendering it was SG-15 (completed 2026-11-18)."),
              source="https://github.com/karagemop466-tech/X1/pull/50",
-             status="salvaged and verified 2026-11-17; PRs closed with handoff notes"),
+             status=("salvaged and verified 2026-11-17; PRs closed with handoff notes; the "
+                     "page wiring landed 2026-11-18 as SG-15 (console/ledger.html, "
+                     "console/snapshots.html, console/announcement.html via "
+                     "tools/build_console.py build_pages_sg15, gate tools/verify_console.py"),),
         dict(id="X-11", severity="amber", area="Automation",
              finding=("The scheduled 'Refresh research data' workflow failed at its final step "
                       "with 'Resource not accessible by integration': the workflow granted the "
@@ -628,7 +634,15 @@ def irregularities(ctx):
                      "disabled, the fix alone will not suffice - the owner should confirm that "
                      "setting, which this session's token cannot read."),
              source="https://github.com/karagemop466-tech/X1/actions/runs/44123337794",
-             status="fixed in this repository; one owner check remains"),
+             status=("fixed in the workflow; one repository setting remains (owner-only) — "
+                     "re-evidenced 2026-11-18 by session arena-869ee8fb-x1: pipeline.yml on main "
+                     "declares contents: write and pull-requests: write, the pipeline and rebuild "
+                     "steps pass, yet scheduled run 44123337794 still fails at 'Open a pull "
+                     "request with the refreshed artefacts' with 'Resource not accessible by "
+                     "integration', and GET /repos/.../actions/permissions returns 403 for this "
+                     "token. What would clear it: the owner enabling Settings > Actions > "
+                     "General > 'Allow GitHub Actions to create and approve pull requests'; close "
+                     "this flag when the next scheduled run's PR step goes green.")),
         dict(id="X-12", severity="grey", area="Programme",
              finding=("The brief-to-repo coverage register (82 rows, one per numbered item of the "
                       "owner brief) records what is built, partial, defined, not built or declined, "
