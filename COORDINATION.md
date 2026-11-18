@@ -33,6 +33,7 @@ Owner rules (verbatim intent):
 
 | `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
 | `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53; landing update merged in PR #58) | 2026-11-15 | done — memo in docs-only PR #64; site link/flags remain an integration request |
+| `arena/a02e9816-x1` | `arena/a02e9816-x1` | **Round 6 (parallel): PR #84 stale-takeover claim at 03:05 UTC (superseded by PR #88's landing — recorded, not contested); 2026-11-18 official re-verification pack (A1–A5), CI step, final integration + PR + merge + Pages confirm** | 2026-11-18 03:05 UTC | active — see the session's records at the end of this file |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
