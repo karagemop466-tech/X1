@@ -4163,3 +4163,48 @@ Verification plan: every value is copied from a Game Centre page fetched with `f
   4. Scope: Week 10 only; 258 fixtures untranscribed.
 - **Requests to the integration owner (logged, not actioned):** (a) link `docs/audit/venues-week10.md` from the site's Week 10 schedule page and the Flagged-for-Review page; (b) fill or reconcile schedule-CSV `venue_note` and `result` from `data/nfl/venues_2026_week10.csv`; (c) add the label difference in item 1 to the Flagged-for-Review page with its two source links.
 - **Not done in this session (the rest of the brief is still open):** the other 24 NOT BUILT rows, including the per-team view, snap counts, inactive lists, reserve list, roof/weather overlay, season split, and the 136-game corpus. These need sources or decisions that this session did not have, and each stays in the register with its gap.
+
+---
+
+# Session `arena-55c364b6-x1` — Round 6: Week 11 opening-of-week capture, fixture-context features, pre-kickoff forecast escrow (this branch)
+
+## Why this session exists
+
+Today is Wednesday 2026-11-18: the day the league posts the **first** Week 11 injury report, and the
+day before Week 11 kicks off. Four register rows the site has been carrying as blocked for five
+rounds are unblocked *by date* rather than by engineering — R-52 (Wed/Thu/Fri dated reads), R-59
+(weekly "what changed" diff), R-45 (point-in-time pre-kickoff capture id), R-15/R-24 (fixture
+context and venue from published schedule facts). A shadow forecast for Week 11 can only be frozen
+before kickoff; after Thursday it is a backtest, which the brief forbids on the leaderboard.
+
+## Claim (written and pushed before any other work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R6-1 | Dated, hashed, row-level read of the official Week 11 injury report (first read of the series), plus the delta panel and the pre-kickoff capture id | in progress | `arena-55c364b6-x1` | `data/verification/2026_11_18/**` (new), `tools/verify_2026_11_18.py` (new) |
+| R6-2 | Fixture-context feature set built only from published schedule facts (kickoff, day, rest days, venue label, network, bye) for the Week 11 slate and the Week 10 corpus | in progress | `arena-55c364b6-x1` | `data/fixtures/**` (new), `tools/build_fixture_context.py` (new) |
+| R6-3 | Week 11 pre-kickoff shadow forecast escrow under the frozen PR-01 rule (no leaderboard number) | in progress | `arena-55c364b6-x1` | `data/lab/escrow_2026_w11.csv` (new), `docs/preregistration/ESCROW-W11.md` (new) |
+| R6-4 | Publication: one console page for the 2026-11-18 pack, readiness/suggestion/question register appends, small additive generator edits | in progress | `arena-55c364b6-x1` | `console/verification-2026-11-18.html` (new), `tools/build_console.py` (NAV + copy line only), `tools/official/readiness.py` (rows R-15/R-24/R-29/R-45/R-52/R-59 only), `data/audit/suggestion_board.json` + `data/audit/decision_questions.json` (appended rows), `data/flags.json` (appended rows) |
+| R6-5 | Integration: regenerate, run every CI verifier locally, PR to main, merge, confirm Pages | pending | `arena-55c364b6-x1` | shared outputs, regenerated only |
+
+## Non-overlap declaration
+
+- `data/verification/2026_11_18/` is a new dated namespace; the 2026-11-15/16/17 packs of sessions
+  `arena-01c263c4-x1`, `arena/dc96bc33-x1` and `arena-9d8c298c-x1` are read-only inputs here, never
+  edited. `tools/verify_2026_11_18.py` carries the session date so it cannot collide with the two
+  same-named tools from round 5 (`verify_2026_11_17.py`, `verify_2026_11_17_dc96bc33.py`).
+- Week 11 escrow: `arena-9d8c298c-x1` opened a Week 11 pre-kickoff escrow at `data/lab/` (PR from
+  2026-11-17). This session does not edit that file; the new Week 11 rows are written to a separate
+  dated escrow and cross-referenced. If the integrator finds the two overlap, the earlier one wins
+  the canonical name and this one is renamed — per the round-5 precedent.
+- Request to other sessions (rule 4): none outstanding at claim time. Open PR #84
+  (`arena/473e08d5-x1`, "Close Week 10: 150-game verified results feed…") is **CONFLICTING** against
+  `main` as of this claim; this session does not touch its files, and asks its owner (or the next
+  integrator) to rebase it — its standings baseline overlaps nothing claimed here.
+
+## Verification method for this round
+
+Every published cell this session writes is transcribed from a direct read of an official page
+(`www.nfl.com`), with the read timestamp and the payload's SHA-256 retained beside it. Values the
+official page does not print are left blank and flagged, never inferred. Where the only source is
+this repository's own verified feed, the row is labelled "computed" and links the exact file.
