@@ -229,3 +229,18 @@ jobs:
       # (PR #72): every row of the brief-coverage register cites a path that exists and a legal status.
       - name: Brief-coverage register is structurally sound
         run: python3 tools/verify_brief_coverage.py
+
+      # Added by session arena/91656714-x1 (round 6). The 2026-11-18 pack is a THIRD independent read
+      # of the two official pages the feed is settled against, and this step is what turns it from a
+      # file on disk into evidence: 33 checks, including the one that matters — all 32 clubs'
+      # W-L-T/PF/PA recomputed FROM THE PUBLISHED FEED and required to equal the official standings
+      # table (160 cells). A wrong promoted score moves a club's PF/PA and this fails.
+      #
+      # It also guards the two defect classes round 6 fixed, both of which were invisible before:
+      #   B8  no fixture the league prints Final may still be 'SCHEDULED' in the feed
+      #   B11 every score must be dated to the read that actually saw it played — the shadow
+      #       baseline used to attribute all 13 promoted Week 10 scores to the 2026-11-14 read,
+      #       which predates them. That is lookahead leakage in the point-in-time ledger.
+      #   B10 the shadow baseline's Brier/skill/luck arithmetic reproduces from its own rows.
+      - name: The 2026-11-18 pack closes and the feed reconciles to the official standings
+        run: python3 tools/verify_2026_11_18.py --check

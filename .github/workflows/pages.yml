@@ -77,6 +77,14 @@ jobs:
       # transcriptions, difference = model - market recomputed.
       - name: Verify the new data stores
         run: python3 tools/verify_new_data.py
+
+      # Added by session arena/91656714-x1 (round 6). Re-derives the reconciliation the deploy is
+      # about to serve: all 32 clubs' W-L-T/PF/PA from the published feed against the official
+      # standings read, plus every coverage count the pages state. A feed that has drifted from the
+      # official table, or a page that states a settled-game count its own feed contradicts, fails
+      # here rather than shipping.
+      - name: The published feed reconciles to the official standings before deploy
+        run: python3 tools/verify_2026_11_18.py --check
       # Added by session arena/5f1c014c-x1 (additive only). Rebuilds the line
       # console from source and verifies it before the tree is assembled: a
       # broken or unsourced page fails the build rather than shipping.

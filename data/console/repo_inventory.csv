@@ -1,9 +1,9 @@
 PATH,TOP,BYTES
 .github/workflows/data-refresh.yml,.github,10985
 .github/workflows/injury-ledger.yml,.github,3190
-.github/workflows/pages.yml,.github,11691
+.github/workflows/pages.yml,.github,12259
 .github/workflows/pipeline.yml,.github,2291
-.github/workflows/verify.yml,.github,12131
+.github/workflows/verify.yml,.github,13332
 .gitignore,.gitignore,1143
 .nojekyll,.nojekyll,0
 COORDINATION.md,COORDINATION.md,422553
@@ -81,7 +81,7 @@ console/official-flags.html,console,18816
 console/prices.html,console,158104
 console/props.html,console,5285
 console/questions.html,console,17059
-console/readiness.html,console,52288
+console/readiness.html,console,52309
 console/repo-review.html,console,13193
 console/requirements.html,console,7443
 console/results.html,console,256063
@@ -193,7 +193,7 @@ data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9046
 data/console/readiness.csv,data,29865
 data/console/readiness.json,data,53998
-data/console/repo_inventory.csv,data,39091
+data/console/repo_inventory.csv,data,39138
 data/console/results_feed.csv,data,1374485
 data/console/schedule_week10.csv,data,1805
 data/console/standings_2026.csv,data,3691
@@ -222,7 +222,7 @@ data/evidence/2026_11_17/page.html,data,51128
 data/evidence/2026_11_17/standings.tsv,data,2654
 data/evidence/2026_11_17/summary.json,data,29357
 data/evidence/2026_11_17/week10_finals.tsv,data,1531
-data/flags.json,data,28187
+data/flags.json,data,33762
 data/flags_auto.csv,data,3695
 data/gates.json,data,8396
 data/gates_v2.json,data,5155
@@ -645,7 +645,7 @@ pages/standings.html,pages,21853
 pages/suggestions-board.html,pages,12229
 pages/suggestions.html,pages,29138
 pages/validation.html,pages,11045
-pages/verification-2026-11-17.html,pages,18072
+pages/verification-2026-11-17.html,pages,18070
 pipeline/__init__.py,pipeline,144
 pipeline/__main__.py,pipeline,95
 pipeline/capture_store.py,pipeline,24308
