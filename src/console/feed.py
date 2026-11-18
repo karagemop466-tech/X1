@@ -33,6 +33,14 @@ GAMES_CSV = os.path.join(RAW, "games.csv")
 CLOSING_CSV = os.path.join(RAW, "closing_lines.csv")
 INITIAL_CSV = os.path.join(RAW, "initial_lines.csv")
 STANDINGS_PSV = os.path.join(VERIFY, "official_standings_2026_w10.psv")
+# Added by session arena-869ee8fb-x1 (round 6): the dated post-Week-10 standings
+# baseline. The verified feed now carries all 150 settled 2026 games (PR #84), so
+# reconciling it against the 2026-11-14 snapshot — which predates 13 of those finals —
+# would report the snapshot's staleness as feed failures (82/160). The methodology the
+# merge shipped (docs/methodology/results-feed-baseline.md, question Q-62) says the feed
+# is verified against a dated, frozen standings transcription; this is that transcription.
+STANDINGS_POSTW10_TSV = os.path.join(ROOT, "data", "verification", "2026_11_17",
+                                     "official_standings_2026_11_17.tsv")
 INJURIES_PSV = os.path.join(VERIFY, "official_injuries_2026_w10.psv")
 SCHEDULE_PSV = os.path.join(VERIFY, "official_schedule_2026_w10.psv")
 BYES_PSV = os.path.join(VERIFY, "official_byes_2026_w10.psv")
@@ -127,7 +135,24 @@ def load_games(season_min=1999):
 
 
 def official_standings():
+    """The 2026-11-14 dated standings read — what the standings page publishes."""
     return read_psv(STANDINGS_PSV)
+
+
+def official_standings_postw10():
+    """The dated 2026-11-17 post-Week-10 standings read (comment lines skipped)."""
+    rows, header = [], None
+    with open(STANDINGS_POSTW10_TSV, newline="", encoding="utf-8") as fh:
+        for line in fh:
+            line = line.rstrip("\n")
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split("\t")
+            if header is None:
+                header = parts
+                continue
+            rows.append(dict(zip(header, parts)))
+    return rows
 
 
 def reconcile_2026(games):
@@ -152,11 +177,13 @@ def reconcile_2026(games):
         else:
             agg[h]["T"] += 1; agg[a]["T"] += 1
     checks, mismatches = [], []
-    for row in official_standings():
-        team = row["TEAM"]
+    baseline_rows = official_standings_postw10()
+    field_cols = (("W", "w"), ("L", "l"), ("T", "t"), ("PF", "pf"), ("PA", "pa"))
+    for row in baseline_rows:
+        team = row["abbr"]
         got = agg.get(team, {"W": -1, "L": -1, "T": -1, "PF": -1, "PA": -1, "G": 0})
-        for field in ("W", "L", "T", "PF", "PA"):
-            expected = int(row[field])
+        for field, col in field_cols:
+            expected = int(row[col])
             ok = expected == got[field]
             checks.append({
                 "team": team, "field": field, "official": expected,
@@ -171,6 +198,14 @@ def reconcile_2026(games):
         "matches": len(checks) - len(mismatches),
         "mismatches": mismatches,
         "detail": checks,
+        "baseline": {
+            "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv",
+            "read": "2026-11-17",
+            "clubs": len(baseline_rows),
+            "why": ("the feed carries all 150 settled 2026 games; the baseline is the dated "
+                    "post-Week-10 standings read the feed is verified against "
+                    "(docs/methodology/results-feed-baseline.md, Q-62)"),
+        },
         "source_official": sources.get("nfl_standings"),
         "source_feed": sources.get("nfldata_games"),
     }

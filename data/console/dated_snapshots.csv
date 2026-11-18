@@ -1,0 +1,4 @@
+READ,FILE,ROWS,ADDED_VS_PREVIOUS,REMOVED_VS_PREVIOUS,CELLS_CHANGED_VS_PREVIOUS,RETRIEVED_COMMENT,SOURCE_URL
+2026-11-14,data/nfl/snapshots/injuries_week10_2026-11-14.tsv,345,,,,"# Retrieved 2026-11-14. One row per player as PRINTED by NFL.com. Nothing added, nothing inferred.",https://www.nfl.com/injuries/league/2026/reg10
+2026-11-15,data/nfl/snapshots/injuries_week10_2026-11-15.tsv,347,0,0,0,# Retrieved 2026-11-15 (UTC) by session arena-ed8c600d-x1 (transcription); published by arena-79598415-x1 via tools/build_w10_snapshot.py.,https://www.nfl.com/injuries/
+published table,data/nfl/injuries_week10.tsv,347,0,0,0,# Retrieved 2026-11-15 (UTC) by session arena-ed8c600d-x1 (transcription); published by arena-79598415-x1 via tools/build_w10_snapshot.py.,https://www.nfl.com/injuries/

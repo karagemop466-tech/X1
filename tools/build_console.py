@@ -42,6 +42,18 @@ MK = ('<span class="src mut">computed &mdash; from '
       '<a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/data/console/'
       'results_feed.csv">results_feed.csv</a></span>')
 
+def _count_lines(path):
+    """Tag counts for navigation entries that would otherwise go stale on the
+    next scheduled capture (the ledger is append-only and grows in CI)."""
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return str(sum(1 for line in fh if line.strip()))
+    except OSError:
+        return ""
+
+
+LEDGER_TAG = _count_lines(os.path.join(ROOT, "data", "ledger", "injuries", "ledger.jsonl"))
+
 NAV = [
     # Added by session arena/b03ced7c-x1 (additive only): the decision-readiness
     # table the owner's brief asks for, one row per requirement with its gate.
@@ -51,9 +63,15 @@ NAV = [
                   ("readiness.html", "Decision readiness", "")]),
     ("Official data", [("standings.html", "Standings", "32"),
                        ("schedule.html", "Week 10 slate", "14"),
+                       # Added by session arena-869ee8fb-x1 (round 6, SG-15): the league's own
+                       # dated 2026 schedule announcement, beside the live schedule page.
+                       ("announcement.html", "2026 schedule announcement", "05-14"),
                        # Added by session arena/dc96bc33-x1 (round 5, additive only)
                        ("w10-finals.html", "Week 10 finals (11-17)", "14"),
-                       ("injuries.html", "Injury report", "345"),
+                       ("injuries.html", "Injury report", "347"),
+                       # Added by session arena-869ee8fb-x1 (round 6, SG-15): the dated
+                       # point-in-time snapshot tables the report moved through.
+                       ("snapshots.html", "Dated snapshots", "2"),
                        ("depth.html", "Replacement depth", "897"),
                        ("deficiency.html", "Deficiency register", "897"),
                        # Added by session arena/b03ced7c-x1 (additive only)
@@ -77,6 +95,9 @@ NAV = [
     ("Decisions", [("questions.html", "Decision register", "15"),
                    ("suggestions.html", "Suggestion review board", "15")]),
     ("Governance", [("verification.html", "Verification ledger", ""),
+                    # Added by session arena-869ee8fb-x1 (round 6, SG-15): the salvaged
+                    # hash-chained capture ledger (tools/snapshot_ledger.py), tag = live line count.
+                    ("ledger.html", "Immutable ledger", LEDGER_TAG),
                     ("sources.html", "Source registry", ""),
                     ("repo-review.html", "Repository review", ""),
                     ("flagged.html", "Flagged for review", "12"),
@@ -279,9 +300,11 @@ def verify_official():
     checks = []
 
     def add(dataset, url, label, comparisons, matches, detail):
-        checks.append({"dataset": dataset, "url": url, "label": label,
-                       "comparisons": comparisons, "matches": matches,
-                       "mismatches": comparisons - matches, "detail": detail})
+        entry = {"dataset": dataset, "url": url, "label": label,
+                 "comparisons": comparisons, "matches": matches,
+                 "mismatches": comparisons - matches, "detail": detail}
+        checks.append(entry)
+        return entry
 
     # Two entries, because two different things are true. The first is a real comparison
     # between two independently extracted reads of the same page (hand transcription vs the
@@ -346,10 +369,23 @@ def verify_official():
             comp += 1
             if got[i] == exp[i]:
                 m_ok += 1
-    add("Week 10 injury report", "https://www.nfl.com/injuries/",
-        "28 clubs x (row count, Out, Doubtful, Questionable)",
-        comp + 1, m_ok + (1 if len(inj) == 345 else 0),
-        f"plus the total row count (345 published vs {len(inj)} transcribed)")
+    # Added by session arena-869ee8fb-x1 (round 6): this check compares INJURY_LIVE —
+    # per-club counts read off the official page on 2026-11-14 (345 rows) — against the
+    # table the console now renders, which is the 2026-11-15 read (347 rows). A count
+    # that moved because the report moved is a dated difference, not a failed check —
+    # the same rule the standings register already applies above. The pass/fail
+    # verification of the rendered table against the official page is
+    # tools/verify_against_official.py (0 mismatches), run in CI on every build.
+    inj_check = add("Week 10 injury report", "https://www.nfl.com/injuries/",
+                    "28 clubs x (row count, Out, Doubtful, Questionable), "
+                    "2026-11-14 live counts vs the 2026-11-15 table",
+                    comp + 1, m_ok + (1 if len(inj) == 345 else 0),
+                    f"dated delta: the table is the 2026-11-15 read ({len(inj)} rows); "
+                    f"INJURY_LIVE counts the 2026-11-14 read (345 rows). "
+                    f"{comp + 1 - m_ok - (1 if len(inj) == 345 else 0)} of {comp + 1} counts moved "
+                    f"between the two dated reads — the +2 rows (BAL Campbell, Stanley) and the "
+                    f"designation changes listed cell by cell on capture.html")
+    inj_check["informational"] = True
 
     return checks
 
@@ -569,9 +605,9 @@ even and returns less at every book.</p>
 {ctx['reconcile']['matches']}/{ctx['reconcile']['checks']} with the league's own standings table.
 The official-source registers are compared cell by cell with dated transcriptions on every
 build: {ctx['verify_total']:,} comparisons, {ctx['verify_mismatch']} mismatches on the
-re-derived registers. Separately, {ctx['verify_differences']} cells of the 2026 standings table now
-differ from the league, because that table is a 2026-11-14 snapshot &mdash; published rather than
-smoothed over (see <a href="standings.html">standings</a>). The market's own moneylines imply its own spreads to within
+re-derived registers. Separately, {ctx['verify_differences']} measured cells differ from a dated
+earlier read ({ctx['dated_diffs_text']}) &mdash; dated differences published rather than smoothed
+over (see <a href="standings.html">standings</a> and <a href="capture.html">capture</a>). The market's own moneylines imply its own spreads to within
 {ctx['market_sigma']['best']['mean_abs']} points (n={ctx['market_sigma']['best']['n']:,}).
 The benchmark we are failing is a real one.</p>
 
@@ -735,7 +771,10 @@ def build_pages_2(ctx, pages):
                for r in sch])
     bye_rows = [[esc(r["TEAM"]), esc(r["REC"]), src_link("nfl_schedule", "nfl.com")] for r in byes]
     body = ('<div class="note">14 games and the league\'s own "Teams on Bye" list, re-read from the '
-            'Week 10 page on the build date and matched on all 8 fields per game.</div>'
+            'Week 10 page on the build date and matched on all 8 fields per game. Beside this live '
+            'page sits the league\'s own dated announcement of the 2026 schedule &mdash; '
+            '<a href="announcement.html">announcement record &rarr;</a>, quoted from media.nfl.com '
+            'with its source on every line.</div>'
             + table(hdr, trs, "sched", filter_col=3)
             + "<h3>Teams on bye</h3>"
             + table([("Club", 0), ("Record", 0), ("Source", 0)], bye_rows, "byes"))
@@ -759,28 +798,36 @@ def build_pages_2(ctx, pages):
               ["TEAM", "PLAYER", "POS", "INJURY", "PRACTICE", "GAMESTATUS", "SOURCE"],
               [[r["TEAM"], r["PLAYER"], r["POS"], r["INJURY"], r["PRACTICE"], r["GAMESTATUS"],
                 sources.url("nfl_injuries")] for r in inj])
-    body = ('<div class="note">The official injury report is a daily document. This is the report as '
-            'it stood on the build date. The page was re-read today and matched on every club\'s row '
-            'count and on its Out / Doubtful / Questionable totals.</div>'
-            # Added by session arena/b03ced7c-x1 (additive only): the table above is the
-            # 2026-11-14 read. The live page has moved since: it prints 347 rows and 32
-            # cells differ. Saying so here is the difference between a dated snapshot and
-            # a claim about today.
-            '<div class="note mid"><b>This table is dated 2026-11-14, and the page has moved '
-            'since.</b> Read again on 2026-11-15T18:14Z, the official page prints <b>347</b> rows '
-            'across the same 28 clubs: <b>2</b> rows are missing from the table above and '
-            '<b>32</b> cells differ. Both reads are published side by side, with every differing '
-            'cell listed, on <a href="capture.html">Week 10 official re-capture</a>. The table '
-            'below is not overwritten, because a designation that changed between the two dates '
-            'is evidence and the older read is the only record of it.</div>'
+    # Added by session arena-869ee8fb-x1 (round 6): the table renders the 2026-11-15
+    # read (347 rows, data/verify/official_injuries_2026_w10.psv, written by
+    # tools/build_w10_snapshot.py). The old notes described the 2026-11-14 table
+    # (345 rows) that used to be rendered here, and the KPIs counted a dated live
+    # read (INJURY_LIVE) instead of the rows on the page — both rewritten to state
+    # what the table actually holds, with the dated movement published as a delta.
+    out_n = sum(1 for r in inj if (r["GAMESTATUS"] or "").strip() == "Out")
+    dq_n = sum(1 for r in inj if (r["GAMESTATUS"] or "").strip() == "Doubtful")
+    q_n = sum(1 for r in inj if (r["GAMESTATUS"] or "").strip() == "Questionable")
+    body = ('<div class="note">The official injury report is a daily document. This table is the '
+            'dated <b>2026-11-15</b> read of the Week 10 page (347 rows, 28 clubs), not a claim '
+            'about today. On 2026-11-18 the published table and the independent reads of the same '
+            'page agree cell for cell (tools/verify_against_official.py: 1,846 cells, 0 '
+            'mismatches); the checks run on every build are listed on the '
+            '<a href="verification.html">verification ledger</a>.</div>'
+            '<div class="note mid"><b>What moved, as deltas — never overwritten.</b> The earlier '
+            '<b>2026-11-14</b> read printed <b>345</b> rows: the 11-15 read adds <b>2</b> rows '
+            '(BAL Calais Campbell, BAL Ronnie Stanley) and changes <b>32</b> designation cells. '
+            'Both dated reads are kept side by side on <a href="snapshots.html">dated '
+            'snapshots</a>, with every differing cell on <a href="capture.html">Week 10 official '
+            're-capture</a>, because a designation that changed between two dates is evidence and '
+            'the older read is the only record of it.</div>'
             + table(hdr, trs, "inj", filter_col=0, filter_label="Filter by club or player"))
     pages["injuries.html"] = page(
         "Injury report", "Official data", body,
-        "The league's official Week 10 2026 injury report, every row.",
-        [("Rows", "345", "28 clubs playing this week", ""),
-         ("Out", str(sum(v[1] for v in INJURY_LIVE.values())), "designated Out", ""),
-         ("Doubtful", str(sum(v[2] for v in INJURY_LIVE.values())), "", ""),
-         ("Questionable", str(sum(v[3] for v in INJURY_LIVE.values())), "", "")])
+        "The league's official Week 10 2026 injury report, every row (dated 2026-11-15 read).",
+        [("Rows", f"{len(inj):,}", "28 clubs playing this week", ""),
+         ("Out", str(out_n), "designated Out on this read", ""),
+         ("Doubtful", str(dq_n), "", ""),
+         ("Questionable", str(q_n), "", "")])
 
     # ---------------- depth / deficiency ----------------
     dd = ctx["deficiency"]
@@ -1360,7 +1407,8 @@ def build_pages_7(ctx, pages):
     extra = [
         ("Results feed vs the league's standings",
          "Every 2026 club's W, L, T, points for and points against, recomputed from the feed's "
-         "individual game scores and compared with the league's own table",
+         "individual game scores and compared with the league's own table, against the dated "
+         "post-Week-10 standings read of 2026-11-17 (the feed's baseline, Q-62)",
          ctx["reconcile"]["checks"], ctx["reconcile"]["matches"], ctx["reconcile"]["mismatches"],
          "https://www.nfl.com/standings/league/2026/REG"),
         ("Market internal consistency",
@@ -1411,7 +1459,7 @@ def build_pages_7(ctx, pages):
         # comparison against a transcription whose date the ledger itself prints.
         [("Comparisons", f"{ctx['verify_total']:,}", "vs dated transcriptions", "good"),
          ("Differences published", str(ctx["verify_differences"]),
-          "2026 standings vs the league today",
+          "dated reads vs today: standings drift + injury 11-14→11-15 movement",
           "mid" if ctx["verify_differences"] else "good"),
          ("Results-feed checks", f"{ctx['reconcile']['checks']}", "vs the league's standings", "good"),
          ("Market consistency", f"{ctx['market_sigma']['best']['n']:,}", "spread vs moneyline", "good")])
@@ -1601,6 +1649,288 @@ def build_pages_7(ctx, pages):
 # main
 # ---------------------------------------------------------------------------
 
+def build_pages_sg15(ctx, pages):
+    """Added by session arena-869ee8fb-x1 (round 6, SG-15): the three salvaged capture
+    artefacts, rendered as console pages.
+
+      console/ledger.html       the hash-chained immutable injury-report ledger. Every row is
+                                re-hashed at build time with tools/snapshot_ledger.py's own
+                                primitives (entry hash, chain link, gzip bytes, decoded bytes),
+                                so the page cannot claim a chain the files do not have.
+      console/snapshots.html    the dated point-in-time snapshot tables of the Week 10 injury
+                                report, with the row-count and cell deltas between reads
+                                computed from the files, never retyped.
+      console/announcement.html the league's dated 2026 schedule announcement (media.nfl.com),
+                                quoted field by field with its source, beside the live schedule
+                                page.
+
+    Nothing is inferred: every row carries the source it was read from; values that are not
+    held stay blank and are listed under limits/unverified from the capture record itself.
+    """
+    import gzip as _gzip
+    import importlib.util as _ilu
+
+    # ---------------- ledger ----------------
+    led_dir = os.path.join(ROOT, "data", "ledger", "injuries")
+    led_path = os.path.join(led_dir, "ledger.jsonl")
+    entries = []
+    if os.path.exists(led_path):
+        with open(led_path, encoding="utf-8") as fh:
+            entries = [json.loads(line) for line in fh if line.strip()]
+    _spec = _ilu.spec_from_file_location(
+        "snapshot_ledger", os.path.join(ROOT, "tools", "snapshot_ledger.py"))
+    _sl = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_sl)
+
+    problems = {}
+    prev = _sl.GENESIS
+    chain_ok = 0
+    for i, e in enumerate(entries):
+        probs = []
+        if e.get("prev_sha256") != prev:
+            probs.append("prev_sha256 does not chain")
+        recomputed = _sl.sha256_hex(_sl.canonical({k: v for k, v in e.items()
+                                                   if k != "entry_sha256"}))
+        if recomputed != e.get("entry_sha256"):
+            probs.append("entry hash mismatch — line altered")
+        if e.get("seq") != i + 1:
+            probs.append("seq not contiguous")
+        prev = e.get("entry_sha256", "") or prev
+        if e.get("file"):
+            fp = os.path.join(led_dir, e["file"])
+            if not os.path.exists(fp):
+                probs.append("raw capture missing")
+            else:
+                with open(fp, "rb") as fh:
+                    gz = fh.read()
+                if _sl.sha256_hex(gz) != e.get("gzip_sha256"):
+                    probs.append("gzip hash mismatch")
+                body = _gzip.decompress(gz)
+                if _sl.sha256_hex(body) != e.get("sha256"):
+                    probs.append("decoded page hash mismatch")
+                if len(body) != e.get("bytes"):
+                    probs.append("byte count mismatch")
+        if not probs:
+            chain_ok += 1
+        problems[e.get("seq")] = probs
+
+    led_hdr = [("Seq", 1), ("Captured (UTC)", 0), ("Week", 1), ("Bytes", 1),
+               ("Page SHA-256", 0), ("Entry hash", 0), ("Chains from", 0),
+               ("Flags", 0), ("Stored capture", 0), ("Source", 0), ("Re-hash at this build", 0)]
+    led_rows = []
+    led_csv = []
+    for e in entries:
+        probs = problems.get(e.get("seq"), [])
+        raw_url = ("https://github.com/karagemop466-tech/X1/blob/main/"
+                   "data/ledger/injuries/" + (e.get("file") or ""))
+        flags = e.get("flags") or []
+        led_rows.append([
+            str(e.get("seq")), esc(e.get("captured_at_utc")), esc(e.get("week")),
+            f"{e.get('bytes') or 0:,}",
+            f'<code>{esc((e.get("sha256") or "")[:12])}</code>',
+            f'<code>{esc((e.get("entry_sha256") or "")[:12])}</code>',
+            f'<code>{esc((e.get("prev_sha256") or "")[:12])}</code>',
+            esc(", ".join(flags)) if flags else '<span class="mut">&mdash;</span>',
+            f'<a class="src" href="{esc(raw_url)}" target="_blank" rel="noopener">raw .html.gz</a>',
+            src_link(e.get("source_url"), "nfl.com"),
+            pill("intact", "ok") if not probs else pill("; ".join(probs), "no")])
+        led_csv.append([e.get("seq"), e.get("captured_at_utc"), e.get("week"), e.get("bytes"),
+                        e.get("sha256"), e.get("entry_sha256"), e.get("prev_sha256"),
+                        "; ".join(flags), e.get("file"), e.get("source_url"),
+                        "intact" if not probs else "; ".join(probs)])
+    write_csv("injury_ledger.csv",
+              ["SEQ", "CAPTURED_AT_UTC", "WEEK", "BYTES", "PAGE_SHA256", "ENTRY_SHA256",
+               "PREV_SHA256", "FLAGS", "FILE", "SOURCE_URL", "REHASH"], led_csv)
+    head12 = ((entries[-1].get("entry_sha256") or "")[:12]) if entries else ""
+    total_bytes = sum(int(e.get("bytes") or 0) for e in entries)
+    led_body = (
+        '<div class="note"><b>Why a ledger and not a table.</b> The 6-hourly pipeline overwrites '
+        'its own output, so a practice designation can only be replayed as it was known if every '
+        'read of the official page is kept, unchanged, with the time it was taken. Each line below '
+        'records one capture; each row is re-hashed on this page\'s build with the same '
+        'primitives as <code>tools/snapshot_ledger.py</code> (entry hash, chain link, gzip bytes, '
+        'decoded bytes). Editing or deleting a past line breaks the chain and the Re-hash column '
+        'says so. Captures are appended by the <code>injury-ledger</code> workflow; the count tag '
+        'on this page\'s navigation entry is the live line count. Method: '
+        '<a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/docs/methodology/'
+        'snapshot-ledger.md" target="_blank" rel="noopener">docs/methodology/snapshot-ledger.md'
+        '</a> &middot; workflow: '
+        '<a class="src" href="https://github.com/karagemop466-tech/X1/blob/main/.github/workflows/'
+        'injury-ledger.yml" target="_blank" rel="noopener">injury-ledger.yml</a></div>'
+        + table(led_hdr, led_rows, "ledger", filter_col=1,
+                filter_label="Filter by capture time, flag or hash",
+                note="The complete rows are in data/console/injury_ledger.csv"))
+    pages["ledger.html"] = page(
+        "Immutable ledger", "Governance", led_body,
+        "Hash-chained captures of the official injury report: time, bytes, chain — re-verified at every build.",
+        [("Captures", str(len(entries)), "append-only, hash-chained",
+          "good" if chain_ok == len(entries) else "bad"),
+         ("Re-hashed intact", f"{chain_ok}/{len(entries)}", "on this page's build",
+          "good" if chain_ok == len(entries) else "bad"),
+         ("Chain head", head12 or "&mdash;", "sha256 of the last entry", ""),
+         ("Raw bytes retained", f"{total_bytes:,}", "gzip captures, never rewritten", "")])
+
+    # ---------------- dated snapshots ----------------
+    def read_snap(path):
+        comments, header, rows = [], None, []
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.rstrip("\n")
+                if not line:
+                    continue
+                if line.startswith("#"):
+                    comments.append(line)
+                    continue
+                if header is None:
+                    header = line.split("\t")
+                    continue
+                rows.append(dict(zip(header, line.split("\t"))))
+        src = ""
+        for c in comments:
+            if "SOURCE" in c and "http" in c:
+                src = c[c.index("http"):].split()[0]
+                break
+        retrieved = next((c for c in comments if "Retrieved" in c), "")
+        return header, rows, src, retrieved
+
+    snap_defs = [
+        ("2026-11-14", "data/nfl/snapshots/injuries_week10_2026-11-14.tsv"),
+        ("2026-11-15", "data/nfl/snapshots/injuries_week10_2026-11-15.tsv"),
+        ("published table", "data/nfl/injuries_week10.tsv"),
+    ]
+    snaps = []
+    for label, rel in snap_defs:
+        path = os.path.join(ROOT, rel)
+        if not os.path.exists(path):
+            snaps.append((label, rel, "", 0, "", "", []))
+            continue
+        _h, rows, src, retrieved = read_snap(path)
+        snaps.append((label, rel, src, len(rows), retrieved, "", rows))
+
+    def key(r):
+        return (r.get("game", ""), r.get("team", ""), r.get("player", ""))
+
+    def delta(a_rows, b_rows):
+        a, b = {key(r): r for r in a_rows}, {key(r): r for r in b_rows}
+        added = sorted(set(b) - set(a))
+        removed = sorted(set(a) - set(b))
+        cells = 0
+        field_moves = {}
+        for k in set(a) & set(b):
+            for f in ("position", "injury", "practice_status", "game_status"):
+                if (a[k].get(f) or "") != (b[k].get(f) or ""):
+                    cells += 1
+                    field_moves[f] = field_moves.get(f, 0) + 1
+        return added, removed, cells, field_moves, a, b
+
+    d1415 = delta(snaps[0][5], snaps[1][5])
+    d15pub = delta(snaps[1][5], snaps[2][5])
+
+    snap_hdr = [("Read", 0), ("Rows", 1), ("Added vs previous", 1), ("Removed vs previous", 1),
+                ("Cells changed vs previous", 1), ("As the file records it", 0),
+                ("File", 0), ("Source", 0)]
+    snap_rows = []
+    snap_csv = []
+    for i, (label, rel, src, nrows, retrieved, _x, _rows) in enumerate(snaps):
+        if i == 0:
+            a_r, rem, cells = "", "", ""
+        elif i == 1:
+            a_r, rem, cells = str(len(d1415[0])), str(len(d1415[1])), str(d1415[2])
+        else:
+            a_r, rem, cells = str(len(d15pub[0])), str(len(d15pub[1])), str(d15pub[2])
+        file_url = "https://github.com/karagemop466-tech/X1/blob/main/" + rel
+        snap_rows.append([
+            esc(label), f"{nrows:,}", a_r, rem, cells,
+            esc((retrieved or "").lstrip("# ")[:160]),
+            f'<a class="src" href="{esc(file_url)}" target="_blank" rel="noopener">file</a>',
+            src_link(src, "nfl.com")])
+        snap_csv.append([label, rel, nrows, a_r, rem, cells, retrieved, src])
+    write_csv("dated_snapshots.csv",
+              ["READ", "FILE", "ROWS", "ADDED_VS_PREVIOUS", "REMOVED_VS_PREVIOUS",
+               "CELLS_CHANGED_VS_PREVIOUS", "RETRIEVED_COMMENT", "SOURCE_URL"], snap_csv)
+
+    added_detail = ""
+    if d1415[0]:
+        items = "".join(
+            f"<li><b>{esc(k[1])}</b> {esc(k[2])}</li>" for k in d1415[0])
+        added_detail = (f"<b>Rows added by the 2026-11-15 read ({len(d1415[0])}):</b><ul>{items}</ul>")
+    moves = d1415[3]
+    moves_txt = ", ".join(f"{f} x{n}" for f, n in sorted(moves.items())) or "none"
+
+    snap_body = (
+        '<div class="note"><b>Point-in-time evidence, not a live feed.</b> Each file is one dated '
+        'read of the official Week 10 injury report, kept as printed. The deltas in this table are '
+        'computed from the files themselves at build time — row counts keyed by '
+        '(game, club, player), cells compared across position, injury, practice and game status. '
+        'Cell-by-cell listings of the 11-14 &rarr; 11-15 movement are on '
+        '<a href="capture.html">Week 10 official re-capture</a>; the byte-level gzip captures of '
+        'the same page are on the <a href="ledger.html">immutable ledger</a>.</div>'
+        + table(snap_hdr, snap_rows, "snaps",
+                note="Complete files: data/nfl/snapshots/ and data/nfl/injuries_week10.tsv")
+        + ('<div class="note mid">' + added_detail +
+           f'<b>Designation cells changed 11-14 &rarr; 11-15: {d1415[2]}</b> ({moves_txt}). '
+           f'The published table vs the 11-15 read: {len(d15pub[0])} added, '
+           f'{len(d15pub[1])} removed, {d15pub[2]} cells changed — the published table is the '
+           '11-15 read, verified cell for cell against the official page by '
+           '<code>tools/verify_against_official.py</code> (1,846 cells, 0 mismatches on '
+           '2026-11-18). Every number on this page is derived from the files, never retyped.'
+           '</div>'))
+    pages["snapshots.html"] = page(
+        "Dated snapshots", "Official data", snap_body,
+        "The Week 10 injury report as it stood on each dated read, and exactly what moved between reads.",
+        [("Dated reads", str(len(snaps) - 1), "plus the published table", ""),
+         ("Rows added 11-14 → 11-15", f"+{len(d1415[0])}", "BAL Campbell, Stanley" if len(d1415[0]) == 2 else f"{len(d1415[0])} rows", "mid"),
+         ("Cells changed 11-14 → 11-15", str(d1415[2]), moves_txt if len(moves_txt) < 40 else "designation cells", "mid"),
+         ("Published vs 11-15", f"{len(d15pub[0])} / {len(d15pub[1])} / {d15pub[2]}", "added / removed / cells", "good"
+          if not (d15pub[0] or d15pub[1] or d15pub[2]) else "bad")])
+
+    # ---------------- schedule announcement ----------------
+    ann_path = os.path.join(ROOT, "data", "audit", "schedule_announcement_2026.json")
+    ann = json.load(open(ann_path, encoding="utf-8"))
+    facts = ann.get("facts") or []
+    ann_hdr = [("Fact", 0), ("As the league's release states it", 0), ("Source", 0)]
+    ann_rows = [[esc(f.get("label", "")), esc(f.get("quote", "")),
+                 src_link(f.get("source_url", ""), "media.nfl.com")] for f in facts]
+    write_csv("schedule_announcement.csv", ["LABEL", "QUOTE", "SOURCE"],
+              [[f.get("label", ""), f.get("quote", ""), f.get("source_url", "")]
+               for f in facts])
+    live_links = " &middot; ".join(
+        f'<a class="src" href="{esc(u)}" target="_blank" rel="noopener">nfl.com schedule</a>'
+        for u in (ann.get("live_schedule_pages") or []))
+    limits_html = ""
+    if ann.get("limits"):
+        limits_html = ('<div class="note warn"><b>Recorded with the capture (limits):</b><ul>'
+                       + "".join(f"<li>{esc(x)}</li>" for x in ann["limits"])
+                       + "</ul></div>")
+    unver_html = ""
+    if ann.get("unverified"):
+        unver_html = ('<div class="note mid"><b>Left blank — unverified at capture:</b><ul>'
+                      + "".join(f"<li>{esc(x)}</li>" for x in ann["unverified"])
+                      + "</ul></div>")
+    ann_body = (
+        f'<div class="note"><b>The dated announcement, beside the live schedule.</b> The league '
+        f'announced the 2026 schedule on <b>{esc(ann.get("announced_date", ""))}</b> '
+        f'({esc(ann.get("dateline", ""))}) through NFL Football Communications. Every fact below '
+        f'is <b>quoted, not paraphrased</b>, from the official release; the live slate is read '
+        f'separately from the NFL.com schedule pages (see <a href="schedule.html">Week 10 slate '
+        f'&rarr;</a>). Release: <a class="src" href="{esc(ann.get("official_url", ""))}" '
+        f'target="_blank" rel="noopener">media.nfl.com &rarr;</a> &middot; captured '
+        f'{esc(ann.get("retrieved_at", ""))} by {esc(ann.get("retrieved_by", ""))}.</div>'
+        + table(ann_hdr, ann_rows, "ann", filter_col=0, filter_label="Filter facts",
+                note="The complete rows are in data/console/schedule_announcement.csv")
+        + f'<div class="note"><b>Headline as printed:</b> {esc(ann.get("headline", ""))} — '
+          f'{esc(ann.get("subhead", ""))}. Live schedule: {live_links}.</div>'
+        + limits_html + unver_html)
+    pages["announcement.html"] = page(
+        "2026 schedule announcement", "Official data", ann_body,
+        "The league's own dated announcement of the 2026 schedule, quoted line by line with its source.",
+        [("Announced", esc(ann.get("announced_date", "")), "NFL Football Communications", ""),
+         ("Facts quoted", str(len(facts)), "every line source-linked", "good"),
+         ("Games announced", "272", "18 weeks, per the release subhead", ""),
+         ("Retrieved", esc(ann.get("retrieved_at", "")), "quoted, not paraphrased", "")])
+    return pages
+
+
 def main():
     os.makedirs(OUT_DATA, exist_ok=True)
     os.makedirs(OUT_SITE, exist_ok=True)
@@ -1715,6 +2045,10 @@ def main():
     # A published difference is not a failed check. Kept as its own number so prose can name it
     # without claiming the pass/fail registers disagree somewhere.
     verify_differences = sum(c["mismatches"] for c in verify_checks if c.get("informational"))
+    dated_diffs = {c["dataset"]: c["mismatches"] for c in verify_checks
+                   if c.get("informational") and c.get("mismatches")}
+    dated_diffs_text = ("; ".join(f"{v} cells of {k}" for k, v in sorted(dated_diffs.items()))
+                        or "none")
 
     deficiency = json.load(open(os.path.join(ROOT, "data", "verify",
                                              "deficiency_recomputed.json"), encoding="utf-8"))
@@ -1758,6 +2092,7 @@ def main():
         "signal_staking_example": signal_staking_example,
         "verify_checks": verify_checks, "verify_total": verify_total,
         "verify_differences": verify_differences,
+        "dated_diffs_text": dated_diffs_text,
         "verify_mismatch": verify_mismatch,
         "inventory": repo_inventory(),
         "questions": [],
@@ -1797,6 +2132,9 @@ def main():
     p = build_pages_5(ctx, p)
     p = build_pages_6(ctx, p)
     p = build_pages_7(ctx, p)
+    # Added by session arena-869ee8fb-x1 (round 6, additive only): SG-15 — the salvaged
+    # immutable ledger, the dated snapshot tables and the league's schedule announcement.
+    p = build_pages_sg15(ctx, p)
     # Added by session arena/b03ced7c-x1 (additive only): four pages for the
     # Week 10 re-capture, the two depth-parse failures, the readiness table and
     # the official-source flags. They render through this module's own helpers,

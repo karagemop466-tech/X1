@@ -1,1551 +1,24 @@
 {
- "as_of": "2026-11-18T03:17:23Z",
+ "as_of": "2026-11-18T03:43:32Z",
  "promoted": [],
  "strategies": 16,
- "verify_total": 859,
- "verify_mismatch": 8,
+ "verify_total": 746,
+ "verify_mismatch": 0,
  "reconcile": {
   "games": 150,
   "last_gameday": "2026-11-16",
   "checks": 160,
-  "matches": 82,
-  "mismatches": [
-   {
-    "team": "LAC",
-    "field": "W",
-    "official": 0,
-    "feed": 1,
-    "ok": false
-   },
-   {
-    "team": "LAC",
-    "field": "PF",
-    "official": 121,
-    "feed": 144,
-    "ok": false
-   },
-   {
-    "team": "LAC",
-    "field": "PA",
-    "official": 219,
-    "feed": 239,
-    "ok": false
-   },
-   {
-    "team": "MIA",
-    "field": "L",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "MIA",
-    "field": "PF",
-    "official": 126,
-    "feed": 148,
-    "ok": false
-   },
-   {
-    "team": "MIA",
-    "field": "PA",
-    "official": 200,
-    "feed": 224,
-    "ok": false
-   },
-   {
-    "team": "TEN",
-    "field": "L",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "TEN",
-    "field": "PF",
-    "official": 144,
-    "feed": 167,
-    "ok": false
-   },
-   {
-    "team": "TEN",
-    "field": "PA",
-    "official": 199,
-    "feed": 239,
-    "ok": false
-   },
-   {
-    "team": "IND",
-    "field": "W",
-    "official": 2,
-    "feed": 3,
-    "ok": false
-   },
-   {
-    "team": "IND",
-    "field": "PF",
-    "official": 184,
-    "feed": 208,
-    "ok": false
-   },
-   {
-    "team": "IND",
-    "field": "PA",
-    "official": 249,
-    "feed": 271,
-    "ok": false
-   },
-   {
-    "team": "NYJ",
-    "field": "L",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "NYJ",
-    "field": "PF",
-    "official": 182,
-    "feed": 194,
-    "ok": false
-   },
-   {
-    "team": "NYJ",
-    "field": "PA",
-    "official": 223,
-    "feed": 254,
-    "ok": false
-   },
-   {
-    "team": "AZ",
-    "field": "L",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "AZ",
-    "field": "PF",
-    "official": 178,
-    "feed": 184,
-    "ok": false
-   },
-   {
-    "team": "AZ",
-    "field": "PA",
-    "official": 255,
-    "feed": 289,
-    "ok": false
-   },
-   {
-    "team": "ATL",
-    "field": "L",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "ATL",
-    "field": "PF",
-    "official": 188,
-    "feed": 201,
-    "ok": false
-   },
-   {
-    "team": "ATL",
-    "field": "PA",
-    "official": 223,
-    "feed": 258,
-    "ok": false
-   },
-   {
-    "team": "CAR",
-    "field": "W",
-    "official": 3,
-    "feed": 4,
-    "ok": false
-   },
-   {
-    "team": "CAR",
-    "field": "PF",
-    "official": 199,
-    "feed": 219,
-    "ok": false
-   },
-   {
-    "team": "CAR",
-    "field": "PA",
-    "official": 219,
-    "feed": 236,
-    "ok": false
-   },
-   {
-    "team": "HOU",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "HOU",
-    "field": "PF",
-    "official": 209,
-    "feed": 233,
-    "ok": false
-   },
-   {
-    "team": "HOU",
-    "field": "PA",
-    "official": 192,
-    "feed": 219,
-    "ok": false
-   },
-   {
-    "team": "NO",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "NO",
-    "field": "PF",
-    "official": 185,
-    "feed": 202,
-    "ok": false
-   },
-   {
-    "team": "NO",
-    "field": "PA",
-    "official": 216,
-    "feed": 236,
-    "ok": false
-   },
-   {
-    "team": "BAL",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "BAL",
-    "field": "PF",
-    "official": 189,
-    "feed": 209,
-    "ok": false
-   },
-   {
-    "team": "BAL",
-    "field": "PA",
-    "official": 236,
-    "feed": 259,
-    "ok": false
-   },
-   {
-    "team": "DAL",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "DAL",
-    "field": "PF",
-    "official": 246,
-    "feed": 286,
-    "ok": false
-   },
-   {
-    "team": "DAL",
-    "field": "PA",
-    "official": 236,
-    "feed": 282,
-    "ok": false
-   },
-   {
-    "team": "LV",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "LV",
-    "field": "PF",
-    "official": 238,
-    "feed": 251,
-    "ok": false
-   },
-   {
-    "team": "LV",
-    "field": "PA",
-    "official": 268,
-    "feed": 289,
-    "ok": false
-   },
-   {
-    "team": "CLE",
-    "field": "W",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "CLE",
-    "field": "PF",
-    "official": 161,
-    "feed": 188,
-    "ok": false
-   },
-   {
-    "team": "CLE",
-    "field": "PA",
-    "official": 196,
-    "feed": 220,
-    "ok": false
-   },
-   {
-    "team": "LA",
-    "field": "W",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "LA",
-    "field": "PF",
-    "official": 214,
-    "feed": 248,
-    "ok": false
-   },
-   {
-    "team": "LA",
-    "field": "PA",
-    "official": 181,
-    "feed": 187,
-    "ok": false
-   },
-   {
-    "team": "NE",
-    "field": "L",
-    "official": 4,
-    "feed": 5,
-    "ok": false
-   },
-   {
-    "team": "NE",
-    "field": "PF",
-    "official": 211,
-    "feed": 221,
-    "ok": false
-   },
-   {
-    "team": "NE",
-    "field": "PA",
-    "official": 207,
-    "feed": 242,
-    "ok": false
-   },
-   {
-    "team": "SEA",
-    "field": "W",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "SEA",
-    "field": "PF",
-    "official": 202,
-    "feed": 223,
-    "ok": false
-   },
-   {
-    "team": "SEA",
-    "field": "PA",
-    "official": 162,
-    "feed": 175,
-    "ok": false
-   },
-   {
-    "team": "CIN",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "CIN",
-    "field": "PF",
-    "official": 240,
-    "feed": 278,
-    "ok": false
-   },
-   {
-    "team": "CIN",
-    "field": "PA",
-    "official": 175,
-    "feed": 193,
-    "ok": false
-   },
-   {
-    "team": "DET",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "DET",
-    "field": "PF",
-    "official": 222,
-    "feed": 257,
-    "ok": false
-   },
-   {
-    "team": "DET",
-    "field": "PA",
-    "official": 189,
-    "feed": 199,
-    "ok": false
-   },
-   {
-    "team": "GB",
-    "field": "L",
-    "official": 3,
-    "feed": 4,
-    "ok": false
-   },
-   {
-    "team": "GB",
-    "field": "PF",
-    "official": 216,
-    "feed": 226,
-    "ok": false
-   },
-   {
-    "team": "GB",
-    "field": "PA",
-    "official": 191,
-    "feed": 221,
-    "ok": false
-   },
-   {
-    "team": "JAX",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "JAX",
-    "field": "PF",
-    "official": 229,
-    "feed": 269,
-    "ok": false
-   },
-   {
-    "team": "JAX",
-    "field": "PA",
-    "official": 121,
-    "feed": 144,
-    "ok": false
-   },
-   {
-    "team": "KC",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "KC",
-    "field": "PF",
-    "official": 202,
-    "feed": 237,
-    "ok": false
-   },
-   {
-    "team": "KC",
-    "field": "PA",
-    "official": 143,
-    "feed": 156,
-    "ok": false
-   },
-   {
-    "team": "MIN",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "MIN",
-    "field": "PF",
-    "official": 146,
-    "feed": 176,
-    "ok": false
-   },
-   {
-    "team": "MIN",
-    "field": "PA",
-    "official": 116,
-    "feed": 126,
-    "ok": false
-   },
-   {
-    "team": "PIT",
-    "field": "L",
-    "official": 2,
-    "feed": 3,
-    "ok": false
-   },
-   {
-    "team": "PIT",
-    "field": "PF",
-    "official": 180,
-    "feed": 198,
-    "ok": false
-   },
-   {
-    "team": "PIT",
-    "field": "PA",
-    "official": 144,
-    "feed": 182,
-    "ok": false
-   },
-   {
-    "team": "BUF",
-    "field": "W",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "BUF",
-    "field": "PF",
-    "official": 256,
-    "feed": 287,
-    "ok": false
-   },
-   {
-    "team": "BUF",
-    "field": "PA",
-    "official": 187,
-    "feed": 199,
-    "ok": false
-   },
-   {
-    "team": "SF",
-    "field": "W",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "SF",
-    "field": "PF",
-    "official": 235,
-    "feed": 281,
-    "ok": false
-   },
-   {
-    "team": "SF",
-    "field": "PA",
-    "official": 156,
-    "feed": 196,
-    "ok": false
-   }
-  ],
+  "matches": 160,
+  "mismatches": [],
   "detail": [
    {
-    "team": "LAC",
+    "team": "BUF",
     "field": "W",
-    "official": 0,
-    "feed": 1,
-    "ok": false
-   },
-   {
-    "team": "LAC",
-    "field": "L",
     "official": 8,
     "feed": 8,
     "ok": true
    },
    {
-    "team": "LAC",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "LAC",
-    "field": "PF",
-    "official": 121,
-    "feed": 144,
-    "ok": false
-   },
-   {
-    "team": "LAC",
-    "field": "PA",
-    "official": 219,
-    "feed": 239,
-    "ok": false
-   },
-   {
-    "team": "MIA",
-    "field": "W",
-    "official": 1,
-    "feed": 1,
-    "ok": true
-   },
-   {
-    "team": "MIA",
-    "field": "L",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "MIA",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "MIA",
-    "field": "PF",
-    "official": 126,
-    "feed": 148,
-    "ok": false
-   },
-   {
-    "team": "MIA",
-    "field": "PA",
-    "official": 200,
-    "feed": 224,
-    "ok": false
-   },
-   {
-    "team": "TEN",
-    "field": "W",
-    "official": 1,
-    "feed": 1,
-    "ok": true
-   },
-   {
-    "team": "TEN",
-    "field": "L",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "TEN",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "TEN",
-    "field": "PF",
-    "official": 144,
-    "feed": 167,
-    "ok": false
-   },
-   {
-    "team": "TEN",
-    "field": "PA",
-    "official": 199,
-    "feed": 239,
-    "ok": false
-   },
-   {
-    "team": "IND",
-    "field": "W",
-    "official": 2,
-    "feed": 3,
-    "ok": false
-   },
-   {
-    "team": "IND",
-    "field": "L",
-    "official": 7,
-    "feed": 7,
-    "ok": true
-   },
-   {
-    "team": "IND",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "IND",
-    "field": "PF",
-    "official": 184,
-    "feed": 208,
-    "ok": false
-   },
-   {
-    "team": "IND",
-    "field": "PA",
-    "official": 249,
-    "feed": 271,
-    "ok": false
-   },
-   {
-    "team": "NYJ",
-    "field": "W",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "NYJ",
-    "field": "L",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "NYJ",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "NYJ",
-    "field": "PF",
-    "official": 182,
-    "feed": 194,
-    "ok": false
-   },
-   {
-    "team": "NYJ",
-    "field": "PA",
-    "official": 223,
-    "feed": 254,
-    "ok": false
-   },
-   {
-    "team": "PHI",
-    "field": "W",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "PHI",
-    "field": "L",
-    "official": 7,
-    "feed": 7,
-    "ok": true
-   },
-   {
-    "team": "PHI",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "PHI",
-    "field": "PF",
-    "official": 148,
-    "feed": 148,
-    "ok": true
-   },
-   {
-    "team": "PHI",
-    "field": "PA",
-    "official": 221,
-    "feed": 221,
-    "ok": true
-   },
-   {
-    "team": "AZ",
-    "field": "W",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "AZ",
-    "field": "L",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "AZ",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "AZ",
-    "field": "PF",
-    "official": 178,
-    "feed": 184,
-    "ok": false
-   },
-   {
-    "team": "AZ",
-    "field": "PA",
-    "official": 255,
-    "feed": 289,
-    "ok": false
-   },
-   {
-    "team": "ATL",
-    "field": "W",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "ATL",
-    "field": "L",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "ATL",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "ATL",
-    "field": "PF",
-    "official": 188,
-    "feed": 201,
-    "ok": false
-   },
-   {
-    "team": "ATL",
-    "field": "PA",
-    "official": 223,
-    "feed": 258,
-    "ok": false
-   },
-   {
-    "team": "CAR",
-    "field": "W",
-    "official": 3,
-    "feed": 4,
-    "ok": false
-   },
-   {
-    "team": "CAR",
-    "field": "L",
-    "official": 5,
-    "feed": 5,
-    "ok": true
-   },
-   {
-    "team": "CAR",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "CAR",
-    "field": "PF",
-    "official": 199,
-    "feed": 219,
-    "ok": false
-   },
-   {
-    "team": "CAR",
-    "field": "PA",
-    "official": 219,
-    "feed": 236,
-    "ok": false
-   },
-   {
-    "team": "HOU",
-    "field": "W",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "HOU",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "HOU",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "HOU",
-    "field": "PF",
-    "official": 209,
-    "feed": 233,
-    "ok": false
-   },
-   {
-    "team": "HOU",
-    "field": "PA",
-    "official": 192,
-    "feed": 219,
-    "ok": false
-   },
-   {
-    "team": "NO",
-    "field": "W",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "NO",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "NO",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "NO",
-    "field": "PF",
-    "official": 185,
-    "feed": 202,
-    "ok": false
-   },
-   {
-    "team": "NO",
-    "field": "PA",
-    "official": 216,
-    "feed": 236,
-    "ok": false
-   },
-   {
-    "team": "TB",
-    "field": "W",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "TB",
-    "field": "L",
-    "official": 6,
-    "feed": 6,
-    "ok": true
-   },
-   {
-    "team": "TB",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "TB",
-    "field": "PF",
-    "official": 202,
-    "feed": 202,
-    "ok": true
-   },
-   {
-    "team": "TB",
-    "field": "PA",
-    "official": 178,
-    "feed": 178,
-    "ok": true
-   },
-   {
-    "team": "WAS",
-    "field": "W",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "WAS",
-    "field": "L",
-    "official": 5,
-    "feed": 5,
-    "ok": true
-   },
-   {
-    "team": "WAS",
-    "field": "T",
-    "official": 1,
-    "feed": 1,
-    "ok": true
-   },
-   {
-    "team": "WAS",
-    "field": "PF",
-    "official": 196,
-    "feed": 196,
-    "ok": true
-   },
-   {
-    "team": "WAS",
-    "field": "PA",
-    "official": 223,
-    "feed": 223,
-    "ok": true
-   },
-   {
-    "team": "BAL",
-    "field": "W",
-    "official": 4,
-    "feed": 4,
-    "ok": true
-   },
-   {
-    "team": "BAL",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "BAL",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "BAL",
-    "field": "PF",
-    "official": 189,
-    "feed": 209,
-    "ok": false
-   },
-   {
-    "team": "BAL",
-    "field": "PA",
-    "official": 236,
-    "feed": 259,
-    "ok": false
-   },
-   {
-    "team": "DAL",
-    "field": "W",
-    "official": 4,
-    "feed": 4,
-    "ok": true
-   },
-   {
-    "team": "DAL",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "DAL",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "DAL",
-    "field": "PF",
-    "official": 246,
-    "feed": 286,
-    "ok": false
-   },
-   {
-    "team": "DAL",
-    "field": "PA",
-    "official": 236,
-    "feed": 282,
-    "ok": false
-   },
-   {
-    "team": "LV",
-    "field": "W",
-    "official": 4,
-    "feed": 4,
-    "ok": true
-   },
-   {
-    "team": "LV",
-    "field": "L",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "LV",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "LV",
-    "field": "PF",
-    "official": 238,
-    "feed": 251,
-    "ok": false
-   },
-   {
-    "team": "LV",
-    "field": "PA",
-    "official": 268,
-    "feed": 289,
-    "ok": false
-   },
-   {
-    "team": "CLE",
-    "field": "W",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "CLE",
-    "field": "L",
-    "official": 4,
-    "feed": 4,
-    "ok": true
-   },
-   {
-    "team": "CLE",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "CLE",
-    "field": "PF",
-    "official": 161,
-    "feed": 188,
-    "ok": false
-   },
-   {
-    "team": "CLE",
-    "field": "PA",
-    "official": 196,
-    "feed": 220,
-    "ok": false
-   },
-   {
-    "team": "LA",
-    "field": "W",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "LA",
-    "field": "L",
-    "official": 4,
-    "feed": 4,
-    "ok": true
-   },
-   {
-    "team": "LA",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "LA",
-    "field": "PF",
-    "official": 214,
-    "feed": 248,
-    "ok": false
-   },
-   {
-    "team": "LA",
-    "field": "PA",
-    "official": 181,
-    "feed": 187,
-    "ok": false
-   },
-   {
-    "team": "NE",
-    "field": "W",
-    "official": 5,
-    "feed": 5,
-    "ok": true
-   },
-   {
-    "team": "NE",
-    "field": "L",
-    "official": 4,
-    "feed": 5,
-    "ok": false
-   },
-   {
-    "team": "NE",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "NE",
-    "field": "PF",
-    "official": 211,
-    "feed": 221,
-    "ok": false
-   },
-   {
-    "team": "NE",
-    "field": "PA",
-    "official": 207,
-    "feed": 242,
-    "ok": false
-   },
-   {
-    "team": "NYG",
-    "field": "W",
-    "official": 5,
-    "feed": 5,
-    "ok": true
-   },
-   {
-    "team": "NYG",
-    "field": "L",
-    "official": 3,
-    "feed": 3,
-    "ok": true
-   },
-   {
-    "team": "NYG",
-    "field": "T",
-    "official": 1,
-    "feed": 1,
-    "ok": true
-   },
-   {
-    "team": "NYG",
-    "field": "PF",
-    "official": 203,
-    "feed": 203,
-    "ok": true
-   },
-   {
-    "team": "NYG",
-    "field": "PA",
-    "official": 196,
-    "feed": 196,
-    "ok": true
-   },
-   {
-    "team": "SEA",
-    "field": "W",
-    "official": 5,
-    "feed": 6,
-    "ok": false
-   },
-   {
-    "team": "SEA",
-    "field": "L",
-    "official": 4,
-    "feed": 4,
-    "ok": true
-   },
-   {
-    "team": "SEA",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "SEA",
-    "field": "PF",
-    "official": 202,
-    "feed": 223,
-    "ok": false
-   },
-   {
-    "team": "SEA",
-    "field": "PA",
-    "official": 162,
-    "feed": 175,
-    "ok": false
-   },
-   {
-    "team": "CIN",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "CIN",
-    "field": "L",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "CIN",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "CIN",
-    "field": "PF",
-    "official": 240,
-    "feed": 278,
-    "ok": false
-   },
-   {
-    "team": "CIN",
-    "field": "PA",
-    "official": 175,
-    "feed": 193,
-    "ok": false
-   },
-   {
-    "team": "DET",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "DET",
-    "field": "L",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "DET",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "DET",
-    "field": "PF",
-    "official": 222,
-    "feed": 257,
-    "ok": false
-   },
-   {
-    "team": "DET",
-    "field": "PA",
-    "official": 189,
-    "feed": 199,
-    "ok": false
-   },
-   {
-    "team": "GB",
-    "field": "W",
-    "official": 6,
-    "feed": 6,
-    "ok": true
-   },
-   {
-    "team": "GB",
-    "field": "L",
-    "official": 3,
-    "feed": 4,
-    "ok": false
-   },
-   {
-    "team": "GB",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "GB",
-    "field": "PF",
-    "official": 216,
-    "feed": 226,
-    "ok": false
-   },
-   {
-    "team": "GB",
-    "field": "PA",
-    "official": 191,
-    "feed": 221,
-    "ok": false
-   },
-   {
-    "team": "JAX",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "JAX",
-    "field": "L",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "JAX",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "JAX",
-    "field": "PF",
-    "official": 229,
-    "feed": 269,
-    "ok": false
-   },
-   {
-    "team": "JAX",
-    "field": "PA",
-    "official": 121,
-    "feed": 144,
-    "ok": false
-   },
-   {
-    "team": "KC",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "KC",
-    "field": "L",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "KC",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "KC",
-    "field": "PF",
-    "official": 202,
-    "feed": 237,
-    "ok": false
-   },
-   {
-    "team": "KC",
-    "field": "PA",
-    "official": 143,
-    "feed": 156,
-    "ok": false
-   },
-   {
-    "team": "MIN",
-    "field": "W",
-    "official": 6,
-    "feed": 7,
-    "ok": false
-   },
-   {
-    "team": "MIN",
-    "field": "L",
-    "official": 2,
-    "feed": 2,
-    "ok": true
-   },
-   {
-    "team": "MIN",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "MIN",
-    "field": "PF",
-    "official": 146,
-    "feed": 176,
-    "ok": false
-   },
-   {
-    "team": "MIN",
-    "field": "PA",
-    "official": 116,
-    "feed": 126,
-    "ok": false
-   },
-   {
-    "team": "PIT",
-    "field": "W",
-    "official": 6,
-    "feed": 6,
-    "ok": true
-   },
-   {
-    "team": "PIT",
-    "field": "L",
-    "official": 2,
-    "feed": 3,
-    "ok": false
-   },
-   {
-    "team": "PIT",
-    "field": "T",
-    "official": 0,
-    "feed": 0,
-    "ok": true
-   },
-   {
-    "team": "PIT",
-    "field": "PF",
-    "official": 180,
-    "feed": 198,
-    "ok": false
-   },
-   {
-    "team": "PIT",
-    "field": "PA",
-    "official": 144,
-    "feed": 182,
-    "ok": false
-   },
-   {
-    "team": "BUF",
-    "field": "W",
-    "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
     "team": "BUF",
     "field": "L",
     "official": 1,
@@ -1562,16 +35,51 @@
    {
     "team": "BUF",
     "field": "PF",
-    "official": 256,
+    "official": 287,
     "feed": 287,
-    "ok": false
+    "ok": true
    },
    {
     "team": "BUF",
     "field": "PA",
-    "official": 187,
+    "official": 199,
     "feed": 199,
-    "ok": false
+    "ok": true
+   },
+   {
+    "team": "SF",
+    "field": "W",
+    "official": 8,
+    "feed": 8,
+    "ok": true
+   },
+   {
+    "team": "SF",
+    "field": "L",
+    "official": 1,
+    "feed": 1,
+    "ok": true
+   },
+   {
+    "team": "SF",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "SF",
+    "field": "PF",
+    "official": 281,
+    "feed": 281,
+    "ok": true
+   },
+   {
+    "team": "SF",
+    "field": "PA",
+    "official": 196,
+    "feed": 196,
+    "ok": true
    },
    {
     "team": "CHI",
@@ -1606,6 +114,41 @@
     "field": "PA",
     "official": 184,
     "feed": 184,
+    "ok": true
+   },
+   {
+    "team": "CIN",
+    "field": "W",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "CIN",
+    "field": "L",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "CIN",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "CIN",
+    "field": "PF",
+    "official": 278,
+    "feed": 278,
+    "ok": true
+   },
+   {
+    "team": "CIN",
+    "field": "PA",
+    "official": 193,
+    "feed": 193,
     "ok": true
    },
    {
@@ -1644,41 +187,957 @@
     "ok": true
    },
    {
-    "team": "SF",
+    "team": "DET",
     "field": "W",
     "official": 7,
-    "feed": 8,
-    "ok": false
-   },
-   {
-    "team": "SF",
-    "field": "L",
-    "official": 1,
-    "feed": 1,
+    "feed": 7,
     "ok": true
    },
    {
-    "team": "SF",
+    "team": "DET",
+    "field": "L",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "DET",
     "field": "T",
     "official": 0,
     "feed": 0,
     "ok": true
    },
    {
-    "team": "SF",
+    "team": "DET",
     "field": "PF",
-    "official": 235,
-    "feed": 281,
-    "ok": false
+    "official": 257,
+    "feed": 257,
+    "ok": true
    },
    {
-    "team": "SF",
+    "team": "DET",
+    "field": "PA",
+    "official": 199,
+    "feed": 199,
+    "ok": true
+   },
+   {
+    "team": "JAX",
+    "field": "W",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "JAX",
+    "field": "L",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "JAX",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "JAX",
+    "field": "PF",
+    "official": 269,
+    "feed": 269,
+    "ok": true
+   },
+   {
+    "team": "JAX",
+    "field": "PA",
+    "official": 144,
+    "feed": 144,
+    "ok": true
+   },
+   {
+    "team": "KC",
+    "field": "W",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "KC",
+    "field": "L",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "KC",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "KC",
+    "field": "PF",
+    "official": 237,
+    "feed": 237,
+    "ok": true
+   },
+   {
+    "team": "KC",
     "field": "PA",
     "official": 156,
+    "feed": 156,
+    "ok": true
+   },
+   {
+    "team": "MIN",
+    "field": "W",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "MIN",
+    "field": "L",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "MIN",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "MIN",
+    "field": "PF",
+    "official": 176,
+    "feed": 176,
+    "ok": true
+   },
+   {
+    "team": "MIN",
+    "field": "PA",
+    "official": 126,
+    "feed": 126,
+    "ok": true
+   },
+   {
+    "team": "PIT",
+    "field": "W",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "PIT",
+    "field": "L",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "PIT",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "PIT",
+    "field": "PF",
+    "official": 198,
+    "feed": 198,
+    "ok": true
+   },
+   {
+    "team": "PIT",
+    "field": "PA",
+    "official": 182,
+    "feed": 182,
+    "ok": true
+   },
+   {
+    "team": "NYG",
+    "field": "W",
+    "official": 5,
+    "feed": 5,
+    "ok": true
+   },
+   {
+    "team": "NYG",
+    "field": "L",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "NYG",
+    "field": "T",
+    "official": 1,
+    "feed": 1,
+    "ok": true
+   },
+   {
+    "team": "NYG",
+    "field": "PF",
+    "official": 203,
+    "feed": 203,
+    "ok": true
+   },
+   {
+    "team": "NYG",
+    "field": "PA",
+    "official": 196,
     "feed": 196,
-    "ok": false
+    "ok": true
+   },
+   {
+    "team": "CLE",
+    "field": "W",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "CLE",
+    "field": "L",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "CLE",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "CLE",
+    "field": "PF",
+    "official": 188,
+    "feed": 188,
+    "ok": true
+   },
+   {
+    "team": "CLE",
+    "field": "PA",
+    "official": 220,
+    "feed": 220,
+    "ok": true
+   },
+   {
+    "team": "GB",
+    "field": "W",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "GB",
+    "field": "L",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "GB",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "GB",
+    "field": "PF",
+    "official": 226,
+    "feed": 226,
+    "ok": true
+   },
+   {
+    "team": "GB",
+    "field": "PA",
+    "official": 221,
+    "feed": 221,
+    "ok": true
+   },
+   {
+    "team": "LA",
+    "field": "W",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "LA",
+    "field": "L",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "LA",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "LA",
+    "field": "PF",
+    "official": 248,
+    "feed": 248,
+    "ok": true
+   },
+   {
+    "team": "LA",
+    "field": "PA",
+    "official": 187,
+    "feed": 187,
+    "ok": true
+   },
+   {
+    "team": "SEA",
+    "field": "W",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "SEA",
+    "field": "L",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "SEA",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "SEA",
+    "field": "PF",
+    "official": 223,
+    "feed": 223,
+    "ok": true
+   },
+   {
+    "team": "SEA",
+    "field": "PA",
+    "official": 175,
+    "feed": 175,
+    "ok": true
+   },
+   {
+    "team": "NE",
+    "field": "W",
+    "official": 5,
+    "feed": 5,
+    "ok": true
+   },
+   {
+    "team": "NE",
+    "field": "L",
+    "official": 5,
+    "feed": 5,
+    "ok": true
+   },
+   {
+    "team": "NE",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "NE",
+    "field": "PF",
+    "official": 221,
+    "feed": 221,
+    "ok": true
+   },
+   {
+    "team": "NE",
+    "field": "PA",
+    "official": 242,
+    "feed": 242,
+    "ok": true
+   },
+   {
+    "team": "CAR",
+    "field": "W",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "CAR",
+    "field": "L",
+    "official": 5,
+    "feed": 5,
+    "ok": true
+   },
+   {
+    "team": "CAR",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "CAR",
+    "field": "PF",
+    "official": 219,
+    "feed": 219,
+    "ok": true
+   },
+   {
+    "team": "CAR",
+    "field": "PA",
+    "official": 236,
+    "feed": 236,
+    "ok": true
+   },
+   {
+    "team": "BAL",
+    "field": "W",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "BAL",
+    "field": "L",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "BAL",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "BAL",
+    "field": "PF",
+    "official": 209,
+    "feed": 209,
+    "ok": true
+   },
+   {
+    "team": "BAL",
+    "field": "PA",
+    "official": 259,
+    "feed": 259,
+    "ok": true
+   },
+   {
+    "team": "DAL",
+    "field": "W",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "DAL",
+    "field": "L",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "DAL",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "DAL",
+    "field": "PF",
+    "official": 286,
+    "feed": 286,
+    "ok": true
+   },
+   {
+    "team": "DAL",
+    "field": "PA",
+    "official": 282,
+    "feed": 282,
+    "ok": true
+   },
+   {
+    "team": "LV",
+    "field": "W",
+    "official": 4,
+    "feed": 4,
+    "ok": true
+   },
+   {
+    "team": "LV",
+    "field": "L",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "LV",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "LV",
+    "field": "PF",
+    "official": 251,
+    "feed": 251,
+    "ok": true
+   },
+   {
+    "team": "LV",
+    "field": "PA",
+    "official": 289,
+    "feed": 289,
+    "ok": true
+   },
+   {
+    "team": "WAS",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "WAS",
+    "field": "L",
+    "official": 5,
+    "feed": 5,
+    "ok": true
+   },
+   {
+    "team": "WAS",
+    "field": "T",
+    "official": 1,
+    "feed": 1,
+    "ok": true
+   },
+   {
+    "team": "WAS",
+    "field": "PF",
+    "official": 196,
+    "feed": 196,
+    "ok": true
+   },
+   {
+    "team": "WAS",
+    "field": "PA",
+    "official": 223,
+    "feed": 223,
+    "ok": true
+   },
+   {
+    "team": "HOU",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "HOU",
+    "field": "L",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "HOU",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "HOU",
+    "field": "PF",
+    "official": 233,
+    "feed": 233,
+    "ok": true
+   },
+   {
+    "team": "HOU",
+    "field": "PA",
+    "official": 219,
+    "feed": 219,
+    "ok": true
+   },
+   {
+    "team": "NO",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "NO",
+    "field": "L",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "NO",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "NO",
+    "field": "PF",
+    "official": 202,
+    "feed": 202,
+    "ok": true
+   },
+   {
+    "team": "NO",
+    "field": "PA",
+    "official": 236,
+    "feed": 236,
+    "ok": true
+   },
+   {
+    "team": "TB",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "TB",
+    "field": "L",
+    "official": 6,
+    "feed": 6,
+    "ok": true
+   },
+   {
+    "team": "TB",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "TB",
+    "field": "PF",
+    "official": 202,
+    "feed": 202,
+    "ok": true
+   },
+   {
+    "team": "TB",
+    "field": "PA",
+    "official": 178,
+    "feed": 178,
+    "ok": true
+   },
+   {
+    "team": "AZ",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "AZ",
+    "field": "L",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "AZ",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "AZ",
+    "field": "PF",
+    "official": 184,
+    "feed": 184,
+    "ok": true
+   },
+   {
+    "team": "AZ",
+    "field": "PA",
+    "official": 289,
+    "feed": 289,
+    "ok": true
+   },
+   {
+    "team": "ATL",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "ATL",
+    "field": "L",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "ATL",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "ATL",
+    "field": "PF",
+    "official": 201,
+    "feed": 201,
+    "ok": true
+   },
+   {
+    "team": "ATL",
+    "field": "PA",
+    "official": 258,
+    "feed": 258,
+    "ok": true
+   },
+   {
+    "team": "IND",
+    "field": "W",
+    "official": 3,
+    "feed": 3,
+    "ok": true
+   },
+   {
+    "team": "IND",
+    "field": "L",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "IND",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "IND",
+    "field": "PF",
+    "official": 208,
+    "feed": 208,
+    "ok": true
+   },
+   {
+    "team": "IND",
+    "field": "PA",
+    "official": 271,
+    "feed": 271,
+    "ok": true
+   },
+   {
+    "team": "PHI",
+    "field": "W",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "PHI",
+    "field": "L",
+    "official": 7,
+    "feed": 7,
+    "ok": true
+   },
+   {
+    "team": "PHI",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "PHI",
+    "field": "PF",
+    "official": 148,
+    "feed": 148,
+    "ok": true
+   },
+   {
+    "team": "PHI",
+    "field": "PA",
+    "official": 221,
+    "feed": 221,
+    "ok": true
+   },
+   {
+    "team": "NYJ",
+    "field": "W",
+    "official": 2,
+    "feed": 2,
+    "ok": true
+   },
+   {
+    "team": "NYJ",
+    "field": "L",
+    "official": 8,
+    "feed": 8,
+    "ok": true
+   },
+   {
+    "team": "NYJ",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "NYJ",
+    "field": "PF",
+    "official": 194,
+    "feed": 194,
+    "ok": true
+   },
+   {
+    "team": "NYJ",
+    "field": "PA",
+    "official": 254,
+    "feed": 254,
+    "ok": true
+   },
+   {
+    "team": "LAC",
+    "field": "W",
+    "official": 1,
+    "feed": 1,
+    "ok": true
+   },
+   {
+    "team": "LAC",
+    "field": "L",
+    "official": 8,
+    "feed": 8,
+    "ok": true
+   },
+   {
+    "team": "LAC",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "LAC",
+    "field": "PF",
+    "official": 144,
+    "feed": 144,
+    "ok": true
+   },
+   {
+    "team": "LAC",
+    "field": "PA",
+    "official": 239,
+    "feed": 239,
+    "ok": true
+   },
+   {
+    "team": "MIA",
+    "field": "W",
+    "official": 1,
+    "feed": 1,
+    "ok": true
+   },
+   {
+    "team": "MIA",
+    "field": "L",
+    "official": 8,
+    "feed": 8,
+    "ok": true
+   },
+   {
+    "team": "MIA",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "MIA",
+    "field": "PF",
+    "official": 148,
+    "feed": 148,
+    "ok": true
+   },
+   {
+    "team": "MIA",
+    "field": "PA",
+    "official": 224,
+    "feed": 224,
+    "ok": true
+   },
+   {
+    "team": "TEN",
+    "field": "W",
+    "official": 1,
+    "feed": 1,
+    "ok": true
+   },
+   {
+    "team": "TEN",
+    "field": "L",
+    "official": 8,
+    "feed": 8,
+    "ok": true
+   },
+   {
+    "team": "TEN",
+    "field": "T",
+    "official": 0,
+    "feed": 0,
+    "ok": true
+   },
+   {
+    "team": "TEN",
+    "field": "PF",
+    "official": 167,
+    "feed": 167,
+    "ok": true
+   },
+   {
+    "team": "TEN",
+    "field": "PA",
+    "official": 239,
+    "feed": 239,
+    "ok": true
    }
   ],
+  "baseline": {
+   "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv",
+   "read": "2026-11-17",
+   "clubs": 32,
+   "why": "the feed carries all 150 settled 2026 games; the baseline is the dated post-Week-10 standings read the feed is verified against (docs/methodology/results-feed-baseline.md, Q-62)"
+  },
   "source_official": {
    "tier": "official",
    "org": "NFL",
