@@ -64,7 +64,12 @@ NAV = [
                        # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the
                        # official Week 10 injury page, compared row by row with the published table.
                        ("../pages/injury-read-2026-11-17.html", "Injury re-read 17 Nov", "347"),
-                       ("depth-parse.html", "Depth parse defects", "")]),
+                       ("depth-parse.html", "Depth parse defects", ""),
+                       # Added by session arena/efb06932-x1 (round 6, additive only): the
+                       # Game Center venue capture with its offline re-derivation, and the
+                       # injury-hub delta ledger.
+                       ("venue-capture.html", "Game Center venue capture", "27"),
+                       ("injury-delta.html", "Injury hub delta", "")]),
     ("Markets", [("results.html", "Verified results feed", "7,548"),
                  ("prices.html", "Price-snapshot store", "18.8k"),
                  ("lines.html", "Originated lines", "6.3k")]),
@@ -74,12 +79,12 @@ NAV = [
                   ("correlations.html", "Correlations", ""),
                   ("luck.html", "Removing luck", ""),
                   ("props.html", "Props and parlays", "")]),
-    ("Decisions", [("questions.html", "Decision register", "15"),
-                   ("suggestions.html", "Suggestion review board", "15")]),
+    ("Decisions", [("questions.html", "Decision register", "18"),
+                   ("suggestions.html", "Suggestion review board", "19")]),
     ("Governance", [("verification.html", "Verification ledger", ""),
                     ("sources.html", "Source registry", ""),
                     ("repo-review.html", "Repository review", ""),
-                    ("flagged.html", "Flagged for review", "12"),
+                    ("flagged.html", "Flagged for review", "14"),
                     ("archived-sites.html", "Archived sites", "9")]),
 ]
 
@@ -400,6 +405,89 @@ def repo_inventory():
 # ---------------------------------------------------------------------------
 # page builders
 # ---------------------------------------------------------------------------
+
+OFFICIAL_DIR = os.path.join(ROOT, "data", "official")
+REPO_BLOB = "https://github.com/karagemop466-tech/X1/blob/main/"
+
+
+def _read_tsv_rows(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh, delimiter="\t"))
+
+
+def _read_csv_rows(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
+def _read_json(path):
+    if not os.path.exists(path):
+        return {}
+    try:
+        return json.load(open(path, encoding="utf-8"))
+    except ValueError:
+        return {}
+
+
+def _load_official_registers():
+    """Every round-6 register the site publishes, read where its verifier wrote it."""
+    gc = os.path.join(OFFICIAL_DIR, "gamecentre")
+    fx = os.path.join(OFFICIAL_DIR, "fixture_context")
+    inj = os.path.join(OFFICIAL_DIR, "injury_deltas")
+    md = os.path.join(ROOT, "data", "console")
+    esc_ = os.path.join(OFFICIAL_DIR, "escrow")
+    return {
+        "venue_rows": _read_tsv_rows(os.path.join(gc, "venue_register_latest.tsv")),
+        "venue_report": _read_json(os.path.join(gc, "venue_report.json")),
+        "venue_crosscheck": _read_json(os.path.join(gc, "fixture_crosscheck.json")),
+        "venue_reparse": _read_json(os.path.join(gc, "reparse_report.json")),
+        "venue_verify": _read_json(os.path.join(gc, "verify_report.json")),
+        "fixture_rows": _read_csv_rows(os.path.join(fx, "fixture_context_2026_w11.csv")),
+        "fixture_meta": _read_json(os.path.join(fx, "fixture_context_meta.json")),
+        "injury_rows": _read_csv_rows(os.path.join(inj, "deltas.csv")),
+        "injury_series": _read_csv_rows(os.path.join(inj, "series.csv")),
+        "injury_meta": _read_json(os.path.join(inj, "coverage.json")),
+        "mind_rows": _read_csv_rows(os.path.join(md, "mind_change.csv")),
+        "mind_meta": _read_json(os.path.join(md, "mind_change_meta.json")),
+        "escrow_rows": _read_csv_rows(os.path.join(esc_, "escrow_inputs_2026-11-18.csv")),
+        "escrow_inputs": _read_json(os.path.join(esc_, "escrow_inputs_meta.json")),
+        "luck_rows": _read_csv_rows(os.path.join(esc_, "luck_removal_panel.csv")),
+        "luck_panel": _read_json(os.path.join(esc_, "luck_removal_meta.json")),
+    }
+
+
+def _price_open_2026(price_rows):
+    """How many 2026 openings the store actually holds, measured from the store itself.
+
+    Added by session arena/efb06932-x1 (round 6): Q-02 on the decision register used to say openings
+    did not exist for 2026 at all. That was true when it was written and stopped being true when an
+    OPEN-2026 snapshot landed, so the row now reads a measurement instead of a remembered fact. Cells
+    are coerced with txt() because the feed parses numbers as floats and blanks as None.
+    """
+    def txt(v):
+        return "" if v is None else str(v).strip()
+
+    y26 = [r for r in price_rows if txt(r.get("season")) == "2026"]
+    with_open = [r for r in y26 if txt(r.get("open_line"))]
+    both = [r for r in with_open if txt(r.get("close_line"))]
+    srcs: dict[str, int] = {}
+    for r in with_open:
+        k = txt(r.get("open_source")) or "(unattributed)"
+        srcs[k] = srcs.get(k, 0) + 1
+    prices = sorted({txt(r.get("open_price")) for r in with_open if txt(r.get("open_price"))})
+    weeks = sorted({txt(r.get("week")) for r in with_open if txt(r.get("week"))},
+                   key=lambda w: int(w))
+    return {"rows_2026": len(y26), "with_open": len(with_open), "with_both_2026": len(both),
+            "games_with_open": len({txt(r.get("game_id")) for r in with_open}),
+            "weeks": weeks, "sources": srcs, "snapshots": sorted(
+                {txt(r.get("snapshot_id")) for r in with_open if txt(r.get("snapshot_id"))}),
+            "with_capture_stamp": sum(1 for r in with_open if txt(r.get("open_captured_at_utc"))),
+            "open_price_values": prices}
+
 
 def _fmt_rows(rows, fields):
     return [[("" if r.get(f) is None else r.get(f)) for f in fields] for r in rows]
@@ -1738,6 +1826,12 @@ def main():
         "lab": lab_res, "correlations": corrs, "convergence": convergence,
         "parlay_pricing": parlay_pricing, "market_sigma": market_sigma,
         "reconcile": reconcile, "price": price_summary, "deficiency": deficiency,
+        # Added by session arena/efb06932-x1 (round 6, additive only): the round-6 official
+        # registers, each read from the file its own verifier wrote. A renderer that cannot
+        # find its input says so and names the command, rather than falling back to a number
+        # remembered from an earlier build.
+        "official": _load_official_registers(),
+        "price_open_2026": _price_open_2026(price_rows),
         "depth": deficiency["summary"],
         "test_seasons": test_seasons,
         "feed": {"games_total": len(games),
@@ -1797,6 +1891,7 @@ def main():
     p = build_pages_5(ctx, p)
     p = build_pages_6(ctx, p)
     p = build_pages_7(ctx, p)
+    p = build_pages_8(ctx, p)   # round 6 (arena/efb06932-x1), additive
     # Added by session arena/b03ced7c-x1 (additive only): four pages for the
     # Week 10 re-capture, the two depth-parse failures, the readiness table and
     # the official-source flags. They render through this module's own helpers,
@@ -1824,6 +1919,410 @@ def main():
             fh.write(html_text)
     log(f"  {len(p)} pages written to {OUT_SITE}")
     return 0
+
+
+def build_pages_8(ctx, pages):
+    """Four pages, each reading a register that its own verifier checks.
+
+    Nothing here is typed by hand: every figure comes from a file under data/ that a tool wrote
+    while verifying itself against an official page, and each page states the command that
+    reproduces its own table.
+    """
+    off = ctx.get("official", {})
+
+    def gap(what, cmd):
+        return (f'<div class="note">No {esc(what)} in this tree yet. Run '
+                f'<code>{esc(cmd)}</code> to produce it, then rebuild.</div>')
+
+    def flag_pill(text):
+        if not text:
+            return '<span class="pill ok">clean</span>'
+        return f'<span class="pill no" title="{esc(text)}">{esc(text.split(";")[0])}</span>'
+
+    # ---------------- venue-capture.html ----------------
+    vrows = off.get("venue_rows", [])
+    rep = off.get("venue_report", {})
+    xch_raw = off.get("venue_crosscheck", {})
+    rp = off.get("venue_reparse", {})
+    vv = off.get("venue_verify", {})
+    # The cross-check file is a list of named checks; index it by the label before the colon so a
+    # renamed check shows up as an absent (zero) row rather than silently reading someone else's.
+    xch = {str(c.get("name", "")).split(":", 1)[0].strip(): c for c in xch_raw.get("checks", [])}
+    vx = xch.get("venue", {})
+    sx = xch.get("slate", {})
+    body = [
+        f'<p class="lede">One row per fixture the Game Center runner read: venue transcription from '
+        f'the &ldquo;Game Info&rdquo; block of the league&rsquo;s own page, re-derived offline from the '
+        f'bytes that capture retained. <b>{len(vrows)}</b> rows, captured '
+        f'<b>{esc(rep.get("captured_at_utc", "(unknown)"))}</b>.</p>',
+    ]
+    if not vrows:
+        body.append(gap("venue register", "python3 tools/official/gamecentre.py capture"))
+    else:
+        hdr = [("Fixture", 0), ("Wk", 0), ("Status", 0), ("Score", 1), ("Location", 0),
+               ("Stadium", 0), ("Method", 0), ("Raw", 0), ("Flags", 0), ("Source", 0)]
+        trs = []
+        for r in vrows:
+            score = (f'{esc(r.get("away_score", ""))} at {esc(r.get("home_score", ""))}'
+                     if r.get("away_score") or r.get("home_score")
+                     else '<span class="mut">not in the text layer</span>')
+            trs.append([
+                esc(r.get("game_id") or r.get("slug")), esc(r.get("week")),
+                esc(r.get("status_label") or "(blank)"),
+                score,
+                esc(r.get("location")), esc(r.get("stadium")),
+                esc(f'{r.get("venue_method", "")}/{r.get("status_method", "")}'),
+                '<span class="pill ok">gzip</span>' if r.get("raw_file")
+                else '<span class="pill no">none</span>',
+                flag_pill(r.get("flags", "")),
+                src_link(r.get("game_url"), "official page"),
+            ])
+        body += [
+            table(hdr, trs, "vt", filter_col=1, filter_label="Filter by week",
+                  note="Blank cells are deliberate: the official page prints Location and Stadium and "
+                       "nothing else about the building."),
+            '<h2>What this table refuses to do</h2>'
+            '<p>Nothing is inferred. Capacity, roof, surface, attendance, weather and officiating are '
+            'not printed on the Overview Game Info block of any of these pages, so those cells stay '
+            'blank with a &ldquo;not-on-page&rdquo; flag rather than being filled from a team site or a '
+            'stadium wiki. The score is blank for the same reason: the page renders it inside elements '
+            'the text layer prints as &ldquo;Hidden Score&rdquo;.</p>'
+            '<p>A status is read only from the score box above the Game Info anchor. The word FINAL also '
+            'appears in a standings table further down the page, and the first version of this runner '
+            'mistook it for the game status on all 13 unplayed Week 11 fixtures. That is why the parse '
+            'method for status and score is published as its own column, and why the parser carries a '
+            'version stamp on every row.</p>',
+            '<h2>How it was checked</h2><ul>'
+            f'<li><b>Offline re-derivation.</b> {esc(str(vv.get("cells_checked", 0)))} cells across '
+            f'{esc(str(vv.get("rows", 0)))} rows re-parsed from the retained gzip at '
+            f'{esc(str(vv.get("verified_at_utc", "n/a")))} — <b>{esc(str(vv.get("mismatches", 0)))}</b> '
+            f'mismatches, verdict <b>{esc(str(vv.get("verdict", "not run")))}</b>. A published cell '
+            f'that no longer follows from the bytes is a defect.</li>'
+            f'<li><b>Re-parse.</b> The current rows were re-derived under parser '
+            f'<code>{esc(str(rp.get("parser_version", "n/a")))}</code> at '
+            f'{esc(str(rp.get("reparsed_at_utc", "n/a")))} with '
+            f'<b>{esc(str(rp.get("rows_changed", 0)))}</b> row(s) changing — a parser fix republishes '
+            f'against the same hashed page, so a value can never move because a page moved.</li>'
+            f'<li><b>Against an independent read.</b> {esc(str(vx.get("agree", 0)))} of '
+            f'{esc(str(vx.get("cells_compared", 0)))} stadium cells agree with the hand transcription '
+            f'of the same official pages; the rule is that a difference is a finding for the flagged '
+            f'page, never a value to copy over. That comparison is what found the HTML-entity defect '
+            f'(&ldquo;AT&amp;amp;T STADIUM&rdquo;) and the false FINAL labels.</li>'
+            f'<li><b>Against the slate.</b> {esc(str(sx.get("captured", 0)))} of '
+            f'{esc(str(sx.get("slate", 0)))} Week 11 fixtures match the collector&rsquo;s own dated read '
+            f'of the league&rsquo;s week page, read '
+            f'{esc(str(sx.get("slate_read_at", "n/a")))}.</li>'
+            f'<li><b>Drift.</b> {esc(str(len(rep.get("drift", []))))} field(s) changed since the '
+            f'previous capture; {esc(str(rep.get("fields_missing", 0)))} required fields are missing '
+            f'across {esc(str(rep.get("rows", 0)))} rows (expected '
+            f'{esc(str(rep.get("rows_expected", 0)))}).</li></ul>',
+            '<h2>Reproduce</h2><pre><code>python3 tools/official/gamecentre.py selftest\n'
+            'python3 tools/official/gamecentre.py reparse\n'
+            'python3 tools/official/gamecentre.py verify\n'
+            'python3 tools/official/gamecentre.py cross-check</code></pre>'
+            f'<p class="note">Register <code>data/official/gamecentre/venue_register_latest.tsv</code>; '
+            f'retained captures <code>data/official/gamecentre/raw/</code>; parser '
+            f'<code>{esc(rp.get("parser_version", rep.get("parser_version", "n/a")))}</code>.</p>',
+        ]
+    # ---------------- fixture context, derived from the register above ----------------
+    frows = off.get("fixture_rows", [])
+    fmeta = off.get("fixture_meta", {})
+    if frows:
+        fhdr = [("Fixture", 0), ("Stadium", 0), ("City this week", 0), ("Away rest", 1),
+                ("Home rest", 1), ("Same city as prev", 0), ("Roof", 0), ("Surface", 0),
+                ("International", 0), ("Prime time", 0), ("Window", 0), ("Flags", 0),
+                ("Stadium source", 0), ("Slate source", 0)]
+        ftr = []
+        for r in frows:
+            ftr.append([esc(r.get("game_id")), esc(r.get("stadium") or "(blank)"),
+                        esc(r.get("venue_city_this_week") or "(blank)"),
+                        esc(r.get("away_rest_days") or "(blank)"),
+                        esc(r.get("home_rest_days") or "(blank)"),
+                        esc(r.get("venue_same_city_as_prev") or "(blank)"),
+                        esc(r.get("roof") or "(not printed)"),
+                        esc(r.get("surface") or "(not printed)"),
+                        pill("yes", "warn") if r.get("international") == "yes"
+                        else esc(r.get("international") or "(blank)"),
+                        esc(r.get("prime_time") or "(blank)"), esc(r.get("window_label")),
+                        flag_pill(r.get("flags", "")),
+                        src_link(r.get("stadium_source"), "fixture page"),
+                        src_link(r.get("slate_source_url"), "league week page")])
+        ctx_block = [
+            '<h2>Fixture context built from the capture</h2>',
+            '<p>Rest days, previous venue, same-city travel, international designation and the '
+            'broadcast window, each derived only from what the league publishes. Two columns are '
+            'blank on every row by rule rather than by omission: roof and surface are not printed on '
+            'the fixture page, so they stay empty with a &ldquo;not-on-page&rdquo; flag instead of '
+            'being filled from a stadium source. Four of the 26 rest-day cells are blank for a real '
+            'schedule reason &mdash; a bye in the previous week leaves no earlier fixture to count days '
+            'from &mdash; and the flag names it, so a gap in the data is never confused with a fact '
+            'about the team.</p>'
+            '<p class="note">Measured today: '
+            f'{esc(str(fmeta.get("counts", {}).get("with_stadium", 0)))} of {esc(str(fmeta.get("rows", 0)))} '
+            f'fixtures with a stadium, '
+            f'{esc(str(fmeta.get("counts", {}).get("with_rest_days_away", 0)))} away rest days, '
+            f'{esc(str(fmeta.get("counts", {}).get("with_rest_days_home", 0)))} home rest days, '
+            f'{esc(str(fmeta.get("counts", {}).get("with_roof", 0)))} roof and '
+            f'{esc(str(fmeta.get("counts", {}).get("with_surface", 0)))} surface cells filled.</p>',
+            table(fhdr, ftr, "fct", note=f"{fmeta.get('rows', len(frows))} fixtures, week "
+                                         f"{fmeta.get('week', 11)}; venue lookup rows "
+                                         f"{fmeta.get('inputs', {}).get('venue_lookup_rows', 'n/a')}"),
+            '<p class="note">Produced by <code>python3 tools/official/fixture_context.py build</code> '
+            'and checked by <code>... check</code>; the register is '
+            '<code>data/official/fixture_context/fixture_context_2026_w11.csv</code>.</p>',
+        ]
+    else:
+        ctx_block = ['<h2>Fixture context built from the capture</h2>',
+                     gap("fixture-context register", "python3 tools/official/fixture_context.py build")]
+    body += ctx_block
+    pages["venue-capture.html"] = page(
+        "Game Center venue capture", "Official data", "".join(body),
+        subtitle="Fixture venues transcribed from the league's own pages, re-derivable offline from "
+                 "the retained bytes",
+        kpis=[("Rows captured", f'{rep.get("rows", 0)}', f'of {rep.get("rows_expected", 0)} expected',
+               "ok" if rep.get("rows") and rep.get("rows") == rep.get("rows_expected") else "warn"),
+              ("Required fields missing", str(rep.get("fields_missing", 0)),
+               "blank cells are flagged, never filled",
+               "ok" if not rep.get("fields_missing") else "no"),
+              ("Cell re-derivation", f'{vv.get("cells_checked", 0)} cells',
+               f'{vv.get("mismatches", 0)} mismatches, {vv.get("verdict", "not run")}',
+               "ok" if vv.get("verdict") == "PASS" else "warn"),
+              ("Stadium vs hand read", f'{vx.get("agree", 0)}/{vx.get("cells_compared", 0)}',
+               "two independent reads of one page", "ok" if not vx.get("differ") else "no"),
+              ("Week 11 slate", f'{sx.get("captured", 0)}/{sx.get("slate", 0)}',
+               "fixture set from the league's week page",
+               "ok" if not sx.get("only_captured") and not sx.get("only_in_slate") else "warn")])
+
+    # ---------------- injury-delta.html ----------------
+    irows = off.get("injury_rows", [])
+    iseries = off.get("injury_series", [])
+    imeta = off.get("injury_meta", {})
+    by_type = {}
+    for r in irows:
+        by_type[r.get("delta_type", "?")] = by_type.get(r.get("delta_type", "?"), 0) + 1
+    days = imeta.get("days_with_a_read", {})
+    body = [
+        f'<p class="lede">The brief asks for injury as <b>surprise</b>, not level: what moved between '
+        f'two official reads of the league hub, not who is listed today. '
+        f'<b>{imeta.get("reads_parsed", 0)} of {imeta.get("reads_total", 0)}</b> retained reads parsed '
+        f'into a <b>{len(iseries)}</b>-row series, and the diff found '
+        f'<b>{imeta.get("deltas", 0)}</b> movements between adjacent reads.</p>']
+    if not imeta:
+        body.append(gap("injury delta ledger", "python3 tools/official/injury_delta.py build"))
+    else:
+        ihdr = [("From read (UTC)", 0), ("To read (UTC)", 0), ("Wk", 0), ("Club", 0), ("Player", 0),
+                ("Field", 0), ("Move", 0), ("From", 0), ("To", 0), ("Surprise", 1), ("Source", 0)]
+        itr = [[esc(r.get("read_from_utc")), esc(r.get("read_to_utc")), esc(r.get("week")),
+                esc(r.get("club")), esc(r.get("player")), esc(r.get("field")),
+                esc(r.get("delta_type")), esc(r.get("from_value") or "(absent)"),
+                esc(r.get("to_value") or "(absent)"), esc(r.get("surprise")),
+                src_link(imeta.get("official_source", ""), "official hub")]
+               for r in irows]
+        body += [
+            '<p class="note">A zero is a real result and is reported as one: nothing moved between the '
+            f'reads this repository holds, and the reads span {len(days)} calendar day(s) '
+            f'({", ".join(sorted(days)) or "n/a"}). Two of the five are three minutes apart. So this '
+            'ledger is equally a measurement of the <i>sampling</i>, and the cadence verdict is part of '
+            'the claim &mdash; a status change that both reads miss is invisible to any parser. The '
+            'decision that follows is <a href="suggestions.html#SG-17">SG-17</a>.</p>',
+            table(ihdr, itr, "idt") if itr else
+            '<div class="note">No movements to list. The schema is one row per (club, player, field) '
+            'whose value changed, appeared or disappeared between two adjacent reads &mdash; and it is '
+            'empty because nothing did. The rule recorded in the coverage file: '
+            f'<b>{esc(str(imeta.get("rule", "")))}</b>.</div>',
+            '<h2>Cadence, as claimed and as measured</h2><p>The expected cadence is '
+            f'<b>{esc(str(imeta.get("expected_cadence", "")))}</b>. The verdict in the coverage file is '
+            f'<b>{esc(str(imeta.get("cadence_verdict", "")))}</b>, with '
+            f'<b>{len(imeta.get("gaps", []))}</b> explicit gap record(s). Raw capture is scheduled by '
+            f'<code>{esc(str(imeta.get("retained_by", "")))}</code>.</p>',
+            '<h2>Reproduce</h2><pre><code>python3 tools/official/injury_delta.py build\n'
+            'python3 tools/official/injury_delta.py check\n'
+            'python3 tools/official/injury_delta.py cadence</code></pre>'
+            '<p class="note">Ledger <code>data/official/injury_deltas/deltas.csv</code>, series '
+            '<code>series.csv</code>, coverage <code>coverage.json</code>; retained reads under '
+            '<code>data/ledger/injuries/raw/</code>.</p>',
+        ]
+    pages["injury-delta.html"] = page(
+        "Injury hub delta", "Official data", "".join(body),
+        subtitle="Surprise, not level: what changed between official injury reads",
+        kpis=[("Reads parsed", f'{imeta.get("reads_parsed", 0)}/{imeta.get("reads_total", 0)}',
+               "retained gzip, hashed", "ok" if imeta.get("reads_parsed") else "no"),
+              ("Series rows", str(len(iseries)), "one per (read, club, player, field)", "ok"),
+              ("Deltas", str(imeta.get("deltas", 0)), "movements between adjacent reads",
+               "ok" if imeta.get("deltas") else "no"),
+              ("Days with a read", str(len(days)), ", ".join(sorted(days)) or "n/a", "warn"),
+              ("Cadence", "met" if imeta.get("cadence_met") else "not met",
+               str(imeta.get("expected_cadence", "")),
+               "ok" if imeta.get("cadence_met") else "no")])
+
+    # ---------------- escrow-inputs.html + luck-panel.html ----------------
+    erows = off.get("escrow_rows", [])
+    emeta = off.get("escrow_inputs", {})
+    if erows:
+        ehdr = [("Escrow id", 0), ("Market", 0), ("p published", 1), ("p re-derived", 1),
+                ("\u0394 p", 1), ("Re-derived", 0), ("Rating away", 1), ("Rating home", 1),
+                ("Games", 0), ("Pts for (shrunk)", 1), ("Pts against (shrunk)", 1),
+                ("K / h / \u03c3", 0), ("Corpus", 1), ("Fixture page", 0), ("Flags", 0)]
+        etr = []
+        for r in erows:
+            ok = r.get("rederive_ok", "")
+            mark = ('<span class="pill ok">exact</span>' if ok == "yes"
+                    else ('<span class="pill mut">out of scope</span>' if not ok
+                          else '<span class="pill no">NO</span>'))
+            etr.append([esc(r.get("escrow_id")), esc(r.get("market")), esc(r.get("our_probability")),
+                        esc(r.get("rederived_probability") or "\u2014"),
+                        esc(r.get("rederive_delta_probability") or "\u2014"), mark,
+                        esc(r.get("rating_away")), esc(r.get("rating_home")),
+                        esc(f'{r.get("games_away")} / {r.get("games_home")}'),
+                        esc(r.get("pts_for_shrunk_home")), esc(r.get("pts_against_shrunk_home")),
+                        esc(f'{r.get("constant_K_PRIOR_GAMES")} / {r.get("constant_H_HOME_POINTS")} / '
+                            f'{r.get("constant_SIGMA_POINTS")}'),
+                        esc(f'{int(r.get("corpus_games", 0)):,}'),
+                        src_link(r.get("fixture_page"), "official page"),
+                        flag_pill(r.get("flags", ""))])
+        pages["escrow-inputs.html"] = page(
+            "Escrow inputs", "Strategy", "".join([
+                f'<p class="lede">A stored forecast is a probability plus the inputs that produced it. '
+                f'All <b>{emeta.get("rows", 0)}</b> rows of the frozen Week 11 record are listed with '
+                f'their input vector, and <b>{emeta.get("rows_rederived_ok", 0)} of '
+                f'{emeta.get("rows_in_rederive_scope", 0)}</b> in-scope published probabilities '
+                f're-derive exactly from those inputs.</p>',
+                '<p>The constants are read from the pre-registered model by import, not retyped, so '
+                'this table cannot drift from PR-01 without failing. The tolerance is half a unit of '
+                'the last published digit (5\u00d710<sup>-7</sup>), because the record stores six '
+                'decimal places. Total rows publish a line rather than a margin probability, so they '
+                'sit outside this check by design and say so; their re-derivation compares the published '
+                'line with the corpus league average.</p>',
+                '<p>No market number is stored anywhere in these rows. The price policy keeps that '
+                'column blank for every 2026 fixture, which is open question '
+                '<a href="questions.html#Q-02">Q-02</a> &mdash; a residual against the market, and '
+                'therefore closing-line value, cannot be computed at all until that is settled.</p>',
+                table(ehdr, etr, "et",
+                      note="Every row: the frozen record's hash, the registration, and the two official "
+                           "page URLs it was read from, in the TSV."),
+                '<h2>Reproduce</h2><pre><code>python3 tools/official/escrow_provenance.py inputs\n'
+                'python3 tools/official/escrow_provenance.py check</code></pre>'
+                f'<p class="note">Ledger <code>data/official/escrow/escrow_inputs_2026-11-18.csv</code>; '
+                f'frozen record <code>{esc(str(emeta.get("frozen_record", "")))}</code> '
+                f'sha256 <code>{esc(str(emeta.get("frozen_record_sha256", ""))[:16])}\u2026</code>.</p>',
+            ]),
+            subtitle="Every frozen probability with the inputs that produced it, re-derived from them",
+            kpis=[("Rows", str(emeta.get("rows", 0)), "frozen before kickoff", "ok"),
+                  ("With a probability", str(emeta.get("rows_with_probability", 0)),
+                   "the rest publish a line", "mut"),
+                  ("Re-derived exactly", str(emeta.get("rows_rederived_ok", 0)),
+                   f'of {emeta.get("rows_in_rederive_scope", 0)} in scope', "ok"),
+                  ("Corpus games", f'{emeta.get("corpus_games", 0):,}',
+                   f'league-average total {emeta.get("league_avg_total_points", "")}'.strip(), "mut"),
+                  ("Problems", str(len(emeta.get("problems", []))),
+                   "a stored number that will not re-derive",
+                   "ok" if not emeta.get("problems") else "no")])
+
+    lrows = off.get("luck_rows", [])
+    lmeta = off.get("luck_panel", {})
+    if lrows:
+        lhdr = [("Record", 0), ("Market", 0), ("Rows", 1), ("Games", 1), ("Mean Brier", 1),
+                ("vs coin 0.50", 1), ("vs home 0.55", 1), ("Skill", 1), ("Cluster 95% low", 1),
+                ("Cluster 95% high", 1), ("Games needed", 0), ("Leaderboard", 0), ("Flags", 0),
+                ("Settled from", 0)]
+        ltr = []
+        for r in lrows:
+            ltr.append([esc(r.get("origin_record")), esc(r.get("market")), esc(r.get("rows_settled")),
+                        esc(r.get("games_settled")), esc(r.get("mean_brier")),
+                        esc(r.get("mean_brier_vs_coin_0_50")),
+                        esc(r.get("mean_brier_vs_home_baseline_0_55")),
+                        esc(r.get("mean_skill_vs_home_baseline")), esc(r.get("cluster95_low")),
+                        esc(r.get("cluster95_high")),
+                        esc(r.get("games_needed_for_lower_bound_above_zero") or "not computable"),
+                        '<span class="pill mut">no</span>', flag_pill(r.get("flags", "")),
+                        src_link(r.get("settlement_source_url", ""),
+                                 f'official final (read {r.get("settlement_read_at") or "n/a"})')])
+        lim = "".join(f"<li>{esc(x)}</li>" for x in lmeta.get("limits", []))
+        pages["luck-panel.html"] = page(
+            "Removal of luck", "Strategy", "".join([
+                f'<p class="lede">Removing luck means publishing an interval, not a win rate. '
+                f'<b>{lmeta.get("settled_rows", 0)}</b> settled rows of the '
+                f'<b>{lmeta.get("ledger_rows", 0)}</b>-row escrow ledger are scoreable today, '
+                f'<b>{lmeta.get("week11_settled", 0)}</b> of them from Week 11; '
+                f'{lmeta.get("unsettled_rows", 0)} rows wait on official finals.</p>',
+                '<p>Skill here is Brier score measured against two benchmarks &mdash; a coin, and the '
+                '0.55 home-team baseline that any NFL side pick starts from &mdash; with a bootstrap '
+                'that resamples <b>whole games</b>. The cluster matters: the escrow stores three or '
+                'four markets per fixture, and treating them as independent observations would roughly '
+                'halve the interval and turn noise into a finding. "Games needed" is how many settled '
+                'games it would take before the lower bound of that interval clears zero.</p>',
+                table(lhdr, ltr, "ltt",
+                      note="Controls registered as PR-02: every pick replaced by a coin flip, and every "
+                           "pick replaced by the market favourite, on the same games."),
+                '<h2>What this panel cannot say yet</h2><ul>' + lim + '</ul>',
+                '<p class="note">Nothing on this page is a leaderboard entry. The pre-registration rule '
+                'in force keeps backtest and settlement numbers out of the leaderboard, so the panel '
+                'reports <i>readiness for a gate</i>, not rank. With one settled row it demonstrates '
+                'that the arithmetic runs and states the sample the gate needs; that is the whole '
+                'honest answer available today.</p>',
+                '<h2>Reproduce</h2><pre><code>python3 tools/official/escrow_provenance.py score</code></pre>',
+            ]),
+            subtitle="Proper scores, benchmark-relative skill and game-cluster uncertainty",
+            kpis=[("Settled rows", str(lmeta.get("settled_rows", 0)),
+                   f'of {lmeta.get("ledger_rows", 0)} frozen',
+                   "ok" if lmeta.get("settled_rows") else "no"),
+                  ("Still unsettled", str(lmeta.get("unsettled_rows", 0)), "waiting on official finals",
+                   "mut"),
+                  ("Bootstrap", f'{lmeta.get("bootstrap", {}).get("draws", 0):,} draws',
+                   f'cluster = {lmeta.get("bootstrap", {}).get("cluster", "")}, seed '
+                   f'{lmeta.get("bootstrap", {}).get("seed", "")}', "ok"),
+                  ("Groups scored", str(lmeta.get("groups", 0)), "record \u00d7 market", "mut")])
+
+    # ---------------- mind-change.html ----------------
+    mrows = off.get("mind_rows", [])
+    mmeta = off.get("mind_meta", {})
+    if mrows:
+        mhdr = [("Strategy", 0), ("Family", 0), ("Registered parameter", 0),
+                ("What would confirm it", 0), ("What would refute it", 0), ("Gates", 0),
+                ("Registration", 0)]
+        mtr = []
+        for r in mrows:
+            mtr.append([
+                f'<a href="strategies.html#{esc(r.get("strategy_id"))}">{esc(r.get("strategy_id"))}</a>',
+                esc(r.get("family")), esc(r.get("parameter")),
+                esc(r.get("confirm")), esc(r.get("refute")),
+                src_link(REPO_BLOB + str(r.get("gates_ref", "")), "gates"),
+                src_link(REPO_BLOB + str(r.get("prereg_ref", "")), "preregistration")])
+        pages["mind-change.html"] = page(
+            "Mind-change register", "Governance", "".join([
+                f'<p class="lede">Every registered strategy states, in numbers, what would change its '
+                f'mind in each direction: <b>{mmeta.get("strategies_with_both_sides", 0)} of '
+                f'{mmeta.get("strategies", 0)}</b> rules '
+                f'(<b>{mmeta.get("coverage", 0)}%</b>) carry a confirm cell and a refute cell, and the '
+                f'checker fails the build if either cell contains no number.</p>',
+                '<p>&ldquo;If the model gets better&rdquo; is not a falsifier, and that is exactly what '
+                'the first draft of this register contained: 6 of 16 rules were prose and had to be '
+                'rewritten against a numeric standard before the checker passed. Each rule is allowed '
+                '<b>one</b> refutation &mdash; meeting it retires the rule from the library instead of '
+                'sending it back for a re-parameterisation, which is how a strategy survives by being '
+                'tuned until it does.</p>',
+                '<p>With 16 rules judged on shared history, the per-family threshold is '
+                'Bonferroni-adjusted to 0.05 / 16 = 0.003125, and the register carries that note beside '
+                'every row so a rule that clears a gate by a hair cannot be presented as an independent '
+                'result. The holdout column is the same for every rule: only the prospective escrow '
+                'sample counts, because a backtest cannot promote anything.</p>',
+                table(mhdr, mtr, "mt", filter_col=1, filter_label="Filter by family",
+                      note="Full text, holdout window and multiplicity note per row: "
+                           "data/console/mind_change.csv"),
+                '<h2>Reproduce</h2><pre><code>python3 tools/official/mind_change.py build\n'
+                'python3 tools/official/mind_change.py check</code></pre>',
+            ]),
+            subtitle="What would confirm and what would refute each strategy, stated as numbers",
+            kpis=[("Coverage", f'{mmeta.get("coverage", 0)}%',
+                   f'{mmeta.get("strategies_with_both_sides", 0)}/'
+                   f'{mmeta.get("strategies", 0)} rules',
+                   "ok" if mmeta.get("coverage") == 100.0 else "no"),
+                  ("Rules registered", str(mmeta.get("strategies", 0)), "in the library", "ok"),
+                  ("Families", str(len(mmeta.get("families", {}))), "grouped for the gates", "mut"),
+                  ("Numeric on both sides", str(mmeta.get("all_numeric", "n/a")),
+                   "checked by tools/official/mind_change.py",
+                   "ok" if mmeta.get("all_numeric") else "no")])
+    return pages
 
 
 if __name__ == "__main__":

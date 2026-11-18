@@ -570,6 +570,17 @@ def cmd_verify(args) -> int:
                             f"official slate prints {pin}")
     print(f"venue register verify: {len(published)} rows, {checks} cell re-derivations, "
           f"{mismatches} mismatches, weeks {sorted(weeks)}")
+    # Written as well as printed, so the site publishes this run's numbers instead of a number
+    # someone remembered from the last time it was run.
+    with open(os.path.join(outdir, "verify_report.json"), "w", encoding="utf-8") as fh:
+        json.dump({"command": "verify", "verified_at_utc": now_iso(),
+                   "rows": len(published), "cells_checked": checks, "mismatches": mismatches,
+                   "weeks": sorted(weeks), "problems": len(problems),
+                   "verdict": "FAIL" if problems else "PASS",
+                   "fields_checked": ["status_label", "status_method", "away_score", "home_score",
+                                      "location", "stadium", "capacity", "venue_method",
+                                      "score_method"]},
+                  fh, indent=1, sort_keys=True)
     if problems:
         print(f"FAIL — {len(problems)} problem(s):")
         for p in problems[:40]:

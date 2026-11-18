@@ -62,6 +62,16 @@ def questions(ctx):
     conv_side = next((m for m in conv.get("markets", []) if m["market"] == "SIDE"), None)
     sample = sample_table()
     s55 = next(r for r in sample if abs(r["true_hit_rate"] - 0.55) < 1e-9)
+    pw = ctx.get("price_open_2026", {})
+    off = ctx.get("official", {})
+    rep = off.get("venue_report", {})
+    vv = off.get("venue_verify", {})
+    xch_raw = off.get("venue_crosscheck", {})
+    xch = {str(c.get("name", "")).split(":", 1)[0].strip(): c
+           for c in xch_raw.get("checks", [])}
+    inp = off.get("escrow_inputs", {})
+    md = off.get("mind_change", {})
+    idel = off.get("injury", {})
 
     Q = [
         dict(id="Q-01", area="Signal", status="ANSWERED - and the answer is no",
@@ -86,15 +96,27 @@ def questions(ctx):
              information_held=(
                  f"The store exists and holds {ctx['price']['rows']:,} rows. Both ends are populated "
                  f"for {ctx['price']['with_both']:,} markets, all of them 2021 (WSGT opening numbers "
-                 f"in nflverse/nfldata initial_lines.csv). The {ctx['price']['originated_now']} price "
-                 f"snapshots we originate now - every 2026 fixture that carries a line and has not "
-                 f"kicked off - carry an opening snapshot and an empty close."),
+                 f"in nflverse/nfldata initial_lines.csv). "
+                 + (f"Measured today for 2026: {pw['with_open']} market rows carry an opening line "
+                    f"across {pw['games_with_open']} fixtures (Weeks {', '.join(pw['weeks'])}), from "
+                    f"snapshot{'s' if len(pw['snapshots'])>1 else ''} "
+                    f"{', '.join(pw['snapshots'])}, source "
+                    f"{'/'.join(pw['sources'])}, and {pw['with_both_2026']} of them carry a close as "
+                    f"well.") if pw else "2026 openings: not measured in this build."),
              information_missing=(
-                 "A timestamped, book-identified price feed. The mirror publishes one number per "
-                 "market with no book and no capture time, so 'closing' is an assumption about that "
-                 f"number and 'opening' does not exist for any season except 2021, where "
-                 f"{ctx['price']['with_both']:,} markets carry both ends."),
-             answer="Cannot be answered from what we hold. The store is built and waiting.",
+                 "A book-identified price with a capture time of its own. "
+                 + (f"The {pw['with_open']} 2026 openings carry the price the mirror records "
+                    f"({', '.join(pw['open_price_values']) or 'no value'}) and a stamp that is when we "
+                    f"read the mirror ({pw['with_capture_stamp']} of {pw['with_open']} rows), not when "
+                    f"the book posted it, so they date our read rather than the market. No open is "
+                    f"paired with a close, so 'opening to closing' movement does not exist for 2026."
+                    if pw else "no 2026 openings are held.")
+                 + " Corrected 2026-11-18: this row used to say openings do not exist for any season "
+                   "except 2021. That was true of the store when it was written and stopped being true "
+                   "when the OPEN-2026 snapshot landed; the measurement above replaces the memory."),
+             answer=("Still blocked for its purpose. A residual against the market, and therefore "
+                     "closing-line value, needs both ends of the same market; the store has "
+                     + (f"{pw['with_both_2026']} such rows for 2026." if pw else "none for 2026.")),
              how_to_discover="SG-01 path A or B. Until then, the price columns stay partly blank by policy, not by omission."),
 
         dict(id="Q-03", area="Results", status="ANSWERED - yes",
@@ -232,6 +254,76 @@ def questions(ctx):
              information_missing="Nothing material.",
              answer="No. Raising the threshold just reduces the sample; it does not select better bets. This is the clearest evidence that the disagreement is model error rather than market error.",
              how_to_discover="Nothing. If a future model produces a positive value here with a tight interval, that is the signal to promote it."),
+
+        dict(id="Q-16", area="Fixture context", status="ANSWERED - and it corrected our own published table",
+             question="Can a runner read the league's Game Center pages and reproduce the venue "
+                      "transcription we published by hand?",
+             information_held=(
+                 f"The capture ran on {rep.get('captured_at_utc','')} over "
+                 f"{rep.get('weeks',[10,11])} and retained {rep.get('rows',0)} fixture pages, "
+                 f"{rep.get('fixtures_recorded',0)} of {rep.get('rows_expected',0)} rows built with "
+                 f"{rep.get('fields_missing',0)} required fields missing. Offline re-derivation: "
+                 f"{vv.get('cells_checked',0)} cells from the retained gzip, "
+                 f"{vv.get('mismatches',0)} mismatches, verdict {vv.get('verdict','not run')}. "
+                 f"Against the independent hand register: "
+                 f"{xch.get('venue',{}).get('agree',0)} of {xch.get('venue',{}).get('cells_compared',0)} "
+                 f"stadium cells agree; the slate comparison matched "
+                 f"{xch.get('slate',{}).get('captured',0)} of {xch.get('slate',{}).get('slate',0)} "
+                 f"Week 11 fixtures."),
+             information_missing=(
+                 "Capacity, roof, surface, attendance, weather and officiating are not printed on the "
+                 "Overview Game Info block on any of the 27 pages, so those cells are blank and flagged "
+                 "by rule. They would have to come from a team or stadium source, which the brief does "
+                 "not allow as a substitute for the league page."),
+             answer=(
+                 "Yes for the two fields the page prints, and the cross-check earned its keep twice: "
+                 "the first published register mislabelled all 13 unplayed Week 11 fixtures as FINAL "
+                 "because a page-wide status search hit a standings table, and it printed "
+                 "'AT&amp;T STADIUM' because entity refs survive tag stripping. Both are fixed, both "
+                 "have offline cases now, and both defects were found by comparing two independent "
+                 "reads of the same page."),
+             how_to_discover="Already resolved in this repository: tools/official/gamecentre.py "
+                             "selftest, reparse, verify and cross-check run in CI on every capture."),
+
+        dict(id="Q-17", area="Injury", status="ANSWERED - the instrument works, the cadence does not",
+             question="Does anything new arrive between official injury reads, and can surprise - "
+                      "not level - be measured from them?",
+             information_held=(
+                 f"{idel.get('reads_parsed',0)} of {idel.get('reads_total',0)} retained reads of the "
+                 f"league injury hub parse into a series. The diff found {idel.get('deltas',0)} "
+                 f"movements between adjacent reads, spanning {len(idel.get('days_with_a_read', {}))} "
+                 f"calendar day(s). Cadence verdict: {idel.get('cadence_verdict','')}. The 355-row comparison of two reads of the "
+                 f"Week 10 table in the round-5 audit agreed on all 355 rows."),
+             information_missing=(
+                 "The hub carries no timestamp of its own, so a change is only as datable as the "
+                 "capture that saw it; and there is no per-player transaction feed with an effective "
+                 "date, which is what a surprise measurement needs between Sunday and Thursday."),
+             answer=(
+                 "The delta is measurable and the tool exists, but on this repository's access pattern "
+                 "the hub does not move often enough to price surprises with: two reads three minutes "
+                 "apart and nothing between the two days. A surprise feature has to be built on a "
+                 "daily cadence, which is an SG-17 decision, not a parser problem."),
+             how_to_discover="Run the capture workflow daily for two weeks; tools/official/injury_delta.py "
+                             "cadence then reports whether the claim 'we capture it at least daily' holds."),
+
+        dict(id="Q-18", area="Governance", status="ANSWERED",
+             question="Does every registered strategy say what would change its mind, on both sides, "
+                      "in numbers?",
+             information_held=(
+                 f"{md.get('strategies_with_both_sides',0)} of {md.get('strategies',0)} strategies "
+                 f"({md.get('coverage',0)}%) carry a confirm cell and a refute cell, each naming at "
+                 f"least one quantity with a number in it; the checker fails the build on a cell "
+                 f"without one. The escrow register is the same discipline on the model side: "
+                 f"{inp.get('rows_rederived_ok',0)} of {inp.get('rows_in_rederive_scope',0)} frozen "
+                 f"probabilities re-derive exactly from the inputs stored beside them."),
+             information_missing=(
+                 "The confirm side of six rules currently points at the prospective escrow sample, "
+                 "which is 150 games and not yet played; no backtest can close it."),
+             answer=(
+                 "Yes, and it is the cheapest governance item in the brief: no external source needed, "
+                 "just a refusal to let a falsifier be prose. The first pass failed its own numeric "
+                 "checker on 6 of 16 rules, which is the bug this register exists to catch."),
+             how_to_discover="Closed. python3 tools/official/mind_change.py check runs in CI."),
     ]
     return Q
 
@@ -540,6 +632,95 @@ def suggestions():
              ],
              recommendation="Path A. The owner's brief explicitly asks for the dated history to be published, and every artifact already passes its verifier.",
              decision_status="proposed"),
+
+        dict(id="SG-16", title="Capture the remaining 258 fixtures through the Game Center runner",
+             area="Fixture context", unlocks="Q-16, R-15 and the venue column of every feature set",
+             problem=("The runner works and self-verifies, but it only covers Weeks 10 and 11 - "
+                      "27 fixtures. The brief asks for venue and fixture context across the season, and "
+                      "the remaining 258 fixtures are one flag away from being transcribable by hand."),
+             paths=[
+                 dict(label="A. Widen the workflow window",
+                      description="Change WEEKS to the full season; ~285 fetches a run, about 350 MB of retained gzip per capture.",
+                      cost="Free", effort="Small change, large artefact growth",
+                      risk="The repo bloats quickly; retention policy has to be decided at the same time.",
+                      unlocks="Every fixture gets a hashed capture and a re-derivable venue cell."),
+                 dict(label="B. Backfill once, then keep weeks 10-11 fresh",
+                      description="A one-off run writes the season's register without committing the raw pages; the schedule keeps only the current and previous week retained.",
+                      cost="Free", effort="Medium", risk="A backfilled row cannot be re-derived offline unless its bytes are kept.",
+                      unlocks="Full coverage, bounded repo size, and an honest flag on any row whose bytes were dropped."),
+                 dict(label="C. Stop at the current fortnight",
+                      description="Leave the collector as a per-week instrument and use it only where a feature is actually being priced.",
+                      cost="Free", effort="None", risk="R-15 stays at 27 of 285 fixtures.",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path B, with one exception: keep the raw bytes for any fixture that enters a model's feature set, so the published cell stays re-derivable. Path A's 350 MB per capture is not sustainable in a pages repo.",
+             decision_status="proposed"),
+
+        dict(id="SG-17", title="Decide the capture cadence that injury surprise depends on",
+             area="Injury", unlocks="Q-17 and any surprise-weighted model input",
+             problem=("Two of the five retained injury reads are three minutes apart, and the largest "
+                      "gap produced no delta. The delta tool is built and correct; the sampling is not "
+                      "dense enough to price a surprise with."),
+             paths=[
+                 dict(label="A. Hourly scheduled capture in the week between games",
+                      description="A cron in the 48 hours before each kickoff, deltas committed per run.",
+                      cost="Free", effort="Small", risk="More commits, and still blind to anything that moves and settles between two runs.",
+                      unlocks="A real surprise series, dated to the hour."),
+                 dict(label="B. Daily capture, accept the coarser clock",
+                      description="One read a day per team page, delta ledger on the same schedule as the venue capture.",
+                      cost="Free", effort="Small", risk="A Tuesday morning announcement priced on Wednesday is late by a day.",
+                      unlocks="Enough to test whether a surprise moves the line at all."),
+                 dict(label="C. Leave injury out of the model",
+                      description="Keep the register as evidence and do not use it as an input.",
+                      cost="Free", effort="None", risk="The brief's injury requirement stays unmet.",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path B now - it fits the existing workflow and answers the question the model actually asks ('does a status change predict a line move') - and revisit path A only if the daily series shows movement it is failing to catch.",
+             decision_status="proposed"),
+
+        dict(id="SG-18", title="Fund the escrow sample rather than widening the backtest",
+             area="Leaderboard", unlocks="Q-01, R-17, R-20 and the first honest promotion",
+             problem=("Every ranking number in this repository comes from a backtest, and the "
+                      "pre-registration rule says a backtest never enters the leaderboard. The escrow "
+                      "has 52 frozen rows and one settled side row, so the luck panel can only "
+                      "demonstrate its own arithmetic."),
+             paths=[
+                 dict(label="A. Freeze prospective forecasts weekly, forever",
+                      description="Every week, before kickoffs: run tools/lab/build_escrow.py, commit, hash. Settlement comes from the verified results feed.",
+                      cost="Free", effort="One scheduled job plus a review of the shape guard",
+                      risk="Sample arrives at 3-4 rows per game week; the 300-row gate takes about a season per rule.",
+                      unlocks="Exactly what the gates ask for, at the only honest speed available."),
+                 dict(label="B. Lower the gates so something promotes now",
+                      description="Reduce n or drop the uncertainty requirement.",
+                      cost="Free", effort="None", risk="It buys a promoted strategy that is noise, which is the failure mode the whole gate structure exists to prevent.",
+                      unlocks="Nothing real."),
+                 dict(label="C. Pay for a longer prospective window",
+                      description="Run path A across two or three seasons of historical fixtures where the market data is already complete, treating each past week as prospective from its own kickoff timestamp.",
+                      cost="Free", effort="Medium; needs a careful cut-off so nothing after kickoff leaks in",
+                      risk="A past week read from today's corpus is not fully prospective: the corpus itself carries the result.",
+                      unlocks="Large samples, but the leak risk has to be argued line by line before it counts."),
+             ],
+             recommendation="Path A, immediately, with path C only as a separately labelled experiment that never feeds the leaderboard. Do not do path B: a promoted strategy that cannot be distinguished from noise is worse than none promoted.",
+             decision_status="proposed"),
+
+        dict(id="SG-19", title="Publish the register files as first-class tables on the site",
+             area="Site", unlocks="The brief's requirement that every finding be readable as a table",
+             problem=("Four registers now sit in data/official with their own verifiers - the venue "
+                      "capture, the injury delta, the mind-change register and the escrow input ledger - "
+                      "and none of them render on the dashboard. A reader today cannot see the numbers "
+                      "that the audit text quotes."),
+             paths=[
+                 dict(label="A. One page per register, wired additively",
+                      description="Three renderers and four NAV entries in tools/build_console.py; each page carries its own reproduce command and link back to the retained official page.",
+                      cost="Free", effort="Small", risk="Shared-file conflict with another integration session.",
+                      unlocks="Every value published with the source link the brief demands."),
+                 dict(label="B. Leave them in data/ and link from the flagged page",
+                      description="The TSV and CSV files stay on GitHub and the site only links them.",
+                      cost="Free", effort="None", risk="The dashboard stops being the place the numbers are read.",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A. It is additive, every table gets a source link, and the verifier for each register already runs in CI.",
+             decision_status="proposed"),
     ]
 
 
@@ -641,4 +822,34 @@ def irregularities(ctx):
                      "the integrator."),
              source="https://github.com/karagemop466-tech/X1/blob/main/docs/audit/brief-coverage-2026-11-17.md",
              status="published for review"),
+
+        dict(id="X-13", severity="amber", area="Fixture context",
+             finding=("The first register the venue collector published labelled all 27 fixtures "
+                      "FINAL - including 13 unplayed Week 11 games - and printed stadium names with "
+                      "HTML entities still in them ('AT&amp;T STADIUM'). Neither was a data problem: "
+                      "a page-wide search hit the word FINAL in a standings table, and entity "
+                      "references survive tag stripping. Both were visible only because a second, "
+                      "independent hand transcription of the same official pages existed to compare "
+                      "against."),
+             effect=("Fixed in tools/official/gamecentre.py: status, period, clock and score are read "
+                     "only from the score box above the Game Info anchor, with the method recorded per "
+                     "cell (status_method, score_method) and the scores left blank because the page "
+                     "prints them as 'Hidden Score' in the text layer; entities are now decoded. The "
+                     "cross-check moved from 12/14 to 14/14 agreeing with the hand register, and four "
+                     "offline cases guard both failures. The register is re-derived from retained "
+                     "bytes by 'reparse', so a parser fix is published against a hash that does not "
+                     "change."),
+             source="https://github.com/karagemop466-tech/X1/blob/main/data/official/gamecentre/venue_report.json",
+             status="fixed and re-derived 2026-11-18; the false FINAL row set is the reason this register publishes a method column"),
+
+        dict(id="X-14", severity="amber", area="Coverage",
+             finding=("The fixture-context collector and the venue capture disagree on which fixtures "
+                      "exist: 13 for Week 11 in both, but 14 against 13 for Week 10, because the "
+                      "collector read the league's week page before the rescheduled game was on it."),
+             effect=("Both files carry 'fixture-set-mismatch' flags rather than being quietly aligned, "
+                     "and the shared rule in tools/official/fixture_context.py refuses to invent a row "
+                     "the other side lacks. This is the same class of defect as the stale week page: a "
+                     "fixture set is only as good as the moment it was read."),
+             source="https://www.nfl.com/schedules/2026/by-week/week-10",
+             status="open - clears when the week-10 slate is re-read by the collector's own schedule"),
     ]

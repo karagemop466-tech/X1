@@ -265,6 +265,10 @@ def build_score() -> tuple[list[dict], dict]:
             "mean_brier_vs_coin_0_50": _f(sum(b_coin) / len(b_coin), 6) if b_coin else "",
             "mean_brier_vs_home_baseline_0_55": _f(sum(b_home) / len(b_home), 6) if b_home else "",
             "mean_skill_vs_home_baseline": _f(mean_skill, 6) if mean_skill != "" else "",
+            "settlement_source_url": next((r["settlement_source_url"] for r in rs
+                                          if r.get("settlement_source_url")), ""),
+            "settlement_read_at": next((r["settlement_read_at"] for r in rs
+                                        if r.get("settlement_read_at")), ""),
             "cluster95_low": _f(lo, 6) if lo != "" else "",
             "cluster95_high": _f(hi, 6) if hi != "" else "",
             "games_needed_for_lower_bound_above_zero": need,

@@ -265,3 +265,28 @@ jobs:
         run: python3 tools/verify_venues_w10.py
       - name: Week 10 venue page is current (brief row 24)
         run: python3 tools/build_venues_page.py --check
+
+      # Added by session arena/efb06932-x1 (round 6, additive only). Four registers this round
+      # publishes, each with its own offline checker. They run here as well as in the capture
+      # workflow because a register that is not checked on every push is a register that quietly
+      # goes stale between captures.
+      - name: Game Center venue register re-derivation (offline, brief row 24 and round 6 R6-1)
+        run: |
+          python3 tools/official/gamecentre.py selftest
+          python3 tools/official/gamecentre.py reparse
+          python3 tools/official/gamecentre.py verify
+          python3 tools/official/gamecentre.py cross-check
+      - name: Injury-hub delta ledger and cadence verdict (round 6 R6-2)
+        run: |
+          python3 tools/official/injury_delta.py build
+          python3 tools/official/injury_delta.py check
+          python3 tools/official/injury_delta.py cadence
+      - name: Escrow input ledger re-derivation and the luck panel (round 6 R6-3)
+        run: |
+          python3 tools/official/escrow_provenance.py inputs
+          python3 tools/official/escrow_provenance.py score
+          python3 tools/official/escrow_provenance.py check
+      - name: Two-sided mind-change register, both cells numeric (round 6 R6-4)
+        run: |
+          python3 tools/official/mind_change.py build
+          python3 tools/official/mind_change.py check
