@@ -220,9 +220,10 @@
   },
   "B4_corpus_reconciliation": {
    "clubs_reconciled": 32,
+   "corpus_promotion_state": "post-promotion: all 14 Week 10 fixtures are in the log",
    "failures": [],
-   "finals_added_from_2026_11_17_pack": 13,
-   "games_in_reads_tsv": 137,
+   "finals_added_from_2026_11_17_pack": 0,
+   "games_in_reads_tsv": 150,
    "games_total": 150,
    "note": "The 137-game official log plus the 13 Week 10 finals reproduces all 32 official standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. This is the arithmetic that closes suggestion S-22 / question Q-62: the corpus is complete and consistent; what remains for the pinned feed is the mechanical re-pin (count pin, mirror re-pin, standings transcription swap), recorded as SG-14.",
    "verdict": "pass"
@@ -249,7 +250,7 @@
    "verdict": "pass"
   }
  },
- "generated_at": "2026-11-17T23:50:55Z",
+ "generated_at": "2026-11-18T03:16:59Z",
  "pack": "nfl-official-2026-11-17",
  "read_by": "session arena/dc96bc33-x1, via the fetch tool; no value recalled from memory",
  "retrieved_at_utc": "2026-11-17T22:45Z-22:48Z (Week 10 results) / 2026-11-17T22:48Z-22:52Z (standings)",

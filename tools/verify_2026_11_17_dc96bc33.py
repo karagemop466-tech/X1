@@ -118,8 +118,24 @@ def build() -> dict:
         raise SystemExit(f"FAIL: expected 14 Week 10 rows, found {len(finals)}")
     if len(std) != 32:
         raise SystemExit(f"FAIL: expected 32 standings rows, found {len(std)}")
-    if len(reads) != 137:
-        raise SystemExit(f"FAIL: expected 137 official read rows, found {len(reads)}")
+    # The corpus GROWS: this pack's B4 check was written when the official read log held the
+    # 137 games closed through Week 9. Week 10's 14 finals were promoted into data/results/_raw/
+    # reads.tsv on 2026-11-18 (session arena/6a4ba536-x1), so a hard pin at 137 would now fail
+    # against the repository's own closure. The rule that mattered is kept exactly: the log must
+    # hold the closed pre-Week-10 corpus PLUS the Week 10 finals and nothing else, and the
+    # reconciliation below must still reproduce all 32 clubs. A pin at 137 is replaced by a pin
+    # at 137 + 14, and the constant is derived, not retyped.
+    # The 137 should be read correctly: it was 136 games closed through Week 9 PLUS the one
+    # Week 10 fixture (WAS@NYG, the Thursday game) that was already final when the log was first
+    # written. Promoting the remaining 13 finals therefore takes the log to 136 + 14 = 150, not
+    # 137 + 14. Deriving the number this way is what catches that distinction.
+    CLOSED_THROUGH_WEEK9 = 136
+    WEEK10_FIXTURES = 14
+    EXPECTED_READS = CLOSED_THROUGH_WEEK9 + WEEK10_FIXTURES
+    if len(reads) != EXPECTED_READS:
+        raise SystemExit(f"FAIL: expected {EXPECTED_READS} official read rows "
+                         f"({CLOSED_THROUGH_WEEK9} closed through Week 9 + {WEEK10_FIXTURES} "
+                         f"Week 10 fixtures), found {len(reads)}")
     if len(f16) != 14 or len(s16) != 32:
         raise SystemExit("FAIL: the 2026-11-16 pack is not 14 + 32 rows")
 
@@ -217,8 +233,19 @@ def build() -> dict:
         added += 1
         games.append((norm(r["away"]), norm(r["home"]),
                       int(r["away_score"]), int(r["home_score"]), "2026-11-17 pack"))
-    if added != 13:
-        raise SystemExit(f"FAIL: expected 13 finals not in reads.tsv, found {added}")
+    # This check originally proved "the 13 Week 10 finals are NOT yet in the log, so they must be
+    # added here to reconcile". On 2026-11-18 those 13 were promoted INTO data/results/_raw/
+    # reads.tsv (session arena/6a4ba536-x1), so the correct expectation inverted: all 14 fixtures
+    # are now in the log and nothing extra is added. The reconciliation below is unchanged and is
+    # what actually proves the corpus; this gate proves only that the log and the pack describe the
+    # same 14 fixtures. Accepting either 13 (pre-promotion) or 0 (post-promotion) without naming
+    # which would be a silent weakening, so the state is derived from the log itself.
+    in_log = len(finals) - added
+    if in_log not in (1, 14):
+        raise SystemExit(f"FAIL: expected 1 (pre-promotion) or 14 (post-promotion) Week 10 "
+                         f"fixtures in reads.tsv, found {in_log}; {added} added")
+    corpus_state = ("post-promotion: all 14 Week 10 fixtures are in the log"
+                    if in_log == 14 else "pre-promotion: only the Thursday game is in the log")
 
     Wc = {a: 0 for a in std_by}
     Lc, Tc, PFc, PAc = dict(Wc), dict(Wc), dict(Wc), dict(Wc)
@@ -241,12 +268,13 @@ def build() -> dict:
             b4_fail.append(f"{abbr}: standings {want} vs corpus recomputation {got}")
     failing_clubs = {x.split(":")[0] for x in b4_fail}
     checks["B4_corpus_reconciliation"] = {
-        "games_in_reads_tsv": 137,
+        "games_in_reads_tsv": EXPECTED_READS,
         "finals_added_from_2026_11_17_pack": added,
         "games_total": len(games),
         "clubs_reconciled": 32 - len(failing_clubs),
         "verdict": "pass" if not b4_fail else "fail",
         "failures": b4_fail,
+        "corpus_promotion_state": corpus_state,
         "note": ("The 137-game official log plus the 13 Week 10 finals reproduces all 32 official "
                  "standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. This is the "
                  "arithmetic that closes suggestion S-22 / question Q-62: the corpus is complete "

@@ -1,9 +1,10 @@
 {
  "dataset": "verified_results",
  "title": "Verified results feed (backtest and ROI input)",
- "generated_at": "2026-11-14T19:39:10.094189Z",
- "generated_by": "tools/build_results_feed.py (session arena-52aabfa8-x1, T11)",
+ "generated_at": "2026-11-18T03:08:30.063241Z",
+ "generated_by": "tools/build_results_feed_all_seasons.py (session arena-52aabfa8-x1, T11; extended to ingest the dated 2026-11-17 official pack by session arena/6a4ba536-x1, 2026-11-18)",
  "snapshot_date": "2026-11-14",
+ "official_pack_date": "2026-11-17",
  "columns": [
   "game_id",
   "season",
@@ -34,12 +35,28 @@
    "file": "data/verification/raw/nfl_schedule_2026_week10.md"
   },
   {
-   "key": "official_standings",
+   "key": "official_standings_1114",
    "url": "https://www.nfl.com/standings/league/2026/REG",
-   "label": "NFL.com league standings (committed transcription)",
+   "label": "NFL.com league standings (committed transcription, 2026-11-14; kept as a dated artefact)",
    "org": "NFL",
    "retrieved_at": "2026-11-14",
    "file": "data/verify/official_standings_2026_w10.psv"
+  },
+  {
+   "key": "official_w10_1117",
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "label": "NFL.com Week 10 results as printed 2026-11-17 (14 finals); two independent transcriptions cross-compared with 0 mismatches",
+   "org": "NFL",
+   "retrieved_at": "2026-11-17",
+   "file": "data/verification/2026_11_17/official_w10_results_2026_11_17.tsv"
+  },
+  {
+   "key": "official_standings_1117",
+   "url": "https://www.nfl.com/standings/league/2026/REG",
+   "label": "NFL.com league standings as printed 2026-11-17 — the reconciliation baseline",
+   "org": "NFL",
+   "retrieved_at": "2026-11-17",
+   "file": "data/verification/2026_11_17/official_standings_2026_11_17.tsv"
   },
   {
    "key": "nfldata_games",
@@ -48,16 +65,16 @@
    "org": "nflverse (not the NFL)",
    "retrieved_at": "2026-11-14",
    "file": "data/raw/nflverse/games.csv",
-   "sha256_prefix": "60ea2f76bd2c539c",
+   "sha256_prefix": "5a61d3121f2178ce",
    "tier": "third_party_mirror"
   }
  ],
  "counts": {
   "rows": 2232,
-  "final": 2097,
-  "scheduled": 135,
-  "official_verified": 1,
-  "scheduled_official": 13,
+  "final": 2110,
+  "scheduled": 122,
+  "official_verified": 14,
+  "scheduled_official": 0,
   "mirror_only": 2218,
   "seasons": "2019-2026"
  },
@@ -65,30 +82,37 @@
   "checks": [
    {
     "id": "C1",
-    "what": "official Week 10 FINAL score vs mirror score",
+    "what": "2026-11-17 official Week 10 finals vs the fingerprinted mirror, 14/14",
     "result": "pass",
-    "detail": "WAS 24 @ NYG 21 — official snapshot and mirror agree",
+    "detail": "14 fixtures; every score in the dated pack equals the mirror's score for the same club pair",
     "source": "https://www.nfl.com/schedules/2026/by-week/week-10"
    },
    {
     "id": "C2",
-    "what": "official 'Scheduled' status vs mirror status, other 13 games",
+    "what": "the two official reads of Week 10 agree where both printed a score",
     "result": "pass",
-    "detail": "13/13 agree; scores blank on both sides",
+    "detail": "1 fixture(s) final in both the 2026-11-14 and 2026-11-17 reads with identical scores; 13 final only on 2026-11-17 (the earlier read was taken before kickoff: NE@DET, KC@ATL, HOU@CLE, MIN@GB, MIA@IND, CAR@NO, BUF@NYJ, JAX@TEN, LA@AZ, SEA@LV, SF@DAL, PIT@CIN, LAC@BAL)",
     "source": "https://www.nfl.com/schedules/2026/by-week/week-10"
    },
    {
     "id": "C3",
     "what": "mirror internal arithmetic (scores sum to total; result = home - away)",
     "result": "pass",
-    "detail": "2097 final rows checked",
+    "detail": "2110 final rows checked",
     "source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
    },
    {
     "id": "C4",
-    "what": "2026 W/L/T recomputed from this feed vs official standings snapshot",
-    "result": "pass_with_known_difference",
-    "detail": "0 difference(s):  — the standings snapshot predates the Thursday Night game that this feed carries; informational flag F-12, not an error in the feed",
+    "what": "2026 W/L/T recomputed from this feed vs the dated 2026-11-17 official standings",
+    "result": "pass",
+    "detail": "32/32 clubs reproduce the 2026-11-17 baseline exactly (0 differences)",
+    "source": "https://www.nfl.com/standings/league/2026/REG"
+   },
+   {
+    "id": "C5",
+    "what": "dated delta: the 2026-11-14 standings baseline vs today's feed",
+    "result": "informational",
+    "detail": "26 of 32 clubs differ, as expected: that baseline was read before the Week 10 Sunday and Monday games. Reported, not corrected — the 2026-11-14 transcription is kept as the dated artefact it is.",
     "source": "https://www.nfl.com/standings/league/2026/REG"
    }
   ],
@@ -96,9 +120,10 @@
   "rule": "a row is official_verified only when a committed official snapshot printed the value; everything else is mirror_only and flagged. Blank means not played, never unknown-but-filled."
  },
  "join_notes": [
-  "Team codes: the official pages print AZ, the mirror prints ARI; all other club codes are identical. The join maps only these two spellings (TEAM_CODE_MAP in tools/build_results_feed.py); each source's own spelling is preserved in its own file."
+  "Team codes: the official pages print AZ, the mirror prints ARI; all other club codes are identical. The join maps only these two spellings (TEAM_CODE_MAP in tools/build_results_feed_all_seasons.py); each source's own spelling is preserved in its own file."
  ],
  "known_limitations": [
+  "Official verification covers Week 10 only (14 rows). The other 2,096 finals — every 2019-2025 game and 2026 Weeks 1-9 — are mirror_only: usable for backtests, never labelled official.",
   "Historical finals (2019-2025 and 2026 Weeks 1-9) have no committed official page in this repository, so they are mirror_only — usable for backtests, labelled not official (flag F-11).",
   "The official standings snapshot predates the Thursday Night game, so recomputed 2026 records for WAS and NYG differ from it by exactly that game (flag F-12).",
   "Full official box scores for every game remain an open owner question (Q-04); this feed does not close it, it makes the gap explicit per row."

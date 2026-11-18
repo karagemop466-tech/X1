@@ -2,5 +2,5 @@ bin,n,mean_p,win_rate,too_small_to_read
 0.0-0.2 (probability of the side picked),0,,,yes
 0.2-0.4 (probability of the side picked),0,,,yes
 0.4-0.6 (probability of the side picked),49,0.5572,0.5918,no
-0.6-0.8 (probability of the side picked),57,0.6917,0.6316,no
+0.6-0.8 (probability of the side picked),58,0.6919,0.6207,no
 0.8-1.0 (probability of the side picked),11,0.848,0.9091,no

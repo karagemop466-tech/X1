@@ -16,6 +16,7 @@ is never invisible.
 from __future__ import annotations
 
 import html
+import json
 import os
 import re
 import sys
@@ -106,6 +107,25 @@ def main() -> int:
                     f"{name}: table row with no source link and no marker: "
                     + re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", r))[:110]
                 )
+
+    # --- coverage-count guard (added with the 2026-11-17 Week 10 closure) --------------------
+    # Every "N settled games" the results page states must be the row count of the artefact it
+    # renders. A right number past its date is how 137 sat on the landing page for three days while
+    # the official page printed 14 Week 10 finals, and no build check noticed: the HTML matched its
+    # builder, the builder matched the data, and the prose in the middle was simply from another day.
+    feed_path = os.path.join(ROOT, "data", "results", "verified_results.json")
+    page_path = os.path.join(APP, "results.html")
+    if os.path.exists(feed_path) and os.path.exists(page_path):
+        n_feed = len(json.load(open(feed_path, encoding="utf-8"))["rows"])
+        text = open(page_path, encoding="utf-8").read()
+        stated = [int(m) for m in re.findall(r"(\d+) settled games", text)]
+        for n in stated:
+            if n != n_feed:
+                failures.append(
+                    f"results.html: states {n} settled games but the feed it renders has {n_feed} rows "
+                    "(regenerate the prose from the artefact, or date-stamp the claim)")
+        if stated:
+            print(f"coverage counts : {len(stated)} statement(s) checked against the feed ({n_feed} rows)")
 
     print(f"pages checked   : {len(pages)}")
     print(f"internal links  : {link_targets}")

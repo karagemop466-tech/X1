@@ -234,6 +234,11 @@ def build(do_write: bool = True) -> dict:
         exp_home = (ch["pts_shrunk"] + ca["alg_shrunk"]) / 2
         exp_away = (ca["pts_shrunk"] + ch["alg_shrunk"]) / 2
         total_b = round((exp_home + exp_away) * 2) / 2
+        # Rest days are counted from each club's LAST GAME to this fixture's own kickoff,
+        # both in UTC. The kickoff is converted to UTC above (a 8:15 PM ET Monday kickoff is
+        # 01:15Z on Tuesday), so the subtraction has to be done in the same frame the record
+        # stamps - otherwise the local date and the UTC date disagree by a day on every
+        # night game and the column silently reports rest+1 for those clubs only.
         rest = lambda club: (kick.date() - datetime.strptime(clubs[club]["last"], "%Y-%m-%d").date()).days
         withheld = ("market line and residual withheld: no licensed price source for 2026 in this "
                     "repository (open question Q-02)")

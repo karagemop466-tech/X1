@@ -5,9 +5,13 @@
     "path": "data/games.csv",
     "source_key": "nfldata_games",
     "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv",
-    "bytes": 2190039,
-    "sha256": "60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8",
-    "status": "cached"
+    "bytes": 2190568,
+    "sha256": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+    "status": "cached",
+    "previous_sha256": "60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8",
+    "retrieved_at": "2026-11-17T23:05:12Z",
+    "retrieved_by": "session arena-473e08d5-x1 (results-feed closure; see data/verification/2026_11_17/)",
+    "note": "re-pinned 2026-11-17. Two fetches of this URL inside 21 minutes returned different bytes (22:44:27Z sha256 0c643fd014305eeb, 2190571 B, Week 10 Sunday scores absent; 23:05:12Z sha256 5a61d3121f2178ce, 2190568 B, all 14 Week 10 scores present). A mirror that moves twice in half an hour cannot be cited by name alone, which is why the pin carries bytes and sha and why tools/verify_2026_11_17.py V9 fails if the file on disk stops matching the manifest. Previous pin: 60ea2f76bd2c539c (2026-11-14, 2190039 B)."
   },
   {
     "name": "closing_lines.csv",

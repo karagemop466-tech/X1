@@ -357,6 +357,23 @@ def to_csv(rows: list[dict], columns: list[str] | None = None) -> str:
     return buf.getvalue()
 
 
+def frozen_fingerprint(path: str) -> tuple[list[dict], str]:
+    """The recorded forecasts, minus the clock, plus a hash of exactly that.
+
+    The same projection the write path hashes (drop `recorded_at_utc`, serialise, sha256), applied to the
+    file on disk instead of to a fresh build. That is what makes the staleness guard able to check a
+    record it must never regenerate: the guard asserts the frozen bytes are STILL the frozen bytes, which
+    is a tamper test, not a freshness test.
+    """
+    if not os.path.exists(path):
+        return [], ""
+    with open(path, encoding="utf-8") as fh:
+        lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
+    rows = list(csv.DictReader(io.StringIO("\n".join(lines))))
+    sub = [{k: v for k, v in r.items() if k != "recorded_at_utc"} for r in rows]
+    return rows, hashlib.sha256(to_csv(sub).encode()).hexdigest()
+
+
 def build() -> dict:
     games, prov = load_games()
     state = ratings_state(games)
@@ -368,6 +385,38 @@ def build() -> dict:
     # at 18:53 of the same numbers must agree, or the staleness guard is a clock and not a check.
     sub = [{k: v for k, v in r.items() if k != "recorded_at_utc"} for r in forward]
     forecast_hash = hashlib.sha256(to_csv(sub).encode()).hexdigest()
+    # If a record already exists on disk, THAT is the published artefact: the numbers below are what the
+    # model would record today, and the two are reported side by side rather than the first being
+    # replaced by the second.
+    disk_rows, disk_hash = frozen_fingerprint(FORECAST_PATH)
+    forward_block = {
+        "recorded_at_utc": NOW,
+        "games_recorded": len(forward),
+        "content_sha256": forecast_hash,
+        "immutability": "the CSV is written once and never rewritten; a later run that would change a "
+                        "forecast number leaves the record alone and reports the drift below (the "
+                        "recorded clock is excluded from the fingerprint)",
+        "file": "data/shadow/forecasts_pre_kickoff.csv",
+    }
+    if disk_rows:
+        forward_block.update({
+            "status": "frozen record on disk (graded, not regenerated)",
+            "recorded_at_utc_on_disk": disk_rows[0].get("recorded_at_utc", ""),
+            "games_recorded_on_disk": len(disk_rows),
+            "content_sha256_on_disk": disk_hash,
+            "record_drift": {
+                "reproduces_from_today_model_state": disk_hash == forecast_hash,
+                "games_on_disk_not_in_today_slate": sorted(
+                    {r["game_id"] for r in disk_rows} - {r["game_id"] for r in forward}),
+                "games_in_today_slate_not_on_disk": sorted(
+                    {r["game_id"] for r in forward} - {r["game_id"] for r in disk_rows}),
+                "why": ("the record is a snapshot of what had not kicked off when it was written; the "
+                        "corpus has since grown (Week 10 closed on 2026-11-17), so the slate that WOULD "
+                        "be recorded today is a different list. Both are true: the record is what was "
+                        "forecast, the slate is what a forecast today would cover. The record is graded "
+                        "and never overwritten."),
+            },
+        })
 
     return {
         "dataset": "shadow_baseline_PR-01",
@@ -395,14 +444,7 @@ def build() -> dict:
         "backtest": m,
         "columns_scored": list(scored[0].keys()),
         "scored_rows": scored,
-        "forward": {
-            "recorded_at_utc": NOW,
-            "games_recorded": len(forward),
-            "content_sha256": forecast_hash,
-            "immutability": "the CSV is written once; a second run that would change any forecast number "
-                            "aborts the build (the recorded clock is excluded from the fingerprint)",
-            "file": "data/shadow/forecasts_pre_kickoff.csv",
-        },
+        "forward": forward_block,
         "blank_by_policy": {
             "market_line": "no official price source in this repository - open question Q-02",
             "residual": "residual = fair - market, so it is blank while the market line is blank",
@@ -480,8 +522,19 @@ def main(argv=None) -> int:
             "backtest_summary.json": json.dumps(payload, indent=1) + "\n",
             "games_scored.csv": scored_csv,
             "calibration.csv": calib_csv,
-            "forecasts_pre_kickoff.csv": forward_csv,
         }
+        # The pre-kickoff record is not compared against a fresh build - by design it must not match one.
+        # It IS compared against the fingerprint the summary carries, so an edit after kickoff still
+        # fails the gate; that is the check the file needs and not the one the others need.
+        fwd = payload["forward"]
+        if fwd.get("status", "").startswith("frozen"):
+            disk_rows, disk_hash = frozen_fingerprint(FORECAST_PATH)
+            if disk_hash != fwd["content_sha256_on_disk"] or len(disk_rows) != fwd["games_recorded_on_disk"]:
+                print("STALE: data/shadow/forecasts_pre_kickoff.csv differs from the fingerprint the "
+                      "register carries - a frozen record must not move")
+                return 1
+            print(f"frozen record intact: {len(disk_rows)} games, "
+                  f"sha256 {disk_hash[:12]}.. as registered")
         bad = 0
         for name, text in want.items():
             path = os.path.join(OUTDIR, name)
@@ -495,21 +548,22 @@ def main(argv=None) -> int:
                 bad += 1
         if not bad:
             print(f"CHECK OK: shadow baseline reproduces from its inputs "
-                  f"(n={payload['backtest']['n_games']}, forward={len(forward_rows)})")
+                  f"(n={payload['backtest']['n_games']}, "
+                  f"forward={payload['forward'].get('games_recorded_on_disk', len(forward_rows))} frozen)")
         return 1 if bad else 0
 
     os.makedirs(OUTDIR, exist_ok=True)
     if os.path.exists(FORECAST_PATH):
-        old = open(FORECAST_PATH, encoding="utf-8").read()
-        if normalise(old) != normalise(forward_csv):
-            raise SystemExit("ABORT: data/shadow/forecasts_pre_kickoff.csv already exists and the model "
-                             "would record different numbers. A pre-kickoff record is immutable: grade the "
-                             "recorded one, then register a new rule version - never overwrite a forecast.")
-        with open(FORECAST_PATH, "w", encoding="utf-8") as fh:
-            fh.write("# PR-01 pre-kickoff shadow record. Written "
-                     f"{NOW} by tools/build_shadow_baseline.py; immutable by convention and by build.\n"
-                     "# market_line / residual are blank on purpose: no official price source (Q-02).\n")
-            fh.write(forward_csv)
+        # Frozen. Before 2026-11-17 this branch ABORTED the whole build on drift, which meant that once
+        # Week 10 closed the backtest artefacts could not be rebuilt at all: a guard against rewriting a
+        # forecast had taken the measurement of the rule hostage. The record is still never rewritten -
+        # that is the property that matters - the drift is reported instead of enforced by a crash.
+        drift = payload["forward"].get("record_drift", {})
+        if not drift.get("reproduces_from_today_model_state", True):
+            print(f"ALARM: data/shadow/forecasts_pre_kickoff.csv is left exactly as recorded "
+                  f"({payload['forward']['games_recorded_on_disk']} games at "
+                  f"{payload['forward']['recorded_at_utc_on_disk']}); today's model state would record "
+                  f"{len(forward_rows)}. Graded as recorded; a new record needs a new rule version.")
     else:
         with open(FORECAST_PATH, "w", encoding="utf-8") as fh:
             fh.write("# PR-01 pre-kickoff shadow record. Written "

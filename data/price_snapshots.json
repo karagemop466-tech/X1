@@ -164,10 +164,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -194,10 +194,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -223,10 +223,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -252,10 +252,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -281,10 +281,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -311,10 +311,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -340,10 +340,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -369,10 +369,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -398,10 +398,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -428,10 +428,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -457,10 +457,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -486,10 +486,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -515,10 +515,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -545,10 +545,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -574,10 +574,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -603,10 +603,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -632,10 +632,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -662,10 +662,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -691,10 +691,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -720,10 +720,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -749,10 +749,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -779,10 +779,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -808,10 +808,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -837,10 +837,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -866,10 +866,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -896,10 +896,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -925,10 +925,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -954,10 +954,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -983,10 +983,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -1013,10 +1013,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1042,10 +1042,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1071,10 +1071,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1100,10 +1100,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -1130,10 +1130,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1159,10 +1159,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1188,10 +1188,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1217,10 +1217,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -1247,10 +1247,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1276,10 +1276,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1305,10 +1305,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1334,10 +1334,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -1364,10 +1364,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1393,10 +1393,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1422,10 +1422,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1451,10 +1451,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -1481,10 +1481,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1510,10 +1510,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1539,10 +1539,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1568,10 +1568,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred",
     "home side prices at the mirror of the away number (one originated number per game)"
    ],
@@ -1598,10 +1598,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1627,10 +1627,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,
@@ -1656,10 +1656,10 @@
    "difference_close": "",
    "our_close_line": "",
    "closed_at": "",
-   "close_status": "close capture due at kickoff (pending)",
+   "close_status": "not captured — the store was created after this game's kickoff (flagged; no close invented)",
    "line_provenance": "computed by code/build_lines.py (published method, docs/methodology/line-origination.md) from game results — 2026 rows verified against NFL.com in data/results_feed.json; earlier seasons from the fingerprinted community mirror",
    "_flags": [
-    "close pending kickoff",
+    "missed close: store created after kickoff",
     "no official source publishes betting prices (F-06 / Q-02); left blank and flagged — never inferred"
    ],
    "_verified": false,

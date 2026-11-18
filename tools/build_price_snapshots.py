@@ -13,6 +13,14 @@ Data rules (the repo's verification contract):
     in the nflverse/nfldata mirror (data/processed/schedule_2026.json). It is
     recorded as a `closing` capture with source_type=third-party-mirror and
     verification=unverified-third-party. It is NOT presented as verified.
+  * Price-data policy decision, 2026-11-17 (the N-4 decision this session was
+    told to settle before any backtest is published): mirror-derived prices MAY
+    be stored and published, always in the labelled columns above and always
+    beside the sha256 of the pinned file they were read from
+    (data/raw_manifest.json -> data/raw/nflverse/games.csv). They may NOT be
+    relabelled as an official price, and no opening capture is back-filled from
+    a closing file. Published with the decision: provenance.json next to the
+    two CSVs, written by this tool. 
   * Opening captures: none exist yet. The rows are reserved with blank price
     and flag `no-opening-capture (Q-02)` so the store is complete by design.
 
@@ -165,6 +173,42 @@ def main() -> int:
     print(f"originated markets: {len(index_rows)} (side/total/moneyline, games {len(orig)})")
     print(f"  with opening capture : {n_open}")
     print(f"  with closing capture : {n_close} (third-party mirror, unverified)")
+
+    # ------------------------------------------------------------- provenance (N-4 decision record)
+    import hashlib
+    import json as _json
+    pinned = os.path.join(ROOT, "data", "raw", "nflverse", "games.csv")
+    raw = open(pinned, "rb").read()
+    digest = hashlib.sha256(raw).hexdigest()
+    man = _json.load(open(os.path.join(ROOT, "data", "raw_manifest.json"), encoding="utf-8"))
+    entry = next((e for e in man if e.get("name") == "games.csv"), {})
+    prov = {
+        "dataset": "price_snapshot_provenance",
+        "written_by": "tools/build_price_snapshots.py",
+        "decision": ("price-data policy, 2026-11-17 (N-4): third-party mirror prices are stored and "
+                     "published as labelled third-party captures and never as an official price; the "
+                     "opening stage stays blank until a licensed feed exists"),
+        "pinned_mirror": {"file": "data/raw/nflverse/games.csv", "sha256": digest, "bytes": len(raw),
+                          "sha256_in_manifest": entry.get("sha256"),
+                          "manifest_matches_file": entry.get("sha256") == digest,
+                          "retrieved_at": entry.get("retrieved_at", ""),
+                          "url": entry.get("url", "")},
+        "prices_read_from": {"file": "data/processed/schedule_2026.json",
+                             "note": ("a derived file, kept as this tool's input so the store's history "
+                                      "is reproducible; the pinned bytes above are what a reader should "
+                                      "re-derive the same numbers from")},
+        "counts": {"captures": len(all_captures), "markets": len(index_rows),
+                   "with_opening": n_open, "with_closing": n_close},
+        "opening_stage": "blank by policy, not by omission — see Q-02/Q-03 and tools/record_price.py",
+    }
+    with open(os.path.join(OUT, "provenance.json"), "w", encoding="utf-8") as fh:
+        _json.dump(prov, fh, indent=1)
+        fh.write("\n")
+    print(f"provenance: mirror pin {'matches' if prov['pinned_mirror']['manifest_matches_file'] else 'DOES NOT MATCH'} "
+          f"the manifest ({digest[:12]}..); writing data/price_snapshots/provenance.json")
+    if not prov["pinned_mirror"]["manifest_matches_file"]:
+        print("  ! the mirror file on disk is not the pinned bytes — the closing captures above are "
+              "cited by an older fingerprint and must be re-read before this store is trusted")
     return 0
 
 
