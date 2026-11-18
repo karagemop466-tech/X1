@@ -18865,17 +18865,17 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_09_TB_CHI,2026,9,REG,2026-11-08,TB,CHI,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,SPREAD,,closing,-8.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,TOTAL,,closing,50.5,nfldata_games,single game total,
-2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,MONEYLINE,AWAY,closing,-425,nfldata_games,American odds for the named side,
-2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,MONEYLINE,HOME,closing,330,nfldata_games,American odds for the named side,
+2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,MONEYLINE,AWAY,closing,-485,nfldata_games,American odds for the named side,
+2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,MONEYLINE,HOME,closing,370,nfldata_games,American odds for the named side,
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,SPREAD,NYJ,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,SPREAD,BUF,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_BUF_NYJ,2026,10,REG,2026-11-15,BUF,NYJ,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,SPREAD,,closing,2.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,SPREAD,,closing,1.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,TOTAL,,closing,48.5,nfldata_games,single game total,
-2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,MONEYLINE,AWAY,closing,114,nfldata_games,American odds for the named side,
-2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,MONEYLINE,HOME,closing,-135,nfldata_games,American odds for the named side,
+2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,MONEYLINE,AWAY,closing,-110,nfldata_games,American odds for the named side,
+2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,MONEYLINE,HOME,closing,-110,nfldata_games,American odds for the named side,
 2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,SPREAD,NO,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,SPREAD,CAR,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
@@ -18883,17 +18883,17 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_CAR_NO,2026,10,REG,2026-11-15,CAR,NO,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,SPREAD,,closing,-4.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,TOTAL,,closing,40.5,nfldata_games,single game total,
-2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,MONEYLINE,AWAY,closing,-238,nfldata_games,American odds for the named side,
-2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,MONEYLINE,HOME,closing,195,nfldata_games,American odds for the named side,
+2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,MONEYLINE,AWAY,closing,-198,nfldata_games,American odds for the named side,
+2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,MONEYLINE,HOME,closing,164,nfldata_games,American odds for the named side,
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,SPREAD,CLE,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,SPREAD,HOU,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_HOU_CLE,2026,10,REG,2026-11-15,HOU,CLE,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,SPREAD,,closing,-10.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,TOTAL,,closing,46.5,nfldata_games,single game total,
-2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,MONEYLINE,AWAY,closing,-700,nfldata_games,American odds for the named side,
-2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,MONEYLINE,HOME,closing,500,nfldata_games,American odds for the named side,
+2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,TOTAL,,closing,45.5,nfldata_games,single game total,
+2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,MONEYLINE,AWAY,closing,-650,nfldata_games,American odds for the named side,
+2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,MONEYLINE,HOME,closing,470,nfldata_games,American odds for the named side,
 2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,SPREAD,TEN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,SPREAD,JAX,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_JAX_TEN,2026,10,REG,2026-11-15,JAX,TEN,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
@@ -18909,7 +18909,7 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_KC_ATL,2026,10,REG,2026-11-15,KC,ATL,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_KC_ATL,2026,10,REG,2026-11-15,KC,ATL,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,SPREAD,,closing,4.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,TOTAL,,closing,38.5,nfldata_games,single game total,
+2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,TOTAL,,closing,39.5,nfldata_games,single game total,
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,MONEYLINE,AWAY,closing,185,nfldata_games,American odds for the named side,
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,MONEYLINE,HOME,closing,-225,nfldata_games,American odds for the named side,
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,SPREAD,BAL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
@@ -18917,19 +18917,19 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_LAC_BAL,2026,10,REG,2026-11-16,LAC,BAL,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,SPREAD,,closing,-9.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,TOTAL,,closing,39.5,nfldata_games,single game total,
-2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,MONEYLINE,AWAY,closing,-500,nfldata_games,American odds for the named side,
-2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,MONEYLINE,HOME,closing,380,nfldata_games,American odds for the named side,
+2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,SPREAD,,closing,-10,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,TOTAL,,closing,38.5,nfldata_games,single game total,
+2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,MONEYLINE,AWAY,closing,-550,nfldata_games,American odds for the named side,
+2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,MONEYLINE,HOME,closing,410,nfldata_games,American odds for the named side,
 2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,SPREAD,ARI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,SPREAD,LA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_LA_ARI,2026,10,REG,2026-11-15,LA,ARI,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,TOTAL,,closing,38.5,nfldata_games,single game total,
-2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,MONEYLINE,AWAY,closing,180,nfldata_games,American odds for the named side,
-2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,MONEYLINE,HOME,closing,-218,nfldata_games,American odds for the named side,
+2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,SPREAD,,closing,4.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,TOTAL,,closing,37.5,nfldata_games,single game total,
+2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,MONEYLINE,AWAY,closing,185,nfldata_games,American odds for the named side,
+2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,MONEYLINE,HOME,closing,-225,nfldata_games,American odds for the named side,
 2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,SPREAD,IND,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,SPREAD,MIA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_MIA_IND,2026,10,REG,2026-11-15,MIA,IND,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
@@ -18945,7 +18945,7 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_MIN_GB,2026,10,REG,2026-11-15,MIN,GB,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_MIN_GB,2026,10,REG,2026-11-15,MIN,GB,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,SPREAD,,closing,2.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,TOTAL,,closing,49.5,nfldata_games,single game total,
+2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,TOTAL,,closing,50.5,nfldata_games,single game total,
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,MONEYLINE,AWAY,closing,124,nfldata_games,American odds for the named side,
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,MONEYLINE,HOME,closing,-148,nfldata_games,American odds for the named side,
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,SPREAD,DET,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
@@ -18953,10 +18953,10 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_NE_DET,2026,10,REG,2026-11-15,NE,DET,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,SPREAD,,closing,4.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,TOTAL,,closing,49.5,nfldata_games,single game total,
-2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,MONEYLINE,AWAY,closing,154,nfldata_games,American odds for the named side,
-2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,MONEYLINE,HOME,closing,-185,nfldata_games,American odds for the named side,
+2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,MONEYLINE,AWAY,closing,180,nfldata_games,American odds for the named side,
+2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,MONEYLINE,HOME,closing,-218,nfldata_games,American odds for the named side,
 2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,SPREAD,CIN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,SPREAD,PIT,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
@@ -18964,17 +18964,17 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_PIT_CIN,2026,10,REG,2026-11-15,PIT,CIN,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,SPREAD,,closing,-6.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,TOTAL,,closing,40.5,nfldata_games,single game total,
-2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,MONEYLINE,AWAY,closing,-305,nfldata_games,American odds for the named side,
-2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,MONEYLINE,HOME,closing,245,nfldata_games,American odds for the named side,
+2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,MONEYLINE,AWAY,closing,-298,nfldata_games,American odds for the named side,
+2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,MONEYLINE,HOME,closing,240,nfldata_games,American odds for the named side,
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,SPREAD,LV,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,SPREAD,SEA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_SEA_LV,2026,10,REG,2026-11-15,SEA,LV,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,SPREAD,,closing,-4.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,SPREAD,,closing,-3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,TOTAL,,closing,55.5,nfldata_games,single game total,
-2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,MONEYLINE,AWAY,closing,-218,nfldata_games,American odds for the named side,
-2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,MONEYLINE,HOME,closing,180,nfldata_games,American odds for the named side,
+2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,MONEYLINE,AWAY,closing,-205,nfldata_games,American odds for the named side,
+2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,MONEYLINE,HOME,closing,170,nfldata_games,American odds for the named side,
 2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,SPREAD,DAL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,SPREAD,SF,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_10_SF_DAL,2026,10,REG,2026-11-15,SF,DAL,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
@@ -18989,44 +18989,44 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_10_WAS_NYG,2026,10,REG,2026-11-12,WAS,NYG,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_10_WAS_NYG,2026,10,REG,2026-11-12,WAS,NYG,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_10_WAS_NYG,2026,10,REG,2026-11-12,WAS,NYG,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,SPREAD,,closing,14,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,TOTAL,,closing,42.5,nfldata_games,single game total,
-2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,MONEYLINE,AWAY,closing,650,nfldata_games,American odds for the named side,
-2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,MONEYLINE,HOME,closing,-1000,nfldata_games,American odds for the named side,
+2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,SPREAD,,closing,16.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,TOTAL,,closing,41.5,nfldata_games,single game total,
+2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,MONEYLINE,AWAY,closing,850,nfldata_games,American odds for the named side,
+2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,MONEYLINE,HOME,closing,-1450,nfldata_games,American odds for the named side,
 2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,SPREAD,KC,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,SPREAD,ARI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_ARI_KC,2026,11,REG,2026-11-22,ARI,KC,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,SPREAD,,closing,1.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,SPREAD,,closing,2.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,TOTAL,,closing,44.5,nfldata_games,single game total,
-2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,MONEYLINE,AWAY,closing,105,nfldata_games,American odds for the named side,
-2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,MONEYLINE,HOME,closing,-125,nfldata_games,American odds for the named side,
+2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,MONEYLINE,AWAY,closing,120,nfldata_games,American odds for the named side,
+2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,MONEYLINE,HOME,closing,-142,nfldata_games,American odds for the named side,
 2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,SPREAD,CAR,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,SPREAD,BAL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_BAL_CAR,2026,11,REG,2026-11-22,BAL,CAR,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,SPREAD,,closing,-3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,TOTAL,,closing,51.5,nfldata_games,single game total,
-2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,MONEYLINE,AWAY,closing,-205,nfldata_games,American odds for the named side,
-2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,MONEYLINE,HOME,closing,170,nfldata_games,American odds for the named side,
+2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,SPREAD,,closing,-6.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,TOTAL,,closing,52.5,nfldata_games,single game total,
+2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,MONEYLINE,AWAY,closing,-290,nfldata_games,American odds for the named side,
+2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,MONEYLINE,HOME,closing,235,nfldata_games,American odds for the named side,
 2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,SPREAD,WAS,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,SPREAD,CIN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_CIN_WAS,2026,11,REG,2026-11-23,CIN,WAS,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,SPREAD,,closing,10,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,SPREAD,,closing,12.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,TOTAL,,closing,44.5,nfldata_games,single game total,
-2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,MONEYLINE,AWAY,closing,350,nfldata_games,American odds for the named side,
-2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,MONEYLINE,HOME,closing,-455,nfldata_games,American odds for the named side,
+2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,MONEYLINE,AWAY,closing,525,nfldata_games,American odds for the named side,
+2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,MONEYLINE,HOME,closing,-750,nfldata_games,American odds for the named side,
 2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,SPREAD,HOU,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,SPREAD,IND,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_IND_HOU,2026,11,REG,2026-11-19,IND,HOU,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,SPREAD,,closing,-6,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,TOTAL,,closing,44.5,nfldata_games,single game total,
+2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,TOTAL,,closing,46.5,nfldata_games,single game total,
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,MONEYLINE,AWAY,closing,-265,nfldata_games,American odds for the named side,
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,MONEYLINE,HOME,closing,215,nfldata_games,American odds for the named side,
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,SPREAD,NYG,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
@@ -19034,46 +19034,46 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_JAX_NYG,2026,11,REG,2026-11-22,JAX,NYG,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,SPREAD,,closing,8.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,TOTAL,,closing,41.5,nfldata_games,single game total,
-2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,MONEYLINE,AWAY,closing,340,nfldata_games,American odds for the named side,
-2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,MONEYLINE,HOME,closing,-440,nfldata_games,American odds for the named side,
+2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,SPREAD,,closing,10,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,TOTAL,,closing,40.5,nfldata_games,single game total,
+2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,MONEYLINE,AWAY,closing,425,nfldata_games,American odds for the named side,
+2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,MONEYLINE,HOME,closing,-575,nfldata_games,American odds for the named side,
 2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,SPREAD,DEN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,SPREAD,LV,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_LV_DEN,2026,11,REG,2026-11-22,LV,DEN,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,SPREAD,,closing,16.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,TOTAL,,closing,46.5,nfldata_games,single game total,
-2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,MONEYLINE,AWAY,closing,950,nfldata_games,American odds for the named side,
-2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,MONEYLINE,HOME,closing,-1650,nfldata_games,American odds for the named side,
+2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,TOTAL,,closing,45.5,nfldata_games,single game total,
+2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,MONEYLINE,AWAY,closing,850,nfldata_games,American odds for the named side,
+2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,MONEYLINE,HOME,closing,-1450,nfldata_games,American odds for the named side,
 2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,SPREAD,BUF,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,SPREAD,MIA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_MIA_BUF,2026,11,REG,2026-11-22,MIA,BUF,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,SPREAD,,closing,3,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,TOTAL,,closing,45.5,nfldata_games,single game total,
-2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,MONEYLINE,AWAY,closing,170,nfldata_games,American odds for the named side,
-2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,MONEYLINE,HOME,closing,-205,nfldata_games,American odds for the named side,
+2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,MONEYLINE,AWAY,closing,136,nfldata_games,American odds for the named side,
+2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,MONEYLINE,HOME,closing,-162,nfldata_games,American odds for the named side,
 2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,SPREAD,SF,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,SPREAD,MIN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_MIN_SF,2026,11,REG,2026-11-22,MIN,SF,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,SPREAD,,closing,9.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,TOTAL,,closing,48.5,nfldata_games,single game total,
-2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,MONEYLINE,AWAY,closing,370,nfldata_games,American odds for the named side,
-2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,MONEYLINE,HOME,closing,-485,nfldata_games,American odds for the named side,
+2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,SPREAD,,closing,11.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,TOTAL,,closing,49.5,nfldata_games,single game total,
+2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,MONEYLINE,AWAY,closing,500,nfldata_games,American odds for the named side,
+2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,MONEYLINE,HOME,closing,-700,nfldata_games,American odds for the named side,
 2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,SPREAD,CHI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,SPREAD,NO,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_NO_CHI,2026,11,REG,2026-11-22,NO,CHI,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,SPREAD,,closing,1.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,TOTAL,,closing,42.5,nfldata_games,single game total,
-2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,MONEYLINE,AWAY,closing,105,nfldata_games,American odds for the named side,
-2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,MONEYLINE,HOME,closing,-125,nfldata_games,American odds for the named side,
+2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,TOTAL,,closing,41.5,nfldata_games,single game total,
+2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,MONEYLINE,AWAY,closing,154,nfldata_games,American odds for the named side,
+2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,MONEYLINE,HOME,closing,-185,nfldata_games,American odds for the named side,
 2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,SPREAD,LAC,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,SPREAD,NYJ,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
@@ -19081,170 +19081,170 @@ game_id,season,week,game_type,date,away,home,market,side,snapshot,line,source_ke
 2026_11_NYJ_LAC,2026,11,REG,2026-11-22,NYJ,LAC,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,SPREAD,,closing,-4.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,TOTAL,,closing,38.5,nfldata_games,single game total,
-2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,MONEYLINE,AWAY,closing,-198,nfldata_games,American odds for the named side,
-2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,MONEYLINE,HOME,closing,164,nfldata_games,American odds for the named side,
+2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,MONEYLINE,AWAY,closing,-205,nfldata_games,American odds for the named side,
+2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,MONEYLINE,HOME,closing,170,nfldata_games,American odds for the named side,
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,SPREAD,PHI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,SPREAD,PIT,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_PIT_PHI,2026,11,REG,2026-11-22,PIT,PHI,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,TOTAL,,closing,47.5,nfldata_games,single game total,
-2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,MONEYLINE,AWAY,closing,150,nfldata_games,American odds for the named side,
-2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,MONEYLINE,HOME,closing,-180,nfldata_games,American odds for the named side,
+2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,SPREAD,,closing,7,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,TOTAL,,closing,45.5,nfldata_games,single game total,
+2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,MONEYLINE,AWAY,closing,270,nfldata_games,American odds for the named side,
+2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,MONEYLINE,HOME,closing,-340,nfldata_games,American odds for the named side,
 2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,SPREAD,DET,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,SPREAD,TB,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_TB_DET,2026,11,REG,2026-11-22,TB,DET,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,SPREAD,,closing,7.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
-2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,TOTAL,,closing,51.5,nfldata_games,single game total,
-2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,MONEYLINE,AWAY,closing,330,nfldata_games,American odds for the named side,
-2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,MONEYLINE,HOME,closing,-425,nfldata_games,American odds for the named side,
+2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,SPREAD,,closing,8.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,TOTAL,,closing,54.5,nfldata_games,single game total,
+2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,MONEYLINE,AWAY,closing,300,nfldata_games,American odds for the named side,
+2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,MONEYLINE,HOME,closing,-380,nfldata_games,American odds for the named side,
 2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,SPREAD,DAL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,SPREAD,TEN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_11_TEN_DAL,2026,11,REG,2026-11-22,TEN,DAL,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,SPREAD,,closing,7,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,TOTAL,,closing,42.5,nfldata_games,single game total,
+2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,MONEYLINE,AWAY,closing,270,nfldata_games,American odds for the named side,
+2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,MONEYLINE,HOME,closing,-340,nfldata_games,American odds for the named side,
 2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,SPREAD,MIN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,SPREAD,ATL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_ATL_MIN,2026,12,REG,2026-11-29,ATL,MIN,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,SPREAD,,closing,6,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,TOTAL,,closing,44.5,nfldata_games,single game total,
+2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,MONEYLINE,AWAY,closing,205,nfldata_games,American odds for the named side,
+2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,MONEYLINE,HOME,closing,-250,nfldata_games,American odds for the named side,
 2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,SPREAD,HOU,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,SPREAD,BAL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_BAL_HOU,2026,12,REG,2026-11-29,BAL,HOU,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,SPREAD,,closing,2.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,TOTAL,,closing,43.5,nfldata_games,single game total,
+2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,MONEYLINE,AWAY,closing,124,nfldata_games,American odds for the named side,
+2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,MONEYLINE,HOME,closing,-148,nfldata_games,American odds for the named side,
 2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,SPREAD,TB,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,SPREAD,CAR,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_CAR_TB,2026,12,REG,2026-11-30,CAR,TB,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,SPREAD,,closing,-1.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,TOTAL,,closing,54.5,nfldata_games,single game total,
+2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,MONEYLINE,AWAY,closing,-130,nfldata_games,American odds for the named side,
+2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,MONEYLINE,HOME,closing,110,nfldata_games,American odds for the named side,
 2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,SPREAD,DET,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,SPREAD,CHI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_CHI_DET,2026,12,REG,2026-11-26,CHI,DET,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,SPREAD,,closing,-2.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,TOTAL,,closing,41.5,nfldata_games,single game total,
+2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,MONEYLINE,AWAY,closing,-135,nfldata_games,American odds for the named side,
+2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,MONEYLINE,HOME,closing,114,nfldata_games,American odds for the named side,
 2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,SPREAD,PIT,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,SPREAD,DEN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_DEN_PIT,2026,12,REG,2026-11-27,DEN,PIT,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,TOTAL,,closing,46.5,nfldata_games,single game total,
+2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,MONEYLINE,AWAY,closing,164,nfldata_games,American odds for the named side,
+2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,MONEYLINE,HOME,closing,-198,nfldata_games,American odds for the named side,
 2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,SPREAD,LA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,SPREAD,GB,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_GB_LA,2026,12,REG,2026-11-25,GB,LA,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,SPREAD,,closing,3,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,TOTAL,,closing,50.5,nfldata_games,single game total,
+2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,MONEYLINE,AWAY,closing,130,nfldata_games,American odds for the named side,
+2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,MONEYLINE,HOME,closing,-155,nfldata_games,American odds for the named side,
 2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,SPREAD,BUF,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,SPREAD,KC,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_KC_BUF,2026,12,REG,2026-11-26,KC,BUF,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,TOTAL,,closing,41.5,nfldata_games,single game total,
+2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,MONEYLINE,AWAY,closing,160,nfldata_games,American odds for the named side,
+2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,MONEYLINE,HOME,closing,-192,nfldata_games,American odds for the named side,
 2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,SPREAD,CLE,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,SPREAD,LV,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_LV_CLE,2026,12,REG,2026-11-29,LV,CLE,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,SPREAD,,closing,3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,TOTAL,,closing,40.5,nfldata_games,single game total,
+2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,MONEYLINE,AWAY,closing,180,nfldata_games,American odds for the named side,
+2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,MONEYLINE,HOME,closing,-218,nfldata_games,American odds for the named side,
 2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,SPREAD,LAC,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,SPREAD,NE,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_NE_LAC,2026,12,REG,2026-11-29,NE,LAC,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,SPREAD,,closing,10,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,TOTAL,,closing,52.5,nfldata_games,single game total,
+2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,MONEYLINE,AWAY,closing,410,nfldata_games,American odds for the named side,
+2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,MONEYLINE,HOME,closing,-550,nfldata_games,American odds for the named side,
 2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,SPREAD,CIN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,SPREAD,NO,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_NO_CIN,2026,12,REG,2026-11-29,NO,CIN,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,SPREAD,,closing,-3.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,TOTAL,,closing,44.5,nfldata_games,single game total,
+2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,MONEYLINE,AWAY,closing,-180,nfldata_games,American odds for the named side,
+2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,MONEYLINE,HOME,closing,150,nfldata_games,American odds for the named side,
 2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,SPREAD,IND,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,SPREAD,NYG,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_NYG_IND,2026,12,REG,2026-11-29,NYG,IND,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,SPREAD,,closing,-3,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,TOTAL,,closing,41.5,nfldata_games,single game total,
+2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,MONEYLINE,AWAY,closing,-180,nfldata_games,American odds for the named side,
+2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,MONEYLINE,HOME,closing,150,nfldata_games,American odds for the named side,
 2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,SPREAD,MIA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,SPREAD,NYJ,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_NYJ_MIA,2026,12,REG,2026-11-29,NYJ,MIA,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,SPREAD,,closing,8.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,TOTAL,,closing,47.5,nfldata_games,single game total,
+2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,MONEYLINE,AWAY,closing,310,nfldata_games,American odds for the named side,
+2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,MONEYLINE,HOME,closing,-395,nfldata_games,American odds for the named side,
 2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,SPREAD,DAL,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,SPREAD,PHI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_PHI_DAL,2026,12,REG,2026-11-26,PHI,DAL,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,SPREAD,,closing,3,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,TOTAL,,closing,46.5,nfldata_games,single game total,
+2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,MONEYLINE,AWAY,closing,130,nfldata_games,American odds for the named side,
+2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,MONEYLINE,HOME,closing,-155,nfldata_games,American odds for the named side,
 2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,SPREAD,SF,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,SPREAD,SEA,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_SEA_SF,2026,12,REG,2026-11-29,SEA,SF,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,SPREAD,,closing,14.5,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,TOTAL,,closing,47.5,nfldata_games,single game total,
+2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,MONEYLINE,AWAY,closing,700,nfldata_games,American odds for the named side,
+2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,MONEYLINE,HOME,closing,-1100,nfldata_games,American odds for the named side,
 2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,SPREAD,JAX,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,SPREAD,TEN,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON
 2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,MONEYLINE,AWAY,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
 2026_12_TEN_JAX,2026,12,REG,2026-11-29,TEN,JAX,MONEYLINE,HOME,opening,,none,American odds for the named side,NO-OPENING-MONEYLINE
-2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,SPREAD,,closing,,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),NO-CLOSING-LINE-IN-MIRROR
-2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,TOTAL,,closing,,nfldata_games,single game total,NO-CLOSING-LINE-IN-MIRROR
-2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,MONEYLINE,AWAY,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
-2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,MONEYLINE,HOME,closing,,nfldata_games,American odds for the named side,NO-CLOSING-LINE-IN-MIRROR
+2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,SPREAD,,closing,-6,nfldata_games,signed game line; positive = home team favored (nflverse DATASETS.md),
+2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,TOTAL,,closing,42.5,nfldata_games,single game total,
+2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,MONEYLINE,AWAY,closing,-270,nfldata_games,American odds for the named side,
+2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,MONEYLINE,HOME,closing,220,nfldata_games,American odds for the named side,
 2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,SPREAD,ARI,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,SPREAD,WAS,opening,,nfldata_initial_lines,line is for the named team as published; negative = that team favored (initial_lines.csv),NO-OPENING-DATA-SEASON
 2026_12_WAS_ARI,2026,12,REG,2026-11-29,WAS,ARI,TOTAL,,opening,,nfldata_initial_lines,single game total; Over and Under published identical (verified),NO-OPENING-DATA-SEASON

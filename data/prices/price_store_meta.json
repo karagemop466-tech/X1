@@ -1,7 +1,7 @@
 {
  "dataset": "price_history",
  "title": "Opening and closing price snapshots for every market we originate",
- "generated_at": "2026-11-14T20:38:31.963592Z",
+ "generated_at": "2026-11-18T03:08:32.538551Z",
  "generated_by": "tools/build_price_history.py (session arena-52aabfa8-x1, T10)",
  "snapshot_date": "2026-11-14",
  "columns": [
@@ -30,7 +30,7 @@
    "tier": "third_party_mirror",
    "retrieved_at": "2026-11-14",
    "file": "data/raw/nflverse/games.csv",
-   "sha256_prefix": "60ea2f76bd2c539c",
+   "sha256_prefix": "5a61d3121f2178ce",
    "coverage": "2019-2026; 2026 lines posted through week 11"
   },
   {
@@ -68,8 +68,8 @@
  "counts": {
   "rows": 20088,
   "games": 2232,
-  "closing_values_present": 8492,
-  "closing_cells_blank": 436,
+  "closing_values_present": 8556,
+  "closing_cells_blank": 372,
   "opening_values_present": 816,
   "opening_cells_blank": 10344
  },
@@ -79,7 +79,7 @@
     "id": "P1",
     "what": "every present line parses as a number",
     "result": "pass",
-    "detail": "9308 values checked"
+    "detail": "9372 values checked"
    },
    {
     "id": "P2",

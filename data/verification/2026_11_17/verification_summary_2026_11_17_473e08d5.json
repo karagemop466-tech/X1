@@ -1,0 +1,143 @@
+{
+ "dataset": "results_closure_2026_11_17",
+ "title": "Week 10 closure and results-feed re-baseline: dated official reads, 2026-11-17",
+ "generated_at": "2026-11-18T03:06:03+00:00",
+ "generated_by": "tools/verify_2026_11_17_473e08d5.py (session arena-473e08d5-x1; renamed on integration by arena/6a4ba536-x1)",
+ "read_window_utc": "2026-11-17T22:44Z..23:06Z (sandbox wall clock; the fetch tool prints no clock of its own, so these bound the calls rather than timestamp them). The official pages were read 22:45-22:51Z; the mirror was fetched twice, at 22:44:27Z and again at 23:05:12Z, because the first fetch did not yet carry the Sunday scores - see V9.",
+ "sources": [
+  {
+   "label": "NFL.com Week 10 schedule (14 finals)",
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "retrieved_at": "2026-11-17"
+  },
+  {
+   "label": "NFL.com 2026 league standings (32 rows)",
+   "url": "https://www.nfl.com/standings/league/2026/REG",
+   "retrieved_at": "2026-11-17"
+  },
+  {
+   "label": "NFL.com Game Center LAC at BAL, week 10 (the promoted fixture)",
+   "url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+   "retrieved_at": "2026-11-17"
+  },
+  {
+   "label": "NFL.com Week 10 schedule, previous read (13 finals + 1 scheduled)",
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "retrieved_at": "2026-11-16"
+  },
+  {
+   "label": "nflverse/nfldata games.csv - third-party mirror, cross-check only",
+   "url": "https://api.github.com/repos/nflverse/nfldata/contents/data/games.csv",
+   "retrieved_at": "2026-11-17",
+   "tier": "third_party_mirror",
+   "file": "data/raw/nflverse/games.csv"
+  }
+ ],
+ "checks": {
+  "V1 read integrity": {
+   "rows": 14,
+   "unique_game_ids": true,
+   "all_final": true,
+   "urls_on_nfl_com": true,
+   "scores_integer": true,
+   "clubs_in_fixtures": 28,
+   "clubs_covered_exactly_once": true,
+   "byes_printed": 4,
+   "verdict": "PASS"
+  },
+  "V2 agreement with the 2026-11-16 read": {
+   "compared": 13,
+   "agree": 13,
+   "diffs": [],
+   "note": "the 2026-11-16 read printed 13 finals and left LAC@BAL scheduled; the 13 are diffed, the 14th has no prior final to agree with",
+   "verdict": "PASS"
+  },
+  "V3 score diff vs the third-party mirror": {
+   "compared": 14,
+   "agree": 14,
+   "diffs": [],
+   "label": "third-party mirror - cross-check only, never the published source",
+   "verdict": "PASS"
+  },
+  "V4 cross-page record agreement": {
+   "checked": 32,
+   "mismatch": [],
+   "verdict": "PASS"
+  },
+  "V5 standings transcription integrity": {
+   "rows": 32,
+   "net_ok": 32,
+   "pct_ok": 32,
+   "home_road_ok": 32,
+   "bad": [],
+   "league_closure": {
+    "sum_W": 149,
+    "sum_L": 149,
+    "sum_T": 2,
+    "wins_equal_losses": true,
+    "ties_even": true,
+    "sum_PF": 6923,
+    "sum_PA": 6923,
+    "pf_equal_pa": true,
+    "games_implied": 150
+   },
+   "verdict": "PASS"
+  },
+  "V6 collector parse vs hand read": {
+   "compared": 32,
+   "mismatch": [],
+   "collector_generated_at": "2026-11-17T23:28:40+00:00",
+   "verdict": "PASS",
+   "collector_source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  "V7 feed closure vs the 2026-11-17 standings": {
+   "games_in_feed": 150,
+   "weeks": {
+    "1": 16,
+    "2": 16,
+    "3": 16,
+    "4": 16,
+    "5": 15,
+    "6": 14,
+    "7": 14,
+    "8": 14,
+    "9": 15,
+    "10": 14
+   },
+   "clubs_checked": 32,
+   "fields_checked": 160,
+   "clubs_matching": 32,
+   "mismatches": [],
+   "standings_baseline": "official_standings_2026_11_17.tsv (dated, frozen)",
+   "verdict": "PASS"
+  },
+  "V8 promotion accounting": {
+   "promoted_scheduled_to_final_since_the_2026_11_16_read": 1,
+   "final_in_both_reads": 13,
+   "rows_new_to_the_published_feed": 13,
+   "week10_rows_in_feed_now": 14,
+   "rows_overwritten": 0,
+   "note": "the feed carried 1 Week 10 row from the 2026-11-14 read (the TNF game); 13 finals arrive with this read; 1 of those 13 (LAC@BAL) is new to the league's own print since 2026-11-16, the other 12 were played but not yet transcribed. Nothing is overwritten - the 1 existing row is identical in both reads (V2), and every promoted row keeps its own read date rather than inheriting the file's.",
+   "verdict": "PASS"
+  },
+  "V9 mirror file == manifest pin == derived rows": {
+   "mirror_file": "data/raw/nflverse/games.csv",
+   "verdict": "PASS",
+   "sha256_on_disk": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+   "sha256_in_manifest": "5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01",
+   "bytes_on_disk": 2190568,
+   "bytes_in_manifest": 2190568,
+   "pin_matches_file": true,
+   "derived_rows_match_pinned_bytes": true,
+   "rows": 14,
+   "note": "the mirror is a moving target: two fetches of this URL 21 minutes apart on 2026-11-17 returned different bytes, so the published cross-check names the pin instead of the URL alone"
+  }
+ },
+ "failures": [],
+ "notes": [
+  "V2 compares two human reads of the same official page on different days; agreement is a corroboration, not a second source of authority - the page is the source.",
+  "V7 is the check the 137-row feed could never pass once Week 10 completed: a frozen transcription set against a live standings page. It now passes with the transcription set extended to 150 games and the standings baseline frozen at this date.",
+  "The mirror rows in V3 come from bytes pinned by sha256 in data/raw_manifest.json; the check names the pin so a reader can see which bytes a number came from."
+ ],
+ "all_passed": true
+}

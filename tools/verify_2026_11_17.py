@@ -90,7 +90,14 @@ STAND_TSV = os.path.join(VDIR, "official_standings_2026_11_17.tsv")
 RESULTS_TSV = os.path.join(VDIR, "official_w10_results_2026_11_17.tsv")
 W11_PROBE = os.path.join(VDIR, "week11_injuries_probe_2026_11_17.txt")
 
-PUBLISHED_INJ = os.path.join(NFL, "injuries_week10.tsv")
+# The delta this pack publishes is against the table AS PUBLISHED ON 2026-11-14, which
+# is the transcription committed at that date. On 2026-11-17 the collector republished
+# data/nfl/injuries_week10.tsv at 347 rows, so reading that live file would have made the
+# very delta this check exists to measure collapse to zero — the finding would vanish
+# from the record because the defect had been fixed. The dated artefact is therefore
+# pinned below and the live file is only used to confirm it has moved on.
+PUBLISHED_INJ = os.path.join(ROOT, "data", "nfl", "injuries_week10_2026_11_14.tsv")
+PUBLISHED_INJ_LIVE = os.path.join(NFL, "injuries_week10.tsv")
 PUBLISHED_STAND = os.path.join(NFL, "standings.tsv")
 PUBLISHED_SCHEDULE = os.path.join(NFL, "schedule_week10.tsv")
 PRIOR_STAND = os.path.join(ROOT, "data", "verification", "2026_11_16", "official_standings_2026_11_16.tsv")
@@ -176,14 +183,15 @@ def build(outdir):
             nonlocal fatal
             fatal = True
 
-    for p in (INJ_TSV, STAND_TSV, RESULTS_TSV, W11_PROBE, PUBLISHED_INJ,
+    for p in (INJ_TSV, STAND_TSV, RESULTS_TSV, W11_PROBE, PUBLISHED_INJ, PUBLISHED_INJ_LIVE,
               PUBLISHED_STAND, PUBLISHED_SCHEDULE, PRIOR_STAND, INJ_CAPTURE, STAND_CAPTURE):
         if not os.path.exists(p):
             print(f"missing input: {p}", file=sys.stderr)
             sys.exit(2)
 
     inj = read_tsv(INJ_TSV)
-    pub_inj = read_tsv(PUBLISHED_INJ)
+    pub_inj = read_tsv(PUBLISHED_INJ)   # the 2026-11-14 transcription (frozen)
+    live_inj = read_tsv(PUBLISHED_INJ_LIVE)  # today's published table, reported not compared
     stand = read_tsv(STAND_TSV)
     pub_stand = read_tsv(PUBLISHED_STAND)
     prior_stand = read_tsv(PRIOR_STAND)
@@ -303,9 +311,13 @@ def build(outdir):
     add("I3", "dated delta: published table (2026-11-14) vs official page (2026-11-17)",
         "FINDINGS-PUBLISHED",
         {"published_rows": len(pub_inj), "official_rows": len(inj),
+         "published_rows_baseline": "data/nfl/injuries_week10_2026_11_14.tsv (frozen 2026-11-14 transcription)",
+         "live_table_rows_today": len(live_inj),
          "rows_added": len(added), "rows_removed": len(removed),
          "cells_changed": len(cell_rows) - len(added) - len(removed)},
-        "see injuries_diff_vs_published_2026_11_17.csv")
+        f"see injuries_diff_vs_published_2026_11_17.csv; the live table now holds "
+        f"{len(live_inj)} rows, so this delta is a historical measurement against a "
+        f"frozen artefact, not a claim about today's file")
 
     # ---------------- I4 game assignment ----------------
     seen = {}
