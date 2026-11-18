@@ -88,7 +88,7 @@ console/repo-review.html,console,13692
 console/requirements.html,console,7709
 console/results.html,console,256330
 console/schedule.html,console,13003
-console/snapshots.html,console,7419
+console/snapshots.html,console,7616
 console/sources.html,console,9141
 console/standings.html,console,22358
 console/strategies.html,console,18024
@@ -185,7 +185,7 @@ data/captures/payloads/week_results/c9/c95d423beb27d8c18c05e23dd9e99323330daf070
 data/captures/payloads/week_schedule/0e/0ec453ed4dd6f9e13b655e5e16a490ea58408ae433543f3e9190c84970410c90.json,data,8838
 data/captures/status.json,data,6597
 data/console/correlations.csv,data,3428
-data/console/dated_snapshots.csv,data,792
+data/console/dated_snapshots.csv,data,793
 data/console/depth_parse.csv,data,14825
 data/console/depth_parse.json,data,30463
 data/console/depth_replacement.csv,data,89864
@@ -766,7 +766,7 @@ src/x1/strategies.py,src,25831
 tools/build_app.py,tools,223104
 tools/build_audit_registers.py,tools,59830
 tools/build_availability.py,tools,5505
-tools/build_console.py,tools,133605
+tools/build_console.py,tools,133698
 tools/build_correlations_official.py,tools,9440
 tools/build_correlations_official_store.py,tools,9784
 tools/build_decision_readiness.py,tools,45643

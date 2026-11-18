@@ -4268,10 +4268,18 @@ previous session (`arena-543cdcb0-x1`, done 2026-11-16) as the single coordinate
    locally in workflow order (**60/60**); a `git clone --depth 1` re-run of the **16** git-anchored
    checks (**16/16**); `rebuild_for_refresh` **ok (0 failed)**; `check_links` **47,227** assertions;
    `scripts/verify_site.py` **179 pages**; all `data/*.json` registers parse; workflow YAMLs valid.
-7. **R6-5 — release:** PR from this branch → `main`, merged without waiting for approval (only after
-   the gates above), GitHub Pages deploy confirmed. **Final evidence (PR number, merge SHA, Pages run)
-   is recorded in that PR's description**, which is editable after merge; this file is not pushed to
-   `main` directly (one branch per session).
+7. **R6-5 — release:** **PR #93** → `main`, merged `d1bc7ef` (2026-11-18T04:31:19Z) after
+   `verify-site` pass + `Publish static site` pass on the PR; on main, `verify-site`,
+   `Publish static site to GitHub Pages` (build57s + deploy9s) and `pages build and deployment` all
+   green; live site confirmed serving the new pages —
+   `https://karagemop466-tech.github.io/X1/console/ledger.html` shows all8 captures re-hashed intact
+   (chain head `9045aa9295cb`), snapshots + announcement pages live with source-linked rows.
+   **Post-merge live check found one defect** (the live page is the last gate): the snapshots page
+   rendered `+0 / 0 cells` for the 11-14 → 11-15 delta — a row-index off-by-one in
+   `build_pages_sg15` (delta read tuple index5 (`""`) instead of6 (rows)); fixed, deltas now
+   `+2 rows / 32 cells` (Campbell, Stanley listed), full mirror re-run 60/60, shipped as a follow-up
+   PR from this branch. Final evidence for #93 (merge SHA, Pages runs) is in #93's description. This
+   file is not pushed to `main` directly (one branch per session).
 
 ### Requests to other sessions / owner (rule 4 — logged, not edited)
 
