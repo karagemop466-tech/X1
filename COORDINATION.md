@@ -4137,3 +4137,33 @@ the Rams–Cardinals game, matched by alias-normalised matchup, never by label).
 
 *This record is the follow-up commit from the same branch (docs-only), per the branch's PR-record
 convention.*
+
+---
+
+# Session `arena-0453f450-x1` — round 6 claim (written and pushed before any other work, per rule 1)
+
+**Session ID:** `arena-0453f450-x1` · **Branch:** `arena/0453f450-x1` (fixed for this session; branched
+from `main` @ `d80c5b3`) · **Date (UTC):** 2026-11-18.
+
+**Overlap check:** every task on the board is `done` or belongs to a session whose claim is >60 min
+old with no commits (round-5 integration is closed by PR #85). No open claim covers official Game
+Center pages, the inactive/active list, the per-team availability view, or a new console page
+namespace. Files touched by this session are listed per task; nothing another session owns is edited.
+
+**Theme:** close the brief rows that only need an official page that nobody has read yet — the
+**venue of every fixture from the official Game Center** (brief row 24: 13 of 14 blank), the
+**official game-day status / inactive evidence** (rows 32, 43, 48, 49, 65) and the **per-team
+availability view** built from them (row 42).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R6-1 | Official Game Center evidence pack for all 14 Week 10 fixtures: venue (location + stadium, verbatim), final score, official Game Book PDF link, read clock time, per-row source URL | in progress | `arena-0453f450-x1` | `data/official/gamecenter_week10_2026.{json,csv}` (new), `data/console/gamecenter.{json,csv}` (new), `tools/build_gamecenter_pack.py` (new) |
+| R6-2 | Official game-day status evidence: inactive/active list per fixture from an official NFL source; where no official list exists, the cell stays blank and is flagged | in progress | `arena-0453f450-x1` | `data/official/gamecenter_week10_2026.*` (new), `data/console/gamecenter_status.{json,csv}` (new) |
+| R6-3 | Per-team availability view: starters out, replacement named from the club depth chart, net injury count (brief row 42) | in progress | `arena-0453f450-x1` | `data/console/team_availability.{json,csv}` (new), `tools/build_gamecenter_pack.py` (new) |
+| R6-4 | Publish the new tables as console pages with per-row source links; wire the generator and the verifier into CI | in progress | `arena-0453f450-x1` | `console/gamecenter.html`, `console/team-availability.html` (new), `tools/build_console.py` (NAV + builders), `tools/verify_console.py` (new checks) |
+| R6-5 | Register update: decision-readiness rows and the Flagged-for-Review page re-measured against the new evidence (append-only new ids) | in progress | `arena-0453f450-x1` | `data/console/readiness.json` (via `tools/official/readiness.py`), `data/flags.json` (append-only), `docs/audit/brief-coverage-2026-11-17.md` (dated addendum, new file only) |
+| R6-6 | Final integration: run every `run:` step of `verify.yml` + `pages.yml` locally, open PR → `main`, merge without approval, confirm Pages deploys, record the PR link and merge result here | in progress | `arena-0453f450-x1` | `COORDINATION.md` (this record), PR |
+
+**Rule 9 note:** this session is the final integration session for round 6; shared outputs
+(registers, navigation, landing page) change only here and only through the committed generators,
+so the CI staleness guards stay green.
