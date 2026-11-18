@@ -3,7 +3,7 @@
   "title": "Flagged for Review",
   "retrieved_at": "2026-11-14",
   "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-  "counts": 30,
+  "counts": 31,
   "resolution_log": [
    {
     "id": "I-17",
@@ -48,7 +48,7 @@
     "what": "Resolved at source: data/nfl/injuries_week10.tsv now carries the refreshed 347-row table (retrieved 2026-11-15); on 2026-11-18 the canonical 2026-11-17 pack was re-derived and its diff against the current published table measures 0 added rows / 0 changed cells, agreeing with tools/verify_against_official.py (1,846 cells, 0 mismatches vs the live official page). The original 2-row / 32-cell delta against the 2026-11-14 snapshot stays published as the dated finding."
    }
   ],
-  "last_appended_by": "session arena-73e6cbac-x1, 2026-11-15 (F-20, F-21)"
+  "last_appended_by": "session arena-869ee8fb-x1, 2026-11-18 (F-22 resolution entry; round-6 union with main — PR #84's venue flag carried as main's F-31, F-32 added, F-27..F-30 keep main's structured renumber record)"
  },
  "flags": [
   {
@@ -387,7 +387,12 @@
    "source_label": "nflverse/nfldata games.csv (the same bytes, fetched via api.github.com twice on 2026-11-17)",
    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "league_source_label": "league page ↗",
-   "renamed_at_integration": "originally F-22 in PR #84 (session arena-473e08d5-x1); renumbered at integration because main already carried a different F-22 (session arena-01c263c4-x1, merged PR #79)"
+   "renumbered_on_integration": {
+    "from": "F-22",
+    "by": "session arena/6a4ba536-x1",
+    "date": "2026-11-18",
+    "why": "PR #84 (F-22) and main (F-22) both assigned this id to different findings. Main merged first and its numbering is kept; this row moves to F-27 with its content unchanged. No finding was dropped."
+   }
   },
   {
    "id": "F-28",
@@ -401,7 +406,12 @@
    "source_label": "NFL.com Week 10 schedule, 2026-11-17 read",
    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "league_source_label": "same page, 2026-11-16 read ↗",
-   "renamed_at_integration": "originally F-23 in PR #84 (session arena-473e08d5-x1); renumbered at integration because main already carried a different F-23 (session arena-01c263c4-x1, merged PR #79)"
+   "renumbered_on_integration": {
+    "from": "F-23",
+    "by": "session arena/6a4ba536-x1",
+    "date": "2026-11-18",
+    "why": "PR #84 (F-23) and main (F-23) both assigned this id to different findings. Main merged first and its numbering is kept; this row moves to F-28 with its content unchanged. No finding was dropped."
+   }
   },
   {
    "id": "F-29",
@@ -415,7 +425,12 @@
    "source_label": "data/processed/games_modeled.csv (derived store)",
    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "league_source_label": "league page ↗",
-   "renamed_at_integration": "originally F-24 in PR #84 (session arena-473e08d5-x1); renumbered at integration because main already carried a different F-24 (session arena-01c263c4-x1, merged PR #79)"
+   "renumbered_on_integration": {
+    "from": "F-24",
+    "by": "session arena/6a4ba536-x1",
+    "date": "2026-11-18",
+    "why": "PR #84 (F-24) and main (F-24) both assigned this id to different findings. Main merged first and its numbering is kept; this row moves to F-29 with its content unchanged. No finding was dropped."
+   }
   },
   {
    "id": "F-30",
@@ -429,10 +444,15 @@
    "source_label": "console/repo-review.html",
    "league_source_url": "https://github.com/karagemop466-tech/X1/blob/main/tools/build_console.py",
    "league_source_label": "builder ↗",
-   "renamed_at_integration": "originally F-25 in PR #84 (session arena-473e08d5-x1); renumbered at integration because main already carried a different F-25 (session arena-01c263c4-x1, merged PR #79)"
+   "renumbered_on_integration": {
+    "from": "F-25",
+    "by": "session arena/6a4ba536-x1",
+    "date": "2026-11-18",
+    "why": "PR #84 (F-25) and main (F-25) both assigned this id to different findings. Main merged first and its numbering is kept; this row moves to F-30 with its content unchanged. No finding was dropped."
+   }
   },
   {
-   "id": "F-26",
+   "id": "F-31",
    "severity": "medium",
    "category": "Data availability",
    "item": "The venue requirement cannot be met from the weekly schedule page, because that page prints no venue field.",
@@ -442,7 +462,27 @@
    "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
    "source_label": "NFL.com Game Center (the one fixture this round re-read)",
    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
-   "league_source_label": "weekly schedule page ↗"
+   "league_source_label": "weekly schedule page ↗",
+   "renumbered_on_integration": {
+    "from": "F-26",
+    "by": "session arena/6a4ba536-x1",
+    "date": "2026-11-18",
+    "why": "PR #84 (F-26) and main (F-26) both assigned this id to different findings. Main merged first and its numbering is kept; this row moves to F-31 with its content unchanged. No finding was dropped."
+   }
+  },
+  {
+   "id": "F-32",
+   "severity": "medium",
+   "category": "Gate coverage",
+   "item": "A generated metadata file described a superseded window for a day while every gate stayed green, because no check compared a metadata file's counts to the rows of the file it describes.",
+   "verified": "data/results/results_feed_meta.json stated official_verified=1, scheduled=135, generated 2026-11-14, while data/results/verified_results.csv beside it carried 14 rows with official_verified=yes. Both were committed; both passed every gate. Found by this session on 2026-11-18, fixed at the generator (tools/build_results_feed_all_seasons.py, checks C1-C5), and the meta now reports official_verified=14, scheduled=122.",
+   "unknown": "How many other generated *.json metadata files in data/ make a claim about a sibling data file that no gate re-derives. This round added the cross-check for one file only; the class is unaudited.",
+   "settles_it": "A generic gate that, for every data/**/*_meta.json, re-derives its counts from the file it describes and fails on disagreement. Adding it is a suggestion (S-32), not a change this round made.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/results/results_feed_meta.json",
+   "source_label": "the metadata file, and the CSV it describes",
+   "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "league_source_label": "the official Week 10 slate the feed closes",
+   "what_would_change_our_mind": "A metadata file whose counts are re-derived by a gate and still disagree would mean the disagreement is in the data, not in the metadata."
   }
  ]
 }

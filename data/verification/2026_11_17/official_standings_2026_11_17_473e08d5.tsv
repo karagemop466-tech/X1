@@ -1,3 +1,8 @@
+# RENAMED on integration (session arena/6a4ba536-x1, 2026-11-18): this is the SECOND independent
+# transcription of the 2026-11-17 official pages, by session arena-473e08d5-x1. It was created at
+# the canonical path at the same time as session arena-01c263c4-x1's read; main's file keeps the
+# canonical name (round-5 precedent), this one keeps its own bytes under a session suffix. The two
+# are cross-compared cell by cell by tools/verify_2026_11_17_473e08d5.py (check R6-B1).
 # SOURCE: https://www.nfl.com/standings/league/2026/REG  (page title: "2026 NFL League Standings")
 # Read via the platform fetch tool, chunks 0-1 of 2, on 2026-11-17 between 22:46 and 22:50 UTC.
 # Transcribed by session arena-473e08d5-x1.

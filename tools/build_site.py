@@ -63,6 +63,11 @@ NAV = [
     # Added by session arena-473e08d5-x1 (additive): the dated closure of Week 10 and the re-baselined
     # results feed, published as evidence rather than as a silent overwrite of the numbers.
     ("pages/results-closure.html", "Week 10 closure"),
+    # Added by the final integration session arena/717d11d1-x1: the round-6 venue register
+    # (venues/index.html) was written but never linked from the served root, leaving it an
+    # unreachable orphan. Venue context (roof/surface, official game centre) is a first-class
+    # requirement, so the page is linked here to make it reachable.
+    ("venues/index.html", "Venues"),
     ("pages/shadow-baseline.html", "Shadow baseline"),
     ("pages/next-decisions.html", "Suggestions & questions"),
     ("dashboard/lab-index.html", "Analytics lab"),
@@ -306,17 +311,14 @@ PROMO17 = read_rows("data/verification/2026_11_17/results_promotions_2026_11_17.
 PK17 = {c["id"]: c for c in PACK17["checks"]}
 READ_1616 = "2026-11-16"
 # --- the 2026-11-17 Week 10 closure (session arena-473e08d5-x1) ------------------------------------
-# The Week 10 closure pack is session arena-473e08d5-x1's own independent read; its three files
-# collided with the canonical 2026-11-17 pack on merge and were renamed with the session suffix
-# (round-5 precedent: first session to main keeps the canonical path, the later landing is suffixed).
-CLOSURE_PACK = load_json("verification/2026_11_17/verification_summary_2026_11_17_473e08d5.json")
-CLOSURE_PROMO = load_json("verification/2026_11_17/w10_promotion_2026_11_17.json")
-W10_17 = read_rows("data/verification/2026_11_17/official_w10_results_2026_11_17_473e08d5.tsv", "\t")
-STAND17 = read_rows("data/verification/2026_11_17/official_standings_2026_11_17_473e08d5.tsv", "\t")
-CLOSURE17 = read_rows("data/verification/2026_11_17/feed_closure_2026_11_17.csv")
-MIRROR17 = read_rows("data/verification/2026_11_17/mirror_w10_results_2026_11_17.tsv", "\t")
-READ_17 = "2026-11-17"
-STAND17_BY = {r["abbr"]: r for r in STAND17}
+CLOSEPACK17 = load_json("verification/2026_11_17/verification_summary_2026_11_17_473e08d5.json")
+CLOSEPROMO17 = load_json("verification/2026_11_17/w10_promotion_2026_11_17_473e08d5.json")
+CLOSEW10 = read_rows("data/verification/2026_11_17/official_w10_results_2026_11_17.tsv", "\t")
+CLOSESTAND = read_rows("data/verification/2026_11_17/official_standings_2026_11_17.tsv", "\t")
+CLOSEROWS = read_rows("data/verification/2026_11_17/feed_closure_2026_11_17_473e08d5.csv")
+CLOSEMIRROR = read_rows("data/verification/2026_11_17/mirror_w10_results_2026_11_17.tsv", "\t")
+CLOSEREAD_17 = "2026-11-17"
+CLOSESTAND_BY = {r["abbr"]: r for r in CLOSESTAND}
 NFLCOM = "https://www.nfl.com/"
 
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
@@ -599,7 +601,7 @@ def page_index():
     {stat(PK17["I1"]["counts"]["rows"], "injury rows re-read", "0 cell diffs vs the collector capture and vs the PR #73 same-day transcription")}
     {stat("128 / 128", "standings closure assertions", "published 14 Nov + the 13 finals it had not seen = today's page, all 32 clubs")}
     {stat(f"{PK17['R4']['counts']['promoted']} / {len(FINAL_ROWS17)}", "Week 10 rows promoted to Final", "the 14 Nov schedule read printed 13 of them still scheduled")}
-    {stat("4", "new flags", "F-22 staleness · F-23 standings staleness · F-24 Week 11 missing · F-25 fetch divergence")}
+    {stat("5", "new flags", "F-22 injury staleness · F-23 standings staleness · F-24 Week 11 missing · F-25 fetch divergence · F-31 no venue field")}
   </div>
   {table(["What was re-read", "What today's read shows", "Where to check it", "Source"], [
       ['<td><b>Week 10 injury report, all 8 chunks</b></td>', f'<td>{PK17["I1"]["counts"]["rows"]} rows · 347×4 cell equality with the retained capture · identical to the independent PR #73 transcription</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a> · <a href="pages/injury-read-2026-11-17.html">the PR #73 view &rarr;</a></td>', src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
@@ -2035,7 +2037,7 @@ def page_changes():
 # ------------------------------------------------------------------ results closure
 def page_results_closure():
     """The dated evidence for closing Week 10 and re-baselining the results feed (N-1..N-3)."""
-    checks = CLOSURE_PACK["checks"]
+    checks = CLOSEPACK17["checks"]
     crows = []
     for name, v in checks.items():
         detail = []
@@ -2060,11 +2062,11 @@ def page_results_closure():
             # ref() returns a bare anchor (it is used inside other cells elsewhere in this file), so it
             # needs its own <td> here - without one the column silently disappears and the row loses its
             # source cell.
-            f'<td>{ref("tools/verify_2026_11_17_473e08d5.py", "verifier")}</td>',
+            f'<td>{ref("tools/verify_2026_11_17_closure_473e08d5.py", "verifier")}</td>',
         ])
 
     grows = []
-    for r in W10_17:
+    for r in CLOSEW10:
         score = (f'<b>{esc(r["away"])}</b> {esc(r["away_score"])}'
                  f' <span class="muted">({esc(r["away_record"])})</span> @'
                  f' <b>{esc(r["home"])}</b> {esc(r["home_score"])}'
@@ -2076,13 +2078,13 @@ def page_results_closure():
             cell(r["status"]),
             cell(r.get("time_et", ""), "this render printed no kickoff time (flag F-28)"),
             cell(r.get("network", ""), "this render printed no network (flag F-28)"),
-            cell(r.get("venue", ""), "the weekly schedule page prints no venue field (flag F-26)"),
+            cell(r.get("venue", ""), "the weekly schedule page prints no venue field (flag F-31)"),
             cell(r.get("note", "")),
             src_cell(r["game_url"], "game page"),
         ])
 
     lrows = []
-    for r in CLOSURE_PROMO["promoted_rows"] + CLOSURE_PROMO["already_final_rows"]:
+    for r in CLOSEPROMO17["promoted_rows"] + CLOSEPROMO17["already_final_rows"]:
         lrows.append([
             f'<td><b>{esc(r["game_id"])}</b></td>',
             cell(r["status_2026_11_16_read"]),
@@ -2093,7 +2095,7 @@ def page_results_closure():
         ])
 
     frows = []
-    for r in CLOSURE17:
+    for r in CLOSEROWS:
         ok = r["verdict"] == "pass"
         frows.append([
             f'<td><b>{esc(r["team"])}</b></td>',
@@ -2108,7 +2110,7 @@ def page_results_closure():
 
     mrows = []
     pinned = repo_blob("data/raw/nflverse/games.csv")
-    for r in MIRROR17:
+    for r in CLOSEMIRROR:
         score = f'{esc(r["away"])} {esc(r["away_score"])} @ {esc(r["home"])} {esc(r["home_score"])}'
         mrows.append([
             f'<td><b>{esc(r["game_id"])}</b></td>',
@@ -2121,14 +2123,14 @@ def page_results_closure():
             src_cell(pinned, "pinned bytes"),
         ])
 
-    n_final = sum(1 for r in W10_17 if r["status"] == "Final")
+    n_final = sum(1 for r in CLOSEW10 if r["status"] == "Final")
     n_checks = len(checks)
     n_pass = sum(1 for v in checks.values() if v["verdict"] == "PASS")
-    n_assert = len(CLOSURE17) * 5
-    n_promo = len(CLOSURE_PROMO["promoted_rows"])
+    n_assert = len(CLOSEROWS) * 5
+    n_promo = len(CLOSEPROMO17["promoted_rows"])
     body = f'''
 <section class="pagetitle">
-  <div class="eyebrow">CLOSURE RECORD &middot; READ {READ_17}</div>
+  <div class="eyebrow">CLOSURE RECORD &middot; READ {CLOSEREAD_17}</div>
   <h1>Week 10 closed, and the results feed moved its own baseline</h1>
   <p>The verified results feed stopped at 137 games because that is all the official page had printed when
   it was transcribed on 2026-11-14. This page is the closure: a fresh official read of all 14 Week 10
@@ -2139,18 +2141,18 @@ def page_results_closure():
 </section>
 <section class="content">
   <div class="statrow">
-    {stat(n_final, "Week 10 fixtures printed Final", f"{len(W10_17)} read on " + READ_17)}
+    {stat(n_final, "Week 10 fixtures printed Final", f"{len(CLOSEW10)} read on " + CLOSEREAD_17)}
     {stat(n_assert, "feed-closure assertions", "32 clubs &times; W, L, T, PF, PA")}
-    {stat(f"{n_pass}/{n_checks}", "closure checks passing", "tools/verify_2026_11_17_473e08d5.py")}
+    {stat(f"{n_pass}/{n_checks}", "closure checks passing", "tools/verify_2026_11_17_closure_473e08d5.py")}
     {stat(n_promo, "row promoted scheduled &rarr; final", "the Monday-night game, unread a day later")}
   </div>
   <div class="note"><b>Why this is a page and not just a commit.</b> A feed that grows silently is a feed
   nobody can audit, and the count of verified games is the claim every backtest rests on. Every row below
   comes from <code>data/verification/2026_11_17/</code>, and
-  <code>python3 tools/verify_2026_11_17_473e08d5.py --check</code> re-derives this page's inputs from the
+  <code>python3 tools/verify_2026_11_17_closure_473e08d5.py --check</code> re-derives this page's inputs from the
   transcription and fails if they stop agreeing &mdash; it runs in CI, so the closure cannot drift.</div>
   {table(["Fixture", "Date", "Final score (club records as printed)", "Status", "Kickoff time", "Network", "Venue", "Note", "Source"],
-         grows, f"Week 10 as the official page printed it on {READ_17}: 14 fixtures, no blank invented", "wide", True)}
+         grows, f"Week 10 as the official page printed it on {CLOSEREAD_17}: 14 fixtures, no blank invented", "wide", True)}
   {table(["Check", "Verdict", "What it counted", "Findings", "Code"],
          crows, "The closure checks in tools/verify_2026_11_17.py", "wide", True)}
   {table(["Club", "Feed W-L-T", "Official W-L-T", "Feed PF:PA", "Official PF:PA", "Result", "Source"],
@@ -2177,10 +2179,10 @@ def page_results_closure():
   <div class="note"><b>How to reproduce the whole closure.</b> <code>python3
   tools/promote_week10_2026_11_17.py --check</code> proves the appended rows still derive from this pack
   and that a re-run is a no-op; <code>python3 tools/build_results_r3.py</code> rebuilds the 150-game feed
-  and its standings arithmetic; <code>python3 tools/verify_2026_11_17_473e08d5.py</code> prints the nine checks.</div>
+  and its standings arithmetic; <code>python3 tools/verify_2026_11_17_closure_473e08d5.py</code> prints the nine checks.</div>
 </section>
 '''
-    return shell("Week 10 closure", f"READ {READ_17} &middot; FEED 150 GAMES", body, depth=1)
+    return shell("Week 10 closure", f"READ {CLOSEREAD_17} &middot; FEED 150 GAMES", body, depth=1)
 
 
 # ---------------------------------------------------------------- executive brief
@@ -2880,7 +2882,7 @@ def page_verification_2026_11_17():
             f'<td>{pill(ch["verdict"])}</td>',
             f'<td class="wideflag">{esc(ch["name"])}</td>',
             cell(nums(ch.get("counts", {}))),
-            src_cell(repo_blob("data/verification/2026_11_17/verification_summary_2026_11_17.json"),
+            src_cell(repo_blob("data/verification/2026_11_17/verification_summary_2026_11_17_473e08d5.json"),
                      "summary &#8599;"),
         ])
 
@@ -3017,7 +3019,7 @@ def page_verification_2026_11_17():
 
   <p class="muted">Pack: <code>data/verification/2026_11_17/</code> · checker:
   <code>tools/verify_2026_11_17.py</code> (its <code>--check</code> mode is the staleness guard) ·
-  flags: <a href="flagged.html">F-22 … F-25</a> · companion pages:
+  flags: <a href="flagged.html">F-22 … F-31</a> · companion pages:
   <a href="injury-read-2026-11-17.html">PR #73's injury re-read</a>,
   <a href="capture-system.html">the capture system</a>,
   <a href="changes.html">what changed</a>.</p>

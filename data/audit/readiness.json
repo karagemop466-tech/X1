@@ -42,8 +42,8 @@
     "res_rows": 2232,
     "res_official": 14,
     "res_2026_rows": 272,
-    "res_2026_final": 137,
-    "res_2026_sched": 135,
+    "res_2026_final": 150,
+    "res_2026_sched": 122,
     "inj_rows": 347,
     "inj_dates": 1,
     "inj_seasons": 1,
@@ -349,7 +349,7 @@
       "changed": true,
       "gate": "Offence needs starter and backup status from snap counts or official inactive lists. Neither is in the repository.",
       "measured": "Snap-count files: 0. Inactive-list files: 0.",
-      "clears": "Snap counts or official inactive lists for all 137 final 2026 games (0 covered today).",
+      "clears": "Snap counts or official inactive lists for all 150 final 2026 games (0 covered today).",
       "basis": "data/results/verified_results.csv (2026 final games).",
       "evidence_label": "deficiency",
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/app/deficiency.html"
@@ -827,7 +827,7 @@
       "register_state": "met",
       "r4_state": "partly met",
       "changed": true,
-      "gate": "Only 14 of 2,232 rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: 135 2026 games are still 'scheduled'.",
+      "gate": "Only 14 of 2,232 rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: 122 2026 games are still 'scheduled'.",
       "measured": "14 of 2,232 rows officially verified.",
       "clears": "2,232 of 2,232 rows officially verified.",
       "basis": "data/results/verified_results.csv, column official_verified.",
@@ -1005,7 +1005,7 @@
       "changed": false,
       "gate": "Neither file family is held in the repository.",
       "measured": "0 inactive-list files; 0 snap-count files.",
-      "clears": "Inactive lists for all 137 final 2026 games (0 today).",
+      "clears": "Inactive lists for all 150 final 2026 games (0 today).",
       "basis": "data/results/verified_results.csv (2026 final games).",
       "evidence_label": "results feed",
       "evidence_url": "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv"
@@ -1036,7 +1036,7 @@
       "r4_state": "open",
       "changed": false,
       "gate": "The 2026 feed was built on 2026-11-14. The Patriots-Lions game (2026-11-15) shows Final on nfl.com (fetched 2026-11-15) and is still 'scheduled' in the feed. No freshness alarm exists.",
-      "measured": "135 2026 games 'scheduled' in the feed. NE-DET: Final on nfl.com, scheduled in the feed.",
+      "measured": "122 2026 games 'scheduled' in the feed. NE-DET: Final on nfl.com, scheduled in the feed.",
       "clears": "0 games whose official page shows Final remain 'scheduled'.",
       "basis": "nfl.com 2026 Week 10 schedule page, fetched 2026-11-15.",
       "evidence_label": "nfl.com schedule",
@@ -1076,7 +1076,7 @@
     {
       "id": "F4-04",
       "title": "Results feed is one day behind official finals",
-      "detail": "On 2026-11-15 nfl.com shows the Patriots-Lions game (Munich) as Final, 10-35. The feed records it as scheduled, with no score, because it was built on 2026-11-14. 135 2026 rows are still 'scheduled'. There is no freshness alarm.",
+      "detail": "On 2026-11-15 nfl.com shows the Patriots-Lions game (Munich) as Final, 10-35. The feed records it as scheduled, with no score, because it was built on 2026-11-14. 122 2026 rows are still 'scheduled'. There is no freshness alarm.",
       "links": [
         "https://www.nfl.com/schedules/2026/by-week/week-10",
         "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv"
@@ -1169,7 +1169,7 @@
     {
       "id": "R-47",
       "title": "R-47 state changed this round: register 'met' -> 'partly met'",
-      "detail": "Only 14 of 2,232 rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: 135 2026 games are still 'scheduled'.",
+      "detail": "Only 14 of 2,232 rows carry an official verification. The rest rely on the third-party mirror. The 2026 feed also lags nfl.com: 122 2026 games are still 'scheduled'.",
       "links": [
         "https://github.com/karagemop466-tech/X1/blob/main/data/results/verified_results.csv"
       ]

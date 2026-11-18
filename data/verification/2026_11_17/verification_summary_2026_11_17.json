@@ -1,7 +1,7 @@
 {
  "dataset": "verification/2026_11_17",
  "title": "Live official re-verification - 2026-11-17",
- "generated_at": "2026-11-18T03:15:15Z",
+ "generated_at": "2026-11-18T04:12:28Z",
  "generated_by": "tools/verify_2026_11_17.py (session arena-01c263c4-x1)",
  "retrieved": "2026-11-17",
  "sources": [
@@ -63,13 +63,15 @@
    "name": "dated delta: published table (2026-11-14) vs official page (2026-11-17)",
    "verdict": "FINDINGS-PUBLISHED",
    "counts": {
-    "published_rows": 347,
+    "published_rows": 345,
     "official_rows": 347,
-    "rows_added": 0,
+    "published_rows_baseline": "data/nfl/injuries_week10_2026_11_14.tsv (frozen 2026-11-14 transcription)",
+    "live_table_rows_today": 347,
+    "rows_added": 2,
     "rows_removed": 0,
-    "cells_changed": 0
+    "cells_changed": 32
    },
-   "detail": "see injuries_diff_vs_published_2026_11_17.csv"
+   "detail": "see injuries_diff_vs_published_2026_11_17.csv; the live table now holds 347 rows, so this delta is a historical measurement against a frozen artefact, not a claim about today's file"
   },
   {
    "id": "I4",

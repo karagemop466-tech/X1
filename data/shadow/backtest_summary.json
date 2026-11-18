@@ -1,7 +1,7 @@
 {
  "dataset": "shadow_baseline_PR-01",
  "title": "PR-01 singles-only shadow baseline: pre-registered rule, walk-forward score, and the pre-kickoff record",
- "generated_at": "2026-11-17T23:09:17Z",
+ "generated_at": "2026-11-18T04:12:28Z",
  "generated_by": "tools/build_shadow_baseline.py (session arena-543cdcb0-x1)",
  "registration": {
   "rule_file": "docs/preregistration/PR-01-shadow-baseline.md",
@@ -37,7 +37,7 @@
    "data/results/_raw/reads.tsv": "484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312",
    "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv": "4545f9d49c3a1c4a4e3608d72050f0716271b6b58405f82ec36c1e8e41d63861",
    "data/verification/2026_11_16/official_w11_schedule_2026_11_16.tsv": "ce2bccc31c4c4fda03dd26c01d0d263764adb31125c1152ffec93514793607c8",
-   "data/pipeline/standings.json": "2236c73a6a2866cacf022f3edacf0c776030d583683952a01c2d4d6addb6785d"
+   "data/pipeline/standings.json": "58fd1f78f308fffd09b278c58e55ea3e29500b0872b0bc8f10e368c752cadf9c"
   }
  },
  "corpus": {
@@ -3700,7 +3700,7 @@
   }
  ],
  "forward": {
-  "recorded_at_utc": "2026-11-17T23:09:17Z",
+  "recorded_at_utc": "2026-11-18T04:12:28Z",
   "games_recorded": 14,
   "content_sha256": "6ed2ac9e042535a609fef93e3cccb7e0c4b480d0d0d0d96abe60a5bcfa17870a",
   "immutability": "the CSV is written once and never rewritten; a later run that would change a forecast number leaves the record alone and reports the drift below (the recorded clock is excluded from the fingerprint)",

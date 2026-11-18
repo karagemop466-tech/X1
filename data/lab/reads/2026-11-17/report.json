@@ -479,7 +479,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-18T03:14:40+00:00",
+ "generated_at": "2026-11-18T04:12:28+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,

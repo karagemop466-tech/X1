@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 30,
+  "flag": 31,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -335,7 +335,7 @@
    "source_label": "console/repo-review.html"
   },
   {
-   "id": "F-26",
+   "id": "F-31",
    "register": "data/flags.json",
    "area": "Data availability",
    "item": "The venue requirement cannot be met from the weekly schedule page, because that page prints no venue field.",
@@ -344,6 +344,17 @@
    "unknown": "Whether the other 13 game centres print a stadium string reachable by the fetch tool (they are separate page reads, one per fixture).",
    "source": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
    "source_label": "NFL.com Game Center (the one fixture this round re-read)"
+  },
+  {
+   "id": "F-32",
+   "register": "data/flags.json",
+   "area": "Gate coverage",
+   "item": "A generated metadata file described a superseded window for a day while every gate stayed green, because no check compared a metadata file's counts to the rows of the file it describes.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "How many other generated *.json metadata files in data/ make a claim about a sibling data file that no gate re-derives. This round added the cross-check for one file only; the class is unaudited.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/data/results/results_feed_meta.json",
+   "source_label": "the metadata file, and the CSV it describes"
   },
   {
    "id": "Q-01",

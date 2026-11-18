@@ -282,7 +282,10 @@ while frontier:
 # Their internal linking is each tree's own contract, asserted by its own checker.
 for path in files:
     rel = os.path.relpath(path, ROOT)
-    if rel.split(os.sep)[0] in ("dashboard", "research", "live", "console"):
+    # Added by session arena/5433abad-x1: venues/ is a separate page (brief row 24) with its own
+    # contract, asserted by tools/verify_venues_w10.py and tools/build_venues_page.py --check. It is
+    # not yet linked from the site navigation (integration request logged in COORDINATION.md).
+    if rel.split(os.sep)[0] in ("dashboard", "research", "live", "console", "venues"):
         continue
     if rel.split(os.sep)[0] == "hub":
         check(path in reachable or path == _hubroot, f"{rel}: reachable from index.html")
