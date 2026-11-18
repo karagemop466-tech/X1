@@ -1823,8 +1823,9 @@ def build_pages_sg15(ctx, pages):
                     field_moves[f] = field_moves.get(f, 0) + 1
         return added, removed, cells, field_moves, a, b
 
-    d1415 = delta(snaps[0][5], snaps[1][5])
-    d15pub = delta(snaps[1][5], snaps[2][5])
+    # snaps tuples are (label, rel, src, nrows, retrieved, "", rows) — rows sit at index 6
+    d1415 = delta(snaps[0][6], snaps[1][6])
+    d15pub = delta(snaps[1][6], snaps[2][6])
 
     snap_hdr = [("Read", 0), ("Rows", 1), ("Added vs previous", 1), ("Removed vs previous", 1),
                 ("Cells changed vs previous", 1), ("As the file records it", 0),
