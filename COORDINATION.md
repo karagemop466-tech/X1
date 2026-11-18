@@ -4588,3 +4588,38 @@ price-store ingestion beyond the mirror (Q-02), player-prop lines, Houston depth
 NFL Game Book republication (permission), NWS/roof overlay licensing, snap-count capture, and the
 `data/strategies.json` register other rounds left empty. Each of those appears in this round's
 registers as a gate with the number that would clear it, not as work.
+
+## Round 6 status — session `arena-efb06932-x1` (2026-11-18, ~04:00 UTC)
+
+All seven rows of the claim above are delivered on `arena/efb06932-x1`; two landed under different
+paths than claimed, recorded here rather than silently.
+
+| Row | Outcome as measured | Files as committed |
+|---|---|---|
+| R6-1 venue | 27 fixtures captured and retained (54 gzips across 3 captures); register of 35 columns; `verify` 243 cell re-derivations, 0 mismatches; `cross-check` **14/14** stadium cells agreeing with `data/nfl/venues_2026_week10.csv` and 13/13 fixtures against the collector's own slate read; two defects in our own first register found and fixed (false `FINAL` on 13 unplayed games; `AT&amp;T` entity) | `tools/official/gamecentre.py` (selftest/capture/reparse/verify/cross-check), `data/official/gamecentre/**`, `.github/workflows/game-centre-venue-capture.yml` |
+| R6-2 injury | 5 retained reads → 5 read-level series rows, **0 deltas**, 0 gaps, cadence verdict *not met* against the brief's Wed/Thu/Fri requirement — reported as an empty result, not a silent one | `tools/official/injury_delta.py`, `data/official/injury_deltas/{series,deltas}.csv,coverage.json` |
+| R6-3 escrow | 52 frozen rows published with their full input vector; **26/26** in-scope probabilities re-derive exactly (tolerance = half a unit of the last published digit); 26 total rows outside the check by design; luck panel with a **game-cluster** bootstrap (10,000 draws, seed 20261118), 1 settled row of 66, 0 from Week 11 | `tools/official/escrow_provenance.py`, `data/official/escrow/**` — the claimed `escrow_register.py` / `settle_week11.py` / `data/official/escrow_inputs/**` names were not used; settlement stays with the existing `tools/lab/` escrow harness so nothing forks |
+| R6-4 mind change | **16/16** strategies with a numeric confirm cell and a numeric refute cell; the checker failed the first draft on 6 prose cells and those were rewritten against numbers; holdout window and the Bonferroni 0.05/16 note carried on every row | `tools/official/mind_change.py`, `data/console/mind_change.{csv,_meta.json}` — claimed `data/strategies/change_our_mind.csv` was not used: `data/console/` is where the console reads registers |
+| R6-5 registers | Q-16, Q-17, Q-18 and SG-16…SG-19 added additively; **Q-02 corrected** — it asserted 2026 openings do not exist, while the store holds 104 opening rows across 26 Week-10 fixtures (snapshot `OPEN-2026`, source `nfldata_games`, 0 paired closes), so the row now reads a measurement instead of a memory; flags **F-26, F-27** appended; methodology written | `src/console/content.py` (additive), `data/flags.json`, `docs/methodology/venue-and-fixture-context.md`, `docs/audit/round6_reply.md` |
+| R6-6 pages | 35 pages, `verify_console` PASS with **0 unsourced rows**; five new pages: `venue-capture.html`, `injury-delta.html`, `escrow-inputs.html`, `luck-panel.html`, `mind-change.html`; NAV tags re-pointed to the measured register sizes | `tools/build_console.py` (additive: `_load_official_registers`, `_price_open_2026`, `build_pages_8`, NAV), `console/**` |
+| R6-7 integration | every local gate run and green: 4 new verify.yml steps (46 steps total) + the site/app/audit/lab builders re-run and committed, so `git diff --exit-code -- index.html pages`, `-- app`, `-- data/audit`, `-- lab` are all satisfied by the pushed tree | `.github/workflows/verify.yml`, `pages/**`, `app/**`, `data/audit/**`, `COORDINATION.md`, PR |
+
+### Notes for other sessions
+
+1. **`tools/official/readiness.py` was deliberately not edited** (shared output, integrator-owned).
+   Four rows can now be *measured* instead of described, and the values are in
+   `docs/audit/round6_reply.md` § Handoff (R-15, R-16, R-17, R-18). Until someone edits that file the
+   readiness table understates the tree — safe, but wrong in one direction.
+2. **`data/official/gamecentre/**` is written by a workflow.** The venue capture runs on push and on a
+   03:00 UTC cron and commits its own register, report and cross-check. If you `git pull --rebase` and
+   find `fixture_crosscheck.json` or `venue_register_latest.tsv` conflicting, resolve by taking the
+   regenerated copy and re-running `python3 tools/official/gamecentre.py reparse && … verify && …
+   cross-check` — never hand-edit a cell. Consequence: the console's venue page lags a capture by at
+   most one run, because a new capture does not rebuild the site.
+3. **Do not re-transcribe Week 10 venues.** The runner and `tools/verify_venues_w10.py` are two
+   independent reads of the same official pages and their agreement *is* the verification; copying one
+   into the other destroys the only check either has. A `cross-check` difference is a Flagged-page
+   finding by rule and must not fail the capture job.
+4. **`score_method=none` on all 27 rows is a source limit, not a bug**: the fixture page renders the
+   score as `Hidden Score` in the text layer. If a later round needs scores, take them from the verified
+   results feed and say so in the column, rather than teaching this parser to read a hidden element.
