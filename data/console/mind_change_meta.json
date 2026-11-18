@@ -1,0 +1,10 @@
+{
+ "coverage_pct": 100.0,
+ "dataset": "mind-change",
+ "generated_by": "tools/official/mind_change.py",
+ "problems": [],
+ "rows": 16,
+ "rule": "both halves mandatory, both numeric; the standard is the promotion and demotion gates themselves, not a softer one invented for the page",
+ "strategies_on_board": 16,
+ "title": "Two-sided what-would-change-our-mind register"
+}

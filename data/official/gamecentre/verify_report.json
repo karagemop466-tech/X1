@@ -1,0 +1,24 @@
+{
+ "cells_checked": 243,
+ "command": "verify",
+ "fields_checked": [
+  "status_label",
+  "status_method",
+  "away_score",
+  "home_score",
+  "location",
+  "stadium",
+  "capacity",
+  "venue_method",
+  "score_method"
+ ],
+ "mismatches": 0,
+ "problems": 0,
+ "rows": 27,
+ "verdict": "PASS",
+ "verified_at_utc": "2026-11-18T03:58:04Z",
+ "weeks": [
+  10,
+  11
+ ]
+}

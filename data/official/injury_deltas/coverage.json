@@ -1,0 +1,39 @@
+{
+ "cadence_met": {
+  "2026-11-11": {
+   "2026-11-11": false,
+   "2026-11-12": false,
+   "2026-11-13": false
+  },
+  "2026-11-18": {
+   "2026-11-18": true,
+   "2026-11-19": false,
+   "2026-11-20": false
+  }
+ },
+ "cadence_verdict": "not met \u2014 the ledger holds fewer days than the brief's Wed/Thu/Fri cadence requires",
+ "dataset": "injury-hub read series and deltas",
+ "days_with_a_read": {
+  "2026-11-15": {
+   "parsed": 4,
+   "reads": 4
+  },
+  "2026-11-17": {
+   "parsed": 1,
+   "reads": 1
+  },
+  "2026-11-18": {
+   "parsed": 3,
+   "reads": 3
+  }
+ },
+ "deltas": 0,
+ "expected_cadence": "at least one read on Wednesday, Thursday and Friday of each game week",
+ "gaps": [],
+ "generated_by": "tools/official/injury_delta.py",
+ "official_source": "https://www.nfl.com/injuries/",
+ "reads_parsed": 8,
+ "reads_total": 8,
+ "retained_by": ".github/workflows/injury-ledger.yml (every 4 hours, raw gzip + sha256)",
+ "rule": "the delta is the signal; the level is only a count inside series.csv"
+}

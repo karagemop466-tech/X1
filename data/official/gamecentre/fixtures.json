@@ -1,0 +1,55 @@
+{
+ "captured_at_utc": "2026-11-18T03:57:46Z",
+ "season": 2026,
+ "weeks": [
+  10,
+  11
+ ],
+ "fixtures": [
+  "49ers-at-cowboys",
+  "bengals-at-commanders",
+  "bills-at-jets",
+  "buccaneers-at-lions",
+  "cardinals-at-chiefs",
+  "chargers-at-ravens",
+  "chiefs-at-falcons",
+  "colts-at-texans",
+  "commanders-at-giants",
+  "dolphins-at-bills",
+  "dolphins-at-colts",
+  "jaguars-at-giants",
+  "jaguars-at-titans",
+  "jets-at-chargers",
+  "panthers-at-saints",
+  "patriots-at-lions",
+  "raiders-at-broncos",
+  "rams-at-cardinals",
+  "ravens-at-panthers",
+  "saints-at-bears",
+  "seahawks-at-raiders",
+  "steelers-at-bengals",
+  "steelers-at-eagles",
+  "texans-at-browns",
+  "titans-at-cowboys",
+  "vikings-at-49ers",
+  "vikings-at-packers"
+ ],
+ "rows": 27,
+ "source": "slugs read from the weekly schedule pages listed in slate_urls",
+ "slate_urls": [
+  {
+   "week": 10,
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "http_status": 200,
+   "final_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "error": null
+  },
+  {
+   "week": 11,
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+   "http_status": 200,
+   "final_url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+   "error": null
+  }
+ ]
+}

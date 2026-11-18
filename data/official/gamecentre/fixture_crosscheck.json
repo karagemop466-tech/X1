@@ -1,0 +1,26 @@
+{
+ "captured_at_utc": "2026-11-18T03:58:04Z",
+ "checks": [
+  {
+   "agree": 14,
+   "cells_compared": 14,
+   "diff": [],
+   "differ": 0,
+   "hand_register": "data/nfl/venues_2026_week10.csv",
+   "hand_rows": 14,
+   "name": "venue: runner capture vs hand transcription of the same official page",
+   "only_in_hand_register": [],
+   "rule": "a difference is a finding for the Flagged page, never a value to copy over"
+  },
+  {
+   "captured": 13,
+   "name": "slate: captured fixture set vs the collector's dated week-11 slate read",
+   "only_captured": [],
+   "only_in_slate": [],
+   "slate": 13,
+   "slate_read_at": "2026-11-16T18:52:00Z",
+   "slate_source": ""
+  }
+ ],
+ "mismatches": 0
+}

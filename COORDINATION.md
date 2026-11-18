@@ -4555,3 +4555,71 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+# Session `arena-efb06932-x1` — Round 6 claim (2026-11-18, ~03:10 UTC)
+
+Owner brief for this round is the round-6 message (repeated requirement list plus four explicit
+asks: a suggestions section for the owner to choose a path from, a question/information/answer
+register covering what we hold and what we do not, an executive summary, and a leaderboard
+competition of self-originated lines with validation gates). Every requirement in that brief was
+matched against the tree and against `tools/verify_brief_coverage.py`'s register before any file
+was written, so this round claims only what is genuinely still open.
+
+Namespace note (rule 10, logged before work starts): PR #84 (`arena/473e08d5-x1`, "Close Week 10:
+150-game verified results feed, dated standings baseline, price-data policy decided") has been open
+and unmodified since 2026-11-17T23:37Z — far beyond 60 minutes with no commits — and its Week 10
+closure, the 150-game corpus and the standings baseline are already on `main` through PRs #79/#80/#82.
+This session therefore takes over the still-unclaimed remainder of that PR's scope — per-fixture
+venue from the official Game Center (its flag F-26 and suggestion S-31) and the price-data policy
+statement — and records what it salvages from PR #84 rather than duplicating it. Nothing in
+PR #84 is overwritten or closed here; its branch and its files stay untouched.
+
+| # | Task | Requirement (owner's words) | Status | Owner session | Files in scope |
+|---|---|---|---|---|---|
+| R6-1 | Official Game Center venue + fixture-fact capture for every 2026 Week 10 and Week 11 fixture, collected by CI on a schedule with retained raw bytes | "Transcribe the venue of every fixture from the official game centre and publish it"; "Add a drift alarm to every scraper"; "Add a fixture-context feature set built only from published schedule facts" | in progress | `arena-efb06932-x1` | `tools/official/gamecentre.py` (new), `.github/workflows/game-centre.yml` (new), `data/official/gamecentre/**` (new), `docs/methodology/venue-and-fixture-context.md` (new) |
+| R6-2 | Injury-hub delta ledger: every retained raw read re-parsed to row level, published as a dated delta series, never a level | "Store every injury-hub read with its clock time and publish the delta, never the level"; "Treat the injury report as a timestamped series, not a weekly snapshot"; "Snapshot the nfl.com injury report every Wed, Thu and Fri and keep a dated history" | in progress | `arena-efb06932-x1` | `tools/official/injury_delta.py` (new), `data/official/injury_deltas/**` (new) — reads `data/ledger/injuries/**`, never writes it |
+| R6-3 | Frozen Week 11 escrow: publish the inputs behind every stored probability, plus the settlement harness that scores it when the official finals land | "Store every model output as a probability plus its inputs, not just a pick"; "Start with a singles-only shadow baseline"; "Rank with proper scores and uncertainty, not win rate" | in progress | `arena-efb06932-x1` | `tools/official/escrow_register.py` (new), `tools/official/settle_week11.py` (new), `data/official/escrow_inputs/**` (new) — the frozen `data/lab/escrow/**` files are read, never edited |
+| R6-4 | Two-sided "what would change our mind" register for every strategy entry | "Add a two-sided 'what would change our mind' field to every strategy entry" | in progress | `arena-efb06932-x1` | `data/strategies/change_our_mind.csv` (new), `tools/official/mind_change.py` (new) |
+| R6-5 | Round-6 registers: decision-readiness rows for the requirements this brief adds, question/information/answer rows, suggestion board entries, flags | "Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it"; "I want a clear list of questions, informations and answers…"; "create a section dedicated for suggestions" | in progress | `arena-efb06932-x1` | `tools/official/readiness.py` (additive rows), `src/console/content.py` (additive rows), `data/flags.json` (additive), `docs/analysis/round6-executive-summary.md` (new), `docs/live-pipeline/project-brief-round6.md` (new) |
+| R6-6 | Console pages for R6-1…R6-4 rendered through the console's own helpers, wired additively into NAV | site requirement | in progress | `arena-efb06932-x1` | `tools/official/build_pages_r6.py` (new), `tools/build_console.py` (additive: NAV entries + one builder hook), `console/**` + `data/console/**` (builder output only) |
+| R6-7 | Integration: re-verify combined tree line by line, run every CI gate locally, PR → `main`, merge, confirm Pages | "create a pull request… merge the pull request without waiting… confirm GitHub Pages deploys" | unclaimed until R6-1…R6-6 land | `arena-efb06932-x1` | `COORDINATION.md`, PR |
+
+Not claimed by this session (owned by completed work, or blocked on a source that does not exist):
+price-store ingestion beyond the mirror (Q-02), player-prop lines, Houston depth chart (image only),
+NFL Game Book republication (permission), NWS/roof overlay licensing, snap-count capture, and the
+`data/strategies.json` register other rounds left empty. Each of those appears in this round's
+registers as a gate with the number that would clear it, not as work.
+
+## Round 6 status — session `arena-efb06932-x1` (2026-11-18, ~04:00 UTC)
+
+All seven rows of the claim above are delivered on `arena/efb06932-x1`; two landed under different
+paths than claimed, recorded here rather than silently.
+
+| Row | Outcome as measured | Files as committed |
+|---|---|---|
+| R6-1 venue | 27 fixtures captured and retained (54 gzips across 3 captures); register of 35 columns; `verify` 243 cell re-derivations, 0 mismatches; `cross-check` **14/14** stadium cells agreeing with `data/nfl/venues_2026_week10.csv` and 13/13 fixtures against the collector's own slate read; two defects in our own first register found and fixed (false `FINAL` on 13 unplayed games; `AT&amp;T` entity) | `tools/official/gamecentre.py` (selftest/capture/reparse/verify/cross-check), `data/official/gamecentre/**`, `.github/workflows/game-centre-venue-capture.yml` |
+| R6-2 injury | 8 retained reads at merge time → 8 read-level series rows, **0 deltas**, 0 gaps, cadence verdict *not met* against the brief's Wed/Thu/Fri requirement — reported as an empty result, not a silent one | `tools/official/injury_delta.py`, `data/official/injury_deltas/{series,deltas}.csv,coverage.json` |
+| R6-3 escrow | 52 frozen rows published with their full input vector; **26/26** in-scope probabilities re-derive exactly (tolerance = half a unit of the last published digit); 26 total rows outside the check by design; luck panel with a **game-cluster** bootstrap (10,000 draws, seed 20261118), 1 settled row of 66, 0 from Week 11 | `tools/official/escrow_provenance.py`, `data/official/escrow/**` — the claimed `escrow_register.py` / `settle_week11.py` / `data/official/escrow_inputs/**` names were not used; settlement stays with the existing `tools/lab/` escrow harness so nothing forks |
+| R6-4 mind change | **16/16** strategies with a numeric confirm cell and a numeric refute cell; the checker failed the first draft on 6 prose cells and those were rewritten against numbers; holdout window and the Bonferroni 0.05/16 note carried on every row | `tools/official/mind_change.py`, `data/console/mind_change.{csv,_meta.json}` — claimed `data/strategies/change_our_mind.csv` was not used: `data/console/` is where the console reads registers |
+| R6-5 registers | Q-16, Q-17, Q-18 and SG-16…SG-19 added additively; **Q-02 corrected** — it asserted 2026 openings do not exist, while the store holds 104 opening rows across 26 Week-10 fixtures (snapshot `OPEN-2026`, source `nfldata_games`, 0 paired closes), so the row now reads a measurement instead of a memory; flags **F-33, F-34** appended (main took F-26/F-27 mid-round, so ours are re-ids — no other session's flag was overwritten); methodology written | `src/console/content.py` (additive), `data/flags.json`, `docs/methodology/venue-and-fixture-context.md`, `docs/audit/round6_reply.md` |
+| R6-6 pages | 35 pages, `verify_console` PASS with **0 unsourced rows**; five new pages: `venue-capture.html`, `injury-delta.html`, `escrow-inputs.html`, `luck-panel.html`, `mind-change.html`; NAV tags re-pointed to the measured register sizes | `tools/build_console.py` (additive: `_load_official_registers`, `_price_open_2026`, `build_pages_8`, NAV), `console/**` |
+| R6-7 integration | every local gate run and green: 4 new verify.yml steps (46 steps total) + the site/app/audit/lab builders re-run and committed, so `git diff --exit-code -- index.html pages`, `-- app`, `-- data/audit`, `-- lab` are all satisfied by the pushed tree | `.github/workflows/verify.yml`, `pages/**`, `app/**`, `data/audit/**`, `COORDINATION.md`, PR |
+
+### Notes for other sessions
+
+1. **`tools/official/readiness.py` was deliberately not edited** (shared output, integrator-owned).
+   Four rows can now be *measured* instead of described, and the values are in
+   `docs/audit/round6_reply.md` § Handoff (R-15, R-16, R-17, R-18). Until someone edits that file the
+   readiness table understates the tree — safe, but wrong in one direction.
+2. **`data/official/gamecentre/**` is written by a workflow.** The venue capture runs on push and on a
+   03:00 UTC cron and commits its own register, report and cross-check. If you `git pull --rebase` and
+   find `fixture_crosscheck.json` or `venue_register_latest.tsv` conflicting, resolve by taking the
+   regenerated copy and re-running `python3 tools/official/gamecentre.py reparse && … verify && …
+   cross-check` — never hand-edit a cell. Consequence: the console's venue page lags a capture by at
+   most one run, because a new capture does not rebuild the site.
+3. **Do not re-transcribe Week 10 venues.** The runner and `tools/verify_venues_w10.py` are two
+   independent reads of the same official pages and their agreement *is* the verification; copying one
+   into the other destroys the only check either has. A `cross-check` difference is a Flagged-page
+   finding by rule and must not fail the capture job.
+4. **`score_method=none` on all 27 rows is a source limit, not a bug**: the fixture page renders the
+   score as `Hidden Score` in the text layer. If a later round needs scores, take them from the verified
+   results feed and say so in the column, rather than teaching this parser to read a hidden element.

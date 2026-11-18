@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 31,
+  "flag": 33,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -355,6 +355,28 @@
    "unknown": "How many other generated *.json metadata files in data/ make a claim about a sibling data file that no gate re-derives. This round added the cross-check for one file only; the class is unaudited.",
    "source": "https://github.com/karagemop466-tech/X1/blob/main/data/results/results_feed_meta.json",
    "source_label": "the metadata file, and the CSV it describes"
+  },
+  {
+   "id": "F-33",
+   "register": "data/flags.json",
+   "area": "Method hazard",
+   "item": "A page-wide text search for a game status reads a status that belongs to another part of the page. The first Game Center venue register published FINAL on all 13 unplayed Week 11 fixtures, because the word FINAL also appears in a standings table below the game block.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether a given page's standings region happens to contain a word that looks like a status for a different game. The parse does not care: it never reads outside the window, so the answer cannot change the register.",
+   "source": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11",
+   "source_label": "nfl.com Game Center - an unplayed fixture whose page still prints FINAL elsewhere"
+  },
+  {
+   "id": "F-34",
+   "register": "data/flags.json",
+   "area": "Source coverage",
+   "item": "The Game Center Overview block prints only Location and Stadium. Capacity, roof, surface, attendance, weather and officiating are absent from the text layer of all 27 captured pages, and the score is rendered as the literal string `Hidden Score`.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether a stadium or team source would be acceptable for those cells under the brief's official-source rule. That is an owner decision, not a parsing gap. See also F-31, which records the same limit from the weekly schedule page.",
+   "source": "https://www.nfl.com/games/colts-at-texans-2026-reg-11",
+   "source_label": "nfl.com Game Center - the Game Info block as printed"
   },
   {
    "id": "Q-01",
