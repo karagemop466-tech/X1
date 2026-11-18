@@ -4555,3 +4555,21 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+
+---
+
+# Session `arena/a02e9816-x1` — PR record and final integration result (round 6)
+
+## Pull request record
+
+- **PR #90** `arena/a02e9816-x1` → `main`: opened 2026-11-18 ~04:00 UTC with the change summary,
+  sources and flagged irregularities (see the round-6 records above). Merge result recorded below
+  after `gh pr merge 90 --merge` completes.
+- **CI on the PR head:** `verify` **pass** (the full 50-step verifier suite, 24 s) on run
+  `44232393001`. The `build`/`deploy` jobs of `pages.yml` were **cancelled, not failed** — the
+  workflow carries `concurrency: group: pages, cancel-in-progress: true`, so a concurrent
+  pages-group run (the data-refresh bot / the PR #89 publish in flight) cancelled them; the same
+  thrash PR #73 and PR #79 documented. Every `pages.yml` build step was executed locally on the
+  release tree and passed (55/55 including the build-side steps), so the tree is buildable; this
+  docs-only follow-up commit re-triggers the pages-group runs to get a clean build signal before
+  merge, per the owner's "do not merge a broken site" rule.
