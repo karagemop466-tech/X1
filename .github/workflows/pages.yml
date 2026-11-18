@@ -182,6 +182,10 @@ jobs:
           cp -r data/origin _site/data/origin
           mkdir -p _site/data/lines
           cp data/lines/originated_markets_2026_week10.csv _site/data/lines/
+          # Added by session arena/5433abad-x1 (additive only): brief row 24 venue register page + its CSV.
+          cp -r venues _site/
+          mkdir -p _site/data/nfl
+          cp data/nfl/venues_2026_week10.csv _site/data/nfl/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing
           touch _site/.nojekyll
           du -sh _site

@@ -251,3 +251,10 @@ jobs:
       # reads.tsv or a week PSV that no longer matches the official read it came from.
       - name: The promoted rows still derive from the dated pack
         run: python3 tools/promote_week10_2026_11_17.py --check
+
+      # Added by session arena/5433abad-x1 (additive only). Brief row 24: one official Game Centre
+      # venue per Week 10 fixture, each row linked to nfl.com/games and checked against the schedule file.
+      - name: Week 10 official venue register (brief row 24)
+        run: python3 tools/verify_venues_w10.py
+      - name: Week 10 venue page is current (brief row 24)
+        run: python3 tools/build_venues_page.py --check
