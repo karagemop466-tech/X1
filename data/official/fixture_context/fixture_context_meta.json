@@ -12,7 +12,7 @@
   "slate_10_read_at": "2026-11-17T22:45Z",
   "slate_11": "data/lab/reads/2026-11-17/week11_slate_2026-11-17.tsv",
   "slate_11_read_at": "2026-11-17T22:50Z",
-  "venue_lookup_rows": 14
+  "venue_lookup_rows": 41
  },
  "rows": 13,
  "rule": "published schedule facts only; a field no official page printed is blank",
