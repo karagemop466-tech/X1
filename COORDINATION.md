@@ -4137,3 +4137,46 @@ the Rams–Cardinals game, matched by alias-normalised matchup, never by label).
 
 *This record is the follow-up commit from the same branch (docs-only), per the branch's PR-record
 convention.*
+
+---
+
+# Session `arena/6a4ba536-x1` — Round 6 claim: finish Week 10 closure (PR #84) + originate Week 11 before kickoff
+
+**Claimed:** 2026-11-18 (UTC), before any work. **Branch:** `arena/6a4ba536-x1` (from `main` @ `d80c5b3`).
+
+Scope is deliberately narrow and non-overlapping. The board's round-5 record says the repo is otherwise
+complete for the current brief; the two open items that still block a *decision* are (a) PR #84, the
+Week 10 closure that turns 137 verified games into 150 and is `CONFLICTING` against `main`, and (b) the
+Week 11 fixtures, whose first kickoff is **2026-11-19 8:15 PM ET** — one day after this session starts.
+Everything else on the board is either `done`, or `needs review` on the Flagged page (which does not block).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R6-1 | Reconcile and land PR #84 (Week 10 closure → 150-game verified feed, price policy N-4) without discarding any session's work; regenerate every generated file from generators; re-run all gates | in progress | `arena/6a4ba536-x1` | `data/results/**`, `data/verification/2026_11_17/**`, `data/snapshots/**`, `data/shadow/**`, `tools/build_results_r3.py`, `tools/promote_week10_2026_11_17.py`, `tools/verify_2026_11_17.py`, `docs/methodology/price-snapshots.md`, `docs/methodology/results-feed-baseline.md`, `.github/workflows/verify.yml` |
+| R6-2 | Week 11 pre-kickoff origination: official Week 11 slate + injury report read dated 2026-11-18, PR-05 registration, originated side/total/moneyline for all 16 fixtures, market columns blank, settlement hook for Week 12 | in progress | `arena/6a4ba536-x1` | `docs/preregistration/PR-05-week11-origination.md`, `data/verification/2026_11_18/**`, `data/origination/week11/**`, `tools/build_week11.py`, `app/week11.html` (new only) |
+| R6-3 | Round-6 integration: rebuild generated surfaces, run every gate, PR → `main`, merge, confirm Pages deploy, record result | in progress | `arena/6a4ba536-x1` | `COORDINATION.md`, `index.html`, `pages/**`, `app/**`, `console/**`, `data/console/**` (builder output only) |
+| R6-4 | Two defects observed before claiming work, logged here for review rather than fixed silently | in progress | `arena/6a4ba536-x1` | `data/flags.json` (append only), `docs/audit/round6-findings.md` (new) |
+
+## R6-4 — defects found before any edit (logged, not yet fixed)
+
+1. **The injury-report URL does not address the week it claims.** `https://www.nfl.com/injuries/league/2026/reg11`
+   served the **Week 10** report — its own heading read "Injuries - WEEK 10", its first listed game was
+   WAS–NYG on THURSDAY, NOVEMBER 12TH, and the week selector showed WEEK 11 unselected. Any collector that
+   derives the week from the URL rather than from the page's own heading would label Week 10 rows "Week 11".
+   This is the same class of defect the board already records for Week 10 ("Seattle and Cincinnati shown as
+   injury-free while listing 15 and 4 players"). Task R6-2 must parse the page's printed week and refuse to
+   publish when the two disagree.
+2. **`data/results/results_feed_meta.json` still records `generated_at` 2026-11-14 and a Week-10 coverage of
+   14 of 2,232**, while `main`'s round-5 record claims the feed was closed to 150 games in PR #80. Either the
+   meta file is stale relative to the feed it describes or the closure did not reach the meta file. R6-1
+   resolves which, by regeneration rather than by editing a number.
+
+Neither defect is repaired by hand-editing a published value; both are fixed at the generator and then
+regenerated, per the board's rule 9.
+
+## Ownership boundary
+
+This session edits no file owned by an open PR other than PR #84, which it is explicitly reconciling. It does
+not touch `docs/lab/**`, `lab/**`, `tools/lab/**` (PR-04 escrow), `pipeline/**` or `.github/workflows/data-refresh.yml`
+(the scheduled collector), or `tools/official/**`. If a change is needed in one of those, the request is logged
+here instead of made.
