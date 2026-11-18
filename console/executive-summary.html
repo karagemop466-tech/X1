@@ -18,10 +18,10 @@ from sourced numbers with n published, and a demotion gate. All eight are built 
 The competition they run produces a negative result, and the negative result is the finding.</p>
 
 <h3>1. The model does not beat the market, and the market can prove it</h3>
-<p>The closing spread correlates <b>0.434</b> with the actual home margin
-(n=6,102). Our walk-forward fair spread correlates <b>0.2332</b>.
-In points, our fair line misses the actual margin by 14.198 RMSE against the
-market's 13.14 &mdash; about 1.1 points per game worse than the number we are
+<p>The closing spread correlates <b>0.4349</b> with the actual home margin
+(n=6,115). Our walk-forward fair spread correlates <b>0.2344</b>.
+In points, our fair line misses the actual margin by 14.199 RMSE against the
+market's 13.139 &mdash; about 1.1 points per game worse than the number we are
 trying to beat.</p>
 <p>The decisive test is whether the market moves toward our number. It does not. In 2021, the one
 season where a real opening number exists, the gap between our fair line and the market
@@ -36,32 +36,32 @@ market's.</b></p>
 <p>16 strategies were pre-registered and evaluated out of sample from
 2004 to 2026, with every hyper-parameter re-chosen inside
 the training window only. None passed. The best flat-stake return on the board is
-<span class="neg">-0.60%</span> on 2,781 bets, against
+<span class="neg">-0.54%</span> on 2,789 bets, against
 break-even at 52.38% and three always-on baselines that lose between 5.2% and 6.9%.
-A parlay strategy returned <span class="neg">-36.5%</span>.</p>
+A parlay strategy returned <span class="neg">-36.6%</span>.</p>
 <p>Two results deserve to be read closely. First, <b>bigger disagreement does not mean better
 bets</b>: the correlation between edge size and bet outcome is zero or negative for every strategy,
 and significantly negative for the largest side threshold
-(-0.069 , 95% CI -0.125 to -0.011). Second, <b>parlays multiply the
-vig</b>: with the two legs effectively uncorrelated (0.0199,
-n=6,102), a two-leg -110 parlay needs a 27.44% joint probability to break
+(-0.069 , 95% CI -0.126 to -0.012). Second, <b>parlays multiply the
+vig</b>: with the two legs effectively uncorrelated (0.0197,
+n=6,115), a two-leg -110 parlay needs a 27.44% joint probability to break
 even and returns less at every book.</p>
 
 <h3>3. The data underneath is sound</h3>
-<p>7,413 settled games reconcile
-160/160 with the league's own standings table.
+<p>7,426 settled games reconcile
+82/160 with the league's own standings table.
 The official-source registers are compared cell by cell with dated transcriptions on every
 build: 859 comparisons, 8 mismatches on the
 re-derived registers. Separately, 262 cells of the 2026 standings table now
 differ from the league, because that table is a 2026-11-14 snapshot &mdash; published rather than
 smoothed over (see <a href="standings.html">standings</a>). The market's own moneylines imply its own spreads to within
-0.516 points (n=5,432).
+0.516 points (n=5,445).
 The benchmark we are failing is a real one.</p>
 
 <h3>4. Signal and staking are now separable, and it matters</h3>
 <p>The leaderboard reports <code>signal_score</code> at flat one-unit staking, which bet sizing
 cannot move, and <code>staking_score</code> under the strategy's own quarter-Kelly plan. They
-disagree. <code>ST-TOT-5</code> and <code>ST-ROADFAV</code> have the <b>identical signal score</b> of 25.0, yet they sit 10.2 points apart on staking (35.2 against 25.0). A leaderboard ranked on staking would order them; the signal column says they are the same bet. Promotion requires the signal score, so neither is promoted.</p>
+disagree. <code>ST-UNDER48</code> and <code>ST-ROADFAV</code> have the <b>identical signal score</b> of 25.0, yet they sit 10.1 points apart on staking (35.1 against 25.0). A leaderboard ranked on staking would order them; the signal column says they are the same bet. Promotion requires the signal score, so neither is promoted.</p>
 
 <h3>5. Availability tracking works for 31 of 32 clubs</h3>
 <p>897 depth slots. 189 designated starters
@@ -86,7 +86,7 @@ numbers look better.</b> Spend the next cycle on the price feed (SG-01) and play
 gates are working; the inputs are what is missing.</div>
 
 <footer>
-As of 2026-11-17T23:51:05Z. Built by <code>tools/build_console.py</code> from sources listed on the
+As of 2026-11-18T03:09:50Z. Built by <code>tools/build_console.py</code> from sources listed on the
 <a href="sources.html">source registry</a>. Every table row carries a source link or an explicit
 marker where no source exists. Values that cannot be confirmed are left blank and listed on the
 <a href="flagged.html">flagged for review</a> page.

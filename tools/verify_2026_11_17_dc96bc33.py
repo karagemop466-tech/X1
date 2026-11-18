@@ -118,8 +118,15 @@ def build() -> dict:
         raise SystemExit(f"FAIL: expected 14 Week 10 rows, found {len(finals)}")
     if len(std) != 32:
         raise SystemExit(f"FAIL: expected 32 standings rows, found {len(std)}")
-    if len(reads) != 137:
-        raise SystemExit(f"FAIL: expected 137 official read rows, found {len(reads)}")
+    # This check was written on 2026-11-17, when reads.tsv stopped at 137 rows and the 13 Week 10
+    # finals were still an overlay. Round 6 settled the feed: the overlay was applied, so reads.tsv
+    # now contains all 150 rows. The gate therefore accepts EITHER the historical 137-row state (the
+    # overlay still pending) or the closed 150-row state (overlay applied), and asserts which one it
+    # is below -- a row count that drifts to anything else still fails.
+    if len(reads) not in (137, 150):
+        raise SystemExit(f"FAIL: expected 137 (pre-closure) or 150 (post-closure) official read "
+                         f"rows, found {len(reads)}")
+    CLOSED = len(reads) == 150
     if len(f16) != 14 or len(s16) != 32:
         raise SystemExit("FAIL: the 2026-11-16 pack is not 14 + 32 rows")
 
@@ -213,12 +220,18 @@ def build() -> dict:
     for r in finals:
         slug = r["game_url"].rstrip("/").split("/")[-1]
         if slug in read_slugs:
-            continue  # the TNF game is already in reads.tsv
+            continue  # already in reads.tsv: the TNF game historically, all 14 once closed
         added += 1
         games.append((norm(r["away"]), norm(r["home"]),
                       int(r["away_score"]), int(r["home_score"]), "2026-11-17 pack"))
-    if added != 13:
+    # Pre-closure exactly 13 of the 14 finals were missing from reads.tsv. Post-closure all 14 are
+    # present and 0 are added here, because the promotion already put them in -- and in that state
+    # the corpus must come from reads.tsv alone, with no double counting.
+    if not CLOSED and added != 13:
         raise SystemExit(f"FAIL: expected 13 finals not in reads.tsv, found {added}")
+    if CLOSED and added != 0:
+        raise SystemExit(f"FAIL: reads.tsv claims 150 rows but {added} finals are still absent "
+                         f"from it - the promotion did not apply")
 
     Wc = {a: 0 for a in std_by}
     Lc, Tc, PFc, PAc = dict(Wc), dict(Wc), dict(Wc), dict(Wc)
@@ -241,17 +254,24 @@ def build() -> dict:
             b4_fail.append(f"{abbr}: standings {want} vs corpus recomputation {got}")
     failing_clubs = {x.split(":")[0] for x in b4_fail}
     checks["B4_corpus_reconciliation"] = {
-        "games_in_reads_tsv": 137,
+        "games_in_reads_tsv": len(reads),
+        "closure_state": "closed (promotion applied)" if CLOSED else "open (overlay pending)",
         "finals_added_from_2026_11_17_pack": added,
         "games_total": len(games),
         "clubs_reconciled": 32 - len(failing_clubs),
         "verdict": "pass" if not b4_fail else "fail",
         "failures": b4_fail,
-        "note": ("The 137-game official log plus the 13 Week 10 finals reproduces all 32 official "
-                 "standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. This is the "
-                 "arithmetic that closes suggestion S-22 / question Q-62: the corpus is complete "
-                 "and consistent; what remains for the pinned feed is the mechanical re-pin "
-                 "(count pin, mirror re-pin, standings transcription swap), recorded as SG-14."),
+        "note": (
+            ("The 150-game official log reproduces all 32 official standings rows "
+             "(W, L, T, PF, PA) exactly as printed. The Week 10 closure that this check was written "
+             "to prove is now applied: the 13 finals are no longer an overlay, they are rows in "
+             "reads.tsv, and the gate asserts that the corpus needs no additions to close. "
+             "Suggestion S-22 / question Q-62 are closed by this state."
+             if CLOSED else
+             "The 137-game official log plus the 13 Week 10 finals reproduces all 32 official "
+             "standings rows (W, L, T, PF, PA) exactly as printed on 2026-11-17. The mechanical "
+             "re-pin (count pin, mirror re-pin, standings transcription swap) is still pending, "
+             "recorded as SG-14.")),
     }
 
     # ---- B5: continuity vs the 2026-11-16 pack -----------------------------

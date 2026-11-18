@@ -7412,48 +7412,48 @@ game_id,season,week,gameday,home,away,home_score,away_score,margin_home,total_po
 2026_09_TB_CHI,2026,9,2026-11-08,CHI,TB,27,24,3,51,yes,6.5,47.5,-290.0,235.0,L,W,W,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
 2026_09_BUF_MIN,2026,9,2026-11-09,MIN,BUF,6,23,-17,29,yes,-3.0,45.5,154.0,-185.0,L,L,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
 2026_10_WAS_NYG,2026,10,2026-11-12,NYG,WAS,21,24,-3,45,yes,1.5,40.5,-122.0,102.0,L,W,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
-2026_10_BUF_NYJ,2026,10,2026-11-15,NYJ,BUF,,,,,no,-8.5,50.5,330.0,-425.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_CAR_NO,2026,10,2026-11-15,NO,CAR,,,,,no,2.5,48.5,-135.0,114.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_HOU_CLE,2026,10,2026-11-15,CLE,HOU,,,,,no,-4.5,40.5,195.0,-238.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_JAX_TEN,2026,10,2026-11-15,TEN,JAX,,,,,no,-10.5,46.5,500.0,-700.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_KC_ATL,2026,10,2026-11-15,ATL,KC,,,,,no,-3.0,47.5,145.0,-175.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_LA_ARI,2026,10,2026-11-15,AZ,LA,,,,,no,-9.5,39.5,380.0,-500.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_MIA_IND,2026,10,2026-11-15,IND,MIA,,,,,no,3.5,38.5,-218.0,180.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_MIN_GB,2026,10,2026-11-15,GB,MIN,,,,,no,2.5,42.5,-148.0,124.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_NE_DET,2026,10,2026-11-15,DET,NE,,,,,no,2.5,49.5,-148.0,124.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_PIT_CIN,2026,10,2026-11-15,CIN,PIT,,,,,no,3.5,49.5,-185.0,154.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_SEA_LV,2026,10,2026-11-15,LV,SEA,,,,,no,-6.5,40.5,245.0,-305.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_SF_DAL,2026,10,2026-11-15,DAL,SF,,,,,no,-4.5,55.5,180.0,-218.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_10_LAC_BAL,2026,10,2026-11-16,BAL,LAC,,,,,no,4.5,38.5,-225.0,185.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_IND_HOU,2026,11,2026-11-19,HOU,IND,,,,,no,10.0,44.5,-455.0,350.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_ARI_KC,2026,11,2026-11-22,KC,AZ,,,,,no,14.0,42.5,-1000.0,650.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_BAL_CAR,2026,11,2026-11-22,CAR,BAL,,,,,no,1.5,44.5,-125.0,105.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_JAX_NYG,2026,11,2026-11-22,NYG,JAX,,,,,no,-6.0,44.5,215.0,-265.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_LV_DEN,2026,11,2026-11-22,DEN,LV,,,,,no,8.5,41.5,-440.0,340.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_MIA_BUF,2026,11,2026-11-22,BUF,MIA,,,,,no,16.5,46.5,-1650.0,950.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_MIN_SF,2026,11,2026-11-22,SF,MIN,,,,,no,3.5,45.5,-205.0,170.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_NO_CHI,2026,11,2026-11-22,CHI,NO,,,,,no,9.5,48.5,-485.0,370.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_NYJ_LAC,2026,11,2026-11-22,LAC,NYJ,,,,,no,1.5,42.5,-125.0,105.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_PIT_PHI,2026,11,2026-11-22,PHI,PIT,,,,,no,-4.5,38.5,164.0,-198.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_TB_DET,2026,11,2026-11-22,DET,TB,,,,,no,3.5,47.5,-180.0,150.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_TEN_DAL,2026,11,2026-11-22,DAL,TEN,,,,,no,7.5,51.5,-425.0,330.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_11_CIN_WAS,2026,11,2026-11-23,WAS,CIN,,,,,no,-3.5,51.5,170.0,-205.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_GB_LA,2026,12,2026-11-25,LA,GB,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_CHI_DET,2026,12,2026-11-26,DET,CHI,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_KC_BUF,2026,12,2026-11-26,BUF,KC,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_PHI_DAL,2026,12,2026-11-26,DAL,PHI,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_DEN_PIT,2026,12,2026-11-27,PIT,DEN,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_ATL_MIN,2026,12,2026-11-29,MIN,ATL,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_BAL_HOU,2026,12,2026-11-29,HOU,BAL,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_LV_CLE,2026,12,2026-11-29,CLE,LV,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_NE_LAC,2026,12,2026-11-29,LAC,NE,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_NO_CIN,2026,12,2026-11-29,CIN,NO,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_NYG_IND,2026,12,2026-11-29,IND,NYG,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_NYJ_MIA,2026,12,2026-11-29,MIA,NYJ,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_SEA_SF,2026,12,2026-11-29,SF,SEA,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_TEN_JAX,2026,12,2026-11-29,JAX,TEN,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_WAS_ARI,2026,12,2026-11-29,AZ,WAS,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
-2026_12_CAR_TB,2026,12,2026-11-30,TB,CAR,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_10_BUF_NYJ,2026,10,2026-11-15,NYJ,BUF,12,31,-19,43,yes,-8.5,50.5,370.0,-485.0,L,L,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_CAR_NO,2026,10,2026-11-15,NO,CAR,17,20,-3,37,yes,1.5,48.5,-110.0,-110.0,L,L,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_HOU_CLE,2026,10,2026-11-15,CLE,HOU,27,24,3,51,yes,-4.5,40.5,164.0,-198.0,W,W,W,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_JAX_TEN,2026,10,2026-11-15,TEN,JAX,23,40,-17,63,yes,-10.5,45.5,470.0,-650.0,L,W,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_KC_ATL,2026,10,2026-11-15,ATL,KC,13,35,-22,48,yes,-3.0,47.5,145.0,-175.0,L,W,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_LA_ARI,2026,10,2026-11-15,AZ,LA,6,34,-28,40,yes,-10.0,38.5,410.0,-550.0,L,W,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_MIA_IND,2026,10,2026-11-15,IND,MIA,24,22,2,46,yes,4.5,37.5,-225.0,185.0,L,W,W,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_MIN_GB,2026,10,2026-11-15,GB,MIN,10,30,-20,40,yes,2.5,42.5,-148.0,124.0,L,L,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_NE_DET,2026,10,2026-11-15,DET,NE,35,10,25,45,yes,2.5,50.5,-148.0,124.0,W,L,W,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_PIT_CIN,2026,10,2026-11-15,CIN,PIT,38,18,20,56,yes,4.5,49.5,-218.0,180.0,W,W,W,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_SEA_LV,2026,10,2026-11-15,LV,SEA,13,21,-8,34,yes,-6.5,40.5,240.0,-298.0,L,L,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_SF_DAL,2026,10,2026-11-15,DAL,SF,40,46,-6,86,yes,-3.5,55.5,170.0,-205.0,L,W,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_10_LAC_BAL,2026,10,2026-11-16,BAL,LAC,20,23,-3,43,yes,4.5,39.5,-225.0,185.0,L,W,L,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,
+2026_11_IND_HOU,2026,11,2026-11-19,HOU,IND,,,,,no,12.5,44.5,-750.0,525.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_ARI_KC,2026,11,2026-11-22,KC,AZ,,,,,no,16.5,41.5,-1450.0,850.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_BAL_CAR,2026,11,2026-11-22,CAR,BAL,,,,,no,2.5,44.5,-142.0,120.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_JAX_NYG,2026,11,2026-11-22,NYG,JAX,,,,,no,-6.0,46.5,215.0,-265.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_LV_DEN,2026,11,2026-11-22,DEN,LV,,,,,no,10.0,40.5,-575.0,425.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_MIA_BUF,2026,11,2026-11-22,BUF,MIA,,,,,no,16.5,45.5,-1450.0,850.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_MIN_SF,2026,11,2026-11-22,SF,MIN,,,,,no,3.0,45.5,-162.0,136.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_NO_CHI,2026,11,2026-11-22,CHI,NO,,,,,no,11.5,49.5,-700.0,500.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_NYJ_LAC,2026,11,2026-11-22,LAC,NYJ,,,,,no,3.5,41.5,-185.0,154.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_PIT_PHI,2026,11,2026-11-22,PHI,PIT,,,,,no,-4.5,38.5,170.0,-205.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_TB_DET,2026,11,2026-11-22,DET,TB,,,,,no,7.0,45.5,-340.0,270.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_TEN_DAL,2026,11,2026-11-22,DAL,TEN,,,,,no,8.5,54.5,-380.0,300.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_11_CIN_WAS,2026,11,2026-11-23,WAS,CIN,,,,,no,-6.5,52.5,235.0,-290.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_GB_LA,2026,12,2026-11-25,LA,GB,,,,,no,3.5,46.5,-198.0,164.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_CHI_DET,2026,12,2026-11-26,DET,CHI,,,,,no,-1.5,54.5,110.0,-130.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_KC_BUF,2026,12,2026-11-26,BUF,KC,,,,,no,3.0,50.5,-155.0,130.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_PHI_DAL,2026,12,2026-11-26,DAL,PHI,,,,,no,8.5,47.5,-395.0,310.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_DEN_PIT,2026,12,2026-11-27,PIT,DEN,,,,,no,-2.5,41.5,114.0,-135.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_ATL_MIN,2026,12,2026-11-29,MIN,ATL,,,,,no,7.0,42.5,-340.0,270.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_BAL_HOU,2026,12,2026-11-29,HOU,BAL,,,,,no,6.0,44.5,-250.0,205.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_LV_CLE,2026,12,2026-11-29,CLE,LV,,,,,no,3.5,41.5,-192.0,160.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_NE_LAC,2026,12,2026-11-29,LAC,NE,,,,,no,3.5,40.5,-218.0,180.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_NO_CIN,2026,12,2026-11-29,CIN,NO,,,,,no,10.0,52.5,-550.0,410.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_NYG_IND,2026,12,2026-11-29,IND,NYG,,,,,no,-3.5,44.5,150.0,-180.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_NYJ_MIA,2026,12,2026-11-29,MIA,NYJ,,,,,no,-3.0,41.5,150.0,-180.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_SEA_SF,2026,12,2026-11-29,SF,SEA,,,,,no,3.0,46.5,-155.0,130.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_TEN_JAX,2026,12,2026-11-29,JAX,TEN,,,,,no,14.5,47.5,-1100.0,700.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_WAS_ARI,2026,12,2026-11-29,AZ,WAS,,,,,no,-6.0,42.5,220.0,-270.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
+2026_12_CAR_TB,2026,12,2026-11-30,TB,CAR,,,,,no,2.5,43.5,-148.0,124.0,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
 2026_13_KC_LA,2026,13,2026-12-03,LA,KC,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
 2026_13_BUF_NE,2026,13,2026-12-06,NE,BUF,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
 2026_13_CAR_MIN,2026,13,2026-12-06,MIN,CAR,,,,,no,,,,,,,,nflverse/nfldata games.csv,https://github.com/nflverse/nfldata/blob/master/data/games.csv,mirror,not-settled: no official score yet
