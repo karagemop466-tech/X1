@@ -462,6 +462,7 @@ def cmd_capture(args) -> int:
                 "slug": slug, "game_url": url, "slugs_printed": len(slugs),
                 "body_sha256": sha256_bytes(body.encode("utf-8")), "raw_gz_sha256": gz_sha,
                 "raw_file": f"raw/{raw_name}", "http_status": status, "flags": "",
+                "parser_version": PARSER_VERSION, "reparsed_at_utc": "",
             }
             for k in COLUMNS:
                 if k not in row:
