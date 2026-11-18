@@ -4137,3 +4137,48 @@ the Rams–Cardinals game, matched by alias-normalised matchup, never by label).
 
 *This record is the follow-up commit from the same branch (docs-only), per the branch's PR-record
 convention.*
+
+---
+
+# Session `arena/91656714-x1` — Round 6: Week 10 closure takeover, feed/published-table reconciliation, final integration
+
+**Claim written 2026-11-18T03:15Z, before any work, per rule 1.** Branch `arena/91656714-x1`, branched from
+`d80c5b3` (current `main`). This session is the **final integration session** for round 6.
+
+## Why this round exists: the takeover, and the defect it inherits
+
+PR **#84** (`arena/473e08d5-x1`, claim `N-1…N-5`) is **open, `CONFLICTING`, and stale**: its last commit is
+`47afd2d` at 2026-11-17T23:36:58Z, **3.5 hours** before this session started, with no commits since. Under
+rule 10 (claim more than 60 minutes old with no commits → another session may take over) this session takes
+the task over and logs the handoff here. **Nothing in #84 is discarded**; its unique artefacts are salvaged
+and re-verified in this round, and #84 will be closed with a handoff note pointing at the merged result.
+
+The defect it exists to fix is measurable on `main` **right now**:
+
+| Fact | Value on `main` at `d80c5b3` | Source |
+|---|---|---|
+| `data/results_feed.json` rows | **150** | the file |
+| … of which `status == "FINAL"` | **137** | the file (`settlement_summary.games_final`) |
+| … of which `status == "SCHEDULED"` | **13** | the file (`settlement_summary.games_scheduled`) |
+| Week 10 fixtures printed `Final` by nfl.com | **14** | live re-read 2026-11-18T03:0xZ, this session |
+| So: Week 10 Sunday/Monday games are frozen as "scheduled" in the feed | **13** | arithmetic |
+| Landing page still says | "137 settled games" | `app/index.html:91,129` |
+
+So the append half of the closure landed (150 rows exist) but the **settlement half did not**: the feed's own
+`status`, its `settlement_summary`, the signal grade (`n_matched_games: 137`) and the prose all still describe
+a 137-game world. That is a **live contradiction on the published site** — the results page states a settled
+count that its own feed contradicts — and it is exactly what requirement R-56 / X-07 ("a game whose official
+page shows Final must not still be 'scheduled'") forbids.
+
+## Claim — files in scope (non-overlapping with any open PR; #84 is the only open PR and is taken over)
+
+| # | Task | Status | Files in scope |
+|---|---|---|---|
+| R6-1 | Live official re-read 2026-11-18: Week 10 all 14 finals + standings, and diff against the two retained 2026-11-17 transcriptions | **in progress** | `data/verification/2026_11_18/` (new), `tools/verify_2026_11_18.py` (new) |
+| R6-2 | Settle the feed: the 13 frozen Week 10 rows become `FINAL` from the dated official read, with a dated overlay so "what was printed on 11-14" stays separable; `settlement_summary` recomputed | **in progress** | `tools/*results*`, `tools/promote_week10_*.py`, `data/results_feed.json`, `data/results/**` |
+| R6-3 | Propagate every consumer: signal grade, shadow baseline, ROI, readiness register, landing/results prose; add the build gate that a stated settled count must equal the feed's own `FINAL` count | **in progress** | `tools/build_*.py`, `tools/verify_app.py`, `app/**`, `pages/**`, `data/audit/**`, `data/console/**` |
+| R6-4 | Salvage PR #84's unique artefacts (price-data policy, results-feed baseline doc, closure page, F-22…F-26) and re-verify each line against source | **in progress** | `docs/methodology/**`, `pages/results-closure.html`, `data/flags.json` |
+| R6-5 | Final integration: run every CI gate locally, rebuild the deployed tree, crawl it for broken links, PR → `main`, merge, confirm Pages deploy | **in progress** | `COORDINATION.md`, PR |
+
+**Not in scope:** no other session holds an open PR; no open branch is being edited. Generated trees
+(`app/`, `console/`, `pages/`, `lab/`, `hub/`, `index.html`) are rebuilt from their builders, never hand-edited.
