@@ -79,7 +79,11 @@ NAV = [
                   ("gates.html", "Validation and demotion gates", "14"),
                   ("correlations.html", "Correlations", ""),
                   ("luck.html", "Removing luck", ""),
-                  ("props.html", "Props and parlays", "")]),
+                  ("props.html", "Props and parlays", ""),
+                  # Added by session arena-55c364b6-x1 (round 6, additive only): the two-sided
+                  # mind-change field the brief asks for on every strategy entry, computed under a
+                  # rule registered in Git before the week it could be read against.
+                  ("mind-change.html", "Mind-change register", "28")]),
     # Counts were 15/15 until round 6 appended Q-16..Q-18 and SG-16..SG-19; the flagged tag was
     # "12" while the register holds 16. The landing-page nav is regenerated, so a stale tag here is
     # a visible lie: the tags are asserted against the registers by check I of

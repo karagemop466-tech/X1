@@ -122,6 +122,17 @@ jobs:
           python3 tools/verify_availability_series.py
           python3 tools/verify_2026_11_18.py
 
+      # Added by session arena-55c364b6-x1 (round 6, additive only). The two-sided mind-change
+      # register (brief row 18) is a view over the two published strategy tables, recomputed per
+      # build: the adopt/abandon verdicts, the sample that would settle each undecided entry, and
+      # the hash of the rule that freezes the method. A rule file edited after the results are in,
+      # an entry missing a side, an orphan row matching no published strategy, or a register that
+      # no longer reproduces from its inputs each fail the build here.
+      - name: Rebuild and verify the two-sided mind-change register
+        run: |
+          set -euo pipefail
+          python3 tools/build_mind_change.py --check
+          python3 tools/verify_mind_change.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -174,6 +185,7 @@ jobs:
           # the same class of break in session arena/56769365-x1's hub tree).
           cp -r data/availability_series _site/data/availability_series
           cp -r data/fixtures _site/data/fixtures
+          cp -r data/mind_change _site/data/mind_change
           mkdir -p _site/data/verification/2026_11_18
           cp data/verification/2026_11_18/*.tsv _site/data/verification/2026_11_18/ 2>/dev/null || true
           cp data/verification/2026_11_18/*.json _site/data/verification/2026_11_18/ 2>/dev/null || true

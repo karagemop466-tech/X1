@@ -319,6 +319,22 @@ def m_fixture_ctx():
             "data/fixtures/fixture_context_2026.csv")
 
 
+def m_mind_change():
+    """Coverage of the two-sided 'what would change our mind' field, counted from the register."""
+    fp = os.path.join(D, "mind_change", "register.csv")
+    if not os.path.exists(fp):
+        return ("no mind-change register built yet", 0, "data/mind_change/register.csv")
+    rs = _rows2(fp)
+    strat = [r for r in rs if r["division"] != "registration"]
+    both = [r for r in strat if (r["adopt_if"] or "").strip() and (r["abandon_if"] or "").strip()]
+    unreachable = [r for r in rs if r.get("no_n_note")]
+    return (f"{len(both)} of {len(strat)} strategy entries carry both sides (an adopt test and an "
+            f"abandon test), plus {len(rs) - len(strat)} registered rules; "
+            f"{len(unreachable)} entries cannot be promoted at their observed rate, which the "
+            f"register states instead of reporting a big n", len(both),
+            "data/mind_change/register.csv (rule MIND-CHANGE-01, hash-pinned)")
+
+
 def _rows2(path):
     with open(path, encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
@@ -328,7 +344,7 @@ MEAS = dict(results=m_results, orig=m_orig_order, self=m_readiness_self, prices=
             strategies=m_strategies, corr=m_corr, standings=m_standings, shared=m_shared_slots,
             ir=m_ir, snap=m_snap, gamebook=m_gamebook, parse=m_parse_anomalies,
             fixture=m_fixture, luck=m_luck, preprint=m_preprint, inactive=m_inactive,
-            series=m_series, fixturectx=m_fixture_ctx,
+            series=m_series, fixturectx=m_fixture_ctx, mindchange=m_mind_change,
             snapshot=m_availability_snapshot)
 
 
@@ -424,7 +440,7 @@ ROWS = [
  ("R-18", "A two-sided 'what would change our mind' field per strategy",
   "Add a two-sided 'what would change our mind' field to every strategy entry",
   "Governance", "Each entry states what would confirm it and what would refute it.",
-  "100% of strategies with both sides", "strategies",
+  "100% of strategies with both sides", "mindchange",
   "Editorial field, no external source needed.", NFLVERSE),
  ("R-19", "Price a line ourselves, publish the residual on a schedule",
   "Price a line ourselves and publish the residual against the market, on a schedule, from day one",

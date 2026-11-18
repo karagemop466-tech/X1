@@ -22,6 +22,7 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SERIES = os.path.join(ROOT, "data", "availability_series")
 FIXTURES = os.path.join(ROOT, "data", "fixtures")
+MIND = os.path.join(ROOT, "data", "mind_change")
 PACK = os.path.join(ROOT, "data", "verification", "2026_11_18")
 
 INJ_URL = "https://www.nfl.com/injuries/"
@@ -396,4 +397,133 @@ def build(cfg):
               "Schedule facts only: rest, slot, network, venue &mdash; and the two features the "
               "league does not print.", kpis2)
 
-    return {"availability-series.html": p1, "fixture-context.html": p2}
+    # =======================================================================
+    # page 3 - the two-sided mind-change register
+    # =======================================================================
+    mc = _csv(os.path.join(MIND, "register.csv"))
+    msum = json.load(open(os.path.join(MIND, "summary.json"), encoding="utf-8"))
+    m = msum["counts"]
+
+    kpis3 = [
+        ("Entries with both sides published", f'{m["both_sides_published"]} of '
+         f'{m["from_strategy_results"] + m["from_leaderboard"]}',
+         "every strategy entry in both published tables", "good"),
+        ("Already past their abandon bound", str(m["abandon_eligible"]),
+         "their own published interval sits entirely under break-even", "no"),
+        ("Adoption unreachable at the observed rate",
+         str(m["adoption_unreachable_at_observed_rate"]),
+         "more of the same data cannot promote these; the register says so instead of printing a "
+         "large n", "mid"),
+        ("Checks that recompute this page", "7",
+         "arithmetic, rule hash, coverage and chronology: tools/verify_mind_change.py", ""),
+    ]
+
+    # the two cheapest remaining tests, read off the register rather than typed here
+    need_adopt = sorted((int(r["bets_to_adopt"]), r["entry_id"]) for r in mc if r["bets_to_adopt"])
+    need_abandon = sorted((int(r["bets_to_abandon"]), r["entry_id"]) for r in mc
+                          if r["bets_to_abandon"])
+    past_bar = [r["entry_id"] for r in mc if r["state"].startswith("ABANDON")]
+    suspended = [r["entry_id"] for r in mc if r["interval_disagreement"]]
+
+    hdr_m = [("Entry", 0), ("Table it comes from", 0), ("Division", 0), ("Bets", 1),
+             ("Hit rate", 1), ("Bar", 1), ("Interval on the edge, as published", 0),
+             ("Interval recomputed here", 0), ("State", 0),
+             ("What would make us adopt it", 0), ("What would make us abandon it", 0),
+             ("More bets to adopt", 1), ("More bets to abandon", 1),
+             ("Rate to adopt at today's n", 1), ("Source", 0)]
+    rows_m = []
+    for r in mc:
+        bounds = (r["published_interval"] if r["published_interval"].startswith(("-", "+"))
+                  else f'<span class="src mut">{esc(r["published_interval"])}</span>')
+        own = (r["own_interval"] if r["own_interval"].startswith(("-", "+"))
+               else f'<span class="src mut">{esc(r["own_interval"])}</span>')
+        st = r["state"]
+        kind = ("no" if st.startswith("ABANDON") else "ok" if st.startswith("ADOPT")
+                else "mut" if st in ("rule holds", "no sample") else "no"
+                if st == "interval methods disagree" else "mid")
+        rows_m.append([
+            f'<b>{esc(r["entry_id"])}</b><br><span class="mut">{esc(r["name"])}</span>',
+            f'<code>{esc(r["table"])}</code>', esc(r["division"]),
+            esc(r["n_decided"]) if r["n_decided"] else '<span class="mut">&mdash;</span>',
+            f'{float(r["hit_rate"]):.4f}' if r["hit_rate"] else '<span class="mut">&mdash;</span>',
+            f'{float(r["break_even"]):.4f}' if r["break_even"] else '<span class="mut">&mdash;</span>',
+            bounds, own, pill(st, kind),
+            esc(r["adopt_if"]), esc(r["abandon_if"]),
+            f'{int(r["bets_to_adopt"]):,}' if r["bets_to_adopt"]
+            else '<span class="mut">&mdash;</span>',
+            f'{int(r["bets_to_abandon"]):,}' if r["bets_to_abandon"]
+            else '<span class="mut">&mdash;</span>',
+            esc(r["rate_to_adopt"]) if r["rate_to_adopt"] else '<span class="mut">&mdash;</span>',
+            src_link(r["source_url"], "upstream table") + " " + src_link(
+                "https://github.com/karagemop466-tech/X1/blob/main/"
+                + msum["rule"]["file"], "rule MIND-CHANGE-01"),
+        ])
+
+    hdr_d = [("Term", 0), ("As the register defines it", 0)]
+    rows_d = [[f'<b>{esc(k.replace("_", " "))}</b>', esc(v)]
+              for k, v in msum["definitions"].items()]
+
+    body3 = (
+        '<div class="note good"><b>What this page is.</b> The brief asks for a <i>two-sided</i> '
+        '"what would change our mind" field on every strategy entry. The lab leaderboard carries one '
+        'side &mdash; a falsifier, the observation that would make us abandon an entry &mdash; and the '
+        'console strategy table carries neither. One-sided is how a losing strategy survives a review '
+        'cycle: no bar is stated for closing it, and no bar is stated for adopting it, so the test '
+        'just continues. This page states both, as arithmetic, under a rule frozen in Git before the '
+        'week it might be read against.</div>'
+
+        f'<h2>Every strategy entry, both sides</h2>'
+        f'<p>{m["from_strategy_results"]} entries from the console strategy table and '
+        f'{m["from_leaderboard"]} from the lab leaderboard, plus the {m["rule_rows"]} registered '
+        f'rules whose mind-change is about the rule rather than a rate. The interval is each table&rsquo;s '
+        f'own, so this page can never disagree with the leaderboard a reader can already open; where '
+        f'this register&rsquo;s recomputed interval would give a different verdict, the row is flagged and '
+        f'no claim is made ({m["interval_methods_disagree"]} rows are).</p>'
+        f'{table(hdr_m, rows_m, "mc-entries", filter_col=1, filter_label="Filter table")}'
+
+        '<h2>The three findings this page makes possible</h2>'
+        '<div class="note warn"><ul class="tight">'
+        f'<li><b>{len(past_bar)} entries are already past their abandon bound.</b> Their own published '
+        f'interval sits entirely under break-even: {esc(", ".join(past_bar))}. Two of them had a '
+        f'falsifier on file naming this exact condition &mdash; it has fired, and the entry is still '
+        'open on the board. That is what a one-sided field costs.</li>'
+        f'<li><b>{m["adoption_unreachable_at_observed_rate"]} entries cannot be promoted by more '
+        f'data.</b> Their observed rate sits below the bar, so the honest statement is "no n exists at '
+        'this rate", not a sample size. Printing a number for those would invite exactly the move this '
+        'page exists to prevent: run the test longer until the interval happens to clear.</li>'
+        f'<li><b>Nothing is close.</b> The cheapest undecided adoption is {need_adopt[0][0]:,} more '
+        f'bets ({esc(need_adopt[0][1])}) and the cheapest undecided abandonment is '
+        f'{need_abandon[0][0]:,} ({esc(need_abandon[0][1])}), against a corpus that produced a few '
+        f'thousand bets per entry over a whole season. The economics of the test, not the model, is '
+        f'what makes most of these dead. {len(suspended)} rows are suspended outright because the '
+        f'table&rsquo;s published interval and this register&rsquo;s recomputation disagree '
+        f'({esc(", ".join(suspended))}).</li>'
+        '</ul></div>'
+
+        '<h2>Definitions, in the rule&rsquo;s words</h2>'
+        f'{table(hdr_d, rows_d, "mc-defs", sortable=False)}'
+
+        '<h3>Why the bar cannot be moved after the fact</h3>'
+        f'<p>The rule text is <code>{esc(msum["rule"]["file"])}</code>, registered '
+        f'{esc(msum["rule"]["registered_at_utc"])} &mdash; before the first Week 11 kickoff, which '
+        f'the verifier asserts by comparing that date with the escrow file&rsquo;s earliest kickoff. '
+        f'Every row carries the SHA-256 of the file as it stood at build time '
+        f'(<span class="src mut">{esc(msum["rule"]["sha256"][:16])}</span>), and '
+        f'<code>python3 tools/verify_mind_change.py</code> fails if the rows and the file on disk '
+        f'disagree. Re-running the builder on a later date changes every number here from the '
+        f'upstream tables, which is the point: this page is a view, not a record.</p>'
+        '<div class="note"><b>Downloads.</b> '
+        '<a href="../data/mind_change/register.csv">register.csv</a> '
+        '&middot; <a href="../data/mind_change/summary.json">summary.json</a> &middot; rule (the copy this page links is byte-identical to '
+        '<code>docs/preregistration/MIND-CHANGE-01.md</code>, and the staleness check asserts it): '
+        '<a href="../data/mind_change/MIND-CHANGE-01.md">MIND-CHANGE-01.md</a>. Upstream tables: '
+        '<a href="../data/console/strategy_results.csv">strategy_results.csv</a> &middot; '
+        '<a href="https://github.com/karagemop466-tech/X1/blob/main/data/lab/leaderboard.json"'
+        ' target="_blank" rel="noopener">leaderboard.json</a> (the upstream table is a build '
+        'artefact, so it is linked in the repository rather than served beside this page).</div>'
+    )
+    p3 = page("Mind-change register", "Strategy", body3,
+              "Two sides, stated in advance: what would make us adopt each strategy, and what would "
+              "make us abandon it.", kpis3)
+
+    return {"availability-series.html": p1, "fixture-context.html": p2, "mind-change.html": p3}

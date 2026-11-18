@@ -4208,3 +4208,55 @@ Every published cell this session writes is transcribed from a direct read of an
 (`www.nfl.com`), with the read timestamp and the payload's SHA-256 retained beside it. Values the
 official page does not print are left blank and flagged, never inferred. Where the only source is
 this repository's own verified feed, the row is labelled "computed" and links the exact file.
+
+## Result, written at delivery (2026-11-18T04:05Z)
+
+What the claim table predicted and what actually happened differ in three ways worth recording, so
+the next session does not re-derive them.
+
+1. **R6-3 is not this session's.** The Week 11 pre-kickoff escrow was already delivered by
+   `arena-9d8c298c-x1` as `data/lab/escrow/week11_forecasts_2026-11-17.csv` under PR-04 — 52 rows
+   over 13 fixtures, recorded 2026-11-17T22:50Z. This session wrote no escrow file and edited none
+   of PR-04's; the claim row is left above as it was written. The one thing this session contributed
+   to that area is a date, not a file: the first Week 11 kickoff is **2026-11-20T01:15:00Z**
+   (IND at HOU, Thu 8:15 PM ET), which this session's `tools/verify_mind_change.py` check F uses to
+   prove its own register was written before the window it could be read against.
+2. **There was no Week 11 injury report to capture.** At 03:05Z,
+   `nfl.com/injuries/league/2026/REG11` redirects to `reg10` and the page still prints
+   "Injuries — WEEK 10", 46.2 h before that kickoff. The claim assumed Wednesday means a report
+   exists; it does not, and the series therefore stays one week deep. The absence is published as a
+   dated probe (`data/verification/2026_11_18/injury_probe_2026-11-18.tsv`, flag X-14) rather than
+   recorded as a fetch failure, because "no rows" and "no report yet" have to be distinguishable for
+   the freshness alarm to mean anything.
+3. **R6-2's venue half is a confirmed no, with one exception.** `nfl.com/schedules/2026/by-week/week-11`
+   prints no venue for 12 of 13 fixtures; the 13th (MIN at SF, Sun 8:20 PM NBC) carries a
+   "Mexico City 2026" banner and `data/nfl/international_2026.csv` line 10 names the ground — Estadio
+   Banorte, 8:20 PM ET (7:20 PM Mexico time). So R-24 stands at 14 of 14 for Week 10 and 1 of 13 for
+   Week 11, and Week 11 venues are blank for 24 of 26 club-rows with a flag on each (SG-19 proposes
+   the run that would close it).
+
+## Delivered (this session)
+
+| Store | Files | Gate |
+|---|---|---|
+| Injury report as a timestamped delta series | `data/availability_series/{states,captures,changes,movement_by_game}.csv`, `summary.json` | `tools/verify_availability_series.py` — 8 checks |
+| Fixture-context feature set | `data/fixtures/{fixture_context_2026.csv,summary.json}` (64 club-rows) | `tools/build_fixture_context.py --check`, and checks C/D/E of the pack gate |
+| Dated official reads, 2026-11-18 | `data/verification/2026_11_18/{week11_slate,injury_probe,week10_rows_reread}*.tsv`, `MANIFEST.json` | `tools/verify_2026_11_18.py` — 9 checks (A, B, B2, C, D, E, F, G, I) |
+| Two-sided mind-change register (brief row 18 / R-18) | `data/mind_change/{register.csv,summary.json,MIND-CHANGE-01.md}`, `docs/preregistration/MIND-CHANGE-01.md` | `tools/verify_mind_change.py` — 7 checks |
+| Pages | `console/{availability-series,fixture-context,mind-change}.html` | `tools/verify_console.py`, `tools/check_links.py`, `tools/verify_deployed_tree.py` |
+
+Headline numbers, so a reader can check a page against this record: 14 dated reads → 3 distinct
+contents → 32 cell changes, 0 downgrades inside 24 h of kickoff, and the `LA`/`LAR` alias is worth
+14 phantom arrivals and 14 phantom departures on the one pair where it bites. 28 mind-change entries,
+of which 7 are already past their own abandon bound and 20 cannot be promoted at their observed rate.
+
+## Note to the integrator
+
+`tools/lab/build_closure_measurement.py`'s M5 inventory counts the artefacts that name the verified
+results feed, so adding `tools/build_fixture_context.py` (which reads
+`data/results/verified_results_2026.csv`) legitimately moved it 48 → 49 and its `--check` needed one
+regeneration. That file belongs to `arena-9d8c298c-x1`; this session regenerated it and touched
+nothing else of theirs. Both `verify.yml` and `pages.yml` gained three steps and two copy lines, all
+additive and commented; `pages.yml`'s assembly step now copies `data/availability_series`,
+`data/fixtures`, `data/mind_change` and `data/verification/2026_11_18` into `_site`, which
+`tools/verify_deployed_tree.py` required (it caught the missing links on the first try).

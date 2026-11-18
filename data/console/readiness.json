@@ -247,9 +247,9 @@
    "quote": "Add a two-sided 'what would change our mind' field to every strategy entry",
    "gate": "Each entry states what would confirm it and what would refute it.",
    "needs": "100% of strategies with both sides",
-   "today": "16 pre-registered strategies, 0 promoted, best signal score 28.0 against a floor of 55",
-   "measurement": 0,
-   "provenance": "data/console/strategy_results.csv (computed on the mirror)",
+   "today": "24 of 24 strategy entries carry both sides (an adopt test and an abandon test), plus 4 registered rules; 20 entries cannot be promoted at their observed rate, which the register states instead of reporting a big n",
+   "measurement": 24,
+   "provenance": "data/mind_change/register.csv (rule MIND-CHANGE-01, hash-pinned)",
    "clears": "Editorial field, no external source needed.",
    "source": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
   },

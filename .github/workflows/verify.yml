@@ -67,6 +67,17 @@ jobs:
           python3 tools/verify_availability_series.py
           python3 tools/verify_2026_11_18.py
 
+      # Added by session arena-55c364b6-x1 (round 6, additive only). The two-sided mind-change
+      # register (brief row 18) is a view over the two published strategy tables, recomputed per
+      # build: the adopt/abandon verdicts, the sample that would settle each undecided entry, and
+      # the hash of the rule that freezes the method. A rule file edited after the results are in,
+      # an entry missing a side, an orphan row matching no published strategy, or a register that
+      # no longer reproduces from its inputs each fail the build here.
+      - name: Rebuild and verify the two-sided mind-change register
+        run: |
+          set -euo pipefail
+          python3 tools/build_mind_change.py --check
+          python3 tools/verify_mind_change.py
       - name: Fail if committed HTML is stale
         run: git diff --exit-code -- index.html pages
 
