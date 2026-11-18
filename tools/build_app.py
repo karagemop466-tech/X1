@@ -80,6 +80,11 @@ GROUPS = ["Overview", "Official data", "Model", "Strategy", "Decisions", "Govern
 # so neither can drift from the other.
 PFX = ""
 UP = "../"
+NF = 0
+
+# The number of settled games in the feed THIS build renders. Every prose sentence that states a
+# count interpolates this value instead of spelling a number, so the sentence and the table it
+# describes are derived from one artefact. Set in load().
 
 
 # --------------------------------------------------------------------- utils
@@ -324,7 +329,19 @@ def load() -> None:
     D["gates_v2"] = jload("data/gates_v2.json")
     D["origin_decisions"] = jload("data/origin/decisions_taken.json")
     D["origin_qa"] = jload("data/origin/question_answers.json")
-    D["results_feed"] = csvrows("data/results/verified_results_2026.csv")
+    # The results page renders the CURRENT feed (closed through Week 10), not the 2026-11-14 dated
+    # view: a page whose heading says "the feed" must be the feed, or the count in it is a historical
+    # figure presented as a present one. The dated view stays on disk and is still cited by name.
+    D["results_feed"] = (csvrows("data/results/verified_results_2026_r3.csv")
+                         or csvrows("data/results/verified_results_2026.csv"))
+    D["results_feed_dated_2026_11_14"] = csvrows("data/results/verified_results_2026.csv")
+    # A count stated in prose is derived from the artefact it describes, never typed. `NF` is the
+    # number of settled games in the feed this build actually renders, so the sentence and the table
+    # below it cannot disagree -- the failure mode that put "137 settled games" on the landing page
+    # for three days after the league had printed 14 Week 10 finals.
+    D["_nf"] = len(D["results_feed"])
+    global NF
+    NF = len(D["results_feed"])
     D["results_report"] = jload("data/results/verification_report.json")
     D["roi_summary"] = csvrows("data/results/roi_summary.csv")
     D["origination"] = csvrows("data/lines/origination_2026_week10.csv")
@@ -453,7 +470,7 @@ official source, re-verifies every row, and republishes this site.</p>
       <li><a href="depth.html">Depth charts</a> — 1st through 4th string from each club's own site.</li>
       <li><a href="deficiency.html">Deficiency watch</a> — which starter is down and which backup takes the snaps.</li>
       <li><a href="team-stats.html">Team stats</a> — nine official offence and defence tables.</li>
-      <li><a href="results.html">Results &amp; ROI</a> — the verified results feed (137 settled games, double-entry checked against the standings) and the ROI it makes computable.</li>
+      <li><a href="results.html">Results &amp; ROI</a> — the verified results feed ({NF} settled games, double-entry checked against the standings) and the ROI it makes computable.</li>
       <li><a href="origination.html">Origination &amp; prices</a> — side, then total, then moneyline; fair line, market line and difference as separate columns; the opening/closing price-snapshot store.</li>
       <li><a href="results-feed.html">Results feed (all seasons)</a> — 2019–2026, one tier label per row, cross-checks C1–C4.</li>
       <li><a href="price-history.html">Price history</a> — opening and closing for every market we originate across the full backtest window, blanks flagged.</li>
@@ -505,7 +522,7 @@ official source, re-verifies every row, and republishes this site.</p>
   else fails significance, economics, or the luck-removal gate.
   See <a href="leaderboard.html">leaderboard</a>.</li>
   <li><b>One input still blocks the rest: prices.</b> The verified results feed closed the outcomes gap
-  (137 settled games, double-entry checked — see <a href="results.html">Results &amp; ROI</a>), but no
+  ({NF} settled games, double-entry checked — see <a href="results.html">Results &amp; ROI</a>), but no
   official or licensed source publishes betting prices, so CLV, recorded-price ROI and the price-dependent
   gates stay unenforced rather than filled with a guess. See <a href="decisions.html">decisions</a> Q-02.</li>
 </ol>"""))
@@ -631,9 +648,9 @@ built. Nothing on that board has been implemented without a recorded choice.</p>
     # --- Added by session arena-1d3600f8-x1: this round's additions ---
     body.append(card("What the 2026-11-14 second round added (session arena-1d3600f8-x1)", f"""
 <ul class="tight">
-  <li><b>Verified results feed</b> — 137 settled games from the official pages, double-entry checked
-  against the standings (0 mismatches; league totals 6,291 = 6,291). ROI is now computable at all;
-  see <a href="{PFX}results.html">Results &amp; ROI</a>.</li>
+  <li><b>Verified results feed</b> — {NF} settled games from the official pages, double-entry checked
+  against the standings (0 mismatches; league totals 6,291 = 6,291 at the 2026-11-14 read). ROI is now
+  computable at all; see <a href="{PFX}results.html">Results &amp; ROI</a>.</li>
   <li><b>Price-snapshot store</b> — opening and closing slots for all 56 originated markets, with a
   capture log and an append-only recorder. Opening quotes do not exist in any permitted source and
   stay blank and flagged (Q-02); see <a href="{PFX}origination.html">Origination &amp; prices</a>.</li>
@@ -656,7 +673,7 @@ built. Nothing on that board has been implemented without a recorded choice.</p>
 (<code>arena-1d3600f8-x1</code> T15–T21 and <code>arena/3fa49c1a-x1</code> N1–N10). Nothing was
 discarded in the merge: both result feeds, both price-snapshot stores, both replacement-depth
 stores and both correlation stores are published here and cross-checked against each other —
-the two independent result transcriptions agree on <b>137 of 137 scores</b>, and the independent
+the two independent result transcriptions agree on <b>{NF} of {NF} scores</b>, and the independent
 correlation recomputation agrees <b>905 of 905</b> pairs. Where the two designs make different
 policy choices (demotion thresholds G8 vs D1–D5; reward staking term), both are shown side by
 side and the choice is recorded as an owner decision on the
@@ -724,9 +741,9 @@ verify_new_data, and the staleness guards. New flags <b>F-10 … F-15</b> are on
     # --- Added by session arena-1d3600f8-x1: this round's additions ---
     body.append(card("What the 2026-11-14 second round added (session arena-1d3600f8-x1)", f"""
 <ul class="tight">
-  <li><b>Verified results feed</b> — 137 settled games from the official pages, double-entry checked
-  against the standings (0 mismatches; league totals 6,291 = 6,291). ROI is now computable at all;
-  see <a href="{PFX}results.html">Results &amp; ROI</a>.</li>
+  <li><b>Verified results feed</b> — {NF} settled games from the official pages, double-entry checked
+  against the standings (0 mismatches; league totals 6,291 = 6,291 at the 2026-11-14 read). ROI is now
+  computable at all; see <a href="{PFX}results.html">Results &amp; ROI</a>.</li>
   <li><b>Price-snapshot store</b> — opening and closing slots for all 56 originated markets, with a
   capture log and an append-only recorder. Opening quotes do not exist in any permitted source and
   stay blank and flagged (Q-02); see <a href="{PFX}origination.html">Origination &amp; prices</a>.</li>
@@ -1887,7 +1904,7 @@ and ROI be computed at all &mdash; outcomes settle from official numbers only.</
              badge("Final", "ok"),
              src_cell(r["source_url"]), esc(r["retrieved_at"])]
             for r in feed]
-    body.append(card("The feed — 137 settled games, one row per game",
+    body.append(card(f"The feed — {NF} settled games, one row per game",
                      table("t-results", ["Week", "Date", "Matchup", "Score", "Status", "Official game page", "Retrieved"],
                            rtrs, numeric=[0, 3], center=[4],
                            note="Scores are exactly as printed on the official page. Week 10 games that "
@@ -2220,7 +2237,7 @@ options can be compared <em>before</em> any of them is built.</section>""")
     body.append(card("Chosen and built — the eight directed improvements (2026-11-14)", f"""
 <p>The owner directed eight suggestions implemented now. Two parallel sessions each built all
 eight; both implementations are preserved in this repository and cross-checked (results agree
-137/137 across independent transcriptions; correlations agree 905/905 against the published
+{NF}/{NF} across independent transcriptions; correlations agree 905/905 against the published
 table). Each row links to the artefacts. {esc(dec.get('note', ''))}</p>
 """ + table("t-decided", ["#", "Suggestion", "Decision", "What was built", "Where", "Status", "Source"],
             dtrs2, center=[5],
@@ -2968,7 +2985,7 @@ filled. Verified end to end by <code>tools/verify_new_data.py</code> (wired into
                            note="Transcribed line by line from NFL.com score pages, Game Center box "
                                 "scores and official Game Book PDFs (static.www.nfl.com) where "
                                 "spoiler mode hides the score. Cross-checked against the "
-                                "fingerprinted mirror: 137/137 matched. Ties and overtime recorded "
+                                f"fingerprinted mirror: {NF}/{NF} matched. Ties and overtime recorded "
                                 "in status. Full feed with settlement columns: "
                                 "<code>data/lines/results_feed.json</code>.")))
 

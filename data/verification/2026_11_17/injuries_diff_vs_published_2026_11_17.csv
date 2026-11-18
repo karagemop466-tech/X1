@@ -1,35 +1,12 @@
+# NOTE (added 2026-11-18, session arena/91656714-x1, round 6): this delta is EMPTY BY
+# CONSTRUCTION, not by omission. It diffs the 2026-11-17 official injuries read against
+# data/nfl/injuries_week10.tsv, and that published table WAS re-published to the
+# 2026-11-17 read in round 5 (345 -> 347 rows, two-source agreement). Both sides are the
+# same read: 347 rows, identical key set, 0 cell differences over 347 x 4 fields.
+#
+# The historical 2026-11-14 -> 2026-11-17 delta has NOT been lost: it is published as a
+# dated delta in data/audit/verification_run.json (34 changed cells, 2 rows added), and
+# the 2026-11-14 state remains reachable at
+# data/nfl/snapshots/injuries_week10_2026-11-14.tsv. This file is the 11-17 -> current
+# delta, which is genuinely zero.
 change,club,player,field,published_2026_11_14,official_2026_11_17,source_url
-cell,BAL,Adam Randall,injury,,"Neck, Hamstring",https://www.nfl.com/injuries/league/2026/reg10
-cell,BAL,Adam Randall,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-cell,BAL,Jaylinn Hawkins,injury,,Knee,https://www.nfl.com/injuries/league/2026/reg10
-cell,BAL,Jaylinn Hawkins,game_status,,Out,https://www.nfl.com/injuries/league/2026/reg10
-cell,IND,Arden Key,injury,Hamstring,,https://www.nfl.com/injuries/league/2026/reg10
-cell,IND,Arden Key,game_status,Questionable,,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Branson Taylor,injury,,Ankle,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Branson Taylor,game_status,,Out,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Brenen Thompson,injury,,Hamstring,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Brenen Thompson,game_status,,Doubtful,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Bud Dupree,practice_status,Did Not Participate In Practice,Full Participation in Practice,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,David Njoku,injury,,Fibula,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,David Njoku,practice_status,Limited Participation in Practice,Full Participation in Practice,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,David Njoku,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Denzel Perryman,injury,,Pectoral,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Denzel Perryman,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Isas Waxter,injury,,Ankle,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Isas Waxter,game_status,,Out,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Justin Eboigbe,injury,,Ankle,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Justin Eboigbe,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Kayode Awosika,injury,,Fibula,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Kayode Awosika,practice_status,Limited Participation in Practice,Full Participation in Practice,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Kayode Awosika,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Keaton Mitchell,practice_status,Limited Participation in Practice,Full Participation in Practice,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Kendall Williamson,injury,,Calf,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Kendall Williamson,game_status,,Out,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Ladd McConkey,injury,,Back,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Ladd McConkey,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Rodney Shelley,practice_status,Limited Participation in Practice,Full Participation in Practice,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Trey Pipkins,injury,,"Not injury related - personal matter, Knee",https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Trey Pipkins,practice_status,Did Not Participate In Practice,Limited Participation in Practice,https://www.nfl.com/injuries/league/2026/reg10
-cell,LAC,Trey Pipkins,game_status,,Questionable,https://www.nfl.com/injuries/league/2026/reg10
-row_added,BAL,Calais Campbell,,,row present,https://www.nfl.com/injuries/league/2026/reg10
-row_added,BAL,Ronnie Stanley,,,row present,https://www.nfl.com/injuries/league/2026/reg10
