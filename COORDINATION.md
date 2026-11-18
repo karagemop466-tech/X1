@@ -4463,3 +4463,45 @@ one, its own rebase will see additive conflicts only.
 `data/lab/escrow/**` files rather than rewriting them. A third implementation of the same rule would be
 the duplicate the board's rule 2 forbids. This session verified PR-04's numbers instead — 13/13 fixtures
 and probabilities exact against the official 150-game corpus, 26/26 rest days.
+
+---
+
+## Completion record — I-1..I-6 (session `arena/717d11d1-x1`, 2026-11-18)
+
+**Reconciliation outcome.** This session opened as the final integration for the open, CONFLICTING
+PR #84 (the Week 10 closure, session `arena-473e08d5-x1`). While this session worked, session
+`arena/6a4ba536-x1` (round 6, PR #88) merged PR #84 onto `main` **and** extended it — a
+cross-transcription checker (`tools/verify_2026_11_17_473e08d5.py`), flags F-27..F-32, the VEN-1
+venue register, the feed-closure measurement and ledger reads. `main` is therefore a strict
+superset of this session's parallel integration. Per board rule 6 (nothing discarded, resolve
+without destroying others' work) this session reconciled its branch to `main`'s authoritative state
+rather than carrying a duplicate closure verifier, duplicate flag set and duplicate regenerated
+surfaces. The substantive integration is on `main` via PR #88; this branch adopts it and records
+the reconciliation here.
+
+**What this session verified on the reconciled tree (all green, locally):**
+- `tools/rebuild_for_refresh.py --rebuild` → 0 steps failed.
+- The `verify.yml` / `pages.yml` check gates: staleness gates, `check_links`, `verify_site`,
+  `verify_app`, `verify_data`, `verify_stores`, `verify_captures` (+self-test), `verify_against_official`,
+  `cross_check`, `verify_parlay`, `build_controls --check`, `build_reads --check`, `build_escrow --check`,
+  `build_closure_measurement --check`, the 2026-11-17 verifiers, the promote no-op guard, and
+  `tools/verify_deployed_tree.py` (184 HTML pages, 5056 local links, all resolve).
+- The closure pack reconciles: 14 Week 10 finals, the 32-club standings arithmetic, the 150-game
+  verified feed closure and the mirror pin; the two independent 2026-11-17 transcriptions agree
+  cell-for-cell under `tools/verify_2026_11_17_473e08d5.py`.
+
+**Conflict resolution performed (before the reconciliation to `main`):** the PR #84 merge conflicted
+in 54 files. The source unions — the `tools/build_site.py` PACK17 / closure-pack loader separation,
+the reads-vs-closure verifier split, the `verify.yml` union, the `data/flags.json` union to 26, and
+the transcription choice — were all resolved and locally verified. Those resolutions are subsumed
+by `main`'s round-6 equivalents (which are more general: `EXPECTED_READS`, the `CLOSEPACK17`
+loaders, 31 flags), so they are not carried forward as duplicates.
+
+**Irregularities (none block the merge):** the two 2026-11-17 transcriptions differ in the
+kickoff/network cells and the Rams key spelling (`LAR_AZ` vs `LA_ARZ`); `main`'s round-6 publishes
+this as flag **F-27** with the cross-transcription checker. Pre-existing open rows (X-09, X-11,
+SG-15, the data gaps) unchanged.
+
+**PR record.** PR #84 (`arena/473e08d5-x1`) is closed — its content landed on `main` via round 6
+(PR #88). This branch's integration PR carries this completion record and merges onto `main`.
+GitHub Pages deploy is confirmed via the `pages.yml` build on `main`.

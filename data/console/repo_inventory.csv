@@ -6,7 +6,7 @@ PATH,TOP,BYTES
 .github/workflows/verify.yml,.github,14113
 .gitignore,.gitignore,1143
 .nojekyll,.nojekyll,0
-COORDINATION.md,COORDINATION.md,449564
+COORDINATION.md,COORDINATION.md,452557
 README.md,README.md,18710
 _ci/commit.log,_ci,2964
 _ci/pipeline.log,_ci,8931
@@ -82,7 +82,7 @@ console/prices.html,console,158104
 console/props.html,console,5285
 console/questions.html,console,17059
 console/readiness.html,console,52288
-console/repo-review.html,console,13193
+console/repo-review.html,console,13427
 console/requirements.html,console,7443
 console/results.html,console,256063
 console/schedule.html,console,12529
@@ -193,7 +193,7 @@ data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9046
 data/console/readiness.csv,data,29844
 data/console/readiness.json,data,53977
-data/console/repo_inventory.csv,data,39275
+data/console/repo_inventory.csv,data,39541
 data/console/results_feed.csv,data,1374485
 data/console/schedule_week10.csv,data,1805
 data/console/standings_2026.csv,data,3691
@@ -271,13 +271,15 @@ data/leaderboard_signal_staking.json,data,24215
 data/leaderboard_signal_staking_official.json,data,9623
 data/leaderboard_split.json,data,13940
 data/leaderboard_split_907c.json,data,29481
-data/ledger/injuries/ledger.jsonl,data,5092
+data/ledger/injuries/ledger.jsonl,data,6844
 data/ledger/injuries/raw/20261115T182105Z_fb7259efb662.html.gz,data,66011
 data/ledger/injuries/raw/20261115T182902Z_6a1161db56f3.html.gz,data,66013
 data/ledger/injuries/raw/20261115T184017Z_5e5a8aef25db.html.gz,data,66043
 data/ledger/injuries/raw/20261115T184611Z_26f679f31017.html.gz,data,66042
 data/ledger/injuries/raw/20261117T235206Z_b9a73b53c1ae.html.gz,data,63300
 data/ledger/injuries/raw/20261118T031911Z_5bb7a6692584.html.gz,data,66400
+data/ledger/injuries/raw/20261118T032026Z_6d7a896faf50.html.gz,data,66185
+data/ledger/injuries/raw/20261118T032404Z_1a0834335f8b.html.gz,data,66468
 data/lines/backtest_bets.csv,data,139051
 data/lines/backtest_summary.csv,data,417
 data/lines/correlation_official.json,data,930576
