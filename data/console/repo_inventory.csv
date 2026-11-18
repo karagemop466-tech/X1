@@ -191,9 +191,9 @@ data/console/payload.json,data,36728
 data/console/price_snapshots.csv,data,4549426
 data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9046
-data/console/readiness.csv,data,29844
-data/console/readiness.json,data,53977
-data/console/repo_inventory.csv,data,38664
+data/console/readiness.csv,data,29865
+data/console/readiness.json,data,53998
+data/console/repo_inventory.csv,data,39091
 data/console/results_feed.csv,data,1374485
 data/console/schedule_week10.csv,data,1805
 data/console/standings_2026.csv,data,3691
@@ -246,7 +246,7 @@ data/lab/prices/price_coverage.json,data,12531
 data/lab/prices/price_snapshots.csv,data,1520997
 data/lab/prices/price_snapshots.json,data,17371731
 data/lab/questions.json,data,8958
-data/lab/reads/2026-11-17/feed-closure-measurement.json,data,15583
+data/lab/reads/2026-11-17/feed-closure-measurement.json,data,15643
 data/lab/reads/2026-11-17/injury_spotcheck_2026-11-17.tsv,data,7564
 data/lab/reads/2026-11-17/injury_state_2026-11-17.tsv,data,3103
 data/lab/reads/2026-11-17/manifest.json,data,1752
@@ -475,7 +475,7 @@ data/verification/2026_11_16/standings_diff_2026_11_16.csv,data,10076
 data/verification/2026_11_16/verification_summary_2026_11_16.json,data,3537
 data/verification/2026_11_16/w10_promotion_2026_11_16.json,data,5841
 data/verification/2026_11_17/feed_closure_2026_11_17.csv,data,2771
-data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv,data,3565
+data/verification/2026_11_17/injuries_diff_vs_published_2026_11_17.csv,data,847
 data/verification/2026_11_17/mirror_w10_results_2026_11_17.tsv,data,2738
 data/verification/2026_11_17/official_gamecentre_LAC_BAL_2026_11_17.txt,data,3611
 data/verification/2026_11_17/official_injuries_w10_2026_11_17.tsv,data,41214
@@ -486,7 +486,7 @@ data/verification/2026_11_17/official_w10_results_2026_11_17.tsv,data,5426
 data/verification/2026_11_17/results_promotions_2026_11_17.csv,data,1245
 data/verification/2026_11_17/standings_diff_vs_2026_11_16.csv,data,1099
 data/verification/2026_11_17/standings_diff_vs_published_2026_11_17.csv,data,8136
-data/verification/2026_11_17/verification_summary_2026_11_17.json,data,5418
+data/verification/2026_11_17/verification_summary_2026_11_17.json,data,6211
 data/verification/2026_11_17/verification_summary_2026_11_17_dc96bc33.json,data,6677
 data/verification/2026_11_17/w10_finals_diff_2026_11_17.csv,data,719
 data/verification/2026_11_17/w10_finals_diff_2026_11_17_dc96bc33.csv,data,719
@@ -639,7 +639,7 @@ pages/requirements.html,pages,43907
 pages/review-queue.html,pages,32900
 pages/review.html,pages,12310
 pages/schedule.html,pages,12739
-pages/shadow-baseline.html,pages,63385
+pages/shadow-baseline.html,pages,63649
 pages/sources.html,pages,17817
 pages/standings.html,pages,21853
 pages/suggestions-board.html,pages,12229
@@ -803,7 +803,7 @@ tools/lab/fetch_upstream.py,tools,4911
 tools/official/build_pages.py,tools,19843
 tools/official/build_pages_r5.py,tools,10559
 tools/official/depth_parse.py,tools,13911
-tools/official/readiness.py,tools,43454
+tools/official/readiness.py,tools,44367
 tools/official/verify_published.py,tools,8497
 tools/official/week10_reconcile.py,tools,14157
 tools/patch_site_543cdcb0.py,tools,31365
@@ -820,7 +820,8 @@ tools/verification/verify_schedule.py,tools,12432
 tools/verification/verify_standings.py,tools,13555
 tools/verify_2026_11_15.py,tools,9253
 tools/verify_2026_11_16.py,tools,21900
-tools/verify_2026_11_17.py,tools,28836
+tools/verify_2026_11_17.py,tools,36944
+tools/verify_2026_11_17_closure.py,tools,28836
 tools/verify_2026_11_17_dc96bc33.py,tools,23365
 tools/verify_2026_11_18.py,tools,24289
 tools/verify_against_official.py,tools,12241

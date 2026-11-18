@@ -31,6 +31,29 @@ import re
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+def _feed_count_note() -> str:
+    """R-20's 'measured now' cell, derived from the feed rather than typed.
+
+    It used to read "137 settled 2026 games today, not 136". Both numbers were right on
+    2026-11-14 and both were wrong a day later, when the league printed 14 Week 10 finals. A count
+    that moves must be computed at build time, or the register publishes a stale number as "today".
+    """
+    import json as _json
+    import os as _os
+    path = _os.path.join(ROOT, "data", "results_feed.json")
+    try:
+        feed = _json.load(open(path, encoding="utf-8"))
+    except OSError:
+        return "The feed's own count is not computable: data/results_feed.json is missing."
+    rows = feed.get("rows", [])
+    fin = sum(1 for r in rows if r.get("status") == "FINAL")
+    return (f"The feed's own count: {fin} settled 2026 games today "
+            f"({len(rows)} rows, {len(rows) - fin} not yet settled) — see the flag.")
+
+
+FEED_COUNT_NOTE = _feed_count_note()
 D = os.path.join(ROOT, "data")
 OUT = os.path.join(D, "console")
 
@@ -379,7 +402,7 @@ ROWS = [
   "Turn the 136-game log into the pre-registered backtest corpus",
   "Programme", "The corpus size must be stated from the feed, frozen, and hashed.",
   "Corpus frozen with a hash before the window opens", "results",
-  "The feed's own count: 137 settled 2026 games today, not 136 — see the flag.", STD),
+  FEED_COUNT_NOTE, STD),
  ("R-21", "Decide the price-data policy before any backtest is published",
   "Decide the price-data policy before any backtest is published",
   "Prices", "A written policy naming the benchmark book and the timestamp convention.",
