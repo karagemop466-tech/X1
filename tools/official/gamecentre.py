@@ -42,6 +42,7 @@ import csv
 import datetime as dt
 import gzip
 import hashlib
+from html import unescape
 import json
 import os
 import re
@@ -70,7 +71,7 @@ EXPECTED_FIXTURES = {10: 14, 11: 13}
 
 # Fields that must be non-blank for a row to count as a good read. A required field that goes
 # blank is a source or parser change, so `capture` fails rather than publishing blanks quietly.
-REQUIRED_FIELDS = ("slug", "game_url", "status_label")
+REQUIRED_FIELDS = ("slug", "game_url", "location", "stadium")
 
 TAG_RE = re.compile(r"<[^>]+>")
 INLINE_BREAK_RE = re.compile(r"(?i)</?(?:p|div|li|ul|ol|tr|h[1-6]|section|article|header|table|thead|tbody|dt|dd|figcaption)\b[^>]*>|<br\s*/?>")
@@ -92,8 +93,8 @@ COLUMNS = (
     "status_label", "period_label", "clock",
     "away_score", "home_score", "location", "stadium", "city", "state",
     "capacity", "attendance", "surface", "roof", "kickoff_et", "game_number",
-    "venue_method", "score_method", "body_sha256", "raw_gz_sha256", "raw_file",
-    "http_status", "flags",
+    "venue_method", "status_method", "score_method", "body_sha256", "raw_gz_sha256", "raw_file",
+    "http_status", "flags", "parser_version", "reparsed_at_utc",
 )
 
 
@@ -119,6 +120,11 @@ def norm_lines(html: str) -> list[str]:
     text = INLINE_BREAK_RE.sub("\n", text)
     text = TAG_RE.sub(" ", text)
     text = NBSLASH.sub(" ", text)
+    # Entities survive tag-stripping, and the league prints two stadium names with an ampersand:
+    # AT&T Stadium and M&T Bank Stadium come out of the raw page as `AT&amp;T`. Decoding is a
+    # literal read of what the page says, not a rename — without it the register publishes
+    # "AT&AMP;T STADIUM", which is what the 2026-11-18 first pass did and the hand register did not.
+    text = unescape(text)
     lines = []
     for raw in text.split("\n"):
         line = WS_RE.sub(" ", raw).strip()
@@ -197,31 +203,73 @@ def _dig(obj, *paths):
     return "", "none"
 
 
+SCOREBOX_WINDOW = 70      # lines searched backwards from the Game Info anchor
+
+# Bumped whenever the parse changes, so a register can be read as "page read on X, parsed by Y".
+PARSER_VERSION = "r6-2026-11-18-scorebox-bounded"
+PARSED_FIELDS = ("away_page_name", "home_page_name", "away_abbr", "home_abbr", "status_label",
+                 "period_label", "clock", "away_score", "home_score", "location", "stadium",
+                 "city", "state", "capacity", "attendance", "surface", "roof", "kickoff_et",
+                 "game_number", "venue_method", "status_method", "score_method")
+
+
+def scorebox_lines(lines: list[str]) -> list[str]:
+    """The bounded region the score box occupies: the lines before the Game Info anchor.
+
+    Kept deliberately small and anchored: everything below the score box on an official fixture page
+    is standings, previous-matchups and injury tables, and those pages use the same words
+    ("FINAL", a team abbreviation, a pair of numbers) for entirely different purposes.
+    """
+    anchor = None
+    for i, line in enumerate(lines):
+        if line.strip() == "Game Info":
+            anchor = i
+            break
+    if anchor is None:
+        for i, line in enumerate(lines):
+            if re.match(r"^(RECAP|INFO)\s", line.strip()):
+                anchor = i
+                break
+    if anchor is None:
+        return []
+    lo = max(0, anchor - SCOREBOX_WINDOW)
+    return lines[lo:anchor]
+
+
 def parse_game_centre(html: str, lines: list[str] | None = None) -> dict:
     """Extract the fixture facts the official Game Center prints. Missing means blank, never guessed."""
     lines = lines if lines is not None else norm_lines(html)
     text = " ".join(lines)
     out: dict = {}
 
-    m = re.search(r"\b(FINAL|LIVE|HALFTIME|SCHEDULED|POSTPONED|CANCELED|CANCELLED|IN PROGRESS)\b",
-                  text, re.IGNORECASE)
-    out["status_label"] = m.group(1).upper() if m else ""
-    per = re.search(r"\bQ(?:UARTER)?\s*([1-4])\b", text, re.IGNORECASE)
+    # The score box sits directly above the Game Info block, and the page prints the score inside
+    # elements whose extracted text is literally "Hidden Score" — so a status word and a score pair
+    # are read from that bounded region only, never from the page as a whole. Two reasons, both
+    # measured on the 2026-11-18 captures: the word "FINAL" also appears in the standings table
+    # further down every page, and a Week 11 fixture that has not been played prints no status at
+    # all. A page-wide search turned both of those into false "FINAL" rows.
+    box = scorebox_lines(lines)
+    box_text = " ".join(box)
+    st = re.search(r"\b(FINAL|LIVE|HALFTIME|SCHEDULED|POSTPONED|CANCELED|CANCELLED|IN PROGRESS)\b",
+                   box_text, re.IGNORECASE)
+    out["status_label"] = st.group(1).upper() if st else ""
+    out["status_method"] = "scorebox" if st else "none"
+    per = re.search(r"\bQ(?:UARTER)?\s*([1-4])\b", box_text, re.IGNORECASE)
     out["period_label"] = f"Q{per.group(1)}" if per else ""
+    out["clock"] = ""
     if out["period_label"]:
-        tail = text[text.lower().find(out["period_label"].lower()):]
+        tail = box_text[box_text.lower().find(out["period_label"].lower()):]
         clk = re.search(r"\b(\d{1,2}:\d{2})\b", tail)
         out["clock"] = clk.group(1) if clk else ""
-    else:
-        out["clock"] = ""
 
-    # Score, in the order the box prints it. Two forms are tried, most trustworthy first, and the
-    # form that matched is published so a reader can see how much to trust the row.
-    score = re.search(r"\b([A-Z]{2,3})\s+(\d{1,3})\s*[-\u2013]\s*(\d{1,3})\s+([A-Z]{2,3})\b", text)
+    # Scores: the text layer of this render does not print them (see the comment above), so the
+    # honest output is blank plus a flag rather than a number lifted from a neighbouring module.
+    score = re.search(r"\b([A-Z]{2,3})\s+(\d{1,3})\s*[-\u2013]\s*(\d{1,3})\s+([A-Z]{2,3})\b",
+                      box_text)
     if score:
         out["away_abbr"], out["away_score"] = score.group(1), score.group(2)
         out["home_abbr"], out["home_score"] = score.group(4), score.group(3)
-        out["score_method"] = "away-at-home-line"
+        out["score_method"] = "scorebox-line"
     else:
         out.update({"away_abbr": "", "home_abbr": "", "away_score": "", "home_score": "",
                     "score_method": "none"})
@@ -349,6 +397,28 @@ def write_raw(outdir: str, captured_at: str, slug: str, html: str) -> tuple[str,
     return name, sha256_bytes(data)
 
 
+def compute_flags(row: dict) -> list[str]:
+    """What this row does not know, stated in the row. A blank is a finding, not a silent gap."""
+    flags = []
+    if not row.get("status_label"):
+        flags.append("no-status-line-before-game-info")
+    if row.get("status_label") == "FINAL" and not (str(row.get("away_score", "")).isdigit()
+                                                   and str(row.get("home_score", "")).isdigit()):
+        flags.append("final-without-score")
+    if row.get("score_method") == "none":
+        flags.append("scores-not-in-text-layer")
+    if row.get("venue_method") == "none":
+        flags.append("venue-not-printed")
+    for f in REQUIRED_FIELDS:
+        if not str(row.get(f, "")).strip():
+            flags.append(f"missing-required:{f}")
+    if not row.get("surface"):
+        flags.append("surface-not-on-page")
+    if not row.get("roof"):
+        flags.append("roof-not-on-page")
+    return flags
+
+
 def cmd_capture(args) -> int:
     weeks = [int(w) for w in args.weeks.split(",") if w.strip()]
     outdir = args.out
@@ -399,8 +469,13 @@ def cmd_capture(args) -> int:
             flags = []
             if not row["status_label"]:
                 flags.append("status-not-printed")
-            if row["status_label"] == "FINAL" and not (row["away_score"].isdigit() and row["home_score"].isdigit()):
+            if row["status_label"] == "FINAL" and not (str(row["away_score"]).isdigit()
+                                                       and str(row["home_score"]).isdigit()):
                 flags.append("final-without-score")
+            if row["score_method"] == "none":
+                flags.append("scores-not-in-text-layer")
+            if not row["status_label"]:
+                flags.append("no-status-line-before-game-info")
             if row["venue_method"] == "none":
                 flags.append("venue-not-printed")
             for f in REQUIRED_FIELDS:
@@ -477,8 +552,8 @@ def cmd_verify(args) -> int:
             mismatches += 1
             continue
         again = parse_game_centre(html)
-        for field in ("status_label", "away_score", "home_score", "location", "stadium",
-                      "capacity", "venue_method", "score_method"):
+        for field in ("status_label", "status_method", "away_score", "home_score", "location",
+                      "stadium", "capacity", "venue_method", "score_method"):
             checks += 1
             if str(again.get(field, "")) != str(row.get(field, "")):
                 mismatches += 1
@@ -544,10 +619,61 @@ def load_latest_slate_capture(captures_dir: str) -> dict | None:
         u = (row.get("game_url") or "").strip()
         m = re.search(r"/games/([a-z0-9\-]+?)(?:-2026-reg-\d+)?$", u)
         if row.get("row_type") == "game" and m:
-            slugs.append(m.group(1) if m.group(1).endswith("reg-11") else
-                         m.group(1).split("-2026-reg-")[0] + "-2026-reg-11")
+            slugs.append(re.sub(r"-\d{4}-reg-\d+$", "", m.group(1)))
     return {"as_read_at": best.get("as_read_at", ""), "source_url": best.get("source_url", ""),
             "slugs": sorted(set(slugs)), "file": os.path.relpath(best["_path"], ROOT)}
+
+
+def cmd_reparse(args) -> int:
+    """Re-derive the published table from the bytes already retained — no new fetch.
+
+    This is how a parser fix is published honestly: the same hashed page, read on the same clock
+    time, parsed by a named version. `parsed_from_bytes` records which of the two the row came
+    from, so a reader can tell a fresh read from a re-derivation.
+    """
+    outdir = args.out
+    reg = os.path.join(outdir, "venue_register_latest.tsv")
+    if not os.path.exists(reg):
+        print("FAIL: nothing retained to re-parse")
+        return 2
+    with open(reg, encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh, delimiter="\t"))
+    stamp = now_iso()
+    changed = 0
+    for row in rows:
+        raw = os.path.join(outdir, row.get("raw_file", ""))
+        if not os.path.exists(raw):
+            row["flags"] = ";".join([row.get("flags", ""), "raw-not-retained"])
+            continue
+        blob = open(raw, "rb").read()
+        if row.get("raw_gz_sha256") and sha256_bytes(blob) != row["raw_gz_sha256"]:
+            row["flags"] = ";".join([row.get("flags", ""), "raw-hash-mismatch"])
+            continue
+        html = gzip.decompress(blob).decode("utf-8", "replace")
+        before = {k: str(row.get(k, "")) for k in PARSED_FIELDS}
+        parsed = parse_game_centre(html)
+        for k in PARSED_FIELDS:
+            row[k] = parsed.get(k, "")
+        row["flags"] = ";".join(compute_flags(row))
+        row["parser_version"] = PARSER_VERSION
+        row["reparsed_at_utc"] = stamp
+        if any(before[k] != str(row.get(k, "")) for k in PARSED_FIELDS):
+            changed += 1
+    with open(reg, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(COLUMNS), delimiter="\t", extrasaction="ignore",
+                           lineterminator="\n")
+        w.writeheader()
+        for r in rows:
+            w.writerow(r)
+    with open(os.path.join(outdir, "reparse_report.json"), "w", encoding="utf-8") as fh:
+        json.dump({"parser_version": PARSER_VERSION, "reparsed_at_utc": stamp,
+                   "rows": len(rows), "rows_changed": changed,
+                   "fields_missing": sum(1 for r in rows
+                                         for f in REQUIRED_FIELDS if not str(r.get(f, "")).strip())},
+                  fh, indent=1, sort_keys=True)
+    print(f"reparse: {len(rows)} rows from retained bytes, {changed} changed under "
+          f"{PARSER_VERSION}")
+    return 0
 
 
 def cmd_crosscheck(args) -> int:
@@ -573,11 +699,15 @@ def cmd_crosscheck(args) -> int:
 
     # ---- A. venue agreement with the hand register
     venue_rows = read_csv(args.venues)
+
+    def base(slugish: str) -> str:
+        return re.sub(r"-\d{4}-reg-\d+$", "", (slugish or "").strip())
+
     if rows and venue_rows:
-        mine = {r["slug"]: r for r in rows if r.get("venue_method") != "none"}
+        mine = {base(r["slug"]): r for r in rows if r.get("venue_method") != "none"}
         agree, differ, only_theirs, cells = 0, [], [], 0
         for v in venue_rows:
-            slug = (v.get("game_center_slug") or "").strip()
+            slug = base(v.get("game_center_slug") or "")
             if not slug:
                 continue
             theirs = (v.get("stadium_as_printed") or "").strip().upper()
@@ -606,8 +736,9 @@ def cmd_crosscheck(args) -> int:
     # ---- B. slate agreement with the collector's dated week-schedule capture
     slate = load_latest_slate_capture(args.captures)
     if rows and slate:
-        mine_w11 = sorted(r["slug"] for r in rows if r["week"] == "11")
-        theirs_w11 = sorted(slate["slugs"])
+        norm = lambda x: re.sub(r"-\d{4}-reg-\d+$", "", x)
+        mine_w11 = sorted({norm(r["slug"]) for r in rows if r["week"] == "11"})
+        theirs_w11 = sorted({norm(x) for x in slate["slugs"]})
         out["checks"].append({
             "name": "slate: captured fixture set vs the collector's dated week-11 slate read",
             "slate_read_at": slate["as_read_at"], "slate_source": slate["source_url"],
@@ -632,47 +763,75 @@ def cmd_crosscheck(args) -> int:
 # --------------------------------------------------------------------------- selftest
 
 def cmd_selftest(args) -> int:
-    """Offline test: a reader with no network can prove the parser reads what the page prints."""
-    label_block = (
-        "<html><body><h2>Game Info</h2><div><span aria-hidden='true'>Location</span>"
-        "<span class='sr-only'>LOCATION</span><p>HOUSTON, TX</p>"
-        "<span>Stadium</span><span>STADIUM</span><p>RELIANT STADIUM</p>"
-        "<span>Capacity</span><span>CAPACITY</span><p>72,220</p></div>"
-        "<div>IND 10 - 7 HOU · Q4 · 02:31</div><div>FINAL</div></body></html>")
-    live = (
-        "<html><body><h2>Game Info</h2><div><span>Location</span><span>LOCATION</span>"
-        "<p>CANTON, OH</p><span>Stadium</span><span>STADIUM</span><p>TOM BENN</p></div>"
-        "<div>CIN 3 - 3 BAL · Q2 · 07:44 · LIVE</div></body></html>")
-    no_block = "<html><body><h2>Overview</h2><div>nothing printed here</div></body></html>"
-    cases = [("label-visible", label_block,
-              {"location": "HOUSTON, TX", "stadium": "RELIANT STADIUM", "capacity": "72,220",
-               "venue_method": "label-line", "status_label": "FINAL",
-               "away_score": "10", "home_score": "7", "city": "HOUSTON", "state": "TX",
-               "surface": "", "roof": ""}),
-             ("live-no-final", live, {"location": "CANTON, OH", "stadium": "TOM BENN",
-                                      "capacity": "", "status_label": "LIVE",
-                                      "period_label": "Q2", "clock": "07:44",
-                                      "venue_method": "label-line",
-                                      "away_score": "3", "home_score": "3"}),
-             ("absent-block-is-blank", no_block,
-              {"location": "", "stadium": "", "capacity": "", "venue_method": "none",
-               "surface": "", "roof": ""})]
+    """Offline tests, written against the shape the real pages have.
+
+    The 2026-11-18 capture of 27 official fixture pages is what pinned these cases: the score box
+    sits above the `Game Info` anchor, the score itself is inside elements the text layer prints as
+    `Hidden Score`, and the word `FINAL` also appears in a standings table *below* the anchor. A
+    parser that searched the whole page therefore reported every unplayed Week 11 fixture as final.
+    These cases are the regression guard for exactly that.
+    """
+    final_page = (
+        "<html><body>"
+        "<div>WAS</div><div>Washington Commanders</div><div>Hidden Score</div>"
+        "<div>NYG</div><div>New York Giants</div><div>Hidden Score</div>"
+        "<div>Final</div><div>WEEK 10</div><div>RECAP STATS</div>"
+        "<div>Game Info</div><div>LOCATION</div><div>EAST RUTHERFORD, NJ</div>"
+        "<div>STADIUM</div><div>METLIFE STADIUM</div>"
+        # a standings table further down prints the word FINAL and pairs of numbers too
+        "<div>NFC EAST</div><div>NYG GIANTS</div><div>FINAL standings snapshot</div>"
+        "</body></html>")
+    live_page = (
+        "<html><body>"
+        "<div>CIN</div><div>Hidden Score</div><div>BAL</div><div>Hidden Score</div>"
+        "<div>Q2</div><div>07:44</div><div>LIVE</div>"
+        "<div>Game Info</div><div>LOCATION</div><div>CINCINNATI, OH</div>"
+        "<div>STADIUM</div><div>PAYCOR STADIUM</div>"
+        "<div>FINAL 2025 PLAYOFF RESULTS</div></body></html>")
+    scheduled_page = (
+        "<html><body><div>Indianapolis Colts at Houston Texans 2026 REG 11 - Game Center</div>"
+        "<div>COLTS TEXANS</div><div>Buy Tickets</div>"
+        "<div>Game Info</div><div>LOCATION</div><div>HOUSTON, TX</div>"
+        "<div>STADIUM</div><div>RELIANT STADIUM</div>"
+        "<div>PREVIOUS MATCHUP FINAL 34 21</div></body></html>")
+    no_info_page = "<html><body><h2>Overview</h2><div>nothing printed here</div></body></html>"
+
+    cases = [
+        ("final-page-venue-and-status", final_page,
+         {"location": "EAST RUTHERFORD, NJ", "stadium": "METLIFE STADIUM", "city": "EAST RUTHERFORD",
+          "state": "NJ", "venue_method": "label-line", "status_label": "FINAL",
+          "status_method": "scorebox", "away_score": "", "home_score": "",
+          "score_method": "none", "roof": "", "surface": ""}),
+        ("live-page-quarter-and-clock", live_page,
+         {"location": "CINCINNATI, OH", "stadium": "PAYCOR STADIUM", "status_label": "LIVE",
+          "period_label": "Q2", "clock": "07:44", "status_method": "scorebox",
+          "score_method": "none"}),
+        ("scheduled-page-stays-blank-on-status", scheduled_page,
+         {"location": "HOUSTON, TX", "stadium": "RELIANT STADIUM", "status_label": "",
+          "status_method": "none", "away_score": "", "home_score": "", "score_method": "none"}),
+        ("absent-block-is-blank", no_info_page,
+         {"location": "", "stadium": "", "capacity": "", "venue_method": "none",
+          "status_label": "", "roof": "", "surface": ""}),
+    ]
     failures = []
     for name, html, expect in cases:
         got = parse_game_centre(html)
         for k, want in expect.items():
             if str(got.get(k, "")) != str(want):
                 failures.append(f"{name}: {k} expected {want!r} got {got.get(k)!r}")
-    # a blank field must stay blank, not become a guess
-    for k, v in parse_game_centre(no_block).items():
-        if v not in ("", "FINAL", "LIVE", "SCHEDULED", "none", "Q1", "Q2", "Q3", "Q4"):
+    # the blank case must stay blank: no invented venue, no borrowed score
+    for k, v in parse_game_centre(no_info_page).items():
+        if str(v) not in ("", "none", "Q1", "Q2", "Q3", "Q4"):
             failures.append(f"absent-block-is-blank: parser invented {k}={v!r}")
     if failures:
         print("selftest FAIL:")
         for f in failures:
             print("  -", f)
         return 1
-    print(f"selftest PASS — {len(cases)} parser cases, {sum(len(c[2]) for c in cases)} asserted fields")
+    n_fields = sum(len(c[2]) for c in cases)
+    print(f"selftest PASS — {len(cases)} page-shape cases, {n_fields} asserted fields, "
+          f"including the two false-positive guards (status and score must not come from below "
+          f"the Game Info anchor)")
     return 0
 
 
@@ -690,6 +849,9 @@ def main(argv=None) -> int:
     v = sub.add_parser("verify")
     v.add_argument("--out", default=OUT_DEFAULT)
     v.set_defaults(func=cmd_verify)
+    rp = sub.add_parser("reparse")
+    rp.add_argument("--out", default=OUT_DEFAULT)
+    rp.set_defaults(func=cmd_reparse)
     x = sub.add_parser("cross-check")
     x.add_argument("--out", default=OUT_DEFAULT)
     x.add_argument("--venues", default=os.path.join(ROOT, "data", "nfl", "venues_2026_week10.csv"))

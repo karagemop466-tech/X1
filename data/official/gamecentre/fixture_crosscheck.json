@@ -1,69 +1,26 @@
 {
- "captured_at_utc": "2026-11-18T03:20:06Z",
+ "captured_at_utc": "2026-11-18T03:26:36Z",
  "checks": [
   {
-   "agree": 0,
-   "cells_compared": 0,
+   "agree": 14,
+   "cells_compared": 14,
    "diff": [],
    "differ": 0,
    "hand_register": "data/nfl/venues_2026_week10.csv",
    "hand_rows": 14,
    "name": "venue: runner capture vs hand transcription of the same official page",
-   "only_in_hand_register": [
-    "commanders-at-giants-2026-reg-10",
-    "patriots-at-lions-2026-reg-10",
-    "chiefs-at-falcons-2026-reg-10",
-    "texans-at-browns-2026-reg-10",
-    "vikings-at-packers-2026-reg-10",
-    "dolphins-at-colts-2026-reg-10",
-    "panthers-at-saints-2026-reg-10",
-    "bills-at-jets-2026-reg-10",
-    "jaguars-at-titans-2026-reg-10",
-    "rams-at-cardinals-2026-reg-10",
-    "seahawks-at-raiders-2026-reg-10",
-    "49ers-at-cowboys-2026-reg-10",
-    "steelers-at-bengals-2026-reg-10",
-    "chargers-at-ravens-2026-reg-10"
-   ],
+   "only_in_hand_register": [],
    "rule": "a difference is a finding for the Flagged page, never a value to copy over"
   },
   {
    "captured": 13,
    "name": "slate: captured fixture set vs the collector's dated week-11 slate read",
-   "only_captured": [
-    "bengals-at-commanders",
-    "buccaneers-at-lions",
-    "cardinals-at-chiefs",
-    "colts-at-texans",
-    "dolphins-at-bills",
-    "jaguars-at-giants",
-    "jets-at-chargers",
-    "raiders-at-broncos",
-    "ravens-at-panthers",
-    "saints-at-bears",
-    "steelers-at-eagles",
-    "titans-at-cowboys",
-    "vikings-at-49ers"
-   ],
-   "only_in_slate": [
-    "bengals-at-commanders-2026-reg-11",
-    "buccaneers-at-lions-2026-reg-11",
-    "cardinals-at-chiefs-2026-reg-11",
-    "colts-at-texans-2026-reg-11",
-    "dolphins-at-bills-2026-reg-11",
-    "jaguars-at-giants-2026-reg-11",
-    "jets-at-chargers-2026-reg-11",
-    "raiders-at-broncos-2026-reg-11",
-    "ravens-at-panthers-2026-reg-11",
-    "saints-at-bears-2026-reg-11",
-    "steelers-at-eagles-2026-reg-11",
-    "titans-at-cowboys-2026-reg-11",
-    "vikings-at-49ers-2026-reg-11"
-   ],
+   "only_captured": [],
+   "only_in_slate": [],
    "slate": 13,
    "slate_read_at": "2026-11-16T18:52:00Z",
    "slate_source": ""
   }
  ],
- "mismatches": 40
+ "mismatches": 0
 }
