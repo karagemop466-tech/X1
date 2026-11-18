@@ -1,11 +1,12 @@
 + git config user.name x1-bot
 + git config user.email x1-bot@users.noreply.github.com
 + git checkout -- _ci
-+ git fetch origin arena/9d8c298c-x1
++ git fetch origin main
 From https://github.com/karagemop466-tech/X1
- * branch            arena/9d8c298c-x1 -> FETCH_HEAD
-+ git reset --mixed origin/arena/9d8c298c-x1
+ * branch            main       -> FETCH_HEAD
++ git reset --mixed origin/main
 Unstaged changes after reset:
+M	app/depth.html
 M	app/flagged.html
 M	app/index.html
 M	app/repo-review.html
@@ -37,7 +38,8 @@ M	console/standings.html
 M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
-M	data/audit/readiness.json
+M	console/w10-finals.html
+M	data/audit/decision_questions.json
 M	data/captures/index.jsonl
 M	data/captures/status.json
 M	data/console/payload.json
@@ -60,30 +62,63 @@ M	data/preregistration/register.json
 M	data/readiness/decision_readiness.json
 M	index.html
 M	pages/capture-system.html
+M	pages/decisions-critical.html
 M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-17T23:25:53Z official captures'
-[arena/9d8c298c-x1 ac7267a] ci: retain 2026-11-17T23:25:53Z official captures
- 2 files changed, 19 insertions(+), 14 deletions(-)
-+ '[' 1 = 0 ']'
-+ echo 'MARKER: derived artefacts withheld (rebuild/verify gate = 1)'
-MARKER: derived artefacts withheld (rebuild/verify gate = 1)
-+ git push origin HEAD:arena/9d8c298c-x1
++ git commit -m 'ci: retain 2026-11-18T04:16:31Z official captures'
+[main 3f1b80e] ci: retain 2026-11-18T04:16:31Z official captures
+ 4 files changed, 30751 insertions(+), 21 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/1b/1b4777e27786059aebe99415a4188bcfaf3108ad71bc81a4506c81830a33f221.json
+ create mode 100644 data/captures/payloads/depth_charts/6c/6c6700a7a74dba3120cc71e912b0109c2a83c95fc78bb23e4480441eb39ee21f.json
++ '[' 0 = 0 ']'
++ git add -A data app lab pages index.html
++ git diff --cached --quiet
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ git commit -m 'data: refresh from official sources 2026-11-18T04:16:31Z'
+[main f397cf6] data: refresh from official sources 2026-11-18T04:16:31Z
+ 27 files changed, 26021 insertions(+), 25026 deletions(-)
++ git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   341dde6..ac7267a  HEAD -> arena/9d8c298c-x1
-+ '[' 1 = 0 ']'
+   775fa18..f397cf6  HEAD -> main
++ '[' 0 = 0 ']'
++ set -o pipefail
++ python3 tools/rebuild_for_refresh.py --post-commit
++ tee /tmp/x1ci/postcommit.log
+$ python3 tools/build_state_audit.py --check
+    ok: data/audit/readiness.json matches a fresh build (60 rows)
+$ python3 tools/build_decision_readiness.py --check
+    CHECK OK: 53 rows match the committed register byte for byte (ignoring generated_at)
+$ python3 tools/build_results_r3.py --check
+    verified_results: 150 rows, 0 mismatches, 32/32 standings reconciled
+    signal_grade: 84-49 (63.16%), z=3.035, p=0.0024, n=133
+    check: committed results feed matches a fresh build
+$ python3 tools/build_snapshots.py --check
+    price_snapshots: 84 records, statuses={'captured_post_final': 3, 'not_captured_before_kickoff': 42, 'recorded': 39}, market_line published=0 (all blank+flagged), mirror-labelled prices=84, residuals=8
+    check: committed snapshot store matches a fresh build
+$ python3 tools/build_origination.py --check
+    origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
+    check: committed origination table matches a fresh build
+$ python3 tools/build_round3.py --check
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 678, 'none': 209, '3': 9}, gaps(on report, no replacement named)=16
+    correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
+    check: committed round-3 registers match a fresh build
+$ python3 tools/build_preregistration.py --check
+    anchor check SKIPPED (and anchors carried forward, not flattened): shallow checkout (actions/checkout default fetch-depth: 1). 'which commit froze the rule' is answered in the full repository; the rul
+$ python3 tools/build_next_decisions.py --check
+    CHECK OK: 11 suggestions, 10 questions
+rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 + pushed=0
 + for attempt in 1 2 3 4 5
-+ git fetch origin arena/9d8c298c-x1
++ git fetch origin main
 From https://github.com/karagemop466-tech/X1
- * branch            arena/9d8c298c-x1 -> FETCH_HEAD
-+ git -c rebase.autoStash=true rebase origin/arena/9d8c298c-x1
-Created autostash: 98f8961
-Current branch arena/9d8c298c-x1 is up to date.
+ * branch            main       -> FETCH_HEAD
++ git -c rebase.autoStash=true rebase origin/main
+Created autostash: 57413d6
+Current branch main is up to date.
 Applied autostash.
-+ git push origin HEAD:arena/9d8c298c-x1
++ git push origin HEAD:main
 Everything up-to-date
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1
