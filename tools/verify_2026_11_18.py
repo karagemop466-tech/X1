@@ -33,6 +33,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import os
 import sys
 from collections import defaultdict
@@ -72,12 +73,20 @@ def _triple(rec: str) -> tuple[int, int, int]:
     return (parts[0], parts[1], parts[2])
 
 
-def read_tsv(path: str) -> list[dict]:
+def read_tsv(path: str, key: str = "") -> list[dict]:
+    """Parse a commented TSV. `key` names the column that must be present on a real row.
+
+    The packs in this repository do not share one key column: the finals packs key on `game_id`,
+    the standings packs on `abbr`, and reads.tsv on `week`. Filtering on a fixed pair silently
+    dropped every reads.tsv row and made a coverage check pass on zero rows. That is the same
+    class of defect as a blank cell being read as "fine", so the key is explicit.
+    """
     rows = []
+    keys = (key,) if key else ("game_id", STAND_TEAM)
     with open(path, encoding="utf-8") as f:
         rdr = csv.DictReader((ln for ln in f if not ln.startswith("#")), delimiter="\t")
         for r in rdr:
-            if r.get("game_id") or r.get(STAND_TEAM):
+            if any(r.get(k) for k in keys):
                 rows.append(r)
     return rows
 
@@ -343,6 +352,90 @@ def main() -> int:
     rep.check("B9.3 games_final + games_scheduled equals the row count",
               (ss.get("games_final", 0) + ss.get("games_scheduled", 0)) == len(feed["rows"]),
               f"{ss.get('games_final',0)}+{ss.get('games_scheduled',0)} vs {len(feed['rows'])}")
+
+    # ---- B10 -----------------------------------------------------------------
+    print("\nB10  the published shadow baseline's arithmetic reproduces from its own rows")
+    sh = os.path.join(ROOT, "data", "shadow", "backtest_summary.json")
+    ok = os.path.exists(sh)
+    rep.check("B10.1 shadow baseline summary exists", ok)
+    if ok:
+        sd = json.load(open(sh, encoding="utf-8"))
+        rows = sd["scored_rows"]
+        n = len(rows)
+        # Recomputed from p_home and outcome_home at full precision. The published per-row `brier`
+        # is rounded to 6 dp, so agreement is required to 2e-6, not to the last bit.
+        worst = max(abs(r["brier"] - (r["p_home"] - r["outcome_home"]) ** 2) for r in rows)
+        brier = sum((r["p_home"] - r["outcome_home"]) ** 2 for r in rows) / n
+        base_home = sum((0.55 - r["outcome_home"]) ** 2 for r in rows) / n
+        skill = 1 - brier / base_home
+        hits = sum(r["picked_won"] for r in rows)
+        exp = sum(r["picked_p"] for r in rows)
+        sdev = math.sqrt(sum(r["picked_p"] * (1 - r["picked_p"]) for r in rows))
+        rep.check(f"B10.2 all {n} per-row Brier scores reproduce from p_home/outcome_home",
+                  worst < 2e-6, f"max deviation {worst:.2e}")
+        rep.check("B10.3 mean Brier reproduces",
+                  abs(brier - sd["backtest"]["brier"]) < 2e-6,
+                  f"recomputed {brier:.6f} vs published {sd['backtest']['brier']}")
+        rep.check("B10.4 Brier skill vs the 0.55 home baseline reproduces",
+                  abs(skill - sd["backtest"]["brier_skill_vs_home_baseline"]) < 1e-5,
+                  f"recomputed {skill:.6f} vs published {sd['backtest']['brier_skill_vs_home_baseline']}")
+        rep.check("B10.5 hit rate reproduces",
+                  abs(hits / n - sd["backtest"]["hit_rate_model_side"]) < 1e-6,
+                  f"recomputed {hits/n:.6f} vs published {sd['backtest']['hit_rate_model_side']}")
+        rep.check("B10.6 the luck panel reproduces (realised, expected, sd)",
+                  abs(exp - sd["backtest"]["luck_panel"]["expected_wins_same_bets"]) < 0.01
+                  and abs(sdev - sd["backtest"]["luck_panel"]["sd_of_the_difference"]) < 0.01,
+                  f"expected {exp:.3f} vs {sd['backtest']['luck_panel']['expected_wins_same_bets']}, "
+                  f"sd {sdev:.3f} vs {sd['backtest']['luck_panel']['sd_of_the_difference']}")
+        # The point estimate must survive its own interval claim: a lower bound below zero is
+        # published as a finding, not hidden. This check only asserts the two agree in sign/limit.
+        lb = sd["backtest"]["bootstrap"]["skill_home_baseline_lower_bound"]
+        rep.check("B10.7 the cluster lower bound is published as it computes (may cross zero)",
+                  isinstance(lb, (int, float)),
+                  f"lower bound {lb}: " + ("CROSSES ZERO - skill is not established at 95%"
+                                           if lb <= 0 else "above zero"))
+
+    # ---- B11 -----------------------------------------------------------------
+    print("\nB11  point-in-time provenance: no score attributed to a read that predates it")
+    reads = os.path.join(ROOT, "data", "results", "_raw", "reads.tsv")
+    ok = os.path.exists(reads)
+    rep.check("B11.1 reads.tsv exists and carries a read_at column", ok)
+    if ok:
+        rr = read_tsv(reads, key="week")
+        rep.check("B11.2 every row carries a read_at date",
+                  all((r.get("read_at") or "").strip() for r in rr),
+                  f"{sum(1 for r in rr if not (r.get('read_at') or '').strip())} rows missing it")
+        dates = sorted({r["read_at"] for r in rr})
+        rep.check("B11.3 read dates are ISO dates, not free text",
+                  all(len(d) == 10 and d[4] == "-" and d[7] == "-" for d in dates), f"{dates}")
+        # The 13 promoted Week 10 rows must be dated to the read that actually saw them played.
+        w10_promoted = [r for r in rr if str(r["week"]).strip() == "10"
+                        and r["read_at"] != "2026-11-14"]
+        rep.check("B11.4 exactly the 13 promoted Week 10 rows carry a later read date",
+                  len(w10_promoted) == 13, f"{len(w10_promoted)} rows")
+        # And the shadow baseline must attribute each score to its own row's read, never a constant.
+        if os.path.exists(os.path.join(ROOT, "data", "shadow", "backtest_summary.json")):
+            sd = json.load(open(os.path.join(ROOT, "data", "shadow", "backtest_summary.json"),
+                                encoding="utf-8"))
+            # Week 10 has two legitimate read dates and they must line up with the games:
+            # the Thursday game was already Final on 2026-11-14, the other thirteen were not.
+            read_of = {}
+            for r in rr:
+                read_of[(str(r["week"]).strip(), r["game_slug"].strip())] = r["read_at"]
+            w10 = [r for r in sd["scored_rows"] if int(r["week"]) == 10]
+            mis_dated = []
+            for r in w10:
+                slug = r["game_id"].split("_", 1)[1]
+                expect = read_of.get(("10", slug))
+                if expect and r["read_on"] != expect:
+                    mis_dated.append((slug, f"attributed {r['read_on']}, read on {expect}"))
+            rep.check(f"B11.5 every Week 10 score is dated to the read that actually saw it played "
+                      f"({len(w10)} games: the Thursday game to 2026-11-14, the other thirteen to 2026-11-17)",
+                      not mis_dated, f"{len(mis_dated)} mis-dated: {mis_dated[:3]}")
+            thu = [r for r in w10 if r["read_on"] == "2026-11-14"]
+            rep.check("B11.6 exactly one Week 10 game (the Thursday opener) is dated 2026-11-14",
+                      len(thu) == 1 and len(w10) == 14,
+                      f"{len(thu)} dated 2026-11-14 of {len(w10)}")
 
     print()
     if rep.fails:

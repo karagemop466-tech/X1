@@ -73,6 +73,18 @@ def sha256_file(path: str) -> str:
         return hashlib.sha256(fh.read()).hexdigest()
 
 
+def _read_on(row: dict) -> str:
+    """The date this row's score was actually read from the official page.
+
+    `read_at` is carried by data/results/_raw/reads.tsv. A row without it is an error rather than a
+    default: a missing clock time must stop the build, not quietly become "today" or "the first day".
+    """
+    v = (row.get("read_at") or "").strip()
+    if not v:
+        raise SystemExit(f"ABORT: reads.tsv row has no read_at: {row!r}")
+    return v
+
+
 def rows_of(path: str) -> list[dict]:
     with open(os.path.join(ROOT, path), encoding="utf-8") as fh:
         lines = [ln for ln in fh.read().split("\n") if ln.strip() and not ln.lstrip().startswith("#")]
@@ -132,7 +144,12 @@ def load_games() -> tuple[list[dict], dict]:
             "away": away, "home": home, "away_score": int(r["away_score"]),
             "home_score": int(r["home_score"]), "status": "final",
             "source_url": GAMES_URL.format(slug),
-            "source_file": READS, "read_on": "2026-11-14",
+            "source_file": READS,
+            # read_on comes from the row, never from a constant. reads.tsv gained a `read_at`
+            # column when Week 10 was promoted from the 2026-11-17 official read; hardcoding
+            # 2026-11-14 here silently attributed those 13 scores to a read that predates them,
+            # which is precisely the lookahead the point-in-time ledger exists to prevent.
+            "read_on": _read_on(r),
         })
         seen_slugs.add(slug)
 
