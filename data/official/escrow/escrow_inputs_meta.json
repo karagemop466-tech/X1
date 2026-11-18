@@ -12,7 +12,7 @@
  "frozen_record_sha256": "9050d41f36de779ef26cf3633235537b19b6bde7f594de70c377a9cf86ec453f",
  "generated_by": "tools/official/escrow_provenance.py inputs",
  "input_file_hashes": {
-  "data/lab/reads/2026-11-17/week10_finals.tsv": "9f74ed9bccad29719a014bf3e004e0345867d181f011cd6e20e107a38ccab177",
+  "data/lab/reads/2026-11-17/week10_finals.tsv": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703",
   "data/lab/reads/2026-11-17/week11_slate_2026-11-17.tsv": "3ced9a56f45365b834b4eddfb7b6e3f1f80c0c45184c7057e0f08d6c869b7891",
   "data/shadow/forecasts_pre_kickoff.csv": "ff14280133d77190d033cce1855b3408be3f82c0499c4f15ecfd2a00267cd66a",
   "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv": "4545f9d49c3a1c4a4e3608d72050f0716271b6b58405f82ec36c1e8e41d63861",

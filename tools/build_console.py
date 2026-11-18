@@ -2137,7 +2137,7 @@ def build_pages_8(ctx, pages):
             f'<code>{esc(str(imeta.get("retained_by", "")))}</code>.</p>',
             '<h2>Reproduce</h2><pre><code>python3 tools/official/injury_delta.py build\n'
             'python3 tools/official/injury_delta.py check\n'
-            'python3 tools/official/injury_delta.py cadence</code></pre>'
+            'python3 tools/official/injury_delta.py status</code></pre>'
             '<p class="note">Ledger <code>data/official/injury_deltas/deltas.csv</code>, series '
             '<code>series.csv</code>, coverage <code>coverage.json</code>; retained reads under '
             '<code>data/ledger/injuries/raw/</code>.</p>',

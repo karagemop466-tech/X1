@@ -280,7 +280,7 @@ jobs:
         run: |
           python3 tools/official/injury_delta.py build
           python3 tools/official/injury_delta.py check
-          python3 tools/official/injury_delta.py cadence
+          python3 tools/official/injury_delta.py status
       - name: Escrow input ledger re-derivation and the luck panel (round 6 R6-3)
         run: |
           python3 tools/official/escrow_provenance.py inputs

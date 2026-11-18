@@ -37,7 +37,7 @@ published.
    two of them three minutes apart. Cadence verdict: *not met* against the brief's
    Wednesday/Thursday/Friday requirement. The tool is the deliverable; the empty result is the honest
    answer, and it turns into a scheduling decision (SG-17) rather than a modelling feature.
-   → `python3 tools/official/injury_delta.py build / check / cadence`
+   → `python3 tools/official/injury_delta.py build / check / status`
 
 4. **Every frozen probability now carries its inputs, and re-derives from them.** The Week 11 escrow
    (52 rows) is published with its full input vector — per-club games, point differential, shrunk
@@ -102,7 +102,7 @@ source; `OWNER DECISION` names the decision.
 | Q-01 | Signal | ANSWERED — no | model RMSE 14.198 vs market 13.14 (n=6,102); we cannot yet beat the close |
 | Q-02 | Prices | BLOCKED — corrected today | openings exist for 26 Week-10 fixtures, 0 paired closes; CLV still uncomputable |
 | Q-16 | Fixture context | ANSWERED — and it corrected our own table | venue register 27 rows, 243 cells re-derived, 14/14 vs the hand read |
-| Q-17 | Injury | ANSWERED — instrument works, cadence does not | 5 reads, 0 deltas, cadence not met |
+| Q-17 | Injury | ANSWERED — instrument works, cadence does not |8 reads, 0 deltas, cadence not met |
 | Q-18 | Governance | ANSWERED | 16/16 strategies falsifiable in numbers; 26/26 escrow probabilities re-derive |
 
 ## Suggestions board (19 rows, `console/suggestions.html`)
@@ -159,7 +159,7 @@ labelling.
 python3 tools/official/gamecentre.py selftest && python3 tools/official/gamecentre.py verify \
   && python3 tools/official/gamecentre.py cross-check
 python3 tools/official/fixture_context.py check
-python3 tools/official/injury_delta.py check && python3 tools/official/injury_delta.py cadence
+python3 tools/official/injury_delta.py check && python3 tools/official/injury_delta.py status
 python3 tools/official/escrow_provenance.py check
 python3 tools/official/mind_change.py check
 python3 tools/build_console.py && python3 tools/verify_console.py
