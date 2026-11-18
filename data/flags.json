@@ -3,7 +3,7 @@
   "title": "Flagged for Review",
   "retrieved_at": "2026-11-14",
   "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-  "counts": 30,
+  "counts": 31,
   "resolution_log": [
    {
     "id": "I-17",
@@ -42,7 +42,7 @@
     "reproduce": "python3 tools/check_links.py"
    }
   ],
-  "last_appended_by": "session arena/6a4ba536-x1, 2026-11-18 (F-27..F-31: five findings landed by PR #84 under colliding ids F-22..F-25, renumbered at integration; content unchanged, nothing dropped)"
+  "last_appended_by": "session arena/6a4ba536-x1, 2026-11-18 (F-32)"
  },
  "flags": [
   {
@@ -463,6 +463,20 @@
     "date": "2026-11-18",
     "why": "PR #84 (F-26) and main (F-26) both assigned this id to different findings. Main merged first and its numbering is kept; this row moves to F-31 with its content unchanged. No finding was dropped."
    }
+  },
+  {
+   "id": "F-32",
+   "severity": "medium",
+   "category": "Gate coverage",
+   "item": "A generated metadata file described a superseded window for a day while every gate stayed green, because no check compared a metadata file's counts to the rows of the file it describes.",
+   "verified": "data/results/results_feed_meta.json stated official_verified=1, scheduled=135, generated 2026-11-14, while data/results/verified_results.csv beside it carried 14 rows with official_verified=yes. Both were committed; both passed every gate. Found by this session on 2026-11-18, fixed at the generator (tools/build_results_feed_all_seasons.py, checks C1-C5), and the meta now reports official_verified=14, scheduled=122.",
+   "unknown": "How many other generated *.json metadata files in data/ make a claim about a sibling data file that no gate re-derives. This round added the cross-check for one file only; the class is unaudited.",
+   "settles_it": "A generic gate that, for every data/**/*_meta.json, re-derives its counts from the file it describes and fails on disagreement. Adding it is a suggestion (S-32), not a change this round made.",
+   "source_url": "https://github.com/karagemop466-tech/X1/blob/main/data/results/results_feed_meta.json",
+   "source_label": "the metadata file, and the CSV it describes",
+   "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "league_source_label": "the official Week 10 slate the feed closes",
+   "what_would_change_our_mind": "A metadata file whose counts are re-derived by a gate and still disagree would mean the disagreement is in the data, not in the metadata."
   }
  ]
 }

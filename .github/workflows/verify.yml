@@ -238,6 +238,14 @@ jobs:
       - name: The Week 10 closure still reconciles
         run: python3 tools/verify_2026_11_17.py --check
 
+      # Added by session arena/6a4ba536-x1 (round 6, additive only). Two sessions read the same
+      # 2026-11-17 official pages minutes apart and merged into the same paths; main's transcription
+      # keeps the canonical name and the other keeps its own bytes under a suffix. This gates that the
+      # two INDEPENDENT reads still agree cell for cell (384 standings cells + 98 Week 10 cells), so a
+      # divergence - one of the two being wrong - stops the build instead of shipping quietly.
+      - name: The two independent 2026-11-17 transcriptions still agree
+        run: python3 tools/verify_2026_11_17_473e08d5.py
+
       # The appends into the three transcription inputs are derived from that pack, not typed into it:
       # re-running the promotion tool must be a no-op. This is the guard against a hand edit to
       # reads.tsv or a week PSV that no longer matches the official read it came from.
