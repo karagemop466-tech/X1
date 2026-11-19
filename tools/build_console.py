@@ -93,7 +93,9 @@ NAV = [
                   ("luck.html", "Removing luck", ""),
                   ("props.html", "Props and parlays", "")]),
     ("Decisions", [("questions.html", "Decision register", "15"),
-                   ("suggestions.html", "Suggestion review board", "15")]),
+                   ("suggestions.html", "Suggestion review board", "15"),
+                   # Added by session arena-34b79d69-x1: canonical reconciled register.
+                   ("../suggestions/index.html", "Canonical decision center", "18")]),
     ("Governance", [("verification.html", "Verification ledger", ""),
                     # Added by session arena-869ee8fb-x1 (round 6, SG-15): the salvaged
                     # hash-chained capture ledger (tools/snapshot_ledger.py), tag = live line count.

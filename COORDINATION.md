@@ -4714,3 +4714,50 @@ integration for its own scope; every added line is tagged with this session ID.
 **Decision rule honoured:** nothing in this section is implemented from a suggestion. Every path
 is `proposed — awaiting owner decision`; the owner decision cell stays blank and is marked
 `UNVERIFIED / AWAITING OWNER` rather than filled in by this session.
+
+## Completion record — DC-1..DC-4 (session `arena-34b79d69-x1`, 2026-11-19)
+
+**Status: done.** New public section `/suggestions/` (5 pages), generated from
+`data/suggestions/decision_center.json` + `official_reads.json` by `tools/build_decision_center.py`.
+It reconciles **7** pre-existing boards (20 + 15 + 15 + 12 + 12 + 10 + 10 rows) into **18 questions**,
+**18 path choices** and **13 missing-information rows**, with a review log and 5 non-blocking flags.
+All 18 paths remain `proposed — awaiting owner decision`; Decision and Owner cells are blank.
+
+| Task | Status | What was delivered |
+|---|---|---|
+| DC-1 | done | `data/suggestions/decision_center.json`, `official_reads.json`, `tools/build_decision_center.py` (`--check`), `tools/verify_decision_center.py` (754 assertions) |
+| DC-2 | done | `suggestions/{index,questions,paths,missing,review}.html` — generated, not hand-edited |
+| DC-3 | done | `docs/audit/decision-center-verification.md`: 5 official pages re-read 2026-11-19, every observation quoted from the fetch, 5 irregularities flagged not corrected |
+| DC-4 | done | additive nav links in `index.html`/`pages/**` (via `tools/build_site.py`), `app/**` (via `tools/build_app.py`), `console/index.html` (via `tools/build_console.py`), plus CI + Pages steps tagged with this session ID |
+
+**Sources used (all fetched live 2026-11-19, no recalled values):**
+- https://www.nfl.com/standings/league/2026/REG
+- https://www.nfl.com/schedules/2026/by-week/week-10
+- https://www.nfl.com/injuries/league/2026/reg10
+- https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10
+- GitHub repository records for process facts only, always labelled "Repository record (not an NFL fact)".
+
+**Verification performed:** `tools/build_decision_center.py --check`, `tools/verify_decision_center.py`
+(754 assertions), `scripts/verify_site.py` (185 pages, every data-row Source cell official https),
+`tools/check_links.py` (47,588 assertions, no orphan), `tools/verify_console.py`, `tools/lab/build_site.py`,
+`tools/verify_deployed_tree.py` (193 pages, all five new pages reachable from the served root), and
+every `run:` step of `verify.yml` in CI order. The two `git diff --exit-code` steps showed only this
+session's nav-link changes before commit and pass after commit.
+
+**Irregularities published (non-blocking), with their source links, on `/suggestions/review.html`:**
+DC-F1 seven competing boards; DC-F2 `$year$ NFL $displayname$ Standings` title on the official
+standings page; DC-F3 injury page title Week 11 vs in-page heading Week 10; DC-F4 live Out vs blank
+for Kerby Joseph / Cade Mays / D.J. Reed in the dated table; DC-F5 Game Book CDN version path drift.
+
+**Rule 4 requests to the integration owner (not actioned here):**
+1. If the five new flags should also appear on the shared `flagged.html` pages, add them to
+   `data/flags.json` and regenerate `app/**`, `console/**` and `pages/**`. This session deliberately
+   kept them in `data/suggestions/decision_center.json` because those generated pages and that file
+   are other sessions' scopes. The flags are already published on the new Review log page.
+2. If the legacy boards should be retired after the owner ratifies one canonical board, that is a
+   decision for the owner; this session only reconciles them for reading and deletes nothing.
+3. `tools/build_console.py` regenerates `data/console/price_snapshots.csv` and
+   `data/console/repo_inventory.csv` with fresh timestamps on every run. This session reverted those
+   two data-file rewrites (other sessions' scope) and hand-synced only `console/index.html`; the
+   generator is patched so a future rebuild keeps the nav link.
