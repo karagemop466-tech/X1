@@ -36,6 +36,7 @@ Owner rules (verbatim intent):
 | `arena/a02e9816-x1` | `arena/a02e9816-x1` | **Round 6 (parallel): PR #84 stale-takeover claim at 03:05 UTC (superseded by PR #88's landing — recorded, not contested); 2026-11-18 official re-verification pack (A1–A5), CI step, final integration + PR + merge + Pages confirm** | 2026-11-18 03:05 UTC | active — see the session's records at the end of this file |
 
 | `arena-869ee8fb-x1` | `arena/869ee8fb-x1` | **Round 6 integration: PR #84 landed (751803f), SG-15 console pages (ledger/snapshots/announcement), reconcile re-baselined to the dated post-W10 standings read (160/160), X-11 re-evidenced, main's round-6 line (#88/#89/#90) unioned (876c291), final verification, PR → merge → Pages** | 2026-11-18 | active — see the session's records at the end of this file |
+| `arena-46887500-x1` | `arena/46887500-x1` | **Round 7: depth-slot group model + Packers jersey stripping + 32-team deficiency + W11 Offense-vs-Defense matchup matrix; chronological splits + opponent-aware ratings + dual walk-forward totals + personnel ablations; fix 2026-11-19 refresh staleness (`build_reads.py`/`build_closure_measurement.py`) + publish pages + PR/merge/Pages** | 2026-11-19 | active — see the section at the end of this file |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -4678,3 +4679,21 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+
+---
+
+# Session `arena/46887500-x1` — Round 7 Claim (2026-11-19)
+
+**Session ID:** `arena-46887500-x1` · **Branch:** `arena/46887500-x1` (from `main` @ `6f7df25`).
+**Started (UTC):** 2026-11-19 06:50.
+**Parallel sessions respected (not touched):** PR #95 (`arena/8d2bacbb-x1`, `docs/audit/public-release-boundary.md`),
+PR #96 (`arena/3ea00c0a-x1`, `tools/designation_calibration.py`, `docs/designation-calibration.md`),
+PR #97 (`arena/e0c7de42-x1`, `tools/build_console.py`, `console/evidence-review.html`, `data/decision_review/**`, `data/mind_change/**`).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R7-1 | Fix 2026-11-19 refresh staleness in `tools/lab/build_reads.py` (scope C8 spotcheck to Week 10 capture window while C9 retains full series incl. Week 11 rollover) and add `build_reads.py` + `build_closure_measurement.py` to `tools/rebuild_for_refresh.py`; regenerate `data/lab/reads/2026-11-17/*` | in progress | `arena-46887500-x1` | `tools/lab/build_reads.py`, `tools/rebuild_for_refresh.py`, `data/lab/reads/2026-11-17/{report.json,manifest.json,feed-closure-measurement.json}` |
+| R7-2 | Depth-slot group model (shared/empty slot fidelity), Packers jersey-number stripping (preserving `raw_player`), HOU `unavailable_image_only` flag, 32-club per-team deficiency summary, and Week 11 Offense-vs-Defense Matchup Deficiency Matrix (1st–4th string) from official 2026-11-19 reads | in progress | `arena-46887500-x1` | `tools/build_depth_matrix.py`, `tools/verify_depth_matrix.py`, `data/depth/{depth_groups_32,team_deficiency_summary,matchup_deficiency_matrix_w11}.{json,csv}` |
+| R7-3 | Chronological Train/Val/Holdout season split (2019–2026), walk-forward opponent-aware SRS/Ridge ratings, dual walk-forward model totals (side-by-side + gap + cluster CI), and personnel/availability ablations on chronological holdouts | in progress | `arena-46887500-x1` | `tools/build_modeling_lab.py`, `tools/verify_modeling_lab.py`, `data/models/{season_splits,opponent_aware_ratings,dual_totals_walkforward,personnel_ablations}.{json,csv}` |
+| R7-4 | Publish `pages/matchup-matrix.html` and `pages/modeling-lab.html` via `tools/build_site.py`, wire nav/index, add CI gates (`verify.yml`, `pages.yml`), run full verification suite, PR → merge → Pages confirm | in progress | `arena-46887500-x1` | `tools/build_site.py`, `index.html`, `pages/**`, `.github/workflows/{verify.yml,pages.yml}` |
+
