@@ -1021,9 +1021,17 @@ def build_pages_3(ctx, pages):
     hdr = [("Game", 0), ("Season", 1), ("Week", 1), ("Date", 0), ("Away", 0), ("Home", 0),
            ("Fair side", 1), ("Market side", 1), ("Diff", 1),
            ("Fair total", 1), ("Market total", 1), ("Diff", 1),
-           ("Fair ML home", 1), ("Market ML", 1), ("Diff (pp)", 1), ("Source", 0)]
+           ("Fair ML home", 1), ("Market ML", 1), ("Diff (pp)", 1),
+           ("Market value source", 0), ("Official scores page", 0), ("Fair-line model", 0)]
     def line_row(r):
         ds = r["diff_side"]; dt_ = r["diff_total"]; dm = r["diff_ml_pp"]
+        has_market_value = any(r.get(k) not in (None, "") for k in
+                               ("market_side", "market_total", "market_ml_home", "market_ml_away"))
+        if has_market_value and (r.get("source_tier") != "mirror"
+                                 or r.get("source_url") != sources.url("nfldata_games")):
+            raise ValueError(f"{r['game_id']}: market line provenance does not match the mirror registry")
+        market_source = (src_link("nfldata_games", "nflverse games.csv") if has_market_value
+                         else '<span class="src mut" title="no market value in the source row">no market value</span>')
         return [esc(r["game_id"]), str(r["season"]), str(r["week"]), esc(r["gameday"]),
                 esc(r["away"]), esc(r["home"]),
                 num(r["fair_side"], 2), num(r["market_side"], 2),
@@ -1033,7 +1041,9 @@ def build_pages_3(ctx, pages):
                 esc(r["fair_ml_home"]) or '<span class="mut">&mdash;</span>',
                 esc(r["market_ml_home"]) or '<span class="mut">&mdash;</span>',
                 num(dm, 2, sign=True) if dm != "" else '<span class="mut">&mdash;</span>',
-                src_link("nfl_scores", "nfl.com") + " " + src_link("computed_model", "model")]
+                market_source,
+                src_link("nfl_scores", "NFL.com Scores (results reference)"),
+                src_link("computed_model", "X1 walk-forward model")]
     trs = [line_row(r) for r in live] + [line_row(r) for r in oos]
     write_csv("originated_lines.csv", list(rows[0].keys()),
               [[r[k] for k in rows[0].keys()] for r in rows])
@@ -1045,6 +1055,14 @@ def build_pages_3(ctx, pages):
             '<code>origination_step_side</code>=1, <code>_total</code>=2, <code>_ml</code>=3. '
             'The three columns the brief asks for &mdash; fair, market, difference &mdash; are '
             'published side by side for each of the three markets.</div>'
+            '<div class="note"><b>Source attribution:</b> market spread, total and moneyline values are mirror-derived '
+            'from <a href="https://github.com/nflverse/nfldata/blob/master/data/games.csv" target="_blank" '
+            'rel="noopener">nflverse/nfldata games.csv</a>, not published by the NFL; rows retain that '
+            'mirror URL and <code>mirror</code> tier. The separately linked official NFL Scores page is '
+            'a score/results reference only and is not the source or verification of any market price. '
+            'The local mirror file hash does not match the registry\'s recorded hash, so the exact capture '
+            'remains unresolved; see <a href="../origination-desk/decisions-flags.html#flagged">OD-F10</a>. '
+            'Fair values are computed by the linked X1 walk-forward model. A missing market cell remains blank.</div>'
             f'<div class="note">Showing the {len(live)} fixtures originated for this week and the '
             '2025-2026 out-of-sample seasons. The complete table is in '
             '<code>data/console/originated_lines.csv</code>.</div>'

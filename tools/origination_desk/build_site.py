@@ -714,6 +714,10 @@ def _render_decisions_flags() -> str:
          "NFL.com Nov 17 roundup confirmed Browns vs. Raiders flexed to Week 12 SNF (8:20 PM ET NBC) and Jaguars vs. Titans flexed to 1:00 PM ET FOX on Nov 29.",
          "Flagged so upcoming Week 12 schedule & rest/broadcast context captures refresh kickoff slots.",
          "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-tuesday-nov-17"),
+        ("OD-F10", "Originated-line display omitted mirror attribution; mirror capture hash is inconsistent",
+         "src/console/originate.py assigns market columns from nfldata_games (tier=mirror) and stores its URL in each row. The earlier display linked NFL Scores and the model, but omitted the mirror. Separately, local data/raw/nflverse/games.csv hashes to 5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01, while src/console/sources.py records 60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8; the exact capture is unresolved.",
+         "Display mirror, official scores-reference, and fair-model links separately. Fail closed on row URL/tier mismatch; do not claim a verified mirror checksum or call mirror odds official until the hash discrepancy is reconciled.",
+         "https://github.com/nflverse/nfldata/blob/master/data/games.csv"),
     ]
 
     s_trs = [
@@ -728,12 +732,25 @@ def _render_decisions_flags() -> str:
         f'<td><a class="src-link" href="{_esc(surl)}">Official source</a></td></tr>'
         for qid, topic, hold, ans, disc, surl in qia_rows
     ]
-    f_trs = [
-        f"<tr><td><code>{_esc(fid)}</code></td><td><b>{_esc(title)}</b></td><td>{_esc(det)}</td>"
-        f"<td>{_esc(act)}</td>"
-        f'<td><a class="src-link" href="{_esc(surl)}">Official source</a></td></tr>'
-        for fid, title, det, act, surl in flags
-    ]
+    f_trs = []
+    for fid, title, det, act, surl in flags:
+        if fid == "OD-F10":
+            source_html = (
+                '<a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/src/console/originate.py">'
+                'Origin builder</a> · '
+                '<a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/src/console/sources.py">'
+                'Source registry</a> · '
+                '<a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/tools/build_console.py">'
+                'Console display</a> · '
+                f'<a class="src-link" href="{_esc(surl)}">nflverse market data (mirror)</a> · '
+                '<a class="src-link" href="https://www.nfl.com/scores/">NFL Scores (results reference only)</a>'
+            )
+        else:
+            source_html = f'<a class="src-link" href="{_esc(surl)}">Official source</a>'
+        f_trs.append(
+            f"<tr><td><code>{_esc(fid)}</code></td><td><b>{_esc(title)}</b></td><td>{_esc(det)}</td>"
+            f"<td>{_esc(act)}</td><td>{source_html}</td></tr>"
+        )
 
     return f"""
 <div class="note">
