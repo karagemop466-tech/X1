@@ -5634,3 +5634,16 @@ hunk and re-run the builder in a full-history clone.
 - **Pages deploy on `main`:** run 44615297789 (`push` on `7fb2c32`), `build` success, `deploy` success. The live landing page `https://karagemop466-tech.github.io/X1/` serves the new build (fetched 2026-11-19).
 - **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
 - **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
+
+---
+
+# Session `arena/627e2399-x1` — LA-4 landing-page fact/status refresh (2026-11-19)
+
+**Branch:** `arena/627e2399-x1`, fixed by Arena at base `a1cca5c7217881e5ea0e253f4066868d8318f826`.
+**Claim committed and pushed before implementation.** The session takes only the explicitly requested LA-4 landing-page correction below; it does not reopen the already completed repo review, data capture, Decision Center, or broad site integration tasks.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| LA-4 | Correct landing-page requirement counts and date labels so a dated Week 10 injury/schedule snapshot is not presented as current; reflect the two in-progress requirements alongside open items using the committed register | in progress | `arena/627e2399-x1` | `tools/build_site.py`, generated `index.html`, this claim/completion block only in `COORDINATION.md` |
+
+**Scope boundary:** use already committed, source-linked evidence and builders. Do not invent current NFL facts or replace the dated raw snapshots. Keep the Week 10 data as historical evidence; label it and link to the official NFL injury/schedule pages. Inspect and run the repository's existing generators and checks before deciding whether any code change is needed.
