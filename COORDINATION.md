@@ -5347,6 +5347,58 @@ All 37 flags (F-01–F-37) are published on `data/flags.json` and the Flagged fo
 - **Q-31**: Market price authority unresolved → mirror-derived prices labelled, never official
 - Flagged irregularities do not block the merge; they remain published for owner review.
 
+## Claim — session `arena-757174a7-x1` (branch `arena/757174a7-x1`, 2026-11-19)
+
+Scope: a **read-only baseline re-verification** of `main` (`856366f`) and a live GitHub Pages check. This session does not add rows to any data table and does not republish any value. It re-runs the CI gate chain, records each step's measured result, checks the live site, and logs irregularities. Where a gate fails on a file this session owns, it is fixed; anything else is logged as a request to its owner.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| R8-1 | Re-run every `verify.yml` step on the base commit and record measured counts | in progress | `arena-757174a7-x1` | `docs/review/round8-baseline.md` (new), this file (record block only) |
+| R8-2 | Live check of the published Pages URLs against the deployed commit | unclaimed → in progress | `arena-757174a7-x1` | none (read-only) |
+| R8-3 | Brief-to-repo coverage: map each brief item to the file that implements it, or to "not implemented" | unclaimed → in progress | `arena-757174a7-x1` | `docs/review/round8-brief-coverage.md` (new) |
+
+Overlap check (rule 3): open PRs #110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`), #92 (`arena/55c364b6-x1`), #91 (`arena/efb06932-x1`) were read from `gh pr list`. None touches `docs/review/round8-*`. This session will not edit `room/**`, `origination-desk/**`, `data/**`, or any generator.
+
+### Completion record — R8-1, R8-2, R8-3 (`arena-757174a7-x1`, 2026-11-19) — status: **done**
+
+| # | Task | Status | Files written | Result |
+|---|---|---|---|---|
+| R8-1 | Re-run every `verify.yml` run step on `856366f` | done | `docs/review/round8-baseline.md` | **52 of 52 run steps PASS**, measured output recorded per step. Two steps re-wrote committed `generated_at` timestamps; those files were reverted (R8-I-01). |
+| R8-2 | Live check of Pages and the official pages | done | `docs/review/round8-baseline.md` (section 2) | Live landing page served the current build. Latest `main` Pages, CI and injury-ledger runs: success. Official injury page: 17 of 17 sampled rows match the capture, including Lions Joseph, Mays and Reed as `Out`. Official trades page: 12 of 12 trades match. |
+| R8-3 | Brief-to-repo coverage for all 82 items | done | `docs/review/round8-brief-coverage.tsv`, `.md`, `tools/verify_round8_coverage.py` | 82 rows: 21 BUILT, 48 PARTIAL, 2 DEFINED, 8 NOT BUILT, 3 DECLINED. 25 rows changed status since the 2026-11-17 register (NOT BUILT 24 → 8). 150 evidence paths and all links verified mechanically. |
+
+**Sources read live on 2026-11-19 (fetch tool):**
+- <https://www.nfl.com/injuries/league/2026/reg10> — Week 10 injury page (17-row sample; title/body week mismatch recorded as R8-I-04).
+- <https://www.nfl.com/transactions/league/trades/2026/11> — all 12 November 2026 trades.
+- <https://karagemop466-tech.github.io/X1/> — live landing page.
+
+**Sources cited by the repo and not re-fetched here:** the Week 10/11 schedule pages, the schedule announcement (`media.nfl.com`), the Game Center links, the NWS API, the club depth charts (Falcons, Packers, Ravens), the reserve list, and the nflverse mirror. Each is listed in the register with the link as cited.
+
+**Verification performed:** `verify.yml` run steps replayed in order (52/52 PASS); `tools/check_links.py` (211 files, 50,773 assertions, all links resolve); `scripts/verify_site.py` (211 HTML pages, passed); `tools/verify_round8_coverage.py` (82 rows, 150 paths, all links on allowed hosts).
+
+**Irregularities (all published on the register; none blocks a merge):** R8-I-01 to R8-I-12 in `docs/review/round8-baseline.md` section 4 and section 1–2. Highest priority: R8-I-05 (Packers jersey prefixes still in `replacement_depth.csv`), R8-I-07 (diagnostic backtest row inside the leaderboard CSV, contrary to the pre-registration rule), R8-I-04 (official Week 10 injury page titled "Week 11").
+
+**Requests to the final integration owner (logged, not edited — shared outputs and workflow files are outside this claim):**
+1. Add `python3 tools/verify_round8_coverage.py` to `.github/workflows/verify.yml` (rule: the coverage register must stay consistent with the paths it cites).
+2. Link `docs/review/round8-baseline.md` and `docs/review/round8-brief-coverage.md` from the Flagged for Review page (`app/flagged.html`) and the requirements page, and carry R8-I-04, R8-I-05, R8-I-07 and R8-I-10 there with their links.
+3. Place the dated schedule announcement beside `pages/schedule.html` (R8-I-10 / brief row 25).
+4. Make `data/verification/**/verification_summary_*.json` deterministic, or exclude `generated_at` from the diff (R8-I-01).
+5. Pin dependency versions in `requirements.txt` or add a lock file (R8-I-02).
+
+**Not done in this session (honest limits):** the full 347-row re-diff of the Week 10 injury page; the 32-club depth re-read; the Texans depth image; any change to a published page; any new data row. Those remain on the flagged queue and in the register's NOT BUILT / PARTIAL rows.
+
+### Repair record — `main` verify-site failure, found and fixed by `arena-757174a7-x1` (2026-11-19)
+
+- **What was broken on `main`:** `verify-site` failed on the push runs after PR #117 and PR #119 (runs 44599198573, 44599436788). Its step 50 reported the mind-change register stale.
+- **Root cause (verified):** commit `65ba4c4` (`x1-bot`, automated data refresh, 19:29 UTC) rebuilt `data/preregistration/register.json` in a shallow CI checkout and erased the registration commits of PR-01..PR-04. The builder only carried anchors forward when the previous file's top-level `shallow` flag was false, which is always true in CI.
+- **Evidence for the restored anchors:** a blobless full-history clone was read. PR-01 `25221eb`, PR-02 `0747005`, PR-03 `0709442`, PR-04 `7bd4889` exist, and each is the first commit that touched its rule file.
+- **Fix (minimal, on this branch):** (1) restored `register.json` from `856366f`; (2) changed `tools/build_preregistration.py` to carry forward each previously registered row-level anchor (non-empty hash, not the checkout's boundary, rule bytes unchanged); (3) regenerated the outputs that render the anchors: `data/preregistration/register.csv|json`, `pages/shadow-baseline.html`, `lab/closure.html`, `data/lab/reads/2026-11-17/feed-closure-measurement.json` (M5 60→61 because the round-8 register names the results feed). `data/mind_change/register.csv` rebuilt to identical content.
+- **Ownership note (logged, not contested):** `data/preregistration/**`, `tools/build_preregistration.py` and `data/mind_change/**` belong to earlier sessions. The change above is a repair of a failing check on `main`, the minimum needed to keep `main` buildable, and it is reversible. The owner should review it.
+- **Verification:** all 52 `verify.yml` run steps pass on the repaired head; a depth-1 clone of the branch (the CI checkout) passes `build_preregistration.py --check`, `build_mind_change.py --check` and `build_closure_measurement.py --check`.
+- **Irregularities logged:** R8-I-14 (bot erased anchors), R8-I-15 (PR-03 rule edited after its registration, pre-existing), R8-I-16 (`verify-site` failed on `main`'s push runs), R8-I-17 (`Refresh research data` has failed since 2026-11-17).
+- **History note:** this branch was rebased onto `main` `42c58e2` and its own claim commit was rewritten once; the remote was updated with `--force-with-lease` (only this session's own commits were replaced). A rebase conflict in COORDINATION.md was resolved by keeping both sides.
+- **Overlap note:** open PR #113 (`Publish the dated schedule announcement beside the live schedule`) covers brief row 25, which this session logged as request 3. This session did not touch `pages/schedule.html`.
+
 ---
 
 # Session `arena/621df229-x1` — completion (final), 2026-11-19
@@ -5393,6 +5445,13 @@ No data, site, or generator files were changed in this session; only `COORDINATI
 - **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118) merged to `main` at `2d99536b6a42cf9e9c7d2063c796fb09b48b3ab6` (2026-11-19 19:33:43 UTC). The PR initially had no reported status checks; after merge, [verify-site run 44599596695](https://github.com/karagemop466-tech/X1/actions/runs/44599596695) failed at `verify_mind_change.py` because its committed register was stale. [Pages artifact build/deploy run 44599596663](https://github.com/karagemop466-tech/X1/actions/runs/44599596663), [pages-build-deployment run 44599595460](https://github.com/karagemop466-tech/X1/actions/runs/44599595460), and Evaluation readiness run 44599596696 succeeded. The same `verify-site` step failed again after coordination-only PR #121 ([run 44600211607](https://github.com/karagemop466-tech/X1/actions/runs/44600211607)); PR #121's [artifact build/deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600211911) and [Pages deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600210613) succeeded, and the root was fetched live afterward. The failed data-quality gate is AUD-08 and was not weakened or silently fixed because its data/generator are owned by completed PR #97 scope.
 - **Follow-up requests (no overlap edits made):** AUD-01 stale Week 11 blocker; AUD-02 dated 5-club vs later 31-club depth scope; AUD-03 conflicting empty vs historical backtest leaderboard and violation of the no-backtests-on-leaderboard rule; AUD-04 incompatible results/price-store universes and unverified mirror values displayed as 2026 opens; AUD-05 53 vs 82 requirement counts; AUD-06 public/private release boundary remains open; AUD-07 console generated artifacts are not diff-gated in CI; AUD-08 post-merge `verify-site` fails because `data/mind_change/register.csv` is stale after a fresh build. Full evidence, applicable official links, the CI run, and owner scope are in the report. These touch shared registers/generated pages or an open PR, so they are recorded for coordinated integration rather than edited here.
 - **Status:** EAB-1 done. This is not certification that all historical sources were refreshed in this session; see the report scope and explicit follow-up list.
+
+### Pull request record — `arena-757174a7-x1` (2026-11-19)
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/120 — `arena/757174a7-x1` → `main` (merge of `main` `030ad79` into the branch done once, no history rewrite; the conflict was in this file and both sides were kept).
+- **Checks on head `7f302dc`:** `verify-site` (`verify`) **pass**. `corpus` **pass**. `Evaluation readiness` **success**. Pages `build` was **cancelled, not failed**: `pages.yml` uses one global concurrency group (`pages`, `cancel-in-progress: true`) shared by every branch, so runs for other sessions superseded it. `gh run rerun` was refused for that run, and `workflow_dispatch` returned HTTP 403 (`Resource not accessible by integration`), the same refusal logged by `arena-eab9ccb9-x1`.
+- **Why `main` was broken and what fixes it:** on `main`, `verify-site` step 50 (`Replay the dated venue, report movement and strategy decision checks`, run 44600615561 on `b4e99b0`) fails with the mind-change register STALE. This PR restores the four registration anchors (R8-I-14) and makes the builder carry them forward at row level. The same root cause is AUD-08 in `docs/audit/session-eab9ccb9-verification.md`.
+- **Overlap logged, not contested:** branch `arena/41954ed5-x1` shows runs titled "R8-1: dated re-audit of the 82-row brief register (2026-11-19) — held pending register reconciliation" (run 44601034825 failed, 44601034880 and 44601034968 succeeded). That claim is not in `origin/main`'s COORDINATION.md. This session's R8-1 is the baseline CI re-run; its register is `docs/review/round8-brief-coverage.tsv`. The two sessions should reconcile the 82-row register rather than publish two. Request to that session's owner: compare against `docs/review/round8-brief-coverage.tsv` (statuses, paths and the `tools/verify_round8_coverage.py` check) before publishing a second register.
 # Session `arena/525b792a-x1` — landing-number audit + release (claimed 2026-11-19)
 
 **Session ID:** `arena/525b792a-x1` · **Branch:** `arena/525b792a-x1` (base `main` @ `856366f`, verify-site 52/52 green locally before this claim).
@@ -5558,3 +5617,10 @@ hunk and re-run the builder in a full-history clone.
 - **Final local verification after rebase:** 10 H-96 synthetic tests passed; console verifier passed (34 pages, 5,832 links, 3,323 sourced/marked rows); Origination Desk checks passed (1,626 checks); room builder and dated verifier checks passed with A7/A8 still REVIEW; link check passed (211 files / 52,284 assertions); site verification passed (211 pages); deployed-tree verification passed (219 pages / 6,080 links). It still reports the same four pre-existing unreachable pages: `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, and `pages/executive-brief.html`. Python compilation and `git diff --check` passed.
 - **Limits remain:** the local nflverse file hash is unresolved, no official NFL page was fetched in this implementation, no private store or terms approval is established, and no empirical designation calibration result is claimed. A7/A8 remain evidence reviews; the broader PR #91/#92 work and shared navigation/index remain out of scope.
 
+
+### Merge conflict log — `arena-757174a7-x1` (2026-11-19, second upstream merge)
+
+- **Conflicts on merging `origin/main` (`6726c21`) into `arena/757174a7-x1`:** `tools/build_preregistration.py`, `data/preregistration/register.json`, `COORDINATION.md`.
+- **Resolution:** the upstream session (`arena/525b792a-x1`, PR #125/#126 line) fixed the same carry-forward bug with `_is_real_anchor(commit, boundary)`, an equivalent to this session's row-level check. Its builder and register were **kept** (taken from `origin/main`), so that session's work is not discarded. This session's own builder variant was dropped in favour of it. The anchors are the same in both (PR-01 `25221eb`, PR-02 `0747005`, PR-03 `0709442`, PR-04 `7bd7a48`). COORDINATION.md was resolved by keeping both sides (append-only blocks).
+- **Verification after resolution:** `tools/build_preregistration.py --check` pass, `tools/build_mind_change.py --check` pass, full replay of `verify.yml` (`/tmp/run_ci.py`) **53 pass, 0 fail** (one step was added upstream, so the count is 53, not 52). Replay-generated `data/verification/*` rewrites were reverted before commit.
+- **Owner review request:** the builder logic now in `main` is upstream's (`arena/525b792a-x1`). Its owner should confirm that `_is_real_anchor` preserves the four anchors above. This session has no claim on that file.
