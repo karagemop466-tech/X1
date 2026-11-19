@@ -996,11 +996,57 @@ def page_stale(d):
     p = d["pack"]
     checks = []
     for k, v in p["checks"].items():
+        if "assertions" in v:
+            sample = f'{v["assertions"]} checks'
+            outcome = f'{v["passed"]}/{v["assertions"]} passed'
+        elif k == "A7":
+            sample = f'{v["rows"]} report rows; {v["clubs"]}/{v["scheduled_clubs"]} scheduled clubs'
+            missing_games = ", ".join(v["fixtures_without_report_rows"]) or "none"
+            missing_clubs = ", ".join(v["scheduled_clubs_missing_a_block"]) or "none"
+            status_counts = ", ".join(f'{name} {count}' for name, count in sorted(v["designated_by_status"].items())) or "none"
+            outcome = (
+                f'{v["fixtures_with_rows"]} fixtures / {v["designated_rows"]} designated ({status_counts}); '
+                f'{len(v["duplicate_player_rows"])} duplicate / '
+                f'{len(v["injury_game_keys_absent_from_slate"])} off-slate keys; '
+                f'no capture rows: {missing_games} ({missing_clubs}); '
+                f'{len(v["bye_clubs_without_rows"])} bye clubs excluded'
+            )
+        elif k == "A8":
+            sample = f'{v["rows"]} dated availability rows'
+            partial = ", ".join(v["partial_or_nonstarter_rows"]) or "none"
+            outcome = (
+                f'{len(v["explicit_starter_rows"])} explicit starter statements / '
+                f'{len(v["partial_or_nonstarter_rows"])} partial/non-starter ({partial}); '
+                f'{len(v["problems"])} field/source issues'
+            )
+        else:
+            sample = f'{v.get("rows", 0)} measured rows'
+            outcome = "details not measured"
         checks.append([
-            td(ok(f"<b>{k}</b>")), td(v.get("name", "")),
-            td(v.get("assertions", v.get("rows", ""))), td(v.get("passed", "")),
+            td(ok(f"<b>{k}</b>")), td(v.get("name", "")), td(sample), td(outcome),
             td(ok(f'<span class="pill {"p-met" if v["verdict"]=="pass" else "p-part"}">{v["verdict"]}</span>')),
         ])
+    verdict_counts = {name: sum(1 for v in p["checks"].values() if v["verdict"] == name)
+                      for name in ("pass", "REVIEW", "FAIL")}
+    a7 = p["checks"].get("A7", {})
+    a7_missing = ", ".join(a7.get("fixtures_without_report_rows", [])) or "none"
+    a7_missing_clubs = ", ".join(a7.get("scheduled_clubs_missing_a_block", [])) or "none"
+    a8 = p["checks"].get("A8", {})
+    a8_partial = ", ".join(a8.get("partial_or_nonstarter_rows", [])) or "none"
+    review_notes = []
+    if a7.get("verdict") == "REVIEW":
+        review_notes.append(
+            f"A7 is REVIEW: the capture has no injury rows for scheduled club(s) {esc(a7_missing_clubs)} "
+            f"({esc(a7_missing)}). This is a missing-evidence "
+            "flag, not a claim that the official report contains no such block; six bye clubs without rows "
+            "are excluded from scheduled-club coverage."
+        )
+    if a8.get("verdict") == "REVIEW":
+        review_notes.append(
+            f"A8 is REVIEW: {len(a8.get('explicit_starter_rows', []))} rows have explicit starter evidence; "
+            f"{esc(a8_partial)} is partial/non-starter evidence, not a starter claim. No status is inferred."
+        )
+    review_note = " ".join(review_notes) or "A7 and A8 have no coverage/evidence gaps."
     body = f"""
 <div class="eyebrow">How old is what you are reading</div>
 <h1>Staleness ledger</h1>
@@ -1021,8 +1067,10 @@ it is five days old, and it now understates 26 clubs.</p>
 <p class="muted">Published: {bl("data/nfl/standings.tsv")} · Official: {bl("data/verification/2026_11_19/official_standings_2026_11_19.tsv")}</p>
 
 <h2>The 2026-11-19 verification pack</h2>
-<p>Eight checks, all rebuilt from the transcription in this repository, all passing:</p>
-{table(["Check", "What it measures", "Assertions", "Passed", "Verdict"], checks)}
+<p>Eight checks rebuilt from the repository's dated transcriptions: {verdict_counts["pass"]} pass,
+{verdict_counts["REVIEW"]} review, {verdict_counts["FAIL"]} fail.</p>
+<p class="note">{review_note}</p>
+{table(["Check", "What it measures", "Checks / sample", "Measured result", "Verdict"], checks)}
 <p class="muted">Rebuild with <code>python3 tools/verify_2026_11_19.py</code>; the committed summary is
 {bl("data/verification/2026_11_19/verification_summary_2026_11_19.json")}.</p>
 """
