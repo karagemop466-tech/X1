@@ -4773,8 +4773,20 @@ All 32 flags (F-01 through F-32) are published on `data/flags.json` and `app/fla
 - **F-22/F-28**: Injury table stale vs live page (dated 347-row pack published beside it)
 - **F-31**: Venue requirement partially met (1 of 14 Week 10 venues from Game Center)
 
-## Release (T-R4 — in progress)
+## Release (T-R4 — done)
 
 GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/).
 
-PR and merge record to be appended after PR creation and merge.
+## Pull request record (session `arena/ee613dd1-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#101](https://github.com/karagemop466-tech/X1/pull/101) — `arena/ee613dd1-x1` → `main` |
+| Title | Final integration and release — session arena/ee613dd1-x1 |
+| Merge command | `gh pr merge 101 --merge` |
+| Merge result | **MERGED**, merge commit `c3c5f8f27ad4e22d74935d0df45bc141dca3632f` on `main` |
+| Post-merge verification | `tools/verify_data.py` 2,960 checks passed; `tools/check_links.py` 47,309 assertions passed; `scripts/verify_site.py` 180 pages passed |
+| GitHub Pages | status `built` at https://karagemop466-tech.github.io/X1/ |
+| Live site | https://karagemop466-tech.github.io/X1/ |
+
+All tasks T-R1 through T-R4 complete. Flagged irregularities (F-01–F-32, Q-02/Q-04/Q-07/Q-31 open) remain published with source links for owner review; none block the release.
