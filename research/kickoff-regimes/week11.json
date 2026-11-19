@@ -1,0 +1,421 @@
+{
+  "trial": "KR-T1",
+  "registered_commit": "5d1e59d66e1b450306934b94feff596dfcda9770",
+  "recorded_at_utc": "2026-11-19T06:49:50Z",
+  "input_sha256": {
+    "data/results/verified_results_2026_r3.csv": "d807853fff21a687f7bb270defc62a2fd3fe9d9b99a69b30c0b197ac92311161",
+    "data/lab/escrow/week11_forecasts_2026-11-17.csv": "9050d41f36de779ef26cf3633235537b19b6bde7f594de70c377a9cf86ec453f"
+  },
+  "input_commit": "6f7df25375139f9f253a33f46191cb3007d8349f",
+  "class_order": [
+    "under",
+    "push",
+    "over"
+  ],
+  "leaderboard_eligible": false,
+  "forecasts": [
+    {
+      "game_id": "2026_11_IND_HOU",
+      "away": "IND",
+      "home": "HOU",
+      "kickoff_utc": "2026-11-20T01:15:00Z",
+      "official_game": "https://www.nfl.com/games/colts-at-texans-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        82,
+        8,
+        78
+      ],
+      "candidate": [
+        0.48672566371681414,
+        0.05014749262536873,
+        0.4631268436578171
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_ARZ_KC",
+      "away": "AZ",
+      "home": "KC",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        86,
+        7,
+        76
+      ],
+      "candidate": [
+        0.5073313782991202,
+        0.04398826979472141,
+        0.44868035190615835
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_BAL_CAR",
+      "away": "BAL",
+      "home": "CAR",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/ravens-at-panthers-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        86,
+        8,
+        75
+      ],
+      "candidate": [
+        0.5073313782991202,
+        0.04985337243401759,
+        0.44281524926686217
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_MIA_BUF",
+      "away": "MIA",
+      "home": "BUF",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/dolphins-at-bills-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        85,
+        8,
+        75
+      ],
+      "candidate": [
+        0.504424778761062,
+        0.05014749262536873,
+        0.44542772861356933
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_NO_CHI",
+      "away": "NO",
+      "home": "CHI",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/saints-at-bears-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        86,
+        6,
+        76
+      ],
+      "candidate": [
+        0.5103244837758112,
+        0.038348082595870206,
+        0.45132743362831856
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_PIT_PHI",
+      "away": "PIT",
+      "home": "PHI",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/steelers-at-eagles-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        89,
+        7,
+        72
+      ],
+      "candidate": [
+        0.528023598820059,
+        0.04424778761061947,
+        0.4277286135693215
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_TB_DET",
+      "away": "TB",
+      "home": "DET",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        87,
+        6,
+        75
+      ],
+      "candidate": [
+        0.5162241887905604,
+        0.038348082595870206,
+        0.44542772861356933
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_TEN_DAL",
+      "away": "TEN",
+      "home": "DAL",
+      "kickoff_utc": "2026-11-22T18:00:00Z",
+      "official_game": "https://www.nfl.com/games/titans-at-cowboys-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        84,
+        7,
+        78
+      ],
+      "candidate": [
+        0.49560117302052786,
+        0.04398826979472141,
+        0.4604105571847507
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_NYJ_LAC",
+      "away": "NYJ",
+      "home": "LAC",
+      "kickoff_utc": "2026-11-22T21:05:00Z",
+      "official_game": "https://www.nfl.com/games/jets-at-chargers-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        90,
+        6,
+        73
+      ],
+      "candidate": [
+        0.530791788856305,
+        0.03812316715542522,
+        0.4310850439882698
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_JAX_NYG",
+      "away": "JAX",
+      "home": "NYG",
+      "kickoff_utc": "2026-11-22T21:25:00Z",
+      "official_game": "https://www.nfl.com/games/jaguars-at-giants-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        87,
+        6,
+        75
+      ],
+      "candidate": [
+        0.5162241887905604,
+        0.038348082595870206,
+        0.44542772861356933
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_LV_DEN",
+      "away": "LV",
+      "home": "DEN",
+      "kickoff_utc": "2026-11-22T21:25:00Z",
+      "official_game": "https://www.nfl.com/games/raiders-at-broncos-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        85,
+        7,
+        77
+      ],
+      "candidate": [
+        0.501466275659824,
+        0.04398826979472141,
+        0.45454545454545453
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_MIN_SF",
+      "away": "MIN",
+      "home": "SF",
+      "kickoff_utc": "2026-11-23T01:20:00Z",
+      "official_game": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        88,
+        6,
+        74
+      ],
+      "candidate": [
+        0.5221238938053098,
+        0.038348082595870206,
+        0.43952802359882004
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    },
+    {
+      "game_id": "2026_11_CIN_WAS",
+      "away": "CIN",
+      "home": "WAS",
+      "kickoff_utc": "2026-11-24T01:15:00Z",
+      "official_game": "https://www.nfl.com/games/bengals-at-commanders-2026-reg-11",
+      "threshold": 46.0,
+      "market_line": null,
+      "residual": null,
+      "n": 150,
+      "counts": [
+        77,
+        6,
+        67
+      ],
+      "weighted_counts": [
+        84,
+        7,
+        77
+      ],
+      "candidate": [
+        0.49852507374631266,
+        0.04424778761061947,
+        0.45722713864306785
+      ],
+      "benchmark": [
+        0.5115511551155115,
+        0.0429042904290429,
+        0.44554455445544555
+      ]
+    }
+  ]
+}
