@@ -121,15 +121,6 @@ jobs:
       - name: Fail if the committed dashboard is stale
         run: git diff --exit-code -- app
 
-      # Added by session arena-2d1ba329-x1: the Week 11 injury reads are regenerated from the
-      # stored ledger bytes (hash-checked, shape-checked). --check fails if the committed outputs are stale,
-      # and the unit tests pin the parser to one stored capture.
-      - name: "Week 11 injury reads - hash-bound parse is current"
-        run: python3 tools/week11/build_week11.py --check
-
-      - name: "Week 11 injury reads - parser regression tests"
-        run: python3 -m unittest tests.test_week11
-
       # Added by session arena/600e6009-x1 (round 3, additive only): rebuild the
       # results feed, the price-snapshot store, the origination-order table and the
       # signal/staking + depth + correlation registers. Each builder aborts if an

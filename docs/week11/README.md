@@ -58,6 +58,19 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
   and a carousel identifier. The injury tables are identical. The ledger's `revised` flag therefore
   overstates change for these two reads.
 
+## Publication status on this branch (scope change, logged on the board)
+
+PR #132 was first opened with the Week 11 page, nav lines, the Flagged for Review items, the readiness
+register and workflow edits in the same change. The board reserves those shared outputs (`app/` nav and
+index, `tools/build_app.py`, `data/audit/readiness.json`, Flagged items, and workflow steps) for the final
+integration session, so they are **reverted to `main` on this branch** and deferred.
+
+What this PR does publish: the ledger lines and raw captures, `data/week11/*`, this document, `tests/test_week11.py`,
+`tools/week11/*` and the board record. What is **not** published: `app/week11.html`, the Week 11 nav link, and the
+W11-1..W11-5 items on the Flagged for Review page. `tools/week11/render_week11.py` exists but is not called by
+anything until the integration session wires it. The integration session must also add the Week 11 regeneration step to
+`injury-ledger.yml` and the Week 11 checks to `verify.yml`.
+
 ## Charlie Heck: a designation removed from the official report
 
 - **13:16 UTC read (stored):** injury *Not injury related - personal matter*, game status *Questionable*.

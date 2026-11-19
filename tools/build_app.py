@@ -41,8 +41,6 @@ PAGES: List[Tuple[str, str, str, str, str]] = [
     # Added by session arena-1d3600f8-x1 (T16)
     ("results.html", "Results & ROI", "Official data", "Verified results feed and graded ROI", "NFL.com results"),
     ("injuries.html", "Injury report", "Official data", "Official Week 10 injury report", "NFL.com injuries"),
-    # Added by session arena-2d1ba329-x1: Week 11 reads and field-level deltas (tools/week11/)
-    ("week11.html", "Week 11 reads & deltas", "Official data", "Week 11 official injury report: reads and deltas", "NFL.com injuries · delta only"),
     ("depth.html", "Depth charts", "Official data", "Club depth charts, 1st to 4th string", "Club sites"),
     ("deficiency.html", "Deficiency watch", "Official data", "Who is out and which backup replaces them", "Club chart x NFL injury report"),
     # Added by session arena/3fa49c1a-x1 (N6 page, merged in from the parallel N1-N10 round)
@@ -190,7 +188,7 @@ def nav(active: str) -> str:
     return "\n".join(out)
 
 
-def page(fn: str, title: str, kicker: str, body: str, lede: str = "", snap: str = "") -> str:
+def page(fn: str, title: str, kicker: str, body: str, lede: str = "") -> str:
     _f, _l, _g, navtitle, _k = next(p for p in PAGES if p[0] == fn)
     return f"""<!doctype html>
 <html lang="en">
@@ -214,7 +212,7 @@ def page(fn: str, title: str, kicker: str, body: str, lede: str = "", snap: str 
       <h1>{esc(title)}</h1>
       {f'<p class="lede">{lede}</p>' if lede else ''}
     </div>
-    <span class="snap">{esc(snap) if snap else f"SNAPSHOT {SNAPSHOT} · WEEK {WEEK}"}</span>
+    <span class="snap">SNAPSHOT {SNAPSHOT} · WEEK {WEEK}</span>
   </div>
 {body}
   <footer class="pagefoot">
@@ -921,16 +919,6 @@ status and game status. {vl.get('mismatches', 0)} mismatches out of {vl.get('che
                            "with a practice status means the player is listed for rest or observation, not injury."))
     return page("injuries.html", "Official Week 10 injury report", "Official data", "\n".join(body),
                 lede="Every row the league published for Week 10 of the 2026 season, transcribed unaltered.")
-
-
-def p_week11() -> str:
-    # Added by session arena-2d1ba329-x1. Layout comes from this module; the data and the
-    # rendering rules live in tools/week11/ so they can be checked on their own.
-    _dir = os.path.join(ROOT, "tools", "week11")
-    if _dir not in __import__("sys").path:
-        __import__("sys").path.insert(0, _dir)
-    import render_week11  # noqa: E402
-    return render_week11.render(page, table, card, esc, link)
 
 
 def p_depth() -> str:
@@ -2617,34 +2605,6 @@ site; they block <em>trusting</em> the specific row.</section>""")
          "data/prices/price_history.csv. No closing-line-value number is computed from the "
          "store until the normalisation step is a recorded decision (Q-02).",
          ["https://github.com/nflverse/nfldata"]),
-        # Added by session arena-2d1ba329-x1 (Week 11 reads, see app/week11.html and docs/week11/README.md)
-        ("W11-1", "bad", "Injury-ledger freshness failed on main: last read 8.7 h old, limit 6 h",
-         "tools/snapshot_ledger.py status exits 1. The scheduled injury-ledger runs on main appear about 8 h and "
-         "about 20 h apart, against a 4-hourly cron. A manual dispatch from the session returned HTTP 403.",
-         "Owner to check the Actions schedule for injury-ledger and whether scheduled runs are being dropped. "
-         "No change made here.",
-         ["https://github.com/karagemop466-tech/X1/actions/workflows/injury-ledger.yml", "https://www.nfl.com/injuries/"]),
-        ("W11-2", "warn", "Charlie Heck (IND, T): designation removed from the official report between reads",
-         "The 13:16 UTC read printed 'Not injury related - personal matter' and 'Questionable'. The scheduled 19:25 UTC "
-         "read on main, the live page at about 21:59 UTC and the 22:10 UTC probe read all show blank injury and game-status "
-         "cells. The parser is not at fault; the printed designation was removed. The report prints no game status for him, which is not a clearance.",
-         "Shown as a field-level delta on app/week11.html. Read as a removal of a printed designation, not as available.",
-         ["https://www.nfl.com/injuries/", "https://github.com/karagemop466-tech/X1/blob/main/data/ledger/injuries/ledger.jsonl"]),
-        ("W11-3", "warn", "Two Week 11 clubs have no injury table in the latest read (CIN, WAS)",
-         "The matchup strip for Cincinnati at Washington (Monday, Nov 23) is shown with no club table. This is a coverage gap, "
-         "not a clean bill of health.",
-         "Shown as a gap on app/week11.html. Re-check against later reads.",
-         ["https://www.nfl.com/injuries/"]),
-        ("W11-4", "warn", "The ledger's 'revised' flag fires on page-chrome changes",
-         "The 01:53 and 13:16 UTC reads differ only in analytics script tags and a carousel identifier; their injury "
-         "tables are identical.",
-         "Use the field-level delta on app/week11.html. Changing the ledger's change rule belongs to its owner.",
-         ["https://www.nfl.com/injuries/"]),
-        ("W11-5", "grey", "Early Week 11 reads show blank designations that later read Out or Questionable",
-         "In the 17:18 UTC read (Thursday game only) several IND and HOU cells were blank; by 01:53 UTC they carried "
-         "designations. Blank therefore means not yet published.",
-         "Deltas published as field-level changes, not as a level. See app/week11.html.",
-         ["https://www.nfl.com/injuries/"]),
     ]
     trs = [[esc(i[0]), badge(i[1].upper(), i[1]), f'<b>{esc(i[2])}</b>', esc(i[3]), esc(i[4]),
             src_cell(i[5])] for i in items]
@@ -3500,8 +3460,6 @@ BUILDERS = {
     "standings.html": p_standings,
     "schedule.html": p_schedule,
     "injuries.html": p_injuries,
-    # Added by session arena-2d1ba329-x1
-    "week11.html": p_week11,
     "depth.html": p_depth,
     "deficiency.html": p_deficiency,
     "replacement-depth.html": p_replacement_depth,

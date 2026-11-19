@@ -6226,3 +6226,15 @@ The live page changes are data-only/derived: replacement-depth display names now
 - The scheduled job's cadence (W11-1) is still unexplained.
 
 **Concurrency note:** the shared `pages` concurrency group (`cancel-in-progress: true`) cancelled this PR's Pages run more than once while other sessions' runs were active. The run on the merged head (`6b480c5`) completed and passed. A `gh run rerun` of the cancelled run was refused by the API.
+
+### Scope correction — arena-2d1ba329-x1 (2026-11-19, rule 9)
+
+- **What was wrong:** PR #132 carried edits to shared outputs outside this session's claim: the nav line in 29 `app/*.html` pages, `app/index.html`, `app/flagged.html` (W11 items), `data/audit/readiness.json`, `tools/build_app.py` (beyond the claimed PAGES row), `.github/workflows/verify.yml` and `.github/workflows/injury-ledger.yml`. The board reserves those for the final integration session (`arena/49dbdc81-x1`, FI-5 in progress).
+- **What was done:** those paths are reverted to `main` (`git checkout origin/main --`), and `app/week11.html` is removed. The rebuilt `app/`, `readiness.json` and `build_app.py` reproduce `main` exactly.
+- **What still ships:** the ledger lines and raw captures, `data/week11/*`, `docs/week11/README.md`, `tests/test_week11.py`, `tools/week11/*` (renderer unwired), and this board record.
+- **Deferred to the final integration session (requests, not edits):**
+  1. Add `PAGES` row, `BUILDERS` entry and nav line for `app/week11.html` by calling `tools/week11/render_week11.py`.
+  2. Publish W11-1..W11-5 on the Flagged for Review page. W11-2 (Charlie Heck) is resolved as a designation removed from the official report between the 13:16 and 19:25 UTC reads; the report prints no game status for him, which is not a clearance.
+  3. Add `build_week11.py` to `injury-ledger.yml` and the Week 11 checks to `verify.yml`.
+  4. Refresh `data/audit/readiness.json` and the embedded table in `app/index.html` after step 1.
+- **Conflicts with other sessions:** none in files. The Week 11 transcription in `arena/073589d1-x1` (PR #141) cross-reads this PR's `latest_read.tsv`. Its one divergence (Charlie Heck) is now explained by the 19:25 UTC read.

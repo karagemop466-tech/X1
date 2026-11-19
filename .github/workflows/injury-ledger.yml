@@ -52,11 +52,6 @@ jobs:
       - name: Verify the whole ledger (chain and raw bytes)
         run: python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries
 
-      # Added by session arena-2d1ba329-x1: re-derive the Week 11 reads from the stored bytes
-      # (hash-checked; aborts on a failed hash or a page-structure drift) before the page is rebuilt.
-      - name: "Re-derive the Week 11 reads from the stored bytes"
-        run: python3 tools/week11/build_week11.py
-
       - name: Regenerate the ledger page
         run: python3 tools/build_app.py
 
@@ -67,7 +62,7 @@ jobs:
           BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
           git config user.name "x1-bot"
           git config user.email "x1-bot@users.noreply.github.com"
-          git add data/ledger/injuries app data/week11
+          git add data/ledger/injuries app
           if git diff --cached --quiet; then
             echo "nothing new to commit"
             exit 0

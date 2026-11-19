@@ -1,4 +1,8 @@
-"""Render app/week11.html from data/week11/*. Called by tools/build_app.py.
+"""Render app/week11.html from data/week11/*.
+
+NOT WIRED on this branch. build_app.py, the nav and the Flagged page are shared outputs that change only in the
+final integration session (COORDINATION.md, rule 9). The integration session must add the PAGES row, the
+BUILDERS entry, the nav line and the W11 flagged items, then call this module. Until then nothing calls it.
 
 Session `arena-2d1ba329-x1`. The page layout helpers (`page`, `table`, `card`, `esc`) are
 passed in by the caller so this module has no import cycle with build_app.py.

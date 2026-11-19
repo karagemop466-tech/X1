@@ -76,7 +76,7 @@
     "files_roof": 0,
     "files_joint": 1,
     "files_cluster": 0,
-    "pages": 30,
+    "pages": 29,
     "lb_fav_roi_pct": -2.7,
     "g1_short": 102,
     "games3": 6696
@@ -476,7 +476,7 @@
       "r4_state": "partly met",
       "changed": false,
       "gate": "No owner sign-off on the layout is recorded in the repository.",
-      "measured": "30 pages in app/.",
+      "measured": "29 pages in app/.",
       "clears": "1 owner sign-off recorded (0 today).",
       "basis": "Owner brief (clean, simple dashboard).",
       "evidence_label": "landing page",
