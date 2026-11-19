@@ -1,0 +1,5 @@
+diagnostic_id,scope,n_games,n_week_clusters,mean_brier_score,brier_skill_vs_coin,cluster_bss_lb95,multiplicity_adj_bss_lb,decision_use,source_url
+DIAG-WF-SHRINKAGE-W1-10,retrospective walk-forward diagnostic; excluded from leaderboard,150,10,0.2395,+0.0355,-0.0777,-0.1685,Audit only; cannot qualify or rank; prospective replica PR-04 has separate gates,https://www.nfl.com/schedules/2026/by-week/week-10
+CTRL-COIN-50,retrospective mandatory benchmark; excluded from leaderboard metrics,150,10,0.2483,+0.0000,+0.0000,+0.0000,Audit-only benchmark reference,https://www.nfl.com/standings/league/2026/REG
+CTRL-HOME-55,retrospective mandatory benchmark; excluded from leaderboard metrics,150,10,0.2532,-0.0195,-0.0490,-0.0676,Audit-only benchmark reference,https://www.nfl.com/standings/league/2026/REG
+CTRL-FAVORITE-58,retrospective mandatory benchmark; excluded from leaderboard metrics,150,10,0.2371,+0.0451,+0.0039,-0.0300,Audit-only benchmark reference,https://www.nfl.com/standings/league/2026/REG

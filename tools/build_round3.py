@@ -226,10 +226,12 @@ def build_depth_summary() -> dict:
         "title": "Replacement depth — which string actually takes the snaps",
         "generated_at": SNAPSHOT,
         "method": (
-            "Derived from data/pipeline/deficiency.json: the starter is column 1 of the club's "
-            "own depth chart and the replacement is the next name on the same line whose game "
-            "status is not Out. depth is the chart column position of that replacement "
-            "(2 = 2nd string, 3 = 3rd string, 4 = 4th string)."
+            "Derived from data/pipeline/deficiency.json. Depth slots are modelled as groups, "
+            "not a single starter (data/depth/depth_groups_32.csv): where a club lists more "
+            "than one player at rank 1 the group is the unit and no single 'starter' is "
+            "fabricated. The replacement is the next listed name at the same slot whose game "
+            "status is not Out. depth is the club-printed string position of that replacement "
+            "(2 = 2nd string, 3 = 3rd string, 4 = 4th string), never a jersey number."
         ),
         "source": {"url": INJURIES_URL, "label": "NFL.com official injury report x official club depth charts", "org": "NFL + clubs"},
         "columns": ["unit", "replacement_depth", "depth_label", "slots", "replacement_named",

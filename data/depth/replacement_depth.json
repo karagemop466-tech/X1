@@ -14,9 +14,11 @@
   "position",
   "slot",
   "starter",
+  "starter_raw",
   "starter_game_status",
   "starter_practice_status",
   "replacement",
+  "replacement_raw",
   "replacement_depth",
   "replacement_string",
   "replacement_game_status",
@@ -47,7 +49,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.atlantafalcons.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Zachariah Branch",
+   "replacement_raw": "Olamide Zaccheaus"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -70,7 +74,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.atlantafalcons.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Divine Deablo",
+   "replacement_raw": "Christian Harris"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -93,7 +99,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.azcardinals.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Hjalte Froholdt",
+   "replacement_raw": "Kingsley Eguakun"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -116,7 +124,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.azcardinals.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Max Melton",
+   "replacement_raw": "Kei'Trel Clark"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -139,7 +149,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.azcardinals.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Roy Lopez",
+   "replacement_raw": "Andrew Billings"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -162,7 +174,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.azcardinals.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Andrew Wingard",
+   "replacement_raw": "Kitan Crawford"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -185,7 +199,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.azcardinals.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jayden Williams",
+   "replacement_raw": "Jedrick Wills"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -208,7 +224,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.buffalobills.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Spencer Brown",
+   "replacement_raw": "Tylan Grable"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -231,7 +249,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.buffalobills.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Christian Benford",
+   "replacement_raw": "Dee Alford"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -254,7 +274,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.panthers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Bobby Okereke",
+   "replacement_raw": "Tyrel Dodson"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -277,7 +299,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.panthers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Will Lee III",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -300,7 +324,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.panthers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jaelan Phillips",
+   "replacement_raw": "Princely Umanmielen"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -323,7 +349,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.clevelandbrowns.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Ronnie Hickman",
+   "replacement_raw": "Donovan McMillon"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -346,7 +374,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.clevelandbrowns.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Denzel Boston",
+   "replacement_raw": "Malachi Corley"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -369,7 +399,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.dallascowboys.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Donovan Ezeiruaku",
+   "replacement_raw": "James Houston"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -392,7 +424,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.dallascowboys.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Joey Porter Jr.",
+   "replacement_raw": "Shavon Revel Jr."
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -415,7 +449,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.dallascowboys.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "DaRon Bland",
+   "replacement_raw": "Cobie Durant"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -438,7 +474,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.detroitlions.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "D.J. Reed",
+   "replacement_raw": "Rock Ya-Sin"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -461,7 +499,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.detroitlions.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Cade Mays",
+   "replacement_raw": "Juice Scruggs"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -484,7 +524,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.detroitlions.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Amon-Ra St. Brown",
+   "replacement_raw": "DeAndre Carter"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -497,7 +539,7 @@
    "unit": "Offense",
    "position": "",
    "slot": 1,
-   "starter": "81 Josh Whyle",
+   "starter": "Josh Whyle",
    "starter_game_status": "Out",
    "starter_practice_status": "Did Not Participate In Practice",
    "replacement": "",
@@ -507,7 +549,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "81 Josh Whyle",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -520,17 +564,19 @@
    "unit": "Offense",
    "position": "C",
    "slot": 1,
-   "starter": "75 Sean Rhyan",
+   "starter": "Sean Rhyan",
    "starter_game_status": "Out",
    "starter_practice_status": "Did Not Participate In Practice",
-   "replacement": "52 Jager Burton",
+   "replacement": "Jager Burton",
    "replacement_depth": 2,
    "replacement_string": "2nd string",
    "replacement_game_status": "",
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "75 Sean Rhyan",
+   "replacement_raw": "52 Jager Burton"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -543,17 +589,19 @@
    "unit": "Offense",
    "position": "RB",
    "slot": 1,
-   "starter": "8 Josh Jacobs",
+   "starter": "Josh Jacobs",
    "starter_game_status": "Out",
    "starter_practice_status": "Did Not Participate In Practice",
-   "replacement": "32 MarShawn Lloyd",
+   "replacement": "MarShawn Lloyd",
    "replacement_depth": 2,
    "replacement_string": "2nd string",
    "replacement_game_status": "",
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "8 Josh Jacobs",
+   "replacement_raw": "32 MarShawn Lloyd"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -566,17 +614,19 @@
    "unit": "Defense",
    "position": "LB",
    "slot": 1,
-   "starter": "44 Zaire Franklin",
+   "starter": "Zaire Franklin",
    "starter_game_status": "Doubtful",
    "starter_practice_status": "Did Not Participate In Practice",
-   "replacement": "59 Ty\u2019Ron Hopper",
+   "replacement": "Ty\u2019Ron Hopper",
    "replacement_depth": 2,
    "replacement_string": "2nd string",
    "replacement_game_status": "",
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "44 Zaire Franklin",
+   "replacement_raw": "59 Ty\u2019Ron Hopper"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -589,17 +639,19 @@
    "unit": "Defense",
    "position": "EDGE",
    "slot": 1,
-   "starter": "90 Lukas Van Ness",
+   "starter": "Lukas Van Ness",
    "starter_game_status": "Questionable",
    "starter_practice_status": "Limited Participation in Practice",
-   "replacement": "57 Brenton Cox Jr",
+   "replacement": "Brenton Cox Jr",
    "replacement_depth": 2,
    "replacement_string": "2nd string",
    "replacement_game_status": "",
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "90 Lukas Van Ness",
+   "replacement_raw": "57 Brenton Cox Jr"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -612,17 +664,19 @@
    "unit": "Defense",
    "position": "NB",
    "slot": 1,
-   "starter": "7 Javon Bullard",
+   "starter": "Javon Bullard",
    "starter_game_status": "Questionable",
    "starter_practice_status": "Limited Participation in Practice",
-   "replacement": "36 Kamal Hadden",
+   "replacement": "Kamal Hadden",
    "replacement_depth": 2,
    "replacement_string": "2nd string",
    "replacement_game_status": "",
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "7 Javon Bullard",
+   "replacement_raw": "36 Kamal Hadden"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -635,17 +689,19 @@
    "unit": "Defense",
    "position": "S",
    "slot": 1,
-   "starter": "29 Xavier McKinney",
+   "starter": "Xavier McKinney",
    "starter_game_status": "Questionable",
    "starter_practice_status": "Limited Participation in Practice",
-   "replacement": "27 Kitan Oladapo",
+   "replacement": "Kitan Oladapo",
    "replacement_depth": 2,
    "replacement_string": "2nd string",
    "replacement_game_status": "",
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.packers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "29 Xavier McKinney",
+   "replacement_raw": "27 Kitan Oladapo"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -668,7 +724,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.colts.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Akeem Davis-Gaither",
+   "replacement_raw": "CJ Allen"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -691,7 +749,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.colts.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jaylon Carlies",
+   "replacement_raw": "Bryce Boettcher"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -714,7 +774,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.colts.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jalen Travis",
+   "replacement_raw": "Luke Tenuta"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -737,7 +799,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.colts.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Luke Rhodes",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -760,7 +824,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.jaguars.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jordan Davis",
+   "replacement_raw": "Davon Godchaux"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -783,7 +849,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.jaguars.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jessie Bates III",
+   "replacement_raw": "Kaevon Merriweather"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -806,7 +874,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.jaguars.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Robert Hainsey",
+   "replacement_raw": "Jonah Monheim"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -829,7 +899,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.chiefs.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jaylon Moore",
+   "replacement_raw": "Joshua Ezeudu"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -852,7 +924,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.chiefs.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Mansoor Delane",
+   "replacement_raw": "Kristian Fulton"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -875,7 +949,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.chiefs.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Kenneth Walker",
+   "replacement_raw": "Emmett Johnson"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -898,7 +974,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.therams.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Steve Avila",
+   "replacement_raw": "Bill Murray"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -921,7 +999,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.therams.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Trent McDuffie",
+   "replacement_raw": "Cam Lampkin"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -944,7 +1024,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.therams.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Myles Garrett",
+   "replacement_raw": "Josaiah Stewart"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -967,7 +1049,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.therams.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Kam Curl",
+   "replacement_raw": "Jaylen McCollough"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -990,7 +1074,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.therams.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Joe Cardona",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1013,7 +1099,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.miamidolphins.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Aaron Brewer",
+   "replacement_raw": "Andrew Meyer"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1036,7 +1124,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.miamidolphins.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Chris Bell",
+   "replacement_raw": "Jalen Tolbert"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1059,7 +1149,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.vikings.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Tyrion Ingram-Dawkins",
+   "replacement_raw": "Elijah Williams"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1082,7 +1174,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.vikings.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Blake Cashman",
+   "replacement_raw": "Ivan Pace Jr."
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1105,7 +1199,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.vikings.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Kyler Murray",
+   "replacement_raw": "Carson Wentz"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1128,7 +1224,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.vikings.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "T.J. Hockenson",
+   "replacement_raw": "Gavin Bartholomew"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1151,7 +1249,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.vikings.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jauan Jennings",
+   "replacement_raw": "Myles Price"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1174,7 +1274,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.vikings.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jordan Addison",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1197,7 +1299,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.patriots.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Carlton Davis III",
+   "replacement_raw": "Channing Canada"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1222,7 +1326,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.patriots.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Ben Brown",
+   "replacement_raw": "Walter Rouse"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1245,7 +1351,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.patriots.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Kevin Byard III",
+   "replacement_raw": "Jaylen Reed"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1268,7 +1376,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.patriots.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Rhamondre Stevenson",
+   "replacement_raw": "Corey Kiner"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1291,7 +1401,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.patriots.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "A.J. Brown",
+   "replacement_raw": "Efton Chism III"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1314,7 +1426,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.neworleanssaints.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Erik McCoy",
+   "replacement_raw": "William Sherman"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1337,7 +1451,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.neworleanssaints.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Taliese Fuaga",
+   "replacement_raw": "Mason Murphy"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1360,7 +1476,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.neworleanssaints.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Martin Emerson Jr.",
+   "replacement_raw": "Quincy Riley"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1383,7 +1501,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.newyorkjets.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Harrison Phillips",
+   "replacement_raw": "Jack Heflin"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1406,7 +1526,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.newyorkjets.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Jarvis Brownlee Jr.",
+   "replacement_raw": "D'Angelo Ponds"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1431,7 +1553,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.newyorkjets.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Garrett Wilson",
+   "replacement_raw": "Omar Cooper Jr."
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1454,7 +1578,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.newyorkjets.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Adonai Mitchell",
+   "replacement_raw": "Tim Patrick"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1477,7 +1603,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.seahawks.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Leonard Williams",
+   "replacement_raw": "Rylie Mills"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1500,7 +1628,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.seahawks.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Quenton Nelson",
+   "replacement_raw": "Anthony Bradford"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1523,7 +1653,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.seahawks.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Charles Cross",
+   "replacement_raw": "Josh Jones"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1546,7 +1678,9 @@
    "replacement_on_report": "yes",
    "club_depth_chart_url": "https://www.seahawks.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Sam Darnold",
+   "replacement_raw": "Drew Lock"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1569,7 +1703,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.49ers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Mike Evans",
+   "replacement_raw": "Jordan Watkins"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1592,7 +1728,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.49ers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Renardo Green",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1615,7 +1753,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.49ers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Upton Stout",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1638,7 +1778,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.49ers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Deommodore Lenoir",
+   "replacement_raw": "Ephesians Prysock"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1661,7 +1803,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.49ers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Dre Greenlaw",
+   "replacement_raw": "Garret Wallow"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1684,7 +1828,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.49ers.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Trent Williams",
+   "replacement_raw": "Vederian Lowe"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1707,7 +1853,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.tennesseetitans.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Cody Barton",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1730,7 +1878,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.tennesseetitans.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Anthony Hill Jr.",
+   "replacement_raw": "Dorian Mausi"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1753,7 +1903,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.tennesseetitans.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Peter Skoronski",
+   "replacement_raw": ""
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1776,7 +1928,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.tennesseetitans.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Carnell Tate",
+   "replacement_raw": "Elic Ayomanor"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1799,7 +1953,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.tennesseetitans.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Tommy Townsend",
+   "replacement_raw": "Mitchell Trubisky"
   },
   {
    "_source_url": "https://www.nfl.com/injuries/",
@@ -1822,7 +1978,9 @@
    "replacement_on_report": "no",
    "club_depth_chart_url": "https://www.tennesseetitans.com/team/depth-chart",
    "injury_report_url": "https://www.nfl.com/injuries/",
-   "verified": "yes"
+   "verified": "yes",
+   "starter_raw": "Tommy Townsend",
+   "replacement_raw": "Joey Slye"
   }
  ],
  "summary": {
@@ -1849,7 +2007,7 @@
   "rows_verified": 78,
   "rows_flagged": 2,
   "unverified_cells": 0,
-  "note": "Each row re-verified against both primary sources before publishing: the starter is depth 1 on the club chart, the replacement is the next listed name at that string depth, and the game status matches the official injury report exactly. Club depth charts are self-published (some label themselves unofficial); that caveat rides with every row."
+  "note": "Each row re-verified against both primary sources before publishing: the starter is depth 1 on the club chart, the replacement is the next listed name at that string depth, and the game status matches the official injury report exactly. Green Bay prints leading jersey numbers in the name column; display names are published with the number stripped and the raw printed string retained in starter_raw / replacement_raw. Depth order is the club's printed order, never the jersey number. Club depth charts are self-published (some label themselves unofficial); that caveat rides with every row."
  },
  "dropped": []
 }
