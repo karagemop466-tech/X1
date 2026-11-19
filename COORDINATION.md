@@ -4684,7 +4684,6 @@ final integration record below for the exact count at release time.
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
 
-<<<<<<< HEAD
 ## 2026-11-19 — arena/68de0b7f-x1 · kickoff regime evidence and release
 
 | Task | Status | Owner | Files |
@@ -4798,7 +4797,6 @@ All 32 flags (F-01 through F-32) are published on `data/flags.json` and `app/fla
 GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/).
 
 PR and merge record to be appended after PR creation and merge.
-=======
 ---
 
 # Session `arena-725e025d-x1` — Round 7: restore the red verify gate on `main`, then final verification and release (this session)
@@ -4832,4 +4830,55 @@ No file claimed by PR #95 (`COORDINATION.md` append-only record, `docs/audit/pub
 is edited here beyond this claim record; PR #91 and PR #92 are stale, conflicting branches whose round-6
 scopes are **not** taken over by this claim. No official source value is inferred: if a value cannot be
 confirmed from the retained official pack it stays blank and is flagged.
->>>>>>> adfdc5f (coord: claim round-7 CI repair and final verification/release)
+
+## Completion record — R7-1 (`arena-725e025d-x1`, 2026-11-19 ~07:10 UTC)
+
+**Root cause (reproduced, not assumed).** The 2026-11-19 04:09 UTC data refresh replaced two live inputs
+that a *dated* 2026-11-17 pack was reading: `data/pipeline/standings.json` (new clock) and the newest
+injury capture (a Week 11 report with 253 rows, then 26 rows at one intermediate read). The pack's
+`--check` steps re-judged 44 hand-transcribed Week 10 rows against a Week 11 page and reported 64 false
+mismatches; the closure measurement hashed the new live standings file and reported STALE. Both failures
+were reproduced locally before any edit and were confirmed on GitHub Actions job 44474522686 (step
+"The 2026-11-17 reads pack, the Week 11 escrow and the closure measurement reproduce").
+
+**Fix (no value inferred, no finding changed).**
+1. `tools/lab/build_reads.py`: C8/C8c now select the capture by its dated content hash
+   `c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33` (347 rows, Week 10) and fail
+   loudly if that payload is missing or mismatched. C9 still measures the live series and now reports
+   the real last two reads (17 reads, 5 distinct payloads, 35 changed cells); `rows_added`/`rows_removed`
+   are set differences, so a 26 → 253 row page reports +233/−6 rather than an impossible −227 removed.
+2. The same builder froze the collector's 2026-11-17 standings read verbatim from official-page
+   transcription commit `7ac89cbee0bf21066d1322e95cc1a0db936e9f05` into the dated pack as
+   `collector_standings_2026-11-17.json` (`generated_at` 2026-11-17T23:28:40Z), added it to the pack
+   manifest, and refuses to use `data/pipeline/standings.json` for a dated check. C5 still compares
+   32 × 16 = 512 cells, 0 differences.
+3. `tools/lab/build_closure_measurement.py`: M3 now uses the dated official standings transcription in
+   the same pack, publishes its URL/read time, and fails if the path is ever repointed at a live store.
+   The measurement re-derives 150/150 games and 32/32 clubs with 0 disagreements.
+4. `tools/lab/build_site.py`: KPI prose that still said "137 in the feed", "13 games absent",
+   "the report has not moved since 2026-11-16", and "newest retained capture" is now derived from the
+   current data or explicitly labelled historical. The feed was closed at 150 games by PR #88; the
+   closure page now states that 0 games remain and keeps the original decision record dated.
+
+**Verification performed (all local, 2026-11-19):**
+`build_reads.py --check` OK (14+136 games, 32 clubs, 44 injury rows, 0 failures);
+`build_closure_measurement.py --check` OK; `build_site.py --check` OK (17 pages, links resolve,
+every data row sourced). Published findings stayed unchanged where they were true: 0 injury mismatches,
+0 standings differences, 0 closure disagreements. C9 and the closure KPIs moved because the *inputs*
+moved, and are reported as dated measurements.
+
+**Official sources (re-read or cited for this fix):**
+- NFL Week 11 schedule, read live 2026-11-19: https://www.nfl.com/schedules/2026/by-week/week-11
+  (Thursday 2026-11-19 8:15 PM IND at HOU; confirms the injury capture is now a Week 11 page).
+- Official standings page transcribed in the frozen pack: https://www.nfl.com/standings/league/2026/REG
+- Official injury hub transcribed in the dated capture: https://www.nfl.com/injuries/
+
+**Irregularity published for review (non-blocking):** an append-only capture index and a mutable
+pipeline file were inputs to checks named after a fixed date. The generators now pin them; other
+registers built from live files may carry the same class of coupling and have not been audited here.
+The 2026-11-18 19:23 UTC injury capture is still flagged `drift: fail` (26 rows vs a 150-row minimum,
+26/26 blank game-status cells); the retained capture and its violations are untouched.
+
+**Scope addition (rule 1, recorded before the edits shipped):** `tools/lab/build_site.py` and the
+regenerated `lab/**` pages were added to this session's scope because they render the two repaired
+artefacts; no shared `data/flags.json`, root index/navigation or other session's branch was edited.

@@ -22,8 +22,12 @@ each check below is an assertion that a reader can re-run:
   C4  cross-page agreement    a record printed on a schedule page must equal the record printed
                               on the standings page read minutes apart, for every club, both weeks.
   C5  independent re-read     the standings transcription is diffed against the collector's own
-                              read of the same page the same day (data/pipeline/standings.json) -
-                              different code, different clock, same source.
+                              read of the same page the same day, frozen in this pack as
+                              collector_standings_2026-11-17.json (source commit 7ac89cbe) -
+                              different code, different clock, same source. The live
+                              data/pipeline/standings.json is deliberately NOT used here: a later
+                              collector refresh moves that file and would compare a 2026-11-17
+                              hand read with a different date's page.
   C6  dated delta             the Week 11 slate is diffed against the 2026-11-16 read of the same
                               page, and the Week 10 finals against the 2026-11-16 read of its page,
                               so "nothing moved" and "one game closed" are measured, not asserted.
@@ -31,7 +35,9 @@ each check below is an assertion that a reader can re-run:
                               (data/results/_raw/reads.tsv) to state exactly which games the feed
                               does not yet hold.
   C8  spot-check              the 44 hand-transcribed injury rows are diffed cell by cell against
-                              the newest retained capture, and against the published site table.
+                              the DATED 2026-11-17 capture (content sha c3d7a722...), and against the
+                              published site table. A later Week 11 capture has a different page and
+                              different rows; comparing it here would manufacture 64 false mismatches.
   C9  capture series          the injuries capture index is read to publish the day-over-day
                               delta and the drift history: the series, its clock times and the
                               fact that the page has not changed since a given read.
@@ -69,11 +75,20 @@ PACK_FILES = [
     "venue_evidence_2026-11-17.tsv",
     "injury_spotcheck_2026-11-17.tsv",
     "injury_state_2026-11-17.tsv",
+    # Frozen 2026-11-17 collector read of the standings page, extracted verbatim from
+    # GitHub commit 7ac89cbee0bf21066d1322e95cc1a0db936e9f05 (data/pipeline/standings.json,
+    # generated_at 2026-11-17T23:28:40+00:00). Added 2026-11-19 by arena-725e025d-x1 because
+    # the live pipeline file is refreshed daily and is no longer the same read.
+    "collector_standings_2026-11-17.json",
 ]
 PRIOR_W10 = "data/verification/2026_11_16/official_w10_results_2026_11_16.tsv"
 PRIOR_W11 = "data/verification/2026_11_16/official_w11_schedule_2026_11_16.tsv"
 RESULTS_LOG = "data/results/_raw/reads.tsv"
-COLLECTOR_STANDINGS = "data/pipeline/standings.json"
+COLLECTOR_STANDINGS = "data/lab/reads/2026-11-17/collector_standings_2026-11-17.json"
+COLLECTOR_PIN_COMMIT = "7ac89cbee0bf21066d1322e95cc1a0db936e9f05"
+# The spot-check was transcribed from the injury page as it stood on 2026-11-17. This is the
+# content hash of the accepted capture from that date; later captures are Week 11 pages.
+DATED_INJURY_CAPTURE_SHA = "c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33"
 PINNED_STANDINGS = "data/verify/official_standings_2026_w10.psv"
 CAPTURE_INDEX = "data/captures/index.jsonl"
 PUBLISHED_INJURY_TABLE = "data/console/injuries_week10.csv"
@@ -269,6 +284,9 @@ def main() -> int:
               ("net", "NET_PTS"), ("home", "HOME"), ("road", "ROAD"), ("div", "DIV"),
               ("div_pct", "DIV_PCT"), ("conf", "CONF"), ("conf_pct", "CONF_PCT"),
               ("non_conf", "NON_CONF"), ("strk", "STRK"), ("last5", "LAST_5")]
+    if os.path.dirname(COLLECTOR_STANDINGS) != "data/lab/reads/2026-11-17":
+        fails.append(f"C5: the dated pack must use its frozen collector read, not "
+                     f"{COLLECTOR_STANDINGS}; a live file would re-judge a dated read")
     coll = json.load(open(os.path.join(ROOT, COLLECTOR_STANDINGS), encoding="utf-8"))
     coll_rows = {r["team_abbrev"]: r for r in coll["rows"]}
     diffs = []
@@ -286,10 +304,14 @@ def main() -> int:
         "differing_cells": len(diffs), "detail": diffs[:20],
         "collector_read_at": coll.get("generated_at"),
         "collector_source": coll.get("source", {}).get("url"),
+        "frozen_collector_file": COLLECTOR_STANDINGS,
+        "frozen_from_github_commit": COLLECTOR_PIN_COMMIT,
         "verdict": "pass" if not diffs else "review",
-        "note": ("two reads of one official page by different code three hours apart, compared on all 16 "
-                 "printed columns. A pass means the collector and this transcription see the same table; it "
-                 "does not mean the page is right."),
+        "note": ("two reads of one official page by different code hours apart, compared on all 16 "
+                 "printed columns. The collector's read is frozen at 2026-11-17 inside this dated pack "
+                 "(GitHub commit 7ac89cbe); the live pipeline file is refreshed daily and must not be "
+                 "used to re-judge a dated transcription. A pass means the two reads see the same table; "
+                 "it does not mean the page is right."),
     })
 
     # The repository's own independent re-verification (tools/verify_official.py) is red, and this is why:
@@ -392,10 +414,20 @@ def main() -> int:
 
     # ---- C8 injury spot-check ----------------------------------------------------
     idx = [json.loads(l) for l in open(os.path.join(ROOT, CAPTURE_INDEX), encoding="utf-8") if l.strip()]
-    # Frozen Week 10 re-read: the default injury page rolled over after this accepted capture.
-    inj_caps = sorted([r for r in idx if r["dataset"] == "injuries" and r["as_read_at"] <= "2026-11-18T04:15:34+00:00"], key=lambda r: r["as_read_at"])
-    newest = inj_caps[-1]
+    inj_caps = sorted([r for r in idx if r["dataset"] == "injuries"], key=lambda r: r["as_read_at"])
+    # C8 and C8c judge a 2026-11-17 transcription: pin them to the capture of that date, not
+    # to the newest capture in the index. The capture index is append-only and the 11-19 refresh
+    # added a Week 11 report (253 rows, different clubs and a different game label). This is
+    # stronger than a wall-clock filter: it also catches a capture replaced with the same date.
+    dated = [r for r in inj_caps if r["content_sha256"] == DATED_INJURY_CAPTURE_SHA]
+    if not dated:
+        fails.append(f"C8: dated 2026-11-17 injury capture {DATED_INJURY_CAPTURE_SHA} is missing from "
+                     f"{CAPTURE_INDEX}; refuse to re-judge the spot-check against a different date")
+        dated = [inj_caps[0]]
+    newest = dated[-1]
     cap = json.load(open(os.path.join(ROOT, newest["payload"]), encoding="utf-8"))
+    if cap.get("content_sha256") != DATED_INJURY_CAPTURE_SHA or len(cap.get("rows", [])) != newest["rows"]:
+        fails.append("C8: the pinned capture payload does not match the dated capture in the index")
     cap_rows = {(r["team"], r["player"]): r for r in cap["rows"]}
     spot_fails, spot_ok = [], 0
     for r in spot:
@@ -429,15 +461,17 @@ def main() -> int:
                                            f"for these {len(clubs)} clubs",
                      "note": ("four clubs were transcribed by hand, chosen because two are the Week 10 cards "
                               "the published tables were built from and two are the clubs the review queue "
-                              "flags. The remaining 28 clubs are NOT re-read by eye, and this artefact does "
-                              "not claim they were: the machine hash covers all 347 rows, this check covers "
-                              "the 44 a human read.")},
+                     "flags. The remaining 28 clubs are NOT re-read by eye, and this artefact does "
+                     f"not claim they were: the machine hash covers all {newest['rows']} rows of the "
+                     "dated capture, this check covers the 44 a human read.")},
         "cells_compared": len(spot) * 5, "mismatches": len(spot_fails), "detail": spot_fails[:20],
         "capture": {"as_read_at": newest["as_read_at"], "content_sha256": newest["content_sha256"],
                     "rows": newest["rows"], "payload": newest["payload"]},
         "verdict": "pass" if not spot_fails else "fail",
-        "note": ("a machine capture re-read by eye, cell by cell: position, injury text, practice designation, "
-                 "game designation and the game label the row is printed under"),
+        "note": ("the dated 2026-11-17 machine capture re-read by eye, cell by cell: position, injury text, "
+                 "practice designation, game designation and the game label the row is printed under. "
+                 "The capture is selected by content hash because the live injury page is now a Week 11 "
+                 "report."),
     })
 
     # The same 44 rows against the table the site actually publishes. The site's table abbreviates the
@@ -463,7 +497,7 @@ def main() -> int:
         if (r["game_status"] or "").strip() != (p.get("GAMESTATUS") or "").strip():
             pub_fails.append({"team": r["team"], "player": r["player"], "field": "game_status",
                               "official_page": r["game_status"], "published_site_table": p.get("GAMESTATUS")})
-    # coverage: the published table against the newest accepted capture, by (team, player) key
+    # coverage: the published Week 10 table against the accepted 2026-11-17 capture, by key
     pub_all = {(r["TEAM"], r["PLAYER"]) for r in pub}
     cap_all = set(cap_rows)
     not_published = [{"team": t, "player": p} for (t, p) in sorted(cap_all - pub_all)]
@@ -475,8 +509,9 @@ def main() -> int:
         "detail_missing": not_published[:20], "detail_extra": published_but_not_captured[:20],
         "verdict": "pass" if not not_published and not published_but_not_captured else "measured",
         "note": ("the brief's 're-capture and republish the Week 10 injury tables' item, measured: the site "
-                 "table and the newest accepted capture of the same page are compared key by key. A row the "
-                 "capture holds and the page does not print is a stale published count, not a typo."),
+                 "table and the dated 2026-11-17 accepted capture of the same page are compared key by key. "
+                 "A row the capture holds and the page does not print is a stale published count, not a typo. "
+                 "A later Week 11 capture is a different page and is not substituted here."),
     })
     done("C8b_spotcheck_vs_published_site_table", {
         "rows_compared": len(spot), "mismatches": len(pub_fails), "detail": pub_fails[:20],
@@ -495,7 +530,9 @@ def main() -> int:
     pair_delta = None
     if len(inj_caps) >= 2:
         a_cap = json.load(open(os.path.join(ROOT, inj_caps[-2]["payload"]), encoding="utf-8"))
-        b_cap = cap
+        # C9 measures the live series, so its last two reads are the true last two reads;
+        # unlike C8/C8c it is not pinned to the dated 2026-11-17 capture.
+        b_cap = json.load(open(os.path.join(ROOT, inj_caps[-1]["payload"]), encoding="utf-8"))
         ka = {(r["team"], r["player"]): r for r in a_cap["rows"]}
         kb = {(r["team"], r["player"]): r for r in b_cap["rows"]}
         changed = 0
@@ -507,7 +544,9 @@ def main() -> int:
                       "content_sha256": inj_caps[-2]["content_sha256"][:16]},
             "newer": {"as_read_at": inj_caps[-1]["as_read_at"], "rows": inj_caps[-1]["rows"],
                       "content_sha256": inj_caps[-1]["content_sha256"][:16]},
-            "rows_added": len(kb) - len(ka), "rows_removed": len(ka) - len(kb),
+            # Set differences, not the difference of the two row counts: a page moving from
+            # 26 rows to 253 rows adds 233 keys and removes 6, it does not "remove -227".
+            "rows_added": len(set(kb) - set(ka)), "rows_removed": len(set(ka) - set(kb)),
             "cells_changed": changed,
         }
     drift_hist = [{"as_read_at": c["as_read_at"], "rows": c["rows"], "drift": c["drift"],
