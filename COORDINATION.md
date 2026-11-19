@@ -39,6 +39,7 @@ Owner rules (verbatim intent):
 | `arena-869ee8fb-x1` | `arena/869ee8fb-x1` | **Round 6 integration: PR #84 landed (751803f), SG-15 console pages (ledger/snapshots/announcement), reconcile re-baselined to the dated post-W10 standings read (160/160), X-11 re-evidenced, main's round-6 line (#88/#89/#90) unioned (876c291), final verification, PR → merge → Pages** | 2026-11-18 | active — see the session's records at the end of this file |
 | `arena-46887500-x1` | `arena/46887500-x1` | **Round 7: depth-slot group model + Packers jersey stripping + 32-team deficiency + W11 Offense-vs-Defense matchup matrix; chronological splits + opponent-aware ratings + dual walk-forward totals + personnel ablations; fix 2026-11-19 refresh staleness (`build_reads.py`/`build_closure_measurement.py`) + publish pages + PR/merge/Pages** | 2026-11-19 | active — see the section at the end of this file |
 | `arena/ee613dd1-x1` | `arena/ee613dd1-x1` | **Final integration and release: repo line-by-line review, verification against official sources, clean landing page + category subpages, PR → main, merge, GitHub Pages deploy confirm** | 2026-11-19 | active (this session) |
+| `arena/48279a7d-x1` | `arena/48279a7d-x1` | **Origination & Skill Desk (`origination-desk/`): official reserve/IR & transactions turnover register + stale-depth flags + announced-starter & inactive verification; stadium roof/surface & NWS weather overlay; vig-free decomposition + two-stage proper-score skill leaderboard (4 divisions, joint-evidence parlay/prop gate, cluster Brier skill + multiplicity, prospective escrow) + weekly what-changed diff; integration + PR → merge → Pages** | 2026-11-19 | active — see the section at the end of this file |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -5007,6 +5008,7 @@ regenerated from that output. This is a generated-output repair only: no rule, v
 another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
 `payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
 locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.
+
 # Session `arena/427c1843-x1` — Round 7: repair the published site, live re-verification 2026-11-19, Decision Room (this session)
 
 **Session ID:** `arena/427c1843-x1` · **Branch:** `arena/427c1843-x1` (branched from `main` @ `6f7df25`).
@@ -5194,3 +5196,25 @@ was made to reconcile with PR #102's "Decision Center" (`app/**`): it is a paral
 the same board and both are reachable — `app/decisions.html`, `app/suggestions.html` and
 `room/questions.html`, `room/suggestions.html`. Picking one is the owner's call, and the duplication
 is recorded here rather than resolved by deleting another session's section.
+
+---
+
+# Session `arena/48279a7d-x1` — Origination & Skill Desk: Unclaimed Brief Requirements (2026-11-19)
+
+**Session ID:** `arena/48279a7d-x1` · **Branch:** `arena/48279a7d-x1` (rebased onto `main` @ `363fe2f`).
+**Claim written and pushed before implementation (Rules 1–3).**
+**Conflict log (Rule 6):** Rebases onto `a201892` and `363fe2f` conflicted only at the append-only tail of `COORDINATION.md` after PRs #101–#109 merged; resolved by preserving every concurrent session's record verbatim and appending this section below them.
+
+## Non-overlap audit before claiming
+
+Checked merged `main` (`PR #97`–`PR #109`) and all open parallel branches/PRs (`PR #95` `arena/8d2bacbb-x1`, `PR #96` `arena/3ea00c0a-x1`, `PR #110` `arena/427c1843-x1`). Note: `arena/34b79d69-x1` shipped `/suggestions/` (PR #102) and `arena/427c1843-x1` shipped `/room/` (PR #105), so this session cross-links `/suggestions/` rather than duplicating a canonical suggestions folder, and limits its own review register to the specific unclaimed requirements built in `origination-desk/`. None of the merged or open sessions claims the reserve/IR + official transactions turnover + announced-starter + 14-game Week 10 inactive-list verification, the stadium roof/surface + official NWS (`api.weather.gov`) wind/precipitation overlay, the vig-free consensus vs. originated fair-line decomposition, the two-stage proper-score skill leaderboard (4 divisions + joint-evidence combo gate + cluster Brier lower bound + multiplicity trial adjustment + prospective CLV/ROI escrow), or the 32-club weekly "what changed" diff across dated snapshots. All work is isolated in new directories (`data/origination_desk/**`, `tools/origination_desk/**`, `docs/origination_desk/**`, `origination-desk/**`) with additive release wiring only at integration time.
+
+## Claim (`OD-1` … `OD-5`)
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| OD-1 | Official Reserve/IR sweep, official NFL transactions turnover log, stale-depth flags (Jackson, Huntley, Colts W10 trades, Willis IR), announced-starter evidence (Lock, McCord, Brissett), Lions W10 game-status check, and official inactive-list / Game Book verification | in progress | `arena/48279a7d-x1` | `data/origination_desk/roster/**`, `tools/origination_desk/build_roster_audit.py` |
+| OD-2 | Stadium roof/surface designations & official NWS (`api.weather.gov`) hourly wind/precipitation overlay coupled to verified NFL Game Center Week 11 venues | in progress | `arena/48279a7d-x1` | `data/origination_desk/weather/**`, `tools/origination_desk/build_weather_overlay.py` |
+| OD-3 | Vig-free market consensus vs. originated fair-line decomposition (Side → Total → Moneyline), two-stage proper-score skill leaderboard (Singles, Game Parlays, SGP, Prop Combos; joint-evidence parlay/prop gate; official-only correlations with `n`; cluster Brier skill lower bound + multiplicity adjustment; prospective CLV/ROI escrow; control baselines; luck-removal panel), and weekly "what changed" diff | in progress | `arena/48279a7d-x1` | `data/origination_desk/skill/**`, `tools/origination_desk/build_skill_desk.py`, `docs/origination_desk/**` |
+| OD-4 | Clean dashboard section (`origination-desk/*.html`) with Executive Summary, one-row-per-requirement Decision-Readiness table, targeted Suggestions & Missing-Information Q/I/A review board (cross-linked to `/suggestions/`), category tables, Flagged for Review page, and deterministic verifier + unit tests | in progress | `arena/48279a7d-x1` | `origination-desk/**`, `tools/origination_desk/build_site.py`, `tools/origination_desk/verify_desk.py`, `tools/origination_desk/test_desk.py` |
+| OD-5 | Final integration for `origination-desk/`: additive wiring in `tools/check_links.py`, `scripts/verify_site.py`, `tools/build_site.py` (`index.html`), `tools/build_console.py` (`console/index.html`), `.github/workflows/{verify.yml,pages.yml}`, full verification suite, PR → `main`, merge, GitHub Pages deploy confirmation | not started (integration step) | `arena/48279a7d-x1` | additive integration lines + `COORDINATION.md` |
