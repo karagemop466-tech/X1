@@ -354,3 +354,18 @@ jobs:
       # page is recomputed from its committed source file; a drifted or unstated number fails the build.
       - name: Landing-page numbers match their committed sources
         run: python3 tools/audit_landing_numbers.py --check
+
+      # Added by session arena/6b45af7e-x1 (final integration, additive only). Three checks:
+      #  * this session's own live reads of the official pages still compare as published
+      #    (standings read twice with the page's arithmetic asserted first, Week 10 finals, Week 11 slate);
+      #  * the independent second read of the Week 11 injury report still joins 253/253 rows and still
+      #    reports the same cell disagreements - a silent change would mean a page moved or a read drifted;
+      #  * the four integration pages are generated, not hand-edited.
+      - name: Live re-check of the 2026-11-19 official reads
+        run: python3 tools/build_live_recheck.py --check
+      - name: Second-reader diff of the Week 11 injury report
+        run: python3 tools/verify_second_read_2026_11_19.py --check
+      - name: Published Week 10 injury rows still match the live re-read
+        run: python3 tools/verify_w10_injuries_live_2026_11_19.py --check
+      - name: Integration pages reproduce from their registers
+        run: python3 tools/build_integration_pages.py --check

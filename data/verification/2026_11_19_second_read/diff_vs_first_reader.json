@@ -1,0 +1,76 @@
+{
+  "title": "Second-reader diff — official Week 11 injury report",
+  "session": "arena/6b45af7e-x1",
+  "read_date": "2026-11-19",
+  "source": "https://www.nfl.com/injuries/league/2026/reg11",
+  "read_a": "data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv (session arena/427c1843-x1)",
+  "read_b": "data/verification/2026_11_19_second_read/official_w11_injuries_second_reader_2026_11_19.tsv (session arena/6b45af7e-x1)",
+  "compared_columns": [
+    "position",
+    "practice_status",
+    "game_status"
+  ],
+  "rows_read_a": 253,
+  "rows_read_b": 253,
+  "keys_joined": 253,
+  "keys_only_in_a": [],
+  "keys_only_in_b": [],
+  "cell_differences": 1,
+  "differences": [
+    {
+      "team": "IND",
+      "player": "Charlie Heck",
+      "fields": {
+        "game_status": [
+          "Questionable",
+          ""
+        ]
+      },
+      "injury_read_a": "Not injury related - personal matter",
+      "injury_read_b": ""
+    }
+  ],
+  "vocabulary": {
+    "A": {
+      "practice_status": [
+        "Did Not Participate In Practice",
+        "Full Participation in Practice",
+        "Limited Participation in Practice"
+      ],
+      "game_status": [
+        "Out",
+        "Questionable"
+      ]
+    },
+    "B": {
+      "practice_status": [
+        "Did Not Participate In Practice",
+        "Full Participation in Practice",
+        "Limited Participation in Practice"
+      ],
+      "game_status": [
+        "Out",
+        "Questionable"
+      ]
+    }
+  },
+  "designations_a": 16,
+  "designations_b": 15,
+  "injury_text": {
+    "note": "The free-text Injuries column is NOT constant between reads of the same page. It is published as an unconfirmed, unstable field; it is never used as a value in any table or model.",
+    "rows_with_text_a": 16,
+    "rows_with_text_b": 15,
+    "rows_where_the_two_reads_disagree": 1,
+    "disagreeing_keys": [
+      [
+        "IND",
+        "Charlie Heck"
+      ]
+    ]
+  },
+  "findings": [
+    "game-status designations differ between the two reads of the same page: A=16, B=15. Every differing cell is listed in `differences` with both values; the cell is treated as UNVERIFIED, not resolved in either direction."
+  ],
+  "verdict": "pass",
+  "errors": []
+}

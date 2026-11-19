@@ -121,9 +121,9 @@
     },
     {
       "id": "LA-N12",
-      "finding": "The landing's '13 / 14 Week 10 games officially final' is dated to a 2026-11-16 read ('the Monday-night game was still unplayed at read time'). The official page read on 2026-11-19 shows all 14 games FINAL, and the 2026-11-17 closure file agrees.",
+      "finding": "The landing's '13 / 14 Week 10 games officially final' was dated to a 2026-11-16 read ('the Monday-night game was still unplayed at read time'). The official page read on 2026-11-19 shows all 14 games FINAL, and the 2026-11-17 closure file agrees.",
       "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
-      "action": "integration request LA-4 (landing text) — flagged, not edited here"
+      "action": "RESOLVED 2026-11-19 by session arena/6b45af7e-x1: the figure is now computed from data/integration/live_recheck_2026_11_19.json and reads 14 / 14. Recorded here as a closed note rather than removed, so the correction stays on the record."
     },
     {
       "id": "LA-N13",
