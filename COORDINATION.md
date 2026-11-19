@@ -5347,3 +5347,22 @@ All 37 flags (F-01–F-37) are published on `data/flags.json` and the Flagged fo
 - **Q-31**: Market price authority unresolved → mirror-derived prices labelled, never official
 - Flagged irregularities do not block the merge; they remain published for owner review.
 
+
+---
+
+# Session `arena/621df229-x1` — completion (final), 2026-11-19
+
+**All tasks T-R1..T-R4 are done and the release is live.**
+
+| Item | Value |
+|---|---|
+| Session branch | `arena/621df229-x1` (pinned; one-branch-per-session, no branch switching) |
+| Base | `main` @ `856366fcf51cfeb1a71f3129f0dd9e3c619c3161` |
+| Substantive release PR | [#115](https://github.com/karagemop466-tech/X1/pull/115) — merged `972d31a` (`gh pr merge 115 --merge`, no waiting) |
+| Release-record PR | [#117](https://github.com/karagemop466-tech/X1/pull/117) — merged `42c58e2` (`gh pr merge 117 --merge`, no waiting) |
+| Merge commits in `main` | `972d31a` then `42c58e2`; release-record commit `b62abff` is in `main` |
+| GitHub Pages | status `built`, error `none`, at https://karagemop466-tech.github.io/X1/ |
+| Final verification (current tree) | `verify_data.py` 2,960 pass · `check_links.py` 211 files / 51,245 assertions all resolve · `verify_site.py` 211 pages, every data-table row source-linked — all EXIT=0 |
+| Irregularities | F-01–F-37 published with source links; key opens Q-02 (no licensed price feed), Q-04 (no licensed snap counts), Q-07 (reward funding), Q-31 (market price authority). None block the release. |
+
+No data, site, or generator files were changed in this session; only `COORDINATION.md` (claim + completion records). The published site already contained the clean category-organised landing page, source-linked tables, the 53-row decision-readiness register, the executive summary, the suggestions board (18 proposals), the questions register (24 questions), and the Flagged for Review page — all verified and deployed.
