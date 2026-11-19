@@ -4685,3 +4685,10 @@ In progress: integrate complementary pending PRs #91 and #92 on the pinned branc
 Integration resolution: a direct merge of #91 conflicted with newer main console pages, policy flags, generated registers and this board; aborted cleanly. Both original branches remain intact. Selectively integrated #91's Game Centre parser and derived register (not raw pages), #92's two-sided decision rule and injury HTML parser. Replayed 27 game pages (243 fields, zero mismatches) from #91 commit `c90e3f78`, and matched both SHA-256 hashes for all 11 official injury reads through 2026-11-19T01:53:42Z. The newer reads invalidate #92's assumption that the latest default report is Week 10: reset comparisons by season/week, never count rollover as a surprise. Official sources: https://www.nfl.com/injuries/league/2026/reg11 and https://www.nfl.com/schedules/2026/by-week/week-11 (individual game links in evidence review). The two-sided tests are project rules, not NFL findings. Roof/surface not confirmed. See console/flagged.html. Original PRs remain open for non-integrated work. Local deployed-tree and 3,323-row console citation checks passed; no claim of fresh verification of legacy tables.
 
 Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed; verify caught a stale historical pack after the scheduled refresh. Scoped its Week 10 comparison to the last pre-rollover read and regenerated its dependent hashes. 44 player spot checks reproduce without Week 11 contamination.
+## 2026-11-19 — chronological evaluation design (`arena/d08f4a65-x1`)
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| EVAL-71 | Implement a fail-closed chronological season split, distinguish verified labels from mirror rows, audit the 136-game corpus claim, and publish an independently verifiable evaluation-readiness section | in progress | `evaluation/**`, `tools/evaluation/**`, this coordination block |
+
+Existing shared data, generated navigation, and workflow files are read-only for this claim. Any integration changes outside the scope will be requested here first.
