@@ -4686,3 +4686,5 @@ final integration record below for the exact count at release time.
 | KR-1: close the official rule-source gap for R4-15, implement a versioned, fail-closed historical comparison filter, publish evidence and unanswered questions; verify existing site and release this slice | in progress | arena/68de0b7f-x1 | new `research/kickoff-regimes/`, `tools/kickoff_regimes/`; integration links on the root landing and research index via their generator(s), scoped to KR-1 only; this log |
 
 Open PRs #91, #92 and #95 own distinct venue/availability/strategy/release-boundary work; no takeover. Existing registrations, predictions and snapshots remain frozen.
+
+KR-1 scope refinement (same new directories): add KR-T1, a prospectively registered **paper** totals distribution using the regime-filtered finals at PR-04’s frozen A threshold. PR #91 explicitly excludes the 26 total rows from its probability check. This is a new timestamped experiment, not a correction to PR-04 or a backdated probability. Integration may add a link on `pages/flagged.html` via `tools/build_site.py`, and a scoped gate in the research checker.
