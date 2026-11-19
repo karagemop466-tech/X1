@@ -145,6 +145,27 @@ def verify_all() -> tuple[int, list[str]]:
                     f"{r['game_id']} {r['market']}: prospective Q-02 market/vig cells must be blank")
 
     lb_json = json.loads((DATA_DIR / "skill" / "skill_desk_summary.json").read_text(encoding="utf-8"))
+    lb_rows = _load_csv(Path("skill/two_stage_leaderboard.csv"))
+    lb_ids = {r["entry_id"] for r in lb_rows}
+    require("DIAG-WF-SHRINKAGE-W1-10" not in lb_ids,
+            "retrospective walk-forward diagnostic must not appear on the leaderboard")
+    require(all(not r["mean_brier_score"] and not r["brier_skill_vs_coin"]
+                and not r["cluster_bss_lb95"] and not r["multiplicity_adj_bss_lb"]
+                for r in lb_rows if r["entry_role"] == "CONTROL_BASELINE"),
+            "retrospective benchmark scores must not appear on the leaderboard")
+    require(all("W1-10" not in r["signal_metric"] for r in lb_rows),
+            "retrospective W1-10 result text must not appear on the leaderboard")
+    diag_rows = _load_csv(Path("skill/diagnostic_walkforward.csv"))
+    require(len(diag_rows) == 4 and
+            {r["diagnostic_id"] for r in diag_rows} ==
+            {"DIAG-WF-SHRINKAGE-W1-10", "CTRL-COIN-50", "CTRL-HOME-55", "CTRL-FAVORITE-58"},
+            "detached diagnostic archive must retain the retrospective model and three controls")
+    require(all("excluded from leaderboard" in r["scope"] for r in diag_rows),
+            "each detached retrospective diagnostic must be labelled excluded from leaderboard")
+    require(all(_is_official_https(r["source_url"]) for r in diag_rows),
+            "each detached retrospective diagnostic must carry an official HTTPS source")
+    require(lb_json["two_stage_leaderboard"]["retrospective_diagnostics"]["excluded_from_leaderboard"] is True,
+            "summary must attest detached diagnostics are excluded from leaderboard")
     sc = lb_json["two_stage_leaderboard"]["stage_counts"]
     require(sc["stage1_qualified"] == 0 and sc["stage2_qualified_live"] == 0,
             "zero strategies may be marked Stage-1 or Stage-2 qualified")

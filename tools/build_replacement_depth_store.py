@@ -50,6 +50,17 @@ def jload(p):
         return json.load(fh)
 
 
+def strip_jersey(name: str) -> str:
+    """Remove a leading jersey number printed by the club chart (Green Bay).
+
+    The raw printed string is always retained alongside the stripped display
+    name (starter_raw / replacement_raw), so the stripping is reversible and
+    auditable. Depth order is never derived from the jersey number itself —
+    the number is a print artefact, not a ranking signal (brief: reject
+    deriving depth order from jersey number, experience or salary)."""
+    return re.sub(r"^\s*\d+\s+", "", name or "").strip()
+
+
 def norm(name: str) -> str:
     """Light normalisation for exact-ish matching between two official lists.
 
@@ -128,10 +139,12 @@ def main() -> int:
             "unit": unit,
             "position": pos if pos is not None else "",
             "slot": slot,
-            "starter": r["starter"],
+            "starter": strip_jersey(r["starter"]),
+            "starter_raw": r["starter"],
             "starter_game_status": status,
             "starter_practice_status": r.get("starter_practice_status") or "",
-            "replacement": rep_name,
+            "replacement": strip_jersey(rep_name),
+            "replacement_raw": rep_name,
             "replacement_depth": rep_depth if rep_depth not in (None, "") else "",
             "replacement_string": ("none listed" if not rep_name else
                                    {2: "2nd string", 3: "3rd string", 4: "4th string",
@@ -143,16 +156,28 @@ def main() -> int:
             "verified": "yes",
         })
 
+    # Guard the public schema: display names are normalized, exact chart/report
+    # strings are retained, and no display field accidentally keeps a leading jersey.
+    for row in rows_out:
+        if row["starter"] != strip_jersey(row["starter_raw"]):
+            raise SystemExit(f"FAIL {row['team']}: starter display/raw mismatch")
+        if row["replacement"] != strip_jersey(row["replacement_raw"]):
+            raise SystemExit(f"FAIL {row['team']}: replacement display/raw mismatch")
+        if re.match(r"^\s*\d+\s+", row["starter"]) or re.match(r"^\s*\d+\s+", row["replacement"]):
+            raise SystemExit(f"FAIL {row['team']}: jersey prefix remains in a display name")
+
     rows_out.sort(key=lambda r: (r["team"], STATUS_RANK.get(str(r["starter_game_status"]).lower(), 9),
                                  str(r["side_of_ball"]), str(r["position"]), r["slot"]))
 
     os.makedirs(OUT, exist_ok=True)
-    cols = ["team", "side_of_ball", "unit", "position", "slot", "starter", "starter_game_status",
-            "starter_practice_status", "replacement", "replacement_depth", "replacement_string",
+    cols = ["team", "side_of_ball", "unit", "position", "slot", "starter", "starter_raw",
+            "starter_game_status",
+            "starter_practice_status", "replacement", "replacement_raw", "replacement_depth",
+            "replacement_string",
             "replacement_game_status", "replacement_on_report", "club_depth_chart_url",
             "injury_report_url", "verified"]
     with open(os.path.join(OUT, "replacement_depth.csv"), "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=cols)
+        w = csv.DictWriter(fh, fieldnames=cols, lineterminator="\n")
         w.writeheader()
         for r in rows_out:
             w.writerow(r)
@@ -196,8 +221,12 @@ def main() -> int:
             "note": ("Each row re-verified against both primary sources before publishing: the "
                      "starter is depth 1 on the club chart, the replacement is the next listed "
                      "name at that string depth, and the game status matches the official "
-                     "injury report exactly. Club depth charts are self-published (some label "
-                     "themselves unofficial); that caveat rides with every row."),
+                     "injury report exactly. Green Bay prints leading jersey numbers in the "
+                     "name column; display names are published with the number stripped and "
+                     "the raw printed string retained in starter_raw / replacement_raw. "
+                     "Depth order is the club's printed order, never the jersey number. "
+                     "Club depth charts are self-published (some label themselves "
+                     "unofficial); that caveat rides with every row."),
         },
         "dropped": dropped,
     }

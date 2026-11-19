@@ -213,8 +213,12 @@ def _load_results_150() -> list[dict[str, object]]:
 
 def build_two_stage_leaderboard_and_luck(
     games_150: list[dict[str, object]], protocol_sha: str
-) -> tuple[str, str, dict[str, object]]:
-    """Build Two-Stage Proper-Score Skill Leaderboard + Luck-Removal Panel."""
+) -> tuple[str, str, str, dict[str, object]]:
+    """Build prospective leaderboard, detached retrospective diagnostics, and luck panel.
+
+    Retrospective results are never serialized into the leaderboard. The diagnostic
+    archive is a separate, explicitly non-ranking artifact for audit only.
+    """
     # Multiplicity count M across the repository:
     # 28 entries in data/mind_change/register.csv + 3 prospective registrations (PR-01, PR-04, KR-T1) = 31
     mc_rows = list(csv.DictReader((ROOT / "data" / "mind_change" / "register.csv").open(encoding="utf-8")))
@@ -355,8 +359,8 @@ def build_two_stage_leaderboard_and_luck(
         [
             "CTRL-COIN-50", "DIV-1: singles", "CONTROL_BASELINE", "PROPER-SCORE-PROTOCOL-01",
             "Always-on zero-skill 50/50 coin baseline (benchmark reference)", 1, 13, 150,
-            f"{mean_bs_coin:.4f} (W1-10)", "+0.0000", "+0.0000", "+0.0000",
-            "Exact Brier 0.2500 on all binary games (0.2483 incl. W5 tie)",
+            "", "", "", "",
+            "Mandatory reference baseline; historical results excluded from leaderboard (see detached diagnostic archive)",
             "",
             "REFERENCE_ZERO_BAR",
             "NOT_A_BETTING_STRATEGY",
@@ -368,8 +372,8 @@ def build_two_stage_leaderboard_and_luck(
         [
             "CTRL-HOME-55", "DIV-1: singles", "CONTROL_BASELINE", "PR-01 / PROPER-SCORE-PROTOCOL-01",
             "Always-on constant home-field base-rate control (p_home = 0.55)", 1, 13, 150,
-            f"{mean_bs_home55:.4f} (W1-10)", f"{bss_home55_vs_coin:+.4f}", f"{h55_lb95:+.4f}", f"{h55_lb_sidak:+.4f}",
-            f"W1-10 walk-forward Brier {mean_bs_home55:.4f}; n=1 LAC@BAL Brier 0.3025",
+            "", "", "", "",
+            "Mandatory control benchmark; historical results excluded from leaderboard (see detached diagnostic archive)",
             "",
             "CONTROL_BENCHMARK",
             "NOT_A_BETTING_STRATEGY",
@@ -381,8 +385,8 @@ def build_two_stage_leaderboard_and_luck(
         [
             "CTRL-FAVORITE-58", "DIV-1: singles", "CONTROL_BASELINE", "PROPER-SCORE-PROTOCOL-01",
             "Always-on favorites-only shrinkage control (p = 0.58 on rating favorite)", 1, 13, 150,
-            f"{mean_bs_fav:.4f} (W1-10)", f"{bss_fav_vs_coin:+.4f}", f"{fav_lb95:+.4f}", f"{fav_lb_sidak:+.4f}",
-            f"W1-10 walk-forward Brier {mean_bs_fav:.4f} (favorites-only control)",
+            "", "", "", "",
+            "Mandatory control benchmark; historical results excluded from leaderboard (see detached diagnostic archive)",
             "",
             "CONTROL_BENCHMARK",
             "NOT_A_BETTING_STRATEGY",
@@ -390,19 +394,6 @@ def build_two_stage_leaderboard_and_luck(
             "Never promoted (favorites-only control)",
             "Never removed (mandatory control baseline)",
             "https://www.nfl.com/standings/league/2026/REG",
-        ],
-        [
-            "DIAG-WF-SHRINKAGE-W1-10", "DIV-1: singles", "DIAGNOSTIC_WALKFORWARD_NOT_RANKED", "PR-01 formula on W1-10",
-            "Chronological out-of-sample W1-10 diagnostic (quarantined from Stage-2)", 0, 0, 150,
-            f"{mean_bs_wf:.4f}", f"{bss_wf_vs_coin:+.4f}", f"{wf_lb95:+.4f}", f"{wf_lb_sidak:+.4f}",
-            f"Walk-forward Brier {mean_bs_wf:.4f} across 150 official 2026 games (10 week clusters)",
-            "",
-            "DIAGNOSTIC_ONLY (retrospective 2026 corpus cannot promote)",
-            "FORBIDDEN_BY_BACKTEST_BAN",
-            "QUARANTINED_DIAGNOSTIC",
-            "Prospective replica (PR-04) must clear multiplicity-adj BSS_LB > 0 on >=100 future games",
-            "Multiplicity-adj cluster BSS_LB remains <= 0 after 100 prospective games",
-            "https://www.nfl.com/schedules/2026/by-week/week-10",
         ],
         [
             "DIV2-GAME-PARLAYS-GATE", "DIV-2: game_parlays", "LOCKED_DIVISION_GATE", "JEG-01",
@@ -443,6 +434,29 @@ def build_two_stage_leaderboard_and_luck(
             "Keep permanently disabled if prop hold + correlation markup exceeds vig-free joint edge",
             "https://www.nfl.com/injuries/league/2026/reg10",
         ],
+    ]
+
+    # Retrospective diagnostics are deliberately detached from the leaderboard.
+    # This audit-only file is not rendered as a ranking table and never qualifies entries.
+    diagnostic_headers = [
+        "diagnostic_id", "scope", "n_games", "n_week_clusters", "mean_brier_score",
+        "brier_skill_vs_coin", "cluster_bss_lb95", "multiplicity_adj_bss_lb",
+        "decision_use", "source_url",
+    ]
+    diagnostic_rows = [
+        ["DIAG-WF-SHRINKAGE-W1-10", "retrospective walk-forward diagnostic; excluded from leaderboard",
+         150, 10, f"{mean_bs_wf:.4f}", f"{bss_wf_vs_coin:+.4f}", f"{wf_lb95:+.4f}",
+         f"{wf_lb_sidak:+.4f}", "Audit only; cannot qualify or rank; prospective replica PR-04 has separate gates",
+         "https://www.nfl.com/schedules/2026/by-week/week-10"],
+        ["CTRL-COIN-50", "retrospective mandatory benchmark; excluded from leaderboard metrics",
+         150, 10, f"{mean_bs_coin:.4f}", "+0.0000", "+0.0000", "+0.0000",
+         "Audit-only benchmark reference", "https://www.nfl.com/standings/league/2026/REG"],
+        ["CTRL-HOME-55", "retrospective mandatory benchmark; excluded from leaderboard metrics",
+         150, 10, f"{mean_bs_home55:.4f}", f"{bss_home55_vs_coin:+.4f}", f"{h55_lb95:+.4f}",
+         f"{h55_lb_sidak:+.4f}", "Audit-only benchmark reference", "https://www.nfl.com/standings/league/2026/REG"],
+        ["CTRL-FAVORITE-58", "retrospective mandatory benchmark; excluded from leaderboard metrics",
+         150, 10, f"{mean_bs_fav:.4f}", f"{bss_fav_vs_coin:+.4f}", f"{fav_lb95:+.4f}",
+         f"{fav_lb_sidak:+.4f}", "Audit-only benchmark reference", "https://www.nfl.com/standings/league/2026/REG"],
     ]
 
     # Removal-of-Luck Panel CSV (Brief Row 68)
@@ -535,7 +549,14 @@ def build_two_stage_leaderboard_and_luck(
             "excess_misfit_brier": round(excess_calibration_misfit, 5),
         },
     }
-    return _csv_text(lb_headers, lb_rows), _csv_text(luck_headers, luck_rows), meta
+    meta["retrospective_diagnostics"] = {
+        "file": "data/origination_desk/skill/diagnostic_walkforward.csv",
+        "rows": len(diagnostic_rows),
+        "excluded_from_leaderboard": True,
+        "ranking_or_qualification_use": False,
+    }
+    return (_csv_text(lb_headers, lb_rows), _csv_text(diagnostic_headers, diagnostic_rows),
+            _csv_text(luck_headers, luck_rows), meta)
 
 
 def build_official_correlations(games_150: list[dict[str, object]]) -> tuple[str, dict[str, object]]:
@@ -756,13 +777,14 @@ def build_all() -> dict[str, str]:
     games_150 = _load_results_150()
 
     vf_csv, vf_meta = build_vig_free_decomposition()
-    lb_csv, luck_csv, lb_meta = build_two_stage_leaderboard_and_luck(games_150, protocol_sha)
+    lb_csv, diagnostic_csv, luck_csv, lb_meta = build_two_stage_leaderboard_and_luck(games_150, protocol_sha)
     corr_csv, corr_meta = build_official_correlations(games_150)
     diff_csv, diff_meta = build_weekly_what_changed(games_150)
 
     files = {
         "vig_free_decomposition.csv": vf_csv,
         "two_stage_leaderboard.csv": lb_csv,
+        "diagnostic_walkforward.csv": diagnostic_csv,
         "luck_removal_panel.csv": luck_csv,
         "official_correlations_with_n.csv": corr_csv,
         "weekly_what_changed_w9_w10_w11.csv": diff_csv,
