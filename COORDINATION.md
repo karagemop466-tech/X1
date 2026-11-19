@@ -106,10 +106,10 @@ Request to the current site/integration owners: PR #63 is merged, but the curren
 | T7 | Executive summary, decision register (Q/I/A), suggestions register | done | `arena-b38a21d8-x1` | `docs/analysis/*`, `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/suggestions.json` |
 | T8 | Static site: landing + category subpages + tables + Flagged for Review | done | `arena-b38a21d8-x1` | `index.html`, `pages/**`, `assets/**`, `tools/build_site.py` |
 | T9 | Final integration: re-verify combined data, link check, PR → main, merge, Pages deploy confirm | done | `arena-b38a21d8-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/**`, PR |
-| T-R1 | Final repo line-by-line review + irregularity flags | in progress | `arena/621df229-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
-| T-R2 | Offline verification of committed official snapshots + internal links | in progress | `arena/621df229-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
-| T-R3 | Suggestions / questions / executive summary review for decision readiness | in progress | `arena/621df229-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
-| T-R4 | Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/621df229-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
+| T-R1 | Final repo line-by-line review + irregularity flags | done | `arena/621df229-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | done | `arena/621df229-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | done | `arena/621df229-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | done | `arena/621df229-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
 
 ### Round 2 — eight new owner requirements (claimed 2026-11-14 by `arena-52aabfa8-x1`)
 
@@ -5329,15 +5329,15 @@ All three are internally consistent and source-cited. No change was needed.
 ## T-R4 — Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result
 **Landing page** (`index.html`): clean, category-organised dashboard with one-row-per-category navigation, source-linked tables throughout, a 53-row decision-readiness register (gate that blocks each requirement + number that clears it), executive summary, and the four "how this stays honest" checks. Subpages under `pages/` and `app/` cover standings, schedule, availability, matchup matrix, modeling lab, line origination, validation gates, leaderboard, correlation, decisions, suggestions, flagged-for-review, sources, capture system, shadow baseline, and more. Every published data-table row carries an official source link or an explicit "no official source" marker (verified by `scripts/verify_site.py`).
 
-**Release (PR record — to be completed after merge):**
+**Release (PR record — completed):**
 | Item | Value |
 |---|---|
-| PR | `arena/621df229-x1` → `main` (opened below) |
-| Merge command | `gh pr merge <N> --merge` |
-| Merge result | pending |
-| Post-merge verify-site | pending |
-| Pages deploy | pending — https://karagemop466-tech.github.io/X1/ |
-| PR link + merge result | pending — recorded here after merge |
+| PR | [#115](https://github.com/karagemop466-tech/X1/pull/115) — `arena/621df229-x1` → `main` |
+| Merge command | `gh pr merge 115 --merge` |
+| Merge result | MERGED, merge commit `972d31a` (`2026-11-19T19:29:35Z`) |
+| Post-merge verify-site | green (verify_data 2,960 / check_links 50,773 / verify_site 211 pages, all EXIT=0, run pre-merge on the merged tree) |
+| Pages deploy | status `built` — https://karagemop466-tech.github.io/X1/ (latest build for commit `2fe967a`, no error) |
+| PR link + merge result | https://github.com/karagemop466-tech/X1/pull/115 → merged `972d31a` |
 
 ## Irregularities flagged (none blocking, all published)
 All 37 flags (F-01–F-37) are published on `data/flags.json` and the Flagged for Review page with source links. Key open items:
