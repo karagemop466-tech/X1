@@ -4678,3 +4678,11 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+
+## 2026-11-19 — arena/68de0b7f-x1 · kickoff regime evidence and release
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| KR-1: close the official rule-source gap for R4-15, implement a versioned, fail-closed historical comparison filter, publish evidence and unanswered questions; verify existing site and release this slice | in progress | arena/68de0b7f-x1 | new `research/kickoff-regimes/`, `tools/kickoff_regimes/`; integration links on the root landing and research index via their generator(s), scoped to KR-1 only; this log |
+
+Open PRs #91, #92 and #95 own distinct venue/availability/strategy/release-boundary work; no takeover. Existing registrations, predictions and snapshots remain frozen.
