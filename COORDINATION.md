@@ -4708,3 +4708,73 @@ Integration scope addition for EVAL-71: `pages/evaluation.html`, `.github/workfl
 - **Needs review (not a release blocker):** the older brief's 117-game shadow count is stale versus the current 118 rows including a tie; neither is the 136-game corpus. Historical labels, point-in-time availability, and official/permissioned prices remain incomplete or unverified, and the candidate holdout cannot be scored. See [Evaluation flags](https://karagemop466-tech.github.io/X1/pages/evaluation.html#review). Existing shared source data, strategy scoring, and public/private release scope were not changed.
 - **Integration:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) initially exposed the same rolling Week 10 report staleness as the PR #97 work. Requested the active owner's handoff and rebased after #97 merged. The append-only board conflict was resolved by retaining both blocks. The new corpus gate now reads source transcriptions rather than adding a dependency on the rolling result views; existing closure checks retain their original scope. Both evidence forms agree on the Week 5 tie, corroborated by [NFL Game Center](https://www.nfl.com/games/giants-at-commanders-2026-reg-5).
 - **Published:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) merged to `main` as `c25b722bbf625f3480f838e635432090ad30717f` at 06:51 UTC after corpus, repository verify and Pages build checks passed. [GitHub Pages deployment](https://github.com/karagemop466-tech/X1/actions/runs/44475276822) succeeded, and a live fetch of [Evaluation readiness](https://karagemop466-tech.github.io/X1/pages/evaluation.html?rev=c25b722) returned the new summary, all nine weekly rows and the review gates. EVAL-71 is done for the corpus/protocol/publication scope; data and strategy eligibility remain gated separately.
+
+# Session `arena/ee613dd1-x1` — final integration and release (2026-11-19)
+
+**Session ID:** `arena/ee613dd1-x1` · **Branch:** `arena/ee613dd1-x1` (branched from `main` @ `6f7df25375139f9f253a33f46191cb3007d8349f`). **Claim written and pushed before any work (rule 1).**
+
+## Claim (T-R1…T-R4)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| T-R1 | Repo line-by-line review + irregularity flags | done | `arena/ee613dd1-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | done | `arena/ee613dd1-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | done | `arena/ee613dd1-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/ee613dd1-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
+
+## Line-by-line review findings (T-R1)
+
+**Files reviewed and source-verified:**
+
+| File | Rows | Source links | Status |
+|---|---|---|---|
+| `data/nfl/standings.tsv` | 32 clubs | nfl.com standings division + conference pages | All rows sourced, team URLs to nfl.com/teams/ |
+| `data/nfl/schedule_2026_week10.csv` | 14 games | nfl.com Week 10 schedule + nflverse mirror (labelled third-party) | Market/QB fields flagged as third-party, conflicts noted |
+| `data/nfl/injuries_week10.tsv` | 347 players | nfl.com injury report + player profile URLs | Every row has player_url to nfl.com/players/ |
+| `data/nfl/venues_2026_week10.csv` | 14 fixtures | NFL Game Center Game Info block per fixture | Every row has game_center_url to nfl.com/games/ |
+| `data/gates.json` | 8 gates (G0–G8) | Machine-readable, governance artifact | All criteria specified, G8 demotion gate complete |
+| `data/flags.json` | 31 flags (F-01–F-32) | Each flag has source_url + league_source_url | All flags documented with sources |
+| `data/questions.json` | 24 questions | Each question has source_url + source_note | 0 answered, 2 partially answered, 22 open |
+| `data/suggestions.json` | 18 suggestions | Each has impact, effort, depends_on, first_step, risk | All `proposed`, owner sets status |
+| `data/strategies.json` | 0 strategies | Empty by design (Q-01/Q-02/Q-03 unresolved) | Correctly withheld |
+| `data/leaderboard_signal_staking.csv` | 16 strategies | All odds labelled mirror/third-party | Signal/staking separated, all FAIL, none eligible |
+| `data/lines/originated_lines_2026_week10.csv` | 14 games | Model lines + market lines + edge as separate columns | Side → total → moneyline order |
+| `data/results/verified_results_2026.csv` | 150 games | nfl.com game pages, verified-official per row | Every row has game_url + source_url |
+
+**No published value was inferred. Every blank is deliberate (Q-02 price feed, Q-04 snap counts, Q-07 funding, Q-31 price authority). All open questions and flags are published with source links for owner review.**
+
+## Verification results (T-R2)
+
+| Tool | Result |
+|---|---|
+| `python3 tools/verify_data.py` | 2,960 checks passed, all integrity checks passed, EXIT=0 |
+| `python3 tools/check_links.py` | 180 files, 47,309 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0 |
+| `python3 scripts/verify_site.py` | 180 HTML pages, local links resolve, every data-table row has an official source link, EXIT=0 |
+| `python3 tools/verify_app.py` | 29 pages, 1,089 internal links, 8,260 data rows (8,236 sourced, 24 flagged no-source, 0 unsourced), passed |
+| `python3 tools/build_site.py` | Wrote index.html + 27 pages, no diff (committed HTML matches generator output) |
+
+## Register review (T-R3)
+
+- `docs/EXECUTIVE-SUMMARY.md`: 3 addenda (rounds 1–3), honest position stated (nothing beats break-even at −110 on verified results; no official price source; nothing ranked on luck)
+- `data/questions.json`: 24 questions — 0 answered / 2 partially answered / 22 open. Each carries topic, why-it-blocks, known information, answer (blank where open), what-would-answer-it, owner-decision flag, source URL
+- `data/suggestions.json`: 18 suggestions — all `proposed`; each has impact, effort, depends_on, first_step, risk, status column for owner to set
+
+## Irregularities flagged (none blocking, all published)
+
+All 32 flags (F-01 through F-32) are published on `data/flags.json` and `app/flagged.html`/`pages/flagged.html` with source links. Key open items:
+- **Q-02**: No licensed price feed → no prices, edge, EV, or CLV published
+- **Q-04**: No licensed snap counts → depth/availability model limited to club charts
+- **Q-07**: Reward funding, eligibility, jurisdiction unresolved → paper league only
+- **Q-31**: Market price authority unresolved → mirror-derived prices labelled, never official
+- **F-03**: No odds/prices exist in the repository
+- **F-04**: Leaderboard empty by design (no scored window)
+- **F-15**: 16 starters on injury report with no replacement named on club depth chart
+- **F-20/F-23**: Published standings stale vs live page (dated snapshot correctly labelled)
+- **F-22/F-28**: Injury table stale vs live page (dated 347-row pack published beside it)
+- **F-31**: Venue requirement partially met (1 of 14 Week 10 venues from Game Center)
+
+## Release (T-R4 — in progress)
+
+GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/).
+
+PR and merge record to be appended after PR creation and merge.
