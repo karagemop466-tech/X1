@@ -6150,3 +6150,46 @@ The live page changes are data-only/derived: replacement-depth display names now
 | FI-5 | PR → merge → Pages deploy confirmation | in progress | `arena/6b45af7e-x1` | `COORDINATION.md` |
 
 **Conflict resolution (append-only, nothing discarded):** the upstream block above was kept in full; this session's claim record follows it. Session `arena/6b45af7e-x1` states for the record that **flag id F-37 was published concurrently by both `arena/49dbdc81-x1` and this session** with different content — F-37 here is the Week 11 injury free-text instability, F-38/F-39 are the checker fixes. The duplicate id is logged as an irregularity for the next integration pass rather than renumbered unilaterally.
+
+### FI-1..FI-5 completion record — session `arena/6b45af7e-x1` (2026-11-19, appended after merge)
+
+| Task | Status | What was delivered | Where to check it |
+|---|---|---|---|
+| FI-1 | done | Full local replay of `.github/workflows/verify.yml` on this branch: **pass=66 fail=0** (baseline before any change, and again after every commit). | `/tmp/run_ci_local.sh` replay; the same steps run in `verify.yml` |
+| FI-2 | done | This session's own live reads of four official nfl.com pages, diffed cell by cell against the committed 2026-11-19 pack, plus an independent second read of the Week 11 injury report and a 115-row re-read of the published Week 10 table. | `pages/verification-2026-11-19.html` · `tools/build_live_recheck.py` · `tools/verify_second_read_2026_11_19.py` · `tools/verify_w10_injuries_live_2026_11_19.py` · `tools/build_third_read_2026_11_19.py` |
+| FI-3 | done | Landing page gained a dated 2026-11-19 section and four category cards; the stale `13 / 14` final-games figure is now computed from today's read (14 / 14); the injured-rows statnote no longer shows the wrong snapshot date. | `index.html`, `tools/build_site.py` |
+| FI-4 | done | Three consolidated, reviewable registers: decision brief, questions-and-answers (two registers side by side, with "how to discover it" per row), suggestion review (research desk + site register + ranked board). | `pages/decision-brief.html` · `pages/questions-and-answers.html` · `pages/suggestion-review.html` |
+| FI-5 | done | Two PRs opened, merged and deployed; Pages confirmed live; see the table below. | this section |
+
+**Verification results, exact numbers (2026-11-19):**
+
+| Dataset | Method | Result |
+|---|---|---|
+| League standings | read twice, the page's own arithmetic asserted first | 32/32 clubs, 12 fields each, **0 cell differences**, 96/96 arithmetic assertions |
+| Week 10 slate | read twice | **14/14** fixtures Final, 0 field differences |
+| Week 11 slate | read twice | **13 fixtures + 6 byes**, 0 field differences, 32 clubs printed once (`LAR`→`LA` alias declared) |
+| Published Week 10 injury table | 115 rows re-read line by line (the part of the page inside the read window) | **115/115 agree**, 0 differ; 232 rows outside the window counted as *not checked*, never as agreement |
+| Week 11 injury report | two independent reads + a third read of the disputed club blocks | 253/253 keys join; **1 disputed cell** (IND Charlie Heck game status: *Questionable / blank / blank*); free-text *Injuries* column unstable between reads; 25/26 rows stable across three reads |
+
+**PRs and merges:**
+
+| PR | Branch → base | Merge commit | Merge time | Gating checks | Pages |
+|---|---|---|---|---|---|
+| [#142](https://github.com/karagemop466-tech/X1/pull/142) | `arena/6b45af7e-x1` → `main` | `37c3bae` | 2026-11-19T22:35:51Z | `verify` pass, `corpus` pass, `pages build and deployment` success | `built` — live landing + 4 new pages confirmed with the fetch tool |
+| [#144](https://github.com/karagemop466-tech/X1/pull/144) | `arena/6b45af7e-x1` → `main` | `2a19bbf` | 2026-11-19T22:43:01Z | `verify` pass, `corpus` pass, `build` pass, `deploy` skipped (PR-only), `pages build and deployment` success | `built` — third-read section confirmed live |
+
+**Irregularities found and how each was handled (all also on `pages/flagged.html`):**
+
+1. **The Week 11 injury report's free-text *Injuries* column changes between reads of the same page.** Three consecutive reads produced three different strings for the same player. Published as flag **F-40**; the column is never used as a value. Cause not separable from a reader effect because no raw bytes were retained (a direct request from the sandbox fails at TLS, exit 35).
+2. **`scripts/verify_site.py` recorded only the first table's header row on a page**, so every later table had its Source cell located by position. Fixed (flag **F-38**); the suite now audits each table against its own headers.
+3. **`nflpaweb.blob.core.windows.net` was missing from that checker's official-host list** although `docs/sources/sources.md` and `tools/check_links.py` both approve it. Added (flag **F-39**).
+4. **`tools/check_links.py` never audited `origination-desk/`.** Now audited against `assets/site.css`; 0 failures.
+5. **Concurrent duplicate flag id.** `arena/49dbdc81-x1` published an unrelated **F-37** (integration-round coordination) on `main` while this session was preparing its own F-37. Rather than renumber upstream's entry, this session's injury-stability finding was renumbered **F-40** and the duplicate is recorded here. F-37 → F-40 content is otherwise unchanged.
+6. **The pages workflow's `build` job is cancelled on PRs by the repo-wide `pages` concurrency group** ("Canceling since a higher priority waiting request for pages exists"). This is not a content failure; `pages build and deployment` on the merge commit reports success both times. Same condition recorded by earlier sessions.
+7. **A third-read cell is not broken by majority.** IND Charlie Heck's game status read *Questionable / blank / blank*; the cell is published blank and flagged instead of being decided by 2–1.
+8. **Requirement-count coverage.** The decision brief cites **53** assessed requirements; the readiness register carries **60** rows. The page now states the gap instead of implying completeness.
+
+**Open items carried forward (not blocking, all on the flagged page):**
+- A retained, hash-addressed capture series for the Week 11 injury page — the only way to attribute the free-text instability to the page rather than to a read.
+- The official Week 11 injury page lists **Jaylen Waddle under Denver** and the player page agrees; Denver plays the Raiders in Week 11. Recorded as an open question; nothing in the model inputs was changed on the strength of it.
+- Price/benchmark decision (Q-02, Q-19) still gates every market column, every closing-line value and the demotion gate.
