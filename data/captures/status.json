@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-19T04:09:57Z",
- "captures": 84,
+ "generated_at": "2026-11-19T19:28:51Z",
+ "captures": 89,
  "datasets": [
   "injuries",
   "standings",
@@ -13,9 +13,9 @@
  "freshness": {
   "injuries": {
    "status": "ok",
-   "captures": 17,
-   "distinct_payloads": 5,
-   "last_as_read_at": "2026-11-19T04:09:30+00:00",
+   "captures": 18,
+   "distinct_payloads": 6,
+   "last_as_read_at": "2026-11-19T19:28:28+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 96,
@@ -23,9 +23,9 @@
   },
   "standings": {
    "status": "ok",
-   "captures": 17,
+   "captures": 18,
    "distinct_payloads": 4,
-   "last_as_read_at": "2026-11-19T04:09:29+00:00",
+   "last_as_read_at": "2026-11-19T19:28:27+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 96,
@@ -33,9 +33,9 @@
   },
   "depth_charts": {
    "status": "ok",
-   "captures": 16,
-   "distinct_payloads": 11,
-   "last_as_read_at": "2026-11-19T04:09:33+00:00",
+   "captures": 17,
+   "distinct_payloads": 12,
+   "last_as_read_at": "2026-11-19T19:28:31+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -43,9 +43,9 @@
   },
   "team_stats": {
    "status": "ok",
-   "captures": 16,
+   "captures": 17,
    "distinct_payloads": 4,
-   "last_as_read_at": "2026-11-19T04:09:45+00:00",
+   "last_as_read_at": "2026-11-19T19:28:39+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -53,9 +53,9 @@
   },
   "deficiency": {
    "status": "ok",
-   "captures": 16,
-   "distinct_payloads": 11,
-   "last_as_read_at": "2026-11-19T04:09:45+00:00",
+   "captures": 17,
+   "distinct_payloads": 12,
+   "last_as_read_at": "2026-11-19T19:28:39+00:00",
    "hours_since_last_read": 0.0,
    "clock_skew_hours": "",
    "max_age_hours": 168,
@@ -66,7 +66,7 @@
    "captures": 1,
    "distinct_payloads": 1,
    "last_as_read_at": "2026-11-16T18:52:00Z",
-   "hours_since_last_read": 57.3,
+   "hours_since_last_read": 72.6,
    "clock_skew_hours": "",
    "max_age_hours": 336,
    "last_drift": "pass"
@@ -76,7 +76,7 @@
    "captures": 1,
    "distinct_payloads": 1,
    "last_as_read_at": "2026-11-16T18:44:00Z",
-   "hours_since_last_read": 57.4,
+   "hours_since_last_read": 72.7,
    "clock_skew_hours": "",
    "max_age_hours": 336,
    "last_drift": "pass"
