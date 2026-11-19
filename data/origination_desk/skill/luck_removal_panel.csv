@@ -1,0 +1,5 @@
+horizon_id,sample_description,n_games,expected_hit_se_from_luck_pct,two_sigma_luck_band_pct,expected_brier_pure_luck,observed_brier,excess_model_misfit_brier,decision_implication,source_url
+HORIZON-N1,PR-01 settled prospective escrow (LAC@BAL W10 MNF),1,45.77,±89.71,0.2095,0.4917,+0.2822,100% dominated by single-game Bernoulli variance; zero inferential weight,https://www.nfl.com/games/chargers-at-ravens-2026-reg-10
+HORIZON-N13,Single NFL week slate (Week 11 PR-04 escrow),13,13.87,±27.18,0.2140,,,1-week hit rate swings ±27.2% (95% band) by pure coin luck; never rank weekly ROI,https://www.nfl.com/schedules/2026/by-week/week-11
+HORIZON-N150,Closed 2026 official corpus (Weeks 1-10 walk-forward),150,3.82,±7.49,0.2192,0.2395,+0.0203,Pure outcome luck still spans ±7.5% in hit rate; excess Brier +0.0203 isolates calibration error from coin noise,https://www.nfl.com/schedules/2026/by-week/week-10
+HORIZON-N272,Full 272-game NFL regular season (at -110 break-even 52.38%),272,3.03,±5.94,0.2494,,,Full-season 95% luck band is ±5.94%: a true 50% picker clears 55.9% in ~1 of 40 trials (guaranteed false winner when M=31),https://www.nfl.com/standings/league/2026/REG

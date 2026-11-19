@@ -1,0 +1,33 @@
+club,team_name,w10_game_result,record_w9,record_w10,rank_w9,rank_w10,rank_change,shrunk_rating_w9,shrunk_rating_w10,rating_delta_pts,w10_inactives_count,w10_w11_availability_and_roster_diff,source_url
+BUF,Buffalo Bills,W 31-12 @ NYJ,7-1,8-1,2,1,+1,+6.90,+8.00,+1.10,6,New IR: Ar'maj Reed-Adams (IR 11-17); Nov trades: +Amani Hooker (from TEN),https://www.nfl.com/teams/buffalo-bills/
+SF,San Francisco 49ers,W 46-40 @ DAL,7-1,8-1,1,2,-1,+7.90,+7.73,-0.17,5,Nov trades: +Keenan Allen (from IND),https://www.nfl.com/teams/san-francisco-49ers/
+JAX,Jacksonville Jaguars,W 40-23 @ TEN,6-2,7-2,5,3,+2,+10.80,+11.36,+0.56,5,"Nov trades: +Jessie Bates (from ATL), +Jordan Davis (from PHI), +Davon Godchaux (from NO)",https://www.nfl.com/teams/jacksonville-jaguars/
+CIN,Cincinnati Bengals,W 38-18 vs PIT,6-2,7-2,6,4,+2,+6.50,+7.73,+1.23,4,No Nov 10-18 IR/trade turnover recorded,https://www.nfl.com/teams/cincinnati-bengals/
+KC,Kansas City Chiefs,W 35-13 @ ATL,6-2,7-2,7,5,+2,+5.90,+7.36,+1.46,7,New IR: Jared Wiley (IR 11-18); Nov trades: +Josh Downs (from IND),https://www.nfl.com/teams/kansas-city-chiefs/
+DET,Detroit Lions,W 35-10 vs NE,6-2,7-2,9,6,+3,+3.30,+5.27,+1.97,6,New IR: Aidan Hutchinson (IR 11-18); Nov trades: +Andre Cisco (from NYJ); S Kerby Joseph expected W11 debut,https://www.nfl.com/teams/detroit-lions/
+CHI,Chicago Bears,BYE (Week 10),7-2,7-2,3,7,-4,+5.18,+5.18,+0.00,,No Nov 10-18 IR/trade turnover recorded,https://www.nfl.com/teams/chicago-bears/
+MIN,Minnesota Vikings,W 30-10 @ GB,6-2,7-2,10,8,+2,+3.00,+4.55,+1.55,7,New IR: Bo Richter (IR 11-18); Nov trades: +Kirk Cousins (from LV),https://www.nfl.com/teams/minnesota-vikings/
+DEN,Denver Broncos,BYE (Week 10),7-2,7-2,4,9,-5,+1.09,+1.09,+0.00,,Nov trades: +Daiyan Henley (from LAC),https://www.nfl.com/teams/denver-broncos/
+PIT,Pittsburgh Steelers,L 18-38 @ CIN,6-2,6-3,8,10,-2,+3.60,+1.45,-2.15,5,New IR: Mason McCormick (IR 11-18),https://www.nfl.com/teams/pittsburgh-steelers/
+NYG,New York Giants,L 21-24 vs WAS,5-3-1,5-3-1,12,11,+1,+0.64,+0.64,+0.00,7,No Nov 10-18 IR/trade turnover recorded,https://www.nfl.com/teams/new-york-giants/
+LA,Los Angeles Rams,W 34-6 @ AZ,5-4,6-4,14,12,+2,+3.00,+5.08,+2.08,7,"New IR: Dylan McMahon (IR 11-16), Puka Nacua (IR 11-12), Jordan Whittington (IR 11-10)",https://www.nfl.com/teams/los-angeles-rams/
+SEA,Seattle Seahawks,W 21-13 @ LV,5-4,6-4,13,13,0,+3.64,+4.00,+0.36,7,Starter: Drew Lock (QB),https://www.nfl.com/teams/seattle-seahawks/
+GB,Green Bay Packers,L 10-30 vs MIN,6-3,6-4,11,14,-3,+2.27,+0.42,-1.86,6,New IR: Josh Whyle (IR 11-14),https://www.nfl.com/teams/green-bay-packers/
+CLE,Cleveland Browns,W 27-24 vs HOU,5-4,6-4,16,15,+1,-3.18,-2.67,+0.52,6,Starter: Deshaun Watson (QB); New IR: Michael Burton (IR 11-14),https://www.nfl.com/teams/cleveland-browns/
+NE,New England Patriots,L 10-35 @ DET,5-4,5-5,15,16,-1,+0.36,-1.75,-2.11,6,New IR: TreVeyon Henderson (IR 11-14),https://www.nfl.com/teams/new-england-patriots/
+CAR,Carolina Panthers,W 20-17 @ NO,3-5,4-5,22,17,+5,-2.00,-1.55,+0.45,7,No Nov 10-18 IR/trade turnover recorded,https://www.nfl.com/teams/carolina-panthers/
+DAL,Dallas Cowboys,L 40-46 vs SF,4-5,4-6,17,18,-1,+0.91,+0.33,-0.58,7,New IR: Tyler Goodson (IR 11-14),https://www.nfl.com/teams/dallas-cowboys/
+LV,Las Vegas Raiders,L 13-21 vs SEA,4-5,4-6,18,19,-1,-2.73,-3.17,-0.44,6,Nov trades: -Kirk Cousins (to MIN),https://www.nfl.com/teams/las-vegas-raiders/
+BAL,Baltimore Ravens,L 20-23 vs LAC,4-5,4-6,19,20,-1,-4.27,-4.17,+0.11,6,"Starter: Jacoby Brissett (QB); Nov trades: +Ryan Neuzil (from ATL), -Andrew Vorhees (to ATL), +Jacoby Brissett (from AZ)",https://www.nfl.com/teams/baltimore-ravens/
+WAS,Washington Commanders,W 24-21 @ NYG,3-5-1,3-5-1,20,21,-1,-2.45,-2.45,+0.00,6,No Nov 10-18 IR/trade turnover recorded,https://www.nfl.com/teams/washington-commanders/
+TB,Tampa Bay Buccaneers,BYE (Week 10),3-6,3-6,24,22,+2,+2.18,+2.18,+0.00,,No Nov 10-18 IR/trade turnover recorded,https://www.nfl.com/teams/tampa-bay-buccaneers/
+HOU,Houston Texans,L 24-27 @ CLE,3-5,3-6,21,23,-2,+1.70,+1.27,-0.43,7,New IR: Azeez Al-Shaair (IR 11-17),https://www.nfl.com/teams/houston-texans/
+NO,New Orleans Saints,L 17-20 vs CAR,3-5,3-6,23,24,-1,-3.10,-3.09,+0.01,6,New IR: Christen Miller (IR 11-14); Nov trades: -Davon Godchaux (to JAX),https://www.nfl.com/teams/new-orleans-saints/
+ATL,Atlanta Falcons,L 13-35 vs KC,3-6,3-7,25,25,0,-3.18,-4.75,-1.57,7,"Nov trades: -Jessie Bates (to JAX), -Ryan Neuzil (to BAL), +Andrew Vorhees (from BAL)",https://www.nfl.com/teams/atlanta-falcons/
+IND,Indianapolis Colts,W 24-22 vs MIA,2-7,3-7,28,26,+2,-5.91,-5.25,+0.66,6,"New IR: Jaylon Carlies (IR 11-17), Mo Alie-Cox (IR 11-14), Akeem Davis-Gaither (IR 11-14); Nov trades: -Keenan Allen (to SF), -Josh Downs (to KC)",https://www.nfl.com/teams/indianapolis-colts/
+AZ,Arizona Cardinals,L 6-34 vs LA,3-6,3-7,26,27,-1,-7.00,-8.75,-1.75,6,"Starter: Carson Beck (QB); New IR: Andrew Wingard (IR 11-17), Jordan Burch (IR 11-17); Nov trades: -Jacoby Brissett (to BAL)",https://www.nfl.com/teams/arizona-cardinals/
+PHI,Philadelphia Eagles,BYE (Week 10),2-7,2-7,29,28,+1,-6.64,-6.64,+0.00,,Nov trades: -Jordan Davis (to JAX),https://www.nfl.com/teams/philadelphia-eagles/
+NYJ,New York Jets,L 12-31 vs BUF,2-7,2-8,27,29,-2,-3.73,-5.00,-1.27,5,Nov trades: -Andre Cisco (to DET),https://www.nfl.com/teams/new-york-jets/
+TEN,Tennessee Titans,L 23-40 vs JAX,1-7,1-8,30,30,0,-5.50,-6.55,-1.05,7,"New IR: Wan'Dale Robinson (IR 11-17), Peter Skoronski (IR 11-14), Tommy Townsend (IR 11-14); Nov trades: -Amani Hooker (to BUF)",https://www.nfl.com/teams/tennessee-titans/
+MIA,Miami Dolphins,L 22-24 @ IND,1-7,1-8,31,31,0,-7.40,-6.91,+0.49,6,"Starter: Kyle McCord (QB); New IR: Zeek Biggers (IR 11-17), Jordan Phillips (IR 11-17), Malik Willis (IR 11-10)",https://www.nfl.com/teams/miami-dolphins/
+LAC,Los Angeles Chargers,W 23-20 @ BAL,0-8,1-8,32,32,0,-9.80,-8.64,+1.16,6,New IR: Branson Taylor (IR 11-16); Nov trades: -Daiyan Henley (to DEN),https://www.nfl.com/teams/los-angeles-chargers/
