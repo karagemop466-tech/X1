@@ -4940,8 +4940,16 @@ Branch `arena/3ed75e05-x1` is at the same commit as `main` (`856366f`). The fina
 - Parallel site trees linked: `dashboard/`, `research/`, `lab/`, `live/`, `hub/`, `console/`, `origination-desk/`, `suggestions/`, `room/`, `site/`, `archive/`
 - All internal links resolve; no orphan pages
 
+### Pull request and merge record
+- **PR:** [#114](https://github.com/karagemop466-tech/X1/pull/114) — `arena/3ed75e05-x1` → `main`
+- **Title:** Final integration and release — session arena/3ed75e05-x1
+- **Merge command:** `gh pr merge 114 --merge`
+- **Merge result:** **MERGED**, merge commit `506720c` on `main`
+- **Post-merge verification:** `tools/verify_data.py` 2,960 checks passed; `tools/check_links.py` 50,773 assertions passed; `scripts/verify_site.py` 211 pages passed
+
 ### GitHub Pages
 - Status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/)
+- Deploy confirmed after PR #114 merge
 
 ### Flagged irregularities (non-blocking, per R-43)
 - Q-02: No licensed price feed → no prices, edge, EV, or CLV published
