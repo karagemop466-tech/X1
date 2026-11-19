@@ -4684,6 +4684,7 @@ final integration record below for the exact count at release time.
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
 
+<<<<<<< HEAD
 ## 2026-11-19 — arena/68de0b7f-x1 · kickoff regime evidence and release
 
 | Task | Status | Owner | Files |
@@ -4797,3 +4798,38 @@ All 32 flags (F-01 through F-32) are published on `data/flags.json` and `app/fla
 GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/).
 
 PR and merge record to be appended after PR creation and merge.
+=======
+---
+
+# Session `arena-725e025d-x1` — Round 7: restore the red verify gate on `main`, then final verification and release (this session)
+
+**Session ID:** `arena-725e025d-x1` · **Branch:** `arena/725e025d-x1` (branched from `main` @ `6f7df25`, identical to `main` at claim time).
+**Claim written (UTC):** 2026-11-19 ~06:50.
+
+## Why this claim exists
+
+`gh run list` / `gh api ... actions/runs/44474522686/jobs` show that the current `verify` gate fails on
+PR #95 for a **pre-existing `main` defect**, not for that PR's docs: the step
+"The 2026-11-17 reads pack, the Week 11 escrow and the closure measurement reproduce" fails.
+Reproduced locally on this branch:
+
+```
+python3 tools/lab/build_reads.py --check              -> STALE: data/lab/reads/2026-11-17/report.json
+python3 tools/lab/build_escrow.py --check              -> OK
+python3 tools/lab/build_closure_measurement.py --check -> STALE: feed-closure measurement
+```
+
+A red verify gate blocks every PR and therefore blocks the owner's required final merge and Pages deploy.
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R7-1 | Diagnose why the two generated registers no longer reproduce; correct the generator inputs/outputs with no invented or inferred values, and add a check that catches the same class of defect | in progress | `arena-725e025d-x1` | `tools/lab/build_reads.py`, `tools/lab/build_closure_measurement.py`, their generated `data/lab/**` outputs and regenerated `lab/**` pages |
+| R7-2 | Re-run the full `verify.yml` + `pages.yml` gate chain locally, rebuild the served tree, confirm no broken links, then PR → merge → Pages deploy confirmation | not started | `arena-725e025d-x1` | `COORDINATION.md`, workflow files only if a gate itself is wrong, PR |
+
+## Non-overlap (rule 3)
+
+No file claimed by PR #95 (`COORDINATION.md` append-only record, `docs/audit/public-release-boundary.md`)
+is edited here beyond this claim record; PR #91 and PR #92 are stale, conflicting branches whose round-6
+scopes are **not** taken over by this claim. No official source value is inferred: if a value cannot be
+confirmed from the retained official pack it stays blank and is flagged.
+>>>>>>> adfdc5f (coord: claim round-7 CI repair and final verification/release)
