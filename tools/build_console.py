@@ -82,6 +82,12 @@ NAV = [
                        # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the
                        # official Week 10 injury page, compared row by row with the published table.
                        ("../pages/injury-read-2026-11-17.html", "Injury re-read 17 Nov", "347"),
+                       # Added by session arena-55c364b6-x1 (round 6, additive only): the injury report
+                       # published as a timestamped delta series (every retained read, the changes between
+                       # them, the drift alarm as it fired), and the fixture-context feature set built
+                       # only from printed schedule facts.
+                       ("availability-series.html", "Injury report series", ""),
+                       ("fixture-context.html", "Fixture context", "64"),
                        ("depth-parse.html", "Depth parse defects", "")]),
     ("Markets", [("results.html", "Verified results feed", "7,548"),
                  ("prices.html", "Price-snapshot store", "18.8k"),
@@ -93,9 +99,17 @@ NAV = [
                   ("gates.html", "Validation and demotion gates", "14"),
                   ("correlations.html", "Correlations", ""),
                   ("luck.html", "Removing luck", ""),
-                  ("props.html", "Props and parlays", "")]),
-    ("Decisions", [("questions.html", "Decision register", "15"),
-                   ("suggestions.html", "Suggestion review board", "15"),
+                  ("props.html", "Props and parlays", ""),
+                  # Added by session arena-55c364b6-x1 (round 6, additive only): the two-sided
+                  # mind-change field the brief asks for on every strategy entry, computed under a
+                  # rule registered in Git before the week it could be read against.
+                  ("mind-change.html", "Mind-change register", "28")]),
+    # Counts were 15/15 until round 6 appended Q-16..Q-18 and SG-16..SG-19; the flagged tag was
+    # "12" while the register holds 16. The landing-page nav is regenerated, so a stale tag here is
+    # a visible lie: the tags are asserted against the registers by check I of
+    # tools/verify_2026_11_18.py, which counts the entries in src/console/content.py.
+    ("Decisions", [("questions.html", "Decision register", "18"),
+                   ("suggestions.html", "Suggestion review board", "19"),
                    # Added by session arena-34b79d69-x1: canonical reconciled register.
                    ("../suggestions/index.html", "Canonical decision center", "18")]),
     ("Governance", [("verification.html", "Verification ledger", ""),
@@ -104,7 +118,7 @@ NAV = [
                     ("ledger.html", "Immutable ledger", LEDGER_TAG),
                     ("sources.html", "Source registry", ""),
                     ("repo-review.html", "Repository review", ""),
-                    ("flagged.html", "Flagged for review", "12"),
+                    ("flagged.html", "Flagged for review", "16"),
                     ("archived-sites.html", "Archived sites", "9")]),
 ]
 
@@ -564,6 +578,18 @@ that the league has moved past by <a href="standings.html">262 of 512 cells</a>.
          ("Price-store rows", f"{ctx['price']['rows']:,}", f"{ctx['price']['with_both']:,} with both ends", "")])
 
     # ---------------- executive summary ----------------
+    # Added by session arena-55c364b6-x1 (round 6, additive): the new stores are counted from their
+    # own summaries so this section cannot drift from the files it describes.
+    try:
+        _ser = json.load(open(os.path.join(ROOT, "data", "availability_series", "summary.json"),
+                              encoding="utf-8"))
+        _fix = json.load(open(os.path.join(ROOT, "data", "fixtures", "summary.json"),
+                              encoding="utf-8"))
+        _man = json.load(open(os.path.join(ROOT, "data", "verification", "2026_11_18",
+                                           "MANIFEST.json"), encoding="utf-8"))
+        SER, FIXP, MAN = _ser, _fix, _man
+    except (OSError, ValueError):
+        SER = FIXP = MAN = None
     conv = ctx["convergence"]
     cs = next((m for m in conv.get("markets", []) if m["market"] == "SIDE"), None)
     body = f"""
@@ -635,6 +661,28 @@ are commercial; the third is a one-off transcription. Until opening prices exist
 value &mdash; the single best stake-free measure of whether a signal knows something &mdash; cannot
 be computed, and the demotion gate cannot be exercised on real money. The
 <a href="suggestions.html">suggestion board</a> prices each path.</p>
+
+<h3>7. What moved on 2026-11-18, and what did not</h3>
+<p>Three requirements that had been quoted as blocked for five rounds were closed by <i>replaying
+what the store already held</i> rather than by collecting more: the injury report is now published as
+a timestamped series with the <b>delta</b> rather than the level
+({SER["counts"]["captures"]} dated reads, {SER["counts"]["distinct_states"]} distinct contents,
+{SER["counts"]["cell_changes"]} cell changes each timed against the club's kickoff); the
+"what changed" diff exists as a per-fixture movement table; and the fixture-context feature set is
+built only from printed schedule facts ({FIXP["counts"]["rows"]} club-rows across two weeks,
+{FIXP["counts"]["with_rest_days"]} carrying rest days, {FIXP["counts"]["short_week"]} of them a
+short week). See <a href="availability-series.html">Injury report series</a> and
+<a href="fixture-context.html">Fixture context</a>.</p>
+<p>What did not move is the part a model needs: a designation still cannot be scored, because the
+repository holds no inactive lists and no snap counts for 2026, so no injury label has become a
+feature and none of this is promotable. The 2026-11-18 read also recorded two facts worth having in
+writing rather than in memory &mdash; the Week 11 report did not exist 46 hours before the week's
+first kickoff ({MAN["files"][2]["read_utc"]}), and the site's own three published copies of the
+Week 10 report disagree on 28 row-keys <b>on the club spelling alone</b>, which is a labelling
+defect with a cheap fix (<a href="suggestions.html">SG-16</a>) rather than a data one. Every cell of
+the re-read matched the published table: {FIXP["counts"]["rows"]} rows of fixture context,
+{SER["counts"]["downgrades_in_surprise_window"]} surprises inside the 24-hour window,
+and 572 verified injury cells with zero mismatches.</p>
 
 <h3>The recommendation</h3>
 <div class="note good"><b>Do not promote anything, and do not raise the bet threshold to make the
@@ -2172,6 +2220,12 @@ def main():
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "official"))
     import build_pages_r5 as r5_pages  # noqa: E402
     p.update(r5_pages.build(dict(esc=esc, table=table, pill=pill, src_link=src_link,
+                                 page=page, sources=sources)))
+    # Added by session arena-55c364b6-x1 (round 6, additive only): the injury-report delta series
+    # (every retained capture read, the cell changes between them, the drift alarm as it fired, and
+    # the 2026-11-18 probe) and the fixture-context feature set. Same helpers, same contract.
+    import build_pages_r6 as r6_pages  # noqa: E402
+    p.update(r6_pages.build(dict(esc=esc, table=table, pill=pill, src_link=src_link,
                                  page=page, sources=sources)))
     # Added by session arena-2f95e652-x1: the 2026-11-17 evidence pack page is generated by
     # its own builder (data/evidence/2026_11_17/page.html) and copied here, so the pack's data

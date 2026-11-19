@@ -49,6 +49,35 @@ jobs:
       - name: Rebuild the site
         run: python3 tools/build_site.py
 
+      # Added by session arena-55c364b6-x1 (round 6, additive only). The injury-report delta
+      # series, the fixture-context feature set and the 2026-11-18 dated official reads are
+      # rebuilt from the retained capture payloads and the retained read files, then compared
+      # cell for cell. A payload that no longer reproduces its published hash, a store that has
+      # drifted from its builder, a nav count that lies about a register, or a published injury
+      # cell that disagrees with the page it came from each fail the build here.
+      - name: Rebuild the availability series, the fixture-context store and the 2026-11-18 pack
+        run: |
+          set -euo pipefail
+          python3 tools/build_2026_11_18_manifest.py --check
+          python3 tools/build_availability_series.py --check
+          python3 tools/build_fixture_context.py --check
+      - name: Verify the round-6 stores line by line
+        run: |
+          set -euo pipefail
+          python3 tools/verify_availability_series.py
+          python3 tools/verify_2026_11_18_55c364b6.py
+
+      # Added by session arena-55c364b6-x1 (round 6, additive only). The two-sided mind-change
+      # register (brief row 18) is a view over the two published strategy tables, recomputed per
+      # build: the adopt/abandon verdicts, the sample that would settle each undecided entry, and
+      # the hash of the rule that freezes the method. A rule file edited after the results are in,
+      # an entry missing a side, an orphan row matching no published strategy, or a register that
+      # no longer reproduces from its inputs each fail the build here.
+      - name: Rebuild and verify the two-sided mind-change register
+        run: |
+          set -euo pipefail
+          python3 tools/build_mind_change.py --check
+          python3 tools/verify_mind_change.py
       - name: Fail if committed HTML is stale
         run: git diff --exit-code -- index.html pages
 

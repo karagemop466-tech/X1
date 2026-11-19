@@ -122,6 +122,35 @@ jobs:
         run: |
           python3 tools/origination_desk/verify_desk.py
           python3 -m unittest tools/origination_desk/test_desk.py
+      # Added by session arena-55c364b6-x1 (round 6, additive only). The injury-report delta
+      # series, the fixture-context feature set and the 2026-11-18 dated official reads are
+      # rebuilt from the retained capture payloads and the retained read files, then compared
+      # cell for cell. A payload that no longer reproduces its published hash, a store that has
+      # drifted from its builder, a nav count that lies about a register, or a published injury
+      # cell that disagrees with the page it came from each fail the build here.
+      - name: Rebuild the availability series, the fixture-context store and the 2026-11-18 pack
+        run: |
+          set -euo pipefail
+          python3 tools/build_2026_11_18_manifest.py --check
+          python3 tools/build_availability_series.py --check
+          python3 tools/build_fixture_context.py --check
+      - name: Verify the round-6 stores line by line
+        run: |
+          set -euo pipefail
+          python3 tools/verify_availability_series.py
+          python3 tools/verify_2026_11_18_55c364b6.py
+
+      # Added by session arena-55c364b6-x1 (round 6, additive only). The two-sided mind-change
+      # register (brief row 18) is a view over the two published strategy tables, recomputed per
+      # build: the adopt/abandon verdicts, the sample that would settle each undecided entry, and
+      # the hash of the rule that freezes the method. A rule file edited after the results are in,
+      # an entry missing a side, an orphan row matching no published strategy, or a register that
+      # no longer reproduces from its inputs each fail the build here.
+      - name: Rebuild and verify the two-sided mind-change register
+        run: |
+          set -euo pipefail
+          python3 tools/build_mind_change.py --check
+          python3 tools/verify_mind_change.py
       # Added by session arena/073589d1-x1 (additive only): the Week 11 transcription is re-checked
       # (schema, vocabulary, row sums, designation counts) and its summary must match the committed file.
       - name: Verify the Week 11 official injury capture
@@ -178,6 +207,17 @@ jobs:
           cp -r console _site/
           mkdir -p _site/data/console
           cp data/console/*.csv data/console/*.json _site/data/console/ 2>/dev/null || true
+          # Added by session arena-55c364b6-x1 (round 6, additive only): the two new stores and the
+          # dated read pack behind the Injury report series and Fixture context pages. Without these
+          # copy lines the pages link downloads that exist in the repository but not in the served
+          # tree - exactly the defect tools/verify_deployed_tree.py was written to catch (it found
+          # the same class of break in session arena/56769365-x1's hub tree).
+          cp -r data/availability_series _site/data/availability_series
+          cp -r data/fixtures _site/data/fixtures
+          cp -r data/mind_change _site/data/mind_change
+          mkdir -p _site/data/verification/2026_11_18
+          cp data/verification/2026_11_18/*.tsv _site/data/verification/2026_11_18/ 2>/dev/null || true
+          cp data/verification/2026_11_18/*.json _site/data/verification/2026_11_18/ 2>/dev/null || true
           # Landing page, resolved once. Two sessions claimed the root; the console
           # is served because it covers every requirement and links out to every
           # tree. app/ stays reachable at /app/ and is one click away.

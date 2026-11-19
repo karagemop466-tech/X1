@@ -1,0 +1,59 @@
+{
+ "dataset": "availability_series",
+ "title": "Injury-report reads as a timestamped series, with the delta published, not the level",
+ "generated_by": "tools/build_availability_series.py",
+ "rule": "Every row is recomputed from the retained capture payloads. The hash in each row is the capture store's own content hash, re-derived from the payload file; a payload that no longer reproduces its published hash fails the verifier.",
+ "sources": {
+  "capture_index": "data/captures/index.jsonl",
+  "payloads": "data/captures/payloads/injuries/",
+  "store_config": "data/captures/config.json",
+  "official_page": "https://www.nfl.com/injuries/",
+  "fixture_dates": "data/console/w10_finals_2026_11_17.csv + data/console/schedule_week10.csv"
+ },
+ "counts": {
+  "captures": 19,
+  "distinct_states": 6,
+  "clubs_in_captures": 28,
+  "cell_changes": 104,
+  "changes_by_field": {
+   "game_status": 44,
+   "injury": 44,
+   "practice_status": 16
+  },
+  "changes_by_team": {
+   "HOU": 38,
+   "IND": 36,
+   "LAC": 26,
+   "BAL": 4
+  },
+  "downgrades_in_surprise_window": 0,
+  "movement_groups": 7
+ },
+ "definitions": {
+  "surprise": "a downgrade (this project's ordering) recorded by a read that is within 24 h of that club's kickoff",
+  "game_status_order": "blank < Questionable < Doubtful < Out (ours, not the league's)",
+  "practice_order": "Full < Limited < Did Not Participate (ours)",
+  "alias": "join-only normalisation ARZ\u2192AZ, LAR\u2192LA; payloads keep what each read printed",
+  "fields_compared": "game_status, practice_status, injury, position"
+ },
+ "caveats": [
+  "The three distinct states span two capture methods (collector read, hand transcription). A state pair whose methods differ is labelled as such: its delta mixes a source change with a method change and cannot be read as pure movement.",
+  "Two states with identical cell contents can still carry different content hashes: the hash covers the serialised JSON, including the game_label format, not the facts alone. That is why this builder diffs cells and reports the hash next to it.",
+  "The Week 11 report is not in the capture store at all: as of the 2026-11-18 probe the league page still printed Week 10 (data/verification/2026_11_18/). The series is therefore one week deep and the weekly-diff requirement stays PARTIAL until a second week exists.",
+  "Kickoff times are the printed ET slots converted with a fixed EST offset (November, no DST change). The Munich fixture's printed slot is a 9:30 AM ET listing."
+ ],
+ "hours_surprise_window": 24.0,
+ "et_offset_h": 5,
+ "alias_table": [
+  {
+   "from_code": "ARZ",
+   "to_code": "AZ",
+   "why": "printed spelling of the same club"
+  },
+  {
+   "from_code": "LAR",
+   "to_code": "LA",
+   "why": "printed spelling of the same club"
+  }
+ ]
+}
