@@ -19,7 +19,7 @@
  },
  "dataset": "feed-closure-measurement",
  "decision_for_the_owner": "B is the recommended path and it is small: one gate edit, a re-pinned baseline, the row-count pins, and a regeneration of the artefacts in M5. What it is not is a data problem - M3 shows the closure reproduces the league table exactly. No session should make that call, because it changes what 'verified' means for every row already published; that is why it is recorded here as a decision and not implemented as a change.",
- "generated_at": "2026-11-19T06:51:11+00:00",
+ "generated_at": "2026-11-19T07:04:03+00:00",
  "generated_by": "tools/lab/build_closure_measurement.py (session arena-9d8c298c-x1)",
  "inputs": {
   "code/reference_data_2026_w10.py": "08a3caa73aac9c53a1a57fda2ad38abc4285dee7ea98747837567b10c1bfd167",
@@ -510,7 +510,7 @@
   "M5_blast_radius": {
    "by_kind": {
     "build_results_r3": 15,
-    "reads.tsv": 19,
+    "reads.tsv": 20,
     "signal_grade": 12,
     "verified_results": 39
    },
@@ -648,6 +648,9 @@
     "tools/build_audit_registers.py": [
      "verified_results"
     ],
+    "tools/build_modeling_lab.py": [
+     "reads.tsv"
+    ],
     "tools/build_price_history.py": [
      "verified_results"
     ],
@@ -713,7 +716,7 @@
      "verified_results"
     ]
    },
-   "files_naming_the_results_log_or_the_feed": 56,
+   "files_naming_the_results_log_or_the_feed": 57,
    "reading": "a closure is not one file: this is the list of artefacts that name the log or the feed and would have to be regenerated and re-verified in the same commit. Frozen inputs (PR-01's) are deliberately excluded from 'just do it' by that fact. Renderings are excluded too, so the count is the cost of the change and not a function of how many pages happen to describe it.",
    "scan_scope": "tools, scripts, code, docs, data, .github; html and this pack's own output excluded"
   },

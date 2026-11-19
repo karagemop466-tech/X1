@@ -35,6 +35,8 @@ NAV = [
     ("pages/standings.html", "Standings"),
     ("pages/schedule.html", "Week 10"),
     ("pages/availability.html", "Availability"),
+    ("pages/matchup-matrix.html", "Matchup matrix"),
+    ("pages/modeling-lab.html", "Modeling lab"),
     ("pages/line-origination.html", "Line origination"),
     ("pages/validation.html", "Validation gates"),
     ("pages/leaderboard.html", "Leaderboard"),
@@ -491,6 +493,8 @@ def page_index():
 <section class="cards">
   <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. {v['cells_compared']:,} cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
   <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across {FULL_JOIN['clubs_with_a_chart']} clubs finds <b>{FULL_JOIN['starters_ruled_out']} starters ruled Out</b> plus {FULL_JOIN['backups_depth_2_to_4_out_or_doubtful']} second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
+  <a class="card" href="pages/matchup-matrix.html"><span class="ico">⊞</span><small>DATA / 02B</small><h3>32-team deficiency &amp; W11 matchup matrix</h3><p>Depth-slot groups (no fabricated single starter), Packers jersey-number stripping (0→13 W10 joins recovered), HOU flagged image-only, and an interactive Week 11 Offense vs Defense matrix (1st–4th string).</p><span class="more">Open matchup matrix →</span></a>
+  <a class="card" href="pages/modeling-lab.html"><span class="ico">∑</span><small>MODEL / 02C</small><h3>Opponent-aware SRS, dual totals &amp; ablations</h3><p>Disjoint Train/Val/Holdout/Live2026 splits (0 overlap), walk-forward opponent-aware SRS vs unadjusted ratings, dual totals kept side-by-side with 95% CI, and chronological personnel ablations.</p><span class="more">Open modeling lab →</span></a>
   <a class="card" href="pages/line-origination.html"><span class="ico">◎</span><small>METHOD / 03</small><h3>Line origination</h3><p>The pipeline from frozen inputs to a fair price, the seven signal families, and the prop model that must not assume independence.</p><span class="more">Read the method →</span></a>
   <a class="card" href="pages/validation.html"><span class="ico">✓</span><small>METHOD / 04</small><h3>Validation gates</h3><p>Seven pre-registered gates. A 55% record over 500 bets scores z≈1.22 — inside coin-flip range. Here is the arithmetic that removes luck.</p><span class="more">See the gates →</span></a>
   <a class="card" href="pages/leaderboard.html"><span class="ico">↗</span><small>COMPETITION / 05</small><h3>Strategy leaderboard</h3><p>Four divisions, rank by skill not ROI, effective sample size for correlated tickets, and rewards that do not crown luck.</p><span class="more">See the design →</span></a>
@@ -3028,6 +3032,197 @@ def page_verification_2026_11_17():
     return shell("Live re-verification 17 Nov (2026-11-17)", "READ LIVE 2026-11-17 22:46–22:56 UTC", body, depth=1)
 
 
+def page_matchup_matrix():
+    dg = json.load(open(os.path.join(D, "depth", "depth_groups_32.json"), encoding="utf-8"))
+    ts = json.load(open(os.path.join(D, "depth", "team_deficiency_summary.json"), encoding="utf-8"))
+    mx = json.load(open(os.path.join(D, "depth", "matchup_deficiency_matrix_w11.json"), encoding="utf-8"))
+    c = dg["meta"]["counts"]
+
+    team_rows = []
+    for r in ts["rows"]:
+        is_hou = r["depth_status"] == "unavailable_image_only"
+        status_pill = '<span class="pill warn">image-only</span>' if is_hou else '<span class="pill ok">verified</span>'
+        reps_text = " / ".join(x for x in (r["w11_offense_replacements"], r["w11_defense_replacements"]) if x)
+        team_rows.append([
+            f'<td><b>{esc(r["team_abbrev"])}</b></td>',
+            cell(r["w11_matchup"]),
+            f'<td>{status_pill}</td>',
+            cell(r["depth1_slots"], "HOU image-only chart not transcribed"),
+            cell(r["w11_injuries_total"]),
+            cell(f'{r["w11_out_count"]} / {r["w11_doubtful_count"]} / {r["w11_questionable_count"]}'),
+            cell(r["w11_starters_out_or_dnp"], "HOU depth unavailable"),
+            cell(reps_text, "HOU unavailable or no 1st-string replacements triggered in W11"),
+            cell(f'{r["w10_out_count"]} out / {r["w10_injuries_total"]} total'),
+            src_cell(r["source_url"], "club chart ↗"),
+        ])
+
+    mx_rows_html = []
+    matchups = sorted({r["matchup"] for r in mx["rows"]})
+    flags = sorted({r["mismatch_flag"] for r in mx["rows"]})
+    for r in mx["rows"]:
+        fl = r["mismatch_flag"]
+        pill_cls = "high" if fl in ("OFF_ADVANTAGE_DEF_BACKUP", "DEF_ADVANTAGE_OFF_BACKUP", "BOTH_UNITS_DEPLETED") else ("warn" if "HOU" in fl or "WATCH" in fl else "ok")
+        mx_rows_html.append(
+            f'<tr data-matchup="{esc(r["matchup"])}" data-flag="{esc(fl)}" data-teams="{esc(r["offense_team"])} {esc(r["defense_team"])}">'
+            + "".join([
+                f'<td><b>{esc(r["matchup"])}</b><br><small>{esc(r["date_et"])} {esc(r["time_et"])}</small></td>',
+                cell(r["side"]),
+                cell(r["lane"].replace("_", " ")),
+                f'<td><b>{esc(r["offense_team"])}</b> ({esc(r["off_starters_affected"] if r["off_starters_affected"] != "" else "—")}/{esc(r["off_starters_total"] if r["off_starters_total"] != "" else "—")})<br><small>{esc(r["off_detail"])}</small></td>',
+                f'<td><b>{esc(r["defense_team"])}</b> ({esc(r["def_starters_affected"] if r["def_starters_affected"] != "" else "—")}/{esc(r["def_starters_total"] if r["def_starters_total"] != "" else "—")})<br><small>{esc(r["def_detail"])}</small></td>',
+                f'<td><span class="pill {pill_cls}">{esc(fl)}</span></td>',
+                f'<td>{link(r["game_url"], "game ↗", "src-link")} · {link(r["off_source_url"], "off ↗", "src-link")} · {link(r["def_source_url"], "def ↗", "src-link")}</td>',
+            ])
+            + "</tr>"
+        )
+
+    matchup_opts = "".join(f'<option value="{esc(m)}">{esc(m)}</option>' for m in matchups)
+    flag_opts = "".join(f'<option value="{esc(f)}">{esc(f)}</option>' for f in flags)
+
+    body = f"""
+<section class="sectionhead"><div><div class="eyebrow">DEPTH GROUPS &amp; W11 MATCHUP MATRIX</div><h1>32-Team Deficiency &amp; Matchup Matrix (1st–4th String)</h1></div><span class="tag">LIVE INJURIES {esc(dg["meta"]["injuries_w11_retrieved_at"][:10])}</span></section>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:20px">
+  <div class="herocard">{stat(f"{c['clubs_verified_depth']} / {c['clubs_total']}", "clubs with verified depth", "HOU flagged image-only (not transcribed)")}</div>
+  <div class="herocard">{stat(f"{c['gb_w10_injury_joins_raw']} → {c['gb_w10_injury_joins_stripped']}", "Packers W10 injury joins", f"{c['gb_jersey_stripped_rows']} GB rows stripped; raw_player kept")}</div>
+  <div class="herocard">{stat(f"{c['shared_rank1_position_groups']} / {c['shared_concatenated_cells']}", "shared groups / concat cells", f"{c['empty_depth_gap_rows']} explicit empty-depth gaps")}</div>
+  <div class="herocard">{stat(f"{c['w11_matrix_mismatch_alerts']} / {c['w11_matrix_rows']}", "W11 matchup alerts", "2nd–4th string active in lane")}</div>
+</div>
+
+<div class="note">
+  <b>Depth-parsing &amp; group-slot contract.</b>
+  (1) <b>Green Bay</b> prepends jersey numbers on 55 rows: leading digits are stripped into <code>player_clean</code> while <code>raw_player</code> is preserved verbatim, recovering 0 → 13 official Week 10 injury joins.
+  (2) <b>Houston</b> publishes its depth chart as an image only and stays explicitly blank/flagged (<code>unavailable_image_only</code>).
+  (3) <b>Shared &amp; empty slots</b>: {c['shared_rank1_position_groups']} multi-slot rank-1 position groups (e.g. WR1/WR2/WR3) are modelled as groups rather than flattened to one fabricated starter; {c['shared_concatenated_cells']} concatenated multi-player cells (e.g. SEA <i>Cooper Kupp Rashid Shaheed</i>) are split deterministically; {c['empty_depth_gap_rows']} depth-numbering gaps are marked explicitly as <code>empty_depth_gap</code>.
+</div>
+
+<h2>Interactive Week 11 Offense vs. Defense Matchup Deficiency Matrix (1st–4th String)</h2>
+<div class="note" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+  <label>Fixture: <select id="mx-fixture"><option value="">All 13 games</option>{matchup_opts}</select></label>
+  <label>Status flag: <select id="mx-flag"><option value="">All flags</option>{flag_opts}</select></label>
+  <label>Team search: <input id="mx-search" type="search" placeholder="e.g. BUF, IND, WR"></label>
+  <span id="mx-count" class="tag">{len(mx_rows_html)} rows shown</span>
+</div>
+
+<div class="tablewrap"><table class="wide" id="mx-table" data-table>
+  <caption>78 matchup-lane rows across all 13 Week 11 official games (Passing WR/TE vs CB/S, Trench OL vs Front-7, Backfield QB/RB vs Box)</caption>
+  <thead><tr><th>Game</th><th>Side</th><th>Lane</th><th>Offense 1st-string &amp; replacements</th><th>Defense 1st-string &amp; replacements</th><th>Mismatch flag</th><th>Source</th></tr></thead>
+  <tbody>
+  {"".join(mx_rows_html)}
+  </tbody>
+</table></div>
+
+<h2>Per-Team Deficiency Summary (All 32 Clubs)</h2>
+{table(["Club", "W11 Slate", "Depth Status", "Rank-1 Slots", "W11 Report", "Out / Dbt / Q", "Starters Out/DNP", "W11 Replacements Named (2nd–4th)", "W10 Baseline", "Source"],
+       team_rows, "32 clubs: 31 official club charts + HOU unavailable_image_only; live W11 injury read 2026-11-19", "wide", True)}
+
+<script>
+(function(){{
+  var fSel = document.getElementById("mx-fixture");
+  var stSel = document.getElementById("mx-flag");
+  var qIn = document.getElementById("mx-search");
+  var cnt = document.getElementById("mx-count");
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#mx-table tbody tr"));
+  function apply(){{
+    var f = fSel.value, s = stSel.value, q = (qIn.value || "").trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function(tr){{
+      var ok = (!f || tr.getAttribute("data-matchup") === f) &&
+               (!s || tr.getAttribute("data-flag") === s) &&
+               (!q || tr.textContent.toLowerCase().indexOf(q) !== -1);
+      tr.style.display = ok ? "" : "none";
+      if(ok) shown++;
+    }});
+    cnt.textContent = shown + " rows shown";
+  }}
+  fSel.addEventListener("change", apply);
+  stSel.addEventListener("change", apply);
+  qIn.addEventListener("input", apply);
+}})();
+</script>
+"""
+    return shell("Matchup matrix", f"32 CLUBS · W11 LIVE {dg['meta']['injuries_w11_retrieved_at'][:10]}", body, depth=1)
+
+
+def page_modeling_lab():
+    sp = json.load(open(os.path.join(D, "models", "season_splits.json"), encoding="utf-8"))
+    rt = json.load(open(os.path.join(D, "models", "opponent_aware_ratings.json"), encoding="utf-8"))
+    dt = json.load(open(os.path.join(D, "models", "dual_totals_walkforward.json"), encoding="utf-8"))
+    ab = json.load(open(os.path.join(D, "models", "personnel_ablations.json"), encoding="utf-8"))
+    m = sp["meta"]
+    w26 = m["w26_w3_w10_rating_ablation"]
+
+    sp_rows = [
+        [f'<td><b>{esc(r["split"])}</b></td>', cell(r["seasons"]), cell(r["games"]),
+         cell(f'{r["min_gameday"]} → {r["max_gameday"]}'), cell(r["leakage_overlap_games"]),
+         cell(r["provenance_tier"]), src_cell(r["source_url"], "source ↗")]
+        for r in sp["rows"]
+    ]
+    dt_sum_rows = [
+        [f'<td><b>{esc(r["split"])}</b></td>', cell(r["games"]), cell(r["mae_model_a"]), cell(r["mae_model_b"]),
+         cell(f'{r["mae_diff_b_minus_a"]:+.4f}'), cell(f'[{r["ci95_low"]:+.4f}, {r["ci95_high"]:+.4f}]'),
+         cell(f'{r["rmse_model_a"]} / {r["rmse_model_b"]}'),
+         f'<td><span class="pill warn">{esc(r["collapse_verdict"])}</span></td>',
+         cell(r["provenance"]), src_cell(r["source_url"], "source ↗")]
+        for r in dt["summary"]
+    ]
+    dt_game_rows = [
+        [cell(r["game_id"]), cell(f'{r["away"]} @ {r["home"]}'), cell(r["total_model_a"]),
+         cell(r["total_model_b"]), cell(f'{r["gap_b_minus_a"]:+.2f}'), cell(r["actual_total"]),
+         cell(f'{r["err_a"]} vs {r["err_b"]}'), src_cell(r["source_url"], "game ↗")]
+        for r in dt["rows"][-24:]
+    ]
+    ab_rows = [
+        [f'<td><b>{esc(r["split"])}</b></td>', cell(r["feature_set"]),
+         f'<td><span class="pill {"ok" if r["status"]=="measured_chronological_holdout" else "warn"}">{esc(r["status"])}</span></td>',
+         cell(r["games"]), cell(r["mae_without_personnel"]), cell(r["mae_with_personnel"], "blocked pending multi-week official inactives"),
+         cell(r["delta_mae_with_minus_without"], "not computed"), cell(r["delta_mae_ci95"], "not computed"),
+         cell(r["brier_without_personnel"]), cell(r["brier_with_personnel"], "not computed"),
+         cell(r["delta_brier_ci95"], "not computed"), cell(r["provenance"]),
+         src_cell(r["source_url"], "source ↗")]
+        for r in ab["rows"]
+    ]
+    rt_rows = [
+        [cell(r["rank_opp_aware"]), f'<td><b>{esc(r["team_abbrev"])}</b></td>', cell(r["unadjusted_rating"]),
+         cell(f'{r["sos_adjustment"]:+.3f}'), f'<td><b>{esc(r["opponent_aware_srs"])}</b></td>',
+         cell(r["rank_unadjusted"]), cell(f'{r["rank_delta"]:+d}'),
+         src_cell(r["source_url"], "standings ↗")]
+        for r in rt["rows"]
+    ]
+
+    body = f"""
+<section class="sectionhead"><div><div class="eyebrow">CHRONOLOGICAL SPLITS · SRS · DUAL TOTALS · ABLATIONS</div><h1>Modeling Lab &amp; Holdout Ablations</h1></div><span class="tag">0 OVERLAP GAMES</span></section>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:20px">
+  <div class="herocard">{stat(f"{m['overlap_games_across_splits']}", "cross-split leakage", "4 disjoint chronological windows")}</div>
+  <div class="herocard">{stat(f"{w26['mae_unadjusted']} → {w26['mae_opp_aware_srs']}", "2026 W3–W10 Spread MAE", f"unadj vs opp-aware SRS (n={w26['games']})")}</div>
+  <div class="herocard">{stat(f"{w26['brier_unadjusted']} → {w26['brier_opp_aware_srs']}", "2026 W3–W10 Win Brier", f"Δ={w26['delta_brier']:+.5f}, 95% CI {w26['delta_brier_ci95']}")}</div>
+  <div class="herocard">{stat("KEEP BOTH", "Dual Totals status", "95% CI spans 0 on Val, Holdout & 2026")}</div>
+</div>
+
+<h2>1. Chronological Train / Validation / Holdout Season Splits</h2>
+{table(["Split", "Seasons", "Games", "Date Span", "Overlap", "Provenance Tier", "Source"],
+       sp_rows, "Disjoint chronological splits: 2019-2025 third_party_mirror (nflverse) vs 2026 official_verified (nfl.com)", "wide", True)}
+
+<h2>2. Dual Walk-Forward Model Totals (Published Twice Until One Wins)</h2>
+{table(["Split", "Games", "Model A MAE", "Model B MAE", "MAE Δ (B−A)", "95% Bootstrap CI", "RMSE (A / B)", "Verdict", "Data Tier", "Source"],
+       dt_sum_rows, "Model A (shrunk PF/PA baseline) vs Model B (opponent-aware Off/Def + venue context); neither collapsed while CI includes 0", "wide", True)}
+
+<h3>Recent 2026 Official Corpus Totals (Last 24 Games of W3–W10)</h3>
+{table(["Game ID", "Matchup", "Model A Total", "Model B Total", "Gap (B−A)", "Actual Total", "Abs Err (A vs B)", "Source"],
+       dt_game_rows, "Every game publishes both walk-forward totals and their gap", "wide", True)}
+
+<h2>3. Personnel &amp; Availability Ablations (Instead of Fixed Penalties)</h2>
+{table(["Split", "Feature Ablated", "Status", "Games", "MAE (No Pers.)", "MAE (+Pers.)", "Δ MAE", "Δ MAE 95% CI", "Brier (No Pers.)", "Brier (+Pers.)", "Δ Brier 95% CI", "Data Tier", "Source"],
+       ab_rows, "Learned causal QB-starter-change weights from train 2019-2023 (home={m['m1_learned_weights_from_train_2019_2023']['home_qb_change']:+.2f}, away={m['m1_learned_weights_from_train_2019_2023']['away_qb_change']:+.2f}); 2026 non-QB injury ablation explicitly blocked pending multi-week official inactives", "wide", True)}
+
+<h2>4. 2026 Opponent-Aware Iterative SRS Ratings (Through Official Week 10, n=150 games)</h2>
+{table(["SRS Rank", "Club", "Unadjusted Rating", "SOS Adjustment", "Opponent-Aware SRS", "Unadj Rank", "Rank Δ", "Source"],
+       rt_rows, "Strictly computed from 150 official-verified 2026 W1-W10 game results", "wide", True)}
+"""
+    return shell("Modeling lab", "SPLITS · OPP-AWARE SRS · DUAL TOTALS · ABLATIONS", body, depth=1)
+
+
 def main():
     write("index.html", page_index())
     write("pages/executive-summary.html", page_exec_summary())
@@ -3056,6 +3251,8 @@ def main():
     write("pages/next-decisions.html", page_next_decisions())
     write("pages/verification-2026-11-17.html", page_verification_2026_11_17())
     write("pages/results-closure.html", page_results_closure())
+    write("pages/matchup-matrix.html", page_matchup_matrix())
+    write("pages/modeling-lab.html", page_modeling_lab())
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
     print(f"wrote index.html + {n} pages")
 

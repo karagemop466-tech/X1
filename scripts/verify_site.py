@@ -51,7 +51,7 @@ def _club_hosts() -> tuple[str, ...]:
 
 
 CLUB_HOSTS = _club_hosts()
-OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "github.com") + CLUB_HOSTS
+OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "github.com", "www.houstontexans.com") + CLUB_HOSTS
 errors: list[str] = []
 
 
