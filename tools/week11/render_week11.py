@@ -147,8 +147,8 @@ def render(page: Callable[..., str], table: Callable[..., str], card: Callable[.
         card("Charlie Heck (IND, T): a change in the official report, not a parse error",
              "<p>The 13:16 UTC read printed <i>Not injury related - personal matter</i> and <i>Questionable</i> for him. "
              "The live page, read at about 21:59 UTC on 2026-11-19, showed both cells blank, and the 22:10 UTC read captured "
-             "on the runner shows the same. The change is therefore in the official report, and the parser reports it as "
-             "found. The 22:10 UTC read prints <b>no game designation</b> for him. That is not a clearance and is not read "
+             "on the runner shows the same. The change is therefore in the official report; the parser did not create it. "
+             "The 22:10 UTC read prints <b>no game designation</b> for him. That is not a clearance and is not read "
              "as one: the report says nothing about his game status.</p>"),
     ])
     return page("week11.html", "Week 11 official injury report: reads and deltas",
