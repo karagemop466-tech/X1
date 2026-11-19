@@ -5914,3 +5914,18 @@ The live page changes are data-only/derived: replacement-depth display names now
 - **Still REVIEW, not a blocker to publishing the page:** A7's Week 11 report capture is incomplete; A8's dated starter evidence is also REVIEW. No unverified status was filled.
 
 **Rebase/merge conflict log (2026-11-19):** required pre-push rebases incorporated PR #128 (`87023d2`), PR #129 (`f37264c`), PR #131 (`c5265bd`), PR #130 (`130453b`), PR #133 (`b3a712c`), PR #137 (`ad212c1`), and PR #139 (`8544587`). Append-only `COORDINATION.md` conflicts were resolved by retaining upstream session/release records and the LA-4 claim/scope. PR #131's final integration and the later T9-5/PR #133 release records, plus PR #130's schedule-announcement integration, were preserved. The original pushed branch head `c61bafa` was merged as a second parent after rebasing, retaining the original claim lineage in history. No upstream source/data evidence was removed.
+---
+
+# Session `arena/073589d1-x1` — Week 11 official capture, baseline replay, integration release (2026-11-19)
+
+**Branch:** `arena/073589d1-x1` (fixed by Arena; based on `main` at `a1cca5c`). The `session-<id>/<task>` branch convention is not used: Arena pins this session to one branch, as recorded above.
+**Claim committed before implementation (2026-11-19 22:05 UTC).** No open task on this board is claimed by this session except as listed below; other sessions' open PRs (#91, #92, #95, #96, #110, #113, #123) are **not** touched.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| S-1 | Baseline replay of the verify and Pages gates on `a1cca5c` (read-only; generated drift reverted before commit) | in progress | `arena/073589d1-x1` | none (report appended here) |
+| S-2 | Capture the official **Week 11** NFL injury report as a dated, hashed fetch-tool capture (`https://www.nfl.com/injuries/`, read 2026-11-19), parsed into a sourced table with row-count checks | in progress | `arena/073589d1-x1` | `data/capture/2026_w11/**` (new directory), `tools/official/capture_w11.py` (new) |
+| S-3 | Integration: landing-page wording LA-4 (stale Week 10 "13/14 final" line) and the Week 10 headline, only if S-1 confirms the stale text | in progress | `arena/073589d1-x1` | to be logged here before any edit to `tools/build_site.py` / `console/index.html` |
+| S-4 | Executive summary, open-question register and suggestion board refresh, citing only verified sources and the gaps this session could not close | in progress | `arena/073589d1-x1` | `docs/EXECUTIVE-SUMMARY.md` (refresh section only) |
+
+**Sandbox limit (verified 2026-11-19 22:00 UTC):** bash `curl` to `www.nfl.com` fails (exit 35, connection refused). `fetch_page` reads `https://www.nfl.com/injuries/` (Week 11 live, 7 chunks). Official pages therefore enter the repository only as fetch-tool captures, not as raw HTTP bytes; every such file says so.
