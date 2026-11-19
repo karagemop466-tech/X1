@@ -23,6 +23,7 @@ import glob
 import os
 import re
 import sys
+import subprocess
 from urllib.parse import urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -123,6 +124,10 @@ for path in files:
 missing = sorted(used - css_classes - js_hooks)
 check(not missing, "every CSS class used is defined or is a JavaScript hook"
       + (f" (missing: {missing})" if missing else ""))
+
+# KR-T1: reject a stale published table or a forecast that no longer reproduces.
+subprocess.run([sys.executable, os.path.join(ROOT, 'tools/kickoff_regimes/build.py'), '--check'], check=True)
+subprocess.run([sys.executable, os.path.join(ROOT, 'tools/kickoff_regimes/test_trial.py')], check=True)
 
 print(f"files checked : {len(files)}")
 print(f"assertions    : {len(checks)}")
