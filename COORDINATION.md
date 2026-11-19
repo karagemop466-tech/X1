@@ -5152,3 +5152,39 @@ source file was overwritten.
 (run 44476946828). The push merge's build was cancelled by the shared `pages` concurrency group
 (run 44477150229), a known infrastructure contention recorded by earlier rounds, not a failed
 assertion. A follow-up docs-only push re-runs the gate; the result is recorded in the next paragraph.
+
+## Pull request record and release — round 7 (session `arena/427c1843-x1`)
+
+**PR #105** — "Round 7: live 2026-11-19 official verification pack, the Decision Room, and the
+double-escape defect fixed at the generator"
+→ <https://github.com/karagemop466-tech/X1/pull/105>
+
+| | |
+|---|---|
+| Merged | 2026-11-19T07:09:45Z, merge commit **`c30648799b8abcba40f9b168f75abaa306c6c4cb`**, method `--merge` |
+| CI on the PR head (`3a099ce`) | `build` **pass** (35 s) · `verify` **pass** (19 s) · `corpus` **pass** (5 s) · `deploy` skipped (pull requests do not deploy, by design) |
+| CI on the merge commit | `verify-site` **success** · `Publish static site to GitHub Pages` **success** · `pages build and deployment` **success** · `Evaluation readiness` **success** |
+| Deploy verified | <https://karagemop466-tech.github.io/X1/room/index.html> returns the room with its live numbers (253 rows / 24 clubs / 16 designations / 104 of 192 cells / 0 strategies surviving multiplicity) |
+| Local gate before merge | 40 `verify.yml` `run:` steps + `verify_deployed_tree` + the three `main`-side checks — **0 failures** on the rebased tree |
+
+**One deploy defect was found and fixed before the merge.** `room/` is linked from the main
+navigation of all 28 generated pages, but the Pages assemble step never copied it, so every nav link
+would have been dead on the published site. `tools/verify_deployed_tree.py` — which replays the copy
+steps and crawls the assembled tree instead of auditing the repository — caught it. The fix is one
+additive `cp -r room _site/` line. This is the second time that checker has caught a folder that was
+linked but never copied; worth remembering whenever a page tree is added.
+
+**Rebase history.** `arena/427c1843-x1` was rebased onto a fast-moving `main` five times (19 commits
+of drift by the merge). Every conflict was append-only and was resolved by **union with nothing
+discarded**: `COORDINATION.md` (the `arena/e0c7de42-x1`, `arena/ee613dd1-x1` and `arena/725e025d-x1`
+blocks are all preserved) and `.github/workflows/verify.yml` (the other sessions' steps and this
+session's two are all present; 49 named steps). The `tools/build_site.py` / `index.html` overlap with
+PR #99 was resolved by **regeneration, never hand-merge**: the generator produces no diff on the
+merged tree.
+
+**Deliberately not done.** This session did not open, edit or close PRs #91, #92, #95, #96; #91 and
+#92 remain open from earlier rounds and #95/#96 are docs/tooling-only from other sessions. No attempt
+was made to reconcile with PR #102's "Decision Center" (`app/**`): it is a parallel presentation of
+the same board and both are reachable — `app/decisions.html`, `app/suggestions.html` and
+`room/questions.html`, `room/suggestions.html`. Picking one is the owner's call, and the duplication
+is recorded here rather than resolved by deleting another session's section.
