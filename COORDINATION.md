@@ -4698,7 +4698,7 @@ KR-T1 pre-kickoff escrow: [registration commit](https://github.com/karagemop466-
 
 **KR-T1 automation scope:** new `.github/workflows/paper-totals-settlement.yml` only. Replay the frozen forecast and evaluate the verified results automatically; never commit mutable scores into escrow. Publish the score report as a job summary and artifact. PR build was cancelled by the pre-existing shared Pages concurrency group, not by a failed verification assertion; repeating without altering other sessions’ workflow.
 
-**KR-1 release:** [PR #99](https://github.com/karagemop466-tech/X1/pull/99). 46 verify-site run steps and 18 Pages build run steps passed locally against merged #97; subsequent #98 integration preserved both flag links and both board sections and regenerated the shared page from source. [2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook), [2025 NFL rules](https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes), [2024 NFL rules](https://www.nfl.com/news/2024-nfl-season-explaining-rules-for-new-dynamic-kickoff). Review: missing kick-level evidence and mislabelled historical total B gap (points, not probability). No reward, staking or market price claim.
+**KR-1 release (merged):** `8feae165d4c3e069c046029062db8ddc5a7de84d`, 2026-11-19 06:57:37 UTC. GitHub PR checks build, verify, corpus and score all passed. The first deploy was superseded by the concurrent #101 merge. Confirmed [successful Pages deployment](https://github.com/karagemop466-tech/X1/actions/runs/44476004949) of `c3c5f8f` containing the merge. The final combined crawl checked 191 HTML pages and 5,354 local links, with no broken targets. [Live trial](https://karagemop466-tech.github.io/X1/research/kickoff-regimes/index.html). [PR #99](https://github.com/karagemop466-tech/X1/pull/99). 46 verify-site run steps and 18 Pages build run steps passed locally against merged #97; subsequent #98 integration preserved both flag links and both board sections and regenerated the shared page from source. [2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook), [2025 NFL rules](https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes), [2024 NFL rules](https://www.nfl.com/news/2024-nfl-season-explaining-rules-for-new-dynamic-kickoff). Review: missing kick-level evidence and mislabelled historical total B gap (points, not probability). No reward, staking or market price claim.
 
 ## 2026-11-19 integration — arena/e0c7de42-x1
 In progress: integrate complementary pending PRs #91 and #92 on the pinned branch, resolve overlaps, verify Pages build and publish. Scope: integration of their changed paths, release checks and this board; no competing source transcription.
@@ -4792,7 +4792,7 @@ All 32 flags (F-01 through F-32) are published on `data/flags.json` and `app/fla
 - **F-22/F-28**: Injury table stale vs live page (dated 347-row pack published beside it)
 - **F-31**: Venue requirement partially met (1 of 14 Week 10 venues from Game Center)
 
-## Release (T-R4 — in progress)
+## Release (T-R4 — done)
 
 GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/).
 
@@ -4882,3 +4882,16 @@ The 2026-11-18 19:23 UTC injury capture is still flagged `drift: fail` (26 rows 
 **Scope addition (rule 1, recorded before the edits shipped):** `tools/lab/build_site.py` and the
 regenerated `lab/**` pages were added to this session's scope because they render the two repaired
 artefacts; no shared `data/flags.json`, root index/navigation or other session's branch was edited.
+## Pull request record (session `arena/ee613dd1-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#101](https://github.com/karagemop466-tech/X1/pull/101) — `arena/ee613dd1-x1` → `main` |
+| Title | Final integration and release — session arena/ee613dd1-x1 |
+| Merge command | `gh pr merge 101 --merge` |
+| Merge result | **MERGED**, merge commit `c3c5f8f27ad4e22d74935d0df45bc141dca3632f` on `main` |
+| Post-merge verification | `tools/verify_data.py` 2,960 checks passed; `tools/check_links.py` 47,309 assertions passed; `scripts/verify_site.py` 180 pages passed |
+| GitHub Pages | status `built` at https://karagemop466-tech.github.io/X1/ |
+| Live site | https://karagemop466-tech.github.io/X1/ |
+
+All tasks T-R1 through T-R4 complete. Flagged irregularities (F-01–F-32, Q-02/Q-04/Q-07/Q-31 open) remain published with source links for owner review; none block the release.
