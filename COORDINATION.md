@@ -5634,3 +5634,20 @@ hunk and re-run the builder in a full-history clone.
 - **Pages deploy on `main`:** run 44615297789 (`push` on `7fb2c32`), `build` success, `deploy` success. The live landing page `https://karagemop466-tech.github.io/X1/` serves the new build (fetched 2026-11-19).
 - **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
 - **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
+
+---
+
+# Session `arena-2d1ba329-x1` — Week 11 official injury capture: parse, delta series, freshness (branch `arena/2d1ba329-x1`)
+
+## Claim (written and pushed before any work)
+
+- **Session:** `arena-2d1ba329-x1`, branch `arena/2d1ba329-x1` (base `main` `a1cca5c`). Platform pins this session to one branch; no other branch is touched.
+- **Scope claimed (new paths only):**
+  - `tools/week11/build_week11.py` (new): hash-bound parser of the Week 11 captures in `data/ledger/injuries/raw/`, delta builder, and `--check` mode.
+  - `data/week11/**` (new): capture inventory, per-capture parse, delta series, parse-vs-live comparison.
+  - `docs/week11/**` (new): method, sources, irregularities.
+  - `app/week11.html` (new page) and one nav entry in `tools/build_app.py` (`PAGES` list only).
+  - `data/ledger/injuries/ledger.jsonl`, `data/ledger/injuries/raw/**`: appended by the existing `injury-ledger` workflow only (append-only; no edits to past lines).
+  - This section of `COORDINATION.md`.
+- **Not claimed / not touched:** open PRs #91, #92, #95, #96, #110, #113, #123 and their files; `index.html`; `pages/**`; `console/**`; `hub/**`; `room/**`; `origination-desk/**`; `data/nfl/injuries_week10.*` (Week 10 tables).
+- **Why this scope:** the injury ledger's freshness check fails on `main` (last capture 8.7 h before this session; limit 6 h). The official page is now Week 11 while the published injury tables are Week 10 (flag F-35). The brief asks for dated, delta-only injury history, not a level snapshot.
