@@ -394,8 +394,11 @@ def _audit_tree(html_paths, css_path, js_root, label):
 # ../app/assets/site.css, so it is audited against that stylesheet below, exactly as app/ is.
 # Added by session arena/5f1c014c-x1: console/ is audited against its own stylesheet
 # (console/assets/console.css) below, so it is excluded from the main-site audit here.
+# Added by session arena/427c1843-x1 (additive): room/ is an eighth page tree. It links
+# ../app/assets/site.css, so — exactly like lab/ — it is audited against that stylesheet
+# below rather than against assets/site.css here.
 _mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
-         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console")]
+         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console", "room")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -441,6 +444,13 @@ _labx = sorted(glob.glob(os.path.join(ROOT, "lab", "*.html")))
 if _labx:
     _audit_tree(_labx, os.path.join(ROOT, "app", "assets", "site.css"),
                 os.path.join(ROOT, "app", "assets"), "lab -> app/assets/site.css")
+
+# Added by session arena/427c1843-x1 (additive only): the Decision Room (room/**) also reuses the
+# app stylesheet, so it is audited against the same file, exactly as lab/ is.
+_roomx = sorted(glob.glob(os.path.join(ROOT, "room", "*.html")))
+if _roomx:
+    _audit_tree(_roomx, os.path.join(ROOT, "app", "assets", "site.css"),
+                os.path.join(ROOT, "app", "assets"), "room -> app/assets/site.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

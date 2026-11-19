@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missing information — The Decision Room</title>
+<meta name="description" content="NFL line origination, validated strategies and the questions that must be settled first. Every number sourced; nothing inferred.">
+<link rel="stylesheet" href="../app/assets/site.css">
+<style>
+:root{--ink:#12161c;--mut:#5b6675;--line:#e2e6ec;--bg:#fbfcfd;--accent:#0b4f8a;--warn:#8a4b0b;--bad:#8a0b0b;--good:#0b6b3a}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}
+.room{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{border-right:1px solid var(--line);padding:18px 14px;background:#fff;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand{font-weight:700;letter-spacing:.08em;font-size:13px;color:var(--mut);text-transform:uppercase}
+aside .brand b{display:block;font-size:19px;letter-spacing:0;color:var(--ink);text-transform:none}
+aside nav{display:flex;flex-direction:column;margin-top:16px;gap:1px}
+aside nav a{padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+aside nav a:hover{background:#eef3f8}
+aside nav a.on{background:var(--accent);color:#fff;font-weight:600}
+aside .note{margin-top:18px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+main{padding:26px 34px 70px;max-width:1180px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:22px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:30px;line-height:1.15;margin:.2em 0 .35em}
+h2{font-size:19px;margin:2.1em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:1.5em 0 .4em}
+p{max-width:78ch}
+.lede{font-size:17px;color:#26303c;max-width:74ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.tw{overflow:auto;border:1px solid var(--line);border-radius:8px;margin:.6em 0 1.1em;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f6f9;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafcfe}
+td.blank{color:#aeb6c2;text-align:center}
+a.src{font-size:12px;white-space:nowrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:1em 0 1.6em}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;text-decoration:none;color:var(--ink);display:block}
+.card:hover{border-color:var(--accent);box-shadow:0 1px 8px rgba(11,79,138,.08)}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card span{font-size:12.5px;color:var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:1em 0 1.6em}
+.kpi{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;background:#fff}
+.kpi b{display:block;font-size:24px;line-height:1.1}
+.kpi span{font-size:12px;color:var(--mut)}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.03em;border:1px solid}
+.p-met{color:var(--good);border-color:#bfe3cf;background:#f0faf4}
+.p-part{color:var(--warn);border-color:#ecd9c0;background:#fdf7ef}
+.p-open{color:var(--bad);border-color:#eed0d0;background:#fdf2f2}
+.p-na{color:var(--mut);border-color:var(--line);background:#f7f8fa}
+.box{border:1px solid var(--line);border-left:4px solid var(--accent);background:#fff;border-radius:8px;padding:14px 18px;margin:1.1em 0}
+.box.warn{border-left-color:var(--warn)}
+.box.bad{border-left-color:var(--bad)}
+.box h3{margin-top:0}
+code{background:#f1f4f8;padding:1px 5px;border-radius:4px;font-size:12.5px}
+ul,ol{max-width:78ch}
+li{margin:.3em 0}
+footer.foot{margin-top:3em;border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--mut)}
+@media(max-width:820px){.room{grid-template-columns:1fr}aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:18px}}
+</style>
+</head>
+<body>
+<div class="room">
+<aside>
+  <div class="brand">Fourth Down<b>The Decision Room</b></div>
+  <nav>
+    <a href="index.html">Start here</a>
+<a href="questions.html">Questions to settle</a>
+<a class="on" href="missing.html">Missing information</a>
+<a href="suggestions.html">Suggestions board</a>
+<a href="lines.html">Origination &amp; leaderboard</a>
+<a href="gates.html">Validation gates</a>
+<a href="correlation.html">Correlation</a>
+<a href="luck.html">Removing luck</a>
+<a href="availability.html">Availability &amp; depth</a>
+<a href="stale.html">Staleness ledger</a>
+<a href="executive.html">Executive summary</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="sources.html">Sources</a>
+  </nav>
+  <div class="note">
+    <b>Read date</b> 2026-11-19<br>
+    Official values are read from nfl.com and transcribed with the URL on the row.
+    Anything unconfirmed stays blank and is listed on <a href="flagged.html">Flagged for review</a>.
+  </div>
+</aside>
+<main>
+<header class="topbar"><span>Missing information</span><span>8 GAPS · 3 ROUTES</span></header>
+
+<div class="eyebrow">Discover what is absent</div>
+<h1>Missing information, and how to get it</h1>
+<p class="lede">A gap is only actionable if you know how to close it and what it costs. Each row names
+the cheapest route, whether that route costs money or only time, and what becomes possible the moment
+it is closed. Three of the eight cannot be closed by reading public pages at all.</p>
+<div class="tw"><table class=""><thead><tr><th>ID</th><th>What is missing</th><th>Where we stand (measured)</th><th>Cheapest route</th><th>Cost</th><th>What it unlocks</th><th>Source</th></tr></thead><tbody><tr><td><b>M-01</b></td><td>Licensed betting prices (opening and closing)</td><td>No official NFL source publishes prices, and no licensed feed is connected.</td><td>Commercial odds API with historical opening/closing snapshots, or a terms review of an existing feed.</td><td>medium — a subscription, or a written terms decision</td><td>Every price, edge, CLV and ROI figure in the room. Without it, staking can never be evaluated.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;nfl.com publishes no prices&lt;/a&gt;</td></tr><tr><td><b>M-02</b></td><td>Game designations for all 32 clubs before kickoff</td><td>Read live 2026-11-19: 253 rows, only 16 designated.</td><td>Read the same page again on Friday and Saturday; the league adds designations as the week progresses.</td><td>low — one scheduled read per day, already built</td><td>Any injury signal at all, because a signal needs a final designation to be a surprise.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/injuries/league/2026/reg11&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the report itself&lt;/a&gt;</td></tr><tr><td><b>M-03</b></td><td>Official inactives (the 47-man game-day list)</td><td>Not captured. The report&#x27;s Out designation is not the same as an inactive.</td><td>The league publishes inactives in a dated news article per slate; capture it with its URL and timestamp.</td><td>low — one article per week</td><td>Confirmation that a backup actually replaced a starter, rather than a suspicion.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/news/nfl-week-9-inactives-players-ruled-out-sunday-2026-season&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;an example inactives article&lt;/a&gt;</td></tr><tr><td><b>M-04</b></td><td>Official snap counts</td><td>No official per-player snap feed is licensed or captured.</td><td>A licensed statistics feed, or the official Game Book per fixture (see the Game Book memo).</td><td>high — licensing or 272 document reads per season</td><td>The only measured substitute for depth order, and the honest way to say &quot;2nd string&quot;.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/games/patriots-at-lions-2026-reg-10&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;a Game Center page&lt;/a&gt;</td></tr><tr><td><b>M-05</b></td><td>League-wide depth charts on one date</td><td>Clubs self-publish; there is no league chart. Charts are images, carry jersey numbers, or share a slot between two players.</td><td>Verify 32 club pages club by club, storing the raw string and the fetch hash.</td><td>medium — 32 page reads per refresh, repeated</td><td>The replacement-depth feature. Until then, only named-starter changes are evidence.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/teams/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;club pages&lt;/a&gt;</td></tr><tr><td><b>M-06</b></td><td>A multi-season archive of injury designations joined to outcomes</td><td>One week&#x27;s report is captured; several seasons would be needed to estimate the play rate per designation.</td><td>Archive the weekly report for past seasons and join it to the official inactive lists.</td><td>medium — bulk reads, one source</td><td>An empirically calibrated meaning for &quot;Questionable&quot; instead of a legacy percentage.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/injuries/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the report index, by season&lt;/a&gt;</td></tr><tr><td><b>M-07</b></td><td>Venues for every fixture</td><td>The weekly schedule page prints no venue; only the Game Center page does.</td><td>One Game Center read per fixture, appended to the week&#x27;s evidence pack.</td><td>low — 13 reads per week</td><td>Roof/surface and weather coupling for totals.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/games/colts-at-texans-2026-reg-11&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;a Game Center page&lt;/a&gt;</td></tr><tr><td><b>M-08</b></td><td>A scored out-of-sample window for the shadow baseline</td><td>The baseline is registered and frozen; the window opened 2026-11-17 and no game has scored yet.</td><td>Time, plus the escrow settlement ledger already built.</td><td>time — nothing to buy</td><td>The first honest proper-score number for our own line.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/lab/escrow/settlement_ledger.csv&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the escrow ledger&lt;/a&gt;</td></tr></tbody></table></div>
+<h2>What this table is telling you</h2>
+<div class="box">
+<p>Sorted by what blocks the most: <b>M-01 (prices)</b> blocks every economic result in the project and
+is the only one that requires spending money. <b>M-02</b> is free and already automated — it only needs
+the week to progress. <b>M-04 (snaps)</b> is what makes "2nd string" a measurement instead of a guess;
+without it, availability work stays at named starters, which the league does publish.</p>
+<p>Every row that says "low" is already partly built: the capture machinery, the hash retention and the
+scheduler exist. What does not exist is the data behind them.</p>
+</div>
+
+<footer class="foot">
+  Independent research. Not betting advice, and not a source of picks.
+  Every published figure links to the file or official page it comes from.
+  Snapshot date <b>2026-11-19</b> · site snapshot 2026-11-14. Generated by <code>tools/build_room.py</code>.
+  Sibling sections: <a href="../index.html">dashboard</a> · <a href="../lab/index.html">line desk</a> ·
+  <a href="../research/index.html">research lab</a> · <a href="../pages/flagged.html">flagged</a>.
+</footer>
+</main>
+</div>
+</body>
+</html>

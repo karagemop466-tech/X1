@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Validation gates — The Decision Room</title>
+<meta name="description" content="NFL line origination, validated strategies and the questions that must be settled first. Every number sourced; nothing inferred.">
+<link rel="stylesheet" href="../app/assets/site.css">
+<style>
+:root{--ink:#12161c;--mut:#5b6675;--line:#e2e6ec;--bg:#fbfcfd;--accent:#0b4f8a;--warn:#8a4b0b;--bad:#8a0b0b;--good:#0b6b3a}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}
+.room{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{border-right:1px solid var(--line);padding:18px 14px;background:#fff;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand{font-weight:700;letter-spacing:.08em;font-size:13px;color:var(--mut);text-transform:uppercase}
+aside .brand b{display:block;font-size:19px;letter-spacing:0;color:var(--ink);text-transform:none}
+aside nav{display:flex;flex-direction:column;margin-top:16px;gap:1px}
+aside nav a{padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+aside nav a:hover{background:#eef3f8}
+aside nav a.on{background:var(--accent);color:#fff;font-weight:600}
+aside .note{margin-top:18px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+main{padding:26px 34px 70px;max-width:1180px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:22px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:30px;line-height:1.15;margin:.2em 0 .35em}
+h2{font-size:19px;margin:2.1em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:1.5em 0 .4em}
+p{max-width:78ch}
+.lede{font-size:17px;color:#26303c;max-width:74ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.tw{overflow:auto;border:1px solid var(--line);border-radius:8px;margin:.6em 0 1.1em;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f6f9;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafcfe}
+td.blank{color:#aeb6c2;text-align:center}
+a.src{font-size:12px;white-space:nowrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:1em 0 1.6em}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;text-decoration:none;color:var(--ink);display:block}
+.card:hover{border-color:var(--accent);box-shadow:0 1px 8px rgba(11,79,138,.08)}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card span{font-size:12.5px;color:var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:1em 0 1.6em}
+.kpi{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;background:#fff}
+.kpi b{display:block;font-size:24px;line-height:1.1}
+.kpi span{font-size:12px;color:var(--mut)}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.03em;border:1px solid}
+.p-met{color:var(--good);border-color:#bfe3cf;background:#f0faf4}
+.p-part{color:var(--warn);border-color:#ecd9c0;background:#fdf7ef}
+.p-open{color:var(--bad);border-color:#eed0d0;background:#fdf2f2}
+.p-na{color:var(--mut);border-color:var(--line);background:#f7f8fa}
+.box{border:1px solid var(--line);border-left:4px solid var(--accent);background:#fff;border-radius:8px;padding:14px 18px;margin:1.1em 0}
+.box.warn{border-left-color:var(--warn)}
+.box.bad{border-left-color:var(--bad)}
+.box h3{margin-top:0}
+code{background:#f1f4f8;padding:1px 5px;border-radius:4px;font-size:12.5px}
+ul,ol{max-width:78ch}
+li{margin:.3em 0}
+footer.foot{margin-top:3em;border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--mut)}
+@media(max-width:820px){.room{grid-template-columns:1fr}aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:18px}}
+</style>
+</head>
+<body>
+<div class="room">
+<aside>
+  <div class="brand">Fourth Down<b>The Decision Room</b></div>
+  <nav>
+    <a href="index.html">Start here</a>
+<a href="questions.html">Questions to settle</a>
+<a href="missing.html">Missing information</a>
+<a href="suggestions.html">Suggestions board</a>
+<a href="lines.html">Origination &amp; leaderboard</a>
+<a class="on" href="gates.html">Validation gates</a>
+<a href="correlation.html">Correlation</a>
+<a href="luck.html">Removing luck</a>
+<a href="availability.html">Availability &amp; depth</a>
+<a href="stale.html">Staleness ledger</a>
+<a href="executive.html">Executive summary</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="sources.html">Sources</a>
+  </nav>
+  <div class="note">
+    <b>Read date</b> 2026-11-19<br>
+    Official values are read from nfl.com and transcribed with the URL on the row.
+    Anything unconfirmed stays blank and is listed on <a href="flagged.html">Flagged for review</a>.
+  </div>
+</aside>
+<main>
+<header class="topbar"><span>Validation gates</span><span>9 GATES · 0 ELIGIBLE</span></header>
+
+<div class="eyebrow">Pre-registered before results</div>
+<h1>Validation gates</h1>
+<p class="lede">A strategy earns nothing until it clears every blocking gate. The gates were written
+down before any result was scored; changing one after seeing results is recorded as a violation rather
+than absorbed silently.</p>
+<div class="tw"><table class=""><thead><tr><th>Gate</th><th>Name</th><th>Type</th><th>Criteria / thresholds</th></tr></thead><tbody><tr><td><b>G0</b></td><td>Provenance</td><td>blocking</td><td>registered_before_window; licensed_inputs_timestamped; no_lookahead; settlement_rule_recorded; model_version_hashed</td></tr><tr><td><b>G1</b></td><td>Sample size</td><td>blocking</td><td>hold the threshold against n_eff, not raw n · singles_bets=500, two_leg_parlays_tickets=300, three_plus_leg_tickets=400, props_tickets=500</td></tr><tr><td><b>G2</b></td><td>Skill above variance</td><td>blocking</td><td>z_skill &gt;= 1.96 (two-sided 5%); bootstrap 95% interval on ROI excludes 0</td></tr><tr><td><b>G3</b></td><td>Calibration</td><td>blocking</td><td>brier better than market-implied; log loss better than market-implied; reliability slope in [0.85, 1.15]</td></tr><tr><td><b>G4</b></td><td>Robustness</td><td>blocking</td><td>edge sign stable across window halves; leave-one-team-out survives &gt;= 28/32 refits; edge survives a second independent window; placebo shuffles do not reproduce edge; no 3-week block &gt; 50% of profit</td></tr><tr><td><b>G5</b></td><td>Risk of ruin</td><td>blocking</td><td>median max drawdown &lt;= 25% of bankroll; staking rule pre-registered; survives 50% stake reduction</td></tr><tr><td><b>G6</b></td><td>Economic reality</td><td>blocking</td><td>edge survives using only release-time best quote; stake executable at recorded limit; all fees inside ROI; no implausible stake to produce claimed ROI</td></tr><tr><td><b>G7</b></td><td>Correlation discipline</td><td>blocking</td><td>rho published with interval; joint probability calibrated on holdout; n_eff reported; &gt;6 legs requires separate joint model</td></tr><tr><td><b>G8</b></td><td>Demotion gate (live -&gt; paper)</td><td>blocking</td><td>—</td></tr></tbody></table></div>
+<h2>Which strategies clear them today</h2>
+<p>16 strategies are scored. Those with a 95% confidence interval entirely above zero:
+<b>S_wind_under</b>.</p>
+<p>But a confidence interval is a per-test statement. With 16 tests in the family, the threshold
+for <em>any</em> one of them to be credible is p&nbsp;&le;&nbsp;0.003125, and
+<b>0 strategies clear it</b>. That is the gate doing its job.</p>
+<div class="box"><h3>Gate G0 is the one that binds everything</h3>
+<p>Provenance requires licensed inputs with timestamps, no lookahead, a recorded settlement rule, and a
+hashed model version. Prices fail the first requirement, so every economic result is blocked at G0
+regardless of how good the numbers look. This is why the leaderboard can be busy and still have zero
+eligible entries.</p></div>
+
+<footer class="foot">
+  Independent research. Not betting advice, and not a source of picks.
+  Every published figure links to the file or official page it comes from.
+  Snapshot date <b>2026-11-19</b> · site snapshot 2026-11-14. Generated by <code>tools/build_room.py</code>.
+  Sibling sections: <a href="../index.html">dashboard</a> · <a href="../lab/index.html">line desk</a> ·
+  <a href="../research/index.html">research lab</a> · <a href="../pages/flagged.html">flagged</a>.
+</footer>
+</main>
+</div>
+</body>
+</html>

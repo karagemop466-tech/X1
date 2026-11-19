@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions board — The Decision Room</title>
+<meta name="description" content="NFL line origination, validated strategies and the questions that must be settled first. Every number sourced; nothing inferred.">
+<link rel="stylesheet" href="../app/assets/site.css">
+<style>
+:root{--ink:#12161c;--mut:#5b6675;--line:#e2e6ec;--bg:#fbfcfd;--accent:#0b4f8a;--warn:#8a4b0b;--bad:#8a0b0b;--good:#0b6b3a}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}
+.room{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{border-right:1px solid var(--line);padding:18px 14px;background:#fff;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand{font-weight:700;letter-spacing:.08em;font-size:13px;color:var(--mut);text-transform:uppercase}
+aside .brand b{display:block;font-size:19px;letter-spacing:0;color:var(--ink);text-transform:none}
+aside nav{display:flex;flex-direction:column;margin-top:16px;gap:1px}
+aside nav a{padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+aside nav a:hover{background:#eef3f8}
+aside nav a.on{background:var(--accent);color:#fff;font-weight:600}
+aside .note{margin-top:18px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+main{padding:26px 34px 70px;max-width:1180px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:22px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:30px;line-height:1.15;margin:.2em 0 .35em}
+h2{font-size:19px;margin:2.1em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:1.5em 0 .4em}
+p{max-width:78ch}
+.lede{font-size:17px;color:#26303c;max-width:74ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.tw{overflow:auto;border:1px solid var(--line);border-radius:8px;margin:.6em 0 1.1em;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f6f9;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafcfe}
+td.blank{color:#aeb6c2;text-align:center}
+a.src{font-size:12px;white-space:nowrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:1em 0 1.6em}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;text-decoration:none;color:var(--ink);display:block}
+.card:hover{border-color:var(--accent);box-shadow:0 1px 8px rgba(11,79,138,.08)}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card span{font-size:12.5px;color:var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:1em 0 1.6em}
+.kpi{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;background:#fff}
+.kpi b{display:block;font-size:24px;line-height:1.1}
+.kpi span{font-size:12px;color:var(--mut)}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.03em;border:1px solid}
+.p-met{color:var(--good);border-color:#bfe3cf;background:#f0faf4}
+.p-part{color:var(--warn);border-color:#ecd9c0;background:#fdf7ef}
+.p-open{color:var(--bad);border-color:#eed0d0;background:#fdf2f2}
+.p-na{color:var(--mut);border-color:var(--line);background:#f7f8fa}
+.box{border:1px solid var(--line);border-left:4px solid var(--accent);background:#fff;border-radius:8px;padding:14px 18px;margin:1.1em 0}
+.box.warn{border-left-color:var(--warn)}
+.box.bad{border-left-color:var(--bad)}
+.box h3{margin-top:0}
+code{background:#f1f4f8;padding:1px 5px;border-radius:4px;font-size:12.5px}
+ul,ol{max-width:78ch}
+li{margin:.3em 0}
+footer.foot{margin-top:3em;border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--mut)}
+@media(max-width:820px){.room{grid-template-columns:1fr}aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:18px}}
+</style>
+</head>
+<body>
+<div class="room">
+<aside>
+  <div class="brand">Fourth Down<b>The Decision Room</b></div>
+  <nav>
+    <a href="index.html">Start here</a>
+<a href="questions.html">Questions to settle</a>
+<a href="missing.html">Missing information</a>
+<a class="on" href="suggestions.html">Suggestions board</a>
+<a href="lines.html">Origination &amp; leaderboard</a>
+<a href="gates.html">Validation gates</a>
+<a href="correlation.html">Correlation</a>
+<a href="luck.html">Removing luck</a>
+<a href="availability.html">Availability &amp; depth</a>
+<a href="stale.html">Staleness ledger</a>
+<a href="executive.html">Executive summary</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="sources.html">Sources</a>
+  </nav>
+  <div class="note">
+    <b>Read date</b> 2026-11-19<br>
+    Official values are read from nfl.com and transcribed with the URL on the row.
+    Anything unconfirmed stays blank and is listed on <a href="flagged.html">Flagged for review</a>.
+  </div>
+</aside>
+<main>
+<header class="topbar"><span>Suggestions board</span><span>6 PATHS · 2 RECOMMENDED</span></header>
+
+<div class="eyebrow">Review, then choose</div>
+<h1>Suggestions board</h1>
+<p class="lede">Each suggestion is a path, not an instruction. Cost, risk and a recommendation are
+stated so one can be picked before anything is built. The recommendation column says what this room
+would do — it is not a claim that the alternative is wrong.</p>
+<div class="tw"><table class=""><thead><tr><th>ID</th><th>Pri</th><th>Suggestion</th><th>How</th><th>Cost</th><th>Risk / what could go wrong</th><th>Recommendation</th><th>Source</th></tr></thead><tbody><tr><td><b>S-01</b></td><td>P0</td><td>Keep the room dark until one strategy survives multiplicity, and publish the failing arithmetic</td><td>Do nothing more; publish only the correction and the gate results.</td><td>zero build cost; protects credibility</td><td>The site looks emptier than a tipster&#x27;s, and that is the point.</td><td>Recommended. It is the only path that is consistent with the gate that was pre-registered.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;nfl.com&lt;/a&gt;</td></tr><tr><td><b>S-02</b></td><td>P0</td><td>Buy or license one price feed with opening and closing snapshots</td><td>Connect a commercial odds API and fingerprint each snapshot as it arrives.</td><td>subscription cost; one integration; ongoing capture</td><td>Vendor terms may still forbid redistribution, so prices may stay private.</td><td>Recommended only if the vendor&#x27;s terms allow internal research use. This is the single unlock that converts every other number from &#x27;research&#x27; to &#x27;evaluable&#x27;.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/gates.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;G0 provenance gate&lt;/a&gt;</td></tr><tr><td><b>S-03</b></td><td>P1</td><td>Extend the frozen shadow baseline to a second season before judging it</td><td>Keep collecting; do not tune.</td><td>time only</td><td>A season is long, and the room stays quiet.</td><td>Recommended. Tuning before the window closes is the failure mode the pre-registration exists to prevent.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/preregistration/register.csv&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PR-01 registration&lt;/a&gt;</td></tr><tr><td><b>S-04</b></td><td>P1</td><td>Publish an explicit date badge on every table, not just in the footer</td><td>One line in the generator per table.</td><td>minutes</td><td>No technical risk. It makes the site look less current than it is.</td><td>Recommended. The staleness measurement below shows readers cannot currently tell the date of a table — 104 cells have moved since the snapshot.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/nfl/standings.tsv&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the dated snapshot&lt;/a&gt;</td></tr><tr><td><b>S-05</b></td><td>P2</td><td>Replace depth-rank language with named-starter language until snaps exist</td><td>Relabel every depth field as &#x27;named starter, per the club, dated X&#x27;.</td><td>editorial only</td><td>Loses the convenient 1st/2nd/3rd-string shorthand.</td><td>Recommended. It is the difference between a claim the club supports and one we invented.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/flags.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the depth flags&lt;/a&gt;</td></tr><tr><td><b>S-06</b></td><td>P2</td><td>Run a weekly diff of the injury report and publish the delta, never the level</td><td>The scheduler already reads; add a diff step and a delta page.</td><td>small build; free running</td><td>A delta of nothing is a boring page.</td><td>Recommended, and already half built. The signal is the change, not the value.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://www.nfl.com/injuries/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the report&lt;/a&gt;</td></tr></tbody></table></div>
+<h2>The choice that actually matters</h2>
+<div class="box warn">
+<p><b>S-01 against S-02.</b> Everything else is housekeeping. Either the room stays honest and quiet
+until a price source exists and one strategy survives correction, or a price source is licensed and the
+whole thing becomes evaluable within a season. Both are defensible. What is <em>not</em> defensible is
+publishing a leaderboard winner off a backtest, which is why S-01 is ranked above S-02 rather than below
+it.</p>
+</div>
+
+<footer class="foot">
+  Independent research. Not betting advice, and not a source of picks.
+  Every published figure links to the file or official page it comes from.
+  Snapshot date <b>2026-11-19</b> · site snapshot 2026-11-14. Generated by <code>tools/build_room.py</code>.
+  Sibling sections: <a href="../index.html">dashboard</a> · <a href="../lab/index.html">line desk</a> ·
+  <a href="../research/index.html">research lab</a> · <a href="../pages/flagged.html">flagged</a>.
+</footer>
+</main>
+</div>
+</body>
+</html>

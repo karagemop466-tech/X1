@@ -144,6 +144,12 @@ jobs:
           # results, originated lines, signal-vs-staking leaderboard, demotion gate).
           # Additive; every tree above is still copied and still reachable.
           cp -r lab _site/
+          # Added by session arena/427c1843-x1 (round 7): the Decision Room (room/**). It is
+          # linked from the main navigation (tools/build_site.py NAV) and from the landing page,
+          # so without this line every one of the 28 pages carries a dead nav link. Found by
+          # tools/verify_deployed_tree.py, which assembles the upload tree instead of auditing
+          # the repository. Additive: one copy line.
+          cp -r room _site/
           # Added by session arena/56769365-x1: hub/index.html links ../archive/previous-site/
           # to a committed 96 KB archive that was never copied, so that link has been dead on
           # the published site. Found by tools/verify_deployed_tree.py, which assembles the

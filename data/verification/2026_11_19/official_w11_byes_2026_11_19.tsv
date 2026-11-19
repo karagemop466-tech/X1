@@ -1,0 +1,13 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-11  (page title: "NFL Week 11 Schedule 2026: Games, Times, Matchups & Tickets")
+# Read via the fetch tool, chunks 0-2 of 3, on 2026-11-19 (UTC), transcribed by session arena/427c1843-x1 (round 7).
+# The "Teams on Bye" block at the foot of the Week 11 page. Records are transcribed exactly as printed.
+# The club abbreviation printed in the bye block is "LAR" for the Rams; the standings page prints "LA" for the
+# same club. The abbreviation is kept as printed on each page and the alias is declared, not silently unified:
+# tools/verify_2026_11_19.py maps LAR -> LA for the cross-page record comparison and counts the alias.
+abbr	printed_abbr	record	record_text	source_url
+ATL	ATL	3-7	3 wins, 7 losses, 0 ties	https://www.nfl.com/schedules/2026/by-week/week-11
+CLE	CLE	6-4	6 wins, 4 losses, 0 ties	https://www.nfl.com/schedules/2026/by-week/week-11
+GB	GB	6-4	6 wins, 4 losses, 0 ties	https://www.nfl.com/schedules/2026/by-week/week-11
+LA	LAR	6-4	6 wins, 4 losses, 0 ties	https://www.nfl.com/schedules/2026/by-week/week-11
+NE	NE	5-5	5 wins, 5 losses, 0 ties	https://www.nfl.com/schedules/2026/by-week/week-11
+SEA	SEA	6-4	6 wins, 4 losses, 0 ties	https://www.nfl.com/schedules/2026/by-week/week-11

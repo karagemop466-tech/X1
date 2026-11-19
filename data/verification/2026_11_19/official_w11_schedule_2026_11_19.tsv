@@ -1,0 +1,27 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-11  (page title: "NFL Week 11 Schedule 2026: Games, Times, Matchups & Tickets")
+# Read via the fetch tool, chunks 0-2 of 3, on 2026-11-19 (UTC). Transcribed by session arena/427c1843-x1 (round 7).
+# One row per fixture as PRINTED by the official page on 2026-11-19. All 13 fixtures print status "Scheduled"
+# (no final scores). The page's "Teams on Bye" block prints ATL 3-7, CLE 6-4, GB 6-4, LA 6-4, NE 5-5, SEA 6-4;
+# those rows are transcribed in official_w11_byes_2026_11_19.tsv, not derived here.
+# tools/verify_2026_11_19.py check A6 asserts 13 x 2 + 6 byes = 32 clubs each exactly once.
+# away_record / home_record are the records printed beside each club logo on THIS page. They are cross-checked
+# against the separate standings page read the same day (official_standings_2026_11_19.tsv) by check A3:
+# 32/32 agree on 2026-11-19, including MIA 1-8 and TB 3-6, so the two pages are consistent today.
+# (An earlier draft of this header guessed that MIA/TB would disagree. The check measured it and they do
+# not; the guess was removed rather than published.)
+# Records print without the tie segment when the club has no ties; transcribed as printed.
+# Venue is not printed by this page for any Week 11 fixture and stays blank rather than guessed.
+game_id	date_et	time_et	network	away	away_record	home	home_record	status	game_url	source_url
+2026_11_IND_HOU	2026-11-19	8:15 PM	PRIME	IND	3-7	HOU	3-6	Scheduled	https://www.nfl.com/games/colts-at-texans-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_MIA_BUF	2026-11-22	1:00 PM	CBS	MIA	1-8	BUF	8-1	Scheduled	https://www.nfl.com/games/dolphins-at-bills-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_BAL_CAR	2026-11-22	1:00 PM	FOX	BAL	4-6	CAR	4-5	Scheduled	https://www.nfl.com/games/ravens-at-panthers-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_TB_DET	2026-11-22	1:00 PM	FOX	TB	3-6	DET	7-2	Scheduled	https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_TEN_DAL	2026-11-22	1:00 PM	FOX	TEN	1-8	DAL	4-6	Scheduled	https://www.nfl.com/games/titans-at-cowboys-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_NO_CHI	2026-11-22	1:00 PM	FOX	NO	3-6	CHI	7-2	Scheduled	https://www.nfl.com/games/saints-at-bears-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_PIT_PHI	2026-11-22	1:00 PM	CBS	PIT	6-3	PHI	2-7	Scheduled	https://www.nfl.com/games/steelers-at-eagles-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_AZ_KC	2026-11-22	1:00 PM	CBS	AZ	3-7	KC	7-2	Scheduled	https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_NYJ_LAC	2026-11-22	4:05 PM	FOX	NYJ	2-8	LAC	1-8	Scheduled	https://www.nfl.com/games/jets-at-chargers-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_JAX_NYG	2026-11-22	4:25 PM	CBS	JAX	7-2	NYG	5-3-1	Scheduled	https://www.nfl.com/games/jaguars-at-giants-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_LV_DEN	2026-11-22	4:25 PM	CBS	LV	4-6	DEN	7-2	Scheduled	https://www.nfl.com/games/raiders-at-broncos-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_MIN_SF	2026-11-22	8:20 PM	NBC	MIN	7-2	SF	8-1	Scheduled	https://www.nfl.com/games/vikings-at-49ers-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
+2026_11_CIN_WAS	2026-11-23	8:15 PM	ESPN	CIN	7-2	WAS	3-5-1	Scheduled	https://www.nfl.com/games/bengals-at-commanders-2026-reg-11	https://www.nfl.com/schedules/2026/by-week/week-11
