@@ -1,0 +1,134 @@
+# SOURCE: https://www.nfl.com/injuries/league/2026/reg10
+#   page title as read: "Official NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com"
+#   page's own heading: "Injuries - WEEK 10"; the week selector shows WEEK 10 selected.
+# Read via the page-fetch tool on 2026-11-19 (UTC), chunks 0-2 of 8, by session arena/6b45af7e-x1.
+#
+# WHAT THIS IS. A line-by-line re-read of the PUBLISHED Week 10 table (data/nfl/injuries_week10.tsv,
+# a 2026-11-15 snapshot, 347 rows) against the live official page. It is not a new snapshot and it does
+# not replace anything: tools/verify_w10_injuries_live_2026_11_19.py joins this read to the published
+# table on (club, player) and publishes every difference.
+#
+# COVERAGE, MEASURED NOT CLAIMED. This read covers the club blocks that fall inside chunks 0-2:
+# 10 clubs, 115 rows. The others (MIA tail, HOU, CHI, CIN, CLE, DAL, DEN, DET, LAR, LAC, LV, NE, NO,
+# NYG, PHI, PIT, SEA, SF, TB, WAS) sit in chunks this session did not read, so they are NOT covered and
+# are reported as `not_covered` rather than as agreement. Rows of a covered club that fall past the
+# chunk boundary are listed by the tool as `not_reached_within_chunk`, not as differences.
+#
+# COLUMNS: the five the page prints, in its order: Player | Position | Injuries | Practice Status |
+# Game Status. Blank = the page printed nothing there.
+club	player	position	injury	practice_status	game_status	source_url
+KC	Jaylon Moore	T	Ankle	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+KC	Omarr Norman-Lott	DT	Knee	Limited Participation in Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+KC	Jaydn Ott	RB	Hamstring	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+KC	Rashee Rice	WR		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+KC	Kenneth Walker III	RB	Groin	Did Not Participate In Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+KC	Peter Woods	DT	Neck	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+KC	Xavier Worthy	WR		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	Zachariah Branch	WR	Hamstring	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+ATL	Kendal Daniels	LB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	Divine Deablo	LB	Forearm	Did Not Participate In Practice	Doubtful	https://www.nfl.com/injuries/league/2026/reg10
+ATL	Gervon Dexter Sr.	DT	Illness	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+ATL	Jake Matthews	T		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	Liam McCullough	LS		Did Not Participate In Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	James Pearce Jr.	DE	Back	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+ATL	Za'Darius Smith	DE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	Jawaan Taylor	T		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	Cameron Thomas	DE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+ATL	Josh Woods	LB	Ankle	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Jordan Addison	WR	Thumb	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Blake Cashman	LB	Concussion	Limited Participation in Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Christian Darrisaw	T		Did Not Participate In Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIN	T.J. Hockenson	TE	Wrist, Chest	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Tyrion Ingram-Dawkins	DT	Ankle	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Theo Jackson	S		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIN	Jauan Jennings	WR	Calf	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Josh Metellus	S	Shoulder	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Kyler Murray	QB	Hamstring	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Harrison Smith	S		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIN	Kyle Van Noy	LB	Calf	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+MIN	Jay Ward	S		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIN	Carson Wentz	QB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+GB	Aaron Banks	G		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+GB	Chris Brooks	RB	Ankle	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+GB	Javon Bullard	S	Ankle, Knee	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+GB	Zaire Franklin	LB	Shin	Did Not Participate In Practice	Doubtful	https://www.nfl.com/injuries/league/2026/reg10
+GB	Travis Glover	G	Knee	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+GB	Ty'Ron Hopper	LB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+GB	Josh Jacobs	RB	Finger	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+GB	Xavier McKinney	S	Foot	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+GB	Bo Melton	WR		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+GB	Skyy Moore	WR	Ankle	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+GB	Micah Parsons	LB	Knee, Illness	Limited Participation in Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+GB	Sean Rhyan	C	Ankle	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+GB	Trey Smack	K		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+GB	Lukas Van Ness	LB	Back	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+GB	Josh Whyle	TE	Concussion	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+GB	Savion Williams	WR		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+GB	Kevin Zeitler	G	Ankle, Triceps	Did Not Participate In Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+JAX	Jessie Bates	S	Not injury related - resting player	Limited Participation in Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+JAX	Ezra Cleveland	G		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+JAX	Branson Combs	LB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+JAX	Jordan Davis	DT	Not injury related - resting player	Limited Participation in Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+JAX	BJ Green II	DE	Forearm	Full Participation in Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+JAX	Robert Hainsey	C	Concussion	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+JAX	Antonio Johnson	S		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+JAX	Jakobi Meyers	WR		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+JAX	Chris Rodriguez Jr.	RB		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+JAX	Bhayshul Tuten	RB		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+JAX	Travon Walker	DE		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+TEN	Cody Barton	LB	Concussion	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+TEN	John Franklin-Myers	DE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+TEN	Marcus Harris	CB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+TEN	Anthony Hill Jr.	LB	Neck	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+TEN	Jaylon Jones	CB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+TEN	JC Latham	T		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+TEN	Tony Pollard	RB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+TEN	Peter Skoronski	G	Hamstring	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+TEN	Tyjae Spears	RB	Knee	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+TEN	Carnell Tate	WR	Shoulder	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+TEN	Tommy Townsend	P	Knee, Achilles	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+TEN	Kevin Winston Jr.	S		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Alec Anderson	G		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Christian Benford	CB	Wrist	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+BUF	Terrel Bernard	LB		Did Not Participate In Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Spencer Brown	T	Ankle	Did Not Participate In Practice	Doubtful	https://www.nfl.com/injuries/league/2026/reg10
+BUF	Dion Dawkins	T		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Sam Franklin Jr.	S	Shoulder	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+BUF	Greg Gaines	DT		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Jordan Hancock	CB	Hamstring	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+BUF	Dalton Kincaid	TE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Connor McGovern	C		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Ed Oliver	DE		Did Not Participate In Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Ar'maj Reed-Adams	G		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	T.J. Sanders	DE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+BUF	Tyrell Shavers	WR	Knee	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Jarvis Brownlee Jr.	CB	Illness	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Omar Cooper Jr.	WR	Ankle	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Adonai Mitchell	WR	Knee	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Joseph Ossai	DE	Ankle	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	VJ Payne	S	Knee	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Harrison Phillips	DT	Ankle	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Trevin Wallace	LB	Groin	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Garrett Wilson	WR	Concussion	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+NYJ	Nahshon Wright	CB	Back	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+MIA	Tucker Addington	LS		Limited Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIA	Kaytron Allen	RB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIA	Darrell Baker Jr.	CB	Knee	Full Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+MIA	Chris Bell	WR	Knee	Did Not Participate In Practice	Doubtful	https://www.nfl.com/injuries/league/2026/reg10
+MIA	Aaron Brewer	C	Concussion	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIA	Malik Herring	DE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIA	Will Kacmarek	TE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIA	Michael Taaffe	S		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIA	Dante Trader Jr.	S		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+MIA	Jared Wayne	WR	Quadricep	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+MIA	Jaylen Wright	RB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+IND	Mo Alie-Cox	TE	Groin	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+IND	CJ Allen	LB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+IND	Jaylon Carlies	LB	Neck	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+IND	Akeem Davis-Gaither	LB	Knee	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+IND	A.J. Haulcy	S		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+IND	Arden Key	DE		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+IND	Will Mallory	TE	Hamstring	Limited Participation in Practice	Questionable	https://www.nfl.com/injuries/league/2026/reg10
+IND	Luke Rhodes	LS	Hamstring	Did Not Participate In Practice	Out	https://www.nfl.com/injuries/league/2026/reg10
+IND	Grover Stewart	DT		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10
+IND	Jonathan Taylor	RB		Full Participation in Practice		https://www.nfl.com/injuries/league/2026/reg10

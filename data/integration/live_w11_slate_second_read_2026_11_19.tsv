@@ -1,0 +1,29 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-11
+#   page title as read: "NFL Schedules: Games, Times, Matchups & Tickets"
+# Read via the page-fetch tool on 2026-11-19 (UTC), chunks 0-1 of 3, by session arena/6b45af7e-x1.
+# This session's OWN second read of the Week 11 slate, independent of
+# data/verification/2026_11_19/official_w11_schedule_2026_11_19.tsv and ..._byes_...tsv
+# (session arena/427c1843-x1). One row per fixture as printed: kickoff ET, network, away, home and
+# the two records printed beside the club logos. The bye block is transcribed with row_type=bye.
+# `printed_abbr` keeps the page's own abbreviation (the Week 11 page prints "LAR" in the bye block
+# and "RAMS" in a game block; the standings page prints "LA"). The alias is declared, not unified.
+row_type	game_id	date_et	time_et	network	away	printed_away_abbr	away_record	home	printed_home_abbr	home_record	status	source_url
+game	2026_11_IND_HOU	2026-11-19	8:15 PM	PRIME	Colts	IND	3-7	Texans	HOU	3-6	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_MIA_BUF	2026-11-22	1:00 PM	CBS	Dolphins	MIA	1-8	Bills	BUF	8-1	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_BAL_CAR	2026-11-22	1:00 PM	FOX	Ravens	BAL	4-6	Panthers	CAR	4-5	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_TB_DET	2026-11-22	1:00 PM	FOX	Buccaneers	TB	3-6	Lions	DET	7-2	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_TEN_DAL	2026-11-22	1:00 PM	FOX	Titans	TEN	1-8	Cowboys	DAL	4-6	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_NO_CHI	2026-11-22	1:00 PM	FOX	Saints	NO	3-6	Bears	CHI	7-2	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_PIT_PHI	2026-11-22	1:00 PM	CBS	Steelers	PIT	6-3	Eagles	PHI	2-7	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_AZ_KC	2026-11-22	1:00 PM	CBS	Cardinals	AZ	3-7	Chiefs	KC	7-2	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_NYJ_LAC	2026-11-22	4:05 PM	FOX	Jets	NYJ	2-8	Chargers	LAC	1-8	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_JAX_NYG	2026-11-22	4:25 PM	CBS	Jaguars	JAX	7-2	Giants	NYG	5-3-1	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_LV_DEN	2026-11-22	4:25 PM	CBS	Raiders	LV	4-6	Broncos	DEN	7-2	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_MIN_SF	2026-11-22	8:20 PM	NBC	Vikings	MIN	7-2	49ers	SF	8-1	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+game	2026_11_CIN_WAS	2026-11-23	8:15 PM	ESPN	Bengals	CIN	7-2	Commanders	WAS	3-5-1	Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_ATL				Falcons	ATL	3-7			Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_CLE				Browns	CLE	6-4			Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_GB				Packers	GB	6-4			Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_LA				Rams	LAR	6-4			Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_NE				Patriots	NE	5-5			Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11
+bye	2026_11_BYE_SEA				Seahawks	SEA	6-4			Scheduled	https://www.nfl.com/schedules/2026/by-week/week-11

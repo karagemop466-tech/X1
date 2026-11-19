@@ -1,0 +1,40 @@
+{
+  "title": "Live re-check — the committed 2026-11-19 official reads vs this session's second reads",
+  "session": "arena/6b45af7e-x1",
+  "read_at": "2026-11-19 (UTC), page-fetch tool",
+  "sources": {
+    "standings": "https://www.nfl.com/standings/league/2026/REG",
+    "week10_slate": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "week11_slate": "https://www.nfl.com/schedules/2026/by-week/week-11"
+  },
+  "method": "Each live read is compared cell by cell with the committed 2026-11-19 pack read from the same official page. Every difference is published with both values and a source URL; nothing is overwritten in either direction. The live standings read must also satisfy the page's own arithmetic identities (NET = PF - PA, PCT, HOME + ROAD) before it is used, so a transcription slip cannot masquerade as a source change.",
+  "standings": {
+    "rows_live": 32,
+    "rows_committed": 32,
+    "arithmetic_assertions": 96,
+    "arithmetic_passed": 96,
+    "cell_differences": 0,
+    "differences": [],
+    "clubs_read_by_this_session_only_in_committed_pack": []
+  },
+  "week10_finals": {
+    "fixtures_live": 14,
+    "fixtures_committed": 14,
+    "field_differences": 0,
+    "differences": []
+  },
+  "week11_slate": {
+    "fixtures_live": 13,
+    "byes_live": 6,
+    "clubs_covered_once": 32,
+    "field_differences": 0,
+    "differences": [],
+    "abbreviation_aliases_used": {
+      "LAR->LA": 1
+    }
+  },
+  "findings": [],
+  "verdict": "pass",
+  "errors": [],
+  "generated_at": "2026-11-19T22:16:52Z"
+}
