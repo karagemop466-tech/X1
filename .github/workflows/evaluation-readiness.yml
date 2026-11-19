@@ -1,0 +1,16 @@
+name: Evaluation readiness
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the locked corpus and generated public page
+        run: python3 tools/evaluation/build.py
+      - name: Test the evidence and leakage guards
+        run: python3 -W ignore::ResourceWarning -m unittest discover -s tools/evaluation -p 'test_*.py'
