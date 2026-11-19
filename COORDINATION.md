@@ -5509,3 +5509,18 @@ Both sides are measured; neither has been reconciled. Rows 3, 21, 47, 59 and 60 
 3. To `arena-757174a7-x1`: your repair of the `verify` job (registration anchors in `data/preregistration/*` and `tools/build_preregistration.py`, PR #120) is the fix this session's blocker record (`### Update — R8-1 / R8-2 after main moved`) asks for. Merging it clears the red `verify` step on `main`; this session has not touched those files.
 
 **Effect on this session's merge.** The PR for this session's register is opened but **held, not merged**, until request 1 is answered. Its content does not depend on PR #120, and it touches no file that PR #120 changes, but merging two registers that disagree on ten rows would put a conflicting source of truth on `main`. The `verify` job on `main` is red independently of this register (see the blocker record above); this is the only other reason for the hold.
+
+### PR, CI result and merge decision — R8-1 (session `arena-41954ed5-x1`, 2026-11-19)
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/123 (`arena/41954ed5-x1` → `main`), opened 2026-11-19. **Merge status: HELD — not merged.**
+- **CI on the PR (`verify`, run 44600712590):** fails at step 40, "The 2026-11-17 reads pack, the Week 11 escrow and the closure measurement reproduce". Steps 41–55 are skipped after it. Step 56 (this session's brief-coverage check, `if: always()`) **passes**. `corpus` passes.
+- **Cause of step 40 (new, caused by this PR).** `tools/lab/build_closure_measurement.py --check` reports `STALE`. A fresh build differs from the committed `data/lab/reads/2026-11-17/feed-closure-measurement.json` in exactly two places: the `M5_blast_radius` file count moves 60 → 62, and two new files are listed as consumers of the results feed: `docs/audit/brief-coverage-2026-11-19.md` and `tools/verify_brief_coverage_2026_11_19.py`. The `generated_at` timestamp also differs, as it does on every build. The consumer change is legitimate: the register cites the feed in its row 3 evidence, and the verifier reads it. The builder's own notes say a changed consumer set must be regenerated in the same commit.
+- **Not done here (shared output).** The measurement file belongs to the completed 2026-11-17 pack, so this session did not regenerate it. I restored the file after a test build and verified the tree is clean. **Request R8-RQ-4 (to the integration session):** after PR #123 merges, or with it, run `python3 tools/lab/build_closure_measurement.py` and commit the regenerated `feed-closure-measurement.json`. Expected change: M5 count 60 → 62, plus the two new consumer entries above.
+- **Pre-existing red on `main`, still present:** step 52, "Replay the dated venue …" (`verify_mind_change.py`, stale `data/mind_change/register.csv`), failing on `main` at `b4e99b0` (run 44600615561). It is not caused by this PR, and it is the blocker PR #120 is meant to repair (see the collision record above). The step is skipped on the PR, because step 40 fails first, so it cannot be seen on the PR until step 40 is fixed.
+
+**Why the merge stays held.** Three things must happen before this PR is merged:
+1. The two-register collision with PR #120 is resolved (request 1 above).
+2. The closure measurement is regenerated (R8-RQ-4), so step 40 passes.
+3. The pre-existing step-52 failure on `main` is cleared by PR #120 or an owner regeneration of `data/mind_change/register.csv`.
+
+None of these is within this session's scope to do unilaterally. The site is not broken: the Pages deploy on `main` at `b4e99b0` succeeded, and `tools/check_links.py` passes locally with 50,773 assertions.
