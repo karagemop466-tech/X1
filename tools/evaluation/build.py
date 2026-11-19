@@ -31,9 +31,22 @@ def json_file(path):
     return json.loads((ROOT / path).read_text(encoding='utf-8'))
 
 
-def csv_rows(path):
-    with (ROOT / path).open(encoding='utf-8', newline='') as f:
-        return list(csv.DictReader(f))
+def transcription_path(week):
+    return f'data/results/raw/official_results_2026_week{week:02d}.psv'
+
+
+def official_schedule(week):
+    return f'{NFL}/schedules/2026/by-week/week-{week}'
+
+
+def transcribed_week(week, evidence_date):
+    with (ROOT / transcription_path(week)).open(encoding='utf-8', newline='') as f:
+        for row in csv.DictReader(f, delimiter='|'):
+            expected_status = 'FINAL_TIE' if row['away_score'] == row['home_score'] else 'FINAL'
+            require(row['week'] == str(week) and row['status'] == expected_status
+                    and row['schedule_url'] == official_schedule(week) and row['retrieved'] == evidence_date,
+                    f"unverified transcribed row: {row['game_url']}")
+            yield dict(row, date_iso=row['game_date'], away_team=row['away'], home_team=row['home'])
 
 
 def season_roles(windows):
@@ -50,7 +63,8 @@ def season_roles(windows):
 
 
 def load_protocol():
-    paths = {'evaluation/protocol.json', *(f'data/results/raw/week_{w:02d}.md' for w in range(1, 10))}
+    paths = {'evaluation/protocol.json', *(f'data/results/raw/week_{w:02d}.md' for w in range(1, 10)),
+             *(transcription_path(w) for w in range(1, 10))}
     lock = json_file('evaluation/evidence-lock.json')
     require(set(lock) == paths, 'evidence lock must cover the full frozen capture window')
     for path, digest in lock.items():
@@ -99,15 +113,8 @@ def load_corpus(rule):
         require(all(row['retrieved_at'] == window['evidence_date'] for row in batch), 'capture date differs')
         rows.extend(batch)
     games = canonical(rows, week_counts)
-    original = csv_rows('data/results/verified_results_2026.csv')
-    for row in original:
-        if int(row['week']) in week_counts:
-            require(row['season'] == str(window['season']) and row['status'] == 'Final'
-                    and row['verification'] == 'verified-official' and row['source_url'] == row['game_url'],
-                    f"unverified historical-feed row: {row['game_url']}")
-    compare(games, canonical(original, week_counts), 'dated official feed')
-    closure = csv_rows('data/results/verified_results_2026_r3.csv')
-    compare(games, canonical(closure, week_counts), 'Week 10 closure feed')
+    transcribed = [row for week in week_counts for row in transcribed_week(week, window['evidence_date'])]
+    compare(games, canonical(transcribed, week_counts), 'official schedule transcription')
     return sorted(rows, key=lambda row: (int(row['week']), row['date_iso'], row['game_url']))
 
 
@@ -124,7 +131,7 @@ def table(headers, lines):
 def render(rule, corpus):
     src = NFL + '/standings/league/{}/REG'
     weekly = [(str(w), str(sum(int(g['week']) == w for g in corpus)),
-               link(f'{NFL}/schedules/2026/by-week/week-{w}', f'Official Week {w} schedule'))
+               link(official_schedule(w), f'Official Week {w} schedule'))
               for w in range(1, 10)]
     split_details = (
         ('Train', 'Historical development only. Official game-result coverage has not been verified for this window.', src.format(2019)),
@@ -155,7 +162,7 @@ def render(rule, corpus):
 <section class="content" aria-labelledby="summary"><h2 id="summary">Executive summary</h2>
 <div class="note"><b>{len(corpus)} official finals, zero leaderboard-eligible results from this audit.</b> The 136-game reference is reproducible as the first nine weeks of 2026, not a new feed or a prospective sample. This page publishes coverage only: no picks, model scores, prices or ROI.</div>
 <h2>Locked outcome corpus</h2>
-<p>For every game, week, date, teams, score and official game URL agree across the retained NFL schedule anchors and both repository result views. Source snapshot: {rule['corpus']['evidence_date']}. The later Week 10 finals are outside the lock; the shadow baseline uses a different window.</p>
+<p>For every game, week, date, teams, score and official game URL agree between the retained NFL schedule anchors and the structured official schedule transcription. Source snapshot: {rule['corpus']['evidence_date']}. The later Week 10 finals are outside the lock; the shadow baseline uses a different window.</p>
 {table(('2026 week', 'Finals in corpus', 'Official evidence'), weekly)}
 <h2>Chronological split</h2>
 <p>These are protocol assignments, not NFL claims. Historical verification gaps are not filled by mirror rows. The holdout has no registered strategy and no reported result.</p>
@@ -180,7 +187,7 @@ def main():
         require(PAGE.read_text(encoding='utf-8') == page, 'evaluation page stale; run with --write-page')
     except (ValueError, OSError, KeyError) as exc:
         parser.exit(1, f'evaluation check failed: {exc}\n')
-    print(f'{rule["id"]}: {len(corpus)} games match both feeds; split and public page validated')
+    print(f'{rule["id"]}: {len(corpus)} games match the official schedule transcriptions; split and public page validated')
 
 
 if __name__ == '__main__':

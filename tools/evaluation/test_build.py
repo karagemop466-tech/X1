@@ -11,11 +11,12 @@ class EvaluationTest(unittest.TestCase):
         cls.rule = build.load_protocol()
         cls.corpus = build.load_corpus(cls.rule)
 
-    def test_locked_window_matches_both_feeds(self):
+    def test_locked_window_matches_transcription(self):
         self.assertEqual(len(self.corpus), 136)
         self.assertEqual({int(row['week']) for row in self.corpus}, set(range(1, 10)))
         self.assertEqual(len({row['game_url'] for row in self.corpus}), 136)
         self.assertFalse(self.rule['corpus']['leaderboard_eligible'])
+        self.assertEqual(sum(row['away_score'] == row['home_score'] for row in self.corpus), 1)
 
     def test_splits_reject_overlap_and_gaps(self):
         for bad_years in ([2023, 2025], [2025], [2025, 2024]):
