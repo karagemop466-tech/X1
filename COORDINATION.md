@@ -4918,6 +4918,42 @@ All tasks T-R1 through T-R4 complete. Flagged irregularities (F-01–F-32, Q-02/
 
 ---
 
+## Cross-session verification record — session `arena/3ed75e05-x1` (2026-11-19)
+
+**Session ID:** `arena/3ed75e05-x1` · **Branch:** `arena/3ed75e05-x1` (at commit `856366f`, identical to `main` tip). **Claim written and pushed before any work (rule 1).**
+
+### Finding
+Branch `arena/3ed75e05-x1` is at the same commit as `main` (`856366f`). The final integration work (T-R1 through T-R4) was already completed by session `arena/ee613dd1-x1` via PR #101 (merge commit `c3c5f8f27ad4e22d74935d0df45bc141dca3632f`), which is an ancestor of this commit. No new PR is needed — there are zero commits between this branch and `main`.
+
+### Verification performed (all pass on the current tree)
+| Tool | Result |
+|------|--------|
+| `python3 tools/verify_data.py` | 2,960 checks passed, EXIT=0 |
+| `python3 tools/check_links.py` | 211 files, 50,773 assertions, all links resolve, EXIT=0 |
+| `python3 tools/build_site.py` | Wrote index.html + 30 pages, no diff (committed HTML matches generator output) |
+| `python3 scripts/verify_site.py` | 211 HTML pages, all pass |
+| `python3 tools/verify_app.py` | 29 pages, 8,260 data rows, 0 unsourced |
+
+### Site
+- Clean landing page with category-organized subpages at root `index.html`
+- 30 pages under `pages/` (standings, schedule, availability, matchup matrix, modeling lab, line origination, validation gates, leaderboard, correlation, decisions, suggestions, flagged review, sources, requirements, decision readiness, capture system, results closure, cross-check, review queue, what changed, executive brief, shadow baseline, next decisions, venues)
+- Parallel site trees linked: `dashboard/`, `research/`, `lab/`, `live/`, `hub/`, `console/`, `origination-desk/`, `suggestions/`, `room/`, `site/`, `archive/`
+- All internal links resolve; no orphan pages
+
+### GitHub Pages
+- Status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/)
+
+### Flagged irregularities (non-blocking, per R-43)
+- Q-02: No licensed price feed → no prices, edge, EV, or CLV published
+- Q-04: No licensed snap counts → depth/availability model limited to club charts
+- Q-07: Reward funding, eligibility, jurisdiction unresolved → paper league only
+- Q-31: Market price authority unresolved → mirror-derived prices labelled, never official
+- F-31: Venue requirement partially met (1 of 14 Week 10 venues from Game Center)
+
+All tasks T-R1 through T-R4 are complete for this session. Nothing blocks the release.
+
+---
+
 # Session `arena/34b79d69-x1` — Decision Center: canonical suggestions + questions section (claimed 2026-11-19)
 
 **Session ID:** `arena-34b79d69-x1` · **Branch:** `arena/34b79d69-x1` (off `main` @ `6f7df253`)
