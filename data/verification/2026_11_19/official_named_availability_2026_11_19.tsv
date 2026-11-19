@@ -1,0 +1,21 @@
+# SOURCE: one dated nfl.com article per row, named in source_url. Read via the fetch tool on 2026-11-19 (UTC)
+# by session arena/427c1843-x1 (round 7).
+#
+# WHY THIS FILE EXISTS. The owner's brief lists, as a gap: "Add an announced-starter evidence field (not an
+# inferred replacement) — the blank replacement columns are correct for the report page, but the NFL does
+# publish dated starter changes for Lock, McCord and Brissett". This file is that field for the three named
+# players, built the only way it can be built: by quoting the league's own dated sentence and linking it.
+#
+# THE RULE APPLIED. A row exists only where an official nfl.com article states the starter change in words.
+# Nothing here is inferred from a depth chart, a jersey number, a practice report, a transaction, or absence
+# from the injury report. `statement_as_printed` is a verbatim quotation, not a paraphrase. Where a quotation
+# is marked [truncated] the omitted words are shown in `omitted_words`.
+#
+# THE DATE IS THE ARTICLE'S PUBLISHED DATE, NOT THIS READ'S DATE. Two dates are recorded: article_date (when
+# the league published the statement) and read_at (when this repository read it). They differ by days for
+# two of the three rows, and that difference is the whole point of the field: a statement made before
+# kickoff is evidence; the same statement read afterwards is only evidence if its date survives.
+id	player	club	statement_as_printed	omitted_words	article_date	evidence_type	for_game	source_url	read_at	injury_report_game_status	note
+AV-01	Drew Lock	SEA	"Drew Lock has no injury designation and will start Sunday for the Seahawks against the host Las Vegas Raiders, coach Mike Macdonald said Friday."		"published 2026-11-13 (dated by the article's own 'Nov 13, 2026' listing and its 'said Friday' wording)"	"head coach, on the record, naming the starter"	2026 REG week 10 (SEA at LV)	https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders	2026-11-19		"Lock starts because Sam Darnold is injured; the article names Jalen Milroe as the backup. Week 10 evidence, not Week 11."
+AV-02	Kyle McCord	MIA	"With Willis shelved, second-year quarterback Kyle McCord will fill in, beginning Sunday on the road against the Indianapolis Colts."		"published 2026-11-10 (the Wednesday before Week 10; the article says Willis was placed on IR 'Tuesday')"	"club transaction plus named replacement, stated by the league"	2026 REG week 10 (MIA at IND)	https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start	2026-11-19		"Malik Willis (groin) to IR; article states he misses Weeks 10-13 and is eligible to return 2026-12-13. McCord is named as the starter, not inferred from the IR move."
+AV-03	Jacoby Brissett	BAL	"NFL Network Insider Ian Rapoport and ESPN's Adam Schefter reported ... the Ravens are finalizing a trade for Arizona Cardinals quarterback Jacoby Brissett."	"the trade itself is reported, and the starter role is stated only in the secondary headline 'Ravens complete trade for Cardinals' Jacoby Brissett'"	"published 2026-11-05 or later (trade reported Wednesday, completed Friday)"	"reported trade (insider), NOT a club announcement of a starter"	2026 REG week 10 onward	https://www.nfl.com/news/ravens-complete-trade-for-cardinals-jacoby-brissett-deal-terms-revealed	2026-11-19		"PARTIAL. This row does NOT satisfy the announced-starter test: the article evidences a trade and an acquisition, not a named starting quarterback. Lamar Jackson was placed on IR (roundup dated 2026-11-05), which makes Brissett the presumptive starter, and that presumption is exactly what the owner's rule forbids publishing as fact. Left as evidence-of-trade with the starter cell blank."

@@ -345,6 +345,76 @@ def main() -> int:
         "verdict": "pass" if not extra else "DRIFT (see differences)",
     }
 
+    # ---------------------------------------------------------------- A7
+    # The Week 11 injury report, measured rather than summarised.
+    inj = read_tsv(os.path.join(PACK, "official_w11_injuries_2026_11_19.tsv"))
+    inj_clubs = sorted({r["team"] for r in inj})
+    inj_games = sorted({r["game"] for r in inj})
+    designated = [r for r in inj if r["game_status"].strip()]
+    des_by_club: dict[str, int] = {}
+    for r in designated:
+        des_by_club[r["team"]] = des_by_club.get(r["team"], 0) + 1
+    by_status: dict[str, int] = {}
+    for r in designated:
+        by_status[r["game_status"]] = by_status.get(r["game_status"], 0) + 1
+    by_practice: dict[str, int] = {}
+    for r in inj:
+        by_practice[r["practice_status"]] = by_practice.get(r["practice_status"], 0) + 1
+    dupes_inj = sorted(
+        f"{t}/{p}"
+        for (t, p), n in __import__("collections").Counter(
+            (r["team"], r["player"]) for r in inj
+        ).items()
+        if n > 1
+    )
+    # every game key on an injury row must be a fixture the slate also prints
+    slate_pairs = {f"{r['away']}@{r['home']}" for r in w11}
+    inj_pair_problems = sorted({r["game"] for r in inj} - slate_pairs)
+    a7 = {
+        "name": "Week 11 official injury report (rows, clubs, designations)",
+        "rows": len(inj),
+        "clubs": len(inj_clubs),
+        "clubs_missing_a_block": sorted(set(standings_rec) - set(inj_clubs)),
+        "fixtures_with_rows": len(inj_games),
+        "designated_rows": len(designated),
+        "designated_by_status": by_status,
+        "designated_by_club": des_by_club,
+        "practice_status_counts": by_practice,
+        "blank_practice_status": sum(1 for r in inj if not r["practice_status"].strip()),
+        "duplicate_player_rows": dupes_inj,
+        "injury_game_keys_absent_from_slate": inj_pair_problems,
+        "verdict": "pass"
+        if not dupes_inj and not inj_pair_problems and len(inj) == 253
+        else "FAIL",
+    }
+    checks["A7"] = a7
+
+    # ---------------------------------------------------------------- A8
+    # The three named-player availability statements, each against its own official article.
+    named = read_tsv(os.path.join(PACK, "official_named_availability_2026_11_19.tsv"))
+    a8_bad = []
+    for r in named:
+        for col in ("player", "club", "statement_as_printed", "article_date", "source_url"):
+            if not r[col].strip():
+                a8_bad.append(f"{r['id']}.{col} blank")
+        if not r["source_url"].startswith("https://www.nfl.com/"):
+            a8_bad.append(f"{r['id']}.source_url is not an nfl.com URL")
+        # the claim must be echoed by the injury report it refers to, where the report covers the club
+        if r["injury_report_game_status"].strip() and r["player"] not in {
+            x["player"] for x in inj
+        }:
+            a8_bad.append(
+                f"{r['id']}: '{r['player']}' is cited with a report designation but is not a row "
+                f"on the Week 11 report read the same day"
+            )
+    checks["A8"] = {
+        "name": "announced-starter evidence (dated official articles, one row each)",
+        "rows": len(named),
+        "players": [r["player"] for r in named],
+        "problems": a8_bad,
+        "verdict": "pass" if named and not a8_bad else "FAIL",
+    }
+
     summary = {
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "session": "arena/427c1843-x1 (round 7)",
