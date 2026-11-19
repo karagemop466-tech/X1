@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T06:56:46+00:00",
+  "generated_at": "2026-11-19T07:18:37+00:00",
   "session": "arena/427c1843-x1 (round 7)",
   "pack_date": "2026-11-19",
   "read_at": "2026-11-19 (UTC), fetch tool, chunks 0-1 of 2 (standings) / 0-1 of 2 (w10) / 0-2 of 3 (w11)",
@@ -17,6 +17,7 @@
       "verdict": "pass"
     },
     "A2": {
+      "name": "league closure (sum W = sum L, ties even, PF = PA, 150 games)",
       "clubs": 32,
       "sum_w": 149,
       "sum_l": 149,
@@ -25,6 +26,8 @@
       "sum_pa": 6923,
       "sum_net": 0,
       "games_implied": 150.0,
+      "assertions": 5,
+      "passed": 5,
       "verdict": "pass"
     },
     "A3": {
@@ -49,6 +52,8 @@
     },
     "A5": {
       "name": "Week 11 slate completeness (13 fixtures + 6 byes = 32 clubs, once each)",
+      "assertions": 32,
+      "passed": 32,
       "fixtures": 13,
       "byes": 6,
       "clubs_counted": 32,
