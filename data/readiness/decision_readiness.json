@@ -3,7 +3,7 @@
  "title": "Decision-readiness register — one row per requirement, with the gate that blocks it and the number that would clear it",
  "requirement": "Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it",
  "requirement_source": "https://github.com/karagemop466-tech/X1/blob/main/docs/live-pipeline/project-brief.md",
- "generated_at": "2026-11-19T19:28:54Z",
+ "generated_at": "2026-11-19T20:57:22Z",
  "generated_by": "tools/build_decision_readiness.py (session arena-73e6cbac-x1)",
  "columns": [
   "id",

@@ -5,13 +5,13 @@ PATH,TOP,BYTES
 .github/workflows/pages.yml,.github,13995
 .github/workflows/paper-totals-settlement.yml,.github,1248
 .github/workflows/pipeline.yml,.github,2291
-.github/workflows/verify.yml,.github,17875
+.github/workflows/verify.yml,.github,18202
 .gitignore,.gitignore,1143
 .nojekyll,.nojekyll,0
-COORDINATION.md,COORDINATION.md,530266
+COORDINATION.md,COORDINATION.md,570593
 README.md,README.md,18710
-_ci/commit.log,_ci,5770
-_ci/pipeline.log,_ci,10587
+_ci/commit.log,_ci,6903
+_ci/pipeline.log,_ci,12765
 analysis/strategy_backtest.py,analysis,17108
 app/assets/app.js,app,2871
 app/assets/site.css,app,10139
@@ -20,7 +20,7 @@ app/decisions.html,app,52123
 app/deficiency.html,app,654042
 app/depth.html,app,667902
 app/executive-summary.html,app,17152
-app/flagged.html,app,594936
+app/flagged.html,app,607320
 app/index.html,app,63507
 app/injuries.html,app,166948
 app/leaderboard.html,app,112841
@@ -30,7 +30,7 @@ app/price-history.html,app,35085
 app/prices.html,app,105867
 app/props.html,app,11292
 app/replacement-depth.html,app,55023
-app/repo-review.html,app,545770
+app/repo-review.html,app,553005
 app/requirements.html,app,47487
 app/results-feed.html,app,135982
 app/results.html,app,223420
@@ -80,7 +80,7 @@ console/index.html,console,14457
 console/injuries.html,console,125298
 console/leaderboard.html,console,19991
 console/ledger.html,console,11176
-console/lines.html,console,537336
+console/lines.html,console,678164
 console/luck.html,console,7583
 console/official-flags.html,console,19081
 console/prices.html,console,158369
@@ -134,14 +134,16 @@ data/audit/decision_questions.json,data,6465
 data/audit/findings.json,data,9074
 data/audit/full_depth_join.json,data,118191
 data/audit/irregularities_review.json,data,7078
+data/audit/landing_numbers.json,data,5690
 data/audit/readiness.json,data,52216
 data/audit/readiness_gates.json,data,24146
 data/audit/requirements_assessed.json,data,40515
-data/audit/review_queue.json,data,32000
+data/audit/review_queue.json,data,34707
 data/audit/round4_spotcheck_injuries.csv,data,6744
 data/audit/schedule_announcement_2026.json,data,2363
 data/audit/suggestion_board.json,data,9129
 data/audit/verification_run.json,data,2645
+data/audit/w10_finals_independent_read_2026_11_19.psv,data,2244
 data/audit/what_changed.json,data,2982
 data/capture/2026_w10/README.md,data,1723
 data/capture/2026_w10/official_nflcom_injuries_week10_transcription.psv,data,24713
@@ -154,7 +156,7 @@ data/capture/2026_w10_read_2026_11_17/recapture_2026_11_17.md,data,4342
 data/captures/config.json,data,9044
 data/captures/diffs/injuries__2026-11-14__2026-11-15.csv,data,1888
 data/captures/diffs/standings__2026-11-14__2026-11-16.csv,data,3892
-data/captures/index.jsonl,data,142101
+data/captures/index.jsonl,data,150116
 data/captures/payloads/deficiency/1b/1b4777e27786059aebe99415a4188bcfaf3108ad71bc81a4506c81830a33f221.json,data,364035
 data/captures/payloads/deficiency/23/2324006db31225b00aae89945e13d674b942f774a656f4404823630ccc25c4b6.json,data,362223
 data/captures/payloads/deficiency/31/31698fabc3a8fa059fd929c0d126aac603620b215c03465185f8a9e7b3f4d7cc.json,data,363890
@@ -204,7 +206,7 @@ data/console/depth_replacement.csv,data,89864
 data/console/flagged.csv,data,6913
 data/console/gates.csv,data,1769
 data/console/injuries_week10.csv,data,23247
-data/console/injury_ledger.csv,data,3590
+data/console/injury_ledger.csv,data,4864
 data/console/originated_lines.csv,data,1430886
 data/console/payload.json,data,29098
 data/console/price_snapshots.csv,data,4549426
@@ -212,7 +214,7 @@ data/console/price_store_summary.json,data,259
 data/console/questions.csv,data,9047
 data/console/readiness.csv,data,29844
 data/console/readiness.json,data,53977
-data/console/repo_inventory.csv,data,42379
+data/console/repo_inventory.csv,data,47773
 data/console/results_feed.csv,data,1374485
 data/console/schedule_announcement.csv,data,899
 data/console/schedule_week10.csv,data,1805
@@ -233,8 +235,8 @@ data/data_checks.json,data,1780
 data/decision_review/venues.tsv,data,13960
 data/demotion_gate.json,data,7198
 data/demotion_log.jsonl,data,0
-data/depth/depth_groups_32.csv,data,373330
-data/depth/depth_groups_32.json,data,1326156
+data/depth/depth_groups_32.csv,data,373086
+data/depth/depth_groups_32.json,data,1325390
 data/depth/matchup_deficiency_matrix_w11.csv,data,38738
 data/depth/matchup_deficiency_matrix_w11.json,data,77463
 data/depth/replacement_depth.csv,data,15032
@@ -249,7 +251,7 @@ data/evidence/2026_11_17/page.html,data,51128
 data/evidence/2026_11_17/standings.tsv,data,2654
 data/evidence/2026_11_17/summary.json,data,29357
 data/evidence/2026_11_17/week10_finals.tsv,data,1531
-data/flags.json,data,38586
+data/flags.json,data,44206
 data/flags_auto.csv,data,3695
 data/gates.json,data,8396
 data/gates_v2.json,data,5155
@@ -278,7 +280,7 @@ data/lab/reads/2026-11-17/feed-closure-measurement.json,data,16504
 data/lab/reads/2026-11-17/injury_spotcheck_2026-11-17.tsv,data,7564
 data/lab/reads/2026-11-17/injury_state_2026-11-17.tsv,data,3103
 data/lab/reads/2026-11-17/manifest.json,data,1899
-data/lab/reads/2026-11-17/report.json,data,19382
+data/lab/reads/2026-11-17/report.json,data,19568
 data/lab/reads/2026-11-17/standings_2026-11-17.tsv,data,7240
 data/lab/reads/2026-11-17/venue_evidence_2026-11-17.tsv,data,5401
 data/lab/reads/2026-11-17/week10_finals.tsv,data,6020
@@ -403,7 +405,7 @@ data/pipeline/injuries.json,data,187271
 data/pipeline/leaderboard.json,data,9202
 data/pipeline/market_lines.json,data,798
 data/pipeline/questions.json,data,26878
-data/pipeline/repo_review.json,data,567077
+data/pipeline/repo_review.json,data,574723
 data/pipeline/requirements.json,data,38243
 data/pipeline/standings.json,data,23735
 data/pipeline/strategies.json,data,10635
@@ -573,7 +575,7 @@ data/verification/2026_11_19/official_w10_results_2026_11_19.tsv,data,2977
 data/verification/2026_11_19/official_w11_byes_2026_11_19.tsv,data,1255
 data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv,data,41947
 data/verification/2026_11_19/official_w11_schedule_2026_11_19.tsv,data,3641
-data/verification/2026_11_19/verification_summary_2026_11_19.json,data,3236
+data/verification/2026_11_19/verification_summary_2026_11_19.json,data,3983
 data/verification/deficiency.json,data,36052
 data/verification/deficiency_board.csv,data,11655
 data/verification/injuries.json,data,276716
@@ -614,11 +616,14 @@ docs/audit/EXECUTIVE-SUMMARY.md,docs,8074
 docs/audit/brief-coverage-2026-11-17.md,docs,33979
 docs/audit/decision-center-verification.md,docs,5522
 docs/audit/official-gamebook-source-review.md,docs,8128
+docs/audit/public-release-boundary.md,docs,6272
 docs/audit/round6-findings.md,docs,11505
 docs/audit/session-c50b9342-audit.md,docs,6219
+docs/audit/session-eab9ccb9-verification.md,docs,15708
 docs/audit/staleness-2026-11-17.md,docs,8571
 docs/audit/venues-week10.md,docs,4728
 docs/correlation-analysis.md,docs,2685
+docs/designation-calibration.md,docs,5737
 docs/executive-summary.md,docs,7239
 docs/lab/README.md,docs,6234
 docs/lab/control-baselines.md,docs,3805
@@ -657,6 +662,7 @@ docs/price-snapshot-store.md,docs,2439
 docs/props-and-parlays.md,docs,2430
 docs/recheck/injuries-week10.md,docs,7793
 docs/results-feed.md,docs,3295
+docs/review/line-market-source-audit.md,docs,4709
 docs/review/repo-review.md,docs,5063
 docs/round2-executive-summary.md,docs,3837
 docs/round7/decision-room-and-verification-2026-11-19.md,docs,8676
@@ -687,7 +693,7 @@ lab/leaderboard.html,lab,17246
 lab/lines.html,lab,19515
 lab/prices.html,lab,24908
 lab/questions.html,lab,14525
-lab/reads.html,lab,45682
+lab/reads.html,lab,45681
 lab/results.html,lab,26229
 lab/sources.html,lab,15790
 lab/suggestions.html,lab,15079
@@ -707,7 +713,7 @@ live/standings.html,live,4402
 live/strategy-lab.html,live,7932
 live/suggestions.html,live,4702
 live/team-stats.html,live,4390
-origination-desk/decisions-flags.html,origination-desk,13874
+origination-desk/decisions-flags.html,origination-desk,15303
 origination-desk/index.html,origination-desk,13891
 origination-desk/joint-gate.html,origination-desk,11218
 origination-desk/leaderboard.html,origination-desk,13363
@@ -716,7 +722,7 @@ origination-desk/roster-turnover.html,origination-desk,137822
 origination-desk/weather-venues.html,origination-desk,14722
 origination-desk/weekly-diff.html,origination-desk,17532
 pages/availability.html,pages,389373
-pages/capture-system.html,pages,73765
+pages/capture-system.html,pages,75436
 pages/changes.html,pages,8588
 pages/correlation.html,pages,10339
 pages/cross-check.html,pages,8389
@@ -725,7 +731,7 @@ pages/decisions.html,pages,24745
 pages/evaluation.html,pages,6474
 pages/executive-brief.html,pages,16168
 pages/executive-summary.html,pages,14032
-pages/flagged.html,pages,41879
+pages/flagged.html,pages,47149
 pages/injury-read-2026-11-17.html,pages,126678
 pages/leaderboard.html,pages,12839
 pages/line-origination.html,pages,15015
@@ -735,7 +741,7 @@ pages/next-decisions.html,pages,40505
 pages/readiness.html,pages,113917
 pages/requirements.html,pages,44297
 pages/results-closure.html,pages,36340
-pages/review-queue.html,pages,37001
+pages/review-queue.html,pages,39775
 pages/review.html,pages,12700
 pages/schedule.html,pages,13129
 pages/shadow-baseline.html,pages,64066
@@ -781,7 +787,7 @@ research/validation.html,research,51836
 room/availability.html,room,117323
 room/correlation.html,room,7605
 room/executive.html,room,9464
-room/flagged.html,room,38444
+room/flagged.html,room,42796
 room/gates.html,room,9066
 room/index.html,room,10145
 room/lines.html,room,17416
@@ -789,7 +795,7 @@ room/luck.html,room,10510
 room/missing.html,room,12165
 room/questions.html,room,14681
 room/sources.html,room,13112
-room/stale.html,room,12867
+room/stale.html,room,13295
 room/suggestions.html,room,10815
 scripts/build_data.py,scripts,34069
 scripts/build_lab_site.py,scripts,26861
@@ -864,10 +870,12 @@ suggestions/missing.html,suggestions,9196
 suggestions/paths.html,suggestions,17302
 suggestions/questions.html,suggestions,17419
 suggestions/review.html,suggestions,12734
+tests/test_designation_calibration.py,tests,8090
+tools/audit_landing_numbers.py,tools,11295
 tools/build_app.py,tools,223601
 tools/build_audit_registers.py,tools,59830
 tools/build_availability.py,tools,5505
-tools/build_console.py,tools,134464
+tools/build_console.py,tools,136151
 tools/build_correlations_official.py,tools,9440
 tools/build_correlations_official_store.py,tools,9784
 tools/build_decision_center.py,tools,12842
@@ -883,7 +891,7 @@ tools/build_next_decisions.py,tools,40668
 tools/build_originated_markets.py,tools,11737
 tools/build_origination.py,tools,6827
 tools/build_origination_table.py,tools,3389
-tools/build_preregistration.py,tools,18759
+tools/build_preregistration.py,tools,19208
 tools/build_price_history.py,tools,17252
 tools/build_price_snapshots.py,tools,11395
 tools/build_price_store.py,tools,13817
@@ -896,7 +904,7 @@ tools/build_results_feed_907c.py,tools,19377
 tools/build_results_feed_all_seasons.py,tools,24856
 tools/build_results_feed_official.py,tools,11319
 tools/build_results_r3.py,tools,18549
-tools/build_room.py,tools,69270
+tools/build_room.py,tools,72190
 tools/build_round3.py,tools,16261
 tools/build_shadow_baseline.py,tools,29966
 tools/build_signal_staking.py,tools,9683
@@ -909,6 +917,7 @@ tools/build_w10_snapshot.py,tools,8900
 tools/check_links.py,tools,25360
 tools/cross_check.py,tools,3526
 tools/depth_live.py,tools,5871
+tools/designation_calibration.py,tools,10974
 tools/evaluation/build.py,tools,11080
 tools/evaluation/test_build.py,tools,2482
 tools/grade_roi.py,tools,10396
@@ -942,7 +951,7 @@ tools/official/verify_published.py,tools,8497
 tools/official/week10_reconcile.py,tools,14157
 tools/origination_desk/__init__.py,tools,105
 tools/origination_desk/build_roster_audit.py,tools,38184
-tools/origination_desk/build_site.py,tools,58913
+tools/origination_desk/build_site.py,tools,60637
 tools/origination_desk/build_skill_desk.py,tools,39851
 tools/origination_desk/build_weather_overlay.py,tools,15756
 tools/origination_desk/test_desk.py,tools,3401
@@ -966,7 +975,7 @@ tools/verify_2026_11_17_473e08d5.py,tools,7939
 tools/verify_2026_11_17_closure_473e08d5.py,tools,29098
 tools/verify_2026_11_17_dc96bc33.py,tools,24147
 tools/verify_2026_11_18.py,tools,13972
-tools/verify_2026_11_19.py,tools,18920
+tools/verify_2026_11_19.py,tools,20859
 tools/verify_against_official.py,tools,12241
 tools/verify_app.py,tools,6328
 tools/verify_brief_coverage.py,tools,3840
