@@ -5651,3 +5651,62 @@ hunk and re-run the builder in a full-history clone.
   - This section of `COORDINATION.md`.
 - **Not claimed / not touched:** open PRs #91, #92, #95, #96, #110, #113, #123 and their files; `index.html`; `pages/**`; `console/**`; `hub/**`; `room/**`; `origination-desk/**`; `data/nfl/injuries_week10.*` (Week 10 tables).
 - **Why this scope:** the injury ledger's freshness check fails on `main` (last capture 8.7 h before this session; limit 6 h). The official page is now Week 11 while the published injury tables are Week 10 (flag F-35). The brief asks for dated, delta-only injury history, not a level snapshot.
+
+## Completion record — Week 11 injury reads (session `arena-2d1ba329-x1`, 2026-11-19)
+
+**Status: done on branch `arena/2d1ba329-x1`; PR and merge recorded in the post-merge block below.**
+
+### What was built
+
+- `tools/week11/build_week11.py` — parses the **stored raw bytes** in `data/ledger/injuries/raw/` for every Week 11 ledger line. It re-checks each file against its ledger line (`gzip_sha256`, exact-byte `sha256`, UUID-masked `content_sha256`) and aborts on any mismatch, header change, row-shape change, or unknown status string. A club shown in a matchup strip with no table is reported as a **coverage gap**, not as healthy.
+- `data/week11/` — `captures.json` (every read, its hashes, flags, shape checks), `latest_read.tsv` (253 listings, one source URL per row), `deltas.tsv` (field-level changes only, 262 rows including coverage), `parse_checks.json`.
+- `tools/week11/render_week11.py` + `app/week11.html` — "Week 11 reads & deltas" page (Official data group). Layout comes from `tools/build_app.py`'s own `page()`/`table()`/`card()` helpers.
+- `docs/week11/README.md` — method, sources, verification, limits, irregularities.
+- `tests/test_week11.py` — 6 regression tests pinned to the stored 13:16 UTC capture.
+
+### Sources used
+
+- NFL.com official injury report, Week 11 page: https://www.nfl.com/injuries/ — read by this session via the page fetcher at about 2026-11-19 21:59 UTC (title "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season").
+- Stored captures: https://github.com/karagemop466-tech/X1/tree/main/data/ledger/injuries/raw · ledger: https://github.com/karagemop466-tech/X1/blob/main/data/ledger/injuries/ledger.jsonl
+- Workflow run history used for the cadence observation: https://github.com/karagemop466-tech/X1/actions/workflows/injury-ledger.yml (`gh run list`).
+
+### Verification performed (all reproducible in the repo)
+
+- Ledger chain: `python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries` → chain intact, 15 lines, every stored page re-hashes.
+- Week 11 parse: 7 stored reads → 4 distinct content states; latest 13:16:57 UTC: 26 matchup strips (13 games), 24 clubs with a table, **253 listings**, CIN and WAS with no table.
+- `python3 tools/week11/build_week11.py --check` → match. `python3 -m unittest tests.test_week11` → 6 pass.
+- **Live cross-check, by eye (not automated):** IND (11 listings) and HOU (15 listings) on the live page vs the 13:16 read → **25 of 26 rows agree**. The one mismatch is **Charlie Heck (IND, T)** — the stored read has "Not injury related - personal matter" / Questionable; the live read has blank cells. Left open, flagged as W11-2.
+- Raw-byte diff of the 01:53 and 13:16 reads: differ only in analytics script tags and a carousel UUID; the injury tables are identical.
+- Full replay of `verify.yml` in a scratch copy (`bash -eo pipefail`): **55 of 55 steps pass**, including the two new Week 11 steps.
+- Full replay of `pages.yml` in a scratch copy: **21 of 21 steps pass**.
+- `tools/verify_app.py` → 30 pages, 0 unsourced rows.
+- YAML of both edited workflows parses (PyYAML in a scratch venv).
+
+### Shared files changed (additive, logged per board rule 4)
+
+- `tools/build_app.py`: one `PAGES` entry (`week11.html`), one `BUILDERS` entry, a `p_week11()` dispatcher, an optional `snap=` label on `page()` (default unchanged), and five flagged items `W11-1…W11-5` on the Flagged page.
+- `app/*.html` (all 30 pages): the nav gains one line (`Week 11 reads & deltas`). Verified by `git diff`: insertions only, 29 files.
+- `app/index.html` and `data/audit/readiness.json`: regenerated. The decision-readiness register hard-codes "29 pages in app/", so adding a page changed it to 30; the landing embeds that table. This is a **brittle hard-coded count** in `tools/build_state_audit.py` — logged as a request below.
+- `.github/workflows/verify.yml`: two steps added after the app staleness check (`build_week11.py --check` and the unit tests).
+- `.github/workflows/injury-ledger.yml`: one step added before the page rebuild (`build_week11.py`), and `data/week11` added to the committed paths.
+- Open PRs whose files overlap these (not touched by this session): #123 (`data/audit/**` re-audit), #113 (schedule page). Expect a merge conflict in `data/audit/readiness.json` or `app/index.html` if either lands first; resolve by regenerating with the builders, not by hand.
+
+### Irregularities (published on the Flagged for Review page as W11-1…W11-5; none blocking)
+
+- **W11-1 (bad)** Ledger freshness fails on `main`: last successful read 8.7 h before the check, limit 6 h. Scheduled runs on `main` appear about 8 h and 20 h apart against a 4-hourly cron. A manual `workflow_dispatch` from this session returned **HTTP 403**. Owner to check the Actions schedule. Not fixed here.
+- **W11-2 (bad)** Charlie Heck: stored read and live page disagree (see above). Not resolved; the next scheduled read decides it.
+- **W11-3 (warn)** CIN and WAS (Monday, Nov 23) have no table in the latest read. Gap, not healthy.
+- **W11-4 (warn)** The ledger's `revised` flag fires on page-chrome changes. Field-level deltas are the measure.
+- **W11-5 (grey)** Early Week 11 reads had blank designations that later read Out or Questionable. Blank means "not yet published".
+
+### Requests to owners (logged, not actioned by editing their files)
+
+- **Ledger owner (`tools/snapshot_ledger.py`, `injury-ledger.yml` cadence):** investigate the scheduled-run gaps (W11-1); consider a second trigger; define "revised" on designation content, not raw page bytes (W11-4).
+- **`tools/build_state_audit.py` owner:** replace the hard-coded "29 pages in app/" with a count computed from `app/`, so a new page does not make the readiness register stale by construction.
+- **`tools/build_app.py` owner:** `WEEK = 10` and the "Official Week 10 injury report" title on `injuries.html` remain; the Week 11 page is additive and the Week 10 table is unchanged.
+- **Week rollover:** `WEEK = 11` is fixed in `tools/week11/build_week11.py`. Week 12 needs that constant changed by a session; the builder does not detect the week on its own.
+
+### What this session did not do
+
+- No change to the Week 10 published tables, the landing's requirement counts, or any other session's claimed scope.
+- No probability, forecast, designation-to-play-rate estimate, snap count, or inactive-list claim. These need other sources (see `docs/week11/README.md` → "What this does not claim").
