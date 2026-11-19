@@ -1,0 +1,23 @@
+# SOURCE: https://www.nfl.com/schedules/2026/by-week/week-10
+#   page title as read: "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets"
+# Read via the page-fetch tool on 2026-11-19 (UTC), chunks 0-1 of 2, by session arena/6b45af7e-x1.
+# This is this session's OWN second read of the completed Week 10 slate, independent of
+# data/verification/2026_11_19/official_w10_results_2026_11_19.tsv (session arena/427c1843-x1).
+# One row per fixture, exactly as printed: away club, away score, home club, home score, status,
+# the day line, and the club records printed beside each logo on THIS page.
+# tools/build_live_recheck.py diffs it against the committed pack and publishes any difference.
+away	away_score	home	home_score	status	day_line	away_record	home_record	game_url	source_url
+Commanders	24	Giants	21	Final	Thursday, November 12th	3-5-1	5-3-1	https://www.nfl.com/games/commanders-at-giants-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Patriots	10	Lions	35	Final	Sunday, November 15th	5-5	7-2	https://www.nfl.com/games/patriots-at-lions-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Chiefs	35	Falcons	13	Final	Sunday, November 15th	7-2	3-7	https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Texans	24	Browns	27	Final	Sunday, November 15th	3-6	6-4	https://www.nfl.com/games/texans-at-browns-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Vikings	30	Packers	10	Final	Sunday, November 15th	7-2	6-4	https://www.nfl.com/games/vikings-at-packers-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Dolphins	22	Colts	24	Final	Sunday, November 15th	1-8	3-7	https://www.nfl.com/games/dolphins-at-colts-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Panthers	20	Saints	17	Final	Sunday, November 15th	4-5	3-6	https://www.nfl.com/games/panthers-at-saints-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Bills	31	Jets	12	Final	Sunday, November 15th	8-1	2-8	https://www.nfl.com/games/bills-at-jets-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Jaguars	40	Titans	23	Final	Sunday, November 15th	7-2	1-8	https://www.nfl.com/games/jaguars-at-titans-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Rams	34	Cardinals	6	Final	Sunday, November 15th	6-4	3-7	https://www.nfl.com/games/rams-at-cardinals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Seahawks	21	Raiders	13	Final	Sunday, November 15th	6-4	4-6	https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+49ers	46	Cowboys	40	Final	Sunday, November 15th	8-1	4-6	https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Steelers	18	Bengals	38	Final	Sunday, November 15th	6-3	7-2	https://www.nfl.com/games/steelers-at-bengals-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
+Chargers	23	Ravens	20	Final	Monday, November 16th	1-8	4-6	https://www.nfl.com/games/chargers-at-ravens-2026-reg-10	https://www.nfl.com/schedules/2026/by-week/week-10
