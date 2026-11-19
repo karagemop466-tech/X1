@@ -271,3 +271,8 @@ jobs:
         run: python3 tools/verify_venues_w10.py
       - name: Week 10 venue page is current (brief row 24)
         run: python3 tools/build_venues_page.py --check
+      - name: Replay the dated venue, report movement and strategy decision checks
+        run: |
+          python3 tools/official/gamecentre.py selftest
+          python3 tools/verify_mind_change.py
+          python3 tools/build_decision_review.py --check

@@ -93,7 +93,7 @@
   "C5_independent_standings_reread": {
    "assertions": 512,
    "clubs": 32,
-   "collector_read_at": "2026-11-18T04:15:33+00:00",
+   "collector_read_at": "2026-11-19T04:09:29+00:00",
    "collector_source": "https://www.nfl.com/standings/league/2026/REG",
    "detail": [],
    "differing_cells": 0,
@@ -487,7 +487,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-18T04:26:50+00:00",
+ "generated_at": "2026-11-19T06:48:32+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,
