@@ -5244,3 +5244,25 @@ Checked merged `main` (`PR #97`–`PR #109`) and all open parallel branches/PRs 
 | Confirmed Live URLs | <https://karagemop466-tech.github.io/X1/> · <https://karagemop466-tech.github.io/X1/origination-desk/index.html> · <https://karagemop466-tech.github.io/X1/origination-desk/weather-venues.html> (fetched live post-deploy and verified) |
 
 
+
+---
+
+# Session `arena-41954ed5-x1` (branch `arena/41954ed5-x1`) — Round 8: dated re-audit of the brief register (2026-11-19)
+
+**Session ID:** `arena-41954ed5-x1` · **Branch:** `arena/41954ed5-x1` (from `main` @ `856366f`) · **Started (UTC):** 2026-11-19.
+**Platform note:** this session may push only to its own branch; `session-<id>/<task>` naming is adapted to one branch per session (see the top of this file).
+
+## Non-overlap audit (checked before claiming)
+
+- Open PRs at claim time: #91 (`arena/efb06932-x1`), #92 (`arena/55c364b6-x1`), #95 (`arena/8d2bacbb-x1`, `docs/audit/public-release-boundary.md`), #96 (`arena/3ea00c0a-x1`, designation calibration), #110 (`arena/427c1843-x1`, room polish). None touches the paths below.
+- Already built on `main` by other sessions (not re-claimed): season split and 136-game corpus (EVAL-71, PR #98); reserve list, stadium roof/NWS overlay, vig-free decomposition, two-stage skill desk (OD-1..OD-5, PR #111); depth matrix and 32-club deficiency (R7-2); kickoff regimes (KR-1, PR #99).
+- Still in open PRs, so not claimed: injury surprise / availability series (#91, #92), fixture context (#91, #92), designation reliability (#96).
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope (exclusive) |
+|---|---|---|---|---|
+| R8-1 | Re-score each of the 82 rows of the 2026-11-17 brief-coverage register (`docs/audit/brief-coverage-2026-11-17.md`) against `main` as of 2026-11-19: current status, the artefact on disk that backs it, the verifier run, and the gap that remains. Rows whose status is stale are corrected in the new file and the change is listed. | in progress | `arena-41954ed5-x1` | `docs/audit/brief-coverage-2026-11-19.md` (new), `tools/verify_brief_coverage_2026_11_19.py` (new) |
+| R8-2 | Append this record (sources, verification, irregularities) and mark R8-1 done. Any change to a shared output (landing page, nav, `pages/**`, `app/**`, `room/**`) is logged as a rule-4 request, not made here. | in progress | `arena-41954ed5-x1` | `COORDINATION.md` (append only) |
+
+Scope limit: no value is changed in any data file; no official source is re-read unless a link is cited in the new file.
