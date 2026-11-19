@@ -5398,3 +5398,50 @@ Overlap check (rule 3): open PRs #110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0
 - **Irregularities logged:** R8-I-14 (bot erased anchors), R8-I-15 (PR-03 rule edited after its registration, pre-existing), R8-I-16 (`verify-site` failed on `main`'s push runs), R8-I-17 (`Refresh research data` has failed since 2026-11-17).
 - **History note:** this branch was rebased onto `main` `42c58e2` and its own claim commit was rewritten once; the remote was updated with `--force-with-lease` (only this session's own commits were replaced). A rebase conflict in COORDINATION.md was resolved by keeping both sides.
 - **Overlap note:** open PR #113 (`Publish the dated schedule announcement beside the live schedule`) covers brief row 25, which this session logged as request 3. This session did not touch `pages/schedule.html`.
+
+---
+
+# Session `arena/621df229-x1` — completion (final), 2026-11-19
+
+**All tasks T-R1..T-R4 are done and the release is live.**
+
+| Item | Value |
+|---|---|
+| Session branch | `arena/621df229-x1` (pinned; one-branch-per-session, no branch switching) |
+| Base | `main` @ `856366fcf51cfeb1a71f3129f0dd9e3c619c3161` |
+| Substantive release PR | [#115](https://github.com/karagemop466-tech/X1/pull/115) — merged `972d31a` (`gh pr merge 115 --merge`, no waiting) |
+| Release-record PR | [#117](https://github.com/karagemop466-tech/X1/pull/117) — merged `42c58e2` (`gh pr merge 117 --merge`, no waiting) |
+| Merge commits in `main` | `972d31a` then `42c58e2`; release-record commit `b62abff` is in `main` |
+| GitHub Pages | status `built`, error `none`, at https://karagemop466-tech.github.io/X1/ |
+| Final verification (current tree) | `verify_data.py` 2,960 pass · `check_links.py` 211 files / 51,245 assertions all resolve · `verify_site.py` 211 pages, every data-table row source-linked — all EXIT=0 |
+| Irregularities | F-01–F-37 published with source links; key opens Q-02 (no licensed price feed), Q-04 (no licensed snap counts), Q-07 (reward funding), Q-31 (market price authority). None block the release. |
+
+No data, site, or generator files were changed in this session; only `COORDINATION.md` (claim + completion records). The published site already contained the clean category-organised landing page, source-linked tables, the 53-row decision-readiness register, the executive summary, the suggestions board (18 proposals), the questions register (24 questions), and the Flagged for Review page — all verified and deployed.
+
+
+---
+
+
+---
+
+# Session `arena/eab9ccb9-x1` — independent final verification audit (2026-11-19)
+
+**Session ID:** `arena/eab9ccb9-x1` · **Branch:** `arena/eab9ccb9-x1` (fixed by Arena; based on `856366f`).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| EAB-1 | Independently rerun the existing site/data/research verification chain on the current integration tree; inspect official-source links, decision-readiness/suggestions pages and release configuration; record only reproducible results and any gaps | done — audit and eight follow-up findings recorded; shared/generated output edits deliberately deferred under non-overlap rules | `arena/eab9ccb9-x1` | `docs/audit/session-eab9ccb9-verification.md`, append-only `COORDINATION.md` |
+
+**Non-overlap:** no edits to site generators, generated pages, data, or other sessions' claimed files. Any discovered content defect will be logged here as a follow-up request rather than silently edited. This is an audit of the already integrated tree, not a claim that every historical source was freshly fetched in this session.
+
+## EAB-1 completion — independent integration verification audit (2026-11-19)
+
+- **Report:** `docs/audit/session-eab9ccb9-verification.md`.
+- **Rebase/conflict log:** main advanced from the branch base through data-refresh commits, PR #115, PR #117, and release-record PR #119 to `cb0eabf` while this branch was open. `git pull --rebase origin main` conflicted at the append-only `COORDINATION.md` tail; the complete upstream integration record and this session's claim were both retained, with no other session content discarded. Core data/link/site/app/new-data/deployed-tree/desk checks passed after rebase.
+- **Cross-scope request AUD-08:** PR #97 (`arena/e0c7de42-x1`) is merged and owns `data/mind_change/**`, including `register.csv`. Request its task owner to rebuild and re-validate this register against retained inputs, then rerun `verify-site`; this session does not edit completed-owner files. Reproduced failure: `tools/verify_mind_change.py` reports stale register; the Game Center self-test and `tools/build_decision_review.py --check` pass.
+- **Local checks:** `tools/verify_data.py` (2,960), `tools/check_links.py` (211 files / 51,245 assertions), `scripts/verify_site.py` (211 pages), `tools/verify_app.py` (29 pages / 8,495 rows, 0 unmarked/unsourced), decision-center (750 assertions), source-rule mutation test, official cross-check (1,846 cells / 0 mismatches), round-3 stores (150 results, 56 snapshots, 42 origination rows, 1,034 official-only correlation pairs), capture self-test (6/6), dated pack checks, 32-club depth/model checks, room checks, Origination & Skill Desk (1,621 checks + 7 unit tests), console (34 pages / 5,416 links / 3,334 sourced rows), live pipeline (15 pages / 5,358 sourced rows), new-data checks, and assembled deployment (219 pages / 6,079 links, 4 pre-existing orphan pages reported): **passed**. Dated-check rebuilds changed two `generated_at` fields; hub/console rebuilds also changed tracked generated outputs. All audit-generated changes were restored; the only remaining edits are this report and coordination record.
+- **Live official source fetched:** [NFL 2026 Week 11 injury report](https://www.nfl.com/injuries/league/2026/REG11) on 2026-11-19; it presents Week 11 selection and game/player tables. This confirms that the review queue's 2026-11-17 “does not exist yet” item is historical, not a current blocker. No other historical rows are claimed freshly fetched by this session.
+- **Live site/deployment:** [GitHub Pages root](https://karagemop466-tech.github.io/X1/) fetched; [Pages deployment run 44598901292](https://github.com/karagemop466-tech/X1/actions/runs/44598901292) succeeded for main `2fe967a` (the post-PR-115 data refresh). The root and conflicting public sections were also fetched directly after that deployment.
+- **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118) merged to `main` at `2d99536b6a42cf9e9c7d2063c796fb09b48b3ab6` (2026-11-19 19:33:43 UTC). The PR initially had no reported status checks; after merge, [verify-site run 44599596695](https://github.com/karagemop466-tech/X1/actions/runs/44599596695) failed at `verify_mind_change.py` because its committed register was stale. [Pages artifact build/deploy run 44599596663](https://github.com/karagemop466-tech/X1/actions/runs/44599596663), [pages-build-deployment run 44599595460](https://github.com/karagemop466-tech/X1/actions/runs/44599595460), and Evaluation readiness run 44599596696 succeeded. The deployed static site remains live; the failed data-quality gate is AUD-08 and was not weakened or silently fixed because its data/generator are owned by completed PR #97 scope.
+- **Follow-up requests (no overlap edits made):** AUD-01 stale Week 11 blocker; AUD-02 dated 5-club vs later 31-club depth scope; AUD-03 conflicting empty vs historical backtest leaderboard and violation of the no-backtests-on-leaderboard rule; AUD-04 incompatible results/price-store universes and unverified mirror values displayed as 2026 opens; AUD-05 53 vs 82 requirement counts; AUD-06 public/private release boundary remains open; AUD-07 console generated artifacts are not diff-gated in CI; AUD-08 post-merge `verify-site` fails because `data/mind_change/register.csv` is stale after a fresh build. Full evidence, applicable official links, the CI run, and owner scope are in the report. These touch shared registers/generated pages or an open PR, so they are recorded for coordinated integration rather than edited here.
+- **Status:** EAB-1 done. This is not certification that all historical sources were refreshed in this session; see the report scope and explicit follow-up list.
