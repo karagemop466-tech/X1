@@ -334,6 +334,19 @@ CLOSEREAD_17 = "2026-11-17"
 CLOSESTAND_BY = {r["abbr"]: r for r in CLOSESTAND}
 NFLCOM = "https://www.nfl.com/"
 
+# Added by session arena/627e2399-x1 for LA-4. Keep the landing's older Week 10
+# captures as dated evidence, but publish the latest committed verification read
+# separately so a historical snapshot cannot be mistaken for live injury status.
+PACK19 = load_json("verification/2026_11_19/verification_summary_2026_11_19.json")
+W10_READ19 = read_rows("data/verification/2026_11_19/official_w10_results_2026_11_19.tsv", "\t")
+PACK19_A7 = PACK19["checks"]["A7"]
+PACK19_PASS = sum(1 for verdict in PACK19["verdicts"].values() if str(verdict).lower() == "pass")
+PACK19_REVIEW = sum(1 for verdict in PACK19["verdicts"].values() if str(verdict).lower() == "review")
+PACK19_FAIL = sum(1 for verdict in PACK19["verdicts"].values() if str(verdict).lower() == "fail")
+W10_FINALS19 = sum(1 for row in W10_READ19 if row["status"] == "Final")
+W10_SCHEDULE19_URL = PACK19["sources"]["week10_schedule"]
+W11_INJURY19_URL = "https://www.nfl.com/injuries/league/2026/reg11"
+
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
 SCHED_URL = "https://www.nfl.com/schedules/2026/REG/week/10/"
 INJ_URL = "https://www.nfl.com/injuries/league/2026/reg10"
@@ -472,11 +485,34 @@ def page_index():
     {stat(f"{v['cells_compared']:,}", 'cells diffed, cell by cell', 'independent re-transcription')}
     {stat(len(STANDINGS), 'teams verified', 'nfl.com standings')}
     {stat(len(SCHED), 'week-10 games verified', 'nfl.com schedule')}
-    {stat(len(INJ), 'week-10 injury rows verified', 'nfl.com injury report, snapshot 2026-11-14')}
+    {stat(len(INJ), 'week-10 injury rows (archival)', 'official NFL report capture, snapshot 2026-11-14; not current availability')}
     <div class="stat"><strong>{v['mismatches']}</strong><span>mismatches found</span>
       <span class="statnote">every published cell agrees with its official source</span></div>
-    {stat('8', 'week-11 checks passed', 'live read 2026-11-19 · room/stale.html')}
+    {stat(f"{PACK19_PASS} pass / {PACK19_REVIEW} review", "checks in the 2026-11-19 pack", f"{PACK19_FAIL} fail · A7/A8 remain review")}
   </div>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">LATEST DATED EVIDENCE IN THIS REPOSITORY</div><h2>Current-state checks — not a live feed</h2></div><span class="tag">READ {PACK19["pack_date"]}</span></section>
+<section class="content">
+  <div class="note"><b>Do not treat an old capture as current.</b> The 13 / 14 schedule figure below belongs to the 2026-11-16 read and is superseded by the later official read. The 347-row Week 10 injury table is a historical 2026-11-14 capture; the Week 11 report was the latest report in the 2026-11-19 official read, but this repository's Week 11 extract is partial. Missing report rows do not mean a player is healthy or available.</div>
+  {table(["Evidence set", "Dated finding", "Decision boundary", "Repository evidence", "Official source"], [
+      [f'<td><b>Week 10 schedule</b><br><small>read {PACK19["pack_date"]}</small></td>',
+       f'<td><b>{W10_FINALS19} / {len(W10_READ19)} fixtures printed Final</b></td>',
+       '<td>The 13 / 14 observation below is dated 2026-11-16 and has been superseded; the older capture is retained unchanged.</td>',
+       src_cell(repo_blob("data/verification/2026_11_19/official_w10_results_2026_11_19.tsv"), "dated transcription ↗"),
+       src_cell(W10_SCHEDULE19_URL, "NFL schedule ↗")],
+      ['<td><b>Week 10 injury table</b><br><small>snapshot 2026-11-14</small></td>',
+       f'<td>{len(INJ)} rows</td>',
+       '<td>Historical snapshot only; it is not current Week 11 availability.</td>',
+       src_cell(repo_blob("data/nfl/injuries_week10.tsv"), "Week 10 capture ↗"),
+       src_cell(INJ_URL, "NFL Week 10 injury page ↗")],
+      [f'<td><b>Week 11 injury report</b><br><small>read {PACK19["pack_date"]}</small></td>',
+       f'<td>{PACK19_A7["rows"]} captured rows · {PACK19_A7["clubs"]}/{PACK19_A7["scheduled_clubs"]} scheduled clubs · no capture rows for {", ".join(PACK19_A7["fixtures_without_report_rows"])}</td>',
+       f'<td><b>A7 {PACK19_A7["verdict"]}</b>: partial extract; absent rows are unresolved evidence, not proof of availability. {len(PACK19_A7["bye_clubs_without_rows"])} bye clubs are excluded.</td>',
+       src_cell(repo_blob("room/stale.html"), "verification pack ↗"),
+       src_cell(W11_INJURY19_URL, "NFL Week 11 injury page ↗")],
+    ], "Dated source reads and their limits", "wide", True)}
+  <p class="muted">The 2026-11-19 pack records {PACK19_PASS} pass, {PACK19_REVIEW} review and {PACK19_FAIL} fail across {len(PACK19["verdicts"])} checks; A7 (injury coverage) and A8 (starter evidence) remain under review. <a href="room/stale.html">Open the detailed verification table →</a></p>
 </section>
 
 <section class="alert">
@@ -493,13 +529,13 @@ def page_index():
   <a href="pages/cross-check.html">Independent cross-check →</a>
 </section>
 
-<section class="sectionhead"><div><div class="eyebrow">START HERE</div><h2>The decisions waiting on you</h2></div><span class="tag">SNAPSHOT {RETRIEVED}</span></section>
+<section class="sectionhead"><div><div class="eyebrow">START HERE</div><h2>The decisions waiting on you</h2></div><span class="tag">BASE {RETRIEVED} · STATUS READ {PACK19["pack_date"]}</span></section>
 <section class="cards">
   <a class="card" href="pages/decisions-critical.html"><span class="ico">?</span><small>DECIDE / 01</small><h3>The blocking questions</h3><p>Every question that has to be answered before a strategy can honestly be scored, with what is already known, what is missing, and the evidence that would close it.</p><span class="more">Open the decision table →</span></a>
   <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
-  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
+  <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"] + REQS["counts"]["in_progress"]} unresolved in total ({REQS["counts"]["open"]} open + {REQS["counts"]["in_progress"]} in progress) — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
   <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
-  <a class="card" href="room/index.html"><span class="ico">◧</span><small>DECIDE / 05</small><h3>The decision room</h3><p>The questions that must be settled before any decision, the suggestions board to review before anything is built, and the 2026-11-19 live verification of the official pages. Eight checks, all rebuildable.</p><span class="more">Enter the room →</span></a>
+  <a class="card" href="room/index.html"><span class="ico">◧</span><small>DECIDE / 05</small><h3>The decision room</h3><p>The questions that must be settled before any decision, the suggestions board to review before anything is built, and the 2026-11-19 verification of the official pages: {len(PACK19["verdicts"])} checks ({PACK19_PASS} pass, {PACK19_REVIEW} review, {PACK19_FAIL} fail), including the partial Week 11 injury extract (A7 REVIEW).</p><span class="more">Enter the room →</span></a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Every tree, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
@@ -530,8 +566,9 @@ def page_index():
     <div class="blocker"><span class="pill">LIVE</span><div><b><a href="live/index.html">Live pipeline</a></b><p>The only tree that collects <em>club</em> depth charts at scale — 1,813 entries across 31 of 32 clubs —
     with the caveat that clubs label their own charts unofficial. Refreshed on a schedule.</p></div></div>
     <div class="blocker"><span class="pill">ROOM</span><div><b><a href="room/index.html">The decision room</a></b><p>What is blocking a decision today, the suggestions board to review before anything is built,
-    and the live 2026-11-19 re-verification of the official pages: 8 checks, the Week 11 injury report
-    (253 rows) and the multiplicity correction over all 16 scored strategies.</p></div></div>
+    and the dated 2026-11-19 verification of the official pages: {len(PACK19["verdicts"])} checks
+    ({PACK19_PASS} pass, {PACK19_REVIEW} review, {PACK19_FAIL} fail), including the partial Week 11 injury capture
+    ({PACK19_A7["rows"]} rows; A7 REVIEW) and the multiplicity correction over all 16 scored strategies.</p></div></div>
     <div class="blocker"><span class="pill">AUDIT</span><div><b><a href="hub/index.html">Section index</a></b><p>What each of the eight sections is canonical for, an independent re-verification of the published
     tables (1,184 standings cells, 345 injury rows across 28 club tables, 160 designations), the deficiency board by replacement
     string, and a suggestion board that sets out two or three paths for each choice before anything is built.</p></div></div>
@@ -583,7 +620,7 @@ def page_index():
   <a href="pages/readiness.html">decision-readiness page</a> rather than quietly reconciled.</div>
   <p><a href="pages/evaluation.html">Evaluation readiness: the locked outcome corpus and chronological season split →</a></p>
   {readiness_html}
-  <p class="muted">Full register, with every derivation, every note and the live 2026-11-15 re-verification:
+  <p class="muted">Full register, with every derivation and note. Its 2026-11-15 re-verification is historical; the later official read, including A7/A8 review findings, is linked above and on the Decision Room page.
   <a href="pages/readiness.html">decision readiness →</a> · generated by
   <code>tools/build_decision_readiness.py</code> from <code>data/readiness/decision_readiness.json</code>.</p>
 </section>
@@ -593,20 +630,21 @@ def page_index():
 <span class="tag">{len(CAP_INDEX)} CAPTURES · {len(STAND_DIFF)} STANDING CELLS MOVED · {SHADOW["backtest"]["n_games"]} GAMES SCORED</span></section>
 <section class="content">
   <div class="statrow">
-    {stat("13 / 14", "Week 10 games officially final", "the Monday-night game was still unplayed at read time", )}
+    {stat("13 / 14", "Week 10 games final at the 2026-11-16 read", "point-in-time observation; the 2026-11-19 official read found 14 / 14 final")}
     {stat(f"{len(PROMO1616['promoted_rows'])}", "rows promoted scheduled &rarr; final", "with both dates published, nothing overwritten")}
     {stat(PACK1616["checks"]["A5_dated_delta_closure"]["assertions"], "standings assertions", "0 failures: the delta closes exactly")}
     {stat(f"{SHADOW['backtest']['brier_skill_vs_home_baseline']:+.3f}", "baseline Brier skill", f"95% lower bound {SHADOW['backtest']['bootstrap']['skill_home_baseline_lower_bound']:+.3f} on 117 games")}
   </div>
   {table(["What happened", "Number", "Where to check it", "Source"], [
       ['<td><b>The scheduled collector never pushed its captures</b></td>', f'<td>{len(CAP_INDEX)} captures now retained</td>', '<td><a href="pages/capture-system.html">capture system &rarr;</a></td>', src_cell(repo_blob("_ci/commit.log"), "log ↗")],
-      ['<td><b>Week 10 re-read from the official page</b></td>', f'<td>{len(W10_FINALS)} fixtures, {sum(1 for r in W10_FINALS if r["status"] == "Final")} final</td>', '<td><a href="pages/capture-system.html">Week 10 table &rarr;</a></td>', src_cell("https://www.nfl.com/schedules/2026/by-week/week-10", "nfl.com ↗")],
+      ['<td><b>Week 10 schedule at the 2026-11-16 read</b></td>', f'<td>{len(W10_FINALS)} fixtures, {sum(1 for r in W10_FINALS if r["status"] == "Final")} final</td>', '<td><a href="pages/capture-system.html">dated Week 10 table &rarr;</a></td>', src_cell("https://www.nfl.com/schedules/2026/by-week/week-10", "nfl.com ↗")],
+      [f'<td><b>Later Week 10 schedule read ({PACK19["pack_date"]})</b></td>', f'<td>{W10_FINALS19} / {len(W10_READ19)} fixtures printed Final</td>', '<td><a href="room/stale.html">dated verification pack &rarr;</a></td>', src_cell(W10_SCHEDULE19_URL, "NFL schedule ↗")],
       ['<td><b>Standings re-read and diffed, not overwritten</b></td>', f'<td>{len(STAND_DIFF)} field changes, all closing</td>', '<td><a href="pages/capture-system.html">delta &rarr;</a></td>', src_cell("https://www.nfl.com/standings/league/2026/REG", "nfl.com ↗")],
       ['<td><b>Day-over-day injury movement, first time measured</b></td>', f'<td>{len(CAP_DIFFS.get("injuries__2026-11-14__2026-11-15", []))} changed cells</td>', '<td><a href="pages/capture-system.html">diff &rarr;</a></td>', src_cell(repo_blob("data/captures/diffs/injuries__2026-11-14__2026-11-15.csv"), "diff ↗")],
       ['<td><b>PR-01 shadow baseline registered and scored</b></td>', f'<td>skill {SHADOW["backtest"]["brier_skill_vs_home_baseline"]:+.3f}, n={SHADOW["backtest"]["n_games"]}</td>', '<td><a href="pages/shadow-baseline.html">shadow baseline &rarr;</a></td>', src_cell(repo_blob("docs/preregistration/PR-01-shadow-baseline.md"), "rule ↗")],
       ['<td><b>First pre-kickoff forecast record</b></td>', f'<td>{len(SHADOW_FWD)} games</td>', '<td><a href="pages/shadow-baseline.html">shadow record &rarr;</a></td>', src_cell(repo_blob("data/shadow/forecasts_pre_kickoff.csv"), "file ↗")],
       ['<td><b>A review board so the next round is chosen, not guessed</b></td>', f'<td>{len(NEXT["suggestions"])} suggestions · {len(NEXT["questions"])} questions</td>', '<td><a href="pages/next-decisions.html">suggestions &amp; questions &rarr;</a></td>', src_cell(repo_blob("data/next_decisions/round_2026_11_16.json"), "register ↗")],
-    ], "The 2026-11-16 round, one row per claim", "wide", True)}
+    ], "The 2026-11-16 round with the later 2026-11-19 official schedule read", "wide", True)}
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">2026-11-17 · LIVE RE-VERIFICATION</div>
@@ -629,14 +667,14 @@ def page_index():
       ['<td><b>Week 10 injury report, all 8 chunks</b></td>', f'<td>{PK17["I1"]["counts"]["rows"]} rows · 347×4 cell equality with the retained capture · identical to the independent PR #73 transcription</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a> · <a href="pages/injury-read-2026-11-17.html">the PR #73 view &rarr;</a></td>', src_cell("https://www.nfl.com/injuries/league/2026/reg10", "nfl.com &#8599;")],
       ['<td><b>League standings after Week 10 closed</b></td>', f'<td>32 clubs · {PK17["S6"]["counts"]["field_changes"]} fields moved since the 14 Nov snapshot ({PK17["S6"]["counts"]["clubs_changed"]} clubs) · arithmetic passes club by club</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a></td>', src_cell("https://www.nfl.com/standings/league/2026/REG", "nfl.com &#8599;")],
       ['<td><b>Week 10 slate: every fixture final</b></td>', f'<td>{len(FINAL_ROWS17)} / {len(FINAL_ROWS17)} finals · {PK17["R4"]["counts"]["promoted"]} scheduled&rarr;final promotions · schedule records equal standings records 28 / 28</td>', '<td><a href="pages/verification-2026-11-17.html">re-verification pack &rarr;</a></td>', src_cell("https://www.nfl.com/schedules/2026/by-week/week-10", "nfl.com &#8599;")],
-      ['<td><b>Week 11 injury report: probed, does not exist yet</b></td>', '<td>The REG11 URL resolved to the Week 10 page; the printed selector lists WEEK 1&ndash;10 only. No Week 11 availability value can be verified today — flagged, not filled.</td>', '<td><a href="pages/flagged.html">flag F-24 &rarr;</a> · <a href="pages/verification-2026-11-17.html">probe record &rarr;</a></td>', src_cell("https://www.nfl.com/injuries/league/2026/REG11", "nfl.com &#8599;")],
+      [f'<td><b>Week 11 injury report at the 2026-11-17 read</b></td>', f'<td>On 2026-11-17, the REG11 URL resolved to the Week 10 page. The 2026-11-19 read found a Week 11 report; its repository extract is partial ({PACK19_A7["rows"]} rows, {PACK19_A7["clubs"]}/{PACK19_A7["scheduled_clubs"]} scheduled clubs) and A7 is {PACK19_A7["verdict"]}. No captured rows for {", ".join(PACK19_A7["fixtures_without_report_rows"])}; this is missing evidence, not an availability result.</td>', '<td><a href="pages/verification-2026-11-17.html">2026-11-17 probe record &rarr;</a> · <a href="room/stale.html">2026-11-19 A7 review &rarr;</a></td>', src_cell(W11_INJURY19_URL, "NFL Week 11 report ↗")],
     ], "The 2026-11-17 round, one row per official page", "wide", True)}
   <p class="muted">Full gate list, dated deltas and cross-session corroboration:
   <a href="pages/verification-2026-11-17.html">the re-verification page &rarr;</a> · generated by
   <code>tools/verify_2026_11_17.py</code> from <code>data/verification/2026_11_17/</code>.</p>
 </section>
 """
-    return shell("Overview", f"SNAPSHOT {RETRIEVED}", body)
+    return shell("Overview", f"BASE SNAPSHOT {RETRIEVED} · LATEST EVIDENCE {PACK19['pack_date']}", body)
 
 
 # ---------------------------------------------------------------- capture system
@@ -2342,16 +2380,49 @@ FLAG_LEAGUE_ALT = {
 
 def FLAG_SRC(f):
     primary = link(f["source_url"], f["source_label"] + " ↗", "src-link")
-    second = link(f["league_source_url"], "nfl.com ↗", "src-link")
+    second_label = (f.get("league_source_label") or "nfl.com") + " ↗" if f["id"] == "F-24" else "nfl.com ↗"
+    second = link(f["league_source_url"], second_label, "src-link")
     alt = FLAG_LEAGUE_ALT.get(f["id"])
     if alt:
         second = link(alt[0], alt[1], "src-link")
+    if f["id"] == "F-24":
+        probe = link(repo_blob("data/verification/2026_11_17/week11_injuries_probe_2026_11_17.txt"),
+                     "2026-11-17 probe record ↗", "src-link")
+        a7 = link(repo_blob("data/verification/2026_11_19/verification_summary_2026_11_19.json"),
+                  "2026-11-19 A7 summary ↗", "src-link")
+        return f"<td>{primary}<br>{second}<br>{probe}<br>{a7}</td>"
     return f"<td>{primary}<br>{second}</td>"
 
 
 def page_flagged():
     rows = []
     for f in sorted(FLAGS["flags"], key=lambda x: {"high": 0, "medium": 1, "low": 2}[x["severity"]]):
+        if f["id"] == "F-24":
+            # Keep data/flags.json's 2026-11-17 observation immutable, but render it with the
+            # later committed official read: Week 11 existed on 2026-11-19 and A7 remains REVIEW.
+            f = dict(f)
+            f["item"] = "The 2026-11-17 probe found no Week 11 injury-report page; the later Week 11 extract is partial."
+            f["verified"] = (
+                "The 2026-11-17 probe resolved the REG11 URL to Week 10 (see linked probe record). "
+                f"On 2026-11-19 the official Week 11 report page was present; the repository captured "
+                f"{PACK19_A7['rows']} rows across {PACK19_A7['clubs']}/{PACK19_A7['scheduled_clubs']} scheduled clubs, "
+                f"with no captured rows for {', '.join(PACK19_A7['fixtures_without_report_rows'])}. "
+                f"A7 verdict: {PACK19_A7['verdict']}."
+            )
+            f["unknown"] = (
+                "The missing CIN@WAS evidence is not resolved by this partial capture; it does not establish "
+                "whether the official page printed a club block or whether any player was healthy/available. "
+                "Later practice/game-status updates are also outside this dated read."
+            )
+            f["settles_it"] = (
+                "Capture the complete official Week 11 report on a later dated read, reconcile all 26 scheduled "
+                "clubs against the official slate, and retain the timestamp and raw hash. Until then, leave the "
+                "missing fixture evidence unresolved and do not infer availability."
+            )
+            f["source_url"] = W11_INJURY19_URL
+            f["source_label"] = "Official Week 11 injury report read 2026-11-19"
+            f["league_source_url"] = "https://www.nfl.com/injuries/league/2026/reg10"
+            f["league_source_label"] = "Week 10 report served by the 2026-11-17 probe"
         sev = {"high": "high", "medium": "warn", "low": "muted-pill"}[f["severity"]]
         rows.append([
             f'<td><b>{esc(f["id"])}</b></td>',
