@@ -110,6 +110,12 @@ jobs:
           python3 tools/verify_depth_matrix.py
           python3 tools/build_modeling_lab.py --check
           python3 tools/verify_modeling_lab.py
+      # Added by session arena-34b79d69-x1 (additive only): the review section is
+      # rebuilt from its register and gated before the upload tree is assembled.
+      - name: Verify the decision-center section
+        run: |
+          python3 tools/build_decision_center.py --check
+          python3 tools/verify_decision_center.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -191,6 +197,11 @@ jobs:
           cp data/lines/originated_markets_2026_week10.csv _site/data/lines/
           # Added by session arena/5433abad-x1 (additive only): brief row 24 venue register page + its CSV.
           cp -r venues _site/
+          # Added by session arena-34b79d69-x1 (additive only): the canonical
+          # suggestions/questions review section and its source-linked register.
+          cp -r suggestions _site/
+          mkdir -p _site/data/suggestions
+          cp data/suggestions/*.json _site/data/suggestions/
           mkdir -p _site/data/nfl
           cp data/nfl/venues_2026_week10.csv _site/data/nfl/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing

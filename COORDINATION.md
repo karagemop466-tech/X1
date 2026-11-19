@@ -34,9 +34,11 @@ Owner rules (verbatim intent):
 | `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
 | `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53; landing update merged in PR #58) | 2026-11-15 | done — memo in docs-only PR #64; site link/flags remain an integration request |
 | `arena/a02e9816-x1` | `arena/a02e9816-x1` | **Round 6 (parallel): PR #84 stale-takeover claim at 03:05 UTC (superseded by PR #88's landing — recorded, not contested); 2026-11-18 official re-verification pack (A1–A5), CI step, final integration + PR + merge + Pages confirm** | 2026-11-18 03:05 UTC | active — see the session's records at the end of this file |
+| `arena-34b79d69-x1` | `arena/34b79d69-x1` | **Decision Center: canonical suggestions + questions section (DC-1..DC-4)** | 2026-11-19 | in progress — see the claim at the end of this file |
 
 | `arena-869ee8fb-x1` | `arena/869ee8fb-x1` | **Round 6 integration: PR #84 landed (751803f), SG-15 console pages (ledger/snapshots/announcement), reconcile re-baselined to the dated post-W10 standings read (160/160), X-11 re-evidenced, main's round-6 line (#88/#89/#90) unioned (876c291), final verification, PR → merge → Pages** | 2026-11-18 | active — see the session's records at the end of this file |
 | `arena-46887500-x1` | `arena/46887500-x1` | **Round 7: depth-slot group model + Packers jersey stripping + 32-team deficiency + W11 Offense-vs-Defense matchup matrix; chronological splits + opponent-aware ratings + dual walk-forward totals + personnel ablations; fix 2026-11-19 refresh staleness (`build_reads.py`/`build_closure_measurement.py`) + publish pages + PR/merge/Pages** | 2026-11-19 | active — see the section at the end of this file |
+| `arena/ee613dd1-x1` | `arena/ee613dd1-x1` | **Final integration and release: repo line-by-line review, verification against official sources, clean landing page + category subpages, PR → main, merge, GitHub Pages deploy confirm** | 2026-11-19 | active (this session) |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -102,6 +104,10 @@ Request to the current site/integration owners: PR #63 is merged, but the curren
 | T7 | Executive summary, decision register (Q/I/A), suggestions register | done | `arena-b38a21d8-x1` | `docs/analysis/*`, `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/suggestions.json` |
 | T8 | Static site: landing + category subpages + tables + Flagged for Review | done | `arena-b38a21d8-x1` | `index.html`, `pages/**`, `assets/**`, `tools/build_site.py` |
 | T9 | Final integration: re-verify combined data, link check, PR → main, merge, Pages deploy confirm | done | `arena-b38a21d8-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/**`, PR |
+| T-R1 | Final repo line-by-line review + irregularity flags | in progress | `arena/ee613dd1-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | in progress | `arena/ee613dd1-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | in progress | `arena/ee613dd1-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/ee613dd1-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
 
 ### Round 2 — eight new owner requirements (claimed 2026-11-14 by `arena-52aabfa8-x1`)
 
@@ -4697,3 +4703,307 @@ PR #97 (`arena/e0c7de42-x1`, `tools/build_console.py`, `console/evidence-review.
 | R7-3 | Chronological Train/Val/Holdout season split (2019–2026), walk-forward opponent-aware SRS/Ridge ratings, dual walk-forward model totals (side-by-side + gap + cluster CI), and personnel/availability ablations on chronological holdouts | DONE (`db52b1d`) | `arena-46887500-x1` | `tools/build_modeling_lab.py`, `tools/verify_modeling_lab.py`, `data/models/{season_splits,opponent_aware_ratings,dual_totals_walkforward,personnel_ablations}.{json,csv}` |
 | R7-4 | Publish `pages/matchup-matrix.html` and `pages/modeling-lab.html` via `tools/build_site.py`, wire nav/index, add CI gates (`verify.yml`, `pages.yml`), run full verification suite, PR → merge → Pages confirm | DONE | `arena-46887500-x1` | `tools/build_site.py`, `scripts/verify_site.py`, `index.html`, `pages/**`, `.github/workflows/{verify.yml,pages.yml}` |
 
+## 2026-11-19 — arena/68de0b7f-x1 · kickoff regime evidence and release
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| KR-1: close the official rule-source gap for R4-15, implement a versioned, fail-closed historical comparison filter, publish evidence and unanswered questions; verify existing site and release this slice | done (release verification below) | arena/68de0b7f-x1 | new `research/kickoff-regimes/`, `tools/kickoff_regimes/`; integration links on the root landing and research index via their generator(s), scoped to KR-1 only; this log |
+
+Open PRs #91, #92 and #95 own distinct venue/availability/strategy/release-boundary work; no takeover. Existing registrations, predictions and snapshots remain frozen.
+
+KR-1 scope refinement (same new directories): add KR-T1, a prospectively registered **paper** totals distribution using the regime-filtered finals at PR-04’s frozen A threshold. PR #91 explicitly excludes the 26 total rows from its probability check. This is a new timestamped experiment, not a correction to PR-04 or a backdated probability. Integration may add a link on `pages/flagged.html` via `tools/build_site.py`, and a scoped gate in the research checker.
+
+KR-T1 pre-kickoff escrow: [registration commit](https://github.com/karagemop466-tech/X1/commit/5d1e59d66e1b450306934b94feff596dfcda9770) preceded the generated forecast commit. The 13 fixture links and start slots were checked against all three sections of the [official Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11). The 150 finals are the repository’s pinned verified results transcription, not a new read of 150 game centres. KR-T1 publishes only a derived distribution and does not edit a PR-04 probability, fair line or registration.
+
+**KR-T1 automation scope:** new `.github/workflows/paper-totals-settlement.yml` only. Replay the frozen forecast and evaluate the verified results automatically; never commit mutable scores into escrow. Publish the score report as a job summary and artifact. PR build was cancelled by the pre-existing shared Pages concurrency group, not by a failed verification assertion; repeating without altering other sessions’ workflow.
+
+**KR-1 release (merged):** `8feae165d4c3e069c046029062db8ddc5a7de84d`, 2026-11-19 06:57:37 UTC. GitHub PR checks build, verify, corpus and score all passed. The first deploy was superseded by the concurrent #101 merge. Confirmed [successful Pages deployment](https://github.com/karagemop466-tech/X1/actions/runs/44476004949) of `c3c5f8f` containing the merge. The final combined crawl checked 191 HTML pages and 5,354 local links, with no broken targets. [Live trial](https://karagemop466-tech.github.io/X1/research/kickoff-regimes/index.html). [PR #99](https://github.com/karagemop466-tech/X1/pull/99). 46 verify-site run steps and 18 Pages build run steps passed locally against merged #97; subsequent #98 integration preserved both flag links and both board sections and regenerated the shared page from source. [2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook), [2025 NFL rules](https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes), [2024 NFL rules](https://www.nfl.com/news/2024-nfl-season-explaining-rules-for-new-dynamic-kickoff). Review: missing kick-level evidence and mislabelled historical total B gap (points, not probability). No reward, staking or market price claim.
+
+## 2026-11-19 integration — arena/e0c7de42-x1
+In progress: integrate complementary pending PRs #91 and #92 on the pinned branch, resolve overlaps, verify Pages build and publish. Scope: integration of their changed paths, release checks and this board; no competing source transcription.
+
+Integration resolution: a direct merge of #91 conflicted with newer main console pages, policy flags, generated registers and this board; aborted cleanly. Both original branches remain intact. Selectively integrated #91's Game Centre parser and derived register (not raw pages), #92's two-sided decision rule and injury HTML parser. Replayed 27 game pages (243 fields, zero mismatches) from #91 commit `c90e3f78`, and matched both SHA-256 hashes for all 11 official injury reads through 2026-11-19T01:53:42Z. The newer reads invalidate #92's assumption that the latest default report is Week 10: reset comparisons by season/week, never count rollover as a surprise. Official sources: https://www.nfl.com/injuries/league/2026/reg11 and https://www.nfl.com/schedules/2026/by-week/week-11 (individual game links in evidence review). The two-sided tests are project rules, not NFL findings. Roof/surface not confirmed. See console/flagged.html. Original PRs remain open for non-integrated work. Local deployed-tree and 3,323-row console citation checks passed; no claim of fresh verification of legacy tables.
+
+Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed; verify caught a stale historical pack after the scheduled refresh. Scoped its Week 10 comparison to the last pre-rollover read and regenerated its dependent hashes. 44 player spot checks reproduce without Week 11 contamination.
+
+KR-1 integration note: main advanced via PR #97. Merged it without rebasing the public registration hash. The only conflict was the concurrent append to this board; retained both complete records and all of #97's code and data.
+
+Integration verification caught one derived dependency inventory that needed regeneration after adding the KR-T1 reader (56 → 57 consumers). Regenerated `data/lab/reads/2026-11-17/feed-closure-measurement.json` with its existing builder; no scores or rule text changed. A pull/rebase against the session remote tried to replay #97’s board claim across the union merge; aborted that rebase to preserve the registered hashes and both records. Synchronizing against main for the release.
+## 2026-11-19 — chronological evaluation design (`arena/d08f4a65-x1`)
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| EVAL-71 | Implement a fail-closed chronological season split, distinguish verified labels from mirror rows, audit the 136-game corpus claim, and publish an independently verifiable evaluation-readiness section | done — PR #98, Pages confirmed | `evaluation/**`, `tools/evaluation/**`, this coordination block |
+
+Existing shared data, generated navigation, and workflow files are read-only for this claim. Any integration changes outside the scope will be requested here first.
+
+Integration scope addition for EVAL-71: `pages/evaluation.html`, `.github/workflows/evaluation-readiness.yml`, and additive deep links only in the landing and Flagged for Review renderers in `tools/build_site.py` (regenerate `index.html` and `pages/flagged.html`). Checked open PR scopes #91, #92, #95 and #96 before claiming: none owns these paths. No existing source data or site workflow is changed. Public/private deployment boundary is owned separately by PR #95; this change publishes aggregates and source links only.
+
+### EVAL-71 completion and release checklist
+
+- **Done:** NFL-EVAL-01 locks the 136 existing Week 1–9 official finals as a retrospective outcomes-only corpus. The season split is 2019–2023 train, 2024–2025 retrospective validation, 2026 development only, 2027 final-holdout candidate (unregistered). The page publishes aggregates and clear gates only. This is not a strategy registration or a replacement of the live results feed.
+- **Verified:** all 136 selected rows re-parsed from nine fingerprinted NFL schedule extracts and compared by official Game Center URL, week, date, teams and scores against the corresponding frozen structured transcriptions. The initial implementation also cross-compared both dated outcomes views; all 136 matched before moving the new gate upstream to the source evidence. Re-read the [Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) through both chunks and spot-checked [Patriots–Seahawks, Week 1](https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1) live. The 137-row dated view still passes 32-team standings reconciliation, and the 150-row closure verifier passes. New CI includes six tests covering split overlap, hash mutation, missing or conflicting rows, duplicate and spoofed URLs, and aggregate-only HTML; repo and assembled-tree link checks pass.
+- **Needs review (not a release blocker):** the older brief's 117-game shadow count is stale versus the current 118 rows including a tie; neither is the 136-game corpus. Historical labels, point-in-time availability, and official/permissioned prices remain incomplete or unverified, and the candidate holdout cannot be scored. See [Evaluation flags](https://karagemop466-tech.github.io/X1/pages/evaluation.html#review). Existing shared source data, strategy scoring, and public/private release scope were not changed.
+- **Integration:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) initially exposed the same rolling Week 10 report staleness as the PR #97 work. Requested the active owner's handoff and rebased after #97 merged. The append-only board conflict was resolved by retaining both blocks. The new corpus gate now reads source transcriptions rather than adding a dependency on the rolling result views; existing closure checks retain their original scope. Both evidence forms agree on the Week 5 tie, corroborated by [NFL Game Center](https://www.nfl.com/games/giants-at-commanders-2026-reg-5).
+- **Published:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) merged to `main` as `c25b722bbf625f3480f838e635432090ad30717f` at 06:51 UTC after corpus, repository verify and Pages build checks passed. [GitHub Pages deployment](https://github.com/karagemop466-tech/X1/actions/runs/44475276822) succeeded, and a live fetch of [Evaluation readiness](https://karagemop466-tech.github.io/X1/pages/evaluation.html?rev=c25b722) returned the new summary, all nine weekly rows and the review gates. EVAL-71 is done for the corpus/protocol/publication scope; data and strategy eligibility remain gated separately.
+
+# Session `arena/ee613dd1-x1` — final integration and release (2026-11-19)
+
+**Session ID:** `arena/ee613dd1-x1` · **Branch:** `arena/ee613dd1-x1` (branched from `main` @ `6f7df25375139f9f253a33f46191cb3007d8349f`). **Claim written and pushed before any work (rule 1).**
+
+## Claim (T-R1…T-R4)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| T-R1 | Repo line-by-line review + irregularity flags | done | `arena/ee613dd1-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | done | `arena/ee613dd1-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | done | `arena/ee613dd1-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/ee613dd1-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
+
+## Line-by-line review findings (T-R1)
+
+**Files reviewed and source-verified:**
+
+| File | Rows | Source links | Status |
+|---|---|---|---|
+| `data/nfl/standings.tsv` | 32 clubs | nfl.com standings division + conference pages | All rows sourced, team URLs to nfl.com/teams/ |
+| `data/nfl/schedule_2026_week10.csv` | 14 games | nfl.com Week 10 schedule + nflverse mirror (labelled third-party) | Market/QB fields flagged as third-party, conflicts noted |
+| `data/nfl/injuries_week10.tsv` | 347 players | nfl.com injury report + player profile URLs | Every row has player_url to nfl.com/players/ |
+| `data/nfl/venues_2026_week10.csv` | 14 fixtures | NFL Game Center Game Info block per fixture | Every row has game_center_url to nfl.com/games/ |
+| `data/gates.json` | 8 gates (G0–G8) | Machine-readable, governance artifact | All criteria specified, G8 demotion gate complete |
+| `data/flags.json` | 31 flags (F-01–F-32) | Each flag has source_url + league_source_url | All flags documented with sources |
+| `data/questions.json` | 24 questions | Each question has source_url + source_note | 0 answered, 2 partially answered, 22 open |
+| `data/suggestions.json` | 18 suggestions | Each has impact, effort, depends_on, first_step, risk | All `proposed`, owner sets status |
+| `data/strategies.json` | 0 strategies | Empty by design (Q-01/Q-02/Q-03 unresolved) | Correctly withheld |
+| `data/leaderboard_signal_staking.csv` | 16 strategies | All odds labelled mirror/third-party | Signal/staking separated, all FAIL, none eligible |
+| `data/lines/originated_lines_2026_week10.csv` | 14 games | Model lines + market lines + edge as separate columns | Side → total → moneyline order |
+| `data/results/verified_results_2026.csv` | 150 games | nfl.com game pages, verified-official per row | Every row has game_url + source_url |
+
+**No published value was inferred. Every blank is deliberate (Q-02 price feed, Q-04 snap counts, Q-07 funding, Q-31 price authority). All open questions and flags are published with source links for owner review.**
+
+## Verification results (T-R2)
+
+| Tool | Result |
+|---|---|
+| `python3 tools/verify_data.py` | 2,960 checks passed, all integrity checks passed, EXIT=0 |
+| `python3 tools/check_links.py` | 180 files, 47,309 assertions, all links resolve, no orphan pages, all external hosts approved, EXIT=0 |
+| `python3 scripts/verify_site.py` | 180 HTML pages, local links resolve, every data-table row has an official source link, EXIT=0 |
+| `python3 tools/verify_app.py` | 29 pages, 1,089 internal links, 8,260 data rows (8,236 sourced, 24 flagged no-source, 0 unsourced), passed |
+| `python3 tools/build_site.py` | Wrote index.html + 27 pages, no diff (committed HTML matches generator output) |
+
+## Register review (T-R3)
+
+- `docs/EXECUTIVE-SUMMARY.md`: 3 addenda (rounds 1–3), honest position stated (nothing beats break-even at −110 on verified results; no official price source; nothing ranked on luck)
+- `data/questions.json`: 24 questions — 0 answered / 2 partially answered / 22 open. Each carries topic, why-it-blocks, known information, answer (blank where open), what-would-answer-it, owner-decision flag, source URL
+- `data/suggestions.json`: 18 suggestions — all `proposed`; each has impact, effort, depends_on, first_step, risk, status column for owner to set
+
+## Irregularities flagged (none blocking, all published)
+
+All 32 flags (F-01 through F-32) are published on `data/flags.json` and `app/flagged.html`/`pages/flagged.html` with source links. Key open items:
+- **Q-02**: No licensed price feed → no prices, edge, EV, or CLV published
+- **Q-04**: No licensed snap counts → depth/availability model limited to club charts
+- **Q-07**: Reward funding, eligibility, jurisdiction unresolved → paper league only
+- **Q-31**: Market price authority unresolved → mirror-derived prices labelled, never official
+- **F-03**: No odds/prices exist in the repository
+- **F-04**: Leaderboard empty by design (no scored window)
+- **F-15**: 16 starters on injury report with no replacement named on club depth chart
+- **F-20/F-23**: Published standings stale vs live page (dated snapshot correctly labelled)
+- **F-22/F-28**: Injury table stale vs live page (dated 347-row pack published beside it)
+- **F-31**: Venue requirement partially met (1 of 14 Week 10 venues from Game Center)
+
+## Release (T-R4 — done)
+
+GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/).
+
+PR and merge record to be appended after PR creation and merge.
+---
+
+# Session `arena-725e025d-x1` — Round 7: restore the red verify gate on `main`, then final verification and release (this session)
+
+**Session ID:** `arena-725e025d-x1` · **Branch:** `arena/725e025d-x1` (branched from `main` @ `6f7df25`, identical to `main` at claim time).
+**Claim written (UTC):** 2026-11-19 ~06:50.
+
+## Why this claim exists
+
+`gh run list` / `gh api ... actions/runs/44474522686/jobs` show that the current `verify` gate fails on
+PR #95 for a **pre-existing `main` defect**, not for that PR's docs: the step
+"The 2026-11-17 reads pack, the Week 11 escrow and the closure measurement reproduce" fails.
+Reproduced locally on this branch:
+
+```
+python3 tools/lab/build_reads.py --check              -> STALE: data/lab/reads/2026-11-17/report.json
+python3 tools/lab/build_escrow.py --check              -> OK
+python3 tools/lab/build_closure_measurement.py --check -> STALE: feed-closure measurement
+```
+
+A red verify gate blocks every PR and therefore blocks the owner's required final merge and Pages deploy.
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R7-1 | Diagnose why the two generated registers no longer reproduce; correct the generator inputs/outputs with no invented or inferred values, and add a check that catches the same class of defect | in progress | `arena-725e025d-x1` | `tools/lab/build_reads.py`, `tools/lab/build_closure_measurement.py`, their generated `data/lab/**` outputs and regenerated `lab/**` pages |
+| R7-2 | Re-run the full `verify.yml` + `pages.yml` gate chain locally, rebuild the served tree, confirm no broken links, then PR → merge → Pages deploy confirmation | not started | `arena-725e025d-x1` | `COORDINATION.md`, workflow files only if a gate itself is wrong, PR |
+
+## Non-overlap (rule 3)
+
+No file claimed by PR #95 (`COORDINATION.md` append-only record, `docs/audit/public-release-boundary.md`)
+is edited here beyond this claim record; PR #91 and PR #92 are stale, conflicting branches whose round-6
+scopes are **not** taken over by this claim. No official source value is inferred: if a value cannot be
+confirmed from the retained official pack it stays blank and is flagged.
+
+## Completion record — R7-1 (`arena-725e025d-x1`, 2026-11-19 ~07:10 UTC)
+
+**Root cause (reproduced, not assumed).** The 2026-11-19 04:09 UTC data refresh replaced two live inputs
+that a *dated* 2026-11-17 pack was reading: `data/pipeline/standings.json` (new clock) and the newest
+injury capture (a Week 11 report with 253 rows, then 26 rows at one intermediate read). The pack's
+`--check` steps re-judged 44 hand-transcribed Week 10 rows against a Week 11 page and reported 64 false
+mismatches; the closure measurement hashed the new live standings file and reported STALE. Both failures
+were reproduced locally before any edit and were confirmed on GitHub Actions job 44474522686 (step
+"The 2026-11-17 reads pack, the Week 11 escrow and the closure measurement reproduce").
+
+**Fix (no value inferred, no finding changed).**
+1. `tools/lab/build_reads.py`: C8/C8c now select the capture by its dated content hash
+   `c3d7a7224dfc8105a24721a164e84376859d1715f4a4639c76a379d43ebb4b33` (347 rows, Week 10) and fail
+   loudly if that payload is missing or mismatched. C9 still measures the live series and now reports
+   the real last two reads (17 reads, 5 distinct payloads, 35 changed cells); `rows_added`/`rows_removed`
+   are set differences, so a 26 → 253 row page reports +233/−6 rather than an impossible −227 removed.
+2. The same builder froze the collector's 2026-11-17 standings read verbatim from official-page
+   transcription commit `7ac89cbee0bf21066d1322e95cc1a0db936e9f05` into the dated pack as
+   `collector_standings_2026-11-17.json` (`generated_at` 2026-11-17T23:28:40Z), added it to the pack
+   manifest, and refuses to use `data/pipeline/standings.json` for a dated check. C5 still compares
+   32 × 16 = 512 cells, 0 differences.
+3. `tools/lab/build_closure_measurement.py`: M3 now uses the dated official standings transcription in
+   the same pack, publishes its URL/read time, and fails if the path is ever repointed at a live store.
+   The measurement re-derives 150/150 games and 32/32 clubs with 0 disagreements.
+4. `tools/lab/build_site.py`: KPI prose that still said "137 in the feed", "13 games absent",
+   "the report has not moved since 2026-11-16", and "newest retained capture" is now derived from the
+   current data or explicitly labelled historical. The feed was closed at 150 games by PR #88; the
+   closure page now states that 0 games remain and keeps the original decision record dated.
+
+**Verification performed (all local, 2026-11-19):**
+`build_reads.py --check` OK (14+136 games, 32 clubs, 44 injury rows, 0 failures);
+`build_closure_measurement.py --check` OK; `build_site.py --check` OK (17 pages, links resolve,
+every data row sourced). Published findings stayed unchanged where they were true: 0 injury mismatches,
+0 standings differences, 0 closure disagreements. C9 and the closure KPIs moved because the *inputs*
+moved, and are reported as dated measurements.
+
+**Official sources (re-read or cited for this fix):**
+- NFL Week 11 schedule, read live 2026-11-19: https://www.nfl.com/schedules/2026/by-week/week-11
+  (Thursday 2026-11-19 8:15 PM IND at HOU; confirms the injury capture is now a Week 11 page).
+- Official standings page transcribed in the frozen pack: https://www.nfl.com/standings/league/2026/REG
+- Official injury hub transcribed in the dated capture: https://www.nfl.com/injuries/
+
+**Irregularity published for review (non-blocking):** an append-only capture index and a mutable
+pipeline file were inputs to checks named after a fixed date. The generators now pin them; other
+registers built from live files may carry the same class of coupling and have not been audited here.
+The 2026-11-18 19:23 UTC injury capture is still flagged `drift: fail` (26 rows vs a 150-row minimum,
+26/26 blank game-status cells); the retained capture and its violations are untouched.
+
+**Scope addition (rule 1, recorded before the edits shipped):** `tools/lab/build_site.py` and the
+regenerated `lab/**` pages were added to this session's scope because they render the two repaired
+artefacts; no shared `data/flags.json`, root index/navigation or other session's branch was edited.
+## Pull request record (session `arena/ee613dd1-x1`)
+
+| Item | Value |
+|---|---|
+| PR | [#101](https://github.com/karagemop466-tech/X1/pull/101) — `arena/ee613dd1-x1` → `main` |
+| Title | Final integration and release — session arena/ee613dd1-x1 |
+| Merge command | `gh pr merge 101 --merge` |
+| Merge result | **MERGED**, merge commit `c3c5f8f27ad4e22d74935d0df45bc141dca3632f` on `main` |
+| Post-merge verification | `tools/verify_data.py` 2,960 checks passed; `tools/check_links.py` 47,309 assertions passed; `scripts/verify_site.py` 180 pages passed |
+| GitHub Pages | status `built` at https://karagemop466-tech.github.io/X1/ |
+| Live site | https://karagemop466-tech.github.io/X1/ |
+
+All tasks T-R1 through T-R4 complete. Flagged irregularities (F-01–F-32, Q-02/Q-04/Q-07/Q-31 open) remain published with source links for owner review; none block the release.
+
+---
+
+# Session `arena/34b79d69-x1` — Decision Center: canonical suggestions + questions section (claimed 2026-11-19)
+
+**Session ID:** `arena-34b79d69-x1` · **Branch:** `arena/34b79d69-x1` (off `main` @ `6f7df253`)
+**Claim time (UTC):** 2026-11-19 ~06:50. Per the platform constraint recorded at the top of this
+board, this session works on its fixed Arena branch rather than creating a `session-<id>/<task>`
+branch; no other session's branch is touched.
+
+**Why this scope:** the owner's brief asks for (a) a dedicated suggestions section where paths can
+be reviewed and chosen before any change is implemented, (b) a clear list of questions + the
+information we hold and do not hold + answers, and (c) suggestions that discover missing
+information. The repo already contains **five separate suggestion/question boards**
+(`app/suggestions.html`, `console/suggestions.html`, `console/questions.html`, `hub/decisions.html`,
+`docs/analysis/suggestions.md`, `data/audit/suggestion_board.json`) with different IDs, counts and
+statuses. No single reviewable surface reconciles them. This session adds that canonical surface;
+it does **not** rewrite any existing board, table or published NFL value.
+
+| # | Task | Status | Owner | Files in scope (new files unless marked) |
+|---|---|---|---|---|
+| DC-1 | Canonical decision-register dataset: reconcile existing boards, deduplicate, explicit sources and decision state | in progress | `arena-34b79d69-x1` | `data/suggestions/**`, `tools/build_decision_center.py`, `tools/verify_decision_center.py` |
+| DC-2 | Public `suggestions/` section: overview, questions/information/answers, path-choice board, missing-information register, review log | in progress | `arena-34b79d69-x1` | `suggestions/**` |
+| DC-3 | Source-linked live verification of the official pages cited by the new section; irregularities flagged, never silently corrected | in progress | `arena-34b79d69-x1` | `docs/audit/decision-center-verification.md`, `data/flags.json` (one additive flag row) |
+| DC-4 | Additive integration: nav links (marked), CI gates, Pages copy, PR → merge → deploy confirmation | in progress | `arena-34b79d69-x1` | `console/index.html`, `app/index.html`, `index.html`, `.github/workflows/verify.yml`, `.github/workflows/pages.yml`, `COORDINATION.md` |
+
+**Non-overlap / rule 4 requests:** no file in `data/nfl/**`, `data/results/**`, `data/prices/**`,
+`data/origin/**`, `data/lab/**`, `tools/official/**`, `app/assets/**`, `lab/**` or `console/**`
+(except one additive nav link in `console/index.html`, logged here) is edited. Shared outputs
+(`index.html`, `pages.yml`) are changed **additively only** by this session acting as the final
+integration for its own scope; every added line is tagged with this session ID.
+
+**Decision rule honoured:** nothing in this section is implemented from a suggestion. Every path
+is `proposed — awaiting owner decision`; the owner decision cell stays blank and is marked
+`UNVERIFIED / AWAITING OWNER` rather than filled in by this session.
+## Completion record — DC-1..DC-4 (session `arena-34b79d69-x1`, 2026-11-19)
+
+**Status: done.** New public section `/suggestions/` (5 pages), generated from
+`data/suggestions/decision_center.json` + `official_reads.json` by `tools/build_decision_center.py`.
+It reconciles **7** pre-existing boards (20 + 15 + 15 + 12 + 12 + 10 + 10 rows) into **18 questions**,
+**18 path choices** and **13 missing-information rows**, with a review log and 5 non-blocking flags.
+All 18 paths remain `proposed — awaiting owner decision`; Decision and Owner cells are blank.
+
+| Task | Status | What was delivered |
+|---|---|---|
+| DC-1 | done | `data/suggestions/decision_center.json`, `official_reads.json`, `tools/build_decision_center.py` (`--check`), `tools/verify_decision_center.py` (754 assertions) |
+| DC-2 | done | `suggestions/{index,questions,paths,missing,review}.html` — generated, not hand-edited |
+| DC-3 | done | `docs/audit/decision-center-verification.md`: 5 official pages re-read 2026-11-19, every observation quoted from the fetch, 5 irregularities flagged not corrected |
+| DC-4 | done | additive nav links in `index.html`/`pages/**` (via `tools/build_site.py`), `app/**` (via `tools/build_app.py`), `console/index.html` (via `tools/build_console.py`), plus CI + Pages steps tagged with this session ID |
+
+**Sources used (all fetched live 2026-11-19, no recalled values):**
+- https://www.nfl.com/standings/league/2026/REG
+- https://www.nfl.com/schedules/2026/by-week/week-10
+- https://www.nfl.com/injuries/league/2026/reg10
+- https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10
+- GitHub repository records for process facts only, always labelled "Repository record (not an NFL fact)".
+
+**Verification performed:** `tools/build_decision_center.py --check`, `tools/verify_decision_center.py`
+(754 assertions), `scripts/verify_site.py` (185 pages, every data-row Source cell official https),
+`tools/check_links.py` (47,588 assertions, no orphan), `tools/verify_console.py`, `tools/lab/build_site.py`,
+`tools/verify_deployed_tree.py` (193 pages, all five new pages reachable from the served root), and
+every `run:` step of `verify.yml` in CI order. The two `git diff --exit-code` steps showed only this
+session's nav-link changes before commit and pass after commit.
+
+**Irregularities published (non-blocking), with their source links, on `/suggestions/review.html`:**
+DC-F1 seven competing boards; DC-F2 `$year$ NFL $displayname$ Standings` title on the official
+standings page; DC-F3 injury page title Week 11 vs in-page heading Week 10; DC-F4 live Out vs blank
+for Kerby Joseph / Cade Mays / D.J. Reed in the dated table; DC-F5 Game Book CDN version path drift.
+
+**Rule 4 requests to the integration owner (not actioned here):**
+1. If the five new flags should also appear on the shared `flagged.html` pages, add them to
+   `data/flags.json` and regenerate `app/**`, `console/**` and `pages/**`. This session deliberately
+   kept them in `data/suggestions/decision_center.json` because those generated pages and that file
+   are other sessions' scopes. The flags are already published on the new Review log page.
+2. If the legacy boards should be retired after the owner ratifies one canonical board, that is a
+   decision for the owner; this session only reconciles them for reading and deletes nothing.
+3. `tools/build_console.py` regenerates `data/console/price_snapshots.csv` and
+   `data/console/repo_inventory.csv` with fresh timestamps on every run. This session reverted those
+   two data-file rewrites (other sessions' scope) and hand-synced only `console/index.html`; the
+   generator is patched so a future rebuild keeps the nav link.
+
+### Cross-scope repair during PR #102 integration (session `arena-34b79d69-x1`, 2026-11-19)
+
+The PR's `verify-site` run failed at the existing step "Fail if the re-capture, depth parse or
+readiness files are stale" — not at any decision-center step. Cause: after this branch was cut,
+`main` gained a seventh official Game Book PDF URL (commit `626763d`), but the generated
+`data/console/readiness.{json,csv}` still counted six. Re-running the canonical generator
+`tools/official/readiness.py` changes R-26 and R-39 from 6 to 7; `console/readiness.html` was
+regenerated from that output. This is a generated-output repair only: no rule, value or source in
+another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
+`payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
+locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.

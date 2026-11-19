@@ -93,12 +93,14 @@
   "C5_independent_standings_reread": {
    "assertions": 512,
    "clubs": 32,
-   "collector_read_at": "2026-11-19T04:09:29+00:00",
+   "collector_read_at": "2026-11-17T23:28:40+00:00",
    "collector_source": "https://www.nfl.com/standings/league/2026/REG",
    "detail": [],
    "differing_cells": 0,
    "fields_per_club": 16,
-   "note": "two reads of one official page by different code three hours apart, compared on all 16 printed columns. A pass means the collector and this transcription see the same table; it does not mean the page is right.",
+   "frozen_collector_file": "data/lab/reads/2026-11-17/collector_standings_2026-11-17.json",
+   "frozen_from_github_commit": "7ac89cbee0bf21066d1322e95cc1a0db936e9f05",
+   "note": "two reads of one official page by different code hours apart, compared on all 16 printed columns. The collector's read is frozen at 2026-11-17 inside this dated pack (GitHub commit 7ac89cbe); the live pipeline file is refreshed daily and must not be used to re-judge a dated transcription. A pass means the two reads see the same table; it does not mean the page is right.",
    "verdict": "pass"
   },
   "C5b_pinned_reference_is_stale": {
@@ -303,13 +305,13 @@
    ],
    "coverage": {
     "clubs": "4 of 32",
-    "note": "four clubs were transcribed by hand, chosen because two are the Week 10 cards the published tables were built from and two are the clubs the review queue flags. The remaining 28 clubs are NOT re-read by eye, and this artefact does not claim they were: the machine hash covers all 347 rows, this check covers the 44 a human read.",
+    "note": "four clubs were transcribed by hand, chosen because two are the Week 10 cards the published tables were built from and two are the clubs the review queue flags. The remaining 28 clubs are NOT re-read by eye, and this artefact does not claim they were: the machine hash covers all 347 rows of the dated capture, this check covers the 44 a human read.",
     "rows": "44 of 347 captured rows",
     "rows_in_those_clubs": "44 of 44 rows the capture holds for these 4 clubs"
    },
    "detail": [],
    "mismatches": 0,
-   "note": "a machine capture re-read by eye, cell by cell: position, injury text, practice designation, game designation and the game label the row is printed under",
+   "note": "the dated 2026-11-17 machine capture re-read by eye, cell by cell: position, injury text, practice designation, game designation and the game label the row is printed under. The capture is selected by content hash because the live injury page is now a Week 11 report.",
    "rows_compared": 44,
    "rows_transcribed": 44,
    "verdict": "pass"
@@ -327,7 +329,7 @@
    "detail_extra": [],
    "detail_missing": [],
    "in_the_capture_not_on_the_site": 0,
-   "note": "the brief's 're-capture and republish the Week 10 injury tables' item, measured: the site table and the newest accepted capture of the same page are compared key by key. A row the capture holds and the page does not print is a stale published count, not a typo.",
+   "note": "the brief's 're-capture and republish the Week 10 injury tables' item, measured: the site table and the dated 2026-11-17 accepted capture of the same page are compared key by key. A row the capture holds and the page does not print is a stale published count, not a typo. A later Week 11 capture is a different page and is not substituted here.",
    "on_the_site_not_in_the_capture": 0,
    "published_rows": 347,
    "verdict": "pass"
@@ -346,7 +348,7 @@
      "rows": 26
     },
     "rows_added": 227,
-    "rows_removed": -227
+    "rows_removed": 0
    },
    "distinct_payloads": 5,
    "drift_history": [
@@ -514,7 +516,7 @@
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-19T06:51:11+00:00",
+ "generated_at": "2026-11-19T07:10:00+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,

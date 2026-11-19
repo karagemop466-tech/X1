@@ -1,5 +1,9 @@
 {
  "files": {
+  "collector_standings_2026-11-17.json": {
+   "bytes": 23735,
+   "sha256": "58fd1f78f308fffd09b278c58e55ea3e29500b0872b0bc8f10e368c752cadf9c"
+  },
   "injury_spotcheck_2026-11-17.tsv": {
    "bytes": 7564,
    "sha256": "510ba642b2d24f0eaeb98a42da771ccfb82bc29860eba4dcf17f53f0e9cff070"
@@ -25,7 +29,7 @@
    "sha256": "3ced9a56f45365b834b4eddfb7b6e3f1f80c0c45184c7057e0f08d6c869b7891"
   }
  },
- "generated_at": "2026-11-19T06:51:11+00:00",
+ "generated_at": "2026-11-19T07:10:00+00:00",
  "official_urls": [
   "https://www.nfl.com/schedules/2026/by-week/week-10",
   "https://www.nfl.com/schedules/2026/by-week/week-11",

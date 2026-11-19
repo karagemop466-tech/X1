@@ -93,7 +93,9 @@ NAV = [
                   ("luck.html", "Removing luck", ""),
                   ("props.html", "Props and parlays", "")]),
     ("Decisions", [("questions.html", "Decision register", "15"),
-                   ("suggestions.html", "Suggestion review board", "15")]),
+                   ("suggestions.html", "Suggestion review board", "15"),
+                   # Added by session arena-34b79d69-x1: canonical reconciled register.
+                   ("../suggestions/index.html", "Canonical decision center", "18")]),
     ("Governance", [("verification.html", "Verification ledger", ""),
                     # Added by session arena-869ee8fb-x1 (round 6, SG-15): the salvaged
                     # hash-chained capture ledger (tools/snapshot_ledger.py), tag = live line count.
@@ -536,7 +538,7 @@ is typed by hand &mdash; each is produced by a measurement in
 <code>tools/official/readiness.py</code> and names the file it was read from.</p>
 {ready_top}
 
-<h2>Pages by category</h2>
+<p class="note"><a href="evidence-review.html">November 19 evidence review</a>: the NFL injury page rolled to Week 11. Do not count a week change as an injury surprise. Roof and surface remain unverified.</p><h2>Pages by category</h2>
 <div class="cards">{''.join(cards)}</div>
 
 <h2>Where the numbers come from</h2>
@@ -1571,7 +1573,7 @@ def build_pages_7(ctx, pages):
     write_csv("flagged.csv", ["ID", "SEVERITY", "AREA", "FINDING", "EFFECT", "SOURCE", "STATUS"],
               [[f["id"], f["severity"], f["area"], f["finding"], f["effect"], f["source"], f["status"]]
                for f in ctx["irregularities"]])
-    body = ('<div class="note bad"><b>Nothing on this page blocks the merge, and nothing here has been '
+    body = ('<p class="note"><a href="evidence-review.html">November 19 evidence review</a>: the NFL injury page rolled to Week 11. Do not count a week change as an injury surprise. Roof and surface remain unverified.</p><div class="note bad"><b>Nothing on this page blocks the merge, and nothing here has been '
             'silently fixed.</b> Each row is a value that could not be confirmed, a gap in the inputs, '
             'or a defect found while reading the repository. They are published with their sources so '
             'they can be reviewed and actioned deliberately.</div>'

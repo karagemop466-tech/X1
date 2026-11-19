@@ -351,8 +351,8 @@
    "quote": "Use official NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps",
    "gate": "Game Book captured per game and parsed for starters.",
    "needs": "1 Game Book per finished game, parsed",
-   "today": "6 official Game Book PDF URL(s) recorded under data/",
-   "measurement": 6,
+   "today": "7 official Game Book PDF URL(s) recorded under data/",
+   "measurement": 7,
    "provenance": "https://www.nfl.com/games (each game page links its Game Book)",
    "clears": "Game Book PDFs, which are images for some games \u2014 see the flag on parseability.",
    "source": "https://www.nfl.com/games"
@@ -520,8 +520,8 @@
    "quote": "Keep the public site to derived analysis and hold raw row-level data in a private store",
    "gate": "Raw rows private; derived analysis public.",
    "needs": "0 raw row-level files in the published tree",
-   "today": "6 official Game Book PDF URL(s) recorded under data/",
-   "measurement": 6,
+   "today": "7 official Game Book PDF URL(s) recorded under data/",
+   "measurement": 7,
    "provenance": "https://www.nfl.com/games (each game page links its Game Book)",
    "clears": "A private store and a terms review.",
    "source": "https://github.com/karagemop466-tech/X1"

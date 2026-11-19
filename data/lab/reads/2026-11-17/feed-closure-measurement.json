@@ -19,12 +19,12 @@
  },
  "dataset": "feed-closure-measurement",
  "decision_for_the_owner": "B is the recommended path and it is small: one gate edit, a re-pinned baseline, the row-count pins, and a regeneration of the artefacts in M5. What it is not is a data problem - M3 shows the closure reproduces the league table exactly. No session should make that call, because it changes what 'verified' means for every row already published; that is why it is recorded here as a decision and not implemented as a change.",
- "generated_at": "2026-11-19T07:04:03+00:00",
+ "generated_at": "2026-11-19T07:10:00+00:00",
  "generated_by": "tools/lab/build_closure_measurement.py (session arena-9d8c298c-x1)",
  "inputs": {
   "code/reference_data_2026_w10.py": "08a3caa73aac9c53a1a57fda2ad38abc4285dee7ea98747837567b10c1bfd167",
+  "data/lab/reads/2026-11-17/standings_2026-11-17.tsv": "19a5c594fee2532e771ae16e6ee76afe0cd479a6027170c5e544c0acbb911065",
   "data/lab/reads/2026-11-17/week10_finals.tsv": "27c1c78cef0150132eb81496180688f27f882ae47d156b360bd879f2d53ee703",
-  "data/pipeline/standings.json": "f51f2cd8a991adaabb76ce8e68dd50f4a3ca31403792f84d0be2254750a5781b",
   "data/results/_raw/reads.tsv": "484cc158724ae5501344f0221c1bb9ad841b75229a0b9cb9a3f71c7517307312",
   "tools/build_results_r3.py": "938a8690fa6760593180c39d24ae425b8e3c3c0faa58579bd6dc3b23f0207a2f"
  },
@@ -53,7 +53,10 @@
    "clubs_disagreeing": 0,
    "corpus_used": 150,
    "detail": [],
-   "reading": "the 150-game closure corpus reproduces all 32 official standings rows exactly - W, L, T, PF and PA. If the append ever produced a wrong score, this is where it would show. It does not: the closure is arithmetically complete against the league's own table.",
+   "official_source_file": "data/lab/reads/2026-11-17/standings_2026-11-17.tsv",
+   "official_source_read_at": "2026-11-17T22:50Z",
+   "official_source_url": "https://www.nfl.com/standings/league/2026/REG",
+   "reading": "the 150-game closure corpus reproduces all 32 official standings rows from the dated 2026-11-17 read exactly - W, L, T, PF and PA. If the append ever produced a wrong score, this is where it would show. It does not: the closure is arithmetically complete against the league's own table.",
    "verdict": "pass"
   },
   "M4_closure_against_the_pinned_baseline": {
@@ -512,7 +515,7 @@
     "build_results_r3": 15,
     "reads.tsv": 20,
     "signal_grade": 12,
-    "verified_results": 39
+    "verified_results": 40
    },
    "files": {
     ".github/workflows/pages.yml": [
@@ -689,6 +692,9 @@
     "tools/grade_roi.py": [
      "verified_results"
     ],
+    "tools/kickoff_regimes/trial.py": [
+     "verified_results"
+    ],
     "tools/official/build_pages_r5.py": [
      "reads.tsv"
     ],
@@ -716,7 +722,7 @@
      "verified_results"
     ]
    },
-   "files_naming_the_results_log_or_the_feed": 57,
+   "files_naming_the_results_log_or_the_feed": 58,
    "reading": "a closure is not one file: this is the list of artefacts that name the log or the feed and would have to be regenerated and re-verified in the same commit. Frozen inputs (PR-01's) are deliberately excluded from 'just do it' by that fact. Renderings are excluded too, so the count is the cost of the change and not a function of how many pages happen to describe it.",
    "scan_scope": "tools, scripts, code, docs, data, .github; html and this pack's own output excluded"
   },

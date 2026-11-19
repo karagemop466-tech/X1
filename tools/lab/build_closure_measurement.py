@@ -7,6 +7,12 @@
 
 Why this exists
 ---------------
+HISTORICAL CONTEXT (kept, not silently rewritten): the prose below was written when
+`data/results/_raw/reads.tsv` held 137 games. The 13 Week 10 finals were later appended to the
+frozen log by the round-6 integration (PR #88), so a fresh run of this measurement now reports
+0 remaining pins and 0 blocked games; M1/M2 are the proof of that closure. The published
+decision text is retained as the record of what the owner was deciding at the time.
+
 `data/results/_raw/reads.tsv` holds 137 games: weeks 1-9 plus the 2026-11-12 Thursday game. The other
 13 Week 10 games are final on the official page today, and they are transcribed in this pack
 (`week10_finals.tsv`). Session `arena-543cdcb0-x1` deliberately did not append them, recording the reason
@@ -25,7 +31,8 @@ Checks
 ------
   M1  the pins in the builder, found by reading its source (line numbers, not folklore)
   M2  the mirror row-diff gate: does a mirror row with scores exist for each of the 13?
-  M3  closure against today's official standings, club by club
+  M3  closure against the dated 2026-11-17 official standings, club by club (the live
+      pipeline file is refreshed daily and is not a valid input to a dated measurement)
   M4  closure against the pinned 2026-11-14 baseline, club by club (what the append would break)
   M5  blast radius: every committed file that reads the results log or the feed
   M6  what the append would add to the evaluation corpus, in games
@@ -50,7 +57,10 @@ PACK = "data/lab/reads/2026-11-17/week10_finals.tsv"
 BUILDER = "tools/build_results_r3.py"
 PINNED_BASELINE = "code/reference_data_2026_w10.py"
 MIRROR = "data/raw/nflverse/games.csv"
-COLLECTOR_STANDINGS = "data/pipeline/standings.json"
+# Frozen 2026-11-17 official standings transcription inside the same dated reads pack as PACK.
+# The live pipeline file is refreshed daily (Week 11 reads by 2026-11-19); comparing a 2026-11-17
+# 150-game closure against it would silently change the meaning of M3. Pin 2026-11-19 by arena-725e025d-x1.
+COLLECTOR_STANDINGS = "data/lab/reads/2026-11-17/standings_2026-11-17.tsv"
 TEAM_ALIAS = {"ARI": "AZ", "LAR": "LA"}
 
 
@@ -206,20 +216,29 @@ def build() -> dict:
         return W, L, T, PF, PA
 
     W, L, T, PF, PA = club_sums(games)
-    today = {r["team_abbrev"]: r for r in json.load(open(os.path.join(ROOT, COLLECTOR_STANDINGS), encoding="utf-8"))["rows"]}
+    # The key keeps its published name, but the input is the dated 2026-11-17 official read,
+    # not whatever the daily collector happens to hold today. Fail loudly if a future edit
+    # repoints this measurement at the live store: that is the defect this pin fixes.
+    if not COLLECTOR_STANDINGS.startswith("data/lab/reads/2026-11-17/"):
+        raise SystemExit(f"M3 must use a dated official read inside the reads pack, not {COLLECTOR_STANDINGS}")
+    today = {r["team_abbrev"]: r for r in read_tsv(COLLECTOR_STANDINGS)}
     fail_today = []
     for ab, r in today.items():
         got = (W.get(ab, 0), L.get(ab, 0), T.get(ab, 0), PF.get(ab, 0), PA.get(ab, 0))
-        want = (int(r["W"]), int(r["L"]), int(r["T"]), int(r["PF"]), int(r["PA"]))
+        want = (int(r["w"]), int(r["l"]), int(r["t"]), int(r["pf"]), int(r["pa"]))
         if got != want:
-            fail_today.append({"club": ab, "from_the_150_game_corpus": got, "official_page_today": want})
+            fail_today.append({"club": ab, "from_the_150_game_corpus": got, "official_page_2026_11_17": want})
     out["measures"]["M3_closure_against_todays_official_standings"] = {
         "clubs": len(today), "clubs_disagreeing": len(fail_today), "detail": fail_today[:35],
         "corpus_used": len(games),
+        "official_source_file": COLLECTOR_STANDINGS,
+        "official_source_url": "https://www.nfl.com/standings/league/2026/REG",
+        "official_source_read_at": "2026-11-17T22:50Z",
         "verdict": "pass" if not fail_today else "fail",
-        "reading": ("the 150-game closure corpus reproduces all 32 official standings rows exactly - W, L, T, "
-                    "PF and PA. If the append ever produced a wrong score, this is where it would show. It "
-                    "does not: the closure is arithmetically complete against the league's own table."),
+        "reading": ("the 150-game closure corpus reproduces all 32 official standings rows from the dated "
+                    "2026-11-17 read exactly - W, L, T, PF and PA. If the append ever produced a wrong "
+                    "score, this is where it would show. It does not: the closure is arithmetically "
+                    "complete against the league's own table."),
     }
 
     spec_src = open(os.path.join(ROOT, PINNED_BASELINE), encoding="utf-8").read()

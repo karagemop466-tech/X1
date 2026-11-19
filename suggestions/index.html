@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Center — X1 Decision Center</title>
+<meta name="description" content="X1 decision center: reviewed suggestions, questions and the information needed before a decision. Every row carries a source link.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="rail">
+  <a class="brand" href="../index.html"><span class="mark">X1</span><span>Decision Center</span></a>
+  <nav><a class="active" href="index.html">Overview</a><a class="" href="questions.html">Questions &amp; answers</a><a class="" href="paths.html">Choose a path</a><a class="" href="missing.html">Discover missing information</a><a class="" href="review.html">Review log &amp; flags</a><a href="../pages/flagged.html">Flagged for review</a><a href="../console/index.html">Line console</a><a href="../hub/index.html">Second opinion</a></nav>
+  <div class="railnote">Snapshot 2026-11-14 · register built 2026-11-19<br>Nothing here is implemented from a suggestion.</div>
+</div>
+<div class="content">
+  <div class="top"><div class="eyebrow">Overview</div><h1>Decision Center</h1><p class="lede">One place to decide what to build next: the questions, the evidence we hold, the evidence we do not, and the paths available.</p></div>
+
+<div class="note">Decision rule: this section reconciles existing registers and shows the paths. It does not choose a path, implement a suggestion, or publish an unsourced value. Every owner-decision cell is blank and marked unverified until the owner fills it in.</div>
+<div class="statrow"><div class="stat"><div class="big">18</div><div>questions</div><div class="statnote">held, missing, answer, next step</div></div><div class="stat"><div class="big">18</div><div>paths</div><div class="statnote">all proposed, none implemented here</div></div><div class="stat"><div class="big">13</div><div>missing inputs</div><div class="statnote">each with a source candidate</div></div><div class="stat"><div class="big">7</div><div>boards reconciled</div><div class="statnote">different IDs, one review surface</div></div><div class="stat"><div class="big">5</div><div>flags</div><div class="statnote">non-blocking, for manual review</div></div><div class="stat"><div class="big">5</div><div>official reads</div><div class="statnote">re-read 2026-11-19</div></div></div>
+<div class="cards">
+<div class="card"><h3>Questions &amp; answers</h3><p>What we know, what we do not know, the answer that is possible today, and how to discover the rest.</p><p><a class="btn" href="questions.html">Read the 18 questions</a></p></div>
+<div class="card"><h3>Choose a path</h3><p>18 reconciled suggestions, each with three paths, a recommendation, a cost and an explicit blank decision cell.</p><p><a class="btn" href="paths.html">Review the paths</a></p></div>
+<div class="card"><h3>Discover missing information</h3><p>13 inputs that block a decision, with the official source candidate and the collection step.</p><p><a class="btn" href="missing.html">See the gaps</a></p></div>
+<div class="card"><h3>Review log &amp; flags</h3><p>Where each row came from, the 5 source irregularities found on 2026-11-19, and the five official pages re-read.</p><p><a class="btn" href="review.html">Open the review log</a></p></div>
+</div>
+<h2>Start with these five decisions</h2>
+<div class="tablewrap"><table data-table><thead><tr><th>ID</th><th>Decision</th><th>Why it is first</th><th>Recommended path</th><th>Source</th></tr></thead><tbody><tr><td>DS-01</td><td>Decide the price-data policy before publishing any residual</td><td>It decides whether CLV, ROI and the market difference are measurable at all.</td><td>C until a written policy exists; then A if funded, otherwise B.</td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/prices/price_store_meta.json" target="_blank" rel="noopener" title="https://github.com/karagemop466-tech/X1/blob/main/data/prices/price_store_meta.json">source</a></td></tr><tr><td>DS-02</td><td>Finish the verified results register before widening backtests</td><td>Outcome joins are the precondition for every scored gate.</td><td>A. B loses game-level detail; C adds a dependency.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener" title="https://www.nfl.com/schedules/2026/by-week/week-10">source</a></td></tr><tr><td>DS-03</td><td>Verify participation from a permitted official source</td><td>It is the difference between a replacement count and a weighted deficiency.</td><td>C until rights are reviewed; then A if authorised, otherwise B.</td><td><a class="src-link" href="https://static.www.nfl.com/image/upload/v1794764592/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf" target="_blank" rel="noopener" title="https://static.www.nfl.com/image/upload/v1794764592/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf">source</a></td></tr><tr><td>DS-04</td><td>Capture the reserve list beside every injury read</td><td>It removes a false negative from the availability truth label.</td><td>A; keep C as the interim display rule.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener" title="https://www.nfl.com/injuries/league/2026/reg10">source</a></td></tr><tr><td>DS-05</td><td>Automate immutable multi-day availability snapshots</td><td>It makes the injury signal a delta and makes backtests replayable.</td><td>A. B cannot show Wednesday-to-Sunday changes.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10" target="_blank" rel="noopener" title="https://www.nfl.com/injuries/league/2026/reg10">source</a></td></tr></tbody></table></div>
+<h2>How to use this section</h2>
+<div class="cards">
+<div class="card"><h3>1. Read the question</h3><p>Each row states the information held and the information missing. A row marked BLOCKED has no answer that the current evidence can support.</p></div>
+<div class="card"><h3>2. Compare paths</h3><p>The paths page keeps A, B and C separate with impact, effort, risk and what each unlocks. The recommendation is a reading aid, not a decision.</p></div>
+<div class="card"><h3>3. Record the choice</h3><p>Write the chosen path in the blank Decision and Owner cells in <code>data/suggestions/decision_center.json</code>, then rebuild. Until then the site shows UNVERIFIED / AWAITING OWNER.</p></div>
+<div class="card"><h3>4. Only then implement</h3><p>No path is implemented by this section. The one exception is the review surface itself, which the owner explicitly asked for.</p></div>
+</div>
+
+  <div class="mainfoot">Built by <code>tools/build_decision_center.py</code> from
+  <code>data/suggestions/decision_center.json</code> and <code>official_reads.json</code> on 2026-11-19.
+  Repository records are labelled as such and are never presented as NFL facts. Values that cannot
+  be confirmed from a source are left blank and listed as unverified.</div>
+</div>
+</body>
+</html>
