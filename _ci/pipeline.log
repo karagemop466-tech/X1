@@ -1,7 +1,7 @@
 correlations: 1034 pairs
-repo_review: 986 files, 600 flagged
+repo_review: 998 files, 609 flagged
 {
- "generated_at": "2026-11-19T19:28:27+00:00",
+ "generated_at": "2026-11-19T20:56:57+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -99,12 +99,12 @@ repo_review: 986 files, 600 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-19T19:28:51+00:00"
+ "finished_at": "2026-11-19T20:57:20+00:00"
 }
 exit=0
 ===== captures.log =====
 capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-  89 captures retained; 40 distinct payloads
+  94 captures retained; 40 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 37
@@ -156,7 +156,7 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (545,691 bytes)
+    wrote app/repo-review.html (552,926 bytes)
     wrote app/stores.html (132,845 bytes)
     29 pages written
 $ python3 tools/build_console.py
@@ -164,9 +164,9 @@ $ python3 tools/build_console.py
     [console] building pages
     [console]   33 pages written to /home/runner/work/X1/X1/console
 $ python3 tools/build_preregistration.py
-    PR-02  unresolved-shallow-checkout   control baselines: random picks, favourites only
-    PR-03  unresolved-shallow-checkout   verified results feed: a row settles only when an official page printed the score
-    PR-04  unresolved-shallow-checkout   Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only
+    PR-02  registered     0747005a77  control baselines: random picks, favourites only
+    PR-03  registered     0709442e63  verified results feed: a row settles only when an official page printed the score
+    PR-04  registered     7bd7a4889c  Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only
 $ python3 tools/build_next_decisions.py
     wrote data/next_decisions/round_2026_11_16.json (+2 csv) · 11 suggestions, 10 questions
 $ python3 tools/build_depth_matrix.py
@@ -217,7 +217,7 @@ $ python3 tools/cross_check.py
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
     files checked : 211
-    assertions    : 51342
+    assertions    : 52441
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
     Site verification passed: 211 HTML pages; local links resolve; every data-table row has an official source link.
@@ -228,7 +228,7 @@ $ python3 scripts/pipeline/verify_site.py
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
     note: freshness not gated here (a PR build cannot fix a missed collector run); data-refresh.yml gates it after it collects
     capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-      89 captures retained; 40 distinct payloads
+      94 captures retained; 40 distinct payloads
 $ python3 tools/verify_depth_matrix.py
     verify_depth_matrix PASS: 32 clubs (31 verified + 1 HOU image-only), GB joins 0->13, 78 W11 matchup rows (51 alerts)
 $ python3 tools/verify_modeling_lab.py
