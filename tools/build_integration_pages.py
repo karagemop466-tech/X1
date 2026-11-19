@@ -165,7 +165,7 @@ def page_verification() -> str:
   <h1>This session's own live reads, against what the site already published</h1>
   <p>On {READ_DATE} this session re-read four official nfl.com pages and compared every cell with the
   committed 2026-11-19 pack. Three datasets agree exactly. The fourth — the Week 11 injury report —
-  agrees on 252 of 253 player rows and disagrees on one game-status cell, and its free-text injury
+  agrees on {SECOND["keys_joined"] - SECOND["cell_differences"]} of {SECOND["keys_joined"]} player rows and disagrees on {SECOND["cell_differences"]} game-status cell, and its free-text injury
   column changed between consecutive reads of the same page. Both are published here rather than resolved.</p>
 </section>
 <section class="content">
@@ -280,8 +280,20 @@ def page_verification() -> str:
 def page_brief() -> str:
     counts = REQS["counts"]
     rc = READY["counts"]["register"]
-    q_open = sum(1 for q in QS if q["STATUS"].upper().startswith("OPEN") or "PARTIAL" in q["STATUS"].upper())
-    q_answered = len(QS) - q_open
+    # Status buckets are read off the register's own STATUS strings and stated as they are:
+    # ANSWERED (including the answers that are "no", which are still answers), BLOCKED, and
+    # OWNER DECISION. Nothing is rounded into "open".
+    def _bucket(status: str) -> str:
+        s_ = status.strip().upper()
+        for k in ("ANSWERED", "BLOCKED", "OWNER DECISION"):
+            if s_.startswith(k):
+                return k
+        return "OTHER"
+    _b = {}
+    for q in QS:
+        _b[_bucket(q["STATUS"])] = _b.get(_bucket(q["STATUS"]), 0) + 1
+    q_open = _b.get("BLOCKED", 0) + _b.get("OWNER DECISION", 0) + _b.get("OTHER", 0)
+    q_answered = _b.get("ANSWERED", 0)
 
     proven = [
         ("League standings, 32 clubs", "32 of 32 rows read twice on 2026-11-19 and identical; 96/96 of the page's own arithmetic identities pass.",
@@ -343,14 +355,14 @@ def page_brief() -> str:
   <div class="statrow">
     {stat(counts['total'], "requirements tracked", f"{counts['met']} met · {counts['partly_met']} partly met · {counts['open']} open")}
     {stat(len(FLAGS['flags']), "flagged items published", "each with its source link and what would settle it")}
-    {stat(len(QS), "decision questions on the record", f"{q_answered} answered · {q_open} open or partial")}
+    {stat(len(QS), "research-desk questions on the record", f"{q_answered} answered · {q_open} blocked or awaiting an owner decision")}
     {stat(len(SUGGEST) + len(SG), "reviewable suggestions", f"{len(SUGGEST)} site proposals + {len(SG)} console proposals")}
   </div>
 
   <h2>1 · What is proven, and how it was proven</h2>
   <p>The rule this repository runs on is narrow enough to check: a number is published only when an official
   page prints it, the row carries that page's URL, and a second reader agrees. Every row below meets all three.</p>
-  {table(["Fact", "How it is verified", "Official source"], proven_rows, "Verified facts, {READ_DATE}", "wide", True)}
+  {table(["Fact", "How it is verified", "Official source"], proven_rows, f"Verified facts, {READ_DATE}", "wide", True)}
 
   <h2>2 · What is blocked, and by what</h2>
   <p>None of these are engineering problems. They are inputs the league does not publish, or decisions that must
