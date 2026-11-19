@@ -4678,3 +4678,6 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+
+## 2026-11-19 — arena/3ea00c0a-x1
+In progress: official designation-to-inactive calibration evaluator and evidence contract. Scope: tools/designation_calibration.py, docs/designation-calibration.md, tests/test_designation_calibration.py, this log. No overlap with open PRs #91/#92.
