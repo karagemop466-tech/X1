@@ -2,9 +2,10 @@
   "captured_date": "2026-11-19",
   "dataset": "origination_desk_skill_and_diff",
   "file_sha256": {
+    "diagnostic_walkforward.csv": "0feb1c4062fb71f9af869b98b4771cc42a4830ac97944fa8b2d26e61f251b306",
     "luck_removal_panel.csv": "d5b1b544ba3e817e8c23ba655590eb4cb2f81a16b619db976f85371ffaace6a6",
     "official_correlations_with_n.csv": "451c9606311f35f6230be381e213b099aa3da1cb2fc95aaacb6315f8c44a15d8",
-    "two_stage_leaderboard.csv": "c20096c7f371cbc0a543eb0aa8be18fe7f8385c29c1cfbca0b3e97d449b9f246",
+    "two_stage_leaderboard.csv": "aa988529cf5b5adb847c6203b9c923e4fd36f3e6ae6d6e2736bcac21f2686f24",
     "vig_free_decomposition.csv": "438c9a3e54bb6c0d893353470ce6b9646970f7bb873965bf9650948dc33dab9e",
     "weekly_what_changed_w9_w10_w11.csv": "abbf5489ddeb2627ed7e3ff68ce51e96e07df3359f14dfb48fd33641dfb26488"
   },
@@ -24,6 +25,12 @@
     },
     "protocol_file": "docs/origination_desk/PROPER-SCORE-PROTOCOL-01.md",
     "protocol_sha256": "966f954108e20a4e60ed367186b4af6722d044cf836ff74b954532aa8550bcac",
+    "retrospective_diagnostics": {
+      "excluded_from_leaderboard": true,
+      "file": "data/origination_desk/skill/diagnostic_walkforward.csv",
+      "ranking_or_qualification_use": false,
+      "rows": 4
+    },
     "stage_counts": {
       "always_on_controls": 3,
       "locked_combo_divisions": 3,
