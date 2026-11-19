@@ -4699,3 +4699,5 @@ Integration resolution: a direct merge of #91 conflicted with newer main console
 Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed; verify caught a stale historical pack after the scheduled refresh. Scoped its Week 10 comparison to the last pre-rollover read and regenerated its dependent hashes. 44 player spot checks reproduce without Week 11 contamination.
 
 KR-1 integration note: main advanced via PR #97. Merged it without rebasing the public registration hash. The only conflict was the concurrent append to this board; retained both complete records and all of #97's code and data.
+
+Integration verification caught one derived dependency inventory that needed regeneration after adding the KR-T1 reader (56 → 57 consumers). Regenerated `data/lab/reads/2026-11-17/feed-closure-measurement.json` with its existing builder; no scores or rule text changed. A pull/rebase against the session remote tried to replay #97’s board claim across the union merge; aborted that rebase to preserve the registered hashes and both records. Synchronizing against main for the release.
