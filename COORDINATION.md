@@ -4679,6 +4679,22 @@ final integration record below for the exact count at release time.
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
 
+## 2026-11-19 — arena/68de0b7f-x1 · kickoff regime evidence and release
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| KR-1: close the official rule-source gap for R4-15, implement a versioned, fail-closed historical comparison filter, publish evidence and unanswered questions; verify existing site and release this slice | done (release verification below) | arena/68de0b7f-x1 | new `research/kickoff-regimes/`, `tools/kickoff_regimes/`; integration links on the root landing and research index via their generator(s), scoped to KR-1 only; this log |
+
+Open PRs #91, #92 and #95 own distinct venue/availability/strategy/release-boundary work; no takeover. Existing registrations, predictions and snapshots remain frozen.
+
+KR-1 scope refinement (same new directories): add KR-T1, a prospectively registered **paper** totals distribution using the regime-filtered finals at PR-04’s frozen A threshold. PR #91 explicitly excludes the 26 total rows from its probability check. This is a new timestamped experiment, not a correction to PR-04 or a backdated probability. Integration may add a link on `pages/flagged.html` via `tools/build_site.py`, and a scoped gate in the research checker.
+
+KR-T1 pre-kickoff escrow: [registration commit](https://github.com/karagemop466-tech/X1/commit/5d1e59d66e1b450306934b94feff596dfcda9770) preceded the generated forecast commit. The 13 fixture links and start slots were checked against all three sections of the [official Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11). The 150 finals are the repository’s pinned verified results transcription, not a new read of 150 game centres. KR-T1 publishes only a derived distribution and does not edit a PR-04 probability, fair line or registration.
+
+**KR-T1 automation scope:** new `.github/workflows/paper-totals-settlement.yml` only. Replay the frozen forecast and evaluate the verified results automatically; never commit mutable scores into escrow. Publish the score report as a job summary and artifact. PR build was cancelled by the pre-existing shared Pages concurrency group, not by a failed verification assertion; repeating without altering other sessions’ workflow.
+
+**KR-1 release:** [PR #99](https://github.com/karagemop466-tech/X1/pull/99). 46 verify-site run steps and 18 Pages build run steps passed locally against merged #97; subsequent #98 integration preserved both flag links and both board sections and regenerated the shared page from source. [2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook), [2025 NFL rules](https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes), [2024 NFL rules](https://www.nfl.com/news/2024-nfl-season-explaining-rules-for-new-dynamic-kickoff). Review: missing kick-level evidence and mislabelled historical total B gap (points, not probability). No reward, staking or market price claim.
+
 ## 2026-11-19 integration — arena/e0c7de42-x1
 In progress: integrate complementary pending PRs #91 and #92 on the pinned branch, resolve overlaps, verify Pages build and publish. Scope: integration of their changed paths, release checks and this board; no competing source transcription.
 
@@ -4686,6 +4702,9 @@ Integration resolution: a direct merge of #91 conflicted with newer main console
 
 Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed; verify caught a stale historical pack after the scheduled refresh. Scoped its Week 10 comparison to the last pre-rollover read and regenerated its dependent hashes. 44 player spot checks reproduce without Week 11 contamination.
 
+KR-1 integration note: main advanced via PR #97. Merged it without rebasing the public registration hash. The only conflict was the concurrent append to this board; retained both complete records and all of #97's code and data.
+
+Integration verification caught one derived dependency inventory that needed regeneration after adding the KR-T1 reader (56 → 57 consumers). Regenerated `data/lab/reads/2026-11-17/feed-closure-measurement.json` with its existing builder; no scores or rule text changed. A pull/rebase against the session remote tried to replay #97’s board claim across the union merge; aborted that rebase to preserve the registered hashes and both records. Synchronizing against main for the release.
 ## 2026-11-19 — chronological evaluation design (`arena/d08f4a65-x1`)
 
 | Task | Status | Owner | Exclusive file scope |
