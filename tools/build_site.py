@@ -83,6 +83,10 @@ NAV = [
     # Added by session arena/56769365-x1 (additive): the line desk — price snapshots,
     # verified results, originated lines, signal-vs-staking leaderboard, demotion gate.
     ("lab/index.html", "Line desk"),
+    # Added by session arena/427c1843-x1 (round 7, additive): the Decision Room — the one place
+    # that answers "what is blocking a decision today", the suggestions board the owner asked to
+    # review before anything is built, and the 2026-11-19 live verification pack.
+    ("room/index.html", "Decision room"),
 ]
 
 
@@ -488,6 +492,7 @@ def page_index():
   <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
   <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
   <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
+  <a class="card" href="room/index.html"><span class="ico">◧</span><small>DECIDE / 05</small><h3>The decision room</h3><p>The questions that must be settled before any decision, the suggestions board to review before anything is built, and the 2026-11-19 live verification of the official pages. Eight checks, all rebuildable.</p><span class="more">Enter the room →</span></a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
