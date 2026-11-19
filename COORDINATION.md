@@ -5775,3 +5775,8 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
 | Merge result | pending |
 
+
+### Latest-main integration log — 2026-11-19
+
+- `origin/main` advanced from `f37264c` to `c5265bd` (PR #131, final integration session `arena/48babc21-x1`) while PR #133 was being prepared. The branch was merged with `origin/main`; the `COORDINATION.md` conflict was resolved by retaining this session's complete T9 records and appending the full upstream session-48 integration record. No upstream entry was removed.
+- A subsequent `git pull --rebase origin arena/ab244ddc-x1` attempted to replay commits already present through the merged main history and conflicted on the old append-only coordination claim; that rebase was aborted rather than duplicating or dropping the existing audit. The current tree includes `origin/main` and the original remote claim as ancestors. Next push is a fast-forward, not a force push.
