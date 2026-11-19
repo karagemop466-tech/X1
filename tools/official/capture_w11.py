@@ -5,7 +5,9 @@ and render a sourced page.
 Input : data/capture/2026_w11/official_nflcom_injuries_week11_fetch.psv
 Output: data/capture/2026_w11/summary.json            (counts, checks, anomalies, SHA-256 of the PSV)
         data/capture/2026_w11/injuries_week11.csv      (one row per player, source column)
-        week11/index.html                              (sourced static page, deployed with the site)
+        data/capture/2026_w11/crossread.json           (only with --compare PATH: row-by-row cross-read)
+
+The public Week 11 page is NOT built here: PR #132 (arena-2d1ba329-x1) publishes it as app/week11.html.
 
 Honesty rules enforced here:
   * Every published row carries the source URL https://www.nfl.com/injuries/ .
@@ -32,7 +34,7 @@ CAP = ROOT / "data" / "capture" / "2026_w11"
 PSV = CAP / "official_nflcom_injuries_week11_fetch.psv"
 SUMMARY = CAP / "summary.json"
 CSV_OUT = CAP / "injuries_week11.csv"
-PAGE = ROOT / "week11" / "index.html"
+CROSSREAD = CAP / "crossread.json"
 SOURCE_URL = "https://www.nfl.com/injuries/"
 
 FIELDS = ["game", "listed_team", "player", "position", "injury",
@@ -53,6 +55,8 @@ ANOMALIES = [
      "Listed under the Broncos table on the Week 11 page. Club attribution not verified in this session; kept as shown and flagged for check against the official roster page."),
     ("Mike Evans", "SF 49ers",
      "Listed under the 49ers table on the Week 11 page. Club attribution not verified in this session; kept as shown and flagged for check against the official roster page."),
+    ("Charlie Heck", "IND Colts",
+     "Cross-read divergence. PR #132's read at 2026-11-19T13:16:57Z shows Injury 'Not injury related - personal matter' and Game Status 'Questionable'. This transcription and a re-fetch of the page at about 22:10Z show both cells blank. Not resolved here; needs a dated capture series."),
     ("Dee Alford", "BUF Bills",
      "Displayed name differs from the player profile link slug on the page (slug: deaundre-ford). Displayed name kept as shown."),
     ("Jacob Hummel", "HOU Texans",
@@ -167,58 +171,33 @@ def render_csv(rows):
     return out
 
 
-def render_html(rows, markers, s):
-    esc = html.escape
-    tr = []
-    anomaly_players = {a["player"] for a in s["anomalies"]}
-    for r in rows:
-        flag = " <span class='flag'>flag</span>" if r["player"] in anomaly_players else ""
-        tr.append(
-            "<tr><td>{g}</td><td>{t}</td><td>{p}{f}</td><td>{pos}</td><td>{inj}</td>"
-            "<td>{pr}</td><td>{gs}</td><td><a href='{u}' target='_blank' rel='noopener'>nfl.com</a></td></tr>".format(
-                g=esc(r["game"]), t=esc(r["listed_team"]), p=esc(r["player"]), f=flag,
-                pos=esc(r["position"]), inj=esc(r["injury"]), pr=esc(r["practice_status"]),
-                gs=esc(r["game_status"]), u=SOURCE_URL))
-    for m in markers:
-        tr.append("<tr><td>{g}</td><td>{t}</td><td colspan='5'><i>No Injuries Reported (section text on the official page)</i></td>"
-                  "<td><a href='{u}' target='_blank' rel='noopener'>nfl.com</a></td></tr>".format(
-                      g=esc(m["game"]), t=esc(m["listed_team"]), u=SOURCE_URL))
-    anom = "".join("<li><b>{p}</b> ({t}): {r}</li>".format(p=esc(a["player"]), t=esc(a["listed_team"]), r=esc(a["reason"]))
-                   for a in s["anomalies"])
-    gs = s["game_status_counts"]
-    kpis = "".join(
-        "<div class='kpi'><div class='lab'>{l}</div><div class='val'>{v}</div></div>".format(l=esc(l), v=esc(str(v)))
-        for l, v in [("Player rows", s["player_rows"]), ("Teams listed", s["listed_teams"]),
-                     ("Games listed", s["games_listed"]), ("Out", gs.get("Out", 0)),
-                     ("Questionable", gs.get("Questionable", 0)), ("Doubtful", gs.get("Doubtful", 0)),
-                     ("Clubs not listed", len(s["clubs_not_listed"]))])
-    return f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Week 11 official injury report — captured 2026-11-19</title>
-<link rel="stylesheet" href="../assets/site.css">
-<style>.kpis{{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}}.kpi{{border:1px solid #ddd;border-radius:8px;padding:10px 14px;min-width:120px}}
-.kpi .lab{{font-size:12px;color:#555}}.kpi .val{{font-size:22px;font-weight:600}}.flag{{background:#fff3cd;border-radius:4px;padding:0 4px;font-size:12px}}
-table{{border-collapse:collapse;width:100%;font-size:14px}}th,td{{border-bottom:1px solid #e5e5e5;padding:6px 8px;text-align:left;vertical-align:top}}</style>
-</head><body>
-<p><a href="../index.html">&larr; Landing page</a> · <a href="../console/flagged.html">Flagged for review</a></p>
-<p>Site data snapshot: 2026-11-14 (Week 10 tables, unchanged). This page is the Week 11 read dated 2026-11-19 (UTC).</p>
-<h1>Week 11 official injury report</h1>
-<p>Source: <a href="{SOURCE_URL}" target="_blank" rel="noopener">{SOURCE_URL}</a> (NFL.com, read 2026-11-19 UTC).
-Every row links to this page. The table is a <b>fetch-tool transcription</b> of the seven page chunks, not raw HTTP bytes; a second independent read is still pending.
-Blank cells are blank on the official page. Nothing is inferred.</p>
-<div class="kpis">{kpis}</div>
-<p>Transcription SHA-256 (of the file this table was built from): <code>{s['transcription_sha256']}</code>
-· Clubs not listed on this page: {esc(', '.join(s['clubs_not_listed']) or 'none')} (the page omits clubs without a game in the report; byes are not stated on this page).</p>
-<h2>What this read does and does not show</h2>
-<ul>{''.join('<li>' + esc(o) + '</li>' for o in s['observations'])}</ul>
-<h2>Irregularities flagged for review</h2>
-<ul>{anom}</ul>
-<h2>All listed players</h2>
-<table><thead><tr><th>Game (as listed)</th><th>Team</th><th>Player</th><th>Pos</th><th>Injury</th><th>Practice status</th><th>Game status</th><th>Source</th></tr></thead>
-<tbody>{''.join(tr)}</tbody></table>
-</body></html>
-"""
+
+def compare(rows, other: Path):
+    """Row-by-row comparison of this transcription with another read of the same page.
+    Key = (club, player, position, injury, practice status, game status)."""
+    import csv as _csv
+    mine = Counter((r["listed_team"].split(" ")[0], r["player"], r["position"], r["injury"],
+                    r["practice_status"], r["game_status"]) for r in rows)
+    theirs_rows = []
+    with other.open(encoding="utf-8") as f:
+        for rec in _csv.DictReader(f, delimiter="\t"):
+            theirs_rows.append((rec["club"], rec["player"], rec["position"], rec["injury"],
+                                rec["practice_status"], rec["game_status"]))
+    theirs = Counter(theirs_rows)
+    return {
+        "compared_on": "2026-11-19 (UTC)",
+        "this_transcription": PSV.relative_to(ROOT).as_posix(),
+        "this_transcription_sha256": sha256(PSV),
+        "other_read_file": other.name,
+        "other_read_sha256": sha256(other),
+        "other_read_source": "PR #132 head e70ae63560be17dbb6f35cbfd71b228b5049bf33, data/week11/latest_read.tsv (capture_utc 2026-11-19T13:16:57Z), read via the GitHub contents API; not committed to this branch",
+        "rows_here": sum(mine.values()),
+        "rows_there": len(theirs_rows),
+        "identical_rows": sum((mine & theirs).values()),
+        "only_in_this_transcription": [list(k) for k in (mine - theirs).elements()],
+        "only_in_other_read": [list(k) for k in (theirs - mine).elements()],
+        "note": "A difference is not resolved here. Either the official page changed between the two read times, or one transcription is wrong; a dated capture series is needed to tell which.",
+    }
 
 
 def main(argv):
@@ -233,15 +212,20 @@ def main(argv):
         w.writerows(csv_rows)
         csv_text = buf.getvalue()
     summary_text = json.dumps(s, indent=2, ensure_ascii=False) + "\n"
-    page_text = render_html(rows, markers, s)
     if s["checks_failed"]:
         print("CHECKS FAILED:")
         for p in s["checks_failed"]:
             print("  -", p)
         return 1
+    if "--compare" in argv:
+        other = Path(argv[argv.index("--compare") + 1])
+        result = compare(rows, other)
+        CROSSREAD.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"cross-read: identical={result['identical_rows']} only_here={result['only_in_this_transcription']} only_there={result['only_in_other_read']}")
+        return 0
     if "--check" in argv:
         ok = True
-        for path, text in [(SUMMARY, summary_text), (CSV_OUT, csv_text), (PAGE, page_text)]:
+        for path, text in [(SUMMARY, summary_text), (CSV_OUT, csv_text)]:
             if not path.exists() or path.read_text(encoding="utf-8") != text:
                 print("STALE:", path.relative_to(ROOT).as_posix())
                 ok = False
@@ -249,9 +233,7 @@ def main(argv):
         return 0 if ok else 1
     SUMMARY.write_text(summary_text, encoding="utf-8")
     CSV_OUT.write_text(csv_text, encoding="utf-8")
-    PAGE.parent.mkdir(parents=True, exist_ok=True)
-    PAGE.write_text(page_text, encoding="utf-8")
-    print(f"wrote summary, csv ({len(csv_rows)} rows) and page; checks passed; player_rows={s['player_rows']} sections={s['no_injury_sections']}")
+    print(f"wrote summary and csv ({len(csv_rows)} rows); checks passed; player_rows={s['player_rows']} sections={s['no_injury_sections']}")
     return 0
 
 

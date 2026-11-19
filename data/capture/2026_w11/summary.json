@@ -87,6 +87,11 @@
       "reason": "Listed under the 49ers table on the Week 11 page. Club attribution not verified in this session; kept as shown and flagged for check against the official roster page."
     },
     {
+      "player": "Charlie Heck",
+      "listed_team": "IND Colts",
+      "reason": "Cross-read divergence. PR #132's read at 2026-11-19T13:16:57Z shows Injury 'Not injury related - personal matter' and Game Status 'Questionable'. This transcription and a re-fetch of the page at about 22:10Z show both cells blank. Not resolved here; needs a dated capture series."
+    },
+    {
       "player": "Dee Alford",
       "listed_team": "BUF Bills",
       "reason": "Displayed name differs from the player profile link slug on the page (slug: deaundre-ford). Displayed name kept as shown."

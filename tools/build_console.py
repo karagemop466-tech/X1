@@ -68,9 +68,6 @@ NAV = [
                        ("announcement.html", "2026 schedule announcement", "05-14"),
                        # Added by session arena/dc96bc33-x1 (round 5, additive only)
                        ("w10-finals.html", "Week 10 finals (11-17)", "14"),
-                       # Added by session arena/073589d1-x1 (additive only): the Week 11 official injury report
-                       # (sourced rows, checks, flagged anomalies), built by tools/official/capture_w11.py.
-                       ("../week11/index.html", "Week 11 injury report (11-19)", "253"),
                        ("injuries.html", "Injury report", "347"),
                        # Added by session arena-869ee8fb-x1 (round 6, SG-15): the dated
                        # point-in-time snapshot tables the report moved through.
