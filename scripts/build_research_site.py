@@ -287,6 +287,7 @@ cannot be confirmed are left blank and listed on the
 
 <div class="grid k4" style="margin:18px 0 8px">{kpis}</div>
 
+<p><a href="kickoff-regimes/index.html">Week 11 paper totals trial and kickoff-rule evidence</a> · Registered before kickoff; no reward or staking eligibility.</p>
 <h2>What the evidence shows</h2>
 {findings}
 

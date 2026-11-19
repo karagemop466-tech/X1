@@ -503,6 +503,7 @@ def page_index():
     <h2>The same question, four independent attempts</h2>
     <p class="muted">Four earlier sessions built in parallel and merged into this repository. They disagree
     about how much to publish, and the disagreement is useful: it shows where the evidence line actually sits.</p>
+    <div class="blocker"><span class="pill">PAPER</span><div><b><a href="research/kickoff-regimes/index.html">Week 11 totals trial</a></b><p>Under, push and over at the frozen model threshold, with a league control and the NFL kickoff rules behind the comparison. No market quote or live stake.</p></div></div>
     <div class="blocker"><span class="pill">LAB</span><div><b><a href="research/index.html">Research lab</a></b><p>Originated lines from a walk-forward points model, sixteen pre-registered strategies, the eight-gate
     evaluation, correlation values, luck removal and the player-prop maths. Names its third-party line benchmark on every page.</p></div></div>
     <div class="blocker"><span class="pill">DASH</span><div><b><a href="dashboard/lab-index.html">Analytics lab</a></b><p>2006–2026 backtests on nfldata, a 491-row injury report and computed correlation values.
@@ -2352,6 +2353,7 @@ def page_flagged():
     {stat(len(open_q), 'open decisions linked')}
   </div>
   {table(["ID", "Severity", "Category", "Item", "What is verified", "What is unknown", "What settles it", "Source"], rows, cls="wide")}
+  <p><b>Totals research, 19 November:</b> The PR-04 total B gap is measured in points, not probability. The <a href="../research/kickoff-regimes/index.html#review">rule audit and prospective paper trial</a> keep the two separate. Kick-level effects remain unverified; <a href="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook">NFL Rule 6</a> defines permission, not an effect size.</p>
   <h2>The three that matter most</h2>
   <ol class="route">
     <li><b>F-01 — no league-wide official depth chart.</b> The entire “2nd/3rd/4th string” requirement rests on a source the league does not publish.</li>
