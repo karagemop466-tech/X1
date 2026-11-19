@@ -1,0 +1,153 @@
+{
+  "title": "Landing-page number audit",
+  "session": "arena/525b792a-x1",
+  "task": "LA-1",
+  "method": "Each claim is recomputed from the committed file named in `file`, then the landing text (index.html, tags stripped) must contain the exact `landing_phrase`. A mismatch in either direction fails tools/audit_landing_numbers.py --check.",
+  "landing_page": "index.html",
+  "claims": [
+    {
+      "id": "LA-N01",
+      "label": "requirements tracked",
+      "value": 53,
+      "landing_phrase": "53 requirements",
+      "file": "data/audit/requirements_assessed.json",
+      "source": "docs/live-pipeline/project-brief.md (owner brief)",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N02",
+      "label": "requirements met",
+      "value": 42,
+      "landing_phrase": "42 met",
+      "file": "data/audit/requirements_assessed.json",
+      "source": "repository assessment (see pages/requirements.html)",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N03",
+      "label": "requirements partly met",
+      "value": 7,
+      "landing_phrase": "7 partly met",
+      "file": "data/audit/requirements_assessed.json",
+      "source": "repository assessment (see pages/requirements.html)",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N04",
+      "label": "requirements open",
+      "value": 2,
+      "landing_phrase": "2 open",
+      "file": "data/audit/requirements_assessed.json",
+      "source": "repository assessment (see pages/requirements.html)",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N05",
+      "label": "week-10 injury rows",
+      "value": 347,
+      "landing_phrase": "347 week-10 injury rows",
+      "file": "data/nfl/injuries_week10.tsv",
+      "source": "https://www.nfl.com/injuries/",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N06",
+      "label": "clubs in standings",
+      "value": 32,
+      "landing_phrase": "32 teams",
+      "file": "data/nfl/standings.tsv",
+      "source": "https://www.nfl.com/standings/league/2026/REG",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N07",
+      "label": "week-10 games in schedule",
+      "value": 14,
+      "landing_phrase": "14 week-10 games",
+      "file": "data/nfl/schedule_week10.tsv",
+      "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N08",
+      "label": "cells compared against official page",
+      "value": 1846,
+      "landing_phrase": "1,846 cells",
+      "file": "tools/verify_against_official.py (run)",
+      "source": "https://www.nfl.com/injuries/ · https://www.nfl.com/standings/league/2026/REG · https://www.nfl.com/schedules/2026/by-week/week-10",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N09",
+      "label": "cell mismatches",
+      "value": 0,
+      "landing_phrase": "0 mismatches",
+      "file": "tools/verify_against_official.py (run)",
+      "source": "https://www.nfl.com/injuries/ · https://www.nfl.com/standings/league/2026/REG · https://www.nfl.com/schedules/2026/by-week/week-10",
+      "landing_states_value": true,
+      "pass": true
+    },
+    {
+      "id": "LA-N11",
+      "label": "week-10 finals re-read 2026-11-19 vs 2026-11-17 closure (mismatching games)",
+      "value": 0,
+      "landing_phrase": null,
+      "file": "data/audit/w10_finals_independent_read_2026_11_19.psv vs data/evidence/2026_11_17/week10_finals.tsv",
+      "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "detail": {
+        "games_read_today": 14,
+        "games_in_nov17_closure": 14,
+        "compared": 14,
+        "mismatches": [],
+        "unmatched_ids": []
+      },
+      "landing_states_value": null,
+      "pass": true
+    }
+  ],
+  "notes": [
+    {
+      "id": "LA-N10",
+      "finding": "2 requirements are 'in progress' and are not in the landing page's '2 open' count (register total 53 = 42 met + 7 partly met + 2 open + 2 in progress).",
+      "action": "integration request LA-4 (tools/build_site.py, owned by the integration session)"
+    },
+    {
+      "id": "LA-N12",
+      "finding": "The landing's '13 / 14 Week 10 games officially final' is dated to a 2026-11-16 read ('the Monday-night game was still unplayed at read time'). The official page read on 2026-11-19 shows all 14 games FINAL, and the 2026-11-17 closure file agrees.",
+      "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "action": "integration request LA-4 (landing text) — flagged, not edited here"
+    },
+    {
+      "id": "LA-N13",
+      "finding": "data/nfl/schedule_week10.tsv is the 2026-11-14 snapshot: 13 of 14 rows still read status 'scheduled' with blank scores. The official page shows them FINAL.",
+      "file": "data/nfl/schedule_week10.tsv",
+      "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "action": "dated snapshot kept as evidence; the current state is in the 2026-11-19 read"
+    }
+  ],
+  "finals_cross_check": {
+    "games_read_today": 14,
+    "games_in_nov17_closure": 14,
+    "compared": 14,
+    "mismatches": [],
+    "unmatched_ids": []
+  },
+  "not_machine_checked": [
+    "'8 week-11 checks passed' (decision room, room/index.html): no offline recomputation exists",
+    "'160 / 160' and '13 / 14' reconciliation figures: produced by other builders, not recomputed here",
+    "'+0.109' model-vs-market figure: produced by the research builders, not recomputed here"
+  ],
+  "summary": {
+    "claims": 10,
+    "passed": 10,
+    "failed": []
+  }
+}

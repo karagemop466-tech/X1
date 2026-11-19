@@ -171,6 +171,12 @@ def anchor(relpath: str, is_shallow: bool = False) -> dict:
     }
 
 
+def _is_real_anchor(commit, boundary: str) -> bool:
+    """A registration commit is a full 40-hex object name that is not the shallow boundary."""
+    import re as _re
+    return bool(commit) and bool(_re.fullmatch(r"[0-9a-f]{40}", str(commit))) and commit != boundary
+
+
 def build() -> dict:
     """Rebuild the register.
 
@@ -179,21 +185,18 @@ def build() -> dict:
     of when a rule was frozen, because CI is exactly the place with a shallow clone.
     """
     is_shallow = shallow()
-    boundary = root_commit() if is_shallow else ""
     prev_rows: dict = {}
-    prev_full_history = True   # a missing register has no prior claim to distrust
+    prev_boundary = ""
     reg = os.path.join(OUT, "register.json")
     if os.path.exists(reg):
         try:
             committed = json.load(open(reg, encoding="utf-8"))
             prev_rows = {r["id"]: r for r in committed["rows"]}
-            # Only a register built where history was visible may be trusted for an anchor. The first
-            # version of this carry-forward rule had no such test and duly "carried" the bogus
-            # boundary-commit anchor it had itself written in a shallow checkout, which is precisely the
-            # kind of claim that looks verified because it is repeated.
-            prev_full_history = not committed.get("history_scope", {}).get("shallow", True)
+            # The boundary commit of the build that wrote the previous register. An anchor equal to it
+            # is the bogus "first commit" a shallow build reports, so it is never carried forward.
+            prev_boundary = committed.get("history_scope", {}).get("oldest_visible_commit", "") or ""
         except (OSError, ValueError, KeyError):
-            prev_rows, prev_full_history = {}, False
+            prev_rows, prev_boundary = {}, ""
     entries = []
     for rule in RULES:
         path = rule["file"]
@@ -208,16 +211,11 @@ def build() -> dict:
         carried = ""
         if a["state"] == "unresolved-shallow-checkout" and prev_rows:
             p = prev_rows.get(rule["id"], {})
-            # Row-level provenance (session arena-757174a7-x1, repair of 65ba4c4): the previous register
-            # may itself have been built in a shallow checkout while still holding anchors that were
-            # resolved from full history. Those rows are trusted when they are a registered anchor, are
-            # not this checkout's boundary commit, and the rule bytes are unchanged. Gating on the
-            # previous register's top-level "shallow" flag alone erased four true registration commits
-            # (PR-01..PR-04) in one CI run; each was verified as the first commit touching its rule file.
-            row_trusted = (p.get("state") == "registered"
-                           and bool(p.get("registration_commit"))
-                           and p.get("registration_commit") != boundary)
-            if p.get("rule_sha256") == digest and (prev_full_history or row_trusted):
+            # Per row, not per file. A register built in a shallow CI clone is still marked
+            # shallow:true, but its resolved anchors (full 40-hex commits seen by the build that wrote
+            # them) remain true. Dropping them on every shallow refresh erased the freeze evidence
+            # (session arena/525b792a-x1, 2026-11-19). Carry only a real commit, never the boundary.
+            if (p.get("rule_sha256") == digest and _is_real_anchor(p.get("registration_commit"), prev_boundary)):
                 # Same bytes, better history: the anchor recorded by a full-history build is still true.
                 carried = "carried from a full-history build"
                 a = {**a, "state": "registered", "registration_commit": p["registration_commit"],

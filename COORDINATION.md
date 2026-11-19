@@ -5442,7 +5442,7 @@ No data, site, or generator files were changed in this session; only `COORDINATI
 - **Local checks:** `tools/verify_data.py` (2,960), `tools/check_links.py` (211 files / 51,245 assertions), `scripts/verify_site.py` (211 pages), `tools/verify_app.py` (29 pages / 8,495 rows, 0 unmarked/unsourced), decision-center (750 assertions), source-rule mutation test, official cross-check (1,846 cells / 0 mismatches), round-3 stores (150 results, 56 snapshots, 42 origination rows, 1,034 official-only correlation pairs), capture self-test (6/6), dated pack checks, 32-club depth/model checks, room checks, Origination & Skill Desk (1,621 checks + 7 unit tests), console (34 pages / 5,416 links / 3,334 sourced rows), live pipeline (15 pages / 5,358 sourced rows), new-data checks, and assembled deployment (219 pages / 6,079 links, 4 pre-existing orphan pages reported): **passed**. Dated-check rebuilds changed two `generated_at` fields; hub/console rebuilds also changed tracked generated outputs. All audit-generated changes were restored; the only remaining edits are this report and coordination record.
 - **Live official source fetched:** [NFL 2026 Week 11 injury report](https://www.nfl.com/injuries/league/2026/REG11) on 2026-11-19; it presents Week 11 selection and game/player tables. This confirms that the review queue's 2026-11-17 “does not exist yet” item is historical, not a current blocker. No other historical rows are claimed freshly fetched by this session.
 - **Live site/deployment:** [GitHub Pages root](https://karagemop466-tech.github.io/X1/) fetched; [Pages deployment run 44598901292](https://github.com/karagemop466-tech/X1/actions/runs/44598901292) succeeded for main `2fe967a` (the post-PR-115 data refresh). The root and conflicting public sections were also fetched directly after that deployment.
-- **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118) merged to `main` at `2d99536b6a42cf9e9c7d2063c796fb09b48b3ab6` (2026-11-19 19:33:43 UTC). The PR initially had no reported status checks; after merge, [verify-site run 44599596695](https://github.com/karagemop466-tech/X1/actions/runs/44599596695) failed at `verify_mind_change.py` because its committed register was stale. [Pages artifact build/deploy run 44599596663](https://github.com/karagemop466-tech/X1/actions/runs/44599596663), [pages-build-deployment run 44599595460](https://github.com/karagemop466-tech/X1/actions/runs/44599595460), and Evaluation readiness run 44599596696 succeeded. The deployed static site remains live; the failed data-quality gate is AUD-08 and was not weakened or silently fixed because its data/generator are owned by completed PR #97 scope.
+- **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118) merged to `main` at `2d99536b6a42cf9e9c7d2063c796fb09b48b3ab6` (2026-11-19 19:33:43 UTC). The PR initially had no reported status checks; after merge, [verify-site run 44599596695](https://github.com/karagemop466-tech/X1/actions/runs/44599596695) failed at `verify_mind_change.py` because its committed register was stale. [Pages artifact build/deploy run 44599596663](https://github.com/karagemop466-tech/X1/actions/runs/44599596663), [pages-build-deployment run 44599595460](https://github.com/karagemop466-tech/X1/actions/runs/44599595460), and Evaluation readiness run 44599596696 succeeded. The same `verify-site` step failed again after coordination-only PR #121 ([run 44600211607](https://github.com/karagemop466-tech/X1/actions/runs/44600211607)); PR #121's [artifact build/deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600211911) and [Pages deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600210613) succeeded, and the root was fetched live afterward. The failed data-quality gate is AUD-08 and was not weakened or silently fixed because its data/generator are owned by completed PR #97 scope.
 - **Follow-up requests (no overlap edits made):** AUD-01 stale Week 11 blocker; AUD-02 dated 5-club vs later 31-club depth scope; AUD-03 conflicting empty vs historical backtest leaderboard and violation of the no-backtests-on-leaderboard rule; AUD-04 incompatible results/price-store universes and unverified mirror values displayed as 2026 opens; AUD-05 53 vs 82 requirement counts; AUD-06 public/private release boundary remains open; AUD-07 console generated artifacts are not diff-gated in CI; AUD-08 post-merge `verify-site` fails because `data/mind_change/register.csv` is stale after a fresh build. Full evidence, applicable official links, the CI run, and owner scope are in the report. These touch shared registers/generated pages or an open PR, so they are recorded for coordinated integration rather than edited here.
 - **Status:** EAB-1 done. This is not certification that all historical sources were refreshed in this session; see the report scope and explicit follow-up list.
 
@@ -5452,3 +5452,175 @@ No data, site, or generator files were changed in this session; only `COORDINATI
 - **Checks on head `7f302dc`:** `verify-site` (`verify`) **pass**. `corpus` **pass**. `Evaluation readiness` **success**. Pages `build` was **cancelled, not failed**: `pages.yml` uses one global concurrency group (`pages`, `cancel-in-progress: true`) shared by every branch, so runs for other sessions superseded it. `gh run rerun` was refused for that run, and `workflow_dispatch` returned HTTP 403 (`Resource not accessible by integration`), the same refusal logged by `arena-eab9ccb9-x1`.
 - **Why `main` was broken and what fixes it:** on `main`, `verify-site` step 50 (`Replay the dated venue, report movement and strategy decision checks`, run 44600615561 on `b4e99b0`) fails with the mind-change register STALE. This PR restores the four registration anchors (R8-I-14) and makes the builder carry them forward at row level. The same root cause is AUD-08 in `docs/audit/session-eab9ccb9-verification.md`.
 - **Overlap logged, not contested:** branch `arena/41954ed5-x1` shows runs titled "R8-1: dated re-audit of the 82-row brief register (2026-11-19) — held pending register reconciliation" (run 44601034825 failed, 44601034880 and 44601034968 succeeded). That claim is not in `origin/main`'s COORDINATION.md. This session's R8-1 is the baseline CI re-run; its register is `docs/review/round8-brief-coverage.tsv`. The two sessions should reconcile the 82-row register rather than publish two. Request to that session's owner: compare against `docs/review/round8-brief-coverage.tsv` (statuses, paths and the `tools/verify_round8_coverage.py` check) before publishing a second register.
+# Session `arena/525b792a-x1` — landing-number audit + release (claimed 2026-11-19)
+
+**Session ID:** `arena/525b792a-x1` · **Branch:** `arena/525b792a-x1` (base `main` @ `856366f`, verify-site 52/52 green locally before this claim).
+**Claim written and pushed before any edit (rules 1–3).** Non-overlap audit: open PRs #91, #92, #95, #96, #110 belong to other sessions and are not touched. `index.html`/`pages/**` are not edited by this session; any change there is logged as a request to the integration owner.
+
+## Claim
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| LA-1 | Recompute every headline number on the landing page (`index.html`) from committed files (requirement counts, Week 10 injury rows, games, teams) and fail the build on drift, instead of trusting the generator's constants | done | `arena/525b792a-x1` | `tools/audit_landing_numbers.py` (new), `data/audit/landing_numbers.json` (new, generated) |
+| LA-2 | Wire LA-1 into `.github/workflows/verify.yml` as one additive step | done | `arena/525b792a-x1` | `.github/workflows/verify.yml` (additive line only) |
+| LA-3 | Record the live official state of the injury page on 2026-11-19 (Week 11 is now the current report; the landing still headlines the Week 10 snapshot) as a dated irregularity, with the source link | done | `arena/525b792a-x1` | this block only |
+| LA-4 | Integration request (not actioned here): landing should show the 2 in-progress requirements in its "open" count and label the Week 10 snapshot as superseded by the live Week 11 report | requested (not actioned — landing is integration-owned) | integration owner | `tools/build_site.py`, `index.html` |
+| LA-5 | Publish: suite, PR `arena/525b792a-x1` → `main`, merge without waiting, Pages deploy confirmation, PR link and result recorded here | done | `arena/525b792a-x1` | this block, PR |
+
+## Completion record — LA-1 … LA-5 (`arena/525b792a-x1`, 2026-11-19)
+
+**Status:** done · the PR and merge are recorded in the **PR record** below after the merge.
+
+### What shipped
+
+| Item | Where |
+|---|---|
+| LA-1 landing-number audit: 9 headline claims recomputed from committed files, plus the 14-game finals cross-check (LA-N11). Fails on any drift; mutation-tested (a changed landing number and a changed final score are each caught). | `tools/audit_landing_numbers.py`, `data/audit/landing_numbers.json` |
+| Independent re-read of the 14 official Week 10 finals (2026-11-19), row-level with the official game URL | `data/audit/w10_finals_independent_read_2026_11_19.psv` |
+| LA-2 one additive verify step (`python3 tools/audit_landing_numbers.py --check`) | `.github/workflows/verify.yml` (+4 lines) |
+| Flags F-33, F-34, F-35 appended (append-only, text insert, counter 31 → 34) and the generated outputs that render them regenerated by their own builders | `data/flags.json`, `pages/flagged.html`, `app/flagged.html`, `room/flagged.html`, `pages/review-queue.html`, `pages/executive-summary.html`, `pages/executive-brief.html`, `pages/changes.html`, `data/audit/findings.json`, `data/audit/review_queue.json` |
+
+### Sources (fetched 2026-11-19 through the fetch tool; none recalled)
+
+- https://www.nfl.com/schedules/2026/by-week/week-10 — chunks 0 and 1; all 14 Week 10 cards read FINAL (Thu 11-12 WAS–NYG; Sun 11-15 twelve games; Mon 11-16 LAC–BAL). The file transcribes each headline score.
+- https://www.nfl.com/injuries/ — read 2026-11-19; title shows **Week 11** of the 2026 season is the current report (chunk 0).
+- https://www.nfl.com/games/chargers-at-ravens-2026-reg-10 (linked from the schedule card; the score itself was read from the schedule page).
+- Repository files compared: `data/evidence/2026_11_17/week10_finals.tsv` (its own source: https://www.nfl.com/schedules/2026/REG/week/10), `data/nfl/injuries_week10.tsv` (source https://www.nfl.com/injuries/), `data/nfl/standings.tsv`, `data/nfl/schedule_week10.tsv`.
+
+### Verification performed
+
+- `python3 tools/audit_landing_numbers.py` → **10/10 claims pass** (requirements 53 / 42 met / 7 partly / 2 open; 347 week-10 injury rows; 32 clubs; 14 games; 1,846 cells, 0 mismatches; finals cross-check 14 of 14, 0 mismatches).
+- Mutation test: changing the landing's `347` to `348` → `FAIL: ['LA-N05']`; changing one final score in the 2026-11-19 file → `FAIL: ['LA-N11']`. Restored files pass.
+- Full `verify.yml` replay (52 steps, local) → **all green** after regenerating the outputs that consume `flags.json` (the 4 stale-output steps were the expected guard, fixed by regeneration, not by editing a gate).
+- Full `pages.yml` replay (21 steps, local) → **all green**. Its build steps also re-stamped `As of <time>` lines in `console/` and `hub/` and regenerated four data CSVs with new timestamps; those were reverted, not committed (the Pages CI job rebuilds them on every run).
+- Builders are deterministic: a second run of `build_site`, `build_app`, `build_audit_registers`, `build_room`, `build_results_feed_907c` produced no further diff.
+
+### Irregularities (published on the Flagged for Review page, none blocking)
+
+- **F-33** Landing says "13 / 14 Week 10 games officially final … Monday-night game still unplayed at read time" — dated 2026-11-16 and superseded: all 14 are FINAL on the 2026-11-19 read. Requested as LA-4. Source: https://www.nfl.com/schedules/2026/by-week/week-10
+- **F-34** `data/nfl/schedule_week10.tsv` is the 2026-11-14 snapshot: 13 of 14 rows still read `scheduled`. Kept as a dated snapshot, not edited. Source: https://www.nfl.com/schedules/2026/by-week/week-10
+- **F-35** Landing headlines the Week 10 injury snapshot; the official injury page now shows the Week 11 report as current. The Week 11 report is not transcribed in this repo and no Week 11 row is claimed. Source: https://www.nfl.com/injuries/
+- **Register note (not a new flag):** `data/audit/requirements_assessed.json` counts 2 requirements *in progress* that the landing's "open" count leaves out, and 4 requirements whose previous "Implemented" status was downgraded (R-09, R-13, R-19, R-25). The downgrades are already shown on `pages/requirements.html`.
+- **Repo hygiene:** every verify and Pages run rewrites `generated_at` / `As of` timestamps in tracked files. Committing them creates churn with no content change; this session committed only content.
+- **Open PRs left alone** (other sessions' work, not touched): #91, #92, #95, #96, #110.
+
+### Requests to the integration owner (logged, not actioned here)
+
+- **LA-4** `tools/build_site.py` / `index.html`: (a) replace "13 / 14 … Monday-night game still unplayed" with the 2026-11-19 state, or label it as the 2026-11-16 state; (b) count the 2 *in progress* requirements beside "2 open"; (c) label the 347-row injury figure as the Week 10 snapshot, since the live page is Week 11 (F-35).
+
+### Handoff
+
+- Re-run `python3 tools/audit_landing_numbers.py` after any landing or data change. `--check` fails until the committed JSON is regenerated.
+- The audit compares the landing text by exact phrase. If the landing wording changes, the phrase in the tool must change with it, or the build fails loudly by design.
+
+
+### Correction and repair — same session, before merge (`arena/525b792a-x1`, 2026-11-19)
+
+**Correction to the completion record above.** The "53/53" and "21/21 green" replays were recorded
+before a defect in the replay harness was found: multi-line `run: |` steps were executed without
+`bash -e`, so only the last command's exit code counted. Re-run with GitHub's shell
+(`bash --noprofile --norc -eo pipefail`), the verify replay found **one real failure on `main`**, which
+has been red since PR #117 (`verify-site` fails on `Replay the dated venue, report movement and strategy
+decision checks`, check G of `tools/verify_mind_change.py`). Main was not green when this session started
+or when PR #116 first opened. The PR's own `verify-site` run also failed on this step.
+
+**Root cause (verified).** The scheduled refresh commit `65ba4c4` (`x1-bot`, 2026-11-19 19:29 UTC)
+ran `tools/build_preregistration.py` in a shallow CI clone. The builder recorded the four pre-registration
+anchors as `unresolved-shallow-checkout` and erased the registration commits committed at `856366f`
+(PR-01 `25221eb86244`, PR-02 `0747005a77a6`, PR-03 `0709442e63a0`, PR-04 `7bd7a4889c8f`). The carry-forward
+that should have kept them was gated on the *whole file* having been built with full history, and the
+previous register carried `history_scope.shallow: true`, so the gate was closed.
+
+**Repair (`761c5e3`).**
+- `tools/build_preregistration.py`: the carry-forward is now decided **per row**. An anchor is carried
+  forward when the rule bytes are unchanged and the stored value is a real 40-hex commit that is not the
+  previous build's boundary commit. The boundary test is the one the original guard was written for.
+- `data/preregistration/register.{json,csv}` restored from `856366f`, then rebuilt. The four anchors are
+  `registered` with `anchor_carried_forward: "carried from a full-history build"`.
+- `data/mind_change/register.csv` and `pages/shadow-baseline.html` regenerated by their builders.
+- Proof in a **depth-1 clone** (the CI shape): the builder keeps all four anchors `registered`, and
+  `verify_mind_change.py` prints `PASS`. The only diff it writes is `generated_at` and the boundary text.
+- Verified against a **full-history clone** of GitHub: all four registration commits exist (commit
+  subjects and dates in the register match).
+
+**New irregularity, published as flag F-36 (high).** PR-03's rule file `docs/methodology/results-feed.md`
+was edited after its registration commit. SHA-256 at `0709442e63a0` is `7f6c20c536f2fc6d`; at
+`0c3e1e31d4` (N-4, 2026-11-17) and now it is `b571816538b9ab0e`. The register already said
+`no - edited after registration`; that status is now visible on the Flagged page. Not resolved here.
+
+**Verification after the repair.** `verify.yml` replay (`bash -eo pipefail`): **53 of 53** green.
+`pages.yml` replay: **21 of 21** green. Shallow-clone proof above. The PR's `verify-site` must
+be re-run on the final commit before merge; that result is recorded in the PR record below.
+
+**Board note for the owner of `tools/build_preregistration.py` / `data/preregistration/**`:** the repair
+touches your files because `main` was red and the fix is a defect in the builder, not a content change.
+Nothing was re-registered or re-dated. If you disagree with the per-row rule, revert `761c5e3`'s builder
+hunk and re-run the builder in a full-history clone.
+
+### Post-merge record — `arena/525b792a-x1` (2026-11-19)
+
+- **PR:** [#116](https://github.com/karagemop466-tech/X1/pull/116) — `arena/525b792a-x1` → `main`
+- **Merge:** `1669b32ef5c892a53fc08b47e5469572051d0880` (merge commit, `gh pr merge 116 --merge`, 2026-11-19T19:47:01Z)
+- **Checks on the final PR head `6ab5c26`:** `verify-site` success · `Evaluation readiness` success · `Publish static site to GitHub Pages` success.
+- **`main` after the merge (`1669b32`):** `verify-site` success · `Publish static site to GitHub Pages` success · `pages build and deployment` success. `main`'s `verify-site` had been failing at `b4e99b0` on the step this PR repairs.
+- **Live checks (fetched after deploy):** https://karagemop466-tech.github.io/X1/pages/flagged.html shows **35 flags** including F-33…F-36; https://karagemop466-tech.github.io/X1/pages/shadow-baseline.html shows PR-01/02/04 `registered` with their registration commits and PR-03 `no - edited after registration`.
+- **Not done here, logged:** LA-4 (landing text, integration-owned); the data-refresh bot's shallow-checkout runs will rewrite the pre-registration `history_scope` boundary text on each run (benign, verified in a depth-1 clone); the refresh bot also commits large regenerated CSVs (`data/console/price_snapshots.csv`) on each run, which is churn the owners may want to scope.
+- **Sandbox limit recorded:** outbound HTTP from this sandbox is restricted to GitHub/npm/PyPI hosts, so the live `github.io` pages were checked with the fetch tool, not curl.
+
+---
+
+---
+
+# Session `arena/fccb0ff1-x1` — stale-scope takeovers and final evidence audit (2026-11-19)
+
+**Branch:** `arena/fccb0ff1-x1` (fixed by Arena; based on `main` at `856366fcf51cfeb1a71f3129f0dd9e3c619c3161`).
+**Claim committed before implementation.** As of 2026-11-19 19:28 UTC, the latest commits on the open tasks below were more than 60 minutes old and had no later commits; these are recorded as stale handoffs under rule 10. Scope is limited to the listed files plus this append-only board entry.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| H-95 | Take over and preserve PR #95's public/private release-boundary audit; state clearly that no private store or terms approval is established, and record any verified publication-risk irregularities without claiming legal conclusions | done — boundary and market-provenance audit recorded without a legal conclusion | `arena/fccb0ff1-x1` (handoff from `arena/8d2bacbb-x1`, last commit `ffd1579` at 06:45:29Z) | `docs/audit/public-release-boundary.md`, `docs/review/line-market-source-audit.md` |
+| H-95a | Publish the market-line provenance mismatch as OD-F10 on the Origination & Skill Desk's existing Flagged for review page | done — OD-F10 published with source links and hash mismatch disclosed | `arena/fccb0ff1-x1` | `tools/origination_desk/build_site.py`, `origination-desk/decisions-flags.html` |
+| H-96 | Take over PR #96's designation calibration evaluator and method; verify only the code with synthetic tests, do not publish empirical play rates without complete official evidence | done — manifest-gated evaluator; synthetic tests only, no empirical NFL estimate | `arena/fccb0ff1-x1` (handoff from `arena/3ea00c0a-x1`, last commit `7c3ff08` at 06:45:50Z) | `tools/designation_calibration.py`, `docs/designation-calibration.md`, `tests/test_designation_calibration.py` |
+| H-110 | Take over PR #110's 2026-11-19 verification-pack counts; regenerate the summary/page from the verifier and preserve blanks for quantities not measured | done — measured counts published; A7/A8 evidence gaps explicitly marked REVIEW | `arena/fccb0ff1-x1` (handoff from `arena/427c1843-x1`, last commit `95e20e4` at 07:18:39Z) | `data/verification/2026_11_19/verification_summary_2026_11_19.json`, `tools/verify_2026_11_19.py`, `tools/build_room.py`, `room/stale.html` |
+| H-91/92a | Take over only the narrow originated-lines provenance correction after finding that the published row-source link does not identify its mirror-sourced market line; label each value's provenance without presenting mirror odds as official | done — display split into mirror / official scores-reference / computed model; exact mirror hash remains unresolved and flagged | `arena/fccb0ff1-x1` (stale subtask handoff from PRs #91/#92; latest commits 03:58:04Z / 04:08:24Z) | `tools/build_console.py`, `console/lines.html` |
+
+**Non-overlap:** PRs #91 and #92 remain explicitly untouched because their broad generated-site/raw-availability scopes overlap each other and the public/private release boundary is unresolved. Their live/row-level capture artifacts are not imported by this takeover. No shared index/navigation, Pages assembly, or workflow is edited here. Those scopes require a later integration decision and are listed as a blocking review item, not silently treated as completed.
+
+**Rebase conflict log (2026-11-19 19:29 UTC):** `main` advanced during this required pre-push `git pull --rebase` and added the `arena/621df229-x1` integration record. The conflict was only at the append-only tail of `COORDINATION.md`; both the upstream session's record and this session's stale-task claim are retained verbatim. No other files conflicted.
+
+**Rebase conflict log (2026-11-19 19:32 UTC):** during the required pre-push rebase, `main` advanced through PR #118 and added the independent EAB audit and its release records. The conflict was only in the append-only tail of `COORDINATION.md`; the full upstream record and this session's claim were both preserved. No source or generated data files were part of this conflict.
+
+**Rebase conflict log (2026-11-19 19:49 UTC):** the pre-push rebase fetched `main` through `b5e756a` (PR #116). Four append-only `COORDINATION.md` conflicts occurred while replaying this session's original claim, H-95a/H-91 scope additions, and completion record. Each was resolved by preserving the complete upstream PR #116 release record and this session's corresponding claim/completion text; no other files conflicted and no upstream record was discarded.
+
+**Scope addition H-95a (committed before implementation):** publish the independently rechecked market-line provenance mismatch as OD-F10 on the existing Origination & Skill Desk `Flagged for review` page. This touches only `tools/origination_desk/build_site.py` and its deterministic output `origination-desk/decisions-flags.html`; no table data, shared landing page, navigation, or Pages workflow is changed. The report and page will distinguish the official NFL scores link from the nflverse market-line mirror and will not claim the mirror is official.
+
+**Scope correction H-91/92a (committed before implementation):** this supersedes the “PRs #91 and #92 remain explicitly untouched” sentence above for only the stated provenance subtask. A read-only audit found `tools/build_console.py` renders the `Market side/total/ML` rows with an NFL Scores link and model-code link, while the input `data/console/originated_lines.csv` declares `source_tier=mirror` and points to `nflverse/nfldata`. Because the latest commits for #91 and #92 are stale by more than 60 minutes, this session takes over only `tools/build_console.py` and its generated `console/lines.html` to expose that distinction. No other PR #91/#92 files, raw snapshots, availability series, indexes, nav, or workflow changes are included; the rest of their overlapping feature work remains for later review.
+
+## Completion record — H-95, H-95a, H-96, H-110, H-91/92a (2026-11-19)
+
+- **H-95 public/private boundary:** `docs/audit/public-release-boundary.md` records the public-repository state, the Pages copy of row-level CSV/JSON, and the absence of a demonstrated private-store handoff or terms/permission approval. The GitHub repository visibility query returned `isPrivate: false`; the checkout inventory recorded 13 tracked `data/raw/` paths and 37 tracked `data/captures/payloads/` files. Counts and visibility do not establish source rights. No legal conclusion is made; the official NFL/GitHub URLs in the memo are for manual review and were not fetched in this implementation.
+- **H-95a / OD-F10:** `origination-desk/decisions-flags.html` now identifies the old Source-cell omission and links the originator, registry, console builder, nflverse mirror, and NFL Scores results-reference page. `tools/origination_desk/verify_desk.py` passed 1,626 checks. The Desk says clearly that NFL Scores is not the price source and that mirror values are not official.
+- **H-91/92a:** `console/lines.html` separates market-value source (nflverse mirror), official NFL Scores (results reference only), and the computed fair-line model; a populated market row fails the generator if its URL/tier differs from the registered mirror, while missing market values remain blank. The exact capture remains unresolved: current `data/raw/nflverse/games.csv` SHA-256 is `5a61d3121f2178ce81d43fe8894dfb666ac853f6acce20077cb4199410a4eb01`, versus `60ea2f76bd2c539c3080b8efbb7863710284c9afe173b8399a1a1191bf03d5c8` in `src/console/sources.py`. OD-F10 and `docs/review/line-market-source-audit.md` disclose the mismatch; no checksum verification is claimed. `tools/verify_console.py`: 34 pages / 5,832 links / 3,323 data rows, all sourced or explicitly marked.
+- **H-96 calibration:** `tools/designation_calibration.py` requires a hash-bound reviewer manifest before CLI output, including attested complete official evidence, source review, seasons, and 32 distinct team IDs per season. Ten synthetic tests passed and Python compilation passed. No NFL observations, empirical play rates, or permission claim were created; manifest validation binds files and reviewer assertions but does not authenticate NFL content or establish rights.
+- **H-110 verification pack:** `data/verification/2026_11_19/verification_summary_2026_11_19.json` and `room/stale.html` are regenerated from the verifier. A1–A6 measured respectively 96/96, 6/6, 32/32, 482/482, 6/6, and 91/91. The page reports **6 pass / 2 review / 0 fail**. A7 is REVIEW: 253 injury rows cover 24/26 scheduled clubs and 12/13 fixtures; 16 designations are measured (7 Questionable, 9 Out); the current capture has no rows for CIN@WAS, while six bye clubs are separately excluded. It does not assert that the official report lacks a block. A8 is REVIEW: three dated availability records include two explicit starter-evidence rows and AV-03 (Jacoby Brissett) as partial/non-starter evidence; no starter status is inferred from that row.
+- **Verification:** `tools/build_room.py --check` and `tools/verify_2026_11_19.py --check` passed with the two REVIEW findings preserved; `tools/origination_desk/build_site.py --check` passed; `tools/check_links.py` passed 211 files / 52,244 assertions; `scripts/verify_site.py` passed 211 pages; `tools/verify_deployed_tree.py` passed 219 pages / 6,080 links (215 reachable; the same four pre-existing orphans were reported); `python3 -m unittest -v tests.test_designation_calibration` passed 10 synthetic tests; `py_compile` and `git diff --check` passed. The whole-console builder was run to regenerate the scoped line page; all unrelated tracked generated pages/data were restored and the existing navigation was preserved.
+- **Sources / limits:** no official NFL webpage was fetched in this implementation. `docs/review/line-market-source-audit.md` links official NFL Scores only as a results reference, the nflverse market-data mirror, and the local source mapping. No new raw evidence was fetched, no private store or terms approval was created, and no empirical estimate was published. Broad PR #91/#92 work, shared navigation/index, Pages assembly/workflows, and final publication remain out of this claim.
+- **Release:** see the post-merge release record below for PR #125, main checks, Pages deployment, and live-page spot checks.
+
+## Post-merge release record — PR #125 (2026-11-19)
+
+- **PR:** [#125](https://github.com/karagemop466-tech/X1/pull/125) — `arena/fccb0ff1-x1` → `main`.
+- **Merge:** `41825e1053814ca05afd0219aabf0d77337f2b28`, merged with `gh pr merge 125 --merge` at `2026-11-19T19:58:09Z`.
+- **Final PR-head checks:** Evaluation readiness / `corpus` passed ([run 44603531676](https://github.com/karagemop466-tech/X1/actions/runs/44603531676)); `verify-site` passed ([run 44603531600](https://github.com/karagemop466-tech/X1/actions/runs/44603531600)); static-site `build` passed ([run 44603531753](https://github.com/karagemop466-tech/X1/actions/runs/44603531753)). PR-triggered deployment was skipped as expected.
+- **Post-merge `main` checks:** Evaluation readiness passed ([run 44603766019](https://github.com/karagemop466-tech/X1/actions/runs/44603766019)); `verify-site` passed ([run 44603766064](https://github.com/karagemop466-tech/X1/actions/runs/44603766064)); static-site build and deploy passed ([run 44603766092](https://github.com/karagemop466-tech/X1/actions/runs/44603766092)); `pages build and deployment` passed ([run 44603764852](https://github.com/karagemop466-tech/X1/actions/runs/44603764852)). The Pages API's latest build reports `status: built` for commit `41825e1053814ca05afd0219aabf0d77337f2b28`, updated `2026-11-19T19:59:21Z`.
+- **Live-page spot checks after deployment:** [console/lines.html](https://karagemop466-tech.github.io/X1/console/lines.html) shows market values attributed to the nflverse mirror, NFL Scores as results reference only, model-derived fair lines, and the unresolved mirror-hash warning; [Origination Desk flagged page](https://karagemop466-tech.github.io/X1/origination-desk/decisions-flags.html) displays OD-F10 and both recorded hashes; [Decision Room staleness page](https://karagemop466-tech.github.io/X1/room/stale.html) shows 6 pass / 2 review / 0 fail, with A7 missing capture rows for CIN@WAS and A8's partial AV-03 record explicitly disclosed.
+- **Final local verification after rebase:** 10 H-96 synthetic tests passed; console verifier passed (34 pages, 5,832 links, 3,323 sourced/marked rows); Origination Desk checks passed (1,626 checks); room builder and dated verifier checks passed with A7/A8 still REVIEW; link check passed (211 files / 52,284 assertions); site verification passed (211 pages); deployed-tree verification passed (219 pages / 6,080 links). It still reports the same four pre-existing unreachable pages: `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, and `pages/executive-brief.html`. Python compilation and `git diff --check` passed.
+- **Limits remain:** the local nflverse file hash is unresolved, no official NFL page was fetched in this implementation, no private store or terms approval is established, and no empirical designation calibration result is claimed. A7/A8 remain evidence reviews; the broader PR #91/#92 work and shared navigation/index remain out of scope.
+
+
+### Merge conflict log — `arena-757174a7-x1` (2026-11-19, second upstream merge)
+
+- **Conflicts on merging `origin/main` (`6726c21`) into `arena/757174a7-x1`:** `tools/build_preregistration.py`, `data/preregistration/register.json`, `COORDINATION.md`.
+- **Resolution:** the upstream session (`arena/525b792a-x1`, PR #125/#126 line) fixed the same carry-forward bug with `_is_real_anchor(commit, boundary)`, an equivalent to this session's row-level check. Its builder and register were **kept** (taken from `origin/main`), so that session's work is not discarded. This session's own builder variant was dropped in favour of it. The anchors are the same in both (PR-01 `25221eb`, PR-02 `0747005`, PR-03 `0709442`, PR-04 `7bd7a48`). COORDINATION.md was resolved by keeping both sides (append-only blocks).
+- **Verification after resolution:** `tools/build_preregistration.py --check` pass, `tools/build_mind_change.py --check` pass, full replay of `verify.yml` (`/tmp/run_ci.py`) **53 pass, 0 fail** (one step was added upstream, so the count is 53, not 52). Replay-generated `data/verification/*` rewrites were reverted before commit.
+- **Owner review request:** the builder logic now in `main` is upstream's (`arena/525b792a-x1`). Its owner should confirm that `_is_real_anchor` preserves the four anchors above. This session has no claim on that file.
