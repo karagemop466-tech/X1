@@ -5394,3 +5394,64 @@ No data, site, or generator files were changed in this session; only `COORDINATI
 - **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118) merged to `main` at `2d99536b6a42cf9e9c7d2063c796fb09b48b3ab6` (2026-11-19 19:33:43 UTC). The PR initially had no reported status checks; after merge, [verify-site run 44599596695](https://github.com/karagemop466-tech/X1/actions/runs/44599596695) failed at `verify_mind_change.py` because its committed register was stale. [Pages artifact build/deploy run 44599596663](https://github.com/karagemop466-tech/X1/actions/runs/44599596663), [pages-build-deployment run 44599595460](https://github.com/karagemop466-tech/X1/actions/runs/44599595460), and Evaluation readiness run 44599596696 succeeded. The same `verify-site` step failed again after coordination-only PR #121 ([run 44600211607](https://github.com/karagemop466-tech/X1/actions/runs/44600211607)); PR #121's [artifact build/deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600211911) and [Pages deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600210613) succeeded, and the root was fetched live afterward. The failed data-quality gate is AUD-08 and was not weakened or silently fixed because its data/generator are owned by completed PR #97 scope.
 - **Follow-up requests (no overlap edits made):** AUD-01 stale Week 11 blocker; AUD-02 dated 5-club vs later 31-club depth scope; AUD-03 conflicting empty vs historical backtest leaderboard and violation of the no-backtests-on-leaderboard rule; AUD-04 incompatible results/price-store universes and unverified mirror values displayed as 2026 opens; AUD-05 53 vs 82 requirement counts; AUD-06 public/private release boundary remains open; AUD-07 console generated artifacts are not diff-gated in CI; AUD-08 post-merge `verify-site` fails because `data/mind_change/register.csv` is stale after a fresh build. Full evidence, applicable official links, the CI run, and owner scope are in the report. These touch shared registers/generated pages or an open PR, so they are recorded for coordinated integration rather than edited here.
 - **Status:** EAB-1 done. This is not certification that all historical sources were refreshed in this session; see the report scope and explicit follow-up list.
+
+---
+
+# Session `arena-41954ed5-x1` (branch `arena/41954ed5-x1`) — Round 8: dated re-audit of the brief register (2026-11-19)
+
+**Session ID:** `arena-41954ed5-x1` · **Branch:** `arena/41954ed5-x1` (from `main` @ `856366f`) · **Started (UTC):** 2026-11-19.
+**Platform note:** this session may push only to its own branch; `session-<id>/<task>` naming is adapted to one branch per session (see the top of this file).
+
+## Non-overlap audit (checked before claiming)
+
+- Open PRs at claim time: #91 (`arena/efb06932-x1`), #92 (`arena/55c364b6-x1`), #95 (`arena/8d2bacbb-x1`, `docs/audit/public-release-boundary.md`), #96 (`arena/3ea00c0a-x1`, designation calibration), #110 (`arena/427c1843-x1`, room polish). None touches the paths below.
+- Already built on `main` by other sessions (not re-claimed): season split and 136-game corpus (EVAL-71, PR #98); reserve list, stadium roof/NWS overlay, vig-free decomposition, two-stage skill desk (OD-1..OD-5, PR #111); depth matrix and 32-club deficiency (R7-2); kickoff regimes (KR-1, PR #99).
+- Still in open PRs, so not claimed: injury surprise / availability series (#91, #92), fixture context (#91, #92), designation reliability (#96).
+
+## Claim
+
+| # | Task | Status | Owner | Files in scope (exclusive) |
+|---|---|---|---|---|
+| R8-1 | Re-score each of the 82 rows of the 2026-11-17 brief-coverage register (`docs/audit/brief-coverage-2026-11-17.md`) against `main` as of 2026-11-19: current status, the artefact on disk that backs it, the verifier run, and the gap that remains. Rows whose status is stale are corrected in the new file and the change is listed. | in progress | `arena-41954ed5-x1` | `docs/audit/brief-coverage-2026-11-19.md` (new), `tools/verify_brief_coverage_2026_11_19.py` (new) |
+| R8-2 | Append this record (sources, verification, irregularities) and mark R8-1 done. Any change to a shared output (landing page, nav, `pages/**`, `app/**`, `room/**`) is logged as a rule-4 request, not made here. | in progress | `arena-41954ed5-x1` | `COORDINATION.md` (append only) |
+
+Scope limit: no value is changed in any data file; no official source is re-read unless a link is cited in the new file.
+
+## Completion record — R8-1 and R8-2 (session `arena-41954ed5-x1`, 2026-11-19)
+
+**Status: done.** Scope as claimed: `docs/audit/brief-coverage-2026-11-19.md` (new), `tools/verify_brief_coverage_2026_11_19.py` (new), this record, and one additive step appended to `.github/workflows/verify.yml`. No data file, page, or generated output was changed.
+
+**Result.** The 82 brief rows were re-scored against `main` at `856366f`. Status counts: BUILT 19 · PARTIAL 50 · DEFINED 2 · NOT BUILT 8 · DECLINED 3. Twenty-one rows changed since the 2026-11-17 register; each change names the artefact that moved it (section 5 of the audit). Most changes are merged work from other sessions (EVAL-71 / PR #98, KR-1 / PR #99, OD-1–OD-3 / PR #111, R7-2 and R7-3), which the 2026-11-17 register predates.
+
+**Sources (read 2026-11-19).**
+- https://www.nfl.com/news/ravens-jesse-minter-very-impressed-by-jacoby-brissett-feels-team-is-refreshed-after-mini-bye-week — fetched; cited for irregularity I-2.
+- https://www.commanders.com/team/depth-chart — fetched; cited for irregularity I-4.
+- https://karagemop466-tech.github.io/X1/ — fetched (landing page only, 5 chunks); row 79.
+- Every other value comes from repository files, which the verifier recomputes (section 4 of the audit).
+
+**Verification performed (all exit 0 unless noted).**
+- `tools/verify_brief_coverage_2026_11_19.py` — 121 checks: 82 rows; statuses; Nov-17 column matches the baseline row by row; Changed column; every backticked path exists; every check path exists; every official link host is allow-listed; section 4 facts recomputed from files; section 5 list; section 2 counts; I-1…I-7 present.
+- `tools/verify_2026_11_19.py` (A1–A8, pass); `tools/verify_depth_matrix.py` (32 clubs, 78 W11 rows, 51 alerts); `tools/verify_modeling_lab.py` (4 disjoint splits, 118 dual-total games, 3 ablation rows); `tools/origination_desk/verify_desk.py` (1,621 checks); `tools/build_decision_readiness.py --check` (53 rows); `tools/verify_brief_coverage.py` (the 2026-11-17 file, unchanged, passes); `tools/verify_data.py` (2,960 checks); `tools/build_preregistration.py --check` (rule hash matches; anchor skipped, shallow checkout); `tools/verify_venues_w10.py` (14 of 14); `python3 -m pipeline.capture_store verify`; `tools/evaluation/test_build.py` (6 tests); `tools/kickoff_regimes/test_trial.py` (4 tests); `tools/check_links.py` (50,773 assertions, all links resolve, no orphans).
+- The first run of the new verifier found 15 defects in my own draft (headline counts I had estimated, three paths that exist only in open PRs written as if they were on main, and bare filenames). All were corrected before this record; the verifier now passes.
+
+**Irregularities (published for owner review in the audit, section 6; none blocks the merge).**
+- **I-1 Two season splits.** `data/models/season_splits.json` (R7-3) names 2025 the final holdout and has already scored it in `data/models/personnel_ablations.json`. EVAL-71's `evaluation/protocol.json` names 2024–2025 validation and 2027 the holdout candidate. Both are on `main`; the holdout can be used once, and 2025 has been used.
+- **I-2 Brissett.** The OD-1 row in `data/origination_desk/roster/announced_starters_evidence.csv` dates an announcement to 2026-11-15 and says Minter "confirmed" the start. The R7 pack (AV-03) records a reported trade, not a club announcement. The cited nfl.com article says Brissett "starts for the Ravens on Monday", but has no dated club announcement, and Minter's quote there does not say so. The OD-1 wording overstates the article.
+- **I-3 Week 10 injury counts.** 345 (Nov-17 register), 347 data rows (`data/injuries/injuries_2026_week10.csv`), 352 lines (`data/nfl/injuries_week10.tsv`), and the brief's live figure of 279. The live Week 10 page was not re-read, so no count is confirmed here.
+- **I-4 Washington empty slot.** Not reproduced: the group table has no Washington empty gap, and the official page fetched 2026-11-19 shows no blank rank cell. The brief's VR-23 case may describe an earlier chart state.
+- **I-5 Overlapping boards.** Several pages and registers answer "what blocks a decision". PR #91, #92, #95, #96 and #110 are still open.
+- **I-6 Legacy column-1 depth files** are still published (`data/depth/replacement_depth_summary.json`, `data/pipeline/depth_charts.json`), and seven starters in `data/depth/replacement_depth.csv` still carry jersey numbers.
+- **I-7 Mirror provenance on training data.** The 2019–2025 rows are nflverse-mirror tier; the official tier starts at the 2026 standings.
+
+**Requests to owning sessions (rule 4 — logged, not actioned by editing their files).**
+1. To the session that owns `data/origination_desk/roster/announced_starters_evidence.csv` (OD-1, `arena/48279a7d-x1`): correct the BAL/Brissett row to the wording the article supports, or cite a dated club announcement. Reconcile with `data/verification/2026_11_19/official_named_availability_2026_11_19.tsv` (AV-03).
+2. To the owners of R7-3 (`arena/46887500-x1`) and EVAL-71 (`arena/d08f4a65-x1`): agree one split definition. Until then, treat 2025 as used, and the 2027 holdout as the only clean one.
+3. To integration: add `docs/audit/brief-coverage-2026-11-19.md` and irregularities I-1 to I-7 to the Flagged-for-Review page; reconcile the landing page's "53 requirements: 42 met, 7 partly met, 2 open" with the three registers (row 1).
+4. To the Week 10 injury-table owner: re-read `https://www.nfl.com/injuries/league/2026/reg10` and reconcile the 345 / 347 / 352 / 279 counts (I-3).
+5. To the depth owner: decide the Washington case (I-4) by re-reading the chart state the brief describes.
+
+**Environment limit (recorded).** This sandbox's shell reaches only GitHub, npm and PyPI. The official pages were read through the page-fetch tool, and the live Pages site was checked the same way. Nothing in this record was produced from a shell-side scrape of nfl.com.
+
+**Non-overlap (rule 3).** Open PRs #91, #92, #95, #96 and #110 were checked file by file before the claim; none touches the paths in this record. Shared outputs (landing page, navigation, `pages/**`, `app/**`, `room/**`, `origination-desk/**`) were not edited.
+
+**Branch.** Work is on `arena/41954ed5-x1`, the branch this session was assigned. Platform rule: one branch per session; the `session-<id>/<task>` naming is therefore recorded here, not used.

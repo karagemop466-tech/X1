@@ -317,3 +317,10 @@ jobs:
           python3 tools/origination_desk/verify_desk.py
           python3 -m unittest tools/origination_desk/test_desk.py
 
+
+      # Added by session arena-41954ed5-x1 (round 8, additive only): the dated brief-coverage
+      # re-audit (docs/audit/brief-coverage-2026-11-19.md). Recomputes the status counts, the Nov-17
+      # column, the changed-row list, every backticked path, every official-link host and the
+      # measured facts from the files they name. It fails if the register and the repository disagree.
+      - name: The 2026-11-19 brief coverage audit matches the repository
+        run: python3 tools/verify_brief_coverage_2026_11_19.py
