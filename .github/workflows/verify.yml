@@ -308,3 +308,12 @@ jobs:
       # from files in this repository, so a stale room is a room that disagrees with its own sources.
       - name: The Decision Room is current
         run: python3 tools/build_room.py --check
+
+      # Added by session arena/48279a7d-x1 (additive only): Origination & Skill Desk
+      # (vig-free decomposition, two-stage Brier skill leaderboard, official reserve/trades/inactives,
+      # stadium NWS weather overlay, and 32-club weekly diff).
+      - name: Origination and Skill Desk reproduces and passes unit checks
+        run: |
+          python3 tools/origination_desk/verify_desk.py
+          python3 -m unittest tools/origination_desk/test_desk.py
+

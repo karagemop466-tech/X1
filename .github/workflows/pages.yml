@@ -116,6 +116,12 @@ jobs:
         run: |
           python3 tools/build_decision_center.py --check
           python3 tools/verify_decision_center.py
+      # Added by session arena/48279a7d-x1 (additive only): gate the Origination & Skill Desk
+      # before assembling `_site/`.
+      - name: Verify the Origination and Skill Desk section
+        run: |
+          python3 tools/origination_desk/verify_desk.py
+          python3 -m unittest tools/origination_desk/test_desk.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -208,6 +214,10 @@ jobs:
           cp -r suggestions _site/
           mkdir -p _site/data/suggestions
           cp data/suggestions/*.json _site/data/suggestions/
+          # Added by session arena/48279a7d-x1 (additive only): Origination & Skill Desk
+          # HTML pages (`origination-desk/`) and source-linked CSV/JSON registers (`data/origination_desk/`).
+          cp -r origination-desk _site/
+          cp -r data/origination_desk _site/data/origination_desk
           mkdir -p _site/data/nfl
           cp data/nfl/venues_2026_week10.csv _site/data/nfl/
           # .nojekyll keeps files starting with _ and avoids any Jekyll processing

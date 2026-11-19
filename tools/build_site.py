@@ -89,6 +89,10 @@ NAV = [
     # that answers "what is blocking a decision today", the suggestions board the owner asked to
     # review before anything is built, and the 2026-11-19 live verification pack.
     ("room/index.html", "Decision room"),
+    # Added by session arena/48279a7d-x1 (additive): Origination & Skill Desk — vig-free
+    # decomposition, two-stage Brier skill leaderboard, official reserve/trades/inactives audit,
+    # stadium NWS weather overlay, and 32-club weekly what-changed diff.
+    ("origination-desk/index.html", "Origination desk"),
 ]
 
 

@@ -51,7 +51,9 @@ def _club_hosts() -> tuple[str, ...]:
 
 
 CLUB_HOSTS = _club_hosts()
-OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "github.com", "www.houstontexans.com") + CLUB_HOSTS
+# Amended 2026-11-19 by session arena/48279a7d-x1 (additive): admit weather.gov (US National
+# Weather Service official API) for the Week 11 stadium & NWS weather overlay (brief row 59).
+OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "weather.gov", "github.com", "www.houstontexans.com") + CLUB_HOSTS
 errors: list[str] = []
 
 

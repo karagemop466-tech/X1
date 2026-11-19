@@ -85,7 +85,9 @@ NAV = [
                        ("depth-parse.html", "Depth parse defects", "")]),
     ("Markets", [("results.html", "Verified results feed", "7,548"),
                  ("prices.html", "Price-snapshot store", "18.8k"),
-                 ("lines.html", "Originated lines", "6.3k")]),
+                 ("lines.html", "Originated lines", "6.3k"),
+                 # Added by session arena/48279a7d-x1: Origination & Skill Desk (8 pages).
+                 ("../origination-desk/index.html", "Origination & skill desk", "8")]),
     ("Strategy", [("strategies.html", "Strategy library", "16"),
                   ("leaderboard.html", "Leaderboard", "16"),
                   ("gates.html", "Validation and demotion gates", "14"),
