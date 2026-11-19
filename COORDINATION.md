@@ -5244,3 +5244,23 @@ Checked merged `main` (`PR #97`–`PR #109`) and all open parallel branches/PRs 
 | Confirmed Live URLs | <https://karagemop466-tech.github.io/X1/> · <https://karagemop466-tech.github.io/X1/origination-desk/index.html> · <https://karagemop466-tech.github.io/X1/origination-desk/weather-venues.html> (fetched live post-deploy and verified) |
 
 
+
+# Session `arena/9faff167-x1` — independent current-checkout audit (2026-11-19)
+
+**Branch:** `arena/9faff167-x1` (fixed Arena branch; based on `856366f`).
+**Scope claim (new, non-overlapping):** independently run the existing site/store/injury-pack
+checks; record only repository-local reproducibility and README freshness observations in a new
+audit note; ask the existing integration owner to publish any site-facing flags. No edits to the
+claimed verifiers, generated site, shared datasets, or existing review pages.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| IA-1 | Independent verification pass + dated audit note; log cross-scope request for the README and site-flag owners | in progress | `arena/9faff167-x1` | `docs/audit/current-checkout-2026-11-19-9faff167.md` (new); append-only `COORDINATION.md` |
+
+**Cross-scope request (not actioned):** the root README's "Data snapshot" statement says all data
+are dated 2026-11-14, while this checkout contains the independently dated 2026-11-19 official
+verification pack and the Week 11 injury read. Please make the README state that freshness is
+per-dataset, not a single repository-wide date. Separately, `tools/verify_2026_11_19.py --check`
+rebuilds the summary and changes only `generated_at`; it intentionally ignores that field in its
+comparison, but leaves the tracked file modified. Please consider making check mode read-only, or
+explicitly document the side effect. This session does not edit either claimed owner scope.
