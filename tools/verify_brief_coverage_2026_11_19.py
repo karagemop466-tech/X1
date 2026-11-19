@@ -4,7 +4,8 @@
 What it verifies (exit 1 on any failure, prints every failure):
   1. Section 3 has rows 1..82, each with exactly nine cells, numbered contiguously.
   2. Every status cell is one of the five allowed statuses.
-  3. The Nov-17 column matches docs/audit/brief-coverage-2026-11-17.md (row by row).
+  3. The Nov-17 column matches the frozen baseline list NOV17_STATUS (copied from the
+     2026-11-17 register at 856366f; frozen so later edits to that file cannot break this check).
   4. The Changed column is "Yes" exactly when Nov-17 differs from Now.
   5. Every backticked repository path in the document exists on disk
      (wildcards and brace alternations are expanded; ellipses are skipped).
@@ -14,6 +15,7 @@ What it verifies (exit 1 on any failure, prints every failure):
   8. Section 4 (measured facts) is recomputed from the files it names and must match.
   9. Section 5 lists exactly the rows whose status changed.
  10. The headline counts in section 2 match the table.
+ 11. Section 6 lists irregularities I-1..I-9 in order.
 
 Run:  python3 tools/verify_brief_coverage_2026_11_19.py
 """
@@ -31,7 +33,17 @@ from urllib.parse import urlparse
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DOC = os.path.join(ROOT, "docs/audit/brief-coverage-2026-11-19.md")
-OLD = os.path.join(ROOT, "docs/audit/brief-coverage-2026-11-17.md")
+NOV17_STATUS = [  # rows 1..82, frozen from docs/audit/brief-coverage-2026-11-17.md at 856366f
+    "PARTIAL", "PARTIAL", "PARTIAL", "DEFINED", "PARTIAL", "DEFINED", "PARTIAL", "PARTIAL", "DEFINED", "PARTIAL",
+    "PARTIAL", "NOT BUILT", "NOT BUILT", "PARTIAL", "NOT BUILT", "PARTIAL", "PARTIAL", "PARTIAL", "PARTIAL", "NOT BUILT",
+    "PARTIAL", "PARTIAL", "BUILT", "PARTIAL", "NOT BUILT", "PARTIAL", "NOT BUILT", "NOT BUILT", "NOT BUILT", "PARTIAL",
+    "PARTIAL", "NOT BUILT", "PARTIAL", "PARTIAL", "NOT BUILT", "BUILT", "DEFINED", "DEFINED", "PARTIAL", "PARTIAL",
+    "NOT BUILT", "NOT BUILT", "PARTIAL", "PARTIAL", "NOT BUILT", "NOT BUILT", "PARTIAL", "PARTIAL", "BUILT", "PARTIAL",
+    "DECLINED", "PARTIAL", "PARTIAL", "NOT BUILT", "PARTIAL", "PARTIAL", "NOT BUILT", "PARTIAL", "NOT BUILT", "NOT BUILT",
+    "NOT BUILT", "PARTIAL", "NOT BUILT", "PARTIAL", "NOT BUILT", "DECLINED", "NOT BUILT", "PARTIAL", "NOT BUILT", "BUILT",
+    "NOT BUILT", "BUILT", "BUILT", "PARTIAL", "PARTIAL", "BUILT", "DECLINED", "BUILT", "BUILT", "PARTIAL",
+    "BUILT", "PARTIAL",
+]
 
 ALLOWED_STATUS = {"BUILT", "PARTIAL", "DEFINED", "NOT BUILT", "DECLINED"}
 CHECK_TOKENS = {"presence", "fetch", "grep", "—", "-"}
@@ -106,7 +118,6 @@ def looks_like_path(tok: str) -> bool:
 
 def main() -> int:
     text = read(DOC)
-    old_text = read(OLD)
 
     # ------------------------------------------------------------ section 3
     sec3 = section(text, "## 3. Row register", "## 4. Measured facts")
@@ -124,15 +135,10 @@ def main() -> int:
     else:
         ok("82 rows, numbered 1..82")
 
-    # Nov-17 statuses
-    old_status: dict[int, str] = {}
-    for line in old_text.splitlines():
-        if re.match(r"^\| \d+ \|", line):
-            c = split_cells(line)
-            if len(c) >= 3:
-                old_status[int(c[0])] = c[2]
-    if len(old_status) != 82:
-        fail(f"Nov-17 register parsed {len(old_status)} rows, expected 82")
+    # Nov-17 statuses: frozen list (see NOV17_STATUS), so later edits to the 2026-11-17 file cannot move this check
+    old_status: dict[int, str] = {i + 1: s for i, s in enumerate(NOV17_STATUS)}
+    if len(NOV17_STATUS) != 82:
+        fail(f"frozen Nov-17 list has {len(NOV17_STATUS)} entries, expected 82")
 
     computed_changed: list[int] = []
     now_counter: Counter = Counter()
@@ -218,7 +224,7 @@ def main() -> int:
     # ------------------------------------------------------------ section 6
     sec6 = section(text, "## 6. Irregularities", "## 7. What this audit did not do")
     ids = [split_cells(l)[0] for l in sec6.splitlines() if re.match(r"^\| I-\d+ \|", l)]
-    if ids != [f"I-{i}" for i in range(1, 8)]:
+    if ids != [f"I-{i}" for i in range(1, 10)]:
         fail(f"section 6 irregularity ids: {ids}")
     else:
         ok()

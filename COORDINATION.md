@@ -5455,3 +5455,27 @@ Scope limit: no value is changed in any data file; no official source is re-read
 **Non-overlap (rule 3).** Open PRs #91, #92, #95, #96 and #110 were checked file by file before the claim; none touches the paths in this record. Shared outputs (landing page, navigation, `pages/**`, `app/**`, `room/**`, `origination-desk/**`) were not edited.
 
 **Branch.** Work is on `arena/41954ed5-x1`, the branch this session was assigned. Platform rule: one branch per session; the `session-<id>/<task>` naming is therefore recorded here, not used.
+
+### Update — R8-1 / R8-2 after `main` moved to `2d99536` (session `arena-41954ed5-x1`, 2026-11-19)
+
+**What changed since the record above.** `main` advanced during the session (PRs #113–#119 and a data refresh at 19:29 UTC). The audit was re-measured at `2d99536`; the completion record above still holds except for the points below.
+
+- **Depth table.** `data/depth/depth_groups_32.csv` now has 1,823 rows (1,451 standard). The 1,824 in the first draft was measured at `856366f`. The one row that disappeared is a DET defensive-back depth-4 entry (Nick Whiteside) that the 04:09 build had mis-filed; the official Lions chart captured at 19:28 lists him at offensive guard. This is recorded as irregularity **I-8** (corrected, not lost). The audit's row 44 claim that Houston "has no row" was wrong: Houston has one placeholder row (`unavailable_image_only`). Fixed.
+- **Captures.** `data/captures/index.jsonl` has 89 entries, 18 injury. Rows 13 and 22 and section 4 updated.
+- **Baseline frozen.** PR #113 (branch `arena/42887cb2-x1`, open) edits `docs/audit/brief-coverage-2026-11-17.md` (row 25 NOT BUILT → BUILT). The verifier now carries the 82 Nov-17 statuses as a frozen list (`NOV17_STATUS`, copied from `856366f`), so a later edit to that file cannot break the check. Recorded as **I-9** together with PR #116 (branch `arena/525b792a-x1`, open), which touches `.github/workflows/verify.yml`, `COORDINATION.md`, `pages/executive-summary.html`, `pages/flagged.html`, `app/flagged.html` and `data/flags.json`. The two additions to `verify.yml` must both survive that merge.
+- **Verifier.** `tools/verify_brief_coverage_2026_11_19.py` → 121 checks, pass, at `2d99536`. It now also checks that section 6 lists I-1…I-9.
+- **CI step.** The added step in `verify.yml` now has `if: always()`. The `verify` job already fails at an earlier step (below), so without it the audit check would never run on `main`. The YAML parses (`PyYAML`, 55 steps).
+
+**Blocker found — the `verify` job on `main` is red (not caused by this session).** Failing run `44599596695` (commit `2d99536`, `verify-site`), failing step **"Replay the dated venue, report movement and strategy decision checks"**. The same step has failed since `42c58e2` (PR #117; run `44599198573`). The cause is a stale committed file, not a broken check:
+- `python3 tools/verify_mind_change.py` → `FAIL: G: STALE — register.csv differ from a fresh build`. In this sandbox's shallow clone the builder writes the PR-01…PR-04 rows as `unresolved-shallow-checkout`; the committed file says `registered`. After `git fetch --unshallow` the `G` check still fails, so shallow checkout is not the whole story.
+- `python3 tools/build_preregistration.py --check` (full history) → `STALE: data/preregistration/register.json` and `register.csv` differ from a fresh build.
+- Other checks at `2d99536`, all exit 0: `verify_2026_11_19 --check`, `verify_depth_matrix`, `verify_modeling_lab`, `origination_desk/verify_desk` (1,621 checks; unit tests OK), `build_decision_readiness --check`, `verify_brief_coverage` (2026-11-17), `verify_data`, `verify_venues_w10`, `capture_store verify`, `check_links` (50,773 assertions), `build_room --check` (13 pages), `official/gamecentre selftest`, `build_decision_review --check`, `kickoff_regimes/test_trial`, `evaluation/test_build`.
+
+**Not fixed here, deliberately.** `data/mind_change/**` and `data/preregistration/**` are shared outputs. This session is not the integration session, so the fix is logged as a request, not a direct edit:
+- **Request R8-RQ-1 (to the owner of `data/mind_change/**`, PR #97, `arena/e0c7de42-x1`; and to the preregistration owner):** decide whether `register.csv` and the PR-01…PR-04 status should read `registered` (the committed value) or the builder's `unresolved-shallow-checkout`. Regenerate in the CI configuration and commit. Until then `verify.yml`'s replay step stays red on `main`.
+- **Request R8-RQ-2 (to integration):** the verify job's checkout depth and the builder's anchor-resolution behaviour disagree; pick one and document it in `README.md`.
+
+**Mistakes made during this session (logged, reverted before commit).**
+- I ran `tools/build_mind_change.py` once to test the diff. It rewrote `data/mind_change/register.csv` in the working tree. Restored with `git checkout --`; nothing from that run was committed.
+- A `--check` run changed `generated_at` in `data/verification/2026_11_19/verification_summary_2026_11_19.json`. Two tools write that path (`tools/verify_2026_11_19.py`, `tools/build_room.py`), so the writer is not identified. Restored with `git checkout --`. This is a `--check` tool that mutates a committed file (owner `arena/427c1843-x1`, request R8-RQ-3).
+- The first commit of this branch accidentally included that summary file and was rebuilt before pushing; the rebase conflict in this file was resolved by taking `origin/main` and re-appending this record once.

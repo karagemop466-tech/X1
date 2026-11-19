@@ -322,5 +322,8 @@ jobs:
       # re-audit (docs/audit/brief-coverage-2026-11-19.md). Recomputes the status counts, the Nov-17
       # column, the changed-row list, every backticked path, every official-link host and the
       # measured facts from the files they name. It fails if the register and the repository disagree.
+      # `if: always()` so this audit check still runs when an earlier step (the mind-change replay
+      # above) is red on main; the earlier failure is recorded separately as a flagged item.
       - name: The 2026-11-19 brief coverage audit matches the repository
+        if: always()
         run: python3 tools/verify_brief_coverage_2026_11_19.py
