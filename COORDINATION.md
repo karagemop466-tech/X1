@@ -5358,3 +5358,31 @@ Scope: a **read-only baseline re-verification** of `main` (`856366f`) and a live
 | R8-3 | Brief-to-repo coverage: map each brief item to the file that implements it, or to "not implemented" | unclaimed → in progress | `arena-757174a7-x1` | `docs/review/round8-brief-coverage.md` (new) |
 
 Overlap check (rule 3): open PRs #110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`), #92 (`arena/55c364b6-x1`), #91 (`arena/efb06932-x1`) were read from `gh pr list`. None touches `docs/review/round8-*`. This session will not edit `room/**`, `origination-desk/**`, `data/**`, or any generator.
+
+### Completion record — R8-1, R8-2, R8-3 (`arena-757174a7-x1`, 2026-11-19) — status: **done**
+
+| # | Task | Status | Files written | Result |
+|---|---|---|---|---|
+| R8-1 | Re-run every `verify.yml` run step on `856366f` | done | `docs/review/round8-baseline.md` | **52 of 52 run steps PASS**, measured output recorded per step. Two steps re-wrote committed `generated_at` timestamps; those files were reverted (R8-I-01). |
+| R8-2 | Live check of Pages and the official pages | done | `docs/review/round8-baseline.md` (section 2) | Live landing page served the current build. Latest `main` Pages, CI and injury-ledger runs: success. Official injury page: 17 of 17 sampled rows match the capture, including Lions Joseph, Mays and Reed as `Out`. Official trades page: 12 of 12 trades match. |
+| R8-3 | Brief-to-repo coverage for all 82 items | done | `docs/review/round8-brief-coverage.tsv`, `.md`, `tools/verify_round8_coverage.py` | 82 rows: 21 BUILT, 48 PARTIAL, 2 DEFINED, 8 NOT BUILT, 3 DECLINED. 25 rows changed status since the 2026-11-17 register (NOT BUILT 24 → 8). 150 evidence paths and all links verified mechanically. |
+
+**Sources read live on 2026-11-19 (fetch tool):**
+- <https://www.nfl.com/injuries/league/2026/reg10> — Week 10 injury page (17-row sample; title/body week mismatch recorded as R8-I-04).
+- <https://www.nfl.com/transactions/league/trades/2026/11> — all 12 November 2026 trades.
+- <https://karagemop466-tech.github.io/X1/> — live landing page.
+
+**Sources cited by the repo and not re-fetched here:** the Week 10/11 schedule pages, the schedule announcement (`media.nfl.com`), the Game Center links, the NWS API, the club depth charts (Falcons, Packers, Ravens), the reserve list, and the nflverse mirror. Each is listed in the register with the link as cited.
+
+**Verification performed:** `verify.yml` run steps replayed in order (52/52 PASS); `tools/check_links.py` (211 files, 50,773 assertions, all links resolve); `scripts/verify_site.py` (211 HTML pages, passed); `tools/verify_round8_coverage.py` (82 rows, 150 paths, all links on allowed hosts).
+
+**Irregularities (all published on the register; none blocks a merge):** R8-I-01 to R8-I-12 in `docs/review/round8-baseline.md` section 4 and section 1–2. Highest priority: R8-I-05 (Packers jersey prefixes still in `replacement_depth.csv`), R8-I-07 (diagnostic backtest row inside the leaderboard CSV, contrary to the pre-registration rule), R8-I-04 (official Week 10 injury page titled "Week 11").
+
+**Requests to the final integration owner (logged, not edited — shared outputs and workflow files are outside this claim):**
+1. Add `python3 tools/verify_round8_coverage.py` to `.github/workflows/verify.yml` (rule: the coverage register must stay consistent with the paths it cites).
+2. Link `docs/review/round8-baseline.md` and `docs/review/round8-brief-coverage.md` from the Flagged for Review page (`app/flagged.html`) and the requirements page, and carry R8-I-04, R8-I-05, R8-I-07 and R8-I-10 there with their links.
+3. Place the dated schedule announcement beside `pages/schedule.html` (R8-I-10 / brief row 25).
+4. Make `data/verification/**/verification_summary_*.json` deterministic, or exclude `generated_at` from the diff (R8-I-01).
+5. Pin dependency versions in `requirements.txt` or add a lock file (R8-I-02).
+
+**Not done in this session (honest limits):** the full 347-row re-diff of the Week 10 injury page; the 32-club depth re-read; the Texans depth image; any change to a published page; any new data row. Those remain on the flagged queue and in the register's NOT BUILT / PARTIAL rows.
