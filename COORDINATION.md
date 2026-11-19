@@ -5710,3 +5710,96 @@ hunk and re-run the builder in a full-history clone.
 
 - No change to the Week 10 published tables, the landing's requirement counts, or any other session's claimed scope.
 - No probability, forecast, designation-to-play-rate estimate, snap count, or inactive-list claim. These need other sources (see `docs/week11/README.md` → "What this does not claim").
+## Session `arena/3a6060ef-x1` — final verification audit (2026-11-19)
+
+**Session ID:** `arena/3a6060ef-x1` · **Branch:** `arena/3a6060ef-x1` (identical to `main` @ `a1cca5c`, the PR #127 merge). **Role:** final independent verification of the integrated tree; confirmation of GitHub Pages deployment.
+
+No new data, pages, or generators were added. This session re-ran the full verification chain against the committed tree and confirmed the live deployment.
+
+### Verification performed (all pass)
+
+| Tool | Result |
+|------|--------|
+| `python3 tools/verify_data.py` | 2,960 integrity checks passed, EXIT=0 |
+| `python3 tools/build_site.py` | index.html + 30 pages written, EXIT=0 (committed HTML matches generator output) |
+| `python3 scripts/verify_site.py` | 211 HTML pages; local links resolve; every data-table row carries an official source link; EXIT=0 |
+| `python3 tools/check_links.py` | 211 files, 52,342 assertions; all links resolve; no orphan pages; all external hosts approved; EXIT=0 |
+| `python3 tools/verify_app.py` | 8,499 rows sourced + 24 flagged, 0 unsourced; passed |
+| `python3 tools/verify_against_official.py` | 1,846 Week 10 cells compared vs official page; 0 mismatches; PASS |
+| `python3 tools/verify_official_correlations.py` | 1,034/1,034 official nfl.com sources; PASS |
+
+### GitHub Pages
+
+- Status: `status: built` at https://karagemop466-tech.github.io/X1/ (legacy builder, source: main:/)
+- Live landing page fetched and confirmed serving: clean dashboard with the one-row-per-requirement decision-readiness table (gate that blocks each requirement + number that clears it + current value + source link)
+
+### Irregularities (honestly flagged, none blocking — all published with source links)
+
+- **Q-02 / Q-31**: No licensed price feed → all price, CLV, edge, ROI cells blank or mirror-labelled, never official
+- **Q-04**: No licensed snap counts → depth/availability limited to club depth charts
+- **Q-07**: Reward funding/eligibility/jurisdiction unresolved → paper league only
+- Dated snapshot staleness (e.g., Jets standings row vs live page): snapshots correctly labeled dated, never inferred
+
+### Pull request and merge
+
+This branch is identical to `main` at the PR #127 merge tip (`a1cca5c`); the only change is this COORDINATION.md audit record. The integration is already on `main` and the site is already live. A PR from this branch to main is created and merged below to close out the session per the owner's PR/merge flow.
+
+### Sources
+
+All verification is against committed official snapshots carrying their fetch URL and retrieval date (nfl.com standings, schedules, injury report, Game Center). No value was inferred; every blank is deliberate and flagged. Live official hosts were reachable only through the page-fetch tool; no shell-side scraping was performed.
+# Session `arena/48babc21-x1` — final integration and release (this branch)
+
+Session ID: `arena/48babc21-x1` · branch `arena/48babc21-x1` · branched from `a1cca5c7217881e5ea0e253f4066868d8318f826` of `main` · status **active** · claimed 2026-11-19.
+
+## Claim (written and pushed before any work)
+
+Scope: final integration of the NFL line-origination brief — repo line-by-line review, verification, clean landing page with category subpages, decision-readiness register, suggestions/questions registers, executive summary, then PR → main, merge without waiting for approval, GitHub Pages deploy confirmation, and this record. Additive only: no existing generated file is rewritten; no other session's file is touched.
+
+## Line-by-line repo review (offline; sandbox allow-list reaches GitHub/PyPI only, so nfl.com and operations.nfl.com return HTTP 000 and verification is against committed official snapshots — documented limitation, not a passed live check)
+
+| File / area | Finding | State |
+|---|---|---|
+| `tools/verify_data.py` | 2,960 integrity assertions over every published table; all pass | verified |
+| `scripts/verify_site.py` | 211 HTML pages; local links resolve; every data-table row carries an official source link | verified |
+| `tools/check_links.py` | 211 files, 52,342 assertions; all links resolve; no orphans; all external hosts approved | verified |
+| `tools/build_site.py` | regenerates `index.html` + 30 pages byte-identical to committed files (CI staleness guard safe) | verified |
+| Landing page `index.html` | hero, decision cards, category sections, full site-tree index, and the decision-readiness register R-01…R-53 (one row per requirement: gate that blocks it, measured value, number that clears it) | present |
+| `pages/suggestions-board.html` | 10 reviewable suggestions (status: proposed/accepted/rejected/deferred), each with problem, proposal, cost, dependency, reversible first step — review before build | present |
+| `pages/decisions-critical.html` + `data/questions.json` | 24 questions Q-01…Q-24 with why-it-blocks, known information, missing information, answer state | present |
+| `docs/EXECUTIVE-SUMMARY.md` | four addenda (rounds 1–4) covering model screen position, open decisions Q-02/Q-04/Q-07, flags F-01…F-19, owner actions | present |
+
+## Irregularities flagged for review (none block the merge; published on the Flagged for Review page)
+
+- **R-02 / no LICENSE file:** no `LICENSE` exists in the repo, yet the brief requires republishing ingested NFL data. Licensing decision is a precondition before any republished NFL row is treated as cleared; flagged, not resolved.
+- **nfl.com not fetchable from this sandbox:** every "verified against official" figure in this session rests on committed snapshots (2026-11-14 / 2026-11-15 / 2026-11-17 / 2026-11-18 / 2026-11-19 packs), not on a live fetch in this session. No value was inferred to cover the gap.
+- **Four pre-existing orphan pages** reported by `tools/verify_deployed_tree.py`: `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html`. Pre-existing, non-blocking, listed on Flagged for Review.
+- **Price provenance:** no official source publishes betting prices; every market/CLV/difference/ROI cell is blank-and-flagged or labelled third-party mirror (Q-02 / F-06); nothing is presented as league-verified.
+
+## Verification performed in this session (pre-merge, on `arena/48babc21-x1` at `a1cca5c`)
+
+- `python3 tools/verify_data.py` → 2,960 checks passed
+- `python3 scripts/verify_site.py` → 211 pages passed
+- `python3 tools/check_links.py` → 211 files / 52,342 assertions passed
+- `python3 tools/build_site.py` → committed HTML byte-identical to fresh build
+
+## Pull request and deployment record (planned)
+
+| Item | Value |
+|---|---|
+| Pull request | to be created: `arena/48babc21-x1` → `main` |
+| Merge method | `gh pr merge <N> --merge`, not waited for approval; flagged items do not block the merge |
+| Pages deploy | to be confirmed via `gh api repos/karagemop466-tech/X1/pages` and the `pages build and deployment` workflow on the merge commit |
+| Merge result | to be recorded below after merge |
+
+
+## Pull request record — PR #131 (this session)
+
+| Item | Value |
+|---|---|
+| Pull request | https://github.com/karagemop466-tech/X1/pull/131 — `arena/48babc21-x1` → `main` |
+| Head commit | `1b01d1b` |
+| Merge method | `gh pr merge 131 --merge`, not waited for approval; flagged irregularities do not block the merge |
+| Pre-merge verification | `tools/verify_data.py` 2,960 pass; `scripts/verify_site.py` 211 pages pass; `tools/check_links.py` 211 files / 52,342 assertions pass; `tools/build_site.py` committed HTML byte-identical to fresh build |
+| Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
+| Merge result | pending |
+
