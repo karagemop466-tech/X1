@@ -11,22 +11,23 @@
   "fixture_dates": "data/console/w10_finals_2026_11_17.csv + data/console/schedule_week10.csv"
  },
  "counts": {
-  "captures": 14,
-  "distinct_states": 3,
+  "captures": 19,
+  "distinct_states": 6,
   "clubs_in_captures": 28,
-  "cell_changes": 32,
+  "cell_changes": 104,
   "changes_by_field": {
-   "game_status": 13,
-   "injury": 13,
-   "practice_status": 6
+   "game_status": 44,
+   "injury": 44,
+   "practice_status": 16
   },
   "changes_by_team": {
+   "HOU": 38,
+   "IND": 36,
    "LAC": 26,
-   "BAL": 4,
-   "IND": 2
+   "BAL": 4
   },
   "downgrades_in_surprise_window": 0,
-  "movement_groups": 2
+  "movement_groups": 7
  },
  "definitions": {
   "surprise": "a downgrade (this project's ordering) recorded by a read that is within 24 h of that club's kickoff",
