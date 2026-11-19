@@ -36,6 +36,7 @@ Owner rules (verbatim intent):
 | `arena/a02e9816-x1` | `arena/a02e9816-x1` | **Round 6 (parallel): PR #84 stale-takeover claim at 03:05 UTC (superseded by PR #88's landing — recorded, not contested); 2026-11-18 official re-verification pack (A1–A5), CI step, final integration + PR + merge + Pages confirm** | 2026-11-18 03:05 UTC | active — see the session's records at the end of this file |
 
 | `arena-869ee8fb-x1` | `arena/869ee8fb-x1` | **Round 6 integration: PR #84 landed (751803f), SG-15 console pages (ledger/snapshots/announcement), reconcile re-baselined to the dated post-W10 standings read (160/160), X-11 re-evidenced, main's round-6 line (#88/#89/#90) unioned (876c291), final verification, PR → merge → Pages** | 2026-11-18 | active — see the session's records at the end of this file |
+| `arena/ee613dd1-x1` | `arena/ee613dd1-x1` | **Final integration and release: repo line-by-line review, verification against official sources, clean landing page + category subpages, PR → main, merge, GitHub Pages deploy confirm** | 2026-11-19 | active (this session) |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -101,6 +102,10 @@ Request to the current site/integration owners: PR #63 is merged, but the curren
 | T7 | Executive summary, decision register (Q/I/A), suggestions register | done | `arena-b38a21d8-x1` | `docs/analysis/*`, `docs/EXECUTIVE-SUMMARY.md`, `data/questions.json`, `data/suggestions.json` |
 | T8 | Static site: landing + category subpages + tables + Flagged for Review | done | `arena-b38a21d8-x1` | `index.html`, `pages/**`, `assets/**`, `tools/build_site.py` |
 | T9 | Final integration: re-verify combined data, link check, PR → main, merge, Pages deploy confirm | done | `arena-b38a21d8-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/**`, PR |
+| T-R1 | Final repo line-by-line review + irregularity flags | in progress | `arena/ee613dd1-x1` | `docs/review/repo-review.md`, `app/flagged.html`, `data/flags.json` |
+| T-R2 | Offline verification of committed official snapshots + internal links | in progress | `arena/ee613dd1-x1` | `tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py` |
+| T-R3 | Suggestions / questions / executive summary review for decision readiness | in progress | `arena/ee613dd1-x1` | `data/suggestions.json`, `data/questions.json`, `docs/EXECUTIVE-SUMMARY.md` |
+| T-R4 | Site integration: clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result | in progress | `arena/ee613dd1-x1` | root `index.html`, `pages/**`, `.github/workflows/pages.yml`, PR record in `COORDINATION.md` |
 
 ### Round 2 — eight new owner requirements (claimed 2026-11-14 by `arena-52aabfa8-x1`)
 
