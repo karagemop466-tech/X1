@@ -1,4 +1,4 @@
-# Round 8 — baseline re-verification of `main` (`856366f`)
+# Round 8 — baseline re-verification of `main` (base `856366f`; current head `7fb2c32`)
 
 **Session:** `arena-757174a7-x1` · **Branch:** `arena/757174a7-x1` · **Date:** 2026-11-19 (UTC) · **Scope:** read-only. No value was added, changed or republished; no site page was edited.
 
@@ -8,7 +8,9 @@ This record answers three questions for the current `main`: does the full CI gat
 
 Every `run:` step of `.github/workflows/verify.yml` was executed in its declared order on the base commit, in a fresh Python 3.11.2 virtualenv built from `requirements.txt`. Each step's exit code and its last matching output line are recorded below. Nothing was edited to make a step pass.
 
-**Result: 52 of 52 run steps passed; 0 failed.** The two `uses:` steps (checkout, Python setup) are not commands.
+**Result on the base commit `856366f`: 52 of 52 run steps passed; 0 failed.** The two `uses:` steps (checkout, Python setup) are not commands.
+
+**Correction, current head.** The 52/52 figure above describes `856366f` only. It is not a claim about current `main`. On `main` at `856366f`, step 50 (mind-change register) was failing from `65ba4c4` onward, because the preregistration builder erased PR-01..PR-04 anchors in shallow CI checkouts (section 4a). After the repair merged through PR #120, the full chain on the merged head `fd41e2e` (tree-identical to `main` `7fb2c32`) passes **53 of 53** run steps; the step count rose from 52 because upstream added one step. That replay was run locally in this session and its summary is `/tmp/ci_summary8.txt` (not in the repository).
 
 | # | Step (from `verify.yml`) | Result | Measured output (last matching log line) |
 |---:|---|---|---|
@@ -78,7 +80,7 @@ Every `run:` step of `.github/workflows/verify.yml` was executed in its declared
 | Check | Result | Source |
 |---|---|---|
 | Live landing page serves the current build | Served; headline counts match the repo (1,846 cells diffed, 347 injury rows, 0 mismatches). | <https://karagemop466-tech.github.io/X1/> |
-| Latest `main` runs | `pages build and deployment` (run 44531920116), `injury-ledger` (run 44531887827): **success**. The last merge's `verify-site` and Pages publish runs (PR #112, runs 44484254564 and 44484254543) also succeeded. | `gh run list --branch main` |
+| Latest `main` runs | `pages build and deployment` (run 44531920116), `injury-ledger` (run 44531887827): **success**. Runs 44484254564 (`verify-site`) and 44484254543 (Pages publish) are push runs on `main` at head `375ac99` and both succeeded. That commit is not in this shallow clone, so these runs are not tied to PR #112 here. | `gh run list --branch main` |
 | Official Week 10 injury page, 17-row sample | 17 of 17 rows match the committed capture (9 WAS, 1 NYG, 4 NE and 3 DET; 17 in total): the nine WAS rows (WAS@NYG), NYG LB Malik Harrison (Questionable), and the NE@DET rows including the three Lions rows Kerby Joseph (S, Knee), Cade Mays (C, Ankle) and D.J. Reed (CB, Hip), each `Out`. | <https://www.nfl.com/injuries/league/2026/reg10> |
 | Row count of the Week 10 capture | 351 lines minus 4 comment lines = 347 data rows, matching the published 347. The full 347-row re-diff was **not** run in this session (the page has 8 fetch chunks). | `data/capture/2026_w10_read_2026_11_17/official_nflcom_injuries_week10_2026-11-17.psv` |
 | Official trades, November 2026 | All 12 trades on the official page match `data/origination_desk/roster/official_trades_nov_2026.csv` by name and date (11/06 Brissett; 11/09 Cisco, Godchaux; 11/10 the other nine, including Keenan Allen IND→SF and Josh Downs IND→KC). | <https://www.nfl.com/transactions/league/trades/2026/11> |

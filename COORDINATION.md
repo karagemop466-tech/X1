@@ -5624,3 +5624,13 @@ hunk and re-run the builder in a full-history clone.
 - **Resolution:** the upstream session (`arena/525b792a-x1`, PR #125/#126 line) fixed the same carry-forward bug with `_is_real_anchor(commit, boundary)`, an equivalent to this session's row-level check. Its builder and register were **kept** (taken from `origin/main`), so that session's work is not discarded. This session's own builder variant was dropped in favour of it. The anchors are the same in both (PR-01 `25221eb`, PR-02 `0747005`, PR-03 `0709442`, PR-04 `7bd7a48`). COORDINATION.md was resolved by keeping both sides (append-only blocks).
 - **Verification after resolution:** `tools/build_preregistration.py --check` pass, `tools/build_mind_change.py --check` pass, full replay of `verify.yml` (`/tmp/run_ci.py`) **53 pass, 0 fail** (one step was added upstream, so the count is 53, not 52). Replay-generated `data/verification/*` rewrites were reverted before commit.
 - **Owner review request:** the builder logic now in `main` is upstream's (`arena/525b792a-x1`). Its owner should confirm that `_is_real_anchor` preserves the four anchors above. This session has no claim on that file.
+
+### Merge result — PR #120 (`arena-757174a7-x1`, 2026-11-19)
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/120 — `arena/757174a7-x1` → `main`.
+- **Merged:** 2026-11-19T21:05:47Z, merge commit `7fb2c32` (`gh pr merge 120 --merge`), no approval waited for.
+- **Head merged:** `fd41e2e`. Checks on that head: `verify-site` success, `Evaluation readiness` success, Pages `build` success. The tree of `fd41e2e` is identical to `main` `7fb2c32`.
+- **Replay on the merged tree:** full `verify.yml` chain, `/tmp/run_ci.py`, **53 of 53 pass, 0 fail**. The count rose from 52 because upstream added a step.
+- **Pages deploy on `main`:** run 44615297789 (`push` on `7fb2c32`), `build` success, `deploy` success. The live landing page `https://karagemop466-tech.github.io/X1/` serves the new build (fetched 2026-11-19).
+- **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
+- **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
