@@ -5634,3 +5634,32 @@ hunk and re-run the builder in a full-history clone.
 - **Pages deploy on `main`:** run 44615297789 (`push` on `7fb2c32`), `build` success, `deploy` success. The live landing page `https://karagemop466-tech.github.io/X1/` serves the new build (fetched 2026-11-19).
 - **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
 - **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
+
+---
+
+## Claim — session `arena-ab244ddc-x1` (branch `arena/ab244ddc-x1`, 2026-11-19)
+
+Scope: close three concrete defects flagged by the Round 8 baseline re-verification
+(`docs/review/round8-baseline.md` R8-I-05, R8-I-06, R8-I-07) plus a dated review record.
+No open PR touches these files (checked 2026-11-19: PRs #123, #113, #110, #96, #95, #92, #91
+— none lists `data/depth/replacement_depth.*`, `data/depth/replacement_depth_summary.json`,
+`data/origination_desk/skill/two_stage_leaderboard.csv`, or their builders; PR #92/#91 touch
+only `console/*.html` renders). Fixture-context (PR #92), designation reliability (PR #96),
+public/private boundary (PR #95), schedule announcement (PR #113) and the brief-coverage
+register reconciliation (PR #123) are explicitly NOT claimed here.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| T9-1 | R8-I-05: strip Packers jersey prefixes in `replacement_depth.csv` display columns; retain raw strings in new `starter_raw`/`replacement_raw` columns (brief: "number stripping plus storing the raw string") | in progress | `arena-ab244ddc-x1` | `tools/build_replacement_depth_store.py`, `data/depth/replacement_depth.csv`, `data/depth/replacement_depth.json` |
+| T9-2 | R8-I-06: replace "starter is column 1" method text with depth-slot-group language consistent with `data/depth/depth_groups_32.csv` | in progress | `arena-ab244ddc-x1` | `tools/build_round3.py`, `data/depth/replacement_depth_summary.json` |
+| T9-3 | R8-I-07: remove the `DIAG-WF-SHRINKAGE-W1-10` diagnostic row from `two_stage_leaderboard.csv` (backtest numbers must never appear on the leaderboard); publish it in a separate diagnostic file | in progress | `arena-ab244ddc-x1` | `tools/origination_desk/build_skill_desk.py`, `tools/origination_desk/verify_desk.py`, `tools/origination_desk/test_desk.py`, `data/origination_desk/skill/two_stage_leaderboard.csv`, `data/origination_desk/skill/diagnostic_walkforward.csv` (new), `data/origination_desk/skill/skill_desk_summary.json`, `origination-desk/*.html` (regenerated only) |
+| T9-4 | Dated review record: sources, verification performed, irregularities | in progress | `arena-ab244ddc-x1` | `docs/review/round9-fixes.md` (new) |
+| T9-5 | Full verify chain, PR → main, merge, Pages deploy confirmation, record result here | in progress | `arena-ab244ddc-x1` | `COORDINATION.md` (this block only) |
+
+Overlap check (rule 3): open PRs #123 (`arena/41954ed5-x1`), #113 (`arena/42887cb2-x1`),
+#110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`),
+#92 (`arena/55c364b6-x1`), #91 (`arena/efb06932-x1`) were read via `gh pr view` file lists.
+None touches the T9-1..T9-4 files. This session will not edit `console/**`, `app/schedule.html`,
+`docs/audit/brief-coverage-2026-11-19.md`, `.github/workflows/verify.yml`, or any file owned
+by an open PR. Shared outputs (`index.html`, `pages/**`, `data/flags.json`) are not edited
+except regenerated `origination-desk/*.html` via its own builder.
