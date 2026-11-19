@@ -1,7 +1,7 @@
 correlations: 1034 pairs
-repo_review: 868 files, 524 flagged
+repo_review: 986 files, 600 flagged
 {
- "generated_at": "2026-11-19T04:09:29+00:00",
+ "generated_at": "2026-11-19T19:28:27+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -14,7 +14,7 @@ repo_review: 868 files, 524 flagged
   },
   "depth_charts": {
    "status": "written",
-   "rows": 1818
+   "rows": 1817
   },
   "team_stats": {
    "status": "written",
@@ -99,12 +99,12 @@ repo_review: 868 files, 524 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-19T04:09:57+00:00"
+ "finished_at": "2026-11-19T19:28:51+00:00"
 }
 exit=0
 ===== captures.log =====
 capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-  84 captures retained; 37 distinct payloads
+  89 captures retained; 40 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 37
@@ -156,25 +156,41 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (479,526 bytes)
-    wrote app/stores.html (132,709 bytes)
+    wrote app/repo-review.html (545,691 bytes)
+    wrote app/stores.html (132,845 bytes)
     29 pages written
 $ python3 tools/build_console.py
     [console] writing data files
     [console] building pages
     [console]   33 pages written to /home/runner/work/X1/X1/console
 $ python3 tools/build_preregistration.py
-    PR-02  registered     0747005a77  control baselines: random picks, favourites only
-    PR-03  registered     0709442e63  verified results feed: a row settles only when an official page printed the score
-    PR-04  registered     7bd7a4889c  Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only
+    PR-02  unresolved-shallow-checkout   control baselines: random picks, favourites only
+    PR-03  unresolved-shallow-checkout   verified results feed: a row settles only when an official page printed the score
+    PR-04  unresolved-shallow-checkout   Week 11 pre-kickoff escrow: three markets, two total estimators, official settlement only
 $ python3 tools/build_next_decisions.py
     wrote data/next_decisions/round_2026_11_16.json (+2 csv) · 11 suggestions, 10 questions
+$ python3 tools/build_depth_matrix.py
+      GB jersey stripped: 55 rows, W10 injury joins: 0 -> 13
+      shared rank-1 position groups: 156, shared concat cells: 23, empty gaps: 5
+      W11 mismatch alerts (2nd-4th string active): 51
+$ python3 tools/build_modeling_lab.py
+      2026 W3-W10 unadj vs SRS: {'games': 118, 'mae_unadjusted': 9.5775, 'mae_opp_aware_srs': 9.4987, 'delta_mae': -0.0787, 'delta_mae_ci95': [-0.228, 0.071], 'brier_unadjusted': 0.2329, 'brier_opp_aware_
+      Dual totals summary: [('validation_2024', 10.0893, 10.0492, 'KEEP_BOTH_VISIBLE'), ('final_holdout_2025', 10.6678, 10.6606, 'KEEP_BOTH_VISIBLE'), ('live_2026_official_w3_w10', 10.9421, 10.9019, 'KEEP
+      Personnel ablations: [('validation_2024', 'measured_chronological_holdout', -0.0592, -0.00227), ('final_holdout_2025', 'measured_chronological_holdout', -0.0069, -0.00166), ('live_2026_official_w1_w
+$ python3 tools/lab/build_reads.py
+      venue_direct_rows: 2
+      venue_name_conflicts: 1
+    verdict: pass
+$ python3 tools/lab/build_closure_measurement.py
+      M3 clubs reproduced from the 150-game corpus vs today's official standings: 32/32
+      M4 clubs the append moves against the 2026-11-14 pinned baseline: 26
+      M5 artefacts naming the log or the feed: 60
 $ python3 tools/lab/build_site.py
-    wrote lab/sources.html (15,763 bytes)
-    wrote lab/flagged.html (25,558 bytes)
+    wrote lab/sources.html (15,773 bytes)
+    wrote lab/flagged.html (25,717 bytes)
     lab site verification passed: 17 pages, links resolve, every data row sourced
 $ python3 tools/build_site.py
-    wrote index.html + 27 pages
+    wrote index.html + 30 pages
 $ python3 tools/verify_data.py
     checks passed : 2960
     INFO listed starters ruled OUT in week 10: 9 (DET Cade Mays, DET D.J. Reed, GB Josh Jacobs, GB Sean Rhyan, SEA Charles Cross, SEA Sam Darnold, SEA Quenton Nelson, SEA Leonard Williams, BAL Jaylinn Haw
@@ -200,11 +216,11 @@ $ python3 tools/cross_check.py
     injury rows compared     : 347  cells: 1388
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
-    files checked : 180
-    assertions    : 47321
+    files checked : 211
+    assertions    : 51342
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
-    Site verification passed: 180 HTML pages; local links resolve; every data-table row has an official source link.
+    Site verification passed: 211 HTML pages; local links resolve; every data-table row has an official source link.
 $ python3 scripts/pipeline/verify_site.py
       suggestions      rows=20     without_source=0
       team_stats       rows=288    without_source=0
@@ -212,7 +228,11 @@ $ python3 scripts/pipeline/verify_site.py
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
     note: freshness not gated here (a PR build cannot fix a missed collector run); data-refresh.yml gates it after it collects
     capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-      84 captures retained; 37 distinct payloads
+      89 captures retained; 40 distinct payloads
+$ python3 tools/verify_depth_matrix.py
+    verify_depth_matrix PASS: 32 clubs (31 verified + 1 HOU image-only), GB joins 0->13, 78 W11 matchup rows (51 alerts)
+$ python3 tools/verify_modeling_lab.py
+    verify_modeling_lab PASS: 4 disjoint splits (0 overlap), 32 SRS ratings, 118 dual-total games, 3 ablation rows
 rebuild_for_refresh --pre-commit: ok (0 step(s) failed)
 ===== postcommit.log =====
 $ python3 tools/build_state_audit.py --check
@@ -237,4 +257,12 @@ $ python3 tools/build_preregistration.py --check
     anchor check SKIPPED (and anchors carried forward, not flattened): shallow checkout (actions/checkout default fetch-depth: 1). 'which commit froze the rule' is answered in the full repository; the rul
 $ python3 tools/build_next_decisions.py --check
     CHECK OK: 11 suggestions, 10 questions
+$ python3 tools/lab/build_reads.py --check
+    CHECK OK: the 2026-11-17 reads pack reproduces from its files (14+136 games, 32 clubs, 44 injury rows, 0 failures)
+$ python3 tools/lab/build_closure_measurement.py --check
+    CHECK OK: the feed-closure measurement reproduces from its inputs
+$ python3 tools/build_depth_matrix.py --check
+    CHECK OK: 32 clubs (31 verified + 1 HOU image-only), GB joins 0->13, W11 matrix 78 rows (51 alerts)
+$ python3 tools/build_modeling_lab.py --check
+    CHECK OK: data/models/ reproduces cleanly (4 splits, 32 SRS ratings, dual totals, chronological ablations)
 rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
