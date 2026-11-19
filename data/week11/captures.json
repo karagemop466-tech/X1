@@ -263,10 +263,37 @@
         "unknown_game_status_values": [],
         "unknown_values_pass": true
       }
+    },
+    {
+      "captured_at_utc": "2026-11-19T22:22:57Z",
+      "file": "raw/20261119T222257Z_e0225af64915.html.gz",
+      "flags": [
+        "revised"
+      ],
+      "content_sha256": "cd47cbd70cdd7779f51958df0414dc98eb5be5a8ec6b18fa9412514cc7454b39",
+      "gzip_sha256": "86fabe758396f8da1c75186b93aaa91ea9df6f71deb4a82c65eea99282b8e5b7",
+      "entry_sha256": "8a78b46f6c6bfda83d5e6c35bb767663ab747137fb42c61be4ac0aa66d380762",
+      "bytes": 373959,
+      "hash_checks_pass": true,
+      "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
+      "shape": {
+        "matchup_strips": 26,
+        "games": 13,
+        "clubs_in_strips": 26,
+        "clubs_with_table": 24,
+        "clubs_without_table": [
+          "CIN",
+          "WAS"
+        ],
+        "player_rows": 253,
+        "unknown_practice_values": [],
+        "unknown_game_status_values": [],
+        "unknown_values_pass": true
+      }
     }
   ],
-  "distinct_capture_count": 5,
-  "latest_capture_utc": "2026-11-19T22:10:21Z",
+  "distinct_capture_count": 6,
+  "latest_capture_utc": "2026-11-19T22:22:57Z",
   "games": [
     {
       "day": "THURSDAY, NOVEMBER 19TH",
@@ -323,13 +350,13 @@
   ],
   "coverage_gaps_latest": [
     {
-      "capture_utc": "2026-11-19T22:10:21Z",
+      "capture_utc": "2026-11-19T22:22:57Z",
       "club": "CIN",
       "matchup": "CIN @ WAS",
       "reason": "matchup strip shown, no club table in this capture (not read as healthy)"
     },
     {
-      "capture_utc": "2026-11-19T22:10:21Z",
+      "capture_utc": "2026-11-19T22:22:57Z",
       "club": "WAS",
       "matchup": "CIN @ WAS",
       "reason": "matchup strip shown, no club table in this capture (not read as healthy)"
