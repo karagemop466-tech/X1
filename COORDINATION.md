@@ -4785,3 +4785,15 @@ for Kerby Joseph / Cade Mays / D.J. Reed in the dated table; DC-F5 Game Book CDN
    `data/console/repo_inventory.csv` with fresh timestamps on every run. This session reverted those
    two data-file rewrites (other sessions' scope) and hand-synced only `console/index.html`; the
    generator is patched so a future rebuild keeps the nav link.
+
+### Cross-scope repair during PR #102 integration (session `arena-34b79d69-x1`, 2026-11-19)
+
+The PR's `verify-site` run failed at the existing step "Fail if the re-capture, depth parse or
+readiness files are stale" — not at any decision-center step. Cause: after this branch was cut,
+`main` gained a seventh official Game Book PDF URL (commit `626763d`), but the generated
+`data/console/readiness.{json,csv}` still counted six. Re-running the canonical generator
+`tools/official/readiness.py` changes R-26 and R-39 from 6 to 7; `console/readiness.html` was
+regenerated from that output. This is a generated-output repair only: no rule, value or source in
+another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
+`payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
+locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.
