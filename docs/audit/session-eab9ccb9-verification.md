@@ -1,6 +1,6 @@
 # Independent integration audit — 2026-11-19
 
-**Scope.** Read-only audit of the integrated repository and live GitHub Pages site from branch base `856366f`. This session did not change source registers or site generators. It re-ran the repository's offline/reproducibility gates, fetched the current NFL Week 11 injury-report page once, and compared the live public site with its committed registers. It does **not** claim that every historical row was freshly re-transcribed in this session.
+**Scope.** Read-only audit of the integrated repository and live GitHub Pages site. Work began at branch base `856366f`; a concurrent main update (PR #115 and subsequent data-refresh commits) advanced main to `2fe967a`, so this branch was rebased and the core gates were rerun at the updated head. This session did not change source registers or site generators. It fetched the current NFL Week 11 injury-report page once and compared the live public site with committed registers. It does **not** claim that every historical row was freshly re-transcribed in this session.
 
 ## Executive result
 
@@ -13,9 +13,9 @@ The audit found important **reconciliation items** that the green checks do not 
 | Check | Result |
 |---|---|
 | `tools/verify_data.py` | 2,960 assertions passed |
-| `tools/check_links.py` | 211 files, 50,773 assertions; links resolve, no orphans, approved external hosts |
+| `tools/check_links.py` (final head `2fe967a`) | 211 files, 51,245 assertions; links resolve, no orphans, approved external hosts |
 | `scripts/verify_site.py` | 211 pages; local links resolve; every data row has an official-source link |
-| `tools/verify_app.py` | 29 pages, 1,147 internal links, 8,260 rows: 8,236 source-linked, 24 explicitly flagged, 0 unmarked/unsourced |
+| `tools/verify_app.py` (final head `2fe967a`) | 29 pages, 1,147 internal links, 8,495 rows: 8,471 source-linked, 24 explicitly flagged, 0 unmarked/unsourced |
 | Decision center / source-rule mutation / cross-check / parlay checks | 750 decision-center assertions; mutation detected; 32-club/347-row independent transcriptions agree; 45 parlay pairs satisfy bounds |
 | Results, price snapshots, origination, correlation, signal/staking registers | Rebuilders matched; 150 final result rows; 56 snapshot rows, with market cells blank where no official market source exists; 42/42 originated games order side → total → moneyline; 1,034 official-only correlation pairs include `n` |
 | Capture, preregistration, dated reads/escrows/closure, brief coverage, venue/depth/modeling, decision room, Origination & Skill Desk | All checks passed, including capture corruption tests 6/6, 32-club depth matrix, four disjoint model splits, 1,621 desk checks, and 7 desk unit tests |
