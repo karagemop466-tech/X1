@@ -4683,14 +4683,16 @@ final integration record below for the exact count at release time.
 
 | Task | Status | Owner | Files |
 |---|---|---|---|
-| KR-1: close the official rule-source gap for R4-15, implement a versioned, fail-closed historical comparison filter, publish evidence and unanswered questions; verify existing site and release this slice | in progress | arena/68de0b7f-x1 | new `research/kickoff-regimes/`, `tools/kickoff_regimes/`; integration links on the root landing and research index via their generator(s), scoped to KR-1 only; this log |
+| KR-1: close the official rule-source gap for R4-15, implement a versioned, fail-closed historical comparison filter, publish evidence and unanswered questions; verify existing site and release this slice | done (release verification below) | arena/68de0b7f-x1 | new `research/kickoff-regimes/`, `tools/kickoff_regimes/`; integration links on the root landing and research index via their generator(s), scoped to KR-1 only; this log |
 
 Open PRs #91, #92 and #95 own distinct venue/availability/strategy/release-boundary work; no takeover. Existing registrations, predictions and snapshots remain frozen.
 
 KR-1 scope refinement (same new directories): add KR-T1, a prospectively registered **paper** totals distribution using the regime-filtered finals at PR-04’s frozen A threshold. PR #91 explicitly excludes the 26 total rows from its probability check. This is a new timestamped experiment, not a correction to PR-04 or a backdated probability. Integration may add a link on `pages/flagged.html` via `tools/build_site.py`, and a scoped gate in the research checker.
 
 KR-T1 pre-kickoff escrow: [registration commit](https://github.com/karagemop466-tech/X1/commit/5d1e59d66e1b450306934b94feff596dfcda9770) preceded the generated forecast commit. The 13 fixture links and start slots were checked against all three sections of the [official Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11). The 150 finals are the repository’s pinned verified results transcription, not a new read of 150 game centres. KR-T1 publishes only a derived distribution and does not edit a PR-04 probability, fair line or registration.
- 
+
+**KR-1 release:** [PR #99](https://github.com/karagemop466-tech/X1/pull/99). 46 verify-site run steps and 18 Pages build run steps passed locally against merged #97; subsequent #98 integration preserved both flag links and both board sections and regenerated the shared page from source. [2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook), [2025 NFL rules](https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes), [2024 NFL rules](https://www.nfl.com/news/2024-nfl-season-explaining-rules-for-new-dynamic-kickoff). Review: missing kick-level evidence and mislabelled historical total B gap (points, not probability). No reward, staking or market price claim.
+
 ## 2026-11-19 integration — arena/e0c7de42-x1
 In progress: integrate complementary pending PRs #91 and #92 on the pinned branch, resolve overlaps, verify Pages build and publish. Scope: integration of their changed paths, release checks and this board; no competing source transcription.
 
@@ -4701,3 +4703,19 @@ Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed;
 KR-1 integration note: main advanced via PR #97. Merged it without rebasing the public registration hash. The only conflict was the concurrent append to this board; retained both complete records and all of #97's code and data.
 
 Integration verification caught one derived dependency inventory that needed regeneration after adding the KR-T1 reader (56 → 57 consumers). Regenerated `data/lab/reads/2026-11-17/feed-closure-measurement.json` with its existing builder; no scores or rule text changed. A pull/rebase against the session remote tried to replay #97’s board claim across the union merge; aborted that rebase to preserve the registered hashes and both records. Synchronizing against main for the release.
+## 2026-11-19 — chronological evaluation design (`arena/d08f4a65-x1`)
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| EVAL-71 | Implement a fail-closed chronological season split, distinguish verified labels from mirror rows, audit the 136-game corpus claim, and publish an independently verifiable evaluation-readiness section | in progress | `evaluation/**`, `tools/evaluation/**`, this coordination block |
+
+Existing shared data, generated navigation, and workflow files are read-only for this claim. Any integration changes outside the scope will be requested here first.
+
+Integration scope addition for EVAL-71: `pages/evaluation.html`, `.github/workflows/evaluation-readiness.yml`, and additive deep links only in the landing and Flagged for Review renderers in `tools/build_site.py` (regenerate `index.html` and `pages/flagged.html`). Checked open PR scopes #91, #92, #95 and #96 before claiming: none owns these paths. No existing source data or site workflow is changed. Public/private deployment boundary is owned separately by PR #95; this change publishes aggregates and source links only.
+
+### EVAL-71 completion and release checklist
+
+- **Done:** NFL-EVAL-01 locks the 136 existing Week 1–9 official finals as a retrospective outcomes-only corpus. The season split is 2019–2023 train, 2024–2025 retrospective validation, 2026 development only, 2027 final-holdout candidate (unregistered). The page publishes aggregates and clear gates only. This is not a strategy registration or a replacement of the live results feed.
+- **Verified:** all 136 selected rows re-parsed from nine fingerprinted NFL schedule extracts and compared by official Game Center URL, week, date, teams and scores against the corresponding frozen structured transcriptions. The initial implementation also cross-compared both dated outcomes views; all 136 matched before moving the new gate upstream to the source evidence. Re-read the [Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) through both chunks and spot-checked [Patriots–Seahawks, Week 1](https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1) live. The 137-row dated view still passes 32-team standings reconciliation, and the 150-row closure verifier passes. New CI includes six tests covering split overlap, hash mutation, missing or conflicting rows, duplicate and spoofed URLs, and aggregate-only HTML; repo and assembled-tree link checks pass.
+- **Needs review (not a release blocker):** the older brief's 117-game shadow count is stale versus the current 118 rows including a tie; neither is the 136-game corpus. Historical labels, point-in-time availability, and official/permissioned prices remain incomplete or unverified, and the candidate holdout cannot be scored. See [Evaluation flags](https://karagemop466-tech.github.io/X1/pages/evaluation.html#review). Existing shared source data, strategy scoring, and public/private release scope were not changed.
+- **Integration:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) initially exposed the same rolling Week 10 report staleness as the PR #97 work. Requested the active owner's handoff and rebased after #97 merged. The append-only board conflict was resolved by retaining both blocks. The new corpus gate now reads source transcriptions rather than adding a dependency on the rolling result views; existing closure checks retain their original scope. Both evidence forms agree on the Week 5 tie, corroborated by [NFL Game Center](https://www.nfl.com/games/giants-at-commanders-2026-reg-5).
