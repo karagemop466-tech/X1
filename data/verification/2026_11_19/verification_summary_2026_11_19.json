@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T06:56:46+00:00",
+  "generated_at": "2026-11-19T19:54:01+00:00",
   "session": "arena/427c1843-x1 (round 7)",
   "pack_date": "2026-11-19",
   "read_at": "2026-11-19 (UTC), fetch tool, chunks 0-1 of 2 (standings) / 0-1 of 2 (w10) / 0-2 of 3 (w11)",
@@ -17,6 +17,9 @@
       "verdict": "pass"
     },
     "A2": {
+      "name": "league closure (32 clubs; W=L; ties even; PF=PA; NET=0; 150 games implied)",
+      "assertions": 6,
+      "passed": 6,
       "clubs": 32,
       "sum_w": 149,
       "sum_l": 149,
@@ -49,6 +52,8 @@
     },
     "A5": {
       "name": "Week 11 slate completeness (13 fixtures + 6 byes = 32 clubs, once each)",
+      "assertions": 6,
+      "passed": 6,
       "fixtures": 13,
       "byes": 6,
       "clubs_counted": 32,
@@ -72,6 +77,22 @@
       "name": "Week 11 official injury report (rows, clubs, designations)",
       "rows": 253,
       "clubs": 24,
+      "scheduled_clubs": 26,
+      "scheduled_clubs_missing_a_block": [
+        "CIN",
+        "WAS"
+      ],
+      "fixtures_without_report_rows": [
+        "CIN@WAS"
+      ],
+      "bye_clubs_without_rows": [
+        "ATL",
+        "CLE",
+        "GB",
+        "LA",
+        "NE",
+        "SEA"
+      ],
       "clubs_missing_a_block": [
         "ATL",
         "CIN",
@@ -100,18 +121,28 @@
       "blank_practice_status": 0,
       "duplicate_player_rows": [],
       "injury_game_keys_absent_from_slate": [],
-      "verdict": "pass"
+      "verdict": "REVIEW"
     },
     "A8": {
-      "name": "announced-starter evidence (dated official articles, one row each)",
+      "name": "dated named-player availability evidence (explicit starter vs partial)",
       "rows": 3,
       "players": [
         "Drew Lock",
         "Kyle McCord",
         "Jacoby Brissett"
       ],
+      "explicit_starter_rows": [
+        "AV-01",
+        "AV-02"
+      ],
+      "partial_or_nonstarter_rows": [
+        "AV-03"
+      ],
+      "review_notes": [
+        "AV-03: row is not explicit starter evidence; no starter status inferred"
+      ],
       "problems": [],
-      "verdict": "pass"
+      "verdict": "REVIEW"
     }
   },
   "verdicts": {
@@ -121,7 +152,7 @@
     "A4": "pass",
     "A5": "pass",
     "A6": "pass",
-    "A7": "pass",
-    "A8": "pass"
+    "A7": "REVIEW",
+    "A8": "REVIEW"
   }
 }

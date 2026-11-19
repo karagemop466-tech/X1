@@ -124,7 +124,20 @@ def main() -> int:
     PA = sum(int(r["pa"]) for r in standings)
     NETM = sum(int(r["net"]) for r in standings)
     implied = (W + L + T) / 2
+    # Publish every gate clause with an exact measured count. This includes six, not five,
+    # checks: the 150-game implied-count test is part of a2_ok as well.
+    a2_checks = [
+        len(standings) == 32,
+        W == L,
+        T % 2 == 0,
+        PF == PA,
+        NETM == 0,
+        implied == 150,
+    ]
     a2 = {
+        "name": "league closure (32 clubs; W=L; ties even; PF=PA; NET=0; 150 games implied)",
+        "assertions": len(a2_checks),
+        "passed": sum(a2_checks),
         "clubs": len(standings),
         "sum_w": W,
         "sum_l": L,
@@ -133,16 +146,8 @@ def main() -> int:
         "sum_pa": PA,
         "sum_net": NETM,
         "games_implied": implied,
+        "verdict": "pass" if all(a2_checks) else "FAIL",
     }
-    a2_ok = (
-        len(standings) == 32
-        and W == L
-        and T % 2 == 0
-        and PF == PA
-        and NETM == 0
-        and implied == 150
-    )
-    a2["verdict"] = "pass" if a2_ok else "FAIL"
     checks["A2"] = a2
 
     # ---------------------------------------------------------------- A3
@@ -264,23 +269,25 @@ def main() -> int:
         for col in ("date_et", "time_et", "network", "status", "game_url"):
             if not r[col].strip():
                 a5_bad.append(f"{r['game_id']}.{col} blank")
-    a5_ok = (
-        len(w11) == 13
-        and len(byes) == 6
-        and len(clubs) == 32
-        and not dupes
-        and not missing
-        and not a5_bad
-    )
+    a5_checks = [
+        len(w11) == 13,
+        len(byes) == 6,
+        len(clubs) == 32,
+        not dupes,
+        not missing,
+        not a5_bad,
+    ]
     checks["A5"] = {
         "name": "Week 11 slate completeness (13 fixtures + 6 byes = 32 clubs, once each)",
+        "assertions": len(a5_checks),
+        "passed": sum(a5_checks),
         "fixtures": len(w11),
         "byes": len(byes),
         "clubs_counted": len(clubs),
         "duplicated": dupes,
         "missing": missing,
         "field_problems": a5_bad,
-        "verdict": "pass" if a5_ok else "FAIL",
+        "verdict": "pass" if all(a5_checks) else "FAIL",
     }
 
     # ---------------------------------------------------------------- A6
@@ -367,13 +374,26 @@ def main() -> int:
         ).items()
         if n > 1
     )
-    # every game key on an injury row must be a fixture the slate also prints
+    # Every game key on an injury row must be on the slate, and every scheduled club
+    # should have an injury-report block in the transcribed capture. Bye clubs are listed
+    # separately; their lack of an injury row is not treated as a missing scheduled block.
     slate_pairs = {f"{r['away']}@{r['home']}" for r in w11}
     inj_pair_problems = sorted({r["game"] for r in inj} - slate_pairs)
+    scheduled_clubs = {r[side] for r in w11 for side in ("away", "home")}
+    bye_clubs = {r["abbr"] for r in byes}
+    scheduled_missing = sorted(scheduled_clubs - set(inj_clubs))
+    fixtures_without_report_rows = sorted(slate_pairs - set(inj_games))
+    bye_clubs_without_rows = sorted(bye_clubs - set(inj_clubs))
+    a7_hard_problem = bool(dupes_inj or inj_pair_problems or len(inj) != 253)
+    a7_verdict = "FAIL" if a7_hard_problem else ("REVIEW" if scheduled_missing else "pass")
     a7 = {
         "name": "Week 11 official injury report (rows, clubs, designations)",
         "rows": len(inj),
         "clubs": len(inj_clubs),
+        "scheduled_clubs": len(scheduled_clubs),
+        "scheduled_clubs_missing_a_block": scheduled_missing,
+        "fixtures_without_report_rows": fixtures_without_report_rows,
+        "bye_clubs_without_rows": bye_clubs_without_rows,
         "clubs_missing_a_block": sorted(set(standings_rec) - set(inj_clubs)),
         "fixtures_with_rows": len(inj_games),
         "designated_rows": len(designated),
@@ -383,9 +403,7 @@ def main() -> int:
         "blank_practice_status": sum(1 for r in inj if not r["practice_status"].strip()),
         "duplicate_player_rows": dupes_inj,
         "injury_game_keys_absent_from_slate": inj_pair_problems,
-        "verdict": "pass"
-        if not dupes_inj and not inj_pair_problems and len(inj) == 253
-        else "FAIL",
+        "verdict": a7_verdict,
     }
     checks["A7"] = a7
 
@@ -393,12 +411,22 @@ def main() -> int:
     # The three named-player availability statements, each against its own official article.
     named = read_tsv(os.path.join(PACK, "official_named_availability_2026_11_19.tsv"))
     a8_bad = []
+    a8_explicit = []
+    a8_partial = []
+    explicit_starter_evidence = {
+        "head coach, on the record, naming the starter",
+        "club transaction plus named replacement, stated by the league",
+    }
     for r in named:
-        for col in ("player", "club", "statement_as_printed", "article_date", "source_url"):
+        for col in ("player", "club", "statement_as_printed", "article_date", "evidence_type", "source_url"):
             if not r[col].strip():
                 a8_bad.append(f"{r['id']}.{col} blank")
         if not r["source_url"].startswith("https://www.nfl.com/"):
             a8_bad.append(f"{r['id']}.source_url is not an nfl.com URL")
+        if r["evidence_type"].strip() in explicit_starter_evidence:
+            a8_explicit.append(r["id"])
+        else:
+            a8_partial.append(r["id"])
         # the claim must be echoed by the injury report it refers to, where the report covers the club
         if r["injury_report_game_status"].strip() and r["player"] not in {
             x["player"] for x in inj
@@ -407,12 +435,18 @@ def main() -> int:
                 f"{r['id']}: '{r['player']}' is cited with a report designation but is not a row "
                 f"on the Week 11 report read the same day"
             )
+    a8_review = [f"{rid}: row is not explicit starter evidence; no starter status inferred"
+                 for rid in a8_partial]
+    a8_verdict = "FAIL" if not named or a8_bad else ("REVIEW" if a8_partial else "pass")
     checks["A8"] = {
-        "name": "announced-starter evidence (dated official articles, one row each)",
+        "name": "dated named-player availability evidence (explicit starter vs partial)",
         "rows": len(named),
         "players": [r["player"] for r in named],
+        "explicit_starter_rows": a8_explicit,
+        "partial_or_nonstarter_rows": a8_partial,
+        "review_notes": a8_review,
         "problems": a8_bad,
-        "verdict": "pass" if named and not a8_bad else "FAIL",
+        "verdict": a8_verdict,
     }
 
     summary = {
