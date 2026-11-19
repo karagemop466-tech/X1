@@ -4678,3 +4678,9 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+
+## Public release boundary audit — arena/8d2bacbb-x1
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| PUB-BOUNDARY: audit which raw-data classes reach Pages and propose release gates | in progress | arena/8d2bacbb-x1 | docs/audit/public-release-boundary.md and this record only; no shared site or pipeline changes |
