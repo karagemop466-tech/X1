@@ -466,9 +466,10 @@ def page_index():
     {stat(f"{v['cells_compared']:,}", 'cells diffed, cell by cell', 'independent re-transcription')}
     {stat(len(STANDINGS), 'teams verified', 'nfl.com standings')}
     {stat(len(SCHED), 'week-10 games verified', 'nfl.com schedule')}
-    {stat(len(INJ), 'injury rows verified', 'nfl.com injury report')}
+    {stat(len(INJ), 'week-10 injury rows verified', 'nfl.com injury report, snapshot 2026-11-14')}
     <div class="stat"><strong>{v['mismatches']}</strong><span>mismatches found</span>
       <span class="statnote">every published cell agrees with its official source</span></div>
+    {stat('8', 'week-11 checks passed', 'live read 2026-11-19 · room/stale.html')}
   </div>
 </section>
 
@@ -495,7 +496,7 @@ def page_index():
   <a class="card" href="room/index.html"><span class="ico">◧</span><small>DECIDE / 05</small><h3>The decision room</h3><p>The questions that must be settled before any decision, the suggestions board to review before anything is built, and the 2026-11-19 live verification of the official pages. Eight checks, all rebuildable.</p><span class="more">Enter the room →</span></a>
 </section>
 
-<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
+<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Every tree, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
 <section class="cards">
   <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. {v['cells_compared']:,} cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
   <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across {FULL_JOIN['clubs_with_a_chart']} clubs finds <b>{FULL_JOIN['starters_ruled_out']} starters ruled Out</b> plus {FULL_JOIN['backups_depth_2_to_4_out_or_doubtful']} second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
@@ -520,6 +521,9 @@ def page_index():
     Its own headline finding is negative: the results-only model has no betting edge (ROI −6.1%…−2.6%).</p></div></div>
     <div class="blocker"><span class="pill">LIVE</span><div><b><a href="live/index.html">Live pipeline</a></b><p>The only tree that collects <em>club</em> depth charts at scale — 1,813 entries across 31 of 32 clubs —
     with the caveat that clubs label their own charts unofficial. Refreshed on a schedule.</p></div></div>
+    <div class="blocker"><span class="pill">ROOM</span><div><b><a href="room/index.html">The decision room</a></b><p>What is blocking a decision today, the suggestions board to review before anything is built,
+    and the live 2026-11-19 re-verification of the official pages: 8 checks, the Week 11 injury report
+    (253 rows) and the multiplicity correction over all 16 scored strategies.</p></div></div>
     <div class="blocker"><span class="pill">AUDIT</span><div><b><a href="hub/index.html">Section index</a></b><p>What each of the eight sections is canonical for, an independent re-verification of the published
     tables (1,184 standings cells, 345 injury rows across 28 club tables, 160 designations), the deficiency board by replacement
     string, and a suggestion board that sets out two or three paths for each choice before anything is built.</p></div></div>

@@ -5016,3 +5016,66 @@ logged here rather than resolved by editing their scope.
 shell network is restricted to `github.com`; `www.nfl.com` is reachable only through the page-fetch tool.
 Every official value in this round is therefore read through the fetch tool and transcribed with its
 source URL and read date, exactly as the 2026-11-18 pack did — no shell-side scraping was performed.
+
+---
+
+# Session `arena/427c1843-x1` — Round 7 completion record (2026-11-19)
+
+**Status: R7-1 … R7-4 complete.** Branch `arena/427c1843-x1` (from `main` @ `6f7df25`).
+
+## What shipped
+
+| # | Task | State | Artefacts |
+|---|---|---|---|
+| R7-1 | Live official re-verification pack dated 2026-11-19 | **done** | `data/verification/2026_11_19/**` (7 files: standings, Week 10 finals, Week 11 slate, Week 11 byes, Week 11 injury report, announced starters, verification summary), `tools/verify_2026_11_19.py` (A1–A8), CI step `--check` |
+| R7-2 | Decision Room | **done** | `room/**` (13 pages), `tools/build_room.py` (+`--check`), CI step, nav entry in `tools/build_site.py`, landing-page card and tree entry |
+| R7-3 | Defects repaired | **done** | double-escaped entities (94 occurrences / 29 files) fixed at the generator + `verify_output()` build guard; landing page's undated "347 injury rows" counted and dated; "Five trees" heading corrected; `room/` registered as the eighth page tree in `tools/check_links.py` and its classes defined in `app/assets/styles.css` |
+| R7-4 | Integration, verification, PR, merge, Pages | **in progress** | this record, `docs/round7/…`, PR below |
+
+## Sources (all read 2026-11-19 through the fetch tool)
+
+* <https://www.nfl.com/standings/league/2026/REG>
+* <https://www.nfl.com/schedules/2026/by-week/week-10>
+* <https://www.nfl.com/schedules/2026/by-week/week-11>
+* <https://www.nfl.com/injuries/league/2026/reg11>
+* <https://www.nfl.com/injuries/league/2026/reg10> (to close the Lions game-status defect)
+* <https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start>
+* <https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders>
+* <https://www.nfl.com/news/ravens-complete-trade-for-cardinals-jacoby-brissett-deal-terms-revealed>
+* <https://www.nfl.com/players/jacoby-brissett/>
+
+## Verification performed (all green, locally, in CI order)
+
+`verify_data` 2 960 checks · `verify_2026_11_19` A1–A8 · `verify_2026_11_19 --check` · `build_room --check` ·
+`build_site` (+ double-escape guard) · `check_links` 193 files / 47 692 assertions · `verify_against_official` ·
+`verify_app` · `verify_console` · `verify_stores` · `cross_check` · `check_site` · `verify_site` ·
+`verify_research_site` · `verify_site_annex` · `verify_parlay` · `pipeline/verify_site` · `build_hub` ·
+`lab/build_site` · `build_state_audit --check` · `test_source_rule`.
+
+## Measured findings (published, not asserted)
+
+1. **Multiplicity.** 16 scored strategies; 1 clears p ≤ 0.05 (`S_wind_under`, p = 0.0077); **0** clear the
+   Bonferroni bar of 0.003125; 0.80 false positives expected by chance at α = 0.05.
+2. **Staleness.** **104 of 192** published standings cells differ from the 2026-11-19 official read,
+   affecting **26 of 32 clubs**. The snapshot is a faithful 2026-11-14 read — the defect is that the table
+   did not say so.
+3. **Week 11 availability.** 253 official injury rows, 24 clubs, **16 designations**, all IND/HOU.
+4. **Announced starters.** 2 of the owner's 3 named cases clear the evidence bar (McCord, Lock); Brissett is
+   a reported trade and is left blank.
+5. **Lions defect closed.** Joseph, Mays and Reed all read **Out** on the official Week 10 page.
+
+## Irregularities (non-blocking, all on `room/flagged.html`)
+
+F-R7-01 stale dated table · F-R7-02 multiplicity vs the single p-value · F-R7-03 Jaylen Waddle listed
+under DEN on the Week 11 report · F-R7-04 `ARZ_KC` vs `AZ` game-id alias in the frozen 11-17 read ·
+F-R7-05 eight name/slug mismatches · F-R7-06 the double-escape defect (fixed) · F-R7-07 Brissett has no
+dated starter announcement.
+
+## Non-overlap
+
+Open PRs #91 (`arena/efb06932-x1`) and #92 (`arena/55c364b6-x1`) were enumerated file by file before this
+claim and again before this record. Neither touches `room/**`, `data/room/**`, `tools/build_room.py`,
+`tools/verify_2026_11_19.py` or `data/verification/2026_11_19/**`. Both touch `.github/workflows/verify.yml`
+by appending steps; this session also appends, at the end of the file, with a distinct step name, so a
+rebase is an append-append union. #92 also rewrites `index.html`, which this session **regenerates** from
+`tools/build_site.py`; the resolution is to regenerate, never to hand-merge generated HTML.
