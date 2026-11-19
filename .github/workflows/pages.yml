@@ -151,6 +151,11 @@ jobs:
           set -euo pipefail
           python3 tools/build_mind_change.py --check
           python3 tools/verify_mind_change.py
+      # Added by session arena/073589d1-x1 (additive only): the Week 11 transcription is re-checked
+      # (schema, vocabulary, row sums, designation counts) and its summary must match the committed file.
+      - name: Verify the Week 11 official injury capture
+        run: python3 tools/official/capture_w11.py --check
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)

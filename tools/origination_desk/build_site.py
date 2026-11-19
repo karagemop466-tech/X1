@@ -326,7 +326,7 @@ def _render_leaderboard(skill_sum: dict) -> str:
     return f"""
 <div class="note">
 <b>Governance Invariants Enforced on This Board:</b>
-(1) <b>Zero retrospective backtest numbers enter Stage-1 or Stage-2 rankings</b> — the {mult['quarantined_retrospective_trials_in_repo']} historical backtest entries in <code>data/mind_change/register.csv</code> are quarantined and counted strictly inside the trial multiplicity denominator <b>M = {mult['total_trials_M']}</b> (Šidák per-trial <code>alpha = {mult['sidak_alpha_per_trial']:.6f}</code>, one-sided <code>z = {mult['sidak_z_one_sided']:.3f}</code>).
+(1) <b>No retrospective backtest result appears in the leaderboard.</b> Historical walk-forward diagnostics, including control baselines, are detached in <code>data/origination_desk/skill/diagnostic_walkforward.csv</code> for audit only; they cannot rank or qualify entries. Prospective records are shown separately and remain gated. The {mult['quarantined_retrospective_trials_in_repo']} historical backtest registrations in <code>data/mind_change/register.csv</code> are quarantined and counted strictly inside the trial multiplicity denominator <b>M = {mult['total_trials_M']}</b> (Šidák per-trial <code>alpha = {mult['sidak_alpha_per_trial']:.6f}</code>, one-sided <code>z = {mult['sidak_z_one_sided']:.3f}</code>).
 (2) <b>Signal is separated from Staking</b>: Stage 1 grades probability calibration via Brier Skill Score against always-on controls; Stage 2 grades prospective vig-free CLV and staking drawdown once <code>Q-02</code> is resolved.
 (3) <b>Demotion Gate (<code>D-01..D-04</code>)</b> automatically returns any live entry to paper on a single rolling-window decay, 25% drawdown breach, negative 30-ticket CLV, or calibration drift trigger.
 </div>
