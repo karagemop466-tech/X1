@@ -5803,3 +5803,10 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
 | Merge result | pending |
 
+
+### Update — W11-2 resolved as an official change (same session, 2026-11-19)
+
+- The PR probe read the official page at **22:10:21 UTC** and committed it (`1d02290`, hash-checked, ledger chain intact). That read prints blank injury and game-status cells for **Charlie Heck (IND, T)**, the same as the live read at about 21:59 UTC.
+- So the 13:16 UTC designation (*Not injury related - personal matter* / *Questionable*) was removed from the official report before 21:59 UTC. The parser is not at fault. The published delta is in `data/week11/deltas.tsv`.
+- **W11-2 is therefore resolved as a change in the official report, not as a parse error.** Its severity is lowered from *bad* to *warn*. The report prints no game status for him; that is **not** a clearance and is not published as one.
+- Also re-verified after the update: `build_week11.py --check` match; `tests.test_week11` 6 pass; `verify_app.py` 0 unsourced rows; `build_state_audit.py` no change.

@@ -2580,11 +2580,12 @@ site; they block <em>trusting</em> the specific row.</section>""")
          "Owner to check the Actions schedule for injury-ledger and whether scheduled runs are being dropped. "
          "No change made here.",
          ["https://github.com/karagemop466-tech/X1/actions/workflows/injury-ledger.yml", "https://www.nfl.com/injuries/"]),
-        ("W11-2", "bad", "Charlie Heck (IND, T): stored read and live page disagree",
-         "The 13:16 UTC stored read shows 'Not injury related - personal matter' and 'Questionable'. The live page read "
-         "at about 21:59 UTC shows both cells blank. Of 26 IND and HOU rows compared by eye, this is the only mismatch.",
-         "Not resolved. The next scheduled ledger read decides which read is current.",
-         ["https://www.nfl.com/injuries/"]),
+        ("W11-2", "warn", "Charlie Heck (IND, T): designation removed from the official report between reads",
+         "The 13:16 UTC read printed 'Not injury related - personal matter' and 'Questionable'. The live page at about "
+         "21:59 UTC and the 22:10 UTC runner capture both show blank injury and game-status cells. The parser is "
+         "not at fault; the printed designation was removed. The report prints no game status for him, which is not a clearance.",
+         "Shown as a field-level delta on app/week11.html. Read as a removal of a printed designation, not as available.",
+         ["https://www.nfl.com/injuries/", "https://github.com/karagemop466-tech/X1/blob/main/data/ledger/injuries/ledger.jsonl"]),
         ("W11-3", "warn", "Two Week 11 clubs have no injury table in the latest read (CIN, WAS)",
          "The matchup strip for Cincinnati at Washington (Monday, Nov 23) is shown with no club table. This is a coverage gap, "
          "not a clean bill of health.",

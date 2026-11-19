@@ -34,8 +34,8 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
 
 ## Results on the day of writing (2026-11-19)
 
-- Week 11 captures in the ledger: **7 stored, 4 distinct content states.**
-- Latest read: **2026-11-19 13:16:57 UTC**, **253 listings** in **24 clubs**. Those 24 clubs are in 12 games; the 13th game, CIN @ WAS, has no table.
+- Week 11 captures in the ledger: **8 stored, 5 distinct content states** (the last one, 22:10 UTC, was added by the PR probe on this branch).
+- Latest read: **2026-11-19 22:10:21 UTC**, **253 listings** in **24 clubs**. Those 24 clubs are in 12 games; the 13th game, CIN @ WAS, has no table.
 - **CIN and WAS** (Monday, Nov 23 matchup) have no table in the latest read. They are listed as
   gaps. They are not treated as healthy.
 - Earliest Week 11 reads (2026-11-18 07:35 and 17:18 UTC) cover only the Thursday game (IND and
@@ -53,16 +53,20 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
 - **Live cross-check (by eye, not automated).** The official page was read on 2026-11-19 at about
   21:59 UTC. For the Indianapolis (11 listings) and Houston (15 listings) tables, 25 of 26 rows
   agree with the 13:16 UTC stored read on player, position, injury, practice status and game status.
+  The one difference (Charlie Heck) is confirmed by the 22:10 UTC stored read, below.
 - The raw bytes of the 01:53 and 13:16 UTC reads differ only in page chrome: analytics script tags
   and a carousel identifier. The injury tables are identical. The ledger's `revised` flag therefore
   overstates change for these two reads.
 
-## Open discrepancy (not resolved here)
+## Charlie Heck: resolved as a change in the official report
 
-- **Charlie Heck (IND, T).** The 13:16 UTC stored read shows injury *Not injury related - personal
-  matter* and game status *Questionable*. The live page read at about 21:59 UTC shows both cells blank.
-  One of the two reads is stale or the live read dropped the cell. The next scheduled ledger read
-  decides it. Flagged, not edited.
+- **13:16 UTC read (stored):** injury *Not injury related - personal matter*, game status *Questionable*.
+- **Live page, read at about 21:59 UTC (fetch, by eye):** both cells blank.
+- **22:10 UTC read (captured by the scheduled-style probe on the runner, stored and hash-checked):** both cells blank.
+- The delta is published in `data/week11/deltas.tsv` (from 13:16 to 22:10 UTC).
+
+The parser is not at fault. The report stopped printing that designation before 21:59 UTC. A blank game
+status means the report prints no designation; it is **not** a clearance, and nothing here reads it as one.
 
 ## Irregularities for manual review
 
@@ -73,6 +77,8 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
    `workflow_dispatch` from this session returned HTTP 403, so it could not be forced.
    Recommended action: check the Actions "schedule" settings and whether the cron is being
    dropped; consider a second independent trigger.
+   Recovery seen on this branch: a pull-request probe read the page at 22:10:21 UTC and committed the
+   line. The scheduled cadence itself is still unexplained.
 2. **The change flag is over-sensitive.** `revised` fires on page-chrome changes. The
    field-level delta in `deltas.tsv` is the measure to use. Changing the ledger's change definition
    is a change to `tools/snapshot_ledger.py`, which belongs to the ledger owner, so it is not made here.
