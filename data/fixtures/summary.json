@@ -1,0 +1,63 @@
+{
+ "dataset": "fixture_context",
+ "title": "Fixture context from published schedule facts only (Weeks 10-11, 2026)",
+ "generated_by": "tools/build_fixture_context.py",
+ "read_of_record": {
+  "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "read_utc": "2026-11-18T03:05Z",
+  "method": "rendered read, chunks 0-1 of 2",
+  "retained": "data/verification/2026_11_18/week11_slate_2026-11-18.tsv"
+ },
+ "rule": "A feature is published only when the field it traces to is printed on the page named in that row's source columns. Blank means the league printed nothing, and the row says so; nothing is filled from memory.",
+ "counts": {
+  "rows": 64,
+  "week11_rows": 32,
+  "week10_rows": 32,
+  "clubs_covered_week10": 32,
+  "fixtures_week11": 13,
+  "byes_week11": 6,
+  "byes_week10": 4,
+  "clubs_covered_week11": 32,
+  "with_venue_week10": 14,
+  "with_venue_week11": 1,
+  "with_rest_days": 53,
+  "short_week": 4,
+  "came_off_bye": 6,
+  "prime_time_games": 12,
+  "international": 4
+ },
+ "rest_days_distribution": {
+  "4": 4,
+  "6": 4,
+  "7": 33,
+  "8": 2,
+  "10": 2,
+  "11": 2,
+  "14": 6
+ },
+ "definitions": {
+  "rest_days": "printed kickoff date minus the club's previous printed fixture date, in days",
+  "short_week": "rest_days <= 4 (the Thursday-night pattern this feature exists to catch)",
+  "came_off_bye": "no fixture in the immediately previous week",
+  "prime_time_slot": "the block heading the fixture sits under on the schedule page",
+  "rest_hours": "approximate: measured to midnight UTC of the previous fixture date, because weeks 1-9 are recorded as dates, so the value carries up to a day of slack",
+  "international": "the printed venue/event label is not a US state address",
+  "kickoff_utc": "printed ET slot + 5 h (EST, no DST in November 2026)"
+ },
+ "caveats": [
+  "Week 11 venues are blank for 12 of 13 fixtures: the by-week page prints a location only for the international fixture. Per-fixture venues require the game-centre pass that data/nfl/venues_2026_week10.csv exists for in Week 10 (R-24, PARTIAL).",
+  "Kickoff times are read from the rendered page in its default (Eastern) presentation; the page's LOCAL toggle was not exercised, so a reader in another zone sees different strings for the same instant.",
+  "rest_days is a date difference, not a game-clock difference, because weeks 1-9 fixtures are recorded with a date and not a printed slot in this repository.",
+  "back_to_back_prime is published as 'unmeasured' on every row: the Week 10 finals file carries a prime-time note for 3 of 14 games and the weeks 1-9 reads print none, so the feature would be built on a partial field. The field is kept in the schema so a reader can see that it was measured as unavailable, not forgotten."
+ ],
+ "alias_table": [
+  {
+   "from_code": "ARZ",
+   "to_code": "AZ"
+  },
+  {
+   "from_code": "LAR",
+   "to_code": "LA"
+  }
+ ]
+}

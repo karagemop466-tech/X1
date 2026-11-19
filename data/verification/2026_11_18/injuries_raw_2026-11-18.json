@@ -1,0 +1,2331 @@
+{
+ "captures": [
+  {
+   "bytes": 399862,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261115T182105Z_fb7259efb662.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-15T18:21:05Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "selected_week": 10,
+   "sha256": "fb7259efb662941c9cefbe180f5a5b7268e192604c2fdf3be75b66da4cc07d8c",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "bytes": 399862,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261115T182902Z_6a1161db56f3.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-15T18:29:02Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "selected_week": 10,
+   "sha256": "6a1161db56f38ffc55943ebf7825ba58102b528a0bd4e176af99ae792a6ef0b0",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "bytes": 400006,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261115T184017Z_5e5a8aef25db.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-15T18:40:17Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "selected_week": 10,
+   "sha256": "5e5a8aef25db0c8453ee5f33bf792c1d026736eda1f83c2f6077c286fc8c0200",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "bytes": 400006,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261115T184611Z_26f679f31017.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-15T18:46:11Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "selected_week": 10,
+   "sha256": "26f679f310171385a317a63e85c45411268324ec20d837a1a913382ae9f6fc91",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "bytes": 374977,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261117T235206Z_b9a73b53c1ae.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-17T23:52:06Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "selected_week": 10,
+   "sha256": "b9a73b53c1ae7eb3571f4b61f3c10869a821065070004377edd10b65a5d8c604",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "bytes": 402191,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261118T031911Z_5bb7a6692584.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-18T03:19:11Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 10,
+   "sha256": "5bb7a66925848176f79e3379fbf15468dd1f98a2ad5d89cfd968cacdfe720973",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 401793,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261118T032026Z_6d7a896faf50.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-18T03:20:26Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 10,
+   "sha256": "6d7a896faf504a2645fa57c7f4dfc5b3ac9c517a3298d2609f5bf1d1ef5eb3c6",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 402295,
+   "clubs": 28,
+   "content_sha256": "8b85640548aeb4e4a87fbfeae869bf22a914ac8b3a7a5f23559b588840690a66",
+   "file": "raw/20261118T032404Z_1a0834335f8b.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-18T03:24:04Z",
+   "rows": 347,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 10,
+   "sha256": "1a0834335f8ba5a506c52ff65ce31ea888216f04c93d42f35dab19e66d231215",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 10,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 319203,
+   "clubs": 2,
+   "content_sha256": "ab8f001f50e14f9af4be043e29274961c01fcb6d416993d103ba18bb55d44d0d",
+   "file": "raw/20261118T073511Z_d9487c5f7e6c.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-18T07:35:11Z",
+   "rows": 26,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "d9487c5f7e6c53d4e76bf2f296d191c9698ca16874779da367781563b4235903",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 319081,
+   "clubs": 2,
+   "content_sha256": "ab8f001f50e14f9af4be043e29274961c01fcb6d416993d103ba18bb55d44d0d",
+   "file": "raw/20261118T171803Z_ecc646a9b435.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-18T17:18:03Z",
+   "rows": 26,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "ecc646a9b4357996b27c40844db75fce7b34066d13aff2f2f82f49f1825a5816",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373965,
+   "clubs": 24,
+   "content_sha256": "65fe02de08c314a5af8c27ae4382816f5c149978b0a54f986398db4b43dfbe87",
+   "file": "raw/20261119T015342Z_e725f16b4d44.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T01:53:42Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "e725f16b4d44e153d1cdc0394e601a07e4c24b79c149656906a24e4a17270fff",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373965,
+   "clubs": 24,
+   "content_sha256": "65fe02de08c314a5af8c27ae4382816f5c149978b0a54f986398db4b43dfbe87",
+   "file": "raw/20261119T065606Z_58060dd43940.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T06:56:06Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "58060dd43940a9fe528aee2b6c026b0a3c782638819bc55702266f6de4a353c9",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373965,
+   "clubs": 24,
+   "content_sha256": "65fe02de08c314a5af8c27ae4382816f5c149978b0a54f986398db4b43dfbe87",
+   "file": "raw/20261119T070213Z_83b6646dd4f0.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T07:02:13Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "83b6646dd4f0c5c0d466a445230701aeb2a639cac5a9b56cc3ab606152be4b5d",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373965,
+   "clubs": 24,
+   "content_sha256": "65fe02de08c314a5af8c27ae4382816f5c149978b0a54f986398db4b43dfbe87",
+   "file": "raw/20261119T075603Z_d0b051687762.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T07:56:03Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "d0b0516877620578c0300c3a4d65b4a16be1f2eed773f438867b7dac09846d06",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373463,
+   "clubs": 24,
+   "content_sha256": "65fe02de08c314a5af8c27ae4382816f5c149978b0a54f986398db4b43dfbe87",
+   "file": "raw/20261119T131657Z_f678e9a08fe4.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T13:16:57Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "f678e9a08fe4e6c6797093d9201b3688e409fcf52455aacaf73bdee3f3c2fc56",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373453,
+   "clubs": 24,
+   "content_sha256": "b22d7092d2b53bc2c856afb32d72c476b8619b8ac6d688af1e374de6f18dad5e",
+   "file": "raw/20261119T192526Z_86e85dc1cf76.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T19:25:26Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "86e85dc1cf7680634e6f8a1dc2547b94953c99a22e23b50bc7d88bd38af56ce7",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "bytes": 373453,
+   "clubs": 24,
+   "content_sha256": "b22d7092d2b53bc2c856afb32d72c476b8619b8ac6d688af1e374de6f18dad5e",
+   "file": "raw/20261119T192539Z_bc201e53bfee.html.gz",
+   "ledger_hash_field": "sha256",
+   "read_utc": "2026-11-19T19:25:39Z",
+   "rows": 253,
+   "selected_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "selected_week": 11,
+   "sha256": "bc201e53bfeeddf904838cccdcf17b8e8a5756e17ba89d25f880f5acdc1c7de9",
+   "url": "https://www.nfl.com/injuries/",
+   "week_options": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "week_printed": 11,
+   "week_tabs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  }
+ ],
+ "caveats": [
+  "The captures are of nfl.com/injuries/ (the league's default week), not of a week-pinned URL, so a capture's content is whatever the site chose to print that minute; the week_printed field records which report that was.",
+  "This tool writes two files into the 2026-11-18 pack and reads the ledger read-only. It does not edit data/ledger/**, which belongs to session arena-6a4ba536-x1.",
+  "A row-count difference between two captures is reported as a parse finding, not as league movement, unless the parsed facts differ."
+ ],
+ "cell_check": {
+  "compared_cells": 1735,
+  "duplicate_page_rows": 0,
+  "mismatches": 0,
+  "on_page_not_published": 0,
+  "published_missing": [],
+  "published_not_on_page": 0,
+  "rows_on_page": 347,
+  "rows_published": 347,
+  "unknown_clubs": []
+ },
+ "comparison_capture": {
+  "file": "raw/20261118T032404Z_1a0834335f8b.html.gz",
+  "newest_capture_read_utc": "2026-11-19T19:25:39Z",
+  "newest_capture_week_printed": 11,
+  "read_utc": "2026-11-18T03:24:04Z",
+  "selected_as": "the newest retained capture whose printed week equals the published table's week column; the live page has since moved on, so the newest capture overall is not a valid comparison target"
+ },
+ "dataset": "injuries_from_raw",
+ "definitions": {
+  "content_sha256": "hash over the parsed rows (slug, position, injury, practice, game status) sorted by slug - facts only, so a serialisation or label change cannot read as a revision of the source",
+  "join_key": "the player-page slug, unique site-wide"
+ },
+ "generated_by": "tools/verify_injuries_from_raw.py",
+ "ledger": {
+  "all_hashes_reproduce": true,
+  "entries": 17,
+  "file": "data/ledger/injuries/ledger.jsonl"
+ },
+ "method": "gzip bytes retained by session arena-6a4ba536-x1's ledger, decompressed and parsed here; the player-page slug is the join key, so no club-code alias is involved",
+ "page_movement": {
+  "distinct_contents": 4,
+  "distinct_days": [
+   "2026-11-15",
+   "2026-11-17",
+   "2026-11-18",
+   "2026-11-19"
+  ],
+  "pairs_same_day": [
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-15T18:21:05Z -> 2026-11-15T18:29:02Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-15T18:29:02Z -> 2026-11-15T18:40:17Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-15T18:40:17Z -> 2026-11-15T18:46:11Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-15T18:46:11Z -> 2026-11-17T23:52:06Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-17T23:52:06Z -> 2026-11-18T03:19:11Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-18T03:19:11Z -> 2026-11-18T03:20:26Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-18T03:20:26Z -> 2026-11-18T03:24:04Z",
+    "removed": 0,
+    "rows_a": 347,
+    "rows_b": 347
+   },
+   {
+    "added": 7,
+    "cell_changes": 35,
+    "changes": [
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Groin, Not injury related - personal matter",
+      "player": "Azeez Al-Shaair",
+      "slug": "azeez-al-shaair",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Azeez Al-Shaair",
+      "slug": "azeez-al-shaair",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Finger, Foot",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Full Participation in Practice",
+      "player": "Charvarius Ward",
+      "slug": "charvarius-ward",
+      "to": "Did Not Participate In Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Groin",
+      "player": "David Montgomery",
+      "slug": "david-montgomery",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "David Montgomery",
+      "slug": "david-montgomery",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Groin",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Full Participation in Practice",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Limited Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Knee",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Neck",
+      "player": "Jaylon Carlies",
+      "slug": "jaylon-carlies",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Jaylon Carlies",
+      "slug": "jaylon-carlies",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Calf",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Neck, Shoulder",
+      "player": "Keylan Rutledge",
+      "slug": "keylan-rutledge",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Did Not Participate In Practice",
+      "player": "Keylan Rutledge",
+      "slug": "keylan-rutledge",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Keylan Rutledge",
+      "slug": "keylan-rutledge",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Did Not Participate In Practice",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": "Limited Participation in Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": "Did Not Participate In Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Full Participation in Practice",
+      "player": "Woody Marks",
+      "slug": "woody-marks",
+      "to": "Did Not Participate In Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Illness, Back",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": ""
+     }
+    ],
+    "identical_content": false,
+    "pair": "2026-11-18T03:24:04Z -> 2026-11-18T07:35:11Z",
+    "removed": 328,
+    "rows_a": 347,
+    "rows_b": 26
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-18T07:35:11Z -> 2026-11-18T17:18:03Z",
+    "removed": 0,
+    "rows_a": 26,
+    "rows_b": 26
+   },
+   {
+    "added": 227,
+    "cell_changes": 35,
+    "changes": [
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Anthony Gould",
+      "slug": "anthony-gould",
+      "to": "Toe"
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Anthony Gould",
+      "slug": "anthony-gould",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Anthony Gould",
+      "slug": "anthony-gould",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Bernhard Raimann",
+      "slug": "bernhard-raimann",
+      "to": "Concussion"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Bernhard Raimann",
+      "slug": "bernhard-raimann",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": "Foot, Illness"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": "Out"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": "Not injury related - personal matter"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Charvarius Ward",
+      "slug": "charvarius-ward",
+      "to": "Knee"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Charvarius Ward",
+      "slug": "charvarius-ward",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Groin"
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": "Knee"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": "Calf"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Did Not Participate In Practice",
+      "player": "Kamari Lassiter",
+      "slug": "kamari-lassiter",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": "Questionable"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": "Out"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Sauce Gardner",
+      "slug": "sauce-gardner",
+      "to": "Calf"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Sauce Gardner",
+      "slug": "sauce-gardner",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Woody Marks",
+      "slug": "woody-marks",
+      "to": "Concussion"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Woody Marks",
+      "slug": "woody-marks",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": "Back"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": "Questionable"
+     }
+    ],
+    "identical_content": false,
+    "pair": "2026-11-18T17:18:03Z -> 2026-11-19T01:53:42Z",
+    "removed": 0,
+    "rows_a": 26,
+    "rows_b": 253
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-19T01:53:42Z -> 2026-11-19T06:56:06Z",
+    "removed": 0,
+    "rows_a": 253,
+    "rows_b": 253
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-19T06:56:06Z -> 2026-11-19T07:02:13Z",
+    "removed": 0,
+    "rows_a": 253,
+    "rows_b": 253
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-19T07:02:13Z -> 2026-11-19T07:56:03Z",
+    "removed": 0,
+    "rows_a": 253,
+    "rows_b": 253
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-19T07:56:03Z -> 2026-11-19T13:16:57Z",
+    "removed": 0,
+    "rows_a": 253,
+    "rows_b": 253
+   },
+   {
+    "added": 0,
+    "cell_changes": 2,
+    "changes": [
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Not injury related - personal matter",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": ""
+     }
+    ],
+    "identical_content": false,
+    "pair": "2026-11-19T13:16:57Z -> 2026-11-19T19:25:26Z",
+    "removed": 0,
+    "rows_a": 253,
+    "rows_b": 253
+   },
+   {
+    "added": 0,
+    "cell_changes": 0,
+    "identical_content": true,
+    "pair": "2026-11-19T19:25:26Z -> 2026-11-19T19:25:39Z",
+    "removed": 0,
+    "rows_a": 253,
+    "rows_b": 253
+   }
+  ],
+  "transitions_between_contents": [
+   {
+    "added": 7,
+    "added_slugs": [
+     "anthony-gould",
+     "bernhard-raimann",
+     "charlie-heck",
+     "dalton-tucker",
+     "febechi-nwaiwu",
+     "kamari-lassiter",
+     "sauce-gardner"
+    ],
+    "cell_changes": 35,
+    "pair": "2026-11-15T18:21:05Z -> 2026-11-18T07:35:11Z",
+    "removed": 328,
+    "removed_slugs": [
+     "a-j-brown",
+     "a-j-haulcy",
+     "aaron-banks",
+     "aaron-brewer-2",
+     "aaron-donald",
+     "abdul-carter",
+     "adam-randall",
+     "adonai-mitchell",
+     "aj-barner",
+     "akeem-davis-gaither",
+     "alec-anderson-2",
+     "alex-harkey",
+     "alijah-clark",
+     "alvin-kamara",
+     "amik-robertson",
+     "amon-ra-st-brown",
+     "andrei-iosivas",
+     "andrew-thomas",
+     "andrew-wingard",
+     "anthony-bradford"
+    ],
+    "rows_a": 347,
+    "rows_b": 26,
+    "sample": [
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Groin, Not injury related - personal matter",
+      "player": "Azeez Al-Shaair",
+      "slug": "azeez-al-shaair",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Azeez Al-Shaair",
+      "slug": "azeez-al-shaair",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Finger, Foot",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Full Participation in Practice",
+      "player": "Charvarius Ward",
+      "slug": "charvarius-ward",
+      "to": "Did Not Participate In Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Groin",
+      "player": "David Montgomery",
+      "slug": "david-montgomery",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "David Montgomery",
+      "slug": "david-montgomery",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Groin",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Full Participation in Practice",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Limited Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Knee",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Neck",
+      "player": "Jaylon Carlies",
+      "slug": "jaylon-carlies",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Jaylon Carlies",
+      "slug": "jaylon-carlies",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Calf",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Neck, Shoulder",
+      "player": "Keylan Rutledge",
+      "slug": "keylan-rutledge",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Did Not Participate In Practice",
+      "player": "Keylan Rutledge",
+      "slug": "keylan-rutledge",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Keylan Rutledge",
+      "slug": "keylan-rutledge",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Did Not Participate In Practice",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": "Limited Participation in Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Out",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Hamstring",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": "Did Not Participate In Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Full Participation in Practice",
+      "player": "Woody Marks",
+      "slug": "woody-marks",
+      "to": "Did Not Participate In Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "Illness, Back",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": ""
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": ""
+     }
+    ]
+   },
+   {
+    "added": 227,
+    "added_slugs": [
+     "aaron-brewer-2",
+     "adam-prentice",
+     "adam-randall",
+     "alohi-gilman",
+     "alvin-kamara",
+     "amani-hooker",
+     "andrew-meyer",
+     "andrew-mukuba",
+     "andrew-van-ginkel",
+     "anthony-hill-jr",
+     "antoine-winfield-jr",
+     "antonio-johnson-3",
+     "arik-armstead",
+     "asim-richards",
+     "baker-mayfield",
+     "ben-mann-2",
+     "bhayshul-tuten",
+     "bj-green-ii",
+     "blake-cashman",
+     "bobby-okereke"
+    ],
+    "cell_changes": 35,
+    "pair": "2026-11-18T07:35:11Z -> 2026-11-19T01:53:42Z",
+    "removed": 0,
+    "removed_slugs": [],
+    "rows_a": 26,
+    "rows_b": 253,
+    "sample": [
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Anthony Gould",
+      "slug": "anthony-gould",
+      "to": "Toe"
+     },
+     {
+      "club": "Colts",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Anthony Gould",
+      "slug": "anthony-gould",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Anthony Gould",
+      "slug": "anthony-gould",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Bernhard Raimann",
+      "slug": "bernhard-raimann",
+      "to": "Concussion"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Bernhard Raimann",
+      "slug": "bernhard-raimann",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": "Foot, Illness"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Brevin Jordan",
+      "slug": "brevin-jordan",
+      "to": "Out"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": "Not injury related - personal matter"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Charvarius Ward",
+      "slug": "charvarius-ward",
+      "to": "Knee"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Charvarius Ward",
+      "slug": "charvarius-ward",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Danielle Hunter",
+      "slug": "danielle-hunter",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Groin"
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Limited Participation in Practice",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jacob Hummel",
+      "slug": "jake-hummel",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": "Knee"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jalen Travis",
+      "slug": "jalen-travis",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jaylin Smith",
+      "slug": "jaylin-smith",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": "Calf"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Jerry Tillery",
+      "slug": "jerry-tillery",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "practice_status",
+      "frm": "Did Not Participate In Practice",
+      "player": "Kamari Lassiter",
+      "slug": "kamari-lassiter",
+      "to": "Full Participation in Practice"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Luke Rhodes",
+      "slug": "luke-rhodes",
+      "to": "Questionable"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Marvin Harrison Jr.",
+      "slug": "marvin-harrison-jr",
+      "to": "Out"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Sauce Gardner",
+      "slug": "sauce-gardner",
+      "to": "Calf"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Sauce Gardner",
+      "slug": "sauce-gardner",
+      "to": "Questionable"
+     },
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": "Hamstring"
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "",
+      "player": "Will Mallory",
+      "slug": "will-mallory",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Woody Marks",
+      "slug": "woody-marks",
+      "to": "Concussion"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Woody Marks",
+      "slug": "woody-marks",
+      "to": "Out"
+     },
+     {
+      "club": "Texans",
+      "field": "injury",
+      "frm": "",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": "Back"
+     },
+     {
+      "club": "Texans",
+      "field": "game_status",
+      "frm": "",
+      "player": "Wyatt Teller",
+      "slug": "wyatt-teller",
+      "to": "Questionable"
+     }
+    ]
+   },
+   {
+    "added": 0,
+    "added_slugs": [],
+    "cell_changes": 2,
+    "pair": "2026-11-19T01:53:42Z -> 2026-11-19T19:25:26Z",
+    "removed": 0,
+    "removed_slugs": [],
+    "rows_a": 253,
+    "rows_b": 253,
+    "sample": [
+     {
+      "club": "Colts",
+      "field": "injury",
+      "frm": "Not injury related - personal matter",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": ""
+     },
+     {
+      "club": "Colts",
+      "field": "game_status",
+      "frm": "Questionable",
+      "player": "Charlie Heck",
+      "slug": "charlie-heck",
+      "to": ""
+     }
+    ]
+   }
+  ]
+ },
+ "published_at_utc": "2026-11-18T03:24:04Z",
+ "published_week": 10,
+ "session": "arena-55c364b6-x1",
+ "title": "The published Week 10 injury table checked against the retained raw page bytes",
+ "week_tab_state": {
+  "note": "the page offers WEEK 1..11 as routes in a <select> and marks reg10 selected; the printed report is therefore the Week 10 one. A WEEK 11 *option* is not a Week 11 *report* - the option is inert until rows exist, which is what the rendered read of the reg11 route saw as a redirect back to reg10. Same for every capture here: the Week 11 option existed on 2026-11-15 as well, so no publication event can be inferred from its presence.",
+  "selected_week": 10,
+  "week_options_offered": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "week_printed_on_page": 10
+ }
+}

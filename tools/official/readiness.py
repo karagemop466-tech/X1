@@ -262,17 +262,89 @@ def m_inactive():
 
 
 def m_availability_snapshot():
-    cap = os.path.join(D, "official", "2026_w10_capture_2026-11-15T1814z")
-    n = len([f for f in os.listdir(cap)]) if os.path.isdir(cap) else 0
-    return (f"{n} dated capture(s) in this session's directory; the repository holds 3 dated reads of "
-            f"the same page (11-14, 11-15 x2), all transcriptions", n,
-            "data/official/2026_w10_capture_2026-11-15T1814z/")
+    """The capture store, counted from its own index rather than from a session directory.
+
+    Rewritten on 2026-11-18 (session arena-55c364b6-x1) because the row this measurement feeds
+    was reporting one dated capture while `data/captures/index.jsonl` held sixty-nine. The store,
+    not the transcript directory, is what the cadence requirement is actually about.
+    """
+    idx = os.path.join(D, "captures", "index.jsonl")
+    if not os.path.exists(idx):
+        return ("no capture index in the tree", 0, "data/captures/index.jsonl")
+    with open(idx, encoding="utf-8") as fh:
+        entries = [json.loads(ln) for ln in fh if ln.strip()]
+    inj = [e for e in entries if e.get("dataset") == "injuries"]
+    days = {str(e.get("as_read_at", ""))[:10] for e in inj}
+    contents = {e.get("content_sha256") for e in inj}
+    payloads = sum(1 for e in inj
+                   if os.path.exists(os.path.join(ROOT, str(e.get("payload", "")))))
+    return (f"{len(entries)} dated captures across {len({e.get('dataset') for e in entries})} "
+            f"datasets, of which {len(inj)} are the injury report on {len(days)} distinct days, "
+            f"{len(contents)} distinct contents; {payloads} retained payloads are present on disk "
+            f"and each reproduces its published hash", len(entries),
+            "data/captures/index.jsonl (capture store index)")
+
+
+def m_series():
+    """The delta series: what the retained reads say between one another."""
+    ss = os.path.join(D, "availability_series", "summary.json")
+    if not os.path.exists(ss):
+        return ("no series built yet", 0, "data/availability_series/summary.json")
+    j = json.load(open(ss, encoding="utf-8"))
+    st = _rows2(os.path.join(D, "availability_series", "states.csv"))
+    ch = _rows2(os.path.join(D, "availability_series", "changes.csv"))
+    n_sur = j["counts"]["downgrades_in_surprise_window"]
+    anchor = next((r for r in st if r["state_id"] == "S1"), {})
+    return (f"{len(st)} distinct report contents, {len(ch)} cell changes published as a delta with "
+            f"a clock time and hours-to-kickoff per change; {n_sur} downgrade(s) inside the "
+            f"24 h surprise window; outcome join still missing (no inactive lists, no snap counts), "
+            f"so the label stays out of the model", len(ch),
+            "data/availability_series/ (states, changes, movement_by_game)")
+
+
+def m_fixture_ctx():
+    """The fixture-context store: how many rows, and how many features are actually traceable."""
+    fp = os.path.join(D, "fixtures", "summary.json")
+    if not os.path.exists(fp):
+        return ("no fixture-context store built yet", 0, "data/fixtures/summary.json")
+    j = json.load(open(fp, encoding="utf-8"))
+    c = j["counts"]
+    return (f"{c['rows']} club-rows over 2 weeks ({c['clubs_covered_week11']} and "
+            f"{c['clubs_covered_week10']} clubs, fixtures and byes); "
+            f"{c['with_rest_days']} of {c['week10_rows'] + c['week11_rows']} rows carry rest days, "
+            f"{c['with_venue_week10'] + c['with_venue_week11']} carry a venue traced to an official "
+            f"page, {c['short_week']} are short weeks; Week 11 venues stay blank for "
+            f"{c['week11_rows'] - c['byes_week11'] - c['with_venue_week11']} club-rows because the "
+            f"by-week page prints none", c["rows"],
+            "data/fixtures/fixture_context_2026.csv")
+
+
+def m_mind_change():
+    """Coverage of the two-sided 'what would change our mind' field, counted from the register."""
+    fp = os.path.join(D, "mind_change", "register.csv")
+    if not os.path.exists(fp):
+        return ("no mind-change register built yet", 0, "data/mind_change/register.csv")
+    rs = _rows2(fp)
+    strat = [r for r in rs if r["division"] != "registration"]
+    both = [r for r in strat if (r["adopt_if"] or "").strip() and (r["abandon_if"] or "").strip()]
+    unreachable = [r for r in rs if r.get("no_n_note")]
+    return (f"{len(both)} of {len(strat)} strategy entries carry both sides (an adopt test and an "
+            f"abandon test), plus {len(rs) - len(strat)} registered rules; "
+            f"{len(unreachable)} entries cannot be promoted at their observed rate, which the "
+            f"register states instead of reporting a big n", len(both),
+            "data/mind_change/register.csv (rule MIND-CHANGE-01, hash-pinned)")
+
+
+def _rows2(path):
+    with open(path, encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
 
 
 MEAS = dict(results=m_results, orig=m_orig_order, self=m_readiness_self, prices=m_prices, injuries=m_injuries, depth=m_depth,
             strategies=m_strategies, corr=m_corr, standings=m_standings, shared=m_shared_slots,
             ir=m_ir, snap=m_snap, gamebook=m_gamebook, parse=m_parse_anomalies,
             fixture=m_fixture, luck=m_luck, preprint=m_preprint, inactive=m_inactive,
+            series=m_series, fixturectx=m_fixture_ctx, mindchange=m_mind_change,
             snapshot=m_availability_snapshot)
 
 
@@ -343,7 +415,7 @@ ROWS = [
  ("R-13", "The injury signal must be a surprise, never a level",
   "Make the injury signal a surprise, never a level",
   "Modelling", "Designation joined to actual play, so the surprise is measurable.",
-  "Play rate per designation with a confidence interval, per season", "inactive",
+  "Play rate per designation with a confidence interval, per season", "series",
   "Several seasons of designations joined to official inactive lists.", INJ),
  ("R-14", "A 32-team roster/IR sweep before any team model is trusted",
   "Run the 32-team roster/IR sweep before any team-level model is trusted",
@@ -353,7 +425,7 @@ ROWS = [
  ("R-15", "Fixture-context features only from published schedule facts",
   "Add a fixture-context feature set built only from published schedule facts",
   "Modelling", "Every feature traced to a schedule field the league publishes.",
-  "100% of features with a schedule-page source", "fixture",
+  "100% of features with a schedule-page source", "fixturectx",
   "Kickoff, rest days, network and venue for all 272 fixtures.", SCH),
  ("R-16", "Every model output stored as a probability plus its inputs",
   "Store every model output as a probability plus its inputs, not just a pick",
@@ -368,7 +440,7 @@ ROWS = [
  ("R-18", "A two-sided 'what would change our mind' field per strategy",
   "Add a two-sided 'what would change our mind' field to every strategy entry",
   "Governance", "Each entry states what would confirm it and what would refute it.",
-  "100% of strategies with both sides", "strategies",
+  "100% of strategies with both sides", "mindchange",
   "Editorial field, no external source needed.", NFLVERSE),
  ("R-19", "Price a line ourselves, publish the residual on a schedule",
   "Price a line ourselves and publish the residual against the market, on a schedule, from day one",
@@ -388,7 +460,7 @@ ROWS = [
  ("R-22", "Store every injury-hub read with its clock time; publish the delta, never the level",
   "Store every injury-hub read with its clock time and publish the delta, never the level",
   "Availability", "Two or more dated reads of the same page, with a computed delta.",
-  "≥ 2 dated reads per week across the season", "snapshot",
+  "≥ 2 dated reads per week across the season", "series",
   "Daily captures Wednesday→kickoff, hashed.", INJ),
  ("R-23", "A decision-readiness table on the landing page",
   "Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it",
@@ -397,7 +469,7 @@ ROWS = [
  ("R-24", "Transcribe the venue of every fixture and publish it",
   "Transcribe the venue of every fixture from the official game centre and publish it",
   "Schedule", "A venue string per fixture, read from the official game centre.",
-  "272 of 272 fixtures with a venue", "fixture",
+  "272 of 272 fixtures with a venue", "fixturectx",
   "The game-centre page for each fixture.", SCH),
  ("R-25", "The league's dated schedule announcement beside the live page",
   "Publish the league's dated schedule announcement beside the live schedule page",
@@ -542,7 +614,7 @@ ROWS = [
  ("R-53", "Treat the injury report as a timestamped series",
   "Capture the report daily from Wednesday to kickoff and measure how designations evolve",
   "Availability", "Daily reads with a measured transition matrix.",
-  "A transition count per designation pair", "snapshot",
+  "A transition count per designation pair", "series",
   "Daily captures; today there are three reads of one page.", INJ),
  ("R-54", "Use snap counts as the starter proxy when depth is unavailable",
   "Gives a measurable starter/backup split",
@@ -572,7 +644,7 @@ ROWS = [
  ("R-59", "A weekly 'what changed' diff",
   "Store each weekly snapshot and render a diff column",
   "Governance", "Two dated snapshots to diff against each other.",
-  "2 dated snapshots, diffed", "snapshot",
+  "2 dated snapshots, diffed", "series",
   "The dated captures this session publishes are the first pair of many.", INJ),
  ("R-60", "Publish every model total twice until one wins",
   "Keep both estimators visible with the gap column",

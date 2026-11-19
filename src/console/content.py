@@ -232,6 +232,50 @@ def questions(ctx):
              information_missing="Nothing material.",
              answer="No. Raising the threshold just reduces the sample; it does not select better bets. This is the clearest evidence that the disagreement is model error rather than market error.",
              how_to_discover="Nothing. If a future model produces a positive value here with a tight interval, that is the signal to promote it."),
+        dict(id="Q-16", area="Availability", status="OPEN - answerable without a decision",
+             question="When does the injury report actually move, in hours before kickoff, and does it differ by game slot?",
+             information_held=(
+                 "Three distinct contents across fourteen retained reads of the Week 10 report, each "
+                 "cell change timed against the club's kickoff: 30 of 32 changes sit on the Monday-night "
+                 "fixture 31 hours out, and the last two reads (28 hours apart, twelve captures) moved "
+                 "nothing. Published on the Injury report series page."),
+             information_missing=(
+                 "One week is one sample. The Week 11 report had not been published at the 2026-11-18 "
+                 "probe, so there is no second week to compare the movement shape against, and the "
+                 "Sunday/Tuesday pattern is unmeasured. An independent raw-byte store extends the "
+                 "no-movement window to 57.05 h (8 captures, 1,735 cells, 0 mismatches against the "
+                 "published table), so the zero-change transition is not a missing collector - but it "
+                 "is still one week."),
+             answer="",
+             how_to_discover="Let the scheduled capture run: three dated reads per week for four weeks "
+                             "gives a movement-by-slot table with n on each cell. No new tooling is "
+                             "needed - the builder already computes it from the capture index."),
+        dict(id="Q-17", area="Availability", status="OPEN - blocked on the league's publication",
+             question="Was a designation a surprise, or did the club always intend to play the player?",
+             information_held=(
+                 "The designation history is now replayable per player with clock times, so the "
+                 "'before' side of the question is answerable. The 'after' side is not: the repository "
+                 "holds zero inactive lists and zero snap counts for 2026."),
+             information_missing=(
+                 "The actual participation record per game. Without it, a Questionable that played 60 "
+                 "snaps and a Questionable that sat out are the same row, and no label can be scored."),
+             answer="",
+             how_to_discover="Capture the per-game inactive list (published as a news article per club "
+                             "per game) and one Game Book participation page per fixture; join on the "
+                             "player slug the report already carries. This is SG-18."),
+        dict(id="Q-18", area="Fixtures", status="OPEN - owner decision, cheap either way",
+             question="Is rest measured in whole days between printed dates, or in hours to kickoff?",
+             information_held=(
+                 "Weeks 1-9 fixtures are recorded in this repository as dates, not printed slots, so "
+                 "the fixture-context store publishes rest_days from dates and marks rest_hours as "
+                 "approximate (up to a day of slack). Both are computed, both are labelled."),
+             information_missing="Printed kickoff slots for weeks 1-9, which would let rest be measured "
+                                 "on the same clock for every fixture of the season.",
+             answer="",
+             how_to_discover="Re-read the by-week pages for weeks 1-9 (nine pages) and store the printed "
+                             "slot per fixture; then rest_hours becomes a measured field rather than an "
+                             "approximation, and the short-week flag can be defined at 108 hours "
+                             "instead of four days."),
     ]
     return Q
 
@@ -543,6 +587,87 @@ def suggestions():
                               "at every build, console/snapshots.html computes the 11-14 vs "
                               "11-15 deltas from the files, console/announcement.html sits beside "
                               "the schedule page; gate tools/verify_console.py")),
+        dict(id="SG-16", title="Publish one club-code authority instead of aliasing at every join",
+             area="Availability", unlocks="Q-16, the injury-to-depth join, and every cross-page standings check",
+             problem=("The same club is spelled two ways by the league's own pages and by the "
+                      "repository's own copies: the Rams print as LA on the standings and by-week "
+                      "pages and as LAR in a hand transcription and in one of the three published "
+                      "Week 10 injury tables - 28 row-keys differ on the spelling alone. Today each "
+                      "builder carries its own alias table (the capture config, the injury verifier, "
+                      "the fixture-context builder), so the fix exists in five places and can be "
+                      "forgotten in a sixth."),
+             paths=[
+                 dict(label="A. One generated code table, imported everywhere",
+                      description="A data/official/club_codes.tsv with code, slug, domain and every spelling seen on an official page, generated from the standings read; builders import it and publish the alias they applied.",
+                      cost="Free", effort="One generator plus import changes in five tools", risk="Low",
+                      unlocks="A join that cannot silently drop a club, and the alias becomes visible on the page instead of in code."),
+                 dict(label="B. Keep aliasing per builder",
+                      description="Current state. Each tool documents its own alias, and the verifier catches a mismatch only where a verifier exists.",
+                      cost="Free", effort="None", risk="A new tool silently drops the Rams - this has already happened twice in the injury diffs",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A. It is the cheapest defect on the board that produces wrong numbers rather than missing ones.",
+             decision_status="proposed"),
+        dict(id="SG-17", title="Hash the facts and the format separately in the capture store",
+             area="Availability", unlocks="A drift alarm that means 'the source moved', not 'we re-serialised'",
+             problem=("Two retained states of the Week 10 report differ in content hash while zero "
+                      "cells differ: the hash covers the serialised rows, including the game_label "
+                      "format, so a parser change reads as a revision of the league's report. A "
+                      "reader of the series sees 'revised' where the fact is 'unchanged'. The second "
+                      "store has the same property, visible without a parser: the ledger's 8 raw "
+                      "captures of nfl.com/injuries/ span 374,977 to 402,295 bytes and every flag "
+                      "'revised', while the 347 parsed rows hash identically for all 57.05 hours."),
+             paths=[
+                 dict(label="A. Add a facts_sha256 beside content_sha256",
+                      description="Hash the rows with the format-only fields removed; report both, and alarm only when the facts hash moves.",
+                      cost="Free", effort="A few lines in pipeline/capture_store.py plus a pin update", risk="Low",
+                      unlocks="The alarm becomes trustworthy for the two things it must separate: source movement and parser movement."),
+                 dict(label="B. Document it and move on",
+                      description="The series page already prints the cell-level diff next to the hash, so a careful reader is not misled.",
+                      cost="Free", effort="None", risk="The uncareful reader - including a future model - treats a format change as news",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A. The whole point of the store is that a change means something.",
+             decision_status="proposed"),
+        dict(id="SG-18", title="Capture the per-game inactive list so the surprise can be scored",
+             area="Availability", unlocks="Q-17, R-13, R-30 and the empirical meaning of Questionable",
+             problem=("The delta series can now say which designations moved and when, but nothing in "
+                      "the repository says whether the player then played. Every injury feature stops "
+                      "at that wall: the label cannot be calibrated, only described."),
+             paths=[
+                 dict(label="A. Inactive lists from the league's per-game publication",
+                      description="Capture the club inactive list for each fixture into the same dated, hashed store, keyed by the player slug the report already carries.",
+                      cost="Free", effort="One collector path plus a join", risk="Medium: it is published as prose, so the parser needs a pin per week",
+                      unlocks="Play rate per designation with an interval, which is the gate R-13 has been quoting since round 1."),
+                 dict(label="B. Game Book participation pages",
+                      description="One PDF per fixture; the participation section is authoritative and already documented as image-bound in some books.",
+                      cost="Free", effort="High: PDF parsing per game, plus the usage restriction the memo records", risk="Medium",
+                      unlocks="Snap shares as well as inactives, which also unblocks SG-02."),
+                 dict(label="C. Leave the label uncalibrated",
+                      description="Current state: designations are published as data, never as a model feature.",
+                      cost="Free", effort="None", risk="The injury work stays descriptive forever",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A first, B only if A proves unreliable for the clubs that publish worst.",
+             decision_status="proposed"),
+        dict(id="SG-19", title="Extend the game-centre venue pass to Week 11",
+             area="Fixtures", unlocks="R-24 from 14 of 272 fixtures toward the season",
+             problem=("Week 10 now has a per-fixture venue register read from each game centre; Week 11 "
+                      "prints no venue on the by-week page except the international fixture, so 24 of "
+                      "the 26 Week 11 club-rows carry a blank venue and the roof/surface feature that "
+                      "needs one stays blocked for the current week."),
+             paths=[
+                 dict(label="A. Same pass, next week",
+                      description="Run the Week 10 venue method against the 13 Week 11 game centres on the schedule the register already uses, dated and hashed.",
+                      cost="Free", effort="One run of an existing tool with a new week argument", risk="Low",
+                      unlocks="A venue per fixture for the live week, which is the only week the model is pricing."),
+                 dict(label="B. Only when the totals model needs it",
+                      description="Leave Week 11 venues blank and keep the register as a completed-weeks artefact.",
+                      cost="Free", effort="None", risk="The roof/surface overlay stays unbuildable while the originated totals are live",
+                      unlocks="Nothing new."),
+             ],
+             recommendation="Path A. The tool exists, the fixtures are known, and the gap is the one the brief calls out first.",
+             decision_status="proposed"),
     ]
 
 
@@ -654,5 +779,52 @@ def irregularities(ctx):
                      "standings arithmetic). It is linked here per the audit session's handoff to "
                      "the integrator."),
              source="https://github.com/karagemop466-tech/X1/blob/main/docs/audit/brief-coverage-2026-11-17.md",
+             status="published for review"),
+        dict(id="X-13", severity="amber", area="Availability",
+             finding=("The three published copies of the Week 10 injury table do not agree on the club "
+                      "code: 28 row-keys differ on the LA/LAR spelling alone (console copy vs the two "
+                      "data copies). A join across any two of them silently drops the Rams' 14 rows."),
+             effect=("Verified 2026-11-18 by tools/verify_2026_11_18.py check B2: after normalising the "
+                     "club code and the practice vocabulary the three copies agree on all 347 rows and "
+                     "0 cells disagree, so this is a labelling defect, not a data defect. The fix is "
+                     "SG-16 (one code authority) rather than another alias."),
+             source="https://github.com/karagemop466-tech/X1/blob/main/tools/verify_2026_11_18.py",
+             status="published for review"),
+        dict(id="X-14", severity="grey", area="Availability",
+             finding=("The Week 11 injury report did not exist when the 2026-11-18 read was taken: the "
+                      "week-specific URL resolves to Week 10 and the page still prints the Week 10 "
+                      "report 46.2 hours before the week's first kickoff. Corroborated at byte level "
+                      "by the retained captures: the week picker gains a WEEK 11 <option> between "
+                      "2026-11-17T23:52Z and 2026-11-18T03:19Z (10 weeks offered, then 11) while "
+                      "reg10 stays selected and the table keeps its 347 Week 10 rows."),
+             effect=("Recorded as a probe row rather than a fetch failure, because 'no rows' and 'no "
+                     "report yet' are different facts and the freshness alarm depends on the "
+                     "difference. An <option> in a <select> is a route, not a publication: a reader who "
+                     "counts tabs would date the Week 11 report 3 hours before any Week 11 row exists. "
+                     "Consequence for the site: the delta series is one week deep and the "
+                     "Wednesday-to-Friday cadence cannot be demonstrated for Week 11 until the report "
+                     "exists. This is the source's timing, not a gap in the capture plan."),
+             source="https://www.nfl.com/injuries/league/2026/REG11",
+             status="published for review"),
+        dict(id="X-15", severity="amber", area="Model",
+             finding=("The injury surprise is measured but not scored: 0 downgrades fell inside the "
+                      "24-hour window in the only week retained, and no read of the report can be "
+                      "joined to participation because the repository holds zero inactive lists and "
+                      "zero snap counts for 2026."),
+             effect=("R-13 and R-30 stay blocked on the outcome side, not the availability side. The "
+                     "series is therefore published as description; no designation has become a model "
+                     "feature, and none will until SG-18 lands. One week of data would not score the "
+                     "label anyway - that number is stated so nobody reads the panel as evidence."),
+             source="https://github.com/karagemop466-tech/X1/blob/main/data/availability_series/summary.json",
+             status="published for review"),
+        dict(id="X-16", severity="grey", area="Automation",
+             finding=("The capture store's content hash covers the serialised rows, including the "
+                      "game_label format, so a parser change reads as a revision of the source. Two "
+                      "states of the Week 10 report differ by hash while zero cells differ."),
+             effect=("The 'revised' flag on those runs is accurate about the file and misleading about "
+                     "the league. The series page prints the cell-level diff beside the hash so a "
+                     "reader can tell the two apart; SG-17 proposes separating them in the store so a "
+                     "future model does not have to."),
+             source="https://github.com/karagemop466-tech/X1/blob/main/pipeline/capture_store.py",
              status="published for review"),
     ]

@@ -1,0 +1,41 @@
+{
+ "dataset": "round6_reads",
+ "title": "Retained official reads behind the 2026-11-18 pack",
+ "generated_by": "tools/build_2026_11_18_manifest.py",
+ "rule": "A read file in this pack is immutable history. This manifest is the fingerprint; tools/verify_2026_11_18_55c364b6.py re-hashes every file against it on every build.",
+ "files": [
+  {
+   "path": "data/verification/2026_11_18/week11_slate_2026-11-18.tsv",
+   "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+   "describes": "Week 11 slate: 13 fixtures, 6 byes, kickoff slots, networks, event labels",
+   "chunks": "0-1 of 2",
+   "sha256": "b8f4354d6e94d449077d536da6e38e994a1991beeb187393eb39bb46654767f2",
+   "bytes": 4221,
+   "lines": 40,
+   "read_utc": "2026-11-18T03:05Z",
+   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also carries the whole-report comparison against those retained bytes (injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only evidence that the published table matches the page - they remain the evidence for the Week 11 slate, which the ledger does not fetch."
+  },
+  {
+   "path": "data/verification/2026_11_18/week10_rows_reread_2026-11-18.tsv",
+   "url": "https://www.nfl.com/injuries/",
+   "describes": "Week 10 injury rows re-read four club tables deep (WAS, NYG, NE, DET)",
+   "chunks": "0 of 8",
+   "sha256": "f308789bf0d6a13634ea4f44fbb04ad0d01557811a1a7f33071cf7a5312eaafb",
+   "bytes": 6327,
+   "lines": 59,
+   "read_utc": "2026-11-18T03:05Z",
+   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also carries the whole-report comparison against those retained bytes (injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only evidence that the published table matches the page - they remain the evidence for the Week 11 slate, which the ledger does not fetch."
+  },
+  {
+   "path": "data/verification/2026_11_18/injury_probe_2026-11-18.tsv",
+   "url": "https://www.nfl.com/injuries/league/2026/REG11",
+   "describes": "Week 11 report availability probe: the requested week resolves to Week 10",
+   "chunks": "0 of 1",
+   "sha256": "13ce89c87468de1c29a8fa0407e56dbf5c63f3a1e4524bef5a655a49bed593d8",
+   "bytes": 1820,
+   "lines": 12,
+   "read_utc": "2026-11-18T03:05Z",
+   "method": "rendered read of the live official page through the agent's fetch tool; not raw HTTP bytes. The raw-bytes path in this repository is the CI ledger (.github/workflows/injury-ledger.yml -> data/ledger/injuries/), which keeps gzipped responses. Both are recorded as what they are. Since 2026-11-18T04:20Z the pack also carries the whole-report comparison against those retained bytes (injuries_raw_2026-11-18.json / _rows_2026-11-18.tsv, written by tools/verify_injuries_from_raw.py), so the rendered reads above are no longer the only evidence that the published table matches the page - they remain the evidence for the Week 11 slate, which the ledger does not fetch."
+  }
+ ]
+}

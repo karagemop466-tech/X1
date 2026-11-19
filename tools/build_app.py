@@ -797,6 +797,49 @@ compared cell by cell: {len(rows) * 16} value comparisons, 0 mismatches. The lea
                 lede="Every club on the league's own table, as printed on 2026-11-14.")
 
 
+ANN_JSON = os.path.join(ROOT, "data", "audit", "schedule_announcement_2026.json")
+ANN_EXCERPT = os.path.join(ROOT, "data", "capture", "2026_11_19_schedule_announcement", "official_excerpt.md")
+
+
+def _norm_ws(s: str) -> str:
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def schedule_announcement_card() -> str:
+    """The league's dated schedule announcement, shown beside the live Week 10 slate.
+
+    Every fact is a quote. Each quote must appear verbatim (whitespace-normalised) in the
+    stored official excerpt, or the build stops, so a paraphrase cannot reach the page.
+    """
+    import hashlib
+    ann = jload(ANN_JSON)
+    with open(ANN_EXCERPT, encoding="utf-8") as fh:
+        excerpt_raw = fh.read()
+    excerpt = _norm_ws(excerpt_raw)
+    digest = hashlib.sha256(excerpt_raw.encode("utf-8")).hexdigest()
+    rows = []
+    for f in ann.get("facts", []):
+        q = _norm_ws(f["quote"])
+        if q not in excerpt:
+            raise SystemExit(f"schedule announcement quote not verbatim in official excerpt: {f['label']!r}")
+        rows.append([esc(f["label"]), esc(f["quote"]),
+                     link(f["source_url"], "media.nfl.com release")])
+    inner = (
+        f'<div class="note"><b>The league\'s dated announcement, beside the live slate.</b> '
+        f'Announced <b>{esc(ann.get("announced_date", ""))}</b> ({esc(ann.get("dateline", ""))}) by '
+        f'{esc(ann.get("publisher", ""))}. Each fact is quoted verbatim from the release; '
+        f'the release is '
+        f'{link(ann.get("official_url", ""), "media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced")}. '
+        f'Read {esc(ann.get("retrieved_at", ""))}; stored excerpt sha256 '
+        f'<code>{digest[:16]}…</code> '
+        f'(<code>data/capture/2026_11_19_schedule_announcement/official_excerpt.md</code>).</div>'
+        + table("t-announce", ["Fact", "As the league\'s release states it", "Source"], rows, filter_box=False,
+                note="Limit recorded with the capture: the release does not list every game. "
+                     "The complete by-week schedule is the league's PDF linked from the release.")
+    )
+    return card("League's dated schedule announcement (2026-05-14)", inner)
+
+
 def p_schedule() -> str:
     sched = D["verify_psv"]["schedule"]
     byes = D["verify_psv"]["byes"]
@@ -829,6 +872,7 @@ def p_schedule() -> str:
 final). Every other game on the slate is scheduled, not played. Final scores are added only as the
 league publishes them — no result is projected here.</p>
 {link("https://www.nfl.com/games/commanders-at-giants-2026-reg-10", "Official game page: Commanders at Giants, 2026 REG 10")}"""))
+    body.append(schedule_announcement_card())
     return page("schedule.html", "Week 10 slate", "Official data", "\n".join(body),
                 lede="The 14 games, the four clubs on bye, and the one result the league has published.")
 
