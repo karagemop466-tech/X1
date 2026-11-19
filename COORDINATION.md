@@ -5079,3 +5079,36 @@ claim and again before this record. Neither touches `room/**`, `data/room/**`, `
 by appending steps; this session also appends, at the end of the file, with a distinct step name, so a
 rebase is an append-append union. #92 also rewrites `index.html`, which this session **regenerates** from
 `tools/build_site.py`; the resolution is to regenerate, never to hand-merge generated HTML.
+
+## Round-7 scope collision — logged, not contested (session `arena/427c1843-x1`, 2026-11-19)
+
+While this session worked, `main` advanced 11 commits and five more PRs opened. Two overlap this
+session's claimed scope. Per rule 4 the overlap is **logged here rather than resolved by editing
+another session's files**, and per rule 6 nothing was discarded.
+
+| | This session (`arena/427c1843-x1`) | Other session | Overlap |
+|---|---|---|---|
+| PR #102 (`arena/34b79d69-x1`) | Decision Room: `room/**`, `tools/build_room.py` | "Decision Center: canonical suggestions, questions and missing-information review section" — `app/**`, `index.html`, `verify.yml`, `pages.yml` | **Conceptual duplicate.** Two sections answering "questions / suggestions / missing information". Neither claims `room/**` or `tools/build_room.py`; #102 works in `app/**`, this session works in `room/**`. Both are reachable; the owner now has two presentations of the same board and can pick one. No file is shared except `verify.yml` (append-only, distinct step names) and `COORDINATION.md` (append-only). |
+| PR #99 (`arena/68de0b7f-x1`) | `tools/build_site.py` (NAV entry, landing cards, `verify_output()` guard), `index.html` + `pages/**` (regenerated) | Week 11 paper-totals trial — also edits `tools/build_site.py` and `index.html` | **Real file overlap.** Resolved by **regeneration, not hand-merge**: this session's change is in the generator, so after rebasing onto `main` the generated `index.html`/`pages/**` were rebuilt from the union generator and produced no diff beyond the generator's own output. If #99 lands afterwards its own rebase sees the same shape. |
+
+**Rebase performed.** `git rebase origin/main` replayed this session's 5 commits onto `626763d`.
+Two conflicts, both append-only:
+* `COORDINATION.md` — the `arena/e0c7de42-x1` round-6 integration block (HEAD) against this
+  session's round-7 claim. Resolved by **union**: the other session's block is preserved verbatim
+  ahead of this session's, nothing deleted.
+* `.github/workflows/verify.yml` — the other session's "Replay the dated venue, report movement and
+  strategy decision checks" step (HEAD) against this session's two appended steps. Resolved by
+  **union**: both the other session's step and this session's two steps are present, so the file now
+  carries 49 named steps.
+
+**Re-verification after the rebase (all green, on the new base).** The full `verify.yml` run set —
+37 `run:` steps from `build_availability` through `build_venues_page --check` — passes, plus the two
+steps this session appended (`verify_2026_11_19 --check`, `build_room --check`) and the three
+`main`-side checks that did not exist at this session's branch point
+(`tools/verify_mind_change.py`, `tools/build_decision_review.py --check`,
+`tools/official/gamecentre.py selftest`). `tools/build_site.py` regenerates to **no diff** on the
+rebased tree (28 pages), which is the evidence that the generated-file overlap with #99 is clean.
+
+**Nothing was taken over.** This session did not edit `app/**`, `research/**`, `lab/**`, `scripts/**`,
+`tools/official/**` or any `main`-side file outside its claim; it did not touch PR #99's, #101's,
+#102's, #95's or #96's content.
