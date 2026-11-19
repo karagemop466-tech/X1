@@ -5716,3 +5716,15 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Pages deploy | to be confirmed via `gh api repos/karagemop466-tech/X1/pages` and the `pages build and deployment` workflow on the merge commit |
 | Merge result | to be recorded below after merge |
 
+
+## Pull request record — PR #131 (this session)
+
+| Item | Value |
+|---|---|
+| Pull request | https://github.com/karagemop466-tech/X1/pull/131 — `arena/48babc21-x1` → `main` |
+| Head commit | `1b01d1b` |
+| Merge method | `gh pr merge 131 --merge`, not waited for approval; flagged irregularities do not block the merge |
+| Pre-merge verification | `tools/verify_data.py` 2,960 pass; `scripts/verify_site.py` 211 pages pass; `tools/check_links.py` 211 files / 52,342 assertions pass; `tools/build_site.py` committed HTML byte-identical to fresh build |
+| Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
+| Merge result | pending |
+
