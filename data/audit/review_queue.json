@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 35,
+  "flag": 36,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -399,6 +399,17 @@
    "unknown": "Whether the 2026-11-17 edit changes the settlement rule itself or only its wording. The repository does not say, and this flag makes no claim either way.",
    "source": "https://github.com/karagemop466-tech/X1/commit/0c3e1e31d4e8c0059f643463ad56a2c23c96e5e0",
    "source_label": "commit 0c3e1e31d4 (N-4) on GitHub"
+  },
+  {
+   "id": "F-37",
+   "register": "data/flags.json",
+   "area": "Coordination / release",
+   "item": "At the 2026-11-19 22:03 UTC integration round, seven pull requests were open. Three (#95, #96, #110) duplicate work already merged on main via PR #125's recorded takeovers (docs/audit/public-release-boundary.md, tools/designation_calibration.py + tests, and the per-check measured counts in tools/verify_2026_11_19.py); #92's novel stores (availability series, fixture context, the 2026-11-18 raw-byte pack) were merged in this round's integration, its mind-change and game-centre content having already landed via commit 4221068; #91's venue register, mind-change and luck-panel content is duplicated by newer main-side implementations (R7's verified venue register and venues page, the merged round-6 mind-change register, console/luck.html) and was left open rather than forced; #123 remains HELD by its own author because two conflicting 82-row brief-coverage registers exist on the board (docs/review/round8-brief-coverage.tsv from merged R8-3 vs docs/audit/brief-coverage-2026-11-19.md in #123).",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether the owner wants PR #91's scheduled Game-Centre venue-capture workflow (.github/workflows/game-centre-venue-capture.yml, which runs successfully on CI runners) ported onto main alongside the R7 venue register, or whether the two registers should be reconciled into one; and whether #123's re-audit or the merged R8-3 register should become the single brief-coverage authority.",
+   "source": "https://github.com/karagemop466-tech/X1/pull/125",
+   "source_label": "PR #125 (the takeovers that superseded #95/#96/#110)"
   },
   {
    "id": "Q-01",
