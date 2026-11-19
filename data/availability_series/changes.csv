@@ -1,0 +1,33 @@
+pair,read_utc,team,player,position,field,from_value,to_value,direction,hours_to_kickoff,kickoff_utc,club_matchup,in_surprise_window,game_label_from,game_label_to
+S1→S2,2026-11-15T18:14:00Z,BAL,Adam Randall,RB,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,BAL,Adam Randall,RB,injury,,"Neck, Hamstring",descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,BAL,Jaylinn Hawkins,S,game_status,,Out,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,BAL,Jaylinn Hawkins,S,injury,,Knee,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,IND,Arden Key,DE,game_status,Questionable,,upgrade,-0.23,2026-11-15T18:00:00Z,MIA at IND,no,"SUNDAY, NOVEMBER 15TH",MIA@IND
+S1→S2,2026-11-15T18:14:00Z,IND,Arden Key,DE,injury,Hamstring,,descriptive,-0.23,2026-11-15T18:00:00Z,MIA at IND,no,"SUNDAY, NOVEMBER 15TH",MIA@IND
+S1→S2,2026-11-15T18:14:00Z,LAC,Branson Taylor,G,game_status,,Out,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Branson Taylor,G,injury,,Ankle,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Brenen Thompson,WR,game_status,,Doubtful,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Brenen Thompson,WR,injury,,Hamstring,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Bud Dupree,DE,practice_status,Did Not Participate In Practice,Full Participation in Practice,upgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,David Njoku,TE,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,David Njoku,TE,practice_status,Limited Participation in Practice,Full Participation in Practice,upgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,David Njoku,TE,injury,,Fibula,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Denzel Perryman,LB,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Denzel Perryman,LB,injury,,Pectoral,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Isas Waxter,CB,game_status,,Out,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Isas Waxter,CB,injury,,Ankle,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Justin Eboigbe,DE,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Justin Eboigbe,DE,injury,,Ankle,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Kayode Awosika,G,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Kayode Awosika,G,practice_status,Limited Participation in Practice,Full Participation in Practice,upgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Kayode Awosika,G,injury,,Fibula,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Keaton Mitchell,RB,practice_status,Limited Participation in Practice,Full Participation in Practice,upgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Kendall Williamson,S,game_status,,Out,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Kendall Williamson,S,injury,,Calf,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Ladd McConkey,WR,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Ladd McConkey,WR,injury,,Back,descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Rodney Shelley,CB,practice_status,Limited Participation in Practice,Full Participation in Practice,upgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Trey Pipkins,T,game_status,,Questionable,downgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Trey Pipkins,T,practice_status,Did Not Participate In Practice,Limited Participation in Practice,upgrade,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
+S1→S2,2026-11-15T18:14:00Z,LAC,Trey Pipkins,T,injury,,"Not injury related - personal matter, Knee",descriptive,31.02,2026-11-17T01:15:00Z,LAC at BAL,no,"MONDAY, NOVEMBER 16TH",LAC@BAL
