@@ -5134,3 +5134,10 @@ source file was overwritten.
 (run 44476946828). The push merge's build was cancelled by the shared `pages` concurrency group
 (run 44477150229), a known infrastructure contention recorded by earlier rounds, not a failed
 assertion. A follow-up docs-only push re-runs the gate; the result is recorded in the next paragraph.
+
+**Pages confirmation (2026-11-19 ~07:14 UTC):** the docs-only completion PR
+https://github.com/karagemop466-tech/X1/pull/107 merged as `70a7f024`. On that merge commit
+`verify-site` (44477715238) and `Evaluation readiness` (44477715228) passed, the Pages build
+(44477715045) and `pages build and deployment` (44477714981) both succeeded, and a live fetch of
+https://karagemop466-tech.github.io/X1/lab/closure.html returned the updated "0 games left /
+0 mirror-blocked rows" page. GitHub Pages deployment is confirmed.
