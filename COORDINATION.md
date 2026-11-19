@@ -5794,6 +5794,8 @@ No new irregularities introduced. Pre-existing open items remain published with 
 
 | # | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| LA-4 | Correct landing-page requirement counts and date labels so a dated Week 10 injury/schedule snapshot is not presented as current; reflect the two in-progress requirements alongside open items using the committed register | in progress | `arena/627e2399-x1` | `tools/build_site.py`, generated `index.html`, this claim/completion block only in `COORDINATION.md` |
+| LA-4 | Correct landing-page requirement counts and date labels so a dated Week 10 injury/schedule snapshot is not presented as current; reflect the two in-progress requirements alongside open items using the committed register | in progress | `arena/627e2399-x1` | `tools/build_site.py`, generated `index.html`, generated `pages/flagged.html` (F-24 correction only), this claim/completion block only in `COORDINATION.md` |
 
-**Scope boundary:** use already committed, source-linked evidence and builders. Do not invent current NFL facts or replace the dated raw snapshots. Keep the Week 10 data as historical evidence; label it and link to the official NFL injury/schedule pages. Inspect and run the repository's existing generators and checks before deciding whether any code change is needed.
+**Scope boundary:** use already committed, source-linked evidence and builders. Do not invent current NFL facts or replace dated raw snapshots. Keep Week 10 data as historical evidence, label it and link to official NFL injury/schedule pages. Inspect and run existing generators and checks before deciding whether any code change is needed.
+
+**Scope addition (committed before editing the output):** the 2026-11-17 F-24 text still says no Week 11 injury report exists, while the later 2026-11-19 official read and A7 REVIEW are committed. Update only the generated `pages/flagged.html` wording to preserve the dated 11/17 finding and disclose the 11/19 partial-capture state. Do not edit `data/flags.json`, `app/flagged.html`, or other session outputs.
