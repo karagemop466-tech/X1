@@ -365,5 +365,7 @@ jobs:
         run: python3 tools/build_live_recheck.py --check
       - name: Second-reader diff of the Week 11 injury report
         run: python3 tools/verify_second_read_2026_11_19.py --check
+      - name: Published Week 10 injury rows still match the live re-read
+        run: python3 tools/verify_w10_injuries_live_2026_11_19.py --check
       - name: Integration pages reproduce from their registers
         run: python3 tools/build_integration_pages.py --check

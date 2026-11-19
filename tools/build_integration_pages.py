@@ -72,6 +72,7 @@ READY = load_json("data/audit/readiness.json")
 QUESTIONS17 = load_json("data/console/questions.csv".replace(".csv", ".json")) if False else None
 W11_INJ = read_tsv("data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv")
 W10_INJ = read_tsv("data/nfl/injuries_week10.tsv")
+W10_RECHECK = load_json("data/integration/live_w10_injuries_recheck_2026_11_19.json")
 FLAGS = load_json("data/flags.json")
 
 
@@ -227,6 +228,24 @@ def page_verification() -> str:
   (the injury signal must be a <i>surprise</i>), and this measurement is independent support: until a dated,
   hash-retained capture series exists, the designation is evidence of what the page said at one moment, not a
   feature.</div>
+
+  <h2>4b · The published Week 10 table, 115 rows re-read line by line</h2>
+  <p>The published Week 10 table is a dated 2026-11-15 snapshot of {len(W10_INJ)} rows across
+  {len({r["team"] for r in W10_INJ})} clubs. This session re-read the live page and joined the two on club and
+  player name. Of the rows inside the part of the page it read ({W10_RECHECK["clubs_covered"] and len(W10_RECHECK["clubs_covered"])} clubs),
+  <b>{W10_RECHECK["agree"]} agree cell for cell and {W10_RECHECK["differ"]} differ</b>. The remaining
+  {W10_RECHECK["not_covered"]} published rows sit in page sections this read did not fetch, and
+  {W10_RECHECK["not_reached_within_chunk"]} more fall past the chunk boundary inside a covered club — both are
+  counted as <i>not checked</i>, never as agreement.</p>
+  <div class="statrow">
+    {stat(W10_RECHECK["agree"], "published rows that agree", "position, injury text, practice status and game status")}
+    {stat(W10_RECHECK["differ"], "published rows that differ", "each would be listed below with both values")}
+    {stat(W10_RECHECK["not_covered"] + W10_RECHECK["not_reached_within_chunk"], "rows not checked", "outside the read window — stated, not implied")}
+    {stat(len(W10_INJ), "rows still published", "the 2026-11-15 snapshot is unchanged by this check")}
+  </div>
+  <p class="muted">Read from {src_cell(W10_RECHECK["source"], "nfl.com ↗")} · rebuilt by
+  <code>tools/verify_w10_injuries_live_2026_11_19.py</code> · live read in
+  <code>data/integration/live_w10_injuries_recheck_2026_11_19.tsv</code>.</p>
 
   <h2>5 · The committed 2026-11-19 pack's own verdicts</h2>
   <p>The round-7 pack behind these tables reports {PACK19["verdicts"] and sum(1 for v in PACK19["verdicts"].values() if v == "pass")} pass and

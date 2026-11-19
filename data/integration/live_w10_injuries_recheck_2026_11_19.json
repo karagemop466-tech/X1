@@ -1,0 +1,31 @@
+{
+  "title": "Week 10 injury table: published rows re-read against the live official page",
+  "session": "arena/6b45af7e-x1",
+  "read_at": "2026-11-19 (UTC), page-fetch tool, chunks 0-2 of 8",
+  "source": "https://www.nfl.com/injuries/league/2026/reg10",
+  "published_table": "data/nfl/injuries_week10.tsv (2026-11-15 snapshot)",
+  "live_read": "data/integration/live_w10_injuries_recheck_2026_11_19.tsv",
+  "published_rows": 347,
+  "clubs_published": 28,
+  "live_rows": 115,
+  "clubs_covered": [
+    "ATL",
+    "BUF",
+    "GB",
+    "IND",
+    "JAX",
+    "KC",
+    "MIA",
+    "MIN",
+    "NYJ",
+    "TEN"
+  ],
+  "agree": 115,
+  "differ": 0,
+  "not_covered": 222,
+  "not_reached_within_chunk": 10,
+  "live_rows_not_in_published_table": [],
+  "differences": [],
+  "coverage_note": "Only the club blocks inside chunks 0-2 were read (10 clubs, 115 rows). Every other published row is counted as not covered, not as agreement. The published table itself is a dated 2026-11-15 snapshot and was NOT edited by this session.",
+  "verdict": "pass"
+}
