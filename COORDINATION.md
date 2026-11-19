@@ -4692,3 +4692,5 @@ Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed;
 | EVAL-71 | Implement a fail-closed chronological season split, distinguish verified labels from mirror rows, audit the 136-game corpus claim, and publish an independently verifiable evaluation-readiness section | in progress | `evaluation/**`, `tools/evaluation/**`, this coordination block |
 
 Existing shared data, generated navigation, and workflow files are read-only for this claim. Any integration changes outside the scope will be requested here first.
+
+Integration scope addition for EVAL-71: `pages/evaluation.html`, `.github/workflows/evaluation-readiness.yml`, and additive deep links only in the landing and Flagged for Review renderers in `tools/build_site.py` (regenerate `index.html` and `pages/flagged.html`). Checked open PR scopes #91, #92, #95 and #96 before claiming: none owns these paths. No existing source data or site workflow is changed. Public/private deployment boundary is owned separately by PR #95; this change publishes aggregates and source links only.
