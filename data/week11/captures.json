@@ -238,6 +238,60 @@
       }
     },
     {
+      "captured_at_utc": "2026-11-19T19:25:26Z",
+      "file": "raw/20261119T192526Z_86e85dc1cf76.html.gz",
+      "flags": [
+        "revised"
+      ],
+      "content_sha256": "107e5a6ff899cc3ddcc5aea1b9ff62585c34f538a96a072de0030897f9bcb43f",
+      "gzip_sha256": "57ea05898589e49534043b694cb7e92f3c436b48837e245746ed77362aabc875",
+      "entry_sha256": "7227450396dbf4949604bb251ae57944c8d97ea46776c6bb96dcdde9219a335b",
+      "bytes": 373457,
+      "hash_checks_pass": true,
+      "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
+      "shape": {
+        "matchup_strips": 26,
+        "games": 13,
+        "clubs_in_strips": 26,
+        "clubs_with_table": 24,
+        "clubs_without_table": [
+          "CIN",
+          "WAS"
+        ],
+        "player_rows": 253,
+        "unknown_practice_values": [],
+        "unknown_game_status_values": [],
+        "unknown_values_pass": true
+      }
+    },
+    {
+      "captured_at_utc": "2026-11-19T19:25:39Z",
+      "file": "raw/20261119T192539Z_bc201e53bfee.html.gz",
+      "flags": [
+        "unchanged"
+      ],
+      "content_sha256": "107e5a6ff899cc3ddcc5aea1b9ff62585c34f538a96a072de0030897f9bcb43f",
+      "gzip_sha256": "7f3491ae1e00140b0b006fbfffe5bccbbf70dbe5b5de5d81288de06da429107f",
+      "entry_sha256": "640a8403ab0e0c64cc3ee23aa022ae9091b5ad7d669374e22f85529d02acd341",
+      "bytes": 373457,
+      "hash_checks_pass": true,
+      "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
+      "shape": {
+        "matchup_strips": 26,
+        "games": 13,
+        "clubs_in_strips": 26,
+        "clubs_with_table": 24,
+        "clubs_without_table": [
+          "CIN",
+          "WAS"
+        ],
+        "player_rows": 253,
+        "unknown_practice_values": [],
+        "unknown_game_status_values": [],
+        "unknown_values_pass": true
+      }
+    },
+    {
       "captured_at_utc": "2026-11-19T22:10:21Z",
       "file": "raw/20261119T221021Z_9ab8d8a52d70.html.gz",
       "flags": [
@@ -245,7 +299,7 @@
       ],
       "content_sha256": "40be7fa45b0aa5d514f51856aa87411a3bbe054e86ae3f98e8fba628f8b6ce06",
       "gzip_sha256": "6c1e20b21a020e8dcf1dd2f3de6ec9fcf35aa42a3982b748e75dc167c8df3b8d",
-      "entry_sha256": "fc365db24ab2414233631a0583061c2ef9b6048bcb0b6d0e491eea050a1d96ed",
+      "entry_sha256": "6f121231da69d31e1c2d9df877a695bbe203e16a8b331ff55b1e71462dd49af2",
       "bytes": 373457,
       "hash_checks_pass": true,
       "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
@@ -272,7 +326,7 @@
       ],
       "content_sha256": "cd47cbd70cdd7779f51958df0414dc98eb5be5a8ec6b18fa9412514cc7454b39",
       "gzip_sha256": "86fabe758396f8da1c75186b93aaa91ea9df6f71deb4a82c65eea99282b8e5b7",
-      "entry_sha256": "8a78b46f6c6bfda83d5e6c35bb767663ab747137fb42c61be4ac0aa66d380762",
+      "entry_sha256": "746b0cc53b122b68983b3028cac1b0525fa31d68f7fd1dcb1a76f4131080aa35",
       "bytes": 373959,
       "hash_checks_pass": true,
       "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
@@ -299,8 +353,35 @@
       ],
       "content_sha256": "3e69441bd8a0f0f5f84cc4f1db134836f411e4c29900d28e4bf63bc9fc2550fe",
       "gzip_sha256": "da359ad86bf7d96c4d7ec508b96d6dbe9b9b6158d8a7503a4adf9f301950bfb7",
-      "entry_sha256": "39a1243838a6f4f4e80b8e989e7bb01f1f37921b6601f500d9e8f055f34772bd",
+      "entry_sha256": "7a8090161970f8f939e67037cb1a84aacc2378c432b0021a0005f7fbf624a812",
       "bytes": 335130,
+      "hash_checks_pass": true,
+      "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
+      "shape": {
+        "matchup_strips": 26,
+        "games": 13,
+        "clubs_in_strips": 26,
+        "clubs_with_table": 24,
+        "clubs_without_table": [
+          "CIN",
+          "WAS"
+        ],
+        "player_rows": 253,
+        "unknown_practice_values": [],
+        "unknown_game_status_values": [],
+        "unknown_values_pass": true
+      }
+    },
+    {
+      "captured_at_utc": "2026-11-19T22:27:25Z",
+      "file": "raw/20261119T222725Z_a046a396216b.html.gz",
+      "flags": [
+        "revised"
+      ],
+      "content_sha256": "af41b6a561fd199f379b474f95da730cbbdfe21d279d0352f124957af74f145c",
+      "gzip_sha256": "295fd272f6b2d5dc72ae6a62e50fc9d8d5e0354664d2a9c6bca7c8bd83bb7214",
+      "entry_sha256": "d384ee97558db46e60ed8171f85a8841a39b2c2804b3fca6de36e8bb0db72b48",
+      "bytes": 334628,
       "hash_checks_pass": true,
       "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
       "shape": {
@@ -326,7 +407,7 @@
       ],
       "content_sha256": "af41b6a561fd199f379b474f95da730cbbdfe21d279d0352f124957af74f145c",
       "gzip_sha256": "295fd272f6b2d5dc72ae6a62e50fc9d8d5e0354664d2a9c6bca7c8bd83bb7214",
-      "entry_sha256": "d75d56442d9793a2bc607241987bdd1ba101bdcf9cf532150dcfb832a272577b",
+      "entry_sha256": "3d626faf26449a1a2ee91fd767b5c03564ab7eaf6135b8a25d0f46310dc3cb76",
       "bytes": 334628,
       "hash_checks_pass": true,
       "title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
@@ -346,7 +427,7 @@
       }
     }
   ],
-  "distinct_capture_count": 8,
+  "distinct_capture_count": 9,
   "latest_capture_utc": "2026-11-19T22:28:52Z",
   "games": [
     {

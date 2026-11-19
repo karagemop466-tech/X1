@@ -144,10 +144,10 @@ def render(page: Callable[..., str], table: Callable[..., str], card: Callable[.
              "diff of the two pages shows only analytics script tags and a carousel identifier changed. Their "
              "injury tables are identical, so the designation delta between them is none. The flag alone overstates "
              "change; the field-level delta above is the measure.</p>"),
-        card("Charlie Heck (IND, T): a change in the official report, not a parse error",
+        card("Charlie Heck (IND, T): a designation removed from the official report, not a parse error",
              "<p>The 13:16 UTC read printed <i>Not injury related - personal matter</i> and <i>Questionable</i> for him. "
-             "The live page, read at about 21:59 UTC on 2026-11-19, showed both cells blank, and the 22:10 UTC read captured "
-             "on the runner shows the same. The change is therefore in the official report; the parser did not create it. "
+             "The scheduled 19:25 UTC read on main shows both cells blank, as do the live page at about 21:59 UTC and the 22:10 UTC probe read. "
+             "Both cells were removed between the 13:16 and 19:25 UTC reads. The change is therefore in the official report; the parser did not create it. "
              "The 22:10 UTC read prints <b>no game designation</b> for him. That is not a clearance and is not read "
              "as one: the report says nothing about his game status.</p>"),
     ])

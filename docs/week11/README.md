@@ -34,8 +34,8 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
 
 ## Results on the day of writing (2026-11-19)
 
-- Week 11 captures in the ledger at the time of this commit: **9 stored, 6 distinct content states**. The PR probe on this branch adds a read on every push, so the count grows; `data/week11/captures.json` is the authority.
-- Latest read at the time of this commit: **2026-11-19 22:22:57 UTC**, **253 listings** in **24 clubs**. Those 24 clubs are in 12 games; the 13th game, CIN @ WAS, has no table.
+- Week 11 captures in the ledger at the time of this commit: **14 stored, 9 distinct content states** (the count grows with each scheduled or probe read; `data/week11/captures.json` is the authority).
+- Latest read at the time of this commit: **2026-11-19 22:28:52 UTC**, **253 listings** in **24 clubs**. Those 24 clubs are in 12 games; the 13th game, CIN @ WAS, has no table.
 - **CIN and WAS** (Monday, Nov 23 matchup) have no table in the latest read. They are listed as
   gaps. They are not treated as healthy.
 - Earliest Week 11 reads (2026-11-18 07:35 and 17:18 UTC) cover only the Thursday game (IND and
@@ -53,20 +53,30 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
 - **Live cross-check (by eye, not automated).** The official page was read on 2026-11-19 at about
   21:59 UTC. For the Indianapolis (11 listings) and Houston (15 listings) tables, 25 of 26 rows
   agree with the 13:16 UTC stored read on player, position, injury, practice status and game status.
-  The one difference (Charlie Heck) is confirmed by the 22:10 UTC stored read, below.
+  The one difference (Charlie Heck) is explained by the reads below.
 - The raw bytes of the 01:53 and 13:16 UTC reads differ only in page chrome: analytics script tags
   and a carousel identifier. The injury tables are identical. The ledger's `revised` flag therefore
   overstates change for these two reads.
 
-## Charlie Heck: resolved as a change in the official report
+## Charlie Heck: a designation removed from the official report
 
 - **13:16 UTC read (stored):** injury *Not injury related - personal matter*, game status *Questionable*.
+- **19:25 UTC read (stored, scheduled capture on `main`):** both cells blank. This is the first read where the change appears.
 - **Live page, read at about 21:59 UTC (fetch, by eye):** both cells blank.
-- **22:10 UTC read (captured by the scheduled-style probe on the runner, stored and hash-checked):** both cells blank.
-- The delta is published in `data/week11/deltas.tsv` (from 13:16 to 22:10 UTC).
+- **22:10 UTC read (stored, PR probe on this branch):** both cells blank.
+- The delta is published in `data/week11/deltas.tsv` (13:16 → 19:25 UTC, two field rows).
 
-The parser is not at fault. The report stopped printing that designation before 21:59 UTC. A blank game
-status means the report prints no designation; it is **not** a clearance, and nothing here reads it as one.
+The parser is not at fault. The report stopped printing that designation between 13:16 and 19:25 UTC. A
+blank game status means the report prints no designation; it is **not** a clearance, and nothing here reads it as one.
+
+## Ledger fork (reconciled on merge)
+
+The branch and `main` both appended to `data/ledger/injuries/ledger.jsonl` after the 13:16 UTC line, which
+forked the hash chain. Resolution, with nothing discarded: `main`'s three lines (19:25:26, 19:25:39, 22:27:25 UTC)
+keep their position; the branch's four lines (22:10:21 to 22:28:52 UTC) follow as seq 19 to 22. Each re-chained line
+keeps its content except `seq`, `prev_sha256`, `entry_sha256`, and a `rechained` note that records its original seq
+and hashes. `snapshot_ledger.py verify` passes on all 22 lines and all 22 raw files. Deltas are computed in
+capture-time order, not chain order, because the chain is not chronological across the fork.
 
 ## Irregularities for manual review
 
@@ -78,7 +88,7 @@ status means the report prints no designation; it is **not** a clearance, and no
    Recommended action: check the Actions "schedule" settings and whether the cron is being
    dropped; consider a second independent trigger.
    Recovery seen on this branch: a pull-request probe read the page at 22:10:21 UTC and committed the
-   line. The scheduled cadence itself is still unexplained.
+   line, and a scheduled read on `main` landed at 19:25:26 UTC. The scheduled cadence itself is still unexplained.
 2. **The change flag is over-sensitive.** `revised` fires on page-chrome changes. The
    field-level delta in `deltas.tsv` is the measure to use. Changing the ledger's change definition
    is a change to `tools/snapshot_ledger.py`, which belongs to the ledger owner, so it is not made here.

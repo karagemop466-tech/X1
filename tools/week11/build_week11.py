@@ -77,6 +77,12 @@ def read_ledger() -> List[Dict[str, Any]]:
 
 
 def week11_captures(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Week 11 reads in CAPTURE-TIME order.
+
+    The chain order is not always chronological: two writers can fork the ledger (see the
+    fork note in data/ledger/injuries/ledger.jsonl), and a re-chained line keeps its
+    original capture time. Deltas must follow capture time, so sort on it here.
+    """
     out = []
     for e in entries:
         if e.get("error") or e.get("http_status") != 200:
@@ -84,7 +90,7 @@ def week11_captures(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         if e.get("season") != SEASON or e.get("week") != WEEK:
             continue
         out.append(e)
-    return out
+    return sorted(out, key=lambda e: (e["captured_at_utc"], e.get("seq", 0)))
 
 
 _UUID_RE = re.compile(rb"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")

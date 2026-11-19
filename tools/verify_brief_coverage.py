@@ -23,7 +23,7 @@ NEEDS_PATH = {"BUILT", "PARTIAL", "DEFINED"}
 # Official NFL / club hosts plus this project's own Pages and GitHub hosts.
 ALLOWED_HOSTS = {
     "www.nfl.com", "static.www.nfl.com", "www.atlantafalcons.com",
-    "www.packers.com", "karagemop466-tech.github.io", "github.com",
+    "www.packers.com", "media.nfl.com", "karagemop466-tech.github.io", "github.com",
 }
 PATH_EXT = (".csv", ".json", ".tsv", ".psv", ".py", ".html", ".md", ".yml", ".txt", ".jsonl", ".sh", ".css")
 

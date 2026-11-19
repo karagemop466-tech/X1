@@ -41,6 +41,8 @@ Owner rules (verbatim intent):
 | `arena/ee613dd1-x1` | `arena/ee613dd1-x1` | **Final integration and release: repo line-by-line review, verification against official sources, clean landing page + category subpages, PR → main, merge, GitHub Pages deploy confirm** | 2026-11-19 | active (this session) |
 | `arena/48279a7d-x1` | `arena/48279a7d-x1` | **Origination & Skill Desk (`origination-desk/`): official reserve/IR & transactions turnover register + stale-depth flags + announced-starter & inactive verification; stadium roof/surface & NWS weather overlay; vig-free decomposition + two-stage proper-score skill leaderboard (4 divisions, joint-evidence parlay/prop gate, cluster Brier skill + multiplicity, prospective escrow) + weekly what-changed diff; integration + PR → merge → Pages** | 2026-11-19 | **done** — PR #111 merged (`500e726`), Pages deploy confirmed at https://karagemop466-tech.github.io/X1/origination-desk/index.html |
 | `arena/621df229-x1` | `arena/621df229-x1` | **Final integration and release (T-R1–T-R4): repo line-by-line review + irregularity flags; offline verification of committed official snapshots + internal links; suggestions/questions/executive-summary review for decision readiness; site integration — clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result** | 2026-11-19 | active — claim written and pushed before any work; see task-board rows T-R1..T-R4 |
+| `arena/49dbdc81-x1` | `arena/49dbdc81-x1` | **Final integration & release round 2026-11-19 22:00 UTC: board takeover under rule 10; merge completed open PRs (#92, #110, #113, #91; #95/#96 re-checks; #123 stays HELD by its author); full local verification replay; repo line-by-line irregularity review; PR → main, merge, Pages deploy confirm, record** | 2026-11-19 22:03 UTC | in progress — claim written before any work |
+| `arena-55c364b6-x1` | `arena/55c364b6-x1` | **Round 6: injury report published as a timestamped delta series (14 reads → 3 contents → 32 cell changes, movement by fixture, the drift alarm and the `LA`/`LAR` alias priced); fixture-context feature set from printed schedule facts only (64 club-rows, weeks 10–11); 2026-11-18 dated official reads pack with manifest; whole-report check against the ledger's retained raw bytes (1,735 cells, 0 mismatches, 57.05 h frozen); two-sided mind-change register (brief row 18) registered before the Week 11 window; 3 console pages; 16 CI checks across 2 new gates; readiness R-13/15/18/22/24/29/45/52/53/59 re-measured; Q-16..18, SG-16..19, X-13..16** | 2026-11-18 02:55–04:40 UTC | done on branch — renamed `tools/verify_2026_11_18_55c364b6.py` to reconcile the same-name collision with PR #90; see the section at the end of this file |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -4550,6 +4552,103 @@ Verification plan: every value is copied from a Game Centre page fetched with `f
 - **Requests to the integration owner (logged, not actioned):** (a) link `docs/audit/venues-week10.md` from the site's Week 10 schedule page and the Flagged-for-Review page; (b) fill or reconcile schedule-CSV `venue_note` and `result` from `data/nfl/venues_2026_week10.csv`; (c) add the label difference in item 1 to the Flagged-for-Review page with its two source links.
 - **Not done in this session (the rest of the brief is still open):** the other 24 NOT BUILT rows, including the per-team view, snap counts, inactive lists, reserve list, roof/weather overlay, season split, and the 136-game corpus. These need sources or decisions that this session did not have, and each stays in the register with its gap.
 
+---
+
+# Session `arena-55c364b6-x1` — Round 6: Week 11 opening-of-week capture, fixture-context features, pre-kickoff forecast escrow (this branch)
+
+## Why this session exists
+
+Today is Wednesday 2026-11-18: the day the league posts the **first** Week 11 injury report, and the
+day before Week 11 kicks off. Four register rows the site has been carrying as blocked for five
+rounds are unblocked *by date* rather than by engineering — R-52 (Wed/Thu/Fri dated reads), R-59
+(weekly "what changed" diff), R-45 (point-in-time pre-kickoff capture id), R-15/R-24 (fixture
+context and venue from published schedule facts). A shadow forecast for Week 11 can only be frozen
+before kickoff; after Thursday it is a backtest, which the brief forbids on the leaderboard.
+
+## Claim (written and pushed before any other work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| R6-1 | Dated, hashed, row-level read of the official Week 11 injury report (first read of the series), plus the delta panel and the pre-kickoff capture id | **done, with the finding inverted**: no Week 11 report existed at 03:05Z (REG11 → reg10), so the pack publishes the dated *probe* plus the delta series and the raw-byte whole-report check | `arena-55c364b6-x1` | `data/verification/2026_11_18/**` (new), `tools/verify_2026_11_18_55c364b6.py` (new) |
+| R6-2 | Fixture-context feature set built only from published schedule facts (kickoff, day, rest days, venue label, network, bye) for the Week 11 slate and the Week 10 corpus | done — Week 11 venue column omitted except the Mexico City fixture, because the by-week page prints none (R-24 stays open; SG-19) | `arena-55c364b6-x1` | `data/fixtures/**` (new), `tools/build_fixture_context.py` (new) |
+| R6-3 | Week 11 pre-kickoff shadow forecast escrow under the frozen PR-01 rule (no leaderboard number) | **not this session's — released by `arena-9d8c298c-x1` as PR-04** (`data/lab/escrow/week11_forecasts_2026-11-17.csv`, 52 rows, recorded 2026-11-17T22:50Z); no file written or edited here | released by another session | — |
+| R6-4 | Publication: console pages for the pack and the registers, small additive generator edits | done — pages published are `console/availability-series.html`, `console/fixture-context.html`, `console/mind-change.html` (rendered through the console's own helpers, not a separate `verification-*.html`); registers appended in `src/console/content.py` (Q-16..18, SG-16..19, X-13..16); readiness rows re-measured in `tools/official/readiness.py` | `arena-55c364b6-x1` | `console/{availability-series,fixture-context,mind-change}.html`, `tools/build_console.py` (NAV + 2 wiring blocks), `tools/official/readiness.py`, `src/console/content.py` |
+| R6-5 | Integration: regenerate, run every CI verifier locally, PR to main, merge, confirm Pages | done — `verify.yml` 47/47 and `pages.yml` 21/21 reproduced locally, including the deployed-tree crawl | `arena-55c364b6-x1` | shared outputs, regenerated only |
+
+## Non-overlap declaration
+
+- `data/verification/2026_11_18/` is a new dated namespace; the 2026-11-15/16/17 packs of sessions
+  `arena-01c263c4-x1`, `arena/dc96bc33-x1` and `arena-9d8c298c-x1` are read-only inputs here, never
+  edited. `tools/verify_2026_11_18_55c364b6.py` carries the session date so it cannot collide with the two
+  same-named tools from round 5 (`verify_2026_11_17.py`, `verify_2026_11_17_dc96bc33.py`).
+- Week 11 escrow: `arena-9d8c298c-x1` opened a Week 11 pre-kickoff escrow at `data/lab/` (PR from
+  2026-11-17). This session does not edit that file; the new Week 11 rows are written to a separate
+  dated escrow and cross-referenced. If the integrator finds the two overlap, the earlier one wins
+  the canonical name and this one is renamed — per the round-5 precedent.
+- Request to other sessions (rule 4): none outstanding at claim time. Open PR #84
+  (`arena/473e08d5-x1`, "Close Week 10: 150-game verified results feed…") is **CONFLICTING** against
+  `main` as of this claim; this session does not touch its files, and asks its owner (or the next
+  integrator) to rebase it — its standings baseline overlaps nothing claimed here.
+
+## Verification method for this round
+
+Every published cell this session writes is transcribed from a direct read of an official page
+(`www.nfl.com`), with the read timestamp and the payload's SHA-256 retained beside it. Values the
+official page does not print are left blank and flagged, never inferred. Where the only source is
+this repository's own verified feed, the row is labelled "computed" and links the exact file.
+
+## Result, written at delivery (2026-11-18T04:05Z)
+
+What the claim table predicted and what actually happened differ in three ways worth recording, so
+the next session does not re-derive them.
+
+1. **R6-3 is not this session's.** The Week 11 pre-kickoff escrow was already delivered by
+   `arena-9d8c298c-x1` as `data/lab/escrow/week11_forecasts_2026-11-17.csv` under PR-04 — 52 rows
+   over 13 fixtures, recorded 2026-11-17T22:50Z. This session wrote no escrow file and edited none
+   of PR-04's; the claim row is left above as it was written. The one thing this session contributed
+   to that area is a date, not a file: the first Week 11 kickoff is **2026-11-20T01:15:00Z**
+   (IND at HOU, Thu 8:15 PM ET), which this session's `tools/verify_mind_change.py` check F uses to
+   prove its own register was written before the window it could be read against.
+2. **There was no Week 11 injury report to capture.** At 03:05Z,
+   `nfl.com/injuries/league/2026/REG11` redirects to `reg10` and the page still prints
+   "Injuries — WEEK 10", 46.2 h before that kickoff. The claim assumed Wednesday means a report
+   exists; it does not, and the series therefore stays one week deep. The absence is published as a
+   dated probe (`data/verification/2026_11_18/injury_probe_2026-11-18.tsv`, flag X-14) rather than
+   recorded as a fetch failure, because "no rows" and "no report yet" have to be distinguishable for
+   the freshness alarm to mean anything.
+3. **R6-2's venue half is a confirmed no, with one exception.** `nfl.com/schedules/2026/by-week/week-11`
+   prints no venue for 12 of 13 fixtures; the 13th (MIN at SF, Sun 8:20 PM NBC) carries a
+   "Mexico City 2026" banner and `data/nfl/international_2026.csv` line 10 names the ground — Estadio
+   Banorte, 8:20 PM ET (7:20 PM Mexico time). So R-24 stands at 14 of 14 for Week 10 and 1 of 13 for
+   Week 11, and Week 11 venues are blank for 24 of 26 club-rows with a flag on each (SG-19 proposes
+   the run that would close it).
+
+## Delivered (this session)
+
+| Store | Files | Gate |
+|---|---|---|
+| Injury report as a timestamped delta series | `data/availability_series/{states,captures,changes,movement_by_game}.csv`, `summary.json` | `tools/verify_availability_series.py` — 8 checks |
+| Fixture-context feature set | `data/fixtures/{fixture_context_2026.csv,summary.json}` (64 club-rows) | `tools/build_fixture_context.py --check`, and checks C/D/E of the pack gate |
+| Dated official reads, 2026-11-18 | `data/verification/2026_11_18/{week11_slate,injury_probe,week10_rows_reread}*.tsv`, `MANIFEST.json` | `tools/verify_2026_11_18_55c364b6.py` — 9 checks (A, B, B2, C, D, E, F, G, I) |
+| Two-sided mind-change register (brief row 18 / R-18) | `data/mind_change/{register.csv,summary.json,MIND-CHANGE-01.md}`, `docs/preregistration/MIND-CHANGE-01.md` | `tools/verify_mind_change.py` — 7 checks |
+| Pages | `console/{availability-series,fixture-context,mind-change}.html` | `tools/verify_console.py`, `tools/check_links.py`, `tools/verify_deployed_tree.py` |
+
+Headline numbers, so a reader can check a page against this record: 14 dated reads → 3 distinct
+contents → 32 cell changes, 0 downgrades inside 24 h of kickoff, and the `LA`/`LAR` alias is worth
+14 phantom arrivals and 14 phantom departures on the one pair where it bites. 28 mind-change entries,
+of which 7 are already past their own abandon bound and 20 cannot be promoted at their observed rate.
+
+## Note to the integrator
+
+`tools/lab/build_closure_measurement.py`'s M5 inventory counts the artefacts that name the verified
+results feed, so adding `tools/build_fixture_context.py` (which reads
+`data/results/verified_results_2026.csv`) legitimately moved it 48 → 49 and its `--check` needed one
+regeneration. That file belongs to `arena-9d8c298c-x1`; this session regenerated it and touched
+nothing else of theirs. Both `verify.yml` and `pages.yml` gained three steps and two copy lines, all
+additive and commented; `pages.yml`'s assembly step now copies `data/availability_series`,
+`data/fixtures`, `data/mind_change` and `data/verification/2026_11_18` into `_site`, which
+`tools/verify_deployed_tree.py` required (it caught the missing links on the first try).
+
 ### Follow-up — VEN-1 publication (session `arena/5433abad-x1`, 2026-11-18)
 
 PR #86 (merged, `4beb7e9`) put the register in the repository, but the Pages assembler copies only a curated set of folders, so the table was not on the live site. This follow-up publishes it. Each shared-file change is additive and logged here per rule 4:
@@ -4666,7 +4765,7 @@ This session persists one, with its verifier and a CI step:
 |---|---|
 | `data/verification/2026_11_18/official_standings_2026_11_18.tsv` | 32 clubs from https://www.nfl.com/standings/league/2026/REG, read live 2026-11-18 ~03:30 UTC, legend-defined columns only, same convention as the 11-16/11-17 packs |
 | `data/verification/2026_11_18/official_w10_results_2026_11_18.tsv` | 14 finals + 4 byes from https://www.nfl.com/schedules/2026/by-week/week-10, per-row official game URL, records as printed |
-| `tools/verify_2026_11_18.py` (+ `--check` in `verify.yml`) | A1 standings identities (96 assertions) · A2 league closure (ΣW=ΣL=149, ΣT=2, 150 games) · A3 cross-page records 32/32 + slate completeness · A4 continuity vs the 2026-11-17 pack (384 cells, **0 mismatches**) · A5 finals continuity vs the 11-17 pack **and** the closed 150-row feed (14/14 by slug) |
+| `tools/verify_2026_11_18_55c364b6.py` (+ `--check` in `verify.yml`) | A1 standings identities (96 assertions) · A2 league closure (ΣW=ΣL=149, ΣT=2, 150 games) · A3 cross-page records 32/32 + slate completeness · A4 continuity vs the 2026-11-17 pack (384 cells, **0 mismatches**) · A5 finals continuity vs the 11-17 pack **and** the closed 150-row feed (14/14 by slug) |
 
 All five checks pass; the injury page (https://www.nfl.com/injuries/league/2026/reg10) was read the same
 hour and its club-record headers spot-check consistent. The pack also corroborates PR #88's I3 finding:
@@ -4676,7 +4775,7 @@ what keeps it measurable.
 ## Verification performed on the re-based tree (done)
 
 Every `run:` step of `verify.yml` + `pages.yml` (PR #88's set, including the venue gates) executed
-locally in CI order: **all pass**, plus `tools/verify_2026_11_18.py --check` added to the set. See the
+locally in CI order: **all pass**, plus `tools/verify_2026_11_18_55c364b6.py --check` added to the set. See the
 final integration record below for the exact count at release time.
 
 ## Irregularities this session adds to the record (non-blocking)
@@ -5635,6 +5734,31 @@ hunk and re-run the builder in a full-history clone.
 - **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
 - **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
 
+
+---
+
+# Session `arena/49dbdc81-x1` — final integration & release round (2026-11-19 22:03 UTC)
+
+**Branch:** `arena/49dbdc81-x1` (fixed by Arena; based on `main` at `a1cca5c`, PR #127's merge).
+
+## Takeover basis (rule 10)
+
+- `arena/ee613dd1-x1` (final integration claim) last commit `7725f26` at 2026-11-19 06:59 UTC — >15 h old, no later commits.
+- `arena/621df229-x1` (final integration claim T-R1..T-R4) last commit `25d731f` at 2026-11-19 19:32 UTC, records "session complete" for PR #117 — >2.5 h old, task rows marked done.
+- Both stale claims are therefore superseded by this session per rule 10. Their completed work on `main` is preserved and not re-done; nothing they own is edited.
+
+## Claim
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| FI-1 | Register claim; identify integration-safe open PRs vs held PRs | done | `arena/49dbdc81-x1` | `COORDINATION.md` (this record only) |
+| FI-2 | Merge completed open PRs from other sessions into `main` | done — #113 and #92 merged into this integration branch (they reach `main` with this session's release PR; GitHub will mark them merged when their heads arrive); #95, #96, #110 closed as superseded by PR #125's recorded takeovers (close comments left on each); #91 left open with a duplication analysis (comment left; flag F-37); #123 left HELD by its author (comment left). No other session's branch was pushed to. | `arena/49dbdc81-x1` | none (GitHub PR actions only) |
+| FI-3 | Full local verification replay of the combined tree (verify.yml chain, Pages build, link checks) | done — verify.yml replay 55/56 steps (the single fail is the documented shallow-vs-full-clone pre-registration artifact; proven green in a depth-1 clone, the CI shape); pages.yml 24/24; check_links 214 files / 53,358 assertions; verify_site 429 pages; deployed-tree 218/222 + the 4 known orphans; landing audit 10/10; verify_data all pass; verify_console 36 pages / 3,533 rows / 0 unsourced | `arena/49dbdc81-x1` | none (timestamp-only rewrites reverted) |
+| FI-4 | Repo line-by-line irregularity review + integration defect fixes | done — record in `docs/review/integration-round-2026-11-19.md`. Defects found and fixed: (1) the raw-byte injury check compared a Week 11 capture against the Week 10 published table (fixed: compare the newest capture of the published week; 1,735 cells, 0 mismatches; the Week 10→11 transition is now visible in the movement section); (2) availability series re-derived from the fuller merged ledger (19 captures / 6 contents / 104 changes); (3) feed-closure M5 artefacts 61→62 (pr92's fixture-context builder names the feed); (4) decision-readiness register re-measured (94 dated captures) | `arena/49dbdc81-x1` | `docs/review/integration-round-2026-11-19.md`, `data/flags.json` (F-37), pages/app/room flagged, `tools/verify_injuries_from_raw.py` (defect fix), regenerated stores/pages |
+| FI-5 | Final PR `arena/49dbdc81-x1` → `main` with all of the above; merge without waiting; confirm Pages deploy; record result | in progress — PR opened; see the post-merge record below | `arena/49dbdc81-x1` | PR record in `COORDINATION.md` |
+
+Conflict rule: other sessions' file scopes are never edited on their branches. If a merged PR leaves `main` red, the repair happens on this branch as an integration defect fix and is logged here.
+
 ---
 
 # Session `arena-2d1ba329-x1` — Week 11 official injury capture: parse, delta series, freshness (branch `arena/2d1ba329-x1`)
@@ -5747,6 +5871,32 @@ This branch is identical to `main` at the PR #127 merge tip (`a1cca5c`); the onl
 ### Sources
 
 All verification is against committed official snapshots carrying their fetch URL and retrieval date (nfl.com standings, schedules, injury report, Game Center). No value was inferred; every blank is deliberate and flagged. Live official hosts were reachable only through the page-fetch tool; no shell-side scraping was performed.
+## Session `arena-42887cb2-x1` — branch `arena/42887cb2-x1` (2026-11-19, UTC)
+
+**Branch rule applied:** this session works on the single branch `arena/42887cb2-x1` (base `main` @ `856366f`). The per-session `session-<id>/<task>` branch scheme described above is not used here, because the session is bound to one branch.
+
+**Scope claimed and completed (one item):** brief row 25 — publish the league's dated schedule announcement beside the live schedule page. Status: **done**.
+
+| File | Change |
+|---|---|
+| `tools/build_app.py` | `schedule_announcement_card()` renders the announcement on `app/schedule.html`. Each quoted fact must appear verbatim in the stored excerpt, or the build exits (mutation-tested: a paraphrase is caught). |
+| `app/schedule.html` | Regenerated; contains the announcement card with six links to `media.nfl.com`. |
+| `data/capture/2026_11_19_schedule_announcement/official_excerpt.md` | New. Verbatim excerpt of the five quoted paragraphs, with URL and read date. |
+| `docs/audit/brief-coverage-2026-11-17.md` | Row 25 NOT BUILT → BUILT with evidence paths; counts updated (BUILT 11, NOT BUILT 23). |
+| `tools/verify_brief_coverage.py` | `media.nfl.com` added to the official-host allow-list. |
+
+**Sources (fetched 2026-11-19 with the fetch tool):** [2026 NFL Schedule Announced — media.nfl.com, May 14, 2026](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced). Every quoted fact was found verbatim in chunk 0 of 2. Chunk 1 was not read.
+
+**Verification performed:** `tools/build_app.py`, `tools/verify_app.py`, `scripts/verify_site.py`, `tools/check_links.py`, `scripts/check_site.py`, `scripts/verify_research_site.py`, `tools/verify_brief_coverage.py`, `tools/verify_data.py` — all exit 0. Earlier in the session the CI-relevant rebuilds (`build_availability`, `build_site`, `build_state_audit --check`, `verify_2026_11_19 --check`, `build_room --check`, `origination_desk/verify_desk.py`) also passed.
+
+**Irregularities (for review):**
+1. `tools/verify_2026_11_19.py` rewrites `generated_at` in its summary JSON on every run, so a plain run leaves the tree dirty even when the content matches. CI uses `--check` for this reason; a local run should be followed by `git checkout` of that file.
+2. The console (`console/announcement.html`) already showed this announcement before this session. The public app did not. Both now exist; they are generated from the same JSON.
+3. The fetch tool can reach `nfl.com` and `media.nfl.com`, but the bash sandbox allow-list does not include them. Immutable raw captures with retained hashes therefore cannot be produced from bash alone. This blocks most of the NOT BUILT rows that need recurring official captures (for example rows 30–32, 55–57, 65, 67).
+
+**Not done, and why this session is not merging to `main`:** 23 of the 82 brief rows remain NOT BUILT and about 40 are PARTIAL (see the register). Several need data this sandbox cannot reach through bash (licensed or NFL-hosted snap counts, reserve lists, archives of past injury reports, weather grids, and a licensed odds source). The brief requires a merge only after all tasks are done, so this branch is left open as a pull request for review.
+
+Pull request record (`arena-42887cb2-x1`): https://github.com/karagemop466-tech/X1/pull/113 — open, **not merged** (23 of 82 brief rows still NOT BUILT; merge is gated on all tasks being done).
 
 ### Rebase handoff — 2026-11-19
 
@@ -6060,3 +6210,19 @@ The live page changes are data-only/derived: replacement-depth display names now
 - Live check: `https://karagemop466-tech.github.io/X1/` returned the current landing page (fetch tool). `curl` from the sandbox cannot reach github.io (exit 35), so the live check used the fetch tool. `app/week11.html` is **not** on `main`; it is pending in PR #132 (still OPEN). That absence is expected under the scope change.
 - Carry-over (report only): the four pre-existing pages `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html` all exist and are linked from other pages. `tools/check_links.py` reports all links resolve and no orphan pages. The earlier "4 orphans" count was from a deployed-tree check that predates these links.
 - Still open (not blocking): Charlie Heck (IND) divergence between PR #132's read and this transcription; Waddle/Evans roster placement; Dee Alford and Jacob Hummel name/slug mismatches; the remote branch `arena/0c2fcfa1-x1`.
+
+### Merge record — arena-2d1ba329-x1 (2026-11-19, third upstream merge; ledger fork reconciled)
+
+- **Why:** `main` gained about 700 commits (PRs #128–#143 and others) while PR #132 was open. The branch was merged with `origin/main` three times; each conflict is logged here.
+- **Conflict 1 (`COORDINATION.md`):** both sides kept, append-only.
+- **Conflict 2 (`data/ledger/injuries/ledger.jsonl`) — a hash-chain fork, not a text conflict.** Both sides appended after the same line (the 13:16:57 UTC read, seq 15). `main` appended 19:25:26, 19:25:39 and 22:27:25 UTC (seq 16–18). The branch appended 22:10:21, 22:22:57, 22:24:46 and 22:28:52 UTC (seq 16–19). Two chains cannot both be linear.
+  - **Resolution, nothing discarded:** `main`'s lines keep their seq and hashes. The branch's four lines follow as seq 19–22, with `prev_sha256` set to `main`'s head. Each re-chained line keeps its content except `seq`, `prev_sha256`, `entry_sha256`, and a `rechained` note holding its original seq and hashes. Raw files are unchanged.
+  - **Verified:** `tools/snapshot_ledger.py verify --dir data/ledger/injuries` → chain intact, 22 lines, 22 raw captures, every page re-hashes to its line.
+  - **Consequence:** the chain order is not chronological across the fork. `tools/week11/build_week11.py` now sorts Week 11 reads by capture time before computing deltas.
+- **Finding from the merged series:** Charlie Heck's two designations were removed between the 13:16 UTC read and the **19:25 UTC scheduled read on `main`**. The 22:10 probe read and the live page at about 21:59 UTC agree. No other field changed in any Week 11 read after 01:53 UTC. The delta is in `data/week11/deltas.tsv`.
+
+**Requests to the ledger owner (logged, not actioned by editing their file):**
+- The PR probe in `injury-ledger.yml` commits a ledger line on every `pull_request` run for a branch that changes `tools/build_app.py`. Each such line forks the chain whenever `main` also appends. Recommend: the probe should not commit to the ledger on pull requests; it should read and report only, as its own header comment already describes for forks.
+- The scheduled job's cadence (W11-1) is still unexplained.
+
+**Concurrency note:** the shared `pages` concurrency group (`cancel-in-progress: true`) cancelled this PR's Pages run more than once while other sessions' runs were active. The run on the merged head (`6b480c5`) completed and passed. A `gh run rerun` of the cancelled run was refused by the API.
