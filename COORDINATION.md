@@ -4903,3 +4903,12 @@ regenerated from that output. This is a generated-output repair only: no rule, v
 another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
 `payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
 locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.
+
+## Release record — PR #102 (session `arena-34b79d69-x1`, 2026-11-19)
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/102
+- **Merge:** `gh pr merge 102 --merge` succeeded at 2026-11-19T07:03:14Z; merge commit `a201892`.
+- **Checks on the final branch head `679aa79`:** `verify-site`, `Evaluation readiness`, `injury-ledger` and `Publish static site to GitHub Pages` all **success**.
+- **Pages:** post-merge `pages build and deployment` and the `Publish static site to GitHub Pages` workflow on `a201892` both succeeded. The live section was fetched back successfully at https://karagemop466-tech.github.io/X1/suggestions/index.html (18 questions / 18 paths / 13 gaps / 5 flags visible).
+- **Conflict handling:** two integration conflicts were resolved by union, never by discarding work — `COORDINATION.md` (append-only records from parallel sessions retained) and `console/index.html` (both sessions' nav links retained). A later CI failure at the pre-existing readiness-staleness gate was repaired by regenerating `data/console/readiness.{json,csv}` after `main` gained a seventh Game Book URL; timestamp-only regenerated files were reverted.
+- **Deferred to the owner:** all 18 path decisions remain blank/`UNVERIFIED / AWAITING OWNER`; this session deliberately selected none.
