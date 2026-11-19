@@ -4989,3 +4989,30 @@ regenerated from that output. This is a generated-output repair only: no rule, v
 another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
 `payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
 locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.
+# Session `arena/427c1843-x1` — Round 7: repair the published site, live re-verification 2026-11-19, Decision Room (this session)
+
+**Session ID:** `arena/427c1843-x1` · **Branch:** `arena/427c1843-x1` (branched from `main` @ `6f7df25`).
+**Started (UTC):** 2026-11-19. **Role:** final integration session for this round + independent live
+re-verification + the owner-facing Decision Room. Owner brief requires: no manual input, work
+line by line, official sources only, flag irregularities, publish to GitHub Pages, open PR → merge → confirm deploy.
+
+## Claim (written and pushed before any work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope (claimed) |
+|---|---|---|---|---|
+| R7-1 | Live official re-verification pack dated **2026-11-19** (standings arithmetic, league closure, W10 finals continuity, W11 fixture list) with a CI-checkable verifier | in progress | `arena/427c1843-x1` | `data/verification/2026_11_19/**` (new), `tools/verify_2026_11_19.py` (new) |
+| R7-2 | **Decision Room**: a new section that answers the brief's own asks in one place — missing-information questions and how to discover each, the reviewed suggestions board, and the line-origination/leaderboard/skill evidence standing | in progress | `arena/427c1843-x1` | `data/room/**` (new), `tools/build_room.py` (new), `room/**` (new) |
+| R7-3 | Repair the defects this session can prove from the repository itself (published-site defects, generator fixes), published on the Flagged page | in progress | `arena/427c1843-x1` | `tools/build_site.py` (targeted fixes only), `pages/**` + `index.html` (regenerated) |
+| R7-4 | Final integration for this round: re-verify, build, link-check, PR → `main`, merge, Pages deploy confirmation, board records | in progress | `arena/427c1843-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/verify.yml` (append-only), PR |
+
+**Non-overlap (rule 3).** Open PRs #91 (`arena/efb06932-x1`) and #92 (`arena/55c364b6-x1`) were enumerated
+file by file before this claim: neither touches `room/**`, `data/room/**`, `tools/build_room.py`,
+`tools/verify_2026_11_19.py`, `data/verification/2026_11_19/**`, or (for #91) `tools/build_site.py`.
+#92 does touch `index.html`; this session edits `tools/build_site.py` and regenerates `index.html` from it,
+so #92's rebase will see a regenerated file and may need a regeneration rather than a text union — that is
+logged here rather than resolved by editing their scope.
+
+**Environment limit (recorded, because it changes what "verified" can mean this round).** The sandbox's
+shell network is restricted to `github.com`; `www.nfl.com` is reachable only through the page-fetch tool.
+Every official value in this round is therefore read through the fetch tool and transcribed with its
+source URL and read date, exactly as the 2026-11-18 pack did — no shell-side scraping was performed.
