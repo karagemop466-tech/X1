@@ -1,0 +1,27 @@
+{
+  "captured_date": "2026-11-19",
+  "counts": {
+    "announced_starters_verified": 5,
+    "clubs_summarized": 32,
+    "november_trades_verified": 12,
+    "reserve_rows_verified": 43,
+    "stale_depth_and_turnover_flags": 20,
+    "week10_inactive_games_verified": 14,
+    "week10_inactive_players_verified": 172
+  },
+  "dataset": "origination_desk_roster_audit",
+  "file_sha256": {
+    "announced_starters_evidence.csv": "9e75c89442b4d5d2609c9938fd06a46897d9ebfcbde8e65ae057617fcba8104a",
+    "club_availability_summary_w10_w11.csv": "39751bdb454d64f8c8be8f71871b510cef8b1ee6a8fade31f8bd4a5803f70ae3",
+    "official_inactives_2026_week10.csv": "e621db34ef79666922604ab34ae4e94a7bb634f886535ea231473efee43344cc",
+    "official_reserve_list_2026_oct_nov.csv": "c3a370d55680a750072a74a189fa6d76120a98d4187da7afd88fbfbfaacd1496",
+    "official_trades_nov_2026.csv": "620e81673874aa95b5a9ad123304f4ca75f3eedf7b19e17719fed942cad3cb71",
+    "stale_depth_and_turnover_audit.csv": "bfb9503f9c967d73d25fdc8519780fbd7902ebfb8d04812b6c123d92cb39883d"
+  },
+  "key_findings": [
+    "NFL.com monthly Reserve List page (2026/11) truncates at 25 rows (stopping at 11/10) and prints a blank Position cell on every row; club roster RES tables are required to catch Malik Willis (MIA QB), Lamar Jackson (BAL QB), and Tyler Huntley (BAL QB).",
+    "Live club depth charts retrieved 2026-11-19 still list multiple newly IR'd starters at depth 1: Aidan Hutchinson (DET EDGE1, IR 11/18), Jaylon Carlies (IND WLB1, IR 11/17), Mason McCormick (PIT LG1, IR 11/18), and Puka Nacua (LA WR1, IR 11/12).",
+    "All 14 Week 10 games (28 active clubs, 172 player deactivations) are transcribed from the 3 official 2026 NFL.com inactives releases; snap counts remain blank pending an authorized snap-count source.",
+    "Lions Week 10 Out reconciliation: Cade Mays and D.J. Reed appear on Sunday's 6-man Munich inactive list, while Kerby Joseph (out since W6 2025, expected W11 debut vs TB) was Out on the injury report prior to 53-man activation."
+  ]
+}
