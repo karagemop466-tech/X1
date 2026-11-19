@@ -5728,3 +5728,20 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
 | Merge result | pending |
 
+## Claim — session `arena-5059d52d-x1` (2026-11-19)
+
+**Role:** independent post-merge readiness audit of the exact `a1cca5c` / PR #127 tree, following the owner's request for a line-by-line review, official-source discipline, a clear decision/Q&A register, and a working Pages site. This claim does not duplicate the completed T-R1..T-R4 integration or alter shared datasets, landing page, navigation, generated tables, or another session's scope.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| A9-1 | Independently rerun the repository's current verification gates and record exact results and any nonzero warnings against the `a1cca5c` tree | in progress | `arena-5059d52d-x1` | `docs/review/round9-readiness-audit.md` (new), `COORDINATION.md` (this claim + completion record) |
+| A9-2 | Reconcile the owner's request with the committed brief-coverage register and the current public decision center; distinguish built, partial, unbuilt, and explicitly declined items without filling evidence gaps or inferring values | in progress | `arena-5059d52d-x1` | `docs/review/round9-readiness-audit.md` (new), `COORDINATION.md` (completion record only) |
+| A9-3 | Verify that the live public site and deployment correspond to the current main tree, using existing GitHub Pages/Actions evidence where available; report any issue as a scoped request rather than editing shared release surfaces | in progress | `arena-5059d52d-x1` | `docs/review/round9-readiness-audit.md` (new), `COORDINATION.md` (completion record only) |
+
+**Ownership boundary:** no edits to `index.html`, site navigation, the shared requirement tables, source data, dashboards, generators, or workflow files. Any defect outside the audit report's scope will be logged for the owning session rather than silently changed. This branch remains `arena/5059d52d-x1`.
+
+
+### Rebase conflict log — `arena-5059d52d-x1` (2026-11-19)
+
+- **Conflict:** `COORDINATION.md` append-only tail while rebasing the session's claim commit onto `origin/main` at `c5265bd` (PR #131; main had advanced through PRs #128 and #129 since the claim).
+- **Resolution:** preserved the complete upstream records (including sessions `arena-3a6060ef-x1` and `arena/48babc21-x1`) and this session's A9-1..A9-3 claim. No other files conflicted; no upstream record or session claim was discarded.
