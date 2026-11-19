@@ -125,6 +125,7 @@ def main() -> int:
     NETM = sum(int(r["net"]) for r in standings)
     implied = (W + L + T) / 2
     a2 = {
+        "name": "league closure (sum W = sum L, ties even, PF = PA, 150 games)",
         "clubs": len(standings),
         "sum_w": W,
         "sum_l": L,
@@ -142,6 +143,10 @@ def main() -> int:
         and NETM == 0
         and implied == 150
     )
+    # A2 is a set of league-wide identities rather than a per-cell count. Publish the count that
+    # was actually asserted (5 identity clauses) so the table can state a number instead of a dash.
+    a2["assertions"] = 5
+    a2["passed"] = sum([len(standings) == 32, W == L, T % 2 == 0, PF == PA, NETM == 0]) 
     a2["verdict"] = "pass" if a2_ok else "FAIL"
     checks["A2"] = a2
 
@@ -274,6 +279,8 @@ def main() -> int:
     )
     checks["A5"] = {
         "name": "Week 11 slate completeness (13 fixtures + 6 byes = 32 clubs, once each)",
+        "assertions": len(clubs),
+        "passed": len(clubs) - len(dupes) - len(missing) - len(a5_bad),
         "fixtures": len(w11),
         "byes": len(byes),
         "clubs_counted": len(clubs),

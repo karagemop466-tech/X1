@@ -995,10 +995,28 @@ def page_stale(d):
         ])
     p = d["pack"]
     checks = []
+    # Each check reports its own counts; name the measured quantity rather than leaving a blank
+    # cell where the key differs (A2 has no assertion count, A5 counts clubs, A7 counts rows).
+    def counts(v):
+        if "assertions" in v:
+            return v["assertions"], v.get("passed", "")
+        if "clubs_counted" in v:
+            return v["clubs_counted"], f'{v["fixtures"]} fixtures + {v["byes"]} byes'
+        if "rows" in v:
+            extra = ""
+            if "clubs" in v:
+                extra = f' {v["clubs"]} clubs'
+            if "designated_rows" in v:
+                extra += f' / {v["designated_rows"]} designations'
+            return v["rows"], extra.strip()
+        return "", ""
     for k, v in p["checks"].items():
+        n, passed = counts(v)
         checks.append([
-            td(ok(f"<b>{k}</b>")), td(v.get("name", "")),
-            td(v.get("assertions", v.get("rows", ""))), td(v.get("passed", "")),
+            td(ok(f"<b>{k}</b>")), td(v.get("name", "") or {
+                "A2": "league closure (sum W = sum L, ties even, PF = PA, 150 games)",
+            }.get(k, "")),
+            td(n), td(passed),
             td(ok(f'<span class="pill {"p-met" if v["verdict"]=="pass" else "p-part"}">{v["verdict"]}</span>')),
         ])
     body = f"""
