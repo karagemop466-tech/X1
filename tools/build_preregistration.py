@@ -179,6 +179,7 @@ def build() -> dict:
     of when a rule was frozen, because CI is exactly the place with a shallow clone.
     """
     is_shallow = shallow()
+    boundary = root_commit() if is_shallow else ""
     prev_rows: dict = {}
     prev_full_history = True   # a missing register has no prior claim to distrust
     reg = os.path.join(OUT, "register.json")
@@ -205,9 +206,18 @@ def build() -> dict:
         prev_hash = prev_rows.get(rule["id"], {}).get("rule_sha256", "")
         frozen = a["state"] == "registered" and not a["later_commits"]
         carried = ""
-        if a["state"] == "unresolved-shallow-checkout" and prev_rows and prev_full_history:
+        if a["state"] == "unresolved-shallow-checkout" and prev_rows:
             p = prev_rows.get(rule["id"], {})
-            if p.get("rule_sha256") == digest and p.get("registration_commit"):
+            # Row-level provenance (session arena-757174a7-x1, repair of 65ba4c4): the previous register
+            # may itself have been built in a shallow checkout while still holding anchors that were
+            # resolved from full history. Those rows are trusted when they are a registered anchor, are
+            # not this checkout's boundary commit, and the rule bytes are unchanged. Gating on the
+            # previous register's top-level "shallow" flag alone erased four true registration commits
+            # (PR-01..PR-04) in one CI run; each was verified as the first commit touching its rule file.
+            row_trusted = (p.get("state") == "registered"
+                           and bool(p.get("registration_commit"))
+                           and p.get("registration_commit") != boundary)
+            if p.get("rule_sha256") == digest and (prev_full_history or row_trusted):
                 # Same bytes, better history: the anchor recorded by a full-history build is still true.
                 carried = "carried from a full-history build"
                 a = {**a, "state": "registered", "registration_commit": p["registration_commit"],
