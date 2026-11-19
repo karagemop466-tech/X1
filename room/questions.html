@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Questions to settle — The Decision Room</title>
+<meta name="description" content="NFL line origination, validated strategies and the questions that must be settled first. Every number sourced; nothing inferred.">
+<link rel="stylesheet" href="../app/assets/site.css">
+<style>
+:root{--ink:#12161c;--mut:#5b6675;--line:#e2e6ec;--bg:#fbfcfd;--accent:#0b4f8a;--warn:#8a4b0b;--bad:#8a0b0b;--good:#0b6b3a}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}
+.room{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{border-right:1px solid var(--line);padding:18px 14px;background:#fff;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand{font-weight:700;letter-spacing:.08em;font-size:13px;color:var(--mut);text-transform:uppercase}
+aside .brand b{display:block;font-size:19px;letter-spacing:0;color:var(--ink);text-transform:none}
+aside nav{display:flex;flex-direction:column;margin-top:16px;gap:1px}
+aside nav a{padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+aside nav a:hover{background:#eef3f8}
+aside nav a.on{background:var(--accent);color:#fff;font-weight:600}
+aside .note{margin-top:18px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+main{padding:26px 34px 70px;max-width:1180px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:22px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:30px;line-height:1.15;margin:.2em 0 .35em}
+h2{font-size:19px;margin:2.1em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:1.5em 0 .4em}
+p{max-width:78ch}
+.lede{font-size:17px;color:#26303c;max-width:74ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.tw{overflow:auto;border:1px solid var(--line);border-radius:8px;margin:.6em 0 1.1em;background:#fff}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f6f9;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafcfe}
+td.blank{color:#aeb6c2;text-align:center}
+a.src{font-size:12px;white-space:nowrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:1em 0 1.6em}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;text-decoration:none;color:var(--ink);display:block}
+.card:hover{border-color:var(--accent);box-shadow:0 1px 8px rgba(11,79,138,.08)}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card span{font-size:12.5px;color:var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:1em 0 1.6em}
+.kpi{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;background:#fff}
+.kpi b{display:block;font-size:24px;line-height:1.1}
+.kpi span{font-size:12px;color:var(--mut)}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.03em;border:1px solid}
+.p-met{color:var(--good);border-color:#bfe3cf;background:#f0faf4}
+.p-part{color:var(--warn);border-color:#ecd9c0;background:#fdf7ef}
+.p-open{color:var(--bad);border-color:#eed0d0;background:#fdf2f2}
+.p-na{color:var(--mut);border-color:var(--line);background:#f7f8fa}
+.box{border:1px solid var(--line);border-left:4px solid var(--accent);background:#fff;border-radius:8px;padding:14px 18px;margin:1.1em 0}
+.box.warn{border-left-color:var(--warn)}
+.box.bad{border-left-color:var(--bad)}
+.box h3{margin-top:0}
+code{background:#f1f4f8;padding:1px 5px;border-radius:4px;font-size:12.5px}
+ul,ol{max-width:78ch}
+li{margin:.3em 0}
+footer.foot{margin-top:3em;border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--mut)}
+@media(max-width:820px){.room{grid-template-columns:1fr}aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:18px}}
+</style>
+</head>
+<body>
+<div class="room">
+<aside>
+  <div class="brand">Fourth Down<b>The Decision Room</b></div>
+  <nav>
+    <a href="index.html">Start here</a>
+<a class="on" href="questions.html">Questions to settle</a>
+<a href="missing.html">Missing information</a>
+<a href="suggestions.html">Suggestions board</a>
+<a href="lines.html">Origination &amp; leaderboard</a>
+<a href="gates.html">Validation gates</a>
+<a href="correlation.html">Correlation</a>
+<a href="luck.html">Removing luck</a>
+<a href="availability.html">Availability &amp; depth</a>
+<a href="stale.html">Staleness ledger</a>
+<a href="executive.html">Executive summary</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="sources.html">Sources</a>
+  </nav>
+  <div class="note">
+    <b>Read date</b> 2026-11-19<br>
+    Official values are read from nfl.com and transcribed with the URL on the row.
+    Anything unconfirmed stays blank and is listed on <a href="flagged.html">Flagged for review</a>.
+  </div>
+</aside>
+<main>
+<header class="topbar"><span>Questions to settle</span><span>8 QUESTIONS · 3 STATES</span></header>
+
+<div class="eyebrow">Before any decision</div>
+<h1>Questions that must be settled first</h1>
+<p class="lede">Eight questions, ordered by what they block. Each one states what we already know,
+what the answer is today, and the specific evidence that would change it. A question is only marked
+<b>answered</b> when the answer is checkable from a file or an official page linked on the row.</p>
+<div class="tw"><table class=""><thead><tr><th>ID</th><th>Pri</th><th>Question</th><th>What we already know</th><th>The answer today</th><th>What would clear it</th><th>Source</th><th>State</th></tr></thead><tbody><tr><td><b>Q1</b></td><td>P0</td><td>Is any strategy allowed to stake real money yet?</td><td>16 pre-registered strategies are scored with flat stakes and confidence intervals.</td><td>No. Every strategy has 0 recorded stakes and every one that is scored sits inside its own confidence interval. The gate G0 (provenance) is not satisfied because no price source is licensed or timestamped.</td><td>One licensed, timestamped price feed, or permission to use a named third-party line carrying its fingerprint.</td><td>&lt;a class=&quot;src&quot; href=&quot;gates.html&quot;&gt;gates&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/gates.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;gates.json&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/lines/leaderboard_split.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;leaderboard_split.json&lt;/a&gt;</td><td><span class="pill p-open">blocked</span></td></tr><tr><td><b>Q2</b></td><td>P0</td><td>Does the single strategy that clears p&amp;nbsp;&amp;le;&amp;nbsp;0.05 survive being tested 16 times?</td><td>S_wind_under: n=398, hit 57.04%, flat ROI +11.53%, CI [+2.2%, +20.7%], p=0.0077.</td><td>No. Corrected for a family of 16 the bar is p&amp;nbsp;&amp;le;&amp;nbsp;0.003125 and it does not clear it. Its luck-removed ROI is higher (+13.0%), which argues the edge is not an artefact of lucky wins, but stability across neighbouring parameter values is the next thing to test.</td><td>A pre-registered out-of-sample window, or a Bonferroni-surviving p, whichever comes first.</td><td>&lt;a class=&quot;src&quot; href=&quot;luck.html&quot;&gt;luck panel&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/lines/leaderboard_split.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;leaderboard_split.json&lt;/a&gt;</td><td><span class="pill p-part">partly answered</span></td></tr><tr><td><b>Q3</b></td><td>P1</td><td>Which price data may be used, and what does it cost?</td><td>No official NFL source publishes betting prices. The repository has used a documented third-party mirror and named it on every row.</td><td>The policy is decided in principle (name the mirror, fingerprint it) but no licensed feed exists, so opening and closing numbers cannot both be evidenced.</td><td>A licensed odds feed with opening and closing snapshots, or a written terms review.</td><td>&lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/flags.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;flags.json&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/lines/leaderboard_split.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;leaderboard_split.json&lt;/a&gt;</td><td><span class="pill p-part">partly answered</span></td></tr><tr><td><b>Q4</b></td><td>P1</td><td>Can an injury signal be built from the official report this week?</td><td>253 rows read live on 2026-11-19 across 24 clubs.</td><td>Not yet. Only 16 rows carry a game designation, all of them the two Thursday clubs. A surprise measure needs a baseline (what the designation was expected to be) and a game outcome; neither exists for Week 11 until the games are played.</td><td>The same read repeated on Friday and Saturday, so the change in designation can be measured, plus the Week 10 inactives as the outcome variable.</td><td>&lt;a class=&quot;src&quot; href=&quot;availability.html&quot;&gt;availability&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;official_w11_injuries_2026_11_19.tsv&lt;/a&gt;</td><td><span class="pill p-part">partly answered</span></td></tr><tr><td><b>Q5</b></td><td>P1</td><td>Is the published standings table wrong?</td><td>26 of 32 clubs differ from today&#x27;s official page in 104 of 192 compared cells.</td><td>Not wrong — dated. It is a faithful 2026-11-14 read and re-verification confirms it matches that day. The defect is that a reader cannot tell which day they are looking at.</td><td>A dated label on the table, which the snapshot register supplies.</td><td>&lt;a class=&quot;src&quot; href=&quot;stale.html&quot;&gt;staleness&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/nfl/standings.tsv&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;standings.tsv&lt;/a&gt;</td><td><span class="pill p-part">partly answered</span></td></tr><tr><td><b>Q6</b></td><td>P2</td><td>Can &quot;2nd string&quot; be measured for every club?</td><td>A depth pilot exists for a handful of clubs; the league publishes no league-wide depth chart.</td><td>No. Club charts are self-published, are often labelled unofficial, and disagree in shape (images, jersey numbers, shared slots). Snaps would be the measured substitute, and no official snap-count feed is licensed.</td><td>Either 32 verified club charts on one date, or an official snap-count source.</td><td>&lt;a class=&quot;src&quot; href=&quot;availability.html&quot;&gt;depth&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/flags.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;flags.json&lt;/a&gt;</td><td><span class="pill p-open">blocked</span></td></tr><tr><td><b>Q7</b></td><td>P2</td><td>What sample would make a 55% capper identifiable?</td><td>Break-even at -110 is 52.38%; at 500 bets a 55% record is z&amp;nbsp;&amp;asymp;&amp;nbsp;1.18.</td><td>About 1,000 settled bets for 95% confidence against a 52.38% break-even, before any clustering correction. This is why no short run can be rewarded.</td><td>Time. There is no shortcut; the gate encodes it.</td><td>&lt;a class=&quot;src&quot; href=&quot;luck.html&quot;&gt;sample size&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/gates.json&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;gates.json&lt;/a&gt;</td><td><span class="pill p-met">answered</span></td></tr><tr><td><b>Q8</b></td><td>P2</td><td>Are Week 10 results final and complete?</td><td>14 fixtures, all printed Final, and the league closure arithmetic holds.</td><td>Yes — the closure check passes: &amp;Sigma;W&amp;nbsp;=&amp;nbsp;&amp;Sigma;L&amp;nbsp;=&amp;nbsp;149, ties even, &amp;Sigma;PF&amp;nbsp;=&amp;nbsp;&amp;Sigma;PA, 150 games implied, and today&#x27;s 14 finals equal the 2026-11-18 pack field for field.</td><td>Nothing. Closed.</td><td>&lt;a class=&quot;src&quot; href=&quot;sources.html&quot;&gt;sources&lt;/a&gt; · &lt;a class=&quot;src&quot; href=&quot;https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/official_w10_results_2026_11_19.tsv&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;official_w10_results_2026_11_19.tsv&lt;/a&gt;</td><td><span class="pill p-met">answered</span></td></tr></tbody></table></div>
+<h2>How to read the states</h2>
+<ul>
+<li><span class="pill p-met">answered</span> — checkable from the linked source today; no decision is waiting.</li>
+<li><span class="pill p-part">partly answered</span> — the reasoning is settled but a number or a licence is missing.</li>
+<li><span class="pill p-open">blocked</span> — cannot be answered from anything currently in the repository.</li>
+</ul>
+<div class="box warn"><h3>The honest summary</h3>
+<p>Of the eight, 2 are answered, 4 are
+partly answered and 2 are blocked. None of the blocked ones can be
+cleared by writing more code; they need a data licence or a longer sample.</p></div>
+
+<footer class="foot">
+  Independent research. Not betting advice, and not a source of picks.
+  Every published figure links to the file or official page it comes from.
+  Snapshot date <b>2026-11-19</b> · site snapshot 2026-11-14. Generated by <code>tools/build_room.py</code>.
+  Sibling sections: <a href="../index.html">dashboard</a> · <a href="../lab/index.html">line desk</a> ·
+  <a href="../research/index.html">research lab</a> · <a href="../pages/flagged.html">flagged</a>.
+</footer>
+</main>
+</div>
+</body>
+</html>

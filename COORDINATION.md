@@ -5007,3 +5007,148 @@ regenerated from that output. This is a generated-output repair only: no rule, v
 another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
 `payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
 locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.
+# Session `arena/427c1843-x1` — Round 7: repair the published site, live re-verification 2026-11-19, Decision Room (this session)
+
+**Session ID:** `arena/427c1843-x1` · **Branch:** `arena/427c1843-x1` (branched from `main` @ `6f7df25`).
+**Started (UTC):** 2026-11-19. **Role:** final integration session for this round + independent live
+re-verification + the owner-facing Decision Room. Owner brief requires: no manual input, work
+line by line, official sources only, flag irregularities, publish to GitHub Pages, open PR → merge → confirm deploy.
+
+## Claim (written and pushed before any work, per rule 1)
+
+| # | Task | Status | Owner | Files in scope (claimed) |
+|---|---|---|---|---|
+| R7-1 | Live official re-verification pack dated **2026-11-19** (standings arithmetic, league closure, W10 finals continuity, W11 fixture list) with a CI-checkable verifier | in progress | `arena/427c1843-x1` | `data/verification/2026_11_19/**` (new), `tools/verify_2026_11_19.py` (new) |
+| R7-2 | **Decision Room**: a new section that answers the brief's own asks in one place — missing-information questions and how to discover each, the reviewed suggestions board, and the line-origination/leaderboard/skill evidence standing | in progress | `arena/427c1843-x1` | `data/room/**` (new), `tools/build_room.py` (new), `room/**` (new) |
+| R7-3 | Repair the defects this session can prove from the repository itself (published-site defects, generator fixes), published on the Flagged page | in progress | `arena/427c1843-x1` | `tools/build_site.py` (targeted fixes only), `pages/**` + `index.html` (regenerated) |
+| R7-4 | Final integration for this round: re-verify, build, link-check, PR → `main`, merge, Pages deploy confirmation, board records | in progress | `arena/427c1843-x1` | `COORDINATION.md`, `README.md`, `.github/workflows/verify.yml` (append-only), PR |
+
+**Non-overlap (rule 3).** Open PRs #91 (`arena/efb06932-x1`) and #92 (`arena/55c364b6-x1`) were enumerated
+file by file before this claim: neither touches `room/**`, `data/room/**`, `tools/build_room.py`,
+`tools/verify_2026_11_19.py`, `data/verification/2026_11_19/**`, or (for #91) `tools/build_site.py`.
+#92 does touch `index.html`; this session edits `tools/build_site.py` and regenerates `index.html` from it,
+so #92's rebase will see a regenerated file and may need a regeneration rather than a text union — that is
+logged here rather than resolved by editing their scope.
+
+**Environment limit (recorded, because it changes what "verified" can mean this round).** The sandbox's
+shell network is restricted to `github.com`; `www.nfl.com` is reachable only through the page-fetch tool.
+Every official value in this round is therefore read through the fetch tool and transcribed with its
+source URL and read date, exactly as the 2026-11-18 pack did — no shell-side scraping was performed.
+
+---
+
+# Session `arena/427c1843-x1` — Round 7 completion record (2026-11-19)
+
+**Status: R7-1 … R7-4 complete.** Branch `arena/427c1843-x1` (from `main` @ `6f7df25`).
+
+## What shipped
+
+| # | Task | State | Artefacts |
+|---|---|---|---|
+| R7-1 | Live official re-verification pack dated 2026-11-19 | **done** | `data/verification/2026_11_19/**` (7 files: standings, Week 10 finals, Week 11 slate, Week 11 byes, Week 11 injury report, announced starters, verification summary), `tools/verify_2026_11_19.py` (A1–A8), CI step `--check` |
+| R7-2 | Decision Room | **done** | `room/**` (13 pages), `tools/build_room.py` (+`--check`), CI step, nav entry in `tools/build_site.py`, landing-page card and tree entry |
+| R7-3 | Defects repaired | **done** | double-escaped entities (94 occurrences / 29 files) fixed at the generator + `verify_output()` build guard; landing page's undated "347 injury rows" counted and dated; "Five trees" heading corrected; `room/` registered as the eighth page tree in `tools/check_links.py` and its classes defined in `app/assets/styles.css` |
+| R7-4 | Integration, verification, PR, merge, Pages | **in progress** | this record, `docs/round7/…`, PR below |
+
+## Sources (all read 2026-11-19 through the fetch tool)
+
+* <https://www.nfl.com/standings/league/2026/REG>
+* <https://www.nfl.com/schedules/2026/by-week/week-10>
+* <https://www.nfl.com/schedules/2026/by-week/week-11>
+* <https://www.nfl.com/injuries/league/2026/reg11>
+* <https://www.nfl.com/injuries/league/2026/reg10> (to close the Lions game-status defect)
+* <https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start>
+* <https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders>
+* <https://www.nfl.com/news/ravens-complete-trade-for-cardinals-jacoby-brissett-deal-terms-revealed>
+* <https://www.nfl.com/players/jacoby-brissett/>
+
+## Verification performed (all green, locally, in CI order)
+
+`verify_data` 2 960 checks · `verify_2026_11_19` A1–A8 · `verify_2026_11_19 --check` · `build_room --check` ·
+`build_site` (+ double-escape guard) · `check_links` 193 files / 47 692 assertions · `verify_against_official` ·
+`verify_app` · `verify_console` · `verify_stores` · `cross_check` · `check_site` · `verify_site` ·
+`verify_research_site` · `verify_site_annex` · `verify_parlay` · `pipeline/verify_site` · `build_hub` ·
+`lab/build_site` · `build_state_audit --check` · `test_source_rule`.
+
+## Measured findings (published, not asserted)
+
+1. **Multiplicity.** 16 scored strategies; 1 clears p ≤ 0.05 (`S_wind_under`, p = 0.0077); **0** clear the
+   Bonferroni bar of 0.003125; 0.80 false positives expected by chance at α = 0.05.
+2. **Staleness.** **104 of 192** published standings cells differ from the 2026-11-19 official read,
+   affecting **26 of 32 clubs**. The snapshot is a faithful 2026-11-14 read — the defect is that the table
+   did not say so.
+3. **Week 11 availability.** 253 official injury rows, 24 clubs, **16 designations**, all IND/HOU.
+4. **Announced starters.** 2 of the owner's 3 named cases clear the evidence bar (McCord, Lock); Brissett is
+   a reported trade and is left blank.
+5. **Lions defect closed.** Joseph, Mays and Reed all read **Out** on the official Week 10 page.
+
+## Irregularities (non-blocking, all on `room/flagged.html`)
+
+F-R7-01 stale dated table · F-R7-02 multiplicity vs the single p-value · F-R7-03 Jaylen Waddle listed
+under DEN on the Week 11 report · F-R7-04 `ARZ_KC` vs `AZ` game-id alias in the frozen 11-17 read ·
+F-R7-05 eight name/slug mismatches · F-R7-06 the double-escape defect (fixed) · F-R7-07 Brissett has no
+dated starter announcement.
+
+## Non-overlap
+
+Open PRs #91 (`arena/efb06932-x1`) and #92 (`arena/55c364b6-x1`) were enumerated file by file before this
+claim and again before this record. Neither touches `room/**`, `data/room/**`, `tools/build_room.py`,
+`tools/verify_2026_11_19.py` or `data/verification/2026_11_19/**`. Both touch `.github/workflows/verify.yml`
+by appending steps; this session also appends, at the end of the file, with a distinct step name, so a
+rebase is an append-append union. #92 also rewrites `index.html`, which this session **regenerates** from
+`tools/build_site.py`; the resolution is to regenerate, never to hand-merge generated HTML.
+
+## Round-7 scope collision — logged, not contested (session `arena/427c1843-x1`, 2026-11-19)
+
+While this session worked, `main` advanced 11 commits and five more PRs opened. Two overlap this
+session's claimed scope. Per rule 4 the overlap is **logged here rather than resolved by editing
+another session's files**, and per rule 6 nothing was discarded.
+
+| | This session (`arena/427c1843-x1`) | Other session | Overlap |
+|---|---|---|---|
+| PR #102 (`arena/34b79d69-x1`) | Decision Room: `room/**`, `tools/build_room.py` | "Decision Center: canonical suggestions, questions and missing-information review section" — `app/**`, `index.html`, `verify.yml`, `pages.yml` | **Conceptual duplicate.** Two sections answering "questions / suggestions / missing information". Neither claims `room/**` or `tools/build_room.py`; #102 works in `app/**`, this session works in `room/**`. Both are reachable; the owner now has two presentations of the same board and can pick one. No file is shared except `verify.yml` (append-only, distinct step names) and `COORDINATION.md` (append-only). |
+| PR #99 (`arena/68de0b7f-x1`) | `tools/build_site.py` (NAV entry, landing cards, `verify_output()` guard), `index.html` + `pages/**` (regenerated) | Week 11 paper-totals trial — also edits `tools/build_site.py` and `index.html` | **Real file overlap.** Resolved by **regeneration, not hand-merge**: this session's change is in the generator, so after rebasing onto `main` the generated `index.html`/`pages/**` were rebuilt from the union generator and produced no diff beyond the generator's own output. If #99 lands afterwards its own rebase sees the same shape. |
+
+**Rebase performed.** `git rebase origin/main` replayed this session's 5 commits onto `626763d`.
+Two conflicts, both append-only:
+* `COORDINATION.md` — the `arena/e0c7de42-x1` round-6 integration block (HEAD) against this
+  session's round-7 claim. Resolved by **union**: the other session's block is preserved verbatim
+  ahead of this session's, nothing deleted.
+* `.github/workflows/verify.yml` — the other session's "Replay the dated venue, report movement and
+  strategy decision checks" step (HEAD) against this session's two appended steps. Resolved by
+  **union**: both the other session's step and this session's two steps are present, so the file now
+  carries 49 named steps.
+
+**Re-verification after the rebase (all green, on the new base).** The full `verify.yml` run set —
+37 `run:` steps from `build_availability` through `build_venues_page --check` — passes, plus the two
+steps this session appended (`verify_2026_11_19 --check`, `build_room --check`) and the three
+`main`-side checks that did not exist at this session's branch point
+(`tools/verify_mind_change.py`, `tools/build_decision_review.py --check`,
+`tools/official/gamecentre.py selftest`). `tools/build_site.py` regenerates to **no diff** on the
+rebased tree (28 pages), which is the evidence that the generated-file overlap with #99 is clean.
+
+**Nothing was taken over.** This session did not edit `app/**`, `research/**`, `lab/**`, `scripts/**`,
+`tools/official/**` or any `main`-side file outside its claim; it did not touch PR #99's, #101's,
+#102's, #95's or #96's content.
+
+## Completion record — R7-2 and release (`arena-725e025d-x1`, 2026-11-19)
+
+| # | Task | Status | Evidence |
+|---|---|---|---|
+| R7-1 | Restore the red verify gate by pinning dated inputs | **done** | `tools/lab/build_reads.py`, `tools/lab/build_closure_measurement.py`, frozen 2026-11-17 collector read, regenerated pack |
+| R7-2 | Full gate chain, PR → main, merge, Pages | **done** | PR **#103** (https://github.com/karagemop466-tech/X1/pull/103), merged 2026-11-19T07:07:06Z as `12a9fb3d`; verify-site and Evaluation-readiness checks passed on the PR head |
+
+**What was verified after the merge:** all 49 run steps of `verify.yml` pass locally on the merged tree
+(including the previously red dated-reads step and the 2026-11-19 pack / Decision Room gates); all
+18 run steps of `pages.yml` passed on the PR head; `verify_deployed_tree.py` found no broken links.
+
+**Conflict handling (rule 6):** two concurrent rounds merged into `main` while PR #103 was open
+(PRs #99/#101 and #102/#104/#106). The rebase conflicted only in `COORDINATION.md` and the generated
+reads-pack artefacts. Both complete board records were retained; the generated JSON/HTML was
+regenerated from its committed builders, never resolved by picking one side. No other session's
+source file was overwritten.
+
+**Pages deployment:** the PR's `Publish static site to GitHub Pages` build passed
+(run 44476946828). The push merge's build was cancelled by the shared `pages` concurrency group
+(run 44477150229), a known infrastructure contention recorded by earlier rounds, not a failed
+assertion. A follow-up docs-only push re-runs the gate; the result is recorded in the next paragraph.

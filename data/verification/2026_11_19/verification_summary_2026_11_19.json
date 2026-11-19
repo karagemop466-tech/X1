@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-11-19T06:56:46+00:00",
+  "session": "arena/427c1843-x1 (round 7)",
+  "pack_date": "2026-11-19",
+  "read_at": "2026-11-19 (UTC), fetch tool, chunks 0-1 of 2 (standings) / 0-1 of 2 (w10) / 0-2 of 3 (w11)",
+  "sources": {
+    "standings": "https://www.nfl.com/standings/league/2026/REG",
+    "week10_schedule": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "week11_schedule": "https://www.nfl.com/schedules/2026/by-week/week-11"
+  },
+  "checks": {
+    "A1": {
+      "name": "standings identities (NET, PCT, HOME+ROAD)",
+      "assertions": 96,
+      "passed": 96,
+      "failures": [],
+      "verdict": "pass"
+    },
+    "A2": {
+      "clubs": 32,
+      "sum_w": 149,
+      "sum_l": 149,
+      "sum_t": 2,
+      "sum_pf": 6923,
+      "sum_pa": 6923,
+      "sum_net": 0,
+      "games_implied": 150.0,
+      "verdict": "pass"
+    },
+    "A3": {
+      "name": "cross-page records (Week 11 page vs standings page, same day)",
+      "assertions": 32,
+      "passed": 32,
+      "failed": 0,
+      "conflicts": [],
+      "conflicting_clubs": [],
+      "alias_used": {
+        "LAR->LA": 1
+      },
+      "verdict": "pass"
+    },
+    "A4": {
+      "name": "continuity vs the 2026-11-18 pack (standings 32x12, Week 10 finals 14x7)",
+      "assertions": 482,
+      "passed": 482,
+      "differences": [],
+      "w10_rows": 14,
+      "verdict": "pass"
+    },
+    "A5": {
+      "name": "Week 11 slate completeness (13 fixtures + 6 byes = 32 clubs, once each)",
+      "fixtures": 13,
+      "byes": 6,
+      "clubs_counted": 32,
+      "duplicated": [],
+      "missing": [],
+      "field_problems": [],
+      "verdict": "pass"
+    },
+    "A6": {
+      "name": "Week 11 fixture continuity vs the frozen 2026-11-17 read",
+      "assertions": 91,
+      "passed": 91,
+      "differences": [],
+      "new_fixtures_not_in_frozen_read": [],
+      "game_id_alias_used": {
+        "2026_11_ARZ_KC->2026_11_AZ_KC": 1
+      },
+      "verdict": "pass"
+    },
+    "A7": {
+      "name": "Week 11 official injury report (rows, clubs, designations)",
+      "rows": 253,
+      "clubs": 24,
+      "clubs_missing_a_block": [
+        "ATL",
+        "CIN",
+        "CLE",
+        "GB",
+        "LA",
+        "NE",
+        "SEA",
+        "WAS"
+      ],
+      "fixtures_with_rows": 12,
+      "designated_rows": 16,
+      "designated_by_status": {
+        "Questionable": 7,
+        "Out": 9
+      },
+      "designated_by_club": {
+        "IND": 9,
+        "HOU": 7
+      },
+      "practice_status_counts": {
+        "Did Not Participate In Practice": 83,
+        "Full Participation in Practice": 83,
+        "Limited Participation in Practice": 87
+      },
+      "blank_practice_status": 0,
+      "duplicate_player_rows": [],
+      "injury_game_keys_absent_from_slate": [],
+      "verdict": "pass"
+    },
+    "A8": {
+      "name": "announced-starter evidence (dated official articles, one row each)",
+      "rows": 3,
+      "players": [
+        "Drew Lock",
+        "Kyle McCord",
+        "Jacoby Brissett"
+      ],
+      "problems": [],
+      "verdict": "pass"
+    }
+  },
+  "verdicts": {
+    "A1": "pass",
+    "A2": "pass",
+    "A3": "pass",
+    "A4": "pass",
+    "A5": "pass",
+    "A6": "pass",
+    "A7": "pass",
+    "A8": "pass"
+  }
+}

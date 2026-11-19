@@ -60,7 +60,7 @@ NAV = [
     ("pages/suggestions-board.html", "Suggestions board"),
     ("pages/review-queue.html", "Review queue"),
     ("pages/changes.html", "What changed"),
-    ("pages/requirements.html", "Requirements &amp; status"),
+    ("pages/requirements.html", "Requirements & status"),
     ("pages/readiness.html", "Decision readiness"),
     # Added by session arena-543cdcb0-x1 (additive): the evidence layer the collector writes,
     # and the pre-registered model that scores against it.
@@ -85,6 +85,10 @@ NAV = [
     # Added by session arena/56769365-x1 (additive): the line desk — price snapshots,
     # verified results, originated lines, signal-vs-staking leaderboard, demotion gate.
     ("lab/index.html", "Line desk"),
+    # Added by session arena/427c1843-x1 (round 7, additive): the Decision Room — the one place
+    # that answers "what is blocking a decision today", the suggestions board the owner asked to
+    # review before anything is built, and the 2026-11-19 live verification pack.
+    ("room/index.html", "Decision room"),
 ]
 
 
@@ -436,7 +440,7 @@ def page_index():
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["requirement_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
-                     else "brief &amp; register ↗"),
+                     else "brief & register ↗"),
         ])
     readiness_html = table(
         ["ID", "Pri", "Requirement", "Gate that blocks it", "Number that would clear it",
@@ -464,9 +468,10 @@ def page_index():
     {stat(f"{v['cells_compared']:,}", 'cells diffed, cell by cell', 'independent re-transcription')}
     {stat(len(STANDINGS), 'teams verified', 'nfl.com standings')}
     {stat(len(SCHED), 'week-10 games verified', 'nfl.com schedule')}
-    {stat(len(INJ), 'injury rows verified', 'nfl.com injury report')}
+    {stat(len(INJ), 'week-10 injury rows verified', 'nfl.com injury report, snapshot 2026-11-14')}
     <div class="stat"><strong>{v['mismatches']}</strong><span>mismatches found</span>
       <span class="statnote">every published cell agrees with its official source</span></div>
+    {stat('8', 'week-11 checks passed', 'live read 2026-11-19 · room/stale.html')}
   </div>
 </section>
 
@@ -490,9 +495,10 @@ def page_index():
   <a class="card" href="pages/suggestions-board.html"><span class="ico">✎</span><small>CHOOSE / 02</small><h3>The suggestions board</h3><p>Ranked options for improving the site and the process, each with its cost, its dependency and a reversible first step, so you can pick the best path before anything is built.</p><span class="more">Review and choose →</span></a>
   <a class="card" href="pages/requirements.html"><span class="ico">☑</span><small>TRACK / 03</small><h3>{REQS["counts"]["total"]} requirements, assessed</h3><p>{REQS["counts"]["met"]} met, {REQS["counts"]["partly_met"]} partly met, {REQS["counts"]["open"]} open — each one checked against something you can open, with the missing piece named where it is missing.</p><span class="more">See the list →</span></a>
   <a class="card" href="pages/review-queue.html"><span class="ico">⚑</span><small>REVIEW / 04</small><h3>Everything still unproven</h3><p>One consolidated queue: every flag, every unverified cell and every open item, each with its source link, so nothing is quietly rounded up to "verified".</p><span class="more">Open the queue →</span></a>
+  <a class="card" href="room/index.html"><span class="ico">◧</span><small>DECIDE / 05</small><h3>The decision room</h3><p>The questions that must be settled before any decision, the suggestions board to review before anything is built, and the 2026-11-19 live verification of the official pages. Eight checks, all rebuildable.</p><span class="more">Enter the room →</span></a>
 </section>
 
-<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Five trees, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
+<section class="sectionhead"><div><div class="eyebrow">EVERY SITE IN THIS REPOSITORY</div><h2>Every tree, one evidence rule</h2></div><span class="tag">ALL LINKED FROM HERE</span></section>
 <section class="cards">
   <a class="card" href="pages/standings.html"><span class="ico">▤</span><small>DATA / 01</small><h3>Standings &amp; the week-10 slate</h3><p>All 32 clubs by division, every week-10 game with byes, and a final score where one exists. {v['cells_compared']:,} cells diffed against the official pages.</p><span class="more">Open tables →</span></a>
   <a class="card" href="pages/availability.html"><span class="ico">＋</span><small>DATA / 02</small><h3>Injuries &amp; depth fragility</h3><p>The full join across {FULL_JOIN['clubs_with_a_chart']} clubs finds <b>{FULL_JOIN['starters_ruled_out']} starters ruled Out</b> plus {FULL_JOIN['backups_depth_2_to_4_out_or_doubtful']} second-to-fourth-string players listed Out or Doubtful — and the original five-club pilot is kept beside it as a labelled subset.</p><span class="more">See the join →</span></a>
@@ -519,6 +525,9 @@ def page_index():
     Its own headline finding is negative: the results-only model has no betting edge (ROI −6.1%…−2.6%).</p></div></div>
     <div class="blocker"><span class="pill">LIVE</span><div><b><a href="live/index.html">Live pipeline</a></b><p>The only tree that collects <em>club</em> depth charts at scale — 1,813 entries across 31 of 32 clubs —
     with the caveat that clubs label their own charts unofficial. Refreshed on a schedule.</p></div></div>
+    <div class="blocker"><span class="pill">ROOM</span><div><b><a href="room/index.html">The decision room</a></b><p>What is blocking a decision today, the suggestions board to review before anything is built,
+    and the live 2026-11-19 re-verification of the official pages: 8 checks, the Week 11 injury report
+    (253 rows) and the multiplicity correction over all 16 scored strategies.</p></div></div>
     <div class="blocker"><span class="pill">AUDIT</span><div><b><a href="hub/index.html">Section index</a></b><p>What each of the eight sections is canonical for, an independent re-verification of the published
     tables (1,184 standings cells, 345 injury rows across 28 club tables, 160 designations), the deficiency board by replacement
     string, and a suggestion board that sets out two or three paths for each choice before anything is built.</p></div></div>
@@ -2710,7 +2719,7 @@ def page_readiness():
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["requirement_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
-                     else "brief &amp; register ↗"),
+                     else "brief & register ↗"),
         ])
 
     # the full register, grouped by priority then id
@@ -2739,7 +2748,7 @@ def page_readiness():
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["gate_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
-                     else "gate &amp; register ↗"),
+                     else "gate & register ↗"),
         ])
 
     # the 2026-11-15 live diff
@@ -3229,6 +3238,29 @@ def page_modeling_lab():
 """
     return shell("Modeling lab", "SPLITS · OPP-AWARE SRS · DUAL TOTALS · ABLATIONS", body, depth=1)
 
+def verify_output():
+    """Fail the build if a generated page contains a double-escaped entity.
+
+    Added by session arena/427c1843-x1. `esc()` is applied to every nav label at render time, so a
+    label that already carried an entity ("Requirements &amp; status") rendered into the HTML as
+    "Requirements &amp;amp; status" and every browser printed the literal text "&amp;". Found in 26
+    pages + index.html (94 occurrences) on 2026-11-19; the label is fixed and this guard stops the
+    class of defect from returning through any other label, title or cell.
+    """
+    bad = []
+    roots = [os.path.join(ROOT, "index.html")]
+    roots += [os.path.join(PAGES, f) for f in sorted(os.listdir(PAGES)) if f.endswith(".html")]
+    for path in roots:
+        with open(path, encoding="utf-8") as fh:
+            text = fh.read()
+        if "&amp;amp;" in text:
+            bad.append(os.path.relpath(path, ROOT))
+    if bad:
+        raise SystemExit(
+            "double-escaped entity in generated output (HTML will print the literal entity): "
+            + ", ".join(bad)
+        )
+
 
 def main():
     write("index.html", page_index())
@@ -3261,6 +3293,7 @@ def main():
     write("pages/matchup-matrix.html", page_matchup_matrix())
     write("pages/modeling-lab.html", page_modeling_lab())
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
+    verify_output()
     print(f"wrote index.html + {n} pages")
 
 

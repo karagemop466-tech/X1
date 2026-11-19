@@ -294,3 +294,17 @@ jobs:
           python3 tools/official/gamecentre.py selftest
           python3 tools/verify_mind_change.py
           python3 tools/build_decision_review.py --check
+
+      # Added by session arena/427c1843-x1 (round 7, additive only): the 2026-11-19 official
+      # re-verification pack (A1-A8) — a same-day read of the league standings page, the Week 10
+      # slate, the Week 11 slate and byes, the Week 11 injury report, and the three dated
+      # announced-starter articles. Asserts the league closure (SW=SL=149, ties even, PF=PA, 150
+      # games), the 482-cell continuity against the 2026-11-18 pack, and the shape of the injury
+      # report. `--check` fails if the committed summary stops matching a fresh build.
+      - name: The 2026-11-19 re-verification pack still closes
+        run: python3 tools/verify_2026_11_19.py --check
+
+      # Added by session arena/427c1843-x1 (round 7, additive only): the Decision Room is generated
+      # from files in this repository, so a stale room is a room that disagrees with its own sources.
+      - name: The Decision Room is current
+        run: python3 tools/build_room.py --check
