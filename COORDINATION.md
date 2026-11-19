@@ -4678,3 +4678,38 @@ final integration record below for the exact count at release time.
 - This session's pre-rebase salvage independently reproduced PR #88's flag renumbering (F-22…F-26 →
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
+
+---
+
+# Session `arena/34b79d69-x1` — Decision Center: canonical suggestions + questions section (claimed 2026-11-19)
+
+**Session ID:** `arena-34b79d69-x1` · **Branch:** `arena/34b79d69-x1` (off `main` @ `6f7df253`)
+**Claim time (UTC):** 2026-11-19 ~06:50. Per the platform constraint recorded at the top of this
+board, this session works on its fixed Arena branch rather than creating a `session-<id>/<task>`
+branch; no other session's branch is touched.
+
+**Why this scope:** the owner's brief asks for (a) a dedicated suggestions section where paths can
+be reviewed and chosen before any change is implemented, (b) a clear list of questions + the
+information we hold and do not hold + answers, and (c) suggestions that discover missing
+information. The repo already contains **five separate suggestion/question boards**
+(`app/suggestions.html`, `console/suggestions.html`, `console/questions.html`, `hub/decisions.html`,
+`docs/analysis/suggestions.md`, `data/audit/suggestion_board.json`) with different IDs, counts and
+statuses. No single reviewable surface reconciles them. This session adds that canonical surface;
+it does **not** rewrite any existing board, table or published NFL value.
+
+| # | Task | Status | Owner | Files in scope (new files unless marked) |
+|---|---|---|---|---|
+| DC-1 | Canonical decision-register dataset: reconcile existing boards, deduplicate, explicit sources and decision state | in progress | `arena-34b79d69-x1` | `data/suggestions/**`, `tools/build_decision_center.py`, `tools/verify_decision_center.py` |
+| DC-2 | Public `suggestions/` section: overview, questions/information/answers, path-choice board, missing-information register, review log | in progress | `arena-34b79d69-x1` | `suggestions/**` |
+| DC-3 | Source-linked live verification of the official pages cited by the new section; irregularities flagged, never silently corrected | in progress | `arena-34b79d69-x1` | `docs/audit/decision-center-verification.md`, `data/flags.json` (one additive flag row) |
+| DC-4 | Additive integration: nav links (marked), CI gates, Pages copy, PR → merge → deploy confirmation | in progress | `arena-34b79d69-x1` | `console/index.html`, `app/index.html`, `index.html`, `.github/workflows/verify.yml`, `.github/workflows/pages.yml`, `COORDINATION.md` |
+
+**Non-overlap / rule 4 requests:** no file in `data/nfl/**`, `data/results/**`, `data/prices/**`,
+`data/origin/**`, `data/lab/**`, `tools/official/**`, `app/assets/**`, `lab/**` or `console/**`
+(except one additive nav link in `console/index.html`, logged here) is edited. Shared outputs
+(`index.html`, `pages.yml`) are changed **additively only** by this session acting as the final
+integration for its own scope; every added line is tagged with this session ID.
+
+**Decision rule honoured:** nothing in this section is implemented from a suggestion. Every path
+is `proposed — awaiting owner decision`; the owner decision cell stays blank and is marked
+`UNVERIFIED / AWAITING OWNER` rather than filled in by this session.
