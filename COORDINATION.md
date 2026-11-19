@@ -5498,3 +5498,13 @@ be re-run on the final commit before merge; that result is recorded in the PR re
 touches your files because `main` was red and the fix is a defect in the builder, not a content change.
 Nothing was re-registered or re-dated. If you disagree with the per-row rule, revert `761c5e3`'s builder
 hunk and re-run the builder in a full-history clone.
+
+### Post-merge record — `arena/525b792a-x1` (2026-11-19)
+
+- **PR:** [#116](https://github.com/karagemop466-tech/X1/pull/116) — `arena/525b792a-x1` → `main`
+- **Merge:** `1669b32ef5c892a53fc08b47e5469572051d0880` (merge commit, `gh pr merge 116 --merge`, 2026-11-19T19:47:01Z)
+- **Checks on the final PR head `6ab5c26`:** `verify-site` success · `Evaluation readiness` success · `Publish static site to GitHub Pages` success.
+- **`main` after the merge (`1669b32`):** `verify-site` success · `Publish static site to GitHub Pages` success · `pages build and deployment` success. `main`'s `verify-site` had been failing at `b4e99b0` on the step this PR repairs.
+- **Live checks (fetched after deploy):** https://karagemop466-tech.github.io/X1/pages/flagged.html shows **35 flags** including F-33…F-36; https://karagemop466-tech.github.io/X1/pages/shadow-baseline.html shows PR-01/02/04 `registered` with their registration commits and PR-03 `no - edited after registration`.
+- **Not done here, logged:** LA-4 (landing text, integration-owned); the data-refresh bot's shallow-checkout runs will rewrite the pre-registration `history_scope` boundary text on each run (benign, verified in a depth-1 clone); the refresh bot also commits large regenerated CSVs (`data/console/price_snapshots.csv`) on each run, which is churn the owners may want to scope.
+- **Sandbox limit recorded:** outbound HTTP from this sandbox is restricted to GitHub/npm/PyPI hosts, so the live `github.io` pages were checked with the fetch tool, not curl.
