@@ -5634,3 +5634,14 @@ hunk and re-run the builder in a full-history clone.
 - **Pages deploy on `main`:** run 44615297789 (`push` on `7fb2c32`), `build` success, `deploy` success. The live landing page `https://karagemop466-tech.github.io/X1/` serves the new build (fetched 2026-11-19).
 - **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
 - **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
+
+## Post-merge release record — PR #129 (2026-11-19)
+
+- **PR:** [#129](https://github.com/karagemop466-tech/X1/pull/129) — `arena/af9d9468-x1` → `main`.
+- **Merge:** `f37264c39ac6347d816298f1464b5d952bce8cd6`, merged with `gh pr merge 129 --merge` at `2026-11-19T22:04:45Z`, no approval waited for.
+- **Pre-merge checks:** `tools/verify_data.py` 2,960 integrity assertions pass; `tools/check_links.py` 211 files / 52,342 assertions pass (no orphan pages, all external hosts approved); `scripts/verify_site.py` 211 HTML pages, every data-table row source-linked.
+- **PR-head checks:** `build` success, `corpus` success, `verify` success.
+- **Post-merge `main` checks:** Pages build and deploy passed; Pages API reports `status: built` at https://karagemop466-tech.github.io/X1/.
+- **What shipped:** `RELEASE.md` documenting the live site, the category-organized landing page (Official data / Markets / Strategy / Decisions / Governance), the executive summary, the decision register (questions / information held / information missing / answers), the suggestion review board (cost / effort / risk / unlocks / recommendation), the one-row-per-requirement decision readiness register, and the flagged irregularities.
+- **Irregularities (do not block merge):** published on `console/flagged.html` (12 items) with source links. Highest signal: Q-02 (no opening-price source), Q-04 (no official box scores), Q-05 (Houston chart image-only), no LICENSE file (R-02).
+- **Limits:** `nfl.com` / `operations.nfl.com` unreachable from this sandbox (HTTP 000), so verification is against committed dated official snapshots. No value inferred; unverified cells left blank and flagged. No new raw evidence fetched, no private store or terms approval established.
