@@ -180,8 +180,27 @@ def main():
             print("  FAIL:", f)
         return 1
 
-    # ---- published table vs the most recent raw capture, cell for cell --------------
-    cur = caps[-1]
+    # ---- published table vs the newest raw capture of the published week ------
+    #
+    # The ledger captures the live nfl.com/injuries/ page, which moves on to the next week's
+    # report; a Week 11 page cannot be compared cell-for-cell with a published Week 10 table.
+    # The comparison capture is therefore the newest retained capture whose printed week equals
+    # the published table's week column. If no retained capture printed that week, fail loudly -
+    # a comparison that cannot happen must not be silently skipped.
+    with open(PUBLISHED, encoding="utf-8") as fh:
+        pub_weeks = {int(r["week"]) for r in csv.DictReader(fh) if (r.get("week") or "").strip()}
+    if len(pub_weeks) != 1:
+        print(f"FAIL: the published table carries {len(pub_weeks)} distinct week values "
+              f"({sorted(pub_weeks)}) - the comparison week is ambiguous")
+        return 1
+    pub_week = pub_weeks.pop()
+    week_caps = [c for c in caps if c["week_printed"] == pub_week]
+    if not week_caps:
+        print(f"FAIL: none of the {len(caps)} retained captures printed Week {pub_week} "
+              f"(weeks seen: {sorted({c['week_printed'] for c in caps if c['week_printed']})}) - "
+              f"the published table cannot be re-checked against retained bytes")
+        return 1
+    cur = week_caps[-1]
     parsed = {}
     unknown_clubs = set()
     if len(codes) != 32:
@@ -250,10 +269,20 @@ def main():
 
     out = dict(
         dataset="injuries_from_raw",
-        title="The published Week 10 injury table checked against the retained raw page bytes",
+        title=(f"The published Week {pub_week} injury table checked against the retained raw "
+               f"page bytes"),
         generated_by="tools/verify_injuries_from_raw.py",
         session="arena-55c364b6-x1",
-        published_at_utc=cur["read_utc"],
+        published_week=pub_week,
+        comparison_capture=dict(
+            read_utc=cur["read_utc"],
+            file=cur["file"],
+            selected_as=("the newest retained capture whose printed week equals the published "
+                         "table's week column; the live page has since moved on, so the newest "
+                         "capture overall is not a valid comparison target"),
+            newest_capture_read_utc=caps[-1]["read_utc"],
+            newest_capture_week_printed=caps[-1]["week_printed"],
+        ),
         method=("gzip bytes retained by session arena-6a4ba536-x1's ledger, decompressed and parsed "
                 "here; the player-page slug is the join key, so no club-code alias is involved"),
         ledger=dict(file="data/ledger/injuries/ledger.jsonl", entries=len(entries),
@@ -276,7 +305,7 @@ def main():
                                   "route saw as a redirect back to reg10. Same for every capture here: "
                                   "the Week 11 option existed on 2026-11-15 as well, so no "
                                   "publication event can be inferred from its presence."
-                                  if cur["week_printed"] == 10 else
+                                  if cur["week_printed"] == pub_week else
                                   "see the per-capture week_printed / week_options fields")),
         definitions=dict(
             content_sha256=("hash over the parsed rows (slug, position, injury, practice, game status) "
@@ -326,7 +355,7 @@ def main():
     cc = out["cell_check"]
     print(f"[injuries-from-raw] {len(caps)} raw captures on {len(days)} days "
           f"({', '.join(days)}); {distinct} distinct contents")
-    print(f"[injuries-from-raw] newest capture {cur['read_utc']}: {cc['rows_on_page']} rows parsed, "
+    print(f"[injuries-from-raw] comparison capture (newest Week {pub_week} page) {cur['read_utc']}: {cc['rows_on_page']} rows parsed, "
           f"{cc['compared_cells']} cells compared with the published table -> {len(mism)} mismatches, "
           f"{cc['published_not_on_page']} published rows absent from the page, "
           f"{cc['duplicate_page_rows']} duplicate page rows")
