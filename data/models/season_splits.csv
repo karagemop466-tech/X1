@@ -1,0 +1,5 @@
+split,seasons,games,min_gameday,max_gameday,provenance_tier,leakage_overlap_games,source_url
+train,2019-2023,1390,2019-09-05,2024-02-11,third_party_mirror,0,https://github.com/nflverse/nfldata/blob/master/data/games.csv
+validation,2024,285,2024-09-05,2025-02-09,third_party_mirror,0,https://github.com/nflverse/nfldata/blob/master/data/games.csv
+final_holdout,2025,285,2025-09-04,2026-02-08,third_party_mirror,0,https://github.com/nflverse/nfldata/blob/master/data/games.csv
+live_walkforward_2026,2026 (W1-W10),150,2026-09-09,2026-11-16,official_verified,0,https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1

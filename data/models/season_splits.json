@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 20261119,
+    "overlap_games_across_splits": 0,
+    "w26_w3_w10_rating_ablation": {
+      "games": 118,
+      "mae_unadjusted": 9.5775,
+      "mae_opp_aware_srs": 9.4987,
+      "delta_mae": -0.0787,
+      "delta_mae_ci95": [
+        -0.228,
+        0.071
+      ],
+      "brier_unadjusted": 0.2329,
+      "brier_opp_aware_srs": 0.23155,
+      "delta_brier": -0.00135,
+      "delta_brier_ci95": [
+        -0.00407,
+        0.00148
+      ]
+    },
+    "m1_learned_weights_from_train_2019_2023": {
+      "intercept_hfa": 1.3086,
+      "srs_diff": 0.8529,
+      "rest_diff": 0.0753,
+      "home_qb_change": -2.094,
+      "away_qb_change": 3.7176
+    }
+  },
+  "rows": [
+    {
+      "split": "train",
+      "seasons": "2019-2023",
+      "games": 1390,
+      "min_gameday": "2019-09-05",
+      "max_gameday": "2024-02-11",
+      "provenance_tier": "third_party_mirror",
+      "leakage_overlap_games": 0,
+      "source_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    },
+    {
+      "split": "validation",
+      "seasons": "2024",
+      "games": 285,
+      "min_gameday": "2024-09-05",
+      "max_gameday": "2025-02-09",
+      "provenance_tier": "third_party_mirror",
+      "leakage_overlap_games": 0,
+      "source_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    },
+    {
+      "split": "final_holdout",
+      "seasons": "2025",
+      "games": 285,
+      "min_gameday": "2025-09-04",
+      "max_gameday": "2026-02-08",
+      "provenance_tier": "third_party_mirror",
+      "leakage_overlap_games": 0,
+      "source_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    },
+    {
+      "split": "live_walkforward_2026",
+      "seasons": "2026 (W1-W10)",
+      "games": 150,
+      "min_gameday": "2026-09-09",
+      "max_gameday": "2026-11-16",
+      "provenance_tier": "official_verified",
+      "leakage_overlap_games": 0,
+      "source_url": "https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1"
+    }
+  ]
+}

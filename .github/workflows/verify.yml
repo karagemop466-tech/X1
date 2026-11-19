@@ -277,6 +277,18 @@ jobs:
         run: python3 tools/verify_venues_w10.py
       - name: Week 10 venue page is current (brief row 24)
         run: python3 tools/build_venues_page.py --check
+
+      # Added by session arena/46887500-x1 (round 7, additive only). Depth-slot group model,
+      # Packers jersey stripping, 32-club deficiency, W11 Offense vs Defense matrix, and
+      # chronological splits / opponent-aware SRS / dual walk-forward totals / personnel ablations.
+      - name: Verify depth-slot groups, 32-club deficiency and W11 matchup matrix
+        run: |
+          python3 tools/build_depth_matrix.py --check
+          python3 tools/verify_depth_matrix.py
+      - name: Verify chronological splits, opponent-aware SRS, dual totals and ablations
+        run: |
+          python3 tools/build_modeling_lab.py --check
+          python3 tools/verify_modeling_lab.py
       - name: Replay the dated venue, report movement and strategy decision checks
         run: |
           python3 tools/official/gamecentre.py selftest

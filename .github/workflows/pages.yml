@@ -104,6 +104,12 @@ jobs:
 
       - name: Verify every published number against the fresh capture
         run: python3 tools/official/verify_published.py
+      - name: Verify depth matrix and modeling lab stores (session arena/46887500-x1)
+        run: |
+          python3 tools/build_depth_matrix.py --check
+          python3 tools/verify_depth_matrix.py
+          python3 tools/build_modeling_lab.py --check
+          python3 tools/verify_modeling_lab.py
       # Added by session arena-34b79d69-x1 (additive only): the review section is
       # rebuilt from its register and gated before the upload tree is assembled.
       - name: Verify the decision-center section
@@ -190,6 +196,7 @@ jobs:
              data/evidence/2026_11_17/summary.json _site/data/evidence/2026_11_17/
           cp -r data/prices _site/data/prices
           cp -r data/depth _site/data/depth
+          cp -r data/models _site/data/models
           cp -r data/correlations _site/data/correlations
           cp -r data/origin _site/data/origin
           mkdir -p _site/data/lines
