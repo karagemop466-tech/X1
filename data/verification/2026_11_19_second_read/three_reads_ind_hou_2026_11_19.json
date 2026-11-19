@@ -1,0 +1,53 @@
+{
+  "title": "Three reads of the same official page: the disputed Week 11 cell",
+  "session": "arena/6b45af7e-x1",
+  "read_date": "2026-11-19",
+  "source": "https://www.nfl.com/injuries/league/2026/reg11",
+  "reads": {
+    "A": "data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv (session arena/427c1843-x1)",
+    "B": "data/verification/2026_11_19_second_read/official_w11_injuries_second_reader_2026_11_19.tsv (this session)",
+    "C": "data/verification/2026_11_19_second_read/third_read_ind_hou_2026_11_19.tsv (this session, later)"
+  },
+  "rows_compared": 26,
+  "clubs": [
+    "IND",
+    "HOU"
+  ],
+  "rows_where_a_printed_status_field_disagrees_across_the_three": 1,
+  "unstable_rows": [
+    {
+      "team": "IND",
+      "player": "Charlie Heck",
+      "read_a": {
+        "position": "T",
+        "injury": "Not injury related - personal matter",
+        "practice_status": "Did Not Participate In Practice",
+        "game_status": "Questionable"
+      },
+      "read_b": {
+        "position": "T",
+        "injury": "",
+        "practice_status": "Did Not Participate In Practice",
+        "game_status": ""
+      },
+      "read_c": {
+        "position": "T",
+        "injury": "",
+        "practice_status": "Did Not Participate In Practice",
+        "game_status": ""
+      },
+      "fields_that_disagree_across_the_three": [
+        "game_status"
+      ]
+    }
+  ],
+  "free_text_injury_strings_that_differ_between_reads": {
+    "IND Charlie Heck": [
+      "",
+      "Not injury related - personal matter"
+    ]
+  },
+  "conclusion": "The printed status fields are stable across three reads for 25 of 26 rows. Where they are not stable, the cell is published as UNCONFIRMED. The free-text Injuries column changes between reads for the players listed, so it is never used as a value.",
+  "errors": [],
+  "verdict": "pass"
+}
