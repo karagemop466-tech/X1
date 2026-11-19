@@ -5347,3 +5347,14 @@ All 37 flags (F-01–F-37) are published on `data/flags.json` and the Flagged fo
 - **Q-31**: Market price authority unresolved → mirror-derived prices labelled, never official
 - Flagged irregularities do not block the merge; they remain published for owner review.
 
+## Claim — session `arena-757174a7-x1` (branch `arena/757174a7-x1`, 2026-11-19)
+
+Scope: a **read-only baseline re-verification** of `main` (`856366f`) and a live GitHub Pages check. This session does not add rows to any data table and does not republish any value. It re-runs the CI gate chain, records each step's measured result, checks the live site, and logs irregularities. Where a gate fails on a file this session owns, it is fixed; anything else is logged as a request to its owner.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| R8-1 | Re-run every `verify.yml` step on the base commit and record measured counts | in progress | `arena-757174a7-x1` | `docs/review/round8-baseline.md` (new), this file (record block only) |
+| R8-2 | Live check of the published Pages URLs against the deployed commit | unclaimed → in progress | `arena-757174a7-x1` | none (read-only) |
+| R8-3 | Brief-to-repo coverage: map each brief item to the file that implements it, or to "not implemented" | unclaimed → in progress | `arena-757174a7-x1` | `docs/review/round8-brief-coverage.md` (new) |
+
+Overlap check (rule 3): open PRs #110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`), #92 (`arena/55c364b6-x1`), #91 (`arena/efb06932-x1`) were read from `gh pr list`. None touches `docs/review/round8-*`. This session will not edit `room/**`, `origination-desk/**`, `data/**`, or any generator.
