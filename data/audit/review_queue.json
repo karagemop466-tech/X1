@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 31,
+  "flag": 34,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -355,6 +355,39 @@
    "unknown": "How many other generated *.json metadata files in data/ make a claim about a sibling data file that no gate re-derives. This round added the cross-check for one file only; the class is unaudited.",
    "source": "https://github.com/karagemop466-tech/X1/blob/main/data/results/results_feed_meta.json",
    "source_label": "the metadata file, and the CSV it describes"
+  },
+  {
+   "id": "F-33",
+   "register": "data/flags.json",
+   "area": "Stale headline (landing page)",
+   "item": "The landing page states '13 / 14 Week 10 games officially final' with the note 'the Monday-night game was still unplayed at read time'. That text is dated to a 2026-11-16 read and is superseded.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Nothing about the scores is unknown. The open question is whether the landing text should show the 2026-11-19 state or keep the dated 2026-11-16 state labelled as dated.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "NFL.com \u2014 2026 Week 10 schedule (read 2026-11-19)"
+  },
+  {
+   "id": "F-34",
+   "register": "data/flags.json",
+   "area": "Stale snapshot (schedule file)",
+   "item": "data/nfl/schedule_week10.tsv is the 2026-11-14 snapshot. 13 of its 14 rows still read status 'scheduled' with blank scores, although the games were played on 2026-11-15 and 2026-11-16.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "Whether any downstream consumer reads this file as the current schedule. The landing and the closure pages use the 2026-11-17 closure file instead.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+   "source_label": "NFL.com \u2014 2026 Week 10 schedule"
+  },
+  {
+   "id": "F-35",
+   "register": "data/flags.json",
+   "area": "Superseded report (injuries)",
+   "item": "The landing headlines '347 week-10 injury rows \u2026 snapshot 2026-11-14'. The official injury page now publishes the Week 11 report as the current report.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "The Week 11 report is not transcribed in this repository. This flag does not claim any Week 11 row.",
+   "source": "https://www.nfl.com/injuries/",
+   "source_label": "NFL.com \u2014 Injury report (Week 11, read 2026-11-19)"
   },
   {
    "id": "Q-01",
