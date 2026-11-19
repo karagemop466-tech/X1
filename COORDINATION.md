@@ -5637,33 +5637,6 @@ hunk and re-run the builder in a full-history clone.
 
 ---
 
-## Claim — session `arena-ab244ddc-x1` (branch `arena/ab244ddc-x1`, 2026-11-19)
-
-Scope: close three concrete defects flagged by the Round 8 baseline re-verification
-(`docs/review/round8-baseline.md` R8-I-05, R8-I-06, R8-I-07) plus a dated review record.
-No open PR touches these files (checked 2026-11-19: PRs #123, #113, #110, #96, #95, #92, #91
-— none lists `data/depth/replacement_depth.*`, `data/depth/replacement_depth_summary.json`,
-`data/origination_desk/skill/two_stage_leaderboard.csv`, or their builders; PR #92/#91 touch
-only `console/*.html` renders). Fixture-context (PR #92), designation reliability (PR #96),
-public/private boundary (PR #95), schedule announcement (PR #113) and the brief-coverage
-register reconciliation (PR #123) are explicitly NOT claimed here.
-
-| # | Task | Status | Owner | Exclusive file scope |
-|---|---|---|---|---|
-| T9-1 | R8-I-05: strip Packers jersey prefixes in `replacement_depth.csv` display columns; retain raw strings in new `starter_raw`/`replacement_raw` columns (brief: "number stripping plus storing the raw string") | in progress | `arena-ab244ddc-x1` | `tools/build_replacement_depth_store.py`, `data/depth/replacement_depth.csv`, `data/depth/replacement_depth.json` |
-| T9-2 | R8-I-06: replace "starter is column 1" method text with depth-slot-group language consistent with `data/depth/depth_groups_32.csv` | in progress | `arena-ab244ddc-x1` | `tools/build_round3.py`, `data/depth/replacement_depth_summary.json` |
-| T9-3 | R8-I-07: remove the `DIAG-WF-SHRINKAGE-W1-10` diagnostic row from `two_stage_leaderboard.csv` (backtest numbers must never appear on the leaderboard); publish it in a separate diagnostic file | in progress | `arena-ab244ddc-x1` | `tools/origination_desk/build_skill_desk.py`, `tools/origination_desk/verify_desk.py`, `tools/origination_desk/test_desk.py`, `data/origination_desk/skill/two_stage_leaderboard.csv`, `data/origination_desk/skill/diagnostic_walkforward.csv` (new), `data/origination_desk/skill/skill_desk_summary.json`, `origination-desk/*.html` (regenerated only) |
-| T9-4 | Dated review record: sources, verification performed, irregularities | in progress | `arena-ab244ddc-x1` | `docs/review/round9-fixes.md` (new) |
-| T9-5 | Full verify chain, PR → main, merge, Pages deploy confirmation, record result here | in progress | `arena-ab244ddc-x1` | `COORDINATION.md` (this block only) |
-
-Overlap check (rule 3): open PRs #123 (`arena/41954ed5-x1`), #113 (`arena/42887cb2-x1`),
-#110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`),
-#92 (`arena/55c364b6-x1`), #91 (`arena/efb06932-x1`) were read via `gh pr view` file lists.
-None touches the T9-1..T9-4 files. This session will not edit `console/**`, `app/schedule.html`,
-`docs/audit/brief-coverage-2026-11-19.md`, `.github/workflows/verify.yml`, or any file owned
-by an open PR. Shared outputs (`index.html`, `pages/**`, `data/flags.json`) are not edited
-except regenerated `origination-desk/*.html` via its own builder.
-
 ## Session `arena/3a6060ef-x1` — final verification audit (2026-11-19)
 
 **Session ID:** `arena/3a6060ef-x1` · **Branch:** `arena/3a6060ef-x1` (identical to `main` @ `a1cca5c`, the PR #127 merge). **Role:** final independent verification of the integrated tree; confirmation of GitHub Pages deployment.
@@ -5701,3 +5674,46 @@ This branch is identical to `main` at the PR #127 merge tip (`a1cca5c`); the onl
 ### Sources
 
 All verification is against committed official snapshots carrying their fetch URL and retrieval date (nfl.com standings, schedules, injury report, Game Center). No value was inferred; every blank is deliberate and flagged. Live official hosts were reachable only through the page-fetch tool; no shell-side scraping was performed.
+
+### Rebase handoff — 2026-11-19
+
+`git pull --rebase` fetched `origin/main` at `f37264c` and conflicted only in `COORDINATION.md` because session `arena/3a6060ef-x1` had appended its final verification audit after this session's initial claim. The upstream audit record is preserved above; this session's updated T9 claim, completion records, and downstream changes are preserved below. No upstream content was discarded.
+
+## Claim — session `arena-ab244ddc-x1` (branch `arena/ab244ddc-x1`, 2026-11-19)
+
+Scope: close three concrete defects flagged by the Round 8 baseline re-verification
+(`docs/review/round8-baseline.md` R8-I-05, R8-I-06, R8-I-07) plus a dated review record.
+No open PR touches these files (checked 2026-11-19: PRs #123, #113, #110, #96, #95, #92, #91
+— none lists `data/depth/replacement_depth.*`, `data/depth/replacement_depth_summary.json`,
+`data/origination_desk/skill/two_stage_leaderboard.csv`, or their builders; PR #92/#91 touch
+only `console/*.html` renders). Fixture-context (PR #92), designation reliability (PR #96),
+public/private boundary (PR #95), schedule announcement (PR #113) and the brief-coverage
+register reconciliation (PR #123) are explicitly NOT claimed here.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| T9-1 | R8-I-05: strip Packers jersey prefixes in `replacement_depth.csv` display columns; retain raw strings in new `starter_raw`/`replacement_raw` columns (brief: "number stripping plus storing the raw string") | done — 2026-11-19 | `arena-ab244ddc-x1` | `tools/build_replacement_depth_store.py`, `data/depth/replacement_depth.csv`, `data/depth/replacement_depth.json`, `app/replacement-depth.html` (generated solely from this store; no index/nav changes) |
+| T9-2 | R8-I-06: replace "starter is column 1" method text with depth-slot-group language consistent with `data/depth/depth_groups_32.csv` | done — 2026-11-19 | `arena-ab244ddc-x1` | `tools/build_round3.py`, `data/depth/replacement_depth_summary.json` |
+| T9-3 | R8-I-07: remove the `DIAG-WF-SHRINKAGE-W1-10` diagnostic row from `two_stage_leaderboard.csv` (backtest numbers must never appear on the leaderboard); publish it in a separate diagnostic file | done — 2026-11-19 | `arena-ab244ddc-x1` | `tools/origination_desk/build_skill_desk.py`, `tools/origination_desk/verify_desk.py`, `tools/origination_desk/test_desk.py`, `tools/origination_desk/build_site.py` (leaderboard copy adjusted to distinguish detached retrospective diagnostics), `data/origination_desk/skill/two_stage_leaderboard.csv`, `data/origination_desk/skill/diagnostic_walkforward.csv` (new), `data/origination_desk/skill/skill_desk_summary.json`, `origination-desk/*.html` (regenerated only) |
+| T9-4 | Dated review record: sources, verification performed, irregularities | done — 2026-11-19 | `arena-ab244ddc-x1` | `docs/review/round9-fixes.md` (new) |
+| T9-5 | Full verify chain, PR → main, merge, Pages deploy confirmation, record result here | in progress | `arena-ab244ddc-x1` | `COORDINATION.md` (this block only) |
+
+Overlap check (rule 3): open PRs #123 (`arena/41954ed5-x1`), #113 (`arena/42887cb2-x1`),
+#110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`),
+#92 (`arena/55c364b6-x1`), #91 (`arena/efb06932-x1`) were read via `gh pr view` file lists.
+None touches the T9-1..T9-4 files; specifically, none edits `app/replacement-depth.html`. This session will not edit `console/**`, `app/schedule.html`,
+`docs/audit/brief-coverage-2026-11-19.md`, `.github/workflows/verify.yml`, or any file owned
+by an open PR. Shared landing/navigation/flags outputs (`index.html`, `pages/**`, `data/flags.json`) are not edited. The only shared-page outputs changed are the generated replacement-depth detail page, whose source dataset this task fixes, and the origination-desk pages generated by their own builder.
+
+### T9-1..T9-4 completion note (2026-11-19)
+
+- Packers source format: [official Packers depth chart](https://www.packers.com/team/depth-chart); injury status source: [NFL official injury report](https://www.nfl.com/injuries/). Existing output records retain these per-row source URLs. Display names now strip leading jersey prefixes; `starter_raw` and `replacement_raw` preserve the exact prior string. Dataset preserved at 78 rows; 7 display rows changed, 7 raw values retained, zero display values begin with a jersey number. Builder now asserts display/raw consistency.
+- Depth-group method: [NFL injury report](https://www.nfl.com/injuries/), per-row club-chart links, and `data/depth/depth_groups_32.csv`. Summary wording no longer asserts one starter per rank-1 slot; `tools/build_round3.py --check` reported only the intended summary diff against the pre-fix HEAD (expected until this commit lands).
+- Leaderboard: [NFL Week 10 schedule/results](https://www.nfl.com/schedules/2026/by-week/week-10) and [2026 standings](https://www.nfl.com/standings/league/2026/REG) remain the provenance recorded by the existing retrospective diagnostic. The diagnostic model row is removed from leaderboard, historic result cells blanked for the three control rows, and all four result series moved to `data/origination_desk/skill/diagnostic_walkforward.csv` with audit-only/excluded metadata. `verify_desk.py` enforces this separation. No external page was re-fetched for these source-data-preserving code repairs; scores remain explicitly non-ranking diagnostics, not a fresh verification claim.
+- Verification passed: `python3 tools/verify_data.py` (2,960 checks); `python3 tools/check_links.py` (211 files / 52,340 assertions); `python3 scripts/verify_site.py` (211 HTML pages, source-link and local-link contract); `python3 tools/verify_round8_coverage.py` (82 rows, 150 evidence paths); `python3 tools/origination_desk/verify_desk.py` (1,632 checks); `python3 -m unittest tools/origination_desk/test_desk.py` (7 tests); `python3 tools/verify_app.py` (29 pages / 1,147 internal links / 8,523 data rows / 0 unsourced); `python3 tools/verify_stores.py`; `python3 tools/verify_new_data.py`; `python3 tools/build_app.py` regenerated only `app/replacement-depth.html` (no index/nav change); py_compile for modified Python modules; targeted CSV/JSON/schema/raw-name/method invariants (78 records, 7 raw-preserved display changes). Skill-desk and origination-desk builders' `--check` pass.
+- Irregularity: current pipeline inputs are Week 11 and cannot reproduce the retained 78-row earlier capture; running `tools/build_replacement_depth_store.py` dropped 77 rows during its existing input re-verification. Those regenerated files were restored; only a lossless display/raw transformation was retained. See `docs/review/round9-fixes.md` for details. Texans image chart, Week 11 point-in-time recapture, and shared flags/navigation remain outside this scope.
+- T9-5 (full verify/release/PR/merge/Pages) remains in progress.
+
+### Branch sync log — remote session branch claim preserved (2026-11-19)
+
+After rebasing onto `origin/main` (`f37264c`), the first push was rejected because `origin/arena/ab244ddc-x1` still pointed to this session's original claim commit (`9ca842d`, based on `a1cca5c`). To avoid rewriting the remote claim history, that remote branch tip was merged into the rebased work. Its claim is fully represented by the updated T9 block above; this resolution retains both histories and does not discard another session's changes.
