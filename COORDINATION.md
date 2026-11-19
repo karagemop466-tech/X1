@@ -5974,4 +5974,10 @@ The live page changes are data-only/derived: replacement-depth display names now
 
 **Automation not built (honest gap):** a scheduled Wednesday–Friday capture of the injury report is not in place. Whether GitHub-hosted runners can reach nfl.com was not tested.
 
-**PR and merge:** recorded below after the PR is opened and merged.
+**PR and merge (recorded 2026-11-19 after merge):**
+- PR **#136** (`arena/073589d1-x1` → `main`) **merged** with a merge commit at `073f91c` (2026-11-19T22:21:40Z). Head before merge: `95287cc`, rebased on `main` at `14ed846` (PR #138).
+- Gating checks on `95287cc`: `verify-site` SUCCESS, `Evaluation readiness` SUCCESS, `Publish static site to GitHub Pages` SUCCESS.
+- Pages on `main` at `073f91c`: GitHub's native "pages build and deployment" run **SUCCESS**; repository Pages API reports `built`. Our custom "Publish static site" workflow was **cancelled** by the shared `pages` concurrency group, as it was on several earlier runs of other sessions. It is not a content failure; the native build succeeded.
+- Live check: `https://karagemop466-tech.github.io/X1/` returned the current landing page (fetch tool). `curl` from the sandbox cannot reach github.io (exit 35), so the live check used the fetch tool. `app/week11.html` is **not** on `main`; it is pending in PR #132 (still OPEN). That absence is expected under the scope change.
+- Carry-over (report only): the four pre-existing pages `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html` all exist and are linked from other pages. `tools/check_links.py` reports all links resolve and no orphan pages. The earlier "4 orphans" count was from a deployed-tree check that predates these links.
+- Still open (not blocking): Charlie Heck (IND) divergence between PR #132's read and this transcription; Waddle/Evans roster placement; Dee Alford and Jacob Hummel name/slug mismatches; the remote branch `arena/0c2fcfa1-x1`.
