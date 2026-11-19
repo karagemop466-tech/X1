@@ -5898,11 +5898,13 @@ The live page changes are data-only/derived: replacement-depth display names now
 
 | # | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| LA-4 | Correct landing-page requirement counts and date labels so a dated Week 10 injury/schedule snapshot is not presented as current; reflect the two in-progress requirements alongside open items using the committed register | done | `arena/627e2399-x1` | `tools/build_site.py`, generated `index.html`, generated `pages/flagged.html` (F-24 correction only), this claim/completion block only in `COORDINATION.md` |
+| LA-4 | Correct landing-page requirement counts and date labels so a dated Week 10 injury/schedule snapshot is not presented as current; reflect the two in-progress requirements alongside open items using the committed register, including the later same-day 2026-11-19 capture comparison | in progress (supplemental evidence follow-up) | `arena/627e2399-x1` | `tools/build_site.py`, generated `index.html`, generated `pages/flagged.html` (F-24 correction only), this claim/completion block only in `COORDINATION.md` |
 
 **Scope boundary:** use already committed, source-linked evidence and builders. Do not invent current NFL facts or replace dated raw snapshots. Keep Week 10 data as historical evidence, label it and link to official NFL injury/schedule pages. Inspect and run existing generators and checks before deciding whether any code change is needed.
 
 **Scope addition (committed before editing the output):** the 2026-11-17 F-24 text still says no Week 11 injury report exists, while the later 2026-11-19 official read and A7 REVIEW are committed. Update only the generated `pages/flagged.html` wording to preserve the dated 11/17 finding and disclose the 11/19 partial-capture state. Do not edit `data/flags.json`, `app/flagged.html`, or other session outputs.
+
+**Supplemental in-scope evidence (logged before editing):** after PR #138 merged, PR #136 added a second 2026-11-19 fetch-tool transcript in `data/capture/2026_w11/`. It records 253 player rows and literal `NO INJURIES REPORTED (section text)` for CIN and WAS; its cross-read differs on Charlie Heck (252/253 rows agree). The earlier structured A7 extract still has no player rows for CIN@WAS and remains REVIEW. Refresh only the generated landing evidence row and F-24 wording/source links so both reads and their limits are explicit. Do not edit any PR #136 files, `data/flags.json`, `app/flagged.html`, `room/stale.html`, or other session outputs; do not infer individual player availability.
 
 ## Implementation and verification (2026-11-19; merged and deployed)
 
