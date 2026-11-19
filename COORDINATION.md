@@ -5244,3 +5244,30 @@ Checked merged `main` (`PR #97`–`PR #109`) and all open parallel branches/PRs 
 | Confirmed Live URLs | <https://karagemop466-tech.github.io/X1/> · <https://karagemop466-tech.github.io/X1/origination-desk/index.html> · <https://karagemop466-tech.github.io/X1/origination-desk/weather-venues.html> (fetched live post-deploy and verified) |
 
 
+
+---
+
+## Session `arena-42887cb2-x1` — branch `arena/42887cb2-x1` (2026-11-19, UTC)
+
+**Branch rule applied:** this session works on the single branch `arena/42887cb2-x1` (base `main` @ `856366f`). The per-session `session-<id>/<task>` branch scheme described above is not used here, because the session is bound to one branch.
+
+**Scope claimed and completed (one item):** brief row 25 — publish the league's dated schedule announcement beside the live schedule page. Status: **done**.
+
+| File | Change |
+|---|---|
+| `tools/build_app.py` | `schedule_announcement_card()` renders the announcement on `app/schedule.html`. Each quoted fact must appear verbatim in the stored excerpt, or the build exits (mutation-tested: a paraphrase is caught). |
+| `app/schedule.html` | Regenerated; contains the announcement card with six links to `media.nfl.com`. |
+| `data/capture/2026_11_19_schedule_announcement/official_excerpt.md` | New. Verbatim excerpt of the five quoted paragraphs, with URL and read date. |
+| `docs/audit/brief-coverage-2026-11-17.md` | Row 25 NOT BUILT → BUILT with evidence paths; counts updated (BUILT 11, NOT BUILT 23). |
+| `tools/verify_brief_coverage.py` | `media.nfl.com` added to the official-host allow-list. |
+
+**Sources (fetched 2026-11-19 with the fetch tool):** [2026 NFL Schedule Announced — media.nfl.com, May 14, 2026](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced). Every quoted fact was found verbatim in chunk 0 of 2. Chunk 1 was not read.
+
+**Verification performed:** `tools/build_app.py`, `tools/verify_app.py`, `scripts/verify_site.py`, `tools/check_links.py`, `scripts/check_site.py`, `scripts/verify_research_site.py`, `tools/verify_brief_coverage.py`, `tools/verify_data.py` — all exit 0. Earlier in the session the CI-relevant rebuilds (`build_availability`, `build_site`, `build_state_audit --check`, `verify_2026_11_19 --check`, `build_room --check`, `origination_desk/verify_desk.py`) also passed.
+
+**Irregularities (for review):**
+1. `tools/verify_2026_11_19.py` rewrites `generated_at` in its summary JSON on every run, so a plain run leaves the tree dirty even when the content matches. CI uses `--check` for this reason; a local run should be followed by `git checkout` of that file.
+2. The console (`console/announcement.html`) already showed this announcement before this session. The public app did not. Both now exist; they are generated from the same JSON.
+3. The fetch tool can reach `nfl.com` and `media.nfl.com`, but the bash sandbox allow-list does not include them. Immutable raw captures with retained hashes therefore cannot be produced from bash alone. This blocks most of the NOT BUILT rows that need recurring official captures (for example rows 30–32, 55–57, 65, 67).
+
+**Not done, and why this session is not merging to `main`:** 23 of the 82 brief rows remain NOT BUILT and about 40 are PARTIAL (see the register). Several need data this sandbox cannot reach through bash (licensed or NFL-hosted snap counts, reserve lists, archives of past injury reports, weather grids, and a licensed odds source). The brief requires a merge only after all tasks are done, so this branch is left open as a pull request for review.

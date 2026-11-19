@@ -72,7 +72,7 @@ These confirm the existing artefacts are internally consistent. They do **not** 
 | 22 | Store every injury-hub read with clock time; publish the delta, never the level | PARTIAL | `data/captures/index.jsonl` (49 entries, `as_read_at`, `content_sha256`); `data/verification/2026_11_16/standings_diff_2026_11_16.csv` | Clock time and hash are stored. Only a few reads exist and the page publishes deltas for a few tables, not for injuries as a standing feature. | https://www.nfl.com/injuries/league/2026/reg10 | |
 | 23 | Decision-readiness table on the landing page, one row per requirement | BUILT | `data/readiness/decision_readiness.{json,csv}`, `tools/build_decision_readiness.py --check` (53 rows match), `pages/readiness.html` | The register covers the earlier 53-item brief, not this brief's 82 items. This file is the current-brief register. | — | |
 | 24 | Transcribe the venue of every fixture from the official game centre | PARTIAL | Week 10 only, 14 of 272 fixtures: `data/nfl/venues_2026_week10.csv` (one official Game Centre “Game Info” read per game, fetched 2026-11-18); checked by `tools/verify_venues_w10.py` (pass); human-readable table `docs/audit/venues-week10.md` | 258 fixtures (Weeks 1–9, 11–18) have no official venue read. 13 of the 14 schedule-CSV `venue_note` cells are still blank; the one filled cell (`FC Bayern Munich Arena, Munich, Germany`) differs from the Game Centre label `FC BAYERN MUNICH STADIUM`. Site navigation for the venue table is an integration request (see COORDINATION.md, session arena/5433abad-x1). | https://www.nfl.com/games/patriots-at-lions-2026-reg-10 | yes |
-| 25 | Publish the league's dated schedule announcement beside the live schedule page | NOT BUILT | "announcement" appears in `data/nfl/schedule_2026_week10.csv` and `data/injuries/qb_map_2026_week10.csv` as text, not as a dated announcement record | No dated announcement capture or page found. | https://www.nfl.com/schedules/2026/by-week/week-10 | |
+| 25 | Publish the league's dated schedule announcement beside the live schedule page | BUILT | `tools/build_app.py` (`schedule_announcement_card`), `app/schedule.html`, `data/audit/schedule_announcement_2026.json`, `data/capture/2026_11_19_schedule_announcement/official_excerpt.md` | Built 2026-11-19 (session `arena/42887cb2-x1`). Each quoted fact is checked verbatim against the stored official excerpt when the page is built; a paraphrase stops the build (mutation-tested). Not captured: the league's by-week PDF, which the release links. | https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced | |
 | 26 | Use official NFL Game Books for starters and game-day status; do not infer rank or snaps | PARTIAL | `docs/audit/official-gamebook-source-review.md` (feasibility memo, one fixture, reuse restricted by NFL: "any other use requires written NFL permission") | Memo only. No Game Book data is in the repo, and the memo says row-level data stays unpublished without written permission. | https://www.nfl.com/games/patriots-at-lions-2026-reg-10 | yes |
 | 27 | Ingest game-level results so ratings are opponent-aware | NOT BUILT | `data/shadow/games_scored.csv`: the PR-01 rating is each team's own average point differential, shrunk to zero. It is not opponent-adjusted (rule in `docs/preregistration/PR-01-shadow-baseline.md`) | Opponent-adjusted rating needs the full game log. Results feed is incomplete (see 3). | https://www.nfl.com/standings/league/2026/REG | yes |
 | 28 | Injury/personnel ablations (with vs without features), reported with uncertainty | NOT BUILT | "ablation" appears only as text in `data/audit/readiness.json`, `docs/EXECUTIVE-SUMMARY.md` and `tools/official/readiness.py` | No model is fitted with and without personnel features. No ablation output exists. | — | |
@@ -137,10 +137,10 @@ Counted from the table above; `tools/verify_brief_coverage.py` recomputes them.
 
 | Status | Count |
 |---|---|
-| BUILT | 10 |
+| BUILT | 11 |
 | PARTIAL | 40 |
 | DEFINED | 5 |
-| NOT BUILT | 24 |
+| NOT BUILT | 23 |
 | DECLINED | 3 |
 | Total rows | 82 |
 | Rows with Flag = `yes` (counted under their status) | 30 |
