@@ -65,6 +65,8 @@ REBUILD = [
     # generated from the register this same commit ships.
     ["python3", "tools/build_preregistration.py"],
     ["python3", "tools/build_next_decisions.py"],
+    ["python3", "tools/lab/build_reads.py"],
+    ["python3", "tools/lab/build_closure_measurement.py"],
     ["python3", "tools/lab/build_site.py"],
     ["python3", "tools/build_site.py"],
 ]
@@ -133,6 +135,8 @@ VERIFY = [
     ["python3", "tools/build_preregistration.py", "--check"],
     ["python3", "tools/build_shadow_baseline.py", "--check"],
     ["python3", "tools/build_next_decisions.py", "--check"],
+    ["python3", "tools/lab/build_reads.py", "--check"],
+    ["python3", "tools/lab/build_closure_measurement.py", "--check"],
 ]
 
 # What the builders are allowed to write, kept as documentation and as `--explain` output. The workflow
@@ -148,6 +152,7 @@ PATHS = [
     "data/console/readiness.json", "data/console/readiness.csv",
     "data/console/repo_inventory.csv",
     "data/readiness", "data/verification", "data/shadow", "data/preregistration", "data/next_decisions",
+    "data/lab",
     "data/results_feed.json", "data/price_snapshots.json", "data/leaderboard_split_907c.json",
     "data/results/verified_results_2026_n2.csv", "data/results/results_feed.json",
     "data/results/results_verification.json", "data/results/verification_report.json",

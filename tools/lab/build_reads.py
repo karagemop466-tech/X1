@@ -393,7 +393,10 @@ def main() -> int:
     # ---- C8 injury spot-check ----------------------------------------------------
     idx = [json.loads(l) for l in open(os.path.join(ROOT, CAPTURE_INDEX), encoding="utf-8") if l.strip()]
     inj_caps = sorted([r for r in idx if r["dataset"] == "injuries"], key=lambda r: r["as_read_at"])
-    newest = inj_caps[-1]
+    # Scope C8's Week 10 spot-check to the Week 10 capture window (before Week 11 rolled over
+    # at 2026-11-18T19:23Z) so a later week's report does not falsely flag Week 10 rows as missing.
+    w10_caps = [r for r in inj_caps if r["as_read_at"] <= "2026-11-18T05:00:00+00:00"]
+    newest = w10_caps[-1] if w10_caps else inj_caps[-1]
     cap = json.load(open(os.path.join(ROOT, newest["payload"]), encoding="utf-8"))
     cap_rows = {(r["team"], r["player"]): r for r in cap["rows"]}
     spot_fails, spot_ok = [], 0
@@ -494,7 +497,7 @@ def main() -> int:
     pair_delta = None
     if len(inj_caps) >= 2:
         a_cap = json.load(open(os.path.join(ROOT, inj_caps[-2]["payload"]), encoding="utf-8"))
-        b_cap = cap
+        b_cap = json.load(open(os.path.join(ROOT, inj_caps[-1]["payload"]), encoding="utf-8"))
         ka = {(r["team"], r["player"]): r for r in a_cap["rows"]}
         kb = {(r["team"], r["player"]): r for r in b_cap["rows"]}
         changed = 0
