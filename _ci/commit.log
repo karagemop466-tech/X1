@@ -6,10 +6,7 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
-M	app/depth.html
 M	app/flagged.html
-M	app/index.html
-M	app/injuries.html
 M	app/repo-review.html
 M	console/announcement.html
 M	console/archived-sites.html
@@ -43,17 +40,14 @@ M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
 M	console/w10-finals.html
-M	data/audit/decision_questions.json
 M	data/captures/index.jsonl
 M	data/captures/status.json
-M	data/console/injury_ledger.csv
 M	data/console/payload.json
 M	data/console/price_snapshots.csv
 M	data/console/repo_inventory.csv
 M	data/depth/depth_groups_32.csv
 M	data/depth/depth_groups_32.json
 M	data/depth/matchup_deficiency_matrix_w11.json
-M	data/depth/team_deficiency_summary.csv
 M	data/depth/team_deficiency_summary.json
 M	data/lab/reads/2026-11-17/feed-closure-measurement.json
 M	data/lab/reads/2026-11-17/manifest.json
@@ -70,37 +64,29 @@ M	data/pipeline/injuries.json
 M	data/pipeline/repo_review.json
 M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
-M	data/preregistration/register.csv
 M	data/preregistration/register.json
 M	data/readiness/decision_readiness.json
 M	index.html
+M	lab/flagged.html
 M	lab/reads.html
 M	pages/capture-system.html
-M	pages/decisions-critical.html
-M	pages/matchup-matrix.html
 M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-19T19:29:35Z official captures'
-[main 0eb8f95] ci: retain 2026-11-19T19:29:35Z official captures
- 5 files changed, 33129 insertions(+), 17 deletions(-)
- create mode 100644 data/captures/payloads/deficiency/dc/dc05a51df91fb1bc617cd66e9a87b1602b7de9d0dc5d55718badfcedc58e9c65.json
- create mode 100644 data/captures/payloads/depth_charts/b8/b84574c42a329f99be925645c7f2b5a5626e95a46313baf43852ba343dfa21a0.json
- create mode 100644 data/captures/payloads/injuries/c0/c01fd0e15870fa6378f71ba37ff6617000cc8e2472819cd1d6422559cd7327db.json
++ git commit -m 'ci: retain 2026-11-19T20:57:50Z official captures'
+[main 38d9fc6] ci: retain 2026-11-19T20:57:50Z official captures
+ 2 files changed, 19 insertions(+), 14 deletions(-)
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-19T19:29:36Z'
-[main baf4fdc] data: refresh from official sources 2026-11-19T19:29:36Z
- 39 files changed, 30834 insertions(+), 28840 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-19T20:57:50Z'
+[main 06fa0d6] data: refresh from official sources 2026-11-19T20:57:50Z
+ 31 files changed, 28686 insertions(+), 28466 deletions(-)
 + git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
- ! [remote rejected] HEAD -> main (cannot lock ref 'refs/heads/main': is at 972d31a6fb484ecf2281a85bac8012e0377749e6 but expected 506720c52bb1d40baaf76ccccb79a35b423357ba)
-error: failed to push some refs to 'https://github.com/karagemop466-tech/X1'
-+ echo 'MARKER: capture push failed; continuing'
-MARKER: capture push failed; continuing
+   6726c21..06fa0d6  HEAD -> main
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -141,14 +127,12 @@ rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 + git fetch origin main
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
-   506720c..972d31a  main       -> origin/main
 + git -c rebase.autoStash=true rebase origin/main
-Created autostash: 7859248
-Rebasing (1/2)Rebasing (2/2)Applied autostash.
-Successfully rebased and updated refs/heads/main.
+Created autostash: 01729e4
+Current branch main is up to date.
+Applied autostash.
 + git push origin HEAD:main
-To https://github.com/karagemop466-tech/X1
-   972d31a..65ba4c4  HEAD -> main
+Everything up-to-date
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1
 + pushed=1
