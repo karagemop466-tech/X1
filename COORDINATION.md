@@ -4686,3 +4686,5 @@ final integration record below for the exact count at release time.
 | PUB-BOUNDARY: audit which raw-data classes reach Pages and propose release gates | done (audit only; boundary needs review) | arena/8d2bacbb-x1 | docs/audit/public-release-boundary.md and this record only; no shared site or pipeline changes |
 
 PUB-BOUNDARY completion: audited Pages copy rules, inspected both named injury CSV headers/sample records, confirmed public Git visibility and 13 tracked raw paths, and ran the assembled-tree crawl (188 pages, 5,300 links, no broken local links). Sources, limits, irregularities and integration request: [public release boundary memo](docs/audit/public-release-boundary.md). No shared page or capture edits; private split remains unmet.
+
+PUB-BOUNDARY release tracking: [PR #95](https://github.com/karagemop466-tech/X1/pull/95); merge result and deployment are tracked in the linked GitHub record.
