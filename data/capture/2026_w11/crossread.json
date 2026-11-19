@@ -1,0 +1,32 @@
+{
+  "compared_on": "2026-11-19 (UTC)",
+  "this_transcription": "data/capture/2026_w11/official_nflcom_injuries_week11_fetch.psv",
+  "this_transcription_sha256": "e14720eaca636c75ceb04b1d35fe4590aca2e7f18c3c480b32f25ac710e67d29",
+  "other_read_file": "pr132_latest_read.tsv",
+  "other_read_sha256": "15399394fa166bf70c980a93e052854923aa900f57ecf5be931b5fe61e0540c4",
+  "other_read_source": "PR #132 head e70ae63560be17dbb6f35cbfd71b228b5049bf33, data/week11/latest_read.tsv (capture_utc 2026-11-19T13:16:57Z), read via the GitHub contents API; not committed to this branch",
+  "rows_here": 253,
+  "rows_there": 253,
+  "identical_rows": 252,
+  "only_in_this_transcription": [
+    [
+      "IND",
+      "Charlie Heck",
+      "T",
+      "",
+      "Did Not Participate In Practice",
+      ""
+    ]
+  ],
+  "only_in_other_read": [
+    [
+      "IND",
+      "Charlie Heck",
+      "T",
+      "Not injury related - personal matter",
+      "Did Not Participate In Practice",
+      "Questionable"
+    ]
+  ],
+  "note": "A difference is not resolved here. Either the official page changed between the two read times, or one transcription is wrong; a dated capture series is needed to tell which."
+}

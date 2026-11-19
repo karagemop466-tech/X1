@@ -1,0 +1,107 @@
+{
+  "source_url": "https://www.nfl.com/injuries/",
+  "source_title": "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
+  "capture_kind": "fetch-tool transcription (7 chunks read 2026-11-19 UTC). Not raw HTTP bytes: bash cannot reach nfl.com.",
+  "transcription_file": "data/capture/2026_w11/official_nflcom_injuries_week11_fetch.psv",
+  "transcription_sha256": "e14720eaca636c75ceb04b1d35fe4590aca2e7f18c3c480b32f25ac710e67d29",
+  "player_rows": 253,
+  "no_injury_sections": 2,
+  "listed_teams": 26,
+  "clubs_listed": 26,
+  "clubs_not_listed": [
+    "ATL",
+    "CLE",
+    "GB",
+    "LAR",
+    "NE",
+    "SEA"
+  ],
+  "games_listed": 13,
+  "game_headers": [
+    "AZ-KC Sun 2026-11-22 1:00PM ET CBS",
+    "BAL-CAR Sun 2026-11-22 1:00PM ET FOX",
+    "CIN-WAS Mon 2026-11-23 8:15PM ET ESPN",
+    "IND-HOU Thu 2026-11-19 8:15PM ET Prime Video",
+    "JAX-NYG Sun 2026-11-22 4:25PM ET CBS",
+    "LV-DEN Sun 2026-11-22 4:25PM ET CBS",
+    "MIA-BUF Sun 2026-11-22 1:00PM ET CBS",
+    "MIN-SF Sun 2026-11-22 8:20PM ET NBC/Universo",
+    "NO-CHI Sun 2026-11-22 1:00PM ET FOX",
+    "NYJ-LAC Sun 2026-11-22 4:05PM ET FOX",
+    "PIT-PHI Sun 2026-11-22 1:00PM ET CBS",
+    "TB-DET Sun 2026-11-22 1:00PM ET FOX",
+    "TEN-DAL Sun 2026-11-22 1:00PM ET FOX"
+  ],
+  "rows_per_team": {
+    "AZ Cardinals": 12,
+    "BAL Ravens": 6,
+    "BUF Bills": 15,
+    "CAR Panthers": 13,
+    "CHI Bears": 5,
+    "CIN Bengals": 0,
+    "DAL Cowboys": 14,
+    "DEN Broncos": 9,
+    "DET Lions": 8,
+    "HOU Texans": 15,
+    "IND Colts": 11,
+    "JAX Jaguars": 13,
+    "KC Chiefs": 15,
+    "LAC Chargers": 11,
+    "LV Raiders": 6,
+    "MIA Dolphins": 11,
+    "MIN Vikings": 10,
+    "NO Saints": 10,
+    "NYG Giants": 6,
+    "NYJ Jets": 8,
+    "PHI Eagles": 15,
+    "PIT Steelers": 10,
+    "SF 49ers": 15,
+    "TB Buccaneers": 6,
+    "TEN Titans": 9,
+    "WAS Commanders": 0
+  },
+  "game_status_counts": {
+    "(blank)": 238,
+    "Out": 9,
+    "Questionable": 6
+  },
+  "practice_status_counts": {
+    "Did Not Participate In Practice": 83,
+    "Full Participation in Practice": 83,
+    "Limited Participation in Practice": 87
+  },
+  "designated_rows": 15,
+  "observations": [
+    "Game Status is populated only for the Thursday game (IND-HOU) in this read. Every Sunday and Monday Game Status cell is blank. The page does not say why. A blank Game Status is NOT evidence that a player is available; it is not inferred either way.",
+    "Six clubs (ATL, CLE, GB, LAR, NE, SEA) do not appear on this page. The page does not state byes, so the reason is not inferred here."
+  ],
+  "anomalies": [
+    {
+      "player": "Jaylen Waddle",
+      "listed_team": "DEN Broncos",
+      "reason": "Listed under the Broncos table on the Week 11 page. Club attribution not verified in this session; kept as shown and flagged for check against the official roster page."
+    },
+    {
+      "player": "Mike Evans",
+      "listed_team": "SF 49ers",
+      "reason": "Listed under the 49ers table on the Week 11 page. Club attribution not verified in this session; kept as shown and flagged for check against the official roster page."
+    },
+    {
+      "player": "Charlie Heck",
+      "listed_team": "IND Colts",
+      "reason": "Cross-read divergence. PR #132's read at 2026-11-19T13:16:57Z shows Injury 'Not injury related - personal matter' and Game Status 'Questionable'. This transcription and a re-fetch of the page at about 22:10Z show both cells blank. Not resolved here; needs a dated capture series."
+    },
+    {
+      "player": "Dee Alford",
+      "listed_team": "BUF Bills",
+      "reason": "Displayed name differs from the player profile link slug on the page (slug: deaundre-ford). Displayed name kept as shown."
+    },
+    {
+      "player": "Jacob Hummel",
+      "listed_team": "HOU Texans",
+      "reason": "Displayed name differs from the player profile link slug on the page (slug: jake-hummel). Displayed name kept as shown."
+    }
+  ],
+  "checks_failed": [],
+  "checks_passed": true
+}

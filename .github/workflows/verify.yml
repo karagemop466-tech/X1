@@ -175,6 +175,10 @@ jobs:
         run: |
           git diff --exit-code -- data/console/week10_reconcile.json data/console/week10_reconcile.csv data/console/depth_parse.json data/console/depth_parse.csv data/console/readiness.json data/console/readiness.csv
 
+      # Added by session arena/073589d1-x1 (additive only): Week 11 official capture checks.
+      - name: Verify the Week 11 official injury capture
+        run: python3 tools/official/capture_w11.py --check
+
       - name: Verify every published number against the fresh capture
         run: python3 tools/official/verify_published.py
 
