@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-11-19T04:09:33+00:00",
-    "injuries_w11_retrieved_at": "2026-11-19T04:09:30+00:00",
+    "generated_at": "2026-11-19T19:28:31+00:00",
+    "injuries_w11_retrieved_at": "2026-11-19T19:28:28+00:00",
     "sources": {
       "depth_charts": "data/pipeline/depth_charts.json (31 official club depth charts; HOU image-only unavailable)",
       "injuries_w11": "https://www.nfl.com/injuries/",
@@ -12,7 +12,7 @@
       "clubs_total": 32,
       "clubs_verified_depth": 31,
       "clubs_unavailable_image_only": 1,
-      "depth_group_rows": 1824,
+      "depth_group_rows": 1823,
       "gb_jersey_stripped_rows": 55,
       "gb_w10_injury_joins_raw": 0,
       "gb_w10_injury_joins_stripped": 13,
@@ -393,7 +393,7 @@
       "w11_full_count": 2,
       "w11_out_count": 5,
       "w11_doubtful_count": 0,
-      "w11_questionable_count": 4,
+      "w11_questionable_count": 3,
       "w11_starters_on_report": 8,
       "w11_starters_out_or_dnp": 5,
       "w11_offense_replacements": "LT: Bernhard Raimann (Out) -> 2nd (also on report) Charlie Heck; RT: Jalen Travis (Out) -> 2nd Luke Tenuta; WR: Anthony Gould (Questionable) -> none_listed none listed",

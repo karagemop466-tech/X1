@@ -24,13 +24,13 @@
    "rows": 896,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 2957,
+   "null_cells": 2958,
    "problems": [],
    "ok": true
   },
   {
    "dataset": "depth_charts",
-   "rows": 1818,
+   "rows": 1817,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 56,
@@ -51,7 +51,7 @@
    "rows": 253,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 474,
+   "null_cells": 476,
    "problems": [],
    "ok": true
   },
@@ -84,7 +84,7 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 868,
+   "rows": 986,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,

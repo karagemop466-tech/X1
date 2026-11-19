@@ -336,21 +336,21 @@
   },
   "C9_injury_capture_series": {
    "delta_last_two_reads": {
-    "cells_changed": 35,
+    "cells_changed": 2,
     "newer": {
+     "as_read_at": "2026-11-19T19:28:28+00:00",
+     "content_sha256": "c01fd0e15870fa63",
+     "rows": 253
+    },
+    "older": {
      "as_read_at": "2026-11-19T04:09:30+00:00",
      "content_sha256": "ea07d9551736e44a",
      "rows": 253
     },
-    "older": {
-     "as_read_at": "2026-11-18T19:23:30+00:00",
-     "content_sha256": "1ad067d8cdd8e77a",
-     "rows": 26
-    },
-    "rows_added": 227,
+    "rows_added": 0,
     "rows_removed": 0
    },
-   "distinct_payloads": 5,
+   "distinct_payloads": 6,
    "drift_history": [
     {
      "as_read_at": "2026-11-14T17:02:18+00:00",
@@ -504,19 +504,27 @@
      "rows": 253,
      "status": "new",
      "violations": []
+    },
+    {
+     "as_read_at": "2026-11-19T19:28:28+00:00",
+     "content_sha256": "c01fd0e15870fa63",
+     "drift": "pass",
+     "rows": 253,
+     "status": "new",
+     "violations": []
     }
    ],
    "first_read": "2026-11-14T17:02:18+00:00",
-   "last_read": "2026-11-19T04:09:30+00:00",
+   "last_read": "2026-11-19T19:28:28+00:00",
    "note": "the delta, not the level: the last two accepted reads differ in these cells, and the count of reads since the content last changed is what tells the owner whether the page has moved.",
-   "reads": 17,
+   "reads": 18,
    "reads_since_last_content_change": 1,
    "verdict": "measured"
   }
  },
  "dataset": "official-reads-2026-11-17",
  "failures": [],
- "generated_at": "2026-11-19T07:13:13+00:00",
+ "generated_at": "2026-11-19T19:29:31+00:00",
  "numbers": {
   "games_implied_by_standings": 150,
   "independent_reads_compared_to_this_pack": 2,
