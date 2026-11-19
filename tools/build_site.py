@@ -41,6 +41,9 @@ NAV = [
     ("pages/correlation.html", "Correlation"),
     ("pages/decisions.html", "Decision register"),
     ("pages/suggestions.html", "Suggestions"),
+    # Added by session arena-34b79d69-x1: the canonical decision center is reachable from the
+    # legacy dashboard too, so tools/check_links.py sees every new page as linked.
+    ("suggestions/index.html", "Decision Center"),
     ("pages/flagged.html", "Flagged for review"),
     # Added by session arena/16049865-x1 (additive): the 2026-11-17 re-read of the official
     # Week 10 injury page, compared row by row with the published table.

@@ -34,6 +34,7 @@ Owner rules (verbatim intent):
 | `arena/cd48a61d-x1` | `arena/cd48a61d-x1` | Integration release: decision-readiness table on landing page (R-41/R-42 delivery); re-ran verify-site + check_links, fixed index.html staleness via build_site.py, PR #62 → main merged `4b0660e`, Pages deploy confirmed | 2026-11-15 | **done** — landing page now carries the one-row-per-requirement decision-readiness register (gate that blocks each requirement + number that clears it); verify-site and check_links green; PR #62 merged and Pages built at https://karagemop466-tech.github.io/X1/ |
 | `arena-b8722e85-x1` | `arena/b8722e85-x1` | Official NFL Game Book source feasibility + data-rights review (docs-only; expanded-brief/readiness claim superseded by PR #53; landing update merged in PR #58) | 2026-11-15 | done — memo in docs-only PR #64; site link/flags remain an integration request |
 | `arena/a02e9816-x1` | `arena/a02e9816-x1` | **Round 6 (parallel): PR #84 stale-takeover claim at 03:05 UTC (superseded by PR #88's landing — recorded, not contested); 2026-11-18 official re-verification pack (A1–A5), CI step, final integration + PR + merge + Pages confirm** | 2026-11-18 03:05 UTC | active — see the session's records at the end of this file |
+| `arena-34b79d69-x1` | `arena/34b79d69-x1` | **Decision Center: canonical suggestions + questions section (DC-1..DC-4)** | 2026-11-19 | in progress — see the claim at the end of this file |
 
 | `arena-869ee8fb-x1` | `arena/869ee8fb-x1` | **Round 6 integration: PR #84 landed (751803f), SG-15 console pages (ledger/snapshots/announcement), reconcile re-baselined to the dated post-W10 standings read (160/160), X-11 re-evidenced, main's round-6 line (#88/#89/#90) unioned (876c291), final verification, PR → merge → Pages** | 2026-11-18 | active — see the session's records at the end of this file |
 | `arena/ee613dd1-x1` | `arena/ee613dd1-x1` | **Final integration and release: repo line-by-line review, verification against official sources, clean landing page + category subpages, PR → main, merge, GitHub Pages deploy confirm** | 2026-11-19 | active (this session) |
@@ -4809,3 +4810,96 @@ GitHub Pages status: `built` at https://karagemop466-tech.github.io/X1/ (legacy 
 | Live site | https://karagemop466-tech.github.io/X1/ |
 
 All tasks T-R1 through T-R4 complete. Flagged irregularities (F-01–F-32, Q-02/Q-04/Q-07/Q-31 open) remain published with source links for owner review; none block the release.
+
+---
+
+# Session `arena/34b79d69-x1` — Decision Center: canonical suggestions + questions section (claimed 2026-11-19)
+
+**Session ID:** `arena-34b79d69-x1` · **Branch:** `arena/34b79d69-x1` (off `main` @ `6f7df253`)
+**Claim time (UTC):** 2026-11-19 ~06:50. Per the platform constraint recorded at the top of this
+board, this session works on its fixed Arena branch rather than creating a `session-<id>/<task>`
+branch; no other session's branch is touched.
+
+**Why this scope:** the owner's brief asks for (a) a dedicated suggestions section where paths can
+be reviewed and chosen before any change is implemented, (b) a clear list of questions + the
+information we hold and do not hold + answers, and (c) suggestions that discover missing
+information. The repo already contains **five separate suggestion/question boards**
+(`app/suggestions.html`, `console/suggestions.html`, `console/questions.html`, `hub/decisions.html`,
+`docs/analysis/suggestions.md`, `data/audit/suggestion_board.json`) with different IDs, counts and
+statuses. No single reviewable surface reconciles them. This session adds that canonical surface;
+it does **not** rewrite any existing board, table or published NFL value.
+
+| # | Task | Status | Owner | Files in scope (new files unless marked) |
+|---|---|---|---|---|
+| DC-1 | Canonical decision-register dataset: reconcile existing boards, deduplicate, explicit sources and decision state | in progress | `arena-34b79d69-x1` | `data/suggestions/**`, `tools/build_decision_center.py`, `tools/verify_decision_center.py` |
+| DC-2 | Public `suggestions/` section: overview, questions/information/answers, path-choice board, missing-information register, review log | in progress | `arena-34b79d69-x1` | `suggestions/**` |
+| DC-3 | Source-linked live verification of the official pages cited by the new section; irregularities flagged, never silently corrected | in progress | `arena-34b79d69-x1` | `docs/audit/decision-center-verification.md`, `data/flags.json` (one additive flag row) |
+| DC-4 | Additive integration: nav links (marked), CI gates, Pages copy, PR → merge → deploy confirmation | in progress | `arena-34b79d69-x1` | `console/index.html`, `app/index.html`, `index.html`, `.github/workflows/verify.yml`, `.github/workflows/pages.yml`, `COORDINATION.md` |
+
+**Non-overlap / rule 4 requests:** no file in `data/nfl/**`, `data/results/**`, `data/prices/**`,
+`data/origin/**`, `data/lab/**`, `tools/official/**`, `app/assets/**`, `lab/**` or `console/**`
+(except one additive nav link in `console/index.html`, logged here) is edited. Shared outputs
+(`index.html`, `pages.yml`) are changed **additively only** by this session acting as the final
+integration for its own scope; every added line is tagged with this session ID.
+
+**Decision rule honoured:** nothing in this section is implemented from a suggestion. Every path
+is `proposed — awaiting owner decision`; the owner decision cell stays blank and is marked
+`UNVERIFIED / AWAITING OWNER` rather than filled in by this session.
+## Completion record — DC-1..DC-4 (session `arena-34b79d69-x1`, 2026-11-19)
+
+**Status: done.** New public section `/suggestions/` (5 pages), generated from
+`data/suggestions/decision_center.json` + `official_reads.json` by `tools/build_decision_center.py`.
+It reconciles **7** pre-existing boards (20 + 15 + 15 + 12 + 12 + 10 + 10 rows) into **18 questions**,
+**18 path choices** and **13 missing-information rows**, with a review log and 5 non-blocking flags.
+All 18 paths remain `proposed — awaiting owner decision`; Decision and Owner cells are blank.
+
+| Task | Status | What was delivered |
+|---|---|---|
+| DC-1 | done | `data/suggestions/decision_center.json`, `official_reads.json`, `tools/build_decision_center.py` (`--check`), `tools/verify_decision_center.py` (754 assertions) |
+| DC-2 | done | `suggestions/{index,questions,paths,missing,review}.html` — generated, not hand-edited |
+| DC-3 | done | `docs/audit/decision-center-verification.md`: 5 official pages re-read 2026-11-19, every observation quoted from the fetch, 5 irregularities flagged not corrected |
+| DC-4 | done | additive nav links in `index.html`/`pages/**` (via `tools/build_site.py`), `app/**` (via `tools/build_app.py`), `console/index.html` (via `tools/build_console.py`), plus CI + Pages steps tagged with this session ID |
+
+**Sources used (all fetched live 2026-11-19, no recalled values):**
+- https://www.nfl.com/standings/league/2026/REG
+- https://www.nfl.com/schedules/2026/by-week/week-10
+- https://www.nfl.com/injuries/league/2026/reg10
+- https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced
+- https://www.nfl.com/games/patriots-at-lions-2026-reg-10
+- GitHub repository records for process facts only, always labelled "Repository record (not an NFL fact)".
+
+**Verification performed:** `tools/build_decision_center.py --check`, `tools/verify_decision_center.py`
+(754 assertions), `scripts/verify_site.py` (185 pages, every data-row Source cell official https),
+`tools/check_links.py` (47,588 assertions, no orphan), `tools/verify_console.py`, `tools/lab/build_site.py`,
+`tools/verify_deployed_tree.py` (193 pages, all five new pages reachable from the served root), and
+every `run:` step of `verify.yml` in CI order. The two `git diff --exit-code` steps showed only this
+session's nav-link changes before commit and pass after commit.
+
+**Irregularities published (non-blocking), with their source links, on `/suggestions/review.html`:**
+DC-F1 seven competing boards; DC-F2 `$year$ NFL $displayname$ Standings` title on the official
+standings page; DC-F3 injury page title Week 11 vs in-page heading Week 10; DC-F4 live Out vs blank
+for Kerby Joseph / Cade Mays / D.J. Reed in the dated table; DC-F5 Game Book CDN version path drift.
+
+**Rule 4 requests to the integration owner (not actioned here):**
+1. If the five new flags should also appear on the shared `flagged.html` pages, add them to
+   `data/flags.json` and regenerate `app/**`, `console/**` and `pages/**`. This session deliberately
+   kept them in `data/suggestions/decision_center.json` because those generated pages and that file
+   are other sessions' scopes. The flags are already published on the new Review log page.
+2. If the legacy boards should be retired after the owner ratifies one canonical board, that is a
+   decision for the owner; this session only reconciles them for reading and deletes nothing.
+3. `tools/build_console.py` regenerates `data/console/price_snapshots.csv` and
+   `data/console/repo_inventory.csv` with fresh timestamps on every run. This session reverted those
+   two data-file rewrites (other sessions' scope) and hand-synced only `console/index.html`; the
+   generator is patched so a future rebuild keeps the nav link.
+
+### Cross-scope repair during PR #102 integration (session `arena-34b79d69-x1`, 2026-11-19)
+
+The PR's `verify-site` run failed at the existing step "Fail if the re-capture, depth parse or
+readiness files are stale" — not at any decision-center step. Cause: after this branch was cut,
+`main` gained a seventh official Game Book PDF URL (commit `626763d`), but the generated
+`data/console/readiness.{json,csv}` still counted six. Re-running the canonical generator
+`tools/official/readiness.py` changes R-26 and R-39 from 6 to 7; `console/readiness.html` was
+regenerated from that output. This is a generated-output repair only: no rule, value or source in
+another session's data scope was hand-edited, and the other regenerated data files (timestamp-only
+`payload.json`, `price_snapshots.csv`, `repo_inventory.csv`) were reverted. The same gate now passes
+locally. Logged here under rule 4 so the owning session can confirm the 7 count at its next build.

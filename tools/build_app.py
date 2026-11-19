@@ -178,6 +178,10 @@ def nav(active: str) -> str:
         for fn, label, _grp, _t, _k in items:
             cls = " active" if fn == active else ""
             out.append(f'<a class="{cls.strip()}" href="{PFX}{fn}">{esc(label)}</a>')
+        # Added by session arena-34b79d69-x1: canonical decision center. It is a link only —
+        # not a PAGES entry, because it has no builder inside the app/ tree.
+        if g == "Decisions":
+            out.append(f'<a class="" href="{PFX}../suggestions/index.html">Decision center</a>')
     out.append("</nav>")
     return "\n".join(out)
 

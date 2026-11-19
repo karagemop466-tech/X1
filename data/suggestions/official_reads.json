@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "dataset": "official_reads_decision_center",
+    "read_at": "2026-11-19",
+    "method": "Pages fetched live with the page-fetch tool on 2026-11-19 (UTC). Observations below are limited to text actually returned by that tool. No value was recalled from training data and no value was inferred.",
+    "rule": "A read is evidence that a page exists and printed a given string at that time. It is not an immutable capture: no raw bytes or hash were retained."
+  },
+  "reads": [
+    {
+      "id": "OR-1",
+      "url": "https://www.nfl.com/standings/league/2026/REG",
+      "page_title_returned": "2026 NFL League Standings",
+      "observed": "League table with 32 club rows; the first row printed Buffalo Bills 8-1-0 with 287 points for and 199 against.",
+      "irregularity": "The visible H1 returned in page text was '$year$ NFL $displayname$ Standings'.",
+      "used_by": "DQ-01, DC-F2"
+    },
+    {
+      "id": "OR-2",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "page_title_returned": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets",
+      "observed": "14 Week 10 fixtures with finals, including Commanders 24, Giants 21 (Nov 12) and Patriots 10, Lions 35 (Nov 15, Munich). No betting line field appears.",
+      "irregularity": "None observed on this page.",
+      "used_by": "DQ-01, DQ-09, DQ-17, DS-02, DS-10, MI-01"
+    },
+    {
+      "id": "OR-3",
+      "url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "page_title_returned": "Official NFL Injury Report for Players - Week 11 of the 2026 Season | NFL.com",
+      "observed": "Club tables with Player, Position, Injuries, Practice Status and Game Status columns. Detroit rows print Out for Kerby Joseph, Cade Mays and D.J. Reed.",
+      "irregularity": "The in-page heading printed 'Injuries - WEEK 10' while the title printed Week 11. The three Detroit cells disagree with the dated repository transcription.",
+      "used_by": "DQ-03, DQ-04, DQ-07, DQ-18, DC-F3, DC-F4"
+    },
+    {
+      "id": "OR-4",
+      "url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "page_title_returned": "2026 NFL Schedule Announced",
+      "observed": "Release dated May 14, 2026, headed 'Complete 18-Week, 272-Game Regular-Season Schedule Available on NFL.com'; it states the Week 10 New England at Detroit game is in Munich at FC Bayern Munich Stadium.",
+      "irregularity": "None observed on this page.",
+      "used_by": "DQ-09, DS-11, MI-09, MI-11"
+    },
+    {
+      "id": "OR-5",
+      "url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+      "page_title_returned": "New England Patriots at Detroit Lions 2026 REG 10 - Game Center",
+      "observed": "Official Game Centre read 2026-11-19: Final NE 10, DET 35, WEEK 10, Nov 15; Game Info prints Location MUNICH and Stadium FC BAYERN MUNICH STADIUM; a Download Game Book (PDF) link is present.",
+      "irregularity": "The Game Book link at this read used version path v1794829721, while the repository memo records v1794764592 for the same document UUID. The PDF venue string (Allianz Arena) differs from the Game Centre stadium label; both are preserved.",
+      "used_by": "DQ-05, DQ-16, DS-03, DS-10, MI-02, MI-04, MI-10, DC-F5"
+    }
+  ]
+}
