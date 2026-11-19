@@ -6,7 +6,6 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
-M	app/deficiency.html
 M	app/depth.html
 M	app/flagged.html
 M	app/index.html
@@ -45,16 +44,20 @@ M	console/suggestions.html
 M	console/verification.html
 M	console/w10-finals.html
 M	data/audit/decision_questions.json
-M	data/audit/findings.json
-M	data/audit/full_depth_join.json
-M	data/audit/what_changed.json
 M	data/captures/index.jsonl
 M	data/captures/status.json
 M	data/console/injury_ledger.csv
 M	data/console/payload.json
 M	data/console/price_snapshots.csv
 M	data/console/repo_inventory.csv
-M	data/depth/replacement_depth_summary.json
+M	data/depth/depth_groups_32.csv
+M	data/depth/depth_groups_32.json
+M	data/depth/matchup_deficiency_matrix_w11.json
+M	data/depth/team_deficiency_summary.csv
+M	data/depth/team_deficiency_summary.json
+M	data/lab/reads/2026-11-17/feed-closure-measurement.json
+M	data/lab/reads/2026-11-17/manifest.json
+M	data/lab/reads/2026-11-17/report.json
 M	data/next_decisions/round_2026_11_16.json
 M	data/pipeline/_probe.json
 M	data/pipeline/_run_report.json
@@ -69,35 +72,35 @@ M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
 M	data/preregistration/register.csv
 M	data/preregistration/register.json
-M	data/readiness/decision_readiness.csv
 M	data/readiness/decision_readiness.json
 M	index.html
-M	pages/availability.html
+M	lab/reads.html
 M	pages/capture-system.html
-M	pages/changes.html
 M	pages/decisions-critical.html
-M	pages/executive-brief.html
-M	pages/readiness.html
+M	pages/matchup-matrix.html
 M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-19T04:10:31Z official captures'
-[main 94109ce] ci: retain 2026-11-19T04:10:31Z official captures
- 5 files changed, 33139 insertions(+), 18 deletions(-)
- create mode 100644 data/captures/payloads/deficiency/23/2324006db31225b00aae89945e13d674b942f774a656f4404823630ccc25c4b6.json
- create mode 100644 data/captures/payloads/depth_charts/1e/1e0114785cb8d65f4aa1b01ca1463d4a69415a7131b566049ba4194ef4e93b30.json
- create mode 100644 data/captures/payloads/injuries/ea/ea07d9551736e44a045248857c8bb6888c4b55202e1047229b51d0c5585c602f.json
++ git commit -m 'ci: retain 2026-11-19T19:29:35Z official captures'
+[main 0eb8f95] ci: retain 2026-11-19T19:29:35Z official captures
+ 5 files changed, 33129 insertions(+), 17 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/dc/dc05a51df91fb1bc617cd66e9a87b1602b7de9d0dc5d55718badfcedc58e9c65.json
+ create mode 100644 data/captures/payloads/depth_charts/b8/b84574c42a329f99be925645c7f2b5a5626e95a46313baf43852ba343dfa21a0.json
+ create mode 100644 data/captures/payloads/injuries/c0/c01fd0e15870fa6378f71ba37ff6617000cc8e2472819cd1d6422559cd7327db.json
 + '[' 0 = 0 ']'
 + git add -A data app lab pages index.html
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-19T04:10:32Z'
-[main 97f6de9] data: refresh from official sources 2026-11-19T04:10:32Z
- 39 files changed, 31296 insertions(+), 33317 deletions(-)
++ git commit -m 'data: refresh from official sources 2026-11-19T19:29:36Z'
+[main baf4fdc] data: refresh from official sources 2026-11-19T19:29:36Z
+ 39 files changed, 30834 insertions(+), 28840 deletions(-)
 + git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   6b96f09..97f6de9  HEAD -> main
+ ! [remote rejected] HEAD -> main (cannot lock ref 'refs/heads/main': is at 972d31a6fb484ecf2281a85bac8012e0377749e6 but expected 506720c52bb1d40baaf76ccccb79a35b423357ba)
+error: failed to push some refs to 'https://github.com/karagemop466-tech/X1'
++ echo 'MARKER: capture push failed; continuing'
+MARKER: capture push failed; continuing
 + '[' 0 = 0 ']'
 + set -o pipefail
 + python3 tools/rebuild_for_refresh.py --post-commit
@@ -124,18 +127,28 @@ $ python3 tools/build_preregistration.py --check
     anchor check SKIPPED (and anchors carried forward, not flattened): shallow checkout (actions/checkout default fetch-depth: 1). 'which commit froze the rule' is answered in the full repository; the rul
 $ python3 tools/build_next_decisions.py --check
     CHECK OK: 11 suggestions, 10 questions
+$ python3 tools/lab/build_reads.py --check
+    CHECK OK: the 2026-11-17 reads pack reproduces from its files (14+136 games, 32 clubs, 44 injury rows, 0 failures)
+$ python3 tools/lab/build_closure_measurement.py --check
+    CHECK OK: the feed-closure measurement reproduces from its inputs
+$ python3 tools/build_depth_matrix.py --check
+    CHECK OK: 32 clubs (31 verified + 1 HOU image-only), GB joins 0->13, W11 matrix 78 rows (51 alerts)
+$ python3 tools/build_modeling_lab.py --check
+    CHECK OK: data/models/ reproduces cleanly (4 splits, 32 SRS ratings, dual totals, chronological ablations)
 rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin main
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
+   506720c..972d31a  main       -> origin/main
 + git -c rebase.autoStash=true rebase origin/main
-Created autostash: 4f39062
-Current branch main is up to date.
-Applied autostash.
+Created autostash: 7859248
+Rebasing (1/2)Rebasing (2/2)Applied autostash.
+Successfully rebased and updated refs/heads/main.
 + git push origin HEAD:main
-Everything up-to-date
+To https://github.com/karagemop466-tech/X1
+   972d31a..65ba4c4  HEAD -> main
 + echo 'MARKER: pushed on attempt 1'
 MARKER: pushed on attempt 1
 + pushed=1
