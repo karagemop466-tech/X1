@@ -41,6 +41,7 @@ Owner rules (verbatim intent):
 | `arena/ee613dd1-x1` | `arena/ee613dd1-x1` | **Final integration and release: repo line-by-line review, verification against official sources, clean landing page + category subpages, PR → main, merge, GitHub Pages deploy confirm** | 2026-11-19 | active (this session) |
 | `arena/48279a7d-x1` | `arena/48279a7d-x1` | **Origination & Skill Desk (`origination-desk/`): official reserve/IR & transactions turnover register + stale-depth flags + announced-starter & inactive verification; stadium roof/surface & NWS weather overlay; vig-free decomposition + two-stage proper-score skill leaderboard (4 divisions, joint-evidence parlay/prop gate, cluster Brier skill + multiplicity, prospective escrow) + weekly what-changed diff; integration + PR → merge → Pages** | 2026-11-19 | **done** — PR #111 merged (`500e726`), Pages deploy confirmed at https://karagemop466-tech.github.io/X1/origination-desk/index.html |
 | `arena/621df229-x1` | `arena/621df229-x1` | **Final integration and release (T-R1–T-R4): repo line-by-line review + irregularity flags; offline verification of committed official snapshots + internal links; suggestions/questions/executive-summary review for decision readiness; site integration — clean landing page + category subpages, build + Pages deploy, PR → main, merge, record result** | 2026-11-19 | active — claim written and pushed before any work; see task-board rows T-R1..T-R4 |
+| `arena/49dbdc81-x1` | `arena/49dbdc81-x1` | **Final integration & release round 2026-11-19 22:00 UTC: board takeover under rule 10; merge completed open PRs (#92, #110, #113, #91; #95/#96 re-checks; #123 stays HELD by its author); full local verification replay; repo line-by-line irregularity review; PR → main, merge, Pages deploy confirm, record** | 2026-11-19 22:03 UTC | in progress — claim written before any work |
 
 > Platform constraint: Arena pins each session to its own branch and forbids switching branches, so the `session-<id>/<task>` convention is adapted to one-branch-per-session. No session may push to another session's branch.
 
@@ -5634,3 +5635,29 @@ hunk and re-run the builder in a full-history clone.
 - **Pages deploy on `main`:** run 44615297789 (`push` on `7fb2c32`), `build` success, `deploy` success. The live landing page `https://karagemop466-tech.github.io/X1/` serves the new build (fetched 2026-11-19).
 - **Limits:** the Pages `build` run on the PR was cancelled once by the shared `pages` concurrency group (other sessions' runs), and `workflow_dispatch` returned HTTP 403. The run on `fd41e2e` completed fully and was used. Upstream `main` changed repeatedly during this session (automated refresh and diagnostics commits); the branch was merged with `origin/main` three times, and each conflict is logged above.
 - **Still open for the owners:** the builder now on `main` is `arena/525b792a-x1`'s version (`_is_real_anchor`); owner review requested above. PR #113 (`arena/42887cb2-x1`, brief row 25) is open and was not touched by this session. R8 baseline section 1 is corrected to state that 52/52 applies to `856366f` only, and that the current head passes 53/53.
+
+
+---
+
+# Session `arena/49dbdc81-x1` — final integration & release round (2026-11-19 22:03 UTC)
+
+**Branch:** `arena/49dbdc81-x1` (fixed by Arena; based on `main` at `a1cca5c`, PR #127's merge).
+
+## Takeover basis (rule 10)
+
+- `arena/ee613dd1-x1` (final integration claim) last commit `7725f26` at 2026-11-19 06:59 UTC — >15 h old, no later commits.
+- `arena/621df229-x1` (final integration claim T-R1..T-R4) last commit `25d731f` at 2026-11-19 19:32 UTC, records "session complete" for PR #117 — >2.5 h old, task rows marked done.
+- Both stale claims are therefore superseded by this session per rule 10. Their completed work on `main` is preserved and not re-done; nothing they own is edited.
+
+## Claim
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| FI-1 | Register claim; identify integration-safe open PRs vs held PRs | in progress | `arena/49dbdc81-x1` | `COORDINATION.md` (this record only) |
+| FI-2 | Merge completed open PRs from other sessions into `main` (candidates: #110, #92, #113, #91; #95/#96 only if their checks go green against current `main`; #123 stays HELD — its author holds it pending register reconciliation) | in progress | `arena/49dbdc81-x1` | none (GitHub merges only; their branches are never pushed to) |
+| FI-3 | Full local verification replay of the combined tree (verify.yml chain, Pages build, link checks) after each merge and at the end | in progress | `arena/49dbdc81-x1` | none (read-only; regenerated outputs reverted) |
+| FI-4 | Repo line-by-line irregularity review of the combined tree; record findings; fix only integration-owned defects (landing/nav/link breaks) | in progress | `arena/49dbdc81-x1` | `docs/review/integration-round-2026-11-19.md` (new), `COORDINATION.md` |
+| FI-5 | Final PR `arena/49dbdc81-x1` → `main` with all of the above; merge without waiting; confirm Pages deploy; record result | in progress | `arena/49dbdc81-x1` | PR record in `COORDINATION.md` |
+
+Conflict rule: other sessions' file scopes are never edited on their branches. If a merged PR leaves `main` red, the repair happens on this branch as an integration defect fix and is logged here.
+
