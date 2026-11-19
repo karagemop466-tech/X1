@@ -486,17 +486,25 @@
     },
     {
       "id": "F-33",
-      "severity": "medium",
+      "severity": "low",
       "category": "Stale headline (landing page)",
-      "item": "The landing page states '13 / 14 Week 10 games officially final' with the note 'the Monday-night game was still unplayed at read time'. That text is dated to a 2026-11-16 read and is superseded.",
+      "item": "RESOLVED 2026-11-19 — The landing page states '13 / 14 Week 10 games officially final' with the note 'the Monday-night game was still unplayed at read time'. That text is dated to a 2026-11-16 read and is superseded. The figure is now computed from a live read and reads 14 / 14.",
       "verified": "The official Week 10 schedule page, read 2026-11-19, shows all 14 games FINAL, including Chargers 23, Ravens 20 (Mon 2026-11-16). data/evidence/2026_11_17/week10_finals.tsv records the same 14 finals, and data/audit/w10_finals_independent_read_2026_11_19.psv matches it row for row (tools/audit_landing_numbers.py, LA-N11, 14 of 14 compared, 0 mismatches).",
       "unknown": "Nothing about the scores is unknown. The open question is whether the landing text should show the 2026-11-19 state or keep the dated 2026-11-16 state labelled as dated.",
-      "settles_it": "Integration owner regenerates the landing from the 2026-11-19 read (requested as LA-4 on COORDINATION.md).",
+      "settles_it": "Done in this session: the landing figure is computed from data/integration/live_recheck_2026_11_19.json (14 / 14 final, read 2026-11-19) instead of being hardcoded.",
       "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
       "source_label": "NFL.com — 2026 Week 10 schedule (read 2026-11-19)",
       "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
       "league_source_label": "league page ↗",
-      "what_would_change_our_mind": "A later official read that shows a different final score for any of the 14 games."
+      "what_would_change_our_mind": "A later official read that shows a different final score for any of the 14 games.",
+      "resolution": {
+        "resolved_at": "2026-11-19",
+        "resolved_by": "session arena/6b45af7e-x1 (final integration)",
+        "what_changed": "tools/build_site.py no longer hardcodes '13 / 14'. The figure is now computed from this session's own live read of the official Week 10 page (data/integration/live_recheck_2026_11_19.json) and reads 14 / 14, with the note that the 2026-11-16 read saw 13 and the 2026-11-19 read saw all 14 Final.",
+        "evidence": "data/integration/live_recheck_2026_11_19.json · tools/build_live_recheck.py · tools/build_site.py",
+        "reproduce": "python3 tools/build_live_recheck.py --check && python3 tools/build_site.py && python3 tools/audit_landing_numbers.py --check",
+        "kept_on_the_record": true
+      }
     },
     {
       "id": "F-34",

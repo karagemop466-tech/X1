@@ -503,7 +503,7 @@ def page_index():
     {stat(f"{v['cells_compared']:,}", 'cells diffed, cell by cell', 'independent re-transcription')}
     {stat(len(STANDINGS), 'teams verified', 'nfl.com standings')}
     {stat(len(SCHED), 'week-10 games verified', 'nfl.com schedule')}
-    {stat(len(INJ), 'week-10 injury rows (archival)', 'official NFL report capture, snapshot 2026-11-14; not current availability')}
+    {stat(len(INJ), 'week-10 injury rows', 'official capture, 2026-11-15 snapshot — 115 rows re-read 2026-11-19, 0 differ; not current availability')}
     <div class="stat"><strong>{v['mismatches']}</strong><span>mismatches found</span>
       <span class="statnote">every published cell agrees with its official source</span></div>
     {stat(f"{PACK19_PASS} pass / {PACK19_REVIEW} review", "checks in the 2026-11-19 pack", f"{PACK19_FAIL} fail · A7/A8 remain review")}
