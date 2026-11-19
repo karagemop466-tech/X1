@@ -3,7 +3,7 @@
   "title": "Flagged for Review",
   "retrieved_at": "2026-11-14",
   "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-  "counts": 34,
+  "counts": 35,
   "resolution_log": [
    {
     "id": "I-17",
@@ -525,6 +525,20 @@
     "league_source_url": "https://www.nfl.com/injuries/",
     "league_source_label": "league page ↗",
     "what_would_change_our_mind": "A Week 11 capture that shows the Week 10 table is still the official current report."
+  },
+  {
+    "id": "F-36",
+    "severity": "high",
+    "category": "Pre-registration integrity",
+    "item": "PR-03 (verified results feed: a row settles only when an official page printed the score) is registered as frozen at commit 0709442e63a0 (2026-11-14), but its rule file docs/methodology/results-feed.md was edited after that commit. The register marks it 'no - edited after registration'. The rule is therefore not frozen as registered.",
+    "verified": "Full-history clone of https://github.com/karagemop466-tech/X1 (session arena/525b792a-x1, 2026-11-19): the rule file's SHA-256 at 0709442e63a0 is 7f6c20c536f2fc6d; at the later commit 0c3e1e31d4 (2026-11-17, 'N-4: price-data policy decided and wired') it is b571816538b9ab0e, which equals the current file. All four registration commits exist: PR-01 25221eb86244, PR-02 0747005a77a6, PR-03 0709442e63a0, PR-04 7bd7a4889c8f.",
+    "unknown": "Whether the 2026-11-17 edit changes the settlement rule itself or only its wording. The repository does not say, and this flag makes no claim either way.",
+    "settles_it": "A dated re-registration of PR-03 under a new rule hash (new registration commit), or a written statement that the 2026-11-17 edit is editorial. Owner decision on which applies.",
+    "source_url": "https://github.com/karagemop466-tech/X1/commit/0c3e1e31d4e8c0059f643463ad56a2c23c96e5e0",
+    "source_label": "commit 0c3e1e31d4 (N-4) on GitHub",
+    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "league_source_label": "league page ↗ (the settlement rule's official-score source)",
+    "what_would_change_our_mind": "A registration commit for the 2026-11-17 rule text, dated before 2026-11-17 kickoffs, would clear the flag."
   }
  ]
 }

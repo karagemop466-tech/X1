@@ -113,7 +113,7 @@
    "finding": "The landing page's flag count is hardcoded in prose and can drift from data/flags.json.",
    "evidence": "The hero button and the \"13 open flags\" wording are generated from a computed length, but a human reading of the count elsewhere (README, coordination log) already disagrees: the research session counted 34 flagged items, the live session 6, the lab session 12, the dashboard 17. Four registers, four counts, no single queue.",
    "measured": {
-    "flags_in_flags_json": 34,
+    "flags_in_flags_json": 35,
     "registers_found": 4
    },
    "source": "https://github.com/karagemop466-tech/X1/blob/main/data/flags.json",

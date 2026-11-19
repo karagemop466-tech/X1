@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 34,
+  "flag": 35,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -388,6 +388,17 @@
    "unknown": "The Week 11 report is not transcribed in this repository. This flag does not claim any Week 11 row.",
    "source": "https://www.nfl.com/injuries/",
    "source_label": "NFL.com \u2014 Injury report (Week 11, read 2026-11-19)"
+  },
+  {
+   "id": "F-36",
+   "register": "data/flags.json",
+   "area": "Pre-registration integrity",
+   "item": "PR-03 (verified results feed: a row settles only when an official page printed the score) is registered as frozen at commit 0709442e63a0 (2026-11-14), but its rule file docs/methodology/results-feed.md was edited after that commit. The register marks it 'no - edited after registration'. The rule is therefore not frozen as registered.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether the 2026-11-17 edit changes the settlement rule itself or only its wording. The repository does not say, and this flag makes no claim either way.",
+   "source": "https://github.com/karagemop466-tech/X1/commit/0c3e1e31d4e8c0059f643463ad56a2c23c96e5e0",
+   "source_label": "commit 0c3e1e31d4 (N-4) on GitHub"
   },
   {
    "id": "Q-01",
