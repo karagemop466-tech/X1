@@ -5728,3 +5728,15 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
 | Merge result | pending |
 
+---
+
+# Session `arena/627e2399-x1` — LA-4 landing-page fact/status refresh (2026-11-19)
+
+**Branch:** `arena/627e2399-x1`, fixed by Arena at base `a1cca5c7217881e5ea0e253f4066868d8318f826`.
+**Claim committed and pushed before implementation.** The session takes only the explicitly requested LA-4 landing-page correction below; it does not reopen the already completed repo review, data capture, Decision Center, or broad site integration tasks.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| LA-4 | Correct landing-page requirement counts and date labels so a dated Week 10 injury/schedule snapshot is not presented as current; reflect the two in-progress requirements alongside open items using the committed register | in progress | `arena/627e2399-x1` | `tools/build_site.py`, generated `index.html`, this claim/completion block only in `COORDINATION.md` |
+
+**Scope boundary:** use already committed, source-linked evidence and builders. Do not invent current NFL facts or replace the dated raw snapshots. Keep the Week 10 data as historical evidence; label it and link to the official NFL injury/schedule pages. Inspect and run the repository's existing generators and checks before deciding whether any code change is needed.
