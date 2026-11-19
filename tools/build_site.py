@@ -58,7 +58,7 @@ NAV = [
     ("pages/suggestions-board.html", "Suggestions board"),
     ("pages/review-queue.html", "Review queue"),
     ("pages/changes.html", "What changed"),
-    ("pages/requirements.html", "Requirements &amp; status"),
+    ("pages/requirements.html", "Requirements & status"),
     ("pages/readiness.html", "Decision readiness"),
     # Added by session arena-543cdcb0-x1 (additive): the evidence layer the collector writes,
     # and the pre-registered model that scores against it.
@@ -434,7 +434,7 @@ def page_index():
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["requirement_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
-                     else "brief &amp; register ↗"),
+                     else "brief & register ↗"),
         ])
     readiness_html = table(
         ["ID", "Pri", "Requirement", "Gate that blocks it", "Number that would clear it",
@@ -2706,7 +2706,7 @@ def page_readiness():
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["requirement_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
-                     else "brief &amp; register ↗"),
+                     else "brief & register ↗"),
         ])
 
     # the full register, grouped by priority then id
@@ -2735,7 +2735,7 @@ def page_readiness():
             src_cell(repo_blob(r["current_source"] if r["current_source"] not in ("", "—")
                                else r["gate_source"]),
                      "source ↗" if r["current_source"] not in ("", "—")
-                     else "gate &amp; register ↗"),
+                     else "gate & register ↗"),
         ])
 
     # the 2026-11-15 live diff
@@ -3035,6 +3035,30 @@ def page_verification_2026_11_17():
     return shell("Live re-verification 17 Nov (2026-11-17)", "READ LIVE 2026-11-17 22:46–22:56 UTC", body, depth=1)
 
 
+def verify_output():
+    """Fail the build if a generated page contains a double-escaped entity.
+
+    Added by session arena/427c1843-x1. `esc()` is applied to every nav label at render time, so a
+    label that already carried an entity ("Requirements &amp; status") rendered into the HTML as
+    "Requirements &amp;amp; status" and every browser printed the literal text "&amp;". Found in 26
+    pages + index.html (94 occurrences) on 2026-11-19; the label is fixed and this guard stops the
+    class of defect from returning through any other label, title or cell.
+    """
+    bad = []
+    roots = [os.path.join(ROOT, "index.html")]
+    roots += [os.path.join(PAGES, f) for f in sorted(os.listdir(PAGES)) if f.endswith(".html")]
+    for path in roots:
+        with open(path, encoding="utf-8") as fh:
+            text = fh.read()
+        if "&amp;amp;" in text:
+            bad.append(os.path.relpath(path, ROOT))
+    if bad:
+        raise SystemExit(
+            "double-escaped entity in generated output (HTML will print the literal entity): "
+            + ", ".join(bad)
+        )
+
+
 def main():
     write("index.html", page_index())
     write("pages/executive-summary.html", page_exec_summary())
@@ -3064,6 +3088,7 @@ def main():
     write("pages/verification-2026-11-17.html", page_verification_2026_11_17())
     write("pages/results-closure.html", page_results_closure())
     n = len([f for f in os.listdir(PAGES) if f.endswith(".html")])
+    verify_output()
     print(f"wrote index.html + {n} pages")
 
 
