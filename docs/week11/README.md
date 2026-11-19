@@ -34,8 +34,8 @@ Session `arena-2d1ba329-x1` (branch `arena/2d1ba329-x1`). Published as
 
 ## Results on the day of writing (2026-11-19)
 
-- Week 11 captures in the ledger at the time of this commit: **14 stored, 9 distinct content states** (the count grows with each scheduled or probe read; `data/week11/captures.json` is the authority).
-- Latest read at the time of this commit: **2026-11-19 22:28:52 UTC**, **253 listings** in **24 clubs**. Those 24 clubs are in 12 games; the 13th game, CIN @ WAS, has no table.
+- Week 11 captures in the ledger at the time of this commit: **16 stored, 11 distinct content states** (the count grows with each scheduled or probe read; `data/week11/captures.json` is the authority).
+- Latest read at the time of this commit: **2026-11-19 22:38:24 UTC**, **253 listings** in **24 clubs**. Those 24 clubs are in 12 games; the 13th game, CIN @ WAS, has no table.
 - **CIN and WAS** (Monday, Nov 23 matchup) have no table in the latest read. They are listed as
   gaps. They are not treated as healthy.
 - Earliest Week 11 reads (2026-11-18 07:35 and 17:18 UTC) cover only the Thursday game (IND and
