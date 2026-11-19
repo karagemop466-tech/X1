@@ -392,7 +392,8 @@ def main() -> int:
 
     # ---- C8 injury spot-check ----------------------------------------------------
     idx = [json.loads(l) for l in open(os.path.join(ROOT, CAPTURE_INDEX), encoding="utf-8") if l.strip()]
-    inj_caps = sorted([r for r in idx if r["dataset"] == "injuries"], key=lambda r: r["as_read_at"])
+    # Frozen Week 10 re-read: the default injury page rolled over after this accepted capture.
+    inj_caps = sorted([r for r in idx if r["dataset"] == "injuries" and r["as_read_at"] <= "2026-11-18T04:15:34+00:00"], key=lambda r: r["as_read_at"])
     newest = inj_caps[-1]
     cap = json.load(open(os.path.join(ROOT, newest["payload"]), encoding="utf-8"))
     cap_rows = {(r["team"], r["player"]): r for r in cap["rows"]}

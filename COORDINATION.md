@@ -4680,6 +4680,31 @@ final integration record below for the exact count at release time.
   F-27…F-31) and its dc96bc33 B4 re-derivation before either session saw the other's tree; the
   re-based branch adopts PR #88's (more general, derived-constant) version verbatim.
 
+## 2026-11-19 integration — arena/e0c7de42-x1
+In progress: integrate complementary pending PRs #91 and #92 on the pinned branch, resolve overlaps, verify Pages build and publish. Scope: integration of their changed paths, release checks and this board; no competing source transcription.
+
+Integration resolution: a direct merge of #91 conflicted with newer main console pages, policy flags, generated registers and this board; aborted cleanly. Both original branches remain intact. Selectively integrated #91's Game Centre parser and derived register (not raw pages), #92's two-sided decision rule and injury HTML parser. Replayed 27 game pages (243 fields, zero mismatches) from #91 commit `c90e3f78`, and matched both SHA-256 hashes for all 11 official injury reads through 2026-11-19T01:53:42Z. The newer reads invalidate #92's assumption that the latest default report is Week 10: reset comparisons by season/week, never count rollover as a surprise. Official sources: https://www.nfl.com/injuries/league/2026/reg11 and https://www.nfl.com/schedules/2026/by-week/week-11 (individual game links in evidence review). The two-sided tests are project rules, not NFL findings. Roof/surface not confirmed. See console/flagged.html. Original PRs remain open for non-integrated work. Local deployed-tree and 3,323-row console citation checks passed; no claim of fresh verification of legacy tables.
+
+Release: https://github.com/karagemop466-tech/X1/pull/97. First PR build passed; verify caught a stale historical pack after the scheduled refresh. Scoped its Week 10 comparison to the last pre-rollover read and regenerated its dependent hashes. 44 player spot checks reproduce without Week 11 contamination.
+
+## 2026-11-19 — chronological evaluation design (`arena/d08f4a65-x1`)
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| EVAL-71 | Implement a fail-closed chronological season split, distinguish verified labels from mirror rows, audit the 136-game corpus claim, and publish an independently verifiable evaluation-readiness section | done — PR #98, Pages confirmed | `evaluation/**`, `tools/evaluation/**`, this coordination block |
+
+Existing shared data, generated navigation, and workflow files are read-only for this claim. Any integration changes outside the scope will be requested here first.
+
+Integration scope addition for EVAL-71: `pages/evaluation.html`, `.github/workflows/evaluation-readiness.yml`, and additive deep links only in the landing and Flagged for Review renderers in `tools/build_site.py` (regenerate `index.html` and `pages/flagged.html`). Checked open PR scopes #91, #92, #95 and #96 before claiming: none owns these paths. No existing source data or site workflow is changed. Public/private deployment boundary is owned separately by PR #95; this change publishes aggregates and source links only.
+
+### EVAL-71 completion and release checklist
+
+- **Done:** NFL-EVAL-01 locks the 136 existing Week 1–9 official finals as a retrospective outcomes-only corpus. The season split is 2019–2023 train, 2024–2025 retrospective validation, 2026 development only, 2027 final-holdout candidate (unregistered). The page publishes aggregates and clear gates only. This is not a strategy registration or a replacement of the live results feed.
+- **Verified:** all 136 selected rows re-parsed from nine fingerprinted NFL schedule extracts and compared by official Game Center URL, week, date, teams and scores against the corresponding frozen structured transcriptions. The initial implementation also cross-compared both dated outcomes views; all 136 matched before moving the new gate upstream to the source evidence. Re-read the [Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) through both chunks and spot-checked [Patriots–Seahawks, Week 1](https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1) live. The 137-row dated view still passes 32-team standings reconciliation, and the 150-row closure verifier passes. New CI includes six tests covering split overlap, hash mutation, missing or conflicting rows, duplicate and spoofed URLs, and aggregate-only HTML; repo and assembled-tree link checks pass.
+- **Needs review (not a release blocker):** the older brief's 117-game shadow count is stale versus the current 118 rows including a tie; neither is the 136-game corpus. Historical labels, point-in-time availability, and official/permissioned prices remain incomplete or unverified, and the candidate holdout cannot be scored. See [Evaluation flags](https://karagemop466-tech.github.io/X1/pages/evaluation.html#review). Existing shared source data, strategy scoring, and public/private release scope were not changed.
+- **Integration:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) initially exposed the same rolling Week 10 report staleness as the PR #97 work. Requested the active owner's handoff and rebased after #97 merged. The append-only board conflict was resolved by retaining both blocks. The new corpus gate now reads source transcriptions rather than adding a dependency on the rolling result views; existing closure checks retain their original scope. Both evidence forms agree on the Week 5 tie, corroborated by [NFL Game Center](https://www.nfl.com/games/giants-at-commanders-2026-reg-5).
+- **Published:** [PR #98](https://github.com/karagemop466-tech/X1/pull/98) merged to `main` as `c25b722bbf625f3480f838e635432090ad30717f` at 06:51 UTC after corpus, repository verify and Pages build checks passed. [GitHub Pages deployment](https://github.com/karagemop466-tech/X1/actions/runs/44475276822) succeeded, and a live fetch of [Evaluation readiness](https://karagemop466-tech.github.io/X1/pages/evaluation.html?rev=c25b722) returned the new summary, all nine weekly rows and the review gates. EVAL-71 is done for the corpus/protocol/publication scope; data and strategy eligibility remain gated separately.
+
 ---
 
 # Session `arena/34b79d69-x1` — Decision Center: canonical suggestions + questions section (claimed 2026-11-19)
@@ -4714,7 +4739,6 @@ integration for its own scope; every added line is tagged with this session ID.
 **Decision rule honoured:** nothing in this section is implemented from a suggestion. Every path
 is `proposed — awaiting owner decision`; the owner decision cell stays blank and is marked
 `UNVERIFIED / AWAITING OWNER` rather than filled in by this session.
-
 ## Completion record — DC-1..DC-4 (session `arena-34b79d69-x1`, 2026-11-19)
 
 **Status: done.** New public section `/suggestions/` (5 pages), generated from
