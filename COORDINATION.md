@@ -5696,7 +5696,7 @@ register reconciliation (PR #123) are explicitly NOT claimed here.
 | T9-2 | R8-I-06: replace "starter is column 1" method text with depth-slot-group language consistent with `data/depth/depth_groups_32.csv` | done — 2026-11-19 | `arena-ab244ddc-x1` | `tools/build_round3.py`, `data/depth/replacement_depth_summary.json` |
 | T9-3 | R8-I-07: remove the `DIAG-WF-SHRINKAGE-W1-10` diagnostic row from `two_stage_leaderboard.csv` (backtest numbers must never appear on the leaderboard); publish it in a separate diagnostic file | done — 2026-11-19 | `arena-ab244ddc-x1` | `tools/origination_desk/build_skill_desk.py`, `tools/origination_desk/verify_desk.py`, `tools/origination_desk/test_desk.py`, `tools/origination_desk/build_site.py` (leaderboard copy adjusted to distinguish detached retrospective diagnostics), `data/origination_desk/skill/two_stage_leaderboard.csv`, `data/origination_desk/skill/diagnostic_walkforward.csv` (new), `data/origination_desk/skill/skill_desk_summary.json`, `origination-desk/*.html` (regenerated only) |
 | T9-4 | Dated review record: sources, verification performed, irregularities | done — 2026-11-19 | `arena-ab244ddc-x1` | `docs/review/round9-fixes.md` (new) |
-| T9-5 | Full verify chain, PR → main, merge, Pages deploy confirmation, record result here | in progress | `arena-ab244ddc-x1` | `COORDINATION.md` (this block only) |
+| T9-5 | Full verify chain, PR → main, merge, Pages deploy confirmation, record result here | done — 2026-11-19 (PR #133 merged; Pages built) | `arena-ab244ddc-x1` | `COORDINATION.md` (this block only) |
 
 Overlap check (rule 3): open PRs #123 (`arena/41954ed5-x1`), #113 (`arena/42887cb2-x1`),
 #110 (`arena/427c1843-x1`), #96 (`arena/3ea00c0a-x1`), #95 (`arena/8d2bacbb-x1`),
@@ -5712,7 +5712,7 @@ by an open PR. Shared landing/navigation/flags outputs (`index.html`, `pages/**`
 - Leaderboard: [NFL Week 10 schedule/results](https://www.nfl.com/schedules/2026/by-week/week-10) and [2026 standings](https://www.nfl.com/standings/league/2026/REG) remain the provenance recorded by the existing retrospective diagnostic. The diagnostic model row is removed from leaderboard, historic result cells blanked for the three control rows, and all four result series moved to `data/origination_desk/skill/diagnostic_walkforward.csv` with audit-only/excluded metadata. `verify_desk.py` enforces this separation. No external page was re-fetched for these source-data-preserving code repairs; scores remain explicitly non-ranking diagnostics, not a fresh verification claim.
 - Verification passed: `python3 tools/verify_data.py` (2,960 checks); `python3 tools/check_links.py` (211 files / 52,340 assertions); `python3 scripts/verify_site.py` (211 HTML pages, source-link and local-link contract); `python3 tools/verify_round8_coverage.py` (82 rows, 150 evidence paths); `python3 tools/origination_desk/verify_desk.py` (1,632 checks); `python3 -m unittest tools/origination_desk/test_desk.py` (7 tests); `python3 tools/verify_app.py` (29 pages / 1,147 internal links / 8,523 data rows / 0 unsourced); `python3 tools/verify_stores.py`; `python3 tools/verify_new_data.py`; `python3 tools/build_app.py` regenerated only `app/replacement-depth.html` (no index/nav change); py_compile for modified Python modules; targeted CSV/JSON/schema/raw-name/method invariants (78 records, 7 raw-preserved display changes). Skill-desk and origination-desk builders' `--check` pass.
 - Irregularity: current pipeline inputs are Week 11 and cannot reproduce the retained 78-row earlier capture; running `tools/build_replacement_depth_store.py` dropped 77 rows during its existing input re-verification. Those regenerated files were restored; only a lossless display/raw transformation was retained. See `docs/review/round9-fixes.md` for details. Texans image chart, Week 11 point-in-time recapture, and shared flags/navigation remain outside this scope.
-- T9-5 (full verify/release/PR/merge/Pages) remains in progress.
+- T9-5 completed: PR #133 merged at `b3a712c303d2a5f8b9b99a5a52a5cbcbfdd1e5dd`; main verification and Pages build/deploy passed. Full record follows at the end of this file.
 
 ### Branch sync log — remote session branch claim preserved (2026-11-19)
 
@@ -5872,3 +5872,20 @@ No new irregularities introduced. Pre-existing open items remain published with 
 - `nfl.com` not fetchable from this sandbox: verification rests on committed official snapshots; no value inferred
 - Four pre-existing orphan pages (`live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html`) — pre-existing, non-blocking
 - No official price source: all market/CLV/difference/ROI cells blank-and-flagged or third-party-mirror labelled (Q-02 / F-06)
+
+## T9-5 completion — PR #133 (2026-11-19)
+
+| Item | Result |
+|---|---|
+| Pull request | https://github.com/karagemop466-tech/X1/pull/133 — `arena/ab244ddc-x1` → `main` |
+| PR head | `014e4801d8d64e3f6ffe70777104c23413855f3b` |
+| Merge | `gh pr merge 133 --merge`; merged `2026-11-19T22:13:12Z` as `b3a712c303d2a5f8b9b99a5a52a5cbcbfdd1e5dd`; no approval was awaited |
+| PR checks | `verify-site` run 44626264652 success; `Evaluation readiness` run 44626264664 success; static Pages build run 44626264645 success (deploy skipped on PR as expected) |
+| Post-merge checks | `verify-site` run 44626494469 success; `Evaluation readiness` run 44626494569 success; Pages build + deploy run 44626494557 success; Pages deployment run 44626492936 success |
+| Pages status | `gh api repos/karagemop466-tech/X1/pages/builds/latest` reports `status: built`, commit `b3a712c303d2a5f8b9b99a5a52a5cbcbfdd1e5dd`, updated `2026-11-19T22:13:37Z`; site URL https://karagemop466-tech.github.io/X1/ |
+
+The PR's first Pages build attempt was cancelled during the concurrent release of main PR #131; no failure was masked. On the next pushed head, the PR's `verify-site`, `corpus`, and full Pages static build all passed. The merged-main build and deploy then completed successfully.
+
+The live page changes are data-only/derived: replacement-depth display names now omit leading Packers jersey numbers while raw strings remain in the store, and the leaderboard no longer presents retrospective scores. Source-data values were retained from existing source-linked captures; no new official-page read or new player/status inference was performed. The Week 11-vs-retained-capture mismatch and Texans image chart remain flagged in `docs/review/round9-fixes.md`.
+
+**T9-1 through T9-5 complete.**
