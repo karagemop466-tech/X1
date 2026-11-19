@@ -122,6 +122,11 @@ jobs:
         run: |
           python3 tools/origination_desk/verify_desk.py
           python3 -m unittest tools/origination_desk/test_desk.py
+      # Added by session arena/073589d1-x1 (additive only): the Week 11 capture is rebuilt from its
+      # transcription and must match the committed page; schema, vocabulary and row-sum checks fail loudly.
+      - name: Verify the Week 11 official injury capture
+        run: python3 tools/official/capture_w11.py --check
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble the served tree (site only, no sources or archive)
@@ -162,6 +167,9 @@ jobs:
           # tools/verify_deployed_tree.py, which assembles the upload tree instead of auditing
           # the repository. Additive: one copy line.
           cp -r room _site/
+          # Added by session arena/073589d1-x1 (additive only): the Week 11 official injury report
+          # (sourced rows, fetch-tool transcription, checks + flagged anomalies). One copy line.
+          cp -r week11 _site/
           # Added by session arena/56769365-x1: hub/index.html links ../archive/previous-site/
           # to a committed 96 KB archive that was never copied, so that link has been dead on
           # the published site. Found by tools/verify_deployed_tree.py, which assembles the

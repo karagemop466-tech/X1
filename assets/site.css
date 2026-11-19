@@ -293,3 +293,10 @@ ul.lim li::marker{color:var(--warn)}
    The requirement text in the readiness tables is long, so it gets a floor width
    instead of forcing the whole table wide. */
 .wideflag { min-width: 22rem; }
+
+/* Added by arena/073589d1-x1 (additive): KPI strip and flag chip used by week11/index.html */
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.kpi{border:1px solid #d9d9d9;border-radius:8px;padding:10px 14px;min-width:120px}
+.kpi .lab{font-size:12px;color:#555}
+.kpi .val{font-size:22px;font-weight:600}
+.flag{background:#fff3cd;border-radius:4px;padding:0 4px;font-size:12px}

@@ -155,3 +155,48 @@ charts (now 31); a reward rule set (Q-07, not decided); a joint-probability cali
 families, now 0 files); and one G1 sample threshold that both registers state (they state 100 and 500 today).
 
 ---\n\n# Executive Summary — fourth round: session `arena/1aa2b47f-x1` review and release (2026-11-15)\n\nThis session took over the integrated branch (`arena/1aa2b47f-x1`, identical to `main` at `51d6e32`) and ran the offline verification the build cannot do against live official pages, because `nfl.com` and `operations.nfl.com` return connection failure from this sandbox (HTTP 000). No value was inferred and nothing was published that is not already in a committed official snapshot.\n\n## What this session verified (offline)\n\n| Check | Result |\n|---|---|\n| `tools/verify_data.py` | 2,944 integrity assertions — all pass |\n| `tools/check_links.py` | 159 files, 40,653 assertions — all links resolve, no orphans, every external host approved |\n| `scripts/verify_site.py` | 159 HTML pages — local links resolve, every data-table row carries an official source link |\n| Live official sources | `nfl.com`, `operations.nfl.com` unreachable (HTTP 000) — verification is against committed snapshots only |\n\n## Standing honest position (unchanged)\n\n1. **No official source publishes betting prices.** Every price, CLV, difference and ROI cell is blank and flagged (Q-02 / F-06). Q-02 is the single highest-leverage open decision.\n2. **Nothing is ranked on luck.** Signal is separated from staking; G8 demotes live→paper mechanically; the board is honestly empty of promotable strategies.\n3. **Depth is club self-report.** No league-wide official depth chart exists; several clubs print 'unofficial' (Q-05 / F-01).\n\n## Irregularities carried forward (none block release)\n\nFlags F-01…F-19 and defects D-01…D-03 remain on the Flagged for Review page with source links. Highest-signal open items: Q-02 (licensed price feed), Q-04 (licensed snap counts), Q-07 (reward funding/legality), R-02 (no LICENSE file). No new irregularity was introduced this session; no published value was changed.\n\n## Recommended owner actions (suggestions board, unchanged)\n\n- **S-13** — name the price feed (unblocks Q-19/Q-02 and every market column).\n- **S-17** — schedule the results-feed refresh (unblocks Q-24).\n- **S-16** — ratify the G8 demotion thresholds (Q-21).\n- **S-10** — second independent transcription pass on standings and injuries.\n- Add a `LICENSE` (R-02) before republishing any ingested NFL data.
+
+---
+
+## 11. Integration refresh — 2026-11-19 (session `arena/073589d1-x1`)
+
+This section adds to the sections above; nothing above is edited. Every figure below is taken from a file in the repository or from the official page named beside it.
+
+### What this session verified and changed
+
+| Item | Result | Source / file |
+|---|---|---|
+| Baseline replay of the CI gates on `a1cca5c` | `verify.yml`: 53 of 53 steps pass. `pages.yml`: 21 of 21 pass. Run with GitHub's shell options (`bash -eo pipefail`). | `.github/workflows/verify.yml`, `.github/workflows/pages.yml` |
+| Replay side effect | The replay rewrote 42 tracked generator outputs (timestamps and some counts). They were reverted and not committed. One count changed on replay: the capture-system page shows **8** captures committed and **15** on rebuild. The committed page is therefore stale against its own store. Logged, not fixed here. | `pages/capture-system.html`, `tools/` |
+| **Week 11 official injury report captured** (read 2026-11-19 UTC, Thursday) | **253 player rows**, 2 "No Injuries Reported" sections (CIN, WAS), 26 clubs listed, 13 games. Designations: **9 Out, 6 Questionable**, all 15 in the Thursday IND–HOU game. Team row counts sum to 253. | <https://www.nfl.com/injuries/> · `data/capture/2026_w11/` · `week11/index.html` |
+| Week 11 anomalies, kept as shown and flagged | Jaylen Waddle is listed under the Broncos; Mike Evans under the 49ers; two displayed names differ from their profile-link slugs (Dee Alford, Jacob Hummel). Club attribution was not checked against the roster pages. | `week11/index.html` (Irregularities section) |
+| Week 11 gaps the page does not explain | Game Status is blank for every Sunday and Monday row. Six clubs (ATL, CLE, GB, LAR, NE, SEA) are not on the page, and byes are not stated there. A blank cell is **not** evidence of availability, and the repository does not treat it as one. | `week11/index.html` (What this read does not show) |
+| Site checks after the change | `verify_site`, `verify_deployed_tree`, `check_links`, `check_site` and `verify_console` all pass. The Week 11 page is linked from the console landing and copied by the Pages build. | `tools/check_links.py`, `tools/verify_deployed_tree.py` |
+
+### The standing position (unchanged by this session)
+
+1. **No official source publishes betting prices.** Opening and closing prices stay blank or labelled third-party. A licensed price feed is still the single highest-leverage decision.
+2. **The model is a screen, not a price.** No strategy is promotable. The leaderboard keeps signal and staking separate and applies the demotion gate. (The gate is defined in `docs/methodology/demotion-gate.md`.)
+3. **Readiness, from the repo's own register** (`data/audit/readiness.json`, 60 rows): register status 42 met, 7 partly met, 2 in progress, 2 open, 7 not in the register.
+
+### What this session could not do, and why
+
+- **Daily Wednesday–Friday capture of the injury report, automated.** Not built. Bash in this sandbox cannot reach nfl.com (connection refused), so the capture is a fetch-tool transcription done by hand. Whether GitHub-hosted runners can reach nfl.com was not tested.
+- **A second independent read of the Week 11 table.** Pending. The current file is a single-read transcription; its checks are internal (schema, vocabulary, row sums), not a cross-read.
+- **Snap counts, official Game Books, inactive lists and depth-chart pages for all 32 clubs.** Not captured in this session. Depth order from jersey number, experience or salary stays rejected.
+- **Historical injury reports for past seasons.** Not archived here. Without them, designation reliability cannot be measured.
+- **Landing text LA-4** (the stale Week 10 "13/14 final" line) was requested on the coordination board and is **not** changed here. It is an integration item that needs the 2026-11-19 state of Week 10 confirmed from the official schedule page first.
+
+### Questions that must be answered before a decision
+
+| # | Question | Answer now | What would answer it |
+|---|---|---|---|
+| Q1 | Which price source is licensed for opening and closing lines? | None in the repository. No official source publishes prices. | A licensed odds-feed decision (Q-02). |
+| Q2 | Is the Week 11 report complete for all 32 clubs? | 26 clubs listed, 6 absent, byes not stated on the page. | The official Week 11 schedule page and a second read of the report. |
+| Q3 | Why are Sunday and Monday Game Status cells blank? | Blank in this read; the page does not say why. | Re-reads on the later report dates, compared row by row. |
+| Q4 | Which club do Waddle and Evans belong to? | Shown under DEN and SF on the Week 11 page; not checked against roster pages. | The official roster pages for both clubs. |
+| Q5 | Does a designation predict whether a player plays? | Not measured. No archived past-season reports in the repo. | Archived weekly reports plus official inactive lists, joined by player and game. |
+| Q6 | Which source gives depth order for all 32 clubs? | Not resolved. Neither route is verified for all 32 clubs. | Per-club official depth-chart pages, or an official snap-count source (route a or b). |
+| Q7 | Who will own the public/private data boundary? | Open. The boundary audit (PR #95, open) establishes no private store and no terms approval. | A written decision on what may be published. |
+
+Suggestions for how to close these gaps are on the suggestion board (`suggestions/index.html`). Open pull requests from other sessions (#91, #92, #95, #96, #110, #113, #123) were not merged or changed here.
