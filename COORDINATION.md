@@ -5394,3 +5394,107 @@ No data, site, or generator files were changed in this session; only `COORDINATI
 - **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118) merged to `main` at `2d99536b6a42cf9e9c7d2063c796fb09b48b3ab6` (2026-11-19 19:33:43 UTC). The PR initially had no reported status checks; after merge, [verify-site run 44599596695](https://github.com/karagemop466-tech/X1/actions/runs/44599596695) failed at `verify_mind_change.py` because its committed register was stale. [Pages artifact build/deploy run 44599596663](https://github.com/karagemop466-tech/X1/actions/runs/44599596663), [pages-build-deployment run 44599595460](https://github.com/karagemop466-tech/X1/actions/runs/44599595460), and Evaluation readiness run 44599596696 succeeded. The same `verify-site` step failed again after coordination-only PR #121 ([run 44600211607](https://github.com/karagemop466-tech/X1/actions/runs/44600211607)); PR #121's [artifact build/deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600211911) and [Pages deploy](https://github.com/karagemop466-tech/X1/actions/runs/44600210613) succeeded, and the root was fetched live afterward. The failed data-quality gate is AUD-08 and was not weakened or silently fixed because its data/generator are owned by completed PR #97 scope.
 - **Follow-up requests (no overlap edits made):** AUD-01 stale Week 11 blocker; AUD-02 dated 5-club vs later 31-club depth scope; AUD-03 conflicting empty vs historical backtest leaderboard and violation of the no-backtests-on-leaderboard rule; AUD-04 incompatible results/price-store universes and unverified mirror values displayed as 2026 opens; AUD-05 53 vs 82 requirement counts; AUD-06 public/private release boundary remains open; AUD-07 console generated artifacts are not diff-gated in CI; AUD-08 post-merge `verify-site` fails because `data/mind_change/register.csv` is stale after a fresh build. Full evidence, applicable official links, the CI run, and owner scope are in the report. These touch shared registers/generated pages or an open PR, so they are recorded for coordinated integration rather than edited here.
 - **Status:** EAB-1 done. This is not certification that all historical sources were refreshed in this session; see the report scope and explicit follow-up list.
+# Session `arena/525b792a-x1` — landing-number audit + release (claimed 2026-11-19)
+
+**Session ID:** `arena/525b792a-x1` · **Branch:** `arena/525b792a-x1` (base `main` @ `856366f`, verify-site 52/52 green locally before this claim).
+**Claim written and pushed before any edit (rules 1–3).** Non-overlap audit: open PRs #91, #92, #95, #96, #110 belong to other sessions and are not touched. `index.html`/`pages/**` are not edited by this session; any change there is logged as a request to the integration owner.
+
+## Claim
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| LA-1 | Recompute every headline number on the landing page (`index.html`) from committed files (requirement counts, Week 10 injury rows, games, teams) and fail the build on drift, instead of trusting the generator's constants | done | `arena/525b792a-x1` | `tools/audit_landing_numbers.py` (new), `data/audit/landing_numbers.json` (new, generated) |
+| LA-2 | Wire LA-1 into `.github/workflows/verify.yml` as one additive step | done | `arena/525b792a-x1` | `.github/workflows/verify.yml` (additive line only) |
+| LA-3 | Record the live official state of the injury page on 2026-11-19 (Week 11 is now the current report; the landing still headlines the Week 10 snapshot) as a dated irregularity, with the source link | done | `arena/525b792a-x1` | this block only |
+| LA-4 | Integration request (not actioned here): landing should show the 2 in-progress requirements in its "open" count and label the Week 10 snapshot as superseded by the live Week 11 report | requested (not actioned — landing is integration-owned) | integration owner | `tools/build_site.py`, `index.html` |
+| LA-5 | Publish: suite, PR `arena/525b792a-x1` → `main`, merge without waiting, Pages deploy confirmation, PR link and result recorded here | done | `arena/525b792a-x1` | this block, PR |
+
+## Completion record — LA-1 … LA-5 (`arena/525b792a-x1`, 2026-11-19)
+
+**Status:** done · the PR and merge are recorded in the **PR record** below after the merge.
+
+### What shipped
+
+| Item | Where |
+|---|---|
+| LA-1 landing-number audit: 9 headline claims recomputed from committed files, plus the 14-game finals cross-check (LA-N11). Fails on any drift; mutation-tested (a changed landing number and a changed final score are each caught). | `tools/audit_landing_numbers.py`, `data/audit/landing_numbers.json` |
+| Independent re-read of the 14 official Week 10 finals (2026-11-19), row-level with the official game URL | `data/audit/w10_finals_independent_read_2026_11_19.psv` |
+| LA-2 one additive verify step (`python3 tools/audit_landing_numbers.py --check`) | `.github/workflows/verify.yml` (+4 lines) |
+| Flags F-33, F-34, F-35 appended (append-only, text insert, counter 31 → 34) and the generated outputs that render them regenerated by their own builders | `data/flags.json`, `pages/flagged.html`, `app/flagged.html`, `room/flagged.html`, `pages/review-queue.html`, `pages/executive-summary.html`, `pages/executive-brief.html`, `pages/changes.html`, `data/audit/findings.json`, `data/audit/review_queue.json` |
+
+### Sources (fetched 2026-11-19 through the fetch tool; none recalled)
+
+- https://www.nfl.com/schedules/2026/by-week/week-10 — chunks 0 and 1; all 14 Week 10 cards read FINAL (Thu 11-12 WAS–NYG; Sun 11-15 twelve games; Mon 11-16 LAC–BAL). The file transcribes each headline score.
+- https://www.nfl.com/injuries/ — read 2026-11-19; title shows **Week 11** of the 2026 season is the current report (chunk 0).
+- https://www.nfl.com/games/chargers-at-ravens-2026-reg-10 (linked from the schedule card; the score itself was read from the schedule page).
+- Repository files compared: `data/evidence/2026_11_17/week10_finals.tsv` (its own source: https://www.nfl.com/schedules/2026/REG/week/10), `data/nfl/injuries_week10.tsv` (source https://www.nfl.com/injuries/), `data/nfl/standings.tsv`, `data/nfl/schedule_week10.tsv`.
+
+### Verification performed
+
+- `python3 tools/audit_landing_numbers.py` → **10/10 claims pass** (requirements 53 / 42 met / 7 partly / 2 open; 347 week-10 injury rows; 32 clubs; 14 games; 1,846 cells, 0 mismatches; finals cross-check 14 of 14, 0 mismatches).
+- Mutation test: changing the landing's `347` to `348` → `FAIL: ['LA-N05']`; changing one final score in the 2026-11-19 file → `FAIL: ['LA-N11']`. Restored files pass.
+- Full `verify.yml` replay (52 steps, local) → **all green** after regenerating the outputs that consume `flags.json` (the 4 stale-output steps were the expected guard, fixed by regeneration, not by editing a gate).
+- Full `pages.yml` replay (21 steps, local) → **all green**. Its build steps also re-stamped `As of <time>` lines in `console/` and `hub/` and regenerated four data CSVs with new timestamps; those were reverted, not committed (the Pages CI job rebuilds them on every run).
+- Builders are deterministic: a second run of `build_site`, `build_app`, `build_audit_registers`, `build_room`, `build_results_feed_907c` produced no further diff.
+
+### Irregularities (published on the Flagged for Review page, none blocking)
+
+- **F-33** Landing says "13 / 14 Week 10 games officially final … Monday-night game still unplayed at read time" — dated 2026-11-16 and superseded: all 14 are FINAL on the 2026-11-19 read. Requested as LA-4. Source: https://www.nfl.com/schedules/2026/by-week/week-10
+- **F-34** `data/nfl/schedule_week10.tsv` is the 2026-11-14 snapshot: 13 of 14 rows still read `scheduled`. Kept as a dated snapshot, not edited. Source: https://www.nfl.com/schedules/2026/by-week/week-10
+- **F-35** Landing headlines the Week 10 injury snapshot; the official injury page now shows the Week 11 report as current. The Week 11 report is not transcribed in this repo and no Week 11 row is claimed. Source: https://www.nfl.com/injuries/
+- **Register note (not a new flag):** `data/audit/requirements_assessed.json` counts 2 requirements *in progress* that the landing's "open" count leaves out, and 4 requirements whose previous "Implemented" status was downgraded (R-09, R-13, R-19, R-25). The downgrades are already shown on `pages/requirements.html`.
+- **Repo hygiene:** every verify and Pages run rewrites `generated_at` / `As of` timestamps in tracked files. Committing them creates churn with no content change; this session committed only content.
+- **Open PRs left alone** (other sessions' work, not touched): #91, #92, #95, #96, #110.
+
+### Requests to the integration owner (logged, not actioned here)
+
+- **LA-4** `tools/build_site.py` / `index.html`: (a) replace "13 / 14 … Monday-night game still unplayed" with the 2026-11-19 state, or label it as the 2026-11-16 state; (b) count the 2 *in progress* requirements beside "2 open"; (c) label the 347-row injury figure as the Week 10 snapshot, since the live page is Week 11 (F-35).
+
+### Handoff
+
+- Re-run `python3 tools/audit_landing_numbers.py` after any landing or data change. `--check` fails until the committed JSON is regenerated.
+- The audit compares the landing text by exact phrase. If the landing wording changes, the phrase in the tool must change with it, or the build fails loudly by design.
+
+
+### Correction and repair — same session, before merge (`arena/525b792a-x1`, 2026-11-19)
+
+**Correction to the completion record above.** The "53/53" and "21/21 green" replays were recorded
+before a defect in the replay harness was found: multi-line `run: |` steps were executed without
+`bash -e`, so only the last command's exit code counted. Re-run with GitHub's shell
+(`bash --noprofile --norc -eo pipefail`), the verify replay found **one real failure on `main`**, which
+has been red since PR #117 (`verify-site` fails on `Replay the dated venue, report movement and strategy
+decision checks`, check G of `tools/verify_mind_change.py`). Main was not green when this session started
+or when PR #116 first opened. The PR's own `verify-site` run also failed on this step.
+
+**Root cause (verified).** The scheduled refresh commit `65ba4c4` (`x1-bot`, 2026-11-19 19:29 UTC)
+ran `tools/build_preregistration.py` in a shallow CI clone. The builder recorded the four pre-registration
+anchors as `unresolved-shallow-checkout` and erased the registration commits committed at `856366f`
+(PR-01 `25221eb86244`, PR-02 `0747005a77a6`, PR-03 `0709442e63a0`, PR-04 `7bd7a4889c8f`). The carry-forward
+that should have kept them was gated on the *whole file* having been built with full history, and the
+previous register carried `history_scope.shallow: true`, so the gate was closed.
+
+**Repair (`761c5e3`).**
+- `tools/build_preregistration.py`: the carry-forward is now decided **per row**. An anchor is carried
+  forward when the rule bytes are unchanged and the stored value is a real 40-hex commit that is not the
+  previous build's boundary commit. The boundary test is the one the original guard was written for.
+- `data/preregistration/register.{json,csv}` restored from `856366f`, then rebuilt. The four anchors are
+  `registered` with `anchor_carried_forward: "carried from a full-history build"`.
+- `data/mind_change/register.csv` and `pages/shadow-baseline.html` regenerated by their builders.
+- Proof in a **depth-1 clone** (the CI shape): the builder keeps all four anchors `registered`, and
+  `verify_mind_change.py` prints `PASS`. The only diff it writes is `generated_at` and the boundary text.
+- Verified against a **full-history clone** of GitHub: all four registration commits exist (commit
+  subjects and dates in the register match).
+
+**New irregularity, published as flag F-36 (high).** PR-03's rule file `docs/methodology/results-feed.md`
+was edited after its registration commit. SHA-256 at `0709442e63a0` is `7f6c20c536f2fc6d`; at
+`0c3e1e31d4` (N-4, 2026-11-17) and now it is `b571816538b9ab0e`. The register already said
+`no - edited after registration`; that status is now visible on the Flagged page. Not resolved here.
+
+**Verification after the repair.** `verify.yml` replay (`bash -eo pipefail`): **53 of 53** green.
+`pages.yml` replay: **21 of 21** green. Shallow-clone proof above. The PR's `verify-site` must
+be re-run on the final commit before merge; that result is recorded in the PR record below.
+
+**Board note for the owner of `tools/build_preregistration.py` / `data/preregistration/**`:** the repair
+touches your files because `main` was red and the fix is a defect in the builder, not a content change.
+Nothing was re-registered or re-dated. If you disagree with the per-row rule, revert `761c5e3`'s builder
+hunk and re-run the builder in a full-history clone.

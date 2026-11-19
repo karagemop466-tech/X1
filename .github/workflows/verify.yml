@@ -317,3 +317,7 @@ jobs:
           python3 tools/origination_desk/verify_desk.py
           python3 -m unittest tools/origination_desk/test_desk.py
 
+      # Added by session arena/525b792a-x1 (additive only): every headline number on the landing
+      # page is recomputed from its committed source file; a drifted or unstated number fails the build.
+      - name: Landing-page numbers match their committed sources
+        run: python3 tools/audit_landing_numbers.py --check

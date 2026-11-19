@@ -3,7 +3,7 @@
   "title": "Flagged for Review",
   "retrieved_at": "2026-11-14",
   "rule": "A flag never asserts a value. It states what is verified, what is unknown, and what would settle it. Nothing on this page blocks the release.",
-  "counts": 31,
+  "counts": 35,
   "resolution_log": [
    {
     "id": "I-17",
@@ -483,6 +483,62 @@
    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
    "league_source_label": "the official Week 10 slate the feed closes",
    "what_would_change_our_mind": "A metadata file whose counts are re-derived by a gate and still disagree would mean the disagreement is in the data, not in the metadata."
+  },
+  {
+    "id": "F-33",
+    "severity": "medium",
+    "category": "Stale headline (landing page)",
+    "item": "The landing page states '13 / 14 Week 10 games officially final' with the note 'the Monday-night game was still unplayed at read time'. That text is dated to a 2026-11-16 read and is superseded.",
+    "verified": "The official Week 10 schedule page, read 2026-11-19, shows all 14 games FINAL, including Chargers 23, Ravens 20 (Mon 2026-11-16). data/evidence/2026_11_17/week10_finals.tsv records the same 14 finals, and data/audit/w10_finals_independent_read_2026_11_19.psv matches it row for row (tools/audit_landing_numbers.py, LA-N11, 14 of 14 compared, 0 mismatches).",
+    "unknown": "Nothing about the scores is unknown. The open question is whether the landing text should show the 2026-11-19 state or keep the dated 2026-11-16 state labelled as dated.",
+    "settles_it": "Integration owner regenerates the landing from the 2026-11-19 read (requested as LA-4 on COORDINATION.md).",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "source_label": "NFL.com — 2026 Week 10 schedule (read 2026-11-19)",
+    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "league_source_label": "league page ↗",
+    "what_would_change_our_mind": "A later official read that shows a different final score for any of the 14 games."
+  },
+  {
+    "id": "F-34",
+    "severity": "medium",
+    "category": "Stale snapshot (schedule file)",
+    "item": "data/nfl/schedule_week10.tsv is the 2026-11-14 snapshot. 13 of its 14 rows still read status 'scheduled' with blank scores, although the games were played on 2026-11-15 and 2026-11-16.",
+    "verified": "The same 13 rows are FINAL on the official schedule page read 2026-11-19 (scores in data/audit/w10_finals_independent_read_2026_11_19.psv). The file's header states it is a dated 2026-11-14 read, so the file is a correct snapshot of that date and is not edited here.",
+    "unknown": "Whether any downstream consumer reads this file as the current schedule. The landing and the closure pages use the 2026-11-17 closure file instead.",
+    "settles_it": "A decision on whether the schedule file is re-issued as a dated 2026-11-19 snapshot (integration owner).",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "source_label": "NFL.com — 2026 Week 10 schedule",
+    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "league_source_label": "league page ↗",
+    "what_would_change_our_mind": "A reader finding a consumer that uses the 2026-11-14 file as today's schedule would make this high severity."
+  },
+  {
+    "id": "F-35",
+    "severity": "low",
+    "category": "Superseded report (injuries)",
+    "item": "The landing headlines '347 week-10 injury rows … snapshot 2026-11-14'. The official injury page now publishes the Week 11 report as the current report.",
+    "verified": "https://www.nfl.com/injuries/ read 2026-11-19 is titled 'Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season' and begins with Thursday 2026-11-19 games. The 347-row Week 10 table is the dated 2026-11-14/15 capture and was re-diffed cell by cell (tools/verify_against_official.py: 1,846 cells, 0 mismatches).",
+    "unknown": "The Week 11 report is not transcribed in this repository. This flag does not claim any Week 11 row.",
+    "settles_it": "A dated Week 11 capture under the existing capture pipeline (not part of this session's scope).",
+    "source_url": "https://www.nfl.com/injuries/",
+    "source_label": "NFL.com — Injury report (Week 11, read 2026-11-19)",
+    "league_source_url": "https://www.nfl.com/injuries/",
+    "league_source_label": "league page ↗",
+    "what_would_change_our_mind": "A Week 11 capture that shows the Week 10 table is still the official current report."
+  },
+  {
+    "id": "F-36",
+    "severity": "high",
+    "category": "Pre-registration integrity",
+    "item": "PR-03 (verified results feed: a row settles only when an official page printed the score) is registered as frozen at commit 0709442e63a0 (2026-11-14), but its rule file docs/methodology/results-feed.md was edited after that commit. The register marks it 'no - edited after registration'. The rule is therefore not frozen as registered.",
+    "verified": "Full-history clone of https://github.com/karagemop466-tech/X1 (session arena/525b792a-x1, 2026-11-19): the rule file's SHA-256 at 0709442e63a0 is 7f6c20c536f2fc6d; at the later commit 0c3e1e31d4 (2026-11-17, 'N-4: price-data policy decided and wired') it is b571816538b9ab0e, which equals the current file. All four registration commits exist: PR-01 25221eb86244, PR-02 0747005a77a6, PR-03 0709442e63a0, PR-04 7bd7a4889c8f.",
+    "unknown": "Whether the 2026-11-17 edit changes the settlement rule itself or only its wording. The repository does not say, and this flag makes no claim either way.",
+    "settles_it": "A dated re-registration of PR-03 under a new rule hash (new registration commit), or a written statement that the 2026-11-17 edit is editorial. Owner decision on which applies.",
+    "source_url": "https://github.com/karagemop466-tech/X1/commit/0c3e1e31d4e8c0059f643463ad56a2c23c96e5e0",
+    "source_label": "commit 0c3e1e31d4 (N-4) on GitHub",
+    "league_source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "league_source_label": "league page ↗ (the settlement rule's official-score source)",
+    "what_would_change_our_mind": "A registration commit for the 2026-11-17 rule text, dated before 2026-11-17 kickoffs, would clear the flag."
   }
  ]
 }
