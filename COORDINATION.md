@@ -5531,3 +5531,5 @@ hunk and re-run the builder in a full-history clone.
 
 **Rebase conflict log (2026-11-19 19:49 UTC):** the pre-push rebase fetched `main` through `b5e756a` (PR #116). The append-only `COORDINATION.md` tail conflicted between the upstream PR #116 completion block and this session's stale-task claim; both complete records were preserved. No other files conflicted.
 
+**Scope addition H-95a (committed before implementation):** publish the independently rechecked market-line provenance mismatch as OD-F10 on the existing Origination & Skill Desk `Flagged for review` page. This touches only `tools/origination_desk/build_site.py` and its deterministic output `origination-desk/decisions-flags.html`; no table data, shared landing page, navigation, or Pages workflow is changed. The report and page will distinguish the official NFL scores link from the nflverse market-line mirror and will not claim the mirror is official.
+
