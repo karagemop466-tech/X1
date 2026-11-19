@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluation readiness | NFL research</title><link rel="stylesheet" href="../assets/site.css">
+<style>.tablewrap{overflow:auto} main{max-width:1050px;margin:auto}</style></head>
+<body><main>
+<header class="pagetitle"><nav aria-label="Related pages"><a href="../index.html">Dashboard</a> · <a href="readiness.html">Decision readiness</a> · <a href="flagged.html">Flagged for review</a></nav>
+<p class="eyebrow">NFL-EVAL-01 · protocol defined 2026-11-19</p>
+<h1>Evaluation readiness</h1><p>What the outcome log can support, and what must be in place before a strategy can be ranked.</p></header>
+<section class="content" aria-labelledby="summary"><h2 id="summary">Executive summary</h2>
+<div class="note"><b>136 official finals, zero leaderboard-eligible results from this audit.</b> The 136-game reference is reproducible as the first nine weeks of 2026, not a new feed or a prospective sample. This page publishes coverage only: no picks, model scores, prices or ROI.</div>
+<h2>Locked outcome corpus</h2>
+<p>For every game, week, date, teams, score and official game URL agree across the retained NFL schedule anchors and both repository result views. Source snapshot: 2026-11-14. The later Week 10 finals are outside the lock; the shadow baseline uses a different window.</p>
+<div class="tablewrap" tabindex="0"><table class="wide" data-table><thead><tr><th scope="col">2026 week</th><th scope="col">Finals in corpus</th><th scope="col">Official evidence</th></tr></thead><tbody>
+<tr><td>1</td><td>16</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-1">Official Week 1 schedule</a></td></tr>
+<tr><td>2</td><td>16</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-2">Official Week 2 schedule</a></td></tr>
+<tr><td>3</td><td>16</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-3">Official Week 3 schedule</a></td></tr>
+<tr><td>4</td><td>16</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-4">Official Week 4 schedule</a></td></tr>
+<tr><td>5</td><td>15</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-5">Official Week 5 schedule</a></td></tr>
+<tr><td>6</td><td>14</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-6">Official Week 6 schedule</a></td></tr>
+<tr><td>7</td><td>14</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-7">Official Week 7 schedule</a></td></tr>
+<tr><td>8</td><td>14</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8">Official Week 8 schedule</a></td></tr>
+<tr><td>9</td><td>15</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9">Official Week 9 schedule</a></td></tr>
+</tbody></table></div>
+<h2>Chronological split</h2>
+<p>These are protocol assignments, not NFL claims. Historical verification gaps are not filled by mirror rows. The holdout has no registered strategy and no reported result.</p>
+<div class="tablewrap" tabindex="0"><table class="wide" data-table><thead><tr><th scope="col">Use</th><th scope="col">NFL seasons</th><th scope="col">Status</th><th scope="col">Official reference</th></tr></thead><tbody>
+<tr><td>Train</td><td>2019–2023</td><td>Historical development only. Official game-result coverage has not been verified for this window.</td><td><a href="https://www.nfl.com/standings/league/2019/REG">Official NFL reference</a></td></tr>
+<tr><td>Validation</td><td>2024–2025</td><td>Retrospective model selection only. Never a clean prospective test: these seasons already appear in repo backtests.</td><td><a href="https://www.nfl.com/standings/league/2025/REG">Official NFL reference</a></td></tr>
+<tr><td>Development only</td><td>2026</td><td>The locked outcome corpus belongs here. Do not relabel games already played as prospective.</td><td><a href="https://www.nfl.com/standings/league/2026/REG">Official NFL reference</a></td></tr>
+<tr><td>Final holdout candidate</td><td>2027</td><td>Not registered. No evaluation until the strategy is frozen before the first eligible kickoff.</td><td><a href="https://operations.nfl.com/calendar-events/nfl-schedule/making-the-schedule">Official NFL reference</a></td></tr>
+</tbody></table></div>
+<h2 id="review">Flagged for review: questions and suggested next steps</h2>
+<div class="tablewrap" tabindex="0"><table class="wide" data-table><thead><tr><th scope="col">Question</th><th scope="col">What we know</th><th scope="col">What clears the gap</th><th scope="col">Official reference</th></tr></thead><tbody>
+<tr><td>Is the 136-game log a clean holdout?</td><td>No. It consists of finals already known at lock time.</td><td>Use as a retrospective outcomes-only corpus. Freeze a future strategy before it can see any holdout outcomes.</td><td><a href="https://www.nfl.com/standings/league/2026/REG">NFL reference</a></td></tr>
+<tr><td>Can older mirror scores be promoted?</td><td>No. An official standings link is a cross-check, not verification of each game.</td><td>Require 100% per-game official finals for the frozen historical game set. Keep all unverified values out of model scoring.</td><td><a href="https://www.nfl.com/standings/league/2025/REG">NFL reference</a></td></tr>
+<tr><td>Can outcomes establish an edge against the market?</td><td>No. Outcomes contain no qualifying price or timestamped market quote.</td><td>Keep market, residual and CLV blank here. Require two permitted, timestamped snapshots (open and close) for each priced market, plus settlement rules, before running a market evaluation.</td><td><a href="https://operations.nfl.com/calendar-events/nfl-schedule/making-the-schedule">NFL reference</a></td></tr>
+<tr><td>Can this corpus measure the injury effect?</td><td>No. Final scores do not establish who was expected, active or starting before kickoff.</td><td>Join permitted availability snapshots by game and cutoff; run paired with/without models on identical eligible games and report game-cluster uncertainty.</td><td><a href="https://www.nfl.com/injuries/league/2026/reg9">NFL reference</a></td></tr>
+</tbody></table></div>
+<p><b>Registration gate:</b> Freeze the strategy, benchmark, game list definition, feature cutoff, update rule, uncertainty method, trial count and thresholds in Git before the first eligible kickoff. Timestamp all prospective forecasts before kickoff. No tuning from holdout outcomes.</p>
+</section></main></body></html>
