@@ -5347,7 +5347,6 @@ All 37 flags (F-01–F-37) are published on `data/flags.json` and the Flagged fo
 - **Q-31**: Market price authority unresolved → mirror-derived prices labelled, never official
 - Flagged irregularities do not block the merge; they remain published for owner review.
 
-
 ---
 
 # Session `arena/621df229-x1` — completion (final), 2026-11-19
@@ -5508,3 +5507,27 @@ hunk and re-run the builder in a full-history clone.
 - **Live checks (fetched after deploy):** https://karagemop466-tech.github.io/X1/pages/flagged.html shows **35 flags** including F-33…F-36; https://karagemop466-tech.github.io/X1/pages/shadow-baseline.html shows PR-01/02/04 `registered` with their registration commits and PR-03 `no - edited after registration`.
 - **Not done here, logged:** LA-4 (landing text, integration-owned); the data-refresh bot's shallow-checkout runs will rewrite the pre-registration `history_scope` boundary text on each run (benign, verified in a depth-1 clone); the refresh bot also commits large regenerated CSVs (`data/console/price_snapshots.csv`) on each run, which is churn the owners may want to scope.
 - **Sandbox limit recorded:** outbound HTTP from this sandbox is restricted to GitHub/npm/PyPI hosts, so the live `github.io` pages were checked with the fetch tool, not curl.
+
+---
+
+---
+
+# Session `arena/fccb0ff1-x1` — stale-scope takeovers and final evidence audit (2026-11-19)
+
+**Branch:** `arena/fccb0ff1-x1` (fixed by Arena; based on `main` at `856366fcf51cfeb1a71f3129f0dd9e3c619c3161`).
+**Claim committed before implementation.** As of 2026-11-19 19:28 UTC, the latest commits on the open tasks below were more than 60 minutes old and had no later commits; these are recorded as stale handoffs under rule 10. Scope is limited to the listed files plus this append-only board entry.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| H-95 | Take over and preserve PR #95's public/private release-boundary audit; state clearly that no private store or terms approval is established, and record any verified publication-risk irregularities without claiming legal conclusions | in progress | `arena/fccb0ff1-x1` (handoff from `arena/8d2bacbb-x1`, last commit `ffd1579` at 06:45:29Z) | `docs/audit/public-release-boundary.md`, `docs/review/line-market-source-audit.md` |
+| H-96 | Take over PR #96's designation calibration evaluator and method; verify only the code with synthetic tests, do not publish empirical play rates without complete official evidence | in progress | `arena/fccb0ff1-x1` (handoff from `arena/3ea00c0a-x1`, last commit `7c3ff08` at 06:45:50Z) | `tools/designation_calibration.py`, `docs/designation-calibration.md`, `tests/test_designation_calibration.py` |
+| H-110 | Take over PR #110's 2026-11-19 verification-pack counts; regenerate the summary/page from the verifier and preserve blanks for quantities not measured | in progress | `arena/fccb0ff1-x1` (handoff from `arena/427c1843-x1`, last commit `95e20e4` at 07:18:39Z) | `data/verification/2026_11_19/verification_summary_2026_11_19.json`, `tools/verify_2026_11_19.py`, `tools/build_room.py`, `room/stale.html` |
+
+**Non-overlap:** PRs #91 and #92 remain explicitly untouched because their broad generated-site/raw-availability scopes overlap each other and the public/private release boundary is unresolved. Their live/row-level capture artifacts are not imported by this takeover. No shared index/navigation, Pages assembly, or workflow is edited here. Those scopes require a later integration decision and are listed as a blocking review item, not silently treated as completed.
+
+**Rebase conflict log (2026-11-19 19:29 UTC):** `main` advanced during this required pre-push `git pull --rebase` and added the `arena/621df229-x1` integration record. The conflict was only at the append-only tail of `COORDINATION.md`; both the upstream session's record and this session's stale-task claim are retained verbatim. No other files conflicted.
+
+**Rebase conflict log (2026-11-19 19:32 UTC):** during the required pre-push rebase, `main` advanced through PR #118 and added the independent EAB audit and its release records. The conflict was only in the append-only tail of `COORDINATION.md`; the full upstream record and this session's claim were both preserved. No source or generated data files were part of this conflict.
+
+**Rebase conflict log (2026-11-19 19:49 UTC):** the pre-push rebase fetched `main` through `b5e756a` (PR #116). The append-only `COORDINATION.md` tail conflicted between the upstream PR #116 completion block and this session's stale-task claim; both complete records were preserved. No other files conflicted.
+
