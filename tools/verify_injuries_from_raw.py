@@ -273,6 +273,7 @@ def main():
                f"page bytes"),
         generated_by="tools/verify_injuries_from_raw.py",
         session="arena-55c364b6-x1",
+        published_at_utc=cur["read_utc"],
         published_week=pub_week,
         comparison_capture=dict(
             read_utc=cur["read_utc"],
