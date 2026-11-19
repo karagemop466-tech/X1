@@ -182,6 +182,8 @@ def nav(active: str) -> str:
         # not a PAGES entry, because it has no builder inside the app/ tree.
         if g == "Decisions":
             out.append(f'<a class="" href="{PFX}../suggestions/index.html">Decision center</a>')
+            # Added by session arena/48279a7d-x1 (additive): link the Origination & Skill Desk.
+            out.append(f'<a class="" href="{PFX}../origination-desk/index.html">Origination desk</a>')
     out.append("</nav>")
     return "\n".join(out)
 

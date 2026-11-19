@@ -34,6 +34,9 @@ APPROVED = {
     # console's schedule-announcement page quotes its official release (session
     # arena-869ee8fb-x1, round 6 SG-15; already in RESEARCH_APPROVED below).
     "media.nfl.com",
+    # Added by session arena/48279a7d-x1: US National Weather Service official API
+    # (https://api.weather.gov) for the Week 11 Stadium Roof/Surface & NWS Weather Overlay (brief row 59).
+    "api.weather.gov",
 }
 # The research tree cites the league's document and tracking hosts as well.
 RESEARCH_APPROVED = {

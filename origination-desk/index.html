@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Origination &amp; Skill Desk | NFL Origination &amp; Skill Desk</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+main { max-width: 1180px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+nav[aria-label="Desk navigation"] { line-height: 1.8; margin-bottom: 0.75rem; font-size: 0.92rem; }
+nav[aria-label="Desk navigation"] a.active { font-weight: 700; text-decoration: underline; }
+.tablewrap { overflow-x: auto; margin: 0.85rem 0 1.6rem; }
+input[type="search"] { padding: 0.45rem 0.7rem; min-width: 260px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.92rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+<main>
+<header class="pagetitle">
+<nav aria-label="Desk navigation"><a href="../index.html">Main Root</a> · <a href="../suggestions/index.html">Decision Center</a> · <a href="index.html" class="active">Overview &amp; Readiness</a> · <a href="lines-vig.html">Lines &amp; Vig-Free View</a> · <a href="leaderboard.html">Two-Stage Skill Board</a> · <a href="joint-gate.html">Joint Gate &amp; Correlations</a> · <a href="roster-turnover.html">Reserve, Trades &amp; Inactives</a> · <a href="weather-venues.html">Roof/Surface &amp; NWS Weather</a> · <a href="weekly-diff.html">Weekly What-Changed Diff</a> · <a href="decisions-flags.html">Flagged for review</a></nav>
+<p class="eyebrow">OD-01 · Executive Overview &amp; Decision Readiness · Baseline snapshot 2026-11-14 · Live official audit 2026-11-19</p>
+<h1>Origination &amp; Skill Desk</h1>
+<p class="lede">Vig-free consensus decomposition, two-stage proper-score skill leaderboard, official reserve/trades/inactives verification, stadium NWS weather overlay, and 32-club weekly diff.</p>
+</header>
+<section class="content">
+
+<div class="note">
+<b>Executive Summary (Honest Position as of 2026-11-19):</b>
+<b>Zero strategies qualify for live Stage-2 capital deployment.</b> Across 150 verified 2026 regular-season games (Weeks 1–10), road clubs won more often than home clubs (realized home win rate <b>47.67%</b>), causing the naive 55% home-rate baseline (Brier <code>0.2532</code>) to underperform a fair 50/50 coin (<code>0.2483</code>). While the out-of-sample walk-forward shrinkage baseline improves mean Brier to <code>0.2395</code> (Brier Skill <code>+0.0355</code>), its 95% week-cluster lower bound is <b><code>-0.0777</code></b> and its Šidák multiplicity-adjusted lower bound across <b>M = 31</b> repository trials is <b><code>-0.1685</code></b>. Three prospective pre-kickoff registrations (<code>PR-01</code>, <code>PR-04</code>, <code>KR-T1</code>) are locked in escrow ahead of tonight's Week 11 opener (<code>IND @ HOU</code>), all multi-leg parlay/SGP/prop divisions remain locked behind the Joint-Evidence Gate, 20 stale club depth-chart &amp; roster-turnover discrepancies are flagged from official NFL transactions, and Sunday's <code>NO @ CHI</code> fixture carries an official NWS <b>80% rain / 15 mph WSW wind</b> alert.
+</div>
+
+<div class="statrow">
+  <div class="stat"><div class="big">0 / 31</div><div class="statnote">Strategies cleared for Stage-2 live staking (28 backtests quarantined; 3 in prospective escrow)</div></div>
+  <div class="stat"><div class="big">+0.035</div><div class="statnote">W1–10 walk-forward Brier Skill vs coin (cluster 95% LB <code>-0.078</code>; Sidak LB <code>-0.168</code>)</div></div>
+  <div class="stat"><div class="big">4.29%</div><div class="statnote">Mean 2-way moneyline overround on W10 mirror audit (<code>2.14%</code> vig tax per side)</div></div>
+  <div class="stat"><div class="big">20</div><div class="statnote">Stale depth-chart &amp; roster-turnover flags caught vs official NFL IR &amp; trade logs</div></div>
+</div>
+
+<h2>Decision-Readiness Register (Origination &amp; Skill Desk Scope)</h2>
+<p>One row per requirement delivered in this section, naming the exact gate that still blocks live deployment and the quantitative threshold that clears it.</p>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">ID</th><th scope="col">Requirement &amp; Subpage</th><th scope="col">Build State</th><th scope="col">Blocking Gate</th><th scope="col">Number / Condition That Clears Gate</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td><code>OD-R01</code></td><td><a href="lines-vig.html">Vig-Free Consensus vs. Originated Fair-Line Decomposition</a></td><td><span class="pill ok">BUILT (W11 blank-market + W10 mirror audit)</span></td><td>Q-02 licensed 2026 opening/closing market quotes</td><td>2 timestamped permitted quotes/market across &gt;=100 prospective fixtures</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11">Official source</a></td></tr><tr><td><code>OD-R02</code></td><td><a href="leaderboard.html">Two-Stage Skill Leaderboard (Stage 1 Proper Score -&gt; Stage 2 CLV Escrow)</a></td><td><span class="pill ok">BUILT (0 Stage-2 live; 3 in escrow)</span></td><td>Prospective sample n=1 settled (&lt;100) + multiplicity M=31 (Sidak z=2.9377)</td><td>n &gt;= 100 settled prospective game clusters with multiplicity-adjusted BSS_LB &gt; 0</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">Official source</a></td></tr><tr><td><code>OD-R03</code></td><td><a href="joint-gate.html">Joint-Evidence Gate for Game Parlays, SGPs &amp; Player Prop Combos</a></td><td><span class="pill ok">BUILT &amp; ENFORCED (all 3 combo divisions locked)</span></td><td>Unvalidated joint copula + missing operator push/void/DNP rules + Q-02/Q-04</td><td>Calibrated bivariate/multivariate Brier skill &gt; 0 on &gt;=200 games + committed void rules</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official source</a></td></tr><tr><td><code>OD-R04</code></td><td><a href="joint-gate.html">Official-Only Correlations Published with Sample Size n</a></td><td><span class="pill ok">BUILT (9 game/club pairs; n=150 and n=32)</span></td><td>Market-price correlations remain research-only until Q-02 clears</td><td>n &gt;= 150 verified official finals (met for score/margin/total pairs)</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official source</a></td></tr><tr><td><code>OD-R05</code></td><td><a href="roster-turnover.html">Reserve/IR Sweep &amp; Roster-Turnover Versioning Against Official Transactions</a></td><td><span class="pill ok">BUILT (43 reserve + 12 trades; 20 stale flags)</span></td><td>NFL.com monthly Reserve List truncates at 25 rows &amp; leaves Position blank</td><td>Automated 32-club roster RES scrape before every weekly origination run (0 unjoined clubs)</td><td><a class="src-link" href="https://www.nfl.com/transactions/league/reserve-list/2026/11">Official source</a></td></tr><tr><td><code>OD-R06</code></td><td><a href="roster-turnover.html">Announced-Starter Evidence &amp; Official 90-Minute Inactive Lists</a></td><td><span class="pill ok">BUILT (5 starters; 172 W10 inactives across 14 games)</span></td><td>Snap counts unprinted in Game Book summary text &amp; PDF carries written-permission notice (Q-04)</td><td>Written NFL permission or licensed snap-participation feed covering all 32 clubs</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season">Official source</a></td></tr><tr><td><code>OD-R07</code></td><td><a href="weather-venues.html">Stadium Roof/Surface &amp; Official NWS Hourly Wind/Precipitation Overlay</a></td><td><span class="pill ok">BUILT (12/13 US NWS grids live; 1 intl blank)</span></td><td>Pre-kickoff Game Center omits roof/surface; roof status declared 90 min pre-kickoff</td><td>Automated 90-min pre-kickoff club roof capture + non-US WMO feed for international games</td><td><a class="src-link" href="https://api.weather.gov/gridpoints/LOT/76,72/forecast">Official source</a></td></tr><tr><td><code>OD-R08</code></td><td><a href="weekly-diff.html">Weekly &#x27;What Changed&#x27; Diff (Rank, Shrunk Rating &amp; Availability)</a></td><td><span class="pill ok">BUILT (32/32 clubs W9 -&gt; Post-W10 -&gt; W11)</span></td><td>Historical pre-2026 weekly injury archive still incomplete for multi-season diffs</td><td>32/32 clubs reconciled weekly after Monday Night Football (met for W9 -&gt; W10)</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official source</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Removal-of-Luck Panel (Outcome Variance vs. Model Calibration)</h2>
+<p>Under calibrated probabilities <code>p_i</code>, irreducible Bernoulli outcome noise contributes expected Brier <code>mean(p_i * (1 - p_i))</code> and hit-rate standard error <code>sqrt(mean(p_i*(1-p_i))/n)</code>. Ranking strategies by short-window win rate or season ROI confuses coin variance with origination skill.</p>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">Horizon</th><th scope="col">Window</th><th scope="col">n</th><th scope="col">1-Sigma Luck SE</th><th scope="col">95% Pure-Luck Hit Band</th><th scope="col">Irreducible Luck Brier</th><th scope="col">Observed Brier</th><th scope="col">Excess Misfit Brier</th><th scope="col">Governance Reading</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td><code>HORIZON-N1</code></td><td>PR-01 settled prospective escrow (LAC@BAL W10 MNF)</td><td>1</td><td>45.77%</td><td>±89.71</td><td>0.2095</td><td>0.4917</td><td>+0.2822</td><td>100% dominated by single-game Bernoulli variance; zero inferential weight</td><td><a class="src-link" href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">Official NFL</a></td></tr><tr><td><code>HORIZON-N13</code></td><td>Single NFL week slate (Week 11 PR-04 escrow)</td><td>13</td><td>13.87%</td><td>±27.18</td><td>0.2140</td><td><span class="blank">pending finals</span></td><td><span class="blank">pending finals</span></td><td>1-week hit rate swings ±27.2% (95% band) by pure coin luck; never rank weekly ROI</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11">Official NFL</a></td></tr><tr><td><code>HORIZON-N150</code></td><td>Closed 2026 official corpus (Weeks 1-10 walk-forward)</td><td>150</td><td>3.82%</td><td>±7.49</td><td>0.2192</td><td>0.2395</td><td>+0.0203</td><td>Pure outcome luck still spans ±7.5% in hit rate; excess Brier +0.0203 isolates calibration error from coin noise</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>HORIZON-N272</code></td><td>Full 272-game NFL regular season (at -110 break-even 52.38%)</td><td>272</td><td>3.03%</td><td>±5.94</td><td>0.2494</td><td><span class="blank">pending finals</span></td><td><span class="blank">pending finals</span></td><td>Full-season 95% luck band is ±5.94%: a true 50% picker clears 55.9% in ~1 of 40 trials (guaranteed false winner when M=31)</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official NFL</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Desk Navigation by Category</h2>
+<div class="cards">
+  <div class="card"><h3><a href="lines-vig.html">1. Originated Lines &amp; Vig-Free View</a></h3><p>52 prospective Week 11 escrow lines in strict <code>Side → Dual Totals (A/B) → Moneyline</code> order (market blank per Q-02) plus 14-game Week 10 multiplicative, additive &amp; power vig-free decomposition.</p></div>
+  <div class="card"><h3><a href="leaderboard.html">2. Two-Stage Proper-Score Leaderboard</a></h3><p>Stage-1 Brier Skill qualification with week-cluster bootstrap &amp; M=31 Sidak multiplicity adjustment, paired controls, signal-vs-staking split, demotion gate, and two-sided mind-change rules.</p></div>
+  <div class="card"><h3><a href="joint-gate.html">3. Joint Gate &amp; Official Correlations</a></h3><p>Empirical proof of why multiplying marginal probabilities fails for SGPs &amp; combos, plus 9 official-only correlations published with exact <code>n</code> (150 games; 32 clubs) and Fisher 95% CIs.</p></div>
+  <div class="card"><h3><a href="roster-turnover.html">4. Reserve, Trades, Starters &amp; Inactives</a></h3><p>43 official Reserve/IR entries, all 12 Nov 2026 NFL trades, 20 stale club depth-chart flags (Hutchinson, Carlies, McCormick, Nacua, Henley), 5 announced starters, and all 172 Week 10 inactives.</p></div>
+  <div class="card"><h3><a href="weather-venues.html">5. Stadium Roof/Surface &amp; NWS Overlay</a></h3><p>All 13 Week 11 Game Center venues coupled with live US National Weather Service hourly/period wind &amp; precipitation forecasts and 90-minute roof-declaration gates.</p></div>
+  <div class="card"><h3><a href="weekly-diff.html">6. Weekly What-Changed Diff</a></h3><p>All 32 NFL clubs from Week 9 to Post-Week-10 and Week 11 pre-kickoff: league rank delta, shrunk margin rating delta, W10 inactive counts, and Nov 10–18 IR/trade turnover.</p></div>
+</div>
+
+</section>
+<footer class="mainfoot">
+<p class="small muted">NFL Origination &amp; Skill Desk (<code>origination-desk/</code>) · Baseline snapshot: 2026-11-14 · Re-verified from official NFL.com, Club &amp; US National Weather Service sources: 2026-11-19 · Unconfirmed cells are intentionally left blank and listed on <a href="decisions-flags.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+document.querySelectorAll('input[data-filter]').forEach(function(inp) {
+  inp.addEventListener('input', function() {
+    var q = inp.value.toLowerCase().trim();
+    var tbl = document.getElementById(inp.getAttribute('data-filter'));
+    if (!tbl) return;
+    tbl.querySelectorAll('tbody tr').forEach(function(tr) {
+      tr.style.display = (!q || tr.textContent.toLowerCase().indexOf(q) !== -1) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "captured_date": "2026-11-19",
+  "dataset": "origination_desk_skill_and_diff",
+  "file_sha256": {
+    "luck_removal_panel.csv": "d5b1b544ba3e817e8c23ba655590eb4cb2f81a16b619db976f85371ffaace6a6",
+    "official_correlations_with_n.csv": "451c9606311f35f6230be381e213b099aa3da1cb2fc95aaacb6315f8c44a15d8",
+    "two_stage_leaderboard.csv": "c20096c7f371cbc0a543eb0aa8be18fe7f8385c29c1cfbca0b3e97d449b9f246",
+    "vig_free_decomposition.csv": "438c9a3e54bb6c0d893353470ce6b9646970f7bb873965bf9650948dc33dab9e",
+    "weekly_what_changed_w9_w10_w11.csv": "abbf5489ddeb2627ed7e3ff68ce51e96e07df3359f14dfb48fd33641dfb26488"
+  },
+  "official_correlations": {
+    "club_sample_n": 32,
+    "correlation_rows": 9,
+    "game_sample_n": 150
+  },
+  "two_stage_leaderboard": {
+    "multiplicity": {
+      "family_alpha": 0.05,
+      "prospective_registrations": 3,
+      "quarantined_retrospective_trials_in_repo": 28,
+      "sidak_alpha_per_trial": 0.001653,
+      "sidak_z_one_sided": 2.9377,
+      "total_trials_M": 31
+    },
+    "protocol_file": "docs/origination_desk/PROPER-SCORE-PROTOCOL-01.md",
+    "protocol_sha256": "966f954108e20a4e60ed367186b4af6722d044cf836ff74b954532aa8550bcac",
+    "stage_counts": {
+      "always_on_controls": 3,
+      "locked_combo_divisions": 3,
+      "prospective_in_escrow": 3,
+      "quarantined_retrospective_trials": 28,
+      "stage1_qualified": 0,
+      "stage2_qualified_live": 0
+    },
+    "walkforward_2026_w1_10": {
+      "bss_wf_vs_coin": 0.03549,
+      "cluster_bss_lb95": -0.07766,
+      "excess_misfit_brier": 0.02028,
+      "expected_brier_pure_luck": 0.21924,
+      "mean_brier_coin": 0.24833,
+      "mean_brier_home55": 0.25317,
+      "mean_brier_wf": 0.23952,
+      "mean_pred_home_prob": 0.5342,
+      "multiplicity_adj_bss_lb": -0.16849,
+      "n_games": 150,
+      "n_week_clusters": 10,
+      "realized_home_win_rate": 0.4767
+    }
+  },
+  "vig_free_decomposition": {
+    "mean_abs_vig_free_disagreement_pct": 11.409,
+    "mean_w10_mirror_overround_pct": 4.287,
+    "mean_w10_vig_tax_per_side_pct": 2.143,
+    "mirror_w10_audit_rows": 14,
+    "prospective_w11_rows": 52
+  },
+  "weekly_what_changed": {
+    "clubs_compared": 32,
+    "largest_rank_climb": {
+      "club": "CAR",
+      "spots_gained": 5
+    },
+    "largest_rank_drop": {
+      "club": "DEN",
+      "spots_lost": -5
+    }
+  }
+}

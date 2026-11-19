@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions, Open Questions &amp; Flagged for Review | NFL Origination &amp; Skill Desk</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+main { max-width: 1180px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+nav[aria-label="Desk navigation"] { line-height: 1.8; margin-bottom: 0.75rem; font-size: 0.92rem; }
+nav[aria-label="Desk navigation"] a.active { font-weight: 700; text-decoration: underline; }
+.tablewrap { overflow-x: auto; margin: 0.85rem 0 1.6rem; }
+input[type="search"] { padding: 0.45rem 0.7rem; min-width: 260px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.92rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+<main>
+<header class="pagetitle">
+<nav aria-label="Desk navigation"><a href="../index.html">Main Root</a> · <a href="../suggestions/index.html">Decision Center</a> · <a href="index.html">Overview &amp; Readiness</a> · <a href="lines-vig.html">Lines &amp; Vig-Free View</a> · <a href="leaderboard.html">Two-Stage Skill Board</a> · <a href="joint-gate.html">Joint Gate &amp; Correlations</a> · <a href="roster-turnover.html">Reserve, Trades &amp; Inactives</a> · <a href="weather-venues.html">Roof/Surface &amp; NWS Weather</a> · <a href="weekly-diff.html">Weekly What-Changed Diff</a> · <a href="decisions-flags.html" class="active">Flagged for review</a></nav>
+<p class="eyebrow">OD-08 · Non-Blocking Irregularities &amp; Owner Path Choices · Baseline snapshot 2026-11-14 · Live official audit 2026-11-19</p>
+<h1>Suggestions, Open Questions &amp; Flagged for Review</h1>
+<p class="lede">Candidate implementation paths, missing-information discovery actions, and every official-source irregularity uncovered during the 2026-11-19 audit.</p>
+</header>
+<section class="content">
+
+<div class="note">
+<b>Non-Blocking Review &amp; Decision Discipline:</b> None of the suggestions below have been silently enacted into frozen registrations, and every unverified cell across this desk remains blank. For the repository-wide reconciled 18-question / 18-path governance board, see <a href="../suggestions/index.html">Decision Center (<code>/suggestions/</code>)</a> and <a href="../pages/flagged.html">Main Flagged Register</a>.
+</div>
+
+<h2>1. Suggestions Review Board (Choose Implementation Path Before Any Rule Change)</h2>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">ID</th><th scope="col">Topic</th><th scope="col">Candidate Paths to Review</th><th scope="col">Decision State</th><th scope="col">Expected Impact</th><th scope="col">Source</th></tr></thead>
+<tbody><tr><td><code>OD-S01</code></td><td><b>Pre-Origination 4-Table Roster Gate</b></td><td>Path A: Join NFL.com monthly Reserve/Trades + 32 club roster RES pages + 90-min inactives before pricing (Recommended) | Path B: Rely on weekly injury report + club HTML depth charts only</td><td><span class="pill warn">Proposed — awaiting owner choice (nothing auto-mutated in existing models)</span></td><td>Eliminates silent availability errors (Willis, Jackson, Huntley) and catches the 20 stale club depth rows found on 2026-11-19.</td><td><a class="src-link" href="https://www.nfl.com/transactions/league/reserve-list/2026/11">Official source</a></td></tr><tr><td><code>OD-S02</code></td><td><b>90-Minute Pre-Kickoff Roof + Inactive Capture Trigger</b></td><td>Path A: Schedule automated fetch at T-85 min per kickoff slot for official inactives + roof status (Recommended) | Path B: Daily static cron only</td><td><span class="pill warn">Proposed — awaiting owner choice</span></td><td>Resolves blank pre-kickoff roof designations (HOU, DAL, DET, LAC) simultaneously with 90-minute official 53-man inactive lists.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11">Official source</a></td></tr><tr><td><code>OD-S03</code></td><td><b>Vig-Free Consensus Benchmark Policy Once Q-02 Clears</b></td><td>Path A: Power de-vigging as primary with Multiplicative sensitivity column (Recommended) | Path B: Multiplicative only | Path C: Raw vigged break-even only</td><td><span class="pill warn">Proposed — awaiting owner choice &amp; Q-02 price feed</span></td><td>Accounts for favorite-longshot asymmetry in moneyline tails while keeping operator vig tax explicitly separated from origination alpha.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official source</a></td></tr><tr><td><code>OD-S04</code></td><td><b>International Fixture Weather &amp; Neutral-Site Home-Edge Rule</b></td><td>Path A: Zero out H=1.6 home edge on neutral international venues + ingest WMO national met service (SMN Mexico / DWD Germany) | Path B: Keep H=1.6 constant until season end</td><td><span class="pill warn">Proposed — awaiting owner choice for PR-05+</span></td><td>Fixes PR-04&#x27;s documented Mexico City neutral-site limitation (MIN @ SF) and fills the non-US weather coverage gap.</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11">Official source</a></td></tr></tbody>
+</table>
+</div>
+
+<h2>2. Open Questions, Information Held vs. Missing &amp; Discovery Actions</h2>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">Question ID</th><th scope="col">Blocking Question</th><th scope="col">Information Held vs. Not Held</th><th scope="col">Owner Answer</th><th scope="col">Discovery / Clearing Action</th><th scope="col">Source</th></tr></thead>
+<tbody><tr><td><code>OD-Q01 (links Q-02)</code></td><td><b>Authorized timestamped opening &amp; closing market prices for 2026</b></td><td>HOLD: 52 pre-kickoff W11 fair lines in PR-04 + 14 W10 mirror quotes. MISSING: Licensed timestamped sportsbook/exchange feed.</td><td><span class="blank">blank — awaiting owner decision</span></td><td>Select &amp; license an official/authorized odds feed recording open + close timestamps per market.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11">Official source</a></td></tr><tr><td><code>OD-Q02 (links Q-04)</code></td><td><b>Authorized per-player offensive/defensive snap counts</b></td><td>HOLD: 172 official W10 inactives + 31/32 club HTML depth charts + 7 Game Book PDF links. MISSING: Rights-cleared per-player snap counts.</td><td><span class="blank">blank — awaiting owner decision</span></td><td>Obtain written NFL Game Book reuse permission or license an official participation table (e.g., NFL Next Gen Stats / PFR / TruMedia).</td><td><a class="src-link" href="https://static.www.nfl.com/image/upload/v1794764592/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf">Official source</a></td></tr><tr><td><code>OD-Q03</code></td><td><b>Houston Texans structured depth-chart source</b></td><td>HOLD: Official Houston Texans roster + W10 inactives + 11/17 Azeez Al-Shaair IR transaction. MISSING: Machine-parsable Texans depth table (club publishes image).</td><td><span class="blank">blank — awaiting owner decision</span></td><td>Wait for snap-count participation proxy once Q-04 clears; never transcribe Texans depth-chart images by eye.</td><td><a class="src-link" href="https://www.houstontexans.com/team/depth-chart">Official source</a></td></tr><tr><td><code>OD-Q04</code></td><td><b>Pre-kickoff stadium roof open/closed feed</b></td><td>HOLD: 12/13 Week 11 official NWS grids + post-game Game Book roof/surface confirmation. MISSING: Structured pre-kickoff roof-status endpoint on nfl.com.</td><td><span class="blank">blank — awaiting owner decision</span></td><td>Capture club roof declarations at the 90-minute inactive window and log immutable timestamps.</td><td><a class="src-link" href="https://www.nfl.com/games/colts-at-texans-2026-reg-11">Official source</a></td></tr></tbody>
+</table>
+</div>
+
+<h2 id="flagged">3. Flagged for Review — Source Irregularities, Stale Upstream Data &amp; Deliberate Blanks</h2>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">Flag ID</th><th scope="col">Irregularity</th><th scope="col">Verified Evidence</th><th scope="col">Safe Handling Applied</th><th scope="col">Source</th></tr></thead>
+<tbody><tr><td><code>OD-F01</code></td><td><b>NFL.com monthly Reserve List truncates at 25 rows &amp; omits Position</b></td><td>https://www.nfl.com/transactions/league/reserve-list/2026/11 stops at 11/10 (25 rows) and prints a blank Position cell on every row, omitting Malik Willis (MIA QB) and earlier BAL QBs on IR.</td><td>Joined club roster RES tables; left tx_printed_position blank verbatim.</td><td><a class="src-link" href="https://www.nfl.com/transactions/league/reserve-list/2026/11">Official source</a></td></tr><tr><td><code>OD-F02</code></td><td><b>15 stale player listings on live 2026-11-19 club depth charts</b></td><td>Club depth charts still list Aidan Hutchinson (DET EDGE1, IR 11/18), Jaylon Carlies (IND WLB1, IR 11/17), Mason McCormick (PIT LG1, IR 11/18), Puka Nacua (LA WR1, IR 11/12), and Daiyan Henley (LAC LB1, traded to DEN 11/10).</td><td>Flagged in stale_depth_and_turnover_audit.csv; never silently edited club transcriptions.</td><td><a class="src-link" href="https://www.detroitlions.com/team/depth-chart">Official source</a></td></tr><tr><td><code>OD-F03</code></td><td><b>Undated NFL.com Week 10 Sunday inactives slug resolves to 2025</b></td><td>https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-for-sunday-s-12-games contains 2025-reg-10 game links; the genuine 2026 Week 10 Sunday inactives URL ends in -sunday-2026-season.</td><td>Rejected 2025 slug; verified all 12 Sunday 2026 games from -sunday-2026-season.</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season">Official source</a></td></tr><tr><td><code>OD-F04</code></td><td><b>Lions Week 10 Out vs 53-man Sunday Inactive split (Kerby Joseph)</b></td><td>Cade Mays and D.J. Reed were both Out on W10 report and deactivated on Sunday&#x27;s Munich inactive list; Kerby Joseph (out since W6 2025, expected W11 debut vs TB) was Out on the injury report prior to 53-man activation.</td><td>Documented exact roster-state split rather than assuming missing inactive row meant active play.</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-tuesday-nov-17">Official source</a></td></tr><tr><td><code>OD-F05</code></td><td><b>Colts W11 depth chart went stale within 24 hours of publication</b></td><td>Colts published Week 11 unofficial depth chart Mon 11/16 4:17 PM listing Jaylon Carlies at WLB1, then placed Carlies on IR Tue 11/17 ahead of tonight&#x27;s TNF game at Houston.</td><td>Logged as POST_RELEASE_IR_STALENESS proof that depth charts must be versioned against daily transactions.</td><td><a class="src-link" href="https://www.colts.com/news/colts-release-unofficial-depth-chart-for-week-11">Official source</a></td></tr><tr><td><code>OD-F06</code></td><td><b>Official NFL Game Center vs Schedule stadium-name drift (HOU &amp; WAS)</b></td><td>Week 11 Game Centers print RELIANT STADIUM (IND@HOU) and NORTHWEST STADIUM (CIN@WAS), whereas Week 11 schedule hotel links print NRG Stadium and FedEx Field.</td><td>Preserved verbatim Game Center strings and flagged both naming discrepancies.</td><td><a class="src-link" href="https://www.nfl.com/games/colts-at-texans-2026-reg-11">Official source</a></td></tr><tr><td><code>OD-F07</code></td><td><b>Mexico City Week 11 fixture outside US NWS coverage + neutral-site H=1.6</b></td><td>vikings-at-49ers (Estadio Banorte, Mexico City) has no US NWS gridpoint and carries PR-04&#x27;s frozen +1.6 home-field constant despite neutral international venue.</td><td>Left all NWS weather cells blank and flagged neutral-site prior for PR-05 review.</td><td><a class="src-link" href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11">Official source</a></td></tr><tr><td><code>OD-F08</code></td><td><b>Cross-file club abbreviation drift (AZ/ARI and LA/LAR)</b></td><td>standings.tsv prints AZ &amp; LAR, official_standings_2026_11_18.tsv prints AZ &amp; LA, and verified_results_2026_n2.csv prints ARI &amp; LA.</td><td>Normalized deterministically in join code without altering frozen upstream files.</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official source</a></td></tr><tr><td><code>OD-F09</code></td><td><b>Week 12 NFL flex schedule changes announced Nov 17</b></td><td>NFL.com Nov 17 roundup confirmed Browns vs. Raiders flexed to Week 12 SNF (8:20 PM ET NBC) and Jaguars vs. Titans flexed to 1:00 PM ET FOX on Nov 29.</td><td>Flagged so upcoming Week 12 schedule &amp; rest/broadcast context captures refresh kickoff slots.</td><td><a class="src-link" href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-tuesday-nov-17">Official source</a></td></tr></tbody>
+</table>
+</div>
+
+</section>
+<footer class="mainfoot">
+<p class="small muted">NFL Origination &amp; Skill Desk (<code>origination-desk/</code>) · Baseline snapshot: 2026-11-14 · Re-verified from official NFL.com, Club &amp; US National Weather Service sources: 2026-11-19 · Unconfirmed cells are intentionally left blank and listed on <a href="decisions-flags.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+document.querySelectorAll('input[data-filter]').forEach(function(inp) {
+  inp.addEventListener('input', function() {
+    var q = inp.value.toLowerCase().trim();
+    var tbl = document.getElementById(inp.getAttribute('data-filter'));
+    if (!tbl) return;
+    tbl.querySelectorAll('tbody tr').forEach(function(tr) {
+      tr.style.display = (!q || tr.textContent.toLowerCase().indexOf(q) !== -1) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

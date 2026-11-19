@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joint-Evidence Gate &amp; Official Correlations | NFL Origination &amp; Skill Desk</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+main { max-width: 1180px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+nav[aria-label="Desk navigation"] { line-height: 1.8; margin-bottom: 0.75rem; font-size: 0.92rem; }
+nav[aria-label="Desk navigation"] a.active { font-weight: 700; text-decoration: underline; }
+.tablewrap { overflow-x: auto; margin: 0.85rem 0 1.6rem; }
+input[type="search"] { padding: 0.45rem 0.7rem; min-width: 260px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.92rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+<main>
+<header class="pagetitle">
+<nav aria-label="Desk navigation"><a href="../index.html">Main Root</a> · <a href="../suggestions/index.html">Decision Center</a> · <a href="index.html">Overview &amp; Readiness</a> · <a href="lines-vig.html">Lines &amp; Vig-Free View</a> · <a href="leaderboard.html">Two-Stage Skill Board</a> · <a href="joint-gate.html" class="active">Joint Gate &amp; Correlations</a> · <a href="roster-turnover.html">Reserve, Trades &amp; Inactives</a> · <a href="weather-venues.html">Roof/Surface &amp; NWS Weather</a> · <a href="weekly-diff.html">Weekly What-Changed Diff</a> · <a href="decisions-flags.html">Flagged for review</a></nav>
+<p class="eyebrow">OD-04 · Parlay / Combo Dependence &amp; Official-Only r with n · Baseline snapshot 2026-11-14 · Live official audit 2026-11-19</p>
+<h1>Joint-Evidence Gate &amp; Official Correlations</h1>
+<p class="lede">Why marginal probability multiplication is barred across multi-leg parlays, SGPs, and player prop combos, backed by official 2026 NFL correlations.</p>
+</header>
+<section class="content">
+
+<div class="formula">
+<b>Joint-Probability Law:</b> For binary legs <code>A, B</code> with marginals <code>p_A, p_B</code> and phi correlation <code>rho</code>,
+<code>P(A and B) = p_A * p_B + rho * sqrt(p_A*(1-p_A)*p_B*(1-p_B))</code>, bounded by Fréchet–Hoeffding limits <code>[max(0, p_A + p_B - 1), min(p_A, p_B)]</code>. Multiplying marginal probabilities is rejected across all combo divisions.
+</div>
+
+<h2>Joint-Evidence Gate Status Across Combo Divisions</h2>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">Gate ID</th><th scope="col">Division</th><th scope="col">Gate Status</th><th scope="col">Why Marginal Multiplication Fails</th><th scope="col">Required Evidence to Unlock</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td><code>JEG-01</code></td><td>Division 2 — Multi-Game Parlays</td><td><span class="pill alert">LOCKED</span></td><td>Compound bookmaker hold escalates from 4.55% (1 leg at -110) to 20.75% (5 legs, ~4.56x single-leg hold), while slate-wide weather and model-calibration errors correlate across Sunday windows.</td><td>Pre-registered slate-cluster joint calibration + explicit operator push/postponement leg-reduction rules.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11">Official NFL</a></td></tr><tr><td><code>JEG-02</code></td><td>Division 3 — Same-Game Parlays (SGP)</td><td><span class="pill alert">LOCKED</span></td><td>For two 50% legs with correlation rho = +0.30, true joint probability is 0.3250 (not 0.2500); conversely negative dependence (CORR-04 r = -0.1405 on n = 150) depresses joint hit rates below naive marginals while SGP pricing embeds extra hold.</td><td>Validated bivariate (margin, total) copula on &gt;=200 official finals + operator SGP tie/push void table.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>JEG-03</code></td><td>Division 4 — Player Prop Combos</td><td><span class="pill alert">LOCKED</span></td><td>Player target/rush shares compete within a fixed team play budget and shift discontinuously on injuries/inactives; neither official snap-share feeds (Q-04) nor prop price snapshots (Q-02) are authorized yet.</td><td>Authorized snap/route participation feed + timestamped prop quotes + book DNP/injury-reboot rules.</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg10">Official NFL</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Official-Only Correlations Published with Exact Sample Size <code>n</code></h2>
+<p>Every correlation below is computed strictly from verified official 2026 NFL game finals (<code>n = 150</code>, Weeks 1–10) or verified post-Week-10 official NFL league standings (<code>n = 32</code> clubs). Zero third-party market or fantasy numbers enter this table.</p>
+<div class="tablewrap" tabindex="0">
+<table class="wide" data-table>
+<thead><tr><th scope="col">ID</th><th scope="col">Official Metric Pair</th><th scope="col">Official Corpus</th><th scope="col">n</th><th scope="col">Pearson r</th><th scope="col">Fisher 95% CI</th><th scope="col">t-Stat</th><th scope="col">p-Value</th><th scope="col">Implied Joint P at (0.50, 0.50)</th><th scope="col">Fréchet Bounds</th><th scope="col">Origination &amp; Parlay Implication</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td><code>CORR-01</code></td><td><b>Home Score vs Total Points</b></td><td>2026 Official Game Finals (W1-10)</td><td><b>150</b></td><td><code>+0.6762</code></td><td><code>[+0.5787, +0.7547]</code></td><td><code>+11.17</code></td><td><code>0.0000e+00</code></td><td><code>0.4191 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Structural shared component: backing Home Team Total + Game Over double-counts home scoring</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>CORR-02</code></td><td><b>Away Score vs Total Points</b></td><td>2026 Official Game Finals (W1-10)</td><td><b>150</b></td><td><code>+0.7687</code></td><td><code>[+0.6939, +0.8271]</code></td><td><code>+14.62</code></td><td><code>0.0000e+00</code></td><td><code>0.4422 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Structural shared component: Away Team Total + Game Over carries strong positive dependence</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>CORR-03</code></td><td><b>Home Score vs Away Score</b></td><td>2026 Official Game Finals (W1-10)</td><td><b>150</b></td><td><code>+0.0486</code></td><td><code>[-0.1126, +0.2072]</code></td><td><code>+0.59</code></td><td><code>5.5415e-01</code></td><td><code>0.2621 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Pace/shootout coupling test across all 150 verified 2026 games</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>CORR-04</code></td><td><b>Signed Home Margin vs Game Total</b></td><td>2026 Official Game Finals (W1-10)</td><td><b>150</b></td><td><code>-0.1405</code></td><td><code>[-0.2941, +0.0202]</code></td><td><code>-1.73</code></td><td><code>8.4278e-02</code></td><td><code>0.2149 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Direct SGP Side x Total dependence: near-zero linear r across all games masks favorite/blowout regime effects</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>CORR-05</code></td><td><b>Absolute Margin |Home - Away| vs Game Total</b></td><td>2026 Official Game Finals (W1-10)</td><td><b>150</b></td><td><code>-0.0188</code></td><td><code>[-0.1785, +0.1419]</code></td><td><code>-0.23</code></td><td><code>8.1944e-01</code></td><td><code>0.2453 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Blowout vs shootout coupling: tests whether lopsided margins co-move with scoring totals</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>CORR-06</code></td><td><b>Home Win Indicator vs Total &gt; 46.0 Indicator</b></td><td>2026 Official Game Finals (W1-10)</td><td><b>150</b></td><td><code>-0.0656</code></td><td><code>[-0.2236, +0.0956]</code></td><td><code>-0.80</code></td><td><code>4.2354e-01</code></td><td><code>0.2336 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Binary SGP (Home ML x Over 46.0) phi correlation on 150 verified finals; proves why joint P(A,B) != P(A)P(B) must be tested empirically</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10">Official NFL</a></td></tr><tr><td><code>CORR-07</code></td><td><b>Club Net Point Differential vs Win Percentage</b></td><td>2026 Official Standings Post-W10 (32 clubs)</td><td><b>32</b></td><td><code>+0.8755</code></td><td><code>[+0.7583, +0.9379]</code></td><td><code>+9.92</code></td><td><code>0.0000e+00</code></td><td><code>0.4689 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Justifies originating Side from point-differential strength before Moneyline win probability</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official NFL</a></td></tr><tr><td><code>CORR-08</code></td><td><b>Club Points For (PF) vs Win Percentage</b></td><td>2026 Official Standings Post-W10 (32 clubs)</td><td><b>32</b></td><td><code>+0.6569</code></td><td><code>[+0.3998, +0.8182]</code></td><td><code>+4.77</code></td><td><code>1.8249e-06</code></td><td><code>0.4142 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Offensive scoring contribution to 2026 club win rate</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official NFL</a></td></tr><tr><td><code>CORR-09</code></td><td><b>Club Points Against (PA) vs Win Percentage</b></td><td>2026 Official Standings Post-W10 (32 clubs)</td><td><b>32</b></td><td><code>-0.6698</code></td><td><code>[-0.8256, -0.4189]</code></td><td><code>-4.94</code></td><td><code>7.7976e-07</code></td><td><code>0.0826 (vs indep 0.2500)</code></td><td><code>[0.0000, 0.5000]</code></td><td>Defensive points-allowed contribution to 2026 club win rate</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG">Official NFL</a></td></tr>
+</tbody>
+</table>
+</div>
+
+</section>
+<footer class="mainfoot">
+<p class="small muted">NFL Origination &amp; Skill Desk (<code>origination-desk/</code>) · Baseline snapshot: 2026-11-14 · Re-verified from official NFL.com, Club &amp; US National Weather Service sources: 2026-11-19 · Unconfirmed cells are intentionally left blank and listed on <a href="decisions-flags.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+document.querySelectorAll('input[data-filter]').forEach(function(inp) {
+  inp.addEventListener('input', function() {
+    var q = inp.value.toLowerCase().trim();
+    var tbl = document.getElementById(inp.getAttribute('data-filter'));
+    if (!tbl) return;
+    tbl.querySelectorAll('tbody tr').forEach(function(tr) {
+      tr.style.display = (!q || tr.textContent.toLowerCase().indexOf(q) !== -1) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
