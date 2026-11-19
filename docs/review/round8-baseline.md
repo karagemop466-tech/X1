@@ -104,6 +104,29 @@ These feed the coverage register (`docs/review/round8-brief-coverage.md`, rows m
 - **R8-I-11 — three coverage registers exist for three briefs.** `data/audit/requirements_assessed.json` (53 rows), `docs/audit/brief-coverage-2026-11-17.md` (82 rows) and this session's `docs/review/round8-brief-coverage.tsv` (82 rows, same numbering). They are not merged.
 - **R8-I-12 — the 2026-11-17 register was stale.** Its NOT BUILT count was 24; the re-check finds 8. Merged work from the origination desk, modelling lab, depth matrix and kickoff trial was not reflected. Each change is recorded per row.
 
+## 4a. Repair of `main` during this session (verify-site was failing)
+
+When this session rebased onto the newer `main` (`42c58e2`), `verify-site` had **failed on the last two merges** (PR #117 and PR #119). Its own chain stopped at step 50 (mind-change register). Root cause, verified:
+
+- **R8-I-14 — an automated data commit erased four recorded registration commits.** `65ba4c4` (`x1-bot`, "data: refresh from official sources", 2026-11-19 19:29 UTC) rebuilt `data/preregistration/register.json` in a shallow CI checkout. It replaced the registration commits of PR-01, PR-02, PR-03 and PR-04 with `unresolved-shallow-checkout` and an empty hash. The brief's rule is that the commit hash *is* the registration, so these are evidence.
+- **Cause in the builder.** `tools/build_preregistration.py` carried an anchor forward only when the *previous* register's top-level `history_scope.shallow` flag was false. CI is always shallow, so the flag was always true and the guard erased the anchors on every rebuild.
+- **Verification of the four anchors.** A blobless full-history clone was read (`git clone --bare --filter=blob:none`). Each hash exists, and each is the **first commit that touched its rule file**: PR-01 `25221eb` (`docs/preregistration/PR-01-shadow-baseline.md`), PR-02 `0747005` (`docs/lab/control-baselines.md`), PR-03 `0709442` (`docs/methodology/results-feed.md`), PR-04 `7bd4889` (`docs/preregistration/PR-04-week11-escrow.md`).
+
+**Repair (on `arena/757174a7-x1`, commit `71ab593` and its predecessor):**
+
+1. `data/preregistration/register.json` restored from `856366f` (the verified values), then rebuilt with the fixed builder.
+2. `tools/build_preregistration.py`: row-level carry-forward. A previously *registered* anchor with a non-empty hash, not equal to this checkout's boundary commit, is carried forward when the rule bytes are unchanged, regardless of the previous file's top-level flag.
+3. Regenerated the outputs that render these anchors: `data/mind_change/register.csv` (unchanged content), `pages/shadow-baseline.html`, `lab/closure.html`, and `data/lab/reads/2026-11-17/feed-closure-measurement.json` (M5 blast-radius count 60 → 61, because this register names the results feed).
+4. Verified with a **depth-1 clone of the branch**, which is what `actions/checkout@v4` gives CI: `build_preregistration.py --check`, `build_mind_change.py --check` and `build_closure_measurement.py --check` all pass, and the four anchors are still `registered`.
+
+**Result on the repaired head: 52 of 52 run steps PASS.**
+
+**Irregularities this repair surfaces (all published on the register):**
+
+- **R8-I-15 — PR-03's rule file was edited after its registration.** `docs/methodology/results-feed.md` changed in `0c3e1e3` (N-4, 2026-11-17), after the registration commit `0709442`. The register states this (`no - edited after registration`) and it was already stated at `856366f`. It is a real pre-registration breach to review, not a builder fault.
+- **R8-I-16 — `main`'s `verify-site` failed on its push runs after #117 and #119** (runs 44599198573 and 44599436788). The failing state therefore reached `main`; this session did not establish why the pull-request runs did not stop it.
+- **R8-I-17 — the scheduled `Refresh research data` workflow has failed since 2026-11-17** (`.github/workflows/pipeline.yml`, run 44123337794; `create-pull-request` reports `Resource not accessible by integration`). Logged by another session as A-3; still unresolved at this run.
+
 ## 5. What this session did not do
 
 - It did not re-read all 347 injury rows, the 32 club depth charts, or the Texans depth image. Those remain on the flagged queue.
