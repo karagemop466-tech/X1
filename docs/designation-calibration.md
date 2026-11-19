@@ -1,0 +1,9 @@
+# Can Questionable be used as a probability?
+
+Not yet. A practice designation is not an appearance, and omission from an inactive list is not proof of playing. Keep this feature off. No empirical play-rate estimate is published by this change.
+
+Use archived [official NFL injury reports](https://www.nfl.com/injuries/) and the final Game Book linked from each [official game centre](https://www.nfl.com/schedules/). Before importing, verify identities, complete team report coverage, report capture clocks, kickoff and the explicit participation, did-not-play and inactive sections. Do not use this evaluator on a weekly list of changed players: it needs complete per-player histories, including explicit designation clearances. Do not treat absence as clearance. Keep reviewed row-level evidence private.
+
+Run `python tools/designation_calibration.py reports.csv outcomes.csv`. Both private inputs require `season,game_id,team_id,player_id,source`; use stable IDs and a specific NFL-hosted evidence URL. Reports also require `captured_at,kickoff,designation` (offset-aware timestamps; empty designation for verified clearance). Outcomes require `game_book_status` (`played`, `active_dnp`, `inactive`). Hosting checks do not authenticate the transcription. Do not supply ambiguous or unresolved outcomes.
+
+The evaluator selects the latest observation strictly before kickoff and reports player-game counts, matched denominator, unmatched count, fraction with confirmed participation and a descriptive 95% Wilson interval per season and designation. Missing cases are excluded, not losses. Report selection bias and within-game dependence separately; these intervals are not a feature-promotion gate. Next: audit unmatched cases by team, collect several seasons, then compare identical personnel-on/off models on later seasons before promoting any feature. No leaderboard points or staking decisions follow from these estimates.

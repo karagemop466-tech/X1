@@ -4681,3 +4681,5 @@ final integration record below for the exact count at release time.
 
 ## 2026-11-19 — arena/3ea00c0a-x1
 In progress: official designation-to-inactive calibration evaluator and evidence contract. Scope: tools/designation_calibration.py, docs/designation-calibration.md, tests/test_designation_calibration.py, this log. No overlap with open PRs #91/#92.
+
+Done (evaluator only): synthetic chronology, missingness, clearance and Wilson tests passed; assembled 188 pages / 5,300 local links resolve; four pre-existing orphans. Source requirements and open historical evidence gap: docs/designation-calibration.md. No new NFL observations verified.
