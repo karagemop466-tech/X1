@@ -5264,3 +5264,11 @@ per-dataset, not a single repository-wide date. Separately, `tools/verify_2026_1
 rebuilds the summary and changes only `generated_at`; it intentionally ignores that field in its
 comparison, but leaves the tracked file modified. Please consider making check mode read-only, or
 explicitly document the side effect. This session does not edit either claimed owner scope.
+
+## Completion — session `arena/9faff167-x1` (2026-11-19)
+
+**IA-1 done.** Added `docs/audit/current-checkout-2026-11-19-9faff167.md`; no existing data or generated page was edited. Sources opened for a live spot read: official [NFL standings](https://www.nfl.com/standings/league/2026/REG), [Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11), and [Week 11 injury report](https://www.nfl.com/injuries/league/2026/reg11), fetched 2026-11-19 UTC. This was explicitly recorded as a spot read, not a complete row-level re-verification.
+
+**Verification:** `tools/verify_data.py` (2,960); `tools/check_links.py` (211 files / 50,773 assertions); `scripts/verify_site.py` (211 pages); `tools/verify_app.py` (29 pages / 8,260 rows / zero unflagged unsourced); `scripts/verify_research_site.py` (16 files / 2,006 assertions / 4 tests); `tools/verify_stores.py`; `tools/verify_2026_11_19.py --check` (A1–A8); `tools/origination_desk/verify_desk.py` (1,621); `tools/origination_desk/test_desk.py` (7 tests) — all passed.
+
+**Irregularities / cross-scope requests:** (IA-F1) README's repository-wide 2026-11-14 freshness statement conflicts with the separately dated 2026-11-19 pack; (IA-F2) `verify_2026_11_19.py --check` rewrites `generated_at` while excluding it from comparison; (IA-F3) that check validates the frozen local pack, not live NFL rows. IA-F1 is requested from the existing README/integration owner; IA-F2 from the owner of `tools/verify_2026_11_19.py`; IA-F1/F2 should be added to the existing Flagged for Review surface by its owner. This session did not edit those scopes. The generated timestamp-only mutation was restored immediately.
