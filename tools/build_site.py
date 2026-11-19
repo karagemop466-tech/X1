@@ -1314,6 +1314,12 @@ def page_schedule():
     <li>The set of clubs on bye equals CHI, DEN, PHI, TB.</li>
     <li>Every game links to its official nfl.com game page.</li>
   </ul>
+  <h2>League schedule announcement (dated)</h2>
+  <p>The NFL published the full 2026 regular-season schedule on <strong>May 14, 2026</strong>: an
+  18-week, 272-game season opening Wednesday, September 9, 2026 in Seattle and closing with 16
+  division games in Week 18. This dated announcement sits beside the live Week 10 slate so the
+  fixture context can be checked against the league's own dated record.</p>
+  <p class="srcline">{link('https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced', '2026 NFL Schedule Announced — NFL Football Communications, May 14, 2026 ↗')}</p>
 </section>
 """
     return shell("Week 10", f"SNAPSHOT {RETRIEVED}", body, depth=1)

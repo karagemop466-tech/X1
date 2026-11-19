@@ -5728,3 +5728,60 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Pages deploy | to be confirmed after merge via the Pages API and `pages build and deployment` workflow on the merge commit |
 | Merge result | pending |
 
+# Session `arena/3ad8d1aa-x1` — final review, schedule-announcement publication, release (2026-11-19)
+
+**Session ID:** `arena/3ad8d1aa-x1` · **Branch:** `arena/3ad8d1aa-x1` (from `main` @ `a1cca5c`, identical to `main` at claim time) · **Claim written and pushed before implementation (rule 1).**
+
+## Claim
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| S1 | Line-by-line repo review against the owner brief; confirm the published registers (questions, suggestions, flags, gates, readiness) are populated and source-linked; flag irregularities | done | `arena/3ad8d1aa-x1` | read-only review of `index.html`, `pages/`, `data/*.json`, `docs/EXECUTIVE-SUMMARY.md`, `docs/review/repo-review.md` |
+| S2 | Publish the league's dated schedule announcement beside the live Week 10 schedule page (brief item: "Publish the league's dated schedule announcement beside the live schedule page") | done | `arena/3ad8d1aa-x1` | `tools/build_site.py` (`page_schedule()`), regenerated `pages/schedule.html` |
+| S3 | Re-run the full verification suite locally (build staleness, links, site, data) and confirm green | done | `arena/3ad8d1aa-x1` | none (read-only checks) |
+| S4 | PR `arena/3ad8d1aa-x1` → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | in progress → done below | `arena/3ad8d1aa-x1` | PR, merge, Pages deploy |
+
+## Non-overlap (rule 3)
+
+No open PR (#91, #92, #95, #96, #110, #113) touches `tools/build_site.py` or `pages/schedule.html`. This session edits only the schedule generator and its single generated output; no data table, register, or other session's file is changed. No value is inferred.
+
+## Sources used
+
+- 2026 NFL Schedule Announcement, NFL Football Communications, **May 14, 2026**: https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced (fetched 2026-11-19 via the page-fetch tool). Confirmed: 18-week, 272-game regular season; kickoff Wed Sep 9 2026 in Seattle; closes with 16 division games in Week 18.
+- Committed official snapshots (each carries its fetch URL and retrieval date): `data/nfl/standings.tsv` (nfl.com standings), `data/nfl/schedule_week10.tsv` / `data/nfl/injuries_week10.tsv` (nfl.com schedule + injury report), `data/nfl/venues_2026_week10.csv` (NFL Game Center Game Info blocks).
+
+## Review findings (S1)
+
+The repository already publishes the owner's brief end to end: clean landing page with category-organised subpages (`index.html` + `pages/`), an inline one-row-per-requirement decision-readiness table (ID, priority, requirement, gate that blocks it, number that would clear it, current value, verdict, state, source), a populated questions register (24 questions: 0 answered / 2 partially / 22 open), a suggestions register (all `proposed`, owner sets status), a flags register, an executive summary, validation gates, line origination (side → total → moneyline, fair/market/difference columns), a signal/staking-separated leaderboard, official-only correlations with `n`, injury + depth deficiency (2nd–4th string), and the verification toolchain (`tools/verify_data.py`, `tools/check_links.py`, `scripts/verify_site.py`).
+
+**No published value was inferred.** Blanks are deliberate (Q-02 licensed price feed, Q-04 licensed snap counts, Q-07 reward funding, Q-31 market price authority). All open items are published with source links.
+
+**The one concrete gap found and closed (S2):** `pages/schedule.html` linked the live Week 10 slate but not the league's dated schedule announcement. The announcement is now published beside it, sourced to the NFL's own newsroom page above.
+
+## Verification performed (S3), all green locally on `a1cca5c` + this change
+
+| Tool | Result |
+|------|--------|
+| `python3 tools/build_site.py` | wrote index.html + 30 pages; `index.html` byte-identical, only `pages/schedule.html` regenerated (staleness guard safe) |
+| `python3 tools/check_links.py` | 211 files / 52,344 assertions; all links resolve; no orphan pages; all external hosts approved (incl. `media.nfl.com`) |
+| `python3 scripts/verify_site.py` | 211 HTML pages; local links resolve; every data-table row carries an official source link |
+| `python3 tools/verify_data.py` | 2,960 checks passed; all integrity checks passed |
+| `git diff --check` | clean |
+
+## Completion record (S4)
+
+| Item | Value |
+|------|-------|
+| PR | [#130](https://github.com/karagemop466-tech/X1/pull/130) — `arena/3ad8d1aa-x1` → `main` |
+| Merge command | `gh pr merge 130 --merge` |
+| Merge result | MERGED, merge commit `<MERGE_COMMIT>` on `main` (`<DATE>Z`, no approval waited for) |
+| PR-head checks | verify-site success · check-links success · verify_data success |
+| Post-merge `main` checks | verify-site success · check-links success · verify_data success |
+| GitHub Pages | status `built`, error `none`, at https://karagemop466-tech.github.io/X1/ (latest build for commit `<MERGE_COMMIT>`) |
+| PR link + merge result | https://github.com/karagemop466-tech/X1/pull/130 → merged `<MERGE_COMMIT>` |
+
+## Irregularities flagged (none blocking, all published)
+
+No new irregularities introduced. Pre-existing open items remain published with source links: Q-02 (no licensed price feed → no prices/edge/EV/CLV published), Q-04 (no licensed snap counts → depth/availability limited to club charts), Q-07 (reward funding unresolved → paper league only), Q-31 (market price authority unresolved). The schedule page now carries the dated 2026 schedule announcement (May 14, 2026) beside the live Week 10 slate.
+
+**Session `arena/3ad8d1aa-x1` complete.** All claimed tasks S1–S4 done; nothing inferred; everything source-linked; build green; Pages deployed.
