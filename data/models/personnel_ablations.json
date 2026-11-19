@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 20261119,
+    "overlap_games_across_splits": 0,
+    "w26_w3_w10_rating_ablation": {
+      "games": 118,
+      "mae_unadjusted": 9.5775,
+      "mae_opp_aware_srs": 9.4987,
+      "delta_mae": -0.0787,
+      "delta_mae_ci95": [
+        -0.228,
+        0.071
+      ],
+      "brier_unadjusted": 0.2329,
+      "brier_opp_aware_srs": 0.23155,
+      "delta_brier": -0.00135,
+      "delta_brier_ci95": [
+        -0.00407,
+        0.00148
+      ]
+    },
+    "m1_learned_weights_from_train_2019_2023": {
+      "intercept_hfa": 1.3086,
+      "srs_diff": 0.8529,
+      "rest_diff": 0.0753,
+      "home_qb_change": -2.094,
+      "away_qb_change": 3.7176
+    }
+  },
+  "rows": [
+    {
+      "split": "validation_2024",
+      "feature_set": "QB_starter_change_vs_base_SRS_rest",
+      "status": "measured_chronological_holdout",
+      "games": 253,
+      "games_with_qb_change": 51,
+      "mae_without_personnel": 10.4709,
+      "mae_with_personnel": 10.4117,
+      "delta_mae_with_minus_without": -0.0592,
+      "delta_mae_ci95": "[-0.1998, +0.0908]",
+      "brier_without_personnel": 0.22381,
+      "brier_with_personnel": 0.22154,
+      "delta_brier_with_minus_without": -0.00227,
+      "delta_brier_ci95": "[-0.00461, +0.00021]",
+      "learned_home_qb_change_pts": -2.094,
+      "learned_away_qb_change_pts": 3.718,
+      "provenance": "third_party_mirror",
+      "source_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    },
+    {
+      "split": "final_holdout_2025",
+      "feature_set": "QB_starter_change_vs_base_SRS_rest",
+      "status": "measured_chronological_holdout",
+      "games": 253,
+      "games_with_qb_change": 55,
+      "mae_without_personnel": 10.4542,
+      "mae_with_personnel": 10.4472,
+      "delta_mae_with_minus_without": -0.0069,
+      "delta_mae_ci95": "[-0.1730, +0.1649]",
+      "brier_without_personnel": 0.22759,
+      "brier_with_personnel": 0.22592,
+      "delta_brier_with_minus_without": -0.00166,
+      "delta_brier_ci95": "[-0.00453, +0.00128]",
+      "learned_home_qb_change_pts": -2.094,
+      "learned_away_qb_change_pts": 3.718,
+      "provenance": "third_party_mirror",
+      "source_url": "https://github.com/nflverse/nfldata/blob/master/data/games.csv"
+    },
+    {
+      "split": "live_2026_official_w1_w11",
+      "feature_set": "Official_injury_designation_and_depth_replacement",
+      "status": "BLOCKED_PENDING_MULTI_WEEK_INACTIVES",
+      "games": 150,
+      "games_with_qb_change": "",
+      "mae_without_personnel": 9.4987,
+      "mae_with_personnel": "",
+      "delta_mae_with_minus_without": "",
+      "delta_mae_ci95": "",
+      "brier_without_personnel": 0.23155,
+      "brier_with_personnel": "",
+      "delta_brier_with_minus_without": "",
+      "delta_brier_ci95": "",
+      "learned_home_qb_change_pts": "",
+      "learned_away_qb_change_pts": "",
+      "provenance": "official_verified (ablation blocked; 0 official inactive lists archived across W1-W10)",
+      "source_url": "https://www.nfl.com/standings/league/2026/REG"
+    }
+  ]
+}
