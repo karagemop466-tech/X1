@@ -24,13 +24,13 @@
    "rows": 896,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 2834,
+   "null_cells": 2957,
    "problems": [],
    "ok": true
   },
   {
    "dataset": "depth_charts",
-   "rows": 1808,
+   "rows": 1818,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 56,
@@ -48,10 +48,10 @@
   },
   {
    "dataset": "injuries",
-   "rows": 347,
+   "rows": 253,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
-   "null_cells": 352,
+   "null_cells": 474,
    "problems": [],
    "ok": true
   },
@@ -84,7 +84,7 @@
   },
   {
    "dataset": "repo_review",
-   "rows": 853,
+   "rows": 868,
    "rows_missing_source": 0,
    "rows_non_official_source": 0,
    "null_cells": 0,

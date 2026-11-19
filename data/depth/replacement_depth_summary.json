@@ -20,20 +20,20 @@
   "source_url",
   "secondary_url"
  ],
- "rows_count": 9,
+ "rows_count": 7,
  "totals": {
   "slots": 896,
-  "replacement_named": 687,
-  "no_replacement_named": 209,
-  "starters_on_report_without_named_replacement": 16,
+  "replacement_named": 692,
+  "no_replacement_named": 204,
+  "starters_on_report_without_named_replacement": 19,
   "by_depth": {
-   "2": 678,
-   "3": 9
+   "2": 690,
+   "3": 2
   },
   "by_depth_all_slots": {
-   "2": 678,
-   "none": 209,
-   "3": 9
+   "2": 690,
+   "none": 204,
+   "3": 2
   }
  },
  "gaps": [
@@ -42,96 +42,48 @@
    "unit": "Special Teams",
    "position": "LS",
    "starter": "Luke Rhodes",
-   "game_status": "Out",
+   "game_status": "Questionable",
    "source_url": "https://www.colts.com/team/depth-chart"
   },
   {
-   "team": "TEN",
-   "unit": "Defense",
-   "position": "LB",
-   "starter": "Cody Barton",
-   "game_status": "Out",
-   "source_url": "https://www.tennesseetitans.com/team/depth-chart"
-  },
-  {
-   "team": "TEN",
-   "unit": "Offense",
-   "position": "LG",
-   "starter": "Peter Skoronski",
-   "game_status": "Out",
-   "source_url": "https://www.tennesseetitans.com/team/depth-chart"
-  },
-  {
-   "team": "LA",
-   "unit": "Special Teams",
-   "position": "LS",
-   "starter": "Joe Cardona",
-   "game_status": "Questionable",
-   "source_url": "https://www.therams.com/team/depth-chart"
-  },
-  {
-   "team": "MIN",
+   "team": "IND",
    "unit": "Offense",
    "position": "WR",
-   "starter": "Jordan Addison",
+   "starter": "Anthony Gould",
    "game_status": "Questionable",
-   "source_url": "https://www.vikings.com/team/depth-chart"
+   "source_url": "https://www.colts.com/team/depth-chart"
   },
   {
-   "team": "SF",
-   "unit": "Defense",
-   "position": "LCB",
-   "starter": "Renardo Green",
-   "game_status": "Questionable",
-   "source_url": "https://www.49ers.com/team/depth-chart"
-  },
-  {
-   "team": "SF",
-   "unit": "Defense",
-   "position": "NB",
-   "starter": "Upton Stout",
-   "game_status": "Questionable",
-   "source_url": "https://www.49ers.com/team/depth-chart"
-  },
-  {
-   "team": "ATL",
-   "unit": "Special Teams",
-   "position": "LS",
-   "starter": "Liam McCullough",
-   "game_status": "",
-   "source_url": "https://www.atlantafalcons.com/team/depth-chart"
-  },
-  {
-   "team": "CAR",
-   "unit": "Special Teams",
-   "position": "PR",
-   "starter": "Trevor Etienne",
-   "game_status": "",
-   "source_url": "https://www.panthers.com/team/depth-chart"
-  },
-  {
-   "team": "CLE",
+   "team": "BUF",
    "unit": "Offense",
-   "position": "RG",
-   "starter": "Austin Barber",
+   "position": "WR",
+   "starter": "Keon Coleman",
    "game_status": "",
-   "source_url": "https://www.clevelandbrowns.com/team/depth-chart"
+   "source_url": "https://www.buffalobills.com/team/depth-chart"
   },
   {
-   "team": "CLE",
-   "unit": "Defense",
-   "position": "WILL",
-   "starter": "Carson Schwesinger",
+   "team": "DEN",
+   "unit": "Offense",
+   "position": "FB",
+   "starter": "Adam Prentice",
    "game_status": "",
-   "source_url": "https://www.clevelandbrowns.com/team/depth-chart"
+   "source_url": "https://www.denverbroncos.com/team/depth-chart"
   },
   {
-   "team": "LA",
-   "unit": "Defense",
-   "position": "DE",
-   "starter": "Braden Fiske",
+   "team": "LV",
+   "unit": "Special Teams",
+   "position": "K",
+   "starter": "Matt Gay",
    "game_status": "",
-   "source_url": "https://www.therams.com/team/depth-chart"
+   "source_url": "https://www.raiders.com/team/depth-chart"
+  },
+  {
+   "team": "MIA",
+   "unit": "Special Teams",
+   "position": "H",
+   "starter": "Bradley Pinion",
+   "game_status": "",
+   "source_url": "https://www.miamidolphins.com/team/depth-chart"
   },
   {
    "team": "MIA",
@@ -142,12 +94,44 @@
    "source_url": "https://www.miamidolphins.com/team/depth-chart"
   },
   {
-   "team": "NYG",
+   "team": "MIA",
+   "unit": "Special Teams",
+   "position": "P",
+   "starter": "Bradley Pinion",
+   "game_status": "",
+   "source_url": "https://www.miamidolphins.com/team/depth-chart"
+  },
+  {
+   "team": "MIN",
    "unit": "Offense",
    "position": "WR",
-   "starter": "Darnell Mooney",
+   "starter": "Jordan Addison",
+   "game_status": "",
+   "source_url": "https://www.vikings.com/team/depth-chart"
+  },
+  {
+   "team": "NYG",
+   "unit": "Special Teams",
+   "position": "LS",
+   "starter": "Ben Mann",
    "game_status": "",
    "source_url": "https://www.giants.com/team/depth-chart"
+  },
+  {
+   "team": "PHI",
+   "unit": "Offense",
+   "position": "RB",
+   "starter": "Saquon Barkley",
+   "game_status": "",
+   "source_url": "https://www.philadelphiaeagles.com/team/depth-chart"
+  },
+  {
+   "team": "PHI",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "DeVonta Smith",
+   "game_status": "",
+   "source_url": "https://www.philadelphiaeagles.com/team/depth-chart"
   },
   {
    "team": "PIT",
@@ -164,6 +148,46 @@
    "starter": "T.J. Watt",
    "game_status": "",
    "source_url": "https://www.steelers.com/team/depth-chart"
+  },
+  {
+   "team": "PIT",
+   "unit": "Defense",
+   "position": "OLB",
+   "starter": "Nick Herbig",
+   "game_status": "",
+   "source_url": "https://www.steelers.com/team/depth-chart"
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "LCB",
+   "starter": "Renardo Green",
+   "game_status": "",
+   "source_url": "https://www.49ers.com/team/depth-chart"
+  },
+  {
+   "team": "SF",
+   "unit": "Special Teams",
+   "position": "LS",
+   "starter": "Jon Weeks",
+   "game_status": "",
+   "source_url": "https://www.49ers.com/team/depth-chart"
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "NB",
+   "starter": "Upton Stout",
+   "game_status": "",
+   "source_url": "https://www.49ers.com/team/depth-chart"
+  },
+  {
+   "team": "TEN",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "Anthony Hill Jr.",
+   "game_status": "",
+   "source_url": "https://www.tennesseetitans.com/team/depth-chart"
   }
  ],
  "verification": {
@@ -177,59 +201,47 @@
    "unit": "Defense",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 322,
-   "starters_out": 11,
-   "starters_doubtful": 1,
-   "starters_questionable": 15,
-   "replacement_named": 322,
-   "source_url": "https://www.nfl.com/injuries/",
-   "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
-  },
-  {
-   "unit": "Defense",
-   "replacement_depth": "3",
-   "depth_label": "3rd string",
-   "slots": 4,
-   "starters_out": 0,
-   "starters_doubtful": 0,
-   "starters_questionable": 0,
-   "replacement_named": 4,
-   "source_url": "https://www.nfl.com/injuries/",
-   "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
-  },
-  {
-   "unit": "Defense",
-   "replacement_depth": "none",
-   "depth_label": "no replacement needed / not named",
-   "slots": 29,
+   "slots": 327,
    "starters_out": 1,
    "starters_doubtful": 0,
-   "starters_questionable": 2,
-   "replacement_named": 0,
+   "starters_questionable": 1,
+   "replacement_named": 327,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
   {
-   "unit": "Offense",
-   "replacement_depth": "2",
-   "depth_label": "2nd string",
-   "slots": 298,
-   "starters_out": 17,
-   "starters_doubtful": 2,
-   "starters_questionable": 10,
-   "replacement_named": 298,
-   "source_url": "https://www.nfl.com/injuries/",
-   "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
-  },
-  {
-   "unit": "Offense",
+   "unit": "Defense",
    "replacement_depth": "3",
    "depth_label": "3rd string",
    "slots": 2,
    "starters_out": 0,
    "starters_doubtful": 0,
-   "starters_questionable": 1,
+   "starters_questionable": 0,
    "replacement_named": 2,
+   "source_url": "https://www.nfl.com/injuries/",
+   "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  },
+  {
+   "unit": "Defense",
+   "replacement_depth": "none",
+   "depth_label": "no replacement needed / not named",
+   "slots": 26,
+   "starters_out": 0,
+   "starters_doubtful": 0,
+   "starters_questionable": 0,
+   "replacement_named": 0,
+   "source_url": "https://www.nfl.com/injuries/",
+   "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  },
+  {
+   "unit": "Offense",
+   "replacement_depth": "2",
+   "depth_label": "2nd string",
+   "slots": 301,
+   "starters_out": 2,
+   "starters_doubtful": 0,
+   "starters_questionable": 0,
+   "replacement_named": 301,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -237,8 +249,8 @@
    "unit": "Offense",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 50,
-   "starters_out": 1,
+   "slots": 49,
+   "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 1,
    "replacement_named": 0,
@@ -249,23 +261,11 @@
    "unit": "Special Teams",
    "replacement_depth": "2",
    "depth_label": "2nd string",
-   "slots": 58,
-   "starters_out": 3,
-   "starters_doubtful": 0,
-   "starters_questionable": 0,
-   "replacement_named": 58,
-   "source_url": "https://www.nfl.com/injuries/",
-   "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
-  },
-  {
-   "unit": "Special Teams",
-   "replacement_depth": "3",
-   "depth_label": "3rd string",
-   "slots": 3,
+   "slots": 62,
    "starters_out": 0,
    "starters_doubtful": 0,
-   "starters_questionable": 0,
-   "replacement_named": 3,
+   "starters_questionable": 1,
+   "replacement_named": 62,
    "source_url": "https://www.nfl.com/injuries/",
    "secondary_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
   },
@@ -273,8 +273,8 @@
    "unit": "Special Teams",
    "replacement_depth": "none",
    "depth_label": "no replacement needed / not named",
-   "slots": 130,
-   "starters_out": 1,
+   "slots": 129,
+   "starters_out": 0,
    "starters_doubtful": 0,
    "starters_questionable": 1,
    "replacement_named": 0,
@@ -288,96 +288,48 @@
    "unit": "Special Teams",
    "position": "LS",
    "starter": "Luke Rhodes",
-   "game_status": "Out",
+   "game_status": "Questionable",
    "source_url": "https://www.colts.com/team/depth-chart"
   },
   {
-   "team": "TEN",
-   "unit": "Defense",
-   "position": "LB",
-   "starter": "Cody Barton",
-   "game_status": "Out",
-   "source_url": "https://www.tennesseetitans.com/team/depth-chart"
-  },
-  {
-   "team": "TEN",
-   "unit": "Offense",
-   "position": "LG",
-   "starter": "Peter Skoronski",
-   "game_status": "Out",
-   "source_url": "https://www.tennesseetitans.com/team/depth-chart"
-  },
-  {
-   "team": "LA",
-   "unit": "Special Teams",
-   "position": "LS",
-   "starter": "Joe Cardona",
-   "game_status": "Questionable",
-   "source_url": "https://www.therams.com/team/depth-chart"
-  },
-  {
-   "team": "MIN",
+   "team": "IND",
    "unit": "Offense",
    "position": "WR",
-   "starter": "Jordan Addison",
+   "starter": "Anthony Gould",
    "game_status": "Questionable",
-   "source_url": "https://www.vikings.com/team/depth-chart"
+   "source_url": "https://www.colts.com/team/depth-chart"
   },
   {
-   "team": "SF",
-   "unit": "Defense",
-   "position": "LCB",
-   "starter": "Renardo Green",
-   "game_status": "Questionable",
-   "source_url": "https://www.49ers.com/team/depth-chart"
-  },
-  {
-   "team": "SF",
-   "unit": "Defense",
-   "position": "NB",
-   "starter": "Upton Stout",
-   "game_status": "Questionable",
-   "source_url": "https://www.49ers.com/team/depth-chart"
-  },
-  {
-   "team": "ATL",
-   "unit": "Special Teams",
-   "position": "LS",
-   "starter": "Liam McCullough",
-   "game_status": "",
-   "source_url": "https://www.atlantafalcons.com/team/depth-chart"
-  },
-  {
-   "team": "CAR",
-   "unit": "Special Teams",
-   "position": "PR",
-   "starter": "Trevor Etienne",
-   "game_status": "",
-   "source_url": "https://www.panthers.com/team/depth-chart"
-  },
-  {
-   "team": "CLE",
+   "team": "BUF",
    "unit": "Offense",
-   "position": "RG",
-   "starter": "Austin Barber",
+   "position": "WR",
+   "starter": "Keon Coleman",
    "game_status": "",
-   "source_url": "https://www.clevelandbrowns.com/team/depth-chart"
+   "source_url": "https://www.buffalobills.com/team/depth-chart"
   },
   {
-   "team": "CLE",
-   "unit": "Defense",
-   "position": "WILL",
-   "starter": "Carson Schwesinger",
+   "team": "DEN",
+   "unit": "Offense",
+   "position": "FB",
+   "starter": "Adam Prentice",
    "game_status": "",
-   "source_url": "https://www.clevelandbrowns.com/team/depth-chart"
+   "source_url": "https://www.denverbroncos.com/team/depth-chart"
   },
   {
-   "team": "LA",
-   "unit": "Defense",
-   "position": "DE",
-   "starter": "Braden Fiske",
+   "team": "LV",
+   "unit": "Special Teams",
+   "position": "K",
+   "starter": "Matt Gay",
    "game_status": "",
-   "source_url": "https://www.therams.com/team/depth-chart"
+   "source_url": "https://www.raiders.com/team/depth-chart"
+  },
+  {
+   "team": "MIA",
+   "unit": "Special Teams",
+   "position": "H",
+   "starter": "Bradley Pinion",
+   "game_status": "",
+   "source_url": "https://www.miamidolphins.com/team/depth-chart"
   },
   {
    "team": "MIA",
@@ -388,12 +340,44 @@
    "source_url": "https://www.miamidolphins.com/team/depth-chart"
   },
   {
-   "team": "NYG",
+   "team": "MIA",
+   "unit": "Special Teams",
+   "position": "P",
+   "starter": "Bradley Pinion",
+   "game_status": "",
+   "source_url": "https://www.miamidolphins.com/team/depth-chart"
+  },
+  {
+   "team": "MIN",
    "unit": "Offense",
    "position": "WR",
-   "starter": "Darnell Mooney",
+   "starter": "Jordan Addison",
+   "game_status": "",
+   "source_url": "https://www.vikings.com/team/depth-chart"
+  },
+  {
+   "team": "NYG",
+   "unit": "Special Teams",
+   "position": "LS",
+   "starter": "Ben Mann",
    "game_status": "",
    "source_url": "https://www.giants.com/team/depth-chart"
+  },
+  {
+   "team": "PHI",
+   "unit": "Offense",
+   "position": "RB",
+   "starter": "Saquon Barkley",
+   "game_status": "",
+   "source_url": "https://www.philadelphiaeagles.com/team/depth-chart"
+  },
+  {
+   "team": "PHI",
+   "unit": "Offense",
+   "position": "WR",
+   "starter": "DeVonta Smith",
+   "game_status": "",
+   "source_url": "https://www.philadelphiaeagles.com/team/depth-chart"
   },
   {
    "team": "PIT",
@@ -410,6 +394,46 @@
    "starter": "T.J. Watt",
    "game_status": "",
    "source_url": "https://www.steelers.com/team/depth-chart"
+  },
+  {
+   "team": "PIT",
+   "unit": "Defense",
+   "position": "OLB",
+   "starter": "Nick Herbig",
+   "game_status": "",
+   "source_url": "https://www.steelers.com/team/depth-chart"
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "LCB",
+   "starter": "Renardo Green",
+   "game_status": "",
+   "source_url": "https://www.49ers.com/team/depth-chart"
+  },
+  {
+   "team": "SF",
+   "unit": "Special Teams",
+   "position": "LS",
+   "starter": "Jon Weeks",
+   "game_status": "",
+   "source_url": "https://www.49ers.com/team/depth-chart"
+  },
+  {
+   "team": "SF",
+   "unit": "Defense",
+   "position": "NB",
+   "starter": "Upton Stout",
+   "game_status": "",
+   "source_url": "https://www.49ers.com/team/depth-chart"
+  },
+  {
+   "team": "TEN",
+   "unit": "Defense",
+   "position": "LB",
+   "starter": "Anthony Hill Jr.",
+   "game_status": "",
+   "source_url": "https://www.tennesseetitans.com/team/depth-chart"
   }
  ]
 }
