@@ -5271,3 +5271,5 @@ Checked merged `main` (`PR #97`–`PR #109`) and all open parallel branches/PRs 
 3. The fetch tool can reach `nfl.com` and `media.nfl.com`, but the bash sandbox allow-list does not include them. Immutable raw captures with retained hashes therefore cannot be produced from bash alone. This blocks most of the NOT BUILT rows that need recurring official captures (for example rows 30–32, 55–57, 65, 67).
 
 **Not done, and why this session is not merging to `main`:** 23 of the 82 brief rows remain NOT BUILT and about 40 are PARTIAL (see the register). Several need data this sandbox cannot reach through bash (licensed or NFL-hosted snap counts, reserve lists, archives of past injury reports, weather grids, and a licensed odds source). The brief requires a merge only after all tasks are done, so this branch is left open as a pull request for review.
+
+Pull request record (`arena-42887cb2-x1`): https://github.com/karagemop466-tech/X1/pull/113 — open, **not merged** (23 of 82 brief rows still NOT BUILT; merge is gated on all tasks being done).
