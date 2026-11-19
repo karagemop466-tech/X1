@@ -5479,3 +5479,33 @@ Scope limit: no value is changed in any data file; no official source is re-read
 - I ran `tools/build_mind_change.py` once to test the diff. It rewrote `data/mind_change/register.csv` in the working tree. Restored with `git checkout --`; nothing from that run was committed.
 - A `--check` run changed `generated_at` in `data/verification/2026_11_19/verification_summary_2026_11_19.json`. Two tools write that path (`tools/verify_2026_11_19.py`, `tools/build_room.py`), so the writer is not identified. Restored with `git checkout --`. This is a `--check` tool that mutates a committed file (owner `arena/427c1843-x1`, request R8-RQ-3).
 - The first commit of this branch accidentally included that summary file and was rebuilt before pushing; the rebase conflict in this file was resolved by taking `origin/main` and re-appending this record once.
+
+### Collision record — two R8 brief registers (session `arena-41954ed5-x1`, 2026-11-19)
+
+**Claim priority (rule 3).** This session's claim `ca67df3` (R8-1 dated re-audit of the 82-row brief register; R8-2 append-only log) was committed at **19:25:55 UTC** on `arena/41954ed5-x1`. Session `arena-757174a7-x1` (PR #120, branch `arena/757174a7-x1`) claimed **R8-1 (re-run verify.yml steps), R8-2 (live Pages check) and R8-3 (brief-to-repo coverage, 82 rows)** at `ef9ab5c`, **19:31:35 UTC**. Its overlap check read only open PRs, so my claim, which lives on a branch and not in a PR, was not visible to it.
+
+**Overlap.** R8-3 of PR #120 is the same deliverable as this session's R8-1 (the 82-row brief register). Its R8-2 (live check of Pages) is the live check this session deferred to it; this session did not run one, and its R8-1 (re-run of verify steps) is not in this session's scope.
+
+**Measured disagreement between the two 82-row registers** (`docs/audit/brief-coverage-2026-11-19.md` here vs `docs/review/round8-brief-coverage.tsv` in PR #120; both measured against `main` on 2026-11-19; the Nov-17 column agrees in both, 40/24/10/5/3):
+
+| Row | Brief item (short) | This session (2d99536) | PR #120 | Position |
+|---|---|---|---|---|
+| 3 | Verified results feed for backtests and ROI | PARTIAL | BUILT | not adjudicated |
+| 13 | Injury signal is a surprise | NOT BUILT | PARTIAL | this session: no computed surprise series in `data/` (grep); PR #91 not on main |
+| 20 | Turn the 136-game log into the pre-registered backtest corpus | PARTIAL | NOT BUILT | this session: EVAL-71 locks 136 games (PR #98); `data/shadow/games_scored.csv` has 118 rows; not adjudicated further |
+| 21 | Decide the price-data policy before any backtest is published | PARTIAL | BUILT | not adjudicated |
+| 43 | Announced-starter evidence field (Lock, McCord, Brissett) | PARTIAL | BUILT | this session: cited article has no dated club announcement; keep PARTIAL until the dated source is found |
+| 47 | Flag stale depth rows against the official transactions log | PARTIAL | BUILT | not adjudicated |
+| 59 | Stadium roof/surface and NWS hourly overlay | BUILT | PARTIAL | not adjudicated (13 games; Mexico City blank) |
+| 60 | Two-stage leaderboard, then prospective CLV/ROI escrow | PARTIAL | BUILT | not adjudicated |
+| 63 | Publish every model total twice until one wins (walk-forward) | BUILT | PARTIAL | this session: R7-3 `data/models/dual_totals_walkforward.json` exists; not adjudicated |
+| 69 | 2026 kickoff and declared onside-kick regime priors filter | BUILT | PARTIAL | this session: `research/kickoff-regimes/` (KR-1, PR #99) exists; not adjudicated |
+
+Both sides are measured; neither has been reconciled. Rows 3, 21, 47, 59 and 60 were not re-checked in this session, and the entries marked "not adjudicated" are left for the reconciling session.
+
+**Requests (rule 4 — logged, not actioned by editing the other branch):**
+1. To `arena-757174a7-x1`: drop R8-3 from PR #120 (or narrow it to a cross-check that cites `docs/audit/brief-coverage-2026-11-19.md`), since this session holds the earlier claim on the same register. If you keep it, reconcile the ten rows above and say which status is right, with the evidence path.
+2. To the integration session: when one register is chosen, delete or mark the other as superseded; do not leave two 82-row registers on `main` with different statuses.
+3. To `arena-757174a7-x1`: your repair of the `verify` job (registration anchors in `data/preregistration/*` and `tools/build_preregistration.py`, PR #120) is the fix this session's blocker record (`### Update — R8-1 / R8-2 after main moved`) asks for. Merging it clears the red `verify` step on `main`; this session has not touched those files.
+
+**Effect on this session's merge.** The PR for this session's register is opened but **held, not merged**, until request 1 is answered. Its content does not depend on PR #120, and it touches no file that PR #120 changes, but merging two registers that disagree on ten rows would put a conflicting source of truth on `main`. The `verify` job on `main` is red independently of this register (see the blocker record above); this is the only other reason for the hold.
