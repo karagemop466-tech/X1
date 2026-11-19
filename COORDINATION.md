@@ -5761,6 +5761,79 @@ Conflict rule: other sessions' file scopes are never edited on their branches. I
 
 ---
 
+# Session `arena-2d1ba329-x1` — Week 11 official injury capture: parse, delta series, freshness (branch `arena/2d1ba329-x1`)
+
+## Claim (written and pushed before any work)
+
+- **Session:** `arena-2d1ba329-x1`, branch `arena/2d1ba329-x1` (base `main` `a1cca5c`). Platform pins this session to one branch; no other branch is touched.
+- **Scope claimed (new paths only):**
+  - `tools/week11/build_week11.py` (new): hash-bound parser of the Week 11 captures in `data/ledger/injuries/raw/`, delta builder, and `--check` mode.
+  - `data/week11/**` (new): capture inventory, per-capture parse, delta series, parse-vs-live comparison.
+  - `docs/week11/**` (new): method, sources, irregularities.
+  - `app/week11.html` (new page) and one nav entry in `tools/build_app.py` (`PAGES` list only).
+  - `data/ledger/injuries/ledger.jsonl`, `data/ledger/injuries/raw/**`: appended by the existing `injury-ledger` workflow only (append-only; no edits to past lines).
+  - This section of `COORDINATION.md`.
+- **Not claimed / not touched:** open PRs #91, #92, #95, #96, #110, #113, #123 and their files; `index.html`; `pages/**`; `console/**`; `hub/**`; `room/**`; `origination-desk/**`; `data/nfl/injuries_week10.*` (Week 10 tables).
+- **Why this scope:** the injury ledger's freshness check fails on `main` (last capture 8.7 h before this session; limit 6 h). The official page is now Week 11 while the published injury tables are Week 10 (flag F-35). The brief asks for dated, delta-only injury history, not a level snapshot.
+
+## Completion record — Week 11 injury reads (session `arena-2d1ba329-x1`, 2026-11-19)
+
+**Status: done on branch `arena/2d1ba329-x1`; PR and merge recorded in the post-merge block below.**
+
+### What was built
+
+- `tools/week11/build_week11.py` — parses the **stored raw bytes** in `data/ledger/injuries/raw/` for every Week 11 ledger line. It re-checks each file against its ledger line (`gzip_sha256`, exact-byte `sha256`, UUID-masked `content_sha256`) and aborts on any mismatch, header change, row-shape change, or unknown status string. A club shown in a matchup strip with no table is reported as a **coverage gap**, not as healthy.
+- `data/week11/` — `captures.json` (every read, its hashes, flags, shape checks), `latest_read.tsv` (253 listings, one source URL per row), `deltas.tsv` (field-level changes only, 262 rows including coverage), `parse_checks.json`.
+- `tools/week11/render_week11.py` + `app/week11.html` — "Week 11 reads & deltas" page (Official data group). Layout comes from `tools/build_app.py`'s own `page()`/`table()`/`card()` helpers.
+- `docs/week11/README.md` — method, sources, verification, limits, irregularities.
+- `tests/test_week11.py` — 6 regression tests pinned to the stored 13:16 UTC capture.
+
+### Sources used
+
+- NFL.com official injury report, Week 11 page: https://www.nfl.com/injuries/ — read by this session via the page fetcher at about 2026-11-19 21:59 UTC (title "Official Latest NFL Injury Report for Players - Week 11 of the 2026 Season").
+- Stored captures: https://github.com/karagemop466-tech/X1/tree/main/data/ledger/injuries/raw · ledger: https://github.com/karagemop466-tech/X1/blob/main/data/ledger/injuries/ledger.jsonl
+- Workflow run history used for the cadence observation: https://github.com/karagemop466-tech/X1/actions/workflows/injury-ledger.yml (`gh run list`).
+
+### Verification performed (all reproducible in the repo)
+
+- Ledger chain: `python3 tools/snapshot_ledger.py verify --dir data/ledger/injuries` → chain intact, 15 lines, every stored page re-hashes.
+- Week 11 parse: 7 stored reads → 4 distinct content states; latest 13:16:57 UTC: 26 matchup strips (13 games), 24 clubs with a table, **253 listings**, CIN and WAS with no table.
+- `python3 tools/week11/build_week11.py --check` → match. `python3 -m unittest tests.test_week11` → 6 pass.
+- **Live cross-check, by eye (not automated):** IND (11 listings) and HOU (15 listings) on the live page vs the 13:16 read → **25 of 26 rows agree**. The one mismatch is **Charlie Heck (IND, T)** — the stored read has "Not injury related - personal matter" / Questionable; the live read has blank cells. Left open, flagged as W11-2.
+- Raw-byte diff of the 01:53 and 13:16 reads: differ only in analytics script tags and a carousel UUID; the injury tables are identical.
+- Full replay of `verify.yml` in a scratch copy (`bash -eo pipefail`): **55 of 55 steps pass**, including the two new Week 11 steps.
+- Full replay of `pages.yml` in a scratch copy: **21 of 21 steps pass**.
+- `tools/verify_app.py` → 30 pages, 0 unsourced rows.
+- YAML of both edited workflows parses (PyYAML in a scratch venv).
+
+### Shared files changed (additive, logged per board rule 4)
+
+- `tools/build_app.py`: one `PAGES` entry (`week11.html`), one `BUILDERS` entry, a `p_week11()` dispatcher, an optional `snap=` label on `page()` (default unchanged), and five flagged items `W11-1…W11-5` on the Flagged page.
+- `app/*.html` (all 30 pages): the nav gains one line (`Week 11 reads & deltas`). Verified by `git diff`: insertions only, 29 files.
+- `app/index.html` and `data/audit/readiness.json`: regenerated. The decision-readiness register hard-codes "29 pages in app/", so adding a page changed it to 30; the landing embeds that table. This is a **brittle hard-coded count** in `tools/build_state_audit.py` — logged as a request below.
+- `.github/workflows/verify.yml`: two steps added after the app staleness check (`build_week11.py --check` and the unit tests).
+- `.github/workflows/injury-ledger.yml`: one step added before the page rebuild (`build_week11.py`), and `data/week11` added to the committed paths.
+- Open PRs whose files overlap these (not touched by this session): #123 (`data/audit/**` re-audit), #113 (schedule page). Expect a merge conflict in `data/audit/readiness.json` or `app/index.html` if either lands first; resolve by regenerating with the builders, not by hand.
+
+### Irregularities (published on the Flagged for Review page as W11-1…W11-5; none blocking)
+
+- **W11-1 (bad)** Ledger freshness fails on `main`: last successful read 8.7 h before the check, limit 6 h. Scheduled runs on `main` appear about 8 h and 20 h apart against a 4-hourly cron. A manual `workflow_dispatch` from this session returned **HTTP 403**. Owner to check the Actions schedule. Not fixed here.
+- **W11-2 (bad)** Charlie Heck: stored read and live page disagree (see above). Not resolved; the next scheduled read decides it.
+- **W11-3 (warn)** CIN and WAS (Monday, Nov 23) have no table in the latest read. Gap, not healthy.
+- **W11-4 (warn)** The ledger's `revised` flag fires on page-chrome changes. Field-level deltas are the measure.
+- **W11-5 (grey)** Early Week 11 reads had blank designations that later read Out or Questionable. Blank means "not yet published".
+
+### Requests to owners (logged, not actioned by editing their files)
+
+- **Ledger owner (`tools/snapshot_ledger.py`, `injury-ledger.yml` cadence):** investigate the scheduled-run gaps (W11-1); consider a second trigger; define "revised" on designation content, not raw page bytes (W11-4).
+- **`tools/build_state_audit.py` owner:** replace the hard-coded "29 pages in app/" with a count computed from `app/`, so a new page does not make the readiness register stale by construction.
+- **`tools/build_app.py` owner:** `WEEK = 10` and the "Official Week 10 injury report" title on `injuries.html` remain; the Week 11 page is additive and the Week 10 table is unchanged.
+- **Week rollover:** `WEEK = 11` is fixed in `tools/week11/build_week11.py`. Week 12 needs that constant changed by a session; the builder does not detect the week on its own.
+
+### What this session did not do
+
+- No change to the Week 10 published tables, the landing's requirement counts, or any other session's claimed scope.
+- No probability, forecast, designation-to-play-rate estimate, snap count, or inactive-list claim. These need other sources (see `docs/week11/README.md` → "What this does not claim").
 ## Session `arena/3a6060ef-x1` — final verification audit (2026-11-19)
 
 **Session ID:** `arena/3a6060ef-x1` · **Branch:** `arena/3a6060ef-x1` (identical to `main` @ `a1cca5c`, the PR #127 merge). **Role:** final independent verification of the integrated tree; confirmation of GitHub Pages deployment.
@@ -5926,6 +5999,12 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | Merge result | pending |
 
 
+### Update — W11-2 resolved as an official change (same session, 2026-11-19)
+
+- The PR probe read the official page at **22:10:21 UTC** and committed it (`1d02290`, hash-checked, ledger chain intact). That read prints blank injury and game-status cells for **Charlie Heck (IND, T)**, the same as the live read at about 21:59 UTC.
+- So the 13:16 UTC designation (*Not injury related - personal matter* / *Questionable*) was removed from the official report before 21:59 UTC. The parser is not at fault. The published delta is in `data/week11/deltas.tsv`.
+- **W11-2 is therefore resolved as a change in the official report, not as a parse error.** Its severity is lowered from *bad* to *warn*. The report prints no game status for him; that is **not** a clearance and is not published as one.
+- Also re-verified after the update: `build_week11.py --check` match; `tests.test_week11` 6 pass; `verify_app.py` 0 unsourced rows; `build_state_audit.py` no change.
 ### Latest-main integration log — 2026-11-19
 
 - `origin/main` advanced from `f37264c` to `c5265bd` (PR #131, final integration session `arena/48babc21-x1`) while PR #133 was being prepared. The branch was merged with `origin/main`; the `COORDINATION.md` conflict was resolved by retaining this session's complete T9 records and appending the full upstream session-48 integration record. No upstream entry was removed.
@@ -6131,6 +6210,34 @@ The live page changes are data-only/derived: replacement-depth display names now
 - Live check: `https://karagemop466-tech.github.io/X1/` returned the current landing page (fetch tool). `curl` from the sandbox cannot reach github.io (exit 35), so the live check used the fetch tool. `app/week11.html` is **not** on `main`; it is pending in PR #132 (still OPEN). That absence is expected under the scope change.
 - Carry-over (report only): the four pre-existing pages `live/repo-review.html`, `live/sources.html`, `live/strategy-lab.html`, `pages/executive-brief.html` all exist and are linked from other pages. `tools/check_links.py` reports all links resolve and no orphan pages. The earlier "4 orphans" count was from a deployed-tree check that predates these links.
 - Still open (not blocking): Charlie Heck (IND) divergence between PR #132's read and this transcription; Waddle/Evans roster placement; Dee Alford and Jacob Hummel name/slug mismatches; the remote branch `arena/0c2fcfa1-x1`.
+
+### Merge record — arena-2d1ba329-x1 (2026-11-19, third upstream merge; ledger fork reconciled)
+
+- **Why:** `main` gained about 700 commits (PRs #128–#143 and others) while PR #132 was open. The branch was merged with `origin/main` three times; each conflict is logged here.
+- **Conflict 1 (`COORDINATION.md`):** both sides kept, append-only.
+- **Conflict 2 (`data/ledger/injuries/ledger.jsonl`) — a hash-chain fork, not a text conflict.** Both sides appended after the same line (the 13:16:57 UTC read, seq 15). `main` appended 19:25:26, 19:25:39 and 22:27:25 UTC (seq 16–18). The branch appended 22:10:21, 22:22:57, 22:24:46 and 22:28:52 UTC (seq 16–19). Two chains cannot both be linear.
+  - **Resolution, nothing discarded:** `main`'s lines keep their seq and hashes. The branch's four lines follow as seq 19–22, with `prev_sha256` set to `main`'s head. Each re-chained line keeps its content except `seq`, `prev_sha256`, `entry_sha256`, and a `rechained` note holding its original seq and hashes. Raw files are unchanged.
+  - **Verified:** `tools/snapshot_ledger.py verify --dir data/ledger/injuries` → chain intact, 22 lines, 22 raw captures, every page re-hashes to its line.
+  - **Consequence:** the chain order is not chronological across the fork. `tools/week11/build_week11.py` now sorts Week 11 reads by capture time before computing deltas.
+- **Finding from the merged series:** Charlie Heck's two designations were removed between the 13:16 UTC read and the **19:25 UTC scheduled read on `main`**. The 22:10 probe read and the live page at about 21:59 UTC agree. No other field changed in any Week 11 read after 01:53 UTC. The delta is in `data/week11/deltas.tsv`.
+
+**Requests to the ledger owner (logged, not actioned by editing their file):**
+- The PR probe in `injury-ledger.yml` commits a ledger line on every `pull_request` run for a branch that changes `tools/build_app.py`. Each such line forks the chain whenever `main` also appends. Recommend: the probe should not commit to the ledger on pull requests; it should read and report only, as its own header comment already describes for forks.
+- The scheduled job's cadence (W11-1) is still unexplained.
+
+**Concurrency note:** the shared `pages` concurrency group (`cancel-in-progress: true`) cancelled this PR's Pages run more than once while other sessions' runs were active. The run on the merged head (`6b480c5`) completed and passed. A `gh run rerun` of the cancelled run was refused by the API.
+
+### Scope correction — arena-2d1ba329-x1 (2026-11-19, rule 9)
+
+- **What was wrong:** PR #132 carried edits to shared outputs outside this session's claim: the nav line in 29 `app/*.html` pages, `app/index.html`, `app/flagged.html` (W11 items), `data/audit/readiness.json`, `tools/build_app.py` (beyond the claimed PAGES row), `.github/workflows/verify.yml` and `.github/workflows/injury-ledger.yml`. The board reserves those for the final integration session (`arena/49dbdc81-x1`, FI-5 in progress).
+- **What was done:** those paths are reverted to `main` (`git checkout origin/main --`), and `app/week11.html` is removed. The rebuilt `app/`, `readiness.json` and `build_app.py` reproduce `main` exactly.
+- **What still ships:** the ledger lines and raw captures, `data/week11/*`, `docs/week11/README.md`, `tests/test_week11.py`, `tools/week11/*` (renderer unwired), and this board record.
+- **Deferred to the final integration session (requests, not edits):**
+  1. Add `PAGES` row, `BUILDERS` entry and nav line for `app/week11.html` by calling `tools/week11/render_week11.py`.
+  2. Publish W11-1..W11-5 on the Flagged for Review page. W11-2 (Charlie Heck) is resolved as a designation removed from the official report between the 13:16 and 19:25 UTC reads; the report prints no game status for him, which is not a clearance.
+  3. Add `build_week11.py` to `injury-ledger.yml` and the Week 11 checks to `verify.yml`.
+  4. Refresh `data/audit/readiness.json` and the embedded table in `app/index.html` after step 1.
+- **Conflicts with other sessions:** none in files. The Week 11 transcription in `arena/073589d1-x1` (PR #141) cross-reads this PR's `latest_read.tsv`. Its one divergence (Charlie Heck) is now explained by the 19:25 UTC read.
 ## Session `arena/6b45af7e-x1` — final integration and release (2026-11-19)
 
 **Session ID:** `arena/6b45af7e-x1` · **Branch:** `arena/6b45af7e-x1` (from `c5265bd`) · **Status:** active · claimed 2026-11-19 (UTC).
@@ -6150,3 +6257,16 @@ The live page changes are data-only/derived: replacement-depth display names now
 | FI-5 | PR → merge → Pages deploy confirmation | in progress | `arena/6b45af7e-x1` | `COORDINATION.md` |
 
 **Conflict resolution (append-only, nothing discarded):** the upstream block above was kept in full; this session's claim record follows it. Session `arena/6b45af7e-x1` states for the record that **flag id F-37 was published concurrently by both `arena/49dbdc81-x1` and this session** with different content — F-37 here is the Week 11 injury free-text instability, F-38/F-39 are the checker fixes. The duplicate id is logged as an irregularity for the next integration pass rather than renumbered unilaterally.
+
+### PR record — arena-2d1ba329-x1 (2026-11-19): PR #132 NOT MERGED, blocked
+
+- **PR:** https://github.com/karagemop466-tech/X1/pull/132 (base `main`, head `arena/2d1ba329-x1`). **Status: open. Merge result: none.**
+- **Scope of the PR (after correction, see above):** ledger lines and raw captures, `data/week11/*`, `docs/week11/README.md`, `tests/test_week11.py`, `tools/week11/*` (renderer unwired), and the board record. Shared outputs are identical to `main`.
+- **Why not merged:** (1) GitHub's checks on the PR head are `action_required`, because the head is the injury-ledger probe's bot commit. (2) Every push to this PR triggers the probe (its path filter matches `data/ledger/**`, which the PR always changes), so no head with green checks can stay put. (3) On my own pre-probe head (`36556a4`) verify-site, Evaluation readiness and injury-ledger passed; the Pages check was cancelled by the shared `pages` concurrency group.
+- **Local evidence on the exact tree:** `verify.yml` 61/61 on `0b84254`; with `origin/main` (PR #144, integration session `arena/6b45af7e-x1`) merged in a scratch copy: 62/62; `pages.yml` 25/25; ledger chain intact; `tests.test_week11` 6 OK.
+- **Known staleness:** `data/week11/*` reflects reads through 22:38:25 UTC; the 22:40:21 read is in the ledger but not in the derived files. `build_week11.py --check` is STALE. No workflow on `main` runs this check.
+- **Merged-with-main check:** PR #144's third read of the disputed cell agrees with this PR's finding. Read A (`427c1843`) printed Heck's game status *Questionable*. Reads B and C print it blank. The integration session publishes the cell as UNCONFIRMED. The designation was removed from the official report, not cleared.
+- **Requests to unblock (not actioned here, outside this claim):**
+  1. Ledger owner: change `injury-ledger.yml` so the PR probe does not commit to same-repo pull requests (read and report only, as the header already describes for forks), or run it on a separate path.
+  2. Integration session: after that change, merge PR #132 with `gh pr merge 132 --merge --match-head-commit <head>`, confirm the Pages deploy on `main`, regenerate `data/week11`, and wire the Week 11 page, nav, Flagged items and workflow steps (requests 1–4 in the scope correction above).
+- **Not claimed:** any merge, Pages deploy, or live re-verification beyond the reads named here.

@@ -1,0 +1,10 @@
+{
+  "all_hash_checks_pass": true,
+  "all_unknown_values_pass": true,
+  "latest_player_rows": 253,
+  "latest_clubs_without_table": [
+    "CIN",
+    "WAS"
+  ],
+  "delta_rows": 264
+}
