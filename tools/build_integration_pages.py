@@ -73,6 +73,7 @@ QUESTIONS17 = load_json("data/console/questions.csv".replace(".csv", ".json")) i
 W11_INJ = read_tsv("data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv")
 W10_INJ = read_tsv("data/nfl/injuries_week10.tsv")
 W10_RECHECK = load_json("data/integration/live_w10_injuries_recheck_2026_11_19.json")
+THREE = load_json("data/verification/2026_11_19_second_read/three_reads_ind_hou_2026_11_19.json")
 FLAGS = load_json("data/flags.json")
 
 
@@ -216,11 +217,28 @@ def page_verification() -> str:
   arena/427c1843-x1) · Read B: <code>data/verification/2026_11_19_second_read/official_w11_injuries_second_reader_2026_11_19.tsv</code>
   (this session) · rebuilt by <code>tools/verify_second_read_2026_11_19.py</code>.</p>
 
+  <h3>The disputed cell, read a third time</h3>
+  <p>One cell is not enough to declare a column unstable, so the two Thursday-night club blocks were read a
+  <b>third</b> time later the same day and all three reads are published together
+  ({THREE["rows_compared"]} rows). {THREE["rows_compared"] - THREE["rows_where_a_printed_status_field_disagrees_across_the_three"]} of
+  {THREE["rows_compared"]} rows print stable status fields across all three reads. The exception is listed below, and it is
+  <b>not resolved by majority</b>: the cell stays blank and flagged.</p>
+  {table(["Club", "Player", "Field", "Read A", "Read B", "Read C", "Source"],
+         [[f'<td><b>{esc(e["team"])}</b></td>', f'<td>{esc(e["player"])}</td>',
+           f'<td>{", ".join(esc(x) for x in e["fields_that_disagree_across_the_three"])}</td>',
+           cell(e["read_a"]["game_status"], "blank on the page"), cell(e["read_b"]["game_status"], "blank on the page"),
+           cell(e["read_c"]["game_status"], "blank on the page"), src_cell(THREE["source"], "nfl.com ↗")]
+          for e in THREE["unstable_rows"]],
+         "Rows whose printed status fields disagree across three reads", "wide", True)}
+  <p class="muted">Free-text <i>Injuries</i> strings that differ between the three reads:
+  {", ".join(esc(k) for k in THREE["free_text_injury_strings_that_differ_between_reads"]) or "none"}.
+  Rebuilt by <code>tools/build_third_read_2026_11_19.py</code>.</p>
+
   <h3>What the Week 11 report does and does not contain, measured</h3>
   <div class="statrow">
     {stat(len(W11_INJ), "rows printed", f'{len({r["team"] for r in W11_INJ})} clubs of 32 print a table')}
     {stat(SECOND["designations_a"], "game designations (read A)", f'{SECOND["designations_b"]} in read B — IND Charlie Heck is the disputed cell')}
-    {stat(sum(1 for r in W11_INJ if r.get("injury", "").strip()), "rows with any injury text", "the rest print a practice status only")}
+    {stat(f'{SECOND["injury_text"]["rows_with_text_a"]} / {SECOND["injury_text"]["rows_with_text_b"]}', "rows with injury text, read A / read B", "the rest print a practice status only")}
     {stat(len(W10_INJ), "Week 10 rows still published", "a dated 2026-11-15 snapshot, not the live report")}
   </div>
   <div class="note"><b>Why this matters for originating lines.</b> A designations column that flickers between
@@ -358,6 +376,11 @@ def page_brief() -> str:
     {stat(len(QS), "research-desk questions on the record", f"{q_answered} answered · {q_open} blocked or awaiting an owner decision")}
     {stat(len(SUGGEST) + len(SG), "reviewable suggestions", f"{len(SUGGEST)} site proposals + {len(SG)} console proposals")}
   </div>
+
+  <div class="note"><b>Coverage limit, stated up front.</b> The {counts['total']} requirement rows below and on
+  the requirements page are the rows that have been <i>assessed</i> so far, not a complete count of the brief:
+  the readiness register carries {READY['counts']['rows']} rows in total. The gap is named on the
+  <a href="requirements.html">requirements page</a> rather than closed by relabelling the number.</div>
 
   <h2>1 · What is proven, and how it was proven</h2>
   <p>The rule this repository runs on is narrow enough to check: a number is published only when an official

@@ -134,11 +134,24 @@
   arena/427c1843-x1) · Read B: <code>data/verification/2026_11_19_second_read/official_w11_injuries_second_reader_2026_11_19.tsv</code>
   (this session) · rebuilt by <code>tools/verify_second_read_2026_11_19.py</code>.</p>
 
+  <h3>The disputed cell, read a third time</h3>
+  <p>One cell is not enough to declare a column unstable, so the two Thursday-night club blocks were read a
+  <b>third</b> time later the same day and all three reads are published together
+  (26 rows). 25 of
+  26 rows print stable status fields across all three reads. The exception is listed below, and it is
+  <b>not resolved by majority</b>: the cell stays blank and flagged.</p>
+  <div class="tablewrap"><table class="wide" data-table><caption>Rows whose printed status fields disagree across three reads</caption><thead><tr><th>Club</th><th>Player</th><th>Field</th><th>Read A</th><th>Read B</th><th>Read C</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>IND</b></td><td>Charlie Heck</td><td>game_status</td><td>Questionable</td><td class="blank" title="blank on the page">—</td><td class="blank" title="blank on the page">—</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg11" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+  <p class="muted">Free-text <i>Injuries</i> strings that differ between the three reads:
+  IND Charlie Heck.
+  Rebuilt by <code>tools/build_third_read_2026_11_19.py</code>.</p>
+
   <h3>What the Week 11 report does and does not contain, measured</h3>
   <div class="statrow">
     <div class="stat"><strong>253</strong><span>rows printed</span><span class="statnote">24 clubs of 32 print a table</span></div>
     <div class="stat"><strong>16</strong><span>game designations (read A)</span><span class="statnote">15 in read B — IND Charlie Heck is the disputed cell</span></div>
-    <div class="stat"><strong>16</strong><span>rows with any injury text</span><span class="statnote">the rest print a practice status only</span></div>
+    <div class="stat"><strong>16 / 15</strong><span>rows with injury text, read A / read B</span><span class="statnote">the rest print a practice status only</span></div>
     <div class="stat"><strong>347</strong><span>Week 10 rows still published</span><span class="statnote">a dated 2026-11-15 snapshot, not the live report</span></div>
   </div>
   <div class="note"><b>Why this matters for originating lines.</b> A designations column that flickers between
