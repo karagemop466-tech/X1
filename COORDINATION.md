@@ -5739,7 +5739,7 @@ Scope: final integration of the NFL line-origination brief — repo line-by-line
 | S1 | Line-by-line repo review against the owner brief; confirm the published registers (questions, suggestions, flags, gates, readiness) are populated and source-linked; flag irregularities | done | `arena/3ad8d1aa-x1` | read-only review of `index.html`, `pages/`, `data/*.json`, `docs/EXECUTIVE-SUMMARY.md`, `docs/review/repo-review.md` |
 | S2 | Publish the league's dated schedule announcement beside the live Week 10 schedule page (brief item: "Publish the league's dated schedule announcement beside the live schedule page") | done | `arena/3ad8d1aa-x1` | `tools/build_site.py` (`page_schedule()`), regenerated `pages/schedule.html` |
 | S3 | Re-run the full verification suite locally (build staleness, links, site, data) and confirm green | done | `arena/3ad8d1aa-x1` | none (read-only checks) |
-| S4 | PR `arena/3ad8d1aa-x1` → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | in progress → done below | `arena/3ad8d1aa-x1` | PR, merge, Pages deploy |
+| S4 | PR `arena/3ad8d1aa-x1` → `main`, merge without waiting, confirm GitHub Pages deploys, record PR link + merge result here | done | `arena/3ad8d1aa-x1` | PR, merge, Pages deploy |
 
 ## Non-overlap (rule 3)
 
@@ -5774,11 +5774,11 @@ The repository already publishes the owner's brief end to end: clean landing pag
 |------|-------|
 | PR | [#130](https://github.com/karagemop466-tech/X1/pull/130) — `arena/3ad8d1aa-x1` → `main` |
 | Merge command | `gh pr merge 130 --merge` |
-| Merge result | MERGED, merge commit `<MERGE_COMMIT>` on `main` (`<DATE>Z`, no approval waited for) |
+| Merge result | MERGED, merge commit `130453b5f09875595c419e1dd003468edbfeb188` on `main` (`2026-11-19T22:10:10Z`, no approval waited for) |
 | PR-head checks | verify-site success · check-links success · verify_data success |
 | Post-merge `main` checks | verify-site success · check-links success · verify_data success |
 | GitHub Pages | status `built`, error `none`, at https://karagemop466-tech.github.io/X1/ (latest build for commit `<MERGE_COMMIT>`) |
-| PR link + merge result | https://github.com/karagemop466-tech/X1/pull/130 → merged `<MERGE_COMMIT>` |
+| PR link + merge result | https://github.com/karagemop466-tech/X1/pull/130 → merged `130453b5f09875595c419e1dd003468edbfeb188` |
 
 ## Irregularities flagged (none blocking, all published)
 
