@@ -5929,3 +5929,30 @@ The live page changes are data-only/derived: replacement-depth display names now
 | S-4 | Executive summary, open-question register and suggestion board refresh, citing only verified sources and the gaps this session could not close | in progress | `arena/073589d1-x1` | `docs/EXECUTIVE-SUMMARY.md` (refresh section only) |
 
 **Sandbox limit (verified 2026-11-19 22:00 UTC):** bash `curl` to `www.nfl.com` fails (exit 35, connection refused). `fetch_page` reads `https://www.nfl.com/injuries/` (Week 11 live, 7 chunks). Official pages therefore enter the repository only as fetch-tool captures, not as raw HTTP bytes; every such file says so.
+
+## Completion record — `arena/073589d1-x1` (2026-11-19)
+
+| Task | Status | Official sources used | Verification performed | Irregularities / limits |
+|---|---|---|---|---|
+| S-1 Baseline replay | **done** | `.github/workflows/verify.yml`, `.github/workflows/pages.yml` (run blocks replayed under `bash -eo pipefail`) | On `a1cca5c`: verify **53/53**, pages **21/21**. On this branch after the change: verify **54/54**, pages **22/22**. Replay side effects were reverted before commit (42 generated files; see irregularity 3). | The replay is a local harness (`/tmp/ci/replay.py`, not committed), not GitHub's runner. |
+| S-2 Week 11 official injury capture | **done — single-read transcription; second read pending (needs review)** | <https://www.nfl.com/injuries/> (Week 11, read 2026-11-19 UTC, 7 fetch-tool chunks) | `tools/official/capture_w11.py --check`: schema (9 fields), status vocabulary, duplicate keys, two-team-per-game, club codes against the 32-club set, per-team sum = 253 rows, designation counts (9 Out, 6 Questionable, all in the Thursday game). Summary carries the SHA-256 of the transcription file. | Fetch-tool text, not raw HTTP bytes (bash cannot reach nfl.com: exit 35). No second independent read yet. Club attribution of the two anomalies below was not checked against roster pages. |
+| S-3 Landing LA-4 | **not actioned (logged)** | — | The stale "13/14 final" landing line needs the 2026-11-19 state of Week 10 from the official schedule page first; that page was not fetched in this session. Only the console nav received a link to the Week 11 page. | Remains an integration request. |
+| S-4 Executive summary refresh | **done** | the official page above, plus the repo files named in the section | `docs/EXECUTIVE-SUMMARY.md` §11 appended; nothing above it edited. Readiness counts quoted from `data/audit/readiness.json` (60 rows). | Questions Q1–Q7 are answered only where the repository holds an answer. |
+
+**Deliverables:** `data/capture/2026_w11/` (transcription PSV, `summary.json`, `injuries_week11.csv`), `week11/index.html` (sourced page with a flagged-anomalies section), `tools/official/capture_w11.py`, one console nav entry (`tools/build_console.py`) and regenerated console pages, Pages copy line and checks in `.github/workflows/pages.yml` and `verify.yml`, `assets/site.css` classes for the KPI strip, `docs/EXECUTIVE-SUMMARY.md` §11.
+
+**Irregularities (published on `week11/index.html`; none blocks the merge):**
+1. **Waddle and Evans attribution.** The Week 11 page lists Jaylen Waddle under the Broncos and Mike Evans under the 49ers. Kept as shown; roster verification pending.
+2. **Name vs slug.** Dee Alford (link slug `deaundre-ford`) and Jacob Hummel (slug `jake-hummel`). Displayed names kept.
+3. **Replay drift.** Running the CI generators rewrites 42 tracked generated files, including timestamps and counts. One count is stale in committed output: `pages/capture-system.html` shows 8 captures committed and 15 on rebuild. The CI build regenerates these, so the deployed site is not affected, but the committed copy is not self-consistent. Not fixed here.
+4. **Regeneration churn.** `data/console/price_snapshots.csv` changes by about 38,000 lines on every rebuild (timestamps). Reverted in this commit to keep the diff reviewable.
+5. **Sunday and Monday Game Status is blank** on the Week 11 page. Blank is not treated as available.
+6. **Six clubs absent** from the Week 11 page (ATL, CLE, GB, LAR, NE, SEA); byes are not stated there.
+7. **Remote branch `arena/0c2fcfa1-x1`** still exists on `origin` (`git ls-remote` shows it). It is described on the repo's own review page as deleting most of the repository. Not inspected in this session and not merged.
+8. **Platform constraint.** The `session-<id>/<task>` branch convention is replaced by one branch per session, as recorded at the top of the board.
+
+**Open PRs not touched by this session:** #91, #92, #95, #96, #110, #113, #123.
+
+**Automation not built (honest gap):** a scheduled Wednesday–Friday capture of the injury report is not in place. Whether GitHub-hosted runners can reach nfl.com was not tested.
+
+**PR and merge:** recorded below after the PR is opened and merged.
