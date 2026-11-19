@@ -35,6 +35,10 @@
       <a href="pages/suggestions-board.html">Suggestions board</a>
       <a href="pages/review-queue.html">Review queue</a>
       <a href="pages/changes.html">What changed</a>
+      <a href="pages/decision-brief.html">Decision brief</a>
+      <a href="pages/questions-and-answers.html">Questions &amp; answers</a>
+      <a href="pages/suggestion-review.html">Suggestion review</a>
+      <a href="pages/verification-2026-11-19.html">Live re-check 19 Nov</a>
       <a href="pages/requirements.html">Requirements &amp; status</a>
       <a href="pages/readiness.html">Decision readiness</a>
       <a href="pages/capture-system.html">Capture system</a>
@@ -113,6 +117,44 @@
   <a href="pages/results-closure.html">Week 10 closure, line by line →</a> &nbsp;·&nbsp;
   <a href="pages/changes.html">What changed, line by line →</a> &nbsp;·&nbsp;
   <a href="pages/cross-check.html">Independent cross-check →</a>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">2026-11-19 · FINAL INTEGRATION</div>
+<h2>Read once more today, from the official pages &mdash; every difference published</h2></div>
+<span class="tag">2026-11-19 (UTC) · 3 PAGES RE-READ</span></section>
+<section class="content">
+  <div class="note"><b>This section is today.</b> Everything above it is dated 2026-11-14&ndash;17 and is left
+  exactly as it was published. On 2026-11-19 (UTC) this session re-read the league
+  standings, the Week 10 slate and the Week 11 slate from nfl.com and diffed every cell against the committed
+  2026-11-19 pack, and re-read the Week 11 injury report independently of the session that transcribed it first.
+  Three of the four datasets agree exactly. The fourth does not, and that is the finding.</div>
+  <div class="statrow">
+    <div class="stat"><strong>32/32</strong><span>standings rows read twice, identical</span><span class="statnote">96/96 arithmetic assertions passed first</span></div>
+    <div class="stat"><strong>14/14</strong><span>Week 10 finals agree</span><span class="statnote">scores, status and both printed records</span></div>
+    <div class="stat"><strong>13 + 6</strong><span>Week 11 fixtures + byes agree</span><span class="statnote">32 clubs printed exactly once</span></div>
+    <div class="stat"><strong>1</strong><span>injury cells the two reads disagree on</span><span class="statnote">253 rows joined, same page, same day</span></div>
+  </div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Two readers, four official pages, one difference</caption><thead><tr><th>Official page</th><th>What two independent reads agree on</th><th>What they do not</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>League standings</b></td><td>32 clubs &times; 12 printed fields, all identical; the live row also satisfies NET = PF &minus; PA, PCT and HOME + ROAD before it is used</td><td>nothing</td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Week 10 slate</b></td><td>14 fixtures, all Final, scores and records identical</td><td>nothing</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Week 11 slate</b></td><td>13 fixtures and 6 byes, kickoff time, network and record identical</td><td>the page prints <i>LAR</i> where the standings print <i>LA</i> &mdash; alias declared, not unified</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+<tr><td><b>Week 11 injury report</b></td><td>253 player rows join on club and name; position and practice status identical</td><td><b>1 game-status cell</b> (IND Charlie Heck) and a free-text <i>Injuries</i> column that changed between consecutive reads of the same page</td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg11" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+  <p class="muted">A column that is not stable between two reads of the same page is published as
+  <b>unconfirmed</b>, never as a value &mdash; see <a href="pages/flagged.html">Flagged for review</a>.
+  Rebuild both checks with <code>tools/build_live_recheck.py</code> and
+  <code>tools/verify_second_read_2026_11_19.py</code>; the diff itself is
+  <td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19_second_read/diff_vs_first_reader.json" target="_blank" rel="noopener noreferrer">in the repository ↗</a></td>.</p>
+</section>
+
+<section class="sectionhead"><div><div class="eyebrow">ADDED THIS ROUND · READ IN THIS ORDER</div>
+<h2>Four pages to answer &ldquo;what do we know, what is missing, what should we do&rdquo;</h2></div>
+<span class="tag">REVIEW BEFORE BUILDING</span></section>
+<section class="cards">
+  <a class="card" href="pages/decision-brief.html"><span class="ico">◉</span><small>DECIDE / 01</small><h3>Decision brief</h3><p>One page: the facts that now have two independent reads behind them, the five missing inputs that stop a number existing, and the five decisions that unblock them in order.</p><span class="more">Open the brief →</span></a>
+  <a class="card" href="pages/questions-and-answers.html"><span class="ico">?</span><small>ASK / 02</small><h3>Questions &amp; answers</h3><p>Every question on the record with the information already held, the information missing, and the concrete measurement that would close it — in two registers, side by side.</p><span class="more">Open the registers →</span></a>
+  <a class="card" href="pages/suggestion-review.html"><span class="ico">✎</span><small>CHOOSE / 03</small><h3>Suggestion review</h3><p>Every proposal consolidated, each with its problem, its paths, its recommendation, a reversible first step and what it unlocks — so you can pick the best path before anything is built.</p><span class="more">Review the suggestions →</span></a>
+  <a class="card" href="pages/verification-2026-11-19.html"><span class="ico">✓</span><small>CHECK / 04</small><h3>Live re-check, 19 Nov</h3><p>The four official pages re-read today, cell by cell, with every difference published and the one unstable column named. Three datasets agree exactly.</p><span class="more">See the evidence →</span></a>
 </section>
 
 <section class="sectionhead"><div><div class="eyebrow">START HERE</div><h2>The decisions waiting on you</h2></div><span class="tag">BASE 2026-11-14 · STATUS READ 2026-11-19</span></section>

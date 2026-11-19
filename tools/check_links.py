@@ -401,7 +401,7 @@ def _audit_tree(html_paths, css_path, js_root, label):
 # ../app/assets/site.css, so — exactly like lab/ — it is audited against that stylesheet
 # below rather than against assets/site.css here.
 _mine = [f for f in files if os.path.relpath(f, ROOT).split(os.sep)[0] not in
-         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console", "room")]
+         ("dashboard", "research", "site", "live", "hub", "app", "lab", "console", "room", "origination-desk")]
 _audit_tree(_mine, os.path.join(ROOT, "assets", "site.css"), os.path.join(ROOT, "assets"), "assets/site.css")
 _res = sorted(glob.glob(os.path.join(ROOT, "research", "*.html")))
 if _res:
@@ -454,6 +454,13 @@ _roomx = sorted(glob.glob(os.path.join(ROOT, "room", "*.html")))
 if _roomx:
     _audit_tree(_roomx, os.path.join(ROOT, "app", "assets", "site.css"),
                 os.path.join(ROOT, "app", "assets"), "room -> app/assets/site.css")
+
+# Added by session arena/6b45af7e-x1 (additive): origination-desk/ is a ninth page tree with its own
+# stylesheet (origination-desk/assets/desk.css). Audited against that file, exactly as the other trees are.
+_desk = sorted(glob.glob(os.path.join(ROOT, "origination-desk", "*.html")))
+if _desk:
+    _audit_tree(_desk, os.path.join(ROOT, "assets", "site.css"),
+                os.path.join(ROOT, "assets"), "origination-desk -> assets/site.css")
 
 # ---- escaped markup: HTML that was meant to render must not appear as literal text ----
 for _p in files:

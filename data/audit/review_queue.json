@@ -8,7 +8,7 @@
   "data/nfl/injuries_week10.tsv"
  ],
  "counts": {
-  "flag": 36,
+  "flag": 39,
   "open question": 22,
   "needs review": 3,
   "flagged": 1,
@@ -410,6 +410,39 @@
    "unknown": "Whether the owner wants PR #91's scheduled Game-Centre venue-capture workflow (.github/workflows/game-centre-venue-capture.yml, which runs successfully on CI runners) ported onto main alongside the R7 venue register, or whether the two registers should be reconciled into one; and whether #123's re-audit or the merged R8-3 register should become the single brief-coverage authority.",
    "source": "https://github.com/karagemop466-tech/X1/pull/125",
    "source_label": "PR #125 (the takeovers that superseded #95/#96/#110)"
+  },
+  {
+   "id": "F-38",
+   "register": "data/flags.json",
+   "area": "Verification coverage",
+   "item": "The repository's per-row source rule (scripts/verify_site.py) recorded only the FIRST table's header row on a page, so every later table on the same page had its Source column located by position ('last cell') rather than by header name.",
+   "state": "flag",
+   "severity": "medium",
+   "unknown": "How many pages in the served tree have more than one data table where the last cell is not the source cell. No page is known to be wrongly passed (the check is stricter when it looks at the wrong cell only if that cell lacks a link); the risk is a false FAILURE, which is what this session hit.",
+   "source": "https://github.com/karagemop466-tech/X1/blob/main/scripts/verify_site.py",
+   "source_label": "the checker itself (repository file)"
+  },
+  {
+   "id": "F-39",
+   "register": "data/flags.json",
+   "area": "Source-host allow-list",
+   "item": "nflpaweb.blob.core.windows.net (the NFL Players Association's documents host) was missing from scripts/verify_site.py's official-host list, so two correctly-sourced register rows were reported as unsourced.",
+   "state": "flag",
+   "severity": "low",
+   "unknown": "Nothing. This is a configuration inconsistency between two checkers, now closed.",
+   "source": "https://nflpaweb.blob.core.windows.net/website/Gambling-Policy-from-2022-League-Policies-for-Players.pdf",
+   "source_label": "NFLPA gambling policy (official PDF)"
+  },
+  {
+   "id": "F-40",
+   "register": "data/flags.json",
+   "area": "Verification / read stability",
+   "item": "The official Week 11 injury report's free-text \"Injuries\" column is not stable between consecutive reads of the same page on the same day.",
+   "state": "flag",
+   "severity": "high",
+   "unknown": "Whether the page itself changed between reads or the page renders this column non-deterministically. No raw bytes were retained (a direct request from the sandbox fails at TLS), so the two possibilities cannot be separated with the evidence held.",
+   "source": "https://www.nfl.com/injuries/league/2026/reg11",
+   "source_label": "nfl.com Week 11 injury report"
   },
   {
    "id": "Q-01",

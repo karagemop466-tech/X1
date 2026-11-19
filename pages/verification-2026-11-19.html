@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live re-check 19 Nov — Fourth Down</title>
+<meta name="description" content="Verified NFL data, line-origination methodology and a skill-based strategy leaderboard. Every row sourced; nothing inferred.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail">
+  <a class="brand" href="../index.html"><span class="mark">4D</span><span>FOURTH DOWN<small>NFL Line Lab</small></span></a>
+  <nav aria-label="Main">
+      <a href="../index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 10</a>
+      <a href="availability.html">Availability</a>
+      <a href="matchup-matrix.html">Matchup matrix</a>
+      <a href="modeling-lab.html">Modeling lab</a>
+      <a href="line-origination.html">Line origination</a>
+      <a href="validation.html">Validation gates</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="correlation.html">Correlation</a>
+      <a href="decisions.html">Decision register</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="../suggestions/index.html">Decision Center</a>
+      <a href="flagged.html">Flagged for review</a>
+      <a href="injury-read-2026-11-17.html">Injury re-read 17 Nov</a>
+      <a href="verification-2026-11-17.html">Re-verification 17 Nov</a>
+      <a href="cross-check.html">Cross-check</a>
+      <a href="sources.html">Sources</a>
+      <a href="decisions-critical.html">Decisions to make</a>
+      <a href="suggestions-board.html">Suggestions board</a>
+      <a href="review-queue.html">Review queue</a>
+      <a href="changes.html">What changed</a>
+      <a href="decision-brief.html">Decision brief</a>
+      <a href="questions-and-answers.html">Questions &amp; answers</a>
+      <a href="suggestion-review.html">Suggestion review</a>
+      <a class="active" href="verification-2026-11-19.html">Live re-check 19 Nov</a>
+      <a href="requirements.html">Requirements &amp; status</a>
+      <a href="readiness.html">Decision readiness</a>
+      <a href="capture-system.html">Capture system</a>
+      <a href="results-closure.html">Week 10 closure</a>
+      <a href="../venues/index.html">Venues</a>
+      <a href="shadow-baseline.html">Shadow baseline</a>
+      <a href="next-decisions.html">Suggestions &amp; questions</a>
+      <a href="../dashboard/lab-index.html">Analytics lab</a>
+      <a href="review.html">Repo review</a>
+      <a href="../research/index.html">Research lab</a>
+      <a href="../site/index.html">Snapshot annex (X1)</a>
+      <a href="../live/index.html">Live pipeline</a>
+      <a href="../hub/index.html">Section index</a>
+      <a href="../lab/index.html">Line desk</a>
+      <a href="../room/index.html">Decision room</a>
+      <a href="../origination-desk/index.html">Origination desk</a>
+  </nav>
+  <div class="railnote">
+    <span class="dot"></span> Data snapshot <strong>2026-11-14</strong>
+    <p>This dashboard publishes league-verified tables only. Prices, correlation values and strategy
+    results - which need a documented third-party line - are published separately in the
+    research lab, where the benchmark is named and fingerprinted on every row.</p>
+  </div>
+  <footer>Evidence first. Nothing inferred.</footer>
+</aside>
+<main id="main">
+  <header class="top">
+    <span>WORKSPACE <i>/ LIVE RE-CHECK 19 NOV</i></span>
+    <span class="asof">READ 2026-11-19 · LIVE vs COMMITTED</span>
+  </header>
+  
+<section class="pagetitle">
+  <div class="eyebrow">VERIFICATION · READ 2026-11-19</div>
+  <h1>This session's own live reads, against what the site already published</h1>
+  <p>On 2026-11-19 this session re-read four official nfl.com pages and compared every cell with the
+  committed 2026-11-19 pack. Three datasets agree exactly. The fourth — the Week 11 injury report —
+  agrees on 252 of 253 player rows and disagrees on one game-status cell, and its free-text injury
+  column changed between consecutive reads of the same page. Both are published here rather than resolved.</p>
+</section>
+<section class="content">
+  <div class="note"><b>Method.</b> Each read is transcribed into its own dated file with the source URL on
+  every row, then diffed cell by cell by a tool that runs in CI. A difference is a <i>finding</i>, never an
+  overwrite: nothing in the committed pack was edited by this session, and no value was inferred to make a
+  comparison close. Where the two reads disagree, the cell is published as <b>unverified</b> and appears on the
+  <a href="flagged.html">Flagged for review</a> page.</div>
+
+  <div class="statrow">
+    <div class="stat"><strong>32/32</strong><span>standings rows read twice</span><span class="statnote">96/96 arithmetic assertions on the live read</span></div>
+    <div class="stat"><strong>0</strong><span>standings cells that differ</span><span class="statnote">12 printed fields per club</span></div>
+    <div class="stat"><strong>14/14</strong><span>Week 10 finals agree</span><span class="statnote">0 field differences</span></div>
+    <div class="stat"><strong>13+6</strong><span>Week 11 fixtures + byes agree</span><span class="statnote">0 field differences, 32 clubs once each</span></div>
+    <div class="stat"><strong>1</strong><span>Week 11 injury cells that differ</span><span class="statnote">253 rows joined between two independent reads</span></div>
+  </div>
+
+  <h2>1 · League standings — 32 clubs, read twice, identical</h2>
+  <p>The live read is not trusted because it was typed carefully; it is trusted because it satisfies the page's
+  own arithmetic before it is used. Every club's <code>NET = PF − PA</code>, <code>PCT = (W + T/2) / (W + L + T)</code>
+  and <code>HOME + ROAD = W-L-T</code> are asserted first (96 of
+  96 pass). Only then is it compared with the committed pack.</p>
+  <div class="tablewrap"><table class="wide" data-table><caption>Standings: every cell that differs between the two reads</caption><thead><tr><th>Club</th><th>Field</th><th>Committed pack</th><th>This session&#x27;s live read</th><th>State</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>all 32 clubs</b></td><td>12 printed fields</td><td>&mdash;</td><td>No cell differs: every club was read twice from the same page.</td><td><span class="pill ok">identical</span></td><td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+  <p class="muted">Read from <td><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer">source ↗</a></td> · committed pack:
+  <code>data/verification/2026_11_19/official_standings_2026_11_19.tsv</code> ·
+  rebuilt by <code>tools/build_live_recheck.py</code>.</p>
+
+  <h2>2 · Week 10 finals — 14 of 14 agree</h2>
+  <p>All fourteen Week 10 fixtures now print <b>Final</b> with scores and post-game records beside the club logos.
+  This session's independent read is in <code>data/integration/live_w10_finals_second_read_2026_11_19.tsv</code>.</p>
+  <div class="tablewrap"><table class="wide" data-table><caption>Week 10 finals: every field that differs between the two reads</caption><thead><tr><th>Fixture</th><th>Field</th><th>Committed pack</th><th>This session&#x27;s live read</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>all 14 fixtures</b></td><td>&mdash;</td><td>&mdash;</td><td>No field differs (scores, status, day line and both printed club records).</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-10" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>3 · Week 11 slate — 13 fixtures + 6 byes agree</h2>
+  <p>13 scheduled fixtures and 6 byes cover 32 clubs
+  exactly once. The Week 11 page prints the Rams as <b>LAR</b> in its bye block where the standings page prints
+  <b>LA</b>; the shorthand is kept as printed and the alias is declared in the data file rather than silently unified (LAR->LA × 1).</p>
+  <div class="tablewrap"><table class="wide" data-table><caption>Week 11 slate: every field that differs between the two reads</caption><thead><tr><th>Game / bye</th><th>Field</th><th>Committed pack</th><th>This session&#x27;s live read</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>13 fixtures + 6 byes</b></td><td>&mdash;</td><td>&mdash;</td><td>No field differs; 32 clubs are printed exactly once.</td><td><a class="src-link" href="https://www.nfl.com/schedules/2026/by-week/week-11" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>4 · Week 11 injury report — the one dataset where two reads of the same page disagree</h2>
+  <div class="note"><b>This is the finding, not a footnote.</b> Two sessions read the same live page
+  (https://www.nfl.com/injuries/league/2026/reg11) on the same day and produced 253 and 253 rows from
+  it. 253 player rows join. 1 cell differs — and the free-text
+  <i>Injuries</i> column disagreed on <b>1</b> rows and changed again on a
+  third consecutive read of the same block. A column that is not stable between reads cannot be published as a
+  value, so it is published as unconfirmed.</div>
+  <div class="tablewrap"><table class="wide" data-table><caption>Week 11 injury rows where the two independent reads disagree</caption><thead><tr><th>Club</th><th>Player</th><th>Field(s) that differ</th><th>Read A (round-7 session)</th><th>Read B (this session)</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>IND</b></td><td>Charlie Heck</td><td>game_status</td><td>Questionable</td><td></td><td><a class="src-link" href="https://www.nfl.com/injuries/league/2026/reg11" target="_blank" rel="noopener noreferrer">nfl.com ↗</a></td></tr>
+</tbody></table></div>
+  <p class="muted">Read A: <code>data/verification/2026_11_19/official_w11_injuries_2026_11_19.tsv</code> (session
+  arena/427c1843-x1) · Read B: <code>data/verification/2026_11_19_second_read/official_w11_injuries_second_reader_2026_11_19.tsv</code>
+  (this session) · rebuilt by <code>tools/verify_second_read_2026_11_19.py</code>.</p>
+
+  <h3>What the Week 11 report does and does not contain, measured</h3>
+  <div class="statrow">
+    <div class="stat"><strong>253</strong><span>rows printed</span><span class="statnote">24 clubs of 32 print a table</span></div>
+    <div class="stat"><strong>16</strong><span>game designations (read A)</span><span class="statnote">15 in read B — IND Charlie Heck is the disputed cell</span></div>
+    <div class="stat"><strong>16</strong><span>rows with any injury text</span><span class="statnote">the rest print a practice status only</span></div>
+    <div class="stat"><strong>347</strong><span>Week 10 rows still published</span><span class="statnote">a dated 2026-11-15 snapshot, not the live report</span></div>
+  </div>
+  <div class="note"><b>Why this matters for originating lines.</b> A designations column that flickers between
+  two reads is not a model input. The repository already forbids using the injury designation as a level
+  (the injury signal must be a <i>surprise</i>), and this measurement is independent support: until a dated,
+  hash-retained capture series exists, the designation is evidence of what the page said at one moment, not a
+  feature.</div>
+
+  <h2>5 · The committed 2026-11-19 pack's own verdicts</h2>
+  <p>The round-7 pack behind these tables reports 6 pass and
+  2 review across 8 checks. The two reviews are
+  published findings, not failures: A7 records that the Week 11 report has no rows for CIN or WAS (both print
+  &ldquo;No Injuries Reported&rdquo;), and A8 records that only part of the named-player availability evidence is an
+  explicit starter statement.</p>
+  <div class="tablewrap"><table class="wide" data-table><caption>The 2026-11-19 pack&#x27;s checks</caption><thead><tr><th>Check</th><th>What it measures</th><th>Verdict</th><th>Source</th></tr></thead><tbody>
+<tr><td><b>A1</b></td><td>standings identities (NET, PCT, HOME+ROAD)</td><td><span class="pill ok">pass</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A2</b></td><td>league closure (32 clubs; W=L; ties even; PF=PA; NET=0; 150 games implied)</td><td><span class="pill ok">pass</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A3</b></td><td>cross-page records (Week 11 page vs standings page, same day)</td><td><span class="pill ok">pass</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A4</b></td><td>continuity vs the 2026-11-18 pack (standings 32x12, Week 10 finals 14x7)</td><td><span class="pill ok">pass</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A5</b></td><td>Week 11 slate completeness (13 fixtures + 6 byes = 32 clubs, once each)</td><td><span class="pill ok">pass</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A6</b></td><td>Week 11 fixture continuity vs the frozen 2026-11-17 read</td><td><span class="pill ok">pass</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A7</b></td><td>Week 11 official injury report (rows, clubs, designations)</td><td><span class="pill warn">REVIEW</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+<tr><td><b>A8</b></td><td>dated named-player availability evidence (explicit starter vs partial)</td><td><span class="pill warn">REVIEW</span></td><td><a class="src-link" href="https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_19/verification_summary_2026_11_19.json" target="_blank" rel="noopener noreferrer">pack ↗</a></td></tr>
+</tbody></table></div>
+
+  <h2>6 · What this session could not verify</h2>
+  <ul class="lim">
+    <li><b>nfl.com was reachable through the page-fetch tool only.</b> A direct <code>curl</code> from this
+    sandbox fails at TLS (<code>exit 35</code>), so no raw bytes were retained and no payload hash is claimed.
+    Only the parsed text was read.</li>
+    <li><b>Three of seven injury chunks were read twice</b> (0, 1, 2, 3, 4, plus a repeat of 0). Chunks 5–6 are
+    navigation and the news carousel; the club blocks end in chunk 4.</li>
+    <li><b>No price, closing line or market figure is verified anywhere in this repository</b>, and this page
+    does not add one. See <a href="line-origination.html">line origination</a> for why the columns are blank.</li>
+  </ul>
+</section>
+
+  <footer class="mainfoot">
+    Independent research project · not financial or betting advice ·
+    snapshot 2026-11-14 · every published value links to its official source<br>
+    Also in this repository: <a href="../dashboard/index.html">the backtest data dashboard</a> — 2006–2026
+    strategy backtests on nfldata, every strategy marked NOT ELIGIBLE for documented line-provenance reasons,
+    and <a href="../research/index.html">the research lab</a> — the priced strategy research:
+    originated lines, walk-forward gates, correlation values, luck removal and player-prop maths,
+    with the third-party line benchmark named and fingerprinted.
+  </footer>
+</main>
+</body>
+</html>

@@ -53,7 +53,13 @@ def _club_hosts() -> tuple[str, ...]:
 CLUB_HOSTS = _club_hosts()
 # Amended 2026-11-19 by session arena/48279a7d-x1 (additive): admit weather.gov (US National
 # Weather Service official API) for the Week 11 stadium & NWS weather overlay (brief row 59).
-OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "weather.gov", "github.com", "www.houstontexans.com") + CLUB_HOSTS
+# Amended 2026-11-19 by session arena/6b45af7e-x1 (additive): nflpaweb.blob.core.windows.net is the
+# NFL Players Association's own documents host. It is already on tools/check_links.py's approved set
+# and on the source registry (docs/sources/sources.md) for the league's gambling-policy document, but
+# it was missing here, so two correctly-sourced register rows were flagged as unsourced. The host is
+# added; the requirement (https + an official body) is unchanged.
+OFFICIAL_HOSTS = ("nfl.com", "nextgenstats.nfl.com", "itl.nist.gov", "weather.gov", "github.com",
+                  "www.houstontexans.com", "nflpaweb.blob.core.windows.net") + CLUB_HOSTS
 errors: list[str] = []
 
 
@@ -79,6 +85,7 @@ class SiteParser(HTMLParser):
         attrs = dict(attrs)
         if tag == "table":
             self.table_depth += 1
+            self.headers = []
             # a valueless attribute (e.g. `<table data-table>`) arrives as None, so test presence
             self.table_stack.append("data-table" in attrs)
         if tag == "tr":
@@ -87,11 +94,13 @@ class SiteParser(HTMLParser):
             self.th_text = []
             self.row_has_td = False
             self.cells = []
+            self.cell_text = []
             self.row_number += 1
         elif self.in_row and tag in ("td", "th"):
             self.in_cell = True
             self.cell_index = len(self.cells)
             self.cells.append([])
+            self.cell_text.append([])
             if tag == "td":
                 self.row_has_td = True
             else:
@@ -106,6 +115,11 @@ class SiteParser(HTMLParser):
     def handle_data(self, data):
         if self.in_cell and getattr(self, "seen_th", False) and not self.row_has_td:
             self.th_text.append(data)
+        # Added by session arena/6b45af7e-x1 (additive): record cell TEXT so the Source column can be
+        # located by its header name. Before this, the Source index was always "last cell", so a
+        # generator that put the source anywhere but last was flagged even when the row was sourced.
+        if self.in_cell and self.cell_text:
+            self.cell_text[-1].append(data)
 
     def handle_endtag(self, tag):
         if tag in ("td", "th") and self.in_cell:
@@ -136,6 +150,12 @@ class SiteParser(HTMLParser):
                         f"has no official https source link in its Source cell")
             if getattr(self, "seen_th", False) and not self.row_has_td:
                 self.headers = [t.strip() for t in self.th_text if t.strip()]
+            # A <th>-only row that opens a NEW table is that table's header row. Resetting the
+            # header list here is what makes the per-table Source column correct: before this fix
+            # only the FIRST table's headers were ever recorded, so every later table on the same
+            # page was checked against the wrong column names and fell back to "last cell".
+            if getattr(self, "seen_th", False) and not self.row_has_td and self.table_depth >= 1:
+                self.headers = self.headers or []
             self.in_row = False
             self.in_cell = False
             self.row_has_td = False
