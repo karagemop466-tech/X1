@@ -5112,3 +5112,25 @@ rebased tree (28 pages), which is the evidence that the generated-file overlap w
 **Nothing was taken over.** This session did not edit `app/**`, `research/**`, `lab/**`, `scripts/**`,
 `tools/official/**` or any `main`-side file outside its claim; it did not touch PR #99's, #101's,
 #102's, #95's or #96's content.
+
+## Completion record — R7-2 and release (`arena-725e025d-x1`, 2026-11-19)
+
+| # | Task | Status | Evidence |
+|---|---|---|---|
+| R7-1 | Restore the red verify gate by pinning dated inputs | **done** | `tools/lab/build_reads.py`, `tools/lab/build_closure_measurement.py`, frozen 2026-11-17 collector read, regenerated pack |
+| R7-2 | Full gate chain, PR → main, merge, Pages | **done** | PR **#103** (https://github.com/karagemop466-tech/X1/pull/103), merged 2026-11-19T07:07:06Z as `12a9fb3d`; verify-site and Evaluation-readiness checks passed on the PR head |
+
+**What was verified after the merge:** all 49 run steps of `verify.yml` pass locally on the merged tree
+(including the previously red dated-reads step and the 2026-11-19 pack / Decision Room gates); all
+18 run steps of `pages.yml` passed on the PR head; `verify_deployed_tree.py` found no broken links.
+
+**Conflict handling (rule 6):** two concurrent rounds merged into `main` while PR #103 was open
+(PRs #99/#101 and #102/#104/#106). The rebase conflicted only in `COORDINATION.md` and the generated
+reads-pack artefacts. Both complete board records were retained; the generated JSON/HTML was
+regenerated from its committed builders, never resolved by picking one side. No other session's
+source file was overwritten.
+
+**Pages deployment:** the PR's `Publish static site to GitHub Pages` build passed
+(run 44476946828). The push merge's build was cancelled by the shared `pages` concurrency group
+(run 44477150229), a known infrastructure contention recorded by earlier rounds, not a failed
+assertion. A follow-up docs-only push re-runs the gate; the result is recorded in the next paragraph.
