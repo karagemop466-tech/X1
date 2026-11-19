@@ -5366,3 +5366,30 @@ All 37 flags (F-01–F-37) are published on `data/flags.json` and the Flagged fo
 | Irregularities | F-01–F-37 published with source links; key opens Q-02 (no licensed price feed), Q-04 (no licensed snap counts), Q-07 (reward funding), Q-31 (market price authority). None block the release. |
 
 No data, site, or generator files were changed in this session; only `COORDINATION.md` (claim + completion records). The published site already contained the clean category-organised landing page, source-linked tables, the 53-row decision-readiness register, the executive summary, the suggestions board (18 proposals), the questions register (24 questions), and the Flagged for Review page — all verified and deployed.
+
+
+---
+
+
+---
+
+# Session `arena/eab9ccb9-x1` — independent final verification audit (2026-11-19)
+
+**Session ID:** `arena/eab9ccb9-x1` · **Branch:** `arena/eab9ccb9-x1` (fixed by Arena; based on `856366f`).
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| EAB-1 | Independently rerun the existing site/data/research verification chain on the current integration tree; inspect official-source links, decision-readiness/suggestions pages and release configuration; record only reproducible results and any gaps | done — audit and seven follow-up findings recorded; shared/generated output edits deliberately deferred under non-overlap rules | `arena/eab9ccb9-x1` | `docs/audit/session-eab9ccb9-verification.md`, append-only `COORDINATION.md` |
+
+**Non-overlap:** no edits to site generators, generated pages, data, or other sessions' claimed files. Any discovered content defect will be logged here as a follow-up request rather than silently edited. This is an audit of the already integrated tree, not a claim that every historical source was freshly fetched in this session.
+
+## EAB-1 completion — independent integration verification audit (2026-11-19)
+
+- **Report:** `docs/audit/session-eab9ccb9-verification.md`.
+- **Rebase/conflict log:** main advanced from the branch base through data-refresh commits, PR #115, PR #117, and release-record PR #119 to `cb0eabf` while this branch was open. `git pull --rebase origin main` conflicted at the append-only `COORDINATION.md` tail; the complete upstream integration record and this session's claim were both retained, with no other session content discarded. Core data/link/site/app/new-data/deployed-tree/desk checks passed after rebase.
+- **Local checks:** `tools/verify_data.py` (2,960), `tools/check_links.py` (211 files / 51,245 assertions), `scripts/verify_site.py` (211 pages), `tools/verify_app.py` (29 pages / 8,495 rows, 0 unmarked/unsourced), decision-center (750 assertions), source-rule mutation test, official cross-check (1,846 cells / 0 mismatches), round-3 stores (150 results, 56 snapshots, 42 origination rows, 1,034 official-only correlation pairs), capture self-test (6/6), dated pack checks, 32-club depth/model checks, room checks, Origination & Skill Desk (1,621 checks + 7 unit tests), console (34 pages / 5,416 links / 3,334 sourced rows), live pipeline (15 pages / 5,358 sourced rows), new-data checks, and assembled deployment (219 pages / 6,079 links, 4 pre-existing orphan pages reported): **passed**. Dated-check rebuilds changed two `generated_at` fields; hub/console rebuilds also changed tracked generated outputs. All audit-generated changes were restored; the only remaining edits are this report and coordination record.
+- **Live official source fetched:** [NFL 2026 Week 11 injury report](https://www.nfl.com/injuries/league/2026/REG11) on 2026-11-19; it presents Week 11 selection and game/player tables. This confirms that the review queue's 2026-11-17 “does not exist yet” item is historical, not a current blocker. No other historical rows are claimed freshly fetched by this session.
+- **Live site/deployment:** [GitHub Pages root](https://karagemop466-tech.github.io/X1/) fetched; [Pages deployment run 44598901292](https://github.com/karagemop466-tech/X1/actions/runs/44598901292) succeeded for main `2fe967a` (the post-PR-115 data refresh). The root and conflicting public sections were also fetched directly after that deployment.
+- **PR #118:** [Audit integration verification and record critical site conflicts](https://github.com/karagemop466-tech/X1/pull/118), from this branch. PR has no reported status checks; manual workflow dispatch was rejected by GitHub with HTTP 403. Local verification is recorded above. Merge result will be appended after GitHub confirms it.
+- **Follow-up requests (no overlap edits made):** AUD-01 stale Week 11 blocker; AUD-02 dated 5-club vs later 31-club depth scope; AUD-03 conflicting empty vs historical backtest leaderboard and violation of the no-backtests-on-leaderboard rule; AUD-04 incompatible results/price-store universes and unverified mirror values displayed as 2026 opens; AUD-05 53 vs 82 requirement counts; AUD-06 public/private release boundary remains open; AUD-07 console generated artifacts are not diff-gated in CI. Full evidence, applicable official links, and gates are in the report. These touch shared registers/generated pages or an open PR, so they are recorded for coordinated integration rather than edited here.
+- **Status:** EAB-1 done. This is not certification that all historical sources were refreshed in this session; see the report scope and explicit follow-up list.
