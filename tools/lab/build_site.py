@@ -1055,7 +1055,7 @@ def p_sources() -> str:
            src(f"{GITHUB}/{READS_PACK}/manifest.json", "reads manifest")],
           ["&ldquo;no injury row was re-verified by this session&rdquo;",
            "superseded for 44 rows: four club tables transcribed by hand and diffed cell by cell against "
-           "the newest accepted capture, " + str(jload(f"{READS_PACK}/report.json")["numbers"]["injury_spot_check_mismatches"]) +
+           "the dated 2026-11-17 accepted capture, " + str(jload(f"{READS_PACK}/report.json")["numbers"]["injury_spot_check_mismatches"]) +
            " mismatches over 220 cells",
            src(f"{GITHUB}/{READS_PACK}/injury_spotcheck_2026-11-17.tsv", "spot-check")],
           ["&ldquo;the sources that do [carry a book and a timestamp] are not reachable here&rdquo;",
@@ -1194,13 +1194,15 @@ def p_flagged() -> str:
                       "the machinery is running and the source is empty; nobody can build a Week 11 "
                       "personnel signal today"])
         flags.append(["R1", "R1-05", "medium",
-                      "The results feed is 13 games short of the corpus the standings imply",
+                      "The 2026-11-17 read found the results feed 13 games short of the standings corpus",
                       f"{RC['C7_results_log_gap']['week10_games_absent_from_the_published_log']} Week 10 "
-                      f"finals are read and cross-checked but not in data/results; the mirror row-diff gate "
-                      f"blocks all 13, and 4 executable lines pin the builder to 137 rows",
+                      "finals were read and cross-checked but not then in data/results; the mirror "
+                      "row-diff gate blocked all 13 and the builder pinned its row count. The gap was "
+                      "later closed by the round-6 integration (PR #88); the current measurement "
+                      "re-derives 0 remaining games and 0 mirror-blocked rows",
                       src(f"{GITHUB}/{READS_PACK}/feed-closure-measurement.json", "closure measurement"),
-                      "measured, not fixed: the append would move the frozen PR-01 input and the pinned "
-                      "standings baseline, so it is the owner's call (see the Feed closure page)"])
+                      "kept as a dated finding, not silently deleted: the closure changed what 'verified' "
+                      "means for the published feed, so both states are measurable (Feed closure page)"])
         flags.append(["R1", "R1-06", "medium",
                       "Venue transcription covers 2 of the 27 fixtures this round could have read",
                       f"the brief asks for the venue of every fixture from the official game centre; "
@@ -1512,13 +1514,18 @@ def p_reads() -> str:
     st = tload(f"{READS_PACK}/standings_2026-11-17.tsv")
     ven = tload(f"{READS_PACK}/venue_evidence_2026-11-17.tsv")
     ist = tload(f"{READS_PACK}/injury_state_2026-11-17.tsv")
+    # The results log was closed after this pack was written (PR #88). Read the row count from
+    # the log itself so a KPI cannot keep printing 137 after the log holds 150.
+    feed_rows = len(tload("data/results/_raw/reads.tsv"))
+    last_capture = chk["C9_injury_capture_series"]
     PRIOR = "https://github.com/karagemop466-tech/X1/blob/main/data/verification/2026_11_16"
 
     kpis = "".join([
         kpi(str(num["week10_finals_published"]), "Week 10 games read Final on the official page",
             "the 2026-11-16 read could only see 13; the 14th settled Monday night", "ok"),
         kpi(f"{num['games_implied_by_standings']}", "games the official standings imply",
-            f"137 in the results feed + {num['week10_games_missing_from_the_results_log']} in this read", "ok"),
+            f"{feed_rows} in the results feed + {num['week10_games_missing_from_the_results_log']} "
+            "absent from this dated read", "ok"),
         kpi(f"{num['league_points_each_side']:,}", "league points for, and against",
             "the two sides of the ledger are equal to the point", "ok"),
         kpi(str(num["injury_rows_spot_checked"]), "injury rows transcribed by hand and diffed",
@@ -1531,7 +1538,8 @@ def p_reads() -> str:
         kpi(f"{num['venue_direct_rows']} / {len(ven)}", "fixtures with a Game Center venue row",
             "the weekly schedule page prints no venue field at all", "warn"),
         kpi(str(num["injury_reads_since_last_content_change"]), "reads of the injury page since it last changed",
-            "the series is running; the report itself has not moved since 2026-11-16", "warn"),
+            f"last retained read {last_capture['last_read'][:10]}; the page has since moved to a Week 11 "
+            "report, which is a different date's source", "warn"),
     ])
 
     gate_rows = []
@@ -1655,8 +1663,8 @@ def p_reads() -> str:
         ])
     injuries = table(["Read", "Subject", "What the page prints", "What that means", "Flag", "Source"], inj_rows,
                      note=f"The row-level comparison is check C8: {num['injury_rows_spot_checked']} rows "
-                          f"transcribed by hand across four clubs, five fields each, against the newest retained "
-                          f"capture &mdash; {num['injury_spot_check_mismatches']} mismatches, over "
+                          f"transcribed by hand across four clubs, five fields each, against the dated 2026-11-17 "
+                          f"retained capture &mdash; {num['injury_spot_check_mismatches']} mismatches, over "
                           f"{chk['C8_injury_spotcheck_vs_capture']['coverage']['clubs']} clubs and "
                           f"{chk['C8_injury_spotcheck_vs_capture']['coverage']['rows']}. The same rows against "
                           f"the table the site publishes: {num['published_injury_table_mismatches']} mismatches, so "
@@ -1714,9 +1722,11 @@ history is in report.json, and it is why a capture is kept per read rather than 
 
 <div class="note warn"><b>What this page cannot show you.</b> There is no price here: no opening line, no
 closing line, no book, no timestamp on a number
-<a href="{PRIOR}" target="_blank" rel="noopener">the 2026-11-16 pack</a> could not see either, and the
-13 Week 10 games it printed as settled are still absent from the results feed &mdash; that gap is measured
-on <a href="closure.html">Feed closure</a> and it is not fixed here. The repository's own independent
+<a href="{PRIOR}" target="_blank" rel="noopener">the 2026-11-16 pack</a> could not see either. That pack
+was 13 Week 10 games short, but the feed has since been closed at {feed_rows} games: the current
+measurement reports {num['week10_games_missing_from_the_results_log']} games missing from this dated read.
+The original decision and its closure are both measured on <a href="closure.html">Feed closure</a>.
+The repository's own independent
 re-verification (<code>tools/verify_official.py</code>) is red, and the second row of the closure table above
 is the reason: it compares a published table against a reference transcription three days older, and the
 league table moved in between &mdash;
@@ -1903,15 +1913,19 @@ def p_closure() -> str:
     m4 = M["M4_closure_against_the_pinned_baseline"]
     m5 = M["M5_blast_radius"]
     m6 = M["M6_evaluation_corpus_effect"]
+    added = d["corpus"]["games_the_append_would_add"]
 
     kpis = "".join([
         kpi(f"{d['corpus']['rows_in_the_published_results_log']} &rarr; {d['corpus']['corpus_after_the_append']}",
             "games in the results feed, and after the append",
-            f"{d['corpus']['games_the_append_would_add']} Week 10 games the feed does not hold", "warn"),
+            (f"{added} Week 10 games the feed does not hold" if added
+             else "the dated Week 10 gap is closed; the log now holds "
+                  f"{d['corpus']['corpus_after_the_append']} games"), "warn" if added else "ok"),
         kpi(str(m2["of_those_the_mirror_prints_no_score_for"]), "games blocked by the mirror gate",
-            f"of {d['corpus']['games_the_append_would_add']} the append would add &mdash; every one", "bad"),
+            (f"of {added} the append would add &mdash; every one" if added
+             else "no row is blocked; the mirror gate has nothing left to refuse"), "bad" if added else "ok"),
         kpi(f"{m3['clubs'] - m3['clubs_disagreeing']}/{m3['clubs']}", "standings rows the closure reproduces",
-            "against today's official table, W-L-T, PF and PA", "ok"),
+            "against the dated 2026-11-17 official table, W-L-T, PF and PA", "ok"),
         kpi(str(m1["code_lines_that_assert_the_count"]), "executable lines pinning the row count",
             f"in {m1['file']}, plus {m1['occurrences'] - m1['code_lines_that_assert_the_count']} prose lines "
             f"that repeat it", "warn"),
@@ -1939,11 +1953,14 @@ def p_closure() -> str:
         ])
     blocked = table(["Mirror key", "Official fixture", "Why the gate refuses it", "Mirror spread",
                      "Mirror total", "Shape", "Source"], blocked_rows, numeric=(3, 4),
-                    note=f"{m2['of_the_blocked_rows_the_mirror_does_print_a_spread_and_total_for']} of "
-                         f"{m2['games_the_append_would_add']} blocked games have a spread and a total in the "
-                         f"mirror and no score. The prices nobody is authorised to use are present; the score "
-                         f"the NFL has printed is the part the gate will not accept. That is the shape of the "
-                         f"blocker, and it is why this is a decision rather than a bug.")
+                    note=(f"{m2['of_the_blocked_rows_the_mirror_does_print_a_spread_and_total_for']} of "
+                          f"{m2['games_the_append_would_add']} blocked games have a spread and a total in the "
+                          f"mirror and no score. The prices nobody is authorised to use are present; the score "
+                          f"the NFL has printed is the part the gate will not accept. That is the shape of the "
+                          f"blocker, and it is why this is a decision rather than a bug." if added else
+                          "No game is blocked now. The results log holds all 14 Week 10 finals, so the "
+                          "row-diff gate has nothing left to refuse; the rows above are retained as the "
+                          "record of what the gate refused when this measurement was first written."))
 
     base_rows = [[esc(x["club"]), esc("-".join(str(v) for v in x["pinned_2026_11_14"])),
                   esc("-".join(str(v) for v in x["from_the_150_game_corpus"])),
@@ -1952,9 +1969,9 @@ def p_closure() -> str:
     baseline = table(["Club", "Pinned 2026-11-14 (W-L-T-PF-PA)", "From the 150-game corpus", "Source"],
                      base_rows,
                      note=f"{m4['clubs_that_would_move']} of {m4['clubs_in_the_baseline']} clubs move against "
-                          f"the pinned baseline, by design: that file is the 137-game table. Re-pinning it to a "
-                          f"dated official read is part of the change set. This page lists the moves so the cost "
-                          f"is visible; it does not make them.")
+                          "the pinned baseline, by design: that file is the historical 137-game table from "
+                          "2026-11-14. Re-pinning it to a dated official read was part of the closure. This "
+                          "page lists the moves so the cost is visible; it does not make them.")
 
     opt_rows = [[esc(o["id"]), esc(o["name"]), esc(o["what_it_costs"]), esc(o["risk"]),
                  src(f"{GITHUB}/{READS_PACK}/feed-closure-measurement.json", "measurement")]
@@ -1962,22 +1979,23 @@ def p_closure() -> str:
     options = table(["Path id", "The path", "What it costs", "What it risks", "Artefact"], opt_rows)
 
     body = f"""
-<div class="note warn"><b>This page measures a blocker. It does not fix it.</b> Week 10 is closed on the
-official page &mdash; 14 finals, read and cross-checked on <a href="reads.html">the reads page</a> &mdash;
-and the results feed still holds 137 games, because <code>tools/build_results_r3.py</code> refuses to emit
-a row the third-party mirror has no score for, and pins its output to exactly 137 rows in four executable
-lines. Appending the 13 games would also move the standings baseline the feed is arithmetic-checked against
-and every artefact that reads the feed. All of that is measured below from the committed builder, and
-<code>data/results/**</code> and PR-01's frozen inputs are untouched by this session:
+<div class="note warn"><b>This page measured a blocker; it does not change the registered input.</b> Week 10
+was closed on the official page &mdash; 14 finals, read and cross-checked on
+<a href="reads.html">the reads page</a> &mdash; while the feed held 137 games because
+<code>tools/build_results_r3.py</code> refused to emit a row the third-party mirror had no score for and
+pinned its output to 137 rows. The round-6 integration (PR #88) later closed that gap: a fresh run of this
+measurement now finds {added} games left to append and {m2['of_those_the_mirror_prints_no_score_for']}
+mirror-blocked rows. The historical calculation, including the cost of moving the pinned baseline and every
+artefact that reads the feed, is retained below. This page only measures;
 <a href="{GITHUB}/tools/lab/build_closure_measurement.py" target="_blank" rel="noopener">tools/lab/build_closure_measurement.py</a>
 writes <a href="{GITHUB}/{READS_PACK}/feed-closure-measurement.json" target="_blank"
 rel="noopener">feed-closure-measurement.json</a>, which is what this page renders.</div>
 
 <div class="kpis">{kpis}</div>
 
-<div class="card"><h2>The four executable pins, and the prose that repeats them</h2>{pins}</div>
+<div class="card"><h2>{m1['code_lines_that_assert_the_count']} executable pins, and the prose that repeats them</h2>{pins}</div>
 
-<div class="card"><h2>The 13 games, one row each, and why the gate stops them</h2>{blocked}</div>
+<div class="card"><h2>The {added} games the gate refused, one row each</h2>{blocked}</div>
 
 <div class="card"><h2>What the append moves in the standings baseline</h2>{baseline}</div>
 
@@ -1992,10 +2010,11 @@ what the word <em>verified</em> is allowed to mean for a row: two independent so
 plus the arithmetic that only closes if every row is present. That is the owner's call, and it is the one
 this round recorded instead of taking.</div>
 """
-    return page("closure.html", "Feed closure: what Week 10 still needs", "R1 · measured, not fixed", body,
-                lede="The Week 10 slate is complete on the official page and incomplete in the results "
-                     "feed. Here is the gap, counted by the feed's own gates, with the three ways out and "
-                     "the price of each.")
+    return page("closure.html", "Feed closure: what Week 10 needed", "R1 · measured, then closed", body,
+                lede="The 2026-11-17 read found the Week 10 slate complete on the official page and "
+                     "incomplete in the results feed. Here is the gap as the feed's own gates counted it, "
+                     "the three ways out that were on the table, and the fresh measurement showing the "
+                     "gap closed.")
 
 
 
