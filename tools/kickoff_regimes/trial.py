@@ -4,6 +4,7 @@ import csv
 import hashlib
 import io
 import json
+import os
 import random
 import subprocess
 from datetime import date, datetime, timezone
@@ -28,6 +29,11 @@ CUTOFF = date(2026, 11, 19)
 def pinned_rows(path):
     raw = (ROOT / path).read_bytes()
     if hashlib.sha256(raw).hexdigest() != PINS[path]:
+        # Shared verification jobs use depth=1. Hydrate only the immutable
+        # registration input commit if the rolling feed has moved beyond it.
+        if os.environ.get('GITHUB_ACTIONS') == 'true' and subprocess.run(
+                ['git', 'cat-file', '-e', f'{BASE}^{{commit}}'], cwd=ROOT, stderr=subprocess.DEVNULL).returncode:
+            subprocess.run(['git', 'fetch', '--depth=1', 'origin', BASE], cwd=ROOT, check=True)
         raw = subprocess.check_output(['git', 'show', f'{BASE}:{path}'], cwd=ROOT)
         if hashlib.sha256(raw).hexdigest() != PINS[path]:
             raise ValueError(f'Input fingerprint mismatch: {path}')

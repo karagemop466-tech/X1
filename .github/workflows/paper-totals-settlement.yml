@@ -1,0 +1,42 @@
+name: Week 11 paper totals settlement
+on:
+  pull_request:
+    paths:
+      - 'research/kickoff-regimes/**'
+      - 'tools/kickoff_regimes/**'
+      - '.github/workflows/paper-totals-settlement.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/results/**'
+      - 'tools/kickoff_regimes/**'
+      - 'research/kickoff-regimes/**'
+      - '.github/workflows/paper-totals-settlement.yml'
+  # A refresh using GITHUB_TOKEN may not trigger a second push workflow.
+  workflow_run:
+    workflows: [data-refresh]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compare with the frozen control only on a complete official slate
+        run: |
+          python3 tools/kickoff_regimes/trial.py score > paper-score.json
+          {
+            echo '### KR-T1 · paper only'
+            echo '```json'
+            cat paper-score.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper-totals-score-${{ github.run_id }}-${{ github.run_attempt }}
+          path: paper-score.json

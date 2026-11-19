@@ -52,7 +52,7 @@ def build():
 <p><b>Can team context improve on the league distribution?</b> KR-T1 assigns twice the weight to past games involving either club. The control counts every eligible final once. Both forecast the full-game total against PR-04’s frozen league threshold, not against a sportsbook. No licensed quote: market line and residual are withheld.</p>
 <p>Registered before evaluation · {link('https://github.com/karagemop466-tech/X1/blob/' + record['registered_commit'] + '/research/kickoff-regimes/KR-T1.md','Frozen rule and two-sided gates')} · Recorded {record['recorded_at_utc']} · {link('week11.json','Exact probabilities, inputs and source hashes')}. These forecasts are model estimates, not official NFL numbers.</p>
 {table(['Game','Threshold (pts)','Under','Push','Over','Control: over','Fixture'],forecasts)}
-<p>At recording: 0 of 13 results available. No skill estimate until all games have official finals. Even a positive paired Brier improvement with its entire 95% interval above zero would justify only another paper trial.</p>
+<p>At recording: 0 of 13 results available. The {link('https://github.com/karagemop466-tech/X1/actions/workflows/paper-totals-settlement.yml','automatic settlement report')} updates when the verified feed changes. No skill estimate until all games have official finals. Even a positive paired Brier improvement with its entire 95% interval above zero would justify only another paper trial.</p>
 <h2>Three distinct regular-season rule sets</h2>
 {table(['NFL season','Declaration source date','Kickoff context (not every exception)','Official evidence'],rules)}
 <h2>Can the kicking team declare?</h2>
