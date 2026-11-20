@@ -6,12 +6,15 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
+M	app/correlation.html
 M	app/deficiency.html
 M	app/depth.html
 M	app/flagged.html
 M	app/index.html
 M	app/injuries.html
 M	app/repo-review.html
+M	app/standings.html
+M	app/team-stats.html
 M	console/announcement.html
 M	console/archived-sites.html
 M	console/availability-series.html
@@ -58,6 +61,8 @@ M	data/console/price_snapshots.csv
 M	data/console/readiness.csv
 M	data/console/readiness.json
 M	data/console/repo_inventory.csv
+M	data/console/verification_ledger.csv
+M	data/correlations_official_check.json
 M	data/depth/depth_groups_32.csv
 M	data/depth/depth_groups_32.json
 M	data/depth/matchup_deficiency_matrix_w11.csv
@@ -94,18 +99,20 @@ M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-20T03:58:54Z official captures'
-[main c672d74] ci: retain 2026-11-20T03:58:54Z official captures
- 5 files changed, 33437 insertions(+), 17 deletions(-)
- create mode 100644 data/captures/payloads/deficiency/84/845fb87ecb9b70867105ae97ccc052dd905bdd8bc16ff6597c6022ea7eca0c73.json
- create mode 100644 data/captures/payloads/depth_charts/41/41aabd58878747e18cba54e672d1a0d8ae4378a06a0bce496bae2e7ea2418cef.json
- create mode 100644 data/captures/payloads/injuries/93/93a3359e4dc0551793373cd22bdcc732271508128fa611bb41db86a0df2fa5e4.json
++ git commit -m 'ci: retain 2026-11-20T19:06:11Z official captures'
+[main 07c6f60] ci: retain 2026-11-20T19:06:11Z official captures
+ 7 files changed, 46053 insertions(+), 19 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/db/db9c01512d4944f99075df62dde204f3a4cc79684d39e546356e82d40b8fe3b4.json
+ create mode 100644 data/captures/payloads/depth_charts/fa/fa205d67dd41ac43913c3b18d1d699626f12007e66b1edbe3c880edd267b4b19.json
+ create mode 100644 data/captures/payloads/injuries/d9/d9cb300fe90c3c1911acc6540b39413dca7b9bd7c2519fbda7f2e1d3bfb0ec7e.json
+ create mode 100644 data/captures/payloads/standings/fa/fae97023fabc33d41a065256efcf1fb247eeaf09f1387273be29f98c6fdac49d.json
+ create mode 100644 data/captures/payloads/team_stats/f0/f0273ac4351cec508043c8919cfbb2325cee3371474ba0d3c95d8cca8c419807.json
 + '[' 1 = 0 ']'
 + echo 'MARKER: derived artefacts withheld (rebuild/verify gate = 1)'
 MARKER: derived artefacts withheld (rebuild/verify gate = 1)
 + git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   86ba977..c672d74  HEAD -> main
+   59483d1..07c6f60  HEAD -> main
 + '[' 1 = 0 ']'
 + pushed=0
 + for attempt in 1 2 3 4 5
@@ -113,7 +120,7 @@ To https://github.com/karagemop466-tech/X1
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git -c rebase.autoStash=true rebase origin/main
-Created autostash: efebc60
+Created autostash: e637b1e
 Current branch main is up to date.
 Applied autostash.
 + git push origin HEAD:main
