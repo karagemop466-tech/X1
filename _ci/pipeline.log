@@ -1,7 +1,7 @@
-correlations: 1034 pairs
-repo_review: 1057 files, 645 flagged
+correlations: 1036 pairs
+repo_review: 1062 files, 650 flagged
 {
- "generated_at": "2026-11-20T03:57:32+00:00",
+ "generated_at": "2026-11-20T19:05:17+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -10,11 +10,11 @@ repo_review: 1057 files, 645 flagged
   },
   "injuries": {
    "status": "written",
-   "rows": 291
+   "rows": 293
   },
   "depth_charts": {
    "status": "written",
-   "rows": 1815
+   "rows": 1814
   },
   "team_stats": {
    "status": "written",
@@ -99,12 +99,12 @@ repo_review: 1057 files, 645 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-20T03:57:57+00:00"
+ "finished_at": "2026-11-20T19:05:39+00:00"
 }
 exit=0
 ===== captures.log =====
 capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-  99 captures retained; 43 distinct payloads
+  104 captures retained; 48 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 37
@@ -130,8 +130,8 @@ $ python3 tools/build_origination.py
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
 $ python3 tools/build_round3.py
     leaderboard_signal_staking: 11 rows, signal populated on 1, staking values published=0
-    replacement_depth_summary: 7 unit x depth rows, totals={'2': 689, 'none': 204, '3': 2}, gaps(on report, no replacement named)=19
-    correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
+    replacement_depth_summary: 8 unit x depth rows, totals={'2': 688, 'none': 204, '3': 3}, gaps(on report, no replacement named)=19
+    correlations_official_check: 1036 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
 $ python3 tools/lab/build_controls.py
     random ATS     : mean 0.5003  band [0.4776, 0.5213]  reps >= favourites 0.943
     break-even     : 0.5238
@@ -156,7 +156,7 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (586,980 bytes)
+    wrote app/repo-review.html (590,538 bytes)
     wrote app/stores.html (132,845 bytes)
     29 pages written
 $ python3 tools/build_console.py
@@ -171,7 +171,7 @@ $ python3 tools/build_next_decisions.py
     wrote data/next_decisions/round_2026_11_16.json (+2 csv) · 11 suggestions, 10 questions
 $ python3 tools/build_depth_matrix.py
       GB jersey stripped: 54 rows, W10 injury joins: 0 -> 13
-      shared rank-1 position groups: 156, shared concat cells: 23, empty gaps: 3
+      shared rank-1 position groups: 156, shared concat cells: 23, empty gaps: 4
       W11 mismatch alerts (2nd-4th string active): 45
 $ python3 tools/build_modeling_lab.py
       2026 W3-W10 unadj vs SRS: {'games': 118, 'mae_unadjusted': 9.5775, 'mae_opp_aware_srs': 9.4987, 'delta_mae': -0.0787, 'delta_mae_ci95': [-0.228, 0.071], 'brier_unadjusted': 0.2329, 'brier_opp_aware_
@@ -217,7 +217,7 @@ $ python3 tools/cross_check.py
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
     files checked : 218
-    assertions    : 54415
+    assertions    : 54461
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
     Site verification passed: 218 HTML pages; local links resolve; every data-table row has an official source link.
@@ -228,7 +228,7 @@ $ python3 scripts/pipeline/verify_site.py
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
     note: freshness not gated here (a PR build cannot fix a missed collector run); data-refresh.yml gates it after it collects
     capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-      99 captures retained; 43 distinct payloads
+      104 captures retained; 48 distinct payloads
 $ python3 tools/verify_depth_matrix.py
         assert len(gb_rows) == 55
                ^^^^^^^^^^^^^^^^^^
