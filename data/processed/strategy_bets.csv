@@ -673,6 +673,7 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_DET_MIA,2026,9,2026-11-08,spread,home,6.5,-108.0,0.0,-1.0,S_fade_band,DET,MIA,5.0-7.0,,,,,,,,,
 2026_09_HOU_LAC,2026,9,2026-11-08,spread,home,5.5,-112.0,0.0,-1.0,S_fade_band,HOU,LAC,5.0-7.0,,,,,,,,,
 2026_09_TB_CHI,2026,9,2026-11-08,spread,away,6.5,-108.0,1.0,0.925925925925926,S_fade_band,TB,CHI,5.0-7.0,,,,,,,,,
+2026_10_SEA_LV,2026,10,2026-11-15,spread,home,6.5,-110.0,0.0,-1.0,S_fade_band,SEA,LV,5.0-7.0,,,,,,,,,
 2015_01_CAR_JAX,2015,1,2015-09-13,spread,home,3.0,-110.0,0.0,-1.0,S_home_dog,CAR,JAX,,,,,,,,,,
 2015_01_CIN_OAK,2015,1,2015-09-13,spread,home,3.0,-110.0,0.0,-1.0,S_home_dog,CIN,OAK,,,,,,,,,,
 2015_01_GB_CHI,2015,1,2015-09-13,spread,home,5.5,100.0,0.0,-1.0,S_home_dog,GB,CHI,,,,,,,,,,
@@ -1864,6 +1865,13 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_LA_WAS,2026,9,2026-11-08,spread,home,4.5,-118.0,0.0,-1.0,S_home_dog,LAR,WAS,,,,,,,,,,
 2026_09_NYG_PHI,2026,9,2026-11-08,spread,home,3.0,-110.0,0.0,-1.0,S_home_dog,NYG,PHI,,,,,,,,,,
 2026_09_BUF_MIN,2026,9,2026-11-09,spread,home,3.0,102.0,0.0,-1.0,S_home_dog,BUF,MIN,,,,,,,,,,
+2026_10_BUF_NYJ,2026,10,2026-11-15,spread,home,8.5,-115.0,0.0,-1.0,S_home_dog,BUF,NYJ,,,,,,,,,,
+2026_10_HOU_CLE,2026,10,2026-11-15,spread,home,4.5,-120.0,1.0,0.8333333333333335,S_home_dog,HOU,CLE,,,,,,,,,,
+2026_10_JAX_TEN,2026,10,2026-11-15,spread,home,10.5,-105.0,0.0,-1.0,S_home_dog,JAX,TEN,,,,,,,,,,
+2026_10_KC_ATL,2026,10,2026-11-15,spread,home,3.0,-105.0,0.0,-1.0,S_home_dog,KC,ATL,,,,,,,,,,
+2026_10_LA_ARI,2026,10,2026-11-15,spread,home,10.0,-110.0,0.0,-1.0,S_home_dog,LAR,ARI,,,,,,,,,,
+2026_10_SEA_LV,2026,10,2026-11-15,spread,home,6.5,-110.0,0.0,-1.0,S_home_dog,SEA,LV,,,,,,,,,,
+2026_10_SF_DAL,2026,10,2026-11-15,spread,home,3.5,-105.0,0.0,-1.0,S_home_dog,SF,DAL,,,,,,,,,,
 2015_01_CAR_JAX,2015,1,2015-09-13,spread,away,-3.0,-100.0,1.0,1.0,S_model_spread,CAR,JAX,,-6.0,-3.0,,,,,,,
 2015_01_CIN_OAK,2015,1,2015-09-13,spread,away,-3.0,-100.0,1.0,1.0,S_model_spread,CIN,OAK,,-6.5,-3.5,,,,,,,
 2015_01_SEA_STL,2015,1,2015-09-13,spread,away,-3.5,-101.0,0.0,-1.0,S_model_spread,SEA,STL,,-8.0,-4.5,,,,,,,
@@ -3412,6 +3420,11 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_NYG_PHI,2026,9,2026-11-08,spread,home,3.0,-110.0,0.0,-1.0,S_model_spread,NYG,PHI,,5.5,8.5,,,,,,,
 2026_09_NYJ_KC,2026,9,2026-11-08,spread,home,-9.5,-110.0,1.0,0.9090909090909092,S_model_spread,NYJ,KC,,12.5,3.0,,,,,,,
 2026_09_TB_CHI,2026,9,2026-11-08,spread,away,6.5,-108.0,1.0,0.925925925925926,S_model_spread,TB,CHI,,2.5,-4.0,,,,,,,
+2026_10_BUF_NYJ,2026,10,2026-11-15,spread,away,-8.5,-105.0,1.0,0.9523809523809523,S_model_spread,BUF,NYJ,,-12.5,-4.0,,,,,,,
+2026_10_PIT_CIN,2026,10,2026-11-15,spread,away,4.5,-112.0,0.0,-1.0,S_model_spread,PIT,CIN,,1.0,-3.5,,,,,,,
+2026_10_SEA_LV,2026,10,2026-11-15,spread,away,-6.5,-110.0,1.0,0.9090909090909092,S_model_spread,SEA,LV,,-11.0,-4.5,,,,,,,
+2026_10_LAC_BAL,2026,10,2026-11-16,spread,home,-4.5,-112.0,0.0,-1.0,S_model_spread,LAC,BAL,,7.5,3.0,,,,,,,
+2026_11_IND_HOU,2026,11,2026-11-19,spread,away,12.5,-108.0,0.0,-1.0,S_model_spread,IND,HOU,,7.0,-5.5,,,,,,,
 2015_02_SF_PIT,2015,2,2015-09-20,spread,home,-6.0,-103.0,1.0,0.970873786407767,S_rest_home,SF,PIT,,,,,,,,,,
 2015_04_PHI_WAS,2015,4,2015-10-04,spread,home,3.0,-113.0,1.0,0.8849557522123894,S_rest_home,PHI,WAS,,,,,,,,,,
 2015_05_BUF_TEN,2015,5,2015-10-11,spread,home,-1.0,-103.0,0.0,-1.0,S_rest_home,BUF,TEN,,,,,,,,,,
@@ -3769,6 +3782,8 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_CLE_NO,2026,9,2026-11-08,spread,home,-4.5,-115.0,0.0,-1.0,S_rest_home,CLE,NO,,,,,,,,,,
 2026_09_DEN_CAR,2026,9,2026-11-08,spread,home,3.0,-115.0,0.0,-1.0,S_rest_home,DEN,CAR,,,,,,,,,,
 2026_09_LV_SF,2026,9,2026-11-08,spread,home,-8.5,-112.0,1.0,0.8928571428571428,S_rest_home,LV,SF,,,,,,,,,,
+2026_10_JAX_TEN,2026,10,2026-11-15,spread,home,10.5,-105.0,0.0,-1.0,S_rest_home,JAX,TEN,,,,,,,,,,
+2026_10_LAC_BAL,2026,10,2026-11-16,spread,home,-4.5,-112.0,0.0,-1.0,S_rest_home,LAC,BAL,,,,,,,,,,
 2015_01_PIT_NE,2015,1,2015-09-10,spread,away,7.5,-111.0,1.0,0.900900900900901,S_elo_momentum,PIT,NE,,,,-3.508630117973671,,,,,,
 2015_01_BAL_DEN,2015,1,2015-09-13,spread,away,4.5,-101.0,0.0,-1.0,S_elo_momentum,BAL,DEN,,,,-3.493063596104994,,,,,,
 2015_01_CAR_JAX,2015,1,2015-09-13,spread,away,-3.0,-100.0,1.0,1.0,S_elo_momentum,CAR,JAX,,,,-3.4548994138809572,,,,,,
@@ -5636,6 +5651,15 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_NYJ_KC,2026,9,2026-11-08,spread,away,9.5,-110.0,0.0,-1.0,S_elo_momentum,NYJ,KC,,,,-1.4016253213614434,,,,,,
 2026_09_TB_CHI,2026,9,2026-11-08,spread,away,6.5,-108.0,1.0,0.925925925925926,S_elo_momentum,TB,CHI,,,,-5.338851669241503,,,,,,
 2026_10_WAS_NYG,2026,10,2026-11-12,spread,away,1.5,-110.0,1.0,0.9090909090909092,S_elo_momentum,WAS,NYG,,,,-1.293654852481659,,,,,,
+2026_10_BUF_NYJ,2026,10,2026-11-15,spread,away,-8.5,-105.0,1.0,0.9523809523809523,S_elo_momentum,BUF,NYJ,,,,-3.222718704092049,,,,,,
+2026_10_KC_ATL,2026,10,2026-11-15,spread,away,-3.0,-115.0,1.0,0.8695652173913042,S_elo_momentum,KC,ATL,,,,-2.6739057656270235,,,,,,
+2026_10_LA_ARI,2026,10,2026-11-15,spread,home,10.0,-110.0,0.0,-1.0,S_elo_momentum,LAR,ARI,,,,2.508709331153332,,,,,,
+2026_10_MIA_IND,2026,10,2026-11-15,spread,away,4.5,-110.0,1.0,0.9090909090909092,S_elo_momentum,MIA,IND,,,,-3.588635939245478,,,,,,
+2026_10_MIN_GB,2026,10,2026-11-15,spread,away,2.5,100.0,1.0,1.0,S_elo_momentum,MIN,GB,,,,-2.489458020819529,,,,,,
+2026_10_PIT_CIN,2026,10,2026-11-15,spread,away,4.5,-112.0,0.0,-1.0,S_elo_momentum,PIT,CIN,,,,-4.221944963756432,,,,,,
+2026_10_SEA_LV,2026,10,2026-11-15,spread,away,-6.5,-110.0,1.0,0.9090909090909092,S_elo_momentum,SEA,LV,,,,-2.3999598203475028,,,,,,
+2026_10_LAC_BAL,2026,10,2026-11-16,spread,away,4.5,-108.0,1.0,0.925925925925926,S_elo_momentum,LAC,BAL,,,,-1.326961722717888,,,,,,
+2026_11_IND_HOU,2026,11,2026-11-19,spread,away,12.5,-108.0,0.0,-1.0,S_elo_momentum,IND,HOU,,,,-8.485648610697254,,,,,,
 2015_01_GB_CHI,2015,1,2015-09-13,spread,away,-5.5,-110.0,1.0,0.9090909090909092,S_qb_change_home,GB,CHI,,,,,home QB changed,,,,,
 2015_01_IND_BUF,2015,1,2015-09-13,spread,away,-1.0,-103.0,0.0,-1.0,S_qb_change_home,IND,BUF,,,,,home QB changed,,,,,
 2015_01_KC_HOU,2015,1,2015-09-13,spread,away,-1.0,100.0,1.0,1.0,S_qb_change_home,KC,HOU,,,,,home QB changed,,,,,
@@ -6527,6 +6551,10 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_NYG_PHI,2026,9,2026-11-08,spread,away,-3.0,-110.0,1.0,0.9090909090909092,S_qb_change_home,NYG,PHI,,,,,home QB changed,,,,,
 2026_09_BUF_MIN,2026,9,2026-11-09,spread,away,-3.0,-122.0,1.0,0.819672131147541,S_qb_change_home,BUF,MIN,,,,,home QB changed,,,,,
 2026_10_WAS_NYG,2026,10,2026-11-12,spread,away,1.5,-110.0,1.0,0.9090909090909092,S_qb_change_home,WAS,NYG,,,,,home QB changed,,,,,
+2026_10_LA_ARI,2026,10,2026-11-15,spread,away,-10.0,-110.0,1.0,0.9090909090909092,S_qb_change_home,LAR,ARI,,,,,home QB changed,,,,,
+2026_10_MIA_IND,2026,10,2026-11-15,spread,home,-4.5,-110.0,0.0,-1.0,S_qb_change_home,MIA,IND,,,,,away QB changed,,,,,
+2026_10_MIN_GB,2026,10,2026-11-15,spread,home,-2.5,-120.0,0.0,-1.0,S_qb_change_home,MIN,GB,,,,,away QB changed,,,,,
+2026_10_LAC_BAL,2026,10,2026-11-16,spread,away,4.5,-108.0,1.0,0.925925925925926,S_qb_change_home,LAC,BAL,,,,,home QB changed,,,,,
 2015_01_BAL_DEN,2015,1,2015-09-13,total,under,46.5,-105.0,1.0,0.9523809523809523,S_under_band,BAL,DEN,,,,,,,,,,
 2015_01_DET_SD,2015,1,2015-09-13,total,under,45.5,-104.0,0.0,-1.0,S_under_band,DET,SD,,,,,,,,,,
 2015_01_GB_CHI,2015,1,2015-09-13,total,under,48.5,-107.0,0.0,-1.0,S_under_band,GB,CHI,,,,,,,,,,
@@ -7587,6 +7615,11 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_DET_MIA,2026,9,2026-11-08,total,under,49.5,102.0,1.0,1.02,S_under_band,DET,MIA,,,,,,,,,,
 2026_09_LA_WAS,2026,9,2026-11-08,total,under,48.5,-118.0,1.0,0.847457627118644,S_under_band,LAR,WAS,,,,,,,,,,
 2026_09_LV_SF,2026,9,2026-11-08,total,under,51.5,-102.0,0.0,-1.0,S_under_band,LV,SF,,,,,,,,,,
+2026_10_BUF_NYJ,2026,10,2026-11-15,total,under,50.5,-105.0,1.0,0.9523809523809523,S_under_band,BUF,NYJ,,,,,,,,,,
+2026_10_CAR_NO,2026,10,2026-11-15,total,under,48.5,-102.0,1.0,0.9803921568627452,S_under_band,CAR,NO,,,,,,,,,,
+2026_10_NE_DET,2026,10,2026-11-15,total,under,50.5,-105.0,1.0,0.9523809523809523,S_under_band,NE,DET,,,,,,,,,,
+2026_10_PIT_CIN,2026,10,2026-11-15,total,under,49.5,-110.0,0.0,-1.0,S_under_band,PIT,CIN,,,,,,,,,,
+2026_10_SF_DAL,2026,10,2026-11-15,total,under,55.5,-102.0,0.0,-1.0,S_under_band,SF,DAL,,,,,,,,,,
 2015_01_CAR_JAX,2015,1,2015-09-13,total,over,41.0,-103.0,0.0,-1.0,S_over_band,CAR,JAX,,,,,,,,,,
 2015_01_CIN_OAK,2015,1,2015-09-13,total,over,43.0,100.0,1.0,1.0,S_over_band,CIN,OAK,,,,,,,,,,
 2015_01_KC_HOU,2015,1,2015-09-13,total,over,41.0,-107.0,1.0,0.9345794392523366,S_over_band,KC,HOU,,,,,,,,,,
@@ -8489,6 +8522,9 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_CLE_NO,2026,9,2026-11-08,total,over,43.5,-105.0,1.0,0.9523809523809523,S_over_band,CLE,NO,,,,,,,,,,
 2026_09_HOU_LAC,2026,9,2026-11-08,total,over,40.5,-110.0,1.0,0.9090909090909092,S_over_band,HOU,LAC,,,,,,,,,,
 2026_10_WAS_NYG,2026,10,2026-11-12,total,over,40.5,-115.0,1.0,0.8695652173913042,S_over_band,WAS,NYG,,,,,,,,,,
+2026_10_HOU_CLE,2026,10,2026-11-15,total,over,40.5,-118.0,1.0,0.847457627118644,S_over_band,HOU,CLE,,,,,,,,,,
+2026_10_MIN_GB,2026,10,2026-11-15,total,over,42.5,-108.0,0.0,-1.0,S_over_band,MIN,GB,,,,,,,,,,
+2026_10_SEA_LV,2026,10,2026-11-15,total,over,40.5,-108.0,0.0,-1.0,S_over_band,SEA,LV,,,,,,,,,,
 2015_01_PIT_NE,2015,1,2015-09-10,total,under,51.0,-107.0,1.0,0.9345794392523366,S_model_total,PIT,NE,,46.0,-5.0,,,,,,,
 2015_01_BAL_DEN,2015,1,2015-09-13,total,under,46.5,-105.0,1.0,0.9523809523809523,S_model_total,BAL,DEN,,44.0,-2.5,,,,,,,
 2015_01_CAR_JAX,2015,1,2015-09-13,total,under,41.0,-107.0,1.0,0.9345794392523366,S_model_total,CAR,JAX,,39.0,-2.0,,,,,,,
@@ -11245,6 +11281,17 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_NYJ_KC,2026,9,2026-11-08,total,under,47.5,-110.0,1.0,0.9090909090909092,S_model_total,NYJ,KC,,44.5,-3.0,,,,,,,
 2026_09_TB_CHI,2026,9,2026-11-08,total,under,47.5,-118.0,0.0,-1.0,S_model_total,TB,CHI,,43.0,-4.5,,,,,,,
 2026_10_WAS_NYG,2026,10,2026-11-12,total,over,40.5,-115.0,1.0,0.8695652173913042,S_model_total,WAS,NYG,,43.0,2.5,,,,,,,
+2026_10_BUF_NYJ,2026,10,2026-11-15,total,under,50.5,-105.0,1.0,0.9523809523809523,S_model_total,BUF,NYJ,,44.5,-6.0,,,,,,,
+2026_10_CAR_NO,2026,10,2026-11-15,total,under,48.5,-102.0,1.0,0.9803921568627452,S_model_total,CAR,NO,,45.5,-3.0,,,,,,,
+2026_10_LA_ARI,2026,10,2026-11-15,total,over,38.5,-108.0,1.0,0.925925925925926,S_model_total,LAR,ARI,,47.5,9.0,,,,,,,
+2026_10_MIA_IND,2026,10,2026-11-15,total,over,37.5,-110.0,1.0,0.9090909090909092,S_model_total,MIA,IND,,47.0,9.5,,,,,,,
+2026_10_MIN_GB,2026,10,2026-11-15,total,over,42.5,-108.0,0.0,-1.0,S_model_total,MIN,GB,,46.5,4.0,,,,,,,
+2026_10_NE_DET,2026,10,2026-11-15,total,under,50.5,-105.0,1.0,0.9523809523809523,S_model_total,NE,DET,,48.0,-2.5,,,,,,,
+2026_10_PIT_CIN,2026,10,2026-11-15,total,under,49.5,-110.0,0.0,-1.0,S_model_total,PIT,CIN,,44.0,-5.5,,,,,,,
+2026_10_SEA_LV,2026,10,2026-11-15,total,over,40.5,-108.0,0.0,-1.0,S_model_total,SEA,LV,,45.5,5.0,,,,,,,
+2026_10_SF_DAL,2026,10,2026-11-15,total,under,55.5,-102.0,0.0,-1.0,S_model_total,SF,DAL,,47.5,-8.0,,,,,,,
+2026_10_LAC_BAL,2026,10,2026-11-16,total,over,39.5,-108.0,1.0,0.925925925925926,S_model_total,LAC,BAL,,44.5,5.0,,,,,,,
+2026_11_IND_HOU,2026,11,2026-11-19,total,over,44.5,-104.0,0.0,-1.0,S_model_total,IND,HOU,,47.0,2.5,,,,,,,
 2015_01_IND_BUF,2015,1,2015-09-13,total,under,44.5,102.0,1.0,1.02,S_wind_under,IND,BUF,,,,,,15.0,,,,
 2015_02_DAL_PHI,2015,2,2015-09-20,total,under,53.0,-104.0,1.0,0.9615384615384617,S_wind_under,DAL,PHI,,,,,,15.0,,,,
 2015_03_OAK_CLE,2015,3,2015-09-27,total,under,43.5,-108.0,0.0,-1.0,S_wind_under,OAK,CLE,,,,,,16.0,,,,
@@ -12220,6 +12267,9 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_07_LA_LV,2026,7,2026-10-25,total,under,49.5,-115.0,0.0,-1.0,S_dome_under,LAR,LV,,,,,,,,,,
 2026_08_ARI_DAL,2026,8,2026-11-01,total,under,54.5,-110.0,0.0,-1.0,S_dome_under,ARI,DAL,,,,,,,,,,
 2026_09_CIN_ATL,2026,9,2026-11-08,total,under,52.5,-115.0,1.0,0.8695652173913042,S_dome_under,CIN,ATL,,,,,,,,,,
+2026_10_CAR_NO,2026,10,2026-11-15,total,under,48.5,-102.0,1.0,0.9803921568627452,S_dome_under,CAR,NO,,,,,,,,,,
+2026_10_NE_DET,2026,10,2026-11-15,total,under,50.5,-105.0,1.0,0.9523809523809523,S_dome_under,NE,DET,,,,,,,,,,
+2026_10_SF_DAL,2026,10,2026-11-15,total,under,55.5,-102.0,0.0,-1.0,S_dome_under,SF,DAL,,,,,,,,,,
 2015_01_MIN_SF|2015_01_PHI_ATL,2015,1,2015-09-14,parlay,parlay,,329.0,1.0,3.294905660377358,P_spread_total,MIN@PHI,SF@ATL,,,,,,,,S_model_spread:home2.5,S_model_total:under55.0,17.5
 2015_10_MIN_OAK|2015_10_JAX_BAL,2015,10,2015-11-15,parlay,parlay,,294.0,0.0,-1.0,P_spread_total,MIN@JAX,OAK@BAL,,,,,,,,S_model_spread:away3.0,S_model_spread:home-4.0,17.5
 2015_11_BUF_NE|2015_11_OAK_DET,2015,11,2015-11-23,parlay,parlay,,296.0,0.5,0.0,P_spread_total,BUF@OAK,NE@DET,,,,,,,,S_model_spread:home-7.0,S_model_spread:home2.0,16.5
@@ -12446,6 +12496,7 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2025_08_CHI_BAL|2025_08_NYG_PHI,2025,8,2025-10-26,parlay,parlay,,241.0,1.0,2.4130996839988508,P_spread_total,CHI@NYG,BAL@PHI,,,,,,,,S_model_spread:home-2.5,S_model_spread:home-7.0,14.5
 2025_09_BAL_MIA|2025_09_CHI_CIN,2025,9,2025-10-30,parlay,parlay,,268.0,0.0,-1.0,P_spread_total,BAL@CHI,MIA@CIN,,,,,,,,S_model_total:under51.5,S_model_total:under51.5,17.5
 2026_01_MIA_LV|2026_01_CHI_CAR,2026,1,2026-09-13,parlay,parlay,,257.0,0.0,-1.0,P_spread_total,MIA@CHI,LV@CAR,,,,,,,,S_model_spread:away3.0,S_model_total:under47.5,12.5
+2026_10_LA_ARI|2026_10_MIA_IND,2026,10,2026-11-15,parlay,parlay,,268.0,1.0,2.6767676767676774,P_spread_total,LAR@MIA,ARI@IND,,,,,,,,S_model_total:over38.5,S_model_total:over37.5,18.5
 2026_02_PHI_TEN|2026_02_CAR_ATL,2026,2,2026-09-20,parlay,parlay,,279.0,0.0,-1.0,P_spread_total,PHI@CAR,TEN@ATL,,,,,,,,S_model_total:over39.5,S_model_spread:home2.5,14.0
 2026_03_NYJ_DET|2026_03_BAL_DAL,2026,3,2026-09-27,parlay,parlay,,282.0,0.0,-1.0,P_spread_total,NYJ@BAL,DET@DAL,,,,,,,,S_model_spread:home-7.0,S_model_total:under53.5,13.5
 2026_04_JAX_CIN|2026_04_GB_TB,2026,4,2026-10-04,parlay,parlay,,257.0,0.0,-1.0,P_spread_total,JAX@GB,CIN@TB,,,,,,,,S_model_total:under51.5,S_model_total:over38.5,15.0
@@ -13911,6 +13962,13 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2026_09_NYG_PHI,2026,9,2026-11-08,parlay,parlay,,278.0,0.0,-1.0,P_same_game,NYG,PHI,,,,,,,,spread:home3.0,total:over38.5,14.5
 2026_09_NYJ_KC,2026,9,2026-11-08,parlay,parlay,,264.0,1.0,2.6446280991735542,P_same_game,NYJ,KC,,,,,,,,spread:home-9.5,total:under47.5,6.0
 2026_09_TB_CHI,2026,9,2026-11-08,parlay,parlay,,256.0,0.0,-1.0,P_same_game,TB,CHI,,,,,,,,spread:away6.5,total:under47.5,8.5
+2026_10_BUF_NYJ,2026,10,2026-11-15,parlay,parlay,,281.0,1.0,2.8117913832199544,P_same_game,BUF,NYJ,,,,,,,,spread:away-8.5,total:under50.5,10.0
+2026_10_CAR_NO,2026,10,2026-11-15,parlay,parlay,,306.0,0.0,-1.0,P_same_game,CAR,NO,,,,,,,,spread:home-1.5,total:under48.5,5.5
+2026_10_JAX_TEN,2026,10,2026-11-15,parlay,parlay,,276.0,0.0,-1.0,P_same_game,JAX,TEN,,,,,,,,spread:home10.5,total:under45.5,4.0
+2026_10_PIT_CIN,2026,10,2026-11-15,parlay,parlay,,261.0,0.0,-1.0,P_same_game,PIT,CIN,,,,,,,,spread:away4.5,total:under49.5,9.0
+2026_10_SEA_LV,2026,10,2026-11-15,parlay,parlay,,268.0,0.0,-1.0,P_same_game,SEA,LV,,,,,,,,spread:away-6.5,total:over40.5,9.5
+2026_10_LAC_BAL,2026,10,2026-11-16,parlay,parlay,,265.0,0.0,-1.0,P_same_game,LAC,BAL,,,,,,,,spread:home-4.5,total:over39.5,8.0
+2026_11_IND_HOU,2026,11,2026-11-19,parlay,parlay,,278.0,0.0,-1.0,P_same_game,IND,HOU,,,,,,,,spread:away12.5,total:over44.5,8.0
 2015_01_NYG_DAL|2015_01_PIT_NE,2015,1,2015-09-13,parlay,parlay,,266.0,1.0,2.660994327660995,P_fade_under,NYG@PIT,DAL@NE,,,,,,,,S_fade_favourite:away7.0,S_fade_favourite:away7.5,0.0
 2015_10_CLE_PIT|2015_10_CHI_STL,2015,10,2015-11-15,parlay,parlay,,287.0,0.0,-1.0,P_fade_under,CLE@CHI,PIT@STL,,,,,,,,S_fade_favourite:away7.0,S_fade_favourite:away7.5,0.0
 2015_11_TB_PHI|2015_11_SF_SEA,2015,11,2015-11-22,parlay,parlay,,263.0,0.0,-1.0,P_fade_under,TB@SF,PHI@SEA,,,,,,,,S_fade_favourite:away7.0,S_fade_favourite:away14.0,0.0
@@ -14128,6 +14186,7 @@ game_id,season,week,gameday,market,side,line,odds,outcome,profit,strategy,away_t
 2025_08_CLE_NE|2025_08_BUF_CAR,2025,8,2025-10-26,parlay,parlay,,265.0,0.0,-1.0,P_fade_under,CLE@BUF,NE@CAR,,,,,,,,S_fade_favourite:away7.0,S_fade_favourite:home7.0,0.0
 2025_09_CAR_GB|2025_09_BAL_MIA,2025,9,2025-11-02,parlay,parlay,,296.0,0.0,-1.0,P_fade_under,CAR@BAL,GB@MIA,,,,,,,,S_fade_favourite:away12.5,S_fade_favourite:home7.5,0.0
 2026_01_ATL_PIT|2026_01_ARI_LAC,2026,1,2026-09-13,parlay,parlay,,281.0,0.0,-1.0,P_fade_under,ATL@ARI,PIT@LAC,,,,,,,,S_fade_favourite:away6.5,S_fade_favourite:away8.5,0.0
+2026_10_JAX_TEN|2026_10_BUF_NYJ,2026,10,2026-11-15,parlay,parlay,,265.0,0.0,-1.0,P_fade_under,JAX@BUF,TEN@NYJ,,,,,,,,S_fade_favourite:home10.5,S_fade_favourite:home8.5,0.0
 2026_02_LV_LAC|2026_02_CLE_TB,2026,2,2026-09-20,parlay,parlay,,278.0,1.0,2.7765217391304344,P_fade_under,LV@CLE,LAC@TB,,,,,,,,S_fade_favourite:away6.5,S_fade_favourite:away8.5,0.0
 2026_03_KC_MIA|2026_03_ARI_SF,2026,3,2026-09-27,parlay,parlay,,261.0,0.0,-1.0,P_fade_under,KC@ARI,MIA@SF,,,,,,,,S_fade_favourite:home10.0,S_fade_favourite:away7.5,0.0
 2026_04_MIA_MIN|2026_04_LAC_SEA,2026,4,2026-10-04,parlay,parlay,,254.0,0.5,0.0,P_fade_under,MIA@LAC,MIN@SEA,,,,,,,,S_fade_favourite:away10.0,S_fade_favourite:away7.0,0.0
