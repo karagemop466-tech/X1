@@ -6,16 +6,22 @@ From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git reset --mixed origin/main
 Unstaged changes after reset:
+M	app/deficiency.html
+M	app/depth.html
 M	app/flagged.html
+M	app/index.html
+M	app/injuries.html
 M	app/repo-review.html
 M	console/announcement.html
 M	console/archived-sites.html
+M	console/availability-series.html
 M	console/capture.html
 M	console/correlations.html
 M	console/deficiency.html
 M	console/depth-parse.html
 M	console/depth.html
 M	console/executive-summary.html
+M	console/fixture-context.html
 M	console/flagged.html
 M	console/gates.html
 M	console/index.html
@@ -24,6 +30,7 @@ M	console/leaderboard.html
 M	console/ledger.html
 M	console/lines.html
 M	console/luck.html
+M	console/mind-change.html
 M	console/official-flags.html
 M	console/prices.html
 M	console/props.html
@@ -40,14 +47,23 @@ M	console/strategies.html
 M	console/suggestions.html
 M	console/verification.html
 M	console/w10-finals.html
+M	data/audit/decision_questions.json
 M	data/captures/index.jsonl
 M	data/captures/status.json
+M	data/console/depth_parse.csv
+M	data/console/depth_parse.json
+M	data/console/injury_ledger.csv
 M	data/console/payload.json
 M	data/console/price_snapshots.csv
+M	data/console/readiness.csv
+M	data/console/readiness.json
 M	data/console/repo_inventory.csv
 M	data/depth/depth_groups_32.csv
 M	data/depth/depth_groups_32.json
+M	data/depth/matchup_deficiency_matrix_w11.csv
 M	data/depth/matchup_deficiency_matrix_w11.json
+M	data/depth/replacement_depth_summary.json
+M	data/depth/team_deficiency_summary.csv
 M	data/depth/team_deficiency_summary.json
 M	data/lab/reads/2026-11-17/feed-closure-measurement.json
 M	data/lab/reads/2026-11-17/manifest.json
@@ -65,70 +81,39 @@ M	data/pipeline/repo_review.json
 M	data/pipeline/standings.json
 M	data/pipeline/team_stats.json
 M	data/preregistration/register.json
+M	data/readiness/decision_readiness.csv
 M	data/readiness/decision_readiness.json
 M	index.html
 M	lab/flagged.html
 M	lab/reads.html
 M	pages/capture-system.html
+M	pages/decisions-critical.html
+M	pages/matchup-matrix.html
+M	pages/readiness.html
 M	pages/shadow-baseline.html
 + git add data/captures
 + git diff --cached --quiet
 ++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'ci: retain 2026-11-19T20:57:50Z official captures'
-[main 38d9fc6] ci: retain 2026-11-19T20:57:50Z official captures
- 2 files changed, 19 insertions(+), 14 deletions(-)
-+ '[' 0 = 0 ']'
-+ git add -A data app lab pages index.html
-+ git diff --cached --quiet
-++ date -u +%Y-%m-%dT%H:%M:%SZ
-+ git commit -m 'data: refresh from official sources 2026-11-19T20:57:50Z'
-[main 06fa0d6] data: refresh from official sources 2026-11-19T20:57:50Z
- 31 files changed, 28686 insertions(+), 28466 deletions(-)
++ git commit -m 'ci: retain 2026-11-20T03:58:54Z official captures'
+[main c672d74] ci: retain 2026-11-20T03:58:54Z official captures
+ 5 files changed, 33437 insertions(+), 17 deletions(-)
+ create mode 100644 data/captures/payloads/deficiency/84/845fb87ecb9b70867105ae97ccc052dd905bdd8bc16ff6597c6022ea7eca0c73.json
+ create mode 100644 data/captures/payloads/depth_charts/41/41aabd58878747e18cba54e672d1a0d8ae4378a06a0bce496bae2e7ea2418cef.json
+ create mode 100644 data/captures/payloads/injuries/93/93a3359e4dc0551793373cd22bdcc732271508128fa611bb41db86a0df2fa5e4.json
++ '[' 1 = 0 ']'
++ echo 'MARKER: derived artefacts withheld (rebuild/verify gate = 1)'
+MARKER: derived artefacts withheld (rebuild/verify gate = 1)
 + git push origin HEAD:main
 To https://github.com/karagemop466-tech/X1
-   6726c21..06fa0d6  HEAD -> main
-+ '[' 0 = 0 ']'
-+ set -o pipefail
-+ python3 tools/rebuild_for_refresh.py --post-commit
-+ tee /tmp/x1ci/postcommit.log
-$ python3 tools/build_state_audit.py --check
-    ok: data/audit/readiness.json matches a fresh build (60 rows)
-$ python3 tools/build_decision_readiness.py --check
-    CHECK OK: 53 rows match the committed register byte for byte (ignoring generated_at)
-$ python3 tools/build_results_r3.py --check
-    verified_results: 150 rows, 0 mismatches, 32/32 standings reconciled
-    signal_grade: 84-49 (63.16%), z=3.035, p=0.0024, n=133
-    check: committed results feed matches a fresh build
-$ python3 tools/build_snapshots.py --check
-    price_snapshots: 84 records, statuses={'captured_post_final': 3, 'not_captured_before_kickoff': 42, 'recorded': 39}, market_line published=0 (all blank+flagged), mirror-labelled prices=84, residuals=8
-    check: committed snapshot store matches a fresh build
-$ python3 tools/build_origination.py --check
-    origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
-    check: committed origination table matches a fresh build
-$ python3 tools/build_round3.py --check
-    replacement_depth_summary: 7 unit x depth rows, totals={'2': 690, 'none': 204, '3': 2}, gaps(on report, no replacement named)=19
-    correlations_official_check: 1034 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
-    check: committed round-3 registers match a fresh build
-$ python3 tools/build_preregistration.py --check
-    anchor check SKIPPED (and anchors carried forward, not flattened): shallow checkout (actions/checkout default fetch-depth: 1). 'which commit froze the rule' is answered in the full repository; the rul
-$ python3 tools/build_next_decisions.py --check
-    CHECK OK: 11 suggestions, 10 questions
-$ python3 tools/lab/build_reads.py --check
-    CHECK OK: the 2026-11-17 reads pack reproduces from its files (14+136 games, 32 clubs, 44 injury rows, 0 failures)
-$ python3 tools/lab/build_closure_measurement.py --check
-    CHECK OK: the feed-closure measurement reproduces from its inputs
-$ python3 tools/build_depth_matrix.py --check
-    CHECK OK: 32 clubs (31 verified + 1 HOU image-only), GB joins 0->13, W11 matrix 78 rows (51 alerts)
-$ python3 tools/build_modeling_lab.py --check
-    CHECK OK: data/models/ reproduces cleanly (4 splits, 32 SRS ratings, dual totals, chronological ablations)
-rebuild_for_refresh --post-commit: ok (0 check(s) failed against the new commit)
+   86ba977..c672d74  HEAD -> main
++ '[' 1 = 0 ']'
 + pushed=0
 + for attempt in 1 2 3 4 5
 + git fetch origin main
 From https://github.com/karagemop466-tech/X1
  * branch            main       -> FETCH_HEAD
 + git -c rebase.autoStash=true rebase origin/main
-Created autostash: 01729e4
+Created autostash: efebc60
 Current branch main is up to date.
 Applied autostash.
 + git push origin HEAD:main
