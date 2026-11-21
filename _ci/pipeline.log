@@ -1,7 +1,7 @@
 correlations: 1036 pairs
-repo_review: 1062 files, 650 flagged
+repo_review: 1067 files, 655 flagged
 {
- "generated_at": "2026-11-20T19:05:17+00:00",
+ "generated_at": "2026-11-21T00:47:40+00:00",
  "branch_note": "pipeline run",
  "datasets": {
   "standings": {
@@ -10,7 +10,7 @@ repo_review: 1062 files, 650 flagged
   },
   "injuries": {
    "status": "written",
-   "rows": 293
+   "rows": 310
   },
   "depth_charts": {
    "status": "written",
@@ -99,12 +99,12 @@ repo_review: 1062 files, 650 flagged
    "count": 32
   }
  ],
- "finished_at": "2026-11-20T19:05:39+00:00"
+ "finished_at": "2026-11-21T00:48:10+00:00"
 }
 exit=0
 ===== captures.log =====
 capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-  104 captures retained; 48 distinct payloads
+  109 captures retained; 50 distinct payloads
 ===== rebuild.log =====
 $ python3 tools/build_availability.py
       listed starters with a Week 10 designation : 37
@@ -130,7 +130,7 @@ $ python3 tools/build_origination.py
     origination_order: 42 rows, 14/14 games in order 1,2,3; market_line published=0 (blank+flagged)
 $ python3 tools/build_round3.py
     leaderboard_signal_staking: 11 rows, signal populated on 1, staking values published=0
-    replacement_depth_summary: 8 unit x depth rows, totals={'2': 688, 'none': 204, '3': 3}, gaps(on report, no replacement named)=19
+    replacement_depth_summary: 9 unit x depth rows, totals={'2': 684, 'none': 204, '3': 7}, gaps(on report, no replacement named)=20
     correlations_official_check: 1036 pairs, all with n (distinct n=[32]), hosts=['www.nfl.com'], violations=0
 $ python3 tools/lab/build_controls.py
     random ATS     : mean 0.5003  band [0.4776, 0.5213]  reps >= favourites 0.943
@@ -156,7 +156,7 @@ $ python3 tools/build_decision_readiness.py
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.json
     wrote /home/runner/work/X1/X1/data/readiness/decision_readiness.csv
 $ python3 tools/build_app.py
-    wrote app/repo-review.html (590,538 bytes)
+    wrote app/repo-review.html (594,382 bytes)
     wrote app/stores.html (132,845 bytes)
     29 pages written
 $ python3 tools/build_console.py
@@ -172,7 +172,7 @@ $ python3 tools/build_next_decisions.py
 $ python3 tools/build_depth_matrix.py
       GB jersey stripped: 54 rows, W10 injury joins: 0 -> 13
       shared rank-1 position groups: 156, shared concat cells: 23, empty gaps: 4
-      W11 mismatch alerts (2nd-4th string active): 45
+      W11 mismatch alerts (2nd-4th string active): 46
 $ python3 tools/build_modeling_lab.py
       2026 W3-W10 unadj vs SRS: {'games': 118, 'mae_unadjusted': 9.5775, 'mae_opp_aware_srs': 9.4987, 'delta_mae': -0.0787, 'delta_mae_ci95': [-0.228, 0.071], 'brier_unadjusted': 0.2329, 'brier_opp_aware_
       Dual totals summary: [('validation_2024', 10.0893, 10.0492, 'KEEP_BOTH_VISIBLE'), ('final_holdout_2025', 10.6678, 10.6606, 'KEEP_BOTH_VISIBLE'), ('live_2026_official_w3_w10', 10.9421, 10.9019, 'KEEP
@@ -217,7 +217,7 @@ $ python3 tools/cross_check.py
     two independent transcriptions agree on every compared value
 $ python3 tools/check_links.py
     files checked : 218
-    assertions    : 54461
+    assertions    : 54563
     all links resolve; no orphan pages; all external hosts approved
 $ python3 scripts/verify_site.py
     Site verification passed: 218 HTML pages; local links resolve; every data-table row has an official source link.
@@ -228,7 +228,7 @@ $ python3 scripts/pipeline/verify_site.py
 $ python3 scripts/pipeline/verify_captures.py --no-freshness
     note: freshness not gated here (a PR build cannot fix a missed collector run); data-refresh.yml gates it after it collects
     capture gate: 0 build-failing problem(s), 0 published alarm(s), 0 stale alarm(s)
-      104 captures retained; 48 distinct payloads
+      109 captures retained; 50 distinct payloads
 $ python3 tools/verify_depth_matrix.py
         assert len(gb_rows) == 55
                ^^^^^^^^^^^^^^^^^^
